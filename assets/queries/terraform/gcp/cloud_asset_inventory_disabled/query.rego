@@ -4,19 +4,6 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	not at_least_one_target_resource(input.document)
-
-	result := {
-		"documentId": input.document[_].id,
-		"resourceType": "google_project_service",
-		"resourceName": "google_project_service",
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
-		"keyActualValue": "Not a single 'google_project_service' resource is defined within the project"
-	}
-}
-
-CxPolicy[result] {
 	resources := [ res | res := {"value" : input.document[index].resource["google_project_service"][name], "doc_index" : index, "name" : name}]
 
 	not at_least_one_asset_inventory_enabled(resources)
@@ -31,10 +18,6 @@ CxPolicy[result] {
 		"keyActualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
 		"searchLine": common_lib.build_search_line(["resource", "google_project_service", resources[x].name, "service"], [])
 	}
-}
-
-at_least_one_target_resource(docs) {
-	docs[index].resource.google_project_service
 }
 
 at_least_one_asset_inventory_enabled(resources) {
