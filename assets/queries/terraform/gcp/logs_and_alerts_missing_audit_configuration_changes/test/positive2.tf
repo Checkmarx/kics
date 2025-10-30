@@ -1,61 +1,7 @@
-resource "google_monitoring_alert_policy" "custom_role_changes" {
-  display_name = "Custom Role Changes Alert"
-
-  conditions {
-    display_name = "Detect Create/Update/Delete Role Audit Logs"
-
-    condition_matched_log {
-
-      # impossible filter, methodName cannot have all values simultaneosly
-      filter = <<-FILTER
-        resource.type="iam_role"
-        AND (protoPayload.methodName = "google.iam.admin.v1.CreateRole"
-        AND protoPayload.methodName="google.iam.admin.v1.DeleteRole"
-        AND protoPayload.methodName="google.iam.admin.v1.UpdateRole"
-        AND protoPayload.methodName="google.iam.admin.v1.UndeleteRole")
-      FILTER
-
-    }
-  }
+resource "google_logging_metric" "audit_config_change" {
+  name        = "audit_config_change"
+  description = "Detects changes to audit configurations via SetIamPolicy"
+  filter      = "protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*"
 }
 
-resource "google_monitoring_alert_policy" "custom_role_changes_2" {
-  display_name = "Custom Role Changes Alert 2"
-
-  conditions {
-    display_name = "Detect Create/Update/Delete Role Audit Logs"
-
-    condition_matched_log {
-
-      # impossible filter, methodName cannot have all values simultaneosly
-      filter = <<-FILTER
-        resource.type="iam_role"
-        AND (protoPayload.methodName = "google.iam.admin.v1.CreateRole"
-        AND protoPayload.methodName="google.iam.admin.v1.DeleteRole"
-        AND protoPayload.methodName="google.iam.admin.v1.UpdateRole"
-        AND protoPayload.methodName="google.iam.admin.v1.UndeleteRole")
-        )
-      FILTER
-    }
-  }
-}
-
-resource "google_monitoring_alert_policy" "custom_role_changes_3" {
-  display_name = "Custom Role Changes Alert 3"
-
-  conditions {
-    display_name = "Detect Create/Update/Delete Role Audit Logs"
-
-    condition_matched_log {
-
-      # Inequality (!=) statement
-      filter = <<-FILTER
-        resource.type="iam_role"
-        AND (protoPayload.methodName != "google.iam.admin.v1.CreateRole"
-        AND protoPayload.methodName !="google.iam.admin.v1.DeleteRole"
-        AND protoPayload.methodName != "google.iam.admin.v1.UpdateRole"
-        AND protoPayload.methodName !="google.iam.admin.v1.UndeleteRole")
-      FILTER
-    }
-  }
-}
+# missing a "google_monitoring_alert_policy" resource

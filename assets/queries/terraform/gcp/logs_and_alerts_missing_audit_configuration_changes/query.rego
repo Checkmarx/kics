@@ -6,8 +6,8 @@ import data.generic.terraform as tf_lib
 types := {"google_logging_metric", "google_monitoring_alert_policy"}
 
 CxPolicy[result] {
-	log_resources   := [{"value" : input.document[x1].resource["google_logging_metric"]	        , "document_index": x1}]
-	alert_resources := [{"value" : input.document[x2].resource["google_monitoring_alert_policy"], "document_index": x2}]
+	log_resources   := get_values_if_available("google_logging_metric")
+	alert_resources := get_values_if_available("google_monitoring_alert_policy")
 	results := not_one_valid_log_and_alert_pair(log_resources, alert_resources)
 
 
@@ -23,13 +23,19 @@ CxPolicy[result] {
 	}
 }
 
+get_values_if_available(type) = values {
+    doc := input.document[idx]
+	resource := doc.resource[type]
+    values := [{"value": resource, "document_index": idx}]
+} else = []
+
 not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	missing_resource_type := get_missing_type(log_resources, alert_resources)
 
 	results := [{
 		"documentId": input.document[_].id,
 		"resourceType": sprintf("%s",[missing_resource_type]),
-		"resourceName": "",
+		"resourceName": missing_resource_type,
 		"searchKey": sprintf("%s",[missing_resource_type]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("At least one '%s' resource should capture all audit configuration changes", [missing_resource_type]),
@@ -121,9 +127,9 @@ single_regex_match(filters_data) {
 }
 
 get_missing_type(log_resources, alert_resources) = "google_logging_metric"{
-	log_resources == []
+	count(log_resources)  == 0
 } else = "google_monitoring_alert_policy" {
-	alert_resources == []
+	count(alert_resources) == 0
 }
 
 get_data(resource, type, name, doc_index) = filter {

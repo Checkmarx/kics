@@ -12,7 +12,8 @@ resource "google_monitoring_alert_policy" "audit_config_alert" {
   conditions {
     display_name = "Audit Config Change Condition"
     condition_threshold {
-      filter = "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/audit_config_change\""
+      filter = "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/wrong_reference\""
+      # incorrect filter reference
     }
   }
 
