@@ -12,7 +12,6 @@ CxPolicy[result] {
 		"documentId": input.document[_].id,
 		"resourceType": types[t],
 		"resourceName": types[t],
-		"searchKey": "",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("At least one '%s' resource should capture all audit configuration changes", [types[t]]),
 		"keyActualValue": sprintf("No a single '%s' resource is defined within the project", [types[t]])
