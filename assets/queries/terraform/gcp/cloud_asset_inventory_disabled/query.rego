@@ -10,7 +10,6 @@ CxPolicy[result] {
 		"documentId": input.document[_].id,
 		"resourceType": "google_project_service",
 		"resourceName": "google_project_service",
-		"searchKey": "",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
 		"keyActualValue": "Not a single 'google_project_service' resource is defined within the project"
