@@ -155,10 +155,11 @@ type analyzerInfo struct {
 	fallbackMinifiedFileLOC int
 }
 
-// fileTypeInfo contains file path and its detected platform type
+// fileTypeInfo contains file path, detected platform type, and LOC count
 type fileTypeInfo struct {
 	filePath string
 	fileType string
+	locCount int
 }
 
 // Analyzer keeps all the relevant info for the function Analyze
@@ -431,14 +432,14 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			if a.isAvailableType(dockerfile) {
 				results <- dockerfile
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile}
+				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
 			}
 		// Dockerfile (indirect identification)
 		case "possibleDockerfile", ".ubi8", ".debian":
 			if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
 				results <- dockerfile
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile}
+				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
 			} else {
 				unwanted <- a.filePath
 			}
@@ -447,28 +448,28 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			if a.isAvailableType(terraform) {
 				results <- terraform
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: terraform}
+				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: terraform, locCount: linesCount}
 			}
 		// Bicep
 		case ".bicep":
 			if a.isAvailableType(bicep) {
 				results <- arm
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: arm}
+				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: arm, locCount: linesCount}
 			}
 		// GRPC
 		case ".proto":
 			if a.isAvailableType(grpc) {
 				results <- grpc
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: grpc}
+				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: grpc, locCount: linesCount}
 			}
 		// It could be Ansible Config or Ansible Inventory
 		case ".cfg", ".conf", ".ini":
 			if a.isAvailableType(ansible) {
 				results <- ansible
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: ansible}
+				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: ansible, locCount: linesCount}
 			}
 		/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
 		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
@@ -573,7 +574,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 
 	results <- returnType
 	locCount <- linesCount
-	fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: returnType}
+	fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: returnType, locCount: linesCount}
 }
 
 func checkReturnType(path, returnType, ext string, content []byte) string {
@@ -684,7 +685,7 @@ func computeValues(types, unwanted chan string, locCount chan int, fileInfo chan
 	typeSlice := make([]string, 0)
 	stats = make(map[string]model.FileStatistics)
 
-	platformFiles := make(map[string][]string)
+	platformFilesInfo := make(map[string][]fileTypeInfo)
 
 	for {
 		select {
@@ -699,23 +700,30 @@ func computeValues(types, unwanted chan string, locCount chan int, fileInfo chan
 				typeSlice = append(typeSlice, i)
 			}
 		case info := <-fileInfo:
-			platformFiles[info.fileType] = append(platformFiles[info.fileType], info.filePath)
+			platformFilesInfo[info.fileType] = append(platformFilesInfo[info.fileType], info)
 		case <-done:
-			for platformType, filePaths := range platformFiles {
+			for platformType, filesInfo := range platformFilesInfo {
 				dirMap := make(map[string]int)
-				for _, filePath := range filePaths {
-					dir := filepath.Dir(filePath)
+				locByDir := make(map[string]int)
+				totalLOC := 0
+
+				for _, fileInfo := range filesInfo {
+					dir := filepath.Dir(fileInfo.filePath)
 					dirMap[dir]++
+					locByDir[dir] += fileInfo.locCount
+					totalLOC += fileInfo.locCount
 				}
 
 				stats[platformType] = model.FileStatistics{
-					FileCount:      len(filePaths),
+					FileCount:      len(filesInfo),
 					DirectoryCount: len(dirMap),
 					FilesByDir:     dirMap,
+					TotalLOC:       totalLOC,
+					LOCByDir:       locByDir,
 				}
 
-				log.Debug().Msgf("[STATS] Platform: %s, Files: %d, Directories: %d",
-					platformType, len(filePaths), len(dirMap))
+				log.Debug().Msgf("[STATS] Platform: %s, Files: %d, Directories: %d, LOC: %d",
+					platformType, len(filesInfo), len(dirMap), totalLOC)
 			}
 
 			return typeSlice, unwantedSlice, val, stats
