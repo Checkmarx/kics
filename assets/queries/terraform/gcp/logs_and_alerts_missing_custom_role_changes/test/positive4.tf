@@ -22,5 +22,5 @@ resource "google_monitoring_alert_policy" "audit_config_alert" {
     }
   }
 
-  notification_channels = [google_monitoring_notification_channel.email.id]
+  # missing notification channels
 }

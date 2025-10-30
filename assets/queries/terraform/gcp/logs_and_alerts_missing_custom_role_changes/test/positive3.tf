@@ -11,14 +11,21 @@ resource "google_logging_metric" "audit_config_change" {
 }
 
 resource "google_monitoring_alert_policy" "audit_config_alert" {
-  display_name = "Audit Config Change Alert"
+  display_name = "Audit Config Change Alert (Log Match)"
 
   combiner = "OR"
 
   conditions {
     display_name = "Audit Config Change Condition"
-    condition_threshold {
-      filter = "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/audit_config_change\""
+    condition_matched_log {
+      filter = <<-FILTER
+        resource.type="iam_role"
+        AND (protoPayload.methodName = "google.iam.admin.v1.RandomMethod" OR
+        protoPayload.methodName="google.iam.admin.v1.DeleteRole" OR
+        protoPayload.methodName="google.iam.admin.v1.UpdateRole" OR
+        protoPayload.methodName="google.iam.admin.v1.UndeleteRole")
+      FILTER
+      # incorrect filter
     }
   }
 

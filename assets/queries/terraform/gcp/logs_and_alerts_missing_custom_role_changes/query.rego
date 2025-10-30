@@ -3,105 +3,130 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-resources := {"google_logging_metric", "google_monitoring_alert_policy"}
+types := {"google_logging_metric", "google_monitoring_alert_policy"}
+regex_pattern := "\\s*resource\\.type\\s*=\\s*\\\"iam_role\\\"\\s*AND\\s*\\(\\s*protoPayload\\.methodName\\s*=\\s*\\\"google\\.iam\\.admin\\.v1\\.CreateRole\\\"\\s*OR\\s*protoPayload\\.methodName\\s*=\\s*\\\"google\\.iam\\.admin\\.v1\\.DeleteRole\\\"\\s*OR\\s*protoPayload\\.methodName\\s*=\\s*\\\"google\\.iam\\.admin\\.v1\\.UpdateRole\\\"\\s*OR\\s*protoPayload\\.methodName\\s*=\\s*\\\"google\\.iam\\.admin\\.v1\\.UndeleteRole\\\"\\s*\\)\\s*"
 
 CxPolicy[result] {
-	doc := input.document[i]
-	log_or_alert := doc.resource[resources[m]][name]
-	filter_data := get_filter(log_or_alert, resources[m], name)
-	lines := split(filter_data.filter, "\n")
-
-	target_methods := {"CreateRole", "UpdateRole", "UndeleteRole", "DeleteRole"}
-	target_resource_type := "iam_role"
-	keyActualValue := is_improper_filter(target_methods, target_resource_type, lines)
+	log_resources   := [{"value": input.document[index].resource.google_logging_metric, "document_index": index}]
+	alert_resources := [{"value": input.document[index].resource.google_monitoring_alert_policy, "document_index": index}]
+	results := not_one_valid_log_and_alert_pair(log_resources, alert_resources)
 
 	result := {
-		"documentId": doc.id,
-		"resourceType": resources[m],
-		"resourceName": tf_lib.get_resource_name(log_or_alert, name),
-		"searchKey": sprintf("%s[%s].%s", [resources[m], name, filter_data.path]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s[%s].%s' should capture all custom role changes for resource type 'iam_role'", [resources[m], name, filter_data.path]),
-		"keyActualValue": sprintf("'%s[%s].%s' %s", [resources[m], name, filter_data.path, keyActualValue]),
-		"searchLine": common_lib.build_search_line(filter_data.searchArray, [])
+		"documentId": results[i].documentId,
+		"resourceType": results[i].resourceType,
+		"resourceName": results[i].resourceName,
+		"searchKey": results[i].searchKey,
+		"issueType": results[i].issueType,
+		"keyExpectedValue": results[i].keyExpectedValue,
+		"keyActualValue": results[i].keyActualValue,
+		"searchLine": results[i].searchLine
 	}
 }
 
-is_improper_filter(target_methods, target_resource_type, lines) = keyActualValue {
-	not correct_resource_type(lines, target_resource_type)
-	keyActualValue := "is applied to the wrong resource type"
-} else = keyActualValue {
-	not contains_method(target_methods, lines)
-	keyActualValue := "does not capture all custom role changes for resource type 'iam_role'"
-} else = keyActualValue {
-	methods_decalared := {line |
-	 line := lines[_]
-	 not contains(line, "NOT")
-	 not contains(line, "OR")
-	 not contains(line, "!=")
-	 contains(line, "protoPayload.methodName=")}
+not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
+	logs_filters_data := [ x | x := get_data(log_resources[_].value[name_log], "google_logging_metric", name_log, log_resources[_].document_index)]
 
-	count(methods_decalared) >= 2
-	methods_decalared[x] != methods_decalared[y]		 # means filter declares method = x AND method = y
+	not single_regex_match(logs_filters_data)
 
-	keyActualValue := "declares an invalid filter, 'methodName' cannot be equal to multiple values simultaneously"
+	results := [x | x := {
+		"documentId": input.document[logs_filters_data[i].doc_index].id,
+		"resourceType": "google_logging_metric",
+		"resourceName": tf_lib.get_resource_name(logs_filters_data[i].resource, logs_filters_data[i].name),
+		"searchKey": sprintf("google_logging_metric[%s].%s", [logs_filters_data[i].name, logs_filters_data[i].path]),
+		"issueType":  "IncorrectValue",
+		"keyExpectedValue": "At least one 'google_logging_metric' resource should capture all custom role changes",
+		"keyActualValue": "No 'google_logging_metric' resource captures all custom role changes",
+		"searchLine": common_lib.build_search_line(logs_filters_data[i].searchArray, [])
+	}]
+
+} else = results {
+	logs_filters_data   := [ x | x := get_data(log_resources[_].value[name_log], "google_logging_metric", name_log, log_resources[_].document_index)]
+
+	valid_logs_names := [logs_filters_data[i2].name |
+  		regex.match(regex_pattern, logs_filters_data[i2].filter)
+	]
+
+	alerts_filters_data := [ x | x := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
+
+	value := has_regex_match_or_reference(alerts_filters_data, valid_logs_names)
+
+	results := get_results(alerts_filters_data, value)
 }
 
-correct_resource_type(lines, target_resource_type) {
-	contains(lines[_], sprintf("resource.type=\"%s\"",[target_resource_type]))
+get_results(alerts_filters_data, value) = results {
+	value == false
+	results := [x | x := {
+			"documentId": input.document[alerts_filters_data[i].doc_index].id,
+			"resourceType": "google_monitoring_alert_policy",
+			"resourceName": tf_lib.get_resource_name(alerts_filters_data[i].resource, alerts_filters_data[i].name),
+			"searchKey": sprintf("google_monitoring_alert_policy[%s].%s", [alerts_filters_data[i].name, alerts_filters_data[i].path]),
+			"issueType":  "IncorrectValue",
+			"keyExpectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all custom role changes",
+			"keyActualValue": "No 'google_monitoring_alert_policy' resource captures all custom role changes",
+			"searchLine": common_lib.build_search_line(alerts_filters_data[i].searchArray, [])
+		}]
+} else = results {
+	is_number(value)
+	results := [x | x := {
+			"documentId": input.document[alerts_filters_data[value].doc_index].id,
+			"resourceType": "google_monitoring_alert_policy",
+			"resourceName": tf_lib.get_resource_name(alerts_filters_data[value].resource, alerts_filters_data[value].name),
+			"searchKey": sprintf("google_monitoring_alert_policy[%s]", [alerts_filters_data[value].name]),
+			"issueType":  "IncorrectValue",
+			"keyExpectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all custom role changes",
+			"keyActualValue": sprintf("The 'google_monitoring_alert_policy[%s]' resource captures all custom role changes but does not define a proper 'notification_channels'",[alerts_filters_data[value].name]),
+			"searchLine": common_lib.build_search_line(alerts_filters_data[value].searchArray, [])
+		}]
 }
 
-contains_method(target_methods, lines) {
-	not_statements := {method |
-	 method := target_methods[_]
-	 line := lines[_]
-	 contains(line, "NOT")
-	 not contains(line, "!=")
-	 contains(line, method)}
+has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
+	regex.match(regex_pattern, alerts_filters_data[i].filter)
+	alerts_filters_data[i].resource.notification_channels
+} else = true {
+	alerts_filters_data[i].allows_ref == true
+	alerts_filters_data[i].resource.notification_channels
+	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
+} else = index {
+	regex.match(regex_pattern, alerts_filters_data[index].filter)
+} else = index {
+	alerts_filters_data[index].allows_ref == true
+	contains(alerts_filters_data[index].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
+} else = false
 
-	count(not_statements) == 0		# must not negate any necessary method
-
-	found_methods := {method |
-	 method := target_methods[_]
-	 line := lines[_]
-	 is_affirmative_or_double_negative(line)
-	 contains(line, method)}
-
-	found_methods == target_methods	 # must have all necessary methods ( "=" or "NOT !=")
-} else {
-	methods := {line |
-	 line := lines[_]
-	 contains(line, "protoPayload.methodName")}
-
-	all_methods_allowed(methods)
+single_regex_match(filters_data) {
+	regex.match(regex_pattern, filters_data[_].filter)
+	# Checkes that methodName is "SetIamPolicy" and auditConfigDeltas is set to *
 }
 
-is_affirmative_or_double_negative(line) {
-	 not contains(line, "NOT")
-	 not contains(line, "!=")
-} else {
-	 contains(line, "NOT")
-	 contains(line, "!=")
-}
-
-all_methods_allowed(methods) {
-	count(methods) == 0					# no method restrictions
-} else {
-	count(methods) == 1
-	contains(methods[x], "protoPayload.methodName:*") # restrictions allow all methods
-}
-
-get_filter(resource, type, name) = filter {
+get_data(resource, type, name, doc_index) = filter {
 	type == "google_logging_metric"
 	filter := {
+		"resource" : resource,
 		"filter" : resource.filter,
 		"path" : "filter",
-		"searchArray" : ["resource", type, name]
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index
 	}
-} else = filter{
+} else = filter {
+	# google_monitoring_alert_policy
 	filter := {
+		"resource" : resource,
+		"filter" : resource.conditions.condition_threshold.filter,			# prefered filter (allows referencing)
+		"path" : "conditions.condition_threshold.filter",
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index,
+		"allows_ref" : true
+	}
+} else = filter {
+	filter := {
+		"resource" : resource,
 		"filter" : resource.conditions.condition_matched_log.filter,
 		"path" : "conditions.condition_matched_log.filter",
-		"searchArray" : ["resource", type, name]
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index,
+		"allows_ref" : false
 	}
 }
