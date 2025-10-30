@@ -30,8 +30,8 @@ get_missing_type(log_resources, alert_resources) = "google_logging_metric"{
 }
 
 CxPolicy[result] {
-	log_resources   := get_values_if_available("google_logging_metric")
-	alert_resources := get_values_if_available("google_monitoring_alert_policy")
+	log_resources   := [{"value": input.document[index].resource.google_logging_metric, "document_index": index}]
+	alert_resources := [{"value": input.document[index].resource.google_monitoring_alert_policy, "document_index": index}]
 	results := not_one_valid_log_and_alert_pair(log_resources, alert_resources)
 
 	result := {
@@ -45,11 +45,6 @@ CxPolicy[result] {
 		"searchLine": results[i].searchLine
 	}
 }
-
-get_values_if_available(type) = values {
-	input.document[index].resource.google_project_service
-    values := [{"value": input.document[index].resource.google_project_service, "document_index": index}]
-} else = []
 
 not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	logs_filters_data := [ x | x := get_data(log_resources[_].value[name_log], "google_logging_metric", name_log, log_resources[_].document_index)]
@@ -109,7 +104,6 @@ get_results(alerts_filters_data, value) = results {
 		}]
 }
 
-
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
 	regex.match(
 		"\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*",
@@ -122,12 +116,10 @@ has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
 } else = index {
 	regex.match(
 		"\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*",
-		 alerts_filters_data[i].filter)
-	index := i
+		 alerts_filters_data[index].filter)
 } else = index {
-	alerts_filters_data[i].allows_ref == true
-	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
-	index := i
+	alerts_filters_data[index].allows_ref == true
+	contains(alerts_filters_data[index].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
 } else = false
 
 single_regex_match(filters_data) {
