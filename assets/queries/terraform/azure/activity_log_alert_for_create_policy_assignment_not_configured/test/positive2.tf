@@ -1,32 +1,5 @@
-resource "azurerm_monitor_activity_log_alert" "positive1" {
-  name                = "example-activitylogalert"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
-  scopes              = [azurerm_resource_group.example.id]
-  description         = "Negative sample"
 
-  criteria {
-    resource_id    = azurerm_storage_account.to_monitor.id
-    operation_name = "Microsoft.Storage/storageAccounts/write"          # wrong operation name
-    category       = "Administrative"
-  }
-}
-
-resource "azurerm_monitor_activity_log_alert" "positive2" {
-  name                = "example-activitylogalert"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
-  scopes              = [azurerm_resource_group.example.id]
-  description         = "Negative sample"
-
-  criteria {
-    resource_id    = azurerm_storage_account.to_monitor.id
-    operation_name = "Microsoft.Authorization/policyAssignments/write"
-    category       = "Policy"                                             # wrong category
-  }
-}
-
-resource "azurerm_monitor_activity_log_alert" "positive3" {
+resource "azurerm_monitor_activity_log_alert" "positive2_1" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -39,9 +12,13 @@ resource "azurerm_monitor_activity_log_alert" "positive3" {
     category       = "Administrative"
     caller         = "admin@contoso.com"                                          # filters by caller
   }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+    }
 }
 
-resource "azurerm_monitor_activity_log_alert" "positive4" {
+resource "azurerm_monitor_activity_log_alert" "positive2_2" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -54,9 +31,13 @@ resource "azurerm_monitor_activity_log_alert" "positive4" {
     category       = "Administrative"
     level          = "Informational"                                              # filters by level
   }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+    }
 }
 
-resource "azurerm_monitor_activity_log_alert" "positive5" {
+resource "azurerm_monitor_activity_log_alert" "positive2_3" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -69,9 +50,13 @@ resource "azurerm_monitor_activity_log_alert" "positive5" {
     category       = "Administrative"
     levels         = ["Informational", "Warning"]                                  # filters by levels
   }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+    }
 }
 
-resource "azurerm_monitor_activity_log_alert" "positive6" {
+resource "azurerm_monitor_activity_log_alert" "positive2_4" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -84,9 +69,13 @@ resource "azurerm_monitor_activity_log_alert" "positive6" {
     category       = "Administrative"
     status         = "Succeeded"                                                    # filters by status
   }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+    }
 }
 
-resource "azurerm_monitor_activity_log_alert" "positive7" {
+resource "azurerm_monitor_activity_log_alert" "positive2_5" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -99,9 +88,13 @@ resource "azurerm_monitor_activity_log_alert" "positive7" {
     category       = "Administrative"
     statuses       = ["Succeeded", "Failed"]                                        # filters by statuses
   }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+    }
 }
 
-resource "azurerm_monitor_activity_log_alert" "positive8" {
+resource "azurerm_monitor_activity_log_alert" "positive2_6" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -114,9 +107,13 @@ resource "azurerm_monitor_activity_log_alert" "positive8" {
     category       = "Administrative"
     sub_status     = "Accepted"                                                      # filters by sub_status
   }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+    }
 }
 
-resource "azurerm_monitor_activity_log_alert" "positive9" {
+resource "azurerm_monitor_activity_log_alert" "positive2_7" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -129,4 +126,8 @@ resource "azurerm_monitor_activity_log_alert" "positive9" {
     category       = "Administrative"
     sub_statuses   = ["Accepted", "Conflict"]                                         # filters by sub_statuses
   }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+    }
 }
