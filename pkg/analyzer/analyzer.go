@@ -325,6 +325,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		Types:       make([]string, 0),
 		Exc:         make([]string, 0),
 		ExpectedLOC: 0,
+		FileStats: make(map[string]model.FileStatistics),
 	}
 
 	var files []string
