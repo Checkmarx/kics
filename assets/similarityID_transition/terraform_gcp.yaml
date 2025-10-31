@@ -3,3 +3,7 @@ similarityIDChangeList:
       queryName: Beta - Google DNS Policy Logging Disabled
       observations: ""
       change: 2
+    - queryId: 245eb024-d08a-449b-a1f2-02f7bba00fc2
+      queryName: Beta - SQL DB Instance Without Centralized Logging
+      observations: ""
+      change: 2
