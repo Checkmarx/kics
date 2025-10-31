@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <SEVERITY>
 -   **Category:** <CATEGORY>
 -   **CWE:** <CWE>
+-   **Risk score:** <RISKSCORE>
 -   **URL:** [Github](<GITHUB_URL>)
 
 ### Description
