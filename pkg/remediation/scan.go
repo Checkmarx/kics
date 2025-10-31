@@ -43,7 +43,8 @@ func scanTmpFile(
 	tmpFile, queryID string,
 	remediated []byte,
 	openAPIResolveReferences bool,
-	maxResolverDepth int) ([]model.Vulnerability, error) {
+	maxResolverDepth int,
+	experimental bool) ([]model.Vulnerability, error) {
 	// get payload
 	files, err := getPayload(tmpFile, remediated, openAPIResolveReferences, maxResolverDepth)
 
@@ -60,7 +61,7 @@ func scanTmpFile(
 	payload := files.Combine(false)
 
 	// init scan
-	inspector, err := initScan(queryID)
+	inspector, err := initScan(queryID, experimental)
 
 	if err != nil {
 		log.Err(err)
@@ -194,7 +195,7 @@ func runQuery(r *runQueryInfo) []model.Vulnerability {
 	return decoded
 }
 
-func initScan(queryID string) (*engine.Inspector, error) {
+func initScan(queryID string, experimental bool) (*engine.Inspector, error) {
 	scanParams := &scan.Parameters{
 		QueriesPath:         flags.GetMultiStrFlag(flags.QueriesPath),
 		Platform:            flags.GetMultiStrFlag(flags.TypeFlag),
@@ -227,7 +228,8 @@ func initScan(queryID string) (*engine.Inspector, error) {
 	}
 
 	queryFilter := source.QueryInspectorParameters{
-		IncludeQueries: includeQueries,
+		IncludeQueries:      includeQueries,
+		ExperimentalQueries: experimental,
 	}
 
 	t, err := tracker.NewTracker(c.ScanParams.PreviewLines)
@@ -271,5 +273,5 @@ func loadQuery(inspector *engine.Inspector, queryID string) (*engine.PreparedQue
 		return query, nil
 	}
 
-	return &engine.PreparedQuery{}, errors.New("unable to load query" + queryID)
+	return &engine.PreparedQuery{}, errors.New("unable to load query " + queryID)
 }
