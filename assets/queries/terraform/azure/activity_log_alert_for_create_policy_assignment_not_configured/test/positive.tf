@@ -7,8 +7,8 @@ resource "azurerm_monitor_activity_log_alert" "positive1" {
 
   criteria {
     resource_id    = azurerm_storage_account.to_monitor.id
-    operation_name = "Microsoft.Storage/storageAccounts/write"
-    category       = "Recommendation"
+    operation_name = "Microsoft.Storage/storageAccounts/write"          # wrong operation name
+    category       = "Administrative"
   }
 }
 
@@ -22,6 +22,6 @@ resource "azurerm_monitor_activity_log_alert" "positive2" {
   criteria {
     resource_id    = azurerm_storage_account.to_monitor.id
     operation_name = "Microsoft.Authorization/policyAssignments/write"
-    category       = "Policy"
+    category       = "Policy"                                             # wrong category
   }
 }
