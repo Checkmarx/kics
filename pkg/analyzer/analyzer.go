@@ -325,7 +325,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		Types:       make([]string, 0),
 		Exc:         make([]string, 0),
 		ExpectedLOC: 0,
-		FileStats: make(map[string]model.FileStatistics),
+		FileStats:   make(map[string]model.FileStatistics),
 	}
 
 	var files []string
@@ -741,9 +741,6 @@ func computeValues(
 					TotalLOC:       totalLOC,
 					LOCByDir:       locByDir,
 				}
-
-				log.Debug().Msgf("[STATS] Platform: %s, Files: %d, Directories: %d, LOC: %d",
-					platformType, len(filesInfo), len(dirMap), totalLOC)
 			}
 
 			return typeSlice, unwantedSlice, val, stats
