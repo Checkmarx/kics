@@ -93,7 +93,6 @@ has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
 
 single_regex_match(filters_data) {
 	regex.match(regex_pattern, filters_data[_].filter)
-	# Checkes that methodName is "SetIamPolicy" and auditConfigDeltas is set to *
 }
 
 get_data(resource, type, name, doc_index) = filter {
