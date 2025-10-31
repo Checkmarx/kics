@@ -13,14 +13,16 @@ CxPolicy[result] {
 	common_lib.is_allow_effect(statement)
 	common_lib.any_principal(statement)
 
+	not common_lib.is_access_limited_to_an_account_id(statement)
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement should not allow actions from all principals", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement allows actions from all principals", [name]),
-		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "PolicyDocument"], []),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement contains '*' in an AWS Principal", [name]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "PolicyDocument"], []),
 	}
 }
