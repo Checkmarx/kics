@@ -607,10 +607,9 @@ func TestAnalyzer_FileStats(t *testing.T) {
 			excludeTypesFromFlag: []string{""},
 			wantPlatformStats: map[string]platformFileStats{
 				"kubernetes": {
-					fileCount:    3,
-					dirCount:     2,
-					totalLOC:     118,
-					minLOCPerDir: 1,
+					fileCount: 3,
+					dirCount:  2,
+					totalLOC:  118,
 				},
 			},
 			gitIgnoreFileName: "",
@@ -624,22 +623,19 @@ func TestAnalyzer_FileStats(t *testing.T) {
 			excludeTypesFromFlag: []string{""},
 			wantPlatformStats: map[string]platformFileStats{
 				"terraform": {
-					fileCount:    1,
-					dirCount:     1,
-					totalLOC:     10,
-					minLOCPerDir: 1,
+					fileCount: 1,
+					dirCount:  1,
+					totalLOC:  10,
 				},
 				"kubernetes": {
-					fileCount:    4,
-					dirCount:     3,
-					totalLOC:     131,
-					minLOCPerDir: 1,
+					fileCount: 4,
+					dirCount:  3,
+					totalLOC:  131,
 				},
 				"dockerfile": {
-					fileCount:    1,
-					dirCount:     1,
-					totalLOC:     3,
-					minLOCPerDir: 1,
+					fileCount: 1,
+					dirCount:  1,
+					totalLOC:  3,
 				},
 			},
 			gitIgnoreFileName: "",
@@ -653,16 +649,14 @@ func TestAnalyzer_FileStats(t *testing.T) {
 			excludeTypesFromFlag: []string{""},
 			wantPlatformStats: map[string]platformFileStats{
 				"terraform": {
-					fileCount:    1,
-					dirCount:     1,
-					totalLOC:     10,
-					minLOCPerDir: 1,
+					fileCount: 1,
+					dirCount:  1,
+					totalLOC:  10,
 				},
 				"kubernetes": {
-					fileCount:    6,
-					dirCount:     3,
-					totalLOC:     156,
-					minLOCPerDir: 1,
+					fileCount: 6,
+					dirCount:  3,
+					totalLOC:  156,
 				},
 			},
 			gitIgnoreFileName: "",
@@ -707,19 +701,6 @@ func TestAnalyzer_FileStats(t *testing.T) {
 				require.Equal(t, expectedStats.dirCount, len(platformStats.FilesByDir),
 					"wrong FilesByDir entries for platform %s", platform)
 
-				require.NotNil(t, platformStats.LOCByDir, "LOCByDir should not be nil")
-				require.Equal(t, expectedStats.dirCount, len(platformStats.LOCByDir),
-					"wrong LOCByDir entries for platform %s", platform)
-
-				totalLOCFromDirs := 0
-				for _, loc := range platformStats.LOCByDir {
-					require.GreaterOrEqual(t, loc, expectedStats.minLOCPerDir,
-						"directory LOC below minimum for platform %s", platform)
-					totalLOCFromDirs += loc
-				}
-				require.Equal(t, platformStats.TotalLOC, totalLOCFromDirs,
-					"LOC sum mismatch for platform %s", platform)
-
 				totalFilesFromDirs := 0
 				for _, fileCount := range platformStats.FilesByDir {
 					totalFilesFromDirs += fileCount
@@ -732,8 +713,7 @@ func TestAnalyzer_FileStats(t *testing.T) {
 }
 
 type platformFileStats struct {
-	fileCount    int
-	dirCount     int
-	totalLOC     int
-	minLOCPerDir int
+	fileCount int
+	dirCount  int
+	totalLOC  int
 }

@@ -724,13 +724,11 @@ func computeValues(
 		case <-done:
 			for platformType, filesInfo := range platformFilesInfo {
 				dirMap := make(map[string]int)
-				locByDir := make(map[string]int)
 				totalLOC := 0
 
 				for _, fileInfo := range filesInfo {
 					dir := filepath.Dir(fileInfo.filePath)
 					dirMap[dir]++
-					locByDir[dir] += fileInfo.locCount
 					totalLOC += fileInfo.locCount
 				}
 
@@ -739,7 +737,6 @@ func computeValues(
 					DirectoryCount: len(dirMap),
 					FilesByDir:     dirMap,
 					TotalLOC:       totalLOC,
-					LOCByDir:       locByDir,
 				}
 			}
 

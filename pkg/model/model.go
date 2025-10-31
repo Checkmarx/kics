@@ -302,7 +302,6 @@ type FileStatistics struct {
 	DirectoryCount int
 	FilesByDir     map[string]int
 	TotalLOC       int
-	LOCByDir       map[string]int
 }
 
 // ResolvedFileSplit is a struct that contains the information of a resolved file, the path and the lines of the file
