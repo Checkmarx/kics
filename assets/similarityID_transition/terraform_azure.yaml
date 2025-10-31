@@ -3,3 +3,7 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 0bd3630a-2ae9-4522-9d66-04049654b1df
+      queryName: Beta - Databricks Diagnostic Logging Unconfigured
+      observations: ""
+      change: 2
