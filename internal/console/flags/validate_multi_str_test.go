@@ -80,8 +80,8 @@ func TestFlags_validateMultiStrEnum(t *testing.T) {
 		{
 			name:      "should execute fine when values have leading or trailing spaces",
 			flagName:  "exclude-categories",
-			flagValue: &[]string{"Ansible ", "  Terraform  "},
-			wantErr:   true,
+			flagValue: &[]string{"Backup ", "  Encryption  "},
+			wantErr:   false,
 		},
 	}
 	for _, test := range tests {
@@ -108,6 +108,12 @@ func TestFlags_allQueriesID(t *testing.T) {
 			name:      "should execute fine",
 			flagName:  "exclude-queries",
 			flagValue: &[]string{"f81d63d2-c5d7-43a4-a5b5-66717a41c895"},
+			wantErr:   false,
+		},
+		{
+			name:      "should execute fine when value has leading or trailing spaces",
+			flagName:  "exclude-queries",
+			flagValue: &[]string{"f81d63d2-c5d7-43a4-a5b5-66717a41c895", " 4728cd65-a20c-49da-8b31-9c08b423e4db "},
 			wantErr:   false,
 		},
 		{
