@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
+    "severity": "MEDIUM",
+    "line": 8
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
+    "severity": "MEDIUM",
+    "line": 22
+  }
+]
