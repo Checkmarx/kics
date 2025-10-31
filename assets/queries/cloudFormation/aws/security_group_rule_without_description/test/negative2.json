@@ -4,9 +4,7 @@
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
         "GroupDescription": "Allow http to client host",
-        "VpcId": {
-          "Ref": "myVPC"
-        },
+        "VpcId": { "Ref": "myVPC" },
         "SecurityGroupIngress": [
           {
             "IpProtocol": "tcp",
@@ -18,11 +16,11 @@
         ],
         "SecurityGroupEgress": [
           {
+            "IpProtocol": "tcp",
+            "Description": "TCP",
             "FromPort": 80,
             "ToPort": 80,
-            "CidrIp": "0.0.0.0/0",
-            "IpProtocol": "tcp",
-            "Description": "TCP"
+            "CidrIp": "0.0.0.0/0"
           }
         ]
       }
@@ -30,21 +28,15 @@
     "OutboundRule": {
       "Type": "AWS::EC2::SecurityGroupEgress",
       "Properties": {
-        "GroupId": {
-          "Fn::GetAtt": [
-            "SourceSG",
-            "GroupId"
-          ]
-        },
         "Description": "TCP",
         "IpProtocol": "tcp",
         "FromPort": 0,
         "ToPort": 65535,
         "DestinationSecurityGroupId": {
-          "Fn::GetAtt": [
-            "TargetSG",
-            "GroupId"
-          ]
+          "Fn::GetAtt": ["TargetSG", "GroupId"]
+        },
+        "GroupId": {
+          "Fn::GetAtt": ["SourceSG", "GroupId"]
         }
       }
     },
@@ -56,17 +48,18 @@
         "FromPort": 0,
         "ToPort": 65535,
         "SourceSecurityGroupId": {
-          "Fn::GetAtt": [
-            "SourceSG",
-            "GroupId"
-          ]
+          "Fn::GetAtt": ["SourceSG", "GroupId"]
         },
         "GroupId": {
-          "Fn::GetAtt": [
-            "TargetSG",
-            "GroupId"
-          ]
+          "Fn::GetAtt": ["TargetSG", "GroupId"]
         }
+      }
+    },
+    "LegacySecurityGroup": {
+      "Type": "AWS::RDS::DBSecurityGroup",
+      "Properties": {
+        "DBSecurityGroupName": "sample",
+        "GroupDescription": "Legacy description"
       }
     }
   }

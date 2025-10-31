@@ -2,20 +2,18 @@ package generic.terraform
 
 import data.generic.common as common_lib
 
-unrestricted_ipv6 := ["::/0","0000:0000:0000:0000:0000:0000:0000:0000/0","0:0:0:0:0:0:0:0/0"]
-
 check_cidr(rule) {
 	rule.cidr_blocks[_] == "0.0.0.0/0"
 } else {
 	rule.cidr_block == "0.0.0.0/0"
 } else {
-	rule.ipv6_cidr_blocks[_] == unrestricted_ipv6[_]
+	rule.ipv6_cidr_blocks[_] == common_lib.unrestricted_ipv6[_]
 } else {
-	rule.ipv6_cidr_blocks == unrestricted_ipv6[_]
+	rule.ipv6_cidr_blocks == common_lib.unrestricted_ipv6[_]
 } else {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 } else {
-	rule.cidr_ipv6 == unrestricted_ipv6[_]
+	rule.cidr_ipv6 == common_lib.unrestricted_ipv6[_]
 } 
 
 is_security_group_ingress(type,resource) {

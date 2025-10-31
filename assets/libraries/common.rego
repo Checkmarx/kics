@@ -75,6 +75,11 @@ emptyOrNull("") = true
 
 emptyOrNull(null) = true
 
+# List of valid forms for the "::/0" ipv6 address
+unrestricted_ipv6 := ["::/0","0000:0000:0000:0000:0000:0000:0000:0000/0","0:0:0:0:0:0:0:0/0"]
+# List of all ip addresses considered "unrestricted"
+unrestricted_ips := array.concat(unrestricted_ipv6, ["0.0.0.0/0"])
+
 # Checks if an IP is private
 isPrivateIP(ipVal) {
 	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12", "fc00::/8", "fd00::/8"]
@@ -770,3 +775,7 @@ valid_non_empty_key(field, key) = output {
 	keyObj == ""
 	output := concat(".", ["", key])
 }
+
+get_array_if_exists(resource, field_name) = [] {
+	not valid_key(resource, field_name)
+} else = resource[field_name]

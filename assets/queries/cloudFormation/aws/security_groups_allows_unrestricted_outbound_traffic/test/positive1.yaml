@@ -1,27 +1,31 @@
-Parameters:
-  KeyName:
-    Description: The EC2 Key Pair to allow SSH access to the instance
-    Type: 'AWS::EC2::KeyPair::KeyName'
 Resources:
-  Ec2Instance:
-    Type: 'AWS::EC2::Instance'
-    Properties:
-      SecurityGroups:
-        - !Ref InstanceSecurityGroup
-        - MyExistingSecurityGroup
-      KeyName: !Ref KeyName
-      ImageId: ami-7a11e213
-  InstanceSecurityGroup:
+  Positive1_security_group:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
-      GroupDescription: Enable SSH access via port 22
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-          CidrIp: 0.0.0.0/0
+      GroupDescription: Open security group
+      VpcId: !Ref MyVPC
       SecurityGroupEgress:
-        - IpProtocol: ALL
-          FromPort: '22'
-          ToPort: '22'
+        - IpProtocol: "-1"
+          FromPort: 2000
+          ToPort: 2000
           CidrIp: 0.0.0.0/0
+
+  # Standalone IPv4 egress rule
+  Positive1_egress_ipv4:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId: !Ref Positive1_security_group
+      IpProtocol: "-1"
+      FromPort: 3000
+      ToPort: 3000
+      CidrIp: 0.0.0.0/0
+
+  # Standalone IPv6 egress rule
+  Positive1_egress_ipv6:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId: !Ref Positive1_security_group
+      IpProtocol: "-1"
+      FromPort: 4000
+      ToPort: 4000
+      CidrIpv6: ::/0
