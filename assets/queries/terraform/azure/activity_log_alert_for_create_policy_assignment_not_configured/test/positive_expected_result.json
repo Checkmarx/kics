@@ -8,5 +8,40 @@
     "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 22
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
+    "severity": "MEDIUM",
+    "line": 36
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
+    "severity": "MEDIUM",
+    "line": 51
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
+    "severity": "MEDIUM",
+    "line": 66
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
+    "severity": "MEDIUM",
+    "line": 81
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
+    "severity": "MEDIUM",
+    "line": 96
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
+    "severity": "MEDIUM",
+    "line": 111
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
+    "severity": "MEDIUM",
+    "line": 126
   }
 ]

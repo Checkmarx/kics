@@ -3,6 +3,8 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
+filter_fields := ["caller", "level", "levels", "status", "statuses", "sub_status", "sub_statuses"]
+
 CxPolicy[result] {
 	resources := input.document[i].resource.azurerm_monitor_activity_log_alert
 
@@ -23,4 +25,9 @@ CxPolicy[result] {
 at_least_one_valid_log_alert(resources) {
 	resources[x].criteria.category == "Administrative"
 	resources[x].criteria.operation_name == "Microsoft.Authorization/policyAssignments/write"
+	not has_filter(resources[x].criteria)
+}
+
+has_filter(criteria) {
+	common_lib.valid_key(criteria, filter_fields[_])
 }
