@@ -14,6 +14,12 @@
   {
     "queryName": "Beta - Activity Log Alert For Delete Policy Assignment",
     "severity": "MEDIUM",
+    "line": 44,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete Policy Assignment",
+    "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive2.tf"
   },
