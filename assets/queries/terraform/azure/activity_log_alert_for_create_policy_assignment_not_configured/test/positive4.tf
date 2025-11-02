@@ -1,6 +1,6 @@
 
 # Query prioritizes flagging the log alert(s) that is "correct" but has filter(s) over the ones with wrong "operation_name"/"category"
-resource "azurerm_monitor_activity_log_alert" "positive3_1" {
+resource "azurerm_monitor_activity_log_alert" "positive4_1" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -21,7 +21,7 @@ resource "azurerm_monitor_activity_log_alert" "positive3_1" {
     }
 }
 
-resource "azurerm_monitor_activity_log_alert" "positive3_2" {
+resource "azurerm_monitor_activity_log_alert" "positive4_2" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location

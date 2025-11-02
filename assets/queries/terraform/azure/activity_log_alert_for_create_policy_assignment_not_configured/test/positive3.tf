@@ -1,5 +1,5 @@
 # Case of correct "operation_name" and "category" but the "action.action_group_id" field is missing
-resource "azurerm_monitor_activity_log_alert" "positive4_1" {
+resource "azurerm_monitor_activity_log_alert" "positive3_1" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -15,7 +15,7 @@ resource "azurerm_monitor_activity_log_alert" "positive4_1" {
   # Missing action
 }
 
-resource "azurerm_monitor_activity_log_alert" "positive4_2" {
+resource "azurerm_monitor_activity_log_alert" "positive3_2" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
