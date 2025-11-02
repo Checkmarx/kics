@@ -3,7 +3,7 @@ resource "azurerm_monitor_activity_log_alert" "positive1_1" {
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   scopes              = [azurerm_resource_group.example.id]
-  description         = "Negative sample"
+  description         = "Positive sample"
 
   criteria {
     resource_id    = azurerm_storage_account.to_monitor.id
@@ -21,7 +21,7 @@ resource "azurerm_monitor_activity_log_alert" "positive1_2" {
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   scopes              = [azurerm_resource_group.example.id]
-  description         = "Negative sample"
+  description         = "Positive sample"
 
   criteria {
     resource_id    = azurerm_storage_account.to_monitor.id
