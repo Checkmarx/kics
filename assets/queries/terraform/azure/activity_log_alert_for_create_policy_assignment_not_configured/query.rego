@@ -49,28 +49,33 @@ at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log", "logs": [
 get_results(value) = results {					# Case of one or more resources failing due to not setting an "action.action_group_id" field
 	value.result == "has_log_without_action"
 
-	results := [z | z := {
-		"resource" : value.logs[name],
-		"name" : name,
-		"keyActualValue" : "The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'create policy assignment' events but is missing an 'action.action_group_id' field"
-	}]
+	results := [z |
+		log := value.logs[name]
+		z := {
+			"resource" : log,
+			"name" : name,
+			"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'create policy assignment' events but is missing an 'action.action_group_id' field", [name])
+		}]
 
 } else = results {								# Case of one or more resources failing due to setting filter(s)
 	value.result == "has_log_with_filter"
 
-	results := [z | z := {
+	results := [z |
+		filters = get_filters(value.logs[name].criteria)
+		z := {
 		"resource" : value.logs[name],
 		"name" : name,
-		"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'create policy assignment' events but sets %d filter(s): %s",[name, count(filters),concat(",",filters)])
-	}
-	filters = get_filters(value.logs[name].criteria)
-	]
+		"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'create policy assignment' events but sets %d filter(s): %s", [name, count(filters),concat(", ",filters)])
+		}]
+
 } else = results {								# Case of all resources failing due to invalid category and/or operation_name
-	results := [z | z := {
-		"resource" : value.logs[name],
+	results := [z |
+		log := value.logs[name]
+		z := {
+		"resource" : log,
 		"name" : name,
 		"keyActualValue" : "None of the 'azurerm_monitor_activity_log_alert' resources monitor 'create policy assignment' events"
-	}]
+		}]
 }
 
 has_filter(criteria) {
