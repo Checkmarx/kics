@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(results.resource, results.name),
 		"searchKey": sprintf("azurerm_monitor_activity_log_alert[%s].criteria", [results.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "A 'azurerm_monitor_activity_log_alert' resource monitoring create policy assignment events should be defined",
+		"keyExpectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create policy assignment' events should be defined",
 		"keyActualValue": results.keyActualValue,
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_activity_log_alert", results.name, "criteria"], [])
 	}
@@ -29,7 +29,7 @@ at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log", "logs": [
 	resources[x].criteria.category == "Administrative"
 	resources[x].criteria.operation_name == "Microsoft.Authorization/policyAssignments/write"
 	not has_filter(resources[x].criteria)
-	common_lib.valid_key(resources[x].criteria.action, "action_group_id")
+	common_lib.valid_key(resources[x].action, "action_group_id")
 
 } else = {"result" : "has_log_without_action", "logs": logs} {
 	logs := {key: resources[key] |
@@ -46,30 +46,30 @@ at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log", "logs": [
 
 } else = {"result" : "has_invalid_logs_only", "logs": resources}
 
-get_results(value) = results {			# Case of one or more resources failing only due to not setting an action.action_group_id
+get_results(value) = results {					# Case of one or more resources failing due to not setting an "action.action_group_id" field
 	value.result == "has_log_without_action"
 
 	results := [z | z := {
 		"resource" : value.logs[name],
 		"name" : name,
-		"keyActualValue" : "The 'azurerm_monitor_activity_log_alert[%s]' resource monitors create policy assignment events but is missing an 'action.action_group_id' field"
+		"keyActualValue" : "The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'create policy assignment' events but is missing an 'action.action_group_id' field"
 	}]
 
-} else = results {							# Case of one or more resources failing only due to filters
+} else = results {								# Case of one or more resources failing due to setting filter(s)
 	value.result == "has_log_with_filter"
 
 	results := [z | z := {
 		"resource" : value.logs[name],
 		"name" : name,
-		"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors create policy assignment events but sets %d filter(s): %s",[name, count(filters),concat(",",filters)])
+		"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'create policy assignment' events but sets %d filter(s): %s",[name, count(filters),concat(",",filters)])
 	}
 	filters = get_filters(value.logs[name].criteria)
 	]
-} else = results {							# Case of all resources failing because of category and/or operation_name
+} else = results {								# Case of all resources failing due to invalid category and/or operation_name
 	results := [z | z := {
 		"resource" : value.logs[name],
 		"name" : name,
-		"keyActualValue" : "None of the 'azurerm_monitor_activity_log_alert' resources monitor create policy assignment events"
+		"keyActualValue" : "None of the 'azurerm_monitor_activity_log_alert' resources monitor 'create policy assignment' events"
 	}]
 }
 

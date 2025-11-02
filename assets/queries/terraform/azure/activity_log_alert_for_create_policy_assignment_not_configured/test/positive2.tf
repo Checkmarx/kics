@@ -1,4 +1,4 @@
-
+# Case of correct "operation_name" and "category" but a type of filter is set
 resource "azurerm_monitor_activity_log_alert" "positive2_1" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name

@@ -17,4 +17,5 @@ resource "azurerm_monitor_activity_log_alert" "negative1" {
     webhook_properties = {
       from = "terraform"
     }
+  }
 }

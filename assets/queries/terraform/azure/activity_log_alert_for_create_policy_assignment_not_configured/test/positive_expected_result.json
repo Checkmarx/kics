@@ -52,23 +52,23 @@
     "severity": "MEDIUM",
     "line": 123,
     "fileName": "positive2.tf"
-  },
+  }
   {
     "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 9,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
     "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive4.tf"
+    "line": 25,
+    "fileName": "positive3.tf"
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
     "severity": "MEDIUM",
-    "line": 25,
+    "line": 10,
     "fileName": "positive4.tf"
   },
   {

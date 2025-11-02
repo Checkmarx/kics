@@ -1,6 +1,5 @@
-
-# Will only flag log alert that is correct but has filter(s)
-resource "azurerm_monitor_activity_log_alert" "positive3_1" {
+# Case of correct "operation_name" and "category" but the "action.action_group_id" field is missing
+resource "azurerm_monitor_activity_log_alert" "positive4_1" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -11,17 +10,12 @@ resource "azurerm_monitor_activity_log_alert" "positive3_1" {
     resource_id    = azurerm_storage_account.to_monitor.id
     operation_name = "Microsoft.Authorization/policyAssignments/write"
     category       = "Administrative"
-    caller         = "admin@contoso.com"                                          # filters by caller
-    level          = "Informational"                                              # filters by level
-    status         = "Succeeded"                                                  # filters by status
   }
 
-  action {
-    action_group_id = azurerm_monitor_action_group.main.id
-    }
+  # Missing action
 }
 
-resource "azurerm_monitor_activity_log_alert" "positive3_2" {
+resource "azurerm_monitor_activity_log_alert" "positive4_2" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -30,11 +24,11 @@ resource "azurerm_monitor_activity_log_alert" "positive3_2" {
 
   criteria {
     resource_id    = azurerm_storage_account.to_monitor.id
-    operation_name = "Microsoft.Storage/storageAccounts/write"          # wrong operation name
+    operation_name = "Microsoft.Authorization/policyAssignments/write"
     category       = "Administrative"
   }
 
   action {
-    action_group_id = azurerm_monitor_action_group.main.id
+    # Missing action_group_id
     }
 }
