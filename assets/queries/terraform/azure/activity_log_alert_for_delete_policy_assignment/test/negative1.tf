@@ -10,4 +10,12 @@ resource "azurerm_monitor_activity_log_alert" "negative1" {
     operation_name = "Microsoft.Authorization/policyAssignments/delete"
     category       = "Administrative"
   }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+
+    webhook_properties = {
+      from = "terraform"
+    }
+  }
 }
