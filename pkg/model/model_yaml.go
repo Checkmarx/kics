@@ -13,7 +13,8 @@ import (
 
 // UnmarshalYAML is a custom yaml parser that places line information in the payload
 func (m *Document) UnmarshalYAML(value *yaml.Node) error {
-	dpc := unmarshal(value)
+	visited := make(map[*yaml.Node]interface{})
+	dpc := unmarshalWithVisited(value, visited)
 	if mapDcp, ok := dpc.(map[string]interface{}); ok {
 		// set line information for root level objects
 		mapDcp["_kics_lines"] = getLines(value, 0)
@@ -42,7 +43,8 @@ func GetIgnoreLines(file *FileMetadata) []int {
 		}
 
 		if node.Kind == 1 && len(node.Content) == 1 {
-			_ = unmarshal(node.Content[0])
+			visited := make(map[*yaml.Node]interface{})
+			_ = unmarshalWithVisited(node.Content[0], visited)
 			ignoreLines = NewIgnore.GetLines()
 		}
 	}
@@ -56,12 +58,18 @@ func GetIgnoreLines(file *FileMetadata) []int {
 	SequenceNode -> array
 	ScalarNode -> generic (except for arrays, objects and maps)
 	MappingNode -> map
-
 */
-// unmarshal is the function that will parse the yaml elements and call the functions needed
-// to place their line information in the payload
-func unmarshal(val *yaml.Node) interface{} {
+
+// unmarshalWithVisited is the function that will parse the yaml elements and call the functions needed
+// to place their line information in the payload. It tracks visited nodes to prevent infinite recursion.
+func unmarshalWithVisited(val *yaml.Node, visited map[*yaml.Node]interface{}) interface{} {
+	// Check if we've already visited this node to prevent infinite recursion
+	if result, found := visited[val]; found {
+		return result
+	}
+
 	tmp := make(map[string]interface{})
+	visited[val] = tmp
 	ignoreCommentsYAML(val)
 
 	// if Yaml Node is an Array than we are working with ansible
@@ -70,11 +78,13 @@ func unmarshal(val *yaml.Node) interface{} {
 	case yaml.SequenceNode:
 		contentArray := make([]interface{}, 0)
 		for _, contentEntry := range val.Content {
-			contentArray = append(contentArray, unmarshal(contentEntry))
+			contentArray = append(contentArray, unmarshalWithVisited(contentEntry, visited))
 		}
 		tmp["playbooks"] = contentArray
 	case yaml.ScalarNode:
-		return scalarNodeResolver(val)
+		result := scalarNodeResolver(val)
+		visited[val] = result
+		return result
 	default:
 		for i := 0; i < len(val.Content); i += 2 {
 			if val.Content[i].Kind == yaml.ScalarNode {
@@ -84,7 +94,7 @@ func unmarshal(val *yaml.Node) interface{} {
 				// in case value iteration is a map
 				case yaml.MappingNode:
 					// unmarshall map value and get its line information
-					tt := unmarshal(val.Content[i+1]).(map[string]interface{})
+					tt := unmarshalWithVisited(val.Content[i+1], visited).(map[string]interface{})
 					tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
 					tmp[val.Content[i].Value] = tt
 				// in case value iteration is an array
@@ -92,21 +102,46 @@ func unmarshal(val *yaml.Node) interface{} {
 					contentArray := make([]interface{}, 0)
 					// unmarshall each iteration of the array
 					for _, contentEntry := range val.Content[i+1].Content {
-						contentArray = append(contentArray, unmarshal(contentEntry))
+						contentArray = append(contentArray, unmarshalWithVisited(contentEntry, visited))
 					}
 					tmp[val.Content[i].Value] = contentArray
 				case yaml.AliasNode:
-					if tt, ok := unmarshal(val.Content[i+1].Alias).(map[string]interface{}); ok {
-						tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
-						utils.MergeMaps(tmp, tt)
-					}
-					if v, ok := unmarshal(val.Content[i+1].Alias).(string); ok {
-						tmp[val.Content[i].Value] = v
+					// Resolve the alias by getting its target node
+					aliasTarget := val.Content[i+1].Alias
+					if aliasTarget != nil {
+						// Check if this is a merge key (<<)
+						if val.Content[i].Value == "<<" {
+							// For merge keys, unmarshal the alias and merge it into tmp
+							if tt, ok := unmarshalWithVisited(aliasTarget, visited).(map[string]interface{}); ok {
+								ttCopy := make(map[string]interface{})
+								for k, v := range tt {
+									if k != "_kics_lines" {
+										ttCopy[k] = v
+									}
+								}
+								ttCopy["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
+								utils.MergeMaps(tmp, ttCopy)
+							}
+						} else {
+							// For regular aliases, assign the value directly
+							aliasValue := unmarshalWithVisited(aliasTarget, visited)
+							if tt, ok := aliasValue.(map[string]interface{}); ok {
+								ttCopy := make(map[string]interface{})
+								for k, v := range tt {
+									ttCopy[k] = v
+								}
+								ttCopy["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
+								tmp[val.Content[i].Value] = ttCopy
+							} else {
+								tmp[val.Content[i].Value] = aliasValue
+							}
+						}
 					}
 				}
 			}
 		}
 	}
+	visited[val] = tmp
 	return tmp
 }
 
