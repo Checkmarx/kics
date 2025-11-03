@@ -21,7 +21,7 @@ Resources:
       CIDRIP: 1.2.3.4/24
 
   # EC2 Security Group with inline IPv4 and IPv6 rules
-  DBEC2SecurityGroupInline:
+  DBEC2SecurityGroupInline_neg1:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: "Inline IPv4 and IPv6 ingress"
@@ -73,4 +73,4 @@ Resources:
         - !Ref DbSecurityByEC2SecurityGroupStandalone_neg1
       VPCSecurityGroups:
         - !Ref DBEC2SecurityGroupInline_neg1
-        - !Ref DBEC2SecurityGroupStandalone_neg1_neg1
+        - !Ref DBEC2SecurityGroupStandalone_neg1

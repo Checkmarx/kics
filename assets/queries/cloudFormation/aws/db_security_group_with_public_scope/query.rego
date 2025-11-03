@@ -35,7 +35,7 @@ CxPolicy[result] {
 exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = results { 				# inline ingresses
 	type == ["AWS::EC2::SecurityGroup", "AWS::RDS::DBSecurityGroup"][x1]
 
-	res[cidr_fields[x2]] == common_lib.unrestricted_ips[x3]  #standalone ipv4 or ipv6
+	res[cidr_fields[x2]] == common_lib.unrestricted_ips[x3]  # standalone ipv4 or ipv6
 
 	ingress_field_name := get_ingress_field_name(type)
 
@@ -48,7 +48,7 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 } else = results { 																					# standalone ingress resources
 	type == ["AWS::EC2::SecurityGroupIngress", "AWS::RDS::DBSecurityGroupIngress"][x1]
 
-	res[cidr_fields[x2]] == common_lib.unrestricted_ips[x3]  #standalone ipv4 or ipv6
+	res[cidr_fields[x2]] == common_lib.unrestricted_ips[x3]  # standalone ipv4 or ipv6
 
 	results := {
 		"searchKey": sprintf("Resources.%s.Properties.%s", [resource_index, cidr_fields[x2]]),
@@ -70,8 +70,9 @@ is_associated_with_db(resource, resource_name, referenced_sec_groups) {			# case
 }
 
 is_public_db(resource) {
+	common_lib.valid_key(resource.Properties, "PubliclyAccessible")
 	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
 } else {
 	not common_lib.valid_key(resource.Properties, "PubliclyAccessible")
-	not common_lib.valid_key(resource, "DBSubnetGroupName")
+	not common_lib.valid_key(resource.Properties, "DBSubnetGroupName")
 }

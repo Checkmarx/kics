@@ -1,6 +1,6 @@
 {
   "Resources": {
-    "DbSecurityByEC2SecurityGroup": {
+    "DbSecurityByEC2SecurityGroup_pos4": {
       "Type": "AWS::RDS::DBSecurityGroup",
       "Properties": {
         "GroupDescription": "Ingress for Amazon EC2 security group",
@@ -20,7 +20,7 @@
         "Engine": "MySQL",
         "DBSecurityGroups": [
           {
-            "Ref": "DbSecurityByEC2SecurityGroup"
+            "Ref": "DbSecurityByEC2SecurityGroup_pos4"
           }
         ]
       }

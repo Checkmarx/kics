@@ -1,5 +1,5 @@
 Resources:
-  DbSecurityByEC2SecurityGroup:
+  DbSecurityByEC2SecurityGroup_pos2:
     Type: AWS::RDS::DBSecurityGroup #legacy-inline
     Properties:
       GroupDescription: "Ingress for Amazon EC2 security group"
@@ -13,4 +13,4 @@ Resources:
         Ref: DBName
       Engine: MySQL
       DBSecurityGroups:
-        - !Ref DbSecurityByEC2SecurityGroup
+        - !Ref DbSecurityByEC2SecurityGroup_pos2
