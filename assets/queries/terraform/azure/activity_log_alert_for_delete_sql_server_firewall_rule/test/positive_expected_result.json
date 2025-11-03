@@ -1,0 +1,86 @@
+[
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 44,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 28,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 47,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 66,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 85,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 104,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 123,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 25,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive5.tf"
+  }
+]
