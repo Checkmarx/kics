@@ -23,7 +23,7 @@ resource "google_sql_database_instance" "positive_3" {
     database_flags {
       name = "sample_flag1"
       value = "off"
-      } # Missing 'log_connections' flag
+      } # Missing 'remote access' flag
   }
 }
 
