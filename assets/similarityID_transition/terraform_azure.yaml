@@ -3,3 +3,7 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 62d120b1-b1e0-40ef-a81d-a4994ac88b3b
+      queryName: Beta - Activity Log Alert For Delete Network Security Group
+      observations: ""
+      change: 2
