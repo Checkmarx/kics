@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 filter_fields := ["caller", "level", "levels", "status", "statuses", "sub_status", "sub_statuses"]
 
 CxPolicy[result] {
-	resources := input.document[i].resource.azurerm_monitor_activity_log_alert
+	resources := {input.document[i].id : input.document[i].resource.azurerm_monitor_activity_log_alert}
 
 	value := at_least_one_valid_log_alert(resources)
 	value.result != "has_valid_log"
@@ -14,7 +14,7 @@ CxPolicy[result] {
 	results := get_results(value)[_]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": results.doc_id,
 		"resourceType": "azurerm_monitor_activity_log_alert",
 		"resourceName": tf_lib.get_resource_name(results.resource, results.name),
 		"searchKey": sprintf("azurerm_monitor_activity_log_alert[%s].criteria", [results.name]),
@@ -25,23 +25,31 @@ CxPolicy[result] {
 	}
 }
 
-at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log", "logs": []} {
-	resources[x].criteria.category == "Administrative"
-	resources[x].criteria.operation_name == "Microsoft.Authorization/policyAssignments/write"
-	not has_filter(resources[x].criteria)
-	common_lib.valid_key(resources[x].action, "action_group_id")
+at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log"} {
+	resources[doc_index][x].criteria.category == "Administrative"
+	resources[doc_index][x].criteria.operation_name == "Microsoft.Authorization/policyAssignments/write"
+	not has_filter(resources[doc_index][x].criteria)
+	common_lib.valid_key(resources[doc_index][x].action, "action_group_id")
 
 } else = {"result" : "has_log_without_action", "logs": logs} {
-	logs := {key: resources[key] |
-		resources[key].criteria.category == "Administrative"
-		resources[key].criteria.operation_name == "Microsoft.Authorization/policyAssignments/write"
-		not has_filter(resources[key].criteria)}
+	logs := {doc_index: filtered |
+			resources[doc_index]
+			filtered := {key: resource |
+				resource := resources[doc_index][key]
+				resource.criteria.category == "Administrative"
+				resource.criteria.operation_name == "Microsoft.Authorization/policyAssignments/write"
+				not has_filter(resource.criteria)}
+		}
 	logs != {}
 
 } else = {"result" : "has_log_with_filter", "logs": logs} {
-	logs := {key: resources[key] |
-		resources[key].criteria.category == "Administrative"
-		resources[key].criteria.operation_name == "Microsoft.Authorization/policyAssignments/write"}
+	logs := {doc_index: filtered |
+			resources[doc_index]
+			filtered := {key: resource |
+				resource := resources[doc_index][key]
+				resource.criteria.category == "Administrative"
+				resource.criteria.operation_name == "Microsoft.Authorization/policyAssignments/write"}
+		}
 	logs != {}
 
 } else = {"result" : "has_invalid_logs_only", "logs": resources}
@@ -50,8 +58,9 @@ get_results(value) = results {					# Case of one or more resources failing due t
 	value.result == "has_log_without_action"
 
 	results := [z |
-		log := value.logs[name]
+		log := value.logs[doc_id][name]
 		z := {
+			"doc_id" : doc_id,
 			"resource" : log,
 			"name" : name,
 			"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'create policy assignment' events but is missing an 'action.action_group_id' field", [name])
@@ -61,20 +70,22 @@ get_results(value) = results {					# Case of one or more resources failing due t
 	value.result == "has_log_with_filter"
 
 	results := [z |
-		filters = get_filters(value.logs[name].criteria)
+		filters = get_filters(value.logs[doc_id][name].criteria)
 		z := {
-		"resource" : value.logs[name],
-		"name" : name,
-		"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'create policy assignment' events but sets %d filter(s): %s", [name, count(filters),concat(", ",filters)])
+			"doc_id" : doc_id,
+			"resource" : value.logs[doc_id][name],
+			"name" : name,
+			"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'create policy assignment' events but sets %d filter(s): %s", [name, count(filters),concat(", ",filters)])
 		}]
 
 } else = results {								# Case of all resources failing due to invalid category and/or operation_name
 	results := [z |
-		log := value.logs[name]
+		log := value.logs[doc_id][name]
 		z := {
-		"resource" : log,
-		"name" : name,
-		"keyActualValue" : "None of the 'azurerm_monitor_activity_log_alert' resources monitor 'create policy assignment' events"
+			"doc_id" : doc_id,
+			"resource" : log,
+			"name" : name,
+			"keyActualValue" : "None of the 'azurerm_monitor_activity_log_alert' resources monitor 'create policy assignment' events"
 		}]
 }
 
