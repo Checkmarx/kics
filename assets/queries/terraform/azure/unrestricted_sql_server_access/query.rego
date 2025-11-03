@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	types := ["azurerm_mssql_firewall_rule","azurerm_sql_firewall_rule"]
+	types := ["azurerm_mssql_firewall_rule","azurerm_sql_firewall_rule", "azurerm_mariadb_firewall_rule", "azurerm_postgresql_firewall_rule", "azurerm_postgresql_flexible_server_firewall_rule", "azurerm_mysql_flexible_server_firewall_rule"]
 	resource := input.document[i].resource[types[i2]][name]
 	results := low_abs_difference_or_both_unspecified(resource.start_ip_address ,resource.end_ip_address)
 
