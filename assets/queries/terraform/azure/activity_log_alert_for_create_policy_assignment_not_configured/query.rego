@@ -6,7 +6,9 @@ import data.generic.terraform as tf_lib
 filter_fields := ["caller", "level", "levels", "status", "statuses", "sub_status", "sub_statuses"]
 
 CxPolicy[result] {
-	resources := {input.document[i].id : input.document[i].resource.azurerm_monitor_activity_log_alert}
+	resources := {input.document[index].id : log_alerts |
+            log_alerts := input.document[index].resource.azurerm_monitor_activity_log_alert
+            }
 
 	value := at_least_one_valid_log_alert(resources)
 	value.result != "has_valid_log"
@@ -40,7 +42,7 @@ at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log"} {
 				resource.criteria.operation_name == "Microsoft.Authorization/policyAssignments/write"
 				not has_filter(resource.criteria)}
 		}
-	logs != {}
+	logs[_] != {}
 
 } else = {"result" : "has_log_with_filter", "logs": logs} {
 	logs := {doc_index: filtered |
@@ -50,7 +52,7 @@ at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log"} {
 				resource.criteria.category == "Administrative"
 				resource.criteria.operation_name == "Microsoft.Authorization/policyAssignments/write"}
 		}
-	logs != {}
+	logs[_] != {}
 
 } else = {"result" : "has_invalid_logs_only", "logs": resources}
 
