@@ -3,12 +3,12 @@
   "queryName": "Beta - SQL DB Instance With Contained Database Authentication",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "A 'google_sql_database_instance' resource based on SQLSERVER with the 'contained database authentication' flag should set it to 'off'",
+  "descriptionText": "In a 'google_sql_database_instance' resource based on SQLSERVER, the 'contained database authentication' flag should be set to 'off'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
   "platform": "Terraform",
   "descriptionID": "c3655703",
   "cloudProvider": "gcp",
-  "cwe": "284",
+  "cwe": "286",
   "riskScore": "6.0",
   "experimental": "true"
 }
