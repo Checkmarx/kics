@@ -1,36 +1,30 @@
 {
   "Resources": {
-    "DbSecurityByEC2SecurityGroup": {
-      "Type": "AWS::RDS::DBSecurityGroup",
+    "MyDBSecurityGroupIngress": {
+      "Type": "AWS::RDS::DBSecurityGroupIngress",
       "Properties": {
-        "GroupDescription": "Ingress for Amazon EC2 security group",
-        "DBSecurityGroupIngress": [
-          {
-            "CIDRIP": "1.2.3.4/28"
-          }
-        ]
+        "DBSecurityGroupName": {
+          "Ref": "MyDBSecurityGroup"
+        },
+        "CIDRIP": "1.2.3.4/28"
       }
     },
-    "DbSecurityByEC2SecurityGroup1": {
-      "Type": "AWS::EC2::SecurityGroup",
+    "StandaloneIngressIPv4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupDescription": "Ingress for Amazon EC2 security group",
-        "SecurityGroupIngress": [
-          {
-            "CidrIp": "1.2.3.4/28"
-          }
-        ]
+        "GroupId": {
+          "Ref": "DbSecurityByEC2SecurityGroup1"
+        },
+        "CidrIp": "1.2.3.4/28"
       }
     },
-    "DbSecurityByEC2SecurityGroup2": {
-      "Type": "AWS::EC2::SecurityGroup",
+    "StandaloneIngressIPv6": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupDescription": "Ingress for Amazon EC2 security group",
-        "SecurityGroupIngress": [
-          {
-            "CidrIpv6": "2001:db8:a::123/121"
-          }
-        ]
+        "GroupId": {
+          "Ref": "DbSecurityByEC2SecurityGroup2"
+        },
+        "CidrIpv6": "2001:db8:a::123/121"
       }
     }
   }

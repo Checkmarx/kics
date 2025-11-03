@@ -9,7 +9,7 @@ CxPolicy[result] {
 	cf_lib.isLoadBalancer(resource)
 	securityGroup_name := cf_lib.get_name(resource.Properties.SecurityGroups[_])
 
-	not has_standalone_ingress(securityGroup_name, input.document[i])
+	not has_standalone_ingress(securityGroup_name)
 	value := withoutInboundRules(input.document[i].Resources[securityGroup_name], securityGroup_name)
 
 	result := {
@@ -24,8 +24,8 @@ CxPolicy[result] {
 	}
 }
 
-has_standalone_ingress(securityGroup_name,doc) {
-	resource := doc.Resources[j]
+has_standalone_ingress(securityGroup_name) {
+	resource := input.document[_].Resources[j]
 	resource.Type == "AWS::EC2::SecurityGroupIngress"
 	cf_lib.get_name(resource.Properties.GroupId) == securityGroup_name
 }

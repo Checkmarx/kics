@@ -327,7 +327,7 @@ search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
 } else = {"ingress_list": [], "names": []}
 
 
-get_search_values(ing_index, sec_group_name, names_list, index_sec_document, index_main_document) = results {
+get_search_values_for_ingress_resources(ing_index, sec_group_name, names_list, index_sec_document, index_main_document) = results {
 	ing_index < count(names_list) # if ingress has name it is standalone
 
 	results := {

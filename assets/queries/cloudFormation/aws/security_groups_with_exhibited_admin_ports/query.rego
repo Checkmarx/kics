@@ -17,7 +17,7 @@ CxPolicy[result] {
 	cf_lib.entireNetwork(ingress)
 	exposed_ports := get_exposed_ports(ingress)
 
-	results := cf_lib.get_search_values(ing_index, sec_group_name, ingresses_with_names.names, y, i)
+	results := cf_lib.get_search_values_for_ingress_resources(ing_index, sec_group_name, ingresses_with_names.names, y, i)
 
 	result := {
 		"documentId": input.document[results.doc_index].id,

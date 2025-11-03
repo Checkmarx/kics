@@ -25,7 +25,7 @@ CxPolicy[result] {
 	# check which sensitive port numbers are included
 	ports := get_sensitive_ports(ingress)
 
-	results := cf_lib.get_search_values(ing_index, sec_group_name, ingresses_with_names.names, y, i)
+	results := cf_lib.get_search_values_for_ingress_resources(ing_index, sec_group_name, ingresses_with_names.names, y, i)
 
 	result := {
 		"documentId": input.document[results.doc_index].id,

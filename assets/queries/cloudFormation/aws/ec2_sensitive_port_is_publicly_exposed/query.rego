@@ -23,9 +23,9 @@ CxPolicy[result] {
 	endswith(ingress[cidr_fields[c]], "/0")
 
 	# check which sensitive port numbers are included
-	ports := get_sensitive_ports(ingress)
+	ports := get_sensitive_ports(ingress, ec2_instance_name)
 
-	results := cf_lib.get_search_values(ing_index, sec_group_name, ingresses_with_names.names, y, i)
+	results := cf_lib.get_search_values_for_ingress_resources(ing_index, sec_group_name, ingresses_with_names.names, y, i)
 
 	result := {
 		"documentId": input.document[results.doc_index].id,
@@ -40,7 +40,7 @@ CxPolicy[result] {
 	}
 }
 
-get_sensitive_ports(ingress) = ports {
+get_sensitive_ports(ingress, ec2_instance_name) = ports {
 	ingress.IpProtocol == "-1"
 	ports := [{
 		"value" : "ALL PORTS (ALL PROTOCOLS:0-65535)",
@@ -54,6 +54,6 @@ get_sensitive_ports(ingress) = ports {
 
 	ports := [x | x := {
 		"value" : sprintf("%s (%s:%d)", [portName, protocol, portNumber]),
-		"searchValue" : sprintf("%s,%d", [protocol, portNumber]),
+		"searchValue" : sprintf("%s/%s:%d", [ec2_instance_name, protocol, portNumber])
 		}]
 }

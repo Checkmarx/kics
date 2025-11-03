@@ -58,7 +58,7 @@ search_for_standalone_rules(sec_group_name, doc) = rules_with_names {
     "rule_list": [resources[name] | name := names[_]],
     "names": names
   }
-} else = { "rule_list": [], "names": []}
+}
 
 
 check_standalone_rule(security_group_name, rule, rule_name)  {
