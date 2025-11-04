@@ -52,24 +52,19 @@ resource "google_sql_database_instance" "negative_5" {
     tier = "db-f1-micro"
 
     database_flags {
-      name = "log_min_error_statement"                     # Has flag set to "ERROR" (minimum)
+      name = "sample_flag1"
+      value = "off"
+    }
+
+    database_flags {
+      name = "log_min_error_statement"
       value = "ERROR"
-      }
+    } # Has flag set to "ERROR" (minimum)
 
     database_flags {
-      name = "log_min_error_statement"                     # Has flag set to "LOG"
-      value = "LOG"
-      }
-
-    database_flags {
-      name = "log_min_error_statement"                       # Has flag set to "FATAL"
-      value = "FATAL"
-      }
-
-    database_flags {
-      name = "log_min_error_statement"                       # Has flag set to "PANIC"
-      value = "PANIC"
-      }
+      name = "sample_flag2"
+      value = "off"
+    }
   }
 }
 
@@ -83,12 +78,27 @@ resource "google_sql_database_instance" "negative_6" { # Single object support t
 
     database_flags {
       name = "log_min_error_statement"
-      value = "ERROR"
-      }   # Has flag set to "ERROR" (minimum)
+      value = "LOG"
+      } # Has flag set to "LOG"
   }
 }
 
-resource "google_sql_database_instance" "negative_7" { # Single object support test 2
+resource "google_sql_database_instance" "negative_7" { # Single object support test 1
+  name             = "mysql-instance-with-flag"
+  database_version = "POSTGRES_15"
+  region           = "us-central1"
+
+  settings {
+    tier = "db-f1-micro"
+
+    database_flags {
+      name = "log_min_error_statement"
+      value = "FATAL"
+      } # Has flag set to "FATAL"
+  }
+}
+
+resource "google_sql_database_instance" "negative_8" { # Single object support test 1
   name             = "mysql-instance-with-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
@@ -99,6 +109,6 @@ resource "google_sql_database_instance" "negative_7" { # Single object support t
     database_flags {
       name = "log_min_error_statement"
       value = "PANIC"
-      }   # Has flag set to "PANIC"
+      } # Has flag set to "PANIC"
   }
 }

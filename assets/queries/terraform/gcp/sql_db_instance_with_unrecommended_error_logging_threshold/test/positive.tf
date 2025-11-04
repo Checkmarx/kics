@@ -9,10 +9,10 @@ resource "google_sql_database_instance" "positive_1" {
       value = "off"
       }
 
-    database_flags {                                  # Flag is set to "NOTICE"
+    database_flags {
       name = "log_min_error_statement"
       value = "NOTICE"
-      }
+      } # Flag is set to "NOTICE"
 
     database_flags {
       name = "sample_flag2"
