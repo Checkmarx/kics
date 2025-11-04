@@ -12,6 +12,10 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
+const (
+	mergeKey = "<<"
+)
+
 // UnmarshalYAML is a custom yaml parser that places line information in the payload
 func (m *Document) UnmarshalYAML(value *yaml.Node) error {
 	visited := make(map[*yaml.Node]interface{})
@@ -109,7 +113,7 @@ func unmarshalWithVisited(val *yaml.Node, visited map[*yaml.Node]interface{}) in
 				case yaml.AliasNode:
 					aliasTarget := val.Content[i+1].Alias
 					if aliasTarget != nil {
-						if val.Content[i].Value == "<<" {
+						if val.Content[i].Value == mergeKey {
 							// merge key: spreads aliased keys into current level
 							// example: merged: { <<: *default, key3: value3 }
 							if tt, ok := unmarshalWithVisited(aliasTarget, visited).(map[string]interface{}); ok {
@@ -152,7 +156,7 @@ func getLines(val *yaml.Node, def int) map[string]*LineObject {
 
 // getLinesWithVisited creates the map containing the line information for the yaml Node
 // with visited node tracking to prevent infinite recursion on circular aliases
-func getLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[string]*LineObject) map[string]*LineObject {
+func getLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[string]*LineObject) map[string]*LineObject { //nolint:gocyclo
 	// check if we've already visited this node
 	if result, found := visited[val]; found {
 		return result
@@ -169,7 +173,7 @@ func getLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[str
 	}
 
 	// adjust default line when mapping starts with merge key (<<: *alias)
-	if len(val.Content) >= 2 && val.Content[0].Value == "<<" && val.Content[1].Kind == yaml.AliasNode {
+	if len(val.Content) >= 2 && val.Content[0].Value == mergeKey && val.Content[1].Kind == yaml.AliasNode {
 		def = val.Content[0].Line
 	}
 
@@ -196,7 +200,7 @@ func getLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[str
 		}
 
 		// merge key (<<: *alias): merge line information from aliased node
-		if val.Content[i].Value == "<<" && val.Content[i+1].Kind == yaml.AliasNode {
+		if val.Content[i].Value == mergeKey && val.Content[i+1].Kind == yaml.AliasNode {
 			if val.Content[i+1].Alias != nil {
 				aliasLines := getLinesWithVisited(val.Content[i+1].Alias, val.Content[i+1].Alias.Line, visited)
 				for key, lineObj := range aliasLines {
