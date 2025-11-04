@@ -20,8 +20,8 @@
 	},
 	"total_counter": 2,
 	"total_bom_resources": 0,
-	"start": "2025-11-04T15:04:11.7686932Z",
-	"end": "2025-11-04T15:04:12.3532604Z",
+	"start": "2025-11-04T15:45:59.3208262Z",
+	"end": "2025-11-04T15:45:59.6492145Z",
 	"paths": [
 		"/path/test/fixtures/experimental_test/sample",
     "/path/test/fixtures/experimental_test/queries"
@@ -40,7 +40,7 @@
 			"description_id": "68984bf2",
 			"files": [
 				{
-					"file_name": "test\\fixtures\\experimental_test\\sample\\sample.tf",
+					"file_name": "path\\test\\fixtures\\experimental_test\\sample\\sample.tf",
 					"similarity_id": "902ea312f64932392737b1ece525118df9ce3811d00e270bff8ed4b500a7168b",
 					"line": 4,
 					"resource_type": "aws_elasticache_cluster",
@@ -69,7 +69,7 @@
 			"description_id": "68984bf2",
 			"files": [
 				{
-					"file_name": "test\\fixtures\\experimental_test\\sample\\sample.tf",
+					"file_name": "path\\test\\fixtures\\experimental_test\\sample\\sample.tf",
 					"similarity_id": "c8bb6a3529e986644d07f67ff51e81b179334d65444766773b43e0c080daec30",
 					"line": 4,
 					"resource_type": "aws_elasticache_cluster",
