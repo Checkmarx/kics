@@ -8,11 +8,12 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/rs/zerolog/log"
 	"github.com/zclconf/go-cty/cty"
+
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
 )
 
 var inputVariableMap = make(converter.VariableMap)
@@ -159,12 +160,16 @@ func buildVariablesForDirectory(currentPath, terraformVarsPath string) (converte
 // getInputVariables now uses caching to avoid rescanning directories
 func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
 	// Extract terraform vars path from file content if not provided
+	// If the flag is empty let's look for the value in the first written line of the file
 	if terraformVarsPath == "" {
 		terraformVarsPathRegex := regexp.MustCompile(`(?m)^\s*// kics_terraform_vars: ([\w/\\.:-]+)\r?\n`)
 		terraformVarsPathMatch := terraformVarsPathRegex.FindStringSubmatch(fileContent)
 		if terraformVarsPathMatch != nil {
+			// There is a path tp the variables file in the file so that will be the path to the variables tf file
 			terraformVarsPath = terraformVarsPathMatch[1]
+			// If the path contains ":" assume it's a global path
 			if !strings.Contains(terraformVarsPath, ":") {
+				// If not then add the current folder path before so that the comment path can be relative
 				terraformVarsPath = filepath.Join(currentPath, terraformVarsPath)
 			}
 		}
