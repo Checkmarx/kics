@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Activity Log Alert",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive3_1.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert",
+    "severity": "MEDIUM",
+    "line": 29,
+    "fileName": "positive3_1.tf"
+  }
+]

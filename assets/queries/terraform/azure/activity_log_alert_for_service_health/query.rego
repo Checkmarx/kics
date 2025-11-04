@@ -1,0 +1,89 @@
+package Cx
+
+import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+
+filter_fields := ["caller", "level", "levels", "status", "statuses", "sub_status", "sub_statuses"]
+
+CxPolicy[result] {
+	resources := {input.document[index].id : log_alerts |
+            log_alerts := input.document[index].resource.azurerm_monitor_activity_log_alert
+            }
+
+	value := at_least_one_valid_log_alert(resources)
+	value.result != "has_valid_log"
+
+	results := get_results(value)[_]
+
+	result := {
+		"documentId": results.doc_id,
+		"resourceType": "azurerm_monitor_activity_log_alert",
+		"resourceName": tf_lib.get_resource_name(results.resource, results.name),
+		"searchKey": sprintf("azurerm_monitor_activity_log_alert[%s].criteria", [results.name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'service health' events should be defined",
+		"keyActualValue": results.keyActualValue,
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_activity_log_alert", results.name, "criteria"], [])
+	}
+}
+
+at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log"} {
+	resources[doc_index][x].criteria.category == "ServiceHealth"
+	resources[doc_index][x].criteria.service_health.events[_] == "Incident"
+	common_lib.valid_key(resources[doc_index][x].action, "action_group_id")
+
+} else = {"result" : "has_log_without_action", "logs": logs} {
+	logs := {doc_index: filtered |
+			resources[doc_index]
+			filtered := {key: resource |
+				resource := resources[doc_index][key]
+				resource.criteria.category == "ServiceHealth"
+				resource.criteria.service_health.events[_] == "Incident"}
+		}
+	logs[_] != {}
+
+} else = {"result" : "has_log_without_incident_event", "logs": logs} {
+	logs := {doc_index: filtered |
+			resources[doc_index]
+			filtered := {key: resource |
+				resource := resources[doc_index][key]
+				resource.criteria.category == "ServiceHealth"}
+		}
+	logs[_] != {}
+
+} else = {"result" : "has_invalid_logs_only", "logs": resources}
+
+get_results(value) = results {					# Case of one or more resources failing due to not setting an "action.action_group_id" field
+	value.result == "has_log_without_action"
+
+	results := [z |
+		log := value.logs[doc_id][name]
+		z := {
+			"doc_id" : doc_id,
+			"resource" : log,
+			"name" : name,
+			"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'service health' events but is missing an 'action.action_group_id' field", [name])
+		}]
+
+} else = results {								# Case of one or more resources failing due to setting filter(s)
+	value.result == "has_log_without_incident_event"
+
+	results := [z |
+		log := value.logs[doc_id][name]
+		z := {
+			"doc_id" : doc_id,
+			"resource" : log,
+			"name" : name,
+			"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'service health' events but does not include 'Incident' in the criteria.service_health.events array", [name])
+		}]
+
+} else = results {								# Case of all resources failing due to invalid category and/or operation_name
+	results := [z |
+		log := value.logs[doc_id][name]
+		z := {
+			"doc_id" : doc_id,
+			"resource" : log,
+			"name" : name,
+			"keyActualValue" : "None of the 'azurerm_monitor_activity_log_alert' resources monitor 'service health' events"
+		}]
+}
