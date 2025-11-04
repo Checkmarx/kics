@@ -2,7 +2,7 @@
   {
     "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 9,
     "fileName": "positive5_1.tf"
   }
 ]

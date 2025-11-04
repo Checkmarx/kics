@@ -1,4 +1,4 @@
-resource "azurerm_monitor_activity_log_alert" "positive1_3" {
+resource "azurerm_monitor_activity_log_alert" "positive4_2" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -8,10 +8,10 @@ resource "azurerm_monitor_activity_log_alert" "positive1_3" {
   criteria {
     resource_id    = azurerm_storage_account.to_monitor.id
     operation_name = "Microsoft.Storage/storageAccounts/write"          # wrong operation name
-    category       = "Policy"                                           # wrong category
+    category       = "Administrative"
   }
 
   action {
     action_group_id = azurerm_monitor_action_group.main.id
-  }
+    }
 }
