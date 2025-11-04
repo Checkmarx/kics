@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"io"
 	"os"
+	"path/filepath"
 	"unicode/utf8"
 
 	"github.com/pkg/errors"
@@ -16,7 +17,7 @@ import (
 // This is critical for files extracted from ZIP archives on Windows,
 // which may be encoded as UTF-16 LE with BOM (0xFF 0xFE).
 func ReadFileToUTF8(path string) ([]byte, error) {
-	b, err := os.ReadFile(path)
+	b, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		return nil, err
 	}
