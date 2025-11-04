@@ -7,7 +7,7 @@ resource "azurerm_monitor_activity_log_alert" "negative1" {
 
   criteria {
     resource_id    = azurerm_storage_account.to_monitor.id
-    operation_name = "operation_value"
+    operation_name = "Microsoft.Security/securitySolutions/delete"
     category       = "Administrative"
   }
 
