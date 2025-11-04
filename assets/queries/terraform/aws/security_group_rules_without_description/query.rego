@@ -30,7 +30,6 @@ CxPolicy[result] {
 
 	gress_list := tf_lib.get_ingress_list(resource)
 	results := check_description(gress_list.value[i2],gress_list.is_unique_element,name,i2,types[y])
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -45,7 +44,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#Case of "security-group" Module (ingress|egress)_with_cidr_blocks (ipv4/ipv6) without description 
+	#Case of "security-group" Module (ingress|egress)_with_cidr_blocks (ipv4/ipv6) without description
 	module := input.document[i].module[name]
 	types := ["ingress_with_cidr_blocks","egress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks","egress_with_ipv6_cidr_blocks"]
 	key := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", types[t])

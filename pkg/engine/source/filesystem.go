@@ -395,11 +395,27 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 
 	experimental := getExperimental(metadata["experimental"])
 
+	cwe := ""
+	if cweValue, ok := metadata["cwe"]; ok {
+		if cweStr, ok := cweValue.(string); ok {
+			cwe = cweStr
+		}
+	}
+
+	riskScore := ""
+	if riskScoreValue, ok := metadata["riskScore"]; ok {
+		if riskScoreStr, ok := riskScoreValue.(string); ok {
+			riskScore = riskScoreStr
+		}
+	}
+
 	return model.QueryMetadata{
 		Query:        path.Base(filepath.ToSlash(queryDir)),
 		Content:      string(queryContent),
 		Metadata:     metadata,
 		Platform:     platform,
+		CWE:          cwe,
+		RiskScore:    riskScore,
 		InputData:    inputData,
 		Aggregation:  aggregation,
 		Experimental: experimental,

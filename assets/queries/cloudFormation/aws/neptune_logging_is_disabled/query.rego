@@ -8,9 +8,8 @@ CxPolicy[result] {
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Neptune::DBCluster"
-	
+
 	results := is_null_or_missing_LogsExports(resource.Properties,path,name)
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,7 +28,7 @@ CxPolicy[result] {
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Neptune::DBCluster"
-	
+
     common_lib.valid_key(resource.Properties,"EnableCloudwatchLogsExports")
 	not common_lib.inArray(resource.Properties.EnableCloudwatchLogsExports,"audit")
 
@@ -46,7 +45,7 @@ CxPolicy[result] {
 }
 
 is_null_or_missing_LogsExports(Properties,path,name) = results {
-	Properties.EnableCloudwatchLogsExports == null 
+	Properties.EnableCloudwatchLogsExports == null
 	results := {
 		"searchKey" : sprintf("%s%s.Properties.EnableCloudwatchLogsExports", [cf_lib.getPath(path), name]),
 		"issueType" : "IncorrectValue",
@@ -61,4 +60,4 @@ is_null_or_missing_LogsExports(Properties,path,name) = results {
 		"keyActualValue": sprintf("'Resources.%s.Properties.EnableCloudwatchLogsExports' is undefined", [name]),
 		"searchLine": common_lib.build_search_line(path, [name, "Properties"])
 	}
-} else = ""
+}

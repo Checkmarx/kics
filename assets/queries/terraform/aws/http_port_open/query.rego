@@ -14,7 +14,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": types[i2],
-		"resourceName": tf_lib.get_resource_name(resource, name),	
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s]", [types[i2],name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s] should not open the HTTP port (80)", [types[i2],name]),
@@ -29,7 +29,6 @@ CxPolicy[result] {
 
 	ingress_list := tf_lib.get_ingress_list(resource.ingress)
 	results := http_is_open(ingress_list.value[i2],ingress_list.is_unique_element,name,i2)
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -86,4 +85,4 @@ http_is_open(ingress,is_unique_element,name,i2) = results {
 		"keyActualValue" : sprintf("aws_security_group[%s].ingress[%d] opens the HTTP port (80)", [name,i2]),
 		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
 	}
-} else = ""
+}
