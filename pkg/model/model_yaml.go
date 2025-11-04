@@ -1,14 +1,15 @@
 package model
 
 import (
-	json "encoding/json"
+	"encoding/json"
 	"errors"
 	"path/filepath"
 	"strconv"
 
-	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
+
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 // UnmarshalYAML is a custom yaml parser that places line information in the payload
@@ -62,7 +63,7 @@ func GetIgnoreLines(file *FileMetadata) []int {
 
 // unmarshalWithVisited is the function that will parse the yaml elements and call the functions needed
 // to place their line information in the payload. It tracks visited nodes to prevent infinite recursion.
-func unmarshalWithVisited(val *yaml.Node, visited map[*yaml.Node]interface{}) interface{} {
+func unmarshalWithVisited(val *yaml.Node, visited map[*yaml.Node]interface{}) interface{} { //nolint:gocyclo
 	// Check if we've already visited this node to prevent infinite recursion
 	if result, found := visited[val]; found {
 		return result
@@ -106,31 +107,28 @@ func unmarshalWithVisited(val *yaml.Node, visited map[*yaml.Node]interface{}) in
 					}
 					tmp[val.Content[i].Value] = contentArray
 				case yaml.AliasNode:
-					// Resolve the alias by getting its target node
 					aliasTarget := val.Content[i+1].Alias
 					if aliasTarget != nil {
-						// Check if this is a merge key (<<)
 						if val.Content[i].Value == "<<" {
-							// For merge keys, unmarshal the alias and merge it into tmp
+							// merge key: spreads aliased keys into current level
+							// example: merged: { <<: *default, key3: value3 }
 							if tt, ok := unmarshalWithVisited(aliasTarget, visited).(map[string]interface{}); ok {
-								ttCopy := make(map[string]interface{})
 								for k, v := range tt {
 									if k != "_kics_lines" {
-										ttCopy[k] = v
+										tmp[k] = v
 									}
 								}
-								ttCopy["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
-								utils.MergeMaps(tmp, ttCopy)
 							}
 						} else {
-							// For regular aliases, assign the value directly
+							// regular alias: assigns entire aliased object to a key
+							// example: myfield: *default
 							aliasValue := unmarshalWithVisited(aliasTarget, visited)
 							if tt, ok := aliasValue.(map[string]interface{}); ok {
 								ttCopy := make(map[string]interface{})
 								for k, v := range tt {
 									ttCopy[k] = v
 								}
-								ttCopy["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
+								ttCopy["_kics_lines"] = getLines(aliasTarget, val.Content[i].Line)
 								tmp[val.Content[i].Value] = ttCopy
 							} else {
 								tmp[val.Content[i].Value] = aliasValue
@@ -148,17 +146,37 @@ func unmarshalWithVisited(val *yaml.Node, visited map[*yaml.Node]interface{}) in
 // getLines creates the map containing the line information for the yaml Node
 // def is the line to be used as "_kics__default"
 func getLines(val *yaml.Node, def int) map[string]*LineObject {
+	visited := make(map[*yaml.Node]map[string]*LineObject)
+	return getLinesWithVisited(val, def, visited)
+}
+
+// getLinesWithVisited creates the map containing the line information for the yaml Node
+// with visited node tracking to prevent infinite recursion on circular aliases
+func getLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[string]*LineObject) map[string]*LineObject {
+	// check if we've already visited this node
+	if result, found := visited[val]; found {
+		return result
+	}
+
 	lineMap := make(map[string]*LineObject)
+	visited[val] = lineMap
+
+	// if yaml Node is an Array use func getSeqLines
+	if val.Kind == yaml.SequenceNode {
+		result := getSeqLinesWithVisited(val, def, visited)
+		visited[val] = result
+		return result
+	}
+
+	// adjust default line when mapping starts with merge key (<<: *alias)
+	if len(val.Content) >= 2 && val.Content[0].Value == "<<" && val.Content[1].Kind == yaml.AliasNode {
+		def = val.Content[0].Line
+	}
 
 	// line information map
 	lineMap["_kics__default"] = &LineObject{
 		Line: def,
 		Arr:  []map[string]*LineObject{},
-	}
-
-	// if yaml Node is an Array use func getSeqLines
-	if val.Kind == yaml.SequenceNode {
-		return getSeqLines(val, def)
 	}
 
 	// iterate two by two, since first iteration is the key and the second is the value
@@ -173,8 +191,21 @@ func getLines(val *yaml.Node, def int) map[string]*LineObject {
 				} else if contentEntry.Kind == yaml.MappingNode && len(contentEntry.Content) > 0 {
 					defaultLine = contentEntry.Content[0].Line
 				}
-				lineArr = append(lineArr, getLines(contentEntry, defaultLine))
+				lineArr = append(lineArr, getLinesWithVisited(contentEntry, defaultLine, visited))
 			}
+		}
+
+		// merge key (<<: *alias): merge line information from aliased node
+		if val.Content[i].Value == "<<" && val.Content[i+1].Kind == yaml.AliasNode {
+			if val.Content[i+1].Alias != nil {
+				aliasLines := getLinesWithVisited(val.Content[i+1].Alias, val.Content[i+1].Alias.Line, visited)
+				for key, lineObj := range aliasLines {
+					if key != "_kics__default" {
+						lineMap[key] = lineObj
+					}
+				}
+			}
+			continue
 		}
 
 		// line information map of each key of the yaml Node
@@ -184,18 +215,19 @@ func getLines(val *yaml.Node, def int) map[string]*LineObject {
 		}
 	}
 
+	visited[val] = lineMap
 	return lineMap
 }
 
-// getSeqLines iterates through the elements of an Array
-// creating a map with each iteration lines information
-func getSeqLines(val *yaml.Node, def int) map[string]*LineObject {
+// getSeqLinesWithVisited iterates through the elements of an Array
+// creating a map with each iteration lines information, with visited node tracking
+func getSeqLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[string]*LineObject) map[string]*LineObject {
 	lineMap := make(map[string]*LineObject)
 	lineArr := make([]map[string]*LineObject, 0)
 
 	// get line information slice of every element in the array
 	for _, cont := range val.Content {
-		lineArr = append(lineArr, getLines(cont, cont.Line))
+		lineArr = append(lineArr, getLinesWithVisited(cont, cont.Line, visited))
 	}
 
 	// create line information of array with its line and elements line information

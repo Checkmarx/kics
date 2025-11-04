@@ -442,6 +442,238 @@ var tests = []struct {
 		  }
 		  `,
 	},
+	{
+		name:    "test yaml alias node with merge key",
+		m:       &Document{},
+		wantErr: false,
+		args: args{
+			value: func() *yaml.Node {
+				// Create the anchor node (defaults)
+				defaultsNode := &yaml.Node{
+					Kind:   yaml.MappingNode,
+					Anchor: "default",
+					Line:   1,
+					Content: []*yaml.Node{
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "key1",
+							Line:  2,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "value1",
+							Tag:   "!!str",
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "key2",
+							Line:  3,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "value2",
+							Tag:   "!!str",
+						},
+					},
+				}
+
+				// Create the root node
+				return &yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "defaults",
+							Line:  1,
+						},
+						defaultsNode,
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "merged",
+							Line:  4,
+						},
+						{
+							Kind: yaml.MappingNode,
+							Content: []*yaml.Node{
+								{
+									Kind:  yaml.ScalarNode,
+									Value: "<<",
+									Line:  5,
+								},
+								{
+									Kind:  yaml.AliasNode,
+									Alias: defaultsNode,
+									Line:  5,
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Value: "key3",
+									Line:  6,
+								},
+								{
+									Kind:  yaml.ScalarNode,
+									Value: "value3",
+									Tag:   "!!str",
+								},
+							},
+						},
+					},
+				}
+			}(),
+		},
+		want: `{
+			"_kics_lines": {
+			  "_kics__default": {
+				"_kics_line": 0
+			  },
+			  "_kics_defaults": {
+				"_kics_line": 1
+			  },
+			  "_kics_merged": {
+				"_kics_line": 4
+			  }
+			},
+			"defaults": {
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 1
+				},
+				"_kics_key1": {
+				  "_kics_line": 2
+				},
+				"_kics_key2": {
+				  "_kics_line": 3
+				}
+			  },
+			  "key1": "value1",
+			  "key2": "value2"
+			},
+			"merged": {
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 5
+				},
+				"_kics_key1": {
+				  "_kics_line": 2
+				},
+				"_kics_key2": {
+				  "_kics_line": 3
+				},
+				"_kics_key3": {
+				  "_kics_line": 6
+				}
+			  },
+			  "key1": "value1",
+			  "key2": "value2",
+			  "key3": "value3"
+			}
+		  }
+		  `,
+	},
+	{
+		name:    "test yaml regular alias node",
+		m:       &Document{},
+		wantErr: false,
+		args: args{
+			value: func() *yaml.Node {
+				// Create the anchor node (defaults)
+				defaultsNode := &yaml.Node{
+					Kind:   yaml.MappingNode,
+					Anchor: "default",
+					Line:   1,
+					Content: []*yaml.Node{
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "key1",
+							Line:  2,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "value1",
+							Tag:   "!!str",
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "key2",
+							Line:  3,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "value2",
+							Tag:   "!!str",
+						},
+					},
+				}
+
+				// Create the root node
+				return &yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "defaults",
+							Line:  1,
+						},
+						defaultsNode,
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "referenced",
+							Line:  4,
+						},
+						{
+							Kind:  yaml.AliasNode,
+							Alias: defaultsNode,
+							Line:  4,
+						},
+					},
+				}
+			}(),
+		},
+		want: `{
+			"_kics_lines": {
+			  "_kics__default": {
+				"_kics_line": 0
+			  },
+			  "_kics_defaults": {
+				"_kics_line": 1
+			  },
+			  "_kics_referenced": {
+				"_kics_line": 4
+			  }
+			},
+			"defaults": {
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 1
+				},
+				"_kics_key1": {
+				  "_kics_line": 2
+				},
+				"_kics_key2": {
+				  "_kics_line": 3
+				}
+			  },
+			  "key1": "value1",
+			  "key2": "value2"
+			},
+			"referenced": {
+			  "_kics_lines": {
+				"_kics__default": {
+				  "_kics_line": 4
+				},
+				"_kics_key1": {
+				  "_kics_line": 2
+				},
+				"_kics_key2": {
+				  "_kics_line": 3
+				}
+			  },
+			  "key1": "value1",
+			  "key2": "value2"
+			}
+		  }
+		  `,
+	},
 }
 
 func TestDocument_UnmarshalYAML(t *testing.T) {
