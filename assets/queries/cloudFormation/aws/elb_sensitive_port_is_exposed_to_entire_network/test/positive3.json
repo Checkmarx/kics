@@ -80,7 +80,7 @@
         "GroupDescription": "Allow all ports on all protocols",
         "SecurityGroupIngress": [
           {
-            "IpProtocol": "-1",
+            "IpProtocol": "6",
             "FromPort": 22,
             "ToPort": 22,
             "CidrIpv6": "fd00::/0"

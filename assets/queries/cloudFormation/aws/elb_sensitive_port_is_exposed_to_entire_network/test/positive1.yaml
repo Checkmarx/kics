@@ -58,7 +58,7 @@ Resources:
     Properties:
       GroupDescription: "Allow all ports on all protocols"
       SecurityGroupIngress:
-      - IpProtocol: "-1"
+      - IpProtocol: "6"
         FromPort: 22
         ToPort: 22
         CidrIpv6: "fd00::/0"
@@ -86,4 +86,3 @@ Resources:
           FromPort: 110
           ToPort: 110
           CidrIpv6: "fd00:abcd:1234::42/0"
-      

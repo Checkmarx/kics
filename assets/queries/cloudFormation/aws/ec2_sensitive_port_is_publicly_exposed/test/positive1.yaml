@@ -18,7 +18,7 @@ Resources:
     Properties:
       GroupDescription: "All ports exposed on all protocols"
       SecurityGroupIngress:
-        - IpProtocol: "-1"
+        - IpProtocol: "17"
           FromPort: 22
           ToPort: 22
           CidrIp: "10.0.0.0/0"

@@ -60,7 +60,6 @@ search_for_standalone_rules(sec_group_name, doc) = rules_with_names {
   }
 }
 
-
 check_standalone_rule(security_group_name, rule, rule_name)  {
 	cf_lib.get_name(rule.Properties.GroupId) == security_group_name
 }

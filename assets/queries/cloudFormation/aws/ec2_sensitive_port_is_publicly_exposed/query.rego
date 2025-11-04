@@ -41,19 +41,18 @@ CxPolicy[result] {
 }
 
 get_sensitive_ports(ingress, ec2_instance_name) = ports {
-	ingress.IpProtocol == "-1"
-	ports := [{
-		"value" : "ALL PORTS (ALL PROTOCOLS:0-65535)",
-		"searchValue" : "ALL PROTOCOLS,0-65535"
-		}]
-} else = ports {
-	portName   := common_lib.tcpPortsMap[portNumber]
-	protocol  := upper(ingress.IpProtocol)
-	protocol  == ["TCP", "6", "UDP", "17"][_]
-	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, portNumber)
-
-	ports := [x | x := {
+	ports := [x |
+		portName   := common_lib.tcpPortsMap[portNumber]
+		protocol   := cf_lib.getProtocolList(ingress.IpProtocol)[_]
+		check_port(ingress.FromPort, ingress.ToPort, portNumber, ingress.IpProtocol)
+		x := {
 		"value" : sprintf("%s (%s:%d)", [portName, protocol, portNumber]),
 		"searchValue" : sprintf("%s/%s:%d", [ec2_instance_name, protocol, portNumber])
 		}]
+}
+
+check_port(from, to, port, protocol) {
+	protocol == "-1"
+} else {
+	cf_lib.containsPort(from, to, port)
 }

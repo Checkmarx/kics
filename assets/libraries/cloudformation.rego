@@ -78,9 +78,12 @@ getProtocolList(protocol) = list {
 	protocol == "-1"
 	list = ["TCP", "UDP"]
 } else = list {
-	common_lib.inArray(["TCP", "UDP"],upper(protocol))
-	list = [upper(protocol)]
-} else = []
+	upper(protocol) == ["TCP", "6"][_]
+	list = ["TCP"]
+} else = list {
+	upper(protocol) == ["UDP", "17"][_]
+	list = ["UDP"]
+}
 
 isTCP_and_port_exposed(ingress, port) {
 	upper(ingress.IpProtocol) == ["TCP","6"][_]
