@@ -3,7 +3,16 @@ similarityIDChangeList:
       queryName: Beta - Google DNS Policy Logging Disabled
       observations: ""
       change: 2
+<<<<<<< HEAD
     - queryId: 00335e17-674c-442e-a64c-9436e60e6efb
       queryName: Beta - SQL DB Instance With Minimum Log Duration
+=======
+    - queryId: 51a2c34d-dfd0-436f-aa34-e8f796e052fd
+      queryName: Beta - SQL DB Instance With Local Data Loading Enabled
+      observations: ""
+      change: 2
+    - queryId: b5b70198-2a34-4792-b0d9-ce99abe485bb
+      queryName: Beta - SQL DB Instance With Exposed Show Privileges
+>>>>>>> 67c75db65aa3c1c204b37ea6325eb211aed3159d
       observations: ""
       change: 2
