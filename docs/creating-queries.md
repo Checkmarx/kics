@@ -137,7 +137,9 @@ Observe the following metadata.json example and check the Guidelines below for m
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail",
   "platform": "Terraform",
   "descriptionID": "feb82a62",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws", 
+  "cwe": "778",
+  "riskScore": "2.8"
 }
 ```
 
