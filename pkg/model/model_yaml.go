@@ -172,11 +172,6 @@ func getLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[str
 		return result
 	}
 
-	// adjust default line when mapping starts with merge key (<<: *alias)
-	if len(val.Content) >= 2 && val.Content[0].Value == mergeKey && val.Content[1].Kind == yaml.AliasNode {
-		def = val.Content[0].Line
-	}
-
 	// line information map
 	lineMap["_kics__default"] = &LineObject{
 		Line: def,
