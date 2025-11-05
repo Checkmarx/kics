@@ -37,3 +37,5 @@ resource "azurerm_monitor_activity_log_alert" "positive2_2" {
     action_group_id = azurerm_monitor_action_group.notify_team.id
   }
 }
+
+data "azurerm_subscription" "current" {}

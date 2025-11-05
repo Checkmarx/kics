@@ -9,8 +9,12 @@ CxPolicy[result] {
 	resources := {input.document[index].id : log_alerts |
             log_alerts := input.document[index].resource.azurerm_monitor_activity_log_alert
             }
+	subscriptions := {input.document[index].id : subs |
+            subs := input.document[index].data.azurerm_subscription
+            }
 
-	value := at_least_one_valid_log_alert(resources)
+	subscriptions[doc_id][name]
+	value := at_least_one_valid_log_alert(resources, name)
 	value.result != "has_valid_log"
 
 	results := get_results(value)[_]
@@ -21,22 +25,25 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(results.resource, results.name),
 		"searchKey": sprintf("azurerm_monitor_activity_log_alert[%s].criteria", [results.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'service health' events should be defined",
+		"keyExpectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'service health' events should be defined for each subscription",
 		"keyActualValue": results.keyActualValue,
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_activity_log_alert", results.name, "criteria"], [])
 	}
 }
 
-at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log"} {
+at_least_one_valid_log_alert(resources, subscription_name) = {"result" : "has_valid_log"} {
+	resources[doc_index][x].scopes == sprintf("[data.azurerm_subscription.%s.id]",[subscription_name])
 	resources[doc_index][x].criteria.category == "ServiceHealth"
 	resources[doc_index][x].criteria.service_health.events[_] == "Incident"
 	common_lib.valid_key(resources[doc_index][x].action, "action_group_id")
+
 
 } else = {"result" : "has_log_without_action", "logs": logs} {
 	logs := {doc_index: filtered |
 			resources[doc_index]
 			filtered := {key: resource |
 				resource := resources[doc_index][key]
+				resource.scopes == sprintf("[data.azurerm_subscription.%s.id]",[subscription_name])
 				resource.criteria.category == "ServiceHealth"
 				resource.criteria.service_health.events[_] == "Incident"}
 		}
@@ -47,11 +54,20 @@ at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log"} {
 			resources[doc_index]
 			filtered := {key: resource |
 				resource := resources[doc_index][key]
+				resource.scopes == sprintf("[data.azurerm_subscription.%s.id]",[subscription_name])
 				resource.criteria.category == "ServiceHealth"}
 		}
 	logs[_] != {}
 
-} else = {"result" : "has_invalid_logs_only", "logs": resources}
+} else = {"result" : "has_invalid_logs_only", "logs": logs} {
+	logs := {doc_index: filtered |
+			resources[doc_index]
+			filtered := {key: resource |
+				resource := resources[doc_index][key]
+				resource.scopes == sprintf("[data.azurerm_subscription.%s.id]",[subscription_name])}
+		}
+	logs[_] != {}
+} else = {"result" : "subscription_without_logs"}
 
 get_results(value) = results {					# Case of one or more resources failing due to not setting an "action.action_group_id" field
 	value.result == "has_log_without_action"
@@ -78,6 +94,16 @@ get_results(value) = results {					# Case of one or more resources failing due t
 		}]
 
 } else = results {								# Case of all resources failing due to invalid category and/or operation_name
+	value.result == "has_invalid_logs_only"
+	results := [z |
+		log := value.logs[doc_id][name]
+		z := {
+			"doc_id" : doc_id,
+			"resource" : log,
+			"name" : name,
+			"keyActualValue" : "None of the 'azurerm_monitor_activity_log_alert' resources monitor 'service health' events"
+		}]
+} else = results {
 	results := [z |
 		log := value.logs[doc_id][name]
 		z := {
