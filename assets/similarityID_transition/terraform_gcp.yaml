@@ -7,6 +7,10 @@ similarityIDChangeList:
       queryName: Beta - SQL DB Instance With Minimum Log Duration
       observations: ""
       change: 2
+    - queryId: 8895abb4-6491-4ae6-9c33-c2f360752b7a
+      queryName: Beta - SQL DB Instance Without Disconnections Logging
+      observations: ""
+      change: 2
     - queryId: fc7187e5-b9a2-46c0-950d-3bfcaaacc5ca
       queryName: Beta - SQL DB Instance Without Connections Logging
       observations: ""
