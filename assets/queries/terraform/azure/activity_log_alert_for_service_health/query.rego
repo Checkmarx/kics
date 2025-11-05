@@ -3,8 +3,6 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-filter_fields := ["caller", "level", "levels", "status", "statuses", "sub_status", "sub_statuses"]
-
 CxPolicy[result] {
 	resources     := {input.document[index].id : log_alerts | log_alerts := input.document[index].resource.azurerm_monitor_activity_log_alert}
 	subscriptions := {input.document[index].id : subs       | subs := input.document[index].data.azurerm_subscription}
@@ -14,23 +12,23 @@ CxPolicy[result] {
 	value.result != "has_valid_log"
 
 	results := get_results(value)[_]
-	dinamic_values := get_values(results)
+	dynamic_values := get_values(results)
 
 	result := {
 		"documentId": results.doc_id,
 		"resourceType": "azurerm_monitor_activity_log_alert",
-		"resourceName": dinamic_values.resourceName,
-		"searchKey": dinamic_values.searchKey,
+		"resourceName": dynamic_values.resourceName,
+		"searchKey": dynamic_values.searchKey,
 		"issueType": results.issueType,
 		"keyExpectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'ServiceHealth' events should be defined for each subscription",
 		"keyActualValue": results.keyActualValue,
-		"searchLine": dinamic_values.searchLine
+		"searchLine": dynamic_values.searchLine
 	}
 }
 
-get_values(results) = dinamic_values {
+get_values(results) = dynamic_values {
 	results.no_log == true
-	dinamic_values := {
+	dynamic_values := {
 		"resourceName": "",
 		"searchKey": sprintf("azurerm_subscription[%s]", [results.name]),
 		"searchLine": common_lib.build_search_line(["data", "azurerm_subscription", results.name], [])
