@@ -21,7 +21,7 @@
   "total_counter": 2,
   "total_bom_resources": 0,
   "start": "2025-11-05T12:30:29.616176853Z",
-	"end": "2025-11-05T12:30:30.07811478Z",
+  "end": "2025-11-05T12:30:30.07811478Z",
   "paths": [
     "/path/test/fixtures/experimental_test/sample",
     "/path/test/fixtures/experimental_test/queries"
