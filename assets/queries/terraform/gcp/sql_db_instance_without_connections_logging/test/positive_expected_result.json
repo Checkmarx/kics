@@ -1,0 +1,27 @@
+[
+  {
+    "queryName": "Beta - SQL DB Instance Without Connections Logging",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "Beta - SQL DB Instance Without Connections Logging",
+    "severity": "MEDIUM",
+    "line": 14
+  },
+  {
+    "queryName": "Beta - SQL DB Instance Without Connections Logging",
+    "severity": "MEDIUM",
+    "line": 23
+  },
+  {
+    "queryName": "Beta - SQL DB Instance Without Connections Logging",
+    "severity": "MEDIUM",
+    "line": 42
+  },
+  {
+    "queryName": "Beta - SQL DB Instance Without Connections Logging",
+    "severity": "MEDIUM",
+    "line": 60
+  }
+]
