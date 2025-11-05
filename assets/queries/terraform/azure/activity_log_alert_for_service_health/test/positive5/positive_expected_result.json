@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Beta - Activity Log Alert",
+    "queryName": "Beta - Activity Log Alert For Service Health",
     "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive5_1.tf"

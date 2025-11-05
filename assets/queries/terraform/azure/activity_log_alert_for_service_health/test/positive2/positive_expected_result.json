@@ -1,18 +1,18 @@
 [
   {
-    "queryName": "Beta - Activity Log Alert",
+    "queryName": "Beta - Activity Log Alert For Service Health",
     "severity": "MEDIUM",
     "line": 8,
     "fileName": "positive2_1.tf"
   },
   {
-    "queryName": "Beta - Activity Log Alert",
+    "queryName": "Beta - Activity Log Alert For Service Health",
     "severity": "MEDIUM",
     "line": 28,
     "fileName": "positive2_1.tf"
   },
   {
-    "queryName": "Beta - Activity Log Alert",
+    "queryName": "Beta - Activity Log Alert For Service Health",
     "severity": "MEDIUM",
     "line": 8,
     "fileName": "positive2_2.tf"
