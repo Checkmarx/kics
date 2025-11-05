@@ -20,8 +20,8 @@
   },
   "total_counter": 2,
   "total_bom_resources": 0,
-  "start": "2024-05-28T13:18:56.6040425+01:00",
-  "end": "2024-05-28T13:18:56.948862+01:00",
+  "start": "2025-11-05T12:30:29.616176853Z",
+  "end": "2025-11-05T12:30:30.07811478Z",
   "paths": [
     "/path/test/fixtures/experimental_test/sample",
     "/path/test/fixtures/experimental_test/queries"
@@ -41,7 +41,7 @@
       "files": [
         {
           "file_name": "path\\test\\fixtures\\experimental_test\\sample\\sample.tf",
-          "similarity_id": "4e651f5c005de96ab66f25419b1f160d9e0eecae83181edfcd1b72b3afbe9f69",
+          "similarity_id": "efa296e727d250c75a82c32c397e4e78d4b87434373312b34d970ec260f0aa15",
           "line": 4,
           "resource_type": "aws_elasticache_cluster",
           "resource_name": "cluster-example",
