@@ -17,20 +17,20 @@ import (
 // This is critical for files extracted from ZIP archives on Windows,
 // which may be encoded as UTF-16 LE with BOM (0xFF 0xFE).
 func ReadFileToUTF8(path string) ([]byte, error) {
-	b, err := os.ReadFile(filepath.Clean(path))
+	bytesContent, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		return nil, err
 	}
-	if len(b) == 0 {
-		return b, nil
+	if len(bytesContent) == 0 {
+		return bytesContent, nil
 	}
 
 	// BOM detection
-	if len(b) >= 2 {
+	if len(bytesContent) >= 2 {
 		// UTF-16 LE BOM: 0xFF 0xFE
-		if b[0] == 0xFF && b[1] == 0xFE {
+		if bytesContent[0] == 0xFF && bytesContent[1] == 0xFE {
 			r := transform.NewReader(
-				bytes.NewReader(b),
+				bytes.NewReader(bytesContent),
 				unicode.UTF16(unicode.LittleEndian, unicode.ExpectBOM).NewDecoder(),
 			)
 			out, err := io.ReadAll(r)
@@ -40,9 +40,9 @@ func ReadFileToUTF8(path string) ([]byte, error) {
 			return out, nil
 		}
 		// UTF-16 BE BOM: 0xFE 0xFF
-		if b[0] == 0xFE && b[1] == 0xFF {
+		if bytesContent[0] == 0xFE && bytesContent[1] == 0xFF {
 			r := transform.NewReader(
-				bytes.NewReader(b),
+				bytes.NewReader(bytesContent),
 				unicode.UTF16(unicode.BigEndian, unicode.ExpectBOM).NewDecoder(),
 			)
 			out, err := io.ReadAll(r)
@@ -54,8 +54,8 @@ func ReadFileToUTF8(path string) ([]byte, error) {
 	}
 
 	// If valid UTF-8, return as-is
-	if utf8.Valid(b) {
-		return b, nil
+	if utf8.Valid(bytesContent) {
+		return bytesContent, nil
 	}
 
 	// If we reach here, the file is not UTF-8 and has no recognized BOM
