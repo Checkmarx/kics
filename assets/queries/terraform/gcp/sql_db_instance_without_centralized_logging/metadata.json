@@ -1,0 +1,14 @@
+{
+  "id": "245eb024-d08a-449b-a1f2-02f7bba00fc2",
+  "queryName": "Beta - SQL DB Instance Without Centralized Logging",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "All 'google_sql_database_instance' resources based on POSTGRES should enable the 'cloudsql.enable_pgaudit' flag to allow for centralized logging",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "245eb024",
+  "cloudProvider": "gcp",
+  "cwe": "778",
+  "riskScore": "1.0",
+  "experimental": "true"
+}
