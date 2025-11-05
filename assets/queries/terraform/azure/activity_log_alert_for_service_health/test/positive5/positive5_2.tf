@@ -1,5 +1,4 @@
-# Case of correct "service_health.events" and "category" but the "action.action_group_id" field is missing
-resource "azurerm_monitor_activity_log_alert" "positive3_2" {
+resource "azurerm_monitor_activity_log_alert" "positive5_3" {
   name                = "ServiceHealthActivityLogAlert"
   resource_group_name = var.resource_group_name
   scopes              = [data.azurerm_subscription.current.id]
@@ -7,7 +6,7 @@ resource "azurerm_monitor_activity_log_alert" "positive3_2" {
   enabled             = true
 
   criteria {
-    category = "ServiceHealth"
+    category = "Security"  # Wrong category
 
      service_health {
       events    = ["Incident"]
@@ -15,6 +14,6 @@ resource "azurerm_monitor_activity_log_alert" "positive3_2" {
   }
 
   action {
-    # Missing action_group_id
-    }
+    action_group_id = azurerm_monitor_action_group.notify_team.id
+  }
 }

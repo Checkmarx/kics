@@ -10,23 +10,5 @@
     "severity": "MEDIUM",
     "line": 28,
     "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Beta - Activity Log Alert",
-    "severity": "MEDIUM",
-    "line": 48,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Beta - Activity Log Alert",
-    "severity": "MEDIUM",
-    "line": 68,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Beta - Activity Log Alert",
-    "severity": "MEDIUM",
-    "line": 88,
-    "fileName": "positive1.tf"
   }
 ]

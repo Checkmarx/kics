@@ -4,5 +4,11 @@
     "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive4_1.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert",
+    "severity": "MEDIUM",
+    "line": 29,
+    "fileName": "positive4_1.tf"
   }
 ]

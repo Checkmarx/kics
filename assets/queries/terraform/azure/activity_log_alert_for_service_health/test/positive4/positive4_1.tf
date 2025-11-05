@@ -1,4 +1,4 @@
-# Query prioritizes flagging the log alert(s) that is "correct" but missing the "action_group_id" field over all others
+# Query prioritizes flagging the log alert(s) with correct "category" but missing "Incident" on the events array over ones with wrong "category"
 resource "azurerm_monitor_activity_log_alert" "positive4_1" {
   name                = "ServiceHealthActivityLogAlert"
   resource_group_name = var.resource_group_name
@@ -10,11 +10,13 @@ resource "azurerm_monitor_activity_log_alert" "positive4_1" {
     category = "ServiceHealth"
 
      service_health {
-      events    = ["Incident"]
+      events    = ["Maintenance"]   # Missing "Incident"
     }
   }
 
-  # Missing action block
+  action {
+    action_group_id = azurerm_monitor_action_group.notify_team.id
+  }
 }
 
 resource "azurerm_monitor_activity_log_alert" "positive4_2" {
@@ -28,7 +30,7 @@ resource "azurerm_monitor_activity_log_alert" "positive4_2" {
     category = "ServiceHealth"
 
      service_health {
-      events    = ["Maintenance"]  # Missing "Incident"
+      events    = ["Informational", "ActionRequired"]  # Missing "Incident"
     }
   }
 

@@ -8,7 +8,7 @@
   {
     "queryName": "Beta - Activity Log Alert",
     "severity": "MEDIUM",
-    "line": 29,
-    "fileName": "positive3_1.tf"
+    "line": 9,
+    "fileName": "positive3_2.tf"
   }
 ]

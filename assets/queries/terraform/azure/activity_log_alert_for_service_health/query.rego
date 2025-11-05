@@ -74,7 +74,7 @@ get_results(value) = results {					# Case of one or more resources failing due t
 			"doc_id" : doc_id,
 			"resource" : log,
 			"name" : name,
-			"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'service health' events but does not include 'Incident' in the criteria.service_health.events array", [name])
+			"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'service health' events but does not include 'Incident' in the 'criteria.service_health.events' array", [name])
 		}]
 
 } else = results {								# Case of all resources failing due to invalid category and/or operation_name
