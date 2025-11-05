@@ -7,3 +7,11 @@ similarityIDChangeList:
       queryName: Beta - SQL DB Instance Without Connections Logging
       observations: ""
       change: 2
+    - queryId: 51a2c34d-dfd0-436f-aa34-e8f796e052fd
+      queryName: Beta - SQL DB Instance With Local Data Loading Enabled
+      observations: ""
+      change: 2
+    - queryId: b5b70198-2a34-4792-b0d9-ce99abe485bb
+      queryName: Beta - SQL DB Instance With Exposed Show Privileges
+      observations: ""
+      change: 2
