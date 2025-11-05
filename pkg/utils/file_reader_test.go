@@ -245,23 +245,3 @@ func TestReadFileContentToUTF8_BugScenario(t *testing.T) {
 		require.Equal(t, string(tfContent), string(got))
 	})
 }
-
-func BenchmarkReadFileContentToUTF8_UTF8(b *testing.B) {
-	content := []byte(`{"terraform_version":"1.0.0","planned_values":{"resources":[{"type":"aws_s3_bucket"}]}}`)
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		_, _ = ReadFileContentToUTF8(content, "tfplan.json")
-	}
-}
-
-func BenchmarkReadFileContentToUTF8_UTF16LE_WithBOM(b *testing.B) {
-	jsonContent := `{"terraform_version":"1.0.0","planned_values":{}}`
-	utf16Content := []byte{0xFF, 0xFE}
-	for _, r := range jsonContent {
-		utf16Content = append(utf16Content, byte(r), 0x00)
-	}
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		_, _ = ReadFileContentToUTF8(utf16Content, "tfplan.json")
-	}
-}
