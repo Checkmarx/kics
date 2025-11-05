@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"resourceType": "azurerm_monitor_activity_log_alert",
 		"resourceName": tf_lib.get_resource_name(results.resource, results.name),
 		"searchKey": sprintf("azurerm_monitor_activity_log_alert[%s].criteria", [results.name]),
-		"issueType": "IncorrectValue",
+		"issueType": results.issueType,
 		"keyExpectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete policy assignment' events should be defined",
 		"keyActualValue": results.keyActualValue,
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_activity_log_alert", results.name, "criteria"], [])
@@ -64,6 +64,7 @@ get_results(value) = results {					# Case of one or more resources failing due t
 		z := {
 			"doc_id" : doc_id,
 			"resource" : log,
+			"issueType": "MissingAttribute",
 			"name" : name,
 			"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'delete policy assignment' events but is missing an 'action.action_group_id' field", [name])
 		}]
@@ -76,6 +77,7 @@ get_results(value) = results {					# Case of one or more resources failing due t
 		z := {
 			"doc_id" : doc_id,
 			"resource" : value.logs[doc_id][name],
+			"issueType": "IncorrectValue",
 			"name" : name,
 			"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'delete policy assignment' events but sets %d filter(s): %s", [name, count(filters),concat(", ",filters)])
 		}]
@@ -86,6 +88,7 @@ get_results(value) = results {					# Case of one or more resources failing due t
 		z := {
 			"doc_id" : doc_id,
 			"resource" : log,
+			"issueType": "IncorrectValue",
 			"name" : name,
 			"keyActualValue" : "None of the 'azurerm_monitor_activity_log_alert' resources monitor 'delete policy assignment' events"
 		}]
