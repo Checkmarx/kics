@@ -45,13 +45,12 @@ at_least_one_valid_log_alert(resources, subscription_name, doc_id_subs) = {"resu
 	resources[doc_index][x].criteria.service_health.events[_] == "Incident"
 	common_lib.valid_key(resources[doc_index][x].action, "action_group_id")
 
-
 } else = {"result" : "has_log_without_action", "logs": logs} {
 	logs := {doc_index: filtered |
 			resources[doc_index]
 			filtered := {key: resource |
 				resource := resources[doc_index][key]
-				resources[doc_index][x].scopes[_] == sprintf("${data.azurerm_subscription.%s.id}",[subscription_name])
+				resource.scopes[_] == sprintf("${data.azurerm_subscription.%s.id}",[subscription_name])
 				resource.criteria.category == "ServiceHealth"
 				resource.criteria.service_health.events[_] == "Incident"}
 		}
@@ -62,7 +61,7 @@ at_least_one_valid_log_alert(resources, subscription_name, doc_id_subs) = {"resu
 			resources[doc_index]
 			filtered := {key: resource |
 				resource := resources[doc_index][key]
-				resources[doc_index][x].scopes[_] == sprintf("${data.azurerm_subscription.%s.id}",[subscription_name])
+				resource.scopes[_] == sprintf("${data.azurerm_subscription.%s.id}",[subscription_name])
 				resource.criteria.category == "ServiceHealth"}
 		}
 	logs[_] != {}
@@ -72,7 +71,7 @@ at_least_one_valid_log_alert(resources, subscription_name, doc_id_subs) = {"resu
 			resources[doc_index]
 			filtered := {key: resource |
 				resource := resources[doc_index][key]
-				resources[doc_index][x].scopes[_] == sprintf("${data.azurerm_subscription.%s.id}",[subscription_name])}
+				resource.scopes[_] == sprintf("${data.azurerm_subscription.%s.id}",[subscription_name])}
 		}
 	logs[_] != {}
 } else = {"result" : "no_logs", "subscription" : subscription_name, "doc_id": doc_id_subs}
