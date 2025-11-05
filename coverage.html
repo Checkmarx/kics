@@ -181,7 +181,7 @@
 				
 				<option value="file62">github.com/Checkmarx/kics/v2/pkg/model/model.go (89.7%)</option>
 				
-				<option value="file63">github.com/Checkmarx/kics/v2/pkg/model/model_yaml.go (85.9%)</option>
+				<option value="file63">github.com/Checkmarx/kics/v2/pkg/model/model_yaml.go (92.8%)</option>
 				
 				<option value="file64">github.com/Checkmarx/kics/v2/pkg/model/summary.go (87.0%)</option>
 				
@@ -2643,7 +2643,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov9" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -10558,7 +10558,7 @@ var (
 )
 
 // build builds the ignore struct
-func (i *Ignore) build(lines []int) <span class="cov7" title="32">{
+func (i *Ignore) build(lines []int) <span class="cov7" title="37">{
         defer memoryMu.Unlock()
         memoryMu.Lock()
         i.Lines = append(i.Lines, lines...)
@@ -10575,7 +10575,7 @@ func (i *Ignore) Reset() <span class="cov5" title="9">{
 }</span>
 
 // ignoreCommentsYAML sets the lines to ignore for a yaml file
-func ignoreCommentsYAML(node *yaml.Node) <span class="cov7" title="32">{
+func ignoreCommentsYAML(node *yaml.Node) <span class="cov7" title="37">{
         linesIgnore := make([]int, 0)
         if node.HeadComment != "" </span><span class="cov1" title="1">{
                 // Sequence Node - Head Comment comes in root node
@@ -10584,17 +10584,17 @@ func ignoreCommentsYAML(node *yaml.Node) <span class="cov7" title="32">{
                 return
         }</span>
         // check if comment is in the content
-        <span class="cov7" title="31">for i, content := range node.Content </span><span class="cov10" title="117">{
+        <span class="cov7" title="36">for i, content := range node.Content </span><span class="cov10" title="137">{
                 if content.FootComment != "" &amp;&amp; i+2 &lt; len(node.Content) </span><span class="cov2" title="2">{
                         linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&amp;content.FootComment), i+2, node, node.Kind, true)...)
                 }</span>
-                <span class="cov10" title="117">if content.HeadComment == "" </span><span class="cov9" title="110">{
+                <span class="cov10" title="137">if content.HeadComment == "" </span><span class="cov9" title="130">{
                         continue</span>
                 }
                 <span class="cov4" title="7">linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&amp;content.HeadComment), i, node, node.Kind, false)...)</span>
         }
 
-        <span class="cov7" title="31">NewIgnore.build(linesIgnore)</span>
+        <span class="cov7" title="36">NewIgnore.build(linesIgnore)</span>
 }
 
 // processCommentYAML returns the lines to ignore
@@ -10716,11 +10716,11 @@ func getNodeLastLine(node *yaml.Node) (lastLine int) <span class="cov7" title="3
                         if content.Line &gt; lastLine </span><span class="cov5" title="13">{
                                 lastLine = content.Line
                         }</span>
-                        <span class="cov7" title="30">if lineContent := getNodeLastLine(content); lineContent &gt; lastLine </span><span class="cov4" title="5">{
+                        <span class="cov7" title="30">if lineContent := getNodeLastLine(content); lineContent &gt; lastLine </span><span class="cov3" title="5">{
                                 lastLine = lineContent
                         }</span>
                 }
-        } else<span class="cov7" title="26"> if reflect.TypeOf(node.Value).Kind() == reflect.String </span><span class="cov7" title="26">{
+        } else<span class="cov6" title="26"> if reflect.TypeOf(node.Value).Kind() == reflect.String </span><span class="cov6" title="26">{
                 lastLine += strings.Count(node.Value, "\n")
         }</span>
 
@@ -11116,20 +11116,26 @@ type ResolvedFile struct {
 		<pre class="file" id="file63" style="display: none">package model
 
 import (
-        json "encoding/json"
+        "encoding/json"
         "errors"
         "path/filepath"
         "strconv"
 
-        "github.com/Checkmarx/kics/v2/pkg/utils"
         "github.com/rs/zerolog/log"
         "gopkg.in/yaml.v3"
+
+        "github.com/Checkmarx/kics/v2/pkg/utils"
+)
+
+const (
+        mergeKey = "&lt;&lt;"
 )
 
 // UnmarshalYAML is a custom yaml parser that places line information in the payload
-func (m *Document) UnmarshalYAML(value *yaml.Node) error <span class="cov3" title="3">{
-        dpc := unmarshal(value)
-        if mapDcp, ok := dpc.(map[string]interface{}); ok </span><span class="cov3" title="3">{
+func (m *Document) UnmarshalYAML(value *yaml.Node) error <span class="cov4" title="5">{
+        visited := make(map[*yaml.Node]interface{})
+        dpc := unmarshalWithVisited(value, visited)
+        if mapDcp, ok := dpc.(map[string]interface{}); ok </span><span class="cov4" title="5">{
                 // set line information for root level objects
                 mapDcp["_kics_lines"] = getLines(value, 0)
 
@@ -11157,7 +11163,8 @@ func GetIgnoreLines(file *FileMetadata) []int <span class="cov1" title="1">{
                 }</span>
 
                 <span class="cov1" title="1">if node.Kind == 1 &amp;&amp; len(node.Content) == 1 </span><span class="cov1" title="1">{
-                        _ = unmarshal(node.Content[0])
+                        visited := make(map[*yaml.Node]interface{})
+                        _ = unmarshalWithVisited(node.Content[0], visited)
                         ignoreLines = NewIgnore.GetLines()
                 }</span>
         }
@@ -11171,12 +11178,18 @@ func GetIgnoreLines(file *FileMetadata) []int <span class="cov1" title="1">{
         SequenceNode -&gt; array
         ScalarNode -&gt; generic (except for arrays, objects and maps)
         MappingNode -&gt; map
-
 */
-// unmarshal is the function that will parse the yaml elements and call the functions needed
-// to place their line information in the payload
-func unmarshal(val *yaml.Node) interface{} <span class="cov8" title="24">{
-        tmp := make(map[string]interface{})
+
+// unmarshalWithVisited is the function that will parse the yaml elements and call the functions needed
+// to place their line information in the payload. It tracks visited nodes to prevent infinite recursion.
+func unmarshalWithVisited(val *yaml.Node, visited map[*yaml.Node]interface{}) interface{} <span class="cov8" title="31">{ //nolint:gocyclo
+        // Check if we've already visited this node to prevent infinite recursion
+        if result, found := visited[val]; found </span><span class="cov2" title="2">{
+                return result
+        }</span>
+
+        <span class="cov8" title="29">tmp := make(map[string]interface{})
+        visited[val] = tmp
         ignoreCommentsYAML(val)
 
         // if Yaml Node is an Array than we are working with ansible
@@ -11185,64 +11198,103 @@ func unmarshal(val *yaml.Node) interface{} <span class="cov8" title="24">{
         case yaml.SequenceNode:<span class="cov2" title="2">
                 contentArray := make([]interface{}, 0)
                 for _, contentEntry := range val.Content </span><span class="cov3" title="3">{
-                        contentArray = append(contentArray, unmarshal(contentEntry))
+                        contentArray = append(contentArray, unmarshalWithVisited(contentEntry, visited))
                 }</span>
                 <span class="cov2" title="2">tmp["playbooks"] = contentArray</span>
         case yaml.ScalarNode:<span class="cov4" title="4">
-                return scalarNodeResolver(val)</span>
-        default:<span class="cov7" title="18">
-                for i := 0; i &lt; len(val.Content); i += 2 </span><span class="cov10" title="44">{
-                        if val.Content[i].Kind == yaml.ScalarNode </span><span class="cov10" title="44">{
+                result := scalarNodeResolver(val)
+                visited[val] = result
+                return result</span>
+        default:<span class="cov8" title="23">
+                for i := 0; i &lt; len(val.Content); i += 2 </span><span class="cov10" title="54">{
+                        if val.Content[i].Kind == yaml.ScalarNode </span><span class="cov10" title="54">{
                                 switch val.Content[i+1].Kind </span>{
-                                case yaml.ScalarNode:<span class="cov9" title="32">
+                                case yaml.ScalarNode:<span class="cov9" title="37">
                                         tmp[val.Content[i].Value] = scalarNodeResolver(val.Content[i+1])</span>
                                 // in case value iteration is a map
-                                case yaml.MappingNode:<span class="cov5" title="8">
+                                case yaml.MappingNode:<span class="cov6" title="11">
                                         // unmarshall map value and get its line information
-                                        tt := unmarshal(val.Content[i+1]).(map[string]interface{})
+                                        tt := unmarshalWithVisited(val.Content[i+1], visited).(map[string]interface{})
                                         tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
                                         tmp[val.Content[i].Value] = tt</span>
                                 // in case value iteration is an array
                                 case yaml.SequenceNode:<span class="cov4" title="4">
                                         contentArray := make([]interface{}, 0)
                                         // unmarshall each iteration of the array
-                                        for _, contentEntry := range val.Content[i+1].Content </span><span class="cov6" title="9">{
-                                                contentArray = append(contentArray, unmarshal(contentEntry))
+                                        for _, contentEntry := range val.Content[i+1].Content </span><span class="cov5" title="9">{
+                                                contentArray = append(contentArray, unmarshalWithVisited(contentEntry, visited))
                                         }</span>
                                         <span class="cov4" title="4">tmp[val.Content[i].Value] = contentArray</span>
-                                case yaml.AliasNode:<span class="cov0" title="0">
-                                        if tt, ok := unmarshal(val.Content[i+1].Alias).(map[string]interface{}); ok </span><span class="cov0" title="0">{
-                                                tt["_kics_lines"] = getLines(val.Content[i+1], val.Content[i].Line)
-                                                utils.MergeMaps(tmp, tt)
-                                        }</span>
-                                        <span class="cov0" title="0">if v, ok := unmarshal(val.Content[i+1].Alias).(string); ok </span><span class="cov0" title="0">{
-                                                tmp[val.Content[i].Value] = v
-                                        }</span>
+                                case yaml.AliasNode:<span class="cov2" title="2">
+                                        aliasTarget := val.Content[i+1].Alias
+                                        if aliasTarget != nil </span><span class="cov2" title="2">{
+                                                if val.Content[i].Value == mergeKey </span><span class="cov1" title="1">{
+                                                        // merge key: spreads aliased keys into current level
+                                                        // example: merged: { &lt;&lt;: *default, key3: value3 }
+                                                        if tt, ok := unmarshalWithVisited(aliasTarget, visited).(map[string]interface{}); ok </span><span class="cov1" title="1">{
+                                                                for k, v := range tt </span><span class="cov3" title="3">{
+                                                                        if k != "_kics_lines" </span><span class="cov2" title="2">{
+                                                                                tmp[k] = v
+                                                                        }</span>
+                                                                }
+                                                        }
+                                                } else<span class="cov1" title="1"> {
+                                                        // regular alias: assigns entire aliased object to a key
+                                                        // example: myfield: *default
+                                                        aliasValue := unmarshalWithVisited(aliasTarget, visited)
+                                                        if tt, ok := aliasValue.(map[string]interface{}); ok </span><span class="cov1" title="1">{
+                                                                ttCopy := make(map[string]interface{})
+                                                                for k, v := range tt </span><span class="cov3" title="3">{
+                                                                        ttCopy[k] = v
+                                                                }</span>
+                                                                <span class="cov1" title="1">ttCopy["_kics_lines"] = getLines(aliasTarget, val.Content[i].Line)
+                                                                tmp[val.Content[i].Value] = ttCopy</span>
+                                                        } else<span class="cov0" title="0"> {
+                                                                tmp[val.Content[i].Value] = aliasValue
+                                                        }</span>
+                                                }
+                                        }
                                 }
                         }
                 }
         }
-        <span class="cov8" title="20">return tmp</span>
+        <span class="cov8" title="25">visited[val] = tmp
+        return tmp</span>
 }
 
 // getLines creates the map containing the line information for the yaml Node
 // def is the line to be used as "_kics__default"
-func getLines(val *yaml.Node, def int) map[string]*LineObject <span class="cov7" title="18">{
-        lineMap := make(map[string]*LineObject)
+func getLines(val *yaml.Node, def int) map[string]*LineObject <span class="cov7" title="17">{
+        visited := make(map[*yaml.Node]map[string]*LineObject)
+        return getLinesWithVisited(val, def, visited)
+}</span>
+
+// getLinesWithVisited creates the map containing the line information for the yaml Node
+// with visited node tracking to prevent infinite recursion on circular aliases
+func getLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[string]*LineObject) map[string]*LineObject <span class="cov8" title="25">{ //nolint:gocyclo
+        // check if we've already visited this node
+        if result, found := visited[val]; found </span><span class="cov0" title="0">{
+                return result
+        }</span>
+
+        <span class="cov8" title="25">lineMap := make(map[string]*LineObject)
+        visited[val] = lineMap
+
+        // if yaml Node is an Array use func getSeqLines
+        if val.Kind == yaml.SequenceNode </span><span class="cov1" title="1">{
+                result := getSeqLinesWithVisited(val, def, visited)
+                visited[val] = result
+                return result
+        }</span>
 
         // line information map
-        lineMap["_kics__default"] = &amp;LineObject{
+        <span class="cov8" title="24">lineMap["_kics__default"] = &amp;LineObject{
                 Line: def,
                 Arr:  []map[string]*LineObject{},
         }
 
-        // if yaml Node is an Array use func getSeqLines
-        if val.Kind == yaml.SequenceNode </span><span class="cov1" title="1">{
-                return getSeqLines(val, def)
-        }</span>
-
         // iterate two by two, since first iteration is the key and the second is the value
-        <span class="cov7" title="17">for i := 0; i &lt; len(val.Content); i += 2 </span><span class="cov9" title="32">{
+        for i := 0; i &lt; len(val.Content); i += 2 </span><span class="cov9" title="46">{
                 lineArr := make([]map[string]*LineObject, 0)
                 // in case the value iteration is an array call getLines for each iteration of the array
                 if val.Content[i+1].Kind == yaml.SequenceNode </span><span class="cov2" title="2">{
@@ -11253,29 +11305,43 @@ func getLines(val *yaml.Node, def int) map[string]*LineObject <span class="cov7"
                                 }</span> else<span class="cov2" title="2"> if contentEntry.Kind == yaml.MappingNode &amp;&amp; len(contentEntry.Content) &gt; 0 </span><span class="cov2" title="2">{
                                         defaultLine = contentEntry.Content[0].Line
                                 }</span>
-                                <span class="cov4" title="5">lineArr = append(lineArr, getLines(contentEntry, defaultLine))</span>
+                                <span class="cov4" title="5">lineArr = append(lineArr, getLinesWithVisited(contentEntry, defaultLine, visited))</span>
                         }
                 }
 
+                // merge key (&lt;&lt;: *alias): merge line information from aliased node
+                <span class="cov9" title="46">if val.Content[i].Value == mergeKey &amp;&amp; val.Content[i+1].Kind == yaml.AliasNode </span><span class="cov1" title="1">{
+                        if val.Content[i+1].Alias != nil </span><span class="cov1" title="1">{
+                                aliasLines := getLinesWithVisited(val.Content[i+1].Alias, val.Content[i+1].Alias.Line, visited)
+                                for key, lineObj := range aliasLines </span><span class="cov3" title="3">{
+                                        if key != "_kics__default" </span><span class="cov2" title="2">{
+                                                lineMap[key] = lineObj
+                                        }</span>
+                                }
+                        }
+                        <span class="cov1" title="1">continue</span>
+                }
+
                 // line information map of each key of the yaml Node
-                <span class="cov9" title="32">lineMap["_kics_"+val.Content[i].Value] = &amp;LineObject{
+                <span class="cov9" title="45">lineMap["_kics_"+val.Content[i].Value] = &amp;LineObject{
                         Line: val.Content[i].Line,
                         Arr:  lineArr,
                 }</span>
         }
 
-        <span class="cov7" title="17">return lineMap</span>
+        <span class="cov8" title="24">visited[val] = lineMap
+        return lineMap</span>
 }
 
-// getSeqLines iterates through the elements of an Array
-// creating a map with each iteration lines information
-func getSeqLines(val *yaml.Node, def int) map[string]*LineObject <span class="cov1" title="1">{
+// getSeqLinesWithVisited iterates through the elements of an Array
+// creating a map with each iteration lines information, with visited node tracking
+func getSeqLinesWithVisited(val *yaml.Node, def int, visited map[*yaml.Node]map[string]*LineObject) map[string]*LineObject <span class="cov1" title="1">{
         lineMap := make(map[string]*LineObject)
         lineArr := make([]map[string]*LineObject, 0)
 
         // get line information slice of every element in the array
         for _, cont := range val.Content </span><span class="cov2" title="2">{
-                lineArr = append(lineArr, getLines(cont, cont.Line))
+                lineArr = append(lineArr, getLinesWithVisited(cont, cont.Line, visited))
         }</span>
 
         // create line information of array with its line and elements line information
@@ -11287,7 +11353,7 @@ func getSeqLines(val *yaml.Node, def int) map[string]*LineObject <span class="co
 }
 
 // scalarNodeResolver transforms a ScalarNode value in its correct type
-func scalarNodeResolver(val *yaml.Node) interface{} <span class="cov9" title="36">{
+func scalarNodeResolver(val *yaml.Node) interface{} <span class="cov9" title="41">{
         var transformed interface{} = val.Value
         switch val.Tag </span>{
         case "!!bool":<span class="cov1" title="1">
@@ -11303,7 +11369,7 @@ func scalarNodeResolver(val *yaml.Node) interface{} <span class="cov9" title="36
                 transformed = nil</span>
         }
 
-        <span class="cov9" title="36">return transformed</span>
+        <span class="cov9" title="41">return transformed</span>
 }
 
 // transformBoolScalarNode transforms a string value to its boolean representation
@@ -20780,7 +20846,7 @@ func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" ti
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="588">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="600">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
