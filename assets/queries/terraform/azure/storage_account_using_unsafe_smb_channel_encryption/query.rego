@@ -56,12 +56,12 @@ get_results(resource, name) = results {
 	}
 }
 
-get_actual_value(channel_encryption_type, name) = str {
-	channel_encryption_type == []
+get_actual_value(channel_encryption_types, name) = str {
+	channel_encryption_types == []
 	str := sprintf("'azurerm_storage_account[%s].share_properties.smb.channel_encryption_type' is empty or null", [name])
 } else = str {
-	not common_lib.inArray(channel_encryption_type, "AES-256-GCM")
-	str := sprintf("'azurerm_storage_account[%s].share_properties.smb.channel_encryption_type' does not include 'AES-256-GCM' and instead includes %d weaker encryption standard(s)", [name, count(channel_encryption_type)])
+	not common_lib.inArray(channel_encryption_types, "AES-256-GCM")
+	str := sprintf("'azurerm_storage_account[%s].share_properties.smb.channel_encryption_type' does not include 'AES-256-GCM' and instead includes %d weaker encryption standard(s)", [name, count(channel_encryption_types)])
 } else = str {
-	str := sprintf("'azurerm_storage_account[%s].share_properties.smb.channel_encryption_type' includes 'AES-256-GCM' but also includes %d weaker encryption standard(s)", [name, count(channel_encryption_type)-1])
+	str := sprintf("'azurerm_storage_account[%s].share_properties.smb.channel_encryption_type' includes 'AES-256-GCM' but also includes %d weaker encryption standard(s)", [name, count(channel_encryption_types)-1])
 }
