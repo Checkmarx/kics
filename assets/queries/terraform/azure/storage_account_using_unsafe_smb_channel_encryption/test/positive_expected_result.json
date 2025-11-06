@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
+    "severity": "HIGH",
+    "line": 18
+  },
+  {
+    "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
+    "severity": "HIGH",
+    "line": 31
+  },
+  {
+    "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
+    "severity": "HIGH",
+    "line": 46
+  },
+  {
+    "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
+    "severity": "HIGH",
+    "line": 60
+  },
+  {
+    "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
+    "severity": "HIGH",
+    "line": 74
+  }
+]
