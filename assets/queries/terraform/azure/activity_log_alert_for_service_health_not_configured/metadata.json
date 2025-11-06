@@ -1,6 +1,6 @@
 {
   "id": "f677bd92-3922-4e75-8f0c-2c0f8fbc9609",
-  "queryName": "Beta - Activity Log Alert For Service Health",
+  "queryName": "Beta - Activity Log Alert For Service Health Not Configured",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture service health events",
