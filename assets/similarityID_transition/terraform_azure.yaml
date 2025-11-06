@@ -4,6 +4,6 @@ similarityIDChangeList:
       observations: ""
       change: 5
     - queryId: 62d120b1-b1e0-40ef-a81d-a4994ac88b3b
-      queryName: Beta - Activity Log Alert For Delete Network Security Group
+      queryName: Beta - Activity Log Alert For Delete Network Security Group Not Configured
       observations: ""
       change: 2

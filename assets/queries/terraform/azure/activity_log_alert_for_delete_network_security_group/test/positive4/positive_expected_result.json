@@ -1,8 +1,0 @@
-[
-  {
-    "queryName": "Beta - Activity Log Alert For Delete Network Security Group",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive4_1.tf"
-  }
-]
