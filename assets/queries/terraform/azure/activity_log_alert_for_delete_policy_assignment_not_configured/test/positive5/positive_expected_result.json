@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Beta - Activity Log Alert For Delete Policy Assignment",
+    "queryName": "Beta - Activity Log Alert For Delete Policy Assignment Not Configured",
     "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive5_1.tf"
