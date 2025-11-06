@@ -4,6 +4,6 @@ similarityIDChangeList:
       observations: ""
       change: 5
     - queryId: 8ce5c61f-5cd1-41bc-b7d9-b26b18efd505
-      queryName: Beta - Activity Log Alert For Delete SQL Server Firewall Rule
+      queryName: Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured
       observations: ""
       change: 2

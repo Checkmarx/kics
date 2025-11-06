@@ -1,8 +1,0 @@
-[
-  {
-    "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive4_1.tf"
-  }
-]
