@@ -4,6 +4,6 @@ similarityIDChangeList:
       observations: ""
       change: 5
     - queryId: 1219a37a-9a2c-420d-8b8c-30bdbc3bfeb1
-      queryName: Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule
+      queryName: Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured
       observations: ""
       change: 2

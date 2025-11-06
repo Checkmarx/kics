@@ -1,6 +1,6 @@
 {
   "id": "1219a37a-9a2c-420d-8b8c-30bdbc3bfeb1",
-  "queryName": "Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule",
+  "queryName": "Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture 'create or update SQL server firewall rule' events",
