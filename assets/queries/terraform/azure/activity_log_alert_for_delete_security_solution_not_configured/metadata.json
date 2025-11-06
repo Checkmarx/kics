@@ -1,6 +1,6 @@
 {
   "id": "b97a1065-a86b-442f-86c4-f95afd9b3ac6",
-  "queryName": "Beta - Activity Log Alert For Delete Security Solution",
+  "queryName": "Beta - Activity Log Alert For Delete Security Solution Not Configured",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture 'delete security solution' events",
