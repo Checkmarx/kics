@@ -21,45 +21,7 @@ func ReadFileToUTF8(path string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	if len(bytesContent) == 0 {
-		return bytesContent, nil
-	}
-
-	// BOM detection
-	if len(bytesContent) >= 2 {
-		// UTF-16 LE BOM: 0xFF 0xFE
-		if bytesContent[0] == 0xFF && bytesContent[1] == 0xFE {
-			r := transform.NewReader(
-				bytes.NewReader(bytesContent),
-				unicode.UTF16(unicode.LittleEndian, unicode.ExpectBOM).NewDecoder(),
-			)
-			out, err := io.ReadAll(r)
-			if err != nil {
-				return nil, errors.Wrap(err, "failed to decode UTF-16 LE with BOM")
-			}
-			return out, nil
-		}
-		// UTF-16 BE BOM: 0xFE 0xFF
-		if bytesContent[0] == 0xFE && bytesContent[1] == 0xFF {
-			r := transform.NewReader(
-				bytes.NewReader(bytesContent),
-				unicode.UTF16(unicode.BigEndian, unicode.ExpectBOM).NewDecoder(),
-			)
-			out, err := io.ReadAll(r)
-			if err != nil {
-				return nil, errors.Wrap(err, "failed to decode UTF-16 BE with BOM")
-			}
-			return out, nil
-		}
-	}
-
-	// If valid UTF-8, return as-is
-	if utf8.Valid(bytesContent) {
-		return bytesContent, nil
-	}
-
-	// If we reach here, the file is not UTF-8 and has no recognized BOM
-	return nil, errors.New("unsupported encoding: file must be UTF-8 or UTF-16 with BOM")
+	return ReadFileContentToUTF8(bytesContent, path)
 }
 
 // ReadFileContentToUTF8 converts file content to UTF-8 if needed.
