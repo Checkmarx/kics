@@ -13,9 +13,6 @@ import (
 )
 
 // ReadFileToUTF8 reads a file and converts it to UTF-8 if needed.
-// It handles UTF-16 LE/BE with BOM, and validates UTF-8.
-// This is critical for files extracted from ZIP archives on Windows,
-// which may be encoded as UTF-16 LE with BOM (0xFF 0xFE).
 func ReadFileToUTF8(path string) ([]byte, error) {
 	bytesContent, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
