@@ -1,0 +1,14 @@
+{
+  "id": "50e0a9e3-7360-483c-9873-ba1ea1a7faf8",
+  "queryName": "Beta - Storage Account With Cross Tenant Replication Enabled",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "",
+  "descriptionUrl": "",
+  "platform": "Terraform",
+  "descriptionID": "50e0a9e3",
+  "cloudProvider": "azure",
+  "cwe": "281",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
