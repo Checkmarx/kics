@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	locks 	 := [lock | lock := input.document[_].resource.azurerm_management_lock[_]]
+	locks 	 := [lock | lock := input.document[_].resource.azurerm_management_lock]
 
 	resource := input.document[i].resource.azurerm_storage_account[name]
 
@@ -24,11 +24,11 @@ CxPolicy[result] {
 }
 
 get_results(resource, acc_name, locks) = results {
-	locks[name].scope == [sprintf("${azurerm_storage_account.%s.id}",[acc_name]), sprintf("${azurerm_resource_group.%s.id}",[split(resource.resource_group_name,".")[1]])][_]
-	locks[name].lock_level != "CanNotDelete"
+	locks[doc][name].scope == [sprintf("${azurerm_storage_account.%s.id}",[acc_name]), sprintf("${azurerm_resource_group.%s.id}",[split(resource.resource_group_name,".")[1]])][_]
+	locks[doc][name].lock_level != "CanNotDelete"
 	results := [{
 		"issueType": "IncorrectValue",
-		"keyActualValue" : sprintf("'azurerm_storage_account[%s]' is associated with 'azurerm_management_lock[%s]' but lock_level is '%s'", [acc_name, name, locks[name].lock_level])
+		"keyActualValue" : sprintf("'azurerm_storage_account[%s]' is associated with 'azurerm_management_lock[%s]' but lock_level is '%s'", [acc_name, name, locks[doc][name].lock_level])
 	}]
 } else = results {
 	results := [{
@@ -38,9 +38,9 @@ get_results(resource, acc_name, locks) = results {
 }
 
 has_valid_lock(resource, acc_name, locks) {
-	locks[x].scope == sprintf("${azurerm_storage_account.%s.id}",[acc_name])
-	locks[x].lock_level == "CanNotDelete"
+	locks[doc][name].scope == sprintf("${azurerm_storage_account.%s.id}",[acc_name])
+	locks[doc][name].lock_level == "CanNotDelete"
 } else {
-	locks[x].scope == sprintf("${azurerm_resource_group.%s.id}",[split(resource.resource_group_name,".")[1]])
-	locks[x].lock_level == "CanNotDelete"
+	locks[doc][name].scope == sprintf("${azurerm_resource_group.%s.id}",[split(resource.resource_group_name,".")[1]])
+	locks[doc][name].lock_level == "CanNotDelete"
 }
