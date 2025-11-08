@@ -1,0 +1,14 @@
+{
+  "id": "0cc95bf8-9b98-4278-ad9f-fea4aed3d271",
+  "queryName": "Beta - Storage Account Without Delete Lock",
+  "severity": "LOW",
+  "category": "Availability",
+  "descriptionText": "Resources of type 'azurerm_storage_account' should have a 'azurerm_management_lock' associated with them to prevent users from accidentally or maliciously deleting a storage account",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/4.52.0/docs/resources/management_lock#lock_level-3",
+  "platform": "Terraform",
+  "descriptionID": "0cc95bf8",
+  "cloudProvider": "azure",
+  "cwe": "862",
+  "riskScore": "1.0",
+  "experimental": "true"
+}
