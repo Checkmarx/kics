@@ -14,7 +14,7 @@ CxPolicy[result] {
         "resourceType": "google_essential_contacts_contact",
         "resourceName": tf_lib.get_resource_name(contact, name),
         "searchKey": sprintf("google_essential_contacts_contact[%s].notification_category_subscription_field", [name]),
-        "issueType": " IncorrectValue",
+        "issueType": "IncorrectValue",
         "keyExpectedValue": "'notification_category_subscription_field' should have 'ALL' value or all 'LEGAL', 'SUSPENSION', 'TECHNICAL' and 'SECURITY' values defined",
         "keyActualValue": "'notification_category_subscription_field' does not have 'ALL' value or all 'LEGAL', 'SUSPENSION', 'TECHNICAL' and 'SECURITY' values defined",
         "searchLine": common_lib.build_search_line(["resource", "google_essential_contacts_contact", name, "notification_category_subscriptions"], [])
