@@ -89,6 +89,11 @@ is_legitimate_cf_public_bucket(resource, bucket_name, document) {
 }
 
 is_legitimate_cf_public_bucket(resource, bucket_name, document) {
+	# Buckets explicitly configured with CORS are considered intentional public use in this rule's context
+	common_lib.valid_key(resource.Properties, "CorsConfiguration")
+}
+
+is_legitimate_cf_public_bucket(resource, bucket_name, document) {
 	# Check if bucket is used with CloudFront
 	cloudfront := document.Resources[_]
 	cloudfront.Type == "AWS::CloudFront::Distribution"

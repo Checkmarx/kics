@@ -50,12 +50,6 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
-    "line": 17,
-    "fileName": "positive4.yaml"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "HIGH",
     "line": 24,
     "fileName": "positive4.yaml"
   }

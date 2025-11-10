@@ -42,7 +42,7 @@ module "vpc" {
   name   = "my-vpc"
 }
 
-module "security-group" {
+module "security_group" {
   source = "github.com/terraform-aws-modules/terraform-aws-security-group"
   name   = "web-sg"
 }

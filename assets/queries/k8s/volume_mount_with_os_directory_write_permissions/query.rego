@@ -3,17 +3,17 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
-types := {"initContainers", "containers"}
+types := ["initContainers", "containers"]
 
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
-	container := specInfo.spec[types[x]][_]
+	container := specInfo.spec[types[x]][j]
 	volumeMounts := container.volumeMounts
 	is_os_dir(volumeMounts[v].mountPath)
-	is_insecure_mount(volumeMounts[v])
+	type := is_insecure_mount(volumeMounts[v])
 	
 	# Don't flag if volume is configMap or secret (always read-only)
 	not is_inherently_readonly_volume(specInfo.spec.volumes, volumeMounts[v].name)
@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"issueType": "IncorrectValue",
-		"searchValue": sprintf("%s%s", [document.kind, type]),
+		"searchValue": sprintf("%s.%s", [document.kind, type]),
 		"keyExpectedValue": sprintf("The properties readOnly and recursiveReadOnly in metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}} are set to true and Enabled, respectively", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"keyActualValue": sprintf("The properties readOnly or recursiveReadOnly in metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}} are set to false or Disabled, respectively", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x],j, "volumeMounts", v]),
@@ -36,10 +36,10 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
-	container := specInfo.spec[types[x]][_]
+	container := specInfo.spec[types[x]][j]
 	volumeMounts := container.volumeMounts
 	is_os_dir(volumeMounts[v].mountPath)
-    check_if_mount_missing_props(volumeMounts[v])
+    type := check_if_mount_missing_props(volumeMounts[v])
 	
 	# Don't flag if volume is configMap or secret (always read-only)
 	not is_inherently_readonly_volume(specInfo.spec.volumes, volumeMounts[v].name)
@@ -50,9 +50,9 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"issueType": "MissingAttribute",
-		"searchValue": sprintf("%s%s", [document.kind, type]),
+		"searchValue": sprintf("%s.%s", [document.kind, type]),
 		"keyExpectedValue": sprintf("The properties readOnly and recursiveReadOnly in metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}} should be defined and set to true and Enabled, respectively", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
-		"keyActualValue": sprintf("Either readOnly or recursiveReadOnly is missing in metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name, metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
+		"keyActualValue": sprintf("Either readOnly or recursiveReadOnly is missing in metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x],j, "volumeMounts", v]),
 	}
 }

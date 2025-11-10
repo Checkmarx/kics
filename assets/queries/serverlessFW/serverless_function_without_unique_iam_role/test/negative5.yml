@@ -8,12 +8,14 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    role: sharedHttpRoleHello
     events:
       - http:
           path: /hello
           method: get
   world:
     handler: handler.world
+    role: sharedHttpRoleWorld
     events:
       - http:
           path: /world

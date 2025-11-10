@@ -7,8 +7,8 @@ resource "aws_s3_bucket" "website_bucket" {
 
 resource "aws_s3_bucket_public_access_block" "website_bucket" {
   bucket = aws_s3_bucket.website_bucket.id
-  # Intentionally allowing public policy for website
-  # block_public_policy = false (default)
+  # Secure configuration
+  block_public_policy = true
 }
 
 resource "aws_s3_bucket_website_configuration" "website_bucket" {
@@ -30,7 +30,8 @@ resource "aws_s3_bucket" "static_assets" {
 
 resource "aws_s3_bucket_public_access_block" "static_assets" {
   bucket = aws_s3_bucket.static_assets.id
-  # Allowing public policy for CloudFront access
+  # Secure configuration
+  block_public_policy = true
 }
 
 resource "aws_cloudfront_distribution" "static_assets" {
@@ -71,7 +72,8 @@ resource "aws_s3_bucket" "cdn_bucket" {
 
 resource "aws_s3_bucket_public_access_block" "cdn_bucket" {
   bucket = aws_s3_bucket.cdn_bucket.id
-  # Public policy needed for CDN
+  # Secure configuration
+  block_public_policy = true
 }
 
 resource "aws_s3_bucket_cors_configuration" "cdn_bucket" {
@@ -92,7 +94,8 @@ resource "aws_s3_bucket" "media_files" {
 
 resource "aws_s3_bucket_public_access_block" "media_files" {
   bucket = aws_s3_bucket.media_files.id
-  # Public access needed for media serving
+  # Secure configuration
+  block_public_policy = true
 }
 
 # Frontend assets bucket
@@ -102,7 +105,8 @@ resource "aws_s3_bucket" "frontend_assets" {
 
 resource "aws_s3_bucket_public_access_block" "frontend_assets" {
   bucket = aws_s3_bucket.frontend_assets.id
-  # Public policy for frontend asset serving
+  # Secure configuration
+  block_public_policy = true
 }
 
 # Backup bucket with public naming (logs/backup pattern)
@@ -112,7 +116,8 @@ resource "aws_s3_bucket" "public_logs" {
 
 resource "aws_s3_bucket_public_access_block" "public_logs" {
   bucket = aws_s3_bucket.public_logs.id
-  # Public access for log aggregation services
+  # Secure configuration
+  block_public_policy = true
 }
 
 # Images bucket with website configuration
@@ -122,7 +127,8 @@ resource "aws_s3_bucket" "image_hosting" {
 
 resource "aws_s3_bucket_public_access_block" "image_hosting" {
   bucket = aws_s3_bucket.image_hosting.id
-  # Public policy for image hosting
+  # Secure configuration
+  block_public_policy = true
 }
 
 resource "aws_s3_bucket_website_configuration" "image_hosting" {

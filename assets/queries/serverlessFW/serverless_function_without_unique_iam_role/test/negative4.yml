@@ -8,6 +8,7 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    role: myDefaultRole
     events:
       - http:
           path: /hello
