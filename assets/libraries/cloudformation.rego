@@ -51,6 +51,23 @@ checkAction(currentAction, actionToCompare) {
 	contains(lower(action), actionToCompare)
 }
 
+# Dictionary of UDP ports
+udpPortsMap = {
+	53: "DNS",
+	137: "NetBIOS Name Service",
+	138: "NetBIOS Datagram Service",
+	139: "NetBIOS Session Service",
+	161: "SNMP",
+	389: "LDAP",
+	1434: "MSSQL Browser",
+	2483: "Oracle DB SSL",
+	2484: "Oracle DB SSL",
+	5432: "PostgreSQL",
+	11211: "Memcached",
+	11214: "Memcached SSL",
+	11215: "Memcached SSL"
+}
+
 get_ingress_list(resource) = result {
 	ingress_array_types := ["AWS::EC2::SecurityGroup","AWS::RDS::DBSecurityGroup"]
 	resource.Type == ingress_array_types[_]

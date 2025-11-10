@@ -3,6 +3,8 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
+portsMaps := {"TCP": common_lib.tcpPortsMap, "UDP": cf_lib.udpPortsMap}
+
 CxPolicy[result] {
 	resources := input.document[i].Resources
 
@@ -42,7 +44,7 @@ CxPolicy[result] {
 
 get_sensitive_ports(ingress, ec2_instance_name) = ports {
 	ports := [x |
-		portName   := common_lib.tcpPortsMap[portNumber]
+		portName   := portsMaps[upper(ingress.IpProtocol)][portNumber]
 		protocol   := cf_lib.getProtocolList(ingress.IpProtocol)[_]
 		check_port(ingress.FromPort, ingress.ToPort, portNumber, ingress.IpProtocol)
 		x := {
