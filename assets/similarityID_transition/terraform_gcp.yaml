@@ -3,3 +3,55 @@ similarityIDChangeList:
       queryName: Beta - Google DNS Policy Logging Disabled
       observations: ""
       change: 2
+    - queryId: c3655703-569b-42ec-8027-ef8835d989c0
+      queryName: Beta - SQL DB Instance With Contained Database Authentication
+      observations: ""
+      change: 2
+    - queryId: f5aff735-fd1c-4751-a5e9-98bfe4893fa2
+      queryName: Beta - SQL DB Instance With Exposed Trace Logs
+      observations: ""
+      change: 2
+    - queryId: d4436ca8-1caf-427c-8911-8b4d31ff6b40
+      queryName: Beta - SQL DB Instance With Remote Access Enabled
+      observations: ""
+      change: 2
+    - queryId: c8e4444e-d9a9-4426-be8e-9f1b8c43133c
+      queryName: Beta - SQL DB Instance With Global User Options
+      observations: ""
+      change: 2
+    - queryId: 18cb7d28-57df-4d6b-9fb4-02828cb15660
+      queryName: Beta - SQL DB Instance With Limited User Connections
+      observations: ""
+      change: 2
+    - queryId: 5a8c5d26-c592-4c98-afac-9762c54cc868
+      queryName: Beta - SQL DB Instance With Ownership Chaining Enabled
+      observations: ""
+      change: 2
+    - queryId: 1c329b9b-8221-4b55-8d5f-f0959faf9cee
+      queryName: Beta - SQL DB Instance With External Scripts Enabled
+      observations: ""
+      change: 2
+    - queryId: 245eb024-d08a-449b-a1f2-02f7bba00fc2
+      queryName: Beta - SQL DB Instance Without Centralized Logging
+      observations: ""
+      change: 2
+    - queryId: 00335e17-674c-442e-a64c-9436e60e6efb
+      queryName: Beta - SQL DB Instance With Minimum Log Duration
+      observations: ""
+      change: 2
+    - queryId: 8895abb4-6491-4ae6-9c33-c2f360752b7a
+      queryName: Beta - SQL DB Instance Without Disconnections Logging
+      observations: ""
+      change: 2
+    - queryId: fc7187e5-b9a2-46c0-950d-3bfcaaacc5ca
+      queryName: Beta - SQL DB Instance Without Connections Logging
+      observations: ""
+      change: 2
+    - queryId: 51a2c34d-dfd0-436f-aa34-e8f796e052fd
+      queryName: Beta - SQL DB Instance With Local Data Loading Enabled
+      observations: ""
+      change: 2
+    - queryId: b5b70198-2a34-4792-b0d9-ce99abe485bb
+      queryName: Beta - SQL DB Instance With Exposed Show Privileges
+      observations: ""
+      change: 2

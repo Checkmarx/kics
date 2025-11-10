@@ -78,6 +78,7 @@ JSON reports are sorted by severity (from high to info) and should looks like as
 			"severity": "HIGH",
 			"platform": "Ansible",
 			"cwe": "22",
+            "risk_score": "6.8",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
 			"experimental": false,
@@ -133,7 +134,7 @@ JSON reports are sorted by severity (from high to info) and should looks like as
 **start**: The start timestamp of the scan.   
 **end**: The end timestamp of the scan.    
 **paths**: The paths scanned during the scan.    
-**queries**: Information about individual queries executed during the scan, including their names, IDs, URLs, severities, platforms, CWEs, cloud providers, categories, experimental flags, descriptions, and details about the files where issues were found.   
+**queries**: Information about individual queries executed during the scan, including their names, IDs, URLs, severities, platforms, CWEs, risk scores, cloud providers, categories, experimental flags, descriptions, and details about the files where issues were found.
 
 ## SARIF
 
@@ -187,7 +188,10 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
                                         }
                                     }
                                 }
-                            ]
+                            ],
+                            "properties": {
+                                "riskScore": "6.8",
+                            }
                         },
                         // More rules may exist before the rest.
                     ]
@@ -201,7 +205,8 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
                     "message": {
                         "text": "'aws_elb_application_lb' Protocol is missing",
                         "properties": {
-                            "platform": "Ansible"
+                            "platform": "Ansible",
+                            "riskScore": "6.8"
                         }
                     },
                     "locations": [
@@ -459,6 +464,8 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
 **fullDescription**: A full description of the taxonomy.   
 **shortDescription**: A short description of the taxonomy.   
 **taxa**: Contains an array of taxonomic categories within the taxonomy.   
+**cwe**: Community-developed list of common software and hardware weakness types that could have security ramifications.   
+**riskScore**: Numeric score used to help users prioritize security findings by potential impact.   
 
 ## Gitlab SAST
 
@@ -498,6 +505,7 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 			"severity": "High",
 			"name": "ALB Listening on HTTP",
             "cwe": "22",
+            "riskScore": "6.8",
 			"links": [
 				{
 					"url": "https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html"
@@ -577,7 +585,9 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 **identifiers**: Provides additional identifiers for the vulnerability.   
 **type**: The type of identifier (e.g., kics).   
 **name**: The name or description of the identifier.   
-**url**: URL pointing to more information about the identifier. 
+**url**: URL pointing to more information about the identifier.   
+**cwe**: The community-developed list of common software and hardware weakness types that could have security ramifications.   
+**riskScore**: The numeric score used to help users prioritize security findings by potential impact.   
 
 
 ## JUnit
@@ -589,13 +599,14 @@ JUnit reports follow [JUnit XML specification by junit-team](https://github.com/
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites name="KICS development" time="37.8629413s" failures="10">
 	<testsuite name="Ansible" failures="2" tests="2">
-		<testcase cwe="22" name="ALB Listening on HTTP: assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml file in line 11" classname="Ansible">
+		<testcase cwe="22" risk_score="6.4" name="ALB Listening on HTTP: assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml file in line 11" classname="Ansible">
 			<failure type="AWS Application Load Balancer (alb) should not listen on HTTP" message="[Severity: HIGH, Query description: AWS Application Load Balancer (alb) should not listen on HTTP] Problem found on &#39;assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml&#39; file in line 11. Expected value: &#39;aws_elb_application_lb&#39; Protocol should be &#39;HTTP&#39;. Actual value: &#39;aws_elb_application_lb&#39; Protocol it&#39;s not &#39;HTTP&#39;."></failure>
 		</testcase>
-		<testcase cwe="22" name="ALB Listening on HTTP: assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml file in line 29" classname="Ansible">
+		<testcase cwe="22" risk_score="6.4" name="ALB Listening on HTTP: assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml file in line 29" classname="Ansible">
 			<failure type="AWS Application Load Balancer (alb) should not listen on HTTP" message="[Severity: HIGH, Query description: AWS Application Load Balancer (alb) should not listen on HTTP] Problem found on &#39;assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml&#39; file in line 29. Expected value: &#39;aws_elb_application_lb&#39; Protocol should be &#39;HTTP&#39;. Actual value: &#39;aws_elb_application_lb&#39; Protocol is missing."></failure>
 		</testcase>
 	</testsuite>
+</testsuites>
 ```
 
 **Overview of key-value pairs:**   
@@ -609,6 +620,8 @@ JUnit reports follow [JUnit XML specification by junit-team](https://github.com/
 **failures**: The total number of test failures encountered in this specific test suite.   
 **tests**: The total number of tests executed in this specific test suite.   
 **<testcase\>**: This is the opening tag for a specific test case within the test suite. Here are the key-value pairs:   
+**cwe**: The community-developed list of common software and hardware weakness types that could have security ramifications.   
+**risk_score**: The numeric score used to help users prioritize security findings by potential impact.   
 **name**: The name of the test case, which describes the scenario being tested.   
 **classname**: The name of the class to which this test case belongs.   
 **<failure\>**: This is the <failure\> tag indicating that the test case has failed. Here are the key-value pairs:   
@@ -633,6 +646,7 @@ SonarQube reports, follow [SonarQube Import Format](https://docs.sonarqube.org/l
 			"ruleId": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
 			"severity": "CRITICAL",
 			"cwe": "22",
+            "riskScore": "6.8",
 			"type": "VULNERABILITY",
 			"primaryLocation": {
 				"message": "AWS Application Load Balancer (alb) should not listen on HTTP",
@@ -658,7 +672,9 @@ SonarQube reports, follow [SonarQube Import Format](https://docs.sonarqube.org/l
 **engineId**: This key identifies the engine or tool that detected the issue.   
 **ruleId**: This key represents the unique identifier of the rule associated with the issue. It helps categorize and classify the issue based on predefined rules.   
 **severity**: This key indicates the severity level of the issue.   
-**type**: This key specifies the type of issue detected.   
+**cwe**: This key indicates the community-developed list of common software and hardware weakness types that could have security ramifications.   
+**riskScore**: This key indicates the numeric score used to help users prioritize security findings by potential impact.   
+**type**: This key specifies the type of issue detected.    
 **primaryLocation**: This key provides information about the primary location of the issue within the codebase. It includes details such as the error message, file path, and starting line number where the issue occurs.   
 **message**: Describes the issue in detail.   
 **filePath**: Specifies the path to the file containing the code where the issue was detected.   
@@ -671,7 +687,7 @@ SonarQube reports, follow [SonarQube Import Format](https://docs.sonarqube.org/l
 You can export html report by using `--report-formats "html"`.
 HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/fc93fd1fa4ed3572b0732c787be61d4c82fff2e5/docs/img/html_report.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">
 
 ## PDF
 
@@ -713,6 +729,7 @@ You can export CycloneDX report by using `--report-formats "cyclonedx"`. The gen
 				<v:vulnerability ref="pkg:generic/assets/queries/ansible/aws/alb_listening_on_http/test/positive.yaml@0.0.0-eb8600d258a3f81d63d2-c5d7-43a4-a5b5-66717a41c895">
 					<v:id>f81d63d2-c5d7-43a4-a5b5-66717a41c895</v:id>
 					<v:cwe>22</v:cwe>
+					<v:riskScore>6.8</v:riskScore>
 					<v:source>
 						<name>KICS</name>
 						<url>https://kics.io/</url>
@@ -733,6 +750,7 @@ You can export CycloneDX report by using `--report-formats "cyclonedx"`. The gen
 				<v:vulnerability ref="pkg:generic/assets/queries/ansible/aws/alb_listening_on_http/test/positive.yaml@0.0.0-eb8600d258a3f81d63d2-c5d7-43a4-a5b5-66717a41c895">
 					<v:id>f81d63d2-c5d7-43a4-a5b5-66717a41c895</v:id>
 					<v:cwe>22</v:cwe>
+					<v:riskScore>6.8</v:riskScore>
 					<v:source>
 						<name>KICS</name>
 						<url>https://kics.io/</url>
@@ -776,6 +794,7 @@ You can export CycloneDX report by using `--report-formats "cyclonedx"`. The gen
 **ref**: Provides a reference to the vulnerability.   
 **v:id**: Specifies the ID of the vulnerability.   
 **v:cwe**: Specifies the Common Weakness Enumeration (CWE) ID associated with the vulnerability.   
+**v:riskscore**: Specified the numeric score used to help users prioritize security findings by potential impact.   
 **v:source**: Provides information about the source of the vulnerability.   
 **v:ratings**: Provides ratings for the vulnerability, including severity and method.   
 **v:description**: Describes the vulnerability in detail.   
@@ -822,7 +841,8 @@ For default, the ASFF report uses a default AWS account ID ("AWS_ACCOUNT_ID") an
 			"Software and Configuration Checks/Vulnerabilities/KICS"
 		],
 		"UpdatedAt": "2024-02-14T12:21:17Z",
-		"CWE": "22"
+		"CWE": "22",
+		"RiskScore": "6.8"
 	},
 	{
 		"AwsAccountId": "AWS_ACCOUNT_ID",
@@ -855,7 +875,8 @@ For default, the ASFF report uses a default AWS account ID ("AWS_ACCOUNT_ID") an
 			"Software and Configuration Checks/Vulnerabilities/KICS"
 		],
 		"UpdatedAt": "2024-02-14T12:21:17Z",
-		"CWE": "22"
+		"CWE": "22",
+		"RiskScore": "6.8"
 	},
 ]
 ```
@@ -882,6 +903,7 @@ For default, the ASFF report uses a default AWS account ID ("AWS_ACCOUNT_ID") an
 **Types**: Specifies the types of vulnerabilities or security checks associated with the finding.   
 **UpdatedAt**: Specifies the timestamp when the security finding was last updated, in UTC format.   
 **CWE**: Specifies the Common Weakness Enumeration (CWE) ID associated with the finding, which helps categorize the type of vulnerability.   
+**RiskScore**: Numeric score used to help users prioritize security findings by potential impact.   
 
 ## CSV
 
@@ -889,10 +911,10 @@ You can export CSV report by using `--report-formats "csv"`.
 
 CSV reports follow the [CSV structure](https://www.loc.gov/preservation/digital/formats/fdd/fdd000323.shtml#:~:text=CSV%20is%20a%20simple%20format,characters%20indicating%20a%20line%20break.).
 
-| query_name           | query_id                            | query_uri                                                                                             | severity | platform | cwe | cloud_provider | category              | description_id | description                                                      | cis_description_id | cis_description_title | cis_description_text | file_name                                                                                             | similarity_id                                          | line | issue_type      | search_key                                                                                    | search_line | search_value | expected_value                                                                    | actual_value                                                                    |
-|----------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------|----------|----------|-----|-----------------|-----------------------|-----------------|------------------------------------------------------------------|---------------------|-----------------------|----------------------|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------|------|-----------------|----------------------------------------------------------------------------------------------|-------------|--------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| ALB Listening on HTTP | f81d63d2-c5d7-43a4-a5b5-66717a41c895 | https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html | HIGH     | Ansible  | 22  | AWS             | Networking and Firewall | 3a7576e5       | AWS Application Load Balancer (alb) should not listen on HTTP |                     |                       |                      | assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml                                  | a00c90f900058bb60c8eeeaf5236416079e5085fe0465b69aa51b5aa5b7442fe | 11   | IncorrectValue | name={{my_elb_application}}.{{community.aws.elb_application_lb}}.listeners.Protocol=HTTP | -1          |              | 'aws_elb_application_lb' Protocol should be 'HTTP'                                | 'aws_elb_application_lb' Protocol it's not 'HTTP'                                 |
-| ALB Listening on HTTP | f81d63d2-c5d7-43a4-a5b5-66717a41c895 | https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html | HIGH     | Ansible  | 22  | AWS             | Networking and Firewall | 3a7576e5       | AWS Application Load Balancer (alb) should not listen on HTTP |                     |                       |                      | assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml                                  | 02e577bf2456c31f64f2855f8345fa051c0fe2159e1f116bd392e02af5f4a4f9 | 29   | MissingAttribute | name={{my_elb_application2}}.{{community.aws.elb_application_lb}}.listeners         | -1          |              | 'aws_elb_application_lb' Protocol should be 'HTTP'                                | 'aws_elb_application_lb' Protocol is missing                                   |
+| query_name           | query_id                            | query_uri                                                                                             | severity | platform | cwe | risk_score | cloud_provider | category              | description_id | description                                                      | cis_description_id | cis_description_title | cis_description_text | file_name                                                                                             | similarity_id                                          | line | issue_type      | search_key                                                                                    | search_line | search_value | expected_value                                                                    | actual_value                                                                    |
+|----------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------|----------|----------|-----|------------|----------------|-----------------------|-----------------|------------------------------------------------------------------|---------------------|-----------------------|----------------------|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------|------|-----------------|----------------------------------------------------------------------------------------------|-------------|--------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| ALB Listening on HTTP | f81d63d2-c5d7-43a4-a5b5-66717a41c895 | https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html | HIGH     | Ansible  | 22  | 7.8        | AWS            | Networking and Firewall | 3a7576e5       | AWS Application Load Balancer (alb) should not listen on HTTP |                     |                       |                      | assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml                                  | a00c90f900058bb60c8eeeaf5236416079e5085fe0465b69aa51b5aa5b7442fe | 11   | IncorrectValue | name={{my_elb_application}}.{{community.aws.elb_application_lb}}.listeners.Protocol=HTTP | -1          |              | 'aws_elb_application_lb' Protocol should be 'HTTP'                                | 'aws_elb_application_lb' Protocol it's not 'HTTP'                                 |
+| ALB Listening on HTTP | f81d63d2-c5d7-43a4-a5b5-66717a41c895 | https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html | HIGH     | Ansible  | 22  | 7.8        | AWS            | Networking and Firewall | 3a7576e5       | AWS Application Load Balancer (alb) should not listen on HTTP |                     |                       |                      | assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml                                  | 02e577bf2456c31f64f2855f8345fa051c0fe2159e1f116bd392e02af5f4a4f9 | 29   | MissingAttribute | name={{my_elb_application2}}.{{community.aws.elb_application_lb}}.listeners         | -1          |              | 'aws_elb_application_lb' Protocol should be 'HTTP'                                | 'aws_elb_application_lb' Protocol is missing                                   |
 
 
 **Brief Explanation of CSV Columns:**   
@@ -902,6 +924,7 @@ CSV reports follow the [CSV structure](https://www.loc.gov/preservation/digital/
 **severity**: Indicates the severity level of the vulnerability.   
 **platform**: Specifies the platform or technology stack targeted by the query.   
 **cwe**: Common Weakness Enumeration (CWE) ID associated with the vulnerability.   
+**risk_score**: Numeric score used to help users prioritize security findings by potential impact.   
 **cloud_provider**: Specifies the cloud provider related to the vulnerability.   
 **category**: Describes the category or type of vulnerability.   
 **description_id**: Unique identifier for the vulnerability description.   
@@ -931,6 +954,7 @@ Code climate report follow the [Code Climate Spec](https://github.com/codeclimat
 		"type": "issue",
 		"check_name": "ALB Listening on HTTP",
 		"cwe": "22",
+        "risk_score": "6.8",
 		"description": "AWS Application Load Balancer (alb) should not listen on HTTP",
 		"categories": [
 			"Security"
@@ -948,6 +972,7 @@ Code climate report follow the [Code Climate Spec](https://github.com/codeclimat
 		"type": "issue",
 		"check_name": "ALB Listening on HTTP",
 		"cwe": "22",
+        "risk_score": "6.8",
 		"description": "AWS Application Load Balancer (alb) should not listen on HTTP",
 		"categories": [
 			"Security"
@@ -968,6 +993,7 @@ Code climate report follow the [Code Climate Spec](https://github.com/codeclimat
 **type**: Specifies the type of issue reported.   
 **check_name**: Describes the name or identifier of the check performed.   
 **cwe**: Common Weakness Enumeration (CWE) ID associated with the issue.   
+**risk_score**: Numeric score used to help users prioritize security findings by potential impact.   
 **description**: Provides a detailed description of the issue detected.   
 **categories**: Indicates the categories or classifications of the issue.   
 **location**: Gives information about the path and lines where the issue occurred.   
