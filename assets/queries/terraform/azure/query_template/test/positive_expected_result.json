@@ -1,0 +1,86 @@
+[
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 35,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 42,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 50,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 61,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 68,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 75,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 82,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 94,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Service Without Resource Logging",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive2.tf"
+  }
+]
