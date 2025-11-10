@@ -533,8 +533,8 @@ func (a *analyzerInfo) checkContent(
 ) {
 	typesFlag := a.typesFlag
 	excludeTypesFlag := a.excludeTypesFlag
-	// get file content
-	content, err := os.ReadFile(a.filePath)
+	// get file content with UTF-16/UTF-8 detection
+	content, err := utils.ReadFileToUTF8(a.filePath)
 	if err != nil {
 		log.Error().Msgf("failed to analyze file: %s", err)
 		return

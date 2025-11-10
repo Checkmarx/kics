@@ -162,10 +162,18 @@ func getContent(rc io.Reader, data []byte, maxSizeMB int, filename string) (*Con
 		content = append(content, data[:n]...)
 		maxSizeMB--
 	}
-	c.Content = &content
+	// Convert UTF-16 to UTF-8 if needed (critical for Windows-created files)
+	// This must be done before parsing to avoid BOM and encoding issues
+	convertedContent, err := utils.ReadFileContentToUTF8(content, filename)
+	if err != nil {
+		log.Warn().Msgf("Failed to convert encoding for file %s: %v, using original content", filename, err)
+		convertedContent = content
+	}
+
+	c.Content = &convertedContent
 	c.CountLines = countLines
 
-	c.IsMinified = minified.IsMinified(filename, content)
+	c.IsMinified = minified.IsMinified(filename, convertedContent)
 	return c, nil
 }
 
