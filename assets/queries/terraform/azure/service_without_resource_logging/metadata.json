@@ -3,7 +3,7 @@
   "queryName": "Beta - Service Without Resource Logging",
   "severity": "MEDIUM",
   "category": "Observability",
-  "descriptionText": "",
+  "descriptionText": "Critical services that support logging through a 'azurerm_monitor_diagnostic_setting' resource should be associated with one",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting",
   "platform": "Terraform",
   "descriptionID": "8a0628ed",

@@ -3,9 +3,9 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-resources := {"azurerm_app_service","azurerm_windows_web_app","azurerm_linux_web_app","azurerm_batch_account","azurerm_eventhub","azurerm_iothub","azurerm_storage_account"
-			 ,"azurerm_logic_app_standard","azurerm_search_service","azurerm_servicebus_namespace","azurerm_stream_analytics_job","azurerm_application_gateway",
-			 "azurerm_data_lake_store","azurerm_data_lake_analytics_account"} # legacy
+resources := {"azurerm_app_service","azurerm_windows_web_app","azurerm_linux_web_app","azurerm_batch_account","azurerm_eventhub","azurerm_iothub","azurerm_storage_account",
+			  "azurerm_logic_app_standard","azurerm_search_service","azurerm_servicebus_namespace","azurerm_stream_analytics_job","azurerm_application_gateway",
+			  "azurerm_data_lake_store","azurerm_data_lake_analytics_account"} # legacy
 
 CxPolicy[result] {
 	resource := input.document[i].resource[resources[r]][name]
