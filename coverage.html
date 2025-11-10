@@ -163,7 +163,7 @@
 				
 				<option value="file53">github.com/Checkmarx/kics/v2/pkg/kics/resolver_sink.go (83.7%)</option>
 				
-				<option value="file54">github.com/Checkmarx/kics/v2/pkg/kics/service.go (44.4%)</option>
+				<option value="file54">github.com/Checkmarx/kics/v2/pkg/kics/service.go (42.1%)</option>
 				
 				<option value="file55">github.com/Checkmarx/kics/v2/pkg/kics/sink.go (36.2%)</option>
 				
@@ -329,21 +329,23 @@
 				
 				<option value="file136">github.com/Checkmarx/kics/v2/pkg/utils/contains.go (60.0%)</option>
 				
-				<option value="file137">github.com/Checkmarx/kics/v2/pkg/utils/get_extension.go (77.1%)</option>
+				<option value="file137">github.com/Checkmarx/kics/v2/pkg/utils/file_reader.go (81.8%)</option>
 				
-				<option value="file138">github.com/Checkmarx/kics/v2/pkg/utils/line_counter.go (89.7%)</option>
+				<option value="file138">github.com/Checkmarx/kics/v2/pkg/utils/get_extension.go (77.1%)</option>
 				
-				<option value="file139">github.com/Checkmarx/kics/v2/pkg/utils/map.go (100.0%)</option>
+				<option value="file139">github.com/Checkmarx/kics/v2/pkg/utils/line_counter.go (89.7%)</option>
 				
-				<option value="file140">github.com/Checkmarx/kics/v2/pkg/utils/panic_handler.go (0.0%)</option>
+				<option value="file140">github.com/Checkmarx/kics/v2/pkg/utils/map.go (100.0%)</option>
 				
-				<option value="file141">github.com/Checkmarx/kics/v2/pkg/utils/random.go (100.0%)</option>
+				<option value="file141">github.com/Checkmarx/kics/v2/pkg/utils/panic_handler.go (0.0%)</option>
 				
-				<option value="file142">github.com/Checkmarx/kics/v2/pkg/utils/split_lines.go (100.0%)</option>
+				<option value="file142">github.com/Checkmarx/kics/v2/pkg/utils/random.go (100.0%)</option>
 				
-				<option value="file143">github.com/Checkmarx/kics/v2/pkg/utils/validations.go (100.0%)</option>
+				<option value="file143">github.com/Checkmarx/kics/v2/pkg/utils/split_lines.go (100.0%)</option>
 				
-				<option value="file144">github.com/Checkmarx/kics/v2/test/helpers.go (37.5%)</option>
+				<option value="file144">github.com/Checkmarx/kics/v2/pkg/utils/validations.go (100.0%)</option>
+				
+				<option value="file145">github.com/Checkmarx/kics/v2/test/helpers.go (37.5%)</option>
 				
 				</select>
 			</div>
@@ -2612,13 +2614,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="52">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="51">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="52">total += v
+                <span class="cov9" title="51">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2643,7 +2645,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3328,7 +3330,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov5" title=
 
         <span class="cov5" title="36">go func() </span><span class="cov5" title="36">{
                 // close channel results when the worker has finished writing into it
-                defer func() </span><span class="cov4" title="35">{
+                defer func() </span><span class="cov5" title="36">{
                         close(unwanted)
                         close(results)
                         close(locCount)
@@ -3473,8 +3475,8 @@ func (a *analyzerInfo) checkContent(
 ) <span class="cov6" title="177">{
         typesFlag := a.typesFlag
         excludeTypesFlag := a.excludeTypesFlag
-        // get file content
-        content, err := os.ReadFile(a.filePath)
+        // get file content with UTF-16/UTF-8 detection
+        content, err := utils.ReadFileToUTF8(a.filePath)
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to analyze file: %s", err)
                 return
@@ -5645,7 +5647,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -9736,10 +9738,18 @@ func getContent(rc io.Reader, data []byte, maxSizeMB int, filename string) (*Con
                 content = append(content, data[:n]...)
                 maxSizeMB--</span>
         }
-        <span class="cov0" title="0">c.Content = &amp;content
+        // Convert UTF-16 to UTF-8 if needed (critical for Windows-created files)
+        // This must be done before parsing to avoid BOM and encoding issues
+        <span class="cov0" title="0">convertedContent, err := utils.ReadFileContentToUTF8(content, filename)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Warn().Msgf("Failed to convert encoding for file %s: %v, using original content", filename, err)
+                convertedContent = content
+        }</span>
+
+        <span class="cov0" title="0">c.Content = &amp;convertedContent
         c.CountLines = countLines
 
-        c.IsMinified = minified.IsMinified(filename, content)
+        c.IsMinified = minified.IsMinified(filename, convertedContent)
         return c, nil</span>
 }
 
@@ -20841,12 +20851,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="212">{
+        for variable := range s.varList </span><span class="cov7" title="206">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="652">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="587">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -33924,7 +33934,7 @@ func (c *Client) GetQueryPath() (provider.ExtractedPath, error) <span class="cov
                 Path:          []string{},
                 ExtractionMap: make(map[string]model.ExtractedPathObject),
         }
-        if c.ScanParams.ChangedDefaultQueryPath </span><span class="cov5" title="6">{
+        if c.ScanParams.ChangedDefaultQueryPath </span><span class="cov4" title="6">{
                 for _, queryPath := range c.ScanParams.QueriesPath </span><span class="cov5" title="9">{
                         extractedPath, errExtractQueries := resolvePath(queryPath, "queries-path")
                         if errExtractQueries != nil </span><span class="cov0" title="0">{
@@ -33941,7 +33951,7 @@ func (c *Client) GetQueryPath() (provider.ExtractedPath, error) <span class="cov
                 }</span>
                 <span class="cov0" title="0">queriesPath = append(queriesPath, defaultQueryPath)</span>
         }
-        <span class="cov5" title="6">c.ScanParams.QueriesPath = queriesPath
+        <span class="cov4" title="6">c.ScanParams.QueriesPath = queriesPath
         return extPath, nil</span>
 }
 
@@ -34054,17 +34064,17 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) <s
 
 func getTotalFiles(paths []string) int <span class="cov4" title="5">{
         files := 0
-        for _, path := range paths </span><span class="cov5" title="6">{
-                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov10" title="56">{
+        for _, path := range paths </span><span class="cov4" title="6">{
+                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov10" title="60">{
                         if err != nil </span><span class="cov1" title="1">{
                                 return err
                         }</span>
 
-                        <span class="cov9" title="55">if !info.IsDir() </span><span class="cov9" title="47">{
+                        <span class="cov9" title="59">if !info.IsDir() </span><span class="cov9" title="51">{
                                 files++
                         }</span>
 
-                        <span class="cov9" title="55">return nil</span>
+                        <span class="cov9" title="59">return nil</span>
                 }); err != nil <span class="cov1" title="1">{
                         log.Error().Msgf("failed to walk path %s: %s", path, err)
                 }</span>
@@ -34250,6 +34260,77 @@ func ContainsInString(target string, list []string) bool <span class="cov0" titl
 		<pre class="file" id="file137" style="display: none">package utils
 
 import (
+        "bytes"
+        "io"
+        "os"
+        "path/filepath"
+        "unicode/utf8"
+
+        "github.com/pkg/errors"
+        "golang.org/x/text/encoding/unicode"
+        "golang.org/x/text/transform"
+)
+
+// ReadFileToUTF8 reads a file and converts it to UTF-8 if needed.
+func ReadFileToUTF8(path string) ([]byte, error) <span class="cov7" title="7">{
+        bytesContent, err := os.ReadFile(filepath.Clean(path))
+        if err != nil </span><span class="cov1" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov7" title="6">return ReadFileContentToUTF8(bytesContent, path)</span>
+}
+
+// ReadFileContentToUTF8 converts file content to UTF-8 if needed.
+// This is similar to ReadFileToUTF8 but works on already-read content.
+// It handles UTF-16 LE/BE with BOM, and validates UTF-8.
+// This is critical for files extracted from ZIP archives on Windows,
+// which may be encoded as UTF-16 LE with BOM (0xFF 0xFE).
+func ReadFileContentToUTF8(content []byte, filename string) ([]byte, error) <span class="cov10" title="14">{
+        if len(content) == 0 </span><span class="cov0" title="0">{
+                return content, nil
+        }</span>
+
+        // BOM detection
+        <span class="cov10" title="14">if len(content) &gt;= 2 </span><span class="cov10" title="14">{
+                // UTF-16 LE BOM: 0xFF 0xFE
+                if content[0] == 0xFF &amp;&amp; content[1] == 0xFE </span><span class="cov6" title="5">{
+                        r := transform.NewReader(
+                                bytes.NewReader(content),
+                                unicode.UTF16(unicode.LittleEndian, unicode.ExpectBOM).NewDecoder(),
+                        )
+                        out, err := io.ReadAll(r)
+                        if err != nil </span><span class="cov0" title="0">{
+                                return nil, errors.Wrapf(err, "failed to decode UTF-16 LE with BOM for file %s", filename)
+                        }</span>
+                        <span class="cov6" title="5">return out, nil</span>
+                }
+                // UTF-16 BE BOM: 0xFE 0xFF
+                <span class="cov8" title="9">if content[0] == 0xFE &amp;&amp; content[1] == 0xFF </span><span class="cov3" title="2">{
+                        r := transform.NewReader(
+                                bytes.NewReader(content),
+                                unicode.UTF16(unicode.BigEndian, unicode.ExpectBOM).NewDecoder(),
+                        )
+                        out, err := io.ReadAll(r)
+                        if err != nil </span><span class="cov0" title="0">{
+                                return nil, errors.Wrapf(err, "failed to decode UTF-16 BE with BOM for file %s", filename)
+                        }</span>
+                        <span class="cov3" title="2">return out, nil</span>
+                }
+        }
+
+        // If valid UTF-8, return as-is
+        <span class="cov7" title="7">if utf8.Valid(content) </span><span class="cov7" title="7">{
+                return content, nil
+        }</span>
+
+        // If we reach here, the content is not UTF-8 and has no recognized BOM
+        <span class="cov0" title="0">return nil, errors.Errorf("unsupported encoding for file %s: content must be UTF-8 or UTF-16 with BOM", filename)</span>
+}
+</pre>
+		
+		<pre class="file" id="file138" style="display: none">package utils
+
+import (
         "bufio"
         "bytes"
         "fmt"
@@ -34353,7 +34434,7 @@ func isTextFile(path string) (bool, error) <span class="cov4" title="2">{
 }
 </pre>
 		
-		<pre class="file" id="file138" style="display: none">// Package utils contains various utility functions to use in other packages
+		<pre class="file" id="file139" style="display: none">// Package utils contains various utility functions to use in other packages
 package utils
 
 import (
@@ -34422,7 +34503,7 @@ func countLines(s string) int <span class="cov6" title="8">{
 }
 </pre>
 		
-		<pre class="file" id="file139" style="display: none">package utils
+		<pre class="file" id="file140" style="display: none">package utils
 
 import "sort"
 
@@ -34444,7 +34525,7 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov1" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file140" style="display: none">package utils
+		<pre class="file" id="file141" style="display: none">package utils
 
 import (
         "fmt"
@@ -34458,7 +34539,7 @@ func HandlePanic(r any, errMessage string) <span class="cov0" title="0">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file141" style="display: none">package utils
+		<pre class="file" id="file142" style="display: none">package utils
 
 import (
         "os"
@@ -34493,7 +34574,7 @@ func NextRandom() string <span class="cov10" title="2">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file142" style="display: none">package utils
+		<pre class="file" id="file143" style="display: none">package utils
 
 import "strings"
 
@@ -34506,7 +34587,7 @@ func SplitLines(content string) *[]string <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file143" style="display: none">// Package utils contains various utility functions to use in other packages
+		<pre class="file" id="file144" style="display: none">// Package utils contains various utility functions to use in other packages
 package utils
 
 import "regexp"
@@ -34521,7 +34602,7 @@ func ValidateUUID(id string) bool <span class="cov10" title="4">{
 }
 </pre>
 		
-		<pre class="file" id="file144" style="display: none">package test
+		<pre class="file" id="file145" style="display: none">package test
 
 import (
         "bytes"
