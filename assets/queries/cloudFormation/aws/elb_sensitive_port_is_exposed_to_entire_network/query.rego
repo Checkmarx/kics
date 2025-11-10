@@ -44,8 +44,8 @@ CxPolicy[result] {
 
 get_sensitive_ports(ingress) = ports {
 	ports := [x |
-		portName   := portsMaps[upper(ingress.IpProtocol)][portNumber]
 		protocol   := cf_lib.getProtocolList(ingress.IpProtocol)[_]
+		portName   := portsMaps[protocol][portNumber]
 		check_port(ingress.FromPort, ingress.ToPort, portNumber, ingress.IpProtocol)
 		x := {
 		"value" : sprintf("%s (%s:%d)", [portName, protocol, portNumber]),

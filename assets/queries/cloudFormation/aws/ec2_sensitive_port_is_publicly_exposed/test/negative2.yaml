@@ -12,7 +12,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: "Security group for negative test cases"
-      VpcId: !Ref MyVPC  
+      VpcId: !Ref MyVPC
 
 # IPv4 Rules
   Negative2IPv4Ingress1:
@@ -38,15 +38,15 @@ Resources:
     Properties:
       GroupId: !Ref Negative2SecurityGroup
       IpProtocol: "udp"
-      FromPort: 22
-      ToPort: 22
+      FromPort: 53
+      ToPort: 53
       CidrIp: "8.8.0.0/16"  # incorrect cidr (not exposed)
 
   Negative2IPv4Ingress4:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref Negative2SecurityGroup # all fields "incorrect"
-      IpProtocol: "icmp"    
+      IpProtocol: "icmp"
       FromPort: 5000
       ToPort: 5000
       CidrIp: "8.8.0.0/16"
@@ -75,8 +75,8 @@ Resources:
     Properties:
       GroupId: !Ref Negative2SecurityGroup
       IpProtocol: "udp"
-      FromPort: 22
-      ToPort: 22
+      FromPort: 53
+      ToPort: 53
       CidrIpv6: "2400:cb00::/32"  # incorrect cidr (not exposed)
 
   Negative2IPv6Ingress4:

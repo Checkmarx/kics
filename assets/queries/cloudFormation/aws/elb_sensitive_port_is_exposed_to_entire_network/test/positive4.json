@@ -67,7 +67,7 @@
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
         "GroupId": { "Ref": "DualStackSecurityGroup" },
-        "IpProtocol": "-1",
+        "IpProtocol": "6",
         "FromPort": 22,
         "ToPort": 22,
         "CidrIpv6": "fd00::/0"

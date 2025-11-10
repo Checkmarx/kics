@@ -54,8 +54,8 @@
         "SecurityGroupIngress": [
           {
             "IpProtocol": "udp",
-            "FromPort": 22,
-            "ToPort": 22,
+            "FromPort": 53,
+            "ToPort": 53,
             "CidrIp": "8.8.0.0/16"
           },
           {
@@ -102,8 +102,8 @@
         "SecurityGroupIngress": [
           {
             "IpProtocol": "udp",
-            "FromPort": 22,
-            "ToPort": 22,
+            "FromPort": 53,
+            "ToPort": 53,
             "CidrIpv6": "2400:cb00::/32"
           },
           {
