@@ -1,3 +1,4 @@
+# Test classic load balancing - LoadBalancer security groups with inline ingresses
 Resources:
   LoadBalancer01:
     Type: AWS::ElasticLoadBalancing::LoadBalancer
@@ -13,7 +14,7 @@ Resources:
         - !Ref Negative1IPv6_1
         - !Ref Negative1IPv6_2
         - !Ref Negative1ArrayTestIPv6
-        
+
 # Ipv4 Rules
   Negative1IPv4_1:
     Type: AWS::EC2::SecurityGroup

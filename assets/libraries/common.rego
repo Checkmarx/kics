@@ -443,7 +443,7 @@ is_access_limited_to_an_account_id(statement) {
 	valid_key(statement, conditions[idx])
 	condition_operator := statement[conditions[idx]][op][key]
 	lower(key) == lower(condition_keys_limiting_access_to_account_id[_])
-} 
+}
 
 is_cross_account(statement) {
 	is_string(statement.Principal.AWS)

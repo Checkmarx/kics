@@ -8,13 +8,20 @@ portsMaps := {"TCP": common_lib.tcpPortsMap, "UDP": cf_lib.udpPortsMap}
 CxPolicy[result] {
 	resources := input.document[i].Resources
 
-	elbInstance = resources[elb_instance_name]
-	elbType := getELBType(elbInstance.Type)
+	loadBalancerList := {name : loadBalancer |
+		loadBalancer := resources[name]
+		contains(loadBalancer.Type, "ElasticLoadBalancing")
+	}
+
+	elbInstance = loadBalancerList[elb_instance_name]
+	elbType := getELBType(elbInstance)
 
 	resource := resources[sec_group_name]
 	resource.Type == "AWS::EC2::SecurityGroup"
 
-	cf_lib.get_name(elbInstance.Properties.SecurityGroups[_]) == sec_group_name
+	ec2InstanceList := {name : ec2 | ec2 := resources[name]; contains(upper(ec2.Type), "INSTANCE"); common_lib.valid_key(ec2.Properties, "SecurityGroups")}
+	lb_instance_is_associated_with_sec_group(elbInstance, sec_group_name, ec2InstanceList)
+
 	ingresses_with_names := cf_lib.search_for_standalone_ingress(sec_group_name, input.document[y])
 
 	ingress_list := array.concat(ingresses_with_names.ingress_list, common_lib.get_array_if_exists(resource.Properties,"SecurityGroupIngress"))
@@ -59,5 +66,19 @@ check_port(from, to, port, protocol) {
 	cf_lib.containsPort(from, to, port)
 }
 
-getELBType("AWS::ElasticLoadBalancing::LoadBalancer") = "classic"
-getELBType("AWS::ElasticLoadBalancingV2::LoadBalancer") = "application"
+getELBType(elb) = elb.Properties.Type {
+	common_lib.valid_key(elb.Properties, "Type")		# application | network | gateway
+} else = "classic" {
+	elb.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
+} else = "application" {
+	elb.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
+}
+
+lb_instance_is_associated_with_sec_group(elb, sec_group_name, ec2InstanceList) {
+	cf_lib.get_name(elb.Properties.SecurityGroups[_]) == sec_group_name
+} else {																		# classic elb
+	common_lib.valid_key(elb.Properties, "Instances")
+	ec2Instance := ec2InstanceList[name]
+	cf_lib.get_name(elb.Properties.Instances[_]) == name
+	sec_group_name == ec2Instance.Properties.SecurityGroups[_]
+}

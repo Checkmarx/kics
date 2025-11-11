@@ -1,3 +1,4 @@
+# Test classic load balancing - LoadBalancer security groups with stand alone ingresses
 Resources:
   LoadBalancer01:
     Type: AWS::ElasticLoadBalancing::LoadBalancer
@@ -13,7 +14,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: "Security group for negative test cases"
-      VpcId: !Ref MyVPC  
+      VpcId: !Ref MyVPC
 
 # IPv4 Rules
   Negative2IPv4Ingress1:
@@ -47,7 +48,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref Negative2SecurityGroup # all fields "incorrect"
-      IpProtocol: "icmp"    
+      IpProtocol: "icmp"
       FromPort: 5000
       ToPort: 5000
       CidrIp: "8.8.0.0/16"
