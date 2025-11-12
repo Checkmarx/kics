@@ -14,13 +14,13 @@
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 7,
+    "line": 12,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 7,
+    "line": 12,
     "fileName": "positive4.tf"
   },
   {
