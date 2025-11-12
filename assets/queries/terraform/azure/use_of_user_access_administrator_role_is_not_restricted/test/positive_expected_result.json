@@ -10,5 +10,17 @@
     "severity": "MEDIUM",
     "line": 2,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive4.tf"
   }
 ]
