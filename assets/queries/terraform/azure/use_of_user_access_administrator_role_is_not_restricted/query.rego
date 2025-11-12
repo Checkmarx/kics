@@ -6,6 +6,7 @@ import data.generic.common as common_lib
 CxPolicy[result] {
     resource := input.document[i].resource.azurerm_role_assignment[name]
 
+    is_in_scope(resource.scope)
     res := get_res(resource, name)
 
     result := {
@@ -20,6 +21,19 @@ CxPolicy[result] {
         "remediation": null,
         "remediationType": null,
     }
+}
+
+is_in_scope(scope) {
+    regex.match("^(\/|\/providers\/Microsoft\\.Management\/managementGroups\/[^\/]+)$", scope)
+} else { # source not hardcoded on the scope field
+    data_source_scope := trim_left(trim_right(scope, "}"), "${")
+    is_a_valid_data_source_scope(data_source_scope)
+}
+
+is_a_valid_data_source_scope(data_source_scope) {
+    supported_data_sources := ["azurerm_management_group", "azurerm_management_groups"]
+    data_source_type := split(data_source_scope, ".")[1]
+    data_source_type == supported_data_sources[_]
 }
 
 get_res(resource, name) := res {
