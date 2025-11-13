@@ -1,0 +1,14 @@
+{
+  "id": "8553d83f-fe77-4c96-8850-a95c5895b336",
+  "queryName": "Beta - Activity Log Alert For Create or Update Security Solution Not Configured",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture 'create or update security solution' events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_activity_log_alert",
+  "platform": "Terraform",
+  "descriptionID": "8553d83f",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
