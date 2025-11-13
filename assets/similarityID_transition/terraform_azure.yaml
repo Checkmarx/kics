@@ -3,3 +3,7 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 8d407b28-c746-4650-8bbd-d27df54a795f
+      queryName: Beta - Backup Vault Without Soft Delete
+      observations: ""
+      change: 2
