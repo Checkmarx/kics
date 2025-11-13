@@ -1,0 +1,14 @@
+{
+  "id": "12ecec8a-7961-48db-b644-86be8845d8fd",
+  "queryName": "Beta - Containers Without Soft Delete",
+  "severity": "HIGH",
+  "category": "Backup",
+  "descriptionText": "All 'azurerm_storage_account' resources should define a 'container_delete_retention_policy' block for their 'blob_properties' to allow data recovery",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#container_delete_retention_policy-1",
+  "platform": "Terraform",
+  "descriptionID": "12ecec8a",
+  "cloudProvider": "azure",
+  "cwe": "754",
+  "riskScore": "6.0",
+  "experimental": "true"
+}
