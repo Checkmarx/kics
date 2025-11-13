@@ -1,0 +1,14 @@
+{
+  "id": "51a2c34d-dfd0-436f-aa34-e8f796e052fd",
+  "queryName": "Beta - SQL DB Instance With Local Data Loading Enabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Defaults",
+  "descriptionText": "All 'google_sql_database_instance' resources based on 'MYSQL' should disable the 'local_infile' flag to prevent unwanted exposure",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "51a2c34d",
+  "cloudProvider": "gcp",
+  "cwe": "732",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
