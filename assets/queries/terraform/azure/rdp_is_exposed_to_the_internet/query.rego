@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+port_fields := ["destination_port_ranges","destination_port_range"]
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_network_security_rule[var0]
@@ -8,17 +9,17 @@ CxPolicy[result] {
 	upper(resource.direction) == "INBOUND"
 	
 	isRelevantProtocol(resource.protocol)
-	isRelevantPort(resource.destination_port_range)
+	isRelevantPort(resource[port_fields[i2]])
 	isRelevantAddressPrefix(resource.source_address_prefix)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_network_security_rule",
 		"resourceName": tf_lib.get_resource_name(resource, var0),
-		"searchKey": sprintf("azurerm_network_security_rule[%s].destination_port_range", [var0]),
+		"searchKey": sprintf("azurerm_network_security_rule[%s].%s", [var0,port_fields[i2]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_network_security_rule.%s.destination_port_range' cannot be 3389", [var0]),
-		"keyActualValue": sprintf("'azurerm_network_security_rule.%s.destination_port_range' might be 3389", [var0]),
+		"keyExpectedValue": sprintf("'azurerm_network_security_rule.%s.%s' cannot be 3389", [var0,port_fields[i2]]),
+		"keyActualValue": sprintf("'azurerm_network_security_rule.%s.%s' might be 3389", [var0,port_fields[i2]]),
 	}
 }
 
@@ -30,62 +31,47 @@ CxPolicy[result] {
   upper(rule.direction) == "INBOUND"
 
   isRelevantProtocol(rule.protocol)
-  isRelevantPort(rule.destination_port_range)
+  isRelevantPort(rule[port_fields[i2]])
   isRelevantAddressPrefix(rule.source_address_prefix)
 
   result := {
     "documentId": input.document[i].id,
     "resourceType": "azurerm_network_security_group",
     "resourceName": tf_lib.get_resource_name(rule, [groupName, "security_rule", idx]),
-    "searchKey": sprintf("azurerm_network_security_group[%s].security_rule.name={{%s}}.destination_port_range", [groupName, rule.name]),
+    "searchKey": sprintf("azurerm_network_security_group[%s].security_rule.name={{%s}}.%s", [groupName, rule.name, port_fields[i2]]),
     "issueType": "IncorrectValue",
-    "keyExpectedValue": "'destination_port_range' cannot be 3389",
-    "keyActualValue": "'destination_port_range' might be 3389",
+    "keyExpectedValue": sprintf("'%s' cannot be 3389", [port_fields[i2]]),
+    "keyActualValue": sprintf("'%s' might be 3389", [port_fields[i2]]),
   }
 }
 
-
-
-isRelevantProtocol(protocol) = allow {
-	upper(protocol) != "UDP"
+isRelevantProtocol(protocol) = true {
 	upper(protocol) != "ICMP"
-	allow = true
 }
 
-isRelevantPort(port) = allow {
+isRelevantPort(port) = true {
 	regex.match("(^|\\s|,)3389(-|,|$|\\s)", port)
-	allow = true
-}
-
-else = allow {
+} else = true {
 	ports = split(port, ",")
-	sublist = split(ports[var], "-")
+	sublist = split(ports[i], "-")
 	to_number(trim(sublist[0], " ")) <= 3389
 	to_number(trim(sublist[1], " ")) >= 3389
-	allow = true
+} else = true {
+	regex.match("(^|\\s|,)3389(-|,|$|\\s)", port[i])
+} else = true {
+	sublist = split(port[i], "-")
+	to_number(trim(sublist[0], " ")) <= 3389
+	to_number(trim(sublist[1], " ")) >= 3389
 }
 
-isRelevantAddressPrefix(prefix) = allow {
+isRelevantAddressPrefix(prefix) = true {
 	prefix == "*"
-	allow = true
-}
-
-else = allow {
+} else = true {
 	prefix == "0.0.0.0"
-	allow = true
-}
-
-else = allow {
+} else = true {
 	endswith(prefix, "/0")
-	allow = true
-}
-
-else = allow {
+} else = true {
 	prefix == "internet"
-	allow = true
-}
-
-else = allow {
+} else = true {
 	prefix == "any"
-	allow = true
 }
