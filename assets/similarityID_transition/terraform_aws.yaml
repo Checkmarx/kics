@@ -63,3 +63,7 @@ similarityIDChangeList:
       queryName: Unrestricted Security Group Ingress
       observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
       change: 2
+    - queryId: b26d2b7e-60f6-413d-a3a1-a57db24aa2b3
+      queryName: SNS Topic is Publicly Accessible
+      observations: "Query did not properly handle arrays of 2+ elements, flagging multiple times in the same line is inevitable so searchValue was added"
+      change: 3
