@@ -1,0 +1,14 @@
+{
+  "id": "fc7187e5-b9a2-46c0-950d-3bfcaaacc5ca",
+  "queryName": "Beta - SQL DB Instance Without Connections Logging",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "All 'google_sql_database_instance' resources based on POSTGRES should enable the 'log_connections' flag to log connection attempts",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "fc7187e5",
+  "cloudProvider": "gcp",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
