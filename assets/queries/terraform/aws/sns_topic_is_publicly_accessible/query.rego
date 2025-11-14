@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	policy := common_lib.json_unmarshal(resource.policy)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	statement := st[st_id]
 
 	common_lib.is_allow_effect(statement)
 	tf_lib.anyPrincipal(statement)
@@ -20,9 +20,10 @@ CxPolicy[result] {
 		"resourceType": "aws_sns_topic",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sns_topic[%s].policy", [name]),
+		"searchValue": sprintf("%d",[st_id]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'Statement.Principal.AWS' shouldn't contain '*'",
-		"keyActualValue": "'Statement.Principal.AWS' contains '*'",
+		"keyExpectedValue": sprintf("'Statement[%d].Principal.AWS' shouldn't contain '*'",[st_id]),
+		"keyActualValue": sprintf("'Statement[%d].Principal.AWS' contains '*'",[st_id]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_sns_topic", name, "policy"], []),
 	}
 }
@@ -30,17 +31,18 @@ CxPolicy[result] {
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_sns_topic", "policy")
-	res := get_module_res(module, keyToCheck, name)
+	results_array := get_module_res(module, keyToCheck, name)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
-		"searchKey": res["sk"],
+		"searchKey": results_array[index].sk,
+		"searchValue": results_array[index].sv,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": res["kev"],
-		"keyActualValue": res["kav"],
-		"searchLine": res["sl"],
+		"keyExpectedValue": results_array[index].kev,
+		"keyActualValue": results_array[index].kav,
+		"searchLine": results_array[index].sl,
 	}
 }
 
@@ -48,33 +50,30 @@ get_module_res(module, keyToCheck, name) = res {
 	common_lib.valid_key(module, keyToCheck)
 	policy := common_lib.json_unmarshal(module[keyToCheck])
 	st := common_lib.get_statement(policy)
-	statement := st[_]
-	
-	common_lib.is_allow_effect(statement)
-	tf_lib.anyPrincipal(statement)
 
-	not common_lib.is_access_limited_to_an_account_id(statement)
+	res := [{ "sk": "topic_policy",
+			  "sv": sprintf("%d",[st_id]),
+			  "kev": sprintf("'Statement[%d].Principal.AWS' shouldn't contain '*'", [st_id]),
+			  "kav": sprintf("'Statement[%d].Principal.AWS' contains '*'", [st_id]),
+			  "sl": common_lib.build_search_line(["module", name, "topic_policy"], [])} |
+		statement := st[st_id]
+		common_lib.is_allow_effect(statement)
+		tf_lib.anyPrincipal(statement)
+		not common_lib.is_access_limited_to_an_account_id(statement)]
 
-	res := {
-		"sk": sprintf("topic_policy", []),
-		"kev": sprintf("'Statement.Policy.AWS' shouldn't contain '*'", []),
-		"kav": sprintf("'Statement.Policy.AWS' contains '*'", []),
-		"sl": common_lib.build_search_line(["module", name, "topic_policy"], []),
-	}
 } else = res {
 	common_lib.valid_key(module, "topic_policy_statements")
-	statement := module.topic_policy_statements[idx]
-	common_lib.is_allow_effect(statement)
-	principal := statement.principals[idx_principals]
-	principal.type == "AWS"
-	contains(principal.identifiers[idx_identifiers], "*")
 
-	not common_lib.is_access_limited_to_an_account_id(statement)
+	res := [{"sk": sprintf("module[%s].topic_policy_statements[%d].principals", [name, idx]),
+			 "sv": "",
+			 "kev": sprintf("'topic_policy_statements[%d].principals[%d].identifiers' shouldn't contain '*' for an AWS Principal", [idx, idx_principals]),
+			 "kav": sprintf("'topic_policy_statements[%d].principals[%d].identifiers' contains '*' for an AWS Principal", [idx, idx_principals]),
+			 "sl": common_lib.build_search_line(["module", name, "topic_policy_statements", idx, "principals"], [])}|
+		statement := module.topic_policy_statements[idx]
+		common_lib.is_allow_effect(statement)
+		principal := statement.principals[idx_principals]
+		principal.type == "AWS"
+		contains(principal.identifiers[idx_identifiers], "*")
 
-	res := {
-		"sk": sprintf("module[%s].topic_policy_statements", [name]),
-		"kev": "'topic_policy_statements.principals.identifiers' shouldn't contain '*' for an AWS Pricipal",
-		"kav": "'topic_policy_statements.principals.identifiers' contains '*' in an AWS Principal",
-		"sl": common_lib.build_search_line(["module", name, "topic_policy_statements"], []),
-	}
+	not common_lib.is_access_limited_to_an_account_id(statement)]
 }
