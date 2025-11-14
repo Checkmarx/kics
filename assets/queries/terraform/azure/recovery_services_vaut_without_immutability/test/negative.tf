@@ -4,7 +4,7 @@ resource "azurerm_recovery_services_vault" "negative1" {
   resource_group_name = azurerm_resource_group.negative1.name
   sku                 = "Standard"
 
-  # "soft_delete_enabled" missing - defaults to true
+  immutability  = "Locked"
 }
 
 resource "azurerm_recovery_services_vault" "negative2" {
@@ -13,5 +13,5 @@ resource "azurerm_recovery_services_vault" "negative2" {
   resource_group_name = azurerm_resource_group.negative2.name
   sku                 = "Standard"
 
-  soft_delete_enabled = true
+  immutability  = "Unlocked"
 }
