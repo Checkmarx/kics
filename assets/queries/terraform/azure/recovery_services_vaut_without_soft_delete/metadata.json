@@ -4,7 +4,7 @@
   "severity": "HIGH",
   "category": "Backup",
   "descriptionText": "No 'azurerm_recovery_services_vault' resource should set 'soft_delete_enabled' to false, this makes it impossible to recover backup data",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/data_protection_backup_vault#soft_delete-1",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/recovery_services_vault#soft_delete_enabled-1",
   "platform": "Terraform",
   "descriptionID": "b373043c",
   "cloudProvider": "azure",
