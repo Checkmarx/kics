@@ -1,0 +1,14 @@
+{
+  "id": "22cb3507-1ef4-44ac-9c9a-cab31167e31e",
+  "queryName": "Beta - MSSQL Not Using Latest TLS Encryption Version",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensure MSSQL is using the latest version of TLS encryption",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server",
+  "platform": "Terraform",
+  "descriptionID": "22cb3507",
+  "cloudProvider": "azure",
+  "cwe": "326",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
