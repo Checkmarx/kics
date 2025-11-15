@@ -1,0 +1,14 @@
+{
+  "id": "b3b9ce2f-c229-4133-9a2b-4e649cf2347e",
+  "queryName": "Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture 'delete public ip address rule' events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_activity_log_alert",
+  "platform": "Terraform",
+  "descriptionID": "b3b9ce2f",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
