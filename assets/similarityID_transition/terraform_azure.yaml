@@ -4,6 +4,6 @@ similarityIDChangeList:
       observations: ""
       change: 5
     - queryId: 0536c90c-714e-4184-991e-3fed8d8b7b46
-      queryName: Beta - Virtual Machine Without Managed Disk
+      queryName: Beta - VM Without Managed Disk
       observations: ""
       change: 2
