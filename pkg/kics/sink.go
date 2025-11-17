@@ -8,15 +8,14 @@ import (
 	"regexp"
 	"sort"
 
-	"github.com/antlr4-go/antlr/v4"
-	"github.com/google/uuid"
-	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
-
 	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/parser/jsonfilter/parser"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/antlr4-go/antlr/v4"
+	"github.com/google/uuid"
+	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
 )
 
 var (
