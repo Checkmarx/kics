@@ -34,6 +34,6 @@ resource "azurerm_virtual_machine" "positive3" {
   storage_os_disk {
     name              = "myosdisk1"
     create_option     = "FromImage"
-    # missing managed_disk_type
+    # missing managed_disk_type/managed_disk_id
   }
 }
