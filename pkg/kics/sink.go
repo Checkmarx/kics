@@ -8,14 +8,15 @@ import (
 	"regexp"
 	"sort"
 
-	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser/jsonfilter/parser"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/jsonfilter/parser"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 var (
@@ -64,7 +65,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 
 	fileCommands := s.Parser.CommentsCommands(filename, *content)
 
-	for _, document := range documents.Docs {
+	for idx, document := range documents.Docs {
 		_, err = json.Marshal(document)
 		if err != nil {
 			sentryReport.ReportSentry(&sentryReport.Report{
@@ -94,6 +95,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 			ResolvedFiles:     documents.ResolvedFiles,
 			LinesOriginalData: utils.SplitLines(documents.Content),
 			IsMinified:        documents.IsMinified,
+			SubDocumentIndex:  idx,
 		}
 
 		s.saveToFile(ctx, &file)

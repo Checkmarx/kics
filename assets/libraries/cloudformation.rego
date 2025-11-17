@@ -272,3 +272,20 @@ createSearchKey(elem) = search {
 	elem.Name.Ref
 	search := sprintf(".Ref=%s", [elem.Name.Ref])
 }
+
+# Checks logs within "LogPublishingOptions"
+enabled_is_undefined_or_false(logs,path,name,logName) = results {
+	not common_lib.valid_key(logs,"Enabled")
+	results := {
+		"print" : "is undefined",
+		"searchKey" : sprintf("%s%s.Properties.LogPublishingOptions.%s", [getPath(path),name, logName]),
+		"searchLine" : common_lib.build_search_line(path, [name, "Properties", "LogPublishingOptions", logName]),
+	}
+} else = results {
+	isCloudFormationFalse(logs.Enabled)
+	results := {
+		"print" : "is set to 'false'",
+		"searchKey" : sprintf("%s%s.Properties.LogPublishingOptions.%s.Enabled", [getPath(path),name, logName]),
+		"searchLine" : common_lib.build_search_line(path, [name, "Properties", "LogPublishingOptions", logName, "Enabled"]),
+	}
+}

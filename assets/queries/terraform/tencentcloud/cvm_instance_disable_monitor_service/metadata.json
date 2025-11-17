@@ -1,6 +1,6 @@
 {
   "id": "966ed4f7-b8a5-4e8d-b2bf-098657c98960",
-  "queryName": "Beta - CVM Instance Disable Monitor Service",
+  "queryName": "CVM Instance Disable Monitor Service",
   "severity": "INFO",
   "category": "Observability",
   "descriptionText": "CVM Instance should have detailed monitor service enabled.",
@@ -8,5 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "e689820e",
   "cloudProvider": "tencentcloud",
-  "cwe": "778"
+  "cwe": "778",
+  "riskScore": "0.0"
 }

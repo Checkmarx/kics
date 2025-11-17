@@ -3,9 +3,11 @@
   "queryName": "Missing User Instruction",
   "severity": "HIGH",
   "category": "Build Process",
-  "descriptionText": "A user should be specified in the dockerfile, otherwise the image will run as root",
+  "descriptionText": "Always set a user in the runtime stage of your Dockerfile. Without it, the container defaults to root, even if earlier build stages define a user.",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#user",
   "platform": "Dockerfile",
   "descriptionID": "eb49caf6",
-  "cwe": "250"
+  "cloudProvider": "common",
+  "cwe": "250",
+  "riskScore": "7.7"
 }

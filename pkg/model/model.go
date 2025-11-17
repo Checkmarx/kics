@@ -134,6 +134,7 @@ type FileMetadata struct {
 	ResolvedFiles     map[string]ResolvedFile
 	LinesOriginalData *[]string
 	IsMinified        bool
+	SubDocumentIndex  int
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -144,6 +145,7 @@ type QueryMetadata struct {
 	Metadata  map[string]interface{}
 	Platform  string
 	CWE       string
+	RiskScore string
 	// special field for generic queries
 	// represents how many queries are aggregated into a single rego file
 	Aggregation  int
@@ -168,6 +170,7 @@ type Vulnerability struct {
 	DescriptionID    string      `json:"descriptionID"`
 	Platform         string      `db:"platform" json:"platform"`
 	CWE              string      `db:"cwe" json:"cwe"`
+	RiskScore        string      `db:"risk_score" json:"riskScore"`
 	Severity         Severity    `json:"severity"`
 	Line             int         `json:"line"`
 	VulnLines        *[]CodeLine `json:"vulnLines"`
@@ -290,6 +293,15 @@ type AnalyzedPaths struct {
 	Types       []string
 	Exc         []string
 	ExpectedLOC int
+	FileStats   map[string]FileStatistics
+}
+
+// FileStatistics contains file and directory counts per platform type
+type FileStatistics struct {
+	FileCount      int
+	DirectoryCount int
+	FilesByDir     map[string]int
+	TotalLOC       int
 }
 
 // ResolvedFileSplit is a struct that contains the information of a resolved file, the path and the lines of the file

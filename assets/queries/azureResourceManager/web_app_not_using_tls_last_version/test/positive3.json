@@ -11,7 +11,7 @@
           "location": "[resourceGroup().location]",
           "properties": {
             "siteConfig": {
-              "minTlsVersion": "1.0"
+              "minTlsVersion": "1.1"
             }
           }
         }

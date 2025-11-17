@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Supply-Chain
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/1357.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/1357.html')">1357</a>
+-   **Risk score:** <span style="color:#ff7213">6.4</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/image_version_not_explicit)
 
 ### Description
@@ -136,3 +137,4 @@ FROM test4
 RUN echo "depth5"
 ```
 </details>
+

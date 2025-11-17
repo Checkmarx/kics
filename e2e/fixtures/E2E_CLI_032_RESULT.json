@@ -6,54 +6,26 @@
   "lines_parsed": 289,
   "lines_ignored": 0,
   "files_failed_to_scan": 0,
-  "queries_total": 501,
+  "queries_total": 514,
   "queries_failed_to_execute": 0,
   "queries_failed_to_compute_similarity_id": 0,
   "scan_id": "console",
   "severity_counters": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 6,
     "INFO": 3,
     "LOW": 5,
-    "MEDIUM": 10,
+    "MEDIUM": 12,
     "TRACE": 0
   },
-  "total_counter": 25,
+  "total_counter": 26,
   "total_bom_resources": 0,
-  "start": "2024-05-28T13:21:07.0046236+01:00",
-  "end": "2024-05-28T13:21:21.5156346+01:00",
+  "start": "2025-10-08T15:32:16.8407774+01:00",
+  "end": "2025-10-08T15:32:24.9043089+01:00",
   "paths": [
     "/path/e2e/fixtures/samples/positive.yaml"
   ],
   "queries": [
-    {
-			"query_name": "ECS Cluster Not Encrypted At Rest",
-			"query_id": "6c131358-c54d-419b-9dd6-1f7dd41d180c",
-			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html",
-			"severity": "HIGH",
-			"platform": "CloudFormation",
-			"cwe": "311",
-			"cloud_provider": "AWS",
-			"category": "Encryption",
-			"experimental": false,
-			"description": "Ensure that AWS ECS clusters are encrypted. Data encryption at rest, prevents unauthorized users from accessing sensitive data on your AWS ECS clusters and associated cache storage systems.",
-			"description_id": "512ea20d",
-			"files": [
-				{
-					"file_name": "e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "09b890ded81b8c60969447d54434ddc2dfe362d9eefcaf3ae62f650e8ca28f62",
-					"line": 48,
-					"resource_type": "AWS::ECS::Service",
-					"resource_name": "service",
-					"issue_type": "MissingAttribute",
-					"search_key": "Resources.TaskDefinition.Properties.Volumes[0]",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration should be defined",
-					"actual_value": "Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration is not defined"
-				}
-			]
-		},
     {
       "query_name": "Fully Open Ingress",
       "query_id": "e415f8d3-fc2b-4f52-88ab-1129e8c8d3f5",
@@ -61,6 +33,7 @@
       "severity": "HIGH",
       "platform": "CloudFormation",
       "cwe": "668",
+      "risk_score": "7.7",
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,
@@ -68,7 +41,7 @@
       "description_id": "747f49ac",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "88653ab159ca0a15095afc685f98da24685fa547bb5f1ca7c95ef468f209387c",
           "line": 24,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -81,7 +54,7 @@
           "actual_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
         },
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "5f39aa8e63613a7e8bfd7641ccfb931fa0225e95b3449bc1210b50329d65d713",
           "line": 32,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -102,6 +75,7 @@
       "severity": "HIGH",
       "platform": "Common",
       "cwe": "798",
+      "risk_score": "7.8",
       "cloud_provider": "COMMON",
       "category": "Secret Management",
       "experimental": false,
@@ -109,7 +83,7 @@
       "description_id": "d69d8a89",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "5f948e5c0c97f3e7c43cd531de50c6c54a2cec221a45f113a34a571165d30553",
           "line": 273,
           "issue_type": "RedundantAttribute",
@@ -128,6 +102,7 @@
       "severity": "HIGH",
       "platform": "Common",
       "cwe": "798",
+      "risk_score": "7.8",
       "cloud_provider": "COMMON",
       "category": "Secret Management",
       "experimental": false,
@@ -135,7 +110,7 @@
       "description_id": "d69d8a89",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "379b043925f80377f9a5c54a286392202b624f04f71e8d09f87da0ac414a5b04",
           "line": 276,
           "issue_type": "RedundantAttribute",
@@ -154,6 +129,7 @@
       "severity": "HIGH",
       "platform": "CloudFormation",
       "cwe": "668",
+      "risk_score": "7.2",
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,
@@ -161,30 +137,30 @@
       "description_id": "08256d31",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "f1f15967fd4bd2b39610dcbe3c2d641068dc1b409821142f41d179dbc360b3aa",
-          "line": 32,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupSSHinbound",
-          "issue_type": "IncorrectValue",
-          "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
-          "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "3c4976bcd6061315525a23a644cb6ed3bc4888794f21e8161a1cd38ea0495f30",
           "line": 24,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
           "resource_name": "EcsSecurityGroupHTTPinbound02",
           "issue_type": "IncorrectValue",
           "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
-          "search_line": -1,
+          "search_line": 24,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
           "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
+        },
+        {
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "f1f15967fd4bd2b39610dcbe3c2d641068dc1b409821142f41d179dbc360b3aa",
+          "line": 32,
+          "resource_type": "AWS::EC2::SecurityGroupIngress",
+          "resource_name": "EcsSecurityGroupSSHinbound",
+          "issue_type": "IncorrectValue",
+          "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
+          "search_line": 32,
+          "search_value": "",
+          "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
+          "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
         }
       ]
     },
@@ -195,6 +171,7 @@
       "severity": "MEDIUM",
       "platform": "CloudFormation",
       "cwe": "778",
+      "risk_score": "4.9",
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,
@@ -202,7 +179,7 @@
       "description_id": "2cad71a7",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "d542c20ac3e6177847cf5a565ff82704a5b63ec87332191ded7baca361b611e8",
           "line": 86,
           "resource_type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
@@ -223,6 +200,7 @@
       "severity": "MEDIUM",
       "platform": "CloudFormation",
       "cwe": "319",
+      "risk_score": "6.8",
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,
@@ -230,7 +208,7 @@
       "description_id": "55f05412",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "7d59e0095d8eda260b02394f129910d70d01b55dffb356780166354f9360d848",
           "line": 104,
           "resource_type": "AWS::ElasticLoadBalancingV2::Listener",
@@ -251,6 +229,7 @@
       "severity": "MEDIUM",
       "platform": "CloudFormation",
       "cwe": "400",
+      "risk_score": "5.1",
       "cloud_provider": "AWS",
       "category": "Availability",
       "experimental": false,
@@ -258,7 +237,7 @@
       "description_id": "99966f58",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "ef5069fb260b351100126334b0ba9b2776f480652d8d4f72c81f387d785d22d2",
           "line": 131,
           "resource_type": "AWS::AutoScaling::AutoScalingGroup",
@@ -279,6 +258,7 @@
       "severity": "MEDIUM",
       "platform": "CloudFormation",
       "cwe": "665",
+      "risk_score": "5.2",
       "cloud_provider": "AWS",
       "category": "Insecure Configurations",
       "experimental": false,
@@ -286,7 +266,7 @@
       "description_id": "bded2e99",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "dd2585b378b43193cc748c9f68b4c226b6face1e271f07f84dcb9113ff6f7446",
           "line": 48,
           "resource_type": "AWS::ECS::TaskDefinition",
@@ -301,12 +281,42 @@
       ]
     },
     {
+      "query_name": "EFS Volume With Disabled Transit Encryption",
+      "query_id": "c1282e03-b285-4637-aee7-eefe3a7bb658",
+      "query_url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html",
+      "severity": "MEDIUM",
+      "platform": "CloudFormation",
+      "cwe": "319",
+      "risk_score": "5.5",
+      "cloud_provider": "AWS",
+      "category": "Encryption",
+      "experimental": false,
+      "description": "Amazon EFS volume does not have encryption for data at transit enabled. To prevent such a scenario, enable the attribute 'TransitEncryption'",
+      "description_id": "99f92ea6",
+      "files": [
+        {
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "946e95f1100e7262469d8e5437fd566fe3358aa8db4eba431b4ba5a34225c3a9",
+          "line": 85,
+          "resource_type": "AWS::ECS::TaskDefinition",
+          "resource_name": "TaskDefinition",
+          "issue_type": "MissingAttribute",
+          "search_key": "Resources.TaskDefinition.Properties.Volumes[0]",
+          "search_line": 85,
+          "search_value": "",
+          "expected_value": "Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration should be defined",
+          "actual_value": "Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration is not defined"
+        }
+      ]
+    },
+    {
       "query_name": "ELB With Security Group Without Inbound Rules",
       "query_id": "e200a6f3-c589-49ec-9143-7421d4a2c845",
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupingress",
       "severity": "MEDIUM",
       "platform": "CloudFormation",
       "cwe": "665",
+      "risk_score": "5.2",
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,
@@ -314,7 +324,7 @@
       "description_id": "3ccdd7d2",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "d762780be8bebaa6b6bc6b6075a5dcee0edd37f639aa63061f29a13160eae116",
           "line": 14,
           "resource_type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
@@ -335,6 +345,7 @@
       "severity": "MEDIUM",
       "platform": "CloudFormation",
       "cwe": "665",
+      "risk_score": "5.2",
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,
@@ -342,7 +353,7 @@
       "description_id": "7b876844",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "ee0915eb8433ec18c3f357c5eb0d243ce5c3a077e63e222230c4c0d7bf049416",
           "line": 14,
           "resource_type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
@@ -363,6 +374,7 @@
       "severity": "MEDIUM",
       "platform": "CloudFormation",
       "cwe": "665",
+      "risk_score": "4.9",
       "cloud_provider": "AWS",
       "category": "Access Control",
       "experimental": false,
@@ -370,7 +382,7 @@
       "description_id": "b47b42b2",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "cea2579f8b8eccc6008dcddba492fb4bd8802d0926f4cc33ae95b8a5f758d0e3",
           "line": 167,
           "resource_type": "AWS::ECS::Service",
@@ -385,12 +397,42 @@
       ]
     },
     {
+      "query_name": "Secretsmanager Secret Without KMS",
+      "query_id": "bed9762b-9bf6-4823-98e2-b1752bee0bf7",
+      "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-secretsmanager-secret.html",
+      "severity": "MEDIUM",
+      "platform": "CloudFormation",
+      "cwe": "326",
+      "risk_score": "3.0",
+      "cloud_provider": "AWS",
+      "category": "Encryption",
+      "experimental": false,
+      "description": "AWS Secretmanager should use AWS KMS customer master key (CMK) to encrypt the secret values in the versions stored in the secret",
+      "description_id": "bed9762b",
+      "files": [
+        {
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "1161862cff56e2f56caec02b6c6772888c7e614b249221a69d29a5e88cb93880",
+          "line": 270,
+          "resource_type": "AWS::SecretsManager::Secret",
+          "resource_name": "MyAmpAppSecretManagerRotater",
+          "issue_type": "MissingAttribute",
+          "search_key": "Resources.MyAmpAppSecretManagerRotater.Properties",
+          "search_line": 270,
+          "search_value": "",
+          "expected_value": "'Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId' should be defined and not null",
+          "actual_value": "'Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId' is undefined or null"
+        }
+      ]
+    },
+    {
       "query_name": "Security Group Ingress With Port Range",
       "query_id": "87482183-a8e7-4e42-a566-7a23ec231c16",
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
       "severity": "MEDIUM",
       "platform": "CloudFormation",
       "cwe": "665",
+      "risk_score": "5.2",
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,
@@ -398,40 +440,40 @@
       "description_id": "5f2b65f3",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
           "line": 19,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
           "resource_name": "EcsSecurityGroupHTTPinbound02",
           "issue_type": "IncorrectValue",
           "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-          "search_line": -1,
+          "search_line": 19,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
           "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
         },
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
           "line": 35,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
           "resource_name": "EcsSecurityGroupALBports",
           "issue_type": "IncorrectValue",
           "search_key": "Resources.EcsSecurityGroupALBports.Properties",
-          "search_line": -1,
+          "search_line": 35,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
           "actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
         },
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
           "line": 27,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
           "resource_name": "EcsSecurityGroupSSHinbound",
           "issue_type": "IncorrectValue",
           "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-          "search_line": -1,
+          "search_line": 27,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
           "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
@@ -445,6 +487,7 @@
       "severity": "LOW",
       "platform": "CloudFormation",
       "cwe": "665",
+      "risk_score": "2.2",
       "cloud_provider": "AWS",
       "category": "Availability",
       "experimental": false,
@@ -452,7 +495,7 @@
       "description_id": "cd242bdd",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "5022c0ba8f17197cb6ef6163bf16e6dd8e13290b1d91192c61742bca491ff4f7",
           "line": 159,
           "resource_type": "AWS::ECS::Service",
@@ -473,6 +516,7 @@
       "severity": "LOW",
       "platform": "CloudFormation",
       "cwe": "778",
+      "risk_score": "3.6",
       "cloud_provider": "AWS",
       "category": "Observability",
       "experimental": false,
@@ -480,7 +524,7 @@
       "description_id": "e2e3a50a",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "8cd0c1d85f668baacc2d37b0037e026fc5d62761f353dd314942b227afd41c43",
           "line": 115,
           "resource_type": "AWS::ECS::TaskDefinition",
@@ -493,7 +537,7 @@
           "actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
         },
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "1a3083ecb6510696d2224f736fbb492fc716b17b4061a0750af6f6e7cfbd6cd2",
           "line": 207,
           "resource_type": "AWS::ECS::TaskDefinition",
@@ -514,6 +558,7 @@
       "severity": "LOW",
       "platform": "CloudFormation",
       "cwe": "778",
+      "risk_score": "3.5",
       "cloud_provider": "AWS",
       "category": "Best Practices",
       "experimental": false,
@@ -521,7 +566,7 @@
       "description_id": "24a6978e",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "304c64d5ddfd93593c8aa4e9f10b34fe7d2e7e3634c6e64465b3be292029775c",
           "line": 9,
           "resource_type": "n/a",
@@ -542,6 +587,7 @@
       "severity": "LOW",
       "platform": "CloudFormation",
       "cwe": "326",
+      "risk_score": "2.0",
       "cloud_provider": "AWS",
       "category": "Secret Management",
       "experimental": false,
@@ -549,7 +595,7 @@
       "description_id": "d78bb871",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "fc5fc7cf72f42a639c6caf58ea2cdefd05811c7487abf44c401ad15225634ead",
           "line": 270,
           "resource_type": "AWS::SecretsManager::Secret",
@@ -570,6 +616,7 @@
       "severity": "INFO",
       "platform": "CloudFormation",
       "cwe": "710",
+      "risk_score": "0.0",
       "cloud_provider": "AWS",
       "category": "Best Practices",
       "experimental": false,
@@ -577,40 +624,40 @@
       "description_id": "f7c62b11",
       "files": [
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
-          "line": 35,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupALBports",
-          "issue_type": "MissingAttribute",
-          "search_key": "Resources.EcsSecurityGroupALBports.Properties",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description should be set",
-          "actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
           "line": 19,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
           "resource_name": "EcsSecurityGroupHTTPinbound02",
           "issue_type": "MissingAttribute",
           "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-          "search_line": -1,
+          "search_line": 19,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description should be set",
           "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
         },
         {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
+          "line": 35,
+          "resource_type": "AWS::EC2::SecurityGroupIngress",
+          "resource_name": "EcsSecurityGroupALBports",
+          "issue_type": "MissingAttribute",
+          "search_key": "Resources.EcsSecurityGroupALBports.Properties",
+          "search_line": 35,
+          "search_value": "",
+          "expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description should be set",
+          "actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
+        },
+        {
+          "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "95883c9f983adb8f547c54e24837b6aa402978a00417be98441514959d4171d4",
           "line": 27,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
           "resource_name": "EcsSecurityGroupSSHinbound",
           "issue_type": "MissingAttribute",
           "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-          "search_line": -1,
+          "search_line": 27,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
           "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"

@@ -11,7 +11,7 @@ CxPolicy[result] {
 	listKinds := ["Job", "CronJob"]
 	not k8sLib.checkKind(document.kind, listKinds)
 
-	container := specInfo.spec.containers[_]
+	container := specInfo.spec.containers[c]
 	not common_lib.valid_key(container, "readinessProbe")
 
 	result := {
@@ -20,7 +20,9 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.containers.name={{%s}}", [metadata.name, specInfo.path, container.name]),
 		"issueType": "MissingAttribute",
+		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.containers.name={{%s}}.readinessProbe should be defined", [metadata.name, specInfo.path, container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.containers.name={{%s}}.readinessProbe is undefined", [metadata.name, specInfo.path, container.name]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["containers", c]),
 	}
 }

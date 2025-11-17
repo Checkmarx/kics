@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Beta - TKE Cluster Encryption Protection Disabled",
+    "queryName": "TKE Cluster Encryption Protection Disabled",
     "severity": "HIGH",
     "line": 6,
     "fileName": "positive1.tf"

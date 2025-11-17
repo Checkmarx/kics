@@ -1,0 +1,19 @@
+- name: positive1
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Create ECS service with network configuration
+      community.aws.ecs_service:
+        state: present
+        name: example-public-ip-service
+        cluster: my-ecs-cluster
+        task_definition: my-task-def:1
+        desired_count: 2
+        launch_type: FARGATE
+        network_configuration:
+          subnets:
+            - subnet-aaaa1111
+            - subnet-bbbb2222
+          security_groups:
+            - sg-cccc3333
+          assign_public_ip: true

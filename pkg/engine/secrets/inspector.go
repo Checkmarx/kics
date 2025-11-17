@@ -506,6 +506,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 	simID, err := similarity.ComputeSimilarityID(
 		basePaths,
 		file.FilePath,
+		"",
 		query.ID,
 		fmt.Sprintf("%d", lineNumber),
 		"",
@@ -529,6 +530,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				IssueType:        "RedundantAttribute",
 				Platform:         SecretsQueryMetadata["platform"],
 				CWE:              SecretsQueryMetadata["cwe"],
+				RiskScore:        SecretsQueryMetadata["riskScore"],
 				Severity:         model.SeverityHigh,
 				QueryURI:         SecretsQueryMetadata["descriptionUrl"],
 				Category:         SecretsQueryMetadata["category"],

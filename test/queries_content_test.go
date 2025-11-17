@@ -44,22 +44,6 @@ var (
 		"resourceName",
 	}
 
-	searchValueAllowedQueriesPath = []string{
-		"../assets/queries/ansible/azure/sensitive_port_is_exposed_to_entire_network",
-		"../assets/queries/cloudFormation/aws/ec2_sensitive_port_is_publicly_exposed",
-		"../assets/queries/cloudFormation/aws/elb_sensitive_port_is_exposed_to_entire_network",
-		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_entire_network",
-		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_small_public_network",
-		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_entire_network",
-		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_small_public_network",
-		"../assets/queries/dockerfile/apt_get_install_pin_version_not_defined",
-		"../assets/queries/terraform/aws/redshift_cluster_without_vpc",
-		"../assets/queries/openAPI/general/response_code_missing",
-		"../assets/queries/cicd/github/run_block_injection",
-		"../assets/queries/cicd/github/script_block_injection",
-		"../assets/queries/azureResourceManager/key_vault_not_recoverable",
-	}
-
 	// TODO uncomment this test once all metadata are fixed
 	availablePlatforms = initPlatforms()
 	platformKeys       = MapToStringSlice(availablePlatforms)
@@ -117,6 +101,11 @@ var (
 				}
 			}
 		},
+		"riskScore": func(tb testing.TB, value interface{}, metadataPath string) {
+			riskScoreValue := testMetadataFieldStringType(tb, value, "riskScore", metadataPath)
+			require.NotEmpty(tb, riskScoreValue, "empty riskScore in query metadata file %s", metadataPath)
+			require.Regexp(tb, `^-?\d+\.\d$`, riskScoreValue, "invalid riskScore format in query metadata file %s (expected format: 'X.X' or '-X.X')", metadataPath)
+		},
 	}
 )
 
@@ -171,7 +160,21 @@ func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
 	for _, negativeFile := range entry.NegativeFiles(t) {
 		require.FileExists(t, negativeFile)
 	}
-	require.FileExists(t, entry.ExpectedPositiveResultFile())
+	require.FileExists(t, entry.ExpectedPositiveResultFile("test"))
+
+	for positiveDirectory, positiveFiles := range entry.PositiveDirectories(t) {
+		require.True(t, len(positiveFiles) > 1, "Not enough positive samples found for query %s in directory %s", entry.dir, positiveDirectory)
+		for _, positiveFile := range positiveFiles {
+			require.FileExists(t, positiveFile)
+		}
+		require.FileExists(t, entry.ExpectedPositiveResultFile("test/"+positiveDirectory))
+	}
+	for negativeDirectory, negativeFiles := range entry.NegativeDirectories(t) {
+		require.True(t, len(negativeFiles) > 1, "Not enough negative samples found for query %s in directory %s", entry.dir, negativeDirectory)
+		for _, negativeFile := range negativeFiles {
+			require.FileExists(t, negativeFile)
+		}
+	}
 }
 
 func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
@@ -201,7 +204,8 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
-		func(ctx *engine.QueryContext, trk engine.Tracker, v interface{}, detector *detector.DetectLine, useOldSeverities bool, kicsComputeNewSimID bool) (*model.Vulnerability, error) {
+		func(ctx *engine.QueryContext, trk engine.Tracker, v interface{}, detector *detector.DetectLine, useOldSeverities bool, kicsComputeNewSimID bool,
+			kicsMigrationQueryInfo map[string]engine.TransitionQueryInfo) (*model.Vulnerability, error) {
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
@@ -221,22 +225,6 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 					"query '%s' doesn't include parameter '%s' in response",
 					path.Base(entry.dir),
 					requiredProperty,
-				))
-			}
-
-			if sliceContains(searchValueAllowedQueriesPath, filepath.ToSlash(entry.dir)) {
-				_, ok := m[searchValueProperty]
-				require.True(t, ok, fmt.Sprintf(
-					"query '%s' doesn't include parameter '%s' in response",
-					path.Base(entry.dir),
-					searchValueProperty,
-				))
-			} else {
-				_, ok := m[searchValueProperty]
-				require.False(t, ok, fmt.Sprintf(
-					"query '%s' should not include parameter '%s' in response",
-					path.Base(entry.dir),
-					searchValueProperty,
 				))
 			}
 

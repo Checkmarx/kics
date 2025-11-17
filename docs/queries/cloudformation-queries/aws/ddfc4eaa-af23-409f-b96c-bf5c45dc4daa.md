@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/668.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/668.html')">668</a>
+-   **Risk score:** <span style="color:#ff7213">4.9</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/http_port_open)
 
 ### Description
@@ -29,7 +30,7 @@ The HTTP port is open to the internet in a Security Group<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Positive test num. 1 - yaml file" hl_lines="10 11"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="9"
 Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -44,7 +45,7 @@ Resources:
           CidrIp: 0.0.0.0/0
 
 ```
-```json title="Positive test num. 2 - json file" hl_lines="13 14"
+```json title="Positive test num. 2 - json file" hl_lines="12"
 {
   "Resources": {
     "InstanceSecurityGroup": {
@@ -66,6 +67,21 @@ Resources:
     }
   }
 }
+
+```
+```yaml title="Positive test num. 3 - yaml file" hl_lines="9"
+Resources:
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Allow http to client host
+        VpcId:
+          Ref: myVPC
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 70
+          ToPort: 90
+          CidrIp: 0.0.0.0/0
 
 ```
 
@@ -110,3 +126,4 @@ Resources:
 }
 
 ```
+

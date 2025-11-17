@@ -5,78 +5,75 @@ resource "kubernetes_pod" "negative3" {
   }
 
   spec {
+    container {
+      image = "nginx:1.7.9"
+      name  = "example"
 
-    container =  [
-      {
-        image = "nginx:1.7.9"
-        name  = "example"
-
-        security_context = {
-          capabilities = {
-            drop = ["ALL"]
-          }
-        }
-
-        env = {
-          name  = "environment"
-          value = "test"
-        }
-
-        port = {
-          container_port = 8080
-        }
-
-        liveness_probe = {
-          http_get = {
-            path = "/nginx_status"
-            port = 80
-
-            http_header = {
-              name  = "X-Custom-Header"
-              value = "Awesome"
-            }
-          }
-
-          initial_delay_seconds = 3
-          period_seconds        = 3
-        }
-      },
-
-      {
-        image = "nginx:1.7.9"
-        name  = "example2"
-
-        security_context = {
-          capabilities = {
-            drop = ["ALL"]
-          }
-        }
-
-        env = {
-          name  = "environment"
-          value = "test"
-        }
-
-        port = {
-          container_port = 8080
-        }
-
-        liveness_probe = {
-          http_get = {
-            path = "/nginx_status"
-            port = 80
-
-            http_header = {
-              name  = "X-Custom-Header"
-              value = "Awesome"
-            }
-          }
-
-          initial_delay_seconds = 3
-          period_seconds        = 3
+      security_context {
+        capabilities {
+          drop = ["ALL"]
         }
       }
-    ]
+
+      env {
+        name  = "environment"
+        value = "test"
+      }
+
+      port {
+        container_port = 8080
+      }
+
+      liveness_probe {
+        http_get {
+          path = "/nginx_status"
+          port = 80
+
+          http_header {
+            name  = "X-Custom-Header"
+            value = "Awesome"
+          }
+        }
+
+        initial_delay_seconds = 3
+        period_seconds        = 3
+      }
+    }
+
+    container {
+      image = "nginx:1.7.9"
+      name  = "example2"
+
+      security_context {
+        capabilities {
+          drop = ["ALL"]
+        }
+      }
+
+      env {
+        name  = "environment"
+        value = "test"
+      }
+
+      port {
+        container_port = 8080
+      }
+
+      liveness_probe {
+        http_get {
+          path = "/nginx_status"
+          port = 80
+
+          http_header {
+            name  = "X-Custom-Header"
+            value = "Awesome"
+          }
+        }
+
+        initial_delay_seconds = 3
+        period_seconds        = 3
+      }
+    }
 
     dns_config {
       nameservers = ["1.1.1.1", "8.8.8.8", "9.9.9.9"]
@@ -95,8 +92,6 @@ resource "kubernetes_pod" "negative3" {
     dns_policy = "None"
   }
 }
-
-
 
 resource "kubernetes_pod" "negative4" {
   metadata {
@@ -138,7 +133,6 @@ resource "kubernetes_pod" "negative4" {
         period_seconds        = 3
       }
     }
-
 
     dns_config {
       nameservers = ["1.1.1.1", "8.8.8.8", "9.9.9.9"]

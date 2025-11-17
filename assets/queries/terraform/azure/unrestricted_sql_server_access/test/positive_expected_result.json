@@ -2,11 +2,109 @@
   {
     "queryName": "Unrestricted SQL Server Access",
     "severity": "CRITICAL",
-    "line": 19
+    "line": 19,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
     "severity": "CRITICAL",
-    "line": 27
+    "line": 27,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 35,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 19,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 26,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 33,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 25,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 33,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 41,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 25,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 33,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 42,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 20,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 27,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 35,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 20,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 27,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "Unrestricted SQL Server Access",
+    "severity": "CRITICAL",
+    "line": 35,
+    "fileName": "positive6.tf"
   }
 ]
