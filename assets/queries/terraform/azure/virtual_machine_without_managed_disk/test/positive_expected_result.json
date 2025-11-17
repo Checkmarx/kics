@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Beta - Virtual Machine Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Virtual Machine Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Virtual Machine Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 34,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Virtual Machine Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Virtual Machine Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf"
+  }
+]
