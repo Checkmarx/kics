@@ -1,0 +1,14 @@
+{
+  "id": "99b47957-c575-4555-b8c0-ff92384249b4",
+  "queryName": "Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture 'create or update public ip address rule' events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_activity_log_alert",
+  "platform": "Terraform",
+  "descriptionID": "99b47957",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
