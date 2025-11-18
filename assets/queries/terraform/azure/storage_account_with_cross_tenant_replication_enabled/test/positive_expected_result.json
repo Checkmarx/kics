@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Beta - Storage Account With Cross Tenant Replication Enabled",
+    "severity": "MEDIUM",
+    "line": 8
+  }
+]
