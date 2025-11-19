@@ -1,0 +1,14 @@
+{
+  "id": "8895abb4-6491-4ae6-9c33-c2f360752b7a",
+  "queryName": "Beta - SQL DB Instance Without Disconnections Logging",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "All 'google_sql_database_instance' resources based on POSTGRES should enable the 'log_disconnections' flag to log disconnections",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "8895abb4",
+  "cloudProvider": "gcp",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
