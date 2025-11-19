@@ -19,7 +19,7 @@ resource "azurerm_managed_disk" "positive2" {
   create_option        = "Empty"
   disk_size_gb         = "1"
 
-  #missing "encryption_settings"
+  # missing "encryption_settings"
 }
 
 resource "azurerm_managed_disk" "positive3" {

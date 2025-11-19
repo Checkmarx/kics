@@ -7,7 +7,7 @@ resource "azurerm_managed_disk" "negative1" {
   create_option        = "Empty"
   disk_size_gb         = "1"
 
-  encryption_settings = {
+  encryption_settings {
       enabled = true    # legacy
   }
 }
@@ -20,15 +20,18 @@ resource "azurerm_managed_disk" "negative2" {
   create_option        = "Empty"
   disk_size_gb         = "1"
 
-  encryption_settings = {
+  encryption_settings {
+
     disk_encryption_key {
       secret_url = "sample_url"
       source_vault_id = "sample_id"
-    },
+    }
+
     key_encryption_key {
       secret_url = "sample_url"
       source_vault_id = "sample_id"
     }
+
   }
 }
 
@@ -40,7 +43,7 @@ resource "azurerm_managed_disk" "negative3" {
   create_option        = "Empty"
   disk_size_gb         = "1"
 
-  encryption_settings = {
+  encryption_settings {
     disk_encryption_key {
       secret_url = "sample_url"
       source_vault_id = "sample_id"
@@ -56,7 +59,7 @@ resource "azurerm_managed_disk" "negative4" {
   create_option        = "Empty"
   disk_size_gb         = "1"
 
-  encryption_settings = {
+  encryption_settings {
     key_encryption_key {
       secret_url = "sample_url"
       source_vault_id = "sample_id"
