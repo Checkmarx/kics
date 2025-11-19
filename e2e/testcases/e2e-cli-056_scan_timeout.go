@@ -19,7 +19,9 @@ func init() { //nolint
 		WantStatus: []int{50, 50, 126},
 		Validation: func(outputText string) bool {
 			matchTimeoutLog, _ := regexp.MatchString("Query execution timeout=(0|1|12)s", outputText)
-			return matchTimeoutLog
+			// Check for validation error (for invalid timeout=0)
+			matchValidationError, _ := regexp.MatchString("invalid argument --timeout: value must be greater than 0", outputText)
+			return matchTimeoutLog || matchValidationError
 		},
 	}
 
