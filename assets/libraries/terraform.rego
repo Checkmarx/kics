@@ -13,21 +13,26 @@ check_cidr(rule) {
 } else {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 } else {
+<<<<<<< HEAD
 	rule.cidr_ipv6 == common_lib.unrestricted_ipv6[_]
 } 
+=======
+	rule.cidr_ipv6 == unrestricted_ipv6[_]
+}
+>>>>>>> 5207c1560c33f869ef65c555289945f473e89418
 
 is_security_group_ingress(type,resource) {
 	type == "aws_security_group_rule"
 	resource.type == "ingress"
 } else {
 	type == "aws_vpc_security_group_ingress_rule"
-} 
+}
 
 cidr_sources := [
-		"cidr_blocks",                 
-		"ipv6_cidr_blocks",    
-		"cidr_ipv4",                 
-		"cidr_ipv6"          
+		"cidr_blocks",
+		"ipv6_cidr_blocks",
+		"cidr_ipv4",
+		"cidr_ipv6"
 	]
 
 cidr_is_unmasked(resource) {
@@ -41,7 +46,7 @@ cidr_is_unmasked(resource) {
 prot_types := ["protocol","ip_protocol"]
 open_port := ["all","-1"]
 
-# Checks if a TCP port is open 
+# Checks if a TCP port is open
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
 	rule[prot_types[_]] == "tcp"
