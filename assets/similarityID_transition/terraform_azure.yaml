@@ -3,3 +3,7 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: dafe30ec-325d-4516-85d1-e8e6776f012c
+      queryName: Azure Instance Using Basic Authentication
+      observations: ""
+      change: 1
