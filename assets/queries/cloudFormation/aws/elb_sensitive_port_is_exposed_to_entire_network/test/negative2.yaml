@@ -1,12 +1,8 @@
 # Test classic load balancing - LoadBalancer security groups with stand alone ingresses
 Resources:
   LoadBalancer01:
-    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      Listeners:
-        - LoadBalancerPort: 80
-          InstancePort: 80
-          Protocol: HTTP
       SecurityGroups:
         - !Ref Negative2SecurityGroup
 
@@ -40,8 +36,8 @@ Resources:
     Properties:
       GroupId: !Ref Negative2SecurityGroup
       IpProtocol: "udp"
-      FromPort: 22
-      ToPort: 22
+      FromPort: 137
+      ToPort: 137
       CidrIp: "8.8.0.0/16"  # incorrect cidr (not exposed)
 
   Negative2IPv4Ingress4:
@@ -77,8 +73,8 @@ Resources:
     Properties:
       GroupId: !Ref Negative2SecurityGroup
       IpProtocol: "udp"
-      FromPort: 22
-      ToPort: 22
+      FromPort: 137
+      ToPort: 137
       CidrIpv6: "2400:cb00::/32"  # incorrect cidr (not exposed)
 
   Negative2IPv6Ingress4:

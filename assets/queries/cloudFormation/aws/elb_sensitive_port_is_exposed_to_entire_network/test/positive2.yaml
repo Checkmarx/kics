@@ -2,10 +2,6 @@ Resources:
   LoadBalancer01:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      Listeners:
-        - LoadBalancerPort: 80
-          InstancePort: 80
-          Protocol: HTTP
       SecurityGroups:
         - !Ref DualStackSecurityGroup
 
@@ -21,8 +17,8 @@ Resources:
     Properties:
       GroupId: !Ref DualStackSecurityGroup
       IpProtocol: "17"
-      FromPort: 22
-      ToPort: 22
+      FromPort: 137
+      ToPort: 137
       CidrIp: "10.0.0.0/0"
 
   IPv4Ingress2:
@@ -39,8 +35,8 @@ Resources:
     Properties:
       GroupId: !Ref DualStackSecurityGroup
       IpProtocol: "udp"
-      FromPort: 22
-      ToPort: 22
+      FromPort: 137
+      ToPort: 137
       CidrIp: "172.16.0.0/0"
 
   IPv4Ingress4:
@@ -48,8 +44,8 @@ Resources:
     Properties:
       GroupId: !Ref DualStackSecurityGroup
       IpProtocol: "udp"
-      FromPort: 110
-      ToPort: 110
+      FromPort: 138
+      ToPort: 138
       CidrIp: "172.16.0.0/0"
 
 # IPv6 Rules
@@ -76,8 +72,8 @@ Resources:
     Properties:
       GroupId: !Ref DualStackSecurityGroup
       IpProtocol: "udp"
-      FromPort: 22
-      ToPort: 22
+      FromPort: 137
+      ToPort: 137
       CidrIpv6: "fd00:abcd:1234::42/0"
 
   IPv6Ingress4:
@@ -85,6 +81,6 @@ Resources:
     Properties:
       GroupId: !Ref DualStackSecurityGroup
       IpProtocol: "udp"
-      FromPort: 110
-      ToPort: 110
+      FromPort: 138
+      ToPort: 138
       CidrIpv6: "fd00:abcd:1234::42/0"

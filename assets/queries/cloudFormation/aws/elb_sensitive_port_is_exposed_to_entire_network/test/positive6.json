@@ -1,123 +1,41 @@
 {
   "Resources": {
-    "LoadBalancer01": {
+    "GatewayLoadBalancer": {
       "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
       "Properties": {
-        "Listeners": [
-          {
-            "LoadBalancerPort": 80,
-            "InstancePort": 80,
-            "Protocol": "HTTP"
-          }
-        ],
+        "Instances": [
+          { "Ref": "EC2Instance01" }
+        ]
+      }
+    },
+    "EC2Instance01": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "t3.2xlarge",
         "SecurityGroups": [
-          { "Ref": "Positive1IPv4_1" },
-          { "Ref": "Positive1IPv4_2" },
-          { "Ref": "Positive1ArrayTestIPv4" },
-          { "Ref": "Positive1IPv6_1" },
-          { "Ref": "Positive1IPv6_2" },
-          { "Ref": "Positive1ArrayTestIPv6" }
-        ]
+          { "Ref": "InstancesSecGroup" }
+        ],
+        "KeyName": "my-rsa-key",
+        "ImageId": "ami-79fd7eee"
       }
     },
-    "Positive1IPv4_1": {
+    "InstancesSecGroup": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "Allow all protocols on all ports from 10.0.0.0/0",
-        "SecurityGroupIngress": [
-          {
-            "IpProtocol": "-1",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIp": "10.0.0.0/0"
-          }
-        ]
-      }
-    },
-    "Positive1IPv4_2": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "Port 22 on TCP",
-        "SecurityGroupIngress": [
-          {
-            "IpProtocol": "6",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIp": "192.168.0.0/0"
-          }
-        ]
-      }
-    },
-    "Positive1ArrayTestIPv4": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "Ports 22 and 110 on UDP",
-        "SecurityGroupIngress": [
-          {
-            "IpProtocol": "17",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIp": "172.16.0.0/0"
-          },
-          {
-            "IpProtocol": "udp",
-            "FromPort": 110,
-            "ToPort": 110,
-            "CidrIp": "10.68.0.0"
-          },
-          {
-            "IpProtocol": "udp",
-            "FromPort": 110,
-            "ToPort": 110,
-            "CidrIp": "172.16.0.0/0"
-          }
-        ]
-      }
-    },
-    "Positive1IPv6_1": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "Allow all ports on all protocols",
-        "SecurityGroupIngress": [
-          {
-            "IpProtocol": "6",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIpv6": "fd00::/0"
-          }
-        ]
-      }
-    },
-    "Positive1IPv6_2": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "Allow port 22 on TCP",
+        "GroupDescription": "Allow http and ssh",
+        "VpcId": "my-vpc",
         "SecurityGroupIngress": [
           {
             "IpProtocol": "tcp",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIpv6": "fd12:3456:789a::1/0"
-          }
-        ]
-      }
-    },
-    "Positive1ArrayTestIPv6": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "Allow ports 22 and 110 on UDP",
-        "SecurityGroupIngress": [
-          {
-            "IpProtocol": "udp",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIpv6": "fd00:abcd:1234::42/0"
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "127.0.0.1/32"
           },
           {
-            "IpProtocol": "udp",
-            "FromPort": 110,
-            "ToPort": 110,
-            "CidrIpv6": "fd00:abcd:1234::42/0"
+            "IpProtocol": "tcp",
+            "FromPort": 636,
+            "ToPort": 636,
+            "CidrIp": "127.0.0.1/0"
           }
         ]
       }

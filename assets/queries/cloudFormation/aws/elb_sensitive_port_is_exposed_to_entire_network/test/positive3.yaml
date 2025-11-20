@@ -1,8 +1,4 @@
 # Test for classic load balancing Referencing Vulnerable "AWS::EC2::Instance"
-Parameters:
-  MySubnet:
-    Description: "My subnet"
-    Type: List<String>
 Resources:
   GatewayLoadBalancer:
     Type: AWS::ElasticLoadBalancing::LoadBalancer

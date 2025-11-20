@@ -3,10 +3,6 @@ Resources:
   LoadBalancer01:
     Type: AWS::ElasticLoadBalancing::LoadBalancer
     Properties:
-      Listeners:
-        - LoadBalancerPort: 80
-          InstancePort: 80
-          Protocol: HTTP
       SecurityGroups:
         - !Ref Negative1IPv4_1
         - !Ref Negative1IPv4_2
@@ -46,8 +42,8 @@ Resources:
       SecurityGroupIngress:
       # incorrect cidr (not exposed)
         - IpProtocol: "udp"
-          FromPort: 22
-          ToPort: 22
+          FromPort: 137
+          ToPort: 137
           CidrIp: "8.8.0.0/16"
       # all fields "incorrect"
         - IpProtocol: "icmp"
@@ -82,8 +78,8 @@ Resources:
       GroupDescription: "Mixed incorrect CIDR and 'All incorrect'"
       SecurityGroupIngress:
         - IpProtocol: "udp"
-          FromPort: 22
-          ToPort: 22
+          FromPort: 137
+          ToPort: 137
           CidrIpv6: "2400:cb00::/32"  # incorrect cidr (not exposed)
         - IpProtocol: "58"   # all fields "incorrect"
           FromPort: 110
