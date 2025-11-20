@@ -1096,5 +1096,11 @@
     "severity": "HIGH",
     "line": 90,
     "fileName": "positive5.json"
+  },
+  {
+    "queryName": "ELB Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 35,
+    "fileName": "positive6.json"
   }
 ]

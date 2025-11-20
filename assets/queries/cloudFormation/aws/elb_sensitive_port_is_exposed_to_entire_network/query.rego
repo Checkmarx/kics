@@ -61,8 +61,8 @@ lb_instance_is_associated_with_sec_group(elb, sec_group_name, ec2InstanceList) {
 	cf_lib.get_name(elb.Properties.SecurityGroups[_]) == sec_group_name
 } else {																		# classic elb
 	ec2Instance := ec2InstanceList[name]
-	cf_lib.get_name(elb.Properties.Instances[_]) == name					# elb - instance
-	sec_group_name == ec2Instance.Properties.SecurityGroups[_]				# intance - sec group
+	cf_lib.get_name(ec2Instance.Properties.SecurityGroups[_]) == sec_group_name		# intance - sec group
+	cf_lib.get_name(elb.Properties.Instances[_]) == name							# elb - instance
 }
 
 get_sensitive_ports(ingress) = ports {
