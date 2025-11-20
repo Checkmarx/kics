@@ -13,13 +13,8 @@ check_cidr(rule) {
 } else {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 } else {
-<<<<<<< HEAD
 	rule.cidr_ipv6 == common_lib.unrestricted_ipv6[_]
-} 
-=======
-	rule.cidr_ipv6 == unrestricted_ipv6[_]
 }
->>>>>>> 5207c1560c33f869ef65c555289945f473e89418
 
 is_security_group_ingress(type,resource) {
 	type == "aws_security_group_rule"
