@@ -7,11 +7,12 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	"github.com/Checkmarx/kics/v2/pkg/analyzer"
 	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
-	"github.com/stretchr/testify/require"
 )
 
 func Test_GetQueryPath(t *testing.T) {
@@ -169,7 +170,7 @@ func Test_GetTotalFiles(t *testing.T) {
 		{
 			name:           "count utils folder files",
 			paths:          []string{filepath.Join("..", "..", "pkg", "utils")},
-			expectedOutput: 17,
+			expectedOutput: 19,
 		},
 		{
 			name:           "count progress folder files",
@@ -179,7 +180,7 @@ func Test_GetTotalFiles(t *testing.T) {
 		{
 			name:           "count progress and utils folder files",
 			paths:          []string{filepath.Join("..", "..", "pkg", "progress"), filepath.Join("..", "..", "pkg", "utils")},
-			expectedOutput: 23,
+			expectedOutput: 25,
 		},
 		{
 			name:           "count invalid folder",
