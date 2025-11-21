@@ -1,0 +1,14 @@
+{
+  "id": "8ce5c61f-5cd1-41bc-b7d9-b26b18efd505",
+  "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture 'delete SQL server firewall rule' events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_activity_log_alert",
+  "platform": "Terraform",
+  "descriptionID": "8ce5c61f",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
