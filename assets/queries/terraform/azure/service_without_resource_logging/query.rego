@@ -15,6 +15,8 @@ CxPolicy[result] {
 		contains(diagnosticResource.target_resource_id, concat(".", [resources[r], name, "id"]))
 	}) == 0
 
+	not storage_account_without_data_lake(resources[r], resource, name)
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resources[r],
@@ -26,3 +28,8 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", resources[r], name], [])
 	}
 }
+
+storage_account_without_data_lake("azurerm_storage_account", resource, name) = false {
+	storage_data_lake := input.document[_].resource["azurerm_storage_data_lake_gen2_filesystem"][_]
+	contains(storage_data_lake.storage_account_id, concat(".", ["azurerm_storage_account", name, "id"]))
+} else = true

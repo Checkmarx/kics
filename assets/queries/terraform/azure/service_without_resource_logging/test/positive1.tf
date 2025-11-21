@@ -47,6 +47,11 @@ resource "azurerm_storage_account" "positive1_6" {
   account_replication_type = "GRS"
 }
 
+resource "azurerm_storage_data_lake_gen2_filesystem" "positive1_6" {
+  name               = "positive1_6"
+  storage_account_id = azurerm_storage_account.positive1_6.id
+}
+
 resource "azurerm_iothub" "positive1_7" {
   name                         = "positive1_7-IoTHub"
   resource_group_name          = azurerm_resource_group.positive1_7.name
