@@ -3,3 +3,7 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 0745bb3f-60dc-43b6-90ae-67bb01fd1775
+      queryName: Beta - SQL Database Without Data Encryption
+      observations: ""
+      change: 2
