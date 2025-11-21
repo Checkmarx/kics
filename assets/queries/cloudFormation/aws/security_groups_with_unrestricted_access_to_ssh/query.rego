@@ -1,33 +1,30 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
-	document := input.document
-	resources := document[i].Resources[name]
-	port := 22
+	resource := input.document[i].Resources[sec_group_name]
+	resource.Type == "AWS::EC2::SecurityGroup"
 
-	check_security_groups_ingress(resources.Properties, port)
+	ingresses_with_names := cf_lib.search_for_standalone_ingress(sec_group_name, input.document[y])
+
+	ingress_list := array.concat(ingresses_with_names.ingress_list, common_lib.get_array_if_exists(resource.Properties,"SecurityGroupIngress"))
+	ingress := ingress_list[ing_index]
+
+	cf_lib.entireNetwork(ingress)
+	cf_lib.isTCP_and_port_exposed(ingress, 22)
+
+	results := cf_lib.get_search_values_for_ingress_resources(ing_index, sec_group_name, ingresses_with_names.names, y, i)
 
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resources.Type,
-		"resourceName": cf_lib.get_resource_name(resources, name),
-		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [name]),
+		"documentId": input.document[results.doc_index].id,
+		"resourceType": results.type,
+		"resourceName": cf_lib.get_resource_name(resource, sec_group_name),
+		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("None of the Resources.%s.Properties.SecurityGroupIngress has port %d", [name, port]),
-		"keyActualValue": sprintf("One of the Resources.%s.Properties.SecurityGroupIngress has port %d", [name, port]),
+		"keyExpectedValue": sprintf("'%s' should not open the SSH port (22)", [results.searchKey]),
+		"keyActualValue": sprintf("'%s' opens the SSH port (22)", [results.searchKey]),
+		"searchLine": results.searchLine,
 	}
-}
-
-check_security_groups_ingress(group, port) {
-	some j
-	group.SecurityGroupIngress[j].CidrIp == "0.0.0.0/0"
-	group.SecurityGroupIngress[j].FromPort == port
-}
-
-check_security_groups_ingress(group, port) {
-	some j
-	group.SecurityGroupIngress[j].CidrIp == "0.0.0.0/0"
-	group.SecurityGroupIngress[j].ToPort == port
 }
