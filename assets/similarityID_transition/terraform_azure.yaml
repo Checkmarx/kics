@@ -3,3 +3,7 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 9bf1568d-4cd2-4581-81ef-d2efabee1178
+      queryName: Beta - Storage Account Without CMK
+      observations: ""
+      change: 2
