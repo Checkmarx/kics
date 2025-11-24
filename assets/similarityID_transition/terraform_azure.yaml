@@ -7,3 +7,7 @@ similarityIDChangeList:
       queryName: Beta - Databricks Workspace Using Default Virtual Network
       observations: ""
       change: 2
+    - queryId: d501246e-45d4-48fd-8975-a23e7124bdfc
+      queryName: Beta - Redis Cache Managed Identity Is Not Set To System Assigned
+      observations: ""
+      change: 2
