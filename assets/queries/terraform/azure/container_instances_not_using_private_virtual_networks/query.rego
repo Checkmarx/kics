@@ -3,8 +3,6 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-# target fields: subnet_ids and ip_address_type on the azurerm_container_group 
-
 CxPolicy[result] {
     resource := input.document[i].resource.azurerm_container_group[name]
 
