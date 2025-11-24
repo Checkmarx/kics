@@ -3,3 +3,7 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 50f32d3c-096e-406a-bb26-71b3c91c11c0
+      queryName: Beta - Resource Without Diagnostic Settings
+      observations: ""
+      change: 2
