@@ -1,17 +1,14 @@
 [
   {
-    "queryName": "",
-    "severity": "",
-    "line":
+    "queryName": "Beta - Storage Account Without CMK",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
   },
   {
-    "queryName": "",
-    "severity": "",
-    "line":
-  },
-  {
-    "queryName": "",
-    "severity": "",
-    "line":
+    "queryName": "Beta - Storage Account Without CMK",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
   }
 ]
