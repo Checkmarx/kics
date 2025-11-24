@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-# field project defined inside the google_compute_network_resource
+# field project defined inside the google_compute_network resource
 CxPolicy[result] {
     project := input.document[i].resource.google_project[name_gp]
     compute_network := input.document[i].resource.google_compute_network[name_comp_network]
