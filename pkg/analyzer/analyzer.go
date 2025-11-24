@@ -155,13 +155,6 @@ type analyzerInfo struct {
 	fallbackMinifiedFileLOC int
 }
 
-// fileTypeInfo contains file path, detected platform type, and LOC count
-type fileTypeInfo struct {
-	filePath string
-	fileType string
-	locCount int
-}
-
 // Analyzer keeps all the relevant info for the function Analyze
 type Analyzer struct {
 	Paths                   []string
@@ -325,7 +318,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		Types:       make([]string, 0),
 		Exc:         make([]string, 0),
 		ExpectedLOC: 0,
-		FileStats:   make(map[string]model.FileStatistics),
 	}
 
 	var files []string
@@ -333,7 +325,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// results is the channel shared by the workers that contains the types found
 	results := make(chan string)
 	locCount := make(chan int)
-	fileInfo := make(chan fileTypeInfo)
 	ignoreFiles := make([]string, 0)
 	projectConfigFiles := make([]string, 0)
 	done := make(chan bool)
@@ -383,7 +374,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			filePath:                file,
 			fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
 		}
-		go a.worker(results, unwanted, locCount, fileInfo, &wg)
+		go a.worker(results, unwanted, locCount, &wg)
 	}
 
 	go func() {
@@ -392,35 +383,27 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			close(unwanted)
 			close(results)
 			close(locCount)
-			close(fileInfo)
 		}()
 		wg.Wait()
 		done <- true
 	}()
 
-	availableTypes, unwantedPaths, loc, fileStats := computeValues(results, unwanted, locCount, fileInfo, done)
+	availableTypes, unwantedPaths, loc := computeValues(results, unwanted, locCount, done)
 	multiPlatformTypeCheck(&availableTypes)
 	unwantedPaths = append(unwantedPaths, ignoreFiles...)
 	unwantedPaths = append(unwantedPaths, projectConfigFiles...)
 	returnAnalyzedPaths.Types = availableTypes
 	returnAnalyzedPaths.Exc = unwantedPaths
 	returnAnalyzedPaths.ExpectedLOC = loc
-	returnAnalyzedPaths.FileStats = fileStats
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
 	return returnAnalyzedPaths, nil
 }
 
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
-// writes the answer to the results channel and file info for statistics
+// writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker( //nolint: gocyclo
-	results,
-	unwanted chan<- string,
-	locCount chan<- int,
-	fileInfo chan<- fileTypeInfo,
-	wg *sync.WaitGroup,
-) {
+func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) { //nolint: gocyclo
 	defer func() {
 		if err := recover(); err != nil {
 			log.Warn().Msgf("Recovered from analyzing panic for file %s with error: %#v", a.filePath, err.(error).Error())
@@ -439,14 +422,12 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 			if a.isAvailableType(dockerfile) {
 				results <- dockerfile
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
 			}
 		// Dockerfile (indirect identification)
 		case "possibleDockerfile", ".ubi8", ".debian":
 			if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
 				results <- dockerfile
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
 			} else {
 				unwanted <- a.filePath
 			}
@@ -455,34 +436,30 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 			if a.isAvailableType(terraform) {
 				results <- terraform
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: terraform, locCount: linesCount}
 			}
 		// Bicep
 		case ".bicep":
 			if a.isAvailableType(bicep) {
 				results <- arm
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: arm, locCount: linesCount}
 			}
 		// GRPC
 		case ".proto":
 			if a.isAvailableType(grpc) {
 				results <- grpc
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: grpc, locCount: linesCount}
 			}
 		// It could be Ansible Config or Ansible Inventory
 		case ".cfg", ".conf", ".ini":
 			if a.isAvailableType(ansible) {
 				results <- ansible
 				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: ansible, locCount: linesCount}
 			}
 		/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
 		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
 		We also have FHIR's case which will be ignored since it's not a platform file.*/
 		case yaml, yml, json, sh:
-			a.checkContent(results, unwanted, locCount, fileInfo, linesCount, ext)
+			a.checkContent(results, unwanted, locCount, linesCount, ext)
 		}
 	}
 }
@@ -523,14 +500,7 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func (a *analyzerInfo) checkContent(
-	results,
-	unwanted chan<- string,
-	locCount chan<- int,
-	fileInfo chan<- fileTypeInfo,
-	linesCount int,
-	ext string,
-) {
+func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount chan<- int, linesCount int, ext string) {
 	typesFlag := a.typesFlag
 	excludeTypesFlag := a.excludeTypesFlag
 	// get file content with UTF-16/UTF-8 detection
@@ -588,7 +558,6 @@ func (a *analyzerInfo) checkContent(
 
 	results <- returnType
 	locCount <- linesCount
-	fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: returnType, locCount: linesCount}
 }
 
 func checkReturnType(path, returnType, ext string, content []byte) string {
@@ -692,21 +661,10 @@ func checkForAnsibleHost(yamlContent model.Document) bool {
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
 // and creates the types and unwanted slices from the channels removing any duplicates
-// also collects file statistics for memory calculation
-func computeValues(
-	types,
-	unwanted chan string,
-	locCount chan int,
-	fileInfo chan fileTypeInfo,
-	done chan bool,
-) (typesS, unwantedS []string, locTotal int, stats map[string]model.FileStatistics) {
+func computeValues(types, unwanted chan string, locCount chan int, done chan bool) (typesS, unwantedS []string, locTotal int) {
 	var val int
 	unwantedSlice := make([]string, 0)
 	typeSlice := make([]string, 0)
-	stats = make(map[string]model.FileStatistics)
-
-	platformFilesInfo := make(map[string][]fileTypeInfo)
-
 	for {
 		select {
 		case i := <-locCount:
@@ -719,28 +677,8 @@ func computeValues(
 			if !utils.Contains(i, typeSlice) {
 				typeSlice = append(typeSlice, i)
 			}
-		case info := <-fileInfo:
-			platformFilesInfo[info.fileType] = append(platformFilesInfo[info.fileType], info)
 		case <-done:
-			for platformType, filesInfo := range platformFilesInfo {
-				dirMap := make(map[string]int)
-				totalLOC := 0
-
-				for _, fileInfo := range filesInfo {
-					dir := filepath.Dir(fileInfo.filePath)
-					dirMap[dir]++
-					totalLOC += fileInfo.locCount
-				}
-
-				stats[platformType] = model.FileStatistics{
-					FileCount:      len(filesInfo),
-					DirectoryCount: len(dirMap),
-					FilesByDir:     dirMap,
-					TotalLOC:       totalLOC,
-				}
-			}
-
-			return typeSlice, unwantedSlice, val, stats
+			return typeSlice, unwantedSlice, val
 		}
 	}
 }
