@@ -6,6 +6,8 @@ resource "azurerm_container_group" "negative" {
 
   ip_address_type = "Private"
 
+  subnet_ids=[module.subnets["snet_aci"].id]
+
   container {
     name   = "app"
     image  = "nginx"
