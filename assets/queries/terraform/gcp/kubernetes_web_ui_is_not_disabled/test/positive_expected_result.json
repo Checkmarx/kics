@@ -1,7 +1,7 @@
 [
   {
-    "queryName": "",
-    "severity": "",
+    "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
+    "severity": "LOW",
     "line": 8,
     "fileName": "positive.tf"
   }
