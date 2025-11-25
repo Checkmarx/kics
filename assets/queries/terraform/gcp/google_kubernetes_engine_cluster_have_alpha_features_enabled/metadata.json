@@ -3,7 +3,7 @@
   "queryName": "Beta - Google Kubernetes Engine Cluster Have Alpha Features Enabled",
   "severity": "LOW",
   "category": "Insecure Configurations",
-  "descriptionText": "Alpha clusters aore not covered by GKE SLA, do not receive security updates, have nodeauto-upgrade and node auto-repair disabled, and cannot be upgraded",
+  "descriptionText": "Alpha clusters are not covered by an SLA and are not production-ready",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
   "platform": "Terraform",
   "descriptionID": "8ca7e731",
