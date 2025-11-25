@@ -244,7 +244,7 @@ func scalarNodeResolver(val *yaml.Node) interface{} {
 	case "!!bool":
 		transformed = transformBoolScalarNode(val.Value)
 	case "!!int":
-		v, err := strconv.Atoi(val.Value)
+		v, err := strconv.ParseInt(val.Value, 0, 64)
 		if err != nil {
 			log.Error().Msgf("failed to convert integer in yaml parser")
 			return val.Value
