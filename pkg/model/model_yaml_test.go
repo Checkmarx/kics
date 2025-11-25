@@ -731,6 +731,26 @@ func TestDocument_UnmarshalYAML(t *testing.T) {
 							Tag:   "!!int",
 							Value: "0x18", // 24 in hexadecimal
 						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  6,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "24e0", // exponential 24
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  7,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "7_000_000_000",
+						},
 					},
 				},
 			},
@@ -755,13 +775,21 @@ func TestDocument_UnmarshalYAML(t *testing.T) {
 				  },
 				  "_kics_int_object": {
 					"_kics_line": 5
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 6
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 7
 				  }
 				},
 				"int_object": 24,
 				"int_object": 24,
 				"int_object": 24,
 				"int_object": 24,
-				"int_object": 24
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 7000000000
 			}`,
 		},
 	}
