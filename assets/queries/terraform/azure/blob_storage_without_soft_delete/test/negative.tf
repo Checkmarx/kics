@@ -8,7 +8,7 @@ resource "azurerm_storage_account" "negative1" {
 
   blob_properties {
     delete_retention_policy {
-      days = 5
+      days = 49
     }
   }
 }
