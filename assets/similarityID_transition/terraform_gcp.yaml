@@ -63,3 +63,7 @@ similarityIDChangeList:
       queryName: Beta - SQL DB Instance With Exposed Show Privileges
       observations: ""
       change: 2
+    - queryId: 8ca7e731-56f6-4fb4-9b98-fcb0a93518c8
+      queryName: Beta - Google Kubernetes Engine Cluster Have Alpha Features Enabled
+      observations: ""
+      change: 2
