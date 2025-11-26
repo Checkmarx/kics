@@ -503,8 +503,8 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount chan<- int, linesCount int, ext string) {
 	typesFlag := a.typesFlag
 	excludeTypesFlag := a.excludeTypesFlag
-	// get file content
-	content, err := os.ReadFile(a.filePath)
+	// get file content with UTF-16/UTF-8 detection
+	content, err := utils.ReadFileToUTF8(a.filePath)
 	if err != nil {
 		log.Error().Msgf("failed to analyze file: %s", err)
 		return
