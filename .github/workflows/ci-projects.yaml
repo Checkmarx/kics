@@ -3,23 +3,17 @@ on:
   pull_request:
     types: [closed]
     branches:
-      - prod
+      - master
 
 env:
   ENGINE_VERSION: ${{ vars.ENGINE_VERSION }}
   PLATFORM: "LINUX_X64"
   ENGINE: "kics"
-  CES_ENVIROMENT: "prod"
-  LOG_FILE: ${{ github.workspace }}/log.log
 
 jobs:
-  ci-projects:
+  build:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.CES_BUCKET_AWS_ACCESS_KEY }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.CES_BUCKET_AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: ${{ secrets.CES_BUCKET_AWS_REGION }}
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -27,20 +21,13 @@ jobs:
           ref: ${{ github.event.pull_request.merge_commit_sha }}
           path: kics
 
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          repository: ${{ secrets.CES_EXECUTOR_REPO }}
-          token: ${{ secrets.CES_GITHUB_TOKEN }}
-          path: cli
-          ref: master
-
       - uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
         with:
           go-version-file: kics/go.mod
-          cache: true
           cache-dependency-path: kics/go.sum
+          cache: true
 
-      - name: Build Kics Binary
+      - name: Build kics Binary
         env:
           CGO_ENABLED: 0
           GOOS: linux
@@ -49,11 +36,6 @@ jobs:
           cd $GITHUB_WORKSPACE/kics
           go build -installsuffix cgo -ldflags "-s -w" -a -o ./bin/kics ./cmd/console/main.go
           chmod +x ./bin/kics
-
-      - name: Build Engines Excutor
-        run: |
-          cd cli
-          go build -o excutor
 
       - name: Create Metadata File
         run: |
@@ -71,38 +53,28 @@ jobs:
             "version": "'"${ENGINE_VERSION}"'"
           }' > "$METADATA_PATH"
 
-          echo "" >> "$LOG_FILE"
-          echo "Metadata contents:" >> "$LOG_FILE"
-          cat "$METADATA_PATH" >> "$LOG_FILE"
-          echo "" >> "$LOG_FILE"
-
-      - name: Select Projects
+      - name: Zip kics Folder
         run: |
-          set -o pipefail
-          mkdir -p "$GITHUB_WORKSPACE/zips/"
-          cd cli
-          ./excutor sources -s $GITHUB_WORKSPACE/zips/ -e $ENGINE >> "$LOG_FILE" 2>&1
+          cd $GITHUB_WORKSPACE
+          zip -qr kics.zip kics/
 
-      - name: Prepare Projects
-        run: |
-          set -o pipefail
-          cd "$GITHUB_WORKSPACE/zips/"
-          for zip in *.zip; do
-            [ -e "$zip" ] || continue
-            echo "::add-mask::$(pwd)/$zip"
-            zip_name=$(basename "$zip" .zip)
-            unzip -qqo "$zip" -d "./$zip_name" >> "$LOG_FILE" 2>&1
-          done
+      - name: Save kics
+        uses: actions/upload-artifact@v4
+        with:
+          name: kics
+          path: ${{ github.workspace }}/kics.zip
+          retention-days: 1
 
-      - name: Run Engines Executor
-        run: |
-          set -o pipefail
-          mkdir -p $GITHUB_WORKSPACE/results
-          ENGINE_FLAG="-q $GITHUB_WORKSPACE/kics/assets/queries/"
-          ./cli/excutor run -b $GITHUB_WORKSPACE/kics/bin/kics -s $GITHUB_WORKSPACE/zips/ -r $GITHUB_WORKSPACE/results -e $ENGINE -j $GITHUB_WORKSPACE/pr-metadata.json -f "$ENGINE_FLAG" -p 1 --env $CES_ENVIROMENT >> "$LOG_FILE" 2>&1
+      - name: Pr parameters
+        uses: actions/upload-artifact@v4
+        with:
+          name: Metadata
+          path: ${{ github.workspace }}/pr-metadata.json
+          retention-days: 1
 
-      - name: Upload log
-        if: failure()
-        run: |
-          ./cli/excutor save-log -e $ENGINE -j $GITHUB_WORKSPACE/pr-metadata.json -l $LOG_FILE --env $CES_ENVIROMENT > /dev/null 2>&1
-
+  ci-projects:
+    needs: build
+    uses: ./.github/workflows/run-projects.yaml
+    with:
+      machines-count: 10
+    secrets: inherit
