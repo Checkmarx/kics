@@ -31,7 +31,9 @@ has_audit_logging(diagnositc_setting) {
 } else {
 	contains(diagnositc_setting.enabled_log.category, "kube-audit")		# kube-audit or kube-audit-admin - enabled_log object
 } else {
-	contains(diagnositc_setting.log[_].category, "kube-audit")	# kube-audit or kube-audit-admin - log array  (legacy)
+	contains(diagnositc_setting.log[index].category, "kube-audit")	# kube-audit or kube-audit-admin - log array  (legacy)
+	diagnositc_setting.log[index].enabled == true
 } else {
 	contains(diagnositc_setting.log.category, "kube-audit")		# kube-audit or kube-audit-admin - log object  (legacy)
+	diagnositc_setting.log.enabled == true
 }
