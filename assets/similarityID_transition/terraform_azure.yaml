@@ -3,6 +3,10 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 056d28cc-7ee9-4b12-b2d1-16b7b66db72d
+      queryName: Beta - Blob Storage Without Soft Delete
+      observations: ""
+      change: 2
     - queryId: 05d6b52e-11ca-453d-bb3a-21c7c853ee92
       queryName: Beta - Databricks Workspace Using Default Virtual Network
       observations: ""
