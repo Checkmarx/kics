@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	resource := input.document[i].resource["azurerm_databricks_workspace"][name]
+	resource := input.document[i].resource.azurerm_databricks_workspace[name]
 
 	results := get_results(resource, name)
 

@@ -24,7 +24,7 @@ require (
 	github.com/hashicorp/terraform-json v0.24.0
 	github.com/johnfercher/maroto v1.0.0
 	github.com/mackerelio/go-osstat v0.2.5
-	github.com/moby/buildkit v0.26.0
+	github.com/moby/buildkit v0.26.2
 	github.com/open-policy-agent/opa v1.4.2
 	github.com/pkg/errors v0.9.1
 	github.com/relex/aini v1.6.0
@@ -43,7 +43,7 @@ require (
 	golang.org/x/text v0.31.0
 	golang.org/x/tools/godoc v0.1.0-deprecated
 	gopkg.in/yaml.v3 v3.0.1
-	helm.sh/helm/v3 v3.19.0
+	helm.sh/helm/v3 v3.19.2
 	mvdan.cc/sh/v3 v3.11.0
 	sigs.k8s.io/controller-runtime v0.14.6
 )
@@ -156,7 +156,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/chai2010/gettext-go v1.0.2 // indirect
 	github.com/containerd/containerd v1.7.29 // indirect
-	github.com/cyphar/filepath-securejoin v0.4.1 // indirect
+	github.com/cyphar/filepath-securejoin v0.6.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.12.2 // indirect
 	github.com/evanphx/json-patch v5.9.11+incompatible // indirect
