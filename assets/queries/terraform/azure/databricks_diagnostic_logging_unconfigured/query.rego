@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 required_logs := {"accounts", "Filesystem", "clusters", "notebook", "jobs"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource["azurerm_databricks_workspace"][name]
+	resource := input.document[i].resource.azurerm_databricks_workspace[name]
 
 	diagnostic_resources := [resource |
 		resource := input.document[x].resource.azurerm_monitor_diagnostic_setting[_]
