@@ -63,3 +63,7 @@ similarityIDChangeList:
       queryName: Beta - SQL DB Instance With Exposed Show Privileges
       observations: ""
       change: 2
+    - queryId: c1701dcf-24df-4675-b863-340233c4e34f
+      queryName: Beta - Ensure GKE Version Management Is Automated Using Release Channels
+      observations: ""
+      change: 2
