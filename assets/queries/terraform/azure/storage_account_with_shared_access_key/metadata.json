@@ -3,7 +3,7 @@
   "queryName": "Beta - Storage Account With Shared Access Key",
   "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "All 'azurerm_storage_account' resources should disable access key via 'Shared Key' for a mores restrict access control",
+  "descriptionText": "All 'azurerm_storage_account' resources should disable access key via 'Shared Key' for improved access control",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#shared_access_key_enabled-1",
   "platform": "Terraform",
   "descriptionID": "45f3e879",
