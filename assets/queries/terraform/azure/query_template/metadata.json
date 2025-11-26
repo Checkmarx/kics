@@ -1,0 +1,14 @@
+{
+  "id": "",
+  "queryName": "",
+  "severity": "",
+  "category": "",
+  "descriptionText": "",
+  "descriptionUrl": "",
+  "platform": "Terraform",
+  "descriptionID": "",
+  "cloudProvider": "",
+  "cwe": "",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
