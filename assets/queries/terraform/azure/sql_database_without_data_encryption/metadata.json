@@ -1,0 +1,14 @@
+{
+  "id": "0745bb3f-60dc-43b6-90ae-67bb01fd1775",
+  "queryName": "Beta - SQL Database Without Data Encryption",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "All 'azurerm_mssql_database' resources should enable data encryption at rest through the 'transparent_data_encryption_enabled' field",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_database#transparent_data_encryption_enabled-1",
+  "platform": "Terraform",
+  "descriptionID": "0745bb3f",
+  "cloudProvider": "azure",
+  "cwe": "312",
+  "riskScore": "6.0",
+  "experimental": "true"
+}
