@@ -8,7 +8,7 @@
   "platform": "Terraform",
   "descriptionID": "4b5ee6a4",
   "cloudProvider": "gcp",
-  "cwe": "",
+  "cwe": "353",
   "riskScore": "3.0",
   "experimental": "true"
 }

@@ -16,8 +16,8 @@ CxPolicy[result] {
         "resourceName": tf_lib.get_resource_name(resource, name),
         "searchKey": sprintf("%s[%s].node_config.shielded_instance_config.enable_integrity_monitoring", [supported_resources[res_index], name]),
         "issueType": "IncorrectValue",
-        "keyExpectedValue": "'node_config.shielded_instance_config.enabled_integrity_monitoring' should be defined to 'true'",
-        "keyActualValue":  "'node_config.shielded_instance_config.enabled_integrity_monitoring' is not defined to 'true'",
+        "keyExpectedValue": "'node_config.shielded_instance_config.enable_integrity_monitoring' should be defined to 'true'",
+        "keyActualValue":  "'node_config.shielded_instance_config.enable_integrity_monitoring' is not defined to 'true'",
         "searchLine": common_lib.build_search_line(["resource", supported_resources[res_index], name, "node_config", "shielded_instance_config", "enable_integrity_monitoring"], [])
     }
 }
