@@ -7,3 +7,7 @@ similarityIDChangeList:
       queryName: Beta - Databricks Workspace Using Default Virtual Network
       observations: ""
       change: 2
+    - queryId: cec6e005-9309-46eb-b34b-456f6eae818b
+      queryName: Beta - Key Vault Purge Protection Is Enabled
+      observations: ""
+      change: 2
