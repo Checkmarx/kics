@@ -105,7 +105,9 @@
                 "azure",
                 "common",
                 "gcp",
+                "ibmcloud",
                 "nifcloud",
+                "oraclecloud",
                 "tencentcloud"
             ]
         },
