@@ -11,8 +11,8 @@ similarityIDChangeList:
       queryName: VM Without Admin SSH Public Key Set
       observations: ""
       change: 2
-    - queryId:
-      queryName:
+    - queryId: 59528fe9-0c8e-4153-8016-445911a2d933
+      queryName: VM With Extension Operations Enabled
       observations: ""
       change: 2
     - queryId:
