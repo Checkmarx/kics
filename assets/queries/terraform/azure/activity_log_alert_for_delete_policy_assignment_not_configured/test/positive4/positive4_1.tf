@@ -1,4 +1,5 @@
-resource "azurerm_monitor_activity_log_alert" "positive4_3" {
+# Query prioritizes flagging the log alert(s) that is "correct" but missing the "action_group_id" field over all others
+resource "azurerm_monitor_activity_log_alert" "positive4_1" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
@@ -7,11 +8,9 @@ resource "azurerm_monitor_activity_log_alert" "positive4_3" {
 
   criteria {
     resource_id    = azurerm_storage_account.to_monitor.id
-    operation_name = "Microsoft.Storage/storageAccounts/write"          # wrong operation name
+    operation_name = "Microsoft.Authorization/policyAssignments/delete"
     category       = "Administrative"
   }
 
-  action {
-    action_group_id = azurerm_monitor_action_group.main.id
-    }
+  # Missing action block
 }
