@@ -1,0 +1,13 @@
+{
+  "id": "00000000-0000-0000-0000-000000000001",
+  "queryName": "Dummy IBM Cloud query",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "Dummy",
+  "descriptionUrl": "https://www.terraform.io/docs/providers/",
+  "platform": "Terraform",
+  "descriptionID": "00000000",
+  "cwe": "",
+  "cloudProvider": "ibmcloud",
+  "riskScore": "0.0"
+}
