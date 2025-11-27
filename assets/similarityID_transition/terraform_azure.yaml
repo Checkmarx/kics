@@ -7,3 +7,27 @@ similarityIDChangeList:
       queryName: Azure Instance Using Basic Authentication
       observations: ""
       change: 1
+    - queryId: a5cfef8f-910e-4fd6-8155-f381b236a492
+      queryName: VM Without Admin SSH Public Key Set
+      observations: ""
+      change: 2
+    - queryId:
+      queryName:
+      observations: ""
+      change: 2
+    - queryId:
+      queryName:
+      observations: ""
+      change: 2
+    - queryId:
+      queryName:
+      observations: ""
+      change: 2
+    - queryId:
+      queryName:
+      observations: ""
+      change: 2
+    - queryId:
+      queryName:
+      observations: ""
+      change: 2

@@ -1,0 +1,22 @@
+[
+  {
+    "queryName": "VM Without Admin SSH Public Key Set",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "VM Without Admin SSH Public Key Set",
+    "severity": "MEDIUM",
+    "line": 24
+  },
+  {
+    "queryName": "VM Without Admin SSH Public Key Set",
+    "severity": "MEDIUM",
+    "line": 40
+  },
+  {
+    "queryName": "VM Without Admin SSH Public Key Set",
+    "severity": "MEDIUM",
+    "line": 45
+  }
+]
