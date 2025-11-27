@@ -19,12 +19,12 @@ similarityIDChangeList:
       queryName: Beta - VM With Automatic Updates Disabled
       observations: ""
       change: 2
-    - queryId:
-      queryName: Beta -
+    - queryId: 68403c84-8497-449b-9946-ae848765813f
+      queryName: Beta - Disk Encryption On Managed Disk Disabled
       observations: ""
       change: 2
-    - queryId:
-      queryName: Beta -
+    - queryId: fbb8e5e0-6dea-41d3-8739-4f2405b0e22a
+      queryName: Beta - Key Vault Without HSM Protection
       observations: ""
       change: 2
     - queryId:
