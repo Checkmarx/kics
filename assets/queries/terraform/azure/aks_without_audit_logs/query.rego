@@ -20,7 +20,7 @@ get_results(diagnostic_settings, resource_name, resource, doc_i) = results {
 		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].log.enabled", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'", [name]),
-		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s]' has the 'enabled' field set to '%s'", [name, diagnostic_settings[doc_index][name].log.enabled]),
+		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s]' has the 'enabled' field set to '%s' instead of 'true'", [name, diagnostic_settings[doc_index][name].log.enabled]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name, "log", "enabled"], [])
 	}
 	targets_resource(diagnostic_settings[doc_index][name], resource_name)
@@ -35,7 +35,7 @@ get_results(diagnostic_settings, resource_name, resource, doc_i) = results {
 		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].log[%d].enabled", [name, index]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'", [name]),
-		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s]' has the 'enabled' field set to '%s'", [name, diagnostic_settings[doc_index][name].log[index].enabled]),
+		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s]' has the 'enabled' field set to '%s' instead of 'true'", [name, diagnostic_settings[doc_index][name].log[index].enabled]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name, "log", index, "enabled"], [])
 	}
 	targets_resource(diagnostic_settings[doc_index][name], resource_name)
