@@ -1,0 +1,10 @@
+CWE,Vulnerability Type,File,Line
+CWE-89,SQL Injection,model/auth.js,9
+CWE-89,SQL Injection,model/products.js,16
+CWE-89,SQL Injection,model/products.js,23
+CWE-89,SQL Injection,model/products.js,40
+CWE-200,Fingerprint Web Application Framework,app.js,16
+CWE-352,Cross-Site Request Forgery,app.js,16
+CWE-547,Secret,app.js,44
+CWE-601,Open Redirect,routes/login.js,36
+CWE-614,Secure Attribute Cookie,app.js,46

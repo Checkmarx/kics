@@ -1,0 +1,34 @@
+<% layout('content') %>
+
+<h2>Results for: <%- in_query %></h2>
+
+<% if (products.length == 0) { %>
+<h3 style="color: red;">Products not found</h3>
+<% } else {%>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Product name</th>
+            <th>Product description</th>
+            <th>Price</th>
+            <th>Info</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% for( var i=0; i < products.length; i++)  {%>
+        <tr>
+            <td><%- i + 1 %></td>
+            <td><%- products[i].name %></td>
+            <td><%- products[i].description %></td>
+            <td><%- products[i].price %></td>
+            <td><a href="/products/detail?id=<%- i + 1 %>"><i class="glyphicon glyphicon-list"></i></a></td>
+        </tr>
+        <%}%>
+        </tbody>
+    </table>
+</div>
+
+<% } %>

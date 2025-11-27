@@ -1,0 +1,78 @@
+<% layout('content') %>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="thumbnail">
+            <img class="img-responsive" src="/images/<%- product.image %>" alt="">
+            <div class="caption-full">
+                <h4 class="pull-right"><%- product.price %> €</h4>
+                <h4><a href="#"><%-product.name%> </a></h4>
+                <p><%-product.description%> </p>
+            </div>
+        </div>
+        <a id="buy_button" class="btn btn-success pull-right" href="#">Buy <i class="glyphicon glyphicon-shopping-cart"></i></a>
+        <a class="btn btn-danger pull-left" href="/">&larr; Go Back</a>
+    </div>
+
+</div>
+
+<div id="buy-screen" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Confirm product & details</h4>
+            </div>
+            <form id="buy-form" enctype="application/x-www-form-urlencoded">
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="mail">Contact mail</label>
+                            <input type="email" class="form-control" name="mail" id="mail" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Shipping Address</label>
+                            <input type="text" class="form-control" name="address" id="address" placeholder="Shipping address..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ship_date">Shipping date</label>
+                            <input type="date" class="form-control" name="ship_date" id="ship_date" placeholder="Shipping date..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Contact phone</label>
+                            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Contact phone..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Product price</label>
+                            <input type="text" class="form-control" name="price" id="price" value="<%- product.price %>€" readonly>
+                        </div>
+                        <input type="hidden" class="form-control" name="product_id" id="product_id" value="<%- product.id %>">
+                        <input type="hidden" class="form-control" name="product_name" id="product_name" value="<%- product.name %>">
+                </div>
+                <div class="modal-footer">
+                    <span id="error" class="label label-danger pull-left hidden"></span>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Buy <i class="glyphicon glyphicon-shopping-cart"></i></button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<div id="buy-screen" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Ok</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

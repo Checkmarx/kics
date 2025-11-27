@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bare - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            padding-top: 70px;
+            /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<%-body%>
+
+<!-- jQuery Version 1.11.1 -->
+<script src="/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/freewall.js"></script>
+<script>
+
+    var wall = new Freewall("#grid");
+    wall.reset({
+        selector: '.thumbnail',
+        animate: true,
+        cellW: 150,
+        cellH: 'auto',
+        onResize: function() {
+            wall.fitWidth();
+        }
+    });
+
+    wall.container.find('.thumbnail').find('img').load(function() {
+        wall.fitWidth();
+    }).each(function () {
+        wall.fitWidth();d
+    });
+
+    $(document).ready(function () {
+        $("#buy_button").click(function () {
+            $("#buy-screen").modal();
+        })
+
+        $("#buy-form").submit(function (event) {
+            event.preventDefault();
+
+
+            $.ajax({
+                method: "post",
+                url: "/products/buy",
+                data: $("#buy-form").serialize()
+            }).done(function(data) {
+                $("#buy-screen").modal("hide");
+                $('<div class="modal fade in" tabindex="-1" role="dialog" style="display: block;"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h4 class="modal-title">' + data.message + '</h4></div><div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal">Ok</button></div></div></div></div>').modal();
+
+                window.location = "/products/purchased";
+            }).fail(function (data) {
+                $("#buy-screen").html(data.message);
+                $("#buy-screen").show();
+            });
+        })
+    })
+
+
+</script>
+<a href="https://github.com/cr0hn/vulnerable-node"><img width="150px" style="position: absolute; bottom:0 ; right: 0; border: 0;" src="https://raw.githubusercontent.com/Omgitsu/Mockulus/master/Mockulus/Images-Public.xcassets/AboutWindow/fork-me-on-github-bottom-right.imageset/fork-me-on-github-bottom-right%402x.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+</body>
+
+</html>

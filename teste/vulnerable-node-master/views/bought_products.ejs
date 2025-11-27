@@ -1,0 +1,38 @@
+<% layout('content') %>
+
+<% if (products.length == 0) { %>
+<h3 style="color: red;">You haven't purchased any product yet.</h3>
+<% } else {%>
+
+<h2>Your purchased products:</h2>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Contact mail</th>
+            <th>Contact phone</th>
+            <th>Shipping date</th>
+            <th>Shipping address</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% for( var i=0; i < products.length; i++)  {%>
+        <tr>
+            <td><%- products[i].product_id %></td>
+            <td><%- products[i].product_name %></td>
+            <td><%- products[i].mail %></td>
+            <td><%- products[i].phone %></td>
+            <td><%- products[i].ship_date %></td>
+            <td><%- products[i].address %></td>
+            <td><%- products[i].price %>€</td>
+        </tr>
+        <%}%>
+        </tbody>
+    </table>
+</div>
+<% } %>

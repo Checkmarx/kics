@@ -1,0 +1,267 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.deploy_name }}-deployment"
+  annotations:
+    {{- if and (hasKey .Values "dotnet_monitor") (get .Values.dotnet_monitor "enabled") }}
+    prometheus.io/path: /metrics
+    prometheus.io/port: '52325'
+    prometheus.io/scrape: 'true'
+    {{- end }}
+    reloader.stakater.com/auto: "true"
+    kubernetes.io/change-cause: "{{ .Values.deployment.change_cause }}"
+spec:
+  {{- if not .Values.blue_and_green.enabled }}
+  replicas: {{ .Values.hpa.min_replicas }}
+  {{- end }}
+  revisionHistoryLimit: {{ .Values.deployment.revision_history_limit }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "{{ .Values.deploy_name }}-deployment"
+      app.kubernetes.io/component: "{{ .Values.deployment.kubernetes_component }}"
+      app.kubernetes.io/part-of: "{{ .Values.cell }}"
+      app.kubernetes.io/managed-by: azure-acr
+      app.kubernetes.io/created-by: azure-pipelines
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: "{{ .Values.deploy_name }}-deployment"
+        app.kubernetes.io/component: "{{ .Values.deployment.kubernetes_component }}"
+        app.kubernetes.io/part-of: "{{ .Values.cell }}"
+        app.kubernetes.io/managed-by: azure-acr
+        app.kubernetes.io/created-by: azure-pipelines
+    spec:
+      {{- if .Values.deployment.volumes }}
+      volumes:
+        {{- range .Values.deployment.volumes }}
+        - name: {{ .name }}
+          {{- if .configMap }}
+          configMap:
+            name: {{ .configMap.name }}
+            {{- with .configMap.defaultMode }}
+            defaultMode: {{ . }}
+            {{- end }}
+            {{- with .configMap.items }}
+            items:
+              {{- range . }}
+              - key: {{ .key }}
+                path: {{ .path }}
+              {{- end }}
+            {{- end }}
+          {{- else if .secret }}
+          secret:
+            secretName: {{ .secret.secretName }}
+          {{- else if .persistentVolumeClaim }}
+          persistentVolumeClaim:
+            claimName: {{ .persistentVolumeClaim.claimName }}
+          {{- else if .emptyDir }}
+          emptyDir: {}
+          {{- else if .hostPath }}
+          hostPath:
+            path: {{ .hostPath.path }}
+            {{- with .hostPath.type }}
+            type: {{ . }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if and .Values.service_account.create_service_account (ne (toString .Values.service_account.eks_account_id) "") }}
+      serviceAccountName: "{{ .Values.deploy_name }}-service-account"
+      {{- end }}
+      automountServiceAccountToken: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
+        supplementalGroups:
+          - 3300
+      {{- if .Values.on_premise }}
+      imagePullSecrets:
+        - name: aws-ecr
+      {{- end }}
+      {{- with .Values.host_alias }}
+      hostAliases:
+      {{ toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.deployment.initContainers }}
+      initContainers:
+        {{- range .Values.deployment.initContainers }}
+        - name: {{ .name }}
+          image: {{ .imageInitContainer }}
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            allowPrivilegeEscalation: false
+          {{- with .command }}
+          command:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .args }}
+          args:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .volumeMounts }}
+          volumeMounts:
+            {{- range . }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+              {{- with .readOnly }}
+              readOnly: {{ . }}
+              {{- end }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      containers:
+        - name: "{{ .Values.deploy_name }}-deployment"
+          image: "{{ .Values.deployment.image }}"
+          {{- if and .Values.deployment.image_pull_policy (ne .Values.deployment.image_pull_policy "") }}
+          imagePullPolicy: "{{ .Values.deployment.image_pull_policy }}"
+          {{- else }}
+          imagePullPolicy: Always
+          {{- end }}
+          {{- if .Values.env }}
+          env:
+            {{- range .Values.env }}
+            - name: {{ .name }}
+              value: "{{ .value }}"
+            {{- end }}
+          {{- end }}
+          {{- if or .Values.configmap (and .Values.secrets (gt (len .Values.secrets) 0)) }}
+          envFrom:
+            {{- if .Values.configmap }}
+            - configMapRef:
+                name: "{{ .Values.deploy_name }}-conf"
+            {{- end }}
+            {{- if and .Values.secrets (gt (len .Values.secrets) 0) }}
+            {{- range .Values.secrets }}
+            - secretRef:
+                name: "{{ $.Values.deploy_name }}-{{ .externalName | replace "azure-" "" }}"
+            {{- end }}
+            {{- end }}
+          {{- end }}
+          resources:
+            limits:
+              memory: "{{ .Values.deployment.resource_ram_limit }}"
+              cpu: "{{ .Values.deployment.resource_cpu_limit }}"
+            requests:
+              memory: "{{ .Values.deployment.resource_ram_request }}"
+              cpu: "{{ .Values.deployment.resource_cpu_request }}"
+          {{- if .Values.deployment.volumeMounts }}
+          volumeMounts:
+            {{- range $.Values.deployment.volumeMounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+              {{- with .subPath }}
+              subPath: {{ . }}
+              {{- end }}
+              {{- with .readOnly }}
+              readOnly: {{ . }}
+              {{- end }}
+            {{- end }}
+          {{- end }}
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            privileged: false
+          {{- with .Values.readiness_probe }}
+          readinessProbe:
+            {{ toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.liveness_probe }}
+          livenessProbe:
+            {{ toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - containerPort: {{ .Values.deployment.container_port }}
+        {{- if .Values.deployment.second_container_port }}
+        - name: "{{ .Values.deploy_name }}-second-deployment"
+          image: "{{ .Values.deployment.image }}-second"
+          {{- if and .Values.deployment.image_pull_policy (ne .Values.deployment.image_pull_policy "") }}
+          imagePullPolicy: "{{ .Values.deployment.image_pull_policy }}"
+          {{- else }}
+          imagePullPolicy: Always
+          {{- end }}
+          {{- if .Values.env }}
+          env:
+            {{- range .Values.env }}
+            - name: {{ .name }}
+              value: "{{ .value }}"
+            {{- end }}
+          {{- end }}
+          {{- if or .Values.configmap (and .Values.secrets (gt (len .Values.secrets) 0)) }}
+          envFrom:
+            {{- if .Values.configmap }}
+            - configMapRef:
+                name: "{{ .Values.deploy_name }}-conf"
+            {{- end }}
+            {{- if and .Values.secrets (gt (len .Values.secrets) 0) }}
+            {{- range .Values.secrets }}
+            - secretRef:
+                name: "{{ $.Values.deploy_name }}-{{ .externalName | replace "azure-" "" }}"
+            {{- end }}
+            {{- end }}
+          {{- end }}
+          resources:
+            limits:
+              memory: "{{ .Values.deployment.resource_ram_limit }}"
+              cpu: "{{ .Values.deployment.resource_cpu_limit }}"
+            requests:
+              memory: "{{ .Values.deployment.resource_ram_request }}"
+              cpu: "{{ .Values.deployment.resource_cpu_request }}"
+          {{- if .Values.deployment.volumeMounts }}
+          volumeMounts:
+            {{- range $.Values.deployment.volumeMounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+              {{- with .subPath }}
+              subPath: {{ . }}
+              {{- end }}
+              {{- with .readOnly }}
+              readOnly: {{ . }}
+              {{- end }}
+            {{- end }}
+          {{- end }}
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            privileged: false
+          {{- with .Values.readiness_probe }}
+          readinessProbe:
+            {{ toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.liveness_probe }}
+          livenessProbe:
+            {{ toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - containerPort: {{ .Values.deployment.second_container_port }}
+        {{- end }}
+        {{- if and (hasKey .Values "dotnet_monitor") (get .Values.dotnet_monitor "enabled") }}
+        - name: sidecar
+          image: mcr.microsoft.com/dotnet/monitor
+          args:
+            - collect
+            - '--no-auth'
+            - '--urls'
+            - http://*:52323
+            - '--metricUrls'
+            - http://*:52325
+          ports:
+            - containerPort: 52323
+              protocol: TCP
+            - containerPort: 52325
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 50m
+              memory: 32Mi
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+        {{- end }}

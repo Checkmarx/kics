@@ -1,0 +1,26 @@
+<% layout('content') %>
+
+<div class="jumbotron">
+    <h1>Hello, to NodeVulnerable!</h1>
+    <p>The application to test the vulnerability code analyzers. This app try to simulta a shop</p>
+    <p>Bellow the product list</p>
+</div>
+
+
+<div id="grid">
+    <% for( var i=0; i < products.length; i++)  {
+        var product = products[i];;
+    %>
+        <div class="item">
+            <div class="thumbnail">
+                <a href="/products/detail?id=<%-product.id%>"><img src="/images/<%-product.image%>" alt=""></a>
+                <div class="caption">
+                    <h4 class="pull-right"><%-product.price%>€</h4>
+                    <h4><a href="/products/detail?id=<%-product.id%>"><%-product.name%></a>
+                    </h4>
+                    <p><%-product.description%></p>
+                </div>
+            </div>
+        </div>
+    <% }%>
+</div>
