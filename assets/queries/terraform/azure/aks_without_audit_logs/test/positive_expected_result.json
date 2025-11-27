@@ -10,5 +10,23 @@
     "severity": "MEDIUM",
     "line": 2,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 34,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 39,
+    "fileName": "positive3.tf"
   }
 ]

@@ -4,36 +4,77 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	diagnostic_settings := {x | x := input.document[_].resource.azurerm_monitor_diagnostic_setting[_]}
-	resource := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	diagnostic_settings := {doc_index : x | x := input.document[doc_index].resource.azurerm_monitor_diagnostic_setting}
+	resource := input.document[doc_i].resource.azurerm_kubernetes_cluster[name]
 
-	not diagnostic_for_resource(diagnostic_settings, name)
+	not at_least_one_enabled_log(diagnostic_settings, name)
 
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "azurerm_kubernetes_cluster",
-		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'", [name]),
-		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s]' does not enable audit logging", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name], [])
+	result := get_results(diagnostic_settings, name, resource, doc_i)[_]
+}
+
+get_results(diagnostic_settings, resource_name, resource, doc_i) = results {
+	results := [x | x := {
+		"documentId": input.document[doc_index].id,
+		"resourceType" : "azurerm_monitor_diagnostic_setting",
+		"resourceName" : tf_lib.get_resource_name(diagnostic_settings[doc_index][name], name),
+		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].log.enabled", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'", [name]),
+		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s]' has the 'enabled' field set to '%s'", [name, diagnostic_settings[doc_index][name].log.enabled]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name, "log", "enabled"], [])
 	}
+	targets_resource(diagnostic_settings[doc_index][name], resource_name)
+	contains(diagnostic_settings[doc_index][name].log.category, "kube-audit")			# "log" object  (legacy)
+    diagnostic_settings[doc_index][name].log.enabled != true]
+    results != []
+} else = results {
+	results := [x | x := {
+		"documentId": input.document[doc_index].id,
+		"resourceType" : "azurerm_monitor_diagnostic_setting",
+		"resourceName" : tf_lib.get_resource_name(diagnostic_settings[doc_index][name], name),
+		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].log[%d].enabled", [name, index]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'", [name]),
+		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s]' has the 'enabled' field set to '%s'", [name, diagnostic_settings[doc_index][name].log[index].enabled]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name, "log", index, "enabled"], [])
+	}
+	targets_resource(diagnostic_settings[doc_index][name], resource_name)
+    contains(diagnostic_settings[doc_index][name].log[index].category, "kube-audit")
+    diagnostic_settings[doc_index][name].log[index].enabled != true] 					# "log" array  (legacy)
+    results != []
+} else = results  {
+	results := [x | x := {
+		"documentId": input.document[doc_i].id,
+		"resourceType" : "azurerm_kubernetes_cluster",
+		"resourceName" : tf_lib.get_resource_name(resource, resource_name),
+		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [resource_name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'", [resource_name]),
+		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s]' does not enable audit logging", [resource_name]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", resource_name], [])
+	}]
 }
 
-diagnostic_for_resource(diagnostic_settings, resource_name) {
-	diagnostic_settings[index].target_resource_id == sprintf("${azurerm_kubernetes_cluster.%s.id}",[resource_name])
-	has_audit_logging(diagnostic_settings[index])
+at_least_one_enabled_log(diagnostic_settings, resource_name) {
+	has_valid_enabled_log(diagnostic_settings[_][_], resource_name)
 }
 
-has_audit_logging(diagnositc_setting) {
-	contains(diagnositc_setting.enabled_log[_].category, "kube-audit")	# kube-audit or kube-audit-admin - enabled_log array
+has_valid_enabled_log(diagnostic_setting, resource_name) {
+	targets_resource(diagnostic_setting, resource_name)
+	contains(diagnostic_setting.enabled_log[_].category, "kube-audit")	# kube-audit or kube-audit-admin - array
 } else {
-	contains(diagnositc_setting.enabled_log.category, "kube-audit")		# kube-audit or kube-audit-admin - enabled_log object
+	targets_resource(diagnostic_setting, resource_name)
+	contains(diagnostic_setting.enabled_log.category, "kube-audit")	# kube-audit or kube-audit-admin - object
 } else {
-	contains(diagnositc_setting.log[index].category, "kube-audit")	# kube-audit or kube-audit-admin - log array  (legacy)
-	diagnositc_setting.log[index].enabled == true
+	targets_resource(diagnostic_setting, resource_name)
+	contains(diagnostic_setting.log[index].category, "kube-audit")	# kube-audit or kube-audit-admin - "log" array  (legacy)
+	diagnostic_setting.log[index].enabled == true
 } else {
-	contains(diagnositc_setting.log.category, "kube-audit")		# kube-audit or kube-audit-admin - log object  (legacy)
-	diagnositc_setting.log.enabled == true
+	targets_resource(diagnostic_setting, resource_name)
+	contains(diagnostic_setting.log.category, "kube-audit")		    # kube-audit or kube-audit-admin - "log" object  (legacy)
+	diagnostic_setting.log.enabled == true
+}
+
+targets_resource(diagnostic_setting, resource_name) {
+	diagnostic_setting.target_resource_id == sprintf("${azurerm_kubernetes_cluster.%s.id}",[resource_name])
 }
