@@ -1,4 +1,4 @@
-resource "azurerm_monitor_activity_log_alert" "positive5_3" {
+resource "azurerm_monitor_activity_log_alert" "positive4_3" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
