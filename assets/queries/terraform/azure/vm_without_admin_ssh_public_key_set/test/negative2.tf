@@ -1,11 +1,11 @@
-resource "azurerm_linux_virtual_machine" "negative1_1" {
-  name                = "negative1_1-machine"
-  resource_group_name = azurerm_resource_group.negative1_1.name
-  location            = azurerm_resource_group.negative1_1.location
+resource "azurerm_linux_virtual_machine_scale_set" "negative2_1" {
+  name                = "negative2_1-machine"
+  resource_group_name = azurerm_resource_group.negative2_1.name
+  location            = azurerm_resource_group.negative2_1.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
   network_interface_ids = [
-    azurerm_network_interface.negative1_1.id,
+    azurerm_network_interface.negative2_1.id,
   ]
 
   admin_ssh_key {                                 # single ssh key
@@ -14,14 +14,14 @@ resource "azurerm_linux_virtual_machine" "negative1_1" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "negative1_2" {
-  name                = "negative1_2-machine"
-  resource_group_name = azurerm_resource_group.negative1_2.name
-  location            = azurerm_resource_group.negative1_2.location
+resource "azurerm_linux_virtual_machine_scale_set" "negative2_2" {
+  name                = "negative2_2-machine"
+  resource_group_name = azurerm_resource_group.negative2_2.name
+  location            = azurerm_resource_group.negative2_2.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
   network_interface_ids = [
-    azurerm_network_interface.negative1_2.id,
+    azurerm_network_interface.negative2_2.id,
   ]
 
   admin_ssh_key {                                 # ssh key array
