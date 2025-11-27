@@ -8,26 +8,26 @@ similarityIDChangeList:
       observations: ""
       change: 1
     - queryId: a5cfef8f-910e-4fd6-8155-f381b236a492
-      queryName: VM Without Admin SSH Public Key Set
+      queryName: Beta - VM Without Admin SSH Public Key Set
       observations: ""
       change: 2
     - queryId: 59528fe9-0c8e-4153-8016-445911a2d933
-      queryName: VM With Extension Operations Enabled
+      queryName: Beta - VM With Extension Operations Enabled
       observations: ""
       change: 2
     - queryId: 187e6d39-5e1e-4afa-9c0a-b79632eef346
-      queryName: VM With Automatic Updates Disabled
+      queryName: Beta - VM With Automatic Updates Disabled
       observations: ""
       change: 2
     - queryId:
-      queryName:
+      queryName: Beta -
       observations: ""
       change: 2
     - queryId:
-      queryName:
+      queryName: Beta -
       observations: ""
       change: 2
     - queryId:
-      queryName:
+      queryName: Beta -
       observations: ""
       change: 2

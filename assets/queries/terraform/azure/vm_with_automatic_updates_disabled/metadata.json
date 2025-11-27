@@ -1,6 +1,6 @@
 {
   "id": "187e6d39-5e1e-4afa-9c0a-b79632eef346",
-  "queryName": "VM With Automatic Updates Disabled",
+  "queryName": "Beta - VM With Automatic Updates Disabled",
   "severity": "MEDIUM",
   "category": "Best Practices",
   "descriptionText": "Windows based VMs should enabled automatic updates",

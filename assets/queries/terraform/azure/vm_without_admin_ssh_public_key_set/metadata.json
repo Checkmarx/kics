@@ -1,6 +1,6 @@
 {
   "id": "a5cfef8f-910e-4fd6-8155-f381b236a492",
-  "queryName": "VM Without Admin SSH Public Key Set",
+  "queryName": "Beta - VM Without Admin SSH Public Key Set",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "All linux based virtual machines should set SSH keys for enchanced security",

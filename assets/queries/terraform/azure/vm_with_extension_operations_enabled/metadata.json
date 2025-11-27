@@ -1,6 +1,6 @@
 {
   "id": "59528fe9-0c8e-4153-8016-445911a2d933",
-  "queryName": "VM With Extension Operations Enabled",
+  "queryName": "Beta - VM With Extension Operations Enabled",
   "severity": "MEDIUM",
   "category": "Insecure Defaults",
   "descriptionText": "Virtual machine resources should disable extension_operations since they can provide administrative privileges to processes",

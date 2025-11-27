@@ -1,16 +1,16 @@
 [
   {
-    "queryName": "VM With Automatic Updates Disabled",
+    "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "187e6d39-5e1e-4afa-9c0a-b79632eef346",
     "line": 12
   },
   {
-    "queryName": "VM With Automatic Updates Disabled",
+    "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "187e6d39-5e1e-4afa-9c0a-b79632eef346",
     "line": 26
   },
   {
-    "queryName": "VM With Automatic Updates Disabled",
+    "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "187e6d39-5e1e-4afa-9c0a-b79632eef346",
     "line": 40
   }
