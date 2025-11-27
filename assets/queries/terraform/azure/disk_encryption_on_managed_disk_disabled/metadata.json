@@ -3,12 +3,12 @@
   "queryName": "Beta - Disk Encryption On Managed Disk Disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "Using disk encryption on managed disks improves ",
+  "descriptionText": "Using disk encryption on managed disks data improves confidentiality, compliance, and control over encryption keys, ensuring sensitive information at rest is protected against unauthorized access",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/managed_disk#disk_encryption_set_id-1",
   "platform": "Terraform",
   "descriptionID": "68403c84",
   "cloudProvider": "azure",
-  "cwe": "",
+  "cwe": "922",
   "riskScore": "3.0",
   "experimental": "true"
 }
