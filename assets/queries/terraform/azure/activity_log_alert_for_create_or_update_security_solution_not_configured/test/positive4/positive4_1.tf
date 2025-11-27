@@ -1,5 +1,5 @@
 # Query prioritizes flagging the log alert(s) that is "correct" but missing the "action_group_id" field over all others
-resource "azurerm_monitor_activity_log_alert" "positive5_1" {
+resource "azurerm_monitor_activity_log_alert" "positive4_1" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
