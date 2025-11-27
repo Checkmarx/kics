@@ -15,8 +15,8 @@ similarityIDChangeList:
       queryName: VM With Extension Operations Enabled
       observations: ""
       change: 2
-    - queryId:
-      queryName:
+    - queryId: 187e6d39-5e1e-4afa-9c0a-b79632eef346
+      queryName: VM With Automatic Updates Disabled
       observations: ""
       change: 2
     - queryId:
