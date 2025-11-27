@@ -27,8 +27,8 @@ similarityIDChangeList:
       queryName: Beta - Key Vault Without HSM Protection
       observations: ""
       change: 2
-    - queryId:
-      queryName: Beta -
+    - queryId: 30c7c2f1-c048-49ba-81a4-ae465bbb3335
+      queryName: Beta - VM Without Encryption At Host
       observations: ""
       change: 2
     - queryId: 05d6b52e-11ca-453d-bb3a-21c7c853ee92
