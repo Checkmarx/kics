@@ -54,7 +54,7 @@ at_least_one_valid_log_alert(resources) = {"result" : "has_valid_log"} {
 		}
 	logs[_] != {}
 
-} else = {"result" : "has_invalid_logs_only", "logs": resources}
+}
 
 get_results(value) = results {					# Case of one or more resources failing due to not setting an "action.action_group_id" field
 	value.result == "has_log_without_action"
@@ -82,16 +82,6 @@ get_results(value) = results {					# Case of one or more resources failing due t
 			"keyActualValue" : sprintf("The 'azurerm_monitor_activity_log_alert[%s]' resource monitors 'delete SQL server firewall rule' events but sets %d filter(s): %s", [name, count(filters),concat(", ",filters)])
 		}]
 
-} else = results {								# Case of all resources failing due to invalid category and/or operation_name
-	results := [z |
-		log := value.logs[doc_id][name]
-		z := {
-			"doc_id" : doc_id,
-			"resource" : log,
-			"issueType": "IncorrectValue",
-			"name" : name,
-			"keyActualValue" : "None of the 'azurerm_monitor_activity_log_alert' resources monitor 'delete SQL server firewall rule' events"
-		}]
 }
 
 has_filter(criteria) {
