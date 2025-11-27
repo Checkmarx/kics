@@ -1,3 +1,4 @@
+# In the future this should flag the project (currently impossible) and request for a valid "log_alert" to be defined
 resource "azurerm_monitor_activity_log_alert" "positive1_1" {
   name                = "example-activitylogalert"
   resource_group_name = azurerm_resource_group.example.name

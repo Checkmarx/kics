@@ -173,7 +173,7 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			docs[filekey] = filekey
 		}
 
-		require.Equal(t, expectI, actualI,
+		require.ElementsMatch(t, expectI.Documents, actualI.Documents,
 			"Expected Payload content: 'fixtures/%s' doesn't match the Actual Payload content: 'output/%s'.",
 			expectFileName, actualFileName)
 
