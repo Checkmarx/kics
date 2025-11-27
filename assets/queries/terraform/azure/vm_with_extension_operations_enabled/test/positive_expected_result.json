@@ -34,5 +34,17 @@
     "severity": "MEDIUM",
     "line": 22,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "VM With Extension Operations Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "VM With Extension Operations Enabled",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive4.tf"
   }
 ]
