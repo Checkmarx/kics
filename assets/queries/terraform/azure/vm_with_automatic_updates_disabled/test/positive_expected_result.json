@@ -2,16 +2,16 @@
   {
     "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 11
   },
   {
     "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "MEDIUM",
-    "line": 26
+    "line": 24
   },
   {
     "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "MEDIUM",
-    "line": 40
+    "line": 37
   }
 ]

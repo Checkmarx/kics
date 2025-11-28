@@ -4,7 +4,6 @@ resource "azurerm_windows_virtual_machine" "negative1" {
   location            = azurerm_resource_group.negative1.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
   network_interface_ids = [
     azurerm_network_interface.negative1.id,
   ]
@@ -18,7 +17,6 @@ resource "azurerm_windows_virtual_machine" "negative2" {
   location            = azurerm_resource_group.negative2.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
   network_interface_ids = [
     azurerm_network_interface.negative2.id,
   ]
@@ -32,7 +30,6 @@ resource "azurerm_windows_virtual_machine_scale_set" "negative3" {
   location             = azurerm_resource_group.negative3.location
   sku                  = "Standard_F2"
   instances            = 1
-  admin_password       = "P@55w0rd1234!"
   admin_username       = "adminuser"
   computer_name_prefix = "vm-"
 
@@ -45,7 +42,6 @@ resource "azurerm_windows_virtual_machine" "negative4" {
   location            = azurerm_resource_group.negative4.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
   network_interface_ids = [
     azurerm_network_interface.negative4.id,
   ]
@@ -59,7 +55,6 @@ resource "azurerm_windows_virtual_machine_scale_set" "negative5" {
   location             = azurerm_resource_group.negative5.location
   sku                  = "Standard_F2"
   instances            = 1
-  admin_password       = "P@55w0rd1234!"
   admin_username       = "adminuser"
   computer_name_prefix = "vm-"
 
