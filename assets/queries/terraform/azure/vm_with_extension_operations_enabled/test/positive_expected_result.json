@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Beta - VM With Extension Operations Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - VM With Extension Operations Enabled",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - VM With Extension Operations Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - VM With Extension Operations Enabled",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - VM With Extension Operations Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - VM With Extension Operations Enabled",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - VM With Extension Operations Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Beta - VM With Extension Operations Enabled",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive4.tf"
+  }
+]
