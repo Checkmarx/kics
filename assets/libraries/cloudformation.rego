@@ -65,7 +65,48 @@ udpPortsMap = {
 	5432: "PostgreSQL",
 	11211: "Memcached",
 	11214: "Memcached SSL",
-	11215: "Memcached SSL",
+	11215: "Memcached SSL"
+}
+
+get_ingress_list(resource) = result {
+	ingress_array_types := ["AWS::EC2::SecurityGroup","AWS::RDS::DBSecurityGroup"]
+	resource.Type == ingress_array_types[_]
+	result := resource.Properties[get_associated_ingress_type(resource.Type)]
+} else = result {
+	# assumes it is a "AWS::EC2::SecurityGroupIngress" or "AWS::EC2::SecurityGroupEgress" resource
+	result := [resource.Properties]
+}
+
+get_associated_ingress_type("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
+get_associated_ingress_type("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress" #legacy
+
+containsPort(from_port, to_port, port) {
+	from_port <= port
+	to_port >= port
+}
+
+entireNetwork(rule) {
+	rule.CidrIp == "0.0.0.0/0"
+} else {
+	rule.CidrIpv6 == common_lib.unrestricted_ipv6[_]
+}
+
+getProtocolList(protocol) = list {
+	protocol == "-1"
+	list = ["TCP", "UDP"]
+} else = list {
+	upper(protocol) == ["TCP", "6"][_]
+	list = ["TCP"]
+} else = list {
+	upper(protocol) == ["UDP", "17"][_]
+	list = ["UDP"]
+}
+
+isTCP_and_port_exposed(ingress, port) {
+	upper(ingress.IpProtocol) == ["TCP","6"][_]
+	containsPort(ingress.FromPort, ingress.ToPort, port)
+} else {
+	ingress.IpProtocol == "-1"
 }
 
 # Get content of the resource(s) based on the type
@@ -287,5 +328,40 @@ enabled_is_undefined_or_false(logs,path,name,logName) = results {
 		"print" : "is set to 'false'",
 		"searchKey" : sprintf("%s%s.Properties.LogPublishingOptions.%s.Enabled", [getPath(path),name, logName]),
 		"searchLine" : common_lib.build_search_line(path, [name, "Properties", "LogPublishingOptions", logName, "Enabled"]),
+	}
+}
+
+search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
+  resources := doc.Resources
+
+  names := [name |
+    ingress := resources[name]
+    ingress.Type == "AWS::EC2::SecurityGroupIngress"
+    get_name(ingress.Properties.GroupId) == sec_group_name
+  ]
+
+  ingresses_with_names := {
+    "ingress_list": [resources[name].Properties | name := names[_]],
+    "names": names
+  }
+} else = {"ingress_list": [], "names": []}
+
+
+get_search_values_for_ingress_resources(ing_index, sec_group_name, names_list, index_sec_document, index_main_document) = results {
+	ing_index < count(names_list) # if ingress has name it is standalone
+
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties", [names_list[ing_index]]),
+		"searchLine" : common_lib.build_search_line(["Resources", names_list[ing_index], "Properties"], []),
+		"doc_index" : index_sec_document,
+		"type" : "AWS::EC2::SecurityGroupIngress"
+	}
+} else = results {  # else it is part of the "SecurityGroupIngress" array
+
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index-count(names_list)]),
+		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index-count(names_list)], []),
+		"doc_index": index_main_document,
+		"type" : "AWS::EC2::SecurityGroup"
 	}
 }

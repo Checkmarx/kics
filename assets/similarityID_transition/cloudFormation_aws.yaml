@@ -75,3 +75,43 @@ similarityIDChangeList:
       queryName: Vulnerable Default SSL Certificate
       observations: ""
       change: 5
+    - queryId: 9564406d-e761-4e61-b8d7-5926e3ab8e79
+      queryName: DB Security Group With Public Scope
+      observations: The query was not pointing to the specific ingress inside the SecurityGroupIngress array
+      change: 1
+    - queryId: 78055456-f670-4d2e-94d5-392d1cf4f5e4
+      queryName: ELB Sensitive Port Is Exposed To Entire Network
+      observations: The query was not pointing to the specific ingress inside the SecurityGroupIngress array
+      change: 1
+    - queryId: c9846969-d066-431f-9b34-8c4abafe422a
+      queryName: Remote Desktop Port Open To Internet
+      observations: Unlike the similar 'HTTP Port Open To Internet' query, it was not poiting to the specific ingress inside the SecurityGroupIngress array
+      change: 1
+    - queryId: 66f2d8f9-a911-4ced-ae27-34f09690bb2c
+      queryName: Security Groups Allows Unrestricted Outbound Traffic
+      observations: Although the searcKey was correct some engine makes it point properly only with the searchKey, which was missing
+      change: 1
+    - queryId: cdbb0467-2957-4a77-9992-7b55b29df7b7
+      queryName: Security Groups With Exposed Admin Ports
+      observations: It was not poiting to the specific ingress inside the SecurityGroupIngress array
+      change: 1
+    - queryId: 1cc2fbd7-816c-4fbf-ad6d-38a4afa4312a
+      queryName: Security Group Egress CIDR Open To World
+      observations: SearchValue cannot reach field but searchLine can and was added changing results
+      change: 4
+    - queryId: dae9c373-8287-462f-8746-6f93dad93610
+      queryName: Security Group Egress With Port Range
+      observations: SearchValue cannot reach field but searchLine can and was added changing results
+      change: 4
+    - queryId: adcd0082-e90b-4b63-862b-21899f6e6a48
+      queryName: Security Groups With Meta IP
+      observations: Was pointing to whole array instead of object inside the array, also added searchLine
+      change: 1
+    - queryId: 6e856af2-62d7-4ba2-adc1-73b62cef9cc1
+      queryName: Security Group With Unrestricted Access To SSH
+      observations: Pointed to a whole array instead of the relevant object inside
+      change: 1
+    - queryId: 0104165b-02d5-426f-abc9-91fb48189899
+      queryName: DB Security Group Open To Large Scope
+      observations: Pointed to the whole array when it could/should point to a specific field of an object inside the array
+      change: 1

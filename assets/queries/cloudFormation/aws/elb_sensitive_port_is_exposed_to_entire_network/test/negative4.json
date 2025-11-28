@@ -1,78 +1,116 @@
 {
-  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
   "Resources": {
-    "MyLoadBalancer": {
+    "LoadBalancer01": {
       "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
       "Properties": {
-        "HealthCheck": {
-          "UnhealthyThreshold": "3",
-          "Interval": "10",
-          "Timeout": "5",
-          "Target": "HTTP:80/",
-          "HealthyThreshold": "2"
-        },
         "SecurityGroups": [
-          "LBNegativeSecGroup01"
-        ],
-        "Policies": [
+          { "Ref": "Negative1IPv4_1" },
+          { "Ref": "Negative1IPv4_2" },
+          { "Ref": "Negative1ArrayTestIPv4" },
+          { "Ref": "Negative1IPv6_1" },
+          { "Ref": "Negative1IPv6_2" },
+          { "Ref": "Negative1ArrayTestIPv6" }
+        ]
+      }
+    },
+    "Negative1IPv4_1": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Incorrect protocol: ICMP",
+        "VpcId": { "Ref": "MyVPC" },
+        "SecurityGroupIngress": [
           {
-            "PolicyType": "SSLNegotiationPolicyType",
-            "Attributes": [
-              {
-                "Name": "Reference-Security-Policy",
-                "Value": "ELBSecurityPolicy-TLS-1-2-2017-01"
-              }
-            ],
-            "PolicyName": "My-SSLNegotiation-Policy"
-          }
-        ],
-        "AvailabilityZones": [
-          "us-east-2a"
-        ],
-        "CrossZone": true,
-        "Scheme": "internet-facing",
-        "Listeners": [
-          {
-            "LoadBalancerPort": "443",
-            "Protocol": "HTTPS",
-            "PolicyNames": [
-              "My-SSLNegotiation-Policy"
-            ],
-            "SSLCertificateId": "arn:aws:iam::123456789012:server-certificate/my-server-certificate",
-            "InstancePort": "80",
-            "InstanceProtocol": "HTTP"
+            "IpProtocol": "icmp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "10.0.0.0/0"
           }
         ]
       }
     },
-    "LBNegativeSecGroup01": {
+    "Negative1IPv4_2": {
+      "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "Allow http and ssh",
-        "VpcId": "my-vpc",
+        "GroupDescription": "Unknown port: port 5000",
+        "VpcId": { "Ref": "MyVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "6",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIp": "192.168.0.0/0"
+          }
+        ]
+      }
+    },
+    "Negative1ArrayTestIPv4": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Mixed incorrect CIDRs and protocols",
+        "VpcId": { "Ref": "MyVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "udp",
+            "FromPort": 137,
+            "ToPort": 137,
+            "CidrIp": "8.8.0.0/16"
+          },
+          {
+            "IpProtocol": "icmp",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIp": "10.68.0.0/14"
+          }
+        ]
+      }
+    },
+    "Positive1IPv6_1": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Incorrect protocol: ICMPV6",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "58",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv6": "fd00::/0"
+          }
+        ]
+      }
+    },
+    "Positive1IPv6_2": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Unknown port: port 5000",
         "SecurityGroupIngress": [
           {
             "IpProtocol": "tcp",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIp": "127.0.0.1/32"
-          },
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIp": "127.0.0.1/32"
-          }
-        ],
-        "SecurityGroupEgress": [
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIp": "0.0.0.0/0"
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIpv6": "fd12:3456:789a::1/0"
           }
         ]
-      },
-      "Type": "AWS::EC2::SecurityGroup"
+      }
+    },
+    "Positive1ArrayTestIPv6": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Mixed incorrect CIDR and 'All incorrect'",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "udp",
+            "FromPort": 137,
+            "ToPort": 137,
+            "CidrIpv6": "2400:cb00::/32"
+          },
+          {
+            "IpProtocol": "58",
+            "FromPort": 110,
+            "ToPort": 110,
+            "CidrIpv6": "fd00:abcd:1234::42/0"
+          }
+        ]
+      }
     }
   }
 }

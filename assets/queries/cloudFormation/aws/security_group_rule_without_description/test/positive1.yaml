@@ -42,3 +42,7 @@ Resources:
         Fn::GetAtt:
         - TargetSG
         - GroupId
+  LegacySecurityGroup:
+    Type: AWS::RDS::DBSecurityGroup
+    Properties:
+      DBSecurityGroupName: "sample"
