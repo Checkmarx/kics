@@ -39,6 +39,7 @@ get_results(resource, type, name) = results {
 	}]
 	count(results) != 0
 } else = results {
+	not is_array(resource.admin_ssh_key)
 	not common_lib.valid_key(resource.admin_ssh_key, "public_key")
 	results := [{
 		"searchKey": sprintf("%s[%s].admin_ssh_key", [type, name]),
