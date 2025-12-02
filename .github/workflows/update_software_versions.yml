@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
       - name: Checkout project
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.x"
       - name: Run update_versions script
@@ -25,7 +25,7 @@ jobs:
              *.json
       - name: Create pull request
         if: steps.verify-changed-files.outputs.files_changed == 'true'
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v6
+        uses: peter-evans/create-pull-request@84ae59a2cdc2258d6fa0732dd66352dddae2a412 # v6
         with:
           title: "build(deps): updating software versions"
           token: ${{ secrets.KICS_BOT_PAT }}
