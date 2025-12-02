@@ -1,0 +1,2938 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open source solution for static code analysis of Infrastructure as Code. Finding security vulnerabilities, compliance issues, and infrastructure misconfigurations during project development cycle.">
+      
+      
+      
+        <link rel="canonical" href="http://docs.kics.io/2.1.16/queries/dockerfile-queries/">
+      
+      
+        <link rel="prev" href="../dockercompose-queries/">
+      
+      
+        <link rel="next" href="../googledeploymentmanager-queries/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/logo/kics-donkey.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Dockerfile - KICS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dockerfile_queries_list" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="KICS" class="md-header__button md-logo" aria-label="KICS" data-md-component="logo">
+      
+  <img src="../../img/logo/Checkmarx_Kics_Logo_fit_to_content.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KICS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dockerfile
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../documentation/" class="md-tabs__link">
+          
+  
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Queries
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../integrations/" class="md-tabs__link">
+          
+  
+  
+  Integrations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../roadmap/" class="md-tabs__link">
+          
+  
+  
+  Project
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CONTRIBUTING/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contribution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../community/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Community
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="KICS" class="md-nav__button md-logo" aria-label="KICS" data-md-component="logo">
+      
+  <img src="../../img/logo/Checkmarx_Kics_Logo_fit_to_content.png" alt="logo">
+
+    </a>
+    KICS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Line Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration-file/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-kics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running KICS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Utilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kics_auto_remediation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auto Remediation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../certifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Certifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../future_improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Future Improvements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changes in v1.3.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changes1_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changes in v1.6.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changes1_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changes in v1.7.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Queries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../creating-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../secrets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passwords And Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bill of Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries List
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Queries List
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../all-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azureresourcemanager-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Azure Resource Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buildah-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Buildah
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cicd-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CICD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudformation-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CloudFormation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crossplane-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crossplane
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dockercompose-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Compose
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dockerfile
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dockerfile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile_queries_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dockerfile Queries List
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../googledeploymentmanager-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Deployment Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grpc-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gRPC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../knative-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knative
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openapi-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pulumi-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pulumi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../serverlessfw-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ServerlessFW
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terraform-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terraform
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_azurepipelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Azure DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_bamboo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bamboo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_bitbucketpipelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bitbucket Pipelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_circleci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CircleCI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_codefresh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Codefresh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_ghactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Github Actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_gitlabci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gitlab CI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_jenkins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jenkins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_teamcity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TeamCity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_travisci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Travis CI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_tfcloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terraform Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_aws_codebuild/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS CodeBuild
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BADGE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Badge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_pre_commit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using pre-commit hooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_terraformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terraformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_auto_scanning_visual_studio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KICS Auto Scanning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_kuberneter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kuberneter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations_aws_cdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS CDK
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Checkmarx/kics/projects" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plans
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Checkmarx/kics/issues" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Dockerfile</h1>
+
+<h2 id="dockerfile_queries_list">Dockerfile Queries List<a class="headerlink" href="#dockerfile_queries_list" title="Permanent link">&para;</a></h2>
+<p>This page contains all queries from Dockerfile.</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>More info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last User Is 'root'<br/><sup><sub>67fd0c4a-68cf-46d7-8c41-bc9fba7e40ae</sub></sup></td>
+<td><span style="color:#bb2124">High</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/67fd0c4a-68cf-46d7-8c41-bc9fba7e40ae" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/67fd0c4a-68cf-46d7-8c41-bc9fba7e40ae')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#user">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing User Instruction<br/><sup><sub>fd54f200-402c-4333-a5a4-36ef6709af2f</sub></sup></td>
+<td><span style="color:#bb2124">High</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/fd54f200-402c-4333-a5a4-36ef6709af2f" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/fd54f200-402c-4333-a5a4-36ef6709af2f')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#user">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Changing Default Shell Using RUN Command<br/><sup><sub>8a301064-c291-4b20-adcb-403fe7fd95fd</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/8a301064-c291-4b20-adcb-403fe7fd95fd" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/8a301064-c291-4b20-adcb-403fe7fd95fd')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#shell">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Image Version Using 'latest'<br/><sup><sub>f45ea400-6bbe-4501-9fc7-1c3d75c32067</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/f45ea400-6bbe-4501-9fc7-1c3d75c32067" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/f45ea400-6bbe-4501-9fc7-1c3d75c32067')">Query details</a><br><a href="https://docs.docker.com/develop/dev-best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Not Using JSON In CMD And ENTRYPOINT Arguments<br/><sup><sub>b86987e1-6397-4619-81d5-8807f2387c79</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/b86987e1-6397-4619-81d5-8807f2387c79" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/b86987e1-6397-4619-81d5-8807f2387c79')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#entrypoint">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Run Using Sudo<br/><sup><sub>8ada6e80-0ade-439e-b176-0b28f6bce35a</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Insecure Configurations</td>
+<td><a href="../dockerfile-queries/8ada6e80-0ade-439e-b176-0b28f6bce35a" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/8ada6e80-0ade-439e-b176-0b28f6bce35a')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Add Instead of Copy<br/><sup><sub>9513a694-aa0d-41d8-be61-3271e056f36b</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/9513a694-aa0d-41d8-be61-3271e056f36b" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/9513a694-aa0d-41d8-be61-3271e056f36b')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#add">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Apt Get Install Pin Version Not Defined<br/><sup><sub>965a08d7-ef86-4f14-8792-4a3b2098937e</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/965a08d7-ef86-4f14-8792-4a3b2098937e" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/965a08d7-ef86-4f14-8792-4a3b2098937e')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Gem Install Without Version<br/><sup><sub>22cd11f7-9c6c-4f6e-84c0-02058120b341</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/22cd11f7-9c6c-4f6e-84c0-02058120b341" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/22cd11f7-9c6c-4f6e-84c0-02058120b341')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Image Version Not Explicit<br/><sup><sub>9efb0b2d-89c9-41a3-91ca-dcc0aec911fd</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/9efb0b2d-89c9-41a3-91ca-dcc0aec911fd" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/9efb0b2d-89c9-41a3-91ca-dcc0aec911fd')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#from">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing Version Specification In dnf install<br/><sup><sub>93d88cf7-f078-46a8-8ddc-178e03aeacf1</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/93d88cf7-f078-46a8-8ddc-178e03aeacf1" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/93d88cf7-f078-46a8-8ddc-178e03aeacf1')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing Zypper Non-interactive Switch<br/><sup><sub>45e1fca5-f90e-465d-825f-c2cb63fa3944</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/45e1fca5-f90e-465d-825f-c2cb63fa3944" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/45e1fca5-f90e-465d-825f-c2cb63fa3944')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>NPM Install Command Without Pinned Version<br/><sup><sub>e36d8880-3f78-4546-b9a1-12f0745ca0d5</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/e36d8880-3f78-4546-b9a1-12f0745ca0d5" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/e36d8880-3f78-4546-b9a1-12f0745ca0d5')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unpinned Package Version in Apk Add<br/><sup><sub>d3499f6d-1651-41bb-a9a7-de925fea487b</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/d3499f6d-1651-41bb-a9a7-de925fea487b" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/d3499f6d-1651-41bb-a9a7-de925fea487b')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unpinned Package Version in Pip Install<br/><sup><sub>02d9c71f-3ee8-4986-9c27-1a20d0d19bfc</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/02d9c71f-3ee8-4986-9c27-1a20d0d19bfc" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/02d9c71f-3ee8-4986-9c27-1a20d0d19bfc')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Yum install Without Version<br/><sup><sub>6452c424-1d92-4deb-bb18-a03e95d579c4</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/6452c424-1d92-4deb-bb18-a03e95d579c4" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/6452c424-1d92-4deb-bb18-a03e95d579c4')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Chown Flag Exists<br/><sup><sub>aa93e17f-b6db-4162-9334-c70334e7ac28</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/aa93e17f-b6db-4162-9334-c70334e7ac28" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/aa93e17f-b6db-4162-9334-c70334e7ac28')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Curl or Wget Instead of Add<br/><sup><sub>4b410d24-1cbe-4430-a632-62c9a931cf1c</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/4b410d24-1cbe-4430-a632-62c9a931cf1c" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/4b410d24-1cbe-4430-a632-62c9a931cf1c')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Exposing Port 22 (SSH)<br/><sup><sub>5907595b-5b6d-4142-b173-dbb0e73fbff8</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/5907595b-5b6d-4142-b173-dbb0e73fbff8" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/5907595b-5b6d-4142-b173-dbb0e73fbff8')">Query details</a><br><a href="https://sysdig.com/blog/dockerfile-best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>MAINTAINER Instruction Being Used<br/><sup><sub>99614418-f82b-4852-a9ae-5051402b741c</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/99614418-f82b-4852-a9ae-5051402b741c" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/99614418-f82b-4852-a9ae-5051402b741c')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#maintainer-deprecated">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing Dnf Clean All<br/><sup><sub>295acb63-9246-4b21-b441-7c1f1fb62dc0</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/295acb63-9246-4b21-b441-7c1f1fb62dc0" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/295acb63-9246-4b21-b441-7c1f1fb62dc0')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing Zypper Clean<br/><sup><sub>38300d1a-feb2-4a48-936a-d1ef1cd24313</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/38300d1a-feb2-4a48-936a-d1ef1cd24313" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/38300d1a-feb2-4a48-936a-d1ef1cd24313')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Multiple RUN, ADD, COPY, Instructions Listed<br/><sup><sub>0008c003-79aa-42d8-95b8-1c2fe37dbfe6</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/0008c003-79aa-42d8-95b8-1c2fe37dbfe6" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/0008c003-79aa-42d8-95b8-1c2fe37dbfe6')">Query details</a><br><a href="https://sysdig.com/blog/dockerfile-best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Pip install Keeping Cached Packages<br/><sup><sub>f2f903fb-b977-461e-98d7-b3e2185c6118</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/f2f903fb-b977-461e-98d7-b3e2185c6118" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/f2f903fb-b977-461e-98d7-b3e2185c6118')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Yum Clean All Missing<br/><sup><sub>00481784-25aa-4a55-8633-3136dfcf4f37</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/00481784-25aa-4a55-8633-3136dfcf4f37" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/00481784-25aa-4a55-8633-3136dfcf4f37')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>COPY '--from' References Current FROM Alias<br/><sup><sub>cdddb86f-95f6-4fc4-b5a1-483d9afceb2b</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/cdddb86f-95f6-4fc4-b5a1-483d9afceb2b" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/cdddb86f-95f6-4fc4-b5a1-483d9afceb2b')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/multistage-build/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Copy With More Than Two Arguments Not Ending With Slash<br/><sup><sub>6db6e0c2-32a3-4a2e-93b5-72c35f4119db</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/6db6e0c2-32a3-4a2e-93b5-72c35f4119db" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/6db6e0c2-32a3-4a2e-93b5-72c35f4119db')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#copy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Multiple CMD Instructions Listed<br/><sup><sub>41c195f4-fc31-4a5c-8a1b-90605538d49f</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/41c195f4-fc31-4a5c-8a1b-90605538d49f" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/41c195f4-fc31-4a5c-8a1b-90605538d49f')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#cmd">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Multiple ENTRYPOINT Instructions Listed<br/><sup><sub>6938958b-3f1a-451c-909b-baeee14bdc97</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/6938958b-3f1a-451c-909b-baeee14bdc97" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/6938958b-3f1a-451c-909b-baeee14bdc97')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#entrypoint">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RUN Instruction Using 'cd' Instead of WORKDIR<br/><sup><sub>f4a6bcd3-e231-4acf-993c-aa027be50d2e</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/f4a6bcd3-e231-4acf-993c-aa027be50d2e" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/f4a6bcd3-e231-4acf-993c-aa027be50d2e')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Same Alias In Different Froms<br/><sup><sub>f2daed12-c802-49cd-afed-fe41d0b82fed</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/f2daed12-c802-49cd-afed-fe41d0b82fed" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/f2daed12-c802-49cd-afed-fe41d0b82fed')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/multistage-build/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Update Instruction Alone<br/><sup><sub>9bae49be-0aa3-4de5-bab2-4c3a069e40cd</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/9bae49be-0aa3-4de5-bab2-4c3a069e40cd" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/9bae49be-0aa3-4de5-bab2-4c3a069e40cd')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Using Unnamed Build Stages<br/><sup><sub>68a51e22-ae5a-4d48-8e87-b01a323605c9</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/68a51e22-ae5a-4d48-8e87-b01a323605c9" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/68a51e22-ae5a-4d48-8e87-b01a323605c9')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/multistage-build/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>WORKDIR Path Not Absolute<br/><sup><sub>6b376af8-cfe8-49ab-a08d-f32de23661a4</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Build Process</td>
+<td><a href="../dockerfile-queries/6b376af8-cfe8-49ab-a08d-f32de23661a4" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/6b376af8-cfe8-49ab-a08d-f32de23661a4')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Healthcheck Instruction Missing<br/><sup><sub>b03a748a-542d-44f4-bb86-9199ab4fd2d5</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Insecure Configurations</td>
+<td><a href="../dockerfile-queries/b03a748a-542d-44f4-bb86-9199ab4fd2d5" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/b03a748a-542d-44f4-bb86-9199ab4fd2d5')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#healthcheck">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Shell Running A Pipe Without Pipefail Flag<br/><sup><sub>efbf148a-67e9-42d2-ac47-02fa1c0d0b22</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Insecure Defaults</td>
+<td><a href="../dockerfile-queries/efbf148a-67e9-42d2-ac47-02fa1c0d0b22" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/efbf148a-67e9-42d2-ac47-02fa1c0d0b22')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>APT-GET Missing Flags To Avoid Manual Input<br/><sup><sub>77783205-c4ca-4f80-bb80-c777f267c547</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/77783205-c4ca-4f80-bb80-c777f267c547" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/77783205-c4ca-4f80-bb80-c777f267c547')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing Flag From Dnf Install<br/><sup><sub>7ebd323c-31b7-4e5b-b26f-de5e9e477af8</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/7ebd323c-31b7-4e5b-b26f-de5e9e477af8" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/7ebd323c-31b7-4e5b-b26f-de5e9e477af8')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Run Using 'wget' and 'curl'<br/><sup><sub>fc775e75-fcfb-4c98-b2f2-910c5858b359</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/fc775e75-fcfb-4c98-b2f2-910c5858b359" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/fc775e75-fcfb-4c98-b2f2-910c5858b359')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Run Using apt<br/><sup><sub>b84a0b47-2e99-4c9f-8933-98bcabe2b94d</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/b84a0b47-2e99-4c9f-8933-98bcabe2b94d" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/b84a0b47-2e99-4c9f-8933-98bcabe2b94d')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Yum Install Allows Manual Input<br/><sup><sub>6e19193a-8753-436d-8a09-76dcff91bb03</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/6e19193a-8753-436d-8a09-76dcff91bb03" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/6e19193a-8753-436d-8a09-76dcff91bb03')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Zypper Install Without Version<br/><sup><sub>562952e4-0348-4dea-9826-44f3a2c6117b</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/562952e4-0348-4dea-9826-44f3a2c6117b" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/562952e4-0348-4dea-9826-44f3a2c6117b')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Using Platform Flag with FROM Command<br/><sup><sub>b16e8501-ef3c-44e1-a543-a093238099c9</sub></sup></td>
+<td><span style="color:#5bc0de">Info</span></td>
+<td>Best Practices</td>
+<td><a href="../dockerfile-queries/b16e8501-ef3c-44e1-a543-a093238099c9" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/b16e8501-ef3c-44e1-a543-a093238099c9')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#from">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>UNIX Ports Out Of Range<br/><sup><sub>71bf8cf8-f0a1-42fa-b9d2-d10525e0a38e</sub></sup></td>
+<td><span style="color:#5bc0de">Info</span></td>
+<td>Networking and Firewall</td>
+<td><a href="../dockerfile-queries/71bf8cf8-f0a1-42fa-b9d2-d10525e0a38e" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/71bf8cf8-f0a1-42fa-b9d2-d10525e0a38e')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#expose">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Apk Add Using Local Cache Path<br/><sup><sub>ae9c56a6-3ed1-4ac0-9b54-31267f51151d</sub></sup></td>
+<td><span style="color:#5bc0de">Info</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/ae9c56a6-3ed1-4ac0-9b54-31267f51151d" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/ae9c56a6-3ed1-4ac0-9b54-31267f51151d')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Apt Get Install Lists Were Not Deleted<br/><sup><sub>df746b39-6564-4fed-bf85-e9c44382303c</sub></sup></td>
+<td><span style="color:#5bc0de">Info</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/df746b39-6564-4fed-bf85-e9c44382303c" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/df746b39-6564-4fed-bf85-e9c44382303c')">Query details</a><br><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>APT-GET Not Avoiding Additional Packages<br/><sup><sub>7384dfb2-fcd1-4fbf-91cd-6c44c318c33c</sub></sup></td>
+<td><span style="color:#5bc0de">Info</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/7384dfb2-fcd1-4fbf-91cd-6c44c318c33c" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/7384dfb2-fcd1-4fbf-91cd-6c44c318c33c')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Run Utilities And POSIX Commands<br/><sup><sub>9b6b0f38-92a2-41f9-b881-3a1083d99f1b</sub></sup></td>
+<td><span style="color:#5bc0de">Info</span></td>
+<td>Supply-Chain</td>
+<td><a href="../dockerfile-queries/9b6b0f38-92a2-41f9-b881-3a1083d99f1b" onclick="newWindowOpenerSafe(event, '../dockerfile-queries/9b6b0f38-92a2-41f9-b881-3a1083d99f1b')">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 Checkmarx Ltd. All Rights Reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "toc.integrate"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../js/version-mike.js"></script>
+      
+        <script src="../../js/custom.js"></script>
+      
+    
+  </body>
+</html>
