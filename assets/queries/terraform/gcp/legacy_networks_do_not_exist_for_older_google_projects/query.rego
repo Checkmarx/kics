@@ -69,7 +69,7 @@ get_res(resource, name_comp_network) = res {
         "it": "IncorrectValue",
         "kev": "'auto_create_subnetworks' should be defined to false",
         "kav": "'auto_create_subnetworks' is defined to true",
-        "sl": common_lib.build_search_line(["resource", "google_compute_network", name_comp_network], []),
+        "sl": common_lib.build_search_line(["resource", "google_compute_network", name_comp_network, "auto_create_subnetwork"], []),
     }
 }
 
