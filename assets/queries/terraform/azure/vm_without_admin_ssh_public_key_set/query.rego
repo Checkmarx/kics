@@ -37,7 +37,7 @@ get_results(resource, type, name) = results {
 				"keyActualValue": sprintf("'%s[%s].admin_ssh_key[%d].public_key' is undefined or null", [type, name, index]),
 				"searchLine": common_lib.build_search_line(["resource", type, name, "admin_ssh_key", index], [])
 	}]
-	results != []
+	count(results) != 0
 } else = results {
 	not common_lib.valid_key(resource.admin_ssh_key, "public_key")
 	results := [{
