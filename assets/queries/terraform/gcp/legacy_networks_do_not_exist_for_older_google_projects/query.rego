@@ -11,17 +11,17 @@ CxPolicy[result] {
     associated_project := split(compute_network.project, ".")[1]
     associated_project == name_gp
 
-    compute_network.auto_create_subnetworks
+    res := get_res(compute_network, name_comp_network)
 
     result := {
         "documentId": input.document[i].id,
         "resourceType": "google_compute_network",
         "resourceName": tf_lib.get_resource_name(compute_network, name_comp_network),
-        "searchKey": sprintf("google_compute_network[%s].auto_create_subnetworks", [name_comp_network]),
-        "issueType": "IncorrectValue",
-        "keyExpectedValue": "'auto_create_subnetworks' should not be defined to true",
-        "keyActualValue": "'auto_create_subnetworks' is defined to true",
-        "searchLine": common_lib.build_search_line(["resource", "google_compute_network", name_comp_network, "auto_create_subnetworks"], [])
+        "searchKey": res["sk"],
+        "issueType": res["it"],
+        "keyExpectedValue": res["kev"],
+        "keyActualValue": res["kav"],
+        "searchLine": res["sl"]
     }
 }
 
@@ -37,17 +37,39 @@ CxPolicy[result] {
     associated_project := get_provider_res(provider, provider_name)
     project.project_id == associated_project
 
-    compute_network.auto_create_subnetworks
+    res := get_res(compute_network, name_comp_network)
 
     result := {
         "documentId": input.document[i].id,
         "resourceType": "google_compute_network",
         "resourceName": tf_lib.get_resource_name(compute_network, name_comp_network),
-        "searchKey": sprintf("google_compute_network[%s].auto_create_subnetworks", [name_comp_network]),
-        "issueType": "IncorrectValue",
-        "keyExpectedValue": "'auto_create_subnetworks' should not be defined to true",
-        "keyActualValue": "'auto_create_subnetworks' is defined to true",
-        "searchLine": common_lib.build_search_line(["resource", "google_compute_network", name_comp_network, "auto_create_subnetworks"], [])
+        "searchKey": res["sk"],
+        "issueType": res["it"],
+        "keyExpectedValue": res["kev"],
+        "keyActualValue": res["kav"],
+        "searchLine": res["sl"]
+    }
+}
+
+get_res(resource, name_comp_network) = res {
+    not common_lib.valid_key(resource, "auto_create_subnetworks")
+
+    res := {
+        "sk": sprintf("google_compute_network[%s]", [name_comp_network]),
+        "it": "MissingAttribute",
+        "kev": "'auto_create_subnetworks' should be defined to false",
+        "kav": "'auto_create_subnetworks' is not defined",
+        "sl": common_lib.build_search_line(["resource", "google_compute_network", name_comp_network], []),
+    }
+} else = res {
+    resource.auto_create_subnetworks == true
+
+    res := {
+        "sk": sprintf("google_compute_network[%s].auto_create_subnetworks", [name_comp_network]),
+        "it": "IncorrectValue",
+        "kev": "'auto_create_subnetworks' should be defined to false",
+        "kav": "'auto_create_subnetworks' is defined to true",
+        "sl": common_lib.build_search_line(["resource", "google_compute_network", name_comp_network], []),
     }
 }
 

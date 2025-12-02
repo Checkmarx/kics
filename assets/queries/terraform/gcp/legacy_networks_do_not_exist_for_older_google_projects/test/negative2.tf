@@ -1,11 +1,15 @@
-resource "google_project" "negative2" {
-  name       = "My Project"
-  project_id = "bad"
-  org_id     = "1234567"
+provider "google" {
+  project = "my-sample-project-12345"
+  region  = "us-central1"
 }
 
-resource "google_compute_network" "vpc_network_network" {
-  name = "vpc-legacy"
+resource "google_project" "example_project" {
+  name            = "example-project"
+  project_id      = "my-sample-project-12345"
+  org_id          = "123456789012"           
+}
+
+resource "google_compute_network" "legacy_network" {
+  name                    = "legacy-network"
   auto_create_subnetworks = false
-  project = google_project.negative2.id
 }
