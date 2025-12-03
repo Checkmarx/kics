@@ -1,0 +1,14 @@
+{
+  "id": "a7b422e3-0b2f-4795-a43a-136dbbd6cbb3",
+  "queryName": "Beta - Activity Log Alert For Delete Policy Assignment Not Configured",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture delete policy assignment events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_activity_log_alert",
+  "platform": "Terraform",
+  "descriptionID": "a7b422e3",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
