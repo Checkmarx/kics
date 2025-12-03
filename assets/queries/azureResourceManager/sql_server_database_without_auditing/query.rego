@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	types := ["auditingSettings", "Microsoft.Sql/servers/databases/auditingSettings", "Microsoft.Sql/servers/auditingSettings"]
-	dbTypes := ["Microsoft.Sql/servers/databases", "databases", "Microsoft.Sql/servers"]
+	dbTypes := ["databases", "Microsoft.Sql/servers/databases", "Microsoft.Sql/servers"]
 	doc := input.document[i]
 	[path, value] = walk(doc)
 	value.type == dbTypes[_]
@@ -58,7 +58,7 @@ get_outer_children(doc, nameParent) = outerArr {
 	outerArr := [x |
 		[path, value] := walk(doc)
 		startswith(value.name, nameParent)
-        count(split(value.name, "/")) == count(split(nameParent, "/")) + 1
+        count(split(value.name, "/")) == count(split(nameParent, "/")) + 1 # Prevents /servers from capturing ../databases/auditingSettings
 		x := value
 	]
 }
