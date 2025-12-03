@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Beta - Ensure Essential Contacts Is Configured For Organization",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Ensure Essential Contacts Is Configured For Organization",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Ensure Essential Contacts Is Configured For Organization",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - Ensure Essential Contacts Is Configured For Organization",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive4.tf"
+  }
+]

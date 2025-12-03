@@ -1,0 +1,14 @@
+{
+  "id": "7bd9c6a8-3b1f-495c-9752-a4a9c4e1b29f",
+  "queryName": "Beta - Ensure Essential Contacts Is Configured For Organization",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "It is advisable to set up Essential Contacts to specify email addresses that Google Cloud can use to send important technical or security notifications.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/essential_contacts_contact",
+  "platform": "Terraform",
+  "descriptionID": "7bd9c6a8",
+  "cloudProvider": "gcp",
+  "cwe": "862",
+  "riskScore": "1.0",
+  "experimental": "true"
+}
