@@ -3,21 +3,18 @@
   "contentVersion": "1.0.0.0",
   "resources": [
     {
-      "type": "Microsoft.Sql/servers/databases",
+      "type": "Microsoft.Sql/servers",
       "apiVersion": "2021-02-01-preview",
-      "name": "sql_server/sql_databases",
+      "name": "sql_server",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', 'sql_server')]"
-      ],
       "properties": {}
     },
     {
-      "type": "Microsoft.Sql/servers/databases/auditingSettings",
+      "type": "Microsoft.Sql/servers/auditingSettings",
       "apiVersion": "2021-02-01-preview",
-      "name": "sql_server/sql_databases/default_2",
+      "name": "sql_server/default_1",
       "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers/databases', 'sql_server', 'sql_databases')]"
+        "[resourceId('Microsoft.Sql/servers', 'sql_server')]"
       ],
       "properties": {
         "state": "Enabled"

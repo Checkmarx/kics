@@ -7,7 +7,7 @@ resource sqlServer1_default 'Microsoft.Sql/servers/auditingSettings@2021-02-01-p
   parent: sqlServer1
   name: 'default_1'
   properties: {
-    state: 'Disabled'
+    state: 'Enabled'
   }
 }
 
@@ -22,6 +22,6 @@ resource sqlServer1_sqlDatabase1_default 'Microsoft.Sql/servers/databases/auditi
   parent: sqlServer1_sqlDatabase1
   name: 'default_2'
   properties: {
-    state: 'Enabled'
+    state: 'Disabled'
   }
 }

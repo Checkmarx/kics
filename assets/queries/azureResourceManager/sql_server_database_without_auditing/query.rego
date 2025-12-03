@@ -26,10 +26,10 @@ CxPolicy[result] {
 	depth_path := array.slice(path, 0, count(path)-1)
 	brothersArr_full := object.get(doc, depth_path, [])
 	brothersArr := [x | x := brothersArr_full[ch_index]
-						brothersArr_full[ch_index].type == types[_]]
+						brothersArr_full[ch_index].type == types[_]
+						count(split(brothersArr_full[ch_index].name, "/")) < count(split(value.name, "/")) + 2]	# Prevents /servers from capturing ../databases/auditingSettings
 
 	count([x |
-		childrenArr == []   # "child" auditing resource takes priority if it exists
 		brother := brothersArr[_]
 		[val, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, brother.properties.state)
 		lower(val) == "enabled"

@@ -14,7 +14,7 @@
           "apiVersion": "2021-02-01-preview",
           "name": "default_1",
           "properties": {
-            "state": "Disabled"
+            "state": "Enabled"
           }
         },
         {
@@ -29,7 +29,7 @@
               "apiVersion": "2021-02-01-preview",
               "name": "default_2",
               "properties": {
-                "state": "Enabled"
+                "state": "Disabled"
               }
             }
           ]
