@@ -588,3 +588,132 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		})
 	}
 }
+
+func TestAnalyzer_FileStats(t *testing.T) {
+	tests := []struct {
+		name                 string
+		paths                []string
+		typesFromFlag        []string
+		excludeTypesFromFlag []string
+		wantPlatformStats    map[string]platformFileStats
+		gitIgnoreFileName    string
+		excludeGitIgnore     bool
+		MaxFileSize          int
+	}{
+		{
+			name:                 "file_stats_nested_structure_with_multiple_platforms",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/analyzer_test/helm")},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantPlatformStats: map[string]platformFileStats{
+				"kubernetes": {
+					fileCount: 3,
+					dirCount:  2,
+					totalLOC:  118,
+				},
+			},
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  true,
+			MaxFileSize:       -1,
+		},
+		{
+			name:                 "file_stats_multiple_platforms_nested_directories",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantPlatformStats: map[string]platformFileStats{
+				"terraform": {
+					fileCount: 1,
+					dirCount:  1,
+					totalLOC:  10,
+				},
+				"kubernetes": {
+					fileCount: 4,
+					dirCount:  3,
+					totalLOC:  131,
+				},
+				"dockerfile": {
+					fileCount: 1,
+					dirCount:  1,
+					totalLOC:  3,
+				},
+			},
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  true,
+			MaxFileSize:       -1,
+		},
+		{
+			name:                 "file_stats_with_type_filter",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
+			typesFromFlag:        []string{"terraform", "kubernetes"},
+			excludeTypesFromFlag: []string{""},
+			wantPlatformStats: map[string]platformFileStats{
+				"terraform": {
+					fileCount: 1,
+					dirCount:  1,
+					totalLOC:  10,
+				},
+				"kubernetes": {
+					fileCount: 6,
+					dirCount:  3,
+					totalLOC:  156,
+				},
+			},
+			gitIgnoreFileName: "",
+			excludeGitIgnore:  true,
+			MaxFileSize:       -1,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			exc := []string{""}
+
+			analyzer := &Analyzer{
+				Paths:             tt.paths,
+				Types:             tt.typesFromFlag,
+				ExcludeTypes:      tt.excludeTypesFromFlag,
+				Exc:               exc,
+				ExcludeGitIgnore:  tt.excludeGitIgnore,
+				GitIgnoreFileName: tt.gitIgnoreFileName,
+				MaxFileSize:       tt.MaxFileSize,
+			}
+
+			got, err := Analyze(analyzer)
+			require.NoError(t, err)
+
+			require.NotNil(t, got.FileStats, "FileStats should not be nil")
+
+			for platform, expectedStats := range tt.wantPlatformStats {
+				platformStats, exists := got.FileStats[platform]
+				require.True(t, exists, "FileStats should contain platform: %s", platform)
+
+				require.Equal(t, expectedStats.fileCount, platformStats.FileCount,
+					"wrong file count for platform %s", platform)
+
+				require.Equal(t, expectedStats.dirCount, platformStats.DirectoryCount,
+					"wrong directory count for platform %s", platform)
+
+				require.Equal(t, expectedStats.totalLOC, platformStats.TotalLOC,
+					"wrong total LOC for platform %s", platform)
+
+				require.NotNil(t, platformStats.FilesByDir, "FilesByDir should not be nil")
+				require.Equal(t, expectedStats.dirCount, len(platformStats.FilesByDir),
+					"wrong FilesByDir entries for platform %s", platform)
+
+				totalFilesFromDirs := 0
+				for _, fileCount := range platformStats.FilesByDir {
+					totalFilesFromDirs += fileCount
+				}
+				require.Equal(t, platformStats.FileCount, totalFilesFromDirs,
+					"file count sum mismatch for platform %s", platform)
+			}
+		})
+	}
+}
+
+type platformFileStats struct {
+	fileCount int
+	dirCount  int
+	totalLOC  int
+}

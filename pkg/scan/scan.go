@@ -150,6 +150,13 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 
 	failedQueries := executeScanParameters.inspector.GetFailedQueries()
 
+	for _, service := range executeScanParameters.services {
+		secretsFailedQueries := service.SecretsInspector.GetFailedQueries()
+		for queryName, queryErr := range secretsFailedQueries {
+			failedQueries[queryName] = queryErr
+		}
+	}
+
 	results, err := c.Storage.GetVulnerabilities(ctx, c.ScanParams.ScanID)
 	if err != nil {
 		log.Err(err)
