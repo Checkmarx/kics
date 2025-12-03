@@ -1,0 +1,14 @@
+{
+  "id": "416ac446-9a2e-4f6d-84d2-82add788c7da",
+  "queryName": "Beta - Databricks Workspace Without CMK",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "The 'azurerm_databricks_workspace' resource should enable CMK encryption",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/databricks_workspace#managed_services_cmk_key_vault_id-1",
+  "platform": "Terraform",
+  "descriptionID": "416ac446",
+  "cloudProvider": "azure",
+  "cwe": "522",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
