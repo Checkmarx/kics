@@ -4,15 +4,25 @@
   "resources": [
     {
       "type": "Microsoft.Sql/servers",
-      "apiVersion": "2021-02-01-preview",
+      "apiVersion": "2023-02-01-preview",
       "name": "sql_server",
       "location": "[resourceGroup().location]",
       "properties": {}
     },
     {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2024-11-01-preview",
+      "name": "sql_server/sql_databases",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', 'sql_server')]"
+      ],
+      "properties": {}
+    },
+    {
       "type": "Microsoft.Sql/servers/auditingSettings",
-      "apiVersion": "2021-02-01-preview",
-      "name": "sql_server/default_1",
+      "apiVersion": "2024-11-01-preview",
+      "name": "sql_server/default",
       "dependsOn": [
         "[resourceId('Microsoft.Sql/servers', 'sql_server')]"
       ],

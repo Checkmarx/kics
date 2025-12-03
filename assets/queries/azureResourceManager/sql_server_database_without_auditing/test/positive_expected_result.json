@@ -2,26 +2,38 @@
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
-    "line": 22,
-    "filename": "positive1.json"
+    "line": 2,
+    "filename": "positive1.bicep"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
-    "line": 34,
-    "filename": "positive2.json"
+    "line": 8,
+    "filename": "positive1.bicep"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive3.json"
+    "line": 2,
+    "filename": "positive2.bicep"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive4.json"
+    "line": 16,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive4.bicep"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -32,31 +44,67 @@
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
-    "line": 28,
-    "filename": "positive1.bicep"
+    "line": 15,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive6.json"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive2.bicep"
+    "filename": "positive6.json"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
-    "line": 28,
-    "filename": "positive3.bicep"
+    "line": 8,
+    "filename": "positive7.json"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
-    "line": 28,
-    "filename": "positive4.bicep"
+    "line": 23,
+    "filename": "positive7.json"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive5.bicep"
+    "line": 8,
+    "filename": "positive8.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive8.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive9.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive10.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive11.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive12.json"
   }
 ]

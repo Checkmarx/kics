@@ -7,18 +7,17 @@
       "apiVersion": "2021-02-01-preview",
       "name": "sql_server",
       "location": "[resourceGroup().location]",
-      "properties": {}
-    },
-    {
-      "type": "Microsoft.Sql/servers/auditingSettings",
-      "apiVersion": "2021-02-01-preview",
-      "name": "sql_server/default_1",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', 'sql_server')]"
-      ],
-      "properties": {
-        "state": "Enabled"
-      }
+      "properties": {},
+      "resources": [
+        {
+          "type": "auditingSettings",
+          "apiVersion": "2021-02-01-preview",
+          "name": "default_1",
+          "properties": {
+            "state": "Enabled"
+          }
+        }
+      ]
     }
   ]
 }
