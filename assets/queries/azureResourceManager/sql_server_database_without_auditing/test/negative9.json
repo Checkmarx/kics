@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2021-02-01-preview",
+      "name": "sql_server/sql_databases",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', 'sql_server')]"
+      ],
+      "properties": {},
+      "resources": [
+        {
+          "type": "auditingSettings",
+          "apiVersion": "2021-02-01-preview",
+          "name": "default_2",
+          "properties": {
+            "state": "Enabled"
+          }
+        }
+      ]
+    }
+  ]
+}
