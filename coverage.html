@@ -69,7 +69,7 @@
 				
 				<option value="file6">github.com/Checkmarx/kics/v2/internal/console/flags/validate.go (62.5%)</option>
 				
-				<option value="file7">github.com/Checkmarx/kics/v2/internal/console/flags/validate_multi_str.go (87.9%)</option>
+				<option value="file7">github.com/Checkmarx/kics/v2/internal/console/flags/validate_multi_str.go (78.4%)</option>
 				
 				<option value="file8">github.com/Checkmarx/kics/v2/internal/console/flags/validate_path.go (100.0%)</option>
 				
@@ -107,7 +107,7 @@
 				
 				<option value="file25">github.com/Checkmarx/kics/v2/internal/tracker/ci.go (93.8%)</option>
 				
-				<option value="file26">github.com/Checkmarx/kics/v2/pkg/analyzer/analyzer.go (92.0%)</option>
+				<option value="file26">github.com/Checkmarx/kics/v2/pkg/analyzer/analyzer.go (91.9%)</option>
 				
 				<option value="file27">github.com/Checkmarx/kics/v2/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -147,7 +147,7 @@
 				
 				<option value="file45">github.com/Checkmarx/kics/v2/pkg/engine/provider/filesystem.go (80.8%)</option>
 				
-				<option value="file46">github.com/Checkmarx/kics/v2/pkg/engine/secrets/inspector.go (82.4%)</option>
+				<option value="file46">github.com/Checkmarx/kics/v2/pkg/engine/secrets/inspector.go (80.2%)</option>
 				
 				<option value="file47">github.com/Checkmarx/kics/v2/pkg/engine/similarity/similarity_id.go (90.5%)</option>
 				
@@ -239,7 +239,7 @@
 				
 				<option value="file91">github.com/Checkmarx/kics/v2/pkg/parser/terraform/terraform.go (75.0%)</option>
 				
-				<option value="file92">github.com/Checkmarx/kics/v2/pkg/parser/terraform/variables.go (85.3%)</option>
+				<option value="file92">github.com/Checkmarx/kics/v2/pkg/parser/terraform/variables.go (84.9%)</option>
 				
 				<option value="file93">github.com/Checkmarx/kics/v2/pkg/parser/utils/certificate_utils.go (81.6%)</option>
 				
@@ -319,7 +319,7 @@
 				
 				<option value="file131">github.com/Checkmarx/kics/v2/pkg/scan/preview_secrets_mask.go (72.6%)</option>
 				
-				<option value="file132">github.com/Checkmarx/kics/v2/pkg/scan/scan.go (70.2%)</option>
+				<option value="file132">github.com/Checkmarx/kics/v2/pkg/scan/scan.go (70.5%)</option>
 				
 				<option value="file133">github.com/Checkmarx/kics/v2/pkg/scan/utils.go (85.5%)</option>
 				
@@ -975,6 +975,7 @@ var flagValidationFuncs = flagValidationFuncsMap{
         "allQueriesID":                      allQueriesID,
         "validateWorkersFlag":               validateWorkersFlag,
         "validatePath":                      validatePath,
+        "validateTimeoutFlag":               validateTimeoutFlag,
 }
 
 func isQueryID(id string) bool <span class="cov6" title="9">{
@@ -1094,6 +1095,14 @@ func validateWorkersFlag(flagName string) error <span class="cov3" title="3">{
                 return nil
         }</span>
         <span class="cov2" title="2">return nil</span>
+}
+
+func validateTimeoutFlag(flagName string) error <span class="cov0" title="0">{
+        timeout := GetIntFlag(flagName)
+        if timeout &lt;= 0 </span><span class="cov0" title="0">{
+                return fmt.Errorf("invalid argument --%s: value must be greater than 0", flagName)
+        }</span>
+        <span class="cov0" title="0">return nil</span>
 }
 </pre>
 		
@@ -2614,13 +2623,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="53">{
+        for _, sample := range prof.Sample </span><span class="cov10" title="55">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="53">total += v
+                <span class="cov10" title="55">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2645,7 +2654,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3097,6 +3106,13 @@ type analyzerInfo struct {
         fallbackMinifiedFileLOC int
 }
 
+// fileTypeInfo contains file path, detected platform type, and LOC count
+type fileTypeInfo struct {
+        filePath string
+        fileType string
+        locCount int
+}
+
 // Analyzer keeps all the relevant info for the function Analyze
 type Analyzer struct {
         Paths                   []string
@@ -3253,13 +3269,14 @@ var defaultConfigFiles = []string{"pnpm-lock.yaml"}
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
-func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov5" title="34">{
+func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov5" title="37">{
         // start metrics for file analyzer
         metrics.Metric.Start("file_type_analyzer")
         returnAnalyzedPaths := model.AnalyzedPaths{
                 Types:       make([]string, 0),
                 Exc:         make([]string, 0),
                 ExpectedLOC: 0,
+                FileStats:   make(map[string]model.FileStatistics),
         }
 
         var files []string
@@ -3267,47 +3284,48 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov5" title=
         // results is the channel shared by the workers that contains the types found
         results := make(chan string)
         locCount := make(chan int)
+        fileInfo := make(chan fileTypeInfo)
         ignoreFiles := make([]string, 0)
         projectConfigFiles := make([]string, 0)
         done := make(chan bool)
         hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
         // get all the files inside the given paths
-        for _, path := range a.Paths </span><span class="cov5" title="38">{
+        for _, path := range a.Paths </span><span class="cov5" title="41">{
                 if _, err := os.Stat(path); err != nil </span><span class="cov1" title="1">{
                         return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
                 }</span>
-                <span class="cov5" title="37">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov7" title="343">{
+                <span class="cov5" title="40">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov7" title="417">{
                         if err != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
 
-                        <span class="cov7" title="343">ext, errExt := utils.GetExtension(path)
-                        if errExt == nil </span><span class="cov7" title="286">{
+                        <span class="cov7" title="417">ext, errExt := utils.GetExtension(path)
+                        if errExt == nil </span><span class="cov7" title="348">{
                                 trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
                                 ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
 
-                                if isConfigFile(path, defaultConfigFiles) </span><span class="cov2" title="5">{
+                                if isConfigFile(path, defaultConfigFiles) </span><span class="cov3" title="7">{
                                         projectConfigFiles = append(projectConfigFiles, path)
                                         a.Exc = append(a.Exc, path)
                                 }</span>
 
-                                <span class="cov7" title="286">if _, ok := possibleFileTypes[ext]; ok &amp;&amp; !isExcludedFile(path, a.Exc) </span><span class="cov7" title="260">{
+                                <span class="cov7" title="348">if _, ok := possibleFileTypes[ext]; ok &amp;&amp; !isExcludedFile(path, a.Exc) </span><span class="cov7" title="311">{
                                         files = append(files, path)
                                 }</span>
                         }
-                        <span class="cov7" title="343">return nil</span>
+                        <span class="cov7" title="417">return nil</span>
                 }); err != nil <span class="cov0" title="0">{
                         log.Error().Msgf("failed to analyze path %s: %s", path, err)
                 }</span>
         }
 
         // unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
-        <span class="cov5" title="33">unwanted := make(chan string, len(files))
+        <span class="cov5" title="36">unwanted := make(chan string, len(files))
 
         a.Types, a.ExcludeTypes = typeLower(a.Types, a.ExcludeTypes)
 
         // Start the workers
-        for _, file := range files </span><span class="cov7" title="260">{
+        for _, file := range files </span><span class="cov7" title="311">{
                 wg.Add(1)
                 // analyze the files concurrently
                 a := &amp;analyzerInfo{
@@ -3316,92 +3334,106 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov5" title=
                         filePath:                file,
                         fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
                 }
-                go a.worker(results, unwanted, locCount, &amp;wg)
+                go a.worker(results, unwanted, locCount, fileInfo, &amp;wg)
         }</span>
 
-        <span class="cov5" title="33">go func() </span><span class="cov5" title="33">{
+        <span class="cov5" title="36">go func() </span><span class="cov5" title="36">{
                 // close channel results when the worker has finished writing into it
-                defer func() </span><span class="cov5" title="32">{
+                defer func() </span><span class="cov5" title="36">{
                         close(unwanted)
                         close(results)
                         close(locCount)
+                        close(fileInfo)
                 }</span>()
-                <span class="cov5" title="33">wg.Wait()
+                <span class="cov5" title="36">wg.Wait()
                 done &lt;- true</span>
         }()
 
-        <span class="cov5" title="33">availableTypes, unwantedPaths, loc := computeValues(results, unwanted, locCount, done)
+        <span class="cov5" title="36">availableTypes, unwantedPaths, loc, fileStats := computeValues(results, unwanted, locCount, fileInfo, done)
         multiPlatformTypeCheck(&amp;availableTypes)
         unwantedPaths = append(unwantedPaths, ignoreFiles...)
         unwantedPaths = append(unwantedPaths, projectConfigFiles...)
         returnAnalyzedPaths.Types = availableTypes
         returnAnalyzedPaths.Exc = unwantedPaths
         returnAnalyzedPaths.ExpectedLOC = loc
+        returnAnalyzedPaths.FileStats = fileStats
         // stop metrics for file analyzer
         metrics.Metric.Stop()
         return returnAnalyzedPaths, nil</span>
 }
 
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
-// writes the answer to the results channel
+// writes the answer to the results channel and file info for statistics
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, locCount chan&lt;- int, wg *sync.WaitGroup) <span class="cov7" title="260">{ //nolint: gocyclo
-        defer func() </span><span class="cov7" title="260">{
+func (a *analyzerInfo) worker( //nolint: gocyclo
+        results,
+        unwanted chan&lt;- string,
+        locCount chan&lt;- int,
+        fileInfo chan&lt;- fileTypeInfo,
+        wg *sync.WaitGroup,
+) <span class="cov7" title="311">{
+        defer func() </span><span class="cov7" title="311">{
                 if err := recover(); err != nil </span><span class="cov0" title="0">{
                         log.Warn().Msgf("Recovered from analyzing panic for file %s with error: %#v", a.filePath, err.(error).Error())
                         unwanted &lt;- a.filePath
                 }</span>
-                <span class="cov7" title="260">wg.Done()</span>
+                <span class="cov7" title="311">wg.Done()</span>
         }()
 
-        <span class="cov7" title="260">ext, errExt := utils.GetExtension(a.filePath)
-        if errExt == nil </span><span class="cov7" title="260">{
+        <span class="cov7" title="311">ext, errExt := utils.GetExtension(a.filePath)
+        if errExt == nil </span><span class="cov7" title="311">{
                 linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
                 switch ext </span>{
                 // Dockerfile (direct identification)
-                case ".dockerfile", "Dockerfile":<span class="cov3" title="7">
-                        if a.isAvailableType(dockerfile) </span><span class="cov3" title="6">{
+                case ".dockerfile", "Dockerfile":<span class="cov3" title="9">
+                        if a.isAvailableType(dockerfile) </span><span class="cov3" title="7">{
                                 results &lt;- dockerfile
                                 locCount &lt;- linesCount
+                                fileInfo &lt;- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
                         }</span>
                 // Dockerfile (indirect identification)
                 case "possibleDockerfile", ".ubi8", ".debian":<span class="cov1" title="2">
                         if a.isAvailableType(dockerfile) &amp;&amp; isDockerfile(a.filePath) </span><span class="cov0" title="0">{
                                 results &lt;- dockerfile
                                 locCount &lt;- linesCount
+                                fileInfo &lt;- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
                         }</span> else<span class="cov1" title="2"> {
                                 unwanted &lt;- a.filePath
                         }</span>
                 // Terraform
-                case ".tf", "tfvars":<span class="cov3" title="7">
-                        if a.isAvailableType(terraform) </span><span class="cov3" title="6">{
+                case ".tf", "tfvars":<span class="cov3" title="9">
+                        if a.isAvailableType(terraform) </span><span class="cov3" title="8">{
                                 results &lt;- terraform
                                 locCount &lt;- linesCount
+                                fileInfo &lt;- fileTypeInfo{filePath: a.filePath, fileType: terraform, locCount: linesCount}
                         }</span>
                 // Bicep
                 case ".bicep":<span class="cov6" title="90">
                         if a.isAvailableType(bicep) </span><span class="cov5" title="54">{
                                 results &lt;- arm
                                 locCount &lt;- linesCount
+                                fileInfo &lt;- fileTypeInfo{filePath: a.filePath, fileType: arm, locCount: linesCount}
                         }</span>
                 // GRPC
                 case ".proto":<span class="cov0" title="0">
                         if a.isAvailableType(grpc) </span><span class="cov0" title="0">{
                                 results &lt;- grpc
                                 locCount &lt;- linesCount
+                                fileInfo &lt;- fileTypeInfo{filePath: a.filePath, fileType: grpc, locCount: linesCount}
                         }</span>
                 // It could be Ansible Config or Ansible Inventory
-                case ".cfg", ".conf", ".ini":<span class="cov4" title="18">
-                        if a.isAvailableType(ansible) </span><span class="cov4" title="15">{
+                case ".cfg", ".conf", ".ini":<span class="cov4" title="24">
+                        if a.isAvailableType(ansible) </span><span class="cov4" title="18">{
                                 results &lt;- ansible
                                 locCount &lt;- linesCount
+                                fileInfo &lt;- fileTypeInfo{filePath: a.filePath, fileType: ansible, locCount: linesCount}
                         }</span>
                 /* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
                 Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
                 We also have FHIR's case which will be ignored since it's not a platform file.*/
-                case yaml, yml, json, sh:<span class="cov6" title="136">
-                        a.checkContent(results, unwanted, locCount, linesCount, ext)</span>
+                case yaml, yml, json, sh:<span class="cov6" title="177">
+                        a.checkContent(results, unwanted, locCount, fileInfo, linesCount, ext)</span>
                 }
         }
 }
@@ -3431,18 +3463,25 @@ func isDockerfile(path string) bool <span class="cov1" title="2">{
 }
 
 // overrides k8s match when all regexes pass for azureresourcemanager key and extension is set to json
-func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="1846">{
+func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="2259">{
         if check &amp;&amp; returnType == kubernetes &amp;&amp; key == arm &amp;&amp; ext == json </span><span class="cov0" title="0">{
                 return true
-        }</span> else<span class="cov9" title="1846"> if check &amp;&amp; returnType == kubernetes &amp;&amp; (key == knative || key == crossplane) &amp;&amp; (ext == yaml || ext == yml) </span><span class="cov3" title="9">{
+        }</span> else<span class="cov9" title="2259"> if check &amp;&amp; returnType == kubernetes &amp;&amp; (key == knative || key == crossplane) &amp;&amp; (ext == yaml || ext == yml) </span><span class="cov3" title="11">{
                 return true
         }</span>
-        <span class="cov9" title="1837">return false</span>
+        <span class="cov9" title="2248">return false</span>
 }
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func (a *analyzerInfo) checkContent(results, unwanted chan&lt;- string, locCount chan&lt;- int, linesCount int, ext string) <span class="cov6" title="136">{
+func (a *analyzerInfo) checkContent(
+        results,
+        unwanted chan&lt;- string,
+        locCount chan&lt;- int,
+        fileInfo chan&lt;- fileTypeInfo,
+        linesCount int,
+        ext string,
+) <span class="cov6" title="177">{
         typesFlag := a.typesFlag
         excludeTypesFlag := a.excludeTypesFlag
         // get file content with UTF-16/UTF-8 detection
@@ -3452,88 +3491,89 @@ func (a *analyzerInfo) checkContent(results, unwanted chan&lt;- string, locCount
                 return
         }</span>
 
-        <span class="cov6" title="136">returnType := ""
+        <span class="cov6" title="177">returnType := ""
 
         // Sort map so that CloudFormation (type that as less required) goes last
         keys := make([]string, 0, len(types))
-        for k := range types </span><span class="cov10" title="2312">{
+        for k := range types </span><span class="cov10" title="3009">{
                 keys = append(keys, k)
         }</span>
 
-        <span class="cov6" title="136">if typesFlag[0] != "" </span><span class="cov4" title="25">{
+        <span class="cov6" title="177">if typesFlag[0] != "" </span><span class="cov5" title="44">{
                 keys = getKeysFromTypesFlag(typesFlag)
-        }</span> else<span class="cov6" title="111"> if excludeTypesFlag[0] != "" </span><span class="cov4" title="25">{
+        }</span> else<span class="cov6" title="133"> if excludeTypesFlag[0] != "" </span><span class="cov4" title="25">{
                 keys = getKeysFromExcludeTypesFlag(excludeTypesFlag)
         }</span>
 
-        <span class="cov6" title="136">sort.Sort(sort.Reverse(sort.StringSlice(keys)))
+        <span class="cov6" title="177">sort.Sort(sort.Reverse(sort.StringSlice(keys)))
 
-        for _, key := range keys </span><span class="cov9" title="1911">{
+        for _, key := range keys </span><span class="cov9" title="2342">{
                 check := true
-                for _, typeRegex := range types[key].regex </span><span class="cov9" title="2201">{
-                        if !typeRegex.Match(content) </span><span class="cov9" title="1826">{
+                for _, typeRegex := range types[key].regex </span><span class="cov9" title="2701">{
+                        if !typeRegex.Match(content) </span><span class="cov9" title="2235">{
                                 check = false
                                 break</span>
                         }
                 }
                 // If all regexes passed and there wasn't a type already assigned
-                <span class="cov9" title="1911">if check &amp;&amp; returnType == "" </span><span class="cov5" title="65">{
+                <span class="cov9" title="2342">if check &amp;&amp; returnType == "" </span><span class="cov5" title="83">{
                         returnType = key
-                }</span> else<span class="cov9" title="1846"> if needsOverride(check, returnType, key, ext) </span><span class="cov3" title="9">{
+                }</span> else<span class="cov9" title="2259"> if needsOverride(check, returnType, key, ext) </span><span class="cov3" title="11">{
                         returnType = key
                 }</span>
         }
 
         // Check for blacklisted types for the detected returnType
-        <span class="cov6" title="136">if isBlacklistedTypeMatch(returnType, content) </span><span class="cov2" title="3">{
+        <span class="cov6" title="177">if isBlacklistedTypeMatch(returnType, content) </span><span class="cov2" title="3">{
                 // File type is blacklisted, so we ignore it
                 unwanted &lt;- a.filePath
                 return
         }</span>
 
-        <span class="cov6" title="133">returnType = checkReturnType(a.filePath, returnType, ext, content)
-        if returnType == "" || !a.isAvailableType(returnType) </span><span class="cov5" title="43">{
+        <span class="cov6" title="174">returnType = checkReturnType(a.filePath, returnType, ext, content)
+        if returnType == "" || !a.isAvailableType(returnType) </span><span class="cov5" title="58">{
                 // No type was determined (ignore on parser)
                 unwanted &lt;- a.filePath
                 return
         }</span>
 
-        <span class="cov6" title="90">results &lt;- returnType
-        locCount &lt;- linesCount</span>
+        <span class="cov6" title="116">results &lt;- returnType
+        locCount &lt;- linesCount
+        fileInfo &lt;- fileTypeInfo{filePath: a.filePath, fileType: returnType, locCount: linesCount}</span>
 }
 
-func checkReturnType(path, returnType, ext string, content []byte) string <span class="cov6" title="133">{
-        if returnType != "" </span><span class="cov5" title="62">{
+func checkReturnType(path, returnType, ext string, content []byte) string <span class="cov6" title="174">{
+        if returnType != "" </span><span class="cov5" title="80">{
                 if returnType == "cdkTf" </span><span class="cov0" title="0">{
                         return terraform
                 }</span>
-                <span class="cov5" title="62">if utils.Contains(returnType, armRegexTypes) </span><span class="cov0" title="0">{
+                <span class="cov5" title="80">if utils.Contains(returnType, armRegexTypes) </span><span class="cov0" title="0">{
                         return arm
                 }</span>
-        } else<span class="cov5" title="71"> if ext == yaml || ext == yml </span><span class="cov5" title="46">{
-                if checkHelm(path) </span><span class="cov3" title="12">{
+        } else<span class="cov6" title="94"> if ext == yaml || ext == yml </span><span class="cov5" title="64">{
+                if checkHelm(path) </span><span class="cov4" title="18">{
                         return kubernetes
                 }</span>
-                <span class="cov5" title="34">platform := checkYamlPlatform(content, path)
-                if platform != "" </span><span class="cov4" title="20">{
+                <span class="cov5" title="46">platform := checkYamlPlatform(content, path)
+                if platform != "" </span><span class="cov4" title="26">{
                         return platform
                 }</span>
         }
-        <span class="cov6" title="101">return returnType</span>
+        <span class="cov6" title="130">return returnType</span>
 }
 
-func checkHelm(path string) bool <span class="cov5" title="46">{
+func checkHelm(path string) bool <span class="cov5" title="64">{
         _, err := os.Stat(filepath.Join(filepath.Dir(path), "Chart.yaml"))
-        if errors.Is(err, os.ErrNotExist) </span><span class="cov5" title="34">{
+        if errors.Is(err, os.ErrNotExist) </span><span class="cov5" title="46">{
                 return false
-        }</span> else<span class="cov3" title="12"> if err != nil </span><span class="cov0" title="0">{
+        }</span> else<span class="cov4" title="18"> if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to check helm: %s", err)
         }</span>
 
-        <span class="cov3" title="12">return true</span>
+        <span class="cov4" title="18">return true</span>
 }
 
-func checkYamlPlatform(content []byte, path string) string <span class="cov5" title="34">{
+func checkYamlPlatform(content []byte, path string) string <span class="cov5" title="46">{
         content = utils.DecryptAnsibleVault(content, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
 
         var yamlContent model.Document
@@ -3541,40 +3581,40 @@ func checkYamlPlatform(content []byte, path string) string <span class="cov5" ti
                 log.Warn().Msgf("failed to parse yaml file (%s): %s", path, err)
         }</span>
         // check if it is google deployment manager platform
-        <span class="cov5" title="34">for _, keyword := range listKeywordsGoogleDeployment </span><span class="cov5" title="34">{
-                if _, ok := yamlContent[keyword]; ok </span><span class="cov3" title="6">{
+        <span class="cov5" title="46">for _, keyword := range listKeywordsGoogleDeployment </span><span class="cov5" title="46">{
+                if _, ok := yamlContent[keyword]; ok </span><span class="cov3" title="10">{
                         return gdm
                 }</span>
         }
 
         // check if the file contains some keywords related with Ansible
-        <span class="cov4" title="28">if checkForAnsible(yamlContent) </span><span class="cov3" title="9">{
+        <span class="cov5" title="36">if checkForAnsible(yamlContent) </span><span class="cov3" title="11">{
                 return ansible
         }</span>
         // check if the file contains some keywords related with Ansible Host
-        <span class="cov4" title="19">if checkForAnsibleHost(yamlContent) </span><span class="cov2" title="3">{
+        <span class="cov4" title="25">if checkForAnsibleHost(yamlContent) </span><span class="cov2" title="3">{
                 return ansible
         }</span>
         // add for yaml files contained at paths (group_vars, host_vars) related with ansible
-        <span class="cov4" title="16">if checkForAnsibleByPaths(path) </span><span class="cov1" title="2">{
+        <span class="cov4" title="22">if checkForAnsibleByPaths(path) </span><span class="cov1" title="2">{
                 return ansible
         }</span>
-        <span class="cov4" title="14">return ""</span>
+        <span class="cov4" title="20">return ""</span>
 }
 
-func checkForAnsibleByPaths(path string) bool <span class="cov4" title="16">{
+func checkForAnsibleByPaths(path string) bool <span class="cov4" title="22">{
         return queryRegexPathsAnsible.MatchString(path)
 }</span>
 
-func checkForAnsible(yamlContent model.Document) bool <span class="cov4" title="28">{
+func checkForAnsible(yamlContent model.Document) bool <span class="cov5" title="36">{
         isAnsible := false
-        if play := yamlContent[playBooks]; play != nil </span><span class="cov3" title="9">{
-                if listOfPlayBooks, ok := play.([]interface{}); ok </span><span class="cov3" title="9">{
-                        for _, value := range listOfPlayBooks </span><span class="cov4" title="17">{
+        if play := yamlContent[playBooks]; play != nil </span><span class="cov3" title="11">{
+                if listOfPlayBooks, ok := play.([]interface{}); ok </span><span class="cov3" title="11">{
+                        for _, value := range listOfPlayBooks </span><span class="cov4" title="21">{
                                 castingValue, ok := value.(map[string]interface{})
-                                if ok </span><span class="cov4" title="17">{
-                                        for _, keyword := range listKeywordsAnsible </span><span class="cov7" title="187">{
-                                                if _, ok := castingValue[keyword]; ok </span><span class="cov5" title="44">{
+                                if ok </span><span class="cov4" title="21">{
+                                        for _, keyword := range listKeywordsAnsible </span><span class="cov7" title="231">{
+                                                if _, ok := castingValue[keyword]; ok </span><span class="cov5" title="56">{
                                                         isAnsible = true
                                                 }</span>
                                         }
@@ -3582,12 +3622,12 @@ func checkForAnsible(yamlContent model.Document) bool <span class="cov4" title="
                         }
                 }
         }
-        <span class="cov4" title="28">return isAnsible</span>
+        <span class="cov5" title="36">return isAnsible</span>
 }
 
-func checkForAnsibleHost(yamlContent model.Document) bool <span class="cov4" title="19">{
+func checkForAnsibleHost(yamlContent model.Document) bool <span class="cov4" title="25">{
         isAnsible := false
-        for _, ansibleDefault := range ansibleHost </span><span class="cov5" title="38">{
+        for _, ansibleDefault := range ansibleHost </span><span class="cov5" title="50">{
                 if hosts := yamlContent[ansibleDefault]; hosts != nil </span><span class="cov2" title="3">{
                         if listHosts, ok := hosts.(map[string]interface{}); ok </span><span class="cov2" title="3">{
                                 for _, value := range listKeywordsAnsibleHots </span><span class="cov3" title="6">{
@@ -3598,44 +3638,75 @@ func checkForAnsibleHost(yamlContent model.Document) bool <span class="cov4" tit
                         }
                 }
         }
-        <span class="cov4" title="19">return isAnsible</span>
+        <span class="cov4" title="25">return isAnsible</span>
 }
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
 // and creates the types and unwanted slices from the channels removing any duplicates
-func computeValues(types, unwanted chan string, locCount chan int, done chan bool) (typesS, unwantedS []string, locTotal int) <span class="cov5" title="33">{
+// also collects file statistics for memory calculation
+func computeValues(
+        types,
+        unwanted chan string,
+        locCount chan int,
+        fileInfo chan fileTypeInfo,
+        done chan bool,
+) (typesS, unwantedS []string, locTotal int, stats map[string]model.FileStatistics) <span class="cov5" title="36">{
         var val int
         unwantedSlice := make([]string, 0)
         typeSlice := make([]string, 0)
-        for </span><span class="cov8" title="423">{
+        stats = make(map[string]model.FileStatistics)
+
+        platformFilesInfo := make(map[string][]fileTypeInfo)
+
+        for </span><span class="cov8" title="708">{
                 select </span>{
-                case i := &lt;-locCount:<span class="cov6" title="171">
+                case i := &lt;-locCount:<span class="cov6" title="203">
                         val += i</span>
-                case i := &lt;-unwanted:<span class="cov5" title="48">
-                        if !utils.Contains(i, unwantedSlice) </span><span class="cov5" title="48">{
+                case i := &lt;-unwanted:<span class="cov5" title="63">
+                        if !utils.Contains(i, unwantedSlice) </span><span class="cov5" title="63">{
                                 unwantedSlice = append(unwantedSlice, i)
                         }</span>
-                case i := &lt;-types:<span class="cov6" title="171">
-                        if !utils.Contains(i, typeSlice) </span><span class="cov6" title="78">{
+                case i := &lt;-types:<span class="cov6" title="203">
+                        if !utils.Contains(i, typeSlice) </span><span class="cov6" title="95">{
                                 typeSlice = append(typeSlice, i)
                         }</span>
-                case &lt;-done:<span class="cov5" title="33">
-                        return typeSlice, unwantedSlice, val</span>
+                case info := &lt;-fileInfo:<span class="cov6" title="203">
+                        platformFilesInfo[info.fileType] = append(platformFilesInfo[info.fileType], info)</span>
+                case &lt;-done:<span class="cov5" title="36">
+                        for platformType, filesInfo := range platformFilesInfo </span><span class="cov6" title="95">{
+                                dirMap := make(map[string]int)
+                                totalLOC := 0
+
+                                for _, fileInfo := range filesInfo </span><span class="cov6" title="203">{
+                                        dir := filepath.Dir(fileInfo.filePath)
+                                        dirMap[dir]++
+                                        totalLOC += fileInfo.locCount
+                                }</span>
+
+                                <span class="cov6" title="95">stats[platformType] = model.FileStatistics{
+                                        FileCount:      len(filesInfo),
+                                        DirectoryCount: len(dirMap),
+                                        FilesByDir:     dirMap,
+                                        TotalLOC:       totalLOC,
+                                }</span>
+                        }
+
+                        <span class="cov5" title="36">return typeSlice, unwantedSlice, val, stats</span>
                 }
         }
 }
 
 // getKeysFromTypesFlag gets all the regexes keys related to the types flag
-func getKeysFromTypesFlag(typesFlag []string) []string <span class="cov4" title="25">{
+func getKeysFromTypesFlag(typesFlag []string) []string <span class="cov5" title="44">{
         ks := make([]string, 0, len(types))
-        for i := range typesFlag </span><span class="cov5" title="44">{
+        for i := range typesFlag </span><span class="cov5" title="82">{
                 t := typesFlag[i]
 
-                if regexes, ok := supportedRegexes[t]; ok </span><span class="cov4" title="25">{
+                if regexes, ok := supportedRegexes[t]; ok </span><span class="cov5" title="63">{
                         ks = append(ks, regexes...)
                 }</span>
         }
-        <span class="cov4" title="25">return ks</span>
+        <span class="cov5" title="44">return ks</span>
 }
 
 // getKeysFromExcludeTypesFlag gets all the regexes keys related to the excluding unwanted types from flag
@@ -3652,51 +3723,51 @@ func getKeysFromExcludeTypesFlag(excludeTypesFlag []string) []string <span class
 }
 
 // isExcludedFile verifies if the path is pointed in the --exclude-paths flag
-func isExcludedFile(path string, exc []string) bool <span class="cov7" title="268">{
-        for i := range exc </span><span class="cov7" title="298">{
+func isExcludedFile(path string, exc []string) bool <span class="cov7" title="321">{
+        for i := range exc </span><span class="cov7" title="361">{
                 exclude, err := provider.GetExcludePaths(exc[i])
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("failed to get exclude paths")
                 }</span>
-                <span class="cov7" title="298">for j := range exclude </span><span class="cov7" title="298">{
-                        if exclude[j] == path </span><span class="cov3" title="8">{
+                <span class="cov7" title="361">for j := range exclude </span><span class="cov7" title="361">{
+                        if exclude[j] == path </span><span class="cov3" title="10">{
                                 log.Info().Msgf("Excluded file %s from analyzer", path)
                                 return true
                         }</span>
                 }
         }
-        <span class="cov7" title="260">return false</span>
+        <span class="cov7" title="311">return false</span>
 }
 
-func isDeadSymlink(path string) bool <span class="cov7" title="284">{
+func isDeadSymlink(path string) bool <span class="cov7" title="346">{
         fileInfo, _ := os.Stat(path)
         return fileInfo == nil
 }</span>
 
-func isConfigFile(path string, exc []string) bool <span class="cov7" title="286">{
-        for i := range exc </span><span class="cov7" title="286">{
+func isConfigFile(path string, exc []string) bool <span class="cov7" title="348">{
+        for i := range exc </span><span class="cov7" title="348">{
                 exclude, err := provider.GetExcludePaths(exc[i])
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("failed to get exclude paths")
                 }</span>
-                <span class="cov7" title="286">for j := range exclude </span><span class="cov7" title="286">{
+                <span class="cov7" title="348">for j := range exclude </span><span class="cov7" title="348">{
                         fileInfo, _ := os.Stat(path)
                         if fileInfo != nil &amp;&amp; fileInfo.IsDir() </span><span class="cov0" title="0">{
                                 continue</span>
                         }
 
-                        <span class="cov7" title="286">if len(path)-len(exclude[j]) &gt; 0 &amp;&amp; path[len(path)-len(exclude[j]):] == exclude[j] &amp;&amp; exclude[j] != "" </span><span class="cov2" title="5">{
+                        <span class="cov7" title="348">if len(path)-len(exclude[j]) &gt; 0 &amp;&amp; path[len(path)-len(exclude[j]):] == exclude[j] &amp;&amp; exclude[j] != "" </span><span class="cov3" title="7">{
                                 log.Info().Msgf("Excluded file %s from analyzer", path)
                                 return true
                         }</span>
                 }
         }
-        <span class="cov7" title="281">return false</span>
+        <span class="cov7" title="341">return false</span>
 }
 
 // shouldConsiderGitIgnoreFile verifies if the scan should exclude the files according to the .gitignore file
 func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bool) (hasGitIgnoreFileRes bool,
-        gitIgnoreRes *ignore.GitIgnore) <span class="cov5" title="34">{
+        gitIgnoreRes *ignore.GitIgnore) <span class="cov5" title="37">{
         gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
         _, err := os.Stat(gitIgnorePath)
 
@@ -3707,28 +3778,28 @@ func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bo
                         return true, gitIgnore
                 }</span>
         }
-        <span class="cov5" title="33">return false, nil</span>
+        <span class="cov5" title="36">return false, nil</span>
 }
 
-func multiPlatformTypeCheck(typesSelected *[]string) <span class="cov5" title="33">{
+func multiPlatformTypeCheck(typesSelected *[]string) <span class="cov5" title="36">{
         if utils.Contains("serverlessfw", *typesSelected) &amp;&amp; !utils.Contains("cloudformation", *typesSelected) </span><span class="cov1" title="1">{
                 *typesSelected = append(*typesSelected, "cloudformation")
         }</span>
-        <span class="cov5" title="33">if utils.Contains("knative", *typesSelected) &amp;&amp; !utils.Contains("kubernetes", *typesSelected) </span><span class="cov1" title="1">{
+        <span class="cov5" title="36">if utils.Contains("knative", *typesSelected) &amp;&amp; !utils.Contains("kubernetes", *typesSelected) </span><span class="cov1" title="1">{
                 *typesSelected = append(*typesSelected, "kubernetes")
         }</span>
 }
 
-func (a *analyzerInfo) isAvailableType(typeName string) bool <span class="cov7" title="218">{
+func (a *analyzerInfo) isAvailableType(typeName string) bool <span class="cov7" title="258">{
         // Convert bicep internal type to its platform name for flag matching
         if typeName == "bicep" </span><span class="cov6" title="90">{
                 typeName = "azureresourcemanager"
         }</span>
 
         // no flag is set
-        <span class="cov7" title="218">if len(a.typesFlag) == 1 &amp;&amp; a.typesFlag[0] == "" &amp;&amp; len(a.excludeTypesFlag) == 1 &amp;&amp; a.excludeTypesFlag[0] == "" </span><span class="cov6" title="113">{
+        <span class="cov7" title="258">if len(a.typesFlag) == 1 &amp;&amp; a.typesFlag[0] == "" &amp;&amp; len(a.excludeTypesFlag) == 1 &amp;&amp; a.excludeTypesFlag[0] == "" </span><span class="cov6" title="138">{
                 return true
-        }</span> else<span class="cov6" title="105"> if len(a.typesFlag) &gt; 1 || a.typesFlag[0] != "" </span><span class="cov5" title="47">{
+        }</span> else<span class="cov6" title="120"> if len(a.typesFlag) &gt; 1 || a.typesFlag[0] != "" </span><span class="cov5" title="62">{
                 // type flag is set
                 return utils.Contains(typeName, a.typesFlag)
         }</span> else<span class="cov5" title="58"> if len(a.excludeTypesFlag) &gt; 1 || a.excludeTypesFlag[0] != "" </span><span class="cov5" title="58">{
@@ -3741,7 +3812,7 @@ func (a *analyzerInfo) isAvailableType(typeName string) bool <span class="cov7" 
 
 func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
         gitIgnore *ignore.GitIgnore,
-        fullPath string, trimmedPath string, ignoreFiles []string) []string <span class="cov7" title="286">{
+        fullPath string, trimmedPath string, ignoreFiles []string) []string <span class="cov7" title="348">{
         exceededFileSize := a.MaxFileSize &gt;= 0 &amp;&amp; float64(fileSize)/float64(sizeMb) &gt; float64(a.MaxFileSize)
 
         if (hasGitIgnoreFile &amp;&amp; gitIgnore.MatchesPath(trimmedPath)) || isDeadSymlink(fullPath) || exceededFileSize </span><span class="cov2" title="3">{
@@ -3752,23 +3823,23 @@ func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
                         log.Error().Msgf("file %s exceeds maximum file size of %d Mb", fullPath, a.MaxFileSize)
                 }</span>
         }
-        <span class="cov7" title="286">return ignoreFiles</span>
+        <span class="cov7" title="348">return ignoreFiles</span>
 }
 
-func typeLower(types, exclTypes []string) (typesRes, exclTypesRes []string) <span class="cov5" title="33">{
-        for i := range types </span><span class="cov5" title="36">{
+func typeLower(types, exclTypes []string) (typesRes, exclTypesRes []string) <span class="cov5" title="36">{
+        for i := range types </span><span class="cov5" title="40">{
                 types[i] = strings.ToLower(types[i])
         }</span>
 
-        <span class="cov5" title="33">for i := range exclTypes </span><span class="cov5" title="36">{
+        <span class="cov5" title="36">for i := range exclTypes </span><span class="cov5" title="39">{
                 exclTypes[i] = strings.ToLower(exclTypes[i])
         }</span>
 
-        <span class="cov5" title="33">return types, exclTypes</span>
+        <span class="cov5" title="36">return types, exclTypes</span>
 }
 
 // isBlacklistedTypeMatch checks if any blacklisted regex for the given returnType matches the content.
-func isBlacklistedTypeMatch(returnType string, content []byte) bool <span class="cov6" title="136">{
+func isBlacklistedTypeMatch(returnType string, content []byte) bool <span class="cov6" title="177">{
         if blMap, ok := blacklistedTypesRegexes[returnType]; ok </span><span class="cov2" title="3">{
                 for _, bl := range blMap </span><span class="cov2" title="3">{
                         for _, re := range bl.regex </span><span class="cov2" title="3">{
@@ -3778,7 +3849,7 @@ func isBlacklistedTypeMatch(returnType string, content []byte) bool <span class=
                         }
                 }
         }
-        <span class="cov6" title="133">return false</span>
+        <span class="cov6" title="174">return false</span>
 }
 </pre>
 		
@@ -5794,7 +5865,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="12">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -7425,6 +7496,7 @@ type Inspector struct {
         foundLines            []int
         mu                    sync.RWMutex
         SecretTracker         []SecretTracker
+        failedQueries         map[string]error
 }
 
 type Entropy struct {
@@ -7498,6 +7570,7 @@ func NewInspector(
                         vulnerabilities:       make([]model.Vulnerability, 0),
                         queryExecutionTimeout: time.Duration(executionTimeout) * time.Second,
                         SecretTracker:         make([]SecretTracker, 0),
+                        failedQueries:         make(map[string]error),
                 }, nil
         }</span>
 
@@ -7544,6 +7617,7 @@ func NewInspector(
                 vulnerabilities:       make([]model.Vulnerability, 0),
                 queryExecutionTimeout: queryExecutionTimeout,
                 foundLines:            make([]int, 0),
+                failedQueries:         make(map[string]error),
         }, nil</span>
 }
 
@@ -7573,11 +7647,20 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
         for i := range c.regexQueries </span><span class="cov7" title="296">{
                 currentQuery &lt;- 1
 
-                vulns, err := c.inspectQuery(ctx, basePaths, files, i)
+                _, err := c.inspectQuery(ctx, basePaths, files, i)
 
                 if err != nil </span><span class="cov0" title="0">{
-                        return vulns, err
-                }</span>
+                        queryName := c.regexQueries[i].ID
+                        if c.regexQueries[i].Name != "" </span><span class="cov0" title="0">{
+                                queryName = c.regexQueries[i].Name
+                        }</span>
+                        <span class="cov0" title="0">log.Warn().Msgf("Secrets query '%s' executed with error: %v", queryName, err)
+
+                        if _, ok := c.failedQueries[queryName]; !ok </span><span class="cov0" title="0">{
+                                c.failedQueries[queryName] = err
+                        }</span>
+                        <span class="cov0" title="0">continue</span>
+                }
         }
         <span class="cov3" title="8">return c.vulnerabilities, nil</span>
 }
@@ -7669,6 +7752,11 @@ func CompileRegex(allowRules []AllowRule) ([]AllowRule, error) <span class="cov3
 
 func (c *Inspector) GetQueriesLength() int <span class="cov3" title="8">{
         return len(c.regexQueries)
+}</span>
+
+// GetFailedQueries returns a map of failed queries and the associated error
+func (c *Inspector) GetFailedQueries() map[string]error <span class="cov0" title="0">{
+        return c.failedQueries
 }</span>
 
 func isValueInArray(value string, array []string) bool <span class="cov8" title="1248">{
@@ -9782,14 +9870,15 @@ import (
         "regexp"
         "sort"
 
-        sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
-        "github.com/Checkmarx/kics/v2/pkg/model"
-        "github.com/Checkmarx/kics/v2/pkg/parser/jsonfilter/parser"
-        "github.com/Checkmarx/kics/v2/pkg/utils"
         "github.com/antlr4-go/antlr/v4"
         "github.com/google/uuid"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
+
+        sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+        "github.com/Checkmarx/kics/v2/pkg/model"
+        "github.com/Checkmarx/kics/v2/pkg/parser/jsonfilter/parser"
+        "github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 var (
@@ -11035,6 +11124,15 @@ type AnalyzedPaths struct {
         Types       []string
         Exc         []string
         ExpectedLOC int
+        FileStats   map[string]FileStatistics
+}
+
+// FileStatistics contains file and directory counts per platform type
+type FileStatistics struct {
+        FileCount      int
+        DirectoryCount int
+        FilesByDir     map[string]int
+        TotalLOC       int
 }
 
 // ResolvedFileSplit is a struct that contains the information of a resolved file, the path and the lines of the file
@@ -20779,12 +20877,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="209">{
+        for variable := range s.varList </span><span class="cov7" title="204">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="615">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="648">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -26952,7 +27050,7 @@ type Parser struct {
 }
 
 // NewDefault initializes a parser with Parser default values
-func NewDefault() *Parser <span class="cov5" title="5">{
+func NewDefault() *Parser <span class="cov4" title="5">{
         return &amp;Parser{
                 numOfRetries: RetriesDefaultValue,
                 convertFunc:  converter.DefaultConverted,
@@ -26991,8 +27089,8 @@ func processContent(elements model.Document, content, path string) <span class="
 }
 
 func processElements(elements model.Document, path string) <span class="cov2" title="2">{
-        for k, v3 := range elements </span><span class="cov6" title="9">{ // resource elements
-                if k != "certificate_body" </span><span class="cov6" title="9">{
+        for k, v3 := range elements </span><span class="cov5" title="9">{ // resource elements
+                if k != "certificate_body" </span><span class="cov5" title="9">{
                         continue</span>
                 }
                 <span class="cov0" title="0">switch value := v3.(type) </span>{
@@ -27006,18 +27104,18 @@ func processElements(elements model.Document, path string) <span class="cov2" ti
         }
 }
 
-func processResourcesElements(resourcesElements model.Document, path string) error <span class="cov4" title="4">{
-        for _, v2 := range resourcesElements </span><span class="cov7" title="14">{
+func processResourcesElements(resourcesElements model.Document, path string) error <span class="cov3" title="4">{
+        for _, v2 := range resourcesElements </span><span class="cov6" title="14">{
                 switch t := v2.(type) </span>{
                 case []interface{}:<span class="cov0" title="0">
                         return errors.New("failed to process resources")</span>
-                case interface{}:<span class="cov7" title="14">
+                case interface{}:<span class="cov6" title="14">
                         if elements, ok := t.(model.Document); ok </span><span class="cov2" title="2">{
                                 processElements(elements, path)
                         }</span>
                 }
         }
-        <span class="cov4" title="4">return nil</span>
+        <span class="cov3" title="4">return nil</span>
 }
 
 func processResources(doc model.Document, path string) error <span class="cov3" title="3">{
@@ -27052,15 +27150,15 @@ func processResources(doc model.Document, path string) error <span class="cov3" 
         <span class="cov3" title="3">return nil</span>
 }
 
-func addExtraInfo(json []model.Document, path string) ([]model.Document, error) <span class="cov4" title="4">{
+func addExtraInfo(json []model.Document, path string) ([]model.Document, error) <span class="cov3" title="4">{
         // handle panic during resource processing
-        defer func() </span><span class="cov4" title="4">{
+        defer func() </span><span class="cov3" title="4">{
                 if r := recover(); r != nil </span><span class="cov0" title="0">{
                         errMessage := "Recovered from panic during resource processing for file " + path
                         masterUtils.HandlePanic(r, errMessage)
                 }</span>
         }()
-        <span class="cov4" title="4">for _, documents := range json </span><span class="cov4" title="4">{ // iterate over documents
+        <span class="cov3" title="4">for _, documents := range json </span><span class="cov3" title="4">{ // iterate over documents
                 if resources, ok := documents["resource"].(model.Document); ok </span><span class="cov3" title="3">{
                         err := processResources(resources, path)
                         if err != nil </span><span class="cov0" title="0">{
@@ -27069,43 +27167,43 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
                 }
         }
 
-        <span class="cov4" title="4">return json, nil</span>
+        <span class="cov3" title="4">return json, nil</span>
 }
 
-func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) <span class="cov10" title="31">{
+func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) <span class="cov10" title="65">{
         file, err := os.ReadFile(filepath.Clean(filename))
         if err != nil </span><span class="cov3" title="3">{
                 return nil, err
         }</span>
-        <span class="cov9" title="28">if shouldReplaceDataSource </span><span class="cov7" title="10">{
+        <span class="cov9" title="62">if shouldReplaceDataSource </span><span class="cov5" title="10">{
                 replaceDataIdentifiers := regexp.MustCompile(`(data\.[A-Za-z0-9._-]+)`)
                 file = []byte(replaceDataIdentifiers.ReplaceAllString(string(file), "\"$1\""))
         }</span>
-        <span class="cov9" title="28">parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
+        <span class="cov9" title="62">parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
 
         return parsedFile, nil</span>
 }
 
 // Parse execute parser for the content in a file
-func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) <span class="cov5" title="5">{
+func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) <span class="cov4" title="5">{
         file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
-        defer func() </span><span class="cov5" title="5">{
+        defer func() </span><span class="cov4" title="5">{
                 if r := recover(); r != nil </span><span class="cov1" title="1">{
                         errMessage := "Recovered from panic during parsing of file " + path
                         masterUtils.HandlePanic(r, errMessage)
                 }</span>
         }()
-        <span class="cov5" title="5">if diagnostics != nil &amp;&amp; diagnostics.HasErrors() &amp;&amp; len(diagnostics.Errs()) &gt; 0 </span><span class="cov0" title="0">{
+        <span class="cov4" title="5">if diagnostics != nil &amp;&amp; diagnostics.HasErrors() &amp;&amp; len(diagnostics.Errs()) &gt; 0 </span><span class="cov0" title="0">{
                 err := diagnostics.Errs()[0]
                 return nil, []int{}, err
         }</span>
 
-        <span class="cov5" title="5">ignore, err := comment.ParseComments(content, path)
+        <span class="cov4" title="5">ignore, err := comment.ParseComments(content, path)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msg("failed to parse comments")
         }</span>
 
-        <span class="cov5" title="5">linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
+        <span class="cov4" title="5">linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
 
         fc, parseErr := p.convertFunc(file, inputVariableMap)
         json, err := addExtraInfo([]model.Document{fc}, path)
@@ -27113,7 +27211,7 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, er
                 return json, []int{}, errors.Wrap(err, "failed terraform parse")
         }</span>
 
-        <span class="cov4" title="4">return json, linesToIgnore, errors.Wrap(parseErr, "failed terraform parse")</span>
+        <span class="cov3" title="4">return json, linesToIgnore, errors.Wrap(parseErr, "failed terraform parse")</span>
 }
 
 // SupportedExtensions returns Terraform extensions
@@ -27155,28 +27253,36 @@ import (
         "path/filepath"
         "regexp"
         "strings"
+        "sync"
 
-        "github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
         "github.com/hashicorp/hcl/v2"
         "github.com/hashicorp/hcl/v2/hclsyntax"
         "github.com/rs/zerolog/log"
         "github.com/zclconf/go-cty/cty"
+
+        "github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
 )
 
 var inputVariableMap = make(converter.VariableMap)
 
-func mergeMaps(baseMap, newItems converter.VariableMap) <span class="cov10" title="11">{
-        for key, value := range newItems </span><span class="cov10" title="11">{
+// Cache for directory-level variable resolution
+var (
+        variableCache      = make(map[string]converter.VariableMap)
+        variableCacheMutex sync.RWMutex
+)
+
+func mergeMaps(baseMap, newItems converter.VariableMap) <span class="cov10" title="41">{
+        for key, value := range newItems </span><span class="cov9" title="40">{
                 baseMap[key] = value
         }</span>
 }
 
-func setInputVariablesDefaultValues(filename string) (converter.VariableMap, error) <span class="cov9" title="10">{
+func setInputVariablesDefaultValues(filename string) (converter.VariableMap, error) <span class="cov9" title="31">{
         parsedFile, err := parseFile(filename, false)
         if err != nil || parsedFile == nil </span><span class="cov1" title="1">{
                 return nil, err
         }</span>
-        <span class="cov9" title="9">content, _, _ := parsedFile.Body.PartialContent(&amp;hcl.BodySchema{
+        <span class="cov9" title="30">content, _, _ := parsedFile.Body.PartialContent(&amp;hcl.BodySchema{
                 Blocks: []hcl.BlockHeaderSchema{
                         {
                                 Type:       "variable",
@@ -27186,23 +27292,23 @@ func setInputVariablesDefaultValues(filename string) (converter.VariableMap, err
         })
 
         defaultValuesMap := make(converter.VariableMap)
-        for _, block := range content.Blocks </span><span class="cov9" title="9">{
-                if len(block.Labels) == 0 || block.Labels[0] == "" </span><span class="cov3" title="2">{
+        for _, block := range content.Blocks </span><span class="cov8" title="25">{
+                if len(block.Labels) == 0 || block.Labels[0] == "" </span><span class="cov5" title="6">{
                         continue</span>
                 }
-                <span class="cov8" title="7">attr, _ := block.Body.JustAttributes()
-                if len(attr) == 0 </span><span class="cov3" title="2">{
+                <span class="cov8" title="19">attr, _ := block.Body.JustAttributes()
+                if len(attr) == 0 </span><span class="cov5" title="6">{
                         continue</span>
                 }
-                <span class="cov7" title="5">if defaultValue, exists := attr["default"]; exists </span><span class="cov7" title="5">{
+                <span class="cov7" title="13">if defaultValue, exists := attr["default"]; exists </span><span class="cov7" title="13">{
                         defaultVar, _ := defaultValue.Expr.Value(nil)
                         defaultValuesMap[block.Labels[0]] = defaultVar
                 }</span>
         }
-        <span class="cov9" title="9">return defaultValuesMap, nil</span>
+        <span class="cov9" title="30">return defaultValuesMap, nil</span>
 }
 
-func checkTfvarsValid(f *hcl.File, filename string) error <span class="cov8" title="7">{
+func checkTfvarsValid(f *hcl.File, filename string) error <span class="cov8" title="20">{
         content, _, _ := f.Body.PartialContent(&amp;hcl.BodySchema{
                 Blocks: []hcl.BlockHeaderSchema{
                         {
@@ -27211,76 +27317,104 @@ func checkTfvarsValid(f *hcl.File, filename string) error <span class="cov8" tit
                         },
                 },
         })
-        if len(content.Blocks) &gt; 0 </span><span class="cov3" title="2">{
+        if len(content.Blocks) &gt; 0 </span><span class="cov5" title="6">{
                 return fmt.Errorf("failed to get variables from %s, .tfvars file is used to assing values not to declare new variables", filename)
         }</span>
-        <span class="cov7" title="5">return nil</span>
+        <span class="cov7" title="14">return nil</span>
 }
 
-func getInputVariablesFromFile(filename string) (converter.VariableMap, error) <span class="cov8" title="8">{
+func getInputVariablesFromFile(filename string) (converter.VariableMap, error) <span class="cov8" title="21">{
         parsedFile, err := parseFile(filename, false)
         if err != nil || parsedFile == nil </span><span class="cov1" title="1">{
                 return nil, err
         }</span>
-        <span class="cov8" title="7">err = checkTfvarsValid(parsedFile, filename)
-        if err != nil </span><span class="cov3" title="2">{
+        <span class="cov8" title="20">err = checkTfvarsValid(parsedFile, filename)
+        if err != nil </span><span class="cov5" title="6">{
                 return nil, err
         }</span>
 
-        <span class="cov7" title="5">attrs := parsedFile.Body.(*hclsyntax.Body).Attributes
+        <span class="cov7" title="14">attrs := parsedFile.Body.(*hclsyntax.Body).Attributes
         variables := make(converter.VariableMap)
-        for name, attr := range attrs </span><span class="cov10" title="11">{
+        for name, attr := range attrs </span><span class="cov9" title="32">{
                 value, _ := attr.Expr.Value(&amp;hcl.EvalContext{})
                 variables[name] = value
         }</span>
-        <span class="cov7" title="5">return variables, nil</span>
+        <span class="cov7" title="14">return variables, nil</span>
 }
 
-func getInputVariables(currentPath, fileContent, terraformVarsPath string) <span class="cov6" title="4">{
+// buildVariablesForDirectory scans a directory once and builds the complete variable map
+func buildVariablesForDirectory(currentPath, terraformVarsPath string) (converter.VariableMap, error) <span class="cov6" title="9">{
         variablesMap := make(converter.VariableMap)
+
+        // Get all .tf files
         tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msg("Error getting .tf files")
+                return variablesMap, err
         }</span>
-        <span class="cov6" title="4">for _, tfFile := range tfFiles </span><span class="cov7" title="6">{
+
+        // Process all .tf files for default values
+        <span class="cov6" title="9">for _, tfFile := range tfFiles </span><span class="cov8" title="27">{
                 variables, errDefaultValues := setInputVariablesDefaultValues(tfFile)
                 if errDefaultValues != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("Error getting default values from %s", tfFile)
                         log.Err(errDefaultValues)
                         continue</span>
                 }
-                <span class="cov7" title="6">mergeMaps(variablesMap, variables)</span>
+                <span class="cov8" title="27">mergeMaps(variablesMap, variables)</span>
         }
-        <span class="cov6" title="4">tfVarsFiles, err := filepath.Glob(filepath.Join(currentPath, "*.auto.tfvars"))
+        <span class="cov6" title="9">tfVarsFiles, err := filepath.Glob(filepath.Join(currentPath, "*.auto.tfvars"))
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msg("Error getting .auto.tfvars files")
         }</span>
 
-        <span class="cov6" title="4">_, err = os.Stat(filepath.Join(currentPath, "terraform.tfvars"))
-        if err != nil </span><span class="cov5" title="3">{
+        <span class="cov6" title="9">_, err = os.Stat(filepath.Join(currentPath, "terraform.tfvars"))
+        if err != nil </span><span class="cov4" title="4">{
                 log.Trace().Msgf("terraform.tfvars not found on %s", currentPath)
-        }</span> else<span class="cov1" title="1"> {
+        }</span> else<span class="cov4" title="5"> {
                 tfVarsFiles = append(tfVarsFiles, filepath.Join(currentPath, "terraform.tfvars"))
         }</span>
 
-        <span class="cov6" title="4">for _, tfVarsFile := range tfVarsFiles </span><span class="cov5" title="3">{
+        <span class="cov6" title="9">for _, tfVarsFile := range tfVarsFiles </span><span class="cov7" title="15">{
                 variables, errInputVariables := getInputVariablesFromFile(tfVarsFile)
-                if errInputVariables != nil </span><span class="cov1" title="1">{
+                if errInputVariables != nil </span><span class="cov4" title="5">{
                         log.Error().Msgf("Error getting values from %s", tfVarsFile)
                         log.Err(errInputVariables)
                         continue</span>
                 }
-                <span class="cov3" title="2">mergeMaps(variablesMap, variables)</span>
+                <span class="cov6" title="10">mergeMaps(variablesMap, variables)</span>
         }
 
+        // Process custom terraform vars path if provided
+        <span class="cov6" title="9">if terraformVarsPath != "" </span><span class="cov3" title="3">{
+                _, err = os.Stat(terraformVarsPath)
+                if err != nil </span><span class="cov0" title="0">{
+                        log.Trace().Msgf("%s file not found", terraformVarsPath)
+                }</span> else<span class="cov3" title="3"> {
+                        variables, errInputVariables := getInputVariablesFromFile(terraformVarsPath)
+                        if errInputVariables != nil </span><span class="cov0" title="0">{
+                                log.Error().Msgf("Error getting values from %s", terraformVarsPath)
+                                log.Err(errInputVariables)
+                        }</span> else<span class="cov3" title="3"> {
+                                mergeMaps(variablesMap, variables)
+                        }</span>
+                }
+        }
+
+        <span class="cov6" title="9">return variablesMap, nil</span>
+}
+
+// getInputVariables now uses caching to avoid rescanning directories
+func getInputVariables(currentPath, fileContent, terraformVarsPath string) <span class="cov6" title="8">{
+        // Extract terraform vars path from file content if not provided
         // If the flag is empty let's look for the value in the first written line of the file
-        <span class="cov6" title="4">if terraformVarsPath == "" </span><span class="cov3" title="2">{
+        if terraformVarsPath == "" </span><span class="cov5" title="6">{
                 terraformVarsPathRegex := regexp.MustCompile(`(?m)^\s*// kics_terraform_vars: ([\w/\\.:-]+)\r?\n`)
                 terraformVarsPathMatch := terraformVarsPathRegex.FindStringSubmatch(fileContent)
                 if terraformVarsPathMatch != nil </span><span class="cov0" title="0">{
                         // There is a path tp the variables file in the file so that will be the path to the variables tf file
                         terraformVarsPath = terraformVarsPathMatch[1]
-                        // If the path contains ":" assume its a global path
+                        // If the path contains ":" assume it's a global path
                         if !strings.Contains(terraformVarsPath, ":") </span><span class="cov0" title="0">{
                                 // If not then add the current folder path before so that the comment path can be relative
                                 terraformVarsPath = filepath.Join(currentPath, terraformVarsPath)
@@ -27288,24 +27422,34 @@ func getInputVariables(currentPath, fileContent, terraformVarsPath string) <span
                 }
         }
 
-        // If the terraformVarsPath is empty, this means that it is not in the flag
-        // and it is not in the first written line of the file
-        <span class="cov6" title="4">if terraformVarsPath != "" </span><span class="cov3" title="2">{
-                _, err = os.Stat(terraformVarsPath)
-                if err != nil </span><span class="cov0" title="0">{
-                        log.Trace().Msgf("%s file not found", terraformVarsPath)
-                }</span> else<span class="cov3" title="2"> {
-                        variables, errInputVariables := getInputVariablesFromFile(terraformVarsPath)
-                        if errInputVariables != nil </span><span class="cov0" title="0">{
-                                log.Error().Msgf("Error getting values from %s", terraformVarsPath)
-                                log.Err(errInputVariables)
-                        }</span> else<span class="cov3" title="2"> {
-                                mergeMaps(variablesMap, variables)
-                        }</span>
-                }
-        }
+        // Create a cache key that includes the custom vars path if provided
+        <span class="cov6" title="8">cacheKey := currentPath
+        if terraformVarsPath != "" </span><span class="cov2" title="2">{
+                cacheKey = currentPath + "|" + terraformVarsPath
+        }</span>
 
-        <span class="cov6" title="4">inputVariableMap["var"] = cty.ObjectVal(variablesMap)</span>
+        // Try to get from cache first
+        <span class="cov6" title="8">variableCacheMutex.RLock()
+        if cachedVars, exists := variableCache[cacheKey]; exists </span><span class="cov1" title="1">{
+                variableCacheMutex.RUnlock()
+                inputVariableMap["var"] = cty.ObjectVal(cachedVars)
+                return
+        }</span>
+        <span class="cov5" title="7">variableCacheMutex.RUnlock()
+
+        // Cache miss - build variables for this directory
+        variablesMap, err := buildVariablesForDirectory(currentPath, terraformVarsPath)
+        if err != nil </span><span class="cov0" title="0">{
+                log.Error().Msgf("Error building variables for directory %s: %v", currentPath, err)
+                return
+        }</span>
+
+        // Store in cache
+        <span class="cov5" title="7">variableCacheMutex.Lock()
+        variableCache[cacheKey] = variablesMap
+        variableCacheMutex.Unlock()
+
+        inputVariableMap["var"] = cty.ObjectVal(variablesMap)</span>
 }
 </pre>
 		
@@ -33560,7 +33704,14 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) <span class=
 
         <span class="cov1" title="1">failedQueries := executeScanParameters.inspector.GetFailedQueries()
 
-        results, err := c.Storage.GetVulnerabilities(ctx, c.ScanParams.ScanID)
+        for _, service := range executeScanParameters.services </span><span class="cov4" title="2">{
+                secretsFailedQueries := service.SecretsInspector.GetFailedQueries()
+                for queryName, queryErr := range secretsFailedQueries </span><span class="cov0" title="0">{
+                        failedQueries[queryName] = queryErr
+                }</span>
+        }
+
+        <span class="cov1" title="1">results, err := c.Storage.GetVulnerabilities(ctx, c.ScanParams.ScanID)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
                 return nil, err
