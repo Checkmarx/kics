@@ -107,6 +107,8 @@ jobs:
           -r $GITHUB_WORKSPACE/results \
           -j $GITHUB_WORKSPACE/pr-metadata.json \
           -q $GITHUB_WORKSPACE/kics/assets/queries/ \
+          --libraries $GITHUB_WORKSPACE/kics/assets/libraries/ \
+          --assets $GITHUB_WORKSPACE/kics/assets/similarityID_transition/ \
           --env $CES_ENVIRONMENT \
           >> $LOG_FILE 2>&1
 
