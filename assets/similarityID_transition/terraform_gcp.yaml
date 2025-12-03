@@ -63,3 +63,7 @@ similarityIDChangeList:
       queryName: Beta - SQL DB Instance With Exposed Show Privileges
       observations: ""
       change: 2
+    - queryId: 7bd9c6a8-3b1f-495c-9752-a4a9c4e1b29f
+      queryName: Beta - Ensure Essential Contacts Is Configured For Organization
+      observations: ""
+      change: 2
