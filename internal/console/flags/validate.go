@@ -11,6 +11,7 @@ var flagValidationFuncs = flagValidationFuncsMap{
 	"allQueriesID":                      allQueriesID,
 	"validateWorkersFlag":               validateWorkersFlag,
 	"validatePath":                      validatePath,
+	"validateTimeoutFlag":               validateTimeoutFlag,
 }
 
 func isQueryID(id string) bool {
