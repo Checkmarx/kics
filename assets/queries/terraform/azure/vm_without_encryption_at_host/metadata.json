@@ -1,0 +1,14 @@
+{
+  "id": "30c7c2f1-c048-49ba-81a4-ae465bbb3335",
+  "queryName": "Beta - VM Without Encryption At Host",
+  "severity": "LOW",
+  "category": "Encryption",
+  "descriptionText": "VM resources should enable encryption at host for improved data security",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/windows_virtual_machine.html#encryption_at_host_enabled-1",
+  "platform": "Terraform",
+  "descriptionID": "30c7c2f1",
+  "cloudProvider": "azure",
+  "cwe": "326",
+  "riskScore": "1.0",
+  "experimental": "true"
+}

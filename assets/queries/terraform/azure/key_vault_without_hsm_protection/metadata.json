@@ -1,0 +1,14 @@
+{
+  "id": "fbb8e5e0-6dea-41d3-8739-4f2405b0e22a",
+  "queryName": "Beta - Key Vault Without HSM Protection",
+  "severity": "LOW",
+  "category": "Encryption",
+  "descriptionText": "Key Vaults should set key type to one that uses HSM for added security",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key#key_type-1",
+  "platform": "Terraform",
+  "descriptionID": "fbb8e5e0",
+  "cloudProvider": "azure",
+  "cwe": "326",
+  "riskScore": "1.0",
+  "experimental": "true"
+}

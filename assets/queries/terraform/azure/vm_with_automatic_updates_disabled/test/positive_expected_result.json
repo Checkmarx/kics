@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Beta - VM With Automatic Updates Disabled",
+    "severity": "MEDIUM",
+    "line": 11
+  },
+  {
+    "queryName": "Beta - VM With Automatic Updates Disabled",
+    "severity": "MEDIUM",
+    "line": 24
+  },
+  {
+    "queryName": "Beta - VM With Automatic Updates Disabled",
+    "severity": "MEDIUM",
+    "line": 37
+  }
+]
