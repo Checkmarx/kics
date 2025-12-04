@@ -30,11 +30,6 @@ resource "azurerm_monitor_diagnostic_setting" "aks_diagnostics_neg2_2" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.negative2_2.id
 
   log {
-    category = "kube-audit"
-    enabled  = true
-  }
-
-  log {
     category = "kube-audit-admin"
     enabled  = true
   }
