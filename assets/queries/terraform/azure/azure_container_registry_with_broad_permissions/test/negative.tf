@@ -1,4 +1,4 @@
-resource "azurerm_container_registry" "sample_1" {
+resource "azurerm_container_registry" "sample" {
   name                = "exampleacr123"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
