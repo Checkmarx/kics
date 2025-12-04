@@ -37,9 +37,16 @@ get_results(resource, name, diagnostic_resources) = keyActualValue {		# not asso
 	keyActualValue := sprintf("'azurerm_databricks_workspace' is associated with %d 'azurerm_monitor_diagnostic_setting' resource(s), but none enable all required logs",[count(diagnostic_resources)])
 } else = keyActualValue {
 	valid_resources := diagnostics_with_relevant_logs(diagnostic_resources)
-	not valid_destination(valid_resources)
 
 	keyActualValue := sprintf("'azurerm_databricks_workspace' is associated with %d 'azurerm_monitor_diagnostic_setting' resource(s) with all required logs, but none have a valid destination set up",[count(diagnostic_resources)])
+}
+
+diagnostics_with_relevant_logs(diagnostic_resources) = valid_resources {
+	logs_enabled := {x | x := get_}
+
+	valid_resources := [x |
+			x := has_all_relevant_logs(diagnostic_resources[_])
+			]
 }
 
 valid_destination(valid_resources) {
@@ -48,12 +55,6 @@ valid_destination(valid_resources) {
 } else {
 	common_lib.valid_key(valid_resources[x], "eventhub_authorization_rule_id")
 	common_lib.valid_key(valid_resources[x], "eventhub_name")
-}
-
-diagnostics_with_relevant_logs(diagnostic_resources) = valid_resources {
-	valid_resources := [x |
-			x := has_all_relevant_logs(diagnostic_resources[_])
-			]
 }
 
 has_all_relevant_logs(resource) = resource {													# "enabled_log" as array
