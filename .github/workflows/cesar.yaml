@@ -4,7 +4,7 @@ on:
     types: [ labeled ]
 
 env:
-  ENGINE_VERSION: ${{ vars.ENGINE_VERSION }}
+  ENGINE_VERSION: ${{ vars.CES_ENGINE_VERSION }}
   PLATFORM: "LINUX_X64"
   ENGINE: "kics"
   REMOVE_HISTORY: "true"
