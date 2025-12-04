@@ -8,7 +8,7 @@ resource "azurerm_monitor_diagnostic_setting" "negative3_1" {
   }
 }
 
-resource "azurerm_monitor_diagnostic_setting" "negative3_3" {
+resource "azurerm_monitor_diagnostic_setting" "negative3_2" {
   name                       = "diagnostic-settings-name"
   target_resource_id         = azurerm_databricks_workspace.example_neg3.id
   storage_account_id       = azurerm_storage_account.example.id
@@ -23,7 +23,7 @@ resource "azurerm_monitor_diagnostic_setting" "negative3_3" {
 
 }
 
-resource "azurerm_monitor_diagnostic_setting" "negative3_4" {
+resource "azurerm_monitor_diagnostic_setting" "negative3_3" {
   name                       = "diagnostic-settings-name"
   target_resource_id         = azurerm_databricks_workspace.example_neg3.id
   eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.example.id
