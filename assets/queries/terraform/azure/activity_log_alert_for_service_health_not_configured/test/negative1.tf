@@ -68,15 +68,3 @@ resource "azurerm_monitor_activity_log_alert" "negative3" {
 data "azurerm_subscription" "secondary" {
   subscription_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 }
-
-resource "azurerm_monitor_activity_log_alert" "negative4" {
-  name                = "ServiceHealthActivityLogAlert"
-  resource_group_name = var.resource_group_name
-  scopes = [azurerm_resource_group.example.id] # The scope needs to be a subscription
-  description         = "Alert for Azure Service Health events"
-  enabled             = true
-
-  action {
-    action_group_id = azurerm_monitor_action_group.notify_team.id
-  }
-}
