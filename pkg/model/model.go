@@ -293,6 +293,15 @@ type AnalyzedPaths struct {
 	Types       []string
 	Exc         []string
 	ExpectedLOC int
+	FileStats   map[string]FileStatistics
+}
+
+// FileStatistics contains file and directory counts per platform type
+type FileStatistics struct {
+	FileCount      int
+	DirectoryCount int
+	FilesByDir     map[string]int
+	TotalLOC       int
 }
 
 // ResolvedFileSplit is a struct that contains the information of a resolved file, the path and the lines of the file
