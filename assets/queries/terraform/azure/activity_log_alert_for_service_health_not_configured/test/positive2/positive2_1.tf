@@ -26,7 +26,7 @@ resource "azurerm_monitor_activity_log_alert" "positive2_2" {
   enabled             = true
 
   criteria {
-    category = "ServiceHealth"  # Wrong category
+    category = "ServiceHealth"
 
      service_health {
       # Missing 'events'
