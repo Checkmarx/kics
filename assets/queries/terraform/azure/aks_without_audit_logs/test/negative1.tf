@@ -24,8 +24,8 @@ resource "azurerm_kubernetes_cluster" "negative1_2" {
 
 resource "azurerm_monitor_diagnostic_setting" "aks_diagnostics_neg_1_2" {
   name                       = "myAKSClusterLogs"
-  target_resource_id         = azurerm_kubernetes_cluster.negative2_2.id
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.negative2_2.id
+  target_resource_id         = azurerm_kubernetes_cluster.negative1_2.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.negative1_2.id
 
   enabled_log {
     category = "kube-audit-admin"
