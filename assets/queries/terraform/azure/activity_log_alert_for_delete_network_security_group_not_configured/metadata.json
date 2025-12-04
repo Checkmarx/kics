@@ -1,0 +1,14 @@
+{
+  "id": "62d120b1-b1e0-40ef-a81d-a4994ac88b3b",
+  "queryName": "Beta - Activity Log Alert For Delete Network Security Group Not Configured",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture 'delete network security group' events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_activity_log_alert",
+  "platform": "Terraform",
+  "descriptionID": "62d120b1",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
