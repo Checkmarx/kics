@@ -12,8 +12,10 @@ resource "google_monitoring_alert_policy" "audit_config_alert" {
   conditions {
     display_name = "Audit Config Change Condition"              # test for unusual spacing
     condition_matched_log {
-      filter = "protoPayload.methodName =  \"SetIamPolicy\"
-            AND  protoPayload.serviceData.policyDelta.auditConfigDeltas : *"
+      filter = <<-FILTER
+      protoPayload.methodName =  "SetIamPolicy"
+            AND  protoPayload.serviceData.policyDelta.auditConfigDeltas : *
+        FILTER
     }
   }
 

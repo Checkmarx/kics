@@ -24,7 +24,7 @@ require (
 	github.com/hashicorp/terraform-json v0.24.0
 	github.com/johnfercher/maroto v1.0.0
 	github.com/mackerelio/go-osstat v0.2.5
-	github.com/moby/buildkit v0.26.0
+	github.com/moby/buildkit v0.26.2
 	github.com/open-policy-agent/opa v1.4.2
 	github.com/pkg/errors v0.9.1
 	github.com/relex/aini v1.6.0
@@ -39,11 +39,11 @@ require (
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
 	github.com/zclconf/go-cty v1.16.2
-	golang.org/x/net v0.46.0
-	golang.org/x/text v0.30.0
+	golang.org/x/net v0.47.0
+	golang.org/x/text v0.31.0
 	golang.org/x/tools/godoc v0.1.0-deprecated
 	gopkg.in/yaml.v3 v3.0.1
-	helm.sh/helm/v3 v3.19.0
+	helm.sh/helm/v3 v3.19.2
 	mvdan.cc/sh/v3 v3.11.0
 	sigs.k8s.io/controller-runtime v0.14.6
 )
@@ -129,7 +129,7 @@ require (
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/exp v0.0.0-20250911091902-df9299821621 // indirect
 	golang.org/x/mod v0.29.0 // indirect
-	golang.org/x/tools v0.37.0 // indirect
+	golang.org/x/tools v0.38.0 // indirect
 	google.golang.org/api v0.215.0 // indirect
 	google.golang.org/genproto v0.0.0-20241118233622-e639e219e697 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20250825161204-c5933d9347a5 // indirect
@@ -156,7 +156,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/chai2010/gettext-go v1.0.2 // indirect
 	github.com/containerd/containerd v1.7.29 // indirect
-	github.com/cyphar/filepath-securejoin v0.4.1 // indirect
+	github.com/cyphar/filepath-securejoin v0.6.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.12.2 // indirect
 	github.com/evanphx/json-patch v5.9.11+incompatible // indirect
@@ -232,11 +232,11 @@ require (
 	github.com/xlab/treeprint v1.2.0 // indirect
 	github.com/xo/terminfo v0.0.0-20210125001918-ca9a967f8778 // indirect
 	github.com/yashtewari/glob-intersection v0.2.0 // indirect
-	golang.org/x/crypto v0.43.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
 	golang.org/x/oauth2 v0.30.0 // indirect
-	golang.org/x/sync v0.17.0 // indirect
-	golang.org/x/sys v0.37.0 // indirect
-	golang.org/x/term v0.36.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/term v0.37.0 // indirect
 	golang.org/x/time v0.14.0 // indirect
 	google.golang.org/grpc v1.76.0 // indirect
 	google.golang.org/protobuf v1.36.10 // indirect
