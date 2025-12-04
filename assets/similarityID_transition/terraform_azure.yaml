@@ -7,6 +7,18 @@ similarityIDChangeList:
       queryName: Beta - Activity Log Alert For Delete Network Security Group Not Configured
       observations: ""
       change: 2
+    - queryId: 1ec163d0-a9be-4695-89a8-a4028a2cbae7
+      queryName: Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured
+      observations: ""
+      change: 2
+    - queryId: a7b422e3-0b2f-4795-a43a-136dbbd6cbb3
+      queryName: Beta - Activity Log Alert For Delete Policy Assignment Not Configured
+      observations: ""
+      change: 2
+    - queryId: d0514e4b-9e95-4a7a-9bc5-0adb32514122
+      queryName: Beta - Activity Log Alert For Create Policy Assignment Not Configured
+      observations: ""
+      change: 2
     - queryId: 05d6b52e-11ca-453d-bb3a-21c7c853ee92
       queryName: Beta - Databricks Workspace Using Default Virtual Network
       observations: ""
