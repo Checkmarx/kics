@@ -8,25 +8,25 @@
   {
     "queryName": "Beta - Databricks Diagnostic Logging Unconfigured",
     "severity": "MEDIUM",
-    "line": 38,
+    "line": 36,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Unconfigured",
     "severity": "MEDIUM",
-    "line": 69,
+    "line": 73,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Unconfigured",
     "severity": "MEDIUM",
-    "line": 14,
+    "line": 27,
     "fileName": "positive4.tf"
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Unconfigured",
     "severity": "MEDIUM",
-    "line": 58,
+    "line": 60,
     "fileName": "positive5.tf"
   }
 ]

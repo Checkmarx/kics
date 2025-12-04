@@ -29,6 +29,8 @@ resource "azurerm_monitor_diagnostic_setting" "positive5_2" {
   name               = "databricks-diagnostic-logs"
   target_resource_id = azurerm_databricks_workspace.example_pos5.id
 
+  # missing valid destination
+
   log {
     category = "accounts"
     enabled  = true

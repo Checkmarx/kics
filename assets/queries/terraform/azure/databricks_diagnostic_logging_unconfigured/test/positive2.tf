@@ -3,8 +3,6 @@ resource "azurerm_monitor_diagnostic_setting" "positive2_1" {
   target_resource_id         = azurerm_databricks_workspace.example_pos2.id
 
   log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
-
-  # Not declaring a single "enabled_log"/"log" block
 }
 
 resource "azurerm_monitor_diagnostic_setting" "positive2_2" {
@@ -14,7 +12,7 @@ resource "azurerm_monitor_diagnostic_setting" "positive2_2" {
   storage_account_id       = azurerm_storage_account.example.id
 
   enabled_log {
-    category = "accounts"         # single "enabled_log" block (object)
+    category = "accounts"
   }
 
 }
@@ -27,7 +25,7 @@ resource "azurerm_monitor_diagnostic_setting" "positive2_3" {
   eventhub_name            = "your-eventhub-name"
 
   enabled_log {
-    category = "accounts"         # "enabled_log" blocks do not cover both required categories (array)
+    category = "accounts"
   }
 
   enabled_log {
@@ -35,7 +33,7 @@ resource "azurerm_monitor_diagnostic_setting" "positive2_3" {
   }
 }
 
-resource "azurerm_databricks_workspace" "example_pos2" {
+resource "azurerm_databricks_workspace" "example_pos2" {    # missing 3/5 required log categories
   name                = "secure-databricks-ws"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name

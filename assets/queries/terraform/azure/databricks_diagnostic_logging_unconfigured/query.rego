@@ -12,7 +12,7 @@ CxPolicy[result] {
 		resource := input.document[x].resource.azurerm_monitor_diagnostic_setting[_]
 		contains(resource.target_resource_id, concat(".", ["azurerm_databricks_workspace", name, "id"]))]
 
-	keyActualValue := get_results(resource, name, diagnostic_resources)
+	keyActualValue := get_results(resource, diagnostic_resources)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,56 +20,57 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_databricks_workspace[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'azurerm_databricks_workspace' should be associated with an 'azurerm_monitor_diagnostic_setting' resource with all required logs and a valid destination",
+		"keyExpectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
 		"keyActualValue": keyActualValue,
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_databricks_workspace", name],[])
 	}
 }
 
-get_results(resource, name, diagnostic_resources) = keyActualValue {		# not associated with a single diagnostic setting resource
+get_results(resource, diagnostic_resources) = keyActualValue {				# not associated with a single diagnostic setting resource
 	count(diagnostic_resources) == 0
 
 	keyActualValue := "'azurerm_databricks_workspace' is not associated with an 'azurerm_monitor_diagnostic_setting' resource"
 
-} else = keyActualValue {													# associated with 1+ diagnostic setting resource(s) without required logs
-	diagnostics_with_relevant_logs(diagnostic_resources) == []
+} else = keyActualValue {													# associated with 1+ diagnostic setting resource(s) but without all required logs
+	logs_enabled := get_valid_enabled_logs(diagnostic_resources)
+	missing_logs := required_logs - logs_enabled
+	count(missing_logs) != 0
 
-	keyActualValue := sprintf("'azurerm_databricks_workspace' is associated with %d 'azurerm_monitor_diagnostic_setting' resource(s), but none enable all required logs",[count(diagnostic_resources)])
-} else = keyActualValue {
-	valid_resources := diagnostics_with_relevant_logs(diagnostic_resources)
-
-	keyActualValue := sprintf("'azurerm_databricks_workspace' is associated with %d 'azurerm_monitor_diagnostic_setting' resource(s) with all required logs, but none have a valid destination set up",[count(diagnostic_resources)])
+	keyActualValue := sprintf("'azurerm_databricks_workspace' is associated with %d 'azurerm_monitor_diagnostic_setting' resource(s), but is missing logs for %d category(s): '%v'",[count(diagnostic_resources), count(missing_logs) ,concat("', '", missing_logs)])
 }
 
-diagnostics_with_relevant_logs(diagnostic_resources) = valid_resources {
-	logs_enabled := {x | x := get_}
-
-	valid_resources := [x |
-			x := has_all_relevant_logs(diagnostic_resources[_])
-			]
+get_valid_enabled_logs(diagnostic_resources) = logs_enabled {
+	logs_enabled := union({x | x := get_valid_logs(diagnostic_resources[_])})
 }
 
-valid_destination(valid_resources) {
-	destination_fields := ["log_analytics_workspace_id", "storage_account_id"]
-	common_lib.valid_key(valid_resources[_], destination_fields[_])
-} else {
-	common_lib.valid_key(valid_resources[x], "eventhub_authorization_rule_id")
-	common_lib.valid_key(valid_resources[x], "eventhub_name")
-}
-
-has_all_relevant_logs(resource) = resource {													# "enabled_log" as array
+get_valid_logs(resource) = valid_logs {													# "enabled_log" array
 	is_array(resource.enabled_log)
-
-	categories := [x | x := resource.enabled_log[_].category]
-	missing_logs := [y | y := required_logs[_]; not common_lib.inArray(categories, y)]
-	missing_logs == []
-
-} else = resource {																			# "log" as array
+	valid_destination(resource)
+	valid_logs := {x | x := resource.enabled_log[i].category
+					   resource.enabled_log[i].category == required_logs[_]}
+} else = valid_logs {																	# "enabled_log" object
+	common_lib.valid_key(resource, "enabled_log")
+	valid_destination(resource)
+	resource.enabled_log.category == required_logs[_]
+	valid_logs := {resource.enabled_log.category}
+} else = valid_logs {																			# "log" array
 	is_array(resource.log)
+	valid_destination(resource)
+	valid_logs := {x | x := resource.log[i].category
+					   resource.log[i].category == required_logs[_]
+					   resource.log[i].enabled == true}
+} else = valid_logs {																			# "log" object
+	common_lib.valid_key(resource, "log")
+	valid_destination(resource)
+	resource.log.category == required_logs[_]
+	resource.log.enabled == true
+	valid_logs := {resource.log.category}
+}
 
-	enabled_logs := [x | x := resource.log[_]; x.enabled == true]
-	categories := [y | y := enabled_logs[_].category]
-
-	missing_logs := [z | z := required_logs[_]; not common_lib.inArray(categories, z)]
-	missing_logs == []
+valid_destination(resource) {
+	destination_fields := ["log_analytics_workspace_id", "storage_account_id"]
+	common_lib.valid_key(resource, destination_fields[_])
+} else {
+	common_lib.valid_key(resource, "eventhub_authorization_rule_id")
+	common_lib.valid_key(resource, "eventhub_name")
 }

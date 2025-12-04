@@ -3,8 +3,9 @@
 resource "azurerm_monitor_diagnostic_setting" "positive3_1" {
   name                       = "diagnostic-settings-name"
   target_resource_id         = azurerm_databricks_workspace.example_pos3.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
 
-  log {                               # single "enabled" log block (object)
+  log {
     category = "accounts"
     enabled  = true
   }
@@ -13,8 +14,9 @@ resource "azurerm_monitor_diagnostic_setting" "positive3_1" {
 resource "azurerm_monitor_diagnostic_setting" "positive3_2" {
   name                       = "diagnostic-settings-name"
   target_resource_id         = azurerm_databricks_workspace.example_pos3.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
 
-  log {                               # single "disabled" log block (object)
+  log {
     category = "accounts"
     enabled  = false
   }
@@ -23,8 +25,9 @@ resource "azurerm_monitor_diagnostic_setting" "positive3_2" {
 resource "azurerm_monitor_diagnostic_setting" "positive3_3" {
   name                       = "diagnostic-settings-name"
   target_resource_id         = azurerm_databricks_workspace.example_pos3.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
 
-  log {                              # "log" blocks do not cover both category groups (array)
+  log {
     category = "accounts"
     enabled  = true
   }
@@ -39,6 +42,7 @@ resource "azurerm_monitor_diagnostic_setting" "positive3_3" {
 resource "azurerm_monitor_diagnostic_setting" "positive3_4" {
   name                       = "diagnostic-settings-name"
   target_resource_id         = azurerm_databricks_workspace.example_pos3.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
 
   log {                               # one or more "disabled" log blocks (array)
     category = "accounts"
@@ -66,7 +70,7 @@ resource "azurerm_monitor_diagnostic_setting" "positive3_4" {
   }
 }
 
-resource "azurerm_databricks_workspace" "example_pos3" {
+resource "azurerm_databricks_workspace" "example_pos3" { # missing 1/5 required log categories ("notebook" - enabled = false)
   name                = "secure-databricks-ws"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
