@@ -175,7 +175,8 @@
     "flagType": "int",
     "shorthandFlag": "",
     "defaultValue": "60",
-    "usage": "number of seconds the query has to execute before being canceled"
+    "usage": "number of seconds the query has to execute before being canceled",
+    "validation": "validateTimeoutFlag"
   },
   "type": {
     "flagType": "multiStr",
