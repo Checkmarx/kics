@@ -1,0 +1,14 @@
+{
+  "id": "b97a1065-a86b-442f-86c4-f95afd9b3ac6",
+  "queryName": "Beta - Activity Log Alert For Delete Security Solution Not Configured",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture 'delete security solution' events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_activity_log_alert",
+  "platform": "Terraform",
+  "descriptionID": "b97a1065",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
