@@ -3,6 +3,10 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 54087baa-8719-48a8-8460-9cc0962117aa
+      queryName: Beta - File Share Without Soft Delete
+      observations: ""
+      change: 2
     - queryId: b3b9ce2f-c229-4133-9a2b-4e649cf2347e
       queryName: Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured
       observations: ""
