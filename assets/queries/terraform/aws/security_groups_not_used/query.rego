@@ -22,7 +22,8 @@ CxPolicy[result] {
 is_used(securityGroupName, doc, _) {
 	[_, value] := walk(doc)
 	securityGroupUsed := get_security_groups_if_exists(value)[_]
-	contains(securityGroupUsed, sprintf("aws_security_group.%s.", [securityGroupName]))
+	regex.match(sprintf("aws_security_group\\.%s(\\[\\d+\\])?\\.", [securityGroupName]), securityGroupUsed)
+	#contains(securityGroupUsed, sprintf("aws_security_group.%s.", [securityGroupName]))
 }
 
 is_used(securityGroupName, doc, resource) {
