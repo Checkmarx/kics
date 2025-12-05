@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - Activity Log Alert For Delete Security Solution Not Configured",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive4_1.tf"
+  }
+]
