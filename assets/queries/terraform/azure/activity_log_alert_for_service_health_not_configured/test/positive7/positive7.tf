@@ -1,1 +1,0 @@
-data "azurerm_subscription" "positive7" {}
