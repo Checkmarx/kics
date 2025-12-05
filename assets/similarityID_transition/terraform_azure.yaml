@@ -3,6 +3,10 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 1219a37a-9a2c-420d-8b8c-30bdbc3bfeb1
+      queryName: Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured
+      observations: ""
+      change: 2
     - queryId: b97a1065-a86b-442f-86c4-f95afd9b3ac6
       queryName: Beta - Activity Log Alert For Delete Security Solution Not Configured
       observations: ""
