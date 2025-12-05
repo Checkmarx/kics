@@ -3,6 +3,10 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 621fc7c5-c342-4223-b3dd-d1530acb43ae
+      queryName: Beta - Storage Account Not Using Latest SMB Protocol Version
+      observations: ""
+      change: 2
     - queryId: 54087baa-8719-48a8-8460-9cc0962117aa
       queryName: Beta - File Share Without Soft Delete
       observations: ""
