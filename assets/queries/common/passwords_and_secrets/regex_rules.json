@@ -7,7 +7,7 @@
       "allowRules": [
         {
           "description": "Avoiding TF resource access",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*(([a-zA-z_]+(.))?[a-zA-z_]+\\s*(.)\\s*[a-zA-z_]+(.)[a-zA-z_]+)?(\\s*:\\s*null|null)$"
+          "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*(([a-zA-Z_]+\\s*(\\[\\d+\\])?\\.\\s*[a-zA-Z_]+(\\[\\d+\\])?)\\s*([\\[\\.\\)\\]\\}\\$]|(:\\s*null))|null)"
         },
         {
           "description": "Avoiding description field",
@@ -15,7 +15,7 @@
         },
         {
           "description": "Avoiding Terraform 'optional' statement",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\((string|number|sensitive\\(string\\)|map\\(string\\)|set\\(string\\)|any)\\)$"   
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\((string|number|sensitive\\(string\\)|map\\(string\\)|set\\(string\\)|any)\\)$"
         },
         {
           "description": "Avoiding Terraform 'try' statement",
@@ -28,14 +28,6 @@
         {
           "description": "Avoiding Ansible playbook update_password",
           "regex": "['\"]?update_password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
-        },
-        {
-          "description": "Allow passwords retrieved from Terraform data sources",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*data\\.azurerm_key_vault_secret\\.[A-Za-z0-9_]+\\.value"
-        },
-        {
-          "description": "Allow passwords retrieved from AWS KMS Secrets",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*data\\.aws_kms_secrets\\.[A-Za-z0-9_]+\\.plaintext\\[\"[A-Za-z0-9_]+\"\\]"
         },
         {
           "description": "Allow placeholders",
@@ -70,7 +62,7 @@
         },
         {
           "description": "Avoiding TF resource access",
-          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*[:=]\\s*(([a-zA-Z_]+\\s*(\\[\\d+\\])?\\.\\s*[a-zA-Z_]+(\\[\\d+\\])?)\\s*([\\.\\)\\]\\$]|(:\\s*null))|null)"
         },
         {
           "description": "Avoiding Secrets Manager arn",
@@ -83,11 +75,11 @@
         {
           "description": "Avoiding Secrets from Azure Key Vault",
           "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?[${]+[A-Za-z0-9/~^_!@&%()=?*+-]+}?"
-        }, 
+        },
         {
           "description": "Allow secret retrieved from ARM parameters",
           "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*[:=]\\s*['\"]?\\[\\s*parameters\\(['\"][a-zA-Z][a-zA-Z0-9_-]*['\"]\\s*\\)\\s*\\]"
-        }, 
+        },
         {
           "description": "Allow secrets retrieved from Bicep getSecret built in function",
           "regex": "(?i)['\"]?secret[_]?(key|value)?['\"]?\\s*(:|=)\\s*[a-zA-Z]*\\.getSecret\\(\\s*[\"']([A-Za-z0-9/~^_!@#&%(){};=?*+-<>,:;[\\]%$]+)[\"']\\)"
