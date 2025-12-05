@@ -9,7 +9,7 @@ CxPolicy[result] {
 	cf_lib.isLoadBalancer(resource)
 	securityGroup_name := cf_lib.get_name(resource.Properties.SecurityGroups[_])
 
-	not has_standalone_egress(securityGroup_name) # tem um security group
+	not has_standalone_egress(securityGroup_name) # not tem um security group
 	value := withoutOutboundRules(input.document[i].Resources[securityGroup_name],securityGroup_name)
 
 	result := {
