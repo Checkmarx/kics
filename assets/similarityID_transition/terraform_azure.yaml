@@ -3,6 +3,10 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 056d28cc-7ee9-4b12-b2d1-16b7b66db72d
+      queryName: Beta - Blob Storage Without Soft Delete
+      observations: ""
+      change: 2
     - queryId: 233ab26d-8f17-4dce-9616-41479da9ffe3
       queryName: Beta - Storage Account Using Unsafe SMB Channel Encryption
       observations: ""

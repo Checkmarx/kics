@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Beta - Blob Storage Without Soft Delete",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "Beta - Blob Storage Without Soft Delete",
+    "severity": "HIGH",
+    "line": 18
+  },
+  {
+    "queryName": "Beta - Blob Storage Without Soft Delete",
+    "severity": "HIGH",
+    "line": 32
+  }
+]
