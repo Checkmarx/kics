@@ -75,6 +75,11 @@ emptyOrNull("") = true
 
 emptyOrNull(null) = true
 
+# List of valid forms for the "::/0" ipv6 address
+unrestricted_ipv6 := ["::/0","0000:0000:0000:0000:0000:0000:0000:0000/0","0:0:0:0:0:0:0:0/0"]
+# List of all ip addresses considered "unrestricted"
+unrestricted_ips := array.concat(unrestricted_ipv6, ["0.0.0.0/0"])
+
 # Checks if an IP is private
 isPrivateIP(ipVal) {
 	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12", "fc00::/8", "fd00::/8"]
@@ -438,7 +443,7 @@ is_access_limited_to_an_account_id(statement) {
 	valid_key(statement, conditions[idx])
 	condition_operator := statement[conditions[idx]][op][key]
 	lower(key) == lower(condition_keys_limiting_access_to_account_id[_])
-} 
+}
 
 is_cross_account(statement) {
 	is_string(statement.Principal.AWS)
@@ -770,3 +775,7 @@ valid_non_empty_key(field, key) = output {
 	keyObj == ""
 	output := concat(".", ["", key])
 }
+
+get_array_if_exists(resource, field_name) = [] {
+	not valid_key(resource, field_name)
+} else = resource[field_name]
