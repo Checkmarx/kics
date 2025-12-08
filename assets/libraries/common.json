@@ -1071,6 +1071,20 @@
             "database_subnet_ipv6_prefixes": "database_subnet_ipv6_prefixes"
           }
         },
+        "terraform-aws-modules/iam/aws//modules/iam-policy": {
+          "resources": [
+            "aws_iam_policy"
+          ],
+          "inputs": {
+            "create": "create",
+            "description": "description",
+            "name": "name",
+            "name_prefix": "name_prefix",
+            "path": "path",
+            "policy": "policy",
+            "tags": "tags"
+          }
+        },
         "terraform-aws-modules/ec2-instance/aws": {
           "resources": [
             "aws_spot_instance_request",
@@ -1695,6 +1709,28 @@
             "tunnel2_phase2_lifetime_seconds": "tunnel2_phase2_lifetime_seconds",
             "tunnel2_dpd_timeout_action": "tunnel2_dpd_timeout_action",
             "tunnel2_inside_cidr": "tunnel2_inside_cidr"
+          }
+        },
+        "terraform-aws-modules/sns/aws": {
+          "resources": [
+            "aws_sns_topic",
+            "aws_sns_topic_data_protection_policy",
+            "aws_sns_topic_policy",
+            "aws_sns_topic_subscription"
+          ],
+          "inputs": {
+            "archive_policy": "archive_policy",
+            "content_based_deduplication": "content_based_deduplication",
+            "delivery_policy": "delivery_policy",
+            "display_name": "display_name",
+            "fifo_throughput_scope": "fifo_throughput_scope",
+            "fifo-topic": "fifo-topic",
+            "kms_master_key_id": "kms_master_key_id",
+            "name": "name",
+            "signature_version": "signature_version",
+            "tags": "tags",
+            "tracing_config": "tracing_config",
+            "policy": "topic_policy"
           }
         },
         "terraform-aws-modules/notify-slack/aws": {

@@ -5,78 +5,75 @@ resource "kubernetes_pod" "positive1" {
   }
 
   spec {
-    container = [
-     {
-      image = "nginx:1.7.9"
-      name  = "example22"
+   container {
+    image = "nginx:1.7.9"
+    name  = "example22"
 
-      security_context = {
-        capabilities = {
-          add = ["NET_BIND_SERVICE"]
+    security_context {
+      capabilities {
+        add = ["NET_BIND_SERVICE"]
+      }
+    }
+
+    env {
+      name  = "environment"
+      value = "test"
+    }
+
+    port {
+      container_port = 8080
+    }
+
+    liveness_probe {
+      http_get {
+        path = "/nginx_status"
+        port = 80
+
+        http_header {
+          name  = "X-Custom-Header"
+          value = "Awesome"
         }
       }
 
-      env = {
-        name  = "environment"
-        value = "test"
+      initial_delay_seconds = 3
+      period_seconds        = 3
+    }
+   }
+
+   container {
+    image = "nginx:1.7.9"
+    name  = "example22222"
+
+     security_context {
+      capabilities {
+        add = ["NET_BIND_SERVICE"]
       }
+    }
 
-      port = {
-        container_port = 8080
-      }
+    env {
+      name  = "environment"
+      value = "test"
+    }
 
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
+    port {
+      container_port = 8080
+    }
 
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
-          }
+    liveness_probe {
+      http_get {
+        path = "/nginx_status"
+        port = 80
+
+        http_header {
+          name  = "X-Custom-Header"
+          value = "Awesome"
         }
-
-        initial_delay_seconds = 3
-        period_seconds        = 3
-      }
-     }
-     ,
-     {
-      image = "nginx:1.7.9"
-      name  = "example22222"
-
-       security_context = {
-        capabilities = {
-          add = ["NET_BIND_SERVICE"]
-        }
       }
 
-      env = {
-        name  = "environment"
-        value = "test"
-      }
-
-      port = {
-        container_port = 8080
-      }
-
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
-
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
-          }
-        }
-
-        initial_delay_seconds = 3
-        period_seconds        = 3
-      }
-     }
-   ]
-
+      initial_delay_seconds = 3
+      period_seconds        = 3
+    }
+   }
 
     dns_config {
       nameservers = ["1.1.1.1", "8.8.8.8", "9.9.9.9"]

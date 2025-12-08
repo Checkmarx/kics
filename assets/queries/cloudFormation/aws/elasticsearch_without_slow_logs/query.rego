@@ -58,7 +58,6 @@ CxPolicy[result] {
 	logs := resource.Properties.LogPublishingOptions[logName]
 	logName == slowLogs[_]
 	results := cf_lib.enabled_is_undefined_or_false(logs,path,name,logName)
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,

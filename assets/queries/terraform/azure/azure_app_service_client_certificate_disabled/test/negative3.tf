@@ -1,22 +1,47 @@
-resource "azurerm_app_service" "with_http2" {
+resource "azurerm_windows_web_app" "negative3-1" {
   name                = "example-app-service"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
-  app_service_plan_id = azurerm_app_service_plan.example.id
+  service_plan_id     = azurerm_windows_web_app_plan.example.id
+
+  site_config {}
+
+  client_certificate_enabled = true
+}
+
+resource "azurerm_windows_web_app" "negative3-2" {
+  name                = "example-app-service"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  service_plan_id = azurerm_app_service_plan.example.id
 
   site_config {
-    dotnet_framework_version = "v4.0"
-    scm_type                 = "LocalGit"
+    http2_enabled            = true
+  }
+}
+
+resource "azurerm_windows_web_app" "negative3-3" {
+  name                = "example-app-service"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  service_plan_id     = azurerm_windows_web_app_plan.example.id
+
+  site_config {
     http2_enabled            = true
   }
 
-  app_settings = {
-    SOME_KEY = "some-value"
+  client_certificate_enabled = false
+}
+
+resource "azurerm_windows_web_app" "negative3-4" {
+  name                = "example-app-service"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  service_plan_id     = azurerm_windows_web_app_plan.example.id
+
+  site_config {
+    http2_enabled            = false
   }
 
-  connection_string {
-    name  = "Database"
-    type  = "SQLServer"
-    value = "Server=some-server.mydomain.com;Integrated Security=SSPI"
-  }
+  client_certificate_enabled = true
 }

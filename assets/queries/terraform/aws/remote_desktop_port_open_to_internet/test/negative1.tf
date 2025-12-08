@@ -57,10 +57,17 @@ resource "aws_security_group" "negative1-5" {
 
   ingress {
     description = "sample"
-    from_port   = 3389
-    to_port     = 3389
-    protocol    = "tcp"
-    cidr_blocks = ["192.120.0.0/16"]
-    ipv6_cidr_blocks = ["fd00::/8"]
+    from_port   = 3380
+    to_port     = 3450
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "sample"
+    from_port   = 3380
+    to_port     = 3450
+    protocol    = "udp"
+    ipv6_cidr_blocks = ["fd00::/8", "::/0"]
   }
 }

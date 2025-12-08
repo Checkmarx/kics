@@ -8,5 +8,6 @@
   "platform": "Kubernetes",
   "descriptionID": "d2c6c9e8",
   "cloudProvider": "common",
-  "cwe": "295"
+  "cwe": "295",
+  "riskScore": "4.9"
 }

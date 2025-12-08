@@ -137,7 +137,9 @@ Observe the following metadata.json example and check the Guidelines below for m
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail",
   "platform": "Terraform",
   "descriptionID": "feb82a62",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws", 
+  "cwe": "778",
+  "riskScore": "2.8"
 }
 ```
 
@@ -246,23 +248,26 @@ go run ./cmd/console/main.go generate-id
 - `cloudProvider` should specify the target cloud provider, when necessary (e.g. AWS, AZURE, GCP, etc.)
 - `aggregation` [optional] should be used when more than one query is implemented in the same query.rego file. Indicates how many queries are implemented
 - `override` [optional] should only be used when a `metadata.json` is shared between queries from different platforms or different specification versions like for example OpenAPI 2.0 (Swagger) and OpenAPI 3.0. This field defines an object that each field is mapped to a given `overrideKey` that should be provided from the query execution result (covered in the next section), if an `overrideKey` is provided, this will generate a new query that inherits the root level metadata values and only rewrites the fields defined inside this object.
-
+- `cwe` CWE is a community-developed list of common software and hardware weakness types that could have security ramifications. To know more about CWE, please refer to cwe.mitre.org
+- `riskScore` Numeric score used to help users prioritize security findings by potential impact. Contributors adding new queries should follow this recommended severity → score mapping: Critical → 8.5, High → 6, Medium → 3, Low → 1, Info/Trace → 0. 
 
 If the **query.rego** file implements more than one query, the **metadata.json** should indicate how many are implemented (through `aggregation`). That can be necessary due to two cases:
 1. It implements more than one query in the same **query.rego** for the same platform
 
 ```json
 {
-  "id": "0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc",
-  "queryName": "Sensitive Port Is Exposed To Entire Network",
-  "severity": "HIGH",
-  "category": "Networking and Firewall",
-  "descriptionText": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
-  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules",
-  "platform": "Ansible",
-  "descriptionID": "33745204",
-  "cloudProvider": "azure",
-  "aggregation": 62
+    "id": "0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc",
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "category": "Networking and Firewall",
+    "descriptionText": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
+    "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules",
+    "platform": "Ansible",
+    "descriptionID": "33745204",
+    "aggregation": 62,
+    "cloudProvider": "azure",
+    "cwe": "200",
+    "riskScore": "7.7"
 }
 ```
 
@@ -270,22 +275,25 @@ If the **query.rego** file implements more than one query, the **metadata.json**
 
 ```json
 {
-  "id": "332cf2ad-380d-4b90-b436-46f8e635cf38",
-  "queryName": "Invalid Contact URL (v3)",
-  "severity": "INFO",
-  "category": "Best Practices",
-  "descriptionText": "Contact Object URL should be a valid URL",
-  "descriptionUrl": "https://swagger.io/specification/#contact-object",
-  "platform": "OpenAPI",
-  "override": {
-    "2.0": {
-      "id": "c7000383-16d0-4509-8cd3-585e5ea2e2f2",
-      "queryName": "Invalid Contact URL (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
-    }
-  },
-  "aggregation": 2,
-  "descriptionID": "f3097573"
+    "id": "332cf2ad-380d-4b90-b436-46f8e635cf38",
+    "queryName": "Invalid Contact URL (v3)",
+    "severity": "INFO",
+    "category": "Best Practices",
+    "descriptionText": "Contact Object URL should be a valid URL",
+    "descriptionUrl": "https://swagger.io/specification/#contact-object",
+    "platform": "OpenAPI",
+    "descriptionID": "f3097573",
+    "aggregation": 2,
+    "override": {
+        "2.0": {
+            "id": "c7000383-16d0-4509-8cd3-585e5ea2e2f2",
+            "queryName": "Invalid Contact URL (v2)",
+            "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
+        }
+    },
+    "cloudProvider": "common",
+    "cwe": "710",
+    "riskScore": "0.0"
 }
 ```
 
@@ -340,7 +348,7 @@ CxPolicy[result] {
 ```
 
 - `searchValue` [optional] should be used when the query returns more than one result for the same line
-- `searchLine` [optional] path where the breaking point occurs in the sample
+- `searchLine` path where the breaking point occurs in the sample. Find more about it in the [Search Line](#search-line) section below.
 
 For example, the query **Sensitive Port Is Exposed To Entire Network** can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the *searchValue* should be used.
 
@@ -381,7 +389,7 @@ To improve the KICS line detection mechanism, `searchLine` was introduced.
 
 SearchLine uses json path to get the correct line information from the payload (which can be seen with the flag `payload-lines`).
 
-For Ansible Hosts and Config files, there is no need to fill this parameter since the attributes can vary in different files. If you still want to use you will expect an inconsistent behaviour.
+For Ansible Hosts, Config files and Buildah, there is no need to fill this parameter since the attributes can vary in different files. If you still want to use you should expect an inconsistent behaviour.
 
 Original Content:
 ```
