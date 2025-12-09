@@ -77,6 +77,11 @@ resource "azurerm_storage_account" "negative1_6" {
   account_replication_type = "GRS"
 }
 
+resource "azurerm_storage_data_lake_gen2_filesystem" "negative1_6" {
+  name               = "negative1_6"
+  storage_account_id = azurerm_storage_account.negative1_6.id
+}
+
 resource "azurerm_monitor_diagnostic_setting" "negative1_6" {
   name               = "negative1_6"
   target_resource_id = azurerm_storage_account.negative1_6.id
