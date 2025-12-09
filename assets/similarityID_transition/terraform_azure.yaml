@@ -3,10 +3,22 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
-<<<<<<< HEAD
     - queryId: 8a0628ed-6256-4a24-a1ab-54696fb69197
       queryName: Beta - Service Without Resource Logging
-=======
+      observations: ""
+      change: 2
+    - queryId: f677bd92-3922-4e75-8f0c-2c0f8fbc9609
+      queryName: Beta - Activity Log Alert For Service Health Not Configured
+      observations: ""
+      change: 2
+    - queryId: 0cc95bf8-9b98-4278-ad9f-fea4aed3d271
+      queryName: Beta - Storage Account Without Delete Lock
+      observations: ""
+      change: 2
+    - queryId: 50e0a9e3-7360-483c-9873-ba1ea1a7faf8
+      queryName: Beta - Storage Account With Cross Tenant Replication Enabled
+      observations: ""
+      change: 2
     - queryId: 12ecec8a-7961-48db-b644-86be8845d8fd
       queryName: Beta - Containers Without Soft Delete
       observations: ""
@@ -73,6 +85,5 @@ similarityIDChangeList:
       change: 2
     - queryId: 05d6b52e-11ca-453d-bb3a-21c7c853ee92
       queryName: Beta - Databricks Workspace Using Default Virtual Network
->>>>>>> 5e1c9ee55869692c7599d516a0dfb6f810ab16f3
       observations: ""
       change: 2
