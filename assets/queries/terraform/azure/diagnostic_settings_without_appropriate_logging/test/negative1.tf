@@ -43,3 +43,25 @@ resource "azurerm_monitor_diagnostic_setting" "negative_2" {
     enabled  = true
   }
 }
+
+resource "azurerm_monitor_diagnostic_setting" "negative_3" {
+  name                       = "diagnostic-settings-name"
+  target_resource_id         = azurerm_key_vault.example.id
+
+  log {                               # legacy syntax - "log" with "enabled" set to true for all 4 categories
+    category = "Administrative"       # "enabled" defaults to true
+  }
+
+  log {
+    category = "Alert"
+  }
+
+  log {
+    category = "Policy"
+    enabled = true
+  }
+
+  log {
+    category = "Security"
+  }
+}

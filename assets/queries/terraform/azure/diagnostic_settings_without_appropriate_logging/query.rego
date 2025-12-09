@@ -65,7 +65,7 @@ has_all_relevant_logs(resource) = log_data { 	# "enabled_log" as array
 } else = log_data {																			# "log" as array
 	is_array(resource.log)
 
-	enabled_logs := [x | x := resource.log[_]; x.enabled == true]
+	enabled_logs := [x | x := resource.log[_]; is_enabled(x)]
 	categories := [y | y := enabled_logs[_].category]
 
 	missing_logs := [z | z := required_logs[_]; not common_lib.inArray(categories, z)]
@@ -73,14 +73,19 @@ has_all_relevant_logs(resource) = log_data { 	# "enabled_log" as array
 
 	log_data := { "missing_logs" : missing_logs, "log_type" : "log", "issueType": get_issue_type(resource.log)}
 
-} else = log_data {																			# "log" as single "enabled" object
-	resource.log.enabled == true
+} else = log_data {
+	is_enabled(resource.log)															# "log" as single "enabled" object
 	missing_logs := [z | z := required_logs[_]; z != resource.log.category]
 
 	log_data := { "missing_logs" : missing_logs, "log_type" : "log", "issueType": "MissingAttribute"}
 
 } else = {"missing_logs" : required_logs, "log_type" : "log", "issueType": "IncorrectValue"}		# "log" as single "disabled" object
 
+is_enabled(log) {
+	log.enabled == true
+} else {
+	not common_lib.valid_key(log, "enabled")	# "enabled" defaults to true
+}
 
 get_issue_type(log) = "IncorrectValue" {	# If it sets a required log "enabled" field to not true
 	log[x].category   == required_logs[_]
