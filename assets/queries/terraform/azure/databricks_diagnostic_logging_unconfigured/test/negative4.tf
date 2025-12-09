@@ -7,7 +7,7 @@ resource "azurerm_monitor_diagnostic_setting" "negative4_1" {
 
   log {                               # "accounts"
     category = "accounts"
-    enabled  = true
+    # missing "enabled" - defaults to true
   }
 }
 

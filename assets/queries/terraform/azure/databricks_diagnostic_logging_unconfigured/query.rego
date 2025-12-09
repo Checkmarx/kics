@@ -58,13 +58,19 @@ get_valid_logs(resource) = valid_logs {													# "enabled_log" array
 	valid_destination(resource)
 	valid_logs := {x | x := resource.log[i].category
 					   resource.log[i].category == required_logs[_]
-					   resource.log[i].enabled == true}
+					   is_enabled(resource.log[i])}
 } else = valid_logs {																			# "log" object
 	common_lib.valid_key(resource, "log")
 	valid_destination(resource)
 	resource.log.category == required_logs[_]
-	resource.log.enabled == true
+	is_enabled(resource.log)
 	valid_logs := {resource.log.category}
+}
+
+is_enabled(log) {
+	log.enabled == true
+} else {
+	not common_lib.valid_key(log, "enabled")	# "enabled" defaults to true
 }
 
 valid_destination(resource) {
