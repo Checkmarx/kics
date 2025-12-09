@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - Activity Log Alert For Service Health Not Configured",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive6_1.tf"
+  }
+]
