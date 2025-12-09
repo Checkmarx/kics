@@ -8,7 +8,7 @@ CxPolicy[result] {						# inline rules
 	resource.Type == "AWS::EC2::SecurityGroup"
 
 	resource.Properties.GroupName == "default"
-	check_rules(resource.Properties, security_group_name, input.document[i])
+	check_rules(resource.Properties)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -30,7 +30,7 @@ CxPolicy[result] {						# standalone rules
 	rules := search_for_standalone_rules(security_group_name, input.document[y])
 	rule := rules.rule_list[x]
 
-	check_standalone_rule(security_group_name, rule, rules.names[x])
+	check_standalone_rule(security_group_name, rule)
 
 	result := {
 		"documentId": input.document[y].id,
@@ -60,11 +60,11 @@ search_for_standalone_rules(sec_group_name, doc) = rules_with_names {
   }
 }
 
-check_standalone_rule(security_group_name, rule, rule_name)  {
+check_standalone_rule(security_group_name, rule)  {
 	cf_lib.get_name(rule.Properties.GroupId) == security_group_name
 }
 
-check_rules(properties, security_group_name, doc) {
+check_rules(properties) {
 	inline_rules := ["SecurityGroupIngress","SecurityGroupEgress"]
 	count(properties[inline_rules[_]]) != 0
 }
