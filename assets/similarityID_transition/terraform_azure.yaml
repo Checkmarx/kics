@@ -3,6 +3,30 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 45f3e879-f8a7-4102-a3fa-46da5a849870
+      queryName: Beta - Storage Account With Shared Access Key
+      observations: ""
+      change: 2
+    - queryId: 056d28cc-7ee9-4b12-b2d1-16b7b66db72d
+      queryName: Beta - Blob Storage Without Soft Delete
+      observations: ""
+      change: 2
+    - queryId: 233ab26d-8f17-4dce-9616-41479da9ffe3
+      queryName: Beta - Storage Account Using Unsafe SMB Channel Encryption
+      observations: ""
+      change: 2
+    - queryId: 621fc7c5-c342-4223-b3dd-d1530acb43ae
+      queryName: Beta - Storage Account Not Using Latest SMB Protocol Version
+      observations: ""
+      change: 2
+    - queryId: 54087baa-8719-48a8-8460-9cc0962117aa
+      queryName: Beta - File Share Without Soft Delete
+      observations: ""
+      change: 2
+    - queryId: b3b9ce2f-c229-4133-9a2b-4e649cf2347e
+      queryName: Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured
+      observations: ""
+      change: 2
     - queryId: 99b47957-c575-4555-b8c0-ff92384249b4
       queryName: Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured
       observations: ""
