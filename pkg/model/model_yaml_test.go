@@ -675,6 +675,123 @@ func TestDocument_UnmarshalYAML(t *testing.T) {
 		  }
 		  `,
 		},
+		{
+			name: "test different int types unmarshal",
+			args: args{
+				value: &yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  1,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "24",
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  2,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "0b11000", // 24 in binary
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  3,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "0o30", // 24 in octal
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  4,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "030", // 24 in octal in YAML 1.1 or older syntax
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  5,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "0x18", // 24 in hexadecimal
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  6,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "24e0", // exponential 24
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "int_object",
+							Line:  7,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Tag:   "!!int",
+							Value: "7_000_000_000",
+						},
+					},
+				},
+			},
+			m:       &Document{},
+			wantErr: false,
+			want: `{
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 0
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 1
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 2
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 3
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 4
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 5
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 6
+				  },
+				  "_kics_int_object": {
+					"_kics_line": 7
+				  }
+				},
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 24,
+				"int_object": 7000000000
+			}`,
+		},
 	}
 
 	for _, tt := range tests {
