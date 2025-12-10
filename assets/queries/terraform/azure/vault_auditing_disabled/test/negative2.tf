@@ -1,6 +1,6 @@
 resource "azurerm_monitor_diagnostic_setting" "negative_2" {
   name                       = "diagnostic-settings-name"
-  target_resource_id = data.azurerm_key_vault.example_neg.id
+  target_resource_id = data.azurerm_key_vault.example_neg2.id
 
   log {                               # legacy syntax - "log" with "enabled" set to true for both category groups
     category_group = "audit"
