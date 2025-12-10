@@ -7,6 +7,22 @@ similarityIDChangeList:
       queryName: Beta - Databricks Diagnostic Logging Unconfigured
       observations: ""
       change: 2
+    - queryId: 21fa1872-47b3-46ec-9775-f41e85d80cb4
+      queryName: Beta - Diagnostic Settings Without Appropriate Logging
+      observations: ""
+      change: 2
+    - queryId: 50f32d3c-096e-406a-bb26-71b3c91c11c0
+      queryName: Beta - Resource Without Diagnostic Settings
+      observations: ""
+      change: 2
+    - queryId: 416ac446-9a2e-4f6d-84d2-82add788c7da
+      queryName: Beta - Databricks Workspace Without CMK
+      observations: ""
+      change: 2
+    - queryId: 8a0628ed-6256-4a24-a1ab-54696fb69197
+      queryName: Beta - Service Without Resource Logging
+      observations: ""
+      change: 2
     - queryId: f677bd92-3922-4e75-8f0c-2c0f8fbc9609
       queryName: Beta - Activity Log Alert For Service Health Not Configured
       observations: ""
