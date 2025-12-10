@@ -7,6 +7,14 @@ similarityIDChangeList:
       queryName: Beta - Logs And Alerts Missing Custom Role Changes
       observations: ""
       change: 2
+    - queryId: 39d83c5a-2df4-4a2c-8ffb-b96b1bc3a813
+      queryName: Beta - Logs And Alerts Missing Audit Configuration Changes
+      observations: ""
+      change: 2
+    - queryId: a881b71c-73ac-4358-879c-e3271db5a3c5
+      queryName: Beta - Logs And Alerts Missing Project Ownership Assignment And Changes
+      observations: ""
+      change: 2
     - queryId: 13de4e49-d407-4277-ba5a-d7f59283902f
       queryName: Beta - SQL DB Instance With Unrecommended Error Logging Threshold
       observations: ""
