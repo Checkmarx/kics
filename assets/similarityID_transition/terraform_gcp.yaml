@@ -3,6 +3,10 @@ similarityIDChangeList:
       queryName: Beta - Google DNS Policy Logging Disabled
       observations: ""
       change: 2
+    - queryId: 69d4f245-d534-479e-8bcc-f6a836276dc8
+      queryName: Beta - Logs And Alerts Missing Custom Role Changes
+      observations: ""
+      change: 2
     - queryId: 39d83c5a-2df4-4a2c-8ffb-b96b1bc3a813
       queryName: Beta - Logs And Alerts Missing Audit Configuration Changes
       observations: ""
