@@ -3,6 +3,10 @@ similarityIDChangeList:
       queryName: Beta - Google DNS Policy Logging Disabled
       observations: ""
       change: 2
+    - queryId: 4f60da73-190e-4048-8e1d-cc5a3974cd15
+      queryName: Beta - Cloud Asset Inventory Disabled
+      observations: ""
+      change: 2
     - queryId: 69d4f245-d534-479e-8bcc-f6a836276dc8
       queryName: Beta - Logs And Alerts Missing Custom Role Changes
       observations: ""
