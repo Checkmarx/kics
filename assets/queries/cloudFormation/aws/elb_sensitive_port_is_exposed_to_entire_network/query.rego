@@ -8,6 +8,7 @@ portsMaps := {"TCP": common_lib.tcpPortsMap, "UDP": cf_lib.udpPortsMap}
 CxPolicy[result] {
 	resources := input.document[i].Resources
 
+	# cria um conjunto de key-value com chave sendo o nome e o valor é o loadBalancer
 	loadBalancerList := {name : loadBalancer |
 		loadBalancer := resources[name]
 		contains(loadBalancer.Type, "ElasticLoadBalancing")
