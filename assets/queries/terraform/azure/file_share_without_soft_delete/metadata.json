@@ -1,0 +1,14 @@
+{
+  "id": "54087baa-8719-48a8-8460-9cc0962117aa",
+  "queryName": "Beta - File Share Without Soft Delete",
+  "severity": "HIGH",
+  "category": "Backup",
+  "descriptionText": "All 'azurerm_storage_account' resources should define a 'retention_policy' block for their 'share_properties' to allow data recovery",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#retention_policy-2",
+  "platform": "Terraform",
+  "descriptionID": "54087baa",
+  "cloudProvider": "azure",
+  "cwe": "754",
+  "riskScore": "6.0",
+  "experimental": "true"
+}
