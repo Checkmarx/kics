@@ -1,0 +1,14 @@
+{
+  "id": "7a0164a5-ec6e-40b2-938d-ab3edfd37dcd",
+  "queryName": "Beta - Backup Vault Without Immutability",
+  "severity": "HIGH",
+  "category": "Backup",
+  "descriptionText": "No 'azurerm_data_protection_backup_vault' resource should set 'immutability' to 'Disabled'. By locking the setting, malicious actors are prevented from disabling the setting and deleting backups.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/data_protection_backup_vault#immutability-1",
+  "platform": "Terraform",
+  "descriptionID": "7a0164a5",
+  "cloudProvider": "azure",
+  "cwe": "754",
+  "riskScore": "6.0",
+  "experimental": "true"
+}
