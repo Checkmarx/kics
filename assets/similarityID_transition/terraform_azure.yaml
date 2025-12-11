@@ -3,6 +3,18 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: b373043c-f3bf-40db-b67a-c982732c7781
+      queryName: Beta - Recovery Services Vault Without Soft Delete
+      observations: ""
+      change: 2
+    - queryId: 7a0164a5-ec6e-40b2-938d-ab3edfd37dcd
+      queryName: Beta - Backup Vault Without Immutability
+      observations: ""
+      change: 2
+    - queryId: 8d407b28-c746-4650-8bbd-d27df54a795f
+      queryName: Beta - Backup Vault Without Soft Delete
+      observations: ""
+      change: 2
     - queryId: 0bd3630a-2ae9-4522-9d66-04049654b1df
       queryName: Beta - Databricks Diagnostic Logging Unconfigured
       observations: ""
