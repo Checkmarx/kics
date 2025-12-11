@@ -28,7 +28,7 @@ resource "azurerm_monitor_diagnostic_setting" "positive2_3" {
   }
 }
 
-resource "azurerm_key_vault" "example_pos2" {
+resource "azurerm_key_vault" "example_pos2" {     # missing "allLogs" required category_group
   name                        = "testvault"
   location                    = azurerm_resource_group.example.location
   resource_group_name         = azurerm_resource_group.example.name

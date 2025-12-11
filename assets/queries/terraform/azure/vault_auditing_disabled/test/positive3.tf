@@ -5,7 +5,7 @@ resource "azurerm_monitor_diagnostic_setting" "positive3_1" {
   target_resource_id         = azurerm_key_vault.example_pos3.id
 
   log {                               # single "enabled" log block (object)
-    category_group = "audit"
+    category_group = "allLogs"
     enabled  = true
   }
 }
@@ -25,7 +25,7 @@ resource "azurerm_monitor_diagnostic_setting" "positive3_3" {
   target_resource_id         = azurerm_key_vault.example_pos3.id
 
   log {                              # "log" blocks do not cover both category groups (array)
-    category_group = "audit"
+    category_group = "allLogs"
     enabled  = true
   }
 
@@ -42,7 +42,7 @@ resource "azurerm_monitor_diagnostic_setting" "positive3_4" {
 
   log {                               # one or more "disabled" log blocks (array)
     category_group = "audit"
-    enabled  = false
+    enabled  = true
   }
 
   log {
@@ -56,7 +56,7 @@ resource "azurerm_monitor_diagnostic_setting" "positive3_4" {
   }
 }
 
-resource "azurerm_key_vault" "example_pos3" {
+resource "azurerm_key_vault" "example_pos3" {   # missing "audit" required category_group
   name                        = "testvault"
   location                    = azurerm_resource_group.example.location
   resource_group_name         = azurerm_resource_group.example.name
