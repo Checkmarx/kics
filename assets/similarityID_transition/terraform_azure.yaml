@@ -120,3 +120,7 @@ similarityIDChangeList:
 >>>>>>> c1d990bc4b42d0a70a31f6fc3a3f0f547964f4e6
       observations: ""
       change: 2
+    - queryId: 41d7989b-3be2-4081-8c79-cf903dd174c5
+      queryName: Beta - Use Of User Access Administrator Role Is Not Restricted
+      observations: ""
+      change: 2
