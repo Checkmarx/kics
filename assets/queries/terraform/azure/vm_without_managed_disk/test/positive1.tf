@@ -8,10 +8,10 @@ resource "azurerm_virtual_machine" "positive1" {
   # missing "storage_os_disk" (tecnically required)
 }
 
-resource "azurerm_virtual_machine" "positive2" {
+resource "azurerm_virtual_machine" "positive1_2" {
   name                  = "${var.prefix}-vm"
-  location              = azurerm_resource_group.positive2.location
-  resource_group_name   = azurerm_resource_group.positive2.name
+  location              = azurerm_resource_group.positive1_2.location
+  resource_group_name   = azurerm_resource_group.positive1_2.name
   network_interface_ids = [azurerm_network_interface.main.id]
   vm_size               = "Standard_DS1_v2"
 
@@ -23,10 +23,10 @@ resource "azurerm_virtual_machine" "positive2" {
   }
 }
 
-resource "azurerm_virtual_machine" "positive3" {
+resource "azurerm_virtual_machine" "positive1_3" {
   name                  = "${var.prefix}-vm"
-  location              = azurerm_resource_group.positive3.location
-  resource_group_name   = azurerm_resource_group.positive3.name
+  location              = azurerm_resource_group.positive1_3.location
+  resource_group_name   = azurerm_resource_group.positive1_3.name
   network_interface_ids = [azurerm_network_interface.main.id]
   vm_size               = "Standard_DS1_v2"
 

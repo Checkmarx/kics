@@ -23,7 +23,7 @@ resource "azurerm_virtual_machine_scale_set" "positive4_2" {
   storage_profile_os_disk {
     caching             = "ReadOnly"
     create_option       = "FromImage"
-    os_type = "Linux"   # Required when using `image`
+    os_type = "Linux"   # Required when using "image"
     image   = "https://mystorageaccount.blob.core.windows.net/system/Microsoft.Compute/Images/custom-os-image/osDisk.vhd"
     # image instead of "managed_disk_type"
   }
