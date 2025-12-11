@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Beta - Backup Vault Without Soft Delete",
+    "severity": "HIGH",
+    "line": 8
+  }
+]
