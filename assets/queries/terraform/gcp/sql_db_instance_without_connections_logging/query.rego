@@ -30,6 +30,7 @@ get_results(resource, name) = results {
 		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be defined and set 'log_connections' to 'on'", [name]),
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name], [])
+
 	}
 } else = results {
 	not common_lib.valid_key(resource.settings, "database_flags")
