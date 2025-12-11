@@ -115,3 +115,7 @@ similarityIDChangeList:
       queryName: Beta - Databricks Workspace Using Default Virtual Network
       observations: ""
       change: 2
+    - queryId: 41d7989b-3be2-4081-8c79-cf903dd174c5
+      queryName: Beta - Use Of User Access Administrator Role Is Not Restricted
+      observations: ""
+      change: 2
