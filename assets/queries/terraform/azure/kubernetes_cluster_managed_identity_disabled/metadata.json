@@ -1,0 +1,14 @@
+{
+  "id": "9b0140d1-50c1-4deb-ba58-472315c7a1ae",
+  "queryName": "Beta - Kubernetes Cluster Managed Identity Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Kubernetes Clusters should have managed identity enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster",
+  "platform": "Terraform",
+  "descriptionID": "9b0140d1",
+  "cloudProvider": "azure",
+  "cwe": "522",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
