@@ -3,10 +3,10 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
-<<<<<<< HEAD
     - queryId: 0536c90c-714e-4184-991e-3fed8d8b7b46
       queryName: Beta - VM Without Managed Disk
-=======
+      observations: ""
+      change: 2
     - queryId: b373043c-f3bf-40db-b67a-c982732c7781
       queryName: Beta - Recovery Services Vault Without Soft Delete
       observations: ""
@@ -117,7 +117,6 @@ similarityIDChangeList:
       change: 2
     - queryId: 05d6b52e-11ca-453d-bb3a-21c7c853ee92
       queryName: Beta - Databricks Workspace Using Default Virtual Network
->>>>>>> c1d990bc4b42d0a70a31f6fc3a3f0f547964f4e6
       observations: ""
       change: 2
     - queryId: 41d7989b-3be2-4081-8c79-cf903dd174c5
