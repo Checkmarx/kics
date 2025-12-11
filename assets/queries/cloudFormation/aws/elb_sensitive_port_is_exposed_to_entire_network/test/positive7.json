@@ -1,0 +1,44 @@
+{
+  "Resources": {
+    "GatewayLoadBalancer": {
+      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+      "Properties": {
+        "Instances": [
+          { "Ref": "EC2Instance01" }
+        ]
+      }
+    },
+    "EC2Instance01": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "t3.2xlarge",
+        "SecurityGroups": [
+          { "Ref": "InstancesSecGroup" }
+        ],
+        "KeyName": "my-rsa-key",
+        "ImageId": "ami-79fd7eee"
+      }
+    },
+    "InstancesSecGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http and ssh",
+        "VpcId": "my-vpc",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "127.0.0.1/32"
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 636,
+            "ToPort": 636,
+            "CidrIp": "127.0.0.1/0"
+          }
+        ]
+      }
+    }
+  }
+}
