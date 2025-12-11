@@ -1,0 +1,14 @@
+{
+  "id": "233ab26d-8f17-4dce-9616-41479da9ffe3",
+  "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "All 'azurerm_storage_account' resources should exclusively use 'AES-256-GCM' for channel encryption",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#channel_encryption_type-2",
+  "platform": "Terraform",
+  "descriptionID": "233ab26d",
+  "cloudProvider": "azure",
+  "cwe": "327",
+  "riskScore": "6.0",
+  "experimental": "true"
+}

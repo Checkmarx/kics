@@ -1,0 +1,14 @@
+{
+  "id": "50f32d3c-096e-406a-bb26-71b3c91c11c0",
+  "queryName": "Beta - Resource Without Diagnostic Settings",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Resources that support diagnostic settings should be associated with a 'azurerm_monitor_diagnostic_setting' resource for exporting activity logs",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting.html#target_resource_id-1",
+  "platform": "Terraform",
+  "descriptionID": "50f32d3c",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

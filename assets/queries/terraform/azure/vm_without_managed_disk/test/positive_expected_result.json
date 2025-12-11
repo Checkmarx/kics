@@ -28,5 +28,17 @@
     "severity": "MEDIUM",
     "line": 1,
     "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Managed Disk",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive4.tf"
   }
 ]

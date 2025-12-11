@@ -3,6 +3,30 @@ similarityIDChangeList:
       queryName: Beta - Google DNS Policy Logging Disabled
       observations: ""
       change: 2
+    - queryId: 4f60da73-190e-4048-8e1d-cc5a3974cd15
+      queryName: Beta - Cloud Asset Inventory Disabled
+      observations: ""
+      change: 2
+    - queryId: 69d4f245-d534-479e-8bcc-f6a836276dc8
+      queryName: Beta - Logs And Alerts Missing Custom Role Changes
+      observations: ""
+      change: 2
+    - queryId: 39d83c5a-2df4-4a2c-8ffb-b96b1bc3a813
+      queryName: Beta - Logs And Alerts Missing Audit Configuration Changes
+      observations: ""
+      change: 2
+    - queryId: a881b71c-73ac-4358-879c-e3271db5a3c5
+      queryName: Beta - Logs And Alerts Missing Project Ownership Assignment And Changes
+      observations: ""
+      change: 2
+    - queryId: 13de4e49-d407-4277-ba5a-d7f59283902f
+      queryName: Beta - SQL DB Instance With Unrecommended Error Logging Threshold
+      observations: ""
+      change: 2
+    - queryId: ecbbe763-95dc-47e6-8660-84ff751e5acf
+      queryName: Beta - SQL DB Instance With Unrecommended Logging Threshold
+      observations: ""
+      change: 2
     - queryId: c3655703-569b-42ec-8027-ef8835d989c0
       queryName: Beta - SQL DB Instance With Contained Database Authentication
       observations: ""
@@ -53,5 +77,13 @@ similarityIDChangeList:
       change: 2
     - queryId: b5b70198-2a34-4792-b0d9-ce99abe485bb
       queryName: Beta - SQL DB Instance With Exposed Show Privileges
+      observations: ""
+      change: 2
+    - queryId: 700f1049-7fa0-4cb0-971b-3efebfb6a91f
+      queryName: Beta - Legacy Networks Do Not Exist For Older Google Projects
+      observations: ""
+      change: 2
+    - queryId: 7bd9c6a8-3b1f-495c-9752-a4a9c4e1b29f
+      queryName: Beta - Ensure Essential Contacts Is Configured For Organization
       observations: ""
       change: 2

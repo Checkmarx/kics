@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-types := {"azurerm_virtual_machine", "azurerm_linux_virtual_machine", "azurerm_windows_virtual_machine"}
+types := {"azurerm_virtual_machine", "azurerm_linux_virtual_machine", "azurerm_windows_virtual_machine", "azurerm_virtual_machine_scale_set"}
 
 CxPolicy[result] {
 	resource := input.document[i].resource[types[t]][name]
@@ -54,13 +54,23 @@ get_results(resource, name, type) = results {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_virtual_machine", name, "storage_os_disk"], [])
 	}
 } else = results {
-	type != "azurerm_virtual_machine"
+	type == ["azurerm_linux_virtual_machine", "azurerm_windows_virtual_machine"][_]
 	not common_lib.valid_key(resource, "os_managed_disk_id")
 	results := {
 		"searchKey": sprintf("%s[%s]", [type, name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s[%s].os_managed_disk_id' should be defined and not null", [type, name]),
 		"keyActualValue": sprintf("'%s[%s].os_managed_disk_id' is undefined or null", [type, name]),
+		"searchLine": common_lib.build_search_line(["resource", type, name], [])
+	}
+} else = results {
+	type == "azurerm_virtual_machine_scale_set"
+	not common_lib.valid_key(resource.storage_profile_os_disk, "managed_disk_type")
+	results := {
+		"searchKey": sprintf("%s[%s]", [type, name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("'%s[%s].storage_profile_os_disk.managed_disk_type' should be defined and not null", [type, name]),
+		"keyActualValue": sprintf("'%s[%s].storage_profile_os_disk.managed_disk_type' is undefined or null", [type, name]),
 		"searchLine": common_lib.build_search_line(["resource", type, name], [])
 	}
 }

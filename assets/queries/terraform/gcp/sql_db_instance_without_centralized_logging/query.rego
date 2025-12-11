@@ -6,6 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
 
+	not common_lib.valid_key(resource, "clone")
 	contains(resource.database_version, "POSTGRES")
 	results := get_results(resource, name)
 
