@@ -1,16 +1,20 @@
-resource "azurerm_monitor_diagnostic_setting" "negative2_1" {
+resource "azurerm_monitor_diagnostic_setting" "negative4_1_1" {
   name               = "databricks-diagnostic-logs"
-  target_resource_id = azurerm_key_vault.example_neg2_1.id
+  target_resource_id = azurerm_key_vault.example_neg4_1.id
 
   log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
-  storage_account_id       = azurerm_storage_account.example.id
-  eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.example.id
-  eventhub_name            = "your-eventhub-name"
 
   log {
     category_group = "allLogs"
     enabled  = true
   }
+}
+
+resource "azurerm_monitor_diagnostic_setting" "negative4_1_2" {
+  name               = "databricks-diagnostic-logs"
+  target_resource_id = azurerm_key_vault.example_neg4_1.id
+
+  storage_account_id       = azurerm_storage_account.example.id
 
   log {
     category_group = "audit"
@@ -18,7 +22,7 @@ resource "azurerm_monitor_diagnostic_setting" "negative2_1" {
   }
 }
 
-resource "azurerm_key_vault" "example_neg2_1" {
+resource "azurerm_key_vault" "example_neg4_1" {
   name                        = "testvault"
   location                    = azurerm_resource_group.example.location
   resource_group_name         = azurerm_resource_group.example.name
@@ -31,25 +35,30 @@ resource "azurerm_key_vault" "example_neg2_1" {
   sku_name = "standard"
 }
 
-resource "azurerm_monitor_diagnostic_setting" "negative2_2" {
+resource "azurerm_monitor_diagnostic_setting" "negative4_2_1" {
   name               = "databricks-diagnostic-logs"
-  target_resource_id = azurerm_key_vault.example_neg2_2.id
+  target_resource_id = azurerm_key_vault.example_neg4_2.id
 
   log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
-  storage_account_id       = azurerm_storage_account.example.id
-  eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.example.id
-  eventhub_name            = "your-eventhub-name"
 
   log {                         # missing "enabled" - defaults to true
     category_group = "allLogs"
   }
+}
+
+resource "azurerm_monitor_diagnostic_setting" "negative4_2_2" {
+  name               = "databricks-diagnostic-logs"
+  target_resource_id = azurerm_key_vault.example_neg4_2.id
+
+  eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.example.id
+  eventhub_name            = "your-eventhub-name"
 
   log {
     category_group = "audit"
   }
 }
 
-resource "azurerm_key_vault" "example_neg2_2" {
+resource "azurerm_key_vault" "example_neg4_2" {
   name                        = "testvault"
   location                    = azurerm_resource_group.example.location
   resource_group_name         = azurerm_resource_group.example.name
