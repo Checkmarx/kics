@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Run Trivy vulnerability scanner in repo mode
-        uses: aquasecurity/trivy-action@dc5a429b52fcf669ce959baa2c2dd26090d2a6c4 #v 0.32.0
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 #v 0.33.1
         with:
           scan-type: 'fs'
           ignore-unfixed: true
@@ -27,7 +27,7 @@ jobs:
         run: cat ./results.txt
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: trivy-fs-scan-results
           path: ./results.txt
@@ -40,7 +40,7 @@ jobs:
         kics-docker: [ "Dockerfile" ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3.11.1
       - name: Build
@@ -59,7 +59,7 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@dc5a429b52fcf669ce959baa2c2dd26090d2a6c4 #v 0.32.0
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 #v 0.33.1
         with:
           image-ref: kics:sec-trivy-tests-${{ github.sha }}
           ignore-unfixed: true
@@ -75,7 +75,7 @@ jobs:
         run: cat ./results.txt
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: trivy-docker-image-scan-results
           path: ./results.txt
@@ -84,10 +84,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Run Grype vulnerability scanner in repo mode
         id: grype-fs-scan
-        uses: anchore/scan-action@16910ac423301c6d30554b83a7f71ac6ff4a51f3 # v6.4.0
+        uses: anchore/scan-action@3c9a191a0fbab285ca6b8530b5de5a642cba332f # v7.2.2
         with:
           path: "."
           only-fixed: true
@@ -103,7 +103,7 @@ jobs:
         kics-docker: [ "Dockerfile" ]
     steps:
       - name: Check out code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           persist-credentials: false
       - name: Set up Docker Buildx
@@ -125,7 +125,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Scan image
         id: grype-image-scan
-        uses: anchore/scan-action@16910ac423301c6d30554b83a7f71ac6ff4a51f3 # v6.4.0
+        uses: anchore/scan-action@3c9a191a0fbab285ca6b8530b5de5a642cba332f # v7.2.2
         with:
           image: kics:sec-tests-${{ github.sha }}
           only-fixed: true
@@ -137,8 +137,8 @@ jobs:
     name: govulncheck fs scan
     steps:
       - name: Checkout code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-go@v5
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/setup-go@v6
         with:
           go-version: 'stable'
       - name: Install govulncheck
@@ -152,7 +152,7 @@ jobs:
         run: cat ./results.txt
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: govulncheck-fs-scan-results
           path: ./results.txt
@@ -161,8 +161,8 @@ jobs:
     name: govulncheck binary scan
     steps:
       - name: Checkout code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-go@v5
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/setup-go@v6
         with:
           go-version: 'stable'
       - name: Build kics
@@ -178,7 +178,7 @@ jobs:
         run: cat ./results.txt
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: govulncheck-binary-scan-results
           path: ./results.txt
@@ -189,7 +189,7 @@ jobs:
           cat binary_dependencies.txt
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: binary-dependencies
           path: ./binary_dependencies.txt
