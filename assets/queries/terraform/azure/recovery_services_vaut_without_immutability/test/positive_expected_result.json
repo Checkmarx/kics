@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Beta - Recovery Services Vault Without Immutability",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "Beta - Recovery Services Vault Without Immutability",
+    "severity": "HIGH",
+    "line": 16
+  }
+]
