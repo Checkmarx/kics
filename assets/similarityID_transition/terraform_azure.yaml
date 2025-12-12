@@ -3,6 +3,10 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: d3ba7d62-bd07-4102-88ca-9668e5f08e7d
+      queryName: Beta - Recovery Services Vault With Public Network Access
+      observations: ""
+      change: 2
     - queryId: 0af1814d-23d7-472e-a1b8-b265e7b0d88f
       queryName: Beta - Recovery Services Vault Without Immutability
       observations: ""
