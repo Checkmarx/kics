@@ -7,6 +7,6 @@ resource "google_logging_metric" "audit_config_change" {
     protoPayload.methodName="google.iam.admin.v1.DeleteRole" OR
     protoPayload.methodName="google.iam.admin.v1.UpdateRole" OR
     protoPayload.methodName="google.iam.admin.v1.UndeleteRole")
-    AND protoPayload.serviceData.policyDelta.bindingDeltas.role="roles/editor")
+    AND protoPayload.serviceData.policyDelta.bindingDeltas.role="roles/editor"
   FILTER
-} # specific filter has additional condition at the end
+} # specific filter has additional "AND" condition at the end
