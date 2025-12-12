@@ -2654,7 +2654,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -5656,7 +5656,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -5865,7 +5865,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -6390,11 +6390,11 @@ func getSimilarityIDTransitionQueryMap(informationPath string) map[string]Transi
                                 return err
                         }</span>
 
-                        <span class="cov6" title="96">for _, change := range changeList.SimilarityIDChangeList </span><span class="cov10" title="967">{
+                        <span class="cov6" title="96">for _, change := range changeList.SimilarityIDChangeList </span><span class="cov10" title="972">{
                                 if _, ok := transitionQueryMap[change.QueryID]; ok </span><span class="cov0" title="0">{
                                         log.Warn().Msgf(
                                                 "Duplicate query ID found in transition information file %s: %s", d.Name(), change.QueryID)
-                                }</span> else<span class="cov10" title="967"> {
+                                }</span> else<span class="cov10" title="972"> {
                                         transitionQueryMap[change.QueryID] = change
                                 }</span>
                         }
@@ -7316,12 +7316,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="35149">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="35165">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="35149">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="34786">{
+                <span class="cov9" title="35165">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="34802">{
                         return skipFolder
                 }</span>
 
@@ -7393,11 +7393,11 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="362">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="35168">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="35184">{
         s.mu.RLock()
         defer s.mu.RUnlock()
 
-        if info.IsDir() </span><span class="cov8" title="7336">{
+        if info.IsDir() </span><span class="cov8" title="7340">{
                 // exclude terraform cache folders
                 if queryRegexExcludeTerraCache.MatchString(path) </span><span class="cov3" title="13">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -7408,23 +7408,23 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                         }</span>
                         <span class="cov3" title="13">return true, filepath.SkipDir</span>
                 }
-                <span class="cov8" title="7323">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
+                <span class="cov8" title="7327">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="7322">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="7319">{
+                <span class="cov8" title="7326">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="7323">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="3">return false, nil</span>
         }
 
-        <span class="cov9" title="27832">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="27844">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="27832">ext, _ := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="27470">{
+        <span class="cov9" title="27844">ext, _ := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="27482">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -20877,12 +20877,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="214">{
+        for variable := range s.varList </span><span class="cov7" title="213">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="615">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="598">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -28549,8 +28549,9 @@ type Report struct {
 
 // Query includes all the files that presents a result related to the queryID
 type Query struct {
-        Files   []File `json:"files"`
-        QueryID string `json:"query_id"`
+        Files        []File `json:"files"`
+        QueryID      string `json:"query_id"`
+        Experimental bool   `json:"experimental"`
 }
 
 // File presents the result information related to the file
@@ -28574,6 +28575,7 @@ type Remediation struct {
         SearchKey     string
         ExpectedValue string
         ActualValue   string
+        Experimental  bool
 }
 
 // Set includes all the replacements and additions related to a file
@@ -28751,7 +28753,8 @@ func scanTmpFile(
         tmpFile, queryID string,
         remediated []byte,
         openAPIResolveReferences bool,
-        maxResolverDepth int) ([]model.Vulnerability, error) <span class="cov10" title="3">{
+        maxResolverDepth int,
+        experimental bool) ([]model.Vulnerability, error) <span class="cov10" title="3">{
         // get payload
         files, err := getPayload(tmpFile, remediated, openAPIResolveReferences, maxResolverDepth)
 
@@ -28768,7 +28771,7 @@ func scanTmpFile(
         <span class="cov10" title="3">payload := files.Combine(false)
 
         // init scan
-        inspector, err := initScan(queryID)
+        inspector, err := initScan(queryID, experimental)
 
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
@@ -28902,7 +28905,7 @@ func runQuery(r *runQueryInfo) []model.Vulnerability <span class="cov10" title="
         <span class="cov10" title="3">return decoded</span>
 }
 
-func initScan(queryID string) (*engine.Inspector, error) <span class="cov10" title="3">{
+func initScan(queryID string, experimental bool) (*engine.Inspector, error) <span class="cov10" title="3">{
         scanParams := &amp;scan.Parameters{
                 QueriesPath:         flags.GetMultiStrFlag(flags.QueriesPath),
                 Platform:            flags.GetMultiStrFlag(flags.TypeFlag),
@@ -28935,7 +28938,8 @@ func initScan(queryID string) (*engine.Inspector, error) <span class="cov10" tit
         }
 
         queryFilter := source.QueryInspectorParameters{
-                IncludeQueries: includeQueries,
+                IncludeQueries:      includeQueries,
+                ExperimentalQueries: experimental,
         }
 
         t, err := tracker.NewTracker(c.ScanParams.PreviewLines)
@@ -28979,7 +28983,7 @@ func loadQuery(inspector *engine.Inspector, queryID string) (*engine.PreparedQue
                 return query, nil</span>
         }
 
-        <span class="cov0" title="0">return &amp;engine.PreparedQuery{}, errors.New("unable to load query" + queryID)</span>
+        <span class="cov0" title="0">return &amp;engine.PreparedQuery{}, errors.New("unable to load query " + queryID)</span>
 }
 </pre>
 		
@@ -29065,7 +29069,7 @@ func willRemediate(
         }</span>
 
         // scan the temporary file to verify if the remediation removed the result
-        <span class="cov7" title="3">results, err := scanTmpFile(tmpFile, remediation.QueryID, content, openAPIResolveReferences, maxResolverDepth)
+        <span class="cov7" title="3">results, err := scanTmpFile(tmpFile, remediation.QueryID, content, openAPIResolveReferences, maxResolverDepth, remediation.Experimental)
 
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to get results of query %s: %s", remediation.QueryID, err)
@@ -29144,7 +29148,6 @@ func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerabil
                 }
 
                 var remediationSet Set
-
                 if shouldRemediate(&amp;file, include) </span><span class="cov7" title="3">{
                         s.SelectedRemediationNumber++
                         r := &amp;Remediation{
@@ -29155,6 +29158,7 @@ func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerabil
                                 SearchKey:     vuln.SearchKey,
                                 ExpectedValue: vuln.KeyExpectedValue,
                                 ActualValue:   vuln.KeyActualValue,
+                                Experimental:  vuln.Experimental,
                         }
 
                         if file.RemediationType == "replacement" </span><span class="cov4" title="2">{
@@ -29198,6 +29202,7 @@ func getVulns(results Report) []model.Vulnerability <span class="cov4" title="2"
                                 SearchKey:        file.SearchKey,
                                 KeyExpectedValue: file.ExpectedValue,
                                 KeyActualValue:   file.ActualValue,
+                                Experimental:     query.Experimental,
                         }
 
                         vulns = append(vulns, *vuln)
@@ -34736,15 +34741,15 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="5386">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="5389">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="86176">{
+        for k := range stringKeyMap </span><span class="cov10" title="86224">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov7" title="5386">return keys</span>
+        <span class="cov7" title="5389">return keys</span>
 }
 
 var queryHigh = model.QueryResult{ //nolint
