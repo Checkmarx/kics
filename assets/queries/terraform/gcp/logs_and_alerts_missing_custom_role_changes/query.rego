@@ -176,13 +176,16 @@ is_improper_filter(target_methods, lines) = keyActualValue {
 						line := lines[_]
 						contains(line, "AND")
 						is_affirmative_or_double_negative(line)
-						not contains_target_method(line)}
+						not contains_target_method(line)
+						not correct_resource_type([line])}
 	count(invalid_declarations) != 0
 	keyActualValue := sprintf("declares an invalid filter, the filter is excessively restrictive with %d extra restrictions over the expected ammount", [count(invalid_declarations)])
 } else = null
 
 correct_resource_type(lines) {
 	regex.match("(?i)resource\\.type\\s*=\\s*(\\(((\\s*OR\\s*)?\".+\"(\\s*OR\\s*)?)*)?\"iam_role\"", concat("", lines))
+} else {
+	regex.match("(?i)NOT\\s*resource\\.type\\s*!=\\s*\"iam_role\"", concat("", lines))
 }
 
 contains_target_method(line) {

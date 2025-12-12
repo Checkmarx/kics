@@ -110,8 +110,8 @@ resource "google_logging_metric" "audit_config_change_8" {      # checks that un
   FILTER
 }
 
-resource "google_logging_metric" "audit_config_change_4" {       # checks that extra OR statement is allowed for resource.type 1
-  name        = "audit_config_change_4"
+resource "google_logging_metric" "audit_config_change_15" {       # checks that extra OR statement is allowed for resource.type 1
+  name        = "audit_config_change_15"
   description = "Detects changes to audit configurations via SetIamPolicy"
   filter = <<-FILTER
     resource.type="iam_role"
@@ -119,5 +119,29 @@ resource "google_logging_metric" "audit_config_change_4" {       # checks that e
     protoPayload.methodName = "google.iam.admin.v1.UndeleteRole" OR
     protoPayload.methodName = "google.iam.admin.v1.UpdateRole") OR
     protoPayload.any_other_field = "google.iam.admin.v1.DeleteRole"
+  FILTER
+}
+
+resource "google_logging_metric" "audit_config_change_12" {      # checks that unrestrictive protoPayload is also valid 2
+  name        = "audit_config_change_12"
+  description = "Detects changes to audit configurations via SetIamPolicy"
+  filter = <<-FILTER
+    NOT resource.type != "iam_role"
+  FILTER
+}
+
+resource "google_logging_metric" "audit_config_change_13" {      # checks that unrestrictive protoPayload is also valid 2
+  name        = "audit_config_change_13"
+  description = "Detects changes to audit configurations via SetIamPolicy"
+  filter = <<-FILTER
+    resource.type != "any_other_resource_type" AND resource.type = "iam_role"
+  FILTER
+}
+
+resource "google_logging_metric" "audit_config_change_14" {      # checks that unrestrictive protoPayload is also valid 2
+  name        = "audit_config_change_14"
+  description = "Detects changes to audit configurations via SetIamPolicy"
+  filter = <<-FILTER
+    resource.type != "any_other_resource_type" AND NOT resource.type != "iam_role"
   FILTER
 }
