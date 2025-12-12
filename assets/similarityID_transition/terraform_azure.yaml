@@ -3,11 +3,131 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: d3ba7d62-bd07-4102-88ca-9668e5f08e7d
+      queryName: Beta - Recovery Services Vault With Public Network Access
+      observations: ""
+      change: 2
+    - queryId: 0af1814d-23d7-472e-a1b8-b265e7b0d88f
+      queryName: Beta - Recovery Services Vault Without Immutability
+      observations: ""
+      change: 2
+    - queryId: b373043c-f3bf-40db-b67a-c982732c7781
+      queryName: Beta - Recovery Services Vault Without Soft Delete
+      observations: ""
+      change: 2
+    - queryId: 7a0164a5-ec6e-40b2-938d-ab3edfd37dcd
+      queryName: Beta - Backup Vault Without Immutability
+      observations: ""
+      change: 2
+    - queryId: 8d407b28-c746-4650-8bbd-d27df54a795f
+      queryName: Beta - Backup Vault Without Soft Delete
+      observations: ""
+      change: 2
+    - queryId: 0bd3630a-2ae9-4522-9d66-04049654b1df
+      queryName: Beta - Databricks Diagnostic Logging Unconfigured
+      observations: ""
+      change: 2
+    - queryId: 21fa1872-47b3-46ec-9775-f41e85d80cb4
+      queryName: Beta - Diagnostic Settings Without Appropriate Logging
+      observations: ""
+      change: 2
+    - queryId: 50f32d3c-096e-406a-bb26-71b3c91c11c0
+      queryName: Beta - Resource Without Diagnostic Settings
+      observations: ""
+      change: 2
+    - queryId: 416ac446-9a2e-4f6d-84d2-82add788c7da
+      queryName: Beta - Databricks Workspace Without CMK
+      observations: ""
+      change: 2
+    - queryId: 8a0628ed-6256-4a24-a1ab-54696fb69197
+      queryName: Beta - Service Without Resource Logging
+      observations: ""
+      change: 2
+    - queryId: f677bd92-3922-4e75-8f0c-2c0f8fbc9609
+      queryName: Beta - Activity Log Alert For Service Health Not Configured
+      observations: ""
+      change: 2
+    - queryId: 0cc95bf8-9b98-4278-ad9f-fea4aed3d271
+      queryName: Beta - Storage Account Without Delete Lock
+      observations: ""
+      change: 2
+    - queryId: 50e0a9e3-7360-483c-9873-ba1ea1a7faf8
+      queryName: Beta - Storage Account With Cross Tenant Replication Enabled
+      observations: ""
+      change: 2
+    - queryId: 12ecec8a-7961-48db-b644-86be8845d8fd
+      queryName: Beta - Containers Without Soft Delete
+      observations: ""
+      change: 2
+    - queryId: 45f3e879-f8a7-4102-a3fa-46da5a849870
+      queryName: Beta - Storage Account With Shared Access Key
+      observations: ""
+      change: 2
+    - queryId: 056d28cc-7ee9-4b12-b2d1-16b7b66db72d
+      queryName: Beta - Blob Storage Without Soft Delete
+      observations: ""
+      change: 2
+    - queryId: 233ab26d-8f17-4dce-9616-41479da9ffe3
+      queryName: Beta - Storage Account Using Unsafe SMB Channel Encryption
+      observations: ""
+      change: 2
+    - queryId: 621fc7c5-c342-4223-b3dd-d1530acb43ae
+      queryName: Beta - Storage Account Not Using Latest SMB Protocol Version
+      observations: ""
+      change: 2
+    - queryId: 54087baa-8719-48a8-8460-9cc0962117aa
+      queryName: Beta - File Share Without Soft Delete
+      observations: ""
+      change: 2
+    - queryId: b3b9ce2f-c229-4133-9a2b-4e649cf2347e
+      queryName: Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured
+      observations: ""
+      change: 2
+    - queryId: 99b47957-c575-4555-b8c0-ff92384249b4
+      queryName: Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured
+      observations: ""
+      change: 2
+    - queryId: 8ce5c61f-5cd1-41bc-b7d9-b26b18efd505
+      queryName: Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured
+      observations: ""
+      change: 2
+    - queryId: 1219a37a-9a2c-420d-8b8c-30bdbc3bfeb1
+      queryName: Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured
+      observations: ""
+      change: 2
+    - queryId: b97a1065-a86b-442f-86c4-f95afd9b3ac6
+      queryName: Beta - Activity Log Alert For Delete Security Solution Not Configured
+      observations: ""
+      change: 2
+    - queryId: 8553d83f-fe77-4c96-8850-a95c5895b336
+      queryName: Beta - Activity Log Alert For Create or Update Security Solution Not Configured
+      observations: ""
+      change: 2
+    - queryId: 62d120b1-b1e0-40ef-a81d-a4994ac88b3b
+      queryName: Beta - Activity Log Alert For Delete Network Security Group Not Configured
+      observations: ""
+      change: 2
+    - queryId: 1ec163d0-a9be-4695-89a8-a4028a2cbae7
+      queryName: Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured
+      observations: ""
+      change: 2
+    - queryId: a7b422e3-0b2f-4795-a43a-136dbbd6cbb3
+      queryName: Beta - Activity Log Alert For Delete Policy Assignment Not Configured
+      observations: ""
+      change: 2
+    - queryId: d0514e4b-9e95-4a7a-9bc5-0adb32514122
+      queryName: Beta - Activity Log Alert For Create Policy Assignment Not Configured
+      observations: ""
+      change: 2
     - queryId: 05d6b52e-11ca-453d-bb3a-21c7c853ee92
       queryName: Beta - Databricks Workspace Using Default Virtual Network
       observations: ""
       change: 2
     - queryId: cec6e005-9309-46eb-b34b-456f6eae818b
       queryName: Beta - Key Vault Purge Protection Is Enabled
+      observations: ""
+      change: 2
+    - queryId: 41d7989b-3be2-4081-8c79-cf903dd174c5
+      queryName: Beta - Use Of User Access Administrator Role Is Not Restricted
       observations: ""
       change: 2
