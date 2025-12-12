@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Dummy Oracle Cloud query",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "Dummy Oracle Cloud query",
+    "severity": "MEDIUM",
+    "line": 15
+  },
+  {
+    "queryName": "Dummy Oracle Cloud query",
+    "severity": "MEDIUM",
+    "line": 28
+  }
+]
