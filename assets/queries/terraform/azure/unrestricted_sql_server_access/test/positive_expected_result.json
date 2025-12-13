@@ -56,19 +56,19 @@
   {
     "queryName": "Unrestricted SQL Server Access",
     "severity": "CRITICAL",
-    "line": 25,
+    "line": 24,
     "fileName": "positive4.tf"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
     "severity": "CRITICAL",
-    "line": 33,
+    "line": 32,
     "fileName": "positive4.tf"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
     "severity": "CRITICAL",
-    "line": 42,
+    "line": 41,
     "fileName": "positive4.tf"
   },
   {

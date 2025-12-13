@@ -1,120 +1,98 @@
 {
-  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
-  "Parameters": {
-    "MySubnets": {
-      "Description": "My subnet",
-      "Type": "List\u003cString\u003e"
-    }
-  },
   "Resources": {
-    "IPTargetGroup": {
-      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
-      "Properties": {
-        "VpcId": "my-vpc",
-        "Protocol": "HTTP",
-        "HealthCheckIntervalSeconds": 10,
-        "UnhealthyThresholdCount": 2,
-        "Port": 80,
-        "TargetType": "ip",
-        "Matcher": {
-          "HttpCode": "200"
-        },
-        "HealthCheckPath": "/health/check",
-        "HealthCheckProtocol": "HTTP",
-        "HealthCheckTimeoutSeconds": 5,
-        "HealthyThresholdCount": 2
-      }
-    },
-    "TestListenerRule1": {
-      "Properties": {
-        "Priority": 1,
-        "ListenerArn": "HTTPALBListener",
-        "Conditions": [
-          {
-            "Field": "host-header",
-            "Values": [
-              "test1.checkmarx.com"
-            ]
-          }
-        ],
-        "Actions": [
-          {
-            "TargetGroupArn": "IPTargetGroup",
-            "Order": 1,
-            "ForwardConfig": {
-              "TargetGroups": [
-                {
-                  "TargetGroupArn": "IPTargetGroup",
-                  "Weight": 1
-                }
-              ],
-              "TargetGroupStickinessConfig": {
-                "Enabled": false
-              }
-            },
-            "Type": "forward"
-          }
-        ]
-      },
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule"
-    },
-    "ApplicationLoadBalancer": {
+    "LoadBalancer01": {
       "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
       "Properties": {
-        "Name": "ip-target-alb",
-        "Subnets": "MySubnets",
         "SecurityGroups": [
-          "ALBNegativeSecGroup"
-        ],
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": "ip-target-alb"
-          }
+          { "Ref": "Negative2SecurityGroup" }
         ]
       }
     },
-    "ALBNegativeSecGroup": {
+    "Negative2SecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "Allow http and ssh",
-        "VpcId": "my-vpc",
-        "SecurityGroupIngress": [
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIp": "127.0.0.1/32"
-          },
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 77,
-            "ToPort": 77,
-            "CidrIp": "127.0.0.1/0"
-          }
-        ],
-        "SecurityGroupEgress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "IpProtocol": "tcp",
-            "FromPort": 22,
-            "ToPort": 22
-          }
-        ]
+        "GroupDescription": "Security group for negative test cases",
+        "VpcId": { "Ref": "MyVPC" }
       }
     },
-    "HTTPALBListener": {
-      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+    "Negative2IPv4Ingress1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "LoadBalancerArn": "ApplicationLoadBalancer",
-        "Port": 80,
-        "Protocol": "HTTP",
-        "DefaultActions": [
-          {
-            "Type": "forward",
-            "TargetGroupArn": "IPTargetGroup"
-          }
-        ]
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "icmp",
+        "FromPort": 22,
+        "ToPort": 22,
+        "CidrIp": "10.0.0.0/0"
+      }
+    },
+    "Negative2IPv4Ingress2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "tcp",
+        "FromPort": 5000,
+        "ToPort": 5000,
+        "CidrIp": "192.168.0.0/0"
+      }
+    },
+    "Negative2IPv4Ingress3": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "udp",
+        "FromPort": 137,
+        "ToPort": 137,
+        "CidrIp": "8.8.0.0/16"
+      }
+    },
+    "Negative2IPv4Ingress4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "icmp",
+        "FromPort": 5000,
+        "ToPort": 5000,
+        "CidrIp": "8.8.0.0/16"
+      }
+    },
+    "Negative2IPv6Ingress1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "58",
+        "FromPort": 22,
+        "ToPort": 22,
+        "CidrIpv6": "fd00::/0"
+      }
+    },
+    "Negative2IPv6Ingress2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "tcp",
+        "FromPort": 5000,
+        "ToPort": 5000,
+        "CidrIpv6": "fd12:3456:789a::1/0"
+      }
+    },
+    "Negative2IPv6Ingress3": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "udp",
+        "FromPort": 137,
+        "ToPort": 137,
+        "CidrIpv6": "2400:cb00::/32"
+      }
+    },
+    "Negative2IPv6Ingress4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "58",
+        "FromPort": 5000,
+        "ToPort": 5000,
+        "CidrIpv6": "2400:cb00::/32"
       }
     }
   }

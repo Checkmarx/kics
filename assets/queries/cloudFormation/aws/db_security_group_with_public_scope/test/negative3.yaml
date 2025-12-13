@@ -1,0 +1,71 @@
+Resources:
+  # This sample is near identical to Positive1 except that the "!Ref" on the DBInstance are incorrect
+  DbSecurityByEC2SecurityGroupInline_neg3:
+    Type: AWS::RDS::DBSecurityGroup
+    Properties:
+      GroupDescription: "Legacy inline ingress"
+      DBSecurityGroupIngress:
+        - CIDRIP: 0.0.0.0/0
+
+  DbSecurityByEC2SecurityGroupStandalone_neg3:
+    Type: AWS::RDS::DBSecurityGroup
+    Properties:
+      GroupDescription: "Legacy standalone ingress"
+
+  DbSecurityIngressRule:
+    Type: AWS::RDS::DBSecurityGroupIngress
+    Properties:
+      DBSecurityGroupName: !Ref DbSecurityByEC2SecurityGroupStandalone_neg3
+      CIDRIP: 0.0.0.0/0
+
+  DBEC2SecurityGroupInline_neg3:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Inline IPv4 and IPv6 ingress"
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIpv6: ::/0
+
+  DBEC2SecurityGroupStandalone_neg3:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Standalone IPv4 and IPv6 ingress"
+      VpcId: !Ref VPC
+
+  DBEC2SecurityGroupIngress_neg3:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DBEC2SecurityGroupStandalone_neg3
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      CidrIp: 0.0.0.0/0
+
+  DBEC2SecurityGroupIngressIPv6_neg3:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DBEC2SecurityGroupStandalone_neg3
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"
+
+  DBInstance_neg3:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      PubliclyAccessible: true
+      DBName: !Ref DBName
+      Engine: MySQL
+      DBSecurityGroups:
+        - !Ref invalid_reference_1_neg3
+        - !Ref invalid_reference_2_neg3
+      VPCSecurityGroups:
+        - !Ref invalid_reference_3_neg3
+        - !Ref invalid_reference_4_neg3
