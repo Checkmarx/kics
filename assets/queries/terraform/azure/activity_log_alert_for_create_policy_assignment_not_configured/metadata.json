@@ -1,0 +1,14 @@
+{
+  "id": "d0514e4b-9e95-4a7a-9bc5-0adb32514122",
+  "queryName": "Beta - Activity Log Alert For Create Policy Assignment Not Configured",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "There should be a 'azurerm_monitor_activity_log_alert' resource configured to capture create policy assignment events",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_activity_log_alert",
+  "platform": "Terraform",
+  "descriptionID": "d0514e4b",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
