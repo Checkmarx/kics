@@ -62,6 +62,12 @@
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
+    "line": 49,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
     "line": 10,
     "fileName": "positive3.json"
   },
@@ -117,6 +123,12 @@
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
     "line": 50,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 62,
     "fileName": "positive4.json"
   }
 ]
