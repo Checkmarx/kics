@@ -26,26 +26,26 @@
         "InstancesSecGroup": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
-                "GroupDescription": "Allow http and ssh",
+                "GroupDescription": "Security group for test cases",
                 "VpcId": "my-vpc",
                 "SecurityGroupIngress": [
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": 80,
-                        "ToPort": 80,
+                        "FromPort": 8000,
+                        "ToPort": 8000,
                         "CidrIp": "127.0.0.1/32"
                     },
                     {
-                        "IpProtocol": "tcp",
-                        "FromPort": 636,
-                        "ToPort": 636,
-                        "CidrIp": "127.0.0.1/0"
+                        "IpProtocol": "icmp",
+                        "FromPort": 22,
+                        "ToPort": 22,
+                        "CidrIp": "10.0.0.0/0"
                     },
                     {
-                        "IpProtocol": "udp",
-                        "FromPort": 1000,
-                        "ToPort": 5000,
-                        "CidrIpv6": "fd00:abcd:1234::/0"
+                        "IpProtocol": "50",
+                        "FromPort": 443,
+                        "ToPort": 443,
+                        "CidrIp": "192.168.0.0/0"
                     }
                 ]
             }

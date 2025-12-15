@@ -27,3 +27,7 @@ Resources:
           FromPort: 636
           ToPort: 636
           CidrIp: 127.0.0.1/0
+        - IpProtocol: udp
+          FromPort: 1000
+          ToPort: 5000
+          CidrIpv6: "fd00:abcd:1234::/0"
