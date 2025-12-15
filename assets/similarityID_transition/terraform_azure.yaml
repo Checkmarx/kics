@@ -7,6 +7,14 @@ similarityIDChangeList:
       queryName: Beta - VM Without Managed Disk
       observations: ""
       change: 2
+    - queryId: d3ba7d62-bd07-4102-88ca-9668e5f08e7d
+      queryName: Beta - Recovery Services Vault With Public Network Access
+      observations: ""
+      change: 2
+    - queryId: 0af1814d-23d7-472e-a1b8-b265e7b0d88f
+      queryName: Beta - Recovery Services Vault Without Immutability
+      observations: ""
+      change: 2
     - queryId: b373043c-f3bf-40db-b67a-c982732c7781
       queryName: Beta - Recovery Services Vault Without Soft Delete
       observations: ""
@@ -117,6 +125,10 @@ similarityIDChangeList:
       change: 2
     - queryId: 05d6b52e-11ca-453d-bb3a-21c7c853ee92
       queryName: Beta - Databricks Workspace Using Default Virtual Network
+      observations: ""
+      change: 2
+    - queryId: cec6e005-9309-46eb-b34b-456f6eae818b
+      queryName: Beta - Key Vault Purge Protection Is Enabled
       observations: ""
       change: 2
     - queryId: 41d7989b-3be2-4081-8c79-cf903dd174c5
