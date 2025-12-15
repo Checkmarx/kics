@@ -43,3 +43,12 @@ Resources:
       FromPort: 70
       ToPort: 90
       CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"
+
+  IPv6Ingress3:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "-1"
+      FromPort: 10
+      ToPort: 10
+      CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"
