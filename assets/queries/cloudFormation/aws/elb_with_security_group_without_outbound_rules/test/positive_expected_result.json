@@ -26,49 +26,49 @@
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
-    "line": -1,
+    "line": 5,
     "fileName": "positive5.yaml"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
-    "line": -1,
+    "line": 6,
     "fileName": "positive6.json"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
-    "line": -1,
+    "line": 8,
     "fileName": "positive7.yaml"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
-    "line": -1,
+    "line": 9,
     "fileName": "positive8.json"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
-    "line": -1,
+    "line": 8,
     "fileName": "positive9.yaml"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
-    "line": -1,
+    "line": 9,
     "fileName": "positive10.json"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
-    "line": -1,
+    "line": 5,
     "fileName": "positive11.yaml"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
-    "line": -1,
+    "line": 6,
     "fileName": "positive12.json"
   }
 ]
