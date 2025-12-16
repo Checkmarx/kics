@@ -13,6 +13,10 @@ Resources:
           FromPort: 2000
           ToPort: 2000
           CidrIp: 192.162.0.0/16  # cidr is not 0.0.0.0/0
+        - IpProtocol: "-1"
+          FromPort: 2000
+          ToPort: 2000
+          CidrIpv6: 2001:0db8::/32 # cidr is not ::/0
 
   # Standalone IPv4 egress rules
   Negative1_egress_ipv4_1:

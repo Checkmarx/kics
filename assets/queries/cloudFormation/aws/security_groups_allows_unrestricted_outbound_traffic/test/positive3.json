@@ -1,6 +1,6 @@
 {
   "Resources": {
-    "Positive2_security_group": {
+    "Positive3_security_group": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
         "GroupDescription": "Open security group",
@@ -17,11 +17,11 @@
         ]
       }
     },
-    "Positive2_egress_ipv4": {
+    "Positive3_egress_ipv4": {
       "Type": "AWS::EC2::SecurityGroupEgress",
       "Properties": {
         "GroupId": {
-          "Ref": "Positive2_security_group"
+          "Ref": "Positive3_security_group"
         },
         "IpProtocol": "-1",
         "FromPort": 3000,
@@ -29,11 +29,11 @@
         "CidrIp": "0.0.0.0/0"
       }
     },
-    "Positive2_egress_ipv6": {
+    "Positive3_egress_ipv6": {
       "Type": "AWS::EC2::SecurityGroupEgress",
       "Properties": {
         "GroupId": {
-          "Ref": "Positive2_security_group"
+          "Ref": "Positive3_security_group"
         },
         "IpProtocol": "-1",
         "FromPort": 4000,
