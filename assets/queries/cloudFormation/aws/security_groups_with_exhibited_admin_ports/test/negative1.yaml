@@ -13,6 +13,14 @@ Resources:
           FromPort: 0 
           ToPort: 0
           CidrIp: 192.162.0.0/16  # cidr is not 0.0.0.0/0
+        - IpProtocol: udp  
+          FromPort: 0    
+          ToPort: 20000
+          CidrIpv6: 2001:0db8::/32 # cidr is not ::/0
+        - IpProtocol: udp 
+          FromPort: 5000 # does not expose admin port
+          ToPort: 5000
+          CidrIpv6: ::/0
 
   # Standalone IPv4 ingress rules
   Negative1_ingress_ipv4_1:

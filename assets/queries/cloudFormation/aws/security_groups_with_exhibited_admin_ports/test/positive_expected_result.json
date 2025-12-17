@@ -20,19 +20,79 @@
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
-    "line": 12,
-    "fileName": "positive2.json"
+    "line": 8,
+    "fileName": "positive2.yaml"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
-    "line": 22,
-    "fileName": "positive2.json"
+    "line": 12,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Groups With Exposed Admin Ports",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Groups With Exposed Admin Ports",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive2.yaml"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 34,
-    "fileName": "positive2.json"
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Groups With Exposed Admin Ports",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Groups With Exposed Admin Ports",
+    "severity": "HIGH",
+    "line": 22,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Groups With Exposed Admin Ports",
+    "severity": "HIGH",
+    "line": 34,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Groups With Exposed Admin Ports",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "Security Groups With Exposed Admin Ports",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "Security Groups With Exposed Admin Ports",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "Security Groups With Exposed Admin Ports",
+    "severity": "HIGH",
+    "line": 34,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "Security Groups With Exposed Admin Ports",
+    "severity": "HIGH",
+    "line": 46,
+    "fileName": "positive4.yaml"
   }
 ]
