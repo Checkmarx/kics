@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
       - name: Execute diff and send email
@@ -25,7 +25,7 @@ jobs:
             -c assets/libraries/common.json \
             -u https://registry.terraform.io/v1/modules
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v6
+        uses: peter-evans/create-pull-request@98357b18bf14b5342f975ff684046ec3b2a07725 # v6
         with:
           title: "feat(queries): update terraform registry data on commons.json"
           token: ${{ secrets.KICS_BOT_PAT }}
