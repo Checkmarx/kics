@@ -17,5 +17,4 @@ resource newStorageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   kind: 'StorageV2'
 }
 
-// Output using existing resource property
 output keyVaultUri string = existingKeyVault.properties.vaultUri
