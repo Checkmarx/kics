@@ -18,3 +18,9 @@ resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@20
   name: containerName
   parent: blobService
 }
+
+// Create another container under the blob service (another grandchild of existing storage account)
+resource anotherContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
+  name: 'anothercontainer'
+  parent: blobService
+}

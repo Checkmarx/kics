@@ -1868,6 +1868,30 @@ func TestParseBicepFile(t *testing.T) {
 									"name": "[parameters('containerName')]",
 									"parent": "blobService",
 									"type": "containers"
+								},
+								{
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 23
+										},
+										"_kics_apiVersion": {
+											"_kics_line": 23
+										},
+										"_kics_name": {
+											"_kics_line": 24
+										},
+										"_kics_parent": {
+											"_kics_line": 25
+										},
+										"_kics_type": {
+											"_kics_line": 23
+										}
+									},
+									"apiVersion": "2023-01-01",
+									"identifier": "anotherContainer",
+									"name": "anothercontainer",
+									"parent": "blobService",
+									"type": "containers"
 								}
 							],
 							"type": "Microsoft.Storage/storageAccounts/blobServices"
