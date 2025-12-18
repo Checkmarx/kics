@@ -78,14 +78,12 @@ func filterParentStructs(resources []*Resource, existingResources map[string]boo
 		if resource.Parent == "" {
 			formattedNode := reformatTestTree(resource)
 			filteredResources = append(filteredResources, formattedNode)
-		} else {
+		} else if existingResources[resource.Parent] {
 			// Include resources whose parent is an existing resource
-			if existingResources[resource.Parent] {
-				formattedNode := reformatTestTree(resource)
-				// Remove the parent field since the existing parent won't be in the output
-				removeParentField(formattedNode)
-				filteredResources = append(filteredResources, formattedNode)
-			}
+			formattedNode := reformatTestTree(resource)
+			// Remove the parent field since the existing parent won't be in the output
+			removeParentField(formattedNode)
+			filteredResources = append(filteredResources, formattedNode)
 		}
 	}
 
