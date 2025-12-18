@@ -24,9 +24,10 @@ const (
 
 type BicepVisitor struct {
 	parser.BasebicepVisitor
-	paramList    map[string]interface{}
-	varList      map[string]interface{}
-	resourceList []interface{}
+	paramList         map[string]interface{}
+	varList           map[string]interface{}
+	resourceList      []interface{}
+	existingResources map[string]bool
 }
 
 type JSONBicep struct {
@@ -44,7 +45,13 @@ func NewBicepVisitor() *BicepVisitor {
 	paramList := map[string]interface{}{}
 	varList := map[string]interface{}{}
 	resourceList := []interface{}{}
-	return &BicepVisitor{paramList: paramList, varList: varList, resourceList: resourceList}
+	existingResources := map[string]bool{}
+	return &BicepVisitor{
+		paramList:         paramList,
+		varList:           varList,
+		resourceList:      resourceList,
+		existingResources: existingResources,
+	}
 }
 
 func convertVisitorToJSONBicep(visitor *BicepVisitor) *JSONBicep {
@@ -64,17 +71,34 @@ type Resource struct {
 }
 
 // Filters the Resource array in order to keep only the top-level resources while reformatting them
-func filterParentStructs(resources []*Resource) []interface{} {
+func filterParentStructs(resources []*Resource, existingResources map[string]bool) []interface{} {
 	filteredResources := []interface{}{}
 
 	for _, resource := range resources {
 		if resource.Parent == "" {
 			formattedNode := reformatTestTree(resource)
 			filteredResources = append(filteredResources, formattedNode)
+		} else {
+			// Include resources whose parent is an existing resource
+			if existingResources[resource.Parent] {
+				formattedNode := reformatTestTree(resource)
+				// Remove the parent field since the existing parent won't be in the output
+				removeParentField(formattedNode)
+				filteredResources = append(filteredResources, formattedNode)
+			}
 		}
 	}
 
 	return filteredResources
+}
+
+// Removes the parent field and its associated _kics_lines from a resource
+func removeParentField(resource map[string]interface{}) {
+	delete(resource, "parent")
+
+	if kicsLines, ok := resource["_kics_lines"].(map[string]interface{}); ok {
+		delete(kicsLines, "_kics_parent")
+	}
 }
 
 func setChildType(child map[string]interface{}, parentType string) {
@@ -182,12 +206,12 @@ func convertOriginalResourcesToStruct(resources []interface{}) []*Resource {
 	return newResources
 }
 
-func makeResourcesNestedStructure(jBicep *JSONBicep) []interface{} {
+func makeResourcesNestedStructure(jBicep *JSONBicep, existingResources map[string]bool) []interface{} {
 	originalResources := jBicep.Resources
 
 	resources := convertOriginalResourcesToStruct(originalResources)
 	addChildrenToParents(resources)
-	filteredResources := filterParentStructs(resources)
+	filteredResources := filterParentStructs(resources, existingResources)
 
 	return filteredResources
 }
@@ -216,7 +240,7 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 
 	jBicep := convertVisitorToJSONBicep(bicepVisitor)
 
-	nestedResources := makeResourcesNestedStructure(jBicep)
+	nestedResources := makeResourcesNestedStructure(jBicep, bicepVisitor.existingResources)
 	jBicep.Resources = nestedResources
 
 	bicepBytes, err := json.Marshal(jBicep)
@@ -361,12 +385,18 @@ func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interf
 }
 
 func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interface{} {
+	identifier := checkAcceptAntlrString(ctx.Identifier(), s)
+
+	if ctx.EXISTING() != nil {
+		s.existingResources[identifier] = true
+		return nil
+	}
+
 	resource := map[string]interface{}{}
 	resourceType := ""
 	apiVersion := ""
 
 	interpString := checkAcceptAntlrString(ctx.InterpString(), s)
-	identifier := checkAcceptAntlrString(ctx.Identifier(), s)
 
 	fullType := strings.Split(interpString, "@")
 	if len(fullType) > 0 {
