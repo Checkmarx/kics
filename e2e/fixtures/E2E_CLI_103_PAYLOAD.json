@@ -1,8 +1,8 @@
 {
 	"document": [
 		{
-			"file": "./test/fixtures/bicep_test/existing_parent.bicep",
-			"id": "4490e4fc-c0c7-45d9-bb3e-a79525c74f0a",
+			"id": "0",
+		  	"file": "file",
 			"parameters": {
 				"containerName": {
 					"defaultValue": "mycontainer",
