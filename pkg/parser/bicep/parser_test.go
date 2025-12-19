@@ -1842,33 +1842,29 @@ func TestParseBicepFile(t *testing.T) {
 								}
 							},
 							"apiVersion": "2023-01-01",
+							"identifier": "fileService",
+							"name": "default",
+							"type": "Microsoft.Storage/storageAccounts/fileServices"
+						},
+						{
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 17
+								},
+								"_kics_apiVersion": {
+									"_kics_line": 17
+								},
+								"_kics_name": {
+									"_kics_line": 18
+								},
+								"_kics_type": {
+									"_kics_line": 17
+								}
+							},
+							"apiVersion": "2023-01-01",
 							"identifier": "blobService",
 							"name": "default",
 							"resources": [
-								{
-									"_kics_lines": {
-										"_kics__default": {
-											"_kics_line": 17
-										},
-										"_kics_apiVersion": {
-											"_kics_line": 17
-										},
-										"_kics_name": {
-											"_kics_line": 18
-										},
-										"_kics_parent": {
-											"_kics_line": 19
-										},
-										"_kics_type": {
-											"_kics_line": 17
-										}
-									},
-									"apiVersion": "2023-01-01",
-									"identifier": "container",
-									"name": "[parameters('containerName')]",
-									"parent": "blobService",
-									"type": "containers"
-								},
 								{
 									"_kics_lines": {
 										"_kics__default": {
@@ -1885,6 +1881,30 @@ func TestParseBicepFile(t *testing.T) {
 										},
 										"_kics_type": {
 											"_kics_line": 23
+										}
+									},
+									"apiVersion": "2023-01-01",
+									"identifier": "container",
+									"name": "[parameters('containerName')]",
+									"parent": "blobService",
+									"type": "containers"
+								},
+								{
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 29
+										},
+										"_kics_apiVersion": {
+											"_kics_line": 29
+										},
+										"_kics_name": {
+											"_kics_line": 30
+										},
+										"_kics_parent": {
+											"_kics_line": 31
+										},
+										"_kics_type": {
+											"_kics_line": 29
 										}
 									},
 									"apiVersion": "2023-01-01",

@@ -7,6 +7,12 @@ resource existingStorageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' e
   name: existingStorageAccountName
 }
 
+// Create a file service under the existing storage account (another child service)
+resource fileService 'Microsoft.Storage/storageAccounts/fileServices@2023-01-01' = {
+  name: 'default'
+  parent: existingStorageAccount
+}
+
 // Create a blob service under the existing storage account (child)
 resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = {
   name: 'default'
