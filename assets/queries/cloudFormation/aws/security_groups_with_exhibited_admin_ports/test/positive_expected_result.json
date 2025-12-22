@@ -69,30 +69,30 @@
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.json"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.json"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 24,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.json"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 34,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.json"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 46,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.json"
   }
 ]
