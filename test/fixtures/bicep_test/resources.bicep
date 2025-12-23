@@ -348,6 +348,6 @@ resource redisCache_diagnosticSettings 'Microsoft.Insights/diagnosticSettings@20
   scope: redisCache
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2022-11-01' = {
   name: keyvaultName
 }
