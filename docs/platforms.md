@@ -195,6 +195,14 @@ KICS supports scanning Databricks under Terraform file extension (`.tf`).
 
 KICS supports scanning TencentCloud under Terraform file extension (`.tf`).
 
+### IBMCloud for Terraform
+
+KICS supports scanning IBMCloud under Terraform file extension (`.tf`).
+
+### OracleCloud for Terraform
+
+KICS supports scanning OracleCloud under Terraform file extension (`.tf`).
+
 ### Terraform variables path
 
 When using vars in a terraform file there are 2 ways of passing the file in which a variable's value is present.
