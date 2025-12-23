@@ -1,0 +1,21 @@
+Resources:
+  Positive2_security_group:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Open security group
+      VpcId: !Ref MyVPC
+      SecurityGroupEgress:
+        - IpProtocol: "-1"
+          FromPort: 2000
+          ToPort: 2000
+          CidrIpv6: ::/0
+
+  # Standalone IPv6 egress rule
+  Positive2_egress_ipv6:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId: !Ref Positive2_security_group
+      IpProtocol: "-1"
+      FromPort: 4000
+      ToPort: 4000
+      CidrIpv6: 0:0:0:0:0:0:0:0/0

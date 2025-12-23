@@ -1,0 +1,54 @@
+Resources:
+
+  DualStackSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Security group for IPv4 and IPv6 ingress rules"
+      VpcId: !Ref MyVPC
+
+# IPv4 Rules
+  IPv4Ingress1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "-1"
+      FromPort: 10
+      ToPort: 10
+      CidrIp: "0.0.0.0/0"
+
+  IPv4Ingress2:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 10
+      ToPort: 40
+      CidrIp: "0.0.0.0/0"
+
+# IPv6 Rules
+  IPv6Ingress1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 0
+      ToPort: 30
+      CidrIpv6: "::/0"
+
+  IPv6Ingress2:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 10
+      ToPort: 40
+      CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"
+
+  IPv6Ingress3:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "-1"
+      FromPort: 10
+      ToPort: 10
+      CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"

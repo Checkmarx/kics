@@ -65,7 +65,7 @@ resource "aws_security_group" "negative1-5" {
   }
 }
 
-resource "aws_security_group" "negative1-5" {
+resource "aws_security_group" "negative1-6" {
   name        = "allow_tls"
   description = "sample"
 
