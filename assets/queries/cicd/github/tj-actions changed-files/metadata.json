@@ -1,0 +1,13 @@
+{
+  "id": "12aead41-b910-43aa-9af9-e280f95e587c",
+  "queryName": "tj-actions changed-files secret discovery",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "GitHub Action tj-actions changed-files through 45.0.7 allows remote attackers to discover secrets by reading actions logs.",
+  "descriptionUrl": "https://github.com/advisories/GHSA-mrrh-fwg8-r2c3",
+  "platform": "CICD",
+  "descriptionID": "02044a76",
+  "cloudProvider": "common",
+  "cwe": "506",
+  "oldSeverity": "HIGH"
+}
