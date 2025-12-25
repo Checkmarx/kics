@@ -7,6 +7,6 @@
 	{
 		"queryName": "Beta - Compute Engine VM Instance With Public IP Address",
 		"severity": "HIGH",
-		"line": 32
+		"line": 36
 	}
 ]
