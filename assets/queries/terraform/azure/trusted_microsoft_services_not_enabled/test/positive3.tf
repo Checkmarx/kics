@@ -1,14 +1,14 @@
-resource "azurerm_storage_account_network_rules" "positive1" {
+resource "azurerm_storage_account_network_rules" "example" {
   resource_group_name  = azurerm_resource_group.test.name
   storage_account_name = azurerm_storage_account.test.name
 
   default_action             = "Allow"
   ip_rules                   = ["127.0.0.1"]
   virtual_network_subnet_ids = [azurerm_subnet.test.id]
-  bypass                     = ["Metrics"]
+  bypass                     = ["Metrics", "Logging"]
 }
 
-resource "azurerm_storage_account" "positive2" {
+resource "azurerm_storage_account" "example" {
   name                = "storageaccountname"
   resource_group_name = azurerm_resource_group.example.name
 
@@ -18,7 +18,7 @@ resource "azurerm_storage_account" "positive2" {
 
   network_rules {
     default_action             = "Deny"
-	bypass					   = ["None"]
+	  bypass					   = ["None", "Logging"]
     ip_rules                   = ["100.0.0.1"]
     virtual_network_subnet_ids = [azurerm_subnet.example.id]
   }
