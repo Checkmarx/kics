@@ -3,42 +3,54 @@
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 10,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 19,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 8,
-    "filename": "positive2.json"
+    "fileName": "positive2.json"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 4,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
     "line": 19,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive4.yaml"
   }
 ]
