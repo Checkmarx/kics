@@ -87,3 +87,7 @@ similarityIDChangeList:
       queryName: Beta - Ensure Essential Contacts Is Configured For Organization
       observations: ""
       change: 2
+    - queryId: 3b0105ec-cd25-4f8c-a117-a82fe3bc1cdc
+      queryName: Beta - Compute Engine VM Instance With Public IP Address
+      observations: ""
+      change: 2
