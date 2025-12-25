@@ -87,11 +87,11 @@ func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, customPrin
 	}, nil
 }
 
-// PerformScan executes executeScan and postScan
+// PerformScan executes ExecuteScan and postScan
 func (c *Client) PerformScan(ctx context.Context) error {
 	c.ScanStartTime = time.Now()
 
-	scanResults, err := c.executeScan(ctx)
+	scanResults, err := c.ExecuteScan(ctx)
 
 	if err != nil {
 		log.Err(err)
