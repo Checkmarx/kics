@@ -1,0 +1,13 @@
+{
+  "id": "3b0105ec-cd25-4f8c-a117-a82fe3bc1cdc",
+  "queryName": "Beta - Compute Engine VM Instance With Public IP Address",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Google Compute Engine VM instances should not be configured to have public IP addresses",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#access_config-1",
+  "platform": "Terraform",
+  "descriptionID": "3b0105ec",
+  "cloudProvider": "gcp",
+  "cwe": "732",
+  "riskScore": "7.0"
+}
