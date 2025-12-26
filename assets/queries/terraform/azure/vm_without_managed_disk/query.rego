@@ -65,12 +65,21 @@ get_results(resource, name, type) = results {
 	}
 } else = results {
 	type == "azurerm_virtual_machine_scale_set"
+	common_lib.valid_key(resource.storage_profile_os_disk, "vhd_containers")
+	results := {
+		"searchKey": sprintf("%s[%s]", [type, name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("%s[%s].storage_profile_os_disk.vhd_containers should not be set", [type, name]),
+		"searchLine": common_lib.build_search_line(["resource", type, name, "storage_profile_os_disk", "vhd_containers"], [])
+	}
+} else = results {
+	type == "azurerm_virtual_machine_scale_set"
 	not common_lib.valid_key(resource.storage_profile_os_disk, "managed_disk_type")
 	results := {
 		"searchKey": sprintf("%s[%s]", [type, name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s[%s].storage_profile_os_disk.managed_disk_type' should be defined and not null", [type, name]),
 		"keyActualValue": sprintf("'%s[%s].storage_profile_os_disk.managed_disk_type' is undefined or null", [type, name]),
-		"searchLine": common_lib.build_search_line(["resource", type, name], [])
+		"searchLine": common_lib.build_search_line(["resource", type, name, "storage_profile_os_disk"], [])
 	}
 }
