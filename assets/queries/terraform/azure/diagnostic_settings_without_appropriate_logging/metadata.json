@@ -1,0 +1,14 @@
+{
+  "id": "21fa1872-47b3-46ec-9775-f41e85d80cb4",
+  "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "All 'azurerm_monitor_diagnostic_setting' resources should have logging for all main categories: 'Administrative', 'Alert', 'Policy', and 'Security' enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting.html#enabled_log-1",
+  "platform": "Terraform",
+  "descriptionID": "21fa1872",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
