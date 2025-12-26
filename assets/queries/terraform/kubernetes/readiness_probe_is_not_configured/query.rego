@@ -55,7 +55,7 @@ CxPolicy[result] {
 }
 
 resource_equal(type) {
-	resources := {"kubernetes_cron_job", "kubernetes_job"}
+	resources := {"kubernetes_cron_job", "kubernetes_cron_job_v1", "kubernetes_job"}
 
 	type == resources[_]
 }
