@@ -4,7 +4,7 @@
         "MySG": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
-                "GroupDescription": "SG sem egress inline",
+                "GroupDescription": "SG without egress inline",
                 "VpcId": "vpc-123456"
             }
         },

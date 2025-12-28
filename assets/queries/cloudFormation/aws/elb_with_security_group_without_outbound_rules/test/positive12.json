@@ -4,7 +4,7 @@
         "MySG": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
-                "GroupDescription": "SG com standalone egress incorreto",
+                "GroupDescription": "SG with incorrect standalone egress",
                 "VpcId": "vpc-123456"
             }
         },
