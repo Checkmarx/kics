@@ -1,0 +1,103 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "EC2Instance01": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-79fd7eee",
+        "InstanceType": "t3.medium",
+        "SecurityGroupIds": [
+          { "Ref": "Negative2SecurityGroup" }
+        ],
+        "KeyName": "my-new-rsa-key"
+      }
+    },
+    "Negative2SecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Security group for negative test cases",
+        "VpcId": { "Ref": "MyVPC" }
+      }
+    },
+    "Negative2IPv4Ingress1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "icmp",
+        "FromPort": 22,
+        "ToPort": 22,
+        "CidrIp": "10.0.0.0/0"
+      }
+    },
+    "Negative2IPv4Ingress2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "tcp",
+        "FromPort": 5000,
+        "ToPort": 5000,
+        "CidrIp": "192.168.0.0/0"
+      }
+    },
+    "Negative2IPv4Ingress3": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "udp",
+        "FromPort": 53,
+        "ToPort": 53,
+        "CidrIp": "8.8.0.0/16"
+      }
+    },
+    "Negative2IPv4Ingress4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "icmp",
+        "FromPort": 5000,
+        "ToPort": 5000,
+        "CidrIp": "8.8.0.0/16"
+      }
+    },
+    "Negative2IPv6Ingress1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "58",
+        "FromPort": 22,
+        "ToPort": 22,
+        "CidrIpv6": "fd00::/0"
+      }
+    },
+    "Negative2IPv6Ingress2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "tcp",
+        "FromPort": 5000,
+        "ToPort": 5000,
+        "CidrIpv6": "fd12:3456:789a::1/0"
+      }
+    },
+    "Negative2IPv6Ingress3": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "udp",
+        "FromPort": 53,
+        "ToPort": 53,
+        "CidrIpv6": "2400:cb00::/32"
+      }
+    },
+    "Negative2IPv6Ingress4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "IpProtocol": "58",
+        "FromPort": 5000,
+        "ToPort": 5000,
+        "CidrIpv6": "2400:cb00::/32"
+      }
+    }
+  }
+}

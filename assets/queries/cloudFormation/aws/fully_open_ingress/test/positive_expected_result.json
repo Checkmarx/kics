@@ -1,38 +1,50 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "Fully Open Ingress",
     "severity": "HIGH",
-    "line": 32
-  },
-  {
-    "line": 24,
-    "fileName": "positive1.yaml",
-    "queryName": "Fully Open Ingress",
-    "severity": "HIGH"
+    "line": 19,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Fully Open Ingress",
     "severity": "HIGH",
-    "line": 24,
-    "fileName": "positive2.yaml"
+    "line": 23,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Fully Open Ingress",
     "severity": "HIGH",
-    "line": 115,
-    "fileName": "positive3.json"
-  },
-  {
-    "severity": "HIGH",
-    "line": 326,
-    "fileName": "positive3.json",
-    "queryName": "Fully Open Ingress"
+    "line": 37,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Fully Open Ingress",
     "severity": "HIGH",
-    "line": 268,
-    "fileName": "positive4.json"
+    "line": 46,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Fully Open Ingress",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Fully Open Ingress",
+    "severity": "HIGH",
+    "line": 32,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Fully Open Ingress",
+    "severity": "HIGH",
+    "line": 53,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Fully Open Ingress",
+    "severity": "HIGH",
+    "line": 65,
+    "fileName": "positive2.json"
   }
 ]

@@ -3,96 +3,81 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
-isAccessibleFromEntireNetwork(ingress) {
-	endswith(ingress.CidrIp, "/0")
-}
-
-getProtocolList(protocol) = list {
-	upper(protocol) == ["-1", "ALL"][_]
-	list = ["TCP", "UDP"]
-} else = list {
-	upper(protocol) == "TCP"
-	list = ["TCP"]
-} else = list {
-	upper(protocol) == "UDP"
-	list = ["UDP"]
-}
-
-getProtocolPorts(protocols, tcpPortsMap, udpPortsMap) = portsMap {
-	protocols[_] == ["-1", "ALL"][_]
-	portsMap = object.union(tcpPortsMap, udpPortsMap)
-} else = portsMap {
-	protocols[_] == "UDP"
-	portsMap = udpPortsMap
-} else = portsMap {
-	protocols[_] == "TCP"
-	portsMap = tcpPortsMap
-}
-
-getELBType(elb) = type {
-	common_lib.valid_key(elb.Properties, "Type")
-	type = elb.Properties.Type
-} else = type {
-	elb.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
-	type = "classic"
-} else = type {
-	elb.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
-	type = "application"
-}
-
-getLinkedSecGroupList(elb, resources) = elbSecGroupName {
-	common_lib.valid_key(elb.Properties, "SecurityGroups")
-	elbSecGroupName = elb.Properties.SecurityGroups
-} else = ec2SecGroup {
-	ec2InstanceList := [ec2 | ec2 := resources[name]; contains(upper(ec2.Type), "INSTANCE")]
-	ec2Instance := ec2InstanceList[i]
-	common_lib.valid_key(ec2Instance.Properties, "SecurityGroups")
-	ec2SecGroup = ec2Instance.Properties.SecurityGroups
-}
+portsMaps := {"TCP": common_lib.tcpPortsMap, "UDP": cf_lib.udpPortsMap}
 
 CxPolicy[result] {
-	#############	document and resource
 	resources := input.document[i].Resources
-	loadBalancerList := [{"name": key, "properties": loadBalancer} |
-		loadBalancer := resources[key]
+
+	loadBalancerList := {name : loadBalancer |
+		loadBalancer := resources[name]
 		contains(loadBalancer.Type, "ElasticLoadBalancing")
-	]
-
-	elb := loadBalancerList[j]
-	elbType := getELBType(elb.properties)
-	elbSecGroupList := getLinkedSecGroupList(elb.properties, resources)
-
-	securityGroupList = [{"name": key, "properties": secGroup} |
-		secGroup := resources[key]
-		contains(secGroup.Type, "SecurityGroup")
-	]
-
-	secGroup := securityGroupList[k]
-	secGroup.name == elbSecGroupList[l]
-	ingress := secGroup.properties.Properties.SecurityGroupIngress[m]
-
-	protocols := getProtocolList(ingress.IpProtocol)
-	protocol := protocols[n]
-	portsMap = getProtocolPorts(protocols, common_lib.tcpPortsMap, cf_lib.udpPortsMap)
-
-	#############	Checks
-	isAccessibleFromEntireNetwork(ingress)
-
-	# is in ports range
-	portRange := numbers.range(ingress.FromPort, ingress.ToPort)
-	portsMap[portRange[idx]]
-	portNumber = portRange[idx]
-	portName := portsMap[portNumber]
-
-	##############	Result
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": secGroup.properties.Type,
-		"resourceName": cf_lib.get_resource_name(secGroup.properties, secGroup.name),
-		"searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup.name]),
-		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s load balancer %s", [portName, protocol, portNumber, elbType, elb.name]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed in %v load balancer %s", [portName, protocol, portNumber, elbType, elb.name]),
 	}
+
+	elbInstance = loadBalancerList[elb_instance_name]
+	elbType := getELBType(elbInstance)
+
+	resource := resources[sec_group_name]
+	resource.Type == "AWS::EC2::SecurityGroup"
+
+	ec2InstanceList := {name : ec2 | ec2 := resources[name]; ec2.Type == "AWS::EC2::Instance"; common_lib.valid_key(ec2.Properties, "SecurityGroups")}
+	lb_instance_is_associated_with_sec_group(elbInstance, sec_group_name, ec2InstanceList)
+
+	ingresses_with_names := cf_lib.search_for_standalone_ingress(sec_group_name, input.document[y])
+
+	ingress_list := array.concat(ingresses_with_names.ingress_list, common_lib.get_array_if_exists(resource.Properties,"SecurityGroupIngress"))
+	ingress := ingress_list[ing_index]
+
+	# check that it is exposed
+	cidr_fields := {"CidrIp", "CidrIpv6"}
+	endswith(ingress[cidr_fields[c]], "/0")
+
+	# check which sensitive port numbers are included
+	ports := get_sensitive_ports(ingress)
+
+	results := cf_lib.get_search_values_for_ingress_resources(ing_index, sec_group_name, ingresses_with_names.names, y, i)
+
+	result := {
+		"documentId": input.document[results.doc_index].id,
+		"resourceType": results.type,
+		"resourceName": cf_lib.get_resource_name(resource, sec_group_name),
+		"searchKey": results.searchKey,
+		"searchValue": ports[x].searchValue,
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("%s should not be allowed in %s load balancer '%s'", [ports[x].value, elbType, elb_instance_name]),
+		"keyActualValue": sprintf("%s is allowed in %v load balancer '%s'", [ports[x].value, elbType, elb_instance_name]),
+		"searchLine": results.searchLine,
+	}
+}
+
+getELBType(elb) = elb.Properties.Type {
+	common_lib.valid_key(elb.Properties, "Type")		# application | network | gateway
+} else = "classic" {
+	elb.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
+} else = "application" {
+	elb.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
+}
+
+lb_instance_is_associated_with_sec_group(elb, sec_group_name, ec2InstanceList) {
+	cf_lib.get_name(elb.Properties.SecurityGroups[_]) == sec_group_name
+} else {																		# classic elb
+	ec2Instance := ec2InstanceList[name]
+	cf_lib.get_name(ec2Instance.Properties.SecurityGroups[_]) == sec_group_name		# intance - sec group
+	cf_lib.get_name(elb.Properties.Instances[_]) == name							# elb - instance
+}
+
+get_sensitive_ports(ingress) = ports {
+	ports := [x |
+		protocol   := cf_lib.getProtocolList(ingress.IpProtocol)[_]
+		portName   := portsMaps[protocol][portNumber]
+		check_port(ingress.FromPort, ingress.ToPort, portNumber, ingress.IpProtocol)
+		x := {
+		"value" : sprintf("%s (%s:%d)", [portName, protocol, portNumber]),
+		"searchValue" : sprintf("%s,%d", [protocol, portNumber])
+		}]
+}
+
+check_port(from, to, port, protocol) {
+	protocol == "-1"
+} else {
+	cf_lib.containsPort(from, to, port)
 }

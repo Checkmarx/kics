@@ -1,0 +1,31 @@
+{
+  "Resources": {
+    "MyDBSecurityGroupIngress": {
+      "Type": "AWS::RDS::DBSecurityGroupIngress",
+      "Properties": {
+        "DBSecurityGroupName": {
+          "Ref": "MyDBSecurityGroup"
+        },
+        "CIDRIP": "1.2.3.4/28"
+      }
+    },
+    "StandaloneIngressIPv4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DbSecurityByEC2SecurityGroup1"
+        },
+        "CidrIp": "1.2.3.4/28"
+      }
+    },
+    "StandaloneIngressIPv6": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DbSecurityByEC2SecurityGroup2"
+        },
+        "CidrIpv6": "2001:db8:a::123/121"
+      }
+    }
+  }
+}
