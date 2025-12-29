@@ -1,120 +1,98 @@
 {
-  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
-  "Parameters": {
-    "MySubnets": {
-      "Description": "My subnet",
-      "Type": "List\u003cString\u003e"
-    }
-  },
   "Resources": {
-    "ApplicationLoadBalancer": {
+    "LoadBalancer01": {
       "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
       "Properties": {
         "SecurityGroups": [
-          "ALBSecGroup"
-        ],
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": "ip-target-alb"
-          }
-        ],
-        "Name": "ip-target-alb",
-        "Subnets": "MySubnets"
+          { "Ref": "DualStackSecurityGroup" }
+        ]
       }
     },
-    "ALBSecGroup": {
+    "DualStackSecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "Allow http and ssh",
-        "VpcId": "my-vpc",
-        "SecurityGroupIngress": [
-          {
-            "FromPort": 80,
-            "ToPort": 80,
-            "CidrIp": "127.0.0.1/32",
-            "IpProtocol": "tcp"
-          },
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 6379,
-            "ToPort": 6379,
-            "CidrIp": "127.0.0.1/0"
-          }
-        ],
-        "SecurityGroupEgress": [
-          {
-            "ToPort": 22,
-            "CidrIp": "0.0.0.0/0",
-            "IpProtocol": "tcp",
-            "FromPort": 22
-          }
-        ]
+        "GroupDescription": "Security group for IPv4 and IPv6 ingress rules",
+        "VpcId": { "Ref": "MyVPC" }
       }
     },
-    "HTTPALBListener": {
+    "IPv4Ingress1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "DefaultActions": [
-          {
-            "Type": "forward",
-            "TargetGroupArn": "IPTargetGroup"
-          }
-        ],
-        "LoadBalancerArn": "ApplicationLoadBalancer",
-        "Port": 80,
-        "Protocol": "HTTP"
-      },
-      "Type": "AWS::ElasticLoadBalancingV2::Listener"
-    },
-    "IPTargetGroup": {
-      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
-      "Properties": {
-        "HealthCheckIntervalSeconds": 10,
-        "HealthCheckPath": "/health/check",
-        "HealthCheckProtocol": "HTTP",
-        "HealthyThresholdCount": 2,
-        "VpcId": "my-vpc",
-        "TargetType": "ip",
-        "Matcher": {
-          "HttpCode": "200"
-        },
-        "UnhealthyThresholdCount": 2,
-        "Port": 80,
-        "Protocol": "HTTP",
-        "HealthCheckTimeoutSeconds": 5
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "17",
+        "FromPort": 137,
+        "ToPort": 137,
+        "CidrIp": "10.0.0.0/0"
       }
     },
-    "TestListenerRule1": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+    "IPv4Ingress2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "Priority": 1,
-        "ListenerArn": "HTTPALBListener",
-        "Conditions": [
-          {
-            "Values": [
-              "test1.checkmarx.com"
-            ],
-            "Field": "host-header"
-          }
-        ],
-        "Actions": [
-          {
-            "Type": "forward",
-            "TargetGroupArn": "IPTargetGroup",
-            "Order": 1,
-            "ForwardConfig": {
-              "TargetGroups": [
-                {
-                  "TargetGroupArn": "IPTargetGroup",
-                  "Weight": 1
-                }
-              ],
-              "TargetGroupStickinessConfig": {
-                "Enabled": false
-              }
-            }
-          }
-        ]
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "tcp",
+        "FromPort": 22,
+        "ToPort": 22,
+        "CidrIp": "192.168.0.0/0"
+      }
+    },
+    "IPv4Ingress3": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "udp",
+        "FromPort": 137,
+        "ToPort": 137,
+        "CidrIp": "172.16.0.0/0"
+      }
+    },
+    "IPv4Ingress4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "udp",
+        "FromPort": 138,
+        "ToPort": 138,
+        "CidrIp": "172.16.0.0/0"
+      }
+    },
+    "IPv6Ingress1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "6",
+        "FromPort": 22,
+        "ToPort": 22,
+        "CidrIpv6": "fd00::/0"
+      }
+    },
+    "IPv6Ingress2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "tcp",
+        "FromPort": 22,
+        "ToPort": 22,
+        "CidrIpv6": "fd12:3456:789a::1/0"
+      }
+    },
+    "IPv6Ingress3": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "udp",
+        "FromPort": 137,
+        "ToPort": 137,
+        "CidrIpv6": "fd00:abcd:1234::42/0"
+      }
+    },
+    "IPv6Ingress4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "udp",
+        "FromPort": 138,
+        "ToPort": 138,
+        "CidrIpv6": "fd00:abcd:1234::42/0"
       }
     }
   }

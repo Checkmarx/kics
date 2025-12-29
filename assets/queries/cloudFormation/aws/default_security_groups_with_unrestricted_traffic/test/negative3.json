@@ -1,0 +1,11 @@
+{
+  "Resources": {
+    "InstanceSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupName": "default",
+        "GroupDescription": "Enable SSH access via port 22"
+      }
+    }
+  }
+}

@@ -1,5 +1,29 @@
 {
   "Resources": {
+    "InstanceSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "VpcId": {
+          "Ref": "myVPC"
+        },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "0.0.0.0/0"
+          }
+        ],
+        "SecurityGroupEgress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "0.0.0.0/0"
+          }
+        ]
+      }
+    },
     "OutboundRule": {
       "Type": "AWS::EC2::SecurityGroupEgress",
       "Properties": {
@@ -23,6 +47,9 @@
     "InboundRule": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
+        "IpProtocol": "tcp",
+        "FromPort": 0,
+        "ToPort": 65535,
         "SourceSecurityGroupId": {
           "Fn::GetAtt": [
             "SourceSG",
@@ -34,34 +61,13 @@
             "TargetSG",
             "GroupId"
           ]
-        },
-        "IpProtocol": "tcp",
-        "FromPort": 0,
-        "ToPort": 65535
+        }
       }
     },
-    "InstanceSecurityGroup": {
-      "Type": "AWS::EC2::SecurityGroup",
+    "LegacySecurityGroup": {
+      "Type": "AWS::RDS::DBSecurityGroup",
       "Properties": {
-        "SecurityGroupIngress": [
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 80,
-            "ToPort": 80,
-            "CidrIp": "0.0.0.0/0"
-          }
-        ],
-        "SecurityGroupEgress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "IpProtocol": "tcp",
-            "FromPort": 80,
-            "ToPort": 80
-          }
-        ],
-        "VpcId": {
-          "Ref": "myVPC"
-        }
+        "DBSecurityGroupName": "sample"
       }
     }
   }
