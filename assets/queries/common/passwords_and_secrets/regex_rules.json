@@ -15,7 +15,7 @@
         },
         {
           "description": "Avoiding Terraform 'optional' statement",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\((string|number|sensitive\\(string\\)|map\\(string\\)|set\\(string\\)|any)\\)$"   
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\((string|number|sensitive\\(string\\)|map\\(string\\)|set\\(string\\)|any)\\)$"
         },
         {
           "description": "Avoiding Terraform 'try' statement",
@@ -83,11 +83,11 @@
         {
           "description": "Avoiding Secrets from Azure Key Vault",
           "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?[${]+[A-Za-z0-9/~^_!@&%()=?*+-]+}?"
-        }, 
+        },
         {
           "description": "Allow secret retrieved from ARM parameters",
           "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*[:=]\\s*['\"]?\\[\\s*parameters\\(['\"][a-zA-Z][a-zA-Z0-9_-]*['\"]\\s*\\)\\s*\\]"
-        }, 
+        },
         {
           "description": "Allow secrets retrieved from Bicep getSecret built in function",
           "regex": "(?i)['\"]?secret[_]?(key|value)?['\"]?\\s*(:|=)\\s*[a-zA-Z]*\\.getSecret\\(\\s*[\"']([A-Za-z0-9/~^_!@#&%(){};=?*+-<>,:;[\\]%$]+)[\"']\\)"

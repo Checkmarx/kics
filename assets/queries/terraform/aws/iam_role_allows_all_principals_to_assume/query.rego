@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_role[name]
 	policyResource := resource.assume_role_policy
 
-	policy := common_lib.json_unmarshal(policyResource)
+	policy := common_lib.get_policy(policyResource)
 
 	st := common_lib.get_statement(policy)
 	statement := st[_]
