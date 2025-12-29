@@ -48,6 +48,6 @@ get_res(resource, name) = res {
 			"before": sprintf("ip_address_type = \"%s\"", [resource.ip_address_type]),
 			"after": "ip_address_type == \"Private\"",
 		}),
-        "rt": "addition",
+        "rt": "replacement",
     }
 }
