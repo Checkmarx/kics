@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resourceType := resources[r]
 	resource := input.document[i].resource[resourceType][name]
 
-	policy_unmarshaled := common_lib.json_unmarshal(resource.policy)
+	policy_unmarshaled := common_lib.get_policy(resource.policy)
 	not deny_http_requests(policy_unmarshaled)
 
 	result := {
@@ -31,7 +31,7 @@ CxPolicy[result] {
 
 	policy := module[keyToCheck]
 
-	policy_unmarshaled := common_lib.json_unmarshal(policy)
+	policy_unmarshaled := common_lib.get_policy(policy)
 	not deny_http_requests(policy_unmarshaled)
 
 	result := {
