@@ -5,7 +5,7 @@ resource "azurerm_network_security_rule" "negative2-1" {
      access                      = "Deny"
      protocol                    = "TCP"
      source_port_range           = "*"
-     destination_port_ranges     = ["3388", "3390", "1000-2000"]
+     destination_port_ranges     = ["3388", "3390", "1000-2000"]
      source_address_prefix       = "*"
      destination_address_prefix  = "*"
      resource_group_name         = azurerm_resource_group.example.name
@@ -34,7 +34,7 @@ resource "azurerm_network_security_rule" "negative2-3" {
      access                      = "Allow"
      protocol                    = "TCP"
      source_port_range           = "*"
-     destination_port_ranges     = ["20-30", "53", "123"]
+     destination_port_ranges     = ["20-30", "53", "123"]
      source_address_prefix       = "192.168.0.0"
      destination_address_prefix  = "*"
      resource_group_name         = azurerm_resource_group.example.name
@@ -124,7 +124,7 @@ resource azurerm_network_security_group "negative2-9-17" {
           access                      = "Deny"
           protocol                    = "TCP"
           source_port_range           = "*"
-          destination_port_ranges     = ["3388", "3390", "1000-2000"]
+          destination_port_ranges     = ["3388", "3390", "1000-2000"]
           source_address_prefix       = "*"
           destination_address_prefix  = "*"
           resource_group_name         = azurerm_resource_group.example.name
