@@ -45,8 +45,8 @@ get_res(resource, name) = res {
         "kav": sprintf("'ip_address_type' is defined to '%s'", [resource.ip_address_type]),
         "sl": common_lib.build_search_line(["resource", "azurerm_container_group", name, "ip_address_type"], []),
         "rem": json.marshal({
-			"before": sprintf("\"%s\"", [resource.ip_address_type]),
-			"after": "\"Private\"",
+			"before": resource.ip_address_type,
+			"after": "Private",
 		}),
         "rt": "replacement",
     }
