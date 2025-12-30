@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive3.tf"
+  }
+]
