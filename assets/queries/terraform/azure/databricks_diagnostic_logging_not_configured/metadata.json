@@ -1,6 +1,6 @@
 {
   "id": "0bd3630a-2ae9-4522-9d66-04049654b1df",
-  "queryName": "Beta - Databricks Diagnostic Logging Unconfigured",
+  "queryName": "Beta - Databricks Diagnostic Logging Not Configured",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Ensure that logging for Azure Databricks is 'Enabled' for categories: 'accounts','Filesystem','clusters','notebook' and 'jobs', with one or more of the following destinations: 'Azure Log Analytics workspace', 'Azure Storage Account', 'Azure Event Hubs'",
