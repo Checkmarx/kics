@@ -5,19 +5,20 @@
     {
       "type": "Microsoft.Sql/servers",
       "apiVersion": "2021-02-01-preview",
-      "name": "sqlServer1",
+      "name": "sql_server",
       "location": "[resourceGroup().location]",
       "properties": {}
     },
     {
-      "type": "Microsoft.Sql/servers/databases",
+      "type": "Microsoft.Sql/servers/auditingSettings",
       "apiVersion": "2021-02-01-preview",
-      "name": "sqlServer1/sqlDatabase1",
-      "location": "[resourceGroup().location]",
+      "name": "sql_server/default_1",
       "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"
+        "[resourceId('Microsoft.Sql/servers', 'sql_server')]"
       ],
-      "properties": {}
+      "properties": {
+        "state": "Enabled"
+      }
     }
   ]
 }
