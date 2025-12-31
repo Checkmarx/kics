@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2022-09-01",
+      "name": "meuAppService",
+      "location": "West Europe",
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2022-09-01",
+      "name": "meuAppService/web",
+      "dependsOn": [
+        "Microsoft.Web/sites/meuAppService"
+      ],
+      "properties": {
+        "minTlsVersion": "1.2"
+      }
+    }
+  ]
+}
