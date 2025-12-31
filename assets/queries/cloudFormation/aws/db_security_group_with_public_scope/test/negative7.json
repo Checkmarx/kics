@@ -1,0 +1,112 @@
+{
+  "Resources": {
+    "DbSecurityByEC2SecurityGroupInline_neg7": {
+      "Type": "AWS::RDS::DBSecurityGroup",
+      "Properties": {
+        "GroupDescription": "Legacy inline ingress",
+        "DBSecurityGroupIngress": [
+          {
+            "CIDRIP": "0.0.0.0/0"
+          }
+        ]
+      }
+    },
+    "DbSecurityByEC2SecurityGroupStandalone_neg7": {
+      "Type": "AWS::RDS::DBSecurityGroup",
+      "Properties": {
+        "GroupDescription": "Legacy standalone ingress"
+      }
+    },
+    "DbSecurityIngressRule_neg7": {
+      "Type": "AWS::RDS::DBSecurityGroupIngress",
+      "Properties": {
+        "DBSecurityGroupName": {
+          "Ref": "DbSecurityByEC2SecurityGroupStandalone_neg7"
+        },
+        "CIDRIP": "0.0.0.0/0"
+      }
+    },
+    "DBEC2SecurityGroupInline_neg7": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Inline IPv4 and IPv6 ingress",
+        "VpcId": {
+          "Ref": "VPC"
+        },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "0.0.0.0/0"
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIpv6": "::/0"
+          }
+        ]
+      }
+    },
+    "DBEC2SecurityGroupStandalone_neg7": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Standalone IPv4 and IPv6 ingress",
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      }
+    },
+    "DBEC2SecurityGroupIngress_neg7": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DBEC2SecurityGroupStandalone_neg7"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 80,
+        "ToPort": 80,
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "DBEC2SecurityGroupIngressIPv6_neg7": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DBEC2SecurityGroupStandalone_neg7"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 80,
+        "ToPort": 80,
+        "CidrIpv6": "0000:0000:0000:0000:0000:0000:0000:0000/0"
+      }
+    },
+    "DBInstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "PubliclyAccessible": true,
+        "DBName": {
+          "Ref": "DBName"
+        },
+        "Engine": "MySQL",
+        "DBSecurityGroups": [
+          {
+            "Ref": "invalid_reference_1_neg7"
+          },
+          {
+            "Ref": "invalid_reference_2_neg7"
+          }
+        ],
+        "VPCSecurityGroups": [
+          {
+            "Ref": "invalid_reference_3_neg7"
+          },
+          {
+            "Ref": "invalid_reference_4_neg7"
+          }
+        ]
+      }
+    }
+  }
+}
