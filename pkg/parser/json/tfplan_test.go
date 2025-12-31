@@ -11,6 +11,15 @@ func TestJson_parseTFPlan(t *testing.T) {
 	type args struct {
 		doc model.Document
 	}
+	dummyValues := map[string]interface{}{
+		"name": "Production DB",
+		"size": 256,
+	}
+
+	dummyExpectedValues := map[string]interface{}{
+		"name": "Production DB",
+		"size": float64(256),
+	}
 
 	tests := []struct {
 		name    string
@@ -29,16 +38,13 @@ func TestJson_parseTFPlan(t *testing.T) {
 						"root_module": map[string]interface{}{
 							"resources": []map[string]interface{}{
 								{
-									"address":        "fakewebservices_database.prod_db",
-									"mode":           "managed",
-									"type":           "fakewebservices_database",
-									"name":           "prod_db",
-									"provider_name":  "registry.terraform.io/hashicorp/fakewebservices",
-									"schema_version": 0,
-									"values": map[string]interface{}{
-										"name": "Production DB",
-										"size": 256,
-									},
+									"address":          "fakewebservices_database.prod_db",
+									"mode":             "managed",
+									"type":             "fakewebservices_database",
+									"name":             "prod_db",
+									"provider_name":    "registry.terraform.io/hashicorp/fakewebservices",
+									"schema_version":   0,
+									"values":           dummyValues,
 									"sensitive_values": map[string]interface{}{},
 								},
 							},
@@ -51,10 +57,7 @@ func TestJson_parseTFPlan(t *testing.T) {
 			want: model.Document{
 				"resource": map[string]interface{}{
 					"fakewebservices_database": map[string]interface{}{
-						"prod_db": map[string]interface{}{
-							"name": "Production DB",
-							"size": (float64)(256),
-						},
+						"fakewebservices_database.prod_db": dummyExpectedValues,
 					},
 				},
 			},
@@ -71,6 +74,67 @@ func TestJson_parseTFPlan(t *testing.T) {
 			},
 			want:    model.Document{},
 			wantErr: true,
+		},
+		{
+			name: "test - child module is parsed",
+			args: args{
+				doc: model.Document{
+					"format_version":    "0.2",
+					"terraform_version": "1.0.5",
+					"variables":         map[string]interface{}{},
+					"planned_values": map[string]interface{}{
+						"root_module": map[string]interface{}{
+							"resources": []map[string]interface{}{
+								{
+									"address":       "fakewebservices_database.prod_db",
+									"mode":          "managed",
+									"type":          "fakewebservices_database",
+									"name":          "prod_db",
+									"provider_name": "registry.terraform.io/hashicorp/fakewebservices",
+									"values":        dummyValues,
+								},
+							},
+							"child_modules": []map[string]interface{}{
+								{
+									"resources": []map[string]interface{}{
+										{
+											"address":       "module.ilovetests.fakewebservices_database.prod_db",
+											"mode":          "managed",
+											"type":          "fakewebservices_database",
+											"name":          "prod_db",
+											"provider_name": "registry.terraform.io/hashicorp/fakewebservices",
+											"values":        dummyValues,
+										},
+									},
+									"child_modules": []map[string]interface{}{
+										{
+											"resources": []map[string]interface{}{
+												{
+													"address":       "module.ilovetests.module.ilovego.fakewebservices_database.prod_db",
+													"mode":          "managed",
+													"type":          "fakewebservices_database",
+													"name":          "prod_db",
+													"provider_name": "registry.terraform.io/hashicorp/fakewebservices",
+													"values":        dummyValues,
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			want: model.Document{
+				"resource": map[string]interface{}{
+					"fakewebservices_database": map[string]interface{}{
+						"fakewebservices_database.prod_db":                                  dummyExpectedValues,
+						"module.ilovetests.fakewebservices_database.prod_db":                dummyExpectedValues,
+						"module.ilovetests.module.ilovego.fakewebservices_database.prod_db": dummyExpectedValues,
+					},
+				},
+			},
 		},
 	}
 
