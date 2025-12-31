@@ -12,7 +12,6 @@ CxPolicy[result] { # resource of type Microsoft.Web/sites without child resource
 	
 	children_array := arm_lib.get_children(doc, value, path)
 	
-	#check_tls_version(doc, value, path, children_array)
 	count(children_array) == 0
 	not is_last_tls(doc, value)
 
