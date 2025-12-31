@@ -62,14 +62,12 @@ func readPlan(plan *hcl_plan.Plan) model.Document {
 
 // readModule will iterate over all planned_value getting the information required
 func (kp *KicsPlan) readModule(module *hcl_plan.StateModule) {
-	// initialize all the types interfaces
+	// initialize all the types interfaces and fill in all the types interfaces
 	for _, resource := range module.Resources {
-		convNamedRes := make(map[string]KicsPlanNamedResource)
-		kp.Resource[resource.Type] = convNamedRes
-	}
-	// fill in all the types interfaces
-	for _, resource := range module.Resources {
-		kp.Resource[resource.Type][resource.Name] = resource.AttributeValues
+		if _, type_map := kp.Resource[resource.Type]; !type_map {
+			kp.Resource[resource.Type] = make(map[string]KicsPlanNamedResource)
+		}
+		kp.Resource[resource.Type][resource.Address] = resource.AttributeValues
 	}
 
 	for _, childModule := range module.ChildModules {
