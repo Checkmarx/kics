@@ -3,6 +3,34 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 0745bb3f-60dc-43b6-90ae-67bb01fd1775
+      queryName: Beta - SQL Database Without Data Encryption
+      observations: ""
+      change: 2
+    - queryId: 0536c90c-714e-4184-991e-3fed8d8b7b46
+      queryName: Beta - VM Without Managed Disk
+      observations: ""
+      change: 2
+    - queryId: d3ba7d62-bd07-4102-88ca-9668e5f08e7d
+      queryName: Beta - Recovery Services Vault With Public Network Access
+      observations: ""
+      change: 2
+    - queryId: 0af1814d-23d7-472e-a1b8-b265e7b0d88f
+      queryName: Beta - Recovery Services Vault Without Immutability
+      observations: ""
+      change: 2
+    - queryId: b373043c-f3bf-40db-b67a-c982732c7781
+      queryName: Beta - Recovery Services Vault Without Soft Delete
+      observations: ""
+      change: 2
+    - queryId: 7a0164a5-ec6e-40b2-938d-ab3edfd37dcd
+      queryName: Beta - Backup Vault Without Immutability
+      observations: ""
+      change: 2
+    - queryId: 8d407b28-c746-4650-8bbd-d27df54a795f
+      queryName: Beta - Backup Vault Without Soft Delete
+      observations: ""
+      change: 2
     - queryId: 0bd3630a-2ae9-4522-9d66-04049654b1df
       queryName: Beta - Databricks Diagnostic Logging Unconfigured
       observations: ""
@@ -101,5 +129,17 @@ similarityIDChangeList:
       change: 2
     - queryId: 05d6b52e-11ca-453d-bb3a-21c7c853ee92
       queryName: Beta - Databricks Workspace Using Default Virtual Network
+      observations: ""
+      change: 2
+    - queryId: 71884fcb-ae03-41c8-87b9-22c90353f256
+      queryName: Beta - Container Instances Not Using Private Virtual Networks
+      observations: ""
+      change: 2
+    - queryId: cec6e005-9309-46eb-b34b-456f6eae818b
+      queryName: Beta - Key Vault Purge Protection Is Enabled
+      observations: ""
+      change: 2
+    - queryId: 41d7989b-3be2-4081-8c79-cf903dd174c5
+      queryName: Beta - Use Of User Access Administrator Role Is Not Restricted
       observations: ""
       change: 2
