@@ -1,0 +1,14 @@
+{
+  "id": "69d4f245-d534-479e-8bcc-f6a836276dc8",
+  "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensure 'google_logging_metric' and 'google_monitoring_alert_policy' resources account for custom role changes such as 'DeleteRole'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/logging_metric#filter-1",
+  "platform": "Terraform",
+  "descriptionID": "69d4f245",
+  "cloudProvider": "gcp",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

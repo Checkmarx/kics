@@ -1,0 +1,119 @@
+{
+  "Resources": {
+    "EC2Instance01": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-79fd7eee",
+        "InstanceType": "t3.medium",
+        "SecurityGroupIds": [
+          { "Ref": "Negative1IPv4_1" },
+          { "Ref": "Negative1IPv4_2" },
+          { "Ref": "Negative1ArrayTestIPv4" },
+          { "Ref": "Negative1IPv6_1" },
+          { "Ref": "Negative1IPv6_2" },
+          { "Ref": "Negative1ArrayTestIPv6" }
+        ],
+        "KeyName": "my-new-rsa-key"
+      }
+    },
+    "Negative1IPv4_1": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Incorrect protocol: ICMP",
+        "VpcId": { "Ref": "MyVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "icmp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "10.0.0.0/0"
+          }
+        ]
+      }
+    },
+    "Negative1IPv4_2": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Unknown port: port 5000",
+        "VpcId": { "Ref": "MyVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIp": "192.168.0.0/0"
+          }
+        ]
+      }
+    },
+    "Negative1ArrayTestIPv4": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Mixed incorrect CIDR and 'All incorrect'",
+        "VpcId": { "Ref": "MyVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "udp",
+            "FromPort": 53,
+            "ToPort": 53,
+            "CidrIp": "8.8.0.0/16"
+          },
+          {
+            "IpProtocol": "icmp",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIp": "10.68.0.0/14"
+          }
+        ]
+      }
+    },
+    "Negative1IPv6_1": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Incorrect protocol: ICMPV6",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "58",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv6": "fd00::/0"
+          }
+        ]
+      }
+    },
+    "Negative1IPv6_2": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Unknown port: port 5000",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "6",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIpv6": "fd12:3456:789a::1/0"
+          }
+        ]
+      }
+    },
+    "Negative1ArrayTestIPv6": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Mixed incorrect CIDR and 'All incorrect'",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "udp",
+            "FromPort": 53,
+            "ToPort": 53,
+            "CidrIpv6": "2400:cb00::/32"
+          },
+          {
+            "IpProtocol": "58",
+            "FromPort": 110,
+            "ToPort": 110,
+            "CidrIpv6": "fd00:abcd:1234::42/0"
+          }
+        ]
+      }
+    }
+  }
+}
