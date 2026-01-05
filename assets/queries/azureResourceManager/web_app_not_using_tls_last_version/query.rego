@@ -110,7 +110,7 @@ get_child_resource_info(doc, child_resource) = info {
 	val != "1.3"
 	val != "1.2"
 	info := "not correctly defined"
-} else = null
+}
 
 is_last_tls(doc, resource) {
 	[val, _] :=  arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.siteConfig.minTlsVersion)
