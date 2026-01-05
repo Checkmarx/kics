@@ -1,78 +1,86 @@
-AWSTemplateFormatVersion: 2010-09-09
-Parameters:
-  MySubnets:
-    Description: "My subnet"
-    Type: List<String>
 Resources:
-  ApplicationLoadBalancer:
+  LoadBalancer01:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      Name: ip-target-alb
-      Subnets: !Ref MySubnets
       SecurityGroups:
-        - !Ref ALBSecGroup
-      Tags:
-        - Key: Name
-          Value: ip-target-alb
-  ALBSecGroup:
+        - !Ref DualStackSecurityGroup
+
+  DualStackSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-        GroupDescription: Allow http and ssh
-        VpcId: my-vpc
-        SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-          CidrIp: 127.0.0.1/32
-        - IpProtocol: tcp
-          FromPort: 6379
-          ToPort: 6379
-          CidrIp: 127.0.0.1/0
-        SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 0.0.0.0/0
-  HTTPALBListener:
-    Type: AWS::ElasticLoadBalancingV2::Listener
+      GroupDescription: "Security group for IPv4 and IPv6 ingress rules"
+      VpcId: !Ref MyVPC
+
+# IPv4 Rules
+  IPv4Ingress1:
+    Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      LoadBalancerArn: !Ref ApplicationLoadBalancer
-      Port: 80
-      Protocol: HTTP
-      DefaultActions:
-          - Type: forward
-            TargetGroupArn: !Ref IPTargetGroup
-  IPTargetGroup:
-    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "17"
+      FromPort: 137
+      ToPort: 137
+      CidrIp: "10.0.0.0/0"
+
+  IPv4Ingress2:
+    Type: AWS::EC2::SecurityGroupIngress
     Properties:
-        VpcId: my-vpc
-        Port: 80
-        Protocol: HTTP
-        TargetType: ip
-        Matcher:
-            HttpCode: '200'
-        HealthCheckIntervalSeconds: 10
-        HealthCheckPath: /health/check
-        HealthCheckProtocol: HTTP
-        HealthCheckTimeoutSeconds: 5
-        HealthyThresholdCount: 2
-        UnhealthyThresholdCount: 2
-  TestListenerRule1:
-    Type: "AWS::ElasticLoadBalancingV2::ListenerRule"
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 22
+      ToPort: 22
+      CidrIp: "192.168.0.0/0"
+
+  IPv4Ingress3:
+    Type: AWS::EC2::SecurityGroupIngress
     Properties:
-        Priority: 1
-        ListenerArn: !Ref HTTPALBListener
-        Conditions:
-          - Field: "host-header"
-            Values:
-              - "test1.checkmarx.com"
-        Actions:
-          - Type: "forward"
-            TargetGroupArn: !Ref IPTargetGroup
-            Order: 1
-            ForwardConfig:
-                TargetGroups:
-                  - TargetGroupArn: !Ref IPTargetGroup
-                    Weight: 1
-                TargetGroupStickinessConfig:
-                    Enabled: false
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "udp"
+      FromPort: 137
+      ToPort: 137
+      CidrIp: "172.16.0.0/0"
+
+  IPv4Ingress4:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "udp"
+      FromPort: 138
+      ToPort: 138
+      CidrIp: "172.16.0.0/0"
+
+# IPv6 Rules
+  IPv6Ingress1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "6"
+      FromPort: 22
+      ToPort: 22
+      CidrIpv6: "fd00::/0"
+
+  IPv6Ingress2:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 22
+      ToPort: 22
+      CidrIpv6: "fd12:3456:789a::1/0"
+
+  IPv6Ingress3:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "udp"
+      FromPort: 137
+      ToPort: 137
+      CidrIpv6: "fd00:abcd:1234::42/0"
+
+  IPv6Ingress4:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DualStackSecurityGroup
+      IpProtocol: "udp"
+      FromPort: 138
+      ToPort: 138
+      CidrIpv6: "fd00:abcd:1234::42/0"

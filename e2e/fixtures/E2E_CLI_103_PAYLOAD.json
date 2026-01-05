@@ -1,0 +1,49 @@
+{
+	"document": [
+		{
+			"id": "0",
+		  	"file": "file",
+			"parameters": {
+				"containerName": {
+					"defaultValue": "mycontainer",
+					"type": "string"
+				},
+				"existingStorageAccountName": {
+					"defaultValue": "myexistingaccount",
+					"type": "string"
+				}
+			},
+			"resources": [
+				{
+					"apiVersion": "2023-01-01",
+					"identifier": "fileService",
+					"name": "default",
+					"type": "Microsoft.Storage/storageAccounts/fileServices"
+				},
+				{
+					"apiVersion": "2023-01-01",
+					"identifier": "blobService",
+					"name": "default",
+					"resources": [
+						{
+							"apiVersion": "2023-01-01",
+							"identifier": "container",
+							"name": "[parameters('containerName')]",
+							"parent": "blobService",
+							"type": "containers"
+						},
+						{
+							"apiVersion": "2023-01-01",
+							"identifier": "anotherContainer",
+							"name": "anothercontainer",
+							"parent": "blobService",
+							"type": "containers"
+						}
+					],
+					"type": "Microsoft.Storage/storageAccounts/blobServices"
+				}
+			],
+			"variables": {}
+		}
+	]
+}
