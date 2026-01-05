@@ -8,7 +8,7 @@ resource "azurerm_windows_virtual_machine" "positive1" {
     azurerm_network_interface.positive1.id,
   ]
 
-    enable_automatic_updates = false
+  enable_automatic_updates = false
 }
 
 resource "azurerm_windows_virtual_machine" "positive2" {
@@ -21,7 +21,7 @@ resource "azurerm_windows_virtual_machine" "positive2" {
     azurerm_network_interface.positive2.id,
   ]
 
-    automatic_updates_enabled = false
+  automatic_updates_enabled = false
 }
 
 

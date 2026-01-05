@@ -8,7 +8,7 @@ resource "azurerm_windows_virtual_machine" "negative1" {
     azurerm_network_interface.negative1.id,
   ]
 
-    enable_automatic_updates = true
+  enable_automatic_updates = true
 }
 
 resource "azurerm_windows_virtual_machine" "negative2" {
@@ -21,7 +21,7 @@ resource "azurerm_windows_virtual_machine" "negative2" {
     azurerm_network_interface.negative2.id,
   ]
 
-    automatic_updates_enabled = true  # newer field
+  automatic_updates_enabled = true  # newer field
 }
 
 resource "azurerm_windows_virtual_machine_scale_set" "negative3" {
