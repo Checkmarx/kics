@@ -32,7 +32,7 @@
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
     "severity": "MEDIUM",
-    "line": 33,
+    "line": 55,
     "fileName": "positive4.json"
   }
 ]
