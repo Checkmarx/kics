@@ -482,7 +482,7 @@ any_principal(statement) {
 }
 
 is_recommended_tls(field) {
-	inArray({"TLSv1.2_2018", "TLSv1.2_2019", "TLSv1.2_2021"}, field)
+	inArray({"TLSv1.2_2018", "TLSv1.2_2019", "TLSv1.2_2021","TLSv1.2_2025", "TLSv1.3_2025"}, field)
 }
 
 is_unrestricted(sourceRange) {
