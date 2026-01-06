@@ -38,6 +38,14 @@ get_results(resource, type, name) = results {
 				"searchLine": common_lib.build_search_line(["resource", type, name, "admin_ssh_key", index], [])
 	}]
 	results != []
+} else = results { # for tfplan support
+	is_array(resource.admin_ssh_key)
+	resource.admin_ssh_key == []
+	results := [{
+		"searchKey": sprintf("%s[%s].admin_ssh_key", [type, name]),
+		"keyActualValue": sprintf("'%s[%s].admin_ssh_key' is undefined or null", [type, name]),
+		"searchLine": common_lib.build_search_line(["resource", type, name, "admin_ssh_key"], [])
+	}]
 } else = results {
 	not is_array(resource.admin_ssh_key)
 	not common_lib.valid_key(resource.admin_ssh_key, "public_key")
