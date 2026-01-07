@@ -3,6 +3,32 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: dafe30ec-325d-4516-85d1-e8e6776f012c
+      queryName: Azure Instance Using Basic Authentication
+      observations: ""
+      change: 1
+    - queryId: a5cfef8f-910e-4fd6-8155-f381b236a492
+      queryName: Beta - VM Without Admin SSH Public Key Set
+      observations: ""
+      change: 2
+    - queryId: 59528fe9-0c8e-4153-8016-445911a2d933
+      queryName: Beta - VM With Extension Operations Enabled
+      observations: ""
+      change: 2
+    - queryId: 187e6d39-5e1e-4afa-9c0a-b79632eef346
+      queryName: Beta - VM With Automatic Updates Disabled
+      observations: ""
+      change: 2
+    - queryId: 68403c84-8497-449b-9946-ae848765813f
+      queryName: Beta - Disk Encryption On Managed Disk Disabled
+      observations: ""
+      change: 2
+    - queryId: fbb8e5e0-6dea-41d3-8739-4f2405b0e22a
+      queryName: Beta - Key Vault Without HSM Protection
+      observations: ""
+      change: 2
+    - queryId: 30c7c2f1-c048-49ba-81a4-ae465bbb3335
+      queryName: Beta - VM Without Encryption At Host
     - queryId: 0745bb3f-60dc-43b6-90ae-67bb01fd1775
       queryName: Beta - SQL Database Without Data Encryption
       observations: ""
