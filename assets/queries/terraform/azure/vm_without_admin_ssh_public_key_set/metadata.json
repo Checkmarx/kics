@@ -1,0 +1,14 @@
+{
+  "id": "a5cfef8f-910e-4fd6-8155-f381b236a492",
+  "queryName": "Beta - VM Without Admin SSH Public Key Set",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "All linux based virtual machines should set SSH keys for enchanced security",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine#public_key-1",
+  "platform": "Terraform",
+  "descriptionID": "a5cfef8f",
+  "cloudProvider": "azure",
+  "cwe": "521",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

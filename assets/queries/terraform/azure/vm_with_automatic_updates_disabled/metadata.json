@@ -1,0 +1,14 @@
+{
+  "id": "187e6d39-5e1e-4afa-9c0a-b79632eef346",
+  "queryName": "Beta - VM With Automatic Updates Disabled",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "Windows based VMs should enabled automatic updates",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/4.50.0/docs/resources/windows_virtual_machine.html#automatic_updates_enabled-3",
+  "platform": "Terraform",
+  "descriptionID": "187e6d39",
+  "cloudProvider": "azure",
+  "cwe": "1329",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

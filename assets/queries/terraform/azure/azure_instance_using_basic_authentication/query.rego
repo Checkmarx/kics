@@ -1,35 +1,38 @@
 package Cx
 
-import future.keywords.if
+import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	vm := input.document[i].resource.azurerm_virtual_machine[name]
-    object.get(vm, "os_profile_linux_config", false)
-	vm.os_profile_linux_config.disable_password_authentication == false
-    resource_type := "azurerm_virtual_machine"
+	types := {"azurerm_virtual_machine", "azurerm_virtual_machine_scale_set"}
+	resource := input.document[i].resource[types[t]][name]
+	resource.os_profile_linux_config.disable_password_authentication == false
+
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": resource_type,
-		"resourceName": tf_lib.get_resource_name(vm, name),
-		"searchKey": sprintf("%s[%s].admin_ssh_key", [resource_type, name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s[%s]' should be using SSH keys for authentication", [resource_type, name]),
-		"keyActualValue": sprintf("'%s[%s]' is using username and password for authentication", [resource_type, name]),
+		"resourceType": types[t],
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("%s[%s].os_profile_linux_config.disable_password_authentication", [types[t], name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s[%s].os_profile_linux_config.disable_password_authentication' should be set to 'true'", [types[t], name]),
+		"keyActualValue": sprintf("'%s[%s].os_profile_linux_config.disable_password_authentication' is set to 'false'", [types[t], name]),
+		"searchLine": common_lib.build_search_line(["resource", types[t], name, "os_profile_linux_config", "disable_password_authentication"], [])
 	}
 }
 
 CxPolicy[result] {
-	vm := input.document[i].resource.azurerm_linux_virtual_machine[name]
-	vm.disable_password_authentication == false
-    resource_type := "azurerm_linux_virtual_machine"
+	types := {"azurerm_linux_virtual_machine_scale_set", "azurerm_linux_virtual_machine"}
+	resource := input.document[i].resource[types[t]][name]
+	resource.disable_password_authentication == false
+
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": resource_type,
-		"resourceName": tf_lib.get_resource_name(vm, name),
-		"searchKey": sprintf("%s[%s].admin_ssh_key", [resource_type, name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s[%s]' should be using SSH keys for authentication", [resource_type, name]),
-		"keyActualValue": sprintf("'%s[%s]' is using username and password for authentication", [resource_type, name]),
+		"resourceType": types[t],
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("%s[%s].disable_password_authentication", [types[t], name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s[%s].disable_password_authentication' should be set to 'true'", [types[t], name]),
+		"keyActualValue": sprintf("'%s[%s].disable_password_authentication' is set to 'false'", [types[t], name]),
+		"searchLine": common_lib.build_search_line(["resource", types[t], name, "disable_password_authentication"], [])
 	}
 }
