@@ -1,0 +1,134 @@
+
+{
+  "format_version": "1.2",
+  "terraform_version": "1.11.2",
+  "planned_values": {
+    "root_module": {
+      "child_modules": [
+        {
+          "address": "module.example_module",
+          "resources": [
+            {
+              "address": "module.example_module.azurerm_linux_virtual_machine.example_vm[0]",
+              "mode": "managed",
+              "type": "azurerm_linux_virtual_machine",
+              "name": "example_vm",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/azurerm",
+              "schema_version": 0,
+              "values": {
+                "admin_ssh_key": [],
+                "name": "example-vm",
+                "location": "westeurope",
+                "resource_group_name": "example-rg",
+                "size": "Standard_D2s_v5",
+                "admin_username": "localadm",
+                "disable_password_authentication": false,
+                "provision_vm_agent": true,
+                "allow_extension_operations": true,
+                "priority": "Regular",
+                "identity": [
+                  {
+                    "type": "SystemAssigned",
+                    "identity_ids": null
+                  }
+                ],
+                "os_disk": [
+                  {
+                    "name": "example-vm-osdisk",
+                    "caching": "ReadWrite",
+                    "storage_account_type": "StandardSSD_LRS",
+                    "write_accelerator_enabled": false
+                  }
+                ],
+                "source_image_id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Compute/galleries/exampleGallery/images/RHEL8_Mutable/versions/latest",
+                "tags": {
+                  "environment": "test",
+                  "project": "sample"
+                },
+                "zone": "1"
+              },
+              "sensitive_values": {
+                "admin_password": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "module.example_module.azurerm_linux_virtual_machine.example_vm[0]",
+      "module_address": "module.example_module",
+      "mode": "managed",
+      "type": "azurerm_linux_virtual_machine",
+      "name": "example_vm",
+      "index": 0,
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": ["create"],
+        "before": null,
+        "after": {
+          "name": "example-vm",
+          "location": "westeurope",
+          "resource_group_name": "example-rg",
+          "size": "Standard_D2s_v5",
+          "admin_username": "localadm",
+          "disable_password_authentication": false,
+          "provision_vm_agent": true,
+          "allow_extension_operations": true,
+          "identity": [
+            {
+              "type": "SystemAssigned",
+              "identity_ids": null
+            }
+          ],
+          "os_disk": [
+            {
+              "name": "example-vm-osdisk",
+              "caching": "ReadWrite",
+              "storage_account_type": "StandardSSD_LRS"
+            }
+          ],
+          "source_image_id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Compute/galleries/exampleGallery/images/RHEL8_Mutable/versions/latest",
+          "tags": {
+            "environment": "test",
+            "project": "sample"
+          },
+          "zone": "1"
+        },
+        "after_unknown": {
+          "id": true,
+          "private_ip_address": true,
+          "public_ip_address": true,
+          "virtual_machine_id": true
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "provider_config": {
+      "azurerm": {
+        "name": "azurerm",
+        "full_name": "registry.terraform.io/hashicorp/azurerm",
+        "version_constraint": "~> 4.8",
+        "expressions": {
+          "features": [
+            {
+              "key_vault": [
+                {
+                  "purge_soft_delete_on_destroy": { "constant_value": false },
+                  "purge_soft_deleted_keys_on_destroy": { "constant_value": false },
+                  "recover_soft_deleted_key_vaults": { "constant_value": true },
+                  "recover_soft_deleted_keys": { "constant_value": true }
+                }
+              ]
+            }
+          ],
+          "resource_provider_registrations": { "constant_value": "none" }
+        }
+      }
+    }
+  }
+}
