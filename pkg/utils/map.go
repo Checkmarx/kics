@@ -18,3 +18,12 @@ func MergeMaps(map1, map2 map[string]interface{}) {
 		map1[key] = value
 	}
 }
+
+// SafeAddToSliceMap safely adds a value to a slice in a map, initializing the slice if needed
+// K is the key type (must be comparable), V is the value type
+func SafeAddToSliceMap[K comparable, V any](sliceMap map[K][]V, key K, value V) {
+	if sliceMap == nil {
+		return
+	}
+	sliceMap[key] = append(sliceMap[key], value)
+}

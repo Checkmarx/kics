@@ -6,12 +6,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/pkg/errors"
 	"helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/cli/values"
 	"helm.sh/helm/v3/pkg/release"
+
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 // Resolver is an instance of the helm resolver

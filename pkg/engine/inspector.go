@@ -20,6 +20,7 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
 	"github.com/Checkmarx/kics/v2/pkg/engine/source"
 	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 
 	"github.com/open-policy-agent/opa/v1/ast"
 	"github.com/open-policy-agent/opa/v1/cover"
@@ -535,7 +536,35 @@ func (c *Inspector) DecodeQueryResults(
 		c.tracker.FailedDetectLine()
 	}
 
+	filterOutDuplicatedHelmVulnerabilities(&vulnerabilities)
 	return vulnerabilities, nil
+}
+
+func filterOutDuplicatedHelmVulnerabilities(vulnerabilities *[]model.Vulnerability) *[]model.Vulnerability {
+	vulnerabilityMap := map[string][]model.Vulnerability{}
+	// map K8s results
+	for _, vulnerability := range *vulnerabilities {
+		if vulnerability.Platform == "Kubernetes" {
+			utils.SafeAddToSliceMap(vulnerabilityMap, vulnerability.SimilarityID, vulnerability)
+			if len(vulnerabilityMap[vulnerability.SimilarityID]) > 2 {
+				log.Warn().Msgf("Multiple duplicated vulnerability found for: SimilarityID=%s QueryID=%s",
+					vulnerability.SimilarityID, vulnerability.QueryID)
+			}
+		}
+	}
+
+	// filter out duplicated K8s results from slice
+	filtered := make([]model.Vulnerability, 0, len(*vulnerabilities))
+	for _, vulnerability := range *vulnerabilities {
+		// Keep vulnerability if it's NOT a duplicated Helm K8s result
+		if !(vulnerability.Platform == "Kubernetes" && vulnerability.FileKind == model.KindHELM &&
+			len(vulnerabilityMap[vulnerability.SimilarityID]) > 1) {
+			filtered = append(filtered, vulnerability)
+		}
+	}
+
+	*vulnerabilities = filtered
+	return vulnerabilities
 }
 
 func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultItem interface{}) (*model.Vulnerability, bool) {
