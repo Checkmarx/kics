@@ -1,0 +1,34 @@
+{
+  "document": [
+    {
+      "apiVersion": "v1",
+      "id": "0",
+      "file": "file",
+      "kind": "Service",
+      "metadata": {
+        "labels": {
+          "app": "some-random-value"
+        },
+        "name": "some-random-value"
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "http",
+            "port": 80,
+            "targetPort": 3001
+          },
+          {
+            "name": "metrics",
+            "port": 3000,
+            "targetPort": 3000
+          }
+        ],
+        "selector": {
+          "app": "some-random-value"
+        },
+        "type": "ClusterIP"
+      }
+    }
+  ]
+}
