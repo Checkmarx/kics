@@ -545,7 +545,7 @@ func filterOutDuplicatedHelmVulnerabilities(vulnerabilities *[]model.Vulnerabili
 	vulnerabilityMap := map[string][]model.Vulnerability{}
 	// map K8s results
 	for i := 0; i < len(*vulnerabilities); i++ {
-		if strings.ToLower((*vulnerabilities)[i].Platform) == kubernetesPlatformName {
+		if strings.EqualFold((*vulnerabilities)[i].Platform, kubernetesPlatformName) {
 			utils.SafeAddToSliceMap(vulnerabilityMap, (*vulnerabilities)[i].SimilarityID, (*vulnerabilities)[i])
 			if len(vulnerabilityMap[(*vulnerabilities)[i].SimilarityID]) > 2 {
 				log.Warn().Msgf("Multiple duplicated vulnerability found for: SimilarityID=%s QueryID=%s",
@@ -558,7 +558,7 @@ func filterOutDuplicatedHelmVulnerabilities(vulnerabilities *[]model.Vulnerabili
 	filtered := make([]model.Vulnerability, 0, len(*vulnerabilities))
 	for i := 0; i < len(*vulnerabilities); i++ {
 		// Keep vulnerability if it's NOT a duplicated Helm K8s result
-		if strings.ToLower((*vulnerabilities)[i].Platform) != kubernetesPlatformName || (*vulnerabilities)[i].FileKind != model.KindHELM ||
+		if !strings.EqualFold((*vulnerabilities)[i].Platform, kubernetesPlatformName) || (*vulnerabilities)[i].FileKind != model.KindHELM ||
 			len(vulnerabilityMap[(*vulnerabilities)[i].SimilarityID]) <= 1 {
 			filtered = append(filtered, (*vulnerabilities)[i])
 		}

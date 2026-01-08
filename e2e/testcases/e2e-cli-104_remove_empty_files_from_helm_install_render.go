@@ -12,6 +12,7 @@ func init() { //nolint
 					"-i", "611ab018-c4aa-4ba2-b0f6-a448337509a6",
 					"--kics_compute_new_simid",
 					"--payload-path", "/path/e2e/output/E2E_CLI_104_PAYLOAD",
+					"-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_104_RESULT",
 				},
 			},
