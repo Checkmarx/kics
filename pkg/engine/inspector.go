@@ -47,6 +47,7 @@ const (
 	regoQuery = `result = data.Cx.CxPolicy`
 	// TransitionInformationBasePath the path to yaml files that contains the transition information
 	TransitionInformationBasePath = "./assets/similarityID_transition"
+	kubernetesPlatformName        = "kubernetes"
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -543,23 +544,23 @@ func (c *Inspector) DecodeQueryResults(
 func filterOutDuplicatedHelmVulnerabilities(vulnerabilities *[]model.Vulnerability) *[]model.Vulnerability {
 	vulnerabilityMap := map[string][]model.Vulnerability{}
 	// map K8s results
-	for _, vulnerability := range *vulnerabilities {
-		if vulnerability.Platform == "Kubernetes" {
-			utils.SafeAddToSliceMap(vulnerabilityMap, vulnerability.SimilarityID, vulnerability)
-			if len(vulnerabilityMap[vulnerability.SimilarityID]) > 2 {
+	for i := 0; i < len(*vulnerabilities); i++ {
+		if (*vulnerabilities)[i].Platform == kubernetesPlatformName {
+			utils.SafeAddToSliceMap(vulnerabilityMap, (*vulnerabilities)[i].SimilarityID, (*vulnerabilities)[i])
+			if len(vulnerabilityMap[(*vulnerabilities)[i].SimilarityID]) > 2 {
 				log.Warn().Msgf("Multiple duplicated vulnerability found for: SimilarityID=%s QueryID=%s",
-					vulnerability.SimilarityID, vulnerability.QueryID)
+					(*vulnerabilities)[i].SimilarityID, (*vulnerabilities)[i].QueryID)
 			}
 		}
 	}
 
 	// filter out duplicated K8s results from slice
 	filtered := make([]model.Vulnerability, 0, len(*vulnerabilities))
-	for _, vulnerability := range *vulnerabilities {
+	for i := 0; i < len(*vulnerabilities); i++ {
 		// Keep vulnerability if it's NOT a duplicated Helm K8s result
-		if !(vulnerability.Platform == "Kubernetes" && vulnerability.FileKind == model.KindHELM &&
-			len(vulnerabilityMap[vulnerability.SimilarityID]) > 1) {
-			filtered = append(filtered, vulnerability)
+		if (*vulnerabilities)[i].Platform != kubernetesPlatformName || (*vulnerabilities)[i].FileKind != model.KindHELM ||
+			len(vulnerabilityMap[(*vulnerabilities)[i].SimilarityID]) <= 1 {
+			filtered = append(filtered, (*vulnerabilities)[i])
 		}
 	}
 

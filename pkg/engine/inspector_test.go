@@ -260,6 +260,7 @@ func TestInspect(t *testing.T) { //nolint
 					KeyActualValue:   "'ADD' app.jar",
 					Value:            nil,
 					Output:           `{"documentId":"3a3be8f7-896e-4ef8-9db3-d6c19e60510b","issueType":"IncorrectValue","keyActualValue":"'ADD' app.jar","keyExpectedValue":"'COPY' app.jar","searchKey":"{{ADD ${JAR_FILE} app.jar}}"}`, //nolint
+					FileKind:         "DOCKERFILE",
 				},
 			},
 			wantErr: false,
