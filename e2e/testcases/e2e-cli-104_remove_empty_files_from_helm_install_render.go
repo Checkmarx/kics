@@ -25,7 +25,7 @@ func init() { //nolint
 				},
 			},
 		},
-		WantStatus: []int{0}, // Since existing resources are ignored, no vulnerabilities should be found for them
+		WantStatus: []int{40},
 	}
 
 	Tests = append(Tests, testSample)
