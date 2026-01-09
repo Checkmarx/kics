@@ -4,6 +4,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"sort"
 	"strings"
 	"testing"
 
@@ -824,6 +825,7 @@ func TestSource_ListSupportedCloudProviders(t *testing.T) {
 	want := []string{"alicloud", "aws", "azure", "gcp", "nifcloud", "tencentcloud"}
 	t.Run("test List Supported CP", func(t *testing.T) {
 		got := ListSupportedCloudProviders()
+		sort.Sort(sort.StringSlice(got))
 		require.Equal(t, want, got)
 	})
 }

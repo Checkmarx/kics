@@ -84,8 +84,10 @@ func ListSupportedPlatforms() []string {
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string {
 	cp := make([]string, len(constants.AvailableCloudProviders))
-	for keys, _ := range constants.AvailableCloudProviders {
-		cp = append(cp, keys)
+	i := 0
+	for keys := range constants.AvailableCloudProviders {
+		cp[i] = keys
+		i++
 	}
 	return cp
 }
