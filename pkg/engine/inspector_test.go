@@ -1236,6 +1236,56 @@ func TestFilterOutDuplicatedHelmVulnerabilities(t *testing.T) {
 			expectLogOutput: true,
 			expectedLogMsg:  "Multiple duplicated vulnerability found for: SimilarityID=sim-k8s-triple QueryID=query-123",
 		},
+		{
+			name: "more than 2 duplicates in Terraform - should not log warning nor filter",
+			input: []model.Vulnerability{
+				{
+					ID:           1,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+				{
+					ID:           2,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+				{
+					ID:           3,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+			},
+			want: []model.Vulnerability{
+				{
+					ID:           1,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+				{
+					ID:           2,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+				{
+					ID:           3,
+					QueryID:      "query-123",
+					Platform:     "Terraform",
+					FileKind:     model.KindTerraform,
+					SimilarityID: "sim-triple-tf",
+				},
+			},
+			expectLogOutput: false,
+		},
 	}
 
 	for _, tt := range tests {
