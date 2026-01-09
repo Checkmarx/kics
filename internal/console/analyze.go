@@ -6,13 +6,14 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/rs/zerolog/log"
+	"github.com/spf13/cobra"
+
 	"github.com/Checkmarx/kics/v2/internal/console/flags"
 	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
 	"github.com/Checkmarx/kics/v2/pkg/analyzer"
 	"github.com/Checkmarx/kics/v2/pkg/engine/source"
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/rs/zerolog/log"
-	"github.com/spf13/cobra"
 )
 
 var (
@@ -95,7 +96,6 @@ func executeAnalyze(analyzeParams *analyzer.Parameters) error {
 	}
 
 	analyzedPaths, err := analyzer.Analyze(analyzerStruct)
-
 	if err != nil {
 		log.Err(err)
 		return err

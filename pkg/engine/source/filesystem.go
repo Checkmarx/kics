@@ -9,12 +9,13 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
+
 	"github.com/Checkmarx/kics/v2/assets"
 	"github.com/Checkmarx/kics/v2/internal/constants"
 	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 )
 
 // FilesystemSource this type defines a struct with a path to a filesystem source of queries
@@ -82,7 +83,11 @@ func ListSupportedPlatforms() []string {
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string {
-	return []string{"alicloud", "aws", "azure", "gcp", "nifcloud", "tencentcloud"}
+	cp := make([]string, len(constants.AvailableCloudProviders))
+	for keys, _ := range constants.AvailableCloudProviders {
+		cp = append(cp, keys)
+	}
+	return cp
 }
 
 func getLibraryInDir(platform, libraryDirPath string) string {

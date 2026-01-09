@@ -722,6 +722,12 @@ func computeValues(
 		case info := <-fileInfo:
 			platformFilesInfo[info.fileType] = append(platformFilesInfo[info.fileType], info)
 		case <-done:
+			for i := range unwanted {
+				if !utils.Contains(i, unwantedSlice) {
+					unwantedSlice = append(unwantedSlice, i)
+				}
+			}
+
 			for platformType, filesInfo := range platformFilesInfo {
 				dirMap := make(map[string]int)
 				totalLOC := 0
