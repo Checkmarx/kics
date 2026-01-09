@@ -89,6 +89,7 @@ func ListSupportedCloudProviders() []string {
 		cp[i] = keys
 		i++
 	}
+	sort.Sort(sort.StringSlice(cp))
 	return cp
 }
 
