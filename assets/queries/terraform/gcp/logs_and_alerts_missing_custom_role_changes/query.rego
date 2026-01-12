@@ -7,7 +7,9 @@ types := {"google_logging_metric", "google_monitoring_alert_policy"}
 target_methods := {"google.iam.admin.v1.CreateRole", "google.iam.admin.v1.UpdateRole", "google.iam.admin.v1.UndeleteRole", "google.iam.admin.v1.DeleteRole"}
 
 CxPolicy[result] {
+	# collect instances of google_logging_metric
 	log_resources := [{"value": object.get(input.document[index].resource, "google_logging_metric", []), "document_index": index}]
+	# collect instances of google_monitoring_alert_policy resources
 	alert_resources := [{"value": object.get(input.document[index].resource, "google_monitoring_alert_policy", []), "document_index": index}]
 	results := not_one_valid_log_and_alert_pair(log_resources, alert_resources)
 
@@ -24,10 +26,13 @@ CxPolicy[result] {
 }
 
 not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
+	# there is at leat one google_logging_metric resource within the project
 	log_resources[_].value != []
+	# relevant data from the logs
 	logs_filters_data := [log | log := get_data(log_resources[_].value[name_log], "google_logging_metric", name_log, log_resources[_].document_index)]
 
 	results := [res | filters_data := logs_filters_data[i]
+		# single match analisa o filtro (usa process_filter e depois analisa-o)
 		keyActualValue := single_match(filters_data)
 		keyActualValue != null
 		res := {
@@ -42,21 +47,27 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 		}]
 	count(results) == count(logs_filters_data)	# if a single filter is valid it should not flag
 } else = results {
+	# there is at leat one of google_logging_metric and google_monitoring_alert_policies
 	log_resources[_].value != []
 	alert_resources[_].value != []
+	# relevant data from the logs
 	logs_filters_data := [log | log := get_data(log_resources[_].value[name_log], "google_logging_metric", name_log, log_resources[_].document_index)]
 
+	# guarda num array todos oa recursos "google_logging_metric" com filtros válidos
 	valid_logs_names := [logs_filters_data[i2].name |
 		lines := process_filter(logs_filters_data[i2].filter)
 		is_improper_filter(target_methods, lines) == null
 	]
 
+	# extrai coisas dos recursos do tipo google_monitoring_alert_policy
 	alerts_filters_data := [alert | alert := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, alert_resources[_].document_index)]
 
 	value := has_regex_match_or_reference(alerts_filters_data, valid_logs_names)
 
 	results := get_results(alerts_filters_data, value)
 } else = results {
+	# very similar to the scenario above but, this time we check that there isn't a single 
+	# google_logging_metric resource in the project.
     alert_resources[_].value != []
     not at_least_one_log(log_resources)
 
@@ -66,6 +77,13 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 
 	results := get_results(alerts_filters_data, value)
 }
+
+# variable allows_ref is meant to distinguish between google_monitoring_alert_policy resources that
+# allow referencing done in this way: (whew audit_config_change would represent a google_logging_metric
+# with its own filter)
+# condition_threshold {
+# 	filter = "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/audit_config_change\""
+# }
 
 get_data(resource, type, name, doc_index) = filter {
 	type == "google_logging_metric"
@@ -101,8 +119,10 @@ get_data(resource, type, name, doc_index) = filter {
 }
 
 single_match(filters_data) = keyActualValue {
+	# processa o filtro ficando com um formato especifico para depois ser lido
 	lines := process_filter(filters_data.filter)
 
+	# target methods são CreateRole, DeleteRole, UpdateRole e UndeleteRole
 	keyActualValue := is_improper_filter(target_methods, lines)
 }
 
@@ -154,13 +174,17 @@ get_results(alerts_filters_data, value) = results {
 		}]
 }
 
+# target_methods são CreateRole, DeleteRole, UpdateRole, UndeleteRole 
 is_improper_filter(target_methods, lines) = keyActualValue {
+	# resource_type não é iam_role
 	not correct_resource_type(lines)
 	keyActualValue := "is applied to the wrong resource type"
 } else = keyActualValue {
+	# resource_type é iam_role contudo não contém os 4 métodos(CreateRole, DeleteRole, UpdateRole e UndeleteRole)
 	not contains_method(target_methods, lines)
 	keyActualValue := "does not capture all custom role changes for resource type 'iam_role'"
 } else = keyActualValue {
+	# há duas condições contraditórias como explicado no comentário abaixo.
 	methods_decalared := {line |
 	 line := lines[_]
 	 is_affirmative_or_double_negative(line)
@@ -172,6 +196,7 @@ is_improper_filter(target_methods, lines) = keyActualValue {
 
 	keyActualValue := "declares an invalid filter, 'methodName' cannot be equal to multiple values simultaneously"
 } else = keyActualValue {
+	# casos em que não tem numa linha uma condition AND
 	invalid_declarations := {line |										# we know these will not include the targets
 						line := lines[_]
 						contains(line, "AND")
