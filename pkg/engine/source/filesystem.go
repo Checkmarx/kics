@@ -11,6 +11,7 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+	"golang.org/x/exp/maps"
 
 	"github.com/Checkmarx/kics/v2/assets"
 	"github.com/Checkmarx/kics/v2/internal/constants"
@@ -71,26 +72,16 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
 
 // ListSupportedPlatforms returns a list of supported platforms
 func ListSupportedPlatforms() []string {
-	keys := make([]string, len(constants.AvailablePlatforms))
-	i := 0
-	for k := range constants.AvailablePlatforms {
-		keys[i] = k
-		i++
-	}
-	sort.Strings(keys)
-	return keys
+	platforms := maps.Keys(constants.AvailablePlatforms)
+	sort.Strings(platforms)
+	return platforms
 }
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string {
-	cp := make([]string, len(constants.AvailableCloudProviders))
-	i := 0
-	for keys := range constants.AvailableCloudProviders {
-		cp[i] = keys
-		i++
-	}
-	sort.Strings(cp)
-	return cp
+	cloudProviders := maps.Keys(constants.AvailableCloudProviders)
+	sort.Strings(cloudProviders)
+	return cloudProviders
 }
 
 func getLibraryInDir(platform, libraryDirPath string) string {
