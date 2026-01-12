@@ -7,6 +7,8 @@ import (
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/antlr/parser"
+	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/comment"
+
 	"github.com/antlr4-go/antlr/v4"
 )
 
@@ -215,13 +217,22 @@ func makeResourcesNestedStructure(jBicep *JSONBicep, existingResources map[strin
 }
 
 // Parse - parses bicep to BicepVisitor template (json file)
-func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
+func (p *Parser) Parse(file string, content []byte) ([]model.Document, []int, error) {
 	bicepVisitor := NewBicepVisitor()
 	stream, err := antlr.NewFileStream(file)
 	if err != nil {
 		return nil, nil, err
 	}
 	lexer := parser.NewbicepLexer(stream)
+
+	// Call the GetLinesInfo method to get the line information
+	linesInfo := comment.GetLinesInfo(string(content))
+
+	// Build the ignoreMap from the linesInfo, which is a map of commands to ignore
+	IgnoreMaps := comment.ProcessLines(linesInfo)
+
+	// Get the lines to ignore from the kics scans based on the ignoreMap
+	linesToIgnore := comment.GetIgnoreLines(IgnoreMaps)
 
 	tokenStream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	bicepParser := parser.NewbicepParser(tokenStream)
@@ -251,7 +262,7 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 		return nil, nil, err
 	}
 
-	return []model.Document{doc}, nil, nil
+	return []model.Document{doc}, linesToIgnore, nil
 }
 
 func (s *BicepVisitor) VisitProgram(ctx *parser.ProgramContext) interface{} {
@@ -657,7 +668,7 @@ func parseComplexInterp(ctx *parser.InterpStringContext, s *BicepVisitor) string
 
 	interpString = append(interpString, leftPiece)
 
-	if middlePieces != nil && (len(middlePieces) > 0) {
+	if len(middlePieces) > 0 {
 		for idx, val := range middlePieces {
 			expression := acceptExpressionAtIndex(idx, ctx, s)
 			interpString = append(interpString, expression, val.GetText())
