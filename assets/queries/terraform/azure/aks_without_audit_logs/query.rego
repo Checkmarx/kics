@@ -42,6 +42,68 @@ get_results(diagnostic_settings, resource_name, resource, doc_i) = results {
     contains(diagnostic_settings[doc_index][name].log[index].category, "kube-audit")
     diagnostic_settings[doc_index][name].log[index].enabled != true] 					# "log" array  (legacy)
     results != []
+} else = results {
+	results := [x | x := {
+		"documentId": input.document[doc_index].id,
+		"resourceType": "azurerm_monitor_diagnostic_setting",
+		"resourceName": tf_lib.get_resource_name(diagnostic_settings[doc_index][name], name),
+		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].log.category", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log.category' should be defined to 'kube-audit' or 'kube-audit-admin' and 'enabled' field set to 'true'", [name]),
+		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log.category' is not defined to 'kube-audit' or 'kube-audit-admin'", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name, "log", "category"], [])
+	}
+	targets_resource(diagnostic_settings[doc_index][name], resource_name)
+	not contains(diagnostic_settings[doc_index][name].log.category, "kube-audit") # "log" object with wrong category (legacy)
+	]
+	results != []
+} else = results {
+	results := [x | x := {
+		"documentId": input.document[doc_index].id,
+		"resourceType": "azurerm_monitor_diagnostic_setting",
+		"resourceName": tf_lib.get_resource_name(diagnostic_settings[doc_index][name], name),
+		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].log[%d].category", [name, index]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log[%d].category' should be defined to 'kube-audit' or 'kube-audit-admin' and 'enabled' field set to 'true'", [name, index]),
+		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log[%d].category' is not defined to 'kube-audit' or 'kube-audit-admin'", [name, index]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name, "log", index, "category"], [])
+	}
+	targets_resource(diagnostic_settings[doc_index][name], resource_name)
+	log_content := diagnostic_settings[doc_index][name].log[index]
+	not contains(log_content.category, "kube-audit") # "log" array with wrong category (legacy)
+	]
+	results != []
+} else = results {
+	results := [x | x := {
+		"documentId": input.document[doc_index].id,
+		"resourceType": "azurerm_monitor_diagnostic_setting",
+		"resourceName": tf_lib.get_resource_name(diagnostic_settings[doc_index][name], name),
+		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].enabled_log[%d].category", [name, index]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].enabled_log[%d].category' should be defined to 'kube-audit' or 'kube-audit-admin'", [name, index]),
+		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].enabled_log[%d].category' is not defined to 'kube-audit' or 'kube-audit-admin'", [name, index]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name, "enabled_log", index, "category"], [])
+	}
+	targets_resource(diagnostic_settings[doc_index][name], resource_name)
+	enabled_log_content := diagnostic_settings[doc_index][name].enabled_log[index]
+	not contains(enabled_log_content.category, "kube-audit") # "enabled_log"  array with wrong category
+	]
+	results != []
+} else = results {
+	results := [x | x := {
+		"documentId": input.document[doc_index].id,
+		"resourceType": "azurerm_monitor_diagnostic_setting",
+		"resourceName": tf_lib.get_resource_name(diagnostic_settings[doc_index][name], name),
+		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].enabled_log.category", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].enabled_log.category' should be defined to 'kube-audit' or 'kube-audit-admin'", [name]),
+		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].enabled_log.category' is not defined to 'kube-audit' or 'kube-audit-admin'", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name, "enabled_log", "category"], [])
+	}
+	targets_resource(diagnostic_settings[doc_index][name], resource_name)
+	not contains(diagnostic_settings[doc_index][name].enabled_log.category, "kube-audit") # "enabled_log"  object with wrong category
+	]
+	results != []
 } else = results  {
 	results := [x | x := {
 		"documentId": input.document[doc_i].id,
