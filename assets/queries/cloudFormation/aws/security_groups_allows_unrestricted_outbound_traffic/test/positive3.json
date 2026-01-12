@@ -1,0 +1,45 @@
+{
+  "Resources": {
+    "Positive3_security_group": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Open security group",
+        "VpcId": {
+          "Ref": "MyVPC"
+        },
+        "SecurityGroupEgress": [
+          {
+            "IpProtocol": "-1",
+            "FromPort": 2000,
+            "ToPort": 2000,
+            "CidrIp": "0.0.0.0/0"
+          }
+        ]
+      }
+    },
+    "Positive3_egress_ipv4": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "Positive3_security_group"
+        },
+        "IpProtocol": "-1",
+        "FromPort": 3000,
+        "ToPort": 3000,
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "Positive3_egress_ipv6": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "Positive3_security_group"
+        },
+        "IpProtocol": "-1",
+        "FromPort": 4000,
+        "ToPort": 4000,
+        "CidrIpv6": "::/0"
+      }
+    }
+  }
+}

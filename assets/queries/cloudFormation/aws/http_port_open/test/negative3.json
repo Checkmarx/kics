@@ -1,0 +1,106 @@
+{
+  "Resources": {
+    "Negative1IPv4_1": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http to client host",
+        "VpcId": { "Ref": "myVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "udp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "0.0.0.0/0"
+          }
+        ]
+      }
+    },
+    "Negative1IPv4_2": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http to client host",
+        "VpcId": { "Ref": "myVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 100,
+            "ToPort": 200,
+            "CidrIp": "0.0.0.0/0"
+          }
+        ]
+      }
+    },
+    "Negative1ArrayTestIPv4": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http to client host",
+        "VpcId": { "Ref": "myVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "-1",
+            "FromPort": 0,
+            "ToPort": 1000,
+            "CidrIp": "192.0.0.0/16"
+          },
+          {
+            "IpProtocol": "udp",
+            "FromPort": 1000,
+            "ToPort": 2000,
+            "CidrIp": "192.120.0.0/16"
+          }
+        ]
+      }
+    },
+    "Negative1IPv6_1": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http to client host",
+        "VpcId": { "Ref": "myVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "udp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIpv6": "::/0"
+          }
+        ]
+      }
+    },
+    "Negative1IPv6_2": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http to client host",
+        "VpcId": { "Ref": "myVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIpv6": "0000:0000:0000:0000:0000:0000:0000:0000/0"
+          }
+        ]
+      }
+    },
+    "Negative1ArrayTestIPv6": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http to client host",
+        "VpcId": { "Ref": "myVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "-1",
+            "FromPort": 0,
+            "ToPort": 1000,
+            "CidrIpv6": "2400:cb00::/32"
+          },
+          {
+            "IpProtocol": "udp",
+            "FromPort": 1000,
+            "ToPort": 2000,
+            "CidrIpv6": "2400:cb00::/32"
+          }
+        ]
+      }
+    }
+  }
+}
