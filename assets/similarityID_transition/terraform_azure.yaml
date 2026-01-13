@@ -3,6 +3,8 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 9bf1568d-4cd2-4581-81ef-d2efabee1178
+      queryName: Beta - Storage Account Without CMK
     - queryId: dafe30ec-325d-4516-85d1-e8e6776f012c
       queryName: Azure Instance Using Basic Authentication
       observations: ""
@@ -157,6 +159,8 @@ similarityIDChangeList:
       queryName: Beta - Databricks Workspace Using Default Virtual Network
       observations: ""
       change: 2
+    - queryId: 77deea6a-155e-4865-bf04-153d23e488e8
+      queryName: Beta - Azure Container Registry With Broad Permissions
     - queryId: 71884fcb-ae03-41c8-87b9-22c90353f256
       queryName: Beta - Container Instances Not Using Private Virtual Networks
       observations: ""
