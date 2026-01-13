@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2021-02-01-preview",
+      "name": "sql_server",
+      "location": "[resourceGroup().location]",
+      "properties": {},
+      "resources": [
+        {
+          "type": "auditingSettings",
+          "apiVersion": "2021-02-01-preview",
+          "name": "default_1",
+          "properties": {
+            "state": "Enabled"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "Beta - VM Without Encryption At Host",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Encryption At Host",
+    "severity": "LOW",
+    "line": 24,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Encryption At Host",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Encryption At Host",
+    "severity": "LOW",
+    "line": 20,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Encryption At Host",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Encryption At Host",
+    "severity": "LOW",
+    "line": 22,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Encryption At Host",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Beta - VM Without Encryption At Host",
+    "severity": "LOW",
+    "line": 20,
+    "fileName": "positive4.tf"
+  }
+]
