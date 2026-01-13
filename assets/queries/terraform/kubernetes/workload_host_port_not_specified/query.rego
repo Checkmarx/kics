@@ -19,6 +19,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.port.host_port should not be defined", [x, name, resource_prefix]),
 		"keyActualValue": sprintf("%s[%s].%s.port.host_port is defined", [x, name, resource_prefix]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", x, name], split(resource_prefix, ".")), ["port", "host_port"]),
     }
 }
 
