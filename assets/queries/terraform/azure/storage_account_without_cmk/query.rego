@@ -21,8 +21,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey" : sprintf("azurerm_storage_account[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue" : sprintf("'azurerm_storage_account[%s].customer_managed_key' should be set", [name]),
-		"keyActualValue" : sprintf("'azurerm_storage_account[%s].customer_managed_key' is undefined or null", [name]),
+		"keyExpectedValue" : sprintf("'azurerm_storage_account[%s] must be associated with a 'azurerm_storage_account_customer_managed_key' resource and the block 'customer_managed_key' should be set", [name]),
+		"keyActualValue" : sprintf("'azurerm_storage_account[%s] is not associated with a 'azurerm_storage_account_customer_managed_key' resource and the 'customer_managed_key' block is undefined or null", [name]),
 		"searchLine" : common_lib.build_search_line(["resource", "azurerm_storage_account", name], [])
 	}
 }
