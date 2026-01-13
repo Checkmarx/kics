@@ -3,6 +3,8 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 9bf1568d-4cd2-4581-81ef-d2efabee1178
+      queryName: Beta - Storage Account Without CMK
     - queryId: dafe30ec-325d-4516-85d1-e8e6776f012c
       queryName: Azure Instance Using Basic Authentication
       observations: ""
