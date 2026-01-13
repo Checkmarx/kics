@@ -10,5 +10,5 @@
   "cloudProvider": "oraclecloud",
   "cwe": "778",
   "riskScore": "1.0",
-  "experimental": true
+  "experimental": "true"
 }
