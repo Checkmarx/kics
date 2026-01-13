@@ -1,0 +1,158 @@
+[
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 29,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 36,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 41,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 48,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 53,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 60,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 67,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 75,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 85,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 91,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 101,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 109,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 118,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 127,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 139,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 151,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 158,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 166,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 173,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Resource Without Diagnostic Settings",
+    "severity": "MEDIUM",
+    "line": 181,
+    "filename": "positive2.tf"
+  }
+]
