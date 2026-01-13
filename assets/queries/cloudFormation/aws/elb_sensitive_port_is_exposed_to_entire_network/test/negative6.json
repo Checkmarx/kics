@@ -1,130 +1,113 @@
 {
-  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
-  "Parameters": {
-    "MySubnet": {
-      "Type": "List\u003cString\u003e",
-      "Description": "My subnet"
-    }
-  },
   "Resources": {
-    "InstancesNegativeSecGroup": {
+    "LoadBalancer01": {
+      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+      "Properties": {
+        "SecurityGroups": [
+          { "Ref": "Negative1IPv4_1" },
+          { "Ref": "Negative1IPv4_2" },
+          { "Ref": "Negative1ArrayTestIPv4" },
+          { "Ref": "Negative1IPv6_1" },
+          { "Ref": "Negative1IPv6_2" },
+          { "Ref": "Negative1ArrayTestIPv6" }
+        ]
+      }
+    },
+    "Negative1IPv4_1": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "Allow http and ssh",
-        "VpcId": "my-vpc",
+        "GroupDescription": "Incorrect protocol: ICMP",
+        "VpcId": { "Ref": "MyVPC" },
         "SecurityGroupIngress": [
           {
-            "CidrIp": "127.0.0.1/32",
-            "IpProtocol": "tcp",
+            "IpProtocol": "icmp",
             "FromPort": 22,
-            "ToPort": 22
-          },
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 77,
-            "ToPort": 77,
-            "CidrIp": "127.0.0.1/0"
-          }
-        ],
-        "SecurityGroupEgress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "IpProtocol": "tcp",
-            "FromPort": 22,
-            "ToPort": 22
+            "ToPort": 22,
+            "CidrIp": "10.0.0.0/0"
           }
         ]
       }
     },
-    "EC2Instance01": {
-      "Type": "AWS::EC2::Instance",
+    "Negative1IPv4_2": {
+      "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "InstanceType": "t3.2xlarge",
-        "SecurityGroups": [
-          "InstancesNegativeSecGroup"
-        ],
-        "KeyName": "my-rsa-key",
-        "ImageId": "ami-79fd7eee"
-      }
-    },
-    "EC2Instance02": {
-      "Type": "AWS::EC2::Instance",
-      "Properties": {
-        "InstanceType": "t3.2xlarge",
-        "SecurityGroups": [
-          "InstancesNegativeSecGroup"
-        ],
-        "KeyName": "my-rsa-key",
-        "ImageId": "ami-79fd7eee"
-      }
-    },
-    "NetworkLoadBalancerTargetGroup": {
-      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
-      "Properties": {
-        "Name": "t10-networklb-target",
-        "Port": 443,
-        "Protocol": "TCP",
-        "VpcId": "t10-vpc-id",
-        "TargetGroupAttributes": [
+        "GroupDescription": "Unknown port: port 5000",
+        "VpcId": { "Ref": "MyVPC" },
+        "SecurityGroupIngress": [
           {
-            "Value": 60,
-            "Key": "deregistration_delay.timeout_seconds"
-          }
-        ],
-        "Targets": [
-          {
-            "Id": "EC2Instance01",
-            "Port": 443
-          },
-          {
-            "Id": "EC2Instance02",
-            "Port": 443
-          }
-        ],
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": "t10-networklb-target"
+            "IpProtocol": "6",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIp": "192.168.0.0/0"
           }
         ]
       }
     },
-    "NetworkLoadBalancerListener": {
-      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+    "Negative1ArrayTestIPv4": {
+      "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "DefaultActions": [
+        "GroupDescription": "Mixed incorrect CIDRs and protocols",
+        "VpcId": { "Ref": "MyVPC" },
+        "SecurityGroupIngress": [
           {
-            "Type": "forward",
-            "TargetGroupArn": "NetworkLoadBalancerTargetGroup"
+            "IpProtocol": "udp",
+            "FromPort": 137,
+            "ToPort": 137,
+            "CidrIp": "8.8.0.0/16"
+          },
+          {
+            "IpProtocol": "icmp",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIp": "10.68.0.0/14"
           }
-        ],
-        "LoadBalancerArn": "NetworkLoadBalancer",
-        "Port": 443,
-        "Protocol": "TCP"
+        ]
       }
     },
-    "NetworkLoadBalancerListenerCert": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+    "Positive1IPv6_1": {
+      "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "Certificates": [
+        "GroupDescription": "Incorrect protocol: ICMPV6",
+        "SecurityGroupIngress": [
           {
-            "CertificateArn": "arn:aws:acm:eu-west-1:xxxaccountxxx:certificate/123456...."
+            "IpProtocol": "58",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv6": "fd00::/0"
           }
-        ],
-        "ListenerArn": "NetworkLoadBalancerListener"
+        ]
       }
     },
-    "NetworkLoadBalancer": {
-      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "Positive1IPv6_2": {
+      "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "Name": "t10-networkloadbalancer",
-        "Scheme": "internet-facing",
-        "Subnets": "MySubnet",
-        "Type": "network",
-        "Tags": [
+        "GroupDescription": "Unknown port: port 5000",
+        "SecurityGroupIngress": [
           {
-            "Key": "Name",
-            "Value": "t10-networklb"
+            "IpProtocol": "tcp",
+            "FromPort": 5000,
+            "ToPort": 5000,
+            "CidrIpv6": "fd12:3456:789a::1/0"
+          }
+        ]
+      }
+    },
+    "Positive1ArrayTestIPv6": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Mixed incorrect CIDR and 'All incorrect'",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "udp",
+            "FromPort": 137,
+            "ToPort": 137,
+            "CidrIpv6": "2400:cb00::/32"
+          },
+          {
+            "IpProtocol": "58",
+            "FromPort": 110,
+            "ToPort": 110,
+            "CidrIpv6": "fd00:abcd:1234::42/0"
           }
         ]
       }

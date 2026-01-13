@@ -1,0 +1,55 @@
+Resources:
+  LoadBalancer01:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      SecurityGroups:
+        - !Ref SGCase1
+        - !Ref SGCase2
+        - !Ref SGCase3
+        - !Ref SGCase4
+        - !Ref SGCase5
+        - !Ref SGCase6
+
+  SGCase2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "IPv4 Case 2 - /0 without insecure ports"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          FromPort: 5000
+          ToPort: 5000
+          CidrIp: "192.168.0.0/0"
+
+  SGCase3:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "IPv4 Case 3 - insecure ports in range, invalid protocol"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: "icmp"   # not -1,6,TCP,UDP,17
+          FromPort: 20
+          ToPort: 5000         # insecure ports in this range
+          CidrIp: "8.8.0.0/16"
+
+  SGCase5:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "IPv6 Case 2 - /0 without insecure ports"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          FromPort: 5000
+          ToPort: 5000
+          CidrIpv6: "fd12:3456:789a::1/0"
+
+  SGCase6:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "IPv6 Case 3 - insecure ports in range, invalid protocol"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: "58"    # ICMPv6, not in allowed list
+          FromPort: 20
+          ToPort: 5000         
+          CidrIpv6: "2400:cb00::/32"
