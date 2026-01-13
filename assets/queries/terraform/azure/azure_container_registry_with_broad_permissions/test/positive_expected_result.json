@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Beta - Azure Container Registry With Broad Permissions",
+    "severity": "HIGH",
+    "line": 11
+  },
+  {
+    "queryName": "Beta - Azure Container Registry With Broad Permissions",
+    "severity": "HIGH",
+    "line": 17
+  }
+]
