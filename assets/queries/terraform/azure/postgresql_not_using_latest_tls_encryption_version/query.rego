@@ -20,8 +20,8 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'ssl_minimal_tls_version_enforced' is defined to '%s'", [tls_version_val]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_server", name, "ssl_minimal_tls_version_enforced"], []),
 		"remediation": json.marshal({
-			"before": sprintf("ssl_minimal_tls_version_enforced = %s", [tls_version_val]),
-			"after": "ssl_minimal_tls_version_enforced = TLS1_2",
+			"before": tls_version_val,
+			"after": "TLS1_2",
 		}),
 		"remediationType": "replacement",
 	}

@@ -22,8 +22,8 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'site_config.minimum_tls_version' is defined to '%s'", [tls_version_val]),
 		"searchLine": common_lib.build_search_line(["resource", supported_resources[resource_index], name, "site_config", "minimum_tls_version"], []),
 		"remediation": json.marshal({
-			"before": sprintf("minimum_tls_version = %s", [tls_version_val]),
-			"after": "minimum_tls_version = 1.3",
+			"before": tls_version_val,
+			"after": "1.3",
 		}),
 		"remediationType": "replacement",
 	}

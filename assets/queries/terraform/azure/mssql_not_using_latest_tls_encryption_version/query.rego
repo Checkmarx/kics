@@ -20,8 +20,8 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'minimum_tls_version' is defined to '%s'", [tls_version_val]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server", name, "minimum_tls_version"], []),
 		"remediation": json.marshal({
-			"before": sprintf("minimum_tls_version = %s", [tls_version_val]),
-			"after": "minimum_tls_version = 1.2",
+			"before": tls_version_val,
+			"after": "1.2",
 		}),
 		"remediationType": "replacement",
 	}
