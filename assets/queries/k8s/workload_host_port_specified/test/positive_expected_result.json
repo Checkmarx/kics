@@ -1,11 +1,11 @@
 [
   {
-    "queryName": "Workload Host Port Not Specified",
+    "queryName": "Workload Host Port Specified",
     "severity": "LOW",
     "line": 9
   },
   {
-    "queryName": "Workload Host Port Not Specified",
+    "queryName": "Workload Host Port Specified",
     "severity": "LOW",
     "line": 24
   }
