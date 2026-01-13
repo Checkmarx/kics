@@ -1,0 +1,14 @@
+{
+    "id": "a6bc2970-c10d-45ab-9050-cf69c393e911",
+    "queryName": "Load Balancer VPC is Public",
+    "severity": "MEDIUM",
+    "category": "Insecure Configurations",
+    "descriptionText": "IBM Load Balancer VPC should not be public",
+    "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/is_lb",
+    "platform": "Terraform",
+    "descriptionID": "a6bc2970",
+    "cloudProvider": "ibmcloud",
+    "cwe": "668",
+    "riskScore": "3.0",
+    "experimental": true
+  }
