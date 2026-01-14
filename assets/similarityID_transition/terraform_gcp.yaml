@@ -79,6 +79,8 @@ similarityIDChangeList:
       queryName: Beta - SQL DB Instance With Exposed Show Privileges
       observations: ""
       change: 2
+    - queryId: ced11de2-e701-4e63-83ab-4fdb1ab8c5dd
+      queryName: Beta - Kubernetes Web UI Is Not Disabled
     - queryId: 700f1049-7fa0-4cb0-971b-3efebfb6a91f
       queryName: Beta - Legacy Networks Do Not Exist For Older Google Projects
       observations: ""
