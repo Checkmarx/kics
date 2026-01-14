@@ -79,6 +79,8 @@ similarityIDChangeList:
       queryName: Beta - SQL DB Instance With Exposed Show Privileges
       observations: ""
       change: 2
+    - queryId: 8ca7e731-56f6-4fb4-9b98-fcb0a93518c8
+      queryName: Beta - Google Kubernetes Engine Cluster Have Alpha Features Enabled
     - queryId: 700f1049-7fa0-4cb0-971b-3efebfb6a91f
       queryName: Beta - Legacy Networks Do Not Exist For Older Google Projects
       observations: ""
