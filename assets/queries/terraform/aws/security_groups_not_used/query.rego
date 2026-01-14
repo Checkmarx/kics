@@ -19,28 +19,20 @@ CxPolicy[result] {
 	}
 }
 
-is_used(securityGroupName, doc, _) {
+is_used(securityGroupName, doc, resource) {
 	[_, value] := walk(doc)
 	securityGroupUsed := get_security_groups_if_exists(value)[_]
-	contains(securityGroupUsed, sprintf("aws_security_group.%s.", [securityGroupName]))
+	full_reference_or_name(securityGroupUsed, securityGroupName, resource)
 }
-
-is_used(securityGroupName, doc, resource) {
-	sec_group_used := resource.name
-    [_, value] := walk(doc)
-	securityGroupUsed := value.security_groups[_]
-	sec_group_used == securityGroupUsed
-}
-
 
 get_security_groups_if_exists(resource) = security_group {
 	security_group := resource.security_groups
 } else = security_group {
-	# check in modules for module terraform-aws-modules/security-group/aws (array)
+	# check in modules for module terraform-aws-modules/security-group/aws (array) and other resources
 	is_array(resource.security_group_id)
 	security_group := resource.security_group_id
 } else = security_group {
-	# terraform-aws-modules/security-group/aws (not an array)
+	# terraform-aws-modules/security-group/aws (not an array) and other resources
 	not is_array(resource.security_group_id)
 	security_group := [resource.security_group_id]
 } else = security_group {
@@ -52,4 +44,10 @@ get_security_groups_if_exists(resource) = security_group {
 } else = security_group {
 	# check security groups assigned to aws_eks_cluster resources
 	security_group := resource.vpc_config.security_group_ids
+}
+
+full_reference_or_name(securityGroupUsed, securityGroupName, resource) {
+	regex.match(sprintf("aws_security_group\\.%s(\\[\\d+\\])?\\.", [securityGroupName]), securityGroupUsed)
+} else {
+	securityGroupUsed == resource.name
 }
