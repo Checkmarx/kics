@@ -1,0 +1,87 @@
+{
+  "Resources": {
+    "Sample_Service": {
+      "Type": "AWS::ECS::Service",
+      "Properties": {
+        "Cluster": {
+          "Ref": "ECSCluster"
+        }
+      }
+    },
+    "Sample_Cluster": {
+      "Type": "AWS::ECS::Cluster"
+    },
+    "DBEC2SecurityGroupInline": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Inline IPv4 and IPv6 ingress",
+        "VpcId": {
+          "Ref": "VPC"
+        },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 0,
+            "ToPort": 65535,
+            "CidrIp": "0.0.0.0/0"
+          },
+          {
+            "IpProtocol": "udp",
+            "FromPort": 0,
+            "ToPort": 65535,
+            "CidrIpv6": "::/0"
+          }
+        ]
+      }
+    },
+    "DBEC2SecurityGroupStandalone": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Standalone IPv4 and IPv6 ingress",
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      }
+    },
+    "DBEC2SecurityGroupIngress": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DBEC2SecurityGroupStandalone"
+        },
+        "IpProtocol": "-1",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "DBEC2SecurityGroupIngressIPv6": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DBEC2SecurityGroupStandalone"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 0,
+        "ToPort": 65535,
+        "CidrIpv6": "0000:0000:0000:0000:0000:0000:0000:0000/0"
+      }
+    },
+    "DBInstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "PubliclyAccessible": true,
+        "DBName": {
+          "Ref": "DBName"
+        },
+        "Engine": "MySQL",
+        "VPCSecurityGroups": [
+          {
+            "Ref": "DBEC2SecurityGroupInline"
+          },
+          {
+            "Ref": "DBEC2SecurityGroupStandalone"
+          }
+        ]
+      }
+    }
+  }
+}
