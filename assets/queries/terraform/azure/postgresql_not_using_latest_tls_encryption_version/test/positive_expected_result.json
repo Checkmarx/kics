@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - PostgreSQL Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive.tf"
+  }
+]
