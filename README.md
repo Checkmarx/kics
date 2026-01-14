@@ -218,6 +218,20 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </picture>
 </a>
 </td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#ibmcloud-for-terraform">
+<img alt="IBMCloud" src="docs/img/logo-ibmcloud.png" width="100">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#oraclecloud-for-terraform">
+<picture>
+<source media="(prefers-color-scheme: light)" srcset="docs/img/logo-oraclecloud.png" width="180">
+<source media="(prefers-color-scheme: dark)" srcset="docs/img/logo-oraclecloud-dark.png" width="180">
+<img alt="OracleCloud" src="docs/img/logo-oraclecloud.png" width="100">
+</picture>
+</a>
+</td>
 </tr>
 </table>
 
