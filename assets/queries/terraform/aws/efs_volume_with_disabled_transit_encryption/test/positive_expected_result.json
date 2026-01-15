@@ -16,5 +16,47 @@
     "severity": "MEDIUM",
     "line": 5,
     "filename": "positive3.tf"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 26,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 25,
+    "filename": "positive7.tf"
   }
 ]
