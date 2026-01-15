@@ -2,7 +2,7 @@
   "document": [
     {
       "file": "file",
-      "id": "0",
+      "id": "1",
       "locals": {
         "environment": "production",
         "resource_name": "my-app-service"
@@ -41,7 +41,7 @@
     },
     {
       "file": "file",
-      "id": "1",
+      "id": "0",
       "variable": {
         "name": {
           "default": "service",
