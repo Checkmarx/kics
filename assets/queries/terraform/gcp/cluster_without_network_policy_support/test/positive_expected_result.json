@@ -1,11 +1,11 @@
 [
   {
-    "queryName": "Beta - Cluster Without Network Policy Support",
+    "queryName": "Beta - Cluster Without Network Policy Support Enabled",
     "severity": "HIGH",
     "line": 1
   },
   {
-    "queryName": "Beta - Cluster Without Network Policy Support",
+    "queryName": "Beta - Cluster Without Network Policy Support Enabled",
     "severity": "HIGH",
     "line": 17
   }
