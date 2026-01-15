@@ -56,7 +56,7 @@
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
-    "line": 25,
+    "line": 26,
     "filename": "positive7.tf"
   }
 ]
