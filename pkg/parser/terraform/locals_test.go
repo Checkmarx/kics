@@ -199,11 +199,12 @@ func TestBuildLocalsForDirectory_OverrideLocals(t *testing.T) {
 
 		// app_name will be either "first_name" or "overridden_name" depending on file processing order
 		// Both files define app_name, and later file wins
+		// Need to work on file prioritization
 		appName, exists := localsMap["app_name"]
 		require.True(t, exists, "app_name should exist")
 		require.NotNil(t, appName)
 
-		// The value should be one of these two
+		// The value should be one of these two for now
 		actualName := appName.AsString()
 		require.True(t, actualName == "first_name" || actualName == "overridden_name",
 			"app_name should be either 'first_name' or 'overridden_name', got: %s", actualName)
@@ -283,7 +284,6 @@ func TestBuildLocalsForDirectory_WithVariables(t *testing.T) {
 	t.Run("Should evaluate locals that reference variables", func(t *testing.T) {
 		inputVariableMap = make(converter.VariableMap)
 
-		// Set up some variables
 		inputVariableMap["var"] = cty.ObjectVal(map[string]cty.Value{
 			"environment": cty.StringVal("production"),
 			"region":      cty.StringVal("us-east-1"),
@@ -416,10 +416,7 @@ func TestGetLocals_Integration(t *testing.T) {
 		fileContent, err := os.ReadFile(filepath.Join(currentPath, "locals_with_vars.tf"))
 		require.NoError(t, err)
 
-		// First load variables
 		getInputVariables(currentPath, string(fileContent), "")
-
-		// Then load locals
 		getLocals(currentPath)
 
 		// Check that both var and local are in inputVariableMap
