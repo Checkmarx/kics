@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	resource.document_type == "Session"
 
-	content := common_lib.json_unmarshal(resource.content)
+	content := common_lib.get_policy(resource.content)
     not common_lib.valid_key(content, "inputs")
 
 	result := {

@@ -31,9 +31,9 @@ CxPolicy[result] {
 }
 
 get_accessibility(resource, name) = info{
-	values := [x | 
+	values := [x |
     vpc_endpoint_policy := input.document[_].resource.aws_vpc_endpoint_policy[_]
-    policy := common_lib.json_unmarshal(vpc_endpoint_policy.policy)
+    policy := common_lib.get_policy(vpc_endpoint_policy.policy)
     x := policy_accessibility(policy, resource.name)]
     info := get_info(values)
 } else = info {
@@ -49,7 +49,7 @@ policy_accessibility(policy, table_name) = info {
 	check_actions(statement.Action)
 
 	resources_arn := get_resource_arn(statement.Resource)
-	has_all_or_dynamob_arn(resources_arn, table_name)	
+	has_all_or_dynamob_arn(resources_arn, table_name)
 
 	info := {"accessibility":"public", "policy": policy}
 } else  = info {
