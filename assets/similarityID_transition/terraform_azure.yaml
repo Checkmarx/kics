@@ -5,6 +5,8 @@ similarityIDChangeList:
       change: 5
     - queryId: 9bf1568d-4cd2-4581-81ef-d2efabee1178
       queryName: Beta - Storage Account Without CMK
+      observations: ""
+      change: 2
     - queryId: dafe30ec-325d-4516-85d1-e8e6776f012c
       queryName: Azure Instance Using Basic Authentication
       observations: ""
@@ -31,6 +33,8 @@ similarityIDChangeList:
       change: 2
     - queryId: 30c7c2f1-c048-49ba-81a4-ae465bbb3335
       queryName: Beta - VM Without Encryption At Host
+      observations: ""
+      change: 2
     - queryId: 0745bb3f-60dc-43b6-90ae-67bb01fd1775
       queryName: Beta - SQL Database Without Data Encryption
       observations: ""
@@ -187,5 +191,9 @@ similarityIDChangeList:
       change: 2
     - queryId: 41d7989b-3be2-4081-8c79-cf903dd174c5
       queryName: Beta - Use Of User Access Administrator Role Is Not Restricted
+      observations: ""
+      change: 2
+    - queryId: 0493b840-50e8-430c-93bc-d794d72931a9
+      queryName: Beta - AKS Without Audit Logs
       observations: ""
       change: 2
