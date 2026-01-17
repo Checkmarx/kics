@@ -5,16 +5,17 @@ import (
 	"path/filepath"
 	"regexp"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/comment"
-	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
-	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
-	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	ctyjson "github.com/zclconf/go-cty/cty/json"
+
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/comment"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
+	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
+	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 // RetriesDefaultValue is default number of times a parser will retry to execute
@@ -56,6 +57,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string, _ bool, _ int) ([]
 	}()
 	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
 	getDataSourcePolicy(filepath.Dir(filename))
+	getLocals(filepath.Dir(filename))
 	return fileContent, nil
 }
 
