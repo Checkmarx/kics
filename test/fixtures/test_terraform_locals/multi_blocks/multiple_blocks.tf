@@ -13,7 +13,7 @@ locals {
   combined = "${local.first_local}-${local.second_local}"
 }
 
-resource "test" "multi_blocks" {
+resource "terraform_data" "multi_blocks" {
   first  = local.first_local
   second = local.second_local
   third  = local.third_local

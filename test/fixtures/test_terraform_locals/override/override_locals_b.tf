@@ -3,7 +3,7 @@ locals {
   app_name = "overridden_name"
 }
 
-resource "test" "override_b" {
-  name = local.app_name
+resource "terraform_data" "override_b" {
+  input = local.app_name
 }
 

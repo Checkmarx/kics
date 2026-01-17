@@ -189,30 +189,32 @@ func TestBuildLocalsForDirectory_ForwardReferences(t *testing.T) {
 	})
 }
 
+func TestBuildLocalsForDirectory_DuplicateLocals(t *testing.T) {
+	t.Run("Should error when duplicate locals are defined across files", func(t *testing.T) {
+		inputVariableMap = make(converter.VariableMap)
+		currentPath := filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_locals", "duplicates")
+
+		localsMap, err := buildLocalsForDirectory(currentPath)
+		require.Error(t, err, "Should error on duplicate locals")
+		require.Contains(t, err.Error(), "duplicate local value definition", "Error message should mention duplicate local value definition")
+		require.Empty(t, localsMap, "localsMap should be empty when error occurs")
+	})
+
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+		localsCache = make(map[string]converter.VariableMap)
+	})
+}
+
 func TestBuildLocalsForDirectory_OverrideLocals(t *testing.T) {
-	t.Run("Should handle locals overwriting other locals from different files", func(t *testing.T) {
+	t.Run("Should NOT override - duplicate detection should catch this", func(t *testing.T) {
 		inputVariableMap = make(converter.VariableMap)
 		currentPath := filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_locals", "override")
 
 		localsMap, err := buildLocalsForDirectory(currentPath)
-		require.NoError(t, err)
-
-		// app_name will be either "first_name" or "overridden_name" depending on file processing order
-		// Both files define app_name, and later file wins
-		// Need to work on file prioritization
-		appName, exists := localsMap["app_name"]
-		require.True(t, exists, "app_name should exist")
-		require.NotNil(t, appName)
-
-		// The value should be one of these two for now
-		actualName := appName.AsString()
-		require.True(t, actualName == "first_name" || actualName == "overridden_name",
-			"app_name should be either 'first_name' or 'overridden_name', got: %s", actualName)
-
-		// app_version should exist from override_locals_a.tf
-		appVersion, exists := localsMap["app_version"]
-		require.True(t, exists, "app_version should exist")
-		require.Equal(t, "1.0.0", appVersion.AsString())
+		require.Error(t, err, "Duplicate locals should cause error")
+		require.Contains(t, err.Error(), "duplicate local value definition", "Error should mention duplicate local value definition")
+		require.Empty(t, localsMap, "localsMap should be empty on error")
 	})
 
 	t.Cleanup(func() {
@@ -255,23 +257,70 @@ func TestBuildLocalsForDirectory_MultipleBlocks(t *testing.T) {
 }
 
 func TestBuildLocalsForDirectory_CircularReference(t *testing.T) {
-	t.Run("Should handle circular references gracefully", func(t *testing.T) {
+	t.Run("Should error on circular references", func(t *testing.T) {
 		inputVariableMap = make(converter.VariableMap)
 		currentPath := filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_locals", "circular")
 
 		localsMap, err := buildLocalsForDirectory(currentPath)
+		require.Error(t, err, "Circular references should cause error")
+		require.Contains(t, err.Error(), "cycle", "Error should mention cycle")
+		require.Empty(t, localsMap, "localsMap should be empty on error")
+	})
+
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+		localsCache = make(map[string]converter.VariableMap)
+	})
+}
+
+func TestBuildLocalsForDirectory_SubdirectoryIsolation(t *testing.T) {
+	t.Run("Should not access locals from parent directory", func(t *testing.T) {
+		inputVariableMap = make(converter.VariableMap)
+		parentPath := filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_locals", "subdir_isolation", "parent")
+		childPath := filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_locals", "subdir_isolation", "parent", "child")
+
+		// Build locals for parent directory
+		parentLocals, err := buildLocalsForDirectory(parentPath)
 		require.NoError(t, err)
+		require.Contains(t, parentLocals, "parent_value", "Parent should have parent_value")
+		require.Contains(t, parentLocals, "shared_name", "Parent should have shared_name")
+		require.Equal(t, 2, len(parentLocals), "Parent should have exactly 2 locals")
 
-		// Circular references should be stored as placeholders
-		circularA, exists := localsMap["circular_a"]
-		require.True(t, exists, "circular_a should exist")
+		// Build locals for child directory (separate module)
+		childLocals, err := buildLocalsForDirectory(childPath)
+		require.NoError(t, err)
+		require.Contains(t, childLocals, "child_value", "Child should have child_value")
+		require.Contains(t, childLocals, "shared_name", "Child should have shared_name")
+		require.NotContains(t, childLocals, "parent_value", "Child should NOT have parent_value")
+		require.Equal(t, 2, len(childLocals), "Child should have exactly 2 locals")
 
-		circularB, exists := localsMap["circular_b"]
-		require.True(t, exists, "circular_b should exist")
+		// Verify the shared_name values are different (proving isolation)
+		parentSharedName := parentLocals["shared_name"].AsString()
+		childSharedName := childLocals["shared_name"].AsString()
+		require.Equal(t, "from_parent", parentSharedName, "Parent's shared_name should be 'from_parent'")
+		require.Equal(t, "from_child", childSharedName, "Child's shared_name should be 'from_child'")
+		require.NotEqual(t, parentSharedName, childSharedName, "shared_name should be different in parent and child")
+	})
 
-		// Both should be string placeholders
-		require.Equal(t, cty.String, circularA.Type())
-		require.Equal(t, cty.String, circularB.Type())
+	t.Cleanup(func() {
+		inputVariableMap = make(converter.VariableMap)
+		localsCache = make(map[string]converter.VariableMap)
+	})
+}
+
+func TestBuildLocalsForDirectory_MissingVariableReference(t *testing.T) {
+	t.Run("Should use placeholder for locals with missing variable references", func(t *testing.T) {
+		inputVariableMap = make(converter.VariableMap)
+		currentPath := filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_locals", "missing_var")
+
+		localsMap, err := buildLocalsForDirectory(currentPath)
+		require.NoError(t, err, "Missing var should not cause error")
+
+		// Local referencing missing var should have placeholder
+		localWithMissingVar, exists := localsMap["with_missing_var"]
+		require.True(t, exists, "Local with missing var should exist")
+		require.Equal(t, cty.String, localWithMissingVar.Type(), "Should be string placeholder")
+		require.Contains(t, localWithMissingVar.AsString(), "${local.", "Should contain placeholder pattern")
 	})
 
 	t.Cleanup(func() {

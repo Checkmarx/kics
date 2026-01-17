@@ -3,7 +3,7 @@ locals {
   base_port = 8080
 }
 
-resource "test" "a" {
+resource "terraform_data" "a" {
   name = local.base_name
   port = local.base_port
 }

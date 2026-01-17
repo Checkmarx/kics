@@ -3,7 +3,7 @@ variable "test_var" {
   default = "test"
 }
 
-resource "test" "no_locals" {
+resource "terraform_data" "no_locals" {
   name = var.test_var
 }
 

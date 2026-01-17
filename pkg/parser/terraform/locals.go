@@ -1,6 +1,7 @@
 package terraform
 
 import (
+	"fmt"
 	"maps"
 	"path/filepath"
 	"sync"
@@ -44,6 +45,74 @@ func extractLocalsFromFile(filename string) (map[string]*hclsyntax.Attribute, er
 	return localsAttrs, nil
 }
 
+func extractLocalDependencies(expr hclsyntax.Expression) []string {
+	var deps []string
+
+	hclsyntax.VisitAll(expr, func(node hclsyntax.Node) hcl.Diagnostics {
+		if traversal, ok := node.(*hclsyntax.ScopeTraversalExpr); ok {
+			if len(traversal.Traversal) > 0 {
+				if root, ok := traversal.Traversal[0].(hcl.TraverseRoot); ok {
+					if root.Name == "local" && len(traversal.Traversal) > 1 {
+						if attr, ok := traversal.Traversal[1].(hcl.TraverseAttr); ok {
+							deps = append(deps, attr.Name)
+						}
+					}
+				}
+			}
+		}
+		return nil
+	})
+
+	return deps
+}
+
+func topologicalSort(graph map[string][]string) ([]string, error) {
+	visited := make(map[string]bool)
+	recStack := make(map[string]bool)
+	var result []string
+
+	var visit func(string) error
+	visit = func(node string) error {
+		// Check if a node is currently in the recursion stack
+		if recStack[node] {
+			return fmt.Errorf("cycle detected in locals: local.%s", node)
+		}
+
+		// Check if a node has already been visited
+		// If not in the recursion stack, we already visited it and skip
+		if visited[node] {
+			return nil
+		}
+
+		// Currently visiting a node
+		recStack[node] = true
+		for _, dep := range graph[node] {
+			if _, exists := graph[dep]; exists {
+				if err := visit(dep); err != nil {
+					return err
+				}
+			}
+		}
+
+		// Visited the node and dependencies are resolved
+		// Remove from recursion stack and mark as visited
+		recStack[node] = false
+		visited[node] = true
+		result = append(result, node)
+		return nil
+	}
+
+	for node := range graph {
+		if !visited[node] {
+			if err := visit(node); err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	return result, nil
+}
+
 func evaluateLocal(attr *hclsyntax.Attribute, localsMap converter.VariableMap) (cty.Value, bool) {
 	evalCtx := &hcl.EvalContext{
 		Variables: make(map[string]cty.Value),
@@ -79,7 +148,7 @@ func buildLocalsForDirectory(currentPath string) (converter.VariableMap, error) 
 		return localsMap, nil
 	}
 
-	// collect all locals attributes from all files in the directory
+	// Collect all locals attributes with duplicate detection
 	allLocalsAttrs := make(map[string]*hclsyntax.Attribute)
 
 	for _, tfFile := range tfFiles {
@@ -90,49 +159,43 @@ func buildLocalsForDirectory(currentPath string) (converter.VariableMap, error) 
 			continue
 		}
 
-		maps.Copy(allLocalsAttrs, fileLocals)
+		// Check for duplicate local values
+		for name, attr := range fileLocals {
+			if existing, exists := allLocalsAttrs[name]; exists {
+				log.Error().Msgf("Duplicate local value definition: A local value named '%s' was already defined at %s. Local value names must be unique within a module.",
+					name, existing.NameRange.Filename)
+				return localsMap, fmt.Errorf("duplicate local value definition: %s", name)
+			}
+			allLocalsAttrs[name] = attr
+		}
 	}
 
 	if len(allLocalsAttrs) == 0 {
 		return localsMap, nil
 	}
 
-	// Locals can reference other locals, so we evaluate in multiple passes
-	maxIterations := len(allLocalsAttrs) + 1
-	evaluated := make(map[string]bool)
+	// Build dependency graph
+	depGraph := make(map[string][]string)
+	for name, attr := range allLocalsAttrs {
+		depGraph[name] = extractLocalDependencies(attr.Expr)
+	}
 
-	for range maxIterations {
-		madeProgress := false
+	// Topological sort with cycle detection
+	evalOrder, err := topologicalSort(depGraph)
+	if err != nil {
+		log.Error().Msgf("Cycle in locals at %s: %v", currentPath, err)
+		return localsMap, err
+	}
 
-		for name, attr := range allLocalsAttrs {
-			if evaluated[name] {
-				continue
-			}
-
-			value, success := evaluateLocal(attr, localsMap)
-			if !success {
-				continue
-			}
-
+	// Evaluate in dependency order
+	for _, name := range evalOrder {
+		attr := allLocalsAttrs[name]
+		value, success := evaluateLocal(attr, localsMap)
+		if !success {
+			log.Warn().Msgf("Could not evaluate local.%s (missing references or evaluation error)", name)
+			localsMap[name] = cty.StringVal("${local." + name + "}")
+		} else {
 			localsMap[name] = value
-			evaluated[name] = true
-			madeProgress = true
-		}
-
-		if len(evaluated) == len(allLocalsAttrs) {
-			break
-		}
-
-		// No progress made - circular dependencies or missing references
-		if !madeProgress {
-			// Store unevaluated locals as placeholders
-			for name := range allLocalsAttrs {
-				if !evaluated[name] {
-					log.Debug().Msgf("Could not evaluate local.%s in %s", name, currentPath)
-					localsMap[name] = cty.StringVal("${local." + name + "}")
-				}
-			}
-			break
 		}
 	}
 

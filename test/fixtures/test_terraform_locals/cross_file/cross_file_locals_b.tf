@@ -3,7 +3,7 @@ locals {
   full_port = local.base_port
 }
 
-resource "test" "b" {
+resource "terraform_data" "b" {
   name = local.full_name
   port = local.full_port
 }

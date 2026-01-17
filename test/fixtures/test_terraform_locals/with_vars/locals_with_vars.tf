@@ -13,7 +13,7 @@ locals {
   tag_name        = var.environment
 }
 
-resource "test" "with_vars" {
+resource "terraform_data" "with_vars" {
   prefix = local.resource_prefix
   tag    = local.tag_name
 }

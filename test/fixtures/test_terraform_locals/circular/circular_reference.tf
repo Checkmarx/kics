@@ -4,7 +4,7 @@ locals {
   circular_b = local.circular_a
 }
 
-resource "test" "circular" {
+resource "terraform_data" "circular" {
   value_a = local.circular_a
   value_b = local.circular_b
 }

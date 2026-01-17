@@ -9,7 +9,7 @@ locals {
   simple_bool   = true
 }
 
-resource "test" "example" {
+resource "terraform_data" "example" {
   name   = local.simple_string
   count  = local.simple_number
   active = local.simple_bool
