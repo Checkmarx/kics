@@ -48,6 +48,7 @@ func extractLocalsFromFile(filename string) (map[string]*hclsyntax.Attribute, er
 func extractLocalDependencies(expr hclsyntax.Expression) []string {
 	var deps []string
 
+	// nolint:errcheck
 	hclsyntax.VisitAll(expr, func(node hclsyntax.Node) hcl.Diagnostics {
 		if traversal, ok := node.(*hclsyntax.ScopeTraversalExpr); ok {
 			if len(traversal.Traversal) > 0 {
@@ -162,7 +163,9 @@ func buildLocalsForDirectory(currentPath string) (converter.VariableMap, error) 
 		// Check for duplicate local values
 		for name, attr := range fileLocals {
 			if existing, exists := allLocalsAttrs[name]; exists {
-				log.Error().Msgf("Duplicate local value definition: A local value named '%s' was already defined at %s. Local value names must be unique within a module.",
+				log.Error().Msgf("Duplicate local value definition: "+
+					"A local value named '%s' was already defined at %s. "+
+					"Local value names must be unique within a module.",
 					name, existing.NameRange.Filename)
 				return localsMap, fmt.Errorf("duplicate local value definition: %s", name)
 			}
