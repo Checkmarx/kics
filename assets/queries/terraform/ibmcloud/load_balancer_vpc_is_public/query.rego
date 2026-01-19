@@ -23,8 +23,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	lb := input.document[i].resource.ibm_is_lb[name]
-	lb.type != "private"
-	lb.type != "private_path"
+	lb.type == "public"
 
 	result := {
 		"documentId": input.document[i].id,
