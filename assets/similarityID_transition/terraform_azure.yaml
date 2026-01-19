@@ -3,6 +3,10 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Wide Private Network
       observations: ""
       change: 5
+    - queryId: 9bf1568d-4cd2-4581-81ef-d2efabee1178
+      queryName: Beta - Storage Account Without CMK
+      observations: ""
+      change: 2
     - queryId: dafe30ec-325d-4516-85d1-e8e6776f012c
       queryName: Azure Instance Using Basic Authentication
       observations: ""
@@ -29,6 +33,8 @@ similarityIDChangeList:
       change: 2
     - queryId: 30c7c2f1-c048-49ba-81a4-ae465bbb3335
       queryName: Beta - VM Without Encryption At Host
+      observations: ""
+      change: 2
     - queryId: 0745bb3f-60dc-43b6-90ae-67bb01fd1775
       queryName: Beta - SQL Database Without Data Encryption
       observations: ""
@@ -157,6 +163,24 @@ similarityIDChangeList:
       queryName: Beta - Databricks Workspace Using Default Virtual Network
       observations: ""
       change: 2
+    - queryId: 03928f0d-bff0-4feb-a31a-615d093e6026
+      queryName: Beta - Function App Deployment Slot Not Using Latest TLS Encryption Version
+      observations: ""
+      change: 2
+    - queryId: 22cb3507-1ef4-44ac-9c9a-cab31167e31e
+      queryName: Beta - MSSQL Not Using Latest TLS Encryption Version
+      observations: ""
+      change: 2
+    - queryId: 9f15ecc4-d9df-44ba-bb88-28c97e946114
+      queryName: Beta - PostgreSQL Not Using Latest TLS Encryption Version
+      observations: ""
+      change: 2
+    - queryId: e22e5620-3679-418e-bb74-c9f71731ab0f
+      queryName: Beta - Redis Cache Not Using Latest TLS Encryption Version
+      observations: ""
+      change: 2
+    - queryId: 77deea6a-155e-4865-bf04-153d23e488e8
+      queryName: Beta - Azure Container Registry With Broad Permissions
     - queryId: 71884fcb-ae03-41c8-87b9-22c90353f256
       queryName: Beta - Container Instances Not Using Private Virtual Networks
       observations: ""
@@ -167,5 +191,9 @@ similarityIDChangeList:
       change: 2
     - queryId: 41d7989b-3be2-4081-8c79-cf903dd174c5
       queryName: Beta - Use Of User Access Administrator Role Is Not Restricted
+      observations: ""
+      change: 2
+    - queryId: 0493b840-50e8-430c-93bc-d794d72931a9
+      queryName: Beta - AKS Without Audit Logs
       observations: ""
       change: 2
