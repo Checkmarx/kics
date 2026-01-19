@@ -55,11 +55,7 @@ jobs:
         uses: actions/download-artifact@v4.1.3
         with:
           name: kics
-          path: .
-
-      - name: Unzip kics
-        run: |
-          unzip -q kics.zip
+          path: kics/
 
       - name: Download Json
         uses: actions/download-artifact@v4.1.3
@@ -101,6 +97,7 @@ jobs:
       - name: Run Engines Executor
         run: |
           mkdir -p $GITHUB_WORKSPACE/results
+          chmod +x $GITHUB_WORKSPACE/kics/bin/kics
           ./cli/executor run kics \
           -b $GITHUB_WORKSPACE/kics/bin/kics \
           -s $GITHUB_WORKSPACE/zips/ \
