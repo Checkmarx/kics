@@ -23,7 +23,6 @@ CxPolicy[result] {
 not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	log_resources[_].value != []
 	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
-	# not single_regex_match(logs_filters_data)
 	results := [res | filters_data := logs_filters_data[i]
 		keyActualValue := single_match(filters_data)
 		keyActualValue != null
@@ -100,12 +99,10 @@ get_data(resource, type, name, doc_index) = filter {
 single_match(filters_data) = keyActualValue {
 	lines := process_filter(filters_data.filter)
 	keyActualValue := is_improper_filter(lines)	
-	#regex.match(regex_pattern, filters_data[_].filter)
 }
 
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
 	lines := process_filter(alerts_filters_data[i].filter)
-	#regex.match(regex_pattern, alerts_filters_data[i].filter)
 	is_improper_filter(lines) == null
 	alerts_filters_data[i].resource.notification_channels
 } else = true {
@@ -115,7 +112,6 @@ has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
 } else = index {
 	lines := process_filter(alerts_filters_data[index].filter)
 	is_improper_filter(lines) == null
-	#regex.match(regex_pattern, alerts_filters_data[index].filter)
 } else = index {
 	alerts_filters_data[index].allows_ref == true
 	contains(alerts_filters_data[index].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
