@@ -4,7 +4,6 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 types := {"google_logging_metric", "google_monitoring_alert_policy"}
-regex_pattern := "^\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*$"
 
 CxPolicy[result] {
 	log_resources := [{"value": object.get(input.document[index].resource, "google_logging_metric", []), "document_index": index}]
@@ -26,26 +25,31 @@ CxPolicy[result] {
 not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	log_resources[_].value != []
 	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
-
-	not single_regex_match(logs_filters_data)
-
-	results := [res | res := {
-		"documentId": input.document[logs_filters_data[i].doc_index].id,
-		"resourceType": "google_logging_metric",
-		"resourceName": tf_lib.get_resource_name(logs_filters_data[i].resource, logs_filters_data[i].name),
-		"searchKey": sprintf("google_logging_metric[%s].%s", [logs_filters_data[i].name, logs_filters_data[i].path]),
-		"issueType":  "IncorrectValue",
-		"keyExpectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
-		"keyActualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
-		"searchLine": common_lib.build_search_line(logs_filters_data[i].searchArray, [])
-	}]
-
+	filters_data := logs_filters_data[i]
+	keyActualValue := single_match(filters_data)
+	keyActualValue != null
+	results := [res | 
+		res := {
+			"documentId": input.document[filters_data.doc_index].id,
+			"resourceType": "google_logging_metric",
+			"resourceName": tf_lib.get_resource_name(filters_data.resource, filters_data.name),
+			"searchKey": sprintf("google_logging_metric[%s].%s", [filters_data.name, filters_data.path]),
+			"issueType":  "IncorrectValue",
+			"keyExpectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
+			"keyActualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+			"searchLine": common_lib.build_search_line(filters_data.searchArray, [])
+		}]
+	count(results) == count(logs_filters_data) # if a single filter is valid it should not flag
 } else = results {
 	log_resources[_].value != []
 	alert_resources[_].value != []
 	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
 
-	valid_logs_names := [logs_filters_data[i2].name | regex.match(regex_pattern,logs_filters_data[i2].filter)]
+	valid_logs_names := [logs_filters_data[i2].name | 
+		#regex.match(regex_pattern,logs_filters_data[i2].filter)
+		lines := process_filter(logs_filters_data[i2].filter)
+		is_improper_filter(lines) == null
+	]
 
 	alerts_filters_data := [alert | alert := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
 
@@ -96,19 +100,49 @@ get_data(resource, type, name, doc_index) = filter {
 	}
 }
 
-single_regex_match(filters_data) {
-	regex.match(regex_pattern, filters_data[_].filter)
+single_match(filters_data) = keyActualValue {
+	lines := process_filter(filters_data.filter)
+	keyActualValue := is_improper_filter(lines)
+	#regex.match(regex_pattern, filters_data[_].filter)
+}
+
+process_filter(raw_filter) = filter {
+	filter := split(regex.replace(regex.replace(regex.replace(raw_filter, "\\n", ""), "\\s*AND\\s*", "\nAND"), "\\s*OR\\s*", "\nOR"), "\n")
+	# first all \n are removed then \n are added on each AND or OR declaration so that each line starts with its corresponding logical operator
+	# the resulting string is split so we can have an array of operations
+}
+
+is_improper_filter(lines) = keyActualValue {
+	not has_set_iam_policy(lines)
+	keyActualValue := "does not define the methodName to 'SetIamPolicy'"
+} else = keyActualValue {
+	not has_audit_config_deltas(lines)
+	keyActualValue := "does not define the serviceData.policyDelta.auditConfigDeltas to '*'"
+} else = null
+
+has_set_iam_policy(lines) {
+	text := concat(" ", lines)
+	regex.match("(?i)protoPayload\\.methodName\\s*=\\s*\"SetIamPolicy\"", text)
+}
+
+has_audit_config_deltas(lines) {
+	text := concat(" ", lines)
+    regex.match("(?i)protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*", text)
 }
 
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
-	regex.match(regex_pattern, alerts_filters_data[i].filter)
+	lines := process_filter(alerts_filters_data[i].filter)
+	is_improper_filter(lines) == null
+	#regex.match(regex_pattern, alerts_filters_data[i].filter)
 	alerts_filters_data[i].resource.notification_channels
 } else = true {
 	alerts_filters_data[i].allows_ref == true
 	alerts_filters_data[i].resource.notification_channels
 	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
 } else = index {
-	regex.match(regex_pattern, alerts_filters_data[index].filter)
+	lines := process_filter(alerts_filters_data[index].filter)
+	is_improper_filter(lines) == null
+	#regex.match(regex_pattern, alerts_filters_data[index].filter)
 } else = index {
 	alerts_filters_data[index].allows_ref == true
 	contains(alerts_filters_data[index].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
