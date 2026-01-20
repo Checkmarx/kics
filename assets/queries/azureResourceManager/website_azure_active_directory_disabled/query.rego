@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	value.type == "Microsoft.Web/sites"
 
-	not common_lib.valid_key(value, "identity")
+	get_res(value, path)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,43 +21,31 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(path, ["name"]),
 	}
 }
-
-CxPolicy[result] {
-	doc := input.document[i]
-	[path, value] = walk(doc)
-
-	value.type == "Microsoft.Web/sites"
-	not common_lib.valid_key(value.identity, "type")
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": value.type,
-		"resourceName": value.name,
-		"searchKey": sprintf("%s.name={{%s}}.identity", [common_lib.concat_path(path), value.name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
-		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
-		"searchLine": common_lib.build_search_line(path, ["identity"]),
+get_res(value, path) = res {
+	not common_lib.valid_key(value, "identity")
+	res := {
+		"sk": sprintf("%s.name={{%s}}", [common_lib.concat_path(path), value.name]),
+		"it": "MissingAttribute",
+		"kev": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
+		"kav": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
+		"sl": common_lib.build_search_line(path, ["name"])
 	}
-}
-
-CxPolicy[result] {
-	doc := input.document[i]
-	[path, value] = walk(doc)
-
-	value.type == "Microsoft.Web/sites"
+} else = res {
+	not common_lib.valid_key(value.identity, "type")
+	res := {
+		"sk": sprintf("%s.name={{%s}}.identity", [common_lib.concat_path(path), value.name]),
+		"it": "MissingAttribute",
+		"kev": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+		"kav": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined"
+	}
+} else = res {
 	common_lib.valid_key(value.identity, "type")
 	not is_valid_identity(value.identity)
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": value.type,
-		"resourceName": value.name,
-		"searchKey": sprintf("%s.name={{%s}}.identity", [common_lib.concat_path(path), value.name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to %s",
-		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to %s",
-		"searchLine": common_lib.build_search_line(path, ["identity"]),
+	res := {
+		"sk": sprintf("%s.name={{%s}}.identity", [common_lib.concat_path(path), value.name]),
+		"it": "IncorrectValue",
+		"kev": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+		"kav": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to '%s'"
 	}
 }
 
