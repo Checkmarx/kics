@@ -18,8 +18,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.MinimumCompressionSize", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Resources.%s.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
-		"keyActualValue": "Resources.%s.Properties.MinimumCompressionSize is set to smaller than 0",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.MinimumCompressionSize is set to smaller than 0", [name]),
 		"searchLine": common_lib.build_search_line(path, [name, "Properties", "MinimumCompressionSize"]),
 	}
 }
@@ -39,8 +39,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.MinimumCompressionSize", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Resources.%s.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
-		"keyActualValue": "Resources.%s.Properties.MinimumCompressionSize is set to greater than 10485759",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.MinimumCompressionSize is set to greater than 10485759", [name]),
 		"searchLine": common_lib.build_search_line(path, [name, "Properties", "MinimumCompressionSize"]),
 	}
 }
