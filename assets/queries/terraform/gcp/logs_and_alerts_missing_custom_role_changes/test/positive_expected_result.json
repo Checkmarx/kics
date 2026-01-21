@@ -46,11 +46,5 @@
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive8.tf"
-  },
-  {
-    "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive9.tf"
   }
 ]

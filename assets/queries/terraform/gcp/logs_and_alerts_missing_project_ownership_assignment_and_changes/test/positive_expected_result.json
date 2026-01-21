@@ -40,5 +40,11 @@
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive8.tf"
   }
 ]
