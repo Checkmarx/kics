@@ -1,0 +1,176 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Functions with similar permissions - should NOT be flagged
+
+Resources:
+  # Functions with same event types - legitimate role sharing
+  GetUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: users.getUser
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["UserReadRole", "Arn"]}
+      Events:
+        GetUser:
+          Type: Api
+          Properties:
+            Path: /users/{id}
+            Method: get
+      Environment:
+        Variables:
+          TABLE_NAME: users
+
+  ListUsersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: users.listUsers
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["UserReadRole", "Arn"]}
+      Events:
+        ListUsers:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: get
+      Environment:
+        Variables:
+          TABLE_NAME: users
+
+  # Functions with same environment variables - similar permissions
+  ProcessPaymentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: orders.processPayment
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["OrderProcessingRole", "Arn"]}
+      Events:
+        ProcessPayment:
+          Type: Api
+          Properties:
+            Path: /orders/{id}/payment
+            Method: post
+      Environment:
+        Variables:
+          ORDER_TABLE: orders
+          PAYMENT_SERVICE: payments
+
+  ProcessShippingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: orders.processShipping
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["OrderProcessingRole", "Arn"]}
+      Events:
+        ProcessShipping:
+          Type: Api
+          Properties:
+            Path: /orders/{id}/shipping
+            Method: post
+      Environment:
+        Variables:
+          ORDER_TABLE: orders
+          SHIPPING_SERVICE: shipping
+
+  # Functions with no events - should have unique roles for least privilege
+  UtilityFunction1:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: utils.function1
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["UtilityRole1", "Arn"]}
+
+  UtilityFunction2:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: utils.function2
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["UtilityRole2", "Arn"]}
+
+  # Functions with same SQS event type
+  QueueProcessor1:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: queue.processor1
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["QueueProcessorRole", "Arn"]}
+      Events:
+        SQSEvent1:
+          Type: SQS
+          Properties:
+            Queue: {"Fn::GetAtt": ["Queue1", "Arn"]}
+
+  QueueProcessor2:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: queue.processor2
+      Runtime: nodejs18.x
+      Role: {"Fn::GetAtt": ["QueueProcessorRole", "Arn"]}
+      Events:
+        SQSEvent2:
+          Type: SQS
+          Properties:
+            Queue: {"Fn::GetAtt": ["Queue2", "Arn"]}
+
+  # IAM Roles
+  UserReadRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  OrderProcessingRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  UtilityRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  QueueProcessorRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  # SQS Queues
+  Queue1:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: queue1
+
+  Queue2:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: queue2

@@ -1,0 +1,15 @@
+service: service-single-function
+frameworkVersion: '2'
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+# Single function should NOT be flagged - can use default AWS execution roles
+functions:
+  hello:
+    handler: handler.hello
+    role: myDefaultRole
+    events:
+      - http:
+          path: /hello
+          method: get

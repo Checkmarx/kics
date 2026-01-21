@@ -1,0 +1,121 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Legitimate public S3 buckets that should NOT be flagged",
+  "Resources": {
+    "WebsiteBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "my-company-website-hosting",
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html",
+          "ErrorDocument": "error.html"
+        }
+      }
+    },
+    "StaticAssetsBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "app-static-content-cdn"
+      }
+    },
+    "CloudFrontDistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Origins": [
+            {
+              "DomainName": {
+                "Fn::GetAtt": ["StaticAssetsBucket", "RegionalDomainName"]
+              },
+              "Id": "S3Origin",
+              "S3OriginConfig": {
+                "OriginAccessIdentity": ""
+              }
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "TargetOriginId": "S3Origin",
+            "ViewerProtocolPolicy": "redirect-to-https",
+            "AllowedMethods": ["GET", "HEAD"],
+            "CachedMethods": ["GET", "HEAD"],
+            "ForwardedValues": {
+              "QueryString": false
+            }
+          },
+          "Enabled": true
+        }
+      }
+    },
+    "MediaBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "company-public-media-files"
+      }
+    },
+    "FrontendBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "app-frontend-assets-distribution"
+      }
+    },
+    "ImagesBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "my-images-public-hosting",
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html"
+        }
+      }
+    },
+    "PublicLogsBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "company-logs-backup-public"
+      }
+    },
+    "CDNAssetsBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "my-cdn-assets-distribution"
+      }
+    },
+    "PublicContentBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "app-public-content-hosting"
+      }
+    },
+    "ControlledPublicBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "controlled-public-access"
+      }
+    },
+    "ControlledPublicBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {"Ref": "ControlledPublicBucket"},
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "s3:GetObject",
+              "Resource": {
+                "Fn::Sub": "${ControlledPublicBucket}/*"
+              },
+              "Condition": {
+                "StringLike": {
+                  "aws:Referer": [
+                    "https://example.com/*",
+                    "https://*.example.com/*"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
