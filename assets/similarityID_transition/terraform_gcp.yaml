@@ -79,6 +79,8 @@ similarityIDChangeList:
       queryName: Beta - SQL DB Instance With Exposed Show Privileges
       observations: ""
       change: 2
+    - queryId: 4b5ee6a4-5682-4725-8a7a-d9e9a51986c8
+      queryName: Beta - Shielded GKE Node Do Not Have Integrity Monitoring Enabled
     - queryId: 700f1049-7fa0-4cb0-971b-3efebfb6a91f
       queryName: Beta - Legacy Networks Do Not Exist For Older Google Projects
       observations: ""

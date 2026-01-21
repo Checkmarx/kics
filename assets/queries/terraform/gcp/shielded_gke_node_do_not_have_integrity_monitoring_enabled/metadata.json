@@ -1,0 +1,14 @@
+{
+  "id": "4b5ee6a4-5682-4725-8a7a-d9e9a51986c8",
+  "queryName": "Beta - Shielded GKE Node Do Not Have Integrity Monitoring Enabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Enabling Integrity Monitoring for Shielded GKE Nodes is necessary to be notified of inconsistencies during the node boot sequence.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool",
+  "platform": "Terraform",
+  "descriptionID": "4b5ee6a4",
+  "cloudProvider": "gcp",
+  "cwe": "353",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
