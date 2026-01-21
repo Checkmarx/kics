@@ -45,7 +45,7 @@ get_res(value, path) = res {
 		"sk": sprintf("%s.name={{%s}}.identity", [common_lib.concat_path(path), value.name]),
 		"it": "IncorrectValue",
 		"kev": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
-		"kav": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to '%s'"
+		"kav": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'"
 	}
 }
 
