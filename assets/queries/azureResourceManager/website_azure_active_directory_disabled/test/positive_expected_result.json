@@ -44,7 +44,7 @@
   {
     "queryName": "Website Azure Active Directory Disabled",
     "severity": "LOW",
-    "line": 2,
+    "line": 5,
     "fileName": "positive1.bicep"
   },
   {
