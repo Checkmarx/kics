@@ -88,6 +88,6 @@ similarityIDChangeList:
       observations: ""
       change: 1
     - queryId: 8ca7e731-56f6-4fb4-9b98-fcb0a93518c8
-      queryName: Beta - Google Kubernetes Engine Cluster Have Alpha Features Enabled
+      queryName: Beta - Google Kubernetes Engine Cluster Has Alpha Features Enabled
       observations: ""
       change: 1
