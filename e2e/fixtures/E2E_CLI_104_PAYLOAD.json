@@ -1,0 +1,57 @@
+{
+  "document": [
+    {
+      "file": "file",
+      "id": "0",
+      "locals": {
+        "environment": "production",
+        "resource_name": "my-app-service"
+      },
+      "resource": {
+        "aws_s3_bucket": {
+          "example": {
+            "bucket": "my-app-service",
+            "tags": {
+              "Environment": "production",
+              "Name": "my-app-service"
+            }
+          }
+        },
+        "kubernetes_service_v1": {
+          "example": {
+            "metadata": {
+              "labels": {
+                "app": "my-app-service"
+              },
+              "name": "my-service",
+              "namespace": "default"
+            },
+            "spec": {
+              "port": {
+                "port": 80,
+                "target_port": 8080
+              },
+              "selector": {
+                "app": "my-app-service"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "variable": {
+        "name": {
+          "default": "service",
+          "type": "${string}"
+        },
+        "resource_prefix": {
+          "default": "my-app-",
+          "type": "${string}"
+        }
+      }
+    }
+  ]
+}
