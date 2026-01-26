@@ -91,10 +91,7 @@ similarityIDChangeList:
       queryName: Beta - Ensure Essential Contacts Is Configured For Organization
       observations: ""
       change: 1
-<<<<<<< HEAD
-=======
     - queryId: 8ca7e731-56f6-4fb4-9b98-fcb0a93518c8
       queryName: Beta - Google Kubernetes Engine Cluster Has Alpha Features Enabled
       observations: ""
       change: 1
->>>>>>> 7f50c3b96d5c606ddb0cadf38a3d758131bd3929
