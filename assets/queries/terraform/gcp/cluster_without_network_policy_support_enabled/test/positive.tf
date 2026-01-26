@@ -1,4 +1,4 @@
-resource "google_container_cluster" "negative1" {
+resource "google_container_cluster" "positive1" {
   name     = "gke-network-policy-cluster"
   location = "us-central1"
 
@@ -7,7 +7,7 @@ resource "google_container_cluster" "negative1" {
   # missing "network_policy"
 }
 
-resource "google_container_cluster" "negative2" {
+resource "google_container_cluster" "positive2" {
   name     = "gke-network-policy-cluster"
   location = "us-central1"
 
