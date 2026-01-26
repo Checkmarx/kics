@@ -8,13 +8,13 @@
   {
     "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
     "severity": "LOW",
-    "line": 8,
+    "line": 6,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
     "severity": "LOW",
-    "line": 3,
+    "line": 1,
     "fileName": "positive3.tf"
   }
 ]
