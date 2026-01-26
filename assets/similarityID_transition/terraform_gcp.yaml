@@ -2,7 +2,7 @@ similarityIDChangeList:
     - queryId: 99976ba0-aa37-4745-93a6-5f1d55997f67
       queryName: Beta - Cluster Without Network Policy Support Enabled
       observations: ""
-      change: 2
+      change: 1
     - queryId: cc9e464e-5abc-4c8f-8077-a9aa7ebe6a05
       queryName: Beta - Google DNS Policy Logging Disabled
       observations: ""
