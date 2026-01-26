@@ -50,7 +50,7 @@ resource "google_sql_database_instance" "negative_3" { # Single object support t
 
 resource "google_sql_database_instance" "negative_4" {
   name             = "main-instance"
-  database_version = "MYSQL_8_0"      # Is not a SQLSERVER instance
+  database_version = "SQLSERVER_2019_STANDARD"
   region           = "us-central1"
 
   # Missing "settings" but "clone" is set
