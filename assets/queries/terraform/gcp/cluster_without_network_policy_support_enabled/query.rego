@@ -16,7 +16,9 @@ CxPolicy[result] {
 		"issueType": results.issueType,
 		"keyExpectedValue": results.keyExpectedValue,
 		"keyActualValue": results.keyActualValue,
-		"searchLine": results.searchLine
+		"searchLine": results.searchLine,
+		"remediation": results.remediation,
+		"remediationType": results.remediationType
 	}
 }
 
@@ -27,7 +29,9 @@ no_network_policy_or_disabled(resource, name) = results {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'google_container_cluster[%s].network_policy' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'google_container_cluster[%s].network_policy' is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", name], [])
+		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", name], []),
+		"remediation": "network_policy {\n\t\tenabled = true\n\t}\n",
+		"remediationType": "addition"
 	 }
 } else = results {	# "enabled" is a required field
 	resource.network_policy.enabled != true
@@ -36,6 +40,11 @@ no_network_policy_or_disabled(resource, name) = results {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_container_cluster[%s].network_policy.enabled' should be set to 'true'", [name]),
 		"keyActualValue": sprintf("'google_container_cluster[%s].network_policy.enabled' is set to '%s'", [name, resource.network_policy.enabled]),
-		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", name, "network_policy", "enabled"], [])
+		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", name, "network_policy", "enabled"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement"
 	 }
 }
