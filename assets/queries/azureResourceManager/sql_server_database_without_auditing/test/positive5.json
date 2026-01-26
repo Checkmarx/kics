@@ -7,17 +7,16 @@
       "apiVersion": "2021-02-01-preview",
       "name": "sqlServer1",
       "location": "[resourceGroup().location]",
-      "properties": {}
-    },
-    {
-      "type": "Microsoft.Sql/servers/databases",
-      "apiVersion": "2021-02-01-preview",
-      "name": "sqlServer1/sqlDatabase1",
-      "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"
-      ],
-      "properties": {}
+      "properties": {},
+      "resources": [
+        {
+          "type": "databases",
+          "apiVersion": "2021-02-01-preview",
+          "name": "sqlDatabase1",
+          "location": "[resourceGroup().location]",
+          "properties": {}
+        }
+      ]
     }
   ]
 }
