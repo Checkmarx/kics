@@ -163,7 +163,7 @@ const (
 	FilePermMode = 0777
 )
 
-func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, originalFileName string, similarityID string) []string {
+func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, originalFileName, similarityID string) []string {
 	remediated := []byte(strings.Join(remediatedLines, "\n"))
 
 	mode := os.FileMode(FilePermMode)
