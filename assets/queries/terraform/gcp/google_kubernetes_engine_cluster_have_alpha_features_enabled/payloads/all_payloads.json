@@ -1,0 +1,42 @@
+{
+	"document": [
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/google_kubernetes_engine_cluster_have_alpha_features_enabled/test/negative1.tf",
+			"id": "1de36fee-828f-4d08-8eeb-243cd102ec28",
+			"resource": {
+				"google_container_cluster": {
+					"negative1": {
+						"enable_kubernetes_alpha": false,
+						"location": "us-central1-a",
+						"name": "pud-example-rg"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/google_kubernetes_engine_cluster_have_alpha_features_enabled/test/negative2.tf",
+			"id": "36baa17a-74d8-4875-b68d-ef5ec3fdb993",
+			"resource": {
+				"google_container_cluster": {
+					"negative1": {
+						"location": "us-central1-a",
+						"name": "pud-example-rg"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/google_kubernetes_engine_cluster_have_alpha_features_enabled/test/positive.tf",
+			"id": "5bc35a97-547e-4638-ac07-2af9b576d029",
+			"resource": {
+				"google_container_cluster": {
+					"positive": {
+						"enable_kubernetes_alpha": true,
+						"location": "us-central1-a",
+						"name": "pud-example-rg"
+					}
+				}
+			}
+		}
+	]
+}

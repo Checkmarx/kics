@@ -1,0 +1,217 @@
+{
+	"document": [
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/negative1.tf",
+			"id": "09d86b89-2275-45f3-bc17-ad7e21e5bcb2",
+			"resource": {
+				"aws_sns_topic": {
+					"negative1": {
+						"policy": "{\n\"Version\": \"2012-10-17\",\n\"Statement\": [\n{\n\"Action\": \"*\",\n\"Principal\": {\n  \"AWS\": \"arn:aws:iam::##account_number##:root\"\n},\n\"Effect\": \"Allow\",\n\"Sid\": \"\"\n}\n]\n}\n"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/negative2.tf",
+			"id": "7bf5cb39-14b6-46ba-bc4b-207991292d76",
+			"resource": {
+				"aws_sns_topic": {
+					"negative2": {
+						"policy": "{\n  \"Version\": \"2008-10-17\",\n  \"Id\": \"__default_policy_ID\",\n  \"Statement\": [\n    {\n      \"Sid\": \"__default_statement_ID\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      },\n      \"Action\": [\n        \"*\"\n      ],\n      \"Resource\": \"arn:aws:sns:${var.aws_region}:${var.aws_account_number}:forensics_sns_topic\",\n      \"Condition\": {\n        \"StringEquals\": {\n          \"AWS:SourceOwner\": \"${var.aws_account_number}\"\n        }\n      }\n    }\n  ]\n}\n"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/negative3.tf",
+			"id": "373c81be-d706-482f-ab70-52efd203b734",
+			"resource": {
+				"aws_sns_topic": {
+					"negative3": {
+						"policy": "{\n  \"Version\": \"2008-10-17\",\n  \"Id\": \"__default_policy_ID\",\n  \"Statement\": [\n    {\n      \"Sid\": \"__default_statement_ID\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      },\n      \"Action\": [\n        \"*\"\n      ],\n      \"Resource\": \"arn:aws:sns:${var.aws_region}:${var.aws_account_number}:forensics_sns_topic\",\n      \"Condition\": {\n        \"StringEquals\": {\n          \"AWS:SourceAccount\": \"${var.aws_account_number}\"\n        }\n      }\n    }\n  ]\n}\n"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/negative4.tf",
+			"id": "56563c0d-217b-422e-a7b2-26250336dd3b",
+			"resource": {
+				"aws_sns_topic": {
+					"negative4": {
+						"policy": "{\n  \"Version\": \"2008-10-17\",\n  \"Id\": \"__default_policy_ID\",\n  \"Statement\": [\n    {\n      \"Sid\": \"__default_statement_ID\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      },\n      \"Action\": [\n        \"*\"\n      ],\n      \"Resource\": \"arn:aws:sns:${var.aws_region}:${var.aws_account_number}:forensics_sns_topic\",\n      \"Condition\": {\n        \"StringEquals\": {\n          \"aws:ResourceAccount\": \"${var.aws_account_number}\"\n        }\n      }\n    }\n  ]\n}\n"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/negative5.tf",
+			"id": "68b95e19-0ec9-4b10-a8b0-473563bfe98e",
+			"module": {
+				"sns_topic_with_policy_field": {
+					"name": "example-sns-topic-policy",
+					"source": "terraform-aws-modules/sns/aws",
+					"topic_policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowAllAccounts\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      },\n      \"Action\": \"sns:Publish\",\n      \"Resource\": \"*\",\n      \"Condition\": {\n        \"StringEquals\": {\n          \"aws:PrincipalAccount\": \"123456789012\"\n        }\n      }\n    }\n  ]\n}\n",
+					"version": "~\u003e 6.0"
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/negative6.tf",
+			"id": "ab7a2758-1e06-4d6c-8e7a-a0d7281493bc",
+			"module": {
+				"sns_topic_with_policy_statements": {
+					"name": "example-sns-topic-statements",
+					"source": "terraform-aws-modules/sns/aws",
+					"topic_policy_statements": [
+						{
+							"actions": [
+								"sns:Publish"
+							],
+							"condition": {
+								"StringEquals": {
+									"aws:VpceAccount": "987654321098"
+								}
+							},
+							"effect": "Allow",
+							"principals": [
+								{
+									"identifiers": [
+										"*"
+									],
+									"type": "AWS"
+								}
+							],
+							"sid": "AllowVPCEAccess"
+						}
+					],
+					"version": "~\u003e 6.0"
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/negative7.tf",
+			"id": "a5fbb8ed-074c-4a1d-84c3-f4f97ca52bed",
+			"module": {
+				"sns_topic_with_policy_field_valid": {
+					"name": "example-sns-topic-policy-valid",
+					"source": "terraform-aws-modules/sns/aws",
+					"topic_policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowSpecificAccount\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"arn:aws:iam::123456789012:root\"\n      },\n      \"Action\": \"sns:Publish\",\n      \"Resource\": \"*\"\n    }\n  ]\n}\n",
+					"version": "~\u003e 6.0"
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/negative8.tf",
+			"id": "243525c5-e1ca-40ee-a4ce-88339c2d5491",
+			"module": {
+				"sns_topic_with_policy_statements_valid": {
+					"name": "example-sns-topic-statements-valid",
+					"source": "terraform-aws-modules/sns/aws",
+					"topic_policy_statements": [
+						{
+							"actions": [
+								"sns:Publish"
+							],
+							"effect": "Allow",
+							"principals": [
+								{
+									"identifiers": [
+										"arn:aws:iam::123456789012:root"
+									],
+									"type": "AWS"
+								}
+							],
+							"sid": "AllowSpecificPrincipal"
+						}
+					],
+					"version": "~\u003e 6.0"
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/positive1.tf",
+			"id": "c298d6ae-a904-4946-92ea-c384b559c9ed",
+			"resource": {
+				"aws_sns_topic": {
+					"positive1": {
+						"policy": "{\n\"Version\": \"2012-10-17\",\n\"Statement\": [\n{\n\"Action\": \"*\",\n\"Principal\": {\n  \"AWS\": \"*\"\n},\n\"Effect\": \"Allow\",\n\"Sid\": \"\"\n}\n]\n}\n"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/positive2.tf",
+			"id": "8c004d95-4bc2-459d-b78f-ad3b38a480c8",
+			"module": {
+				"sns_topic_with_policy_field": {
+					"name": "example-sns-topic-policy",
+					"source": "terraform-aws-modules/sns/aws",
+					"topic_policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowAllAccounts\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      },\n      \"Action\": \"sns:Publish\",\n      \"Resource\": \"*\"\n    }\n  ]\n}\n",
+					"version": "~\u003e 6.0"
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/positive3.tf",
+			"id": "6ad3033e-a398-4bbc-932d-81c04015f69a",
+			"module": {
+				"sns_topic_with_policy_statements_valid": {
+					"name": "example-sns-topic-statements-valid",
+					"source": "terraform-aws-modules/sns/aws",
+					"topic_policy_statements": [
+						{
+							"actions": [
+								"sns:Publish"
+							],
+							"effect": "Allow",
+							"principals": [
+								{
+									"identifiers": [
+										"*"
+									],
+									"type": "AWS"
+								}
+							],
+							"sid": "AllowSpecificPrincipal"
+						}
+					],
+					"version": "~\u003e 6.0"
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/aws/sns_topic_is_publicly_accessible/test/positive4.tf",
+			"id": "8c714e22-b308-467c-b130-3e8527181622",
+			"module": {
+				"sns_topic_with_policy_statements_not_limited_access": {
+					"name": "example-sns-topic-statements-valid",
+					"source": "terraform-aws-modules/sns/aws",
+					"topic_policy_statements": [
+						{
+							"actions": [
+								"sns:Publish"
+							],
+							"condition": {
+								"StringEquals": {
+									"sns:Endpoint": "https://example.com/endpoint"
+								}
+							},
+							"effect": "Allow",
+							"principals": [
+								{
+									"identifiers": [
+										"*"
+									],
+									"type": "AWS"
+								}
+							],
+							"sid": "AllowSpecificPrincipal"
+						}
+					],
+					"version": "~\u003e 6.0"
+				}
+			}
+		}
+	]
+}

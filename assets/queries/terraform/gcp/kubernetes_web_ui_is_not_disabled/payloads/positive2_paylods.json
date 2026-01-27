@@ -1,0 +1,19 @@
+{
+	"document": [
+		{
+			"file": "C:\\Users\\ricardoj\\OneDrive - Checkmarx\\Desktop\\new_kics_repo\\kics\\assets\\queries\\terraform\\gcp\\kubernetes_web_ui_is_not_disabled\\test\\positive2.tf",
+			"id": "7b599b35-86b3-4075-8eb4-ab224ab1f317",
+			"resource": {
+				"google_container_cluster": {
+					"positive2": {
+						"addons_config": {},
+						"initial_node_count": 3,
+						"location": "us-central1-a",
+						"min_master_version": "1.8.12-gke.2",
+						"name": "marcellus-wallace"
+					}
+				}
+			}
+		}
+	]
+}

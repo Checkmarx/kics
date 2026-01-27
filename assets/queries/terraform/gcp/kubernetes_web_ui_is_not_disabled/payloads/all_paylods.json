@@ -1,0 +1,96 @@
+{
+	"document": [
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/kubernetes_web_ui_is_not_disabled/test/negative1.tf",
+			"id": "b8dd3151-239c-4f9b-ae91-f8842102cb41",
+			"resource": {
+				"google_container_cluster": {
+					"negative1": {
+						"initial_node_count": 3,
+						"location": "us-central1-a",
+						"name": "marcellus-wallace"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/kubernetes_web_ui_is_not_disabled/test/negative2.tf",
+			"id": "7b94949a-0a1d-40a5-93f3-005757640e77",
+			"resource": {
+				"google_container_cluster": {
+					"negative2": {
+						"addons_config": {
+							"kubernetes_dashboard": {
+								"disabled": true
+							}
+						},
+						"initial_node_count": 3,
+						"location": "us-central1-a",
+						"name": "marcellus-wallace"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/kubernetes_web_ui_is_not_disabled/test/negative3.tf",
+			"id": "d87f9479-d9ae-4ea4-907d-f4a7765b3a92",
+			"resource": {
+				"google_container_cluster": {
+					"negative3": {
+						"initial_node_count": 3,
+						"location": "us-central1-a",
+						"min_master_version": "1.11.8-gke.5",
+						"name": "marcellus-wallace"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/kubernetes_web_ui_is_not_disabled/test/positive1.tf",
+			"id": "f9e21ba9-e0cc-4a30-b93a-376f99202907",
+			"resource": {
+				"google_container_cluster": {
+					"positive1": {
+						"addons_config": {
+							"kubernetes_dashboard": {
+								"disabled": false
+							}
+						},
+						"initial_node_count": 3,
+						"location": "us-central1-a",
+						"name": "marcellus-wallace"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/kubernetes_web_ui_is_not_disabled/test/positive2.tf",
+			"id": "b4985a59-eb46-4b8e-ae85-1b2da984df54",
+			"resource": {
+				"google_container_cluster": {
+					"positive2": {
+						"addons_config": {},
+						"initial_node_count": 3,
+						"location": "us-central1-a",
+						"min_master_version": "1.8.12-gke.2",
+						"name": "marcellus-wallace"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/kubernetes_web_ui_is_not_disabled/test/positive3.tf",
+			"id": "6e5ae67c-d51e-493d-8227-c1c516f7203c",
+			"resource": {
+				"google_container_cluster": {
+					"positive2": {
+						"initial_node_count": 3,
+						"location": "us-central1-a",
+						"min_master_version": "1.8.12-gke.2",
+						"name": "marcellus-wallace"
+					}
+				}
+			}
+		}
+	]
+}

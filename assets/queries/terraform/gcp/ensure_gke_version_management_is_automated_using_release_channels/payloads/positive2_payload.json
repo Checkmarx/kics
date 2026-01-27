@@ -1,0 +1,20 @@
+{
+	"document": [
+		{
+			"file": "C:\\Users\\ricardoj\\OneDrive - Checkmarx\\Desktop\\new_kics_repo\\kics\\assets\\queries\\terraform\\gcp\\ensure_gke_version_management_is_automated_using_release_channels\\test\\positive2.tf",
+			"id": "8bfc0b05-a1cd-410b-beb3-1f5fdf271409",
+			"resource": {
+				"google_container_cluster": {
+					"positive2": {
+						"initial_node_count": 1,
+						"location": "us-central1",
+						"name": "my-gke-cluster",
+						"release_channel": {
+							"channel": "UNSPECIFIED"
+						}
+					}
+				}
+			}
+		}
+	]
+}

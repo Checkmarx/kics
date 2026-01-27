@@ -1,0 +1,16 @@
+{
+	"document": [
+		{
+			"file": "C:\\Users\\ricardoj\\OneDrive - Checkmarx\\Desktop\\new_kics_repo\\kics\\assets\\queries\\terraform\\aws\\sns_topic_is_publicly_accessible\\test\\positive2.tf",
+			"id": "bee1ac3c-5384-4050-9277-bd0493a11996",
+			"module": {
+				"sns_topic_with_policy_field": {
+					"name": "example-sns-topic-policy",
+					"source": "terraform-aws-modules/sns/aws",
+					"topic_policy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowAllAccounts\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      },\n      \"Action\": \"sns:Publish\",\n      \"Resource\": \"*\"\n    }\n  ]\n}\n",
+					"version": "~\u003e 6.0"
+				}
+			}
+		}
+	]
+}

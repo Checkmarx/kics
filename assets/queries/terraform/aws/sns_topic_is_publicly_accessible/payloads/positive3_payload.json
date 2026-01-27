@@ -1,0 +1,32 @@
+{
+	"document": [
+		{
+			"file": "C:\\Users\\ricardoj\\OneDrive - Checkmarx\\Desktop\\new_kics_repo\\kics\\assets\\queries\\terraform\\aws\\sns_topic_is_publicly_accessible\\test\\positive3.tf",
+			"id": "d4b98145-c6de-4895-8255-144e014cb28a",
+			"module": {
+				"sns_topic_with_policy_statements_valid": {
+					"name": "example-sns-topic-statements-valid",
+					"source": "terraform-aws-modules/sns/aws",
+					"topic_policy_statements": [
+						{
+							"actions": [
+								"sns:Publish"
+							],
+							"effect": "Allow",
+							"principals": [
+								{
+									"identifiers": [
+										"*"
+									],
+									"type": "AWS"
+								}
+							],
+							"sid": "AllowSpecificPrincipal"
+						}
+					],
+					"version": "~\u003e 6.0"
+				}
+			}
+		}
+	]
+}

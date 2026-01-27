@@ -1,0 +1,16 @@
+{
+	"document": [
+		{
+			"file": "C:\\Users\\ricardoj\\OneDrive - Checkmarx\\Desktop\\new_kics_repo\\kics\\assets\\queries\\terraform\\aws\\sns_topic_is_publicly_accessible\\samples\\sample.tf",
+			"id": "e34ea16a-e024-41fa-a0c5-79c247cbb3a3",
+			"resource": {
+				"aws_sns_topic": {
+					"forensics_sns_topic": {
+						"name": "forensics_sns_topic",
+						"policy": "{\n  \"Version\": \"2008-10-17\",\n  \"Id\": \"__default_policy_ID\",\n  \"Statement\": [\n    {\n      \"Sid\": \"__default_statement_ID\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      },\n      \"Action\": [\n        \"SNS:GetTopicAttributes\",\n        \"SNS:SetTopicAttributes\",\n        \"SNS:AddPermission\",\n        \"SNS:RemovePermission\",\n        \"SNS:DeleteTopic\",\n        \"SNS:Subscribe\",\n        \"SNS:ListSubscriptionsByTopic\",\n        \"SNS:Publish\",\n        \"SNS:Receive\"\n      ],\n      \"Resource\": \"arn:aws:sns:${var.aws_region}:${var.aws_account_number}:forensics_sns_topic\",\n      \"Condition\": {\n        \"StringEquals\": {\n          \"AWS:SourceOwner\": \"${var.aws_account_number}\"\n        }\n      }\n    }\n  ]\n}\n"
+					}
+				}
+			}
+		}
+	]
+}

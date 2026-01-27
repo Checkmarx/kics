@@ -1,0 +1,45 @@
+{
+	"document": [
+		{
+			"file": "C:\\Users\\ricardoj\\OneDrive - Checkmarx\\Desktop\\new_kics_repo\\kics\\assets\\queries\\terraform\\aws\\sns_topic_is_publicly_accessible\\test\\test.tf",
+			"id": "4c7ce254-5108-4a19-8842-177044f01a9e",
+			"module": {
+				"sns_with_policy": {
+					"display_name": "My SNS Topic",
+					"enable_topic_policy": true,
+					"name": "my-topic",
+					"source": "terraform-aws-modules/sns/aws",
+					"topic_policy_statements": [
+						{
+							"actions": [
+								"SNS:Publish"
+							],
+							"condition": {
+								"Bool": {
+									"aws:SecureTransport": "true"
+								},
+								"StringEquals": {
+									"aws:SourceAccount": "123456789012"
+								}
+							},
+							"effect": "Allow",
+							"principals": [
+								{
+									"identifiers": [
+										"arn:aws:iam::123456789012:role/SomeRole"
+									],
+									"type": "AWS"
+								}
+							],
+							"resources": [
+								"*"
+							],
+							"sid": "AllowHTTPSPublishOnly"
+						}
+					],
+					"version": "x.y.z"
+				}
+			}
+		}
+	]
+}

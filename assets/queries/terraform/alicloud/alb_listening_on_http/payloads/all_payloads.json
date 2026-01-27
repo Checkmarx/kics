@@ -1,0 +1,66 @@
+{
+	"document": [
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/alicloud/alb_listening_on_http/test/negative.tf",
+			"id": "42e22393-433f-467c-b111-dc347e0136dd",
+			"resource": {
+				"alicloud_alb_listener": {
+					"negative": {
+						"acl_config": {
+							"acl_relations": {
+								"acl_id": "${alicloud_alb_acl.example.id}"
+							},
+							"acl_type": "White"
+						},
+						"certificates": {
+							"certificate_id": "alicloud_ssl_certificates_service_certificate.default.id-cn-hangzhou"
+						},
+						"default_actions": {
+							"forward_group_config": {
+								"server_group_tuples": {
+									"server_group_id": "${alicloud_alb_server_group.default.id}"
+								}
+							},
+							"type": "ForwardGroup"
+						},
+						"listener_description": "createdByTerraform",
+						"listener_port": 443,
+						"listener_protocol": "HTTPS",
+						"load_balancer_id": "${alicloud_alb_load_balancer.default_3.id}"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/alicloud/alb_listening_on_http/test/positive.tf",
+			"id": "69b09a08-796d-4994-a93c-a2fd8aac8552",
+			"resource": {
+				"alicloud_alb_listener": {
+					"positive": {
+						"acl_config": {
+							"acl_relations": {
+								"acl_id": "${alicloud_alb_acl.example.id}"
+							},
+							"acl_type": "White"
+						},
+						"certificates": {
+							"certificate_id": "alicloud_ssl_certificates_service_certificate.default.id-cn-hangzhou"
+						},
+						"default_actions": {
+							"forward_group_config": {
+								"server_group_tuples": {
+									"server_group_id": "${alicloud_alb_server_group.default.id}"
+								}
+							},
+							"type": "ForwardGroup"
+						},
+						"listener_description": "createdByTerraform",
+						"listener_port": 443,
+						"listener_protocol": "HTTP",
+						"load_balancer_id": "${alicloud_alb_load_balancer.default_3.id}"
+					}
+				}
+			}
+		}
+	]
+}

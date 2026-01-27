@@ -1,0 +1,22 @@
+{
+	"document": [
+		{
+			"file": "C:\\Users\\ricardoj\\OneDrive - Checkmarx\\Desktop\\new_kics_repo\\kics\\assets\\queries\\terraform\\gcp\\kubernetes_web_ui_is_not_disabled\\test\\positive.tf",
+			"id": "afe9da9f-7357-4c97-98af-c7ab0594f5e6",
+			"resource": {
+				"google_container_cluster": {
+					"positive": {
+						"addons_config": {
+							"kubernetes_dashboard": {
+								"disabled": false
+							}
+						},
+						"initial_node_count": 3,
+						"location": "us-central1-a",
+						"name": "marcellus-wallace"
+					}
+				}
+			}
+		}
+	]
+}

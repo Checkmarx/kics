@@ -1,0 +1,295 @@
+{
+	"document": [
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/negative1.tf",
+			"id": "cf90be41-8b12-48f7-8319-2b28ee13afa1",
+			"resource": {
+				"google_logging_metric": {
+					"audit_config_change": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*",
+						"name": "audit_config_change"
+					}
+				},
+				"google_monitoring_alert_policy": {
+					"audit_config_alert": {
+						"combiner": "OR",
+						"conditions": {
+							"condition_threshold": {
+								"filter": "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/audit_config_change\""
+							},
+							"display_name": "Audit Config Change Condition"
+						},
+						"display_name": "Audit Config Change Alert",
+						"notification_channels": [
+							"${google_monitoring_notification_channel.email.id}"
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/negative2.tf",
+			"id": "9a96b846-998b-4521-bbd7-881ae3e25a66",
+			"resource": {
+				"google_logging_metric": {
+					"audit_config_change": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*",
+						"name": "audit_config_change"
+					}
+				},
+				"google_monitoring_alert_policy": {
+					"audit_config_alert": {
+						"combiner": "OR",
+						"conditions": {
+							"condition_matched_log": {
+								"filter": "protoPayload.methodName =  \"SetIamPolicy\"\n      AND  protoPayload.serviceData.policyDelta.auditConfigDeltas : *\n"
+							},
+							"display_name": "Audit Config Change Condition"
+						},
+						"display_name": "Audit Config Change Alert (Log Match)",
+						"notification_channels": [
+							"${google_monitoring_notification_channel.email.id}"
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/negative3.tf",
+			"id": "177d4e89-18b4-4d95-b9f1-ef3278c9232c",
+			"resource": {
+				"google_logging_metric": {
+					"audit_config_change": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.serviceData.policyDelta.auditConfigDeltas:* AND protoPayload.methodName=\"SetIamPolicy\" ",
+						"name": "audit_config_change"
+					}
+				},
+				"google_monitoring_alert_policy": {
+					"audit_config_alert": {
+						"combiner": "OR",
+						"conditions": {
+							"condition_threshold": {
+								"filter": "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/audit_config_change\""
+							},
+							"display_name": "Audit Config Change Condition"
+						},
+						"display_name": "Audit Config Change Alert",
+						"notification_channels": [
+							"${google_monitoring_notification_channel.email.id}"
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/negative4.tf",
+			"id": "c4cb6ea9-7da5-489e-bcf6-317866886849",
+			"resource": {
+				"google_logging_metric": {
+					"audit_config_change": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.serviceData.policyDelta.auditConfigDeltas:* AND protoPayload.methodName=\"SetIamPolicy\"",
+						"name": "audit_config_change"
+					}
+				},
+				"google_monitoring_alert_policy": {
+					"audit_config_alert": {
+						"combiner": "OR",
+						"conditions": {
+							"condition_matched_log": {
+								"filter": "protoPayload.serviceData.policyDelta.auditConfigDeltas : *\nAND   protoPayload.methodName =  \"SetIamPolicy\"\n            \n"
+							},
+							"display_name": "Audit Config Change Condition"
+						},
+						"display_name": "Audit Config Change Alert (Log Match)",
+						"notification_channels": [
+							"${google_monitoring_notification_channel.email.id}"
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/negative5.tf",
+			"id": "28d2b6a2-f61c-4cd0-a37c-dcbe523baa31",
+			"resource": {
+				"google_logging_metric": {
+					"audit_config_change_1": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*",
+						"name": "audit_config_change"
+					},
+					"audit_config_change_2": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.serviceData.policyDelta.auditConfigDeltas:* AND protoPayload.methodName=\"SetIamPolicy\"",
+						"name": "audit_config_change"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/positive1.tf",
+			"id": "25a88923-5325-47b0-9ca3-8556750659b5",
+			"resource": {
+				"google_logging_metric": {
+					"audit_config_change": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.methodName=\"wrong_method\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*",
+						"name": "audit_config_change"
+					}
+				},
+				"google_monitoring_alert_policy": {
+					"audit_config_alert": {
+						"combiner": "OR",
+						"conditions": {
+							"condition_threshold": {
+								"filter": "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/audit_config_change\""
+							},
+							"display_name": "Audit Config Change Condition"
+						},
+						"display_name": "Audit Config Change Alert",
+						"notification_channels": [
+							"${google_monitoring_notification_channel.email.id}"
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/positive2.tf",
+			"id": "22a184c8-44d2-4a92-97ff-81280f875e57",
+			"resource": {
+				"google_logging_metric": {
+					"audit_config_change": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*",
+						"name": "audit_config_change"
+					}
+				},
+				"google_monitoring_alert_policy": {
+					"audit_config_alert": {
+						"combiner": "OR",
+						"conditions": {
+							"condition_threshold": {
+								"filter": "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/wrong_reference\""
+							},
+							"display_name": "Audit Config Change Condition"
+						},
+						"display_name": "Audit Config Change Alert",
+						"notification_channels": [
+							"${google_monitoring_notification_channel.email.id}"
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/positive3.tf",
+			"id": "74d8935d-3726-422e-92e5-53638dd2b374",
+			"resource": {
+				"google_logging_metric": {
+					"audit_config_change": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*",
+						"name": "audit_config_change"
+					}
+				},
+				"google_monitoring_alert_policy": {
+					"audit_config_alert": {
+						"combiner": "OR",
+						"conditions": {
+							"condition_matched_log": {
+								"filter": "protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas: single_value"
+							},
+							"display_name": "Audit Config Change Condition"
+						},
+						"display_name": "Audit Config Change Alert (Log Match)",
+						"notification_channels": [
+							"${google_monitoring_notification_channel.email.id}"
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/positive4.tf",
+			"id": "71f7f37a-a175-4ca8-98d3-143919f49653",
+			"resource": {
+				"google_logging_metric": {
+					"audit_config_change": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*",
+						"name": "audit_config_change"
+					}
+				},
+				"google_monitoring_alert_policy": {
+					"audit_config_alert": {
+						"combiner": "OR",
+						"conditions": {
+							"condition_threshold": {
+								"filter": "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/audit_config_change\""
+							},
+							"display_name": "Audit Config Change Condition"
+						},
+						"display_name": "Audit Config Change Alert"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/positive5.tf",
+			"id": "3b092165-9018-481f-b5ca-642c32f5c675",
+			"resource": {
+				"google_monitoring_alert_policy": {
+					"audit_config_alert": {
+						"combiner": "OR",
+						"conditions": {
+							"condition_matched_log": {
+								"filter": "protoPayload.methodName =  \"SetIamPolicy\"\n      AND  protoPayload.serviceData.policyDelta.auditConfigDeltas : *\n"
+							},
+							"display_name": "Audit Config Change Condition"
+						},
+						"display_name": "Audit Config Change Alert (Log Match)"
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/positive6.tf",
+			"id": "2e3df78b-4528-4842-be38-960547f19a65",
+			"resource": {
+				"google_monitoring_alert_policy": {
+					"audit_config_alert": {
+						"combiner": "OR",
+						"conditions": {
+							"condition_threshold": {
+								"filter": "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/audit_config_change\""
+							},
+							"display_name": "Audit Config Change Condition"
+						},
+						"display_name": "Audit Config Change Alert",
+						"notification_channels": [
+							"${google_monitoring_notification_channel.email.id}"
+						]
+					}
+				}
+			}
+		},
+		{
+			"file": "C:/Users/ricardoj/OneDrive - Checkmarx/Desktop/new_kics_repo/kics/assets/queries/terraform/gcp/logs_and_alerts_missing_audit_configuration_changes/test/positive7.tf",
+			"id": "66308655-2ea4-4071-a0bd-439da057805b",
+			"resource": {
+				"google_logging_metric": {
+					"audit_config_change": {
+						"description": "Detects changes to audit configurations via SetIamPolicy",
+						"filter": "protoPayload.methodName=\"wrong_method\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*",
+						"name": "audit_config_change"
+					}
+				}
+			}
+		}
+	]
+}
