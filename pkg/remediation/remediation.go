@@ -53,7 +53,12 @@ type Set struct {
 }
 
 // RemediateFile remediationSets the replacements first and secondly, the additions sorted down
-func (s *Summary) RemediateFile(filePath, originalFileName string, remediationSet Set, openAPIResolveReferences bool, maxResolverDepth int) error {
+func (s *Summary) RemediateFile(
+	filePath, originalFileName string,
+	remediationSet Set,
+	openAPIResolveReferences bool,
+	maxResolverDepth int,
+) error {
 	filepath.Clean(filePath)
 	content, err := os.ReadFile(filePath)
 
