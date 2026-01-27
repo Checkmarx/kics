@@ -58,7 +58,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'%s[%s].site_config.http2_enabled' is set to false", [resources[m], name]),
 		"searchLine": common_lib.build_search_line(["resource", resources[m], name, "site_config", "http2_enabled"], []),
 		"remediation": json.marshal({
-			"before": "http2_enabled = false",
+			"before": sprintf("hhtp2_enabled = %s", [app.site_config.http2_enabled]),
 			"after": "http2_enabled = true"
 		}),
 		"remediationType": "replacement",
