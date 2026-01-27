@@ -47,3 +47,15 @@ resource "google_sql_database_instance" "negative_3" {  # Single object support 
       }   # Has flag set to "on"
   }
 }
+
+resource "google_sql_database_instance" "negative_4" {
+  name             = "main-instance"
+  database_version = "MYSQL_8_0"      # Is not a POSTGRES instance
+  region           = "us-central1"
+
+  # Missing "settings" but "clone" is set
+
+  clone {
+    source_instance_name = google_sql_database_instance.source.name
+  }
+}
