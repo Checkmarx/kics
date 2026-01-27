@@ -17,6 +17,8 @@ CxPolicy[result] {
         "keyExpectedValue": res["kev"],
         "keyActualValue": res["kav"],
         "searchLine": res["sl"],
+        "remediation": res["remediation"],
+        "remediationType": res["remediationType"],
     }
 }
 
@@ -29,6 +31,8 @@ get_res(resource, name) = res {
         "kev": "'channel' should be defined to 'STABLE' or 'REGULAR' inside the 'release_channel' block",
         "kav": "'release_channel' block is not defined",
         "sl": common_lib.build_search_line(["resource", "google_container_cluster", name], []),
+        "remediation": "release_channel {\n\t\tchannel = \"REGULAR\"\n\t}\n",
+        "remediationType": "addition",
     }
 } else = res {
     not is_release_channel_correctly_defined(resource.release_channel.channel)
@@ -39,6 +43,11 @@ get_res(resource, name) = res {
         "kev": "'channel' should be defined to 'STABLE' or 'REGULAR' inside the 'release_channel' block",
         "kav": sprintf("'release_channel.channel' is defined to '%s'", [resource.release_channel.channel]),
         "sl": common_lib.build_search_line(["resource", "google_container_cluster", name, "release_channel", "channel"], []),
+        "remediation": json.marshal({
+            "before": sprintf("%s", [resource.release_channel.channel]),
+            "after": "REGULAR"
+        }),
+        "remediationType": "replacement",
     }
 }
 
