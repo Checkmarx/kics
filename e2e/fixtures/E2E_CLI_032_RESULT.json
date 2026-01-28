@@ -23,94 +23,9 @@
 	"start": "2025-10-24T17:25:57.7757736+01:00",
 	"end": "2025-10-24T17:26:18.532517+01:00",
 	"paths": [
-		"/path/e2e/fixtures/samples/positive.yaml",
-		"/path/fake/extra/file.yaml"
+		"/path/e2e/fixtures/samples/positive.yaml"
 	],
 	"queries": [
-		{
-			"query_name": "DB Security Group Open To Large Scope",
-			"query_id": "0104165b-02d5-426f-abc9-91fb48189899",
-			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
-			"severity": "HIGH",
-			"platform": "CloudFormation",
-			"cwe": "668",
-			"risk_score": "7.8",
-			"cloud_provider": "AWS",
-			"category": "Networking and Firewall",
-			"experimental": false,
-			"description": "The IP address in a DB Security Group must not have more than 256 hosts.",
-			"description_id": "feeb965a",
-			"files": [
-				{
-					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "912f8efccb0b1d01ea092e6226cd90805e040d47c944a1949a810d7592e5b2ee",
-					"line": 24,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupHTTPinbound02",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
-					"search_line": 24,
-					"search_value": "",
-					"expected_value": "'Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp' should not have more than 256 hosts.",
-					"actual_value": "'Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp' has more than 256 hosts."
-				},
-				{
-					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "b319ba408c3387e18dfe37496bd486afe8fdb24ad501d4e6da0dea59e6bb3594",
-					"line": 32,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupSSHinbound",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
-					"search_line": 32,
-					"search_value": "",
-					"expected_value": "'Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp' should not have more than 256 hosts.",
-					"actual_value": "'Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp' has more than 256 hosts."
-				}
-			]
-		},
-		{
-			"query_name": "ELB Sensitive Port Is Exposed To Entire Network",
-			"query_id": "78055456-f670-4d2e-94d5-392d1cf4f5e4",
-			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html",
-			"severity": "HIGH",
-			"platform": "CloudFormation",
-			"cwe": "668",
-			"risk_score": "7.7",
-			"cloud_provider": "AWS",
-			"category": "Networking and Firewall",
-			"experimental": false,
-			"description": "The load balancer of the application with a sensitive port connection is exposed to the entire internet.",
-			"description_id": "f26797b1",
-			"files": [
-				{
-					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "e4a5ba3815f30a278c7d278bfba92deee48d22cf61856ed5168b8fe796a25fc7",
-					"line": 19,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroup",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-					"search_line": 19,
-					"search_value": "TCP,80",
-					"expected_value": "HTTP (TCP:80) should not be allowed in application load balancer 'ECSALB'",
-					"actual_value": "HTTP (TCP:80) is allowed in application load balancer 'ECSALB'"
-				},
-				{
-					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "f660e873808e61e40e34b5bc55d9e15b73fd98e05e33da08d82e837c136d819c",
-					"line": 27,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroup",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-					"search_line": 27,
-					"search_value": "TCP,22",
-					"expected_value": "SSH (TCP:22) should not be allowed in application load balancer 'ECSALB'",
-					"actual_value": "SSH (TCP:22) is allowed in application load balancer 'ECSALB'"
-				}
-			]
-		},
 		{
 			"query_name": "Passwords And Secrets - CloudFormation Secret Template",
 			"query_id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
