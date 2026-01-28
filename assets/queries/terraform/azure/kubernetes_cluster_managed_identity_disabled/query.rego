@@ -18,6 +18,6 @@ CxPolicy[result] {
 		"keyActualValue": "'identity' block is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name], []),
         "remediationType": "addition",
-        "remediation": "identity {\n\t\ttype = \"SystemAssigned\"\n\t}",
+        "remediation": "identity {\n\t\ttype = \"SystemAssigned, UserAssigned\"\n\t}",
     }
 }
