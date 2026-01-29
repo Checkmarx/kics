@@ -187,6 +187,7 @@ type Vulnerability struct {
 	CloudProvider    string      `json:"cloud_provider"`
 	Remediation      string      `db:"remediation" json:"remediation"`
 	RemediationType  string      `db:"remediation_type" json:"remediation_type"`
+	FileKind         FileKind    `json:"fileKind"`
 }
 
 // QueryConfig is a struct that contains the fileKind and platform of the rego query
