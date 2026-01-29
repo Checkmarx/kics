@@ -39,6 +39,7 @@ require (
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
 	github.com/zclconf/go-cty v1.16.2
+	golang.org/x/exp v0.0.0-20250911091902-df9299821621
 	golang.org/x/net v0.47.0
 	golang.org/x/text v0.31.0
 	golang.org/x/tools/godoc v0.1.0-deprecated
@@ -139,7 +140,6 @@ require (
 	go.opentelemetry.io/otel/trace v1.38.0 // indirect
 	go.yaml.in/yaml/v2 v2.4.2 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
-	golang.org/x/exp v0.0.0-20250911091902-df9299821621 // indirect
 	golang.org/x/mod v0.29.0 // indirect
 	golang.org/x/tools v0.38.0 // indirect
 	google.golang.org/api v0.215.0 // indirect
