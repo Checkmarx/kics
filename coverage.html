@@ -139,7 +139,7 @@
 				
 				<option value="file41">github.com/Checkmarx/kics/v2/pkg/detector/search_line_detector.go (81.0%)</option>
 				
-				<option value="file42">github.com/Checkmarx/kics/v2/pkg/engine/inspector.go (79.4%)</option>
+				<option value="file42">github.com/Checkmarx/kics/v2/pkg/engine/inspector.go (80.4%)</option>
 				
 				<option value="file43">github.com/Checkmarx/kics/v2/pkg/engine/mock/source.go (0.0%)</option>
 				
@@ -309,7 +309,7 @@
 				
 				<option value="file126">github.com/Checkmarx/kics/v2/pkg/resolver/helm/helm.go (88.5%)</option>
 				
-				<option value="file127">github.com/Checkmarx/kics/v2/pkg/resolver/helm/resolver.go (84.0%)</option>
+				<option value="file127">github.com/Checkmarx/kics/v2/pkg/resolver/helm/resolver.go (84.9%)</option>
 				
 				<option value="file128">github.com/Checkmarx/kics/v2/pkg/resolver/resolver.go (90.5%)</option>
 				
@@ -2623,13 +2623,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="52">{
+        for _, sample := range prof.Sample </span><span class="cov10" title="55">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="52">total += v
+                <span class="cov10" title="55">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2654,7 +2654,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -6180,6 +6180,7 @@ import (
         "github.com/Checkmarx/kics/v2/pkg/detector/helm"
         "github.com/Checkmarx/kics/v2/pkg/engine/source"
         "github.com/Checkmarx/kics/v2/pkg/model"
+        "github.com/Checkmarx/kics/v2/pkg/utils"
 
         "github.com/open-policy-agent/opa/v1/ast"
         "github.com/open-policy-agent/opa/v1/cover"
@@ -6206,6 +6207,7 @@ const (
         regoQuery = `result = data.Cx.CxPolicy`
         // TransitionInformationBasePath the path to yaml files that contains the transition information
         TransitionInformationBasePath = "./assets/similarityID_transition"
+        kubernetesPlatformName        = "kubernetes"
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -6695,7 +6697,35 @@ func (c *Inspector) DecodeQueryResults(
                 c.tracker.FailedDetectLine()
         }</span>
 
-        <span class="cov2" title="3">return vulnerabilities, nil</span>
+        <span class="cov2" title="3">filterOutDuplicatedHelmVulnerabilities(&amp;vulnerabilities)
+        return vulnerabilities, nil</span>
+}
+
+func filterOutDuplicatedHelmVulnerabilities(vulnerabilities *[]model.Vulnerability) *[]model.Vulnerability <span class="cov4" title="12">{
+        vulnerabilityMap := map[string][]model.Vulnerability{}
+        // map K8s results
+        for i := 0; i &lt; len(*vulnerabilities); i++ </span><span class="cov4" title="22">{
+                if strings.EqualFold((*vulnerabilities)[i].Platform, kubernetesPlatformName) </span><span class="cov4" title="14">{
+                        utils.SafeAddToSliceMap(vulnerabilityMap, (*vulnerabilities)[i].SimilarityID, (*vulnerabilities)[i])
+                        if len(vulnerabilityMap[(*vulnerabilities)[i].SimilarityID]) &gt; 2 </span><span class="cov1" title="1">{
+                                log.Warn().Msgf("Multiple duplicated vulnerability found for: SimilarityID=%s QueryID=%s",
+                                        (*vulnerabilities)[i].SimilarityID, (*vulnerabilities)[i].QueryID)
+                        }</span>
+                }
+        }
+
+        // filter out duplicated K8s results from slice
+        <span class="cov4" title="12">filtered := make([]model.Vulnerability, 0, len(*vulnerabilities))
+        for i := 0; i &lt; len(*vulnerabilities); i++ </span><span class="cov4" title="22">{
+                // Keep vulnerability if it's NOT a duplicated Helm K8s result
+                if !strings.EqualFold((*vulnerabilities)[i].Platform, kubernetesPlatformName) || (*vulnerabilities)[i].FileKind != model.KindHELM ||
+                        len(vulnerabilityMap[(*vulnerabilities)[i].SimilarityID]) &lt;= 1 </span><span class="cov4" title="17">{
+                        filtered = append(filtered, (*vulnerabilities)[i])
+                }</span>
+        }
+
+        <span class="cov4" title="12">*vulnerabilities = filtered
+        return vulnerabilities</span>
 }
 
 func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultItem interface{}) (*model.Vulnerability, bool) <span class="cov1" title="2">{
@@ -9095,6 +9125,7 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
                 CloudProvider:    getCloudProvider(overrideKey, vObj, &amp;logWithFields),
                 Remediation:      PtrStringToString(mustMapKeyToString(vObj, "remediation")),
                 RemediationType:  PtrStringToString(mustMapKeyToString(vObj, "remediationType")),
+                FileKind:         file.Kind,
         }, nil</span>
 }
 
@@ -11028,6 +11059,7 @@ type Vulnerability struct {
         CloudProvider    string      `json:"cloud_provider"`
         Remediation      string      `db:"remediation" json:"remediation"`
         RemediationType  string      `db:"remediation_type" json:"remediation_type"`
+        FileKind         FileKind    `json:"fileKind"`
 }
 
 // QueryConfig is a struct that contains the fileKind and platform of the rego query
@@ -20915,12 +20947,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="49">{
-        for variable := range s.varList </span><span class="cov7" title="211">{
+        for variable := range s.varList </span><span class="cov7" title="219">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="42">for parameter := range s.paramList </span><span class="cov9" title="597">{
+        <span class="cov5" title="42">for parameter := range s.paramList </span><span class="cov9" title="637">{
                 if parameter == str </span><span class="cov4" title="23">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -32797,37 +32829,37 @@ var (
 )
 
 func runInstall(args []string, client *action.Install,
-        valueOpts *values.Options) (*release.Release, []string, error) <span class="cov2" title="3">{
+        valueOpts *values.Options) (*release.Release, []string, error) <span class="cov3" title="4">{
         log.SetOutput(io.Discard)
         defer log.SetOutput(os.Stderr)
         if client.Version == "" &amp;&amp; client.Devel </span><span class="cov0" title="0">{
                 client.Version = "&gt;0.0.0-0"
         }</span>
 
-        <span class="cov2" title="3">name, charts, err := client.NameAndChart(args)
+        <span class="cov3" title="4">name, charts, err := client.NameAndChart(args)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, []string{}, err
         }</span>
-        <span class="cov2" title="3">client.ReleaseName = name
+        <span class="cov3" title="4">client.ReleaseName = name
 
         cp, err := client.LocateChart(charts, settings)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, []string{}, err
         }</span>
 
-        <span class="cov2" title="3">p := getter.All(settings)
+        <span class="cov3" title="4">p := getter.All(settings)
         vals, err := valueOpts.MergeValues(p)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, []string{}, err
         }</span>
 
         // Check chart dependencies to make sure all are present in /charts
-        <span class="cov2" title="3">chartRequested, err := loader.Load(cp)
+        <span class="cov3" title="4">chartRequested, err := loader.Load(cp)
         if err != nil </span><span class="cov1" title="1">{
                 return nil, []string{}, err
         }</span>
 
-        <span class="cov2" title="2">excluded := getExcluded(chartRequested, cp)
+        <span class="cov2" title="3">excluded := getExcluded(chartRequested, cp)
 
         chartRequested = setID(chartRequested)
 
@@ -32835,27 +32867,27 @@ func runInstall(args []string, client *action.Install,
                 return nil, []string{}, instErr
         }</span>
 
-        <span class="cov2" title="2">client.Namespace = "kics-namespace"
+        <span class="cov2" title="3">client.Namespace = "kics-namespace"
         helmRelease, err := client.Run(chartRequested, vals)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, []string{}, err
         }</span>
-        <span class="cov2" title="2">return helmRelease, excluded, nil</span>
+        <span class="cov2" title="3">return helmRelease, excluded, nil</span>
 }
 
 // checkIfInstallable validates if a chart can be installed
 //
 // Application chart type is only installable
-func checkIfInstallable(ch *chart.Chart) error <span class="cov2" title="2">{
+func checkIfInstallable(ch *chart.Chart) error <span class="cov2" title="3">{
         switch ch.Metadata.Type </span>{
-        case "", "application":<span class="cov2" title="2">
+        case "", "application":<span class="cov2" title="3">
                 return nil</span>
         }
         <span class="cov0" title="0">return errors.Errorf("%s charts are not installable", ch.Metadata.Type)</span>
 }
 
 // newClient will create a new instance on helm client used to render the chart
-func newClient() *action.Install <span class="cov2" title="3">{
+func newClient() *action.Install <span class="cov3" title="4">{
         cfg := new(action.Configuration)
         client := action.NewInstall(cfg)
         client.DryRun = true
@@ -32868,46 +32900,46 @@ func newClient() *action.Install <span class="cov2" title="3">{
 }</span>
 
 // setID will add auxiliary lines for each template as well as its dependencies
-func setID(chartReq *chart.Chart) *chart.Chart <span class="cov2" title="3">{
-        for _, temp := range chartReq.Templates </span><span class="cov4" title="9">{
+func setID(chartReq *chart.Chart) *chart.Chart <span class="cov3" title="4">{
+        for _, temp := range chartReq.Templates </span><span class="cov4" title="10">{
                 temp = addID(temp)
-                if temp != nil </span><span class="cov4" title="9">{
+                if temp != nil </span><span class="cov4" title="10">{
                         continue</span>
                 }
         }
-        <span class="cov2" title="3">for _, dep := range chartReq.Dependencies() </span><span class="cov1" title="1">{
+        <span class="cov3" title="4">for _, dep := range chartReq.Dependencies() </span><span class="cov1" title="1">{
                 dep = setID(dep)
                 if dep != nil </span><span class="cov1" title="1">{
                         continue</span>
                 }
         }
-        <span class="cov2" title="3">return chartReq</span>
+        <span class="cov3" title="4">return chartReq</span>
 }
 
 // addID will add auxiliary lines used to detect line
 // one for each "apiVersion:" where the id will be the line
-func addID(file *chart.File) *chart.File <span class="cov4" title="9">{
+func addID(file *chart.File) *chart.File <span class="cov4" title="10">{
         split := strings.Split(string(file.Data), "\n")
-        for i := 0; i &lt; len(split); i++ </span><span class="cov10" title="303">{
-                if strings.Contains(split[i], "apiVersion:") </span><span class="cov2" title="3">{
+        for i := 0; i &lt; len(split); i++ </span><span class="cov10" title="324">{
+                if strings.Contains(split[i], "apiVersion:") </span><span class="cov3" title="4">{
                         split = append(split, "")
                         copy(split[i+1:], split[i:])
                         split[i] = fmt.Sprintf("# KICS_HELM_ID_%d:", i)
                         i++
                 }</span>
         }
-        <span class="cov4" title="9">file.Data = []byte(strings.Join(split, "\n"))
+        <span class="cov4" title="10">file.Data = []byte(strings.Join(split, "\n"))
         return file</span>
 }
 
 // getExcluded will return all files rendered to be excluded from scan
-func getExcluded(charterino *chart.Chart, chartpath string) []string <span class="cov2" title="2">{
+func getExcluded(charterino *chart.Chart, chartpath string) []string <span class="cov2" title="3">{
         excluded := make([]string, 0)
-        for _, file := range charterino.Raw </span><span class="cov5" title="18">{
+        for _, file := range charterino.Raw </span><span class="cov5" title="21">{
                 excluded = append(excluded, filepath.Join(chartpath, file.Name))
         }</span>
 
-        <span class="cov2" title="2">return excluded</span>
+        <span class="cov2" title="3">return excluded</span>
 }
 </pre>
 		
@@ -32919,12 +32951,13 @@ import (
         "strconv"
         "strings"
 
-        "github.com/Checkmarx/kics/v2/pkg/model"
-        masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
         "github.com/pkg/errors"
         "helm.sh/helm/v3/pkg/chart"
         "helm.sh/helm/v3/pkg/cli/values"
         "helm.sh/helm/v3/pkg/release"
+
+        "github.com/Checkmarx/kics/v2/pkg/model"
+        masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 // Resolver is an instance of the helm resolver
@@ -32945,22 +32978,22 @@ const (
 )
 
 // Resolve will render the passed helm chart and return its content ready for parsing
-func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) <span class="cov3" title="3">{
+func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) <span class="cov3" title="4">{
         // handle panic during resolve process
-        defer func() </span><span class="cov3" title="3">{
+        defer func() </span><span class="cov3" title="4">{
                 if r := recover(); r != nil </span><span class="cov0" title="0">{
                         errMessage := "Recovered from panic during resolve of file " + filePath
                         masterUtils.HandlePanic(r, errMessage)
                 }</span>
         }()
-        <span class="cov3" title="3">splits, excluded, err := renderHelm(filePath)
+        <span class="cov3" title="4">splits, excluded, err := renderHelm(filePath)
         if err != nil </span><span class="cov1" title="1">{ // return error to be logged
                 return model.ResolvedFiles{}, errors.New("failed to render helm chart")
         }</span>
-        <span class="cov2" title="2">var rfiles = model.ResolvedFiles{
+        <span class="cov3" title="3">var rfiles = model.ResolvedFiles{
                 Excluded: excluded,
         }
-        for _, split := range *splits </span><span class="cov3" title="3">{
+        for _, split := range *splits </span><span class="cov3" title="4">{
                 subFolder := filepath.Base(filePath)
 
                 splitPath := strings.Split(split.path, getPathSeparator(split.path))
@@ -32976,7 +33009,7 @@ func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) <span c
                         IDInfo:       split.splitIDMap,
                 })
         }</span>
-        <span class="cov2" title="2">return rfiles, nil</span>
+        <span class="cov3" title="3">return rfiles, nil</span>
 }
 
 // SupportedTypes returns the supported fileKinds for this resolver
@@ -32985,47 +33018,47 @@ func (r *Resolver) SupportedTypes() []model.FileKind <span class="cov1" title="1
 }</span>
 
 // renderHelm will use helm library to render helm charts
-func renderHelm(path string) (*[]splitManifest, []string, error) <span class="cov3" title="3">{
+func renderHelm(path string) (*[]splitManifest, []string, error) <span class="cov3" title="4">{
         client := newClient()
         manifest, excluded, err := runInstall([]string{path}, client, &amp;values.Options{})
         if err != nil </span><span class="cov1" title="1">{
                 return nil, []string{}, err
         }</span>
-        <span class="cov2" title="2">splitted, err := splitManifestYAML(manifest)
+        <span class="cov3" title="3">splitted, err := splitManifestYAML(manifest)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, []string{}, err
         }</span>
-        <span class="cov2" title="2">return splitted, excluded, nil</span>
+        <span class="cov3" title="3">return splitted, excluded, nil</span>
 }
 
 // splitManifestYAML will split the rendered file and return its content by template as well as the template path
-func splitManifestYAML(template *release.Release) (*[]splitManifest, error) <span class="cov2" title="2">{
+func splitManifestYAML(template *release.Release) (*[]splitManifest, error) <span class="cov3" title="3">{
         sources := make([]*chart.File, 0)
         sources = updateName(sources, template.Chart, template.Chart.Name())
         var splitedManifest []splitManifest
         splitedSource := strings.Split(template.Manifest, "---") // split manifest by '---'
         origData := toMap(sources)
-        for _, splited := range splitedSource </span><span class="cov4" title="5">{
+        for _, splited := range splitedSource </span><span class="cov5" title="9">{
                 var lineID string
-                for _, line := range strings.Split(splited, "\n") </span><span class="cov6" title="11">{
-                        if strings.Contains(line, kicsHelmID) </span><span class="cov3" title="3">{
+                for _, line := range strings.Split(splited, "\n") </span><span class="cov7" title="20">{
+                        if strings.Contains(line, kicsHelmID) </span><span class="cov3" title="4">{
                                 lineID = line // get auxiliary line id
                                 break</span>
                         }
                 }
-                <span class="cov4" title="5">path := strings.Split(strings.TrimPrefix(splited, "\n# Source: "), "\n") // get source of split yaml
+                <span class="cov5" title="9">path := strings.Split(strings.TrimPrefix(splited, "\n# Source: "), "\n") // get source of split yaml
                 // ignore auxiliary files used to render chart
-                if path[0] == "" </span><span class="cov2" title="2">{
+                if path[0] == "" || isEmptyFileRender(path) </span><span class="cov4" title="5">{
                         continue</span>
                 }
-                <span class="cov3" title="3">if origData[filepath.FromSlash(path[0])] == nil </span><span class="cov0" title="0">{
+                <span class="cov3" title="4">if origData[filepath.FromSlash(path[0])] == nil </span><span class="cov0" title="0">{
                         continue</span>
                 }
-                <span class="cov3" title="3">idMap, err := getIDMap(origData[filepath.FromSlash(path[0])])
+                <span class="cov3" title="4">idMap, err := getIDMap(origData[filepath.FromSlash(path[0])])
                 if err != nil </span><span class="cov0" title="0">{
                         return nil, err
                 }</span>
-                <span class="cov3" title="3">splitedManifest = append(splitedManifest, splitManifest{
+                <span class="cov3" title="4">splitedManifest = append(splitedManifest, splitManifest{
                         path:       path[0],
                         content:    []byte(strings.ReplaceAll(splited, "\r", "")),
                         original:   origData[filepath.FromSlash(path[0])], // get original data from template
@@ -33033,46 +33066,46 @@ func splitManifestYAML(template *release.Release) (*[]splitManifest, error) <spa
                         splitIDMap: idMap,
                 })</span>
         }
-        <span class="cov2" title="2">return &amp;splitedManifest, nil</span>
+        <span class="cov3" title="3">return &amp;splitedManifest, nil</span>
 }
 
 // toMap will convert to map original data having the path as it's key
-func toMap(files []*chart.File) map[string][]byte <span class="cov2" title="2">{
+func toMap(files []*chart.File) map[string][]byte <span class="cov3" title="3">{
         mapFiles := make(map[string][]byte)
-        for _, file := range files </span><span class="cov6" title="9">{
+        for _, file := range files </span><span class="cov5" title="10">{
                 mapFiles[file.Name] = []byte(strings.ReplaceAll(string(file.Data), "\r", ""))
         }</span>
-        <span class="cov2" title="2">return mapFiles</span>
+        <span class="cov3" title="3">return mapFiles</span>
 }
 
 // updateName will update the templates name as well as its dependencies
-func updateName(template []*chart.File, charts *chart.Chart, name string) []*chart.File <span class="cov3" title="3">{
+func updateName(template []*chart.File, charts *chart.Chart, name string) []*chart.File <span class="cov3" title="4">{
         if name != charts.Name() </span><span class="cov1" title="1">{
                 name = filepath.Join(name, charts.Name())
         }</span>
-        <span class="cov3" title="3">for _, temp := range charts.Templates </span><span class="cov6" title="9">{
+        <span class="cov3" title="4">for _, temp := range charts.Templates </span><span class="cov5" title="10">{
                 temp.Name = filepath.Join(name, temp.Name)
         }</span>
-        <span class="cov3" title="3">template = append(template, charts.Templates...)
+        <span class="cov3" title="4">template = append(template, charts.Templates...)
         for _, dep := range charts.Dependencies() </span><span class="cov1" title="1">{
                 template = updateName(template, dep, filepath.Join(name, "charts"))
         }</span>
-        <span class="cov3" title="3">return template</span>
+        <span class="cov3" title="4">return template</span>
 }
 
 // getIdMap will construct a map with ids with the corresponding lines as keys
 // for use in detector
-func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov3" title="3">{
+func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov3" title="4">{
         ids := make(map[int]interface{})
         mapLines := make(map[int]int)
         idHelm := -1
-        for line, stringLine := range strings.Split(string(originalData), "\n") </span><span class="cov10" title="48">{
-                if strings.Contains(stringLine, kicsHelmID) </span><span class="cov3" title="3">{
+        for line, stringLine := range strings.Split(string(originalData), "\n") </span><span class="cov10" title="70">{
+                if strings.Contains(stringLine, kicsHelmID) </span><span class="cov3" title="4">{
                         id, err := strconv.Atoi(strings.TrimSuffix(strings.TrimPrefix(stringLine, kicsHelmID), ":"))
                         if err != nil </span><span class="cov0" title="0">{
                                 return nil, err
                         }</span>
-                        <span class="cov3" title="3">if idHelm == -1 </span><span class="cov3" title="3">{
+                        <span class="cov3" title="4">if idHelm == -1 </span><span class="cov3" title="4">{
                                 idHelm = id
                                 mapLines[line] = line
                         }</span> else<span class="cov0" title="0"> {
@@ -33081,22 +33114,32 @@ func getIDMap(originalData []byte) (map[int]interface{}, error) <span class="cov
                                 idHelm = id
                                 mapLines[line] = line
                         }</span>
-                } else<span class="cov9" title="45"> if idHelm != -1 </span><span class="cov9" title="44">{
+                } else<span class="cov9" title="66"> if idHelm != -1 </span><span class="cov9" title="64">{
                         mapLines[line] = line
                 }</span>
         }
-        <span class="cov3" title="3">ids[idHelm] = mapLines
+        <span class="cov3" title="4">ids[idHelm] = mapLines
 
         return ids, nil</span>
 }
 
-func getPathSeparator(path string) string <span class="cov3" title="3">{
-        if matched, err := regexp.MatchString(`[a-zA-Z0-9_\/-]+(\[a-zA-Z0-9_\/-]+)*`, path); matched &amp;&amp; err == nil </span><span class="cov3" title="3">{
+func getPathSeparator(path string) string <span class="cov3" title="4">{
+        if matched, err := regexp.MatchString(`[a-zA-Z0-9_\/-]+(\[a-zA-Z0-9_\/-]+)*`, path); matched &amp;&amp; err == nil </span><span class="cov3" title="4">{
                 return "/"
         }</span> else<span class="cov0" title="0"> if matched, err := regexp.MatchString(`[a-z0-9_.$-]+(\\[a-z0-9_.$-]+)*`, path); matched &amp;&amp; err == nil </span><span class="cov0" title="0">{
                 return "\\"
         }</span>
         <span class="cov0" title="0">return ""</span>
+}
+
+func isEmptyFileRender(fileLines []string) bool <span class="cov5" title="7">{
+        for _, line := range fileLines[1:] </span><span class="cov6" title="12">{
+                trimmedLine := strings.TrimSpace(line)
+                if trimmedLine != "" &amp;&amp; !strings.HasPrefix(trimmedLine, "#") </span><span class="cov4" title="5">{
+                        return false
+                }</span>
+        }
+        <span class="cov2" title="2">return true</span>
 }
 </pre>
 		
@@ -34583,7 +34626,7 @@ import "sort"
 // SortedKeys returns a sorted slice with all map keys
 func SortedKeys(mapToSort map[string]string) []string <span class="cov1" title="1">{
         keys := make([]string, 0, len(mapToSort))
-        for k := range mapToSort </span><span class="cov10" title="3">{
+        for k := range mapToSort </span><span class="cov4" title="3">{
                 keys = append(keys, k)
         }</span>
         <span class="cov1" title="1">sort.Strings(keys)
@@ -34595,6 +34638,15 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov1" title="1">{
         for key, value := range map2 </span><span class="cov1" title="1">{
                 map1[key] = value
         }</span>
+}
+
+// SafeAddToSliceMap safely adds a value to a slice in a map, initializing the slice if needed
+// K is the key type (must be comparable), V is the value type
+func SafeAddToSliceMap[K comparable, V any](sliceMap map[K][]V, key K, value V) <span class="cov10" title="13">{
+        if sliceMap == nil </span><span class="cov1" title="1">{
+                return
+        }</span>
+        <span class="cov9" title="12">sliceMap[key] = append(sliceMap[key], value)</span>
 }
 </pre>
 		
