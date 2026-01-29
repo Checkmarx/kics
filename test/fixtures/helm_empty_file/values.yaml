@@ -1,0 +1,4 @@
+deployment:
+  image:
+    value: some-random-value
+    value2: false
