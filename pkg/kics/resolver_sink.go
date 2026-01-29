@@ -8,12 +8,13 @@ import (
 	"regexp"
 	"sort"
 
+	"github.com/google/uuid"
+	"github.com/rs/zerolog/log"
+
 	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
 	"github.com/Checkmarx/kics/v2/pkg/minified"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/google/uuid"
-	"github.com/rs/zerolog/log"
 )
 
 func (s *Service) resolverSink(
