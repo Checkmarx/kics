@@ -57,7 +57,6 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
 	}
 
 	pathTypes, errAnalyze := analyzePaths(a)
-
 	if errAnalyze != nil {
 		return provider.ExtractedPath{}, errAnalyze
 	}
