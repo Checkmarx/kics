@@ -107,7 +107,7 @@
 				
 				<option value="file25">github.com/Checkmarx/kics/v2/internal/tracker/ci.go (93.8%)</option>
 				
-				<option value="file26">github.com/Checkmarx/kics/v2/pkg/analyzer/analyzer.go (91.9%)</option>
+				<option value="file26">github.com/Checkmarx/kics/v2/pkg/analyzer/analyzer.go (91.3%)</option>
 				
 				<option value="file27">github.com/Checkmarx/kics/v2/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -151,7 +151,7 @@
 				
 				<option value="file47">github.com/Checkmarx/kics/v2/pkg/engine/similarity/similarity_id.go (90.5%)</option>
 				
-				<option value="file48">github.com/Checkmarx/kics/v2/pkg/engine/source/filesystem.go (73.1%)</option>
+				<option value="file48">github.com/Checkmarx/kics/v2/pkg/engine/source/filesystem.go (72.9%)</option>
 				
 				<option value="file49">github.com/Checkmarx/kics/v2/pkg/engine/source/source.go (67.9%)</option>
 				
@@ -515,13 +515,14 @@ import (
         "os"
         "path/filepath"
 
+        "github.com/rs/zerolog/log"
+        "github.com/spf13/cobra"
+
         "github.com/Checkmarx/kics/v2/internal/console/flags"
         sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
         "github.com/Checkmarx/kics/v2/pkg/analyzer"
         "github.com/Checkmarx/kics/v2/pkg/engine/source"
         "github.com/Checkmarx/kics/v2/pkg/model"
-        "github.com/rs/zerolog/log"
-        "github.com/spf13/cobra"
 )
 
 var (
@@ -604,7 +605,6 @@ func executeAnalyze(analyzeParams *analyzer.Parameters) error <span class="cov1"
         }
 
         analyzedPaths, err := analyzer.Analyze(analyzerStruct)
-
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err)
                 return err
@@ -2623,13 +2623,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov10" title="55">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="52">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov10" title="55">total += v
+                <span class="cov9" title="52">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -3339,7 +3339,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov5" title=
 
         <span class="cov5" title="36">go func() </span><span class="cov5" title="36">{
                 // close channel results when the worker has finished writing into it
-                defer func() </span><span class="cov4" title="35">{
+                defer func() </span><span class="cov5" title="36">{
                         close(unwanted)
                         close(results)
                         close(locCount)
@@ -3673,7 +3673,17 @@ func computeValues(
                 case info := &lt;-fileInfo:<span class="cov7" title="209">
                         platformFilesInfo[info.fileType] = append(platformFilesInfo[info.fileType], info)</span>
                 case &lt;-done:<span class="cov5" title="36">
-                        for platformType, filesInfo := range platformFilesInfo </span><span class="cov6" title="95">{
+                        // Drain the buffered `unwanted` channel before exiting
+                        // The `done` signal can race with pending messages in `unwanted`
+                        // returning immediately would drop exclusions and cause files
+                        // that should be ignored to be scanned
+                        for i := range unwanted </span><span class="cov0" title="0">{
+                                if !utils.Contains(i, unwantedSlice) </span><span class="cov0" title="0">{
+                                        unwantedSlice = append(unwantedSlice, i)
+                                }</span>
+                        }
+
+                        <span class="cov5" title="36">for platformType, filesInfo := range platformFilesInfo </span><span class="cov6" title="95">{
                                 dirMap := make(map[string]int)
                                 totalLOC := 0
 
@@ -8234,12 +8244,14 @@ import (
         "sort"
         "strings"
 
+        "github.com/pkg/errors"
+        "github.com/rs/zerolog/log"
+        "golang.org/x/exp/maps"
+
         "github.com/Checkmarx/kics/v2/assets"
         "github.com/Checkmarx/kics/v2/internal/constants"
         sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
         "github.com/Checkmarx/kics/v2/pkg/model"
-        "github.com/pkg/errors"
-        "github.com/rs/zerolog/log"
 )
 
 // FilesystemSource this type defines a struct with a path to a filesystem source of queries
@@ -8295,19 +8307,16 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
 
 // ListSupportedPlatforms returns a list of supported platforms
 func ListSupportedPlatforms() []string <span class="cov1" title="1">{
-        keys := make([]string, len(constants.AvailablePlatforms))
-        i := 0
-        for k := range constants.AvailablePlatforms </span><span class="cov6" title="16">{
-                keys[i] = k
-                i++
-        }</span>
-        <span class="cov1" title="1">sort.Strings(keys)
-        return keys</span>
-}
+        platforms := maps.Keys(constants.AvailablePlatforms)
+        sort.Strings(platforms)
+        return platforms
+}</span>
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string <span class="cov1" title="1">{
-        return []string{"alicloud", "aws", "azure", "gcp", "nifcloud", "tencentcloud"}
+        cloudProviders := maps.Keys(constants.AvailableCloudProviders)
+        sort.Strings(cloudProviders)
+        return cloudProviders
 }</span>
 
 func getLibraryInDir(platform, libraryDirPath string) string <span class="cov2" title="2">{
@@ -9489,12 +9498,13 @@ import (
         "regexp"
         "sort"
 
+        "github.com/google/uuid"
+        "github.com/rs/zerolog/log"
+
         sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
         "github.com/Checkmarx/kics/v2/pkg/minified"
         "github.com/Checkmarx/kics/v2/pkg/model"
         "github.com/Checkmarx/kics/v2/pkg/utils"
-        "github.com/google/uuid"
-        "github.com/rs/zerolog/log"
 )
 
 func (s *Service) resolverSink(
@@ -9609,6 +9619,9 @@ import (
         "io"
         "sync"
 
+        "github.com/pkg/errors"
+        "github.com/rs/zerolog/log"
+
         "github.com/Checkmarx/kics/v2/pkg/engine"
         "github.com/Checkmarx/kics/v2/pkg/engine/provider"
         "github.com/Checkmarx/kics/v2/pkg/engine/secrets"
@@ -9616,10 +9629,7 @@ import (
         "github.com/Checkmarx/kics/v2/pkg/model"
         "github.com/Checkmarx/kics/v2/pkg/parser"
         "github.com/Checkmarx/kics/v2/pkg/resolver"
-
         "github.com/Checkmarx/kics/v2/pkg/utils"
-        "github.com/pkg/errors"
-        "github.com/rs/zerolog/log"
 )
 
 const (
@@ -9629,7 +9639,7 @@ const (
 // Storage is the interface that wraps following basic methods: SaveFile, SaveVulnerability, GetVulnerability and GetScanSummary
 // SaveFile should append metadata to a file
 // SaveVulnerabilities should append vulnerabilities list to current storage
-// GetVulnerabilities should returns all vulnerabilities associated to a scan ID
+// GetVulnerabilities should return all vulnerabilities associated to a scan ID
 // GetScanSummary should return a list of summaries based on their scan IDs
 type Storage interface {
         SaveFile(ctx context.Context, metadata *model.FileMetadata) error
@@ -20905,12 +20915,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="49">{
-        for variable := range s.varList </span><span class="cov7" title="225">{
+        for variable := range s.varList </span><span class="cov7" title="211">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="42">for parameter := range s.paramList </span><span class="cov9" title="652">{
+        <span class="cov5" title="42">for parameter := range s.paramList </span><span class="cov9" title="597">{
                 if parameter == str </span><span class="cov4" title="23">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -33938,7 +33948,6 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
         }
 
         pathTypes, errAnalyze := analyzePaths(a)
-
         if errAnalyze != nil </span><span class="cov0" title="0">{
                 return provider.ExtractedPath{}, errAnalyze
         }</span>
