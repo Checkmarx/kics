@@ -90,7 +90,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_apigatewayv2_stage[%s].default_route_settings.logging_level", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_apigatewayv2_stage[%s].default_route_settings.logging_level should not be set to OFF", [name]),
-		"keyActualValue": "aws_apigatewayv2_stage[%s].default_route_settings.logging_level is set to OFF",
+		"keyActualValue": sprintf("aws_apigatewayv2_stage[%s].default_route_settings.logging_level is set to OFF", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_apigatewayv2_stage", name], ["default_route_settings", "logging_level"]),
 	}
 }
@@ -224,7 +224,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_api_gateway_method_settings[%s].settings.logging_level", [settingsId]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_api_gateway_method_settings[%s].settings.logging_level should not be set to OFF", [settingsId]),
-		"keyActualValue": "aws_api_gateway_method_settings[%s].settings.logging_level is set to OFF",
+		"keyActualValue": sprintf("aws_api_gateway_method_settings[%s].settings.logging_level is set to OFF", [settingsId]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_api_gateway_method_settings", settingsId], ["settings", "logging_level"]),
 	}
 }
