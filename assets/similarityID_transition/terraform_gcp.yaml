@@ -1,4 +1,8 @@
 similarityIDChangeList:
+    - queryId: 99976ba0-aa37-4745-93a6-5f1d55997f67
+      queryName: Beta - Cluster Without Network Policy Support Enabled
+      observations: ""
+      change: 1
     - queryId: cc9e464e-5abc-4c8f-8077-a9aa7ebe6a05
       queryName: Beta - Google DNS Policy Logging Disabled
       observations: ""
@@ -77,6 +81,10 @@ similarityIDChangeList:
       change: 1
     - queryId: b5b70198-2a34-4792-b0d9-ce99abe485bb
       queryName: Beta - SQL DB Instance With Exposed Show Privileges
+      observations: ""
+      change: 1
+    - queryId: c1701dcf-24df-4675-b863-340233c4e34f
+      queryName: Beta - Ensure GKE Version Management Is Automated Using Release Channels
       observations: ""
       change: 1
     - queryId: 700f1049-7fa0-4cb0-971b-3efebfb6a91f
