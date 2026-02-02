@@ -6,12 +6,13 @@ import data.generic.azureresourcemanager as arm_lib
 CxPolicy[result] { # resource of type Microsoft.Web/sites without child resources of type Microsoft.Web/sites/config
 	doc := input.document[i]
 
-	[path, value] = walk(doc)
+	web_sites := web_site_resources(doc)
+	site := web_sites[_]
+	value := site.value
+	path := site.path
 
-	value.type == "Microsoft.Web/sites"
-	
 	children_array := arm_lib.get_children(doc, value, path)
-	
+
 	count(children_array) == 0
 	not is_last_tls(doc, value)
 
@@ -32,16 +33,17 @@ CxPolicy[result] { # resource of type Microsoft.Web/sites without child resource
 CxPolicy[result] {
 	doc := input.document[i]
 
-	[path, value] = walk(doc)
+	web_sites := web_site_resources(doc)
+	site := web_sites[_]
+	value := site.value
+	path := site.path
 
-	value.type == "Microsoft.Web/sites"
-	
 	children_array := arm_lib.get_children(doc, value, path)
 	not count(children_array) == 0
 	child_resource := children_array[_]
 	is_sites_config(child_resource.value.type)
 	child_resource_status := get_child_resource_info(doc, child_resource.value)
-	
+
 	res := check_tls_version(doc, value, path, child_resource, child_resource_status)
 
 	result := {
@@ -54,6 +56,29 @@ CxPolicy[result] {
 		"keyActualValue": res["kav"],
 		"searchLine": res["sl"],
 	}
+}
+
+web_site_resources(doc) = result {
+	# root level resources
+	root_resources := [{"value": resource, "path": ["resources", idx]} |
+		resource := doc.resources[idx]
+		resource.type == "Microsoft.Web/sites"
+	]
+
+	# some resources in json are defined inside properties.template.resources
+	template_resources := [{"value": resource, "path": ["properties", "template", "resources", idx]} |
+		resource := doc.properties.template.resources[idx]
+		resource.type == "Microsoft.Web/sites"
+	]
+
+	# get nested resources (resources inside other resources at root level)
+	nested_resources := [{"value": nested_resource, "path": ["resources", parent_idx, "resources", nested_idx]} |
+		parent_resource := doc.resources[parent_idx]
+		nested_resource := parent_resource.resources[nested_idx]
+		nested_resource.type == "Microsoft.Web/sites"
+	]
+
+	result := array.concat(array.concat(root_resources, template_resources), nested_resources)
 }
 
 check_tls_version(doc, value, path, child_resource, child_resource_status) = res {
