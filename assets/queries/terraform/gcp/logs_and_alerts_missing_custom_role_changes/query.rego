@@ -132,11 +132,11 @@ process_filter(raw_filter) = filter {
 	# the resulting string is split so we can have an array of operations
 }
 
-has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
-	lines := process_filter(alerts_filters_data[i].filter)
+has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true { # google_monitoring_alert_policy with a valid filter and notification_channels value set
+	lines := process_filter(alerts_filters_data[i].filter) 
 	is_improper_filter(target_methods, lines) == null
 	alerts_filters_data[i].resource.notification_channels
-} else = true {
+} else = true { # google_monitoring_alert_policy with a valid reference to a google_logging_metric and notification_channels value set
 	alerts_filters_data[i].allows_ref == true
 	alerts_filters_data[i].resource.notification_channels
 	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
