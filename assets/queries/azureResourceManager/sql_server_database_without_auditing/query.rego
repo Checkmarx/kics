@@ -123,7 +123,6 @@ get_outer_children_resources(doc, nameParent) = result {
 	result := array.concat(array.concat(root_children, nested_l1_children), nested_l2_children)
 }
 
-
 get_issue_type(childrenArr,brothersArr) = "MissingAttribute"{
 	childrenArr == []
 	brothersArr == []
