@@ -722,6 +722,16 @@ func computeValues(
 		case info := <-fileInfo:
 			platformFilesInfo[info.fileType] = append(platformFilesInfo[info.fileType], info)
 		case <-done:
+			// Drain the buffered `unwanted` channel before exiting
+			// The `done` signal can race with pending messages in `unwanted`
+			// returning immediately would drop exclusions and cause files
+			// that should be ignored to be scanned
+			for i := range unwanted {
+				if !utils.Contains(i, unwantedSlice) {
+					unwantedSlice = append(unwantedSlice, i)
+				}
+			}
+
 			for platformType, filesInfo := range platformFilesInfo {
 				dirMap := make(map[string]int)
 				totalLOC := 0

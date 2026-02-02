@@ -5,7 +5,7 @@ resource "azurerm_virtual_machine" "positive1" {
   network_interface_ids = [azurerm_network_interface.main.id]
   vm_size               = "Standard_DS1_v2"
 
-  # missing "storage_os_disk" (tecnically required)
+  # missing "storage_os_disk" (technically required)
 }
 
 resource "azurerm_virtual_machine" "positive1_2" {
