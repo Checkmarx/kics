@@ -76,35 +76,13 @@ sql_database_resources(doc) = result {
 		resource.type == dbTypes[_]
 	]
 
-	# resources inside template
+	# resources inside template (some json templates have resources inside properties.template.resources)
 	template_resources := [{"value": resource, "path": ["resources", idx]} |
 		resource := doc.properties.template.resources[idx]
 		resource.type == dbTypes[_]
 	]
 
 	result := array.concat(array.concat(array.concat(root_resources, nested_l1), nested_l2), template_resources)
-} else = result { # without template resources
-	dbTypes := ["databases", "Microsoft.Sql/servers/databases", "Microsoft.Sql/servers"]
-
-	root_resources := [{"value": resource, "path": ["resources", idx]} |
-		resource := doc.resources[idx]
-		resource.type == dbTypes[_]
-	]
-
-	nested_l1 := [{"value": resource, "path": ["resources", idx, "resources", idx2]} |
-		parent := doc.resources[idx]
-		resource := parent.resources[idx2]
-		resource.type == dbTypes[_]
-	]
-
-	nested_l2 := [{"value": resource, "path": ["resources", idx, "resources", idx2, "resources", idx3]} |
-		parent := doc.resources[idx]
-		child := parent.resources[idx2]
-		resource := child.resources[idx3]
-		resource.type == dbTypes[_]
-	]
-
-	result := array.concat(array.concat(root_resources, nested_l1), nested_l2)
 }
 
 get_children(doc, parent, path) = childArr {
