@@ -41,7 +41,7 @@ CxPolicy[result] {
 	children_array := arm_lib.get_children(doc, value, path)
 	not count(children_array) == 0
 	child_resource := children_array[_]
-	is_sites_config(child_resource.value.type)
+	is_sites_config(child_resource.value.type) # is a resource of type Microsoft.Web/sites/config
 	child_resource_status := get_child_resource_info(doc, child_resource.value)
 
 	res := check_tls_version(doc, value, path, child_resource, child_resource_status)
