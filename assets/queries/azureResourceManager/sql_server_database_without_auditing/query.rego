@@ -51,7 +51,7 @@ CxPolicy[result] {
 	}
 }
 
-# Auxiliary function to get SQL database resources without using walk
+# helper function to get SQL database resources without using walk
 sql_database_resources(doc) = result {
 	dbTypes := ["databases", "Microsoft.Sql/servers/databases", "Microsoft.Sql/servers"]
 
