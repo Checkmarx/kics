@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resourceType := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
 	resource := input.document[i].resource[resourceType[idx]][name]
 
-	policy := common_lib.json_unmarshal(resource.policy)
+	policy := common_lib.get_policy(resource.policy)
 
 	st := common_lib.get_statement(policy)
 	statement := st[statement_id]
