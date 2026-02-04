@@ -1,0 +1,14 @@
+{
+  "id": "c1701dcf-24df-4675-b863-340233c4e34f",
+  "queryName": "Beta - Ensure GKE Version Management Is Automated Using Release Channels",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Release Channel should be subscribed to Regular or Stable to automate version upgrades to the GKE cluster and to reduce version management complexity to the number of features and level of stability required.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
+  "platform": "Terraform",
+  "descriptionID": "c1701dcf",
+  "cloudProvider": "gcp",
+  "cwe": "1188",
+  "riskScore": "1.0",
+  "experimental": "true"
+}
