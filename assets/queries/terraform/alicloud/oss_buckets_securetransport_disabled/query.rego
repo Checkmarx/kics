@@ -30,14 +30,14 @@ is_equal(secure, target)
 }
 
 is_secure_transport(policyValue) {
-	policy := common_lib.json_unmarshal(policyValue)
+	policy := common_lib.get_policy(policyValue)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 	statement.Effect == "Deny"
 	is_equal(statement.Condition.Bool["acs:SecureTransport"], "false")
     tf_lib.anyPrincipal(statement)
 }else {
-    policy := common_lib.json_unmarshal(policyValue)
+    policy := common_lib.get_policy(policyValue)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 	statement.Effect == "Allow"
