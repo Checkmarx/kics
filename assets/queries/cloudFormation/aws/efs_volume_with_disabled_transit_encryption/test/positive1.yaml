@@ -1,0 +1,27 @@
+Resources:
+  taskdefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        -
+          Name: "container-using-efs"
+          Image: "amazonlinux:2"
+          EntryPoint:
+            - "sh"
+            - "-c"
+          Command:
+            - "ls -la /mount/efs"
+          MountPoints:
+            -
+              SourceVolume: "myEfsVolume"
+              ContainerPath: "/mount/efs"
+              ReadOnly: true
+      Volumes:
+        -
+          Name: "myEfsVolume"
+          EFSVolumeConfiguration:
+            FileSystemId: "fs-1234"
+            RootDirectory: "/path/to/my/data"
+            TransitEncryptionPort: 10
+            TransitEncryption: DISABLED
+
