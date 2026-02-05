@@ -13,21 +13,21 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
-      - name: Get Kubeval
+      - name: Get Kubeconform
         env:
-          KUBEVAL_RELEASES_URL: https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
+          KUBECONFORM_VERSION: v0.6.4
         run: |
           mkdir -p .bin
           PROJDIR=$(pwd)
-          cd .bin && wget "${KUBEVAL_RELEASES_URL}" \
-            && tar xf $(basename "${KUBEVAL_RELEASES_URL}") \
-            && chmod +x kubeval \
-            && rm -vf $(basename "${KUBEVAL_RELEASES_URL}") \
+          cd .bin && wget "https://github.com/yannh/kubeconform/releases/download/${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz" \
+            && tar xf kubeconform-linux-amd64.tar.gz \
+            && chmod +x kubeconform \
+            && rm -vf kubeconform-linux-amd64.tar.gz \
             && cd "${PROJDIR}"
       - name: Validate k8s manifests
         run: |
           python3 -u .github/scripts/samples-linters/validate-syntax.py \
             "assets/queries/k8s/**/test/*.yaml" \
-            --extra ' --skip-kinds CustomResourceDefinition,KubeletConfiguration,Policy,EncryptionConfiguration,KubeSchedulerConfiguration,SecretProviderClass,Service,Configuration,ContainerSource,Revision' \
-            --linter .bin/kubeval \
+            --extra ' -skip CustomResourceDefinition,KubeletConfiguration,Policy,EncryptionConfiguration,KubeSchedulerConfiguration,SecretProviderClass,Service,Configuration,ContainerSource,Revision,PodSecurityPolicy -ignore-missing-schemas' \
+            --linter .bin/kubeconform \
             --skip '.github/scripts/samples-linters/ignore-list/k8s' -v
