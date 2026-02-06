@@ -1,0 +1,23 @@
+name: azure-aks
+runtime: yaml
+description: An Aks cluster
+resources:
+  storageAccount:
+    type: azure-native:storage:StorageAccount
+    properties:
+      accountName: sto4445
+      enableHttpsTrafficOnly: false
+      enableNfsV3: true
+      isHnsEnabled: true
+      kind: BlockBlobStorage
+      location: eastus
+      networkRuleSet:
+        bypass: AzureServices
+        defaultAction: Allow
+        ipRules: []
+        virtualNetworkRules:
+          - virtualNetworkResourceId: /subscriptions/{subscription-id}/resourceGroups/res9101/providers/Microsoft.Network/virtualNetworks/net123/subnets/subnet12
+      resourceGroupName: res9101
+      sku:
+        name: Premium_LRS
+      
