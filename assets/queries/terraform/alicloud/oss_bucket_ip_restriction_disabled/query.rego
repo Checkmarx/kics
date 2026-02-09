@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
 	policy := resource.policy
-	
+
     not ip_restricted(policy)
 
 	result := {
@@ -23,7 +23,7 @@ CxPolicy[result] {
 
 ip_restricted(policy)
 {
-	u_policy := common_lib.json_unmarshal(policy)
+	u_policy := common_lib.get_policy(policy)
 	statement := common_lib.get_statement(u_policy)
     st:=statement[_]
     possibilities := {"IpAdress", "NotIpAdress"}

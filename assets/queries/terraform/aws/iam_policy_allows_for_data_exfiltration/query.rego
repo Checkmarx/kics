@@ -9,7 +9,7 @@ CxPolicy[result] { # resources
 	resourceType := {"aws_iam_policy", "aws_iam_group_policy", "aws_iam_user_policy", "aws_iam_role_policy"}
 	resource := input.document[i].resource[resourceType[idx]][name]
 
-	policy := common_lib.json_unmarshal(resource.policy)
+	policy := common_lib.get_policy(resource.policy)
 	st := common_lib.get_statement(policy)
 	statement := st[st_index]
 	common_lib.is_allow_effect(statement)
@@ -32,7 +32,7 @@ CxPolicy[result] { # modules
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_iam_policy", "policy")
 
-	policy := common_lib.json_unmarshal(module[keyToCheck])
+	policy := common_lib.get_policy(module[keyToCheck])
 	st := common_lib.get_statement(policy)
 	statement := st[st_index]
 	common_lib.is_allow_effect(statement)
