@@ -99,10 +99,6 @@ get_data(resource, type, name, doc_index) = filter {
 	}
 }
 
-#single_regex_match(filters_data) {
-#	regex.match(regex_pattern, filters_data[_].filter)
-#}
-
 single_match(filter) {
 	processed_filter := lower(regex.replace(filter, "\\s+", ""))
 	is_valid_filter(processed_filter)
@@ -110,7 +106,6 @@ single_match(filter) {
 
 
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
-	#regex.match(regex_pattern, alerts_filters_data[i].filter)
 	single_match(alerts_filters_data[i].filter)
 	alerts_filters_data[i].resource.notification_channels
 } else = true {
@@ -118,7 +113,6 @@ has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
 	alerts_filters_data[i].resource.notification_channels
 	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
 } else = index {
-	#regex.match(regex_pattern, alerts_filters_data[index].filter)
 	single_match(alerts_filters_data[index].filter)
 } else = index {
 	alerts_filters_data[index].allows_ref == true
