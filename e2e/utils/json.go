@@ -250,7 +250,10 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			actualToCompare = append(actualToCompare, actualI.Queries[i].Files...)
 		}
 		
-		message := formatFileDiff(expectToCompare, actualToCompare)
+		expectedJSON, _ := json.MarshalIndent(expectToCompare, "", " ")
+		actualJSON, _ := json.MarshalIndent(actualToCompare, "", " ")
+
+		message := fmt.Sprintf("Expected: \n%s\n\nActual:\n%s", expectedJSON, actualJSON)
 		require.Fail(t, message)
 
 		// compare severity counters
@@ -258,10 +261,4 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		require.True(t, compare, "Expected Severity Counters content: 'fixtures/%s' doesn't match the Actual Severity Counters content: 'output/%s'.", //nolint:lll
 			expectI.SeverityCounters, actualI.SeverityCounters)
 	}
-}
-
-func formatFileDiff(expected, actual []model.VulnerableFile) string {
-	expectedJSON, _ := json.MarshalIndent(expected, "", "  ")
-	actualJSON, _ := json.MarshalIndent(actual, "", "  ")
-	return fmt.Sprintf("Expected:\n%s\n\nActual:\n%s", expectedJSON, actualJSON)
 }
