@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudwatch_log_destination_policy[name]
 
-	policy := common_lib.json_unmarshal(resource.access_policy)
+	policy := common_lib.get_policy(resource.access_policy)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 
