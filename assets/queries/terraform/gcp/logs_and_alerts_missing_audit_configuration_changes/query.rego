@@ -104,7 +104,6 @@ single_match(filter) {
 	is_valid_filter(processed_filter)
 }
 
-
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
 	single_match(alerts_filters_data[i].filter)
 	alerts_filters_data[i].resource.notification_channels
