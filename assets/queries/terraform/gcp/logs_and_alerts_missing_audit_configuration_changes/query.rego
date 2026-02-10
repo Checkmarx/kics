@@ -111,7 +111,7 @@ has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
 	alerts_filters_data[i].allows_ref == true
 	alerts_filters_data[i].resource.notification_channels
 	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
-} else = index {
+} else = index { # correct filter but missing notification_channels
 	single_match(alerts_filters_data[index].filter)
 } else = index {
 	alerts_filters_data[index].allows_ref == true

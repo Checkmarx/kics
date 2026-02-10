@@ -96,9 +96,11 @@ get_data(resource, type, name, doc_index) = filter {
 	}
 }
 
-single_match(filters_data) = keyActualValue {
-	lines := process_filter(filters_data.filter)
-	keyActualValue := is_improper_filter(lines)	
+single_match(filter){
+	processed_filter := lower(regex.replace(filter, "\\s+", ""))
+	is_valid_filter(processed_filter)
+	# lines := process_filter(filters_data.filter)
+	# keyActualValue := is_improper_filter(lines)	
 }
 
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
