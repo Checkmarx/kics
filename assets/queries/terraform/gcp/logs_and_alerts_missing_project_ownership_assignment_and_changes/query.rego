@@ -3,6 +3,15 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
+types := {"google_logging_metric", "google_monitoring_alert_policy"}
+
+service_name_pattern := "protopayload\\.servicename=\"cloudresourcemanager\\.googleapis\\.com\""
+ownership_pattern_1 := "\\(projectownershiporprojectownerinvitee\\)"
+ownership_pattern_2 := "\\(projectownerinviteeorprojectownership\\)"
+binding_action_remove := "protopayload\\.servicedata\\.policydelta\\.bindingdeltas\\.action=\"remove\""
+binding_action_add := "protopayload\\.servicedata\\.policydelta\\.bindingdeltas\\.action=\"add\""
+binding_role_owner := "protopayload\\.servicedata\\.policydelta\\.bindingdeltas\\.role=\"roles/owner\""
+
 CxPolicy[result] {
 	log_resources := [{"value": object.get(input.document[index].resource, "google_logging_metric", []), "document_index": index}]
 	alert_resources := [{"value": object.get(input.document[index].resource, "google_monitoring_alert_policy", []), "document_index": index}]
@@ -23,9 +32,10 @@ CxPolicy[result] {
 not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	log_resources[_].value != []
 	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
-	results := [res | filters_data := logs_filters_data[i]
-		keyActualValue := single_match(filters_data)
-		keyActualValue != null
+
+	results := [res | 
+		filters_data := logs_filters_data[i]
+		not single_match(filters_data.filter)
 		res := {
 			"documentId": input.document[logs_filters_data[i].doc_index].id,
 			"resourceType": "google_logging_metric",
@@ -35,7 +45,8 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 			"keyExpectedValue": "At least one 'google_logging_metric' resource should capture project ownership assignment and changes",
 			"keyActualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes",
 			"searchLine": common_lib.build_search_line(logs_filters_data[i].searchArray, [])
-		}]
+		}
+	]
 	count(results) == count(logs_filters_data) # if a single filter is valid it should not flag
 } else = results {
 	log_resources[_].value != []
@@ -43,8 +54,7 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
 
 	valid_logs_names := [logs_filters_data[i2].name |
-		lines := process_filter(logs_filters_data[i2].filter)
-		is_improper_filter(lines) == null
+  		single_match(logs_filters_data[i2].filter)
 	]
 
 	alerts_filters_data := [alert | alert := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
@@ -96,24 +106,27 @@ get_data(resource, type, name, doc_index) = filter {
 	}
 }
 
-single_match(filter){
+single_match(filter) {
 	processed_filter := lower(regex.replace(filter, "\\s+", ""))
 	is_valid_filter(processed_filter)
-	# lines := process_filter(filters_data.filter)
-	# keyActualValue := is_improper_filter(lines)	
+}
+
+is_valid_filter(filter) {
+	service_name_valid(filter) # checks if serviceName is defined to "cloudresourcemanager.googleapis.com"
+	ownership_valid(filter) # checks if (ProjectOwnership OR projectOwnerInvitee) is present
+	remove_owner_valid(filter) # checks if (action="REMOVE" AND role="roles/owner") is present
+	add_owner_valid(filter) # checks if (action="ADD" AND role="roles/owner") is present
 }
 
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
-	lines := process_filter(alerts_filters_data[i].filter)
-	is_improper_filter(lines) == null
+	single_match(alerts_filters_data[i].filter)
 	alerts_filters_data[i].resource.notification_channels
 } else = true {
 	alerts_filters_data[i].allows_ref == true
 	alerts_filters_data[i].resource.notification_channels
 	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
-} else = index {
-	lines := process_filter(alerts_filters_data[index].filter)
-	is_improper_filter(lines) == null
+} else = index { # correct filter but missing notification_channels
+	single_match(alerts_filters_data[index].filter)
 } else = index {
 	alerts_filters_data[index].allows_ref == true
 	contains(alerts_filters_data[index].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
@@ -145,71 +158,40 @@ get_results(alerts_filters_data, value) = results {
 		}]
 }
 
-# definir aqui algo como o is_improper_filter
-is_improper_filter(lines) = keyActualValue { # serviceName not defined to 'cloudresourcemanager.googleapis.com'
-	not correct_proto_payload_service_name(lines)
-	keyActualValue := "is applied to the wrong serviceName"
-} else = keyActualValue {
-	not has_project_ownership_or_invitee(lines) # does not have ProjectOwnership or projectOwnerInvitee
-	keyActualValue := "is not applied to ProjectOwnershop or projectOwnerInvitee"
-} else = keyActualValue { # bindingDeltas.action not defined to "REMOVED" and "ADD" for bingingDeltas.role="roles/owner"
-	not has_add_or_remove_owner_or(lines) 
-	keyActualValue := "does not bind both the actions 'REMOVE' and 'ADD' to 'roles/owner' role"
-} else = null
-
-process_filter(raw_filter) = lines {
-	normalized := normalize_filter(raw_filter)
-	marked := regex.replace(normalized, "\\)\\s+(AND|OR)\\s+\\(", ")\n$1(")
-	lines := split(marked, "\n")
-}
-
-normalize_filter(raw_filter) = normalized {
-	step1 := regex.replace(raw_filter, "\\n", " ")
-	step2 := regex.replace(step1, "\\s+", " ")
-	step3 := regex.replace(step2, "\\(\\s+", "(")
-	step4 := regex.replace(step3, "\\s+\\)", ")")
-	step5 := regex.replace(step4, "\\s+AND\\s+", " AND ")
-    step6 := regex.replace(step5, "\\s+OR\\s+", " OR ")
-	normalized := regex.replace(step6, "\\s*=\\s*", "=")
-}
-
-correct_proto_payload_service_name(lines) {
-	regex.match("(?i)protoPayload\\.serviceName\\s*=\\s*(\\(((\\s*OR\\s*)?\".+\"(\\s*OR\\s*)?)*)?\"cloudresourcemanager.googleapis.com\"", concat("", lines))
-} else {
-	regex.match("(?i)NOT\\s*protoPayload\\.serviceName\\s*!=\\s*\"cloudresourcemanager.googleapis.com\"", concat("", lines))
-}
-
-has_project_ownership_or_invitee(lines) {
-	regex.match("(?i)\\(\\s*(ProjectOwnership\\s*OR\\s*projectOwnerInvitee|projectOwnerInvitee\\s*OR\\s*ProjectOwnership)\\s*\\)", concat("", lines))
-}
-
-has_add_or_remove_owner_or(lines) {
-	has_or_add_owner(lines)
-	has_or_remove_owner(lines)
-}
-
-has_or_add_owner(lines) {
-	line := lines[_]
-	startswith(trim(line, " "), "OR(")
-	is_add_owner_block(line)
-}
-
-has_or_remove_owner(lines) {
-	line := lines[_]
-	startswith(trim(line, " "), "OR(")
-	is_remove_owner_block(line)
-}
-
-is_add_owner_block(line) {
-	contains(line, "protoPayload.serviceData.policyDelta.bindingDeltas.action=\"ADD\"")
-	contains(line, "protoPayload.serviceData.policyDelta.bindingDeltas.role=\"roles/owner\"")
-}
-
-is_remove_owner_block(line) {
-	contains(line, "protoPayload.serviceData.policyDelta.bindingDeltas.action=\"REMOVE\"")
-	contains(line, "protoPayload.serviceData.policyDelta.bindingDeltas.role=\"roles/owner\"")
-}
-
 at_least_one_log(log_resources){
 	log_resources[_].value != []
+}
+
+
+service_name_valid(filter) { # checks if serviceName is defined to "cloudresourcemanager.googleapis.com"
+	regex.match(service_name_pattern, filter)
+	not regex.match(concat("", ["not", service_name_pattern]), filter)
+}
+
+ownership_valid(filter) { # (ProjectOwnership OR projectOwnerInvitee)
+	regex.match(ownership_pattern_1, filter)
+	not regex.match(concat("", ["not", ownership_pattern_1]), filter)
+} else { # (projectOwnerInvitee OR ProjectOwnership)
+	regex.match(ownership_pattern_2, filter)
+	not regex.match(concat("", ["not", ownership_pattern_2]), filter)
+}
+
+remove_owner_valid(filter) { # action="REMOVE" AND role="roles/owner"
+	pattern := concat("", ["\\(", binding_action_remove, "and", binding_role_owner, "\\)"])
+    regex.match(pattern, filter)
+    not regex.match(concat("", ["not", pattern]), filter)
+} else { # role="roles/owner" AND action="REMOVE"
+	pattern := concat("", ["\\(", binding_role_owner, "and", binding_action_remove, "\\)"])
+    regex.match(pattern, filter)
+    not regex.match(concat("", ["not", pattern]), filter)
+}
+
+add_owner_valid(filter) { # action="ADD" AND role="roles/owner"
+	pattern := concat("", ["\\(", binding_action_add, "and", binding_role_owner, "\\)"])
+    regex.match(pattern, filter)
+    not regex.match(concat("", ["not", pattern]), filter)
+} else { # role="roles/owner" AND action="ADD"
+	pattern := concat("", ["\\(", binding_role_owner, "and", binding_action_add, "\\)"])
+    regex.match(pattern, filter)
+    not regex.match(concat("", ["not", pattern]), filter)
 }

@@ -48,7 +48,7 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	alert_resources[_].value != []
 	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
 
-	valid_logs_names := [logs_filters_data[i2].name | single_match(logs_filters_data[i2].filter)]#regex.match(regex_pattern,logs_filters_data[i2].filter)]
+	valid_logs_names := [logs_filters_data[i2].name | single_match(logs_filters_data[i2].filter)]
 
 	alerts_filters_data := [alert | alert := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
 
