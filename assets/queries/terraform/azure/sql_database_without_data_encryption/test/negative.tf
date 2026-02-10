@@ -12,9 +12,9 @@ resource "azurerm_mssql_database" "example" {
   # missing "transparent_data_encryption_enabled" - defaults to true
 }
 
-resource "azurerm_mssql_database" "example" {
+resource "azurerm_mssql_database" "example1" {
   name           = "example-db"
-  server_id      = azurerm_mssql_server.example.id
+  server_id      = azurerm_mssql_server.example1.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
   max_size_gb    = 4
