@@ -47,7 +47,7 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 			"searchLine": common_lib.build_search_line(logs_filters_data[i].searchArray, [])
 		}
 	]
-	count(results) == count(logs_filters_data) # if a single filter is valid it should not flag
+	count(results) == count(logs_filters_data)
 } else = results {
 	# there is at leat one of google_logging_metric and google_monitoring_alert_policies
 	log_resources[_].value != []
