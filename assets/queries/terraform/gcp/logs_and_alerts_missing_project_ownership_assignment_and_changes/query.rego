@@ -49,6 +49,7 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	]
 	count(results) == count(logs_filters_data) # if a single filter is valid it should not flag
 } else = results {
+	# there is at leat one of google_logging_metric and google_monitoring_alert_policies
 	log_resources[_].value != []
 	alert_resources[_].value != []
 	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
@@ -63,6 +64,8 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 
 	results := get_results(alerts_filters_data, value)
 } else = results {
+	# very similar to the scenario above but, this time we check that there isn't a single 
+	# google_logging_metric resource in the project.
     alert_resources[_].value != []
     not at_least_one_log(log_resources)
 
