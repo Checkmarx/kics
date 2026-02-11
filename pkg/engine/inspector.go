@@ -20,6 +20,7 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
 	"github.com/Checkmarx/kics/v2/pkg/engine/source"
 	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 
 	"github.com/open-policy-agent/opa/v1/ast"
 	"github.com/open-policy-agent/opa/v1/cover"
@@ -46,6 +47,7 @@ const (
 	regoQuery = `result = data.Cx.CxPolicy`
 	// TransitionInformationBasePath the path to yaml files that contains the transition information
 	TransitionInformationBasePath = "./assets/similarityID_transition"
+	kubernetesPlatformName        = "kubernetes"
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -535,7 +537,35 @@ func (c *Inspector) DecodeQueryResults(
 		c.tracker.FailedDetectLine()
 	}
 
+	filterOutDuplicatedHelmVulnerabilities(&vulnerabilities)
 	return vulnerabilities, nil
+}
+
+func filterOutDuplicatedHelmVulnerabilities(vulnerabilities *[]model.Vulnerability) *[]model.Vulnerability {
+	vulnerabilityMap := map[string][]model.Vulnerability{}
+	// map K8s results
+	for i := 0; i < len(*vulnerabilities); i++ {
+		if strings.EqualFold((*vulnerabilities)[i].Platform, kubernetesPlatformName) {
+			utils.SafeAddToSliceMap(vulnerabilityMap, (*vulnerabilities)[i].SimilarityID, (*vulnerabilities)[i])
+			if len(vulnerabilityMap[(*vulnerabilities)[i].SimilarityID]) > 2 {
+				log.Warn().Msgf("Multiple duplicated vulnerability found for: SimilarityID=%s QueryID=%s",
+					(*vulnerabilities)[i].SimilarityID, (*vulnerabilities)[i].QueryID)
+			}
+		}
+	}
+
+	// filter out duplicated K8s results from slice
+	filtered := make([]model.Vulnerability, 0, len(*vulnerabilities))
+	for i := 0; i < len(*vulnerabilities); i++ {
+		// Keep vulnerability if it's NOT a duplicated Helm K8s result
+		if !strings.EqualFold((*vulnerabilities)[i].Platform, kubernetesPlatformName) || (*vulnerabilities)[i].FileKind != model.KindHELM ||
+			len(vulnerabilityMap[(*vulnerabilities)[i].SimilarityID]) <= 1 {
+			filtered = append(filtered, (*vulnerabilities)[i])
+		}
+	}
+
+	*vulnerabilities = filtered
+	return vulnerabilities
 }
 
 func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultItem interface{}) (*model.Vulnerability, bool) {

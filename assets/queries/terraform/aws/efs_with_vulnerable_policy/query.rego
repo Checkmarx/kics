@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_efs_file_system_policy[name]
 
-	policy := common_lib.json_unmarshal(resource.policy)
+	policy := common_lib.get_policy(resource.policy)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 
