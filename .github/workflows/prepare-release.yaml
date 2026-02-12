@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
       - name: Get current date
@@ -27,7 +27,7 @@ jobs:
           sed -E -i "s/(<p.*>)[0-9]{4}\.[0-9]{2}\.[0-9]{2}<p>/\1${{ steps.cdate.outputs.date }}<p>/" docs/index.md
           sed -E -i "s/(<a.*href=\"https:\/\/github.com\/Checkmarx\/kics\/releases\/download\/).*(\/kics_).*(_[a-z]+_.*>)/\1v${{ github.event.inputs.version }}\2${{ github.event.inputs.version }}\3/g" docs/index.md
       - name: Create pull request
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v6
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v6
         with:
           title: "docs(kicsbot): preparing for release ${{ github.event.inputs.version }}"
           token: ${{ secrets.KICS_BOT_PAT }}
