@@ -4,7 +4,8 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 types := {"google_logging_metric", "google_monitoring_alert_policy"}
-regex_pattern := "^\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*$"
+set_iam_policy_condition_pattern := "protopayload\\.methodname=\"setiampolicy\""
+audit_config_deltas_pattern := "protopayload\\.servicedata\\.policydelta\\.auditconfigdeltas:\\*"
 
 CxPolicy[result] {
 	log_resources := [{"value": object.get(input.document[index].resource, "google_logging_metric", []), "document_index": index}]
@@ -27,25 +28,28 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	log_resources[_].value != []
 	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
 
-	not single_regex_match(logs_filters_data)
-
-	results := [res | res := {
-		"documentId": input.document[logs_filters_data[i].doc_index].id,
-		"resourceType": "google_logging_metric",
-		"resourceName": tf_lib.get_resource_name(logs_filters_data[i].resource, logs_filters_data[i].name),
-		"searchKey": sprintf("google_logging_metric[%s].%s", [logs_filters_data[i].name, logs_filters_data[i].path]),
-		"issueType":  "IncorrectValue",
-		"keyExpectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
-		"keyActualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
-		"searchLine": common_lib.build_search_line(logs_filters_data[i].searchArray, [])
-	}]
-
+	results := [res | 
+		filters_data := logs_filters_data[i]
+		not single_match(filters_data.filter)
+		res := {
+			"documentId": input.document[filters_data.doc_index].id,
+			"resourceType": "google_logging_metric",
+			"resourceName": tf_lib.get_resource_name(filters_data.resource, filters_data.name),
+			"searchKey": sprintf("google_logging_metric[%s].%s", [filters_data.name, filters_data.path]),
+			"issueType":  "IncorrectValue",
+			"keyExpectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
+			"keyActualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+			"searchLine": common_lib.build_search_line(filters_data.searchArray, [])
+		}
+	]
+	count(results) == count(logs_filters_data)
 } else = results {
+	# there is at leat one of google_logging_metric and google_monitoring_alert_policies
 	log_resources[_].value != []
 	alert_resources[_].value != []
 	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
 
-	valid_logs_names := [logs_filters_data[i2].name | regex.match(regex_pattern,logs_filters_data[i2].filter)]
+	valid_logs_names := [logs_filters_data[i2].name | single_match(logs_filters_data[i2].filter)]
 
 	alerts_filters_data := [alert | alert := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
 
@@ -53,6 +57,8 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 
 	results := get_results(alerts_filters_data, value)
 } else = results {
+	# very similar to the scenario above but, this time we check that there isn't a single 
+	# google_logging_metric resource in the project.
     alert_resources[_].value != []
     not at_least_one_log(log_resources)
 
@@ -96,19 +102,20 @@ get_data(resource, type, name, doc_index) = filter {
 	}
 }
 
-single_regex_match(filters_data) {
-	regex.match(regex_pattern, filters_data[_].filter)
+single_match(filter) {
+	processed_filter := lower(regex.replace(filter, "\\s+", ""))
+	is_valid_filter(processed_filter)
 }
 
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
-	regex.match(regex_pattern, alerts_filters_data[i].filter)
+	single_match(alerts_filters_data[i].filter)
 	alerts_filters_data[i].resource.notification_channels
 } else = true {
 	alerts_filters_data[i].allows_ref == true
 	alerts_filters_data[i].resource.notification_channels
 	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
-} else = index {
-	regex.match(regex_pattern, alerts_filters_data[index].filter)
+} else = index { # correct filter but missing notification_channels
+	single_match(alerts_filters_data[index].filter)
 } else = index {
 	alerts_filters_data[index].allows_ref == true
 	contains(alerts_filters_data[index].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
@@ -142,4 +149,30 @@ get_results(alerts_filters_data, value) = results {
 
 at_least_one_log(log_resources){
 	log_resources[_].value != []
+}
+
+
+set_iam_policy_valid(filter) {
+	regex.match(set_iam_policy_condition_pattern, filter)
+	not regex.match(concat("", ["not", set_iam_policy_condition_pattern]), filter)
+}
+
+audit_config_deltas_valid(filter) {
+	regex.match(audit_config_deltas_pattern, filter)
+	not regex.match(concat("", ["not", audit_config_deltas_pattern]), filter)
+}
+
+is_valid_filter(filter) { # case when methodName="SetIamPolicy" AND auditConfigDeltas="*" 
+	set_iam_policy_valid(filter)
+	audit_config_deltas_valid(filter)
+	# checks if an AND is in between the conditions
+	regex.match(concat("", [set_iam_policy_condition_pattern, "and", audit_config_deltas_pattern]), filter)
+} else { # case when auditConfigDeltas="*" AND methodName="SetIamPolicy" 
+	audit_config_deltas_valid(filter)
+	set_iam_policy_valid(filter)
+	regex.match(concat("", [audit_config_deltas_pattern, "and", set_iam_policy_condition_pattern]), filter)
+} else { # handles De Morgan law - NOT(NOT A OR NOT B) == A AND B
+	regex.match(concat("", ["not\\(not", set_iam_policy_condition_pattern, "ornot", audit_config_deltas_pattern, "\\)"]), filter)
+} else { # same as above but with the conditions inverted
+	regex.match(concat("", ["not\\(not", audit_config_deltas_pattern, "ornot", set_iam_policy_condition_pattern, "\\)"]), filter)
 }

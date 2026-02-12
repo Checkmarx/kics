@@ -5,7 +5,7 @@ resource "google_logging_metric" "audit_config_change" {
     resource.type="iam_role"
     AND (protoPayload.methodName = "google.iam.admin.v1.CreateRole" OR
     protoPayload.methodName="google.iam.admin.v1.DeleteRole" OR
-    protoPayload.methodName="google.iam.admin.v1.UpdateRole" OR
+    NOT protoPayload.methodName="google.iam.admin.v1.UpdateRole" OR
     protoPayload.methodName="google.iam.admin.v1.UndeleteRole")
   FILTER
 }
@@ -16,16 +16,17 @@ resource "google_monitoring_alert_policy" "audit_config_alert" {
   combiner = "OR"
 
   conditions {
-    display_name = "Audit Config Change Condition"
+    display_name = "Audit Config Change Condition"        # test for unusual spacing
     condition_matched_log {
       filter = <<-FILTER
-        resource.type="iam_role"
-        AND (protoPayload.methodName = "google.iam.admin.v1.INCORRECT_METHOD" OR
-        protoPayload.methodName="google.iam.admin.v1.DeleteRole" OR
-        protoPayload.methodName="google.iam.admin.v1.UpdateRole" OR
-        protoPayload.methodName="google.iam.admin.v1.UndeleteRole")
+        resource.type = "iam_role"
+        AND ( protoPayload.methodName = "google.iam.admin.v1.CreateRole" OR
+
+        protoPayload.methodName  = "google.iam.admin.v1.DeleteRole"
+        OR
+        NOT protoPayload.methodName =  "google.iam.admin.v1.UpdateRole"   OR
+        protoPayload.methodName = "google.iam.admin.v1.UndeleteRole" )
       FILTER
-      # incorrect filter
     }
   }
 
