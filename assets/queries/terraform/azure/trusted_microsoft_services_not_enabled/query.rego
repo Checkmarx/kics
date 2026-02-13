@@ -7,6 +7,8 @@ CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[name]
 	not common_lib.valid_key(resource, "network_rules")
 
+	not is_function_app(resource)
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
@@ -78,4 +80,19 @@ CxPolicy[result] {
 		"keyExpectedValue": "'bypass' should contain 'AzureServices'",
 		"keyActualValue": "'bypass' does not contain 'AzureServices'",
 	}
+}
+
+is_function_app(resource) {
+	common_lib.valid_key(resource, "tags")
+    tags := resource.tags
+    is_object(tags)
+    common_lib.valid_key(tags, "bdo-attached-service")
+    tags["bdo-attached-service"] == "function"
+}
+
+is_function_app(resource) {
+	common_lib.valid_key(resource, "tags")
+    tags := resource.tags
+    is_string(tags)
+    regex.match(".*bdo-attached-service.*=.*function.*", tags)
 }
