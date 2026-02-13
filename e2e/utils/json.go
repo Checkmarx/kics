@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"io"
+	"fmt"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -248,9 +249,12 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		for i := range actualI.Queries {
 			actualToCompare = append(actualToCompare, actualI.Queries[i].Files...)
 		}
-		require.ElementsMatch(t, expectToCompare, actualToCompare,
-			"Expected Queries content: 'fixtures/%s' doesn't match the Actual Queries content: 'output/%s'.",
-			expectToCompare, actualToCompare)
+		
+		expectedJSON, _ := json.MarshalIndent(expectToCompare, "", " ")
+		actualJSON, _ := json.MarshalIndent(actualToCompare, "", " ")
+
+		message := fmt.Sprintf("Expected: \n%s\n\nActual:\n%s", expectedJSON, actualJSON)
+		require.Fail(t, message)
 
 		// compare severity counters
 		compare := reflect.DeepEqual(expectI.SeverityCounters, actualI.SeverityCounters)
