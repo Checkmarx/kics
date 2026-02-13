@@ -56,16 +56,17 @@ jobs:
             "removeHistory" : "'"${REMOVE_HISTORY}"'"
           }' > "$METADATA_PATH"
 
-      - name: Zip kics Folder
+      - name: Remove Test Folder
         run: |
-          cd $GITHUB_WORKSPACE
-          zip -qr kics.zip kics/
+          rm -rf kics/test/
 
       - name: Save kics
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: kics
-          path: ${{ github.workspace }}/kics.zip
+          path: |
+            kics/assets/
+            kics/bin/
           retention-days: 1
 
       - name: Pr parameters
