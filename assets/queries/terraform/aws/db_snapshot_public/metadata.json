@@ -1,0 +1,12 @@
+{
+  "id": "f0d8781f-1991-4958-9917-d39283b168a0",
+  "queryName": "DB Snapshot Is Public",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "The DB snapshot is public. This means that anyone can access the snapshot and restore the database. This can lead to unauthorized access to sensitive data.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_snapshot#shared_accounts-1",
+  "platform": "Terraform",
+  "descriptionID": "f0d8781f",
+  "cloudProvider": "aws",
+  "cwe": "200"
+}
