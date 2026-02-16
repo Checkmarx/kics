@@ -51,7 +51,7 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 
 	valid_logs_names := [logs_filters_data[i2].name |
 		lines := process_filter(logs_filters_data[i2].filter)
-		is_improper_filter(target_methods, lines) == null
+		is_improper_filter(lines) == null
 	]
 
 	alerts_filters_data := [alert | alert := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, alert_resources[_].document_index)]
@@ -109,7 +109,7 @@ single_match(filters_data) = keyActualValue {
 	lines := process_filter(filters_data.filter)
 
 	# target methods are CreateRole, DeleteRole, UpdateRole e UndeleteRole
-	keyActualValue := is_improper_filter(target_methods, lines)
+	keyActualValue := is_improper_filter(lines)
 }
 
 process_filter(raw_filter) = filter {
@@ -120,7 +120,7 @@ process_filter(raw_filter) = filter {
 
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true { # google_monitoring_alert_policy with a valid filter and notification_channels value set
 	lines := process_filter(alerts_filters_data[i].filter) 
-	is_improper_filter(target_methods, lines) == null
+	is_improper_filter(lines) == null
 	alerts_filters_data[i].resource.notification_channels
 } else = true { # google_monitoring_alert_policy with a valid reference to a google_logging_metric and notification_channels value set
 	alerts_filters_data[i].allows_ref == true
@@ -128,7 +128,7 @@ has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true { # g
 	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
 } else = index {
 	lines := process_filter(alerts_filters_data[index].filter)
-	is_improper_filter(target_methods, lines) == null
+	is_improper_filter(lines) == null
 } else = index {
 	alerts_filters_data[index].allows_ref == true
 	contains(alerts_filters_data[index].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
@@ -165,11 +165,11 @@ at_least_one_log(log_resources) {
 }
 
 # target_methods are CreateRole, DeleteRole, UpdateRole, UndeleteRole 
-is_improper_filter(target_methods, lines) = keyActualValue {
+is_improper_filter(lines) = keyActualValue {
 	not correct_resource_type(lines)
 	keyActualValue := "is applied to the wrong resource type"
 } else = keyActualValue {
-	not contains_method(target_methods, lines)
+	not contains_method(lines)
 	keyActualValue := "does not capture all custom role changes for resource type 'iam_role'"
 } else = null
 
@@ -179,7 +179,7 @@ correct_resource_type(lines) {
 	regex.match("(?i)NOT\\s*resource\\.type\\s*!=\\s*\"iam_role\"", concat("", lines))
 }
 
-contains_method(target_methods, lines) {
+contains_method(lines) {
 	not_statements := { method | 
 		method := target_methods[_]
 		line := lines[_]
