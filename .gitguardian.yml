@@ -1,0 +1,6 @@
+paths:
+  exclude:
+    - "assets/queries/common/passwords_and_secrets/test/**"
+    - "assets/queries/cloudFormation/aws/amplify_branch_basic_auth_config_password_exposed/test/negative7.yaml"
+    - "assets/queries/cloudFormation/aws/amplify_app_basic_auth_config_password_exposed/test/positive6.json"
+    - "assets/queries/terraform/azure/unrestricted_sql_server_access/test/negative3.tf"
