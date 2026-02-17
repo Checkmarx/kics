@@ -151,7 +151,11 @@ func GetStrFlag(flagName string) string {
 // GetMultiStrFlag get a slice of strings flag by its name
 func GetMultiStrFlag(flagName string) []string {
 	if value, ok := flagsMultiStrReferences[flagName]; ok {
-		return *value
+		res := make([]string, len(*value))
+		for i, s := range *value {
+			res[i] = strings.TrimSpace(s)
+		}
+		return res
 	}
 	log.Debug().Msgf("Could not find string slice flag %s", flagName)
 	return []string{}
