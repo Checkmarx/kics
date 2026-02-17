@@ -1,0 +1,66 @@
+rules:
+  bugs:
+    not-equals-in-loop:
+      # https://docs.styra.com/regal/rules/bugs/not-equals-in-loop
+      level: ignore
+    rule-shadows-builtin:
+      # https://docs.styra.com/regal/rules/bugs/rule-shadows-builtin
+      level: warn
+  idiomatic:
+    no-defined-entrypoint:
+      # https://docs.styra.com/regal/rules/idiomatic/no-defined-entrypoint
+      # No single entrypoint for this project
+      level: ignore
+    # temporary
+    non-raw-regex-pattern:
+      # https://docs.styra.com/regal/rules/idiomatic/non-raw-regex-pattern
+      level: warn
+    use-in-operator:
+      # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
+      level: warn
+    use-some-for-output-vars:
+      # https://docs.styra.com/regal/rules/idiomatic/use-some-for-output-vars
+      # These would be good to address, but would require a concentrated effort
+      level: ignore
+    custom-has-key-construct:
+      # https://docs.styra.com/regal/rules/idiomatic/custom-has-key-construct
+      level: warn
+    equals-pattern-matching:
+      # https://docs.styra.com/regal/rules/idiomatic/equals-pattern-matching
+      level: warn
+  style:
+    avoid-get-and-list-prefix:
+      # https://docs.styra.com/regal/rules/style/avoid-get-and-list-prefix
+      level: ignore
+    external-reference:
+      # https://docs.styra.com/regal/rules/style/external-reference
+      level: ignore
+    file-length:
+      # https://docs.styra.com/regal/rules/style/file-length
+      level: ignore
+    line-length:
+      # https://docs.styra.com/regal/rules/style/line-length
+      level: ignore
+    no-whitespace-comment:
+      # https://docs.styra.com/regal/rules/style/no-whitespace-comment
+      level: warn
+    opa-fmt:
+      # https://docs.styra.com/regal/rules/style/opa-fmt
+      level: warn
+    prefer-some-in-iteration:
+      # https://docs.styra.com/regal/rules/style/prefer-some-in-iteration
+      # 10000+ violations fixed but way more to go
+      level: ignore
+    prefer-snake-case:
+      # https://docs.styra.com/regal/rules/style/prefer-snake-case
+      level: ignore
+    rule-length:
+      # https://docs.styra.com/regal/rules/style/rule-length
+      level: ignore
+    todo-comment:
+      # https://docs.styra.com/regal/rules/style/todo-comment
+      # only one TODO comment in the codebase to fix this issue
+      level: ignore
+    use-assignment-operator:
+      # https://docs.styra.com/regal/rules/style/use-assignment-operator
+      level: ignore
