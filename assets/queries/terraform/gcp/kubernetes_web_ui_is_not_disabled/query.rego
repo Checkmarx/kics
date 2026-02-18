@@ -23,23 +23,23 @@ CxPolicy[result] {
 
 get_results(resource, name) = res {
     not common_lib.valid_key(resource.addons_config, "kubernetes_dashboard")
-    version_array := split(split(resource.min_master_version, "-")[0], ".") # following the format, e.g. 1.31.14-gke.123445
+    version_array := split(resource.min_master_version, ".")
     is_low_version(version_array)
     res := {
         "sk": sprintf("google_container_cluster[%s].addons_config", [name]),
         "it": "MissingAttribute",
-        "kev": "'kubernetes_dashboard' should be defined and enabled inside the 'addons_config_version' block for GKE versions below 1.7",
+        "kev": "'kubernetes_dashboard' should be defined and disabled inside the 'addons_config_version' block for GKE versions below 1.10",
         "kav": "'kubernetes_dashboard' is not defined inside the 'addons_config_version' block",
         "sl": common_lib.build_search_line(["resource", "google_container_cluster", name, "addons_config"], [])
     }
 } else = res {
     not common_lib.valid_key(resource, "addons_config")
-    version_array := split(split(resource.min_master_version, "-")[0], ".") # following the format, e.g. 1.31.14-gke.123445
+    version_array := split(resource.min_master_version, ".")
     is_low_version(version_array)
     res := {
         "sk": sprintf("google_container_cluster[%s]", [name]),
         "it": "MissingAttribute",
-        "kev": "'kubernetes_dashboard' should be defined and enabled inside the 'addons_config_version' block for GKE versions below 1.7",
+        "kev": "'kubernetes_dashboard' should be defined and disabled inside the 'addons_config_version' block for GKE versions below 1.10",
         "kav": "'addons_config' block is not defined with the 'kubernetes_dashboard' enabled",
         "sl": common_lib.build_search_line(["resource", "google_container_cluster", name], [])
     }
