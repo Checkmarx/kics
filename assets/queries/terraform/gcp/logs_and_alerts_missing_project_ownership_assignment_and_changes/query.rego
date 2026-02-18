@@ -144,25 +144,20 @@ ownership_valid(filter) { # (ProjectOwnership OR projectOwnerInvitee)
 	not regex.match(concat("", ["not", ownership_pattern_1]), filter)
 } else { # (projectOwnerInvitee OR ProjectOwnership)
 	regex.match(concat("", ["(^|and|or)", ownership_pattern_2]), filter)
-	#regex.match(ownership_pattern_2, filter)
 	not regex.match(concat("", ["not", ownership_pattern_2]), filter)
 } else {
-	#regex.match(ownership_pattern_1_de_morgan_law, filter)
 	regex.match(concat("", ["(^|and)", ownership_pattern_1_de_morgan_law]), filter)
 } else {
 	regex.match(concat("", ["(^|and)", ownership_pattern_2_de_morgan_law]), filter)
-	#regex.match(ownership_pattern_2_de_morgan_law, filter)
 }
 
 remove_or_add_owner_valid(filter, binding_action_type) { # action="REMOVE" AND role="roles/owner"
 	pattern := concat("", ["\\(", binding_action_type, "and", binding_role_owner, "\\)"])
     regex.match(concat("", ["(^|or)", pattern]), filter)
-	#regex.match(pattern, filter)
     not regex.match(concat("", ["not", pattern]), filter)
 } else { # role="roles/owner" AND action="REMOVE"
 	pattern := concat("", ["\\(", binding_role_owner, "and", binding_action_type, "\\)"])
     regex.match(concat("", ["(^|or)", pattern]), filter)
-	#regex.match(pattern, filter)
     not regex.match(concat("", ["not", pattern]), filter)
 } else {
 	regex.match(concat("", ["(^|or)not\\(not", binding_action_type, "ornot", binding_role_owner, "\\)"]), filter)
