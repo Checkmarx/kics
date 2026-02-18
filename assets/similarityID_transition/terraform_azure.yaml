@@ -163,6 +163,30 @@ similarityIDChangeList:
       queryName: Beta - Databricks Workspace Using Default Virtual Network
       observations: ""
       change: 1
+    - queryId: 0f7964fa-96fd-4a72-9fb7-3cdef71479db
+      queryName: Beta - App Service Slot Managed Identity Disabled
+      observations: ""
+      change: 1
+    - queryId: 829246df-02c5-490c-993b-10a07a7242e9
+      queryName: Beta - Container App Managed Identity Disabled
+      observations: ""
+      change: 1
+    - queryId: 02f0e3e7-2550-4d75-a23b-ab5254a3ebeb
+      queryName: Beta - Container Group Managed Identity Disabled
+      observations: ""
+      change: 1
+    - queryId: 9b0140d1-50c1-4deb-ba58-472315c7a1ae
+      queryName: Beta - Kubernetes Cluster Managed Identity Disabled
+      observations: ""
+      change: 1
+    - queryId: 7fa50094-0ca5-4253-aa71-f1a3b575d4a5
+      queryName: Beta - Logic App Managed Identity Disabled
+      observations: ""
+      change: 1
+    - queryId: d501246e-45d4-48fd-8975-a23e7124bdfc
+      queryName: Beta - Redis Cache Managed Identity Is Not Set To System Assigned
+      observations: ""
+      change: 1
     - queryId: 03928f0d-bff0-4feb-a31a-615d093e6026
       queryName: Beta - Function App Deployment Slot Not Using Latest TLS Encryption Version
       observations: ""

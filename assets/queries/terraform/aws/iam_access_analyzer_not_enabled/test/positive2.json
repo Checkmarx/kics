@@ -1,0 +1,120 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.14.3",
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_organizations_organization.example2",
+          "mode": "managed",
+          "type": "aws_organizations_organization",
+          "name": "example2",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "aws_service_access_principals": [
+              "access-analyzer.amazonaws.com"
+            ],
+            "enabled_policy_types": null,
+            "feature_set": "ALL",
+            "return_organization_only": null
+          },
+          "sensitive_values": {
+            "accounts": [],
+            "aws_service_access_principals": [
+              false
+            ],
+            "non_master_accounts": [],
+            "roots": []
+          },
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": null,
+            "id": null
+          }
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "aws_organizations_organization.example2",
+      "mode": "managed",
+      "type": "aws_organizations_organization",
+      "name": "example2",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "aws_service_access_principals": [
+            "access-analyzer.amazonaws.com"
+          ],
+          "enabled_policy_types": null,
+          "feature_set": "ALL",
+          "return_organization_only": null
+        },
+        "after_unknown": {
+          "accounts": true,
+          "arn": true,
+          "aws_service_access_principals": [
+            false
+          ],
+          "id": true,
+          "master_account_arn": true,
+          "master_account_email": true,
+          "master_account_id": true,
+          "master_account_name": true,
+          "non_master_accounts": true,
+          "roots": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "accounts": [],
+          "aws_service_access_principals": [
+            false
+          ],
+          "non_master_accounts": [],
+          "roots": []
+        },
+        "after_identity": {
+          "account_id": null,
+          "id": null
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "provider_config": {
+      "aws": {
+        "name": "aws",
+        "full_name": "registry.terraform.io/hashicorp/aws"
+      }
+    },
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_organizations_organization.example2",
+          "mode": "managed",
+          "type": "aws_organizations_organization",
+          "name": "example2",
+          "provider_config_key": "aws",
+          "expressions": {
+            "aws_service_access_principals": {
+              "constant_value": [
+                "access-analyzer.amazonaws.com"
+              ]
+            }
+          },
+          "schema_version": 0
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-02-02T17:26:25Z",
+  "applyable": true,
+  "complete": true,
+  "errored": false
+}
