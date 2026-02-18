@@ -4,8 +4,8 @@ resource "google_logging_metric" "audit_config_change" {
   filter = <<-FILTER
     (protoPayload.serviceName="cloudresourcemanager.googleapis.com")
     AND (ProjectOwnership OR projectOwnerInvitee)
-    OR (protoPayload.serviceData.policyDelta.bindingDeltas.action="REMOVE"
-    AND protoPayload.serviceData.policyDelta.bindingDeltas.role="roles/owner")
+    OR NOT (NOT protoPayload.serviceData.policyDelta.bindingDeltas.action="REMOVE"
+    AND NOT protoPayload.serviceData.policyDelta.bindingDeltas.role="roles/owner")
     OR (protoPayload.serviceData.policyDelta.bindingDeltas.action="ADD"
     AND protoPayload.serviceData.policyDelta.bindingDeltas.role="roles/owner")
   FILTER

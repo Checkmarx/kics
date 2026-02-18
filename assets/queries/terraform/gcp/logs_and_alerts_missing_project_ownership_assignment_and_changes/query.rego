@@ -146,9 +146,9 @@ ownership_valid(filter) { # (ProjectOwnership OR projectOwnerInvitee)
 	regex.match(concat("", ["(^|and|or)", ownership_pattern_2]), filter)
 	not regex.match(concat("", ["not", ownership_pattern_2]), filter)
 } else {
-	regex.match(concat("", ["(^|and)", ownership_pattern_1_de_morgan_law]), filter)
+	regex.match(concat("", ["(^|and|or)", ownership_pattern_1_de_morgan_law]), filter)
 } else {
-	regex.match(concat("", ["(^|and)", ownership_pattern_2_de_morgan_law]), filter)
+	regex.match(concat("", ["(^|and|or)", ownership_pattern_2_de_morgan_law]), filter)
 }
 
 remove_or_add_owner_valid(filter, binding_action_type) { # action="REMOVE" AND role="roles/owner"

@@ -3,7 +3,7 @@ resource "google_logging_metric" "audit_config_change" {
   description = "Detects changes to audit configurations via SetIamPolicy"
   filter = <<-FILTER
     (protoPayload.serviceName="cloudresourcemanager.googleapis.com")
-    AND (ProjectOwnership OR projectOwnerInvitee)
+    AND NOT (NOT ProjectOwnership AND NOT projectOwnerInvitee)
     OR NOT (NOT protoPayload.serviceData.policyDelta.bindingDeltas.action="REMOVE"
     OR NOT protoPayload.serviceData.policyDelta.bindingDeltas.role="roles/owner")
     OR (protoPayload.serviceData.policyDelta.bindingDeltas.action="ADD"

@@ -52,5 +52,35 @@
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive9.tf"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive10.tf"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive11.tf"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive12.tf"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive13.tf"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive14.tf"
   }
 ]
