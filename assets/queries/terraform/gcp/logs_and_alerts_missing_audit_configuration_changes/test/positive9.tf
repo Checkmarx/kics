@@ -14,7 +14,7 @@ resource "google_monitoring_alert_policy" "audit_config_alert" {
     condition_matched_log {
       filter = <<-FILTER
       protoPayload.methodName =  "SetIamPolicy"
-            AND  protoPayload.serviceData.policyDelta.auditConfigDeltas : *
+            OR  protoPayload.serviceData.policyDelta.auditConfigDeltas : *
         FILTER
     }
   }
