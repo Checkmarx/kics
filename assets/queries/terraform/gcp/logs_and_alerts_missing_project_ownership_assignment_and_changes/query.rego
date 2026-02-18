@@ -31,7 +31,7 @@ CxPolicy[result] {
 
 not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	log_resources[_].value != []
-	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
+	logs_filters_data := [log | log := tf_lib.get_google_logging_metric_and_monitoring_alert_policy_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
 
 	results := [res | 
 		filters_data := logs_filters_data[i]
@@ -52,13 +52,13 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	# there is at leat one of google_logging_metric and google_monitoring_alert_policies
 	log_resources[_].value != []
 	alert_resources[_].value != []
-	logs_filters_data := [log | log := get_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
+	logs_filters_data := [log | log := tf_lib.get_google_logging_metric_and_monitoring_alert_policy_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
 
 	valid_logs_names := [logs_filters_data[i2].name |
   		single_match(logs_filters_data[i2].filter)
 	]
 
-	alerts_filters_data := [alert | alert := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
+	alerts_filters_data := [alert | alert := tf_lib.get_google_logging_metric_and_monitoring_alert_policy_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
 
 	value := has_regex_match_or_reference(alerts_filters_data, valid_logs_names)
 
@@ -69,44 +69,11 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
     alert_resources[_].value != []
     not at_least_one_log(log_resources)
 
-	alerts_filters_data := [alert | alert := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
+	alerts_filters_data := [alert | alert := tf_lib.get_google_logging_metric_and_monitoring_alert_policy_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
 
 	value := has_regex_match_or_reference(alerts_filters_data, [])
 
 	results := get_results(alerts_filters_data, value)
-}
-
-get_data(resource, type, name, doc_index) = filter {
-	type == "google_logging_metric"
-	filter := {
-		"resource" : resource,
-		"filter" : resource.filter,
-		"path" : "filter",
-		"searchArray" : ["resource", type, name],
-		"name" : name,
-		"doc_index" : doc_index
-	}
-} else = filter {
-	# google_monitoring_alert_policy
-	filter := {
-		"resource" : resource,
-		"filter" : resource.conditions.condition_threshold.filter,			# prefered filter (allows referencing)
-		"path" : "conditions.condition_threshold.filter",
-		"searchArray" : ["resource", type, name],
-		"name" : name,
-		"doc_index" : doc_index,
-		"allows_ref" : true
-	}
-} else = filter {
-	filter := {
-		"resource" : resource,
-		"filter" : resource.conditions.condition_matched_log.filter,
-		"path" : "conditions.condition_matched_log.filter",
-		"searchArray" : ["resource", type, name],
-		"name" : name,
-		"doc_index" : doc_index,
-		"allows_ref" : false
-	}
 }
 
 single_match(filter) {
@@ -164,7 +131,6 @@ get_results(alerts_filters_data, value) = results {
 at_least_one_log(log_resources){
 	log_resources[_].value != []
 }
-
 
 service_name_valid(filter) { # checks if serviceName is defined to "cloudresourcemanager.googleapis.com"
 	regex.match(service_name_pattern, filter)
