@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_role[name]
 
-	policy := common_lib.json_unmarshal(resource.assume_role_policy)
+	policy := common_lib.get_policy(resource.assume_role_policy)
 
 	st := common_lib.get_statement(policy)
 	statement := st[_]
