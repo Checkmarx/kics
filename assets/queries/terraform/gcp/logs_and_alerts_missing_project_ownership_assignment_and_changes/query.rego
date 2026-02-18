@@ -49,7 +49,7 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 	]
 	count(results) == count(logs_filters_data)
 } else = results {
-	# there is at leat one of google_logging_metric and google_monitoring_alert_policies
+	# there is at least one of google_logging_metric and google_monitoring_alert_policies
 	log_resources[_].value != []
 	alert_resources[_].value != []
 	logs_filters_data := [log | log := tf_lib.get_google_logging_metric_and_monitoring_alert_policy_data(log_resources[_].value[log_name], "google_logging_metric", log_name, log_resources[_].document_index)]
