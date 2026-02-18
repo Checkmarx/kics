@@ -40,7 +40,7 @@ get_results(resource, name) = res {
         "sk": sprintf("google_container_cluster[%s]", [name]),
         "it": "MissingAttribute",
         "kev": "'kubernetes_dashboard' should be defined and disabled inside the 'addons_config_version' block for GKE versions below 1.10",
-        "kav": "'addons_config' block is not defined with the 'kubernetes_dashboard' enabled",
+        "kav": "'addons_config' block is not defined with the 'kubernetes_dashboard' disabled",
         "sl": common_lib.build_search_line(["resource", "google_container_cluster", name], [])
     }
 } else = res {
