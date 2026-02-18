@@ -7,7 +7,9 @@ types := {"google_logging_metric", "google_monitoring_alert_policy"}
 
 service_name_pattern := "protopayload\\.servicename=\"cloudresourcemanager\\.googleapis\\.com\""
 ownership_pattern_1 := "\\(projectownershiporprojectownerinvitee\\)"
+ownership_pattern_1_de_morgan_law := "not\\(notprojectownershipandnotprojectownerinvitee\\)"
 ownership_pattern_2 := "\\(projectownerinviteeorprojectownership\\)"
+ownership_pattern_2_de_morgan_law := "not\\(notprojectownerinviteeandnotprojectownership\\)"
 binding_action_remove := "protopayload\\.servicedata\\.policydelta\\.bindingdeltas\\.action=\"remove\""
 binding_action_add := "protopayload\\.servicedata\\.policydelta\\.bindingdeltas\\.action=\"add\""
 binding_role_owner := "protopayload\\.servicedata\\.policydelta\\.bindingdeltas\\.role=\"roles/owner\""
@@ -84,8 +86,8 @@ single_match(filter) {
 is_valid_filter(filter) {
 	service_name_valid(filter) # checks if serviceName is defined to "cloudresourcemanager.googleapis.com"
 	ownership_valid(filter) # checks if (ProjectOwnership OR projectOwnerInvitee) is present
-	remove_owner_valid(filter) # checks if (action="REMOVE" AND role="roles/owner") is present
-	add_owner_valid(filter) # checks if (action="ADD" AND role="roles/owner") is present
+	remove_or_add_owner_valid(filter, binding_action_remove) # checks if (action="REMOVE" AND role="roles/owner") is present
+	remove_or_add_owner_valid(filter, binding_action_add)
 }
 
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
@@ -138,29 +140,32 @@ service_name_valid(filter) { # checks if serviceName is defined to "cloudresourc
 }
 
 ownership_valid(filter) { # (ProjectOwnership OR projectOwnerInvitee)
-	regex.match(ownership_pattern_1, filter)
+	regex.match(concat("", ["(^|and|or)", ownership_pattern_1]), filter) # must have AND before the parenthesis, except when its on the beggining of the filter
 	not regex.match(concat("", ["not", ownership_pattern_1]), filter)
 } else { # (projectOwnerInvitee OR ProjectOwnership)
-	regex.match(ownership_pattern_2, filter)
+	regex.match(concat("", ["(^|and|or)", ownership_pattern_2]), filter)
+	#regex.match(ownership_pattern_2, filter)
 	not regex.match(concat("", ["not", ownership_pattern_2]), filter)
+} else {
+	#regex.match(ownership_pattern_1_de_morgan_law, filter)
+	regex.match(concat("", ["(^|and)", ownership_pattern_1_de_morgan_law]), filter)
+} else {
+	regex.match(concat("", ["(^|and)", ownership_pattern_2_de_morgan_law]), filter)
+	#regex.match(ownership_pattern_2_de_morgan_law, filter)
 }
 
-remove_owner_valid(filter) { # action="REMOVE" AND role="roles/owner"
-	pattern := concat("", ["\\(", binding_action_remove, "and", binding_role_owner, "\\)"])
-    regex.match(pattern, filter)
+remove_or_add_owner_valid(filter, binding_action_type) { # action="REMOVE" AND role="roles/owner"
+	pattern := concat("", ["\\(", binding_action_type, "and", binding_role_owner, "\\)"])
+    regex.match(concat("", ["(^|or)", pattern]), filter)
+	#regex.match(pattern, filter)
     not regex.match(concat("", ["not", pattern]), filter)
 } else { # role="roles/owner" AND action="REMOVE"
-	pattern := concat("", ["\\(", binding_role_owner, "and", binding_action_remove, "\\)"])
-    regex.match(pattern, filter)
+	pattern := concat("", ["\\(", binding_role_owner, "and", binding_action_type, "\\)"])
+    regex.match(concat("", ["(^|or)", pattern]), filter)
+	#regex.match(pattern, filter)
     not regex.match(concat("", ["not", pattern]), filter)
-}
-
-add_owner_valid(filter) { # action="ADD" AND role="roles/owner"
-	pattern := concat("", ["\\(", binding_action_add, "and", binding_role_owner, "\\)"])
-    regex.match(pattern, filter)
-    not regex.match(concat("", ["not", pattern]), filter)
-} else { # role="roles/owner" AND action="ADD"
-	pattern := concat("", ["\\(", binding_role_owner, "and", binding_action_add, "\\)"])
-    regex.match(pattern, filter)
-    not regex.match(concat("", ["not", pattern]), filter)
+} else {
+	regex.match(concat("", ["(^|or)not\\(not", binding_action_type, "ornot", binding_role_owner, "\\)"]), filter)
+} else {
+	regex.match(concat("", ["(^|or)not\\(not", binding_role_owner, "ornot", binding_action_type, "\\)"]), filter)
 }
