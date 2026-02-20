@@ -1,0 +1,7 @@
+[
+  {
+    "line": 11,
+    "queryName": "delete_after must be 90 days greater than cold_storage_after in lifecycle",
+    "severity": "HIGH"
+  }
+]
