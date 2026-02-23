@@ -253,7 +253,7 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		expectedJSON, _ := json.MarshalIndent(expectToCompare, "", " ")
 		actualJSON, _ := json.MarshalIndent(actualToCompare, "", " ")
 
-		message := fmt.Sprintf("Expected: \n%s\n\nActual:\n%s", expectedJSON, actualJSON)
+		message := fmt.Sprintf("\nExpected: \n%s\n\nActual:\n%s", expectedJSON, actualJSON)
 		require.Fail(t, message)
 
 		// compare severity counters
