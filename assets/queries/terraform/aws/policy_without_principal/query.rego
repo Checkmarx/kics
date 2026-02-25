@@ -8,7 +8,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	not is_iam_identity_based_policy(path[0])
 
-	policy := common_lib.json_unmarshal(value.policy)
+	policy := common_lib.get_policy(value.policy)
 	statement := common_lib.get_statement(policy)[_]
 
 	common_lib.is_allow_effect(statement)

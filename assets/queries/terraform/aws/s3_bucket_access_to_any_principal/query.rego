@@ -43,7 +43,7 @@ CxPolicy[result] {
 }
 
 access_to_any_principal(policyValue) {
-	policy := common_lib.json_unmarshal(policyValue)
+	policy := common_lib.get_policy(policyValue)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 

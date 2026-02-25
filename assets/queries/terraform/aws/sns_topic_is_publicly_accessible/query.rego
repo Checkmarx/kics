@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sns_topic[name]
 
-	policy := common_lib.json_unmarshal(resource.policy)
+	policy := common_lib.get_policy(resource.policy)
 	st := common_lib.get_statement(policy)
 	statement := st[st_id]
 
@@ -48,7 +48,7 @@ CxPolicy[result] {
 
 get_module_res(module, keyToCheck, name) = res {
 	common_lib.valid_key(module, keyToCheck)
-	policy := common_lib.json_unmarshal(module[keyToCheck])
+	policy := common_lib.get_policy(module[keyToCheck])
 	st := common_lib.get_statement(policy)
 
 	res := [{ "sk": "topic_policy",

@@ -642,7 +642,7 @@ get_user_from_policy_attachment(attachment) = user {
 }
 
 unrecommended_permission_policy(resourcePolicy, permission) {
-	policy := json_unmarshal(resourcePolicy.policy)
+	policy := get_policy(resourcePolicy.policy)
 
 	st := get_statement(policy)
 	statement := st[_]
