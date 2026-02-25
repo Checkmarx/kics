@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Run Trivy vulnerability scanner in repo mode
-        uses: aquasecurity/trivy-action@dc5a429b52fcf669ce959baa2c2dd26090d2a6c4 #v 0.32.0
+        uses: aquasecurity/trivy-action@e368e328979b113139d6f9068e03accaed98a518 #v0.34.10
         with:
           scan-type: 'fs'
           ignore-unfixed: true
@@ -59,7 +59,7 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@dc5a429b52fcf669ce959baa2c2dd26090d2a6c4 #v 0.32.0
+        uses: aquasecurity/trivy-action@e368e328979b113139d6f9068e03accaed98a518 #v0.34.10
         with:
           image-ref: kics:sec-trivy-tests-${{ github.sha }}
           ignore-unfixed: true
