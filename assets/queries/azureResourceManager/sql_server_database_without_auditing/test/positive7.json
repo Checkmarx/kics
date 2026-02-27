@@ -7,30 +7,34 @@
       "apiVersion": "2021-02-01-preview",
       "name": "sqlServer1",
       "location": "[resourceGroup().location]",
-      "properties": {}
-    },
-    {
-      "type": "Microsoft.Sql/servers/auditingSettings",
-      "apiVersion": "2021-02-01-preview",
-      "name": "sqlServer1/default_1",
-      "properties": {
-        "state": "Disabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/databases",
-      "apiVersion": "2021-02-01-preview",
-      "name": "sqlServer1/sqlDatabase1",
-      "location": "[resourceGroup().location]",
-      "properties": {}
-    },
-    {
-      "type": "Microsoft.Sql/servers/databases/auditingSettings",
-      "apiVersion": "2021-02-01-preview",
-      "name": "sqlServer1/sqlDatabase1/default_2",
-      "properties": {
-        "state": "Disabled"
-      }
+      "properties": {},
+      "resources": [
+        {
+          "type": "auditingSettings",
+          "apiVersion": "2021-02-01-preview",
+          "name": "default_1",
+          "properties": {
+            "state": "Disabled"
+          }
+        },
+        {
+          "type": "databases",
+          "apiVersion": "2021-02-01-preview",
+          "name": "sqlDatabase1",
+          "location": "[resourceGroup().location]",
+          "properties": {},
+          "resources": [
+            {
+              "type": "auditingSettings",
+              "apiVersion": "2021-02-01-preview",
+              "name": "default_2",
+              "properties": {
+                "state": "Disabled"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
