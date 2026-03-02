@@ -536,7 +536,7 @@ func (a *analyzerInfo) checkContent(
 	// get file content with UTF-16/UTF-8 detection
 	content, err := utils.ReadFileToUTF8(a.filePath)
 	if err != nil {
-		log.Error().Msgf("failed to analyze file: %s", err)
+		log.Warn().Msgf("failed to analyze file: %s", err)
 		return
 	}
 
@@ -879,7 +879,7 @@ func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
 		a.Exc = append(a.Exc, fullPath)
 
 		if exceededFileSize {
-			log.Error().Msgf("file %s exceeds maximum file size of %d Mb", fullPath, a.MaxFileSize)
+			log.Warn().Msgf("file %s exceeds maximum file size of %d Mb", fullPath, a.MaxFileSize)
 		}
 	}
 	return ignoreFiles
