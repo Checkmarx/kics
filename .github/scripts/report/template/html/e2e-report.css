@@ -140,3 +140,49 @@ summary {
   background-color: #503e9e10;
   gap: 5px;
 }
+
+.code-box.side-by-side {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: transparent;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.code-box.first {
+  width: 50%;
+  float: none;
+  height: auto;
+  align-self: auto;
+}
+
+.code-box.second {
+  width: 50%;
+  float: none;
+  height: auto;
+  align-self: auto;
+}
+
+.code-box.test-info {
+  background-color: white;
+  margin-bottom: 5px;
+}
+
+.code.pre {
+  white-space: pre-wrap;
+}
+
+.container_expected_actual {
+    width: auto;
+    background-color: #ffffff;
+    margin: auto;
+    display: flex;
+    float: none;
+}
+
+summary.sub-summary {
+  font-size: 17px;
+  font-weight: bold;
+}

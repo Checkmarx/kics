@@ -46,11 +46,61 @@
         {{ if eq $val.TestLog.Action "fail" }}
           <details>
             <summary>View Details</summary>
-            <div class="code-box">
-              {{ range $failLine := $val.FailLog }}
-                <span class="code">{{ $failLine }}</span>
-              {{ end }}
-            </div>
+            {{ if and $val.ExpectedActual.ExtraElementsExpected $val.ExpectedActual.ExtraElementsActual }}
+              <div class="code-box test-info">
+                {{ range $line := $val.ExpectedActual.TestInfo }}
+                  <span>{{ $line }}</span>
+                {{ end }}
+              </div>
+              <details>
+                <summary class="sub-summary">Show Actual vs Expected differences</summary>
+                <div class="code-box side-by-side">
+                  <div class="code-box first">
+                    <summary>Expected</summary>
+                    {{ range $line := $val.ExpectedActual.ExtraElementsExpected }}
+                      <span class="code">{{ $line }}</span>
+                    {{ end }}
+                  </div>
+                  <div class="code-box second">
+                    <summary>Actual</summary>
+                    {{ range $line := $val.ExpectedActual.ExtraElementsActual }}
+                      <span class="code">{{ $line }}</span>
+                    {{ end }}
+                  </div>
+                </div>
+              </details>
+              <details>
+                <summary class="sub-summary">View full Actual and Expected</summary>
+                <div class="code-box side-by-side">
+                  <div class="code-box first">
+                    <summary>Expected</summary>
+                    {{ range $line := $val.ExpectedActual.FullExpected }}
+                      <span class="code">{{ $line }}</span>
+                    {{ end }}
+                  </div>
+                  <div class="code-box first">
+                    <summary>Actual</summary>
+                    {{ range $line := $val.ExpectedActual.FullActual }}
+                      <span class="code">{{ $line }}</span>
+                    {{ end }}
+                  </div>
+                </div>
+              </details>
+              <details>
+                <summary>See error message</summary>
+                <div class="code-box">
+                  {{ range $messageLine := $val.ExpectedActual.Messages }}
+                    <span class="code">{{ $messageLine }}</span>
+                  {{ end }}
+                </div>
+              </details>
+            {{ else }}
+              <div class="code-box">
+                {{ range $failLine := $val.FailLog }}
+                  <span class="code">{{ $failLine }}</span>
+                {{ end }}
+              </div>
+            {{ end }}
           </details>
         {{ end }}
       </div>
