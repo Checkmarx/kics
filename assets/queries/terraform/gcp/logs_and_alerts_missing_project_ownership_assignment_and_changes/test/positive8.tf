@@ -1,13 +1,14 @@
-resource "google_logging_metric" "audit_config_change" {
-  name        = "audit_config_change"
-  description = "Detects changes to audit configurations via SetIamPolicy"
+resource "google_logging_metric" "positive8" {
+  name        = "project_ownership_with_not"
+  description = "Invalid filter - has NOT before one of the conditions"
   filter = <<-FILTER
-    (protoPayload.serviceName="Wrong_service_name")
-    AND (ProjectOwnership OR projectOwnerInvitee)
+    (protoPayload.serviceName="cloudresourcemanager.googleapis.com")
+    AND NOT (ProjectOwnership OR projectOwnerInvitee)
     OR (protoPayload.serviceData.policyDelta.bindingDeltas.action="REMOVE"
     AND protoPayload.serviceData.policyDelta.bindingDeltas.role="roles/owner")
     OR (protoPayload.serviceData.policyDelta.bindingDeltas.action="ADD"
     AND protoPayload.serviceData.policyDelta.bindingDeltas.role="roles/owner")
   FILTER
-  # incorrect filter
+  # incorrect filter - has NOT before (ProjectOwnership OR projectOwnerInvitee)
 }
+

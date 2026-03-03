@@ -173,6 +173,39 @@ getSpecInfo(resource) = specInfo { # this one can be also used for the result
 	specInfo := {"spec": spec, "path": "spec"}
 }
 
+get_google_logging_metric_and_monitoring_alert_policy_data(resource, type, name, doc_index) = filter {
+	type == "google_logging_metric"
+	filter := {
+		"resource" : resource,
+		"filter" : resource.filter,
+		"path" : "filter",
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index
+	}
+} else = filter {
+	# google_monitoring_alert_policy
+	filter := {
+		"resource" : resource,
+		"filter" : resource.conditions.condition_threshold.filter,			# prefered filter (allows referencing)
+		"path" : "conditions.condition_threshold.filter",
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index,
+		"allows_ref" : true
+	}
+} else = filter {
+	filter := {
+		"resource" : resource,
+		"filter" : resource.conditions.condition_matched_log.filter,
+		"path" : "conditions.condition_matched_log.filter",
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index,
+		"allows_ref" : false
+	}
+}
+
 check_resource_tags(p) {
 	resource = {
 		"aws_acm_certificate": "",
