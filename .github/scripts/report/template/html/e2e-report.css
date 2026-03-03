@@ -72,6 +72,17 @@ summary {
   font-weight: bold;
 }
 
+summary.sub-summary {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 5px 0;
+}
+
+summary.expected-actual {
+  font-size: 14px;
+  font-weight: 580;
+}
+
 .testBlock {
   width: 95vw;
   display: flex;
@@ -123,6 +134,10 @@ summary {
 .counter-count {
   font-style: italic;
   color: gray;
+}
+
+.code.diff {
+  background-color: rgba(255, 0, 0, 0.2);
 }
 
 .results {
@@ -180,9 +195,4 @@ summary {
     margin: auto;
     display: flex;
     float: none;
-}
-
-summary.sub-summary {
-  font-size: 17px;
-  font-weight: bold;
 }

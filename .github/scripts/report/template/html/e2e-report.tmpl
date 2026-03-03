@@ -56,13 +56,13 @@
                 <summary class="sub-summary">Show Actual vs Expected differences</summary>
                 <div class="code-box side-by-side">
                   <div class="code-box first">
-                    <summary>Expected</summary>
+                    <summary class="summary expected-actual">Expected</summary>
                     {{ range $line := $val.ExpectedActual.ExtraElementsExpected }}
                       <span class="code">{{ $line }}</span>
                     {{ end }}
                   </div>
                   <div class="code-box second">
-                    <summary>Actual</summary>
+                    <summary class="summary expected-actual">Actual</summary>
                     {{ range $line := $val.ExpectedActual.ExtraElementsActual }}
                       <span class="code">{{ $line }}</span>
                     {{ end }}
@@ -70,26 +70,34 @@
                 </div>
               </details>
               <details>
-                <summary class="sub-summary">View full Actual and Expected</summary>
+                <summary class="sub-summary">Show full Actual and Expected</summary>
                 <div class="code-box side-by-side">
                   <div class="code-box first">
-                    <summary>Expected</summary>
-                    {{ range $line := $val.ExpectedActual.FullExpected }}
-                      <span class="code">{{ $line }}</span>
+                    <summary class="summary expected-actual">Expected</summary>
+                    {{ range $ec := $val.ExpectedActual.Messages.ExpectedContent }}
+                      {{ if $ec.Status }}
+                        <span class="code diff">{{ $ec.Line }}</span>
+                      {{ else }}
+                        <span class="code">{{ $ec.Line }}</span>
+                      {{ end }}
                     {{ end }}
                   </div>
                   <div class="code-box first">
-                    <summary>Actual</summary>
-                    {{ range $line := $val.ExpectedActual.FullActual }}
-                      <span class="code">{{ $line }}</span>
+                    <summary class="summary expected-actual">Actual</summary>
+                    {{ range $ac := $val.ExpectedActual.Messages.ActualContent }}
+                      {{ if $ac.Status }}
+                        <span class="code diff">{{ $ac.Line }}</span>
+                      {{ else }}
+                        <span class="code">{{ $ac.Line }}</span>
+                      {{ end }}
                     {{ end }}
                   </div>
                 </div>
               </details>
               <details>
-                <summary>See error message</summary>
+                <summary class="summary sub-summary">Show error message</summary>
                 <div class="code-box">
-                  {{ range $messageLine := $val.ExpectedActual.Messages }}
+                  {{ range $messageLine := $val.ExpectedActual.Messages.ExpectedContent }}
                     <span class="code">{{ $messageLine }}</span>
                   {{ end }}
                 </div>

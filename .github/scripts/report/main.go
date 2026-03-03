@@ -29,8 +29,18 @@ type ExpectedActual struct {
 	FullExpected          []string // entire expected result (list A)
 	FullActual 			  []string // entire actual result (list B)
 	TestInfo              []string
-	Messages 			  []string
+	Messages 			  MessageActualExpected
 	FailOutput            []string
+}
+
+type MessageActualExpected struct {
+	ExpectedContent []CodeLineStatus
+	ActualContent   []CodeLineStatus
+}
+
+type CodeLineStatus struct {
+	Line   string
+	Status bool // differed or not
 }
 
 type TestsData struct {
@@ -68,7 +78,7 @@ func extractExpectedActualLines(failLog []string) (ExpectedActual) {
 	var fullExpected []string
 	var fullActual []string
 	var testInfo []string
-	var messages []string
+	var messages MessageActualExpected
 
 	const (
 		stateNone         = iota
@@ -77,7 +87,8 @@ func extractExpectedActualLines(failLog []string) (ExpectedActual) {
 		stateListA
 		stateListB
 		stateTestInfo
-		stateMessages
+		stateMessagesExpected
+		stateMessagesActual
 	)
 	state := stateNone
 
@@ -101,8 +112,10 @@ func extractExpectedActualLines(failLog []string) (ExpectedActual) {
 
 		if strings.HasPrefix(trimmed, "Test:") {
 			state = stateTestInfo
-		} else if strings.HasPrefix(trimmed, "Messages:") {
-			state = stateMessages
+		} else if strings.HasSuffix(trimmed, "Expected Queries content: 'fixtures/{") {
+			state = stateMessagesExpected
+		} else if strings.HasSuffix(trimmed, "doesn't match the Actual Queries content: 'output/{") {
+			state = stateMessagesActual
 		} else if strings.HasPrefix(trimmed, "--- FAIL:") {
 			state = stateNone
 		}
@@ -123,8 +136,20 @@ func extractExpectedActualLines(failLog []string) (ExpectedActual) {
 			fullActual = append(fullActual, line)
 		case stateTestInfo:
 			testInfo = append(testInfo, line)
-		case stateMessages:
-			messages = append(messages, line)
+		case stateMessagesActual:
+			if !strings.HasSuffix(trimmed, "doesn't match the Actual Queries content: 'output/{") {
+				messages.ActualContent = append(messages.ActualContent, CodeLineStatus{
+					Line: line,
+					Status: false,
+				})
+			}
+		case stateMessagesExpected:
+			if !strings.HasSuffix(trimmed, "Expected Queries content: 'fixtures/{") {
+				messages.ExpectedContent = append(messages.ExpectedContent, CodeLineStatus{
+					Line: line, 
+					Status: false,
+				})
+			}
 		}
 	}
 
@@ -138,11 +163,8 @@ func extractExpectedActualLines(failLog []string) (ExpectedActual) {
 	}
 }
 
-func isExpectedVsActual(failLog []string) (bool) {
+func isExpectedVsActual(failLog []string) bool {
 	fmt.Printf("inside isExpectedVsAtual() with the following failLog:\n")
-	for i, entry := range failLog {
-		fmt.Printf("failLog[%d]: %v\n", i, entry)
-	}
 
 	var hasExtraA, hasExtraB bool
 	for _, failLogEntry := range failLog {
@@ -160,6 +182,34 @@ func isExpectedVsActual(failLog []string) (bool) {
 	}
 	fmt.Printf("isExpectedvsActual is returning false\n")
 	return false
+}
+
+func compareMessageContent(expectedActual *ExpectedActual) {
+	expectedLen := len(expectedActual.Messages.ExpectedContent)
+	actualLen := len(expectedActual.Messages.ActualContent)
+
+	maxLen := expectedLen
+    if actualLen > maxLen {
+        maxLen = actualLen
+    }
+
+	for i := range int(maxLen) {
+		// if one of the sides does not have a line in this position, the one that exists 
+		// is tagged as the different one
+		if i >= expectedLen || i >= actualLen {
+			if i < expectedLen {
+				expectedActual.Messages.ExpectedContent[i].Status = true
+			}
+			if i < actualLen {
+				expectedActual.Messages.ActualContent[i].Status = true
+			}
+			continue
+		}
+		if expectedActual.Messages.ExpectedContent[i].Line != expectedActual.Messages.ActualContent[i].Line {
+			expectedActual.Messages.ExpectedContent[i].Status = true
+			expectedActual.Messages.ActualContent[i].Status = true
+		}
+	}
 }
 
 func main() {
@@ -259,7 +309,18 @@ func main() {
 
 			if isExpectedVsActual(test.FailLog) {
 				expectedActual := extractExpectedActualLines(test.FailLog)
+				compareMessageContent(&expectedActual)
 				test.ExpectedActual = expectedActual
+			}
+		}
+		
+		for i, test := range testList {
+			fmt.Printf("testList[%d]:\n", i)
+			for j, entry := range test.ExpectedActual.ExtraElementsActual {
+				fmt.Printf("    ExpectedActual.ExtraElementsActual[%d]: %v\n", j, entry)
+			}
+			for k, entry_2 := range test.ExpectedActual.ExtraElementsExpected {
+				fmt.Printf("    ExpectedActual.ExtraElementsExpected[%d]: %v\n", k, entry_2)
 			}
 		}
 	}

@@ -2,7 +2,9 @@ package utils
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
+
 	//"fmt"
 	"os"
 	"path/filepath"
@@ -152,6 +154,20 @@ func CheckLine(t *testing.T, expec, want string, line int) {
 	}
 }
 
+func formatVulnFiles(files []model.VulnerableFile) string {
+	var sb strings.Builder
+	for _, f := range files {
+		b, err := json.MarshalIndent(f, "", " ")
+		if err != nil {
+			sb.WriteString(fmt.Sprintf("error formatting file: %v\n", err))
+			continue
+		}
+		sb.WriteString(string(b))
+		sb.WriteString("\n")
+	}
+	return sb.String()
+}
+
 //nolint:funlen
 func setFields(t *testing.T, expect, actual []string, expectFileName, actualFileName, location string) {
 	switch location {
@@ -252,17 +268,11 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		
 		require.ElementsMatch(t, expectToCompare, actualToCompare,
 			"[13]Expected Queries content: 'fixtures/%s' doesn't match the Actual Queries content: 'output/%s'.",
-			expectToCompare, actualToCompare)
-		/*
-		expectedJSON, _ := json.MarshalIndent(expectToCompare, "", " ")
-		actualJSON, _ := json.MarshalIndent(actualToCompare, "", " ")
-
-		message := fmt.Sprintf("\nExpected: \n%s\n\nActual:\n%s", expectedJSON, actualJSON)
-		require.Fail(t, message)*/
+			formatVulnFiles(expectToCompare), formatVulnFiles(actualToCompare))
 
 		// compare severity counters
 		compare := reflect.DeepEqual(expectI.SeverityCounters, actualI.SeverityCounters)
-		require.True(t, compare, "[14]Expected Severity Counters content: 'fixtures/%s' doesn't match the Actual Severity Counters content: 'output/%s'.", //nolint:lll
+		require.True(t, compare, "[14]Expected Severity Counters content: 'fixtures/%s' doesn't match the Actual Severity Counters content: 'output/%s", //nolint:lll
 			expectI.SeverityCounters, actualI.SeverityCounters)
 	}
 }
