@@ -94,6 +94,10 @@ resource "google_sql_database_instance" "positive_5" {   # Single object support
       value = "off"
       }  # Flag is not set to "on"
   }
+
+  clone {
+    source_instance_name = google_sql_database_instance.source_instance.id
+  }
 }
 
 ```
@@ -148,6 +152,18 @@ resource "google_sql_database_instance" "negative_3" {  # Single object support 
       name = "log_connections"
       value = "on"
       }   # Has flag set to "on"
+  }
+}
+
+resource "google_sql_database_instance" "negative_4" {
+  name             = "main-instance"
+  database_version = "MYSQL_8_0"      # Is not a POSTGRES instance
+  region           = "us-central1"
+
+  # Missing "settings" but "clone" is set
+
+  clone {
+    source_instance_name = google_sql_database_instance.source.name
   }
 }
 
