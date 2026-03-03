@@ -107,7 +107,7 @@
 				
 				<option value="file25">github.com/Checkmarx/kics/v2/internal/tracker/ci.go (93.8%)</option>
 				
-				<option value="file26">github.com/Checkmarx/kics/v2/pkg/analyzer/analyzer.go (92.0%)</option>
+				<option value="file26">github.com/Checkmarx/kics/v2/pkg/analyzer/analyzer.go (91.3%)</option>
 				
 				<option value="file27">github.com/Checkmarx/kics/v2/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -2623,13 +2623,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov10" title="57">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov10" title="57">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2653,8 +2653,8 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 }</span>
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
-        <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov9" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="23">{
+        <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3658,12 +3658,12 @@ func computeValues(
 
         platformFilesInfo := make(map[string][]fileTypeInfo)
 
-        for </span><span class="cov8" title="725">{
+        for </span><span class="cov8" title="726">{
                 select </span>{
                 case i := &lt;-locCount:<span class="cov7" title="209">
                         val += i</span>
-                case i := &lt;-unwanted:<span class="cov5" title="62">
-                        if !utils.Contains(i, unwantedSlice) </span><span class="cov5" title="62">{
+                case i := &lt;-unwanted:<span class="cov5" title="63">
+                        if !utils.Contains(i, unwantedSlice) </span><span class="cov5" title="63">{
                                 unwantedSlice = append(unwantedSlice, i)
                         }</span>
                 case i := &lt;-types:<span class="cov7" title="209">
@@ -3677,8 +3677,8 @@ func computeValues(
                         // The `done` signal can race with pending messages in `unwanted`
                         // returning immediately would drop exclusions and cause files
                         // that should be ignored to be scanned
-                        for i := range unwanted </span><span class="cov1" title="1">{
-                                if !utils.Contains(i, unwantedSlice) </span><span class="cov1" title="1">{
+                        for i := range unwanted </span><span class="cov0" title="0">{
+                                if !utils.Contains(i, unwantedSlice) </span><span class="cov0" title="0">{
                                         unwantedSlice = append(unwantedSlice, i)
                                 }</span>
                         }
@@ -5875,7 +5875,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -20947,12 +20947,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="49">{
-        for variable := range s.varList </span><span class="cov7" title="214">{
+        for variable := range s.varList </span><span class="cov7" title="211">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="42">for parameter := range s.paramList </span><span class="cov9" title="587">{
+        <span class="cov5" title="42">for parameter := range s.paramList </span><span class="cov9" title="626">{
                 if parameter == str </span><span class="cov4" title="23">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
