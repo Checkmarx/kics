@@ -154,7 +154,8 @@ func CheckLine(t *testing.T, expec, want string, line int) {
 	}
 }
 
-func formatVulnFiles(files []model.VulnerableFile) string {
+func formatVulnFiles(files []map[string]interface{}) string {
+//func formatVulnFiles(files []model.VulnerableFile) string {
 	var sb strings.Builder
 	for _, f := range files {
 		b, err := json.MarshalIndent(f, "", " ")
@@ -166,6 +167,20 @@ func formatVulnFiles(files []model.VulnerableFile) string {
 		sb.WriteString("\n")
 	}
 	return sb.String()
+}
+
+func toComparableFiles(queries []model.QueryResult) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for _, q := range queries {
+		for _, f := range q.Files {
+			b, _ := json.Marshal(f)
+			m := map[string]interface{}{}
+			json.Unmarshal(b, &m)
+			m["queryName"] = q.QueryName
+			result = append(result, m)
+		}
+	}
+	return result
 }
 
 //nolint:funlen
@@ -257,17 +272,11 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			expectFileName, actualFileName)
 
 		// compare the results
-		expectToCompare := []model.VulnerableFile{}
-		for i := range expectI.Queries {
-			expectToCompare = append(expectToCompare, expectI.Queries[i].Files...)
-		}
-		actualToCompare := []model.VulnerableFile{}
-		for i := range actualI.Queries {
-			actualToCompare = append(actualToCompare, actualI.Queries[i].Files...)
-		}
+		expectToCompare := toComparableFiles(expectI.Queries)
+		actualToCompare := toComparableFiles(actualI.Queries)
 		
 		require.ElementsMatch(t, expectToCompare, actualToCompare,
-			"[13]Expected Queries content: 'fixtures/%s' doesn't match the Actual Queries content: 'output/%s'.",
+			"[13]Expected Queries content: 'fixtures/%s' doesn't match the Actual Queries content: 'output/%s",
 			formatVulnFiles(expectToCompare), formatVulnFiles(actualToCompare))
 
 		// compare severity counters

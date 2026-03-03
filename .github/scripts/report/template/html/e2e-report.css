@@ -138,6 +138,7 @@ summary.expected-actual {
 
 .code.diff {
   background-color: rgba(255, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
 .results {
