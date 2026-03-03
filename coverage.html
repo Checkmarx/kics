@@ -107,7 +107,7 @@
 				
 				<option value="file25">github.com/Checkmarx/kics/v2/internal/tracker/ci.go (93.8%)</option>
 				
-				<option value="file26">github.com/Checkmarx/kics/v2/pkg/analyzer/analyzer.go (91.3%)</option>
+				<option value="file26">github.com/Checkmarx/kics/v2/pkg/analyzer/analyzer.go (92.0%)</option>
 				
 				<option value="file27">github.com/Checkmarx/kics/v2/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -2623,13 +2623,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov10" title="55">{
+        for _, sample := range prof.Sample </span><span class="cov10" title="57">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov10" title="55">total += v
+                <span class="cov10" title="57">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2653,8 +2653,8 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 }</span>
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
-        <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+        <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov9" title="55">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3658,12 +3658,12 @@ func computeValues(
 
         platformFilesInfo := make(map[string][]fileTypeInfo)
 
-        for </span><span class="cov8" title="726">{
+        for </span><span class="cov8" title="725">{
                 select </span>{
                 case i := &lt;-locCount:<span class="cov7" title="209">
                         val += i</span>
-                case i := &lt;-unwanted:<span class="cov5" title="63">
-                        if !utils.Contains(i, unwantedSlice) </span><span class="cov5" title="63">{
+                case i := &lt;-unwanted:<span class="cov5" title="62">
+                        if !utils.Contains(i, unwantedSlice) </span><span class="cov5" title="62">{
                                 unwantedSlice = append(unwantedSlice, i)
                         }</span>
                 case i := &lt;-types:<span class="cov7" title="209">
@@ -3677,8 +3677,8 @@ func computeValues(
                         // The `done` signal can race with pending messages in `unwanted`
                         // returning immediately would drop exclusions and cause files
                         // that should be ignored to be scanned
-                        for i := range unwanted </span><span class="cov0" title="0">{
-                                if !utils.Contains(i, unwantedSlice) </span><span class="cov0" title="0">{
+                        for i := range unwanted </span><span class="cov1" title="1">{
+                                if !utils.Contains(i, unwantedSlice) </span><span class="cov1" title="1">{
                                         unwantedSlice = append(unwantedSlice, i)
                                 }</span>
                         }
@@ -5875,7 +5875,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -7356,12 +7356,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="35829">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="35873">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="35829">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="35466">{
+                <span class="cov9" title="35873">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="35510">{
                         return skipFolder
                 }</span>
 
@@ -7433,7 +7433,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="362">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="35848">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="35892">{
         s.mu.RLock()
         defer s.mu.RUnlock()
 
@@ -7459,12 +7459,12 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="3">return false, nil</span>
         }
 
-        <span class="cov9" title="28398">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="28442">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="28398">ext, _ := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="28036">{
+        <span class="cov9" title="28442">ext, _ := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="28080">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -20947,12 +20947,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="49">{
-        for variable := range s.varList </span><span class="cov7" title="212">{
+        for variable := range s.varList </span><span class="cov7" title="214">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="42">for parameter := range s.paramList </span><span class="cov9" title="580">{
+        <span class="cov5" title="42">for parameter := range s.paramList </span><span class="cov9" title="587">{
                 if parameter == str </span><span class="cov4" title="23">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
