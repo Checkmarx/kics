@@ -53,7 +53,10 @@ contains_port(properties, targetPort) {
 # doc is input.document[i]
 # parent is the parent resource
 get_children(doc, parent, path) = childArr {
-	resourceArr := [x | x := {"value": parent.resources[_], "path": array.concat(path, ["resources"])}]
+	resourceArr := [x | 
+		child_resource := parent.resources[idx_res]
+		x := {"value": child_resource, "path": array.concat(path, ["resources", idx_res])}
+	]
 	outerArr := get_outer_children(doc, parent.name)
 	childArr := array.concat(resourceArr, outerArr)
 }
