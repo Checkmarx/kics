@@ -285,7 +285,7 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		// compare the results
 		expectToCompare := toComparableFiles(expectI.Queries)
 		actualToCompare := toComparableFiles(actualI.Queries)
-		
+
 		require.ElementsMatch(t, expectToCompare, actualToCompare,
 			"Expected Queries content: 'fixtures/%s' doesn't match the Actual Queries content: 'output/%s",
 			formatVulnFiles(expectToCompare), formatVulnFiles(actualToCompare))
