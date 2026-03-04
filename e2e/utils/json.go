@@ -134,10 +134,10 @@ func FileCheck(t *testing.T, actualPayloadName, expectPayloadName, location stri
 	require.NoError(t, err, "[output/%s] Reading a fixture should not yield an error", actualPayloadName)
 
 	require.Equal(t, len(expectPayload), len(actualPayload),
-    "[fixtures/%s] Expected file number of lines: %d\n[output/%s] Actual file number of lines: %d\n"+
-        "expectedPayload:\n%v\nactualPayload:\n%v\n",
-    expectPayloadName, len(expectPayload), actualPayloadName, len(actualPayload),
-    formatPayload(expectPayload), formatPayload(actualPayload))
+	"[fixtures/%s] Expected file number of lines: %d\n[output/%s] Actual file number of lines: %d\n"+
+		"expectedPayload:\n%v\nactualPayload:\n%v\n",
+	expectPayloadName, len(expectPayload), actualPayloadName, len(actualPayload),
+	formatPayload(expectPayload), formatPayload(actualPayload))
 	setFields(t, expectPayload, actualPayload, expectPayloadName, actualPayloadName, location)
 }
 
@@ -180,9 +180,9 @@ func formatVulnFiles(files []map[string]interface{}) string {
 
 func toComparableFiles(queries []model.QueryResult) []map[string]interface{} {
 	result := []map[string]interface{}{}
-	for _, q := range queries {
-		for _, f := range q.Files {
-			b, _ := json.Marshal(f)
+	for i := range queries {
+		for j := range q.Files {
+			b, _ := json.Marshal(queries[i].Files)
 			m := map[string]interface{}{}
 			if err := json.Unmarshal(b, &m); err != nil {
 				continue
