@@ -154,12 +154,12 @@ func CheckLine(t *testing.T, expec, want string, line int) {
 }
 
 func formatPayload(payload []string) string {
-    var sb strings.Builder
-    for _, line := range payload {
-        sb.WriteString(line)
-        sb.WriteString("\n")
-    }
-    return sb.String()
+	var sb strings.Builder
+	for _, line := range payload {
+		sb.WriteString(line)
+		sb.WriteString("\n")
+	}
+	return sb.String()
 }
 
 func formatVulnFiles(files []map[string]interface{}) string {
@@ -182,7 +182,9 @@ func toComparableFiles(queries []model.QueryResult) []map[string]interface{} {
 		for _, f := range q.Files {
 			b, _ := json.Marshal(f)
 			m := map[string]interface{}{}
-			json.Unmarshal(b, &m)
+			if err := json.Unmarshal(b, &m); err != nil {
+				continue
+			}
 			m["queryName"] = q.QueryName
 			result = append(result, m)
 		}
