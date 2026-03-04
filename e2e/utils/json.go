@@ -182,7 +182,7 @@ func toComparableFiles(queries []model.QueryResult) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for i := range queries {
 		for j := range queries[i].Files {
-			b, _ := json.Marshal(queries[i].Files)
+			b, _ := json.Marshal(queries[i].Files[j])
 			m := map[string]interface{}{}
 			if err := json.Unmarshal(b, &m); err != nil {
 				continue
