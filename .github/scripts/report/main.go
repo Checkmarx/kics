@@ -80,17 +80,68 @@ func cleanOutput(s string) string {
 	return s
 }
 
-func extractExpectedActualLines(failLog []string) (ExpectedActual) {
+func extractPayloadDiffLines(failLog []string) ExpectedActual {
+	var testInfo []string
+	var messages ActualExpectedWithStatus
+	var failOutput []string
+
+	const (
+		stateNone = iota
+		stateMessagesExpected
+		stateMessagesActual
+		stateTestInfo
+		stateFailLog
+	)
+	state := stateTestInfo
+
+	for _, line := range failLog {
+		trimmed := strings.TrimSpace(line)
+		if strings.HasPrefix(trimmed, "actualPayload") {
+			state = stateMessagesActual
+		} else if strings.HasPrefix(trimmed, "expectedPayload") {
+			state = stateMessagesExpected
+		} else if strings.HasPrefix(trimmed, "--- FAIL:") {
+			state = stateFailLog
+		} else if strings.HasPrefix(trimmed, `"queries": [`) {
+			state = stateNone
+		}
+
+		switch state {
+		case stateMessagesActual:
+			if !strings.HasPrefix(trimmed, "actualPayload") {
+				messages.ActualContent = append(messages.ActualContent, CodeLineStatus{
+					Line: line,
+					Status: false,
+				})
+			}
+		case stateMessagesExpected:
+			if !strings.HasPrefix(trimmed, "expectedPayload") {
+				messages.ExpectedContent = append(messages.ExpectedContent, CodeLineStatus{
+					Line: line,
+					Status: false,
+				})
+			}
+		case stateFailLog:
+			failOutput = append(failOutput, line)
+			state = stateNone
+		case stateTestInfo:
+			testInfo = append(testInfo, line)
+		}
+	}
+	return ExpectedActual{
+		TestInfo: testInfo,
+		Messages: messages,
+		FailOutput: failOutput,
+	}
+}
+
+func extractExpectedActualLines(failLog []string) ExpectedActual {
 	var extraElements ActualExpectedWithStatus
 	//var extraExpected []string // extra elements in list A
 	//var extraActual []string
 	var testInfo []string
 	var messages ActualExpectedWithStatus
 	var failOutput []string
-
-	for i, line := range failLog {
-		fmt.Printf("failLog[%d]: %v\n", i, line)
-	}
 
 	const (
 		stateNone         = iota
@@ -177,9 +228,27 @@ func extractExpectedActualLines(failLog []string) (ExpectedActual) {
 	}
 }
 
-func isExpectedVsActual(failLog []string) bool {
-	fmt.Printf("inside isExpectedVsAtual() with the following failLog:\n")
+func isDifferentNumberOfLines(failLog []string) bool {
+	var hasExpectedFileNumberLines, hasActualFileNumberLines bool
+	for _, failLogEntry := range failLog {
+		trimmedEntry := strings.TrimSpace(failLogEntry)
+		if trimmedEntry == "" {
+			continue
+		}
+		if strings.Contains(trimmedEntry, "Expected file number of lines:") {
+			hasExpectedFileNumberLines = true
+		}
+		if strings.Contains(failLogEntry, "Actual file number of lines:") {
+			hasActualFileNumberLines = true
+		}
+		if hasExpectedFileNumberLines && hasActualFileNumberLines {
+			return true
+		}
+	}
+	return false
+}
 
+func isExpectedVsActual(failLog []string) bool {
 	var hasExtraA, hasExtraB bool
 	for _, failLogEntry := range failLog {
 		trimmedEntry := strings.TrimSpace(failLogEntry)
@@ -190,11 +259,9 @@ func isExpectedVsActual(failLog []string) bool {
 			hasExtraB = true
 		}
 		if hasExtraA && hasExtraB {
-			fmt.Printf("isExpectedvsActual is returning true\n")
 			return true
 		}
 	}
-	fmt.Printf("isExpectedvsActual is returning false\n")
 	return false
 }
 
@@ -287,18 +354,14 @@ func main() {
 			fmt.Printf("Verify if the JSON File has UTF8 encoding")
 		}
 		if log.Action == "pass" || log.Action == "fail" {
-			fmt.Printf("[4] log content: %+v\n", log)
-			//fmt.Printf("[2] log.Action == \"pass\" || log.Action == \"fail\"\n")
 			if log.Test == "" {
 				finalStatus = log
 				finalStatus.Elapsed = math.Ceil(finalStatus.Elapsed*100) / 100
 			} else if log.Test != "Test_E2E_CLI" {
-				fmt.Printf("[5] log.Test != \"Test_E2E_CLI\" -> %v \n", log.Test)
 				if log.Action == "fail" {
 					hasFailures = true
 				}
 				test, exists := FindTest(testList, log.Test)
-				fmt.Printf("[7] FindTest returned: | %v | %v |\n", test, exists)
 				if exists {
 					if log.Action == "fail" {
 						test.TestLog = log
@@ -312,7 +375,6 @@ func main() {
 
 	// Parse Output from Failed Tests
 	if hasFailures {
-		fmt.Printf("Opening file with the path: %v\n", filepath.Clean(filepath.Join(filepath.ToSlash(testPath), testName)))
 		jsonTestsOutputClean, err := os.Open(filepath.Clean(filepath.Join(filepath.ToSlash(testPath), testName)))
 		if err != nil {
 			fmt.Printf("Error when trying to open: %v\n", filepath.Join(filepath.ToSlash(testPath), testName))
@@ -348,6 +410,10 @@ func main() {
 				expectedActual := extractExpectedActualLines(test.FailLog)
 				compareMessageContent(&expectedActual)
 				test.ExpectedActual = expectedActual
+			} else if isDifferentNumberOfLines(test.FailLog) {
+				expectedActual := extractPayloadDiffLines(test.FailLog)
+				compareMessageContent(&expectedActual)
+				test.ExpectedActual = expectedActual
 			}
 		}
 	}
@@ -370,9 +436,6 @@ func main() {
 			counter.CountFail += 1
 		}
 	}
-
-	//fmt.Printf("--10-- After appending the log.Output on the test.FailLog the remaining test structure is the following one:\n")
-	//fmt.Printf("_________________________________________\n%+v\n______________________________________________________________\n", testList)
 
 	counter.CountTotal = counter.CountFail + counter.CountPass
 
