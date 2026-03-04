@@ -134,8 +134,10 @@ func FileCheck(t *testing.T, actualPayloadName, expectPayloadName, location stri
 	require.NoError(t, err, "[output/%s] Reading a fixture should not yield an error", actualPayloadName)
 
 	require.Equal(t, len(expectPayload), len(actualPayload),
-		"[fixtures/%s] Expected file number of lines: %d\n[output/%s] Actual file number of lines: %d\nexpectedPayload:\n%v\nactualPayload:\n%v\n",
-		expectPayloadName, len(expectPayload), actualPayloadName, len(actualPayload), formatPayload(expectPayload), formatPayload(actualPayload))
+    "[fixtures/%s] Expected file number of lines: %d\n[output/%s] Actual file number of lines: %d\n"+
+        "expectedPayload:\n%v\nactualPayload:\n%v\n",
+    expectPayloadName, len(expectPayload), actualPayloadName, len(actualPayload),
+    formatPayload(expectPayload), formatPayload(actualPayload))
 	setFields(t, expectPayload, actualPayload, expectPayloadName, actualPayloadName, location)
 }
 
