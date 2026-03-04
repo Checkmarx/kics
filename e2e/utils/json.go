@@ -181,7 +181,7 @@ func formatVulnFiles(files []map[string]interface{}) string {
 func toComparableFiles(queries []model.QueryResult) []map[string]interface{} {
 	result := []map[string]interface{}{}
 	for i := range queries {
-		for j := range q.Files {
+		for j := range queries[i].Files {
 			b, _ := json.Marshal(queries[i].Files)
 			m := map[string]interface{}{}
 			if err := json.Unmarshal(b, &m); err != nil {
