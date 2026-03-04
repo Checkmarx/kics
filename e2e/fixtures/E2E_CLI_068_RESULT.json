@@ -81,7 +81,7 @@
 		},
 		{
 			"query_name": "Healthcheck Instruction Missing",
-			"query_id": "diferente",
+			"query_id": "b03a748a-542d-44f4-bb86-9199ab4fd2d5",
 			"query_url": "https://docs.docker.com/engine/reference/builder/#healthcheck",
 			"severity": "LOW",
 			"platform": "Dockerfile",
