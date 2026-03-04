@@ -397,7 +397,7 @@ func main() {
 			if !exists || test.TestLog.Action != "fail" {
 				continue
 			}
-			test.FailLog = append(test.FailLog, log.Output) // dá append do log.Output no test.FailLog que é uma linha do erro de cada vez
+			test.FailLog = append(test.FailLog, log.Output)
 		}
 
 		for i := range testList {
