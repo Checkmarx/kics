@@ -187,7 +187,7 @@ func toComparableFiles(queries []model.QueryResult) []map[string]interface{} {
 			if err := json.Unmarshal(b, &m); err != nil {
 				continue
 			}
-			m["queryName"] = q.QueryName
+			m["queryName"] = queries[i].QueryName
 			result = append(result, m)
 		}
 	}
