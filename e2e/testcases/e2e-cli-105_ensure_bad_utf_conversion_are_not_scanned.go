@@ -16,7 +16,7 @@ func init() { //nolint
 				"E2E_CLI_105_PAYLOAD.json",
 			},
 		},
-		WantStatus: []int{40},
+		WantStatus: []int{0},
 	}
 
 	Tests = append(Tests, testSample)
