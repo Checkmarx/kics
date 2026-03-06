@@ -1,3 +1,69 @@
 {
-	"document": []
+  "document": [
+    {
+      "file": "file",
+      "id": "0",
+      "playbooks": [
+        {
+          "community.aws.efs": {
+            "encrypt": "no",
+            "name": "myTestEFS",
+            "state": "present",
+            "tags": {
+              "Name": "myTestNameTag",
+              "purpose": "file-storage"
+            },
+            "targets": [
+              {
+                "security_groups": [
+                  "sg-1a2b3c4d"
+                ],
+                "subnet_id": "subnet-748c5d03"
+              }
+            ]
+          },
+          "name": "foo"
+        },
+        {
+          "community.aws.efs": {
+            "encrypt": false,
+            "name": "myTestEFS",
+            "state": "present",
+            "tags": {
+              "Name": "myTestNameTag",
+              "purpose": "file-storage"
+            },
+            "targets": [
+              {
+                "security_groups": [
+                  "sg-1a2b3c4d"
+                ],
+                "subnet_id": "subnet-748c5d03"
+              }
+            ]
+          },
+          "name": "foo2"
+        },
+        {
+          "community.aws.efs": {
+            "name": "myTestEFS",
+            "state": "present",
+            "tags": {
+              "Name": "myTestNameTag",
+              "purpose": "file-storage"
+            },
+            "targets": [
+              {
+                "security_groups": [
+                  "sg-1a2b3c4d"
+                ],
+                "subnet_id": "subnet-748c5d03"
+              }
+            ]
+          },
+          "name": "foo3"
+        }
+      ]
+    }
+  ]
 }

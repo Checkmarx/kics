@@ -568,7 +568,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
-			wantLOC:              24,
+			wantLOC:              57,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,

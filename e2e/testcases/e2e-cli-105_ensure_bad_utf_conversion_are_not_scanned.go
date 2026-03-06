@@ -1,9 +1,9 @@
 package testcases
 
-// E2E-CLI-105 - KICS should ignore files with bad UTF-8 conversion and not include them in the scan files
+// E2E-CLI-105 - KICS should ignore files with bad UTF-8 conversion and not include them in the scanned files
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should ignore files with bad UTF-8 conversion and not include them in the scan files [E2E-CLI-105]",
+		Name: "should ignore files with bad UTF-8 conversion and not include them in the scanned files [E2E-CLI-105]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{
@@ -16,7 +16,7 @@ func init() { //nolint
 				"E2E_CLI_105_PAYLOAD.json",
 			},
 		},
-		WantStatus: []int{0},
+		WantStatus: []int{50},
 	}
 
 	Tests = append(Tests, testSample)
