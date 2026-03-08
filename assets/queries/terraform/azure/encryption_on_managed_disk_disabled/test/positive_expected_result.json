@@ -2,21 +2,49 @@
   {
     "queryName": "Encryption On Managed Disk Disabled",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 44,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_managed_disk",
+    "resourceName": "acctestmd",
+    "searchKey": "azurerm_managed_disk[positive4].encryption_settings",
+    "searchValue": "",
+    "expectedValue": "'azurerm_managed_disk[positive4].encryption_settings' should be defined and not null",
+    "actualValue": "'azurerm_managed_disk[positive4].encryption_settings' is set to '[]"
   },
   {
     "queryName": "Encryption On Managed Disk Disabled",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 14,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_managed_disk",
+    "resourceName": "acctestmd",
+    "searchKey": "azurerm_managed_disk[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_managed_disk[positive2].encryption_settings' should be defined and not null",
+    "actualValue": "'azurerm_managed_disk[positive2].encryption_settings' is undefined or null"
   },
   {
     "queryName": "Encryption On Managed Disk Disabled",
     "severity": "MEDIUM",
-    "line": 33
+    "line": 10,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_managed_disk",
+    "resourceName": "acctestmd",
+    "searchKey": "azurerm_managed_disk[positive1].encryption_settings.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_managed_disk[positive1].encryption_settings.enabled' should be set to true",
+    "actualValue": "'azurerm_managed_disk[positive1].encryption_settings.enabled' is set to false"
   },
   {
     "queryName": "Encryption On Managed Disk Disabled",
     "severity": "MEDIUM",
-    "line": 44
+    "line": 33,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_managed_disk",
+    "resourceName": "acctestmd",
+    "searchKey": "azurerm_managed_disk[positive3].encryption_settings",
+    "searchValue": "",
+    "expectedValue": "'azurerm_managed_disk[positive3].encryption_settings' should be defined and not null",
+    "actualValue": "'azurerm_managed_disk[positive3].encryption_settings' is set to '{}"
   }
 ]

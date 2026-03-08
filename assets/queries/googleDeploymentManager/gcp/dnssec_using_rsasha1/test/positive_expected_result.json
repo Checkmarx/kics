@@ -3,6 +3,12 @@
     "queryName": "DNSSEC Using RSASHA1",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "dns.v1.managedZone",
+    "resourceName": "dns",
+    "searchKey": "resources.name={{dns}}.properties.dnssecConfig.defaultKeySpecs",
+    "searchValue": "",
+    "expectedValue": "'algorithm' should not equal to 'rsasha1'",
+    "actualValue": "'algorithm' is equal to 'rsasha1'"
   }
 ]

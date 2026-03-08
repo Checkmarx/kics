@@ -2,16 +2,37 @@
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_msk_cluster[positive1].logging_info.broker_logs.cloudwatch_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'rule.logging_info.broker_logs.enabled' should be 'true' in every entry",
+    "actualValue": "msk_cluster[positive1].logging_info.broker_logs.cloudwatch_logs.enabled is false"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 15,
+    "filename": "positive.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "positive2",
+    "searchKey": "aws_msk_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "'rule.logging_info' should exist",
+    "actualValue": "'rule.logging_info' does not exist"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_msk_cluster[positive1].logging_info.broker_logs.firehose",
+    "searchValue": "",
+    "expectedValue": "'rule.logging_info.broker_logs.enabled' should be 'true' in every entry",
+    "actualValue": "msk_cluster[positive1].logging_info.broker_logs.firehose.enabled is missing"
   }
 ]

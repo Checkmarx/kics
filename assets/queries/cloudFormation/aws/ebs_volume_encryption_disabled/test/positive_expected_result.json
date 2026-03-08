@@ -3,30 +3,60 @@
     "queryName": "EBS Volume Encryption Disabled",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EBS Volume Encryption Disabled",
-    "severity": "HIGH",
-    "line": 6,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "EBS Volume Encryption Disabled",
-    "severity": "HIGH",
-    "line": 15,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EBS Volume Encryption Disabled",
-    "severity": "HIGH",
-    "line": 6,
-    "fileName": "positive4.json"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Volume",
+    "resourceName": "NewVolume",
+    "searchKey": "Resources.NewVolume.Properties.Encrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.NewVolume.Properties.Encrypted should be true",
+    "actualValue": "Resources.NewVolume.Properties.Encrypted is false"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::EC2::Volume",
+    "resourceName": "NewVolume",
+    "searchKey": "Resources.NewVolume.Properties.Encrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.NewVolume.Properties.Encrypted should be true",
+    "actualValue": "Resources.NewVolume.Properties.Encrypted is false"
+  },
+  {
+    "queryName": "EBS Volume Encryption Disabled",
+    "severity": "HIGH",
+    "line": 15,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::Volume",
+    "resourceName": "NewVolume",
+    "searchKey": "Resources.NewVolume.Properties.Encrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.NewVolume.Properties.Encrypted should be true",
+    "actualValue": "Resources.NewVolume.Properties.Encrypted is false"
+  },
+  {
+    "queryName": "EBS Volume Encryption Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::Volume",
+    "resourceName": "NewVolume02",
+    "searchKey": "Resources.NewVolume02.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.NewVolume02.Properties.Encrypted should be defined and not null",
+    "actualValue": "Resources.NewVolume02.Properties.Encrypted is undefined or null"
+  },
+  {
+    "queryName": "EBS Volume Encryption Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::Volume",
+    "resourceName": "NewVolume02",
+    "searchKey": "Resources.NewVolume02.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.NewVolume02.Properties.Encrypted should be defined and not null",
+    "actualValue": "Resources.NewVolume02.Properties.Encrypted is undefined or null"
   }
 ]

@@ -2,61 +2,121 @@
   {
     "queryName": "App Service Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive1.tf"
+    "line": 43,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive3-4].site_config.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive3-4].site_config.minimum_tls_version' should be set to '1.3'",
+    "actualValue": "'azurerm_windows_web_app[positive3-4].site_config.minimum_tls_version' is not set to '1.3'"
+  },
+  {
+    "queryName": "App Service Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive3-2].site_config",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive3-2].site_config.minimum_tls_version' should be defined and set to '1.3'",
+    "actualValue": "'azurerm_windows_web_app[positive3-2].site_config.minimum_tls_version' is not defined"
+  },
+  {
+    "queryName": "App Service Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 26,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive3-3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive3-3].site_config.minimum_tls_version' should be defined and set to '1.3'",
+    "actualValue": "'azurerm_windows_web_app[positive3-3].site_config' is not defined"
   },
   {
     "queryName": "App Service Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-2].site_config.min_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-2].site_config.min_tls_version' should be set to '1.2'",
+    "actualValue": "'azurerm_app_service[positive1-2].site_config.min_tls_version' is not set to '1.2'"
   },
   {
     "queryName": "App Service Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive2-1].site_config.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive2-1].site_config.minimum_tls_version' should be set to '1.3'",
+    "actualValue": "'azurerm_linux_web_app[positive2-1].site_config.minimum_tls_version' is not set to '1.3'"
   },
   {
     "queryName": "App Service Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "App Service Not Using Latest TLS Encryption Version",
-    "severity": "MEDIUM",
-    "line": 26,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "App Service Not Using Latest TLS Encryption Version",
-    "severity": "MEDIUM",
-    "line": 43,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive2-2].site_config",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive2-2].site_config.minimum_tls_version' should be defined and set to '1.3'",
+    "actualValue": "'azurerm_linux_web_app[positive2-2].site_config.minimum_tls_version' is not defined"
   },
   {
     "queryName": "App Service Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "App Service Not Using Latest TLS Encryption Version",
-    "severity": "MEDIUM",
-    "line": 20,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "App Service Not Using Latest TLS Encryption Version",
-    "severity": "MEDIUM",
-    "line": 26,
-    "fileName": "positive3.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-1].site_config.min_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-1].site_config.min_tls_version' should be set to '1.2'",
+    "actualValue": "'azurerm_app_service[positive1-1].site_config.min_tls_version' is not set to '1.2'"
   },
   {
     "queryName": "App Service Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 43,
-    "fileName": "positive3.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive2-4].site_config.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive2-4].site_config.minimum_tls_version' should be set to '1.3'",
+    "actualValue": "'azurerm_linux_web_app[positive2-4].site_config.minimum_tls_version' is not set to '1.3'"
+  },
+  {
+    "queryName": "App Service Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 26,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive2-3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive2-3].site_config.minimum_tls_version' should be defined and set to '1.3'",
+    "actualValue": "'azurerm_linux_web_app[positive2-3].site_config' is not defined"
+  },
+  {
+    "queryName": "App Service Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive3-1].site_config.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive3-1].site_config.minimum_tls_version' should be set to '1.3'",
+    "actualValue": "'azurerm_windows_web_app[positive3-1].site_config.minimum_tls_version' is not set to '1.3'"
   }
 ]

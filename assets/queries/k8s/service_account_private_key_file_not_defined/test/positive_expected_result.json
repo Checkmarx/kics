@@ -3,6 +3,12 @@
     "queryName": "Service Account Private Key File Not Defined",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--service-account-private-key-file flag should be defined",
+    "actualValue": "--service-account-private-key-file flag is not defined"
   }
 ]

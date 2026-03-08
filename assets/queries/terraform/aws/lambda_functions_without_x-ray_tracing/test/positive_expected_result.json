@@ -1,12 +1,26 @@
 [
   {
-    "line": 28,
     "queryName": "Lambda Functions Without X-Ray Tracing",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 28,
+    "filename": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "test_lambda2",
+    "searchKey": "aws_lambda_function[test_lambda2].tracing_config.mode",
+    "searchValue": "",
+    "expectedValue": "aws_lambda_function[test_lambda2].tracing_config.mode should be set to 'Active'",
+    "actualValue": "aws_lambda_function[test_lambda2].tracing_config.mode is set to 'PassThrough'"
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
     "severity": "LOW",
-    "line": 45
+    "line": 45,
+    "filename": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "test_lambda3",
+    "searchKey": "aws_lambda_function[test_lambda3]",
+    "searchValue": "",
+    "expectedValue": "aws_lambda_function[test_lambda3].tracing_config should be defined and not null",
+    "actualValue": "aws_lambda_function[test_lambda3].tracing_config is undefined or null"
   }
 ]

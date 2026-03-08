@@ -2,11 +2,25 @@
   {
     "queryName": "Misconfigured Password Policy Expiration",
     "severity": "LOW",
-    "line": 12
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_account_password_policy",
+    "resourceName": "positive1",
+    "searchKey": "aws_iam_account_password_policy[positive1].max_password_age",
+    "searchValue": "",
+    "expectedValue": "'max_password_age' should be lower than 90",
+    "actualValue": "'max_password_age' is higher than 90"
   },
   {
     "queryName": "Misconfigured Password Policy Expiration",
     "severity": "LOW",
-    "line": 8
+    "line": 12,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_account_password_policy",
+    "resourceName": "positive2",
+    "searchKey": "aws_iam_account_password_policy[positive2]",
+    "searchValue": "",
+    "expectedValue": "'max_password_age' should exist",
+    "actualValue": "'max_password_age' is missing"
   }
 ]

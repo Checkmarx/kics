@@ -2,6 +2,13 @@
   {
     "queryName": "Log Retention Is Not Set",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting",
+    "searchKey": "name={{Update PostgreSQL Server setting}}.{{azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should equal to 'on'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is not equal to 'on'"
   }
 ]

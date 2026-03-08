@@ -2,6 +2,13 @@
   {
     "queryName": "DNSSEC Using RSASHA1",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_dns_managed_zone",
+    "resourceName": "create a managed zone",
+    "searchKey": "name={{create a managed zone}}.{{google.cloud.gcp_dns_managed_zone}}.dnssec_config.defaultKeySpecs.algorithm",
+    "searchValue": "",
+    "expectedValue": "gcp_dns_managed_zone.dnssec_config.defaultKeySpecs.algorithm should not equal to 'rsasha1'",
+    "actualValue": "gcp_dns_managed_zone.dnssec_config.defaultKeySpecs.algorithm is equal to 'rsasha1'"
   }
 ]

@@ -2,6 +2,13 @@
   {
     "queryName": "Beta - Backup Vault Without Soft Delete",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_data_protection_backup_vault",
+    "resourceName": "positive-backup-vault",
+    "searchKey": "azurerm_data_protection_backup_vault[positive].soft_delete",
+    "searchValue": "",
+    "expectedValue": "'azurerm_data_protection_backup_vault[positive].soft_delete' should not be set to 'off'",
+    "actualValue": "'azurerm_data_protection_backup_vault[positive].soft_delete' is set to 'off'"
   }
 ]

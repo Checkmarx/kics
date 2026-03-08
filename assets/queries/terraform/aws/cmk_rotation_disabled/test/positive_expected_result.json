@@ -3,30 +3,60 @@
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive3",
+    "searchKey": "aws_kms_key[positive3]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive3].enable_key_rotation should be set to true",
+    "actualValue": "aws_kms_key[positive3].enable_key_rotation is false"
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive4.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive4",
+    "searchKey": "aws_kms_key[positive4]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive4].enable_key_rotation should be set to true",
+    "actualValue": "aws_kms_key[positive4].enable_key_rotation is false"
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive2",
+    "searchKey": "aws_kms_key[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive2].enable_key_rotation should be set to true",
+    "actualValue": "aws_kms_key[positive2].enable_key_rotation is false"
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive4.tf"
+    "filename": "positive5.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive5",
+    "searchKey": "aws_kms_key[positive5]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive5].enable_key_rotation should be set to false",
+    "actualValue": "aws_kms_key[positive5].enable_key_rotation is true"
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive5.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive1",
+    "searchKey": "aws_kms_key[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive1].enable_key_rotation should be set to true",
+    "actualValue": "aws_kms_key[positive1].enable_key_rotation is undefined"
   }
 ]

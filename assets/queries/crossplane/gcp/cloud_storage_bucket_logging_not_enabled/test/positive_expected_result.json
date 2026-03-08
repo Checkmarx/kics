@@ -3,6 +3,12 @@
     "queryName": "Cloud Storage Bucket Logging Not Enabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "Bucket",
+    "resourceName": "bucketSample",
+    "searchKey": "metadata.name={{bucketSample}}.spec",
+    "searchValue": "",
+    "expectedValue": "Bucket logging should be defined",
+    "actualValue": "Bucket logging is not defined"
   }
 ]

@@ -2,13 +2,25 @@
   {
     "queryName": "Azure Cognitive Search Public Network Access Enabled",
     "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive1.tf"
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_search_service",
+    "resourceName": "example-search-service",
+    "searchKey": "azurerm_search_service[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_search_service[positive2].public_network_access_enabled' should be defined and set to false",
+    "actualValue": "'azurerm_search_service[positive2].public_network_access_enabled' is undefined or null"
   },
   {
     "queryName": "Azure Cognitive Search Public Network Access Enabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive2.tf"
+    "line": 6,
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_search_service",
+    "resourceName": "example-search-service",
+    "searchKey": "azurerm_search_service[positive1].public_network_access_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_search_service[positive1].public_network_access_enabled' should be set to false",
+    "actualValue": "'azurerm_search_service[positive1].public_network_access_enabled' is set to true"
   }
 ]

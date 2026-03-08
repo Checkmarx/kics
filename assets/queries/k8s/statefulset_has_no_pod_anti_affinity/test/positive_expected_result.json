@@ -1,12 +1,26 @@
 [
-	{
-		"queryName": "StatefulSet Has No PodAntiAffinity",
-		"severity": "LOW",
-		"line": 23
-	},
-	{
-		"queryName": "StatefulSet Has No PodAntiAffinity",
-		"severity": "LOW",
-		"line": 53
-	}
+  {
+    "queryName": "StatefulSet Has No PodAntiAffinity",
+    "severity": "LOW",
+    "line": 23,
+    "filename": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "zk-mismatch",
+    "searchKey": "metadata.name={{zk-mismatch}}.spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.labelSelector.matchLabels",
+    "searchValue": "",
+    "expectedValue": "'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchLabels' match any label on template metadata",
+    "actualValue": "'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchLabels' don't match any label on template metadata"
+  },
+  {
+    "queryName": "StatefulSet Has No PodAntiAffinity",
+    "severity": "LOW",
+    "line": 53,
+    "filename": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "zk-noaffinity",
+    "searchKey": "metadata.name={{zk-noaffinity}}.spec.template.spec.affinity",
+    "searchValue": "",
+    "expectedValue": "'spec.template.spec.affinity.podAntiAffinity' should be set",
+    "actualValue": "'spec.template.spec.affinity.podAntiAffinity' is undefined"
+  }
 ]

@@ -2,26 +2,61 @@
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 32,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.fsGroup",
+    "searchValue": "",
+    "expectedValue": "metadata.name{{restricted}}.spec.fsGroup should not allow range '0' (root)",
+    "actualValue": "metadata.name={{restricted}}.spec.fsGroup allows range '0' (root)"
   },
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.privileged",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{restricted}}.spec.privileged should be set to 'false'",
+    "actualValue": "metadata.name={{restricted}}.spec.privileged is set to 'true'"
   },
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 27
+    "line": 27,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.runAsUser.rule",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{restricted}}.spec.runAsUser.rule is equal to 'MustRunAsNonRoot'",
+    "actualValue": "metadata.name={{restricted}}.spec.runAsUser.rule is not equal to 'MustRunAsNonRoot'"
   },
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.supplementalGroups.rule",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{restricted}}.spec.supplementalGroups limits its ranges",
+    "actualValue": "metadata.name={{restricted}}.spec.supplementalGroups does not limit its ranges"
   },
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 32
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation should be set to 'false'",
+    "actualValue": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation is set to 'true'"
   }
 ]

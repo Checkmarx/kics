@@ -2,31 +2,61 @@
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
     "severity": "MEDIUM",
-    "line": 27,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "S3 Bucket with Unsecured CORS Rule",
-    "severity": "MEDIUM",
-    "line": 27,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "S3 Bucket with Unsecured CORS Rule",
-    "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].cors_rule",
+    "searchValue": "",
+    "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins"
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
     "severity": "MEDIUM",
-    "line": 16,
-    "fileName": "positive4.tf"
+    "line": 27,
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive1].cors_rule",
+    "searchValue": "",
+    "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins"
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "aws_s3_bucket_cors_configuration",
+    "resourceName": "example",
+    "searchKey": "aws_s3_bucket_cors_configuration[example].cors_rule",
+    "searchValue": "",
+    "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins"
+  },
+  {
+    "queryName": "S3 Bucket with Unsecured CORS Rule",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].cors_rule",
+    "searchValue": "",
+    "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins"
+  },
+  {
+    "queryName": "S3 Bucket with Unsecured CORS Rule",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive2.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive2].cors_rule",
+    "searchValue": "",
+    "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins"
   }
 ]

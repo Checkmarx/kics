@@ -2,16 +2,37 @@
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
-    "line": 21
+    "line": 28,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "nginx-deployment",
+    "searchKey": "metadata.name={{nginx-deployment}}.spec.containers.name=payment3",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{nginx-deployment}}.spec.containers.name=payment3.securityContext should be set",
+    "actualValue": "metadata.name={{nginx-deployment}}.spec.containers.name=payment3.securityContext is undefined"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
-    "line": 26
+    "line": 26,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "nginx-deployment",
+    "searchKey": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment2}}.securityContext",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment2}}.securityContext.capabilities should be set",
+    "actualValue": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment2}}.securityContext.capabilities is undefined"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
-    "line": 28
+    "line": 21,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "nginx-deployment",
+    "searchKey": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment}}.securityContext.capabilities",
+    "searchValue": "Deployment",
+    "expectedValue": "spec.containers[payment].securityContext.capabilities.drop should be defined",
+    "actualValue": "spec.containers[payment].securityContext.capabilities.drop is not defined"
   }
 ]

@@ -1,14 +1,26 @@
 [
-	{
-		"queryName": "Logging of Sensitive Data",
-		"severity": "LOW",
-		"line": 14,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Logging of Sensitive Data",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "Logging of Sensitive Data",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive2.yaml",
+    "resourceType": "ansible.builtin.user",
+    "resourceName": "bar",
+    "searchKey": "name={{bar}}",
+    "searchValue": "",
+    "expectedValue": "'no_log' should be defined and set to 'true' in order to not expose sensitive data",
+    "actualValue": "'no_log' is not defined"
+  },
+  {
+    "queryName": "Logging of Sensitive Data",
+    "severity": "LOW",
+    "line": 14,
+    "filename": "positive1.yaml",
+    "resourceType": "ansible.builtin.user",
+    "resourceName": "bar",
+    "searchKey": "name={{bar}}.no_log",
+    "searchValue": "",
+    "expectedValue": "'no_log' should be set to 'true' in order to not expose sensitive data",
+    "actualValue": "'no_log' is set to false"
+  }
 ]

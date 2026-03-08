@@ -3,48 +3,48 @@
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Category.properties.id.minimum",
+    "searchValue": "",
+    "expectedValue": "Type numeric should not have enum and constraining keywords",
+    "actualValue": "Type numeric has enum and minimum"
   },
   {
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
     "line": 49,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Constraining Enum Property",
-    "severity": "INFO",
-    "line": 24,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Constraining Enum Property",
-    "severity": "INFO",
-    "line": 24,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Category.properties.name.maxLength",
+    "searchValue": "",
+    "expectedValue": "Type string should not have enum and constraining keywords",
+    "actualValue": "Type string has enum and maxLength"
   },
   {
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Category.properties.id.minimum",
+    "searchValue": "",
+    "expectedValue": "Type numeric should not have enum and constraining keywords",
+    "actualValue": "Type numeric has enum and minimum"
   },
   {
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
     "line": 36,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Constraining Enum Property",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Constraining Enum Property",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Category.properties.name.maxLength",
+    "searchValue": "",
+    "expectedValue": "Type string should not have enum and constraining keywords",
+    "actualValue": "Type string has enum and maxLength"
   }
 ]

@@ -2,19 +2,37 @@
   {
     "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
     "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive1.yaml"
+    "line": 12,
+    "filename": "positive3.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm",
+    "searchKey": "resources.name={{vm}}.properties.metadata.items[1].key",
+    "searchValue": "",
+    "expectedValue": "'metadata.items[1].value' should be true",
+    "actualValue": "'metadata.items[1].value' is false"
   },
   {
     "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm",
+    "searchKey": "resources.name={{vm}}.properties.metadata.items",
+    "searchValue": "",
+    "expectedValue": "'metadata.items' should have 'block-project-ssh-keys'",
+    "actualValue": "'metadata.items' does not have 'block-project-ssh-keys'"
   },
   {
     "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
     "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive3.yaml"
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm",
+    "searchKey": "resources.name={{vm}}.properties",
+    "searchValue": "",
+    "expectedValue": "'metadata' should be defined and not null",
+    "actualValue": "'metadata' is undefined or null"
   }
 ]

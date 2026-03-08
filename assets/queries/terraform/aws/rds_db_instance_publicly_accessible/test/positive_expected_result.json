@@ -3,12 +3,24 @@
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 10,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].publicly_accessible",
+    "searchValue": "",
+    "expectedValue": "'publicly_accessible' should be set to false or undefined",
+    "actualValue": "'publicly_accessible' is set to true"
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 11,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db].publicly_accessible",
+    "searchValue": "",
+    "expectedValue": "'publicly_accessible' should be set to false or undefined",
+    "actualValue": "'publicly_accessible' is set to true"
   }
 ]

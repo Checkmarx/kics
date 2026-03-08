@@ -2,13 +2,25 @@
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 8,
-    "fileName": "positive2.tf"
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_disk",
+    "resourceName": "New-disk",
+    "searchKey": "alicloud_disk[disk_encryption1]",
+    "searchValue": "",
+    "expectedValue": "[disk_encryption1] has encryption enabled",
+    "actualValue": "[disk_encryption1] does not have encryption enabled"
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive1.tf"
+    "line": 8,
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_disk",
+    "resourceName": "New-disk",
+    "searchKey": "alicloud_disk[disk_encryption2].encrypted",
+    "searchValue": "",
+    "expectedValue": "[disk_encryption2] has encryption set to true",
+    "actualValue": "[disk_encryption2] has encryption set to false"
   }
 ]

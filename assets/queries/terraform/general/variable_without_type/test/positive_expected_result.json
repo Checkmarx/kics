@@ -2,19 +2,37 @@
   {
     "queryName": "Variable Without Type",
     "severity": "INFO",
+    "line": 3,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "variable.{{cluster_name}}.type",
+    "searchValue": "",
+    "expectedValue": "'type' should not be empty",
+    "actualValue": "'type' is empty"
+  },
+  {
+    "queryName": "Variable Without Type",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "variable.{{cluster_name}}.type",
+    "searchValue": "",
+    "expectedValue": "'type' should not be empty",
+    "actualValue": "'type' is empty"
+  },
+  {
+    "queryName": "Variable Without Type",
+    "severity": "INFO",
     "line": 1,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Variable Without Type",
-    "severity": "INFO",
-    "line": 3,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Variable Without Type",
-    "severity": "INFO",
-    "line": 3,
-    "filename": "positive3.tf"
+    "filename": "positive1.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "variable.{{cluster_name}}",
+    "searchValue": "",
+    "expectedValue": "'type' should be defined and not null",
+    "actualValue": "'type' is undefined or null"
   }
 ]

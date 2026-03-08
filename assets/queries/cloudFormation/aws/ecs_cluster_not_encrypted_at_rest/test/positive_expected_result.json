@@ -3,24 +3,48 @@
     "queryName": "ECS Cluster Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 37,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "service",
+    "searchKey": "Resources.taskdefinition.Properties.Volumes",
+    "searchValue": "",
+    "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be enabled",
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled"
   },
   {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 26,
-    "fileName": "positive2.yaml",
-    "queryName": "ECS Cluster Not Encrypted At Rest"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "service",
+    "searchKey": "Resources.taskdefinition1",
+    "searchValue": "",
+    "expectedValue": "Resources.taskdefinition1 should be defined",
+    "actualValue": "Resources.taskdefinition1 is not defined."
   },
   {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 122,
-    "fileName": "positive3.json",
-    "queryName": "ECS Cluster Not Encrypted At Rest"
+    "filename": "positive3.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "service",
+    "searchKey": "Resources.taskdefinition.Properties.Volumes",
+    "searchValue": "",
+    "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be enabled",
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled"
   },
   {
     "queryName": "ECS Cluster Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 54,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "service",
+    "searchKey": "Resources.taskdefinition1",
+    "searchValue": "",
+    "expectedValue": "Resources.taskdefinition1 should be defined",
+    "actualValue": "Resources.taskdefinition1 is not defined."
   }
 ]

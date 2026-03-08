@@ -2,73 +2,145 @@
   {
     "queryName": "Key Vault Not Recoverable",
     "severity": "HIGH",
-    "line": 15,
-    "fileName": "positive1.json"
+    "line": 5,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "keyVaultInstance",
+    "searchKey": "resources.name={{keyVaultInstance}}.properties",
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
   },
   {
     "queryName": "Key Vault Not Recoverable",
     "severity": "HIGH",
-    "line": 39,
-    "fileName": "positive2.json"
+    "line": 15,
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "keyVaultInstance",
+    "searchKey": "resources.name={{keyVaultInstance}}.properties",
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 23,
+    "filename": "positive5.json",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "[parameters('vaults_pgs_bot_prod_name')]",
+    "searchKey": "resources.name={{[parameters('vaults_pgs_bot_prod_name')]}}.properties",
+    "searchValue": "enableSoftDelete",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enableSoftDelete' property defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enableSoftDelete' property defined"
   },
   {
     "queryName": "Key Vault Not Recoverable",
     "severity": "HIGH",
     "line": 17,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "keyVaultInstance",
+    "searchKey": "properties.template.resources.name={{keyVaultInstance}}.properties",
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 27,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "keyVaultInstance",
+    "searchKey": "resources.name={{keyVaultInstance}}.properties.enablePurgeProtection",
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' property value should have 'enablePurgeProtection' property set to true",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "keyVaultInstance",
+    "searchKey": "resources.name={{keyVaultInstance}}.properties",
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive5.bicep",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "[parameters('vaults_pgs_bot_prod_name')]",
+    "searchKey": "resources.name={{[parameters('vaults_pgs_bot_prod_name')]}}.properties",
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive5.bicep",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "[parameters('vaults_pgs_bot_prod_name')]",
+    "searchKey": "resources.name={{[parameters('vaults_pgs_bot_prod_name')]}}.properties",
+    "searchValue": "enableSoftDelete",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enableSoftDelete' property defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enableSoftDelete' property defined"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 39,
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "keyVaultInstance",
+    "searchKey": "resources.name={{keyVaultInstance}}.properties.enablePurgeProtection",
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' property value should have 'enablePurgeProtection' property set to true",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 23,
+    "filename": "positive5.json",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "[parameters('vaults_pgs_bot_prod_name')]",
+    "searchKey": "resources.name={{[parameters('vaults_pgs_bot_prod_name')]}}.properties",
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
   },
   {
     "queryName": "Key Vault Not Recoverable",
     "severity": "HIGH",
     "line": 41,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "Key Vault Not Recoverable",
-    "severity": "HIGH",
-    "line": 23,
-    "fileName": "positive5.json"
-  },
-  {
-    "queryName": "Key Vault Not Recoverable",
-    "severity": "HIGH",
-    "line": 23,
-    "fileName": "positive5.json"
-  },
-  {
-    "queryName": "Key Vault Not Recoverable",
-    "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive1.bicep"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "keyVaultInstance",
+    "searchKey": "properties.template.resources.name={{keyVaultInstance}}.properties.enablePurgeProtection",
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' property value should have 'enablePurgeProtection' property set to true",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true"
   },
   {
     "queryName": "Key Vault Not Recoverable",
     "severity": "HIGH",
     "line": 27,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Key Vault Not Recoverable",
-    "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Key Vault Not Recoverable",
-    "severity": "HIGH",
-    "line": 27,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "Key Vault Not Recoverable",
-    "severity": "HIGH",
-    "line": 18,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "Key Vault Not Recoverable",
-    "severity": "HIGH",
-    "line": 18,
-    "fileName": "positive5.bicep"
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.KeyVault/vaults",
+    "resourceName": "keyVaultInstance",
+    "searchKey": "resources.name={{keyVaultInstance}}.properties.enablePurgeProtection",
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' property value should have 'enablePurgeProtection' property set to true",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true"
   }
 ]

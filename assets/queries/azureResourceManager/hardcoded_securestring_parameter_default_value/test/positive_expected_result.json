@@ -2,25 +2,49 @@
   {
     "queryName": "Hardcoded SecureString Parameter Default Value",
     "severity": "HIGH",
-    "line": 7,
-    "fileName": "positive1.json"
+    "line": 2,
+    "filename": "positive2.bicep",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "parameters.adminPassword.defaultValue",
+    "searchValue": "",
+    "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded"
+  },
+  {
+    "queryName": "Hardcoded SecureString Parameter Default Value",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive1.bicep",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "parameters.adminPassword.defaultValue",
+    "searchValue": "",
+    "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded"
   },
   {
     "queryName": "Hardcoded SecureString Parameter Default Value",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "parameters.adminPassword.defaultValue",
+    "searchValue": "",
+    "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded"
   },
   {
     "queryName": "Hardcoded SecureString Parameter Default Value",
     "severity": "HIGH",
-    "line": 2,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Hardcoded SecureString Parameter Default Value",
-    "severity": "HIGH",
-    "line": 2,
-    "fileName": "positive2.bicep"
+    "line": 7,
+    "filename": "positive1.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "parameters.adminPassword.defaultValue",
+    "searchValue": "",
+    "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded"
   }
 ]

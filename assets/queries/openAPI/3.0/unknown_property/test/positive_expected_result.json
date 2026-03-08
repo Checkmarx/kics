@@ -2,61 +2,121 @@
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
-    "line": 14,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Unknown Property (v3)",
-    "severity": "INFO",
-    "line": 28,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Unknown Property (v3)",
-    "severity": "INFO",
-    "line": 3,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Unknown Property (v3)",
-    "severity": "INFO",
-    "line": 20,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Unknown Property (v3)",
-    "severity": "INFO",
-    "line": 20,
-    "filename": "positive3.json"
+    "line": 19,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.tybhbhbpe",
+    "searchValue": "",
+    "expectedValue": "The field 'tybhbhbpe' is known in the schema object",
+    "actualValue": "The field 'tybhbhbpe' is unknown in the schema object"
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Unknown Property (v3)",
-    "severity": "INFO",
-    "line": 17,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Unknown Property (v3)",
-    "severity": "INFO",
-    "line": 2,
-    "filename": "positive5.yaml"
-  },
-  {
-    "queryName": "Unknown Property (v3)",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive5.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.descrinnption",
+    "searchValue": "",
+    "expectedValue": "The field 'descrinnption' is known in the responses object",
+    "actualValue": "The field 'descrinnption' is unknown in the responses object"
   },
   {
     "queryName": "Unknown Property (v3)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.callbacks.inProgress.{{{$request.body#/inProgressUrl}}}.pbhbhbost",
+    "searchValue": "",
+    "expectedValue": "The field 'pbhbhbost' is known in the callbacks object",
+    "actualValue": "The field 'pbhbhbost' is unknown in the callbacks object"
+  },
+  {
+    "queryName": "Unknown Property (v3)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.callbacks.inProgress.{{{$request.body#/inProgressUrl}}}.pbhbhbost",
+    "searchValue": "",
+    "expectedValue": "The field 'pbhbhbost' is known in the callbacks object",
+    "actualValue": "The field 'pbhbhbost' is unknown in the callbacks object"
+  },
+  {
+    "queryName": "Unknown Property (v3)",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.descrinnption",
+    "searchValue": "",
+    "expectedValue": "The field 'descrinnption' is known in the responses object",
+    "actualValue": "The field 'descrinnption' is unknown in the responses object"
+  },
+  {
+    "queryName": "Unknown Property (v3)",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.desdddcription",
+    "searchValue": "",
+    "expectedValue": "The field 'desdddcription' is known in the tags object",
+    "actualValue": "The field 'desdddcription' is unknown in the tags object"
+  },
+  {
+    "queryName": "Unknown Property (v3)",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "infjnjnjno",
+    "searchValue": "",
+    "expectedValue": "The field 'infjnjnjno' is known in the openapi object",
+    "actualValue": "The field 'infjnjnjno' is unknown in the openapi object"
+  },
+  {
+    "queryName": "Unknown Property (v3)",
+    "severity": "INFO",
+    "line": 2,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "infjnjnjno",
+    "searchValue": "",
+    "expectedValue": "The field 'infjnjnjno' is known in the openapi object",
+    "actualValue": "The field 'infjnjnjno' is unknown in the openapi object"
+  },
+  {
+    "queryName": "Unknown Property (v3)",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.desdddcription",
+    "searchValue": "",
+    "expectedValue": "The field 'desdddcription' is known in the tags object",
+    "actualValue": "The field 'desdddcription' is unknown in the tags object"
+  },
+  {
+    "queryName": "Unknown Property (v3)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.tybhbhbpe:",
+    "searchValue": "",
+    "expectedValue": "The field 'tybhbhbpe:' is known in the schema object",
+    "actualValue": "The field 'tybhbhbpe:' is unknown in the schema object"
   }
 ]

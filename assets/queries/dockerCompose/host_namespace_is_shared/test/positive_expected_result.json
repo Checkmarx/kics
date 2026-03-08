@@ -1,20 +1,38 @@
 [
-    {
-      "queryName": "Host Namespace is Shared",
-      "severity": "MEDIUM",
-      "line": 10,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Host Namespace is Shared",
-      "severity": "MEDIUM",
-      "line": 6,
-      "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Host Namespace is Shared",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive3.yaml"
-    }
-  ]
+  {
+    "queryName": "Host Namespace is Shared",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.service_name_2.pid",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be pid mode declared as host",
+    "actualValue": "There is a pid mode declared as host"
+  },
+  {
+    "queryName": "Host Namespace is Shared",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.service_name_1.pid",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be pid mode declared as host",
+    "actualValue": "There is a pid mode declared as host"
+  },
+  {
+    "queryName": "Host Namespace is Shared",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.internal.pid",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be pid mode declared as host",
+    "actualValue": "There is a pid mode declared as host"
+  }
+]

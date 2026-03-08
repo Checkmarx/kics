@@ -2,37 +2,73 @@
   {
     "queryName": "API Key Exposed In Global Security Scheme",
     "severity": "LOW",
-    "line": 52,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "API Key Exposed In Global Security Scheme",
-    "severity": "LOW",
-    "line": 57,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "API Key Exposed In Global Security Scheme",
-    "severity": "LOW",
-    "line": 62,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "API Key Exposed In Global Security Scheme",
-    "severity": "LOW",
     "line": 31,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
     "severity": "LOW",
     "line": 35,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey2",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
     "severity": "LOW",
     "line": 39,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network"
+  },
+  {
+    "queryName": "API Key Exposed In Global Security Scheme",
+    "severity": "LOW",
+    "line": 52,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network"
+  },
+  {
+    "queryName": "API Key Exposed In Global Security Scheme",
+    "severity": "LOW",
+    "line": 57,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey2",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network"
+  },
+  {
+    "queryName": "API Key Exposed In Global Security Scheme",
+    "severity": "LOW",
+    "line": 62,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network"
   }
 ]

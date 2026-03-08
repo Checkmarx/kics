@@ -3,48 +3,96 @@
     "queryName": "Run Block Injection",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1>&2\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1>&2\n  exit 1;\nfi;\n}}",
+    "searchValue": "github.event.issue.body",
+    "expectedValue": "Run block does not contain dangerous input controlled by user.",
+    "actualValue": "Run block contains dangerous input controlled by user."
   },
   {
     "queryName": "Run Block Injection",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1>&2\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1>&2\n  exit 1;\nfi;\n}}",
+    "searchValue": "github.event.issue.title",
+    "expectedValue": "Run block does not contain dangerous input controlled by user.",
+    "actualValue": "Run block contains dangerous input controlled by user."
   },
   {
     "queryName": "Run Block Injection",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive2.yaml"
+    "filename": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "run={{echo \"Workflow Run Path: ${{ github.event.workflow.path }}\"\n}}",
+    "searchValue": "github.event.workflow.path",
+    "expectedValue": "Run block does not contain dangerous input controlled by user.",
+    "actualValue": "Run block contains dangerous input controlled by user."
   },
   {
     "queryName": "Run Block Injection",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "run={{echo \"Issue Comment Body: ${{ github.event.comment.body }}\"\n}}",
+    "searchValue": "github.event.comment.body",
+    "expectedValue": "Run block does not contain dangerous input controlled by user.",
+    "actualValue": "Run block contains dangerous input controlled by user."
   },
   {
     "queryName": "Run Block Injection",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive4.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "run={{echo \"Discussion Comment Body: ${{ github.event.comment.body }}\"\n}}",
+    "searchValue": "github.event.comment.body",
+    "expectedValue": "Run block does not contain dangerous input controlled by user.",
+    "actualValue": "Run block contains dangerous input controlled by user."
   },
   {
     "queryName": "Run Block Injection",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive5.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "run={{echo \"Discussion Title: ${{ github.event.discussion.title }}\"\n}}",
+    "searchValue": "github.event.discussion.title",
+    "expectedValue": "Run block does not contain dangerous input controlled by user.",
+    "actualValue": "Run block contains dangerous input controlled by user."
   },
   {
     "queryName": "Run Block Injection",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive6.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "run={{echo \"Pull Request Body: ${{ github.event.pull_request.body }}\"\n}}",
+    "searchValue": "github.event.pull_request.body",
+    "expectedValue": "Run block does not contain dangerous input controlled by user.",
+    "actualValue": "Run block contains dangerous input controlled by user."
   },
   {
     "queryName": "Run Block Injection",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive7.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "run={{echo \"Author's Name: ${{ github.event.authors.name }}\"\n}}",
+    "searchValue": "github.*.authors.name",
+    "expectedValue": "Run block does not contain dangerous input controlled by user.",
+    "actualValue": "Run block contains dangerous input controlled by user."
   }
 ]

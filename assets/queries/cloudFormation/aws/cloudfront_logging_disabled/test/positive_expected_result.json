@@ -3,24 +3,48 @@
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution1",
+    "searchKey": "Resources.myDistribution1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging should be defined",
+    "actualValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging is undefined"
   },
   {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
     "line": 30,
-    "fileName": "positive2.yaml",
-    "queryName": "CloudFront Logging Disabled",
-    "severity": "MEDIUM"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution2",
+    "searchKey": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket should have the domain '.s3.amazonaws.com'",
+    "actualValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket does not have the correct domain"
   },
   {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive3.json",
-    "queryName": "CloudFront Logging Disabled",
-    "severity": "MEDIUM"
+    "filename": "positive3.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution1",
+    "searchKey": "Resources.myDistribution1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging should be defined",
+    "actualValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging is undefined"
   },
   {
-    "line": 40,
-    "fileName": "positive4.json",
     "queryName": "CloudFront Logging Disabled",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 40,
+    "filename": "positive4.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution2",
+    "searchKey": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket should have the domain '.s3.amazonaws.com'",
+    "actualValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket does not have the correct domain"
   }
 ]

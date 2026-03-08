@@ -1,14 +1,26 @@
 [
-	{
-		"queryName": "ElastiCache Nodes Not Created Across Multi AZ",
-		"severity": "MEDIUM",
-		"line": 10,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "ElastiCache Nodes Not Created Across Multi AZ",
-		"severity": "MEDIUM",
-		"line": 18,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive.yaml",
+    "resourceType": "aws:elasticache:Cluster",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'azMode' should be defined and set to 'cross-az' in multi nodes cluster",
+    "actualValue": "Attribute 'azMode' is not defined"
+  },
+  {
+    "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive.yaml",
+    "resourceType": "aws:elasticache:Cluster",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties.azMode",
+    "searchValue": "",
+    "expectedValue": "Attribute 'azMode' should be set to 'cross-az' in multi nodes cluster",
+    "actualValue": "Attribute 'azMode' is set to single-az"
+  }
 ]

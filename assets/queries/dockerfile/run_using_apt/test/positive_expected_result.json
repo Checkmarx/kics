@@ -2,6 +2,13 @@
   {
     "queryName": "Run Using apt",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox:1.0}}.{{RUN apt install curl}}",
+    "searchValue": "",
+    "expectedValue": "RUN instructions should not use the 'apt' program",
+    "actualValue": "RUN instruction is invoking the 'apt' program"
   }
 ]

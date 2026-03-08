@@ -2,6 +2,13 @@
   {
     "queryName": "API Gateway With Open Access",
     "severity": "MEDIUM",
-    "line": 4
+    "line": 4,
+    "filename": "positive.tf",
+    "resourceType": "aws_api_gateway_method",
+    "resourceName": "positive1",
+    "searchKey": "aws_api_gateway_method[positive1].http_method",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_method.authorization should only be 'NONE' if http_method is 'OPTIONS'",
+    "actualValue": "aws_api_gateway_method[positive1].authorization type is 'NONE' and http_method is not ''OPTIONS'"
   }
 ]

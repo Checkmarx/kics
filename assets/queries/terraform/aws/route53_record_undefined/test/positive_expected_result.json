@@ -1,7 +1,14 @@
 [
-	{
-		"queryName": "Route53 Record Undefined",
-		"severity": "HIGH",
-		"line": 8
-	}
+  {
+    "queryName": "Route53 Record Undefined",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "aws_route53_record",
+    "resourceName": "test.example.com",
+    "searchKey": "aws_route53_record[example].records",
+    "searchValue": "",
+    "expectedValue": "aws_route53_record.records should be defined",
+    "actualValue": "aws_route53_record.records is undefined"
+  }
 ]

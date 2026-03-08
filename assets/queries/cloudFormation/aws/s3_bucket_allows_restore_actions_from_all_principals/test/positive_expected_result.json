@@ -3,24 +3,48 @@
     "queryName": "S3 Bucket Allows Restore Actions From All Principals",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy3",
+    "searchKey": "Resources.SampleBucketPolicy3.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement should not allow a 'Restore' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows a 'Restore' action from all principals"
   },
   {
     "queryName": "S3 Bucket Allows Restore Actions From All Principals",
     "severity": "HIGH",
     "line": 22,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy4",
+    "searchKey": "Resources.SampleBucketPolicy4.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement should not allow a 'Restore' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement allows a 'Restore' action from all principals"
   },
   {
     "queryName": "S3 Bucket Allows Restore Actions From All Principals",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy5",
+    "searchKey": "Resources.SampleBucketPolicy5.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement should not allow a 'Restore' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement allows a 'Restore' action from all principals"
   },
   {
     "queryName": "S3 Bucket Allows Restore Actions From All Principals",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy6",
+    "searchKey": "Resources.SampleBucketPolicy6.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement should not allow a 'Restore' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement allows a 'Restore' action from all principals"
   }
 ]

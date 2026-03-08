@@ -2,31 +2,61 @@
   {
     "queryName": "S3 Bucket Policy Accepts HTTP Requests",
     "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy",
+    "searchValue": "",
+    "expectedValue": "'policy' should not accept HTTP Requests",
+    "actualValue": "'policy' accepts HTTP Requests"
+  },
+  {
+    "queryName": "S3 Bucket Policy Accepts HTTP Requests",
+    "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[b].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[b].policy should not accept HTTP Requests",
+    "actualValue": "aws_s3_bucket_policy[b].policy accepts HTTP Requests"
+  },
+  {
+    "queryName": "S3 Bucket Policy Accepts HTTP Requests",
+    "severity": "MEDIUM",
+    "line": 32,
+    "filename": "positive5.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "a",
+    "searchKey": "aws_s3_bucket[pos5].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket[pos5].policy should not accept HTTP Requests",
+    "actualValue": "aws_s3_bucket[pos5].policy accepts HTTP Requests"
+  },
+  {
+    "queryName": "S3 Bucket Policy Accepts HTTP Requests",
+    "severity": "MEDIUM",
+    "line": 32,
+    "filename": "positive4.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "a",
+    "searchKey": "aws_s3_bucket[pos4].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket[pos4].policy should not accept HTTP Requests",
+    "actualValue": "aws_s3_bucket[pos4].policy accepts HTTP Requests"
   },
   {
     "queryName": "S3 Bucket Policy Accepts HTTP Requests",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "S3 Bucket Policy Accepts HTTP Requests",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "S3 Bucket Policy Accepts HTTP Requests",
-    "severity": "MEDIUM",
-    "line": 32,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "S3 Bucket Policy Accepts HTTP Requests",
-    "severity": "MEDIUM",
-    "line": 32,
-    "fileName": "positive5.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[b2].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket[b2].policy should not accept HTTP Requests",
+    "actualValue": "aws_s3_bucket[b2].policy accepts HTTP Requests"
   }
 ]

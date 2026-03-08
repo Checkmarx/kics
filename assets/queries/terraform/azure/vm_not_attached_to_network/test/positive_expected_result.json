@@ -2,6 +2,13 @@
   {
     "queryName": "VM Not Attached To Network",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_virtual_machine",
+    "resourceName": "${var.prefix}-vm",
+    "searchKey": "azurerm_virtual_machine[positive1].network_interface_ids",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_machine[positive1].network_interface_ids' list should not be empty",
+    "actualValue": "'azurerm_virtual_machine[positive1].network_interface_ids' list is empty"
   }
 ]

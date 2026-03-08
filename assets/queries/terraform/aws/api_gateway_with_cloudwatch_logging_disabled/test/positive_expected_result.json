@@ -2,25 +2,49 @@
   {
     "queryName": "API Gateway With CloudWatch Logging Disabled",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "API Gateway With CloudWatch Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "API Gateway With CloudWatch Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "API Gateway With CloudWatch Logging Disabled",
-    "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive4",
+    "searchKey": "aws_api_gateway_stage[positive4]",
+    "searchValue": "",
+    "expectedValue": "'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[positive4]' should be defined and use the correct naming convention",
+    "actualValue": "'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[positive4]' is undefined or is not using the correct naming convention"
+  },
+  {
+    "queryName": "API Gateway With CloudWatch Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive3.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive3",
+    "searchKey": "aws_api_gateway_stage[positive3].access_log_settings.destination_arn",
+    "searchValue": "",
+    "expectedValue": "'aws_api_gateway_stage[positive3].access_log_settings.destination_arn' should reference a valid 'aws_cloudwatch_log_group' arn",
+    "actualValue": "'aws_api_gateway_stage[positive3].access_log_settings.destination_arn' does not reference a valid 'aws_cloudwatch_log_group' arn"
+  },
+  {
+    "queryName": "API Gateway With CloudWatch Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive1.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive1",
+    "searchKey": "aws_api_gateway_stage[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[positive1]' should be defined and use the correct naming convention",
+    "actualValue": "'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[positive1]' is undefined or is not using the correct naming convention"
+  },
+  {
+    "queryName": "API Gateway With CloudWatch Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive2.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive2",
+    "searchKey": "aws_api_gateway_stage[positive2].access_log_settings.destination_arn",
+    "searchValue": "",
+    "expectedValue": "'aws_api_gateway_stage[positive2].access_log_settings.destination_arn' should reference a valid 'aws_cloudwatch_log_group' arn",
+    "actualValue": "'aws_api_gateway_stage[positive2].access_log_settings.destination_arn' does not reference a valid 'aws_cloudwatch_log_group' arn"
   }
 ]

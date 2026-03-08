@@ -2,13 +2,25 @@
   {
     "queryName": "S3 Bucket With Unsecured CORS Rule",
     "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive1.yaml"
+    "line": 14,
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket",
+    "searchKey": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules[0] should not allow all methods, all headers or several origins",
+    "actualValue": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules[0] allows all methods, all headers or several origins"
   },
   {
     "queryName": "S3 Bucket With Unsecured CORS Rule",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive2.json"
+    "line": 9,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket",
+    "searchKey": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules[0] should not allow all methods, all headers or several origins",
+    "actualValue": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules[0] allows all methods, all headers or several origins"
   }
 ]

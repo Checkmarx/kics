@@ -2,16 +2,37 @@
   {
     "queryName": "Root Container Not Mounted As Read-only",
     "severity": "LOW",
-    "line": 14
+    "line": 44,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container.name={{example22222}}",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[%!d(string={\"env\": {\"name\": \"environment\", \"value\": \"test\"}, \"image\": \"nginx:1.7.9\", \"liveness_probe\": {\"http_get\": {\"http_header\": {\"name\": \"X-Custom-Header\", \"value\": \"Awesome\"}, \"path\": \"/nginx_status\", \"port\": 80}, \"initial_delay_seconds\": 3, \"period_seconds\": 3}, \"name\": \"example22222\", \"port\": {\"container_port\": 8080}})].security_context should be set",
+    "actualValue": "kkubernetes_pod[positive1].spec.container[%!d(string={\"env\": {\"name\": \"environment\", \"value\": \"test\"}, \"image\": \"nginx:1.7.9\", \"liveness_probe\": {\"http_get\": {\"http_header\": {\"name\": \"X-Custom-Header\", \"value\": \"Awesome\"}, \"path\": \"/nginx_status\", \"port\": 80}, \"initial_delay_seconds\": 3, \"period_seconds\": 3}, \"name\": \"example22222\", \"port\": {\"container_port\": 8080}})].security_context is undefined"
   },
   {
     "queryName": "Root Container Not Mounted As Read-only",
     "severity": "LOW",
-    "line": 44
+    "line": 14,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container.name={{example22}}.security_context.read_only_root_filesystem",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].security_context.read_only_root_filesystem should be set to true",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].security_context.read_only_root_filesystem is not set to true"
   },
   {
     "queryName": "Root Container Not Mounted As Read-only",
     "severity": "LOW",
-    "line": 103
+    "line": 103,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container.security_context",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.security_context.read_only_root_filesystem should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.security_context.read_only_root_filesystem is undefined"
   }
 ]

@@ -3,12 +3,48 @@
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 13,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "restrict_public",
+    "searchKey": "aws_s3_bucket_public_access_block[restrict_public].restrict_public_buckets",
+    "searchValue": "",
+    "expectedValue": "'restrict_public_buckets' should equal 'true'",
+    "actualValue": "'restrict_public_buckets' is equal to 'false'"
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive2.tf"
+    "filename": "negative1.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "restrict_public",
+    "searchKey": "aws_s3_bucket_public_access_block[restrict_public].restrict_public_buckets",
+    "searchValue": "",
+    "expectedValue": "'restrict_public_buckets' should equal 'true'",
+    "actualValue": "'restrict_public_buckets' is equal to 'false'"
+  },
+  {
+    "queryName": "S3 Bucket Without Restriction Of Public Bucket",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive2.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "restrict_public",
+    "searchKey": "aws_s3_bucket_public_access_block[restrict_public].restrict_public_buckets",
+    "searchValue": "",
+    "expectedValue": "'restrict_public_buckets' should equal 'true'",
+    "actualValue": "'restrict_public_buckets' is equal to 'false'"
+  },
+  {
+    "queryName": "S3 Bucket Without Restriction Of Public Bucket",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "negative2.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "restrict_public",
+    "searchKey": "aws_s3_bucket_public_access_block[restrict_public].restrict_public_buckets",
+    "searchValue": "",
+    "expectedValue": "'restrict_public_buckets' should equal 'true'",
+    "actualValue": "'restrict_public_buckets' is equal to 'false'"
   }
 ]

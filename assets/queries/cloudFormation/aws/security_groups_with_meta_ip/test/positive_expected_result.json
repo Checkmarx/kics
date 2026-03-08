@@ -2,97 +2,193 @@
   {
     "queryName": "Security Groups With Meta IP",
     "severity": "HIGH",
-    "line": 12,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Groups With Meta IP",
-    "severity": "HIGH",
-    "line": 16,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Groups With Meta IP",
-    "severity": "HIGH",
-    "line": 26,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Groups With Meta IP",
-    "severity": "HIGH",
-    "line": 36,
-    "fileName": "positive1.yaml"
+    "line": 41,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group_1",
+    "searchKey": "Resources.Positive1_ingress_ipv6_1.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with 'IpProtocol' set to '-1'.",
+    "actualValue": "'Resources.Positive1_ingress_ipv6_1.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'."
   },
   {
     "queryName": "Security Groups With Meta IP",
     "severity": "HIGH",
     "line": 48,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Groups With Meta IP",
-    "severity": "HIGH",
-    "line": 52,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Groups With Meta IP",
-    "severity": "HIGH",
-    "line": 62,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Groups With Meta IP",
-    "severity": "HIGH",
-    "line": 72,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Groups With Meta IP",
-    "severity": "HIGH",
-    "line": 13,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "Security Groups With Meta IP",
-    "severity": "HIGH",
-    "line": 19,
-    "fileName": "positive2.json"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group_2",
+    "searchKey": "Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with all 65535 ports open.",
+    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open."
   },
   {
     "queryName": "Security Groups With Meta IP",
     "severity": "HIGH",
     "line": 31,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group_1",
+    "searchKey": "Resources.Positive1_ingress_ipv4_1.Properties.CidrIp",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with 'IpProtocol' set to '-1'.",
+    "actualValue": "'Resources.Positive1_ingress_ipv4_1.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'."
   },
   {
     "queryName": "Security Groups With Meta IP",
     "severity": "HIGH",
-    "line": 41,
-    "fileName": "positive2.json"
+    "line": 36,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group_1",
+    "searchKey": "Resources.Positive1_ingress_ipv6_1.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with 'IpProtocol' set to '-1'.",
+    "actualValue": "'Resources.Positive1_ingress_ipv6_1.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'."
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group_1",
+    "searchKey": "Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with 'IpProtocol' set to '-1'.",
+    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'."
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 13,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group_1",
+    "searchKey": "Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with 'IpProtocol' set to '-1'.",
+    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'."
   },
   {
     "queryName": "Security Groups With Meta IP",
     "severity": "HIGH",
     "line": 54,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group_2",
+    "searchKey": "Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with all 65535 ports open.",
+    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open."
   },
   {
     "queryName": "Security Groups With Meta IP",
     "severity": "HIGH",
     "line": 60,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "Security Groups With Meta IP",
-    "severity": "HIGH",
-    "line": 72,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group_2",
+    "searchKey": "Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[1].CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with all 65535 ports open.",
+    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open."
   },
   {
     "queryName": "Security Groups With Meta IP",
     "severity": "HIGH",
     "line": 82,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group_2",
+    "searchKey": "Resources.Positive1_ingress_ipv6_2.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with all 65535 ports open.",
+    "actualValue": "'Resources.Positive1_ingress_ipv6_2.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open."
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 19,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group_1",
+    "searchKey": "Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[1].CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with 'IpProtocol' set to '-1'.",
+    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'."
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 26,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group_1",
+    "searchKey": "Resources.Positive1_ingress_ipv4_1.Properties.CidrIp",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with 'IpProtocol' set to '-1'.",
+    "actualValue": "'Resources.Positive1_ingress_ipv4_1.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'."
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 62,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group_2",
+    "searchKey": "Resources.Positive1_ingress_ipv4_2.Properties.CidrIp",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with all 65535 ports open.",
+    "actualValue": "'Resources.Positive1_ingress_ipv4_2.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open."
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 72,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group_2",
+    "searchKey": "Resources.Positive1_ingress_ipv6_2.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with all 65535 ports open.",
+    "actualValue": "'Resources.Positive1_ingress_ipv6_2.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open."
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 16,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group_1",
+    "searchKey": "Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[1].CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with 'IpProtocol' set to '-1'.",
+    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'."
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 52,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group_2",
+    "searchKey": "Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[1].CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with all 65535 ports open.",
+    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open."
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 72,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group_2",
+    "searchKey": "Resources.Positive1_ingress_ipv4_2.Properties.CidrIp",
+    "searchValue": "",
+    "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with all 65535 ports open.",
+    "actualValue": "'Resources.Positive1_ingress_ipv4_2.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open."
   }
 ]

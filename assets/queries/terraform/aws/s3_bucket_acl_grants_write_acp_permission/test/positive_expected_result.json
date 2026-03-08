@@ -3,12 +3,24 @@
     "queryName": "S3 Bucket ACL Grants WRITE_ACP Permission",
     "severity": "CRITICAL",
     "line": 16,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket_acl",
+    "resourceName": "example",
+    "searchKey": "aws_s3_bucket_acl[example].access_control_policy.grant.permission",
+    "searchValue": "",
+    "expectedValue": "Should not be granted Write_ACP permission to the aws_s3_bucket_acl",
+    "actualValue": "Write_ACP permission is granted to the aws_s3_bucket_acl"
   },
   {
     "queryName": "S3 Bucket ACL Grants WRITE_ACP Permission",
     "severity": "CRITICAL",
     "line": 23,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_s3_bucket_acl",
+    "resourceName": "example",
+    "searchKey": "aws_s3_bucket_acl[example].access_control_policy.grant[1].permission",
+    "searchValue": "",
+    "expectedValue": "Should not be granted Write_ACP permission to the aws_s3_bucket_acl",
+    "actualValue": "Write_ACP permission is granted to the aws_s3_bucket_acl"
   }
 ]

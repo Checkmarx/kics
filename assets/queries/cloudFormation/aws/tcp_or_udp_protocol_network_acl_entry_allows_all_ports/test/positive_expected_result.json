@@ -1,50 +1,98 @@
 [
   {
-    "fileName": "positive1.yaml",
-    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
-    "severity": "MEDIUM",
-    "line": 33
-  },
-  {
-    "line": 18,
-    "fileName": "positive1.yaml",
-    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
-    "severity": "MEDIUM"
-  },
-  {
-    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
-    "severity": "MEDIUM",
-    "line": 29,
-    "fileName": "positive1.yaml"
-  },
-  {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
     "line": 49,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule5",
+    "searchKey": "Resources.InboundRule5.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule5.Properties.PortRange should not allow all ports",
+    "actualValue": "Resources.InboundRule5.Properties.PortRange allows all ports"
   },
   {
-    "severity": "MEDIUM",
-    "line": 47,
-    "fileName": "positive2.json",
-    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports"
-  },
-  {
+    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.json",
-    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule2",
+    "searchKey": "Resources.InboundRule2.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule2.Properties.PortRange.To should be set",
+    "actualValue": "Resources.InboundRule2.Properties.PortRange.To is undefined"
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
     "line": 40,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule3",
+    "searchKey": "Resources.InboundRule3.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule3.Properties.PortRange.From should be set",
+    "actualValue": "Resources.InboundRule3.Properties.PortRange.From is undefined"
+  },
+  {
+    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
+    "severity": "MEDIUM",
+    "line": 47,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule4",
+    "searchKey": "Resources.InboundRule4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule4.Properties.PortRange should be set",
+    "actualValue": "Resources.InboundRule4.Properties.PortRange is undefined"
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
     "severity": "MEDIUM",
     "line": 61,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule5",
+    "searchKey": "Resources.InboundRule5.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule5.Properties.PortRange should not allow all ports",
+    "actualValue": "Resources.InboundRule5.Properties.PortRange allows all ports"
+  },
+  {
+    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule2",
+    "searchKey": "Resources.InboundRule2.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule2.Properties.PortRange.To should be set",
+    "actualValue": "Resources.InboundRule2.Properties.PortRange.To is undefined"
+  },
+  {
+    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
+    "severity": "MEDIUM",
+    "line": 29,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule3",
+    "searchKey": "Resources.InboundRule3.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule3.Properties.PortRange.From should be set",
+    "actualValue": "Resources.InboundRule3.Properties.PortRange.From is undefined"
+  },
+  {
+    "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
+    "severity": "MEDIUM",
+    "line": 33,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule4",
+    "searchKey": "Resources.InboundRule4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule4.Properties.PortRange should be set",
+    "actualValue": "Resources.InboundRule4.Properties.PortRange is undefined"
   }
 ]

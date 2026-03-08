@@ -2,49 +2,97 @@
   {
     "queryName": "Unknown Property (v2)",
     "severity": "INFO",
-    "line": 20,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Unknown Property (v2)",
-    "severity": "INFO",
-    "line": 40,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Unknown Property (v2)",
-    "severity": "INFO",
-    "line": 7,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Unknown Property (v2)",
-    "severity": "INFO",
-    "line": 25,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Unknown Property (v2)",
-    "severity": "INFO",
-    "line": 16,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "Unknown Property (v2)",
-    "severity": "INFO",
-    "line": 28,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "Unknown Property (v2)",
-    "severity": "INFO",
     "line": 6,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.nameee",
+    "searchValue": "",
+    "expectedValue": "The field 'nameee' is known in the contact object",
+    "actualValue": "The field 'nameee' is unknown in the contact object"
   },
   {
     "queryName": "Unknown Property (v2)",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "taggs",
+    "searchValue": "",
+    "expectedValue": "The field 'taggs' is known in the openapi object",
+    "actualValue": "The field 'taggs' is unknown in the openapi object"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.descripption",
+    "searchValue": "",
+    "expectedValue": "The field 'descripption' is known in the parameters object",
+    "actualValue": "The field 'descripption' is unknown in the parameters object"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 40,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.ErrorModel.propppperties",
+    "searchValue": "",
+    "expectedValue": "The field 'propppperties' is known in the definitions object",
+    "actualValue": "The field 'propppperties' is unknown in the definitions object"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.nameee",
+    "searchValue": "",
+    "expectedValue": "The field 'nameee' is known in the contact object",
+    "actualValue": "The field 'nameee' is unknown in the contact object"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "taggs",
+    "searchValue": "",
+    "expectedValue": "The field 'taggs' is known in the openapi object",
+    "actualValue": "The field 'taggs' is unknown in the openapi object"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.descripption",
+    "searchValue": "",
+    "expectedValue": "The field 'descripption' is known in the parameters object",
+    "actualValue": "The field 'descripption' is unknown in the parameters object"
+  },
+  {
+    "queryName": "Unknown Property (v2)",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.ErrorModel.propppperties",
+    "searchValue": "",
+    "expectedValue": "The field 'propppperties' is known in the definitions object",
+    "actualValue": "The field 'propppperties' is unknown in the definitions object"
   }
 ]

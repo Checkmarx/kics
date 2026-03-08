@@ -2,25 +2,49 @@
   {
     "queryName": "ELB Without Secure Protocol",
     "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' should be set to 'SSL' or 'HTTPS'",
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' isn't set to 'SSL' or 'HTTPS'"
+  },
+  {
+    "queryName": "ELB Without Secure Protocol",
+    "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Listeners.Protocol' should be set to 'SSL' or 'HTTPS'",
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' isn't set to 'SSL' or 'HTTPS'"
+  },
+  {
+    "queryName": "ELB Without Secure Protocol",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' should be set to 'SSL' or 'HTTPS'",
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' isn't set to 'SSL' or 'HTTPS'"
   },
   {
     "queryName": "ELB Without Secure Protocol",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "ELB Without Secure Protocol",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "ELB Without Secure Protocol",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive2.json"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Listeners.Protocol' should be set to 'SSL' or 'HTTPS'",
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' isn't set to 'SSL' or 'HTTPS'"
   }
 ]

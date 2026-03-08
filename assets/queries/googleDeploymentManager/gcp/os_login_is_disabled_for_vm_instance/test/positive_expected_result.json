@@ -3,6 +3,12 @@
     "queryName": "OSLogin Is Disabled In VM Instance",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm",
+    "searchKey": "resources.name={{vm}}.properties.metadata.items[0]",
+    "searchValue": "",
+    "expectedValue": "'metadata.items[0]'.value should be true",
+    "actualValue": "'metadata.items[0]'.value is false"
   }
 ]

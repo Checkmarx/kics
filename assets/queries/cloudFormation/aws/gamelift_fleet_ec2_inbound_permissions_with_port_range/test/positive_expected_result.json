@@ -1,50 +1,98 @@
 [
   {
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive1.yaml",
-    "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range"
-  },
-  {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
-    "severity": "MEDIUM",
-    "line": 15,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "severity": "MEDIUM",
-    "line": 28,
-    "fileName": "positive1.yaml",
-    "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range"
-  },
-  {
     "severity": "MEDIUM",
     "line": 32,
-    "fileName": "positive1.yaml",
-    "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::GameLift::Fleet",
+    "resourceName": "FleetResource3",
+    "searchKey": "Resources.FleetResource3.Properties.EC2InboundPermissions",
+    "searchValue": "",
+    "expectedValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[1].FromPort is equal to Resources.FleetResource3.Properties.EC2InboundPermissions[1].ToPort",
+    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[1].ToPort"
   },
   {
-    "line": 8,
-    "fileName": "positive2.json",
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive2.json",
+    "resourceType": "AWS::GameLift::Fleet",
+    "resourceName": "FleetResource1",
+    "searchKey": "Resources.FleetResource1.Properties.EC2InboundPermissions",
+    "searchValue": "",
+    "expectedValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[0].FromPort is equal to Resources.FleetResource1.Properties.EC2InboundPermissions[0].ToPort",
+    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[0].ToPort"
   },
   {
+    "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive2.json",
-    "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range"
+    "filename": "positive2.json",
+    "resourceType": "AWS::GameLift::Fleet",
+    "resourceName": "FleetResource1",
+    "searchKey": "Resources.FleetResource1.Properties.EC2InboundPermissions",
+    "searchValue": "",
+    "expectedValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[1].FromPort is equal to Resources.FleetResource1.Properties.EC2InboundPermissions[1].ToPort",
+    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[1].ToPort"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
     "severity": "MEDIUM",
     "line": 39,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::GameLift::Fleet",
+    "resourceName": "FleetResource3",
+    "searchKey": "Resources.FleetResource3.Properties.EC2InboundPermissions",
+    "searchValue": "",
+    "expectedValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[0].FromPort is equal to Resources.FleetResource3.Properties.EC2InboundPermissions[0].ToPort",
+    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[0].ToPort"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
     "severity": "MEDIUM",
     "line": 45,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::GameLift::Fleet",
+    "resourceName": "FleetResource3",
+    "searchKey": "Resources.FleetResource3.Properties.EC2InboundPermissions",
+    "searchValue": "",
+    "expectedValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[1].FromPort is equal to Resources.FleetResource3.Properties.EC2InboundPermissions[1].ToPort",
+    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[1].ToPort"
+  },
+  {
+    "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::GameLift::Fleet",
+    "resourceName": "FleetResource1",
+    "searchKey": "Resources.FleetResource1.Properties.EC2InboundPermissions",
+    "searchValue": "",
+    "expectedValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[0].FromPort is equal to Resources.FleetResource1.Properties.EC2InboundPermissions[0].ToPort",
+    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[0].ToPort"
+  },
+  {
+    "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::GameLift::Fleet",
+    "resourceName": "FleetResource1",
+    "searchKey": "Resources.FleetResource1.Properties.EC2InboundPermissions",
+    "searchValue": "",
+    "expectedValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[1].FromPort is equal to Resources.FleetResource1.Properties.EC2InboundPermissions[1].ToPort",
+    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[1].ToPort"
+  },
+  {
+    "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::GameLift::Fleet",
+    "resourceName": "FleetResource3",
+    "searchKey": "Resources.FleetResource3.Properties.EC2InboundPermissions",
+    "searchValue": "",
+    "expectedValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[0].FromPort is equal to Resources.FleetResource3.Properties.EC2InboundPermissions[0].ToPort",
+    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[0].ToPort"
   }
 ]

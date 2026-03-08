@@ -1,26 +1,50 @@
 [
   {
-    "queryName": "Invalid License URL (v3)",
-    "severity": "INFO",
-    "line": 8,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Invalid License URL (v3)",
+    "queryName": "Invalid License URL (v2)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive2.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.license.url",
+    "searchValue": "",
+    "expectedValue": "info.license.url has a valid URL",
+    "actualValue": "info.license.url has an invalid URL"
   },
   {
     "queryName": "Invalid License URL (v2)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.license.url",
+    "searchValue": "",
+    "expectedValue": "info.license.url has a valid URL",
+    "actualValue": "info.license.url has an invalid URL"
   },
   {
-    "queryName": "Invalid License URL (v2)",
+    "queryName": "Invalid License URL (v3)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive4.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.license.url",
+    "searchValue": "",
+    "expectedValue": "info.license.url has a valid URL",
+    "actualValue": "info.license.url has an invalid URL"
+  },
+  {
+    "queryName": "Invalid License URL (v3)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.license.url",
+    "searchValue": "",
+    "expectedValue": "info.license.url has a valid URL",
+    "actualValue": "info.license.url has an invalid URL"
   }
 ]

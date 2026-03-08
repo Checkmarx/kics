@@ -1,20 +1,38 @@
 [
-	{
-		"queryName": "Audit Policy File Not Defined",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Audit Policy File Not Defined",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Audit Policy File Not Defined",
-		"severity": "MEDIUM",
-		"line": 12,
-        "fileName": "positive3.yaml"
-	}
+  {
+    "queryName": "Audit Policy File Not Defined",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-policy-file flag should be defined",
+    "actualValue": "--audit-policy-file is not defined"
+  },
+  {
+    "queryName": "Audit Policy File Not Defined",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive3.yaml",
+    "resourceType": "Service",
+    "resourceName": "dummy",
+    "searchKey": "metadata.name={{dummy}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-policy-file flag should be defined",
+    "actualValue": "--audit-policy-file is not defined"
+  },
+  {
+    "queryName": "Audit Policy File Not Defined",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-policy-file flag should have a valid file",
+    "actualValue": "--audit-policy-file does not have a valid file"
+  }
 ]

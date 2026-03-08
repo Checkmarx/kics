@@ -1,14 +1,26 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "ECS Service Without Running Tasks",
     "severity": "LOW",
-    "line": 64
+    "line": 64,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "ServiceName",
+    "searchKey": "Resources.service.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.service.Properties.DeploymentConfiguration should be defined and not null",
+    "actualValue": "Resources.service.Properties.DeploymentConfiguration is undefined or null"
   },
   {
     "queryName": "ECS Service Without Running Tasks",
     "severity": "LOW",
     "line": 152,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "ServiceName",
+    "searchKey": "Resources.service.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.service.Properties.DeploymentConfiguration should be defined and not null",
+    "actualValue": "Resources.service.Properties.DeploymentConfiguration is undefined or null"
   }
 ]

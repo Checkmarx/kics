@@ -1,8 +1,14 @@
 [
-	{
-		"queryName": "Nifcloud LB Listener Using HTTP Port",
-		"severity": "MEDIUM",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud LB Listener Using HTTP Port",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "nifcloud_load_balancer_listener",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_load_balancer_listener[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_load_balancer_listener[positive]' should switch to HTTPS to benefit from TLS security features.",
+    "actualValue": "'nifcloud_load_balancer_listener[positive]' using HTTP port."
+  }
 ]

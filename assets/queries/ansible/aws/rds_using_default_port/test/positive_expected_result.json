@@ -3,24 +3,48 @@
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group}}.{{community.aws.rds_instance}}.port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 3306",
+    "actualValue": "'port' is set to 3306"
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive2.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group2",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group2}}.{{community.aws.rds_instance}}.port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 1433",
+    "actualValue": "'port' is set to 1433"
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive3.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group2",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group2}}.{{community.aws.rds_instance}}.port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 5432",
+    "actualValue": "'port' is set to 5432"
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive4.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group2",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group2}}.{{community.aws.rds_instance}}.port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 1521",
+    "actualValue": "'port' is set to 1521"
   }
 ]

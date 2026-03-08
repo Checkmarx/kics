@@ -2,13 +2,25 @@
   {
     "queryName": "IAM Access Analyzer Not Enabled",
     "severity": "LOW",
-    "line": 1,
-    "fileName": "positive1.tf"
+    "line": 6,
+    "filename": "positive2.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "'aws_accessanalyzer_analyzer' should be set",
+    "actualValue": "'aws_accessanalyzer_analyzer' is undefined"
   },
   {
     "queryName": "IAM Access Analyzer Not Enabled",
     "severity": "LOW",
-    "line": 6,
-    "fileName": "positive2.json"
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "'aws_accessanalyzer_analyzer' should be set",
+    "actualValue": "'aws_accessanalyzer_analyzer' is undefined"
   }
 ]

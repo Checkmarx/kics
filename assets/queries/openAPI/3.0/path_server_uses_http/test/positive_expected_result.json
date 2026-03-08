@@ -2,13 +2,25 @@
   {
     "queryName": "Path Server Object Uses HTTP (v3)",
     "severity": "MEDIUM",
-    "line": 18,
-    "filename": "positive1.json"
+    "line": 15,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.url={{http://api.gigantic-server.com/v1}}",
+    "searchValue": "",
+    "expectedValue": "Path Server Object url uses 'HTTPS' protocol",
+    "actualValue": "Path Server Object url uses 'HTTP' protocol"
   },
   {
     "queryName": "Path Server Object Uses HTTP (v3)",
     "severity": "MEDIUM",
-    "line": 15,
-    "filename": "positive2.yaml"
+    "line": 18,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.url={{http://staging.gigantic-server.com/v1}}",
+    "searchValue": "",
+    "expectedValue": "Path Server Object url uses 'HTTPS' protocol",
+    "actualValue": "Path Server Object url uses 'HTTP' protocol"
   }
 ]

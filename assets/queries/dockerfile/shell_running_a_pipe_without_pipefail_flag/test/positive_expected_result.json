@@ -2,11 +2,25 @@
   {
     "queryName": "Shell Running A Pipe Without Pipefail Flag",
     "severity": "LOW",
-    "line": 2
+    "line": 3,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN [ \"/bin/bash\", \"./some_output\", \"|\", \"./some_script\" ]}}",
+    "searchValue": "/bin/bash",
+    "expectedValue": "'RUN [ '/bin/bash', './some_output', '|', './some_script' ]' has pipefail option set for pipe command with shell /bin/bash.",
+    "actualValue": "'RUN [ '/bin/bash', './some_output', '|', './some_script' ]' does not have pipefail option set for pipe command with shell /bin/bash."
   },
   {
     "queryName": "Shell Running A Pipe Without Pipefail Flag",
     "severity": "LOW",
-    "line": 3
+    "line": 2,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN zsh ./some_output | ./some_script}}",
+    "searchValue": "zsh",
+    "expectedValue": "'RUN zsh ./some_output | ./some_script' has pipefail option set for pipe command with shell zsh.",
+    "actualValue": "'RUN zsh ./some_output | ./some_script' does not have pipefail option set for pipe command with shell zsh."
   }
 ]

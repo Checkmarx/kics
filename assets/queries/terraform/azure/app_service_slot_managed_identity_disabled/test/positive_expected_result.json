@@ -3,18 +3,36 @@
     "queryName": "Beta - App Service Slot Managed Identity Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app_slot",
+    "resourceName": "example-slot",
+    "searchKey": "azurerm_linux_web_app_slot[positive2]",
+    "searchValue": "",
+    "expectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
+    "actualValue": "'identity' block is not defined"
   },
   {
     "queryName": "Beta - App Service Slot Managed Identity Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service_slot",
+    "resourceName": "${random_id.server.hex}",
+    "searchKey": "azurerm_app_service_slot[positive1]",
+    "searchValue": "",
+    "expectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
+    "actualValue": "'identity' block is not defined"
   },
   {
     "queryName": "Beta - App Service Slot Managed Identity Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app_slot",
+    "resourceName": "example-slot",
+    "searchKey": "azurerm_windows_web_app_slot[positive3]",
+    "searchValue": "",
+    "expectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
+    "actualValue": "'identity' block is not defined"
   }
 ]

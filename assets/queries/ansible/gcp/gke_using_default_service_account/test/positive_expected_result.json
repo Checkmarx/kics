@@ -1,14 +1,26 @@
 [
-	{
-		"queryName": "GKE Using Default Service Account",
-		"severity": "MEDIUM",
-		"line": 8,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "GKE Using Default Service Account",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "GKE Using Default Service Account",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive2.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster",
+    "searchKey": "name={{create a cluster}}.{{google.cloud.gcp_container_cluster}}.node_config.service_account",
+    "searchValue": "",
+    "expectedValue": "'service_account' should not be default",
+    "actualValue": "'service_account' is default"
+  },
+  {
+    "queryName": "GKE Using Default Service Account",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive1.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster",
+    "searchKey": "name={{create a cluster}}.{{google.cloud.gcp_container_cluster}}.node_config",
+    "searchValue": "",
+    "expectedValue": "'service_account' should not be default",
+    "actualValue": "'service_account' is missing"
+  }
 ]

@@ -3,30 +3,60 @@
     "queryName": "Beta - Storage Account Without Delete Lock",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "examplestorageacct",
+    "searchKey": "azurerm_storage_account[example_pos2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[example_pos2]' should be associated with an 'azurerm_management_lock' where lock_level is set to 'CanNotDelete'",
+    "actualValue": "'azurerm_storage_account[example_pos2]' is not associated with an 'azurerm_management_lock'"
+  },
+  {
+    "queryName": "Beta - Storage Account Without Delete Lock",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive4.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "examplestorageacct",
+    "searchKey": "azurerm_storage_account[example_pos4]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[example_pos4]' should be associated with an 'azurerm_management_lock' where lock_level is set to 'CanNotDelete'",
+    "actualValue": "'azurerm_storage_account[example_pos4]' is not associated with an 'azurerm_management_lock'"
+  },
+  {
+    "queryName": "Beta - Storage Account Without Delete Lock",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive5.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "examplestorageacct",
+    "searchKey": "azurerm_storage_account[example_pos5]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[example_pos5]' should be associated with an 'azurerm_management_lock' where lock_level is set to 'CanNotDelete'",
+    "actualValue": "'azurerm_storage_account[example_pos5]' is not associated with an 'azurerm_management_lock'"
+  },
+  {
+    "queryName": "Beta - Storage Account Without Delete Lock",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "examplestorageacct",
+    "searchKey": "azurerm_storage_account[example_pos3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[example_pos3]' should be associated with an 'azurerm_management_lock' where lock_level is set to 'CanNotDelete'",
+    "actualValue": "'azurerm_storage_account[example_pos3]' is associated with 'azurerm_management_lock[storage_delete_lock_pos3]' but lock_level is 'ReadOnly'"
   },
   {
     "queryName": "Beta - Storage Account Without Delete Lock",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "Beta - Storage Account Without Delete Lock",
-    "severity": "LOW",
-    "line": 6,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "Beta - Storage Account Without Delete Lock",
-    "severity": "LOW",
-    "line": 6,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Beta - Storage Account Without Delete Lock",
-    "severity": "LOW",
-    "line": 6,
-    "fileName": "positive5.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "examplestorageacct",
+    "searchKey": "azurerm_storage_account[example_pos1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[example_pos1]' should be associated with an 'azurerm_management_lock' where lock_level is set to 'CanNotDelete'",
+    "actualValue": "'azurerm_storage_account[example_pos1]' is not associated with an 'azurerm_management_lock'"
   }
 ]

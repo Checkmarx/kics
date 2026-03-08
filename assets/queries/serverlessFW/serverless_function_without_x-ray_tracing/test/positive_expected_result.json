@@ -2,13 +2,25 @@
   {
     "queryName": "Serverless Function Without X-Ray Tracing",
     "severity": "LOW",
-    "line": 14,
-    "fileName": "positive1.yml"
+    "line": 8,
+    "filename": "positive2.yml",
+    "resourceType": "AWS::Lambda",
+    "resourceName": "hello",
+    "searchKey": "functions.hello",
+    "searchValue": "",
+    "expectedValue": "'tracing' should be defined and set to Active",
+    "actualValue": "'tracing' is not defined"
   },
   {
     "queryName": "Serverless Function Without X-Ray Tracing",
     "severity": "LOW",
-    "line": 8,
-    "fileName": "positive2.yml"
+    "line": 14,
+    "filename": "positive1.yml",
+    "resourceType": "AWS::Lambda",
+    "resourceName": "hello",
+    "searchKey": "functions.hello.tracing",
+    "searchValue": "",
+    "expectedValue": "'tracing' should be set to Active",
+    "actualValue": "'tracing' is not set to Active"
   }
 ]

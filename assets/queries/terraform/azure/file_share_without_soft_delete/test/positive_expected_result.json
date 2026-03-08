@@ -2,11 +2,25 @@
   {
     "queryName": "Beta - File Share Without Soft Delete",
     "severity": "HIGH",
-    "line": 1
+    "line": 18,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_storage_account[positive2].share_properties",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive2].share_properties.retention_policy' should be defined and not null",
+    "actualValue": "'azurerm_storage_account[positive2].share_properties.retention_policy' is undefined or null"
   },
   {
     "queryName": "Beta - File Share Without Soft Delete",
     "severity": "HIGH",
-    "line": 18
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_storage_account[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive1].share_properties.retention_policy' should be defined and not null",
+    "actualValue": "'azurerm_storage_account[positive1].share_properties' is undefined or null"
   }
 ]

@@ -3,6 +3,12 @@
     "queryName": "IAM Role Policy passRole Allows All",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_role_policy",
+    "resourceName": "test_policy",
+    "searchKey": "aws_iam_role_policy[test_policy].policy",
+    "searchValue": "",
+    "expectedValue": "'aws_iam_role_policy.policy.Statement.Action' iam:passrole shouldn't have Resource '*'",
+    "actualValue": "'aws_iam_role_policy.policy.Statement.Action' iam:passrole has Resource '*'"
   }
 ]

@@ -2,37 +2,73 @@
   {
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive1.json"
+    "line": 26,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "A security scheme is an empty object"
   },
   {
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
     "line": 43,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "A security scheme is not defined"
   },
   {
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
     "line": 44,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "A security scheme is an empty object"
+  },
+  {
+    "queryName": "Field 'securityScheme' On Components Is Undefined",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "Components is not defined"
   },
   {
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "Components is not defined"
   },
   {
     "queryName": "Field 'securityScheme' On Components Is Undefined",
     "severity": "MEDIUM",
     "line": 25,
-    "filename": "positive5.yaml"
-  },
-  {
-    "queryName": "Field 'securityScheme' On Components Is Undefined",
-    "severity": "MEDIUM",
-    "line": 26,
-    "filename": "positive6.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components",
+    "searchValue": "",
+    "expectedValue": "A security scheme on components should be defined",
+    "actualValue": "A security scheme is not defined"
   }
 ]

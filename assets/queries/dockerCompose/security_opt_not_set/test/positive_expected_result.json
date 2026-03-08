@@ -3,6 +3,12 @@
     "queryName": "Security Opt Not Set",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'security_opt' attribute",
+    "actualValue": "Docker compose file does not have 'security_opt' attribute"
   }
 ]

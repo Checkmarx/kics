@@ -3,48 +3,96 @@
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "CRITICAL",
-    "line": 7,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "fileName": "positive3.yaml",
-    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "CRITICAL",
-    "line": 7
-  },
-  {
-    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "CRITICAL",
-    "line": 7,
-    "fileName": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3BucketForWebsiteContent",
+    "searchKey": "Resources.S3BucketForWebsiteContent.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable and writeble ACL",
+    "actualValue": "S3 bucket named 'undefined' has ACL set to 'PublicReadWrite'"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
     "severity": "CRITICAL",
     "line": 13,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts",
+    "searchKey": "Resources.JenkinsArtifacts01.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable and writeble ACL",
+    "actualValue": "S3 bucket named 'jenkins-artifacts' has ACL set to 'PublicReadWrite'"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
     "severity": "CRITICAL",
     "line": 8,
-    "fileName": "positive6.json"
+    "filename": "positive7.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts-block-public",
+    "searchKey": "Resources.JenkinsArtifacts02.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable and writeble ACL",
+    "actualValue": "S3 bucket named 'jenkins-artifacts-block-public' has ACL set to 'PublicReadWrite'"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
     "severity": "CRITICAL",
     "line": 8,
-    "fileName": "positive7.json"
+    "filename": "positive8.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3BucketForWebsiteContent",
+    "searchKey": "Resources.S3BucketForWebsiteContent.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable and writeble ACL",
+    "actualValue": "S3 bucket named 'undefined' has ACL set to 'PublicReadWrite'"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
     "severity": "CRITICAL",
     "line": 8,
-    "fileName": "positive8.json"
+    "filename": "positive6.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "public-read-static-page01",
+    "searchKey": "Resources.StaticPage01.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable and writeble ACL",
+    "actualValue": "S3 bucket named 'public-read-static-page01' has ACL set to 'PublicReadWrite'"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
+    "severity": "CRITICAL",
+    "line": 7,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts",
+    "searchKey": "Resources.JenkinsArtifacts01.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable and writeble ACL",
+    "actualValue": "S3 bucket named 'jenkins-artifacts' has ACL set to 'PublicReadWrite'"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
+    "severity": "CRITICAL",
+    "line": 7,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "public-read-static-page01",
+    "searchKey": "Resources.StaticPage01.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable and writeble ACL",
+    "actualValue": "S3 bucket named 'public-read-static-page01' has ACL set to 'PublicReadWrite'"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
+    "severity": "CRITICAL",
+    "line": 7,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts-block-public",
+    "searchKey": "Resources.JenkinsArtifacts02.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable and writeble ACL",
+    "actualValue": "S3 bucket named 'jenkins-artifacts-block-public' has ACL set to 'PublicReadWrite'"
   }
 ]

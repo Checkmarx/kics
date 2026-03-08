@@ -3,12 +3,24 @@
     "queryName": "TKE Cluster Log Agent Is Not Enabled",
     "severity": "LOW",
     "line": 39,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "managed_cluster",
+    "searchKey": "tencentcloud_kubernetes_cluster[managed_cluster].log_agent.enabled",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[managed_cluster].log_agent.enabled should be set to 'true'",
+    "actualValue": "tencentcloud_kubernetes_cluster[managed_cluster].log_agent.enabled is not set to 'true'"
   },
   {
     "queryName": "TKE Cluster Log Agent Is Not Enabled",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "managed_cluster",
+    "searchKey": "tencentcloud_kubernetes_cluster[managed_cluster]",
+    "searchValue": "",
+    "expectedValue": "'log_agent' should be defined and not null",
+    "actualValue": "'log_agent' is undefined or null"
   }
 ]

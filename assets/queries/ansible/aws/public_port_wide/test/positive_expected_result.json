@@ -1,12 +1,26 @@
 [
-	{
-		"queryName": "Public Port Wide",
-		"severity": "HIGH",
-		"line": 8
-	},
-	{
-		"queryName": "Public Port Wide",
-		"severity": "HIGH",
-		"line": 12
-	}
+  {
+    "queryName": "Public Port Wide",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[0] shouldn't have public port wide",
+    "actualValue": "ec2_group.rules[0] has public port wide"
+  },
+  {
+    "queryName": "Public Port Wide",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[1] shouldn't have public port wide",
+    "actualValue": "ec2_group.rules[1] has public port wide"
+  }
 ]

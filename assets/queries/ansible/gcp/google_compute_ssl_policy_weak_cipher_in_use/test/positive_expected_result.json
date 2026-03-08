@@ -2,11 +2,25 @@
   {
     "queryName": "Google Compute SSL Policy Weak Cipher In Use",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 16,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_ssl_policy",
+    "resourceName": "create a SSL policy2",
+    "searchKey": "name={{create a SSL policy2}}.{{google.cloud.gcp_compute_ssl_policy}}.min_tls_version",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_ssl_policy.min_tls_version has min_tls_version should be set to 'TLS_1_2'",
+    "actualValue": "gcp_compute_ssl_policy.min_tls_version does not have min_tls_version set to 'TLS_1_2'"
   },
   {
     "queryName": "Google Compute SSL Policy Weak Cipher In Use",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_ssl_policy",
+    "resourceName": "create a SSL policy",
+    "searchKey": "name={{create a SSL policy}}.{{google.cloud.gcp_compute_ssl_policy}}",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_ssl_policy has min_tls_version should be set to 'TLS_1_2'",
+    "actualValue": "gcp_compute_ssl_policy does not have min_tls_version set to 'TLS_1_2'"
   }
 ]

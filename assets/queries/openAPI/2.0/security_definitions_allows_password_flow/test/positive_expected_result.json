@@ -2,13 +2,25 @@
   {
     "queryName": "Security Definitions Allows Password Flow",
     "severity": "MEDIUM",
-    "line": 27,
-    "filename": "positive1.json"
+    "line": 19,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.{{oAuth2AuthCodeNeg2}}.flow",
+    "searchValue": "",
+    "expectedValue": "security definition should not allow 'password' flow in OAuth2 authentication",
+    "actualValue": "security definition allows 'password' flow in OAuth2 authentication"
   },
   {
     "queryName": "Security Definitions Allows Password Flow",
     "severity": "MEDIUM",
-    "line": 19,
-    "filename": "positive2.yaml"
+    "line": 27,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.{{oAuth2AuthCodeNeg2}}.flow",
+    "searchValue": "",
+    "expectedValue": "security definition should not allow 'password' flow in OAuth2 authentication",
+    "actualValue": "security definition allows 'password' flow in OAuth2 authentication"
   }
 ]

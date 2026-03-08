@@ -2,121 +2,241 @@
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive6.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "positive6",
+    "searchKey": "aws_rds_cluster[positive6]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive13.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[aurora_cluster]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive10.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "example_postgres",
+    "searchKey": "aws_rds_cluster[example_postgres]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive16.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[aurora_cluster]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive15.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[aurora_cluster].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is defined to false"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive5.tf"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive6.tf"
+    "filename": "positive14.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[aurora_cluster].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is defined to false"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive7.tf"
+    "filename": "positive17.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[aurora_cluster].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is defined to false"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive8.tf"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive9.tf"
+    "filename": "positive8.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "example_postgres",
+    "searchKey": "aws_rds_cluster[example_postgres]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive10.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "positive2",
+    "searchKey": "aws_rds_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive11.tf"
+    "filename": "positive11.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[aurora_cluster].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is defined to false"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive19.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[aurora_cluster].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is defined to false"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive12.tf"
+    "filename": "positive18.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[aurora_cluster]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive13.tf"
+    "line": 10,
+    "filename": "positive1.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_rds_cluster[positive1].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is defined to false"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive14.tf"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive15.tf"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive16.tf"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive17.tf"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive18.tf"
+    "filename": "positive4.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "positive4",
+    "searchKey": "aws_rds_cluster[positive4].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is defined to false"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive19.tf"
+    "filename": "positive5.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "positive5",
+    "searchKey": "aws_rds_cluster[positive5].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is defined to false"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive20.tf"
+    "filename": "positive20.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[aurora_cluster]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "positive3",
+    "searchKey": "aws_rds_cluster[positive3]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive12.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[aurora_cluster]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive9.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "example_postgres",
+    "searchKey": "aws_rds_cluster[example_postgres].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is defined to false"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive7.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "example_postgres",
+    "searchKey": "aws_rds_cluster[example_postgres].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is defined to false"
   }
 ]

@@ -1,14 +1,26 @@
 [
   {
-    "line": 3,
-    "fileName": "positive1.yaml",
     "queryName": "VPC Attached With Too Many Gateways",
-    "severity": "LOW"
-  },
-  {
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive2.json",
-    "queryName": "VPC Attached With Too Many Gateways"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::VPC",
+    "resourceName": "myVPC",
+    "searchKey": "Resources.myVPC",
+    "searchValue": "",
+    "expectedValue": "'Resources.myVPC' should not be attached with a number of gateways close to or out of limit (>3)",
+    "actualValue": "'Resources.myVPC' is attached with a number of gateways close to or out of limit (>3)"
+  },
+  {
+    "queryName": "VPC Attached With Too Many Gateways",
+    "severity": "LOW",
+    "line": 3,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::VPC",
+    "resourceName": "myVPC",
+    "searchKey": "Resources.myVPC",
+    "searchValue": "",
+    "expectedValue": "'Resources.myVPC' should not be attached with a number of gateways close to or out of limit (>3)",
+    "actualValue": "'Resources.myVPC' is attached with a number of gateways close to or out of limit (>3)"
   }
 ]

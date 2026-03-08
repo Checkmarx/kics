@@ -2,6 +2,13 @@
   {
     "queryName": "Shared Host Network Namespace",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test",
+    "searchKey": "kubernetes_pod[test].spec.host_network",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test].spec.host_network should be undefined or set to false",
+    "actualValue": "kubernetes_pod[test].spec.host_network is set to true"
   }
 ]

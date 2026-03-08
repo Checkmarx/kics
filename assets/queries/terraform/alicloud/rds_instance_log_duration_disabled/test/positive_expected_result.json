@@ -2,19 +2,37 @@
   {
     "queryName": "RDS Instance Log Duration Disabled",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive1.tf"
+    "line": 1,
+    "filename": "positive3.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]]",
+    "searchValue": "",
+    "expectedValue": "'log_duration' parameter should be defined and value should be 'ON' in parameters array",
+    "actualValue": "'log_duration' parameter is not defined in parameters array"
   },
   {
     "queryName": "RDS Instance Log Duration Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].parameters",
+    "searchValue": "",
+    "expectedValue": "'log_duration' parameter should be defined and value should be 'ON'",
+    "actualValue": "'log_duration' parameter is not defined"
   },
   {
     "queryName": "RDS Instance Log Duration Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive3.tf"
+    "line": 14,
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].parameters[2].value",
+    "searchValue": "",
+    "expectedValue": "'log_duration' parameter value should be 'ON'",
+    "actualValue": "'log_duration' parameter value is 'OFF'"
   }
 ]

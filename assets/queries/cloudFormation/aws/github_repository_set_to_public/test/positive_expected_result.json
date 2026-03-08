@@ -2,31 +2,61 @@
   {
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "GitHub Repository Set To Public",
-    "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "GitHub Repository Set To Public",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::CodeStar::GitHubRepository",
+    "resourceName": "my-github-repo",
+    "searchKey": "Resources.MyRepo4.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRepo4.IsPrivate' should be set",
+    "actualValue": "'Resources.MyRepo4.IsPrivate' is undefined"
   },
   {
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::CodeStar::GitHubRepository",
+    "resourceName": "my-github-repo",
+    "searchKey": "Resources.MyRepo6.Properties.IsPrivate",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRepo6.Properties.IsPrivate' should be set to true",
+    "actualValue": "'Resources.MyRepo6.Properties.IsPrivate' is not set to true"
+  },
+  {
+    "queryName": "GitHub Repository Set To Public",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive3.json",
+    "resourceType": "AWS::CodeStar::GitHubRepository",
+    "resourceName": "my-github-repo",
+    "searchKey": "Resources.MyRepo5.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRepo5.IsPrivate' should be set",
+    "actualValue": "'Resources.MyRepo5.IsPrivate' is undefined"
   },
   {
     "queryName": "GitHub Repository Set To Public",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::CodeStar::GitHubRepository",
+    "resourceName": "my-github-repo",
+    "searchKey": "Resources.MyRepo3.Properties.IsPrivate",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRepo3.Properties.IsPrivate' should be set to true",
+    "actualValue": "'Resources.MyRepo3.Properties.IsPrivate' is not set to true"
+  },
+  {
+    "queryName": "GitHub Repository Set To Public",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CodeStar::GitHubRepository",
+    "resourceName": "my-github-repo",
+    "searchKey": "Resources.MyRepo3.Properties.IsPrivate",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRepo3.Properties.IsPrivate' should be set to true",
+    "actualValue": "'Resources.MyRepo3.Properties.IsPrivate' is not set to true"
   }
 ]

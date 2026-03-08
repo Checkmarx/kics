@@ -3,6 +3,12 @@
     "queryName": "COS Node Image Not Used",
     "severity": "LOW",
     "line": 7,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "container.v1.nodePool",
+    "resourceName": "nodePool",
+    "searchKey": "resources.name={{nodePool}}.properties.config.imageType",
+    "searchValue": "",
+    "expectedValue": "'config.imageType' should start with 'cos'",
+    "actualValue": "'config.imageType' is ubuntu"
   }
 ]

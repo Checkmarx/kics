@@ -1,22 +1,50 @@
 [
-	{
-		"queryName": "Using Default Service Account",
-		"severity": "MEDIUM",
-		"line": 3
-	},
-	{
-		"queryName": "Using Default Service Account",
-		"severity": "MEDIUM",
-		"line": 57
-	},
-	{
-		"queryName": "Using Default Service Account",
-		"severity": "MEDIUM",
-		"line": 86
-	},
-	{
-		"queryName": "Using Default Service Account",
-		"severity": "MEDIUM",
-		"line": 115
-	}
+  {
+    "queryName": "Using Default Service Account",
+    "severity": "MEDIUM",
+    "line": 115,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance4",
+    "searchKey": "name={{create a instance4}}.{{google.cloud.gcp_compute_instance}}.service_account_email",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.service_account_email should not be a default Google Compute Engine service account",
+    "actualValue": "gcp_compute_instance.service_account_email is a default Google Compute Engine service account"
+  },
+  {
+    "queryName": "Using Default Service Account",
+    "severity": "MEDIUM",
+    "line": 57,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance2",
+    "searchKey": "name={{create a instance2}}.{{google.cloud.gcp_compute_instance}}.service_account_email",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.service_account_email should not be empty",
+    "actualValue": "gcp_compute_instance.service_account_email is empty"
+  },
+  {
+    "queryName": "Using Default Service Account",
+    "severity": "MEDIUM",
+    "line": 86,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance3",
+    "searchKey": "name={{create a instance3}}.{{google.cloud.gcp_compute_instance}}.service_account_email",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.service_account_email should be an email",
+    "actualValue": "gcp_compute_instance.service_account_email is not an email"
+  },
+  {
+    "queryName": "Using Default Service Account",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance1",
+    "searchKey": "name={{create a instance1}}.{{google.cloud.gcp_compute_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.service_account_email should be defined",
+    "actualValue": "gcp_compute_instance.service_account_email is undefined"
+  }
 ]

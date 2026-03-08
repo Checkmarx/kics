@@ -3,18 +3,36 @@
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "test_role",
+    "searchKey": "aws_iam_role[positive2].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy' requires external ID or MFA",
+    "actualValue": "'assume_role_policy' does not require external ID or MFA"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "test_role",
+    "searchKey": "aws_iam_role[positive3].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy' requires external ID or MFA",
+    "actualValue": "'assume_role_policy' does not require external ID or MFA"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive3.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "test_role",
+    "searchKey": "aws_iam_role[positive1].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy' requires external ID or MFA",
+    "actualValue": "'assume_role_policy' does not require external ID or MFA"
   }
 ]

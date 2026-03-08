@@ -2,25 +2,49 @@
   {
     "queryName": "Schema With Both ReadOnly And WriteOnly",
     "severity": "INFO",
-    "line": 50,
-    "filename": "positive1.json"
+    "line": 22,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should not have both 'writeOnly' and 'readOnly' set to true",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema has both 'writeOnly' and 'readOnly' set to true"
   },
   {
     "queryName": "Schema With Both ReadOnly And WriteOnly",
     "severity": "INFO",
-    "line": 22,
-    "filename": "positive2.json"
+    "line": 50,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}",
+    "searchValue": "",
+    "expectedValue": "components.schemas.{{GeneralError}} should not have both 'writeOnly' and 'readOnly' set to true",
+    "actualValue": "components.schemas.{{GeneralError}} has both 'writeOnly' and 'readOnly' set to true"
   },
   {
     "queryName": "Schema With Both ReadOnly And WriteOnly",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}",
+    "searchValue": "",
+    "expectedValue": "components.schemas.{{GeneralError}} should not have both 'writeOnly' and 'readOnly' set to true",
+    "actualValue": "components.schemas.{{GeneralError}} has both 'writeOnly' and 'readOnly' set to true"
   },
   {
     "queryName": "Schema With Both ReadOnly And WriteOnly",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should not have both 'writeOnly' and 'readOnly' set to true",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema has both 'writeOnly' and 'readOnly' set to true"
   }
 ]

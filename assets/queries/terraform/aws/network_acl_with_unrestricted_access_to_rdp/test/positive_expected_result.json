@@ -2,25 +2,49 @@
   {
     "queryName": "Network ACL With Unrestricted Access To RDP",
     "severity": "HIGH",
-    "line": 30,
-    "fileName": "positive1.tf"
+    "line": 14,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vpc].default_network_acl_ingress",
+    "searchValue": "",
+    "expectedValue": "module[vpc].default_network_acl_ingress[0] 'RDP' (TCP:3389) should not be public",
+    "actualValue": "module[vpc].default_network_acl_ingress[0] 'RDP' (TCP:3389) is public"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 22,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_network_acl_rule",
+    "resourceName": "postive2",
+    "searchKey": "aws_network_acl_rule[postive2]",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[postive2] 'RDP' (TCP:3389) should not be public",
+    "actualValue": "aws_network_acl[postive2] 'RDP' (TCP:3389) is public"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 30,
+    "filename": "positive1.tf",
+    "resourceType": "aws_network_acl",
+    "resourceName": "main",
+    "searchKey": "aws_network_acl[positive1].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[positive1].ingress[0] 'RDP' (TCP:3389) should not be public",
+    "actualValue": "aws_network_acl[positive1].ingress[0] 'RDP' (TCP:3389) is public"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 26,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "Network ACL With Unrestricted Access To RDP",
-    "severity": "HIGH",
-    "line": 14,
-    "fileName": "positive4.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_network_acl",
+    "resourceName": "main",
+    "searchKey": "aws_network_acl[positive3].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[positive3].ingress 'RDP' (TCP:3389) should not be public",
+    "actualValue": "aws_network_acl[positive3].ingress 'RDP' (TCP:3389) is public"
   }
 ]

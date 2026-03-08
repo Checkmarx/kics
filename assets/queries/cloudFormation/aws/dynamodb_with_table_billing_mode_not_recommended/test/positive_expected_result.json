@@ -3,12 +3,24 @@
     "queryName": "DynamoDB With Not Recommended Table Billing Mode",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "myTableName",
+    "searchKey": "Resources.myDynamoDBTable.Properties.BillingMode",
+    "searchValue": "",
+    "expectedValue": "Resources.myDynamoDBTable.Properties.BillingMode should not be 'PROVISIONED' or 'PAY_PER_REQUEST'",
+    "actualValue": "Resources.myDynamoDBTable.Properties.BillingMode is 'PROVISIONED' or 'PAY_PER_REQUEST'"
   },
   {
     "queryName": "DynamoDB With Not Recommended Table Billing Mode",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "myTableName",
+    "searchKey": "Resources.myDynamoDBTable.Properties.BillingMode",
+    "searchValue": "",
+    "expectedValue": "Resources.myDynamoDBTable.Properties.BillingMode should not be 'PROVISIONED' or 'PAY_PER_REQUEST'",
+    "actualValue": "Resources.myDynamoDBTable.Properties.BillingMode is 'PROVISIONED' or 'PAY_PER_REQUEST'"
   }
 ]

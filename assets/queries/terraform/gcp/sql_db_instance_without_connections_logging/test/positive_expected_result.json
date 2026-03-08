@@ -2,26 +2,61 @@
   {
     "queryName": "Beta - SQL DB Instance Without Connections Logging",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 42,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_4].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_4].settings.database_flags' should be defined and set 'log_connections' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_4].settings.database_flags' sets 'log_connections' to 'off'"
   },
   {
     "queryName": "Beta - SQL DB Instance Without Connections Logging",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 60,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_5].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_5].settings.database_flags' should be defined and set 'log_connections' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_5].settings.database_flags' sets 'log_connections' to 'off'"
   },
   {
     "queryName": "Beta - SQL DB Instance Without Connections Logging",
     "severity": "MEDIUM",
-    "line": 23
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_1]",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should be defined and set 'log_connections' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings' is undefined or null"
   },
   {
     "queryName": "Beta - SQL DB Instance Without Connections Logging",
     "severity": "MEDIUM",
-    "line": 42
+    "line": 14,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should be defined and set 'log_connections' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' is undefined or null"
   },
   {
     "queryName": "Beta - SQL DB Instance Without Connections Logging",
     "severity": "MEDIUM",
-    "line": 60
+    "line": 23,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_3].settings.database_flags",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_3].settings.database_flags' should be defined and set 'log_connections' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' does not set 'log_connections'"
   }
 ]

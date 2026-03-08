@@ -2,26 +2,61 @@
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 17,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "my-databricks-workspace",
+    "searchKey": "azurerm_databricks_workspace[positive2].customer_managed_key_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace[positive2].customer_managed_key_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_databricks_workspace[positive2].customer_managed_key_enabled' is set to false"
   },
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 27,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "my-databricks-workspace",
+    "searchKey": "azurerm_databricks_workspace[positive3].customer_managed_key_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace[positive3].customer_managed_key_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_databricks_workspace[positive3].customer_managed_key_enabled' is set to false"
   },
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 27
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "my-databricks-workspace",
+    "searchKey": "azurerm_databricks_workspace[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace[positive1].managed_disk_cmk_key_vault_key_id' should be defined and not null",
+    "actualValue": "'azurerm_databricks_workspace[positive1].managed_disk_cmk_key_vault_key_id' is undefined or null"
   },
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "my-databricks-workspace",
+    "searchKey": "azurerm_databricks_workspace[positive4]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace[positive4].customer_managed_key_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_databricks_workspace[positive4].customer_managed_key_enabled' is undefined or null"
   },
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 41
+    "line": 41,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_databricks_workspace",
+    "resourceName": "my-databricks-workspace",
+    "searchKey": "azurerm_databricks_workspace[positive5]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_databricks_workspace[positive5].customer_managed_key_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_databricks_workspace[positive5].customer_managed_key_enabled' is undefined or null"
   }
 ]

@@ -3,24 +3,48 @@
     "queryName": "Storage Account Not Forcing HTTPS",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "example1",
+    "searchKey": "azurerm_storage_account[example1].https_traffic_only_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account.example1.https_traffic_only_enabled' equals 'true'",
+    "actualValue": "'azurerm_storage_account.example1.https_traffic_only_enabled' equals 'false'"
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "example2",
+    "searchKey": "azurerm_storage_account[example2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account.example2.enable_https_traffic_only' equals 'true', or (since Terraform v4.0) 'azurerm_storage_account.example2.https_traffic_only_enabled' equals 'true'",
+    "actualValue": "Neither 'azurerm_storage_account.example2.enable_https_traffic_only' nor 'azurerm_storage_account.example2.https_traffic_only_enabled' exists"
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "example1",
+    "searchKey": "azurerm_storage_account[example1].enable_https_traffic_only",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account.example1.enable_https_traffic_only' equals 'true'",
+    "actualValue": "'azurerm_storage_account.example1.enable_https_traffic_only' equals 'false'"
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive2.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "example2",
+    "searchKey": "azurerm_storage_account[example2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account.example2.enable_https_traffic_only' equals 'true', or (since Terraform v4.0) 'azurerm_storage_account.example2.https_traffic_only_enabled' equals 'true'",
+    "actualValue": "Neither 'azurerm_storage_account.example2.enable_https_traffic_only' nor 'azurerm_storage_account.example2.https_traffic_only_enabled' exists"
   }
 ]

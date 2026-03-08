@@ -2,25 +2,49 @@
   {
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.ManagedPoliciesArns",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is undefined or empty",
+    "actualValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is not empty"
+  },
+  {
+    "queryName": "IAM Policies Attached To User",
+    "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive1.yaml"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.Policies",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.Policies' should be undefined or empty",
+    "actualValue": "'Resources.myuser.Properties.Policies' is not empty"
   },
   {
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.ManagedPoliciesArns",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is undefined or empty",
+    "actualValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is not empty"
   },
   {
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive2.json"
-  },
-  {
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive2.json",
-    "queryName": "IAM Policies Attached To User"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.Policies",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.Policies' should be undefined or empty",
+    "actualValue": "'Resources.myuser.Properties.Policies' is not empty"
   }
 ]

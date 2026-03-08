@@ -2,13 +2,25 @@
   {
     "queryName": "File Parameter With Wrong Consumes Property",
     "severity": "INFO",
-    "line": 12,
-    "filename": "positive1.json"
+    "line": 10,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Operation or global 'consumes' field should have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter",
+    "actualValue": "Operation or global 'consumes' field doesn't have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter"
   },
   {
     "queryName": "File Parameter With Wrong Consumes Property",
     "severity": "INFO",
-    "line": 10,
-    "filename": "positive2.yaml"
+    "line": 12,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Operation or global 'consumes' field should have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter",
+    "actualValue": "Operation or global 'consumes' field doesn't have declared 'multipart/form-data', 'application/x-www-form-urlencoded' or both when there is a file type parameter"
   }
 ]

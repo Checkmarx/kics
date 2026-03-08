@@ -3,24 +3,48 @@
     "queryName": "CVM Instance Using User Data",
     "severity": "LOW",
     "line": 41,
-    "fileName": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "tencentcloud_instance",
+    "resourceName": "cvm_postpaid",
+    "searchKey": "tencentcloud_instance[cvm_postpaid].user_data",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_instance[cvm_postpaid] should be using 'cam_role_name' to assign a role with permissions",
+    "actualValue": "tencentcloud_instance[cvm_postpaid].user_data is being used to configure API secret keys"
   },
   {
     "queryName": "CVM Instance Using User Data",
     "severity": "LOW",
     "line": 41,
-    "fileName": "positive2.tf"
+    "filename": "positive1.tf",
+    "resourceType": "tencentcloud_instance",
+    "resourceName": "cvm_postpaid",
+    "searchKey": "tencentcloud_instance[cvm_postpaid].user_data",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_instance[cvm_postpaid] should be using 'cam_role_name' to assign a role with permissions",
+    "actualValue": "tencentcloud_instance[cvm_postpaid].user_data is being used to configure API secret keys"
   },
   {
     "queryName": "CVM Instance Using User Data",
     "severity": "LOW",
     "line": 41,
-    "fileName": "positive3.tf"
+    "filename": "positive4.tf",
+    "resourceType": "tencentcloud_instance",
+    "resourceName": "cvm_postpaid",
+    "searchKey": "tencentcloud_instance[cvm_postpaid].user_data",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_instance[cvm_postpaid] should be using 'cam_role_name' to assign a role with permissions",
+    "actualValue": "tencentcloud_instance[cvm_postpaid].user_data is being used to configure API secret keys"
   },
   {
     "queryName": "CVM Instance Using User Data",
     "severity": "LOW",
     "line": 41,
-    "fileName": "positive4.tf"
+    "filename": "positive3.tf",
+    "resourceType": "tencentcloud_instance",
+    "resourceName": "cvm_postpaid",
+    "searchKey": "tencentcloud_instance[cvm_postpaid].user_data",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_instance[cvm_postpaid] should be using 'cam_role_name' to assign a role with permissions",
+    "actualValue": "tencentcloud_instance[cvm_postpaid].user_data is being used to configure API secret keys"
   }
 ]

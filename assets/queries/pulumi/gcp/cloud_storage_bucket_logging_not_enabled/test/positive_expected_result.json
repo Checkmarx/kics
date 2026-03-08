@@ -3,6 +3,12 @@
     "queryName": "Cloud Storage Bucket Logging Not Enabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "gcp:storage:Bucket",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "Storage Bucket should have attribute 'logging' defined",
+    "actualValue": "Storage Bucket attribute 'logging' is not defined"
   }
 ]

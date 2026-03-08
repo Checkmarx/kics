@@ -3,6 +3,12 @@
     "queryName": "Peer Auto TLS Set To True",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "app-etcd-deployment",
+    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "",
+    "expectedValue": "--peer-auto-tls flag should be set to false or not be defined",
+    "actualValue": "--peer-auto-tls flag is set to true"
   }
 ]

@@ -1,17 +1,38 @@
 [
-	{
-		"queryName": "StatefulSet Requests Storage",
-		"severity": "LOW",
-		"line": 33
-	},
-	{
-		"queryName": "StatefulSet Requests Storage",
-		"severity": "LOW",
-		"line": 66
-	},
-	{
-		"queryName": "StatefulSet Requests Storage",
-		"severity": "LOW",
-		"line": 73
-	}
+  {
+    "queryName": "StatefulSet Requests Storage",
+    "severity": "LOW",
+    "line": 73,
+    "filename": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "web2",
+    "searchKey": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage=2Gi",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage should not be set",
+    "actualValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 2Gi"
+  },
+  {
+    "queryName": "StatefulSet Requests Storage",
+    "severity": "LOW",
+    "line": 33,
+    "filename": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "web",
+    "searchKey": "metadata.name={{web}}.spec.volumeClaimTemplates.spec.resources.requests.storage=1Gi",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{web}}.spec.volumeClaimTemplates.spec.resources.requests.storage should not be set",
+    "actualValue": "metadata.name={{web}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 1Gi"
+  },
+  {
+    "queryName": "StatefulSet Requests Storage",
+    "severity": "LOW",
+    "line": 66,
+    "filename": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "web2",
+    "searchKey": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage=1Gi",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage should not be set",
+    "actualValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 1Gi"
+  }
 ]

@@ -3,54 +3,108 @@
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive9.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive9]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive9].site_config' should be defined and not null",
+    "actualValue": "'azurerm_windows_web_app[positive9].site_config' is undefined or null"
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
-    "line": 17,
-    "fileName": "positive2.tf"
+    "line": 8,
+    "filename": "positive6.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive6].site_config.http2_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive6].site_config.http2_enabled' should be set to true",
+    "actualValue": "'azurerm_windows_web_app[positive6].site_config.http2_enabled' is set to false"
+  },
+  {
+    "queryName": "App Service HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive4.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive4].site_config",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive4].site_config.http2_enabled' should be defined and not null",
+    "actualValue": "'azurerm_linux_web_app[positive4].site_config.http2_enabled' is undefined or null"
+  },
+  {
+    "queryName": "App Service HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1].site_config' should be defined and not null",
+    "actualValue": "'azurerm_app_service[positive1].site_config' is undefined or null"
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "App Service HTTP2 Disabled",
-    "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "App Service HTTP2 Disabled",
-    "severity": "MEDIUM",
-    "line": 8,
-    "fileName": "positive5.tf"
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive3].site_config.http2_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive3].site_config.http2_enabled' should be set to true",
+    "actualValue": "'azurerm_app_service[positive3].site_config.http2_enabled' is set to false"
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive6.tf"
+    "filename": "positive5.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive5].site_config.http2_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive5].site_config.http2_enabled' should be set to true",
+    "actualValue": "'azurerm_linux_web_app[positive5].site_config.http2_enabled' is set to false"
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive7.tf"
+    "filename": "positive7.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive7].site_config",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive7].site_config.http2_enabled' should be defined and not null",
+    "actualValue": "'azurerm_windows_web_app[positive7].site_config.http2_enabled' is undefined or null"
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive8.tf"
+    "filename": "positive8.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive8]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive8].site_config' should be defined and not null",
+    "actualValue": "'azurerm_linux_web_app[positive8].site_config' is undefined or null"
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive9.tf"
+    "line": 17,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive2].site_config",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive2].site_config.http2_enabled' should be defined and not null",
+    "actualValue": "'azurerm_app_service[positive2].site_config.http2_enabled' is undefined or null"
   }
 ]

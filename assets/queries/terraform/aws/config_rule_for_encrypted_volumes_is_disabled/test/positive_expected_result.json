@@ -2,6 +2,13 @@
   {
     "queryName": "Config Rule For Encrypted Volumes Disabled",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_config_config_rule",
+    "resourceName": "unknown",
+    "searchKey": "aws_config_config_rule",
+    "searchValue": "",
+    "expectedValue": "There should be a 'aws_config_config_rule' resource with source id: 'ENCRYPTED_VOLUMES'",
+    "actualValue": "No 'aws_config_config_rule' resource has source id: 'ENCRYPTED_VOLUMES'"
   }
 ]

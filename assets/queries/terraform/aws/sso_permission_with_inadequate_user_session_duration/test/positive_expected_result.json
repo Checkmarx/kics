@@ -3,12 +3,24 @@
     "queryName": "SSO Permission With Inadequate User Session Duration",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_ssoadmin_permission_set_inline_policy",
+    "resourceName": "Example",
+    "searchKey": "aws_ssoadmin_permission_set[example3].session_duration",
+    "searchValue": "",
+    "expectedValue": "session_duration should not be higher than 1 hour",
+    "actualValue": "session_duration is higher than 1 hour"
   },
   {
     "queryName": "SSO Permission With Inadequate User Session Duration",
     "severity": "LOW",
     "line": 14,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_ssoadmin_permission_set_inline_policy",
+    "resourceName": "Example",
+    "searchKey": "aws_ssoadmin_permission_set[example4].session_duration",
+    "searchValue": "",
+    "expectedValue": "session_duration should not be higher than 1 hour",
+    "actualValue": "session_duration is higher than 1 hour"
   }
 ]

@@ -3,6 +3,12 @@
     "queryName": "Redis Disabled",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster-example",
+    "searchKey": "resource.aws_elasticache_cluster[positive1].engine",
+    "searchValue": "",
+    "expectedValue": "resource.aws_elasticache_cluster[positive1].engine should have Redis enabled",
+    "actualValue": "resource.aws_elasticache_cluster[positive1].engine doesn't enable Redis"
   }
 ]

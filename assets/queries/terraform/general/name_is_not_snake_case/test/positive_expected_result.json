@@ -2,13 +2,25 @@
   {
     "queryName": "Name Is Not Snake Case",
     "severity": "INFO",
-    "line": 7,
-    "filename": "positive1.tf"
+    "line": 14,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module.ACMPositive2",
+    "searchValue": "",
+    "expectedValue": "All names should be on snake case pattern",
+    "actualValue": "'ACMPositive2' is not in snake case"
   },
   {
     "queryName": "Name Is Not Snake Case",
     "severity": "INFO",
-    "line": 14,
-    "filename": "positive2.tf"
+    "line": 7,
+    "filename": "positive1.tf",
+    "resourceType": "aws_eks_cluster",
+    "resourceName": "positiveExample",
+    "searchKey": "resource.aws_eks_cluster.positiveExample",
+    "searchValue": "",
+    "expectedValue": "All names should be on snake case pattern",
+    "actualValue": "'positiveExample' is not in snake case"
   }
 ]

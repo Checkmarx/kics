@@ -2,11 +2,25 @@
   {
     "queryName": "Unscanned ECR Image",
     "severity": "LOW",
-    "line": 1
+    "line": 11,
+    "filename": "positive.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "img_p_1",
+    "searchKey": "aws_ecr_repository[positive2].image_scanning_configuration.scan_on_push",
+    "searchValue": "",
+    "expectedValue": "aws_ecr_repository[positive2].image_scanning_configuration.scan_on_push is true",
+    "actualValue": "aws_ecr_repository[positive2].image_scanning_configuration.scan_on_push is false"
   },
   {
     "queryName": "Unscanned ECR Image",
     "severity": "LOW",
-    "line": 11
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "img_p_2",
+    "searchKey": "aws_ecr_repository[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_ecr_repository[positive1].image_scanning_configuration should be defined",
+    "actualValue": "aws_ecr_repository[positive1].image_scanning_configuration is undefined"
   }
 ]

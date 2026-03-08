@@ -2,25 +2,49 @@
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.tf",
+    "resourceType": "google_compute_disk",
+    "resourceName": "test-disk",
+    "searchKey": "google_compute_disk[positive3].disk_encryption_key.raw_key",
+    "searchValue": "",
+    "expectedValue": "'google_compute_disk[positive3].disk_encryption_key.raw_key' should not be empty or null",
+    "actualValue": "'google_compute_disk[positive3].disk_encryption_key.raw_key' is not empty or null"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive3.tf",
+    "resourceType": "google_compute_disk",
+    "resourceName": "test-disk",
+    "searchKey": "google_compute_disk[positive4].disk_encryption_key.kms_key_self_link",
+    "searchValue": "",
+    "expectedValue": "'google_compute_disk[positive4].disk_encryption_key.kms_key_self_link' should not be empty or null",
+    "actualValue": "'google_compute_disk[positive4].disk_encryption_key.kms_key_self_link' is not empty or null"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "google_compute_disk",
+    "resourceName": "test-disk",
+    "searchKey": "google_compute_disk[positive1]",
+    "searchValue": "",
+    "expectedValue": "'google_compute_disk[positive1].disk_encryption_key' should be defined and not null",
+    "actualValue": "'google_compute_disk[positive1].disk_encryption_key' is undefined or null"
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Disk Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Disk Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive3.tf"
+    "filename": "positive1.tf",
+    "resourceType": "google_compute_disk",
+    "resourceName": "test-disk",
+    "searchKey": "google_compute_disk[positive2].disk_encryption_key",
+    "searchValue": "",
+    "expectedValue": "'google_compute_disk[positive2].disk_encryption_key.raw_key' or 'google_compute_disk[%!s(MISSING)].disk_encryption_key.kms_key_self_link' should be defined and not null",
+    "actualValue": "'google_compute_disk[positive2].disk_encryption_key.raw_key' and 'google_compute_disk[%!s(MISSING)].disk_encryption_key.kms_key_self_link' are undefined or null"
   }
 ]

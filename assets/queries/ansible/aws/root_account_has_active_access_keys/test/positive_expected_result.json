@@ -2,6 +2,13 @@
   {
     "queryName": "Root Account Has Active Access Keys",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam",
+    "resourceName": "Create two new IAM users with API keys",
+    "searchKey": "name={{Create two new IAM users with API keys}}.{{community.aws.iam}}",
+    "searchValue": "",
+    "expectedValue": "iam should not be active for a root account",
+    "actualValue": "iam is active for a root account"
   }
 ]

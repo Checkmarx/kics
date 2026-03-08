@@ -2,11 +2,25 @@
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "positive1",
+    "searchKey": "aws_cloudtrail[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_cloudtrail[positive1].sns_topic_name' should be set and should not be null",
+    "actualValue": "'aws_cloudtrail[positive1].sns_topic_name' is undefined or null"
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
     "severity": "LOW",
-    "line": 5
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "positive2",
+    "searchKey": "aws_cloudtrail[positive2]",
+    "searchValue": "",
+    "expectedValue": "'aws_cloudtrail[positive2].sns_topic_name' should be set and should not be null",
+    "actualValue": "'aws_cloudtrail[positive2].sns_topic_name' is undefined or null"
   }
 ]

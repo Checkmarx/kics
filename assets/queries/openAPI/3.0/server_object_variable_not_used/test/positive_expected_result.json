@@ -2,25 +2,49 @@
   {
     "queryName": "Server Object Variable Not Used",
     "severity": "INFO",
-    "line": 38,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Server Object Variable Not Used",
-    "severity": "INFO",
-    "line": 35,
-    "filename": "positive2.json"
+    "line": 25,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.variables.{{base}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is used in 'paths.{{/}}.{{get}}.servers.{{0}}.url'",
+    "actualValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is not used in 'paths.{{/}}.{{get}}.servers.{{0}}.url '"
   },
   {
     "queryName": "Server Object Variable Not Used",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is not used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'"
   },
   {
     "queryName": "Server Object Variable Not Used",
     "severity": "INFO",
-    "line": 25,
-    "filename": "positive4.yaml"
+    "line": 35,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.variables.{{base}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is used in 'paths.{{/}}.{{get}}.servers.{{0}}.url'",
+    "actualValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is not used in 'paths.{{/}}.{{get}}.servers.{{0}}.url '"
+  },
+  {
+    "queryName": "Server Object Variable Not Used",
+    "severity": "INFO",
+    "line": 38,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is not used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'"
   }
 ]

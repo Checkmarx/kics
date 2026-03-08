@@ -3,12 +3,24 @@
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_lb_listener",
+    "resourceName": "listener5",
+    "searchKey": "aws_lb_listener[listener5].default_action.redirect.protocol",
+    "searchValue": "",
+    "expectedValue": "'default_action.redirect.protocol' should be equal to 'HTTPS'",
+    "actualValue": "'default_action.redirect.protocol' is equal 'HTTP'"
   },
   {
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
     "line": 70,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_lb_listener",
+    "resourceName": "listener",
+    "searchKey": "aws_lb_listener[listener].default_action",
+    "searchValue": "",
+    "expectedValue": "'default_action.redirect.protocol' should be equal to 'HTTPS'",
+    "actualValue": "'default_action.redirect' is missing"
   }
 ]

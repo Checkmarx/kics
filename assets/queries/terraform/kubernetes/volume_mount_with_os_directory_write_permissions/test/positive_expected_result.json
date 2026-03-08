@@ -2,85 +2,169 @@
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
-    "line": 8,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Volume Mount With OS Directory Write Permissions",
-    "severity": "HIGH",
-    "line": 66,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Volume Mount With OS Directory Write Permissions",
-    "severity": "HIGH",
     "line": 100,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test11",
+    "searchKey": "kubernetes_pod[test11].spec.container.volume_mount",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test11].spec.container[1].volume_mount.read_only should be set",
+    "actualValue": "kubernetes_pod[test11].spec.container[1].volume_mount.read_only is undefined"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 158,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Volume Mount With OS Directory Write Permissions",
-    "severity": "HIGH",
-    "line": 163,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Volume Mount With OS Directory Write Permissions",
-    "severity": "HIGH",
-    "line": 250,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Volume Mount With OS Directory Write Permissions",
-    "severity": "HIGH",
-    "line": 255,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Volume Mount With OS Directory Write Permissions",
-    "severity": "HIGH",
-    "line": 11,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "Volume Mount With OS Directory Write Permissions",
-    "severity": "HIGH",
-    "line": 70,
-    "fileName": "positive2.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test12",
+    "searchKey": "kubernetes_pod[test12].spec.container.volume_mount",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test12].spec.container[0].volume_mount[0].read_only should be set",
+    "actualValue": "kubernetes_pod[test12].spec.container[0].volume_mount[0].read_only is undefined"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 105,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test21",
+    "searchKey": "kubernetes_pod[test21].spec.container.volume_mount.read_only",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test21].spec.container[1].volume_mount.read_only should be set to true",
+    "actualValue": "kubernetes_pod[test21].spec.container[1].volume_mount.read_only is set to false"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 164,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test22",
+    "searchKey": "kubernetes_pod[test22].spec.container.volume_mount.read_only",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test22].spec.container[0].volume_mount[0].read_only should be set to true",
+    "actualValue": "kubernetes_pod[test22].spec.container[0].volume_mount[0].read_only is set to false"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 170,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test22",
+    "searchKey": "kubernetes_pod[test22].spec.container.volume_mount.read_only",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test22].spec.container[0].volume_mount[1].read_only should be set to true",
+    "actualValue": "kubernetes_pod[test22].spec.container[0].volume_mount[1].read_only is set to false"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 163,
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test12",
+    "searchKey": "kubernetes_pod[test12].spec.container.volume_mount",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test12].spec.container[0].volume_mount[1].read_only should be set",
+    "actualValue": "kubernetes_pod[test12].spec.container[0].volume_mount[1].read_only is undefined"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 250,
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test13",
+    "searchKey": "kubernetes_pod[test13].spec.container.volume_mount",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test13].spec.container.volume_mount[0].read_only should be set",
+    "actualValue": "kubernetes_pod[test13].spec.container.volume_mount[0].read_only is undefined"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 255,
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test13",
+    "searchKey": "kubernetes_pod[test13].spec.container.volume_mount",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test13].spec.container.volume_mount[1].read_only should be set",
+    "actualValue": "kubernetes_pod[test13].spec.container.volume_mount[1].read_only is undefined"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test20",
+    "searchKey": "kubernetes_pod[test20].spec.container.volume_mount.read_only",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test20].spec.container.volume_mount.read_only should be set to true",
+    "actualValue": "kubernetes_pod[test20].spec.container.volume_mount.read_only is set to false"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 70,
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test21",
+    "searchKey": "kubernetes_pod[test21].spec.container.volume_mount.read_only",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test21].spec.container[0].volume_mount.read_only should be set to true",
+    "actualValue": "kubernetes_pod[test21].spec.container[0].volume_mount.read_only is set to false"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 258,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test23",
+    "searchKey": "kubernetes_pod[test23].spec.container.volume_mount.read_only",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test23].spec.container.volume_mount[0].read_only should be set to true",
+    "actualValue": "kubernetes_pod[test23].spec.container.volume_mount[0].read_only is set to false"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
     "line": 264,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test23",
+    "searchKey": "kubernetes_pod[test23].spec.container.volume_mount.read_only",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test23].spec.container.volume_mount[1].read_only should be set to true",
+    "actualValue": "kubernetes_pod[test23].spec.container.volume_mount[1].read_only is set to false"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test10",
+    "searchKey": "kubernetes_pod[test10].spec.container.volume_mount",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test10].spec.container.volume_mount.read_only should be set",
+    "actualValue": "kubernetes_pod[test10].spec.container.volume_mount.read_only is undefined"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 66,
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test11",
+    "searchKey": "kubernetes_pod[test11].spec.container.volume_mount",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test11].spec.container[0].volume_mount.read_only should be set",
+    "actualValue": "kubernetes_pod[test11].spec.container[0].volume_mount.read_only is undefined"
   }
 ]

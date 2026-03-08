@@ -1,38 +1,74 @@
 [
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 11,
-        "fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 12,
-        "fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 27,
-        "fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 40,
-        "fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 55,
-        "fileName": "positive3.yaml"
-	}
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is not defined"
+  },
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 40,
+    "filename": "positive3.yaml",
+    "resourceType": "Revision",
+    "resourceName": "dummy-rev",
+    "searchKey": "metadata.name={{dummy-rev}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is not defined"
+  },
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive3.yaml",
+    "resourceType": "Service",
+    "resourceName": "dummy",
+    "searchKey": "metadata.name={{dummy}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is not defined"
+  },
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 27,
+    "filename": "positive3.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is not defined"
+  },
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 55,
+    "filename": "positive3.yaml",
+    "resourceType": "ContainerSource",
+    "resourceName": "dummy-cs",
+    "searchKey": "metadata.name={{dummy-cs}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is not defined"
+  },
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is set to less than 30 days"
+  }
 ]

@@ -2,37 +2,73 @@
   {
     "queryName": "Redshift Publicly Accessible",
     "severity": "HIGH",
+    "line": 17,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster2.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "'Resources.myCluster2.Properties.PubliclyAccessible' should be set to false",
+    "actualValue": "'Resources.myCluster2.Properties.PubliclyAccessible' is true"
+  },
+  {
+    "queryName": "Redshift Publicly Accessible",
+    "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myCluster.Properties.PubliclyAccessible' should be defined",
+    "actualValue": "'Resources.myCluster.Properties.PubliclyAccessible' is not defined"
   },
   {
     "queryName": "Redshift Publicly Accessible",
     "severity": "HIGH",
     "line": 17,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster2.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "'Resources.myCluster2.Properties.PubliclyAccessible' should be set to false",
+    "actualValue": "'Resources.myCluster2.Properties.PubliclyAccessible' is true"
   },
   {
     "queryName": "Redshift Publicly Accessible",
     "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive2.json"
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myCluster.Properties.PubliclyAccessible' should be defined",
+    "actualValue": "'Resources.myCluster.Properties.PubliclyAccessible' is not defined"
   },
   {
     "queryName": "Redshift Publicly Accessible",
     "severity": "HIGH",
     "line": 30,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster2.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "'Resources.myCluster2.Properties.PubliclyAccessible' should be set to false",
+    "actualValue": "'Resources.myCluster2.Properties.PubliclyAccessible' is true"
   },
   {
     "queryName": "Redshift Publicly Accessible",
     "severity": "HIGH",
-    "line": 4,
-    "fileName": "positive3.yaml"
-  },
-  {
-    "queryName": "Redshift Publicly Accessible",
-    "severity": "HIGH",
-    "line": 17,
-    "fileName": "positive3.yaml"
+    "line": 5,
+    "filename": "positive2.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myCluster.Properties.PubliclyAccessible' should be defined",
+    "actualValue": "'Resources.myCluster.Properties.PubliclyAccessible' is not defined"
   }
 ]

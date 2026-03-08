@@ -1,14 +1,26 @@
 [
-	{
-		"queryName": "Databricks Group Without User Or Instance Profile",
-		"severity": "LOW",
-		"line": 16,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Databricks Group Without User Or Instance Profile",
-		"severity": "LOW",
-		"line": 14,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "Databricks Group Without User Or Instance Profile",
+    "severity": "LOW",
+    "line": 16,
+    "filename": "positive1.tf",
+    "resourceType": "aws_databricks_group",
+    "resourceName": "Some Group",
+    "searchKey": "databricks_group[positive_group_2]",
+    "searchValue": "",
+    "expectedValue": "aws_databricks_group[positive_group_2] should be associated with an databricks_group_member that has at least one user set",
+    "actualValue": "aws_databricks_group[positive_group_2] is not associated with an databricks_group_member that has at least one user set"
+  },
+  {
+    "queryName": "Databricks Group Without User Or Instance Profile",
+    "severity": "LOW",
+    "line": 14,
+    "filename": "positive2.tf",
+    "resourceType": "aws_databricks_group",
+    "resourceName": "my_group_name",
+    "searchKey": "databricks_group[positive_group2]",
+    "searchValue": "",
+    "expectedValue": "aws_databricks_group[positive_group2] should be associated with an databricks_group_member that has at least one user set",
+    "actualValue": "aws_databricks_group[positive_group2] is not associated with an databricks_group_member that has at least one user set"
+  }
 ]

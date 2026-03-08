@@ -3,12 +3,24 @@
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 7,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "aws:dynamodb:Table",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'pointInTimeRecovery' should be defined",
+    "actualValue": "Attribute 'pointInTimeRecovery' is not defined"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 21,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "aws:dynamodb:Table",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties.pointInTimeRecovery.enabled",
+    "searchValue": "",
+    "expectedValue": "Attribute 'enabled' in 'pointInTimeRecovery' should be set to true",
+    "actualValue": "Attribute 'enabled' in 'pointInTimeRecovery'  is set to false"
   }
 ]

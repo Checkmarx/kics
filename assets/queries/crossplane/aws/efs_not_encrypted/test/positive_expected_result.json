@@ -2,25 +2,49 @@
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
-    "line": 8,
-    "fileName": "positive.yaml"
+    "line": 6,
+    "filename": "positive2.yaml",
+    "resourceType": "FileSystem",
+    "resourceName": "example5",
+    "searchKey": "metadata.name={{example5}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "encrypted should be defined and set to true",
+    "actualValue": "encrypted is not defined"
   },
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
     "line": 38,
-    "fileName": "positive.yaml"
-  },
-  {
-    "queryName": "EFS Not Encrypted",
-    "severity": "HIGH",
-    "line": 6,
-    "fileName": "positive2.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "FileSystem",
+    "resourceName": "example4",
+    "searchKey": "spec.resources.base.metadata.name={{example4}}.spec.forProvider.encrypted",
+    "searchValue": "",
+    "expectedValue": "encrypted should be set to true",
+    "actualValue": "encrypted is set to false"
   },
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive2.yaml"
-  } 
+    "filename": "positive2.yaml",
+    "resourceType": "FileSystem",
+    "resourceName": "example6",
+    "searchKey": "spec.resources.base.metadata.name={{example6}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "encrypted should be defined and set to true",
+    "actualValue": "encrypted is not defined"
+  },
+  {
+    "queryName": "EFS Not Encrypted",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "FileSystem",
+    "resourceName": "example3",
+    "searchKey": "metadata.name={{example3}}.spec.forProvider.encrypted",
+    "searchValue": "",
+    "expectedValue": "encrypted should be set to true",
+    "actualValue": "encrypted is set to false"
+  }
 ]

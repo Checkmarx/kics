@@ -1,8 +1,14 @@
 [
-	{
-		"queryName": "EMR Without VPC",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "EMR Without VPC",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_emr_cluster",
+    "resourceName": "emr-test-arn",
+    "searchKey": "aws_emr_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_emr_cluster[positive1].subnet_id' or 'aws_emr_cluster[positive1].subnet_ids' should be defined and not null'",
+    "actualValue": "'aws_emr_cluster[positive1].subnet_id' or 'aws_emr_cluster[positive1].subnet_ids' is undefined or null"
+  }
 ]

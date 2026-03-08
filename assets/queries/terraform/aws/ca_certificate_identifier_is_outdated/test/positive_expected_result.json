@@ -3,12 +3,24 @@
     "queryName": "CA Certificate Identifier Is Outdated",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].ca_cert_identifier",
+    "searchValue": "",
+    "expectedValue": "'aws_db_instance.ca_cert_identifier' should be one provided by Amazon RDS.",
+    "actualValue": "'aws_db_instance.ca_cert_identifier' is 'rds-ca-2015'"
   },
   {
     "queryName": "CA Certificate Identifier Is Outdated",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db].ca_cert_identifier",
+    "searchValue": "",
+    "expectedValue": "'ca_cert_identifier' should be one provided by Amazon RDS.",
+    "actualValue": "'ca_cert_identifier' is 'rds-ca-2015'"
   }
 ]

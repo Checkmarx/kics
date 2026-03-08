@@ -3,24 +3,24 @@
     "queryName": "ELB With Security Group Without Inbound Rules",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.sgwithoutingress.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sgwithoutingress.Properties.SecurityGroupIngress' should be defined",
+    "actualValue": "'Resources.sgwithoutingress.Properties.SecurityGroupIngress' is undefined"
   },
   {
     "queryName": "ELB With Security Group Without Inbound Rules",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "ELB With Security Group Without Inbound Rules",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive3.yaml"
-  },
-  {
-    "queryName": "ELB With Security Group Without Inbound Rules",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive4.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.sgwithoutingress.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sgwithoutingress.Properties.SecurityGroupIngress' should be defined",
+    "actualValue": "'Resources.sgwithoutingress.Properties.SecurityGroupIngress' is undefined"
   }
 ]

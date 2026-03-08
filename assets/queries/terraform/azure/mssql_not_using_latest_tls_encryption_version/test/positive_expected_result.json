@@ -3,6 +3,12 @@
     "queryName": "Beta - MSSQL Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "azurerm_mssql_server",
+    "resourceName": "example-resource",
+    "searchKey": "azurerm_mssql_server[positive1].minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'minimum_tls_version' should be defined to '1.2'",
+    "actualValue": "'minimum_tls_version' is defined to '1.1'"
   }
 ]

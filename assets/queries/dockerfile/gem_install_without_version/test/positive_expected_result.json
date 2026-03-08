@@ -2,16 +2,37 @@
   {
     "queryName": "Gem Install Without Version",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 4,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN [\"gem\", \"install\", \"blunder\"]}}",
+    "searchValue": "",
+    "expectedValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>:<version>'",
+    "actualValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>', you should use 'gem install <gem>:<version>"
   },
   {
     "queryName": "Gem Install Without Version",
     "severity": "MEDIUM",
-    "line": 4
+    "line": 3,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN gem install bundler}}",
+    "searchValue": "",
+    "expectedValue": "RUN gem install bundler is 'gem install <gem>:<version>'",
+    "actualValue": "RUN gem install bundler is 'gem install <gem>', you should use 'gem install <gem>:<version>"
   },
   {
     "queryName": "Gem Install Without Version",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder}}",
+    "searchValue": "",
+    "expectedValue": "RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>:<version>'",
+    "actualValue": "RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>', you should use 'gem install <gem>:<version>"
   }
 ]

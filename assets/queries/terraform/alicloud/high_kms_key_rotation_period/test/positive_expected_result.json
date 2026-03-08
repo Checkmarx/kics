@@ -2,25 +2,49 @@
   {
     "queryName": "High KMS Key Rotation Period",
     "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_kms_key",
+    "resourceName": "keypos1",
+    "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
+    "searchValue": "",
+    "expectedValue": "'rotation_interval' value should not be higher than a year",
+    "actualValue": "'rotation_interval' value is higher than a year"
+  },
+  {
+    "queryName": "High KMS Key Rotation Period",
+    "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive.tf"
-  },
-  {
-    "queryName": "High KMS Key Rotation Period",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "High KMS Key Rotation Period",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive3.tf"
+    "filename": "positive.tf",
+    "resourceType": "alicloud_kms_key",
+    "resourceName": "keypos1",
+    "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
+    "searchValue": "",
+    "expectedValue": "'automatic_rotation' should be set to Enabled",
+    "actualValue": "'automatic_rotation' is set to Disabled"
   },
   {
     "queryName": "High KMS Key Rotation Period",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "alicloud_kms_key",
+    "resourceName": "keypos1",
+    "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
+    "searchValue": "",
+    "expectedValue": "'automatic_rotation' should be defined and set to Enabled",
+    "actualValue": "'automatic_rotation' is not defined"
+  },
+  {
+    "queryName": "High KMS Key Rotation Period",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive3.tf",
+    "resourceType": "alicloud_kms_key",
+    "resourceName": "keypos1",
+    "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
+    "searchValue": "",
+    "expectedValue": "'rotation_interval' value should not be higher than a year",
+    "actualValue": "'rotation_interval' value is higher than a year"
   }
 ]

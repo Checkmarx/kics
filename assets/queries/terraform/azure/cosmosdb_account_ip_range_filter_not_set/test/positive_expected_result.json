@@ -2,6 +2,13 @@
   {
     "queryName": "CosmosDB Account IP Range Filter Not Set",
     "severity": "CRITICAL",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_cosmosdb_account",
+    "resourceName": "example",
+    "searchKey": "azurerm_cosmosdb_account[positive1].ip_range_filter",
+    "searchValue": "",
+    "expectedValue": "'azurerm_cosmosdb_account[positive1].ip_range_filter' should be set",
+    "actualValue": "'azurerm_cosmosdb_account[positive1].ip_range_filter' is undefined"
   }
 ]

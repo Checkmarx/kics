@@ -2,11 +2,25 @@
   {
     "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 12,
+    "filename": "positive.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster-example",
+    "searchKey": "aws_elasticache_cluster[positive2].az_mode",
+    "searchValue": "",
+    "expectedValue": "'az_mode' should be 'cross-az' in multi nodes cluster",
+    "actualValue": "'az_mode' is 'single-az'"
   },
   {
     "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster-example",
+    "searchKey": "aws_elasticache_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "'az_mode' should be set and must be 'cross-az' in multi nodes cluster",
+    "actualValue": "'az_mode' is undefined"
   }
 ]

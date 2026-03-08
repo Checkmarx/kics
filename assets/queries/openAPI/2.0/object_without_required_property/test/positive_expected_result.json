@@ -3,24 +3,48 @@
     "queryName": "Object Without Required Property (v2)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.{{limitParam}}",
+    "searchValue": "",
+    "expectedValue": "Parameter object has 'type' defined",
+    "actualValue": "Parameter object does not have 'type' defined"
   },
   {
     "queryName": "Object Without Required Property (v2)",
     "severity": "INFO",
     "line": 3,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Object Without Required Property (v2)",
-    "severity": "INFO",
-    "line": 2,
-    "filename": "positive2.yaml"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.",
+    "searchValue": "",
+    "expectedValue": "info has all required fields",
+    "actualValue": "info is missing required fields"
   },
   {
     "queryName": "Object Without Required Property (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.{{limitParam}}",
+    "searchValue": "",
+    "expectedValue": "Parameter object has 'type' defined",
+    "actualValue": "Parameter object does not have 'type' defined"
+  },
+  {
+    "queryName": "Object Without Required Property (v2)",
+    "severity": "INFO",
+    "line": 2,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.",
+    "searchValue": "",
+    "expectedValue": "info has all required fields",
+    "actualValue": "info is missing required fields"
   }
 ]

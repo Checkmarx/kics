@@ -2,6 +2,13 @@
   {
     "queryName": "Service Type is NodePort",
     "severity": "LOW",
-    "line": 15
+    "line": 15,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_service",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_service[example].spec.type",
+    "searchValue": "",
+    "expectedValue": "kubernetes_service[example].spec.type should not be 'NodePort'",
+    "actualValue": "kubernetes_service[example].spec.type is 'NodePort'"
   }
 ]

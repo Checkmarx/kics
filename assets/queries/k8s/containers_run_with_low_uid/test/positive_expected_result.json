@@ -2,103 +2,205 @@
   {
     "queryName": "Container Running With Low UID",
     "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 13,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive3.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 18,
-    "fileName": "positive4.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 18,
-    "fileName": "positive5.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 24,
-    "fileName": "positive5.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 25,
-    "fileName": "positive6.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 32,
-    "fileName": "positive6.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 23,
-    "fileName": "positive7.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 25,
-    "fileName": "positive7.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 21,
-    "fileName": "positive8.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 43,
-    "fileName": "positive8.yaml"
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 18,
-    "fileName": "positive9.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-2",
+    "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext.runAsUser=340",
+    "searchValue": "Pod",
+    "expectedValue": "1 metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext.runAsUser is set to a low UID"
   },
   {
     "queryName": "Container Running With Low UID",
     "severity": "MEDIUM",
     "line": 38,
-    "fileName": "positive9.yaml"
+    "filename": "positive9.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser=1000",
+    "searchValue": "Deployment",
+    "expectedValue": "2 metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is set to a low UID"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 43,
+    "filename": "positive8.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser=1",
+    "searchValue": "Deployment",
+    "expectedValue": "1 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is set to a low UID"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive8.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser=1",
+    "searchValue": "StatefulSet",
+    "expectedValue": "1 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is set to a low UID"
   },
   {
     "queryName": "Container Running With Low UID",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive10.yaml"
+    "filename": "positive9.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser=1000",
+    "searchValue": "StatefulSet",
+    "expectedValue": "2 metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is set to a low UID"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive5.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext",
+    "searchValue": "Deployment",
+    "expectedValue": "3 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser should be defined",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser is undefined"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive10.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
+    "searchValue": "StatefulSet",
+    "expectedValue": "3 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be defined",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is undefined"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 25,
+    "filename": "positive6.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser=1234",
+    "searchValue": "Deployment",
+    "expectedValue": "1 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser is set to a low UID"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-2",
+    "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser=2000",
+    "searchValue": "Pod",
+    "expectedValue": "1 metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser is set to a low UID"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive7.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser=1234",
+    "searchValue": "Deployment",
+    "expectedValue": "1 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser is set to a low UID"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 25,
+    "filename": "positive7.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}",
+    "searchValue": "Deployment",
+    "expectedValue": "3 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser should be defined",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser is undefined"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-2",
+    "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser=333",
+    "searchValue": "Pod",
+    "expectedValue": "1 metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser is set to a low UID"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 32,
+    "filename": "positive6.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser=5678",
+    "searchValue": "Deployment",
+    "expectedValue": "1 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser is set to a low UID"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive4.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.securityContext.runAsUser=1200",
+    "searchValue": "Deployment",
+    "expectedValue": "2 metadata.name={{securitydemo}}.spec.template.spec.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.securityContext.runAsUser is set to a low UID"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive5.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "securitydemo",
+    "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext",
+    "searchValue": "Deployment",
+    "expectedValue": "3 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser should be defined",
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser is undefined"
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "containers-runs-as-root",
+    "searchKey": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser=13",
+    "searchValue": "Pod",
+    "expectedValue": "1 metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser should be set to a UID >= 10000",
+    "actualValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser is set to a low UID"
   },
   {
     "queryName": "Container Running With Low UID",
     "severity": "MEDIUM",
     "line": 36,
-    "fileName": "positive10.yaml"
+    "filename": "positive10.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
+    "searchValue": "Deployment",
+    "expectedValue": "3 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be defined",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is undefined"
   }
 ]

@@ -1,38 +1,74 @@
 [
   {
+    "queryName": "Responses Object Is Empty (v2)",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty"
+  },
+  {
+    "queryName": "Responses Object Is Empty (v2)",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty"
+  },
+  {
+    "queryName": "Responses Object Is Empty (v3)",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty"
+  },
+  {
     "queryName": "Responses Object Is Empty (v3)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty"
   },
   {
     "queryName": "Responses Object Is Empty (v3)",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Responses Object Is Empty (v3)",
-    "severity": "INFO",
-    "line": 10,
-    "filename": "positive3.yaml"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty"
   },
   {
     "queryName": "Responses Object Is Empty (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Responses Object Is Empty (v2)",
-    "severity": "INFO",
-    "line": 12,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Responses Object Is Empty (v2)",
-    "severity": "INFO",
-    "line": 10,
-    "filename": "positive6.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty"
   }
 ]

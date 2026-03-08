@@ -1,26 +1,50 @@
 [
   {
+    "queryName": "Lambda Functions Without Unique IAM Roles",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive2.json",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Primer01",
+    "searchKey": "Resources.Primer01.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Each AWS Lambda Function has a unique role",
+    "actualValue": "Resource.Primer01.Properties.Role is assigned to another funtion"
+  },
+  {
+    "queryName": "Lambda Functions Without Unique IAM Roles",
+    "severity": "HIGH",
+    "line": 24,
+    "filename": "positive2.json",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Primer02",
+    "searchKey": "Resources.Primer02.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Each AWS Lambda Function has a unique role",
+    "actualValue": "Resource.Primer02.Properties.Role is assigned to another funtion"
+  },
+  {
+    "queryName": "Lambda Functions Without Unique IAM Roles",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive1.yaml",
-    "queryName": "Lambda Functions Without Unique IAM Roles"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Primer01",
+    "searchKey": "Resources.Primer01.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Each AWS Lambda Function has a unique role",
+    "actualValue": "Resource.Primer01.Properties.Role is assigned to another funtion"
   },
   {
+    "queryName": "Lambda Functions Without Unique IAM Roles",
     "severity": "HIGH",
     "line": 41,
-    "fileName": "positive1.yaml",
-    "queryName": "Lambda Functions Without Unique IAM Roles"
-  },
-  {
-    "line": 7,
-    "fileName": "positive2.json",
-    "queryName": "Lambda Functions Without Unique IAM Roles",
-    "severity": "HIGH"
-  },
-  {
-    "fileName": "positive2.json",
-    "queryName": "Lambda Functions Without Unique IAM Roles",
-    "severity": "HIGH",
-    "line": 24
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Primer02",
+    "searchKey": "Resources.Primer02.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Each AWS Lambda Function has a unique role",
+    "actualValue": "Resource.Primer02.Properties.Role is assigned to another funtion"
   }
 ]

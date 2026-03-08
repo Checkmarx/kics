@@ -2,79 +2,157 @@
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive2",
+    "searchKey": "aws_iam_policy[positive2].policy",
+    "searchValue": "*",
+    "expectedValue": "'positive2.policy.Statement.Action[0]' shouldn't contain illegal actions",
+    "actualValue": "'positive2.policy.Statement.Action[0]' contains [*]"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive3.tf"
+    "filename": "positive4.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "positive4_${var.environment}",
+    "searchKey": "aws_iam_user_policy[positive4].policy",
+    "searchValue": "s3:GetObject",
+    "expectedValue": "'positive4.policy.Statement.Action[0]' shouldn't contain illegal actions",
+    "actualValue": "'positive4.policy.Statement.Action[0]' contains [s3:GetObject]"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive5.tf"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive5.tf"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive6.tf"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
-    "line": 22,
-    "fileName": "positive6.tf"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
-    "line": 30,
-    "fileName": "positive6.tf"
+    "filename": "positive4.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "positive4_${var.environment}",
+    "searchKey": "aws_iam_user_policy[positive4].policy",
+    "searchValue": "s3:GetObject",
+    "expectedValue": "'positive4.policy.Statement.Action[1]' shouldn't contain illegal actions",
+    "actualValue": "'positive4.policy.Statement.Action[1]' contains [s3:GetObject]"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive7.tf"
+    "filename": "positive7.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "iam_policy.policy",
+    "searchValue": "secretsmanager:GetSecretValue",
+    "expectedValue": "'iam_policy.policy.Statement.Action[0]' shouldn't contain illegal actions",
+    "actualValue": "'iam_policy.policy.Statement.Action[0]' contains [secretsmanager:GetSecretValue]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive6.tf",
+    "resourceType": "aws_iam_policy_document",
+    "resourceName": "positive6",
+    "searchKey": "aws_iam_policy_document[positive6].statement.actions",
+    "searchValue": "s3:GetObject, ssm:GetParameter, ssm:GetParameters, ssm:GetParametersByPath, secretsmanager:GetSecretValue, *, s3:*",
+    "expectedValue": "'aws_iam_policy_document[positive6].statement.actions' shouldn't contain illegal actions",
+    "actualValue": "'aws_iam_policy_document[positive6].statement.actions' contains [s3:GetObject, ssm:GetParameter, ssm:GetParameters, ssm:GetParametersByPath, secretsmanager:GetSecretValue, *, s3:*]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive1_${var.environment}",
+    "searchKey": "aws_iam_policy[positive1].policy",
+    "searchValue": "secretsmanager:GetSecretValue",
+    "expectedValue": "'positive1.policy.Statement.Action[0]' shouldn't contain illegal actions",
+    "actualValue": "'positive1.policy.Statement.Action[0]' contains [secretsmanager:GetSecretValue]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive1_${var.environment}",
+    "searchKey": "aws_iam_policy[positive1].policy",
+    "searchValue": "ssm:GetParameters, ssm:GetParameter, s3:GetObject, ssm:GetParametersByPath, secretsmanager:GetSecretValue",
+    "expectedValue": "'positive1.policy.Statement.Action[1]' shouldn't contain illegal actions",
+    "actualValue": "'positive1.policy.Statement.Action[1]' contains [ssm:GetParameters, ssm:GetParameter, s3:GetObject, ssm:GetParametersByPath, secretsmanager:GetSecretValue]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive5.tf",
+    "resourceType": "aws_iam_role_policy",
+    "resourceName": "positive5_${var.environment}",
+    "searchKey": "aws_iam_role_policy[positive5].policy",
+    "searchValue": "ssm:GetParameters",
+    "expectedValue": "'positive5.policy.Statement.Action[0]' shouldn't contain illegal actions",
+    "actualValue": "'positive5.policy.Statement.Action[0]' contains [ssm:GetParameters]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive5.tf",
+    "resourceType": "aws_iam_role_policy",
+    "resourceName": "positive5_${var.environment}",
+    "searchKey": "aws_iam_role_policy[positive5].policy",
+    "searchValue": "ssm:GetParameters",
+    "expectedValue": "'positive5.policy.Statement.Action[1]' shouldn't contain illegal actions",
+    "actualValue": "'positive5.policy.Statement.Action[1]' contains [ssm:GetParameters]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive6.tf",
+    "resourceType": "aws_iam_policy_document",
+    "resourceName": "positive6_array",
+    "searchKey": "aws_iam_policy_document[positive6_array].statement[0].actions",
+    "searchValue": "s3:GetObject",
+    "expectedValue": "'aws_iam_policy_document[positive6_array].statement[0].actions' shouldn't contain illegal actions",
+    "actualValue": "'aws_iam_policy_document[positive6_array].statement[0].actions' contains [s3:GetObject]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 30,
+    "filename": "positive6.tf",
+    "resourceType": "aws_iam_policy_document",
+    "resourceName": "positive6_array",
+    "searchKey": "aws_iam_policy_document[positive6_array].statement[1].actions",
+    "searchValue": "*",
+    "expectedValue": "'aws_iam_policy_document[positive6_array].statement[1].actions' shouldn't contain illegal actions",
+    "actualValue": "'aws_iam_policy_document[positive6_array].statement[1].actions' contains [*]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive3.tf",
+    "resourceType": "aws_iam_group_policy",
+    "resourceName": "positive3_${var.environment}",
+    "searchKey": "aws_iam_group_policy[positive3].policy",
+    "searchValue": "*",
+    "expectedValue": "'positive3.policy.Statement.Action[0]' shouldn't contain illegal actions",
+    "actualValue": "'positive3.policy.Statement.Action[0]' contains [*]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive3.tf",
+    "resourceType": "aws_iam_group_policy",
+    "resourceName": "positive3_${var.environment}",
+    "searchKey": "aws_iam_group_policy[positive3].policy",
+    "searchValue": "*",
+    "expectedValue": "'positive3.policy.Statement.Action[1]' shouldn't contain illegal actions",
+    "actualValue": "'positive3.policy.Statement.Action[1]' contains [*]"
   }
 ]

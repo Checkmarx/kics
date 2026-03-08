@@ -3,12 +3,24 @@
     "queryName": "Operation Example Mismatch Produces MimeType",
     "severity": "INFO",
     "line": 34,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.{{200}}.examples.{{text/csv}}",
+    "searchValue": "",
+    "expectedValue": "Example MimeType should be listed on produces",
+    "actualValue": "Example MimeType is not listed on produces"
   },
   {
     "queryName": "Operation Example Mismatch Produces MimeType",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.{{200}}.examples.{{text/csv}}",
+    "searchValue": "",
+    "expectedValue": "Example MimeType should be listed on produces",
+    "actualValue": "Example MimeType is not listed on produces"
   }
 ]

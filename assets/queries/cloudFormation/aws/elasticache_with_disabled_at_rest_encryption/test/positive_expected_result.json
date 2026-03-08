@@ -3,30 +3,60 @@
     "queryName": "ElastiCache With Disabled at Rest Encryption",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "ReplicationGroup",
+    "searchKey": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled should be true",
+    "actualValue": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled is false"
   },
   {
     "queryName": "ElastiCache With Disabled at Rest Encryption",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "ElastiCache With Disabled at Rest Encryption",
-    "severity": "HIGH",
-    "line": 19,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "ElastiCache With Disabled at Rest Encryption",
-    "severity": "HIGH",
-    "line": 7,
-    "fileName": "positive4.json"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "MyReplicationGroup",
+    "searchKey": "Resources.MyReplicationGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyReplicationGroup.Properties.AtRestEncryptionEnabled should be defined",
+    "actualValue": "Resources.MyReplicationGroup.Properties.AtRestEncryptionEnabled is undefined"
   },
   {
     "queryName": "ElastiCache With Disabled at Rest Encryption",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive5.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "ReplicationGroup",
+    "searchKey": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled should be true",
+    "actualValue": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled is false"
+  },
+  {
+    "queryName": "ElastiCache With Disabled at Rest Encryption",
+    "severity": "HIGH",
+    "line": 19,
+    "filename": "positive3.json",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "ReplicationGroup",
+    "searchKey": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled should be true",
+    "actualValue": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled is false"
+  },
+  {
+    "queryName": "ElastiCache With Disabled at Rest Encryption",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive4.json",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "MyReplicationGroup",
+    "searchKey": "Resources.MyReplicationGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyReplicationGroup.Properties.AtRestEncryptionEnabled should be defined",
+    "actualValue": "Resources.MyReplicationGroup.Properties.AtRestEncryptionEnabled is undefined"
   }
 ]

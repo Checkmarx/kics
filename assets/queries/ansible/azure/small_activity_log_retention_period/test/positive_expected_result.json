@@ -2,16 +2,37 @@
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 13
+    "line": 46,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_monitorlogprofile",
+    "resourceName": "Create a log profile3",
+    "searchKey": "name={{Create a log profile3}}.{{azure_rm_monitorlogprofile}}.retention_policy.days",
+    "searchValue": "",
+    "expectedValue": "azure_rm_monitorlogprofile.retention_policy.days should be greater than or equal to 365 days or 0 (indefinitely)",
+    "actualValue": "azure_rm_monitorlogprofile.retention_policy.days is less than 365 days or different than 0 (indefinitely)"
   },
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 20
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_monitorlogprofile",
+    "resourceName": "Create a log profile",
+    "searchKey": "name={{Create a log profile}}.{{azure_rm_monitorlogprofile}}.retention_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "azure_rm_monitorlogprofile.retention_policy.enabled should be true or yes",
+    "actualValue": "azure_rm_monitorlogprofile.retention_policy.enabled is false or no"
   },
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 46
+    "line": 20,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_monitorlogprofile",
+    "resourceName": "Create a log profile2",
+    "searchKey": "name={{Create a log profile2}}.{{azure_rm_monitorlogprofile}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_monitorlogprofile.retention_policy should be defined",
+    "actualValue": "azure_rm_monitorlogprofile.retention_policy is undefined"
   }
 ]

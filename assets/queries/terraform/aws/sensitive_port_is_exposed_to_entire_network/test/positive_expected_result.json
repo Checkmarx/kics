@@ -2,241 +2,481 @@
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 3,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 3,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 12,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 21,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 27,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 38,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 38,
-    "filename": "positive1.tf"
+    "line": 46,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2_ipv6_3",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv6_3]",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 47,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 56,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 63,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 2,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 2,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 9,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 16,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 23,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 32,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 32,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 39,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 46,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 53,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 2,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 2,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 10,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 18,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 26,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 36,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 36,
-    "filename": "positive3.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4_ipv6_1].ingress_with_ipv6_cidr_blocks.2",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 44,
-    "filename": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3_ipv6_2",
+    "searchKey": "aws_security_group_rule[positive3_ipv6_2]",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 52,
-    "filename": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3_ipv6_3",
+    "searchKey": "aws_security_group_rule[positive3_ipv6_3]",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 60,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 5,
-    "filename": "positive4.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 5,
-    "filename": "positive4.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 11,
-    "filename": "positive4.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 17,
-    "filename": "positive4.tf"
+    "line": 3,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1_ipv4_1",
+    "searchKey": "aws_security_group[positive1_ipv4_1].ingress",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 23,
-    "filename": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4_ipv4_1].ingress_with_cidr_blocks.3",
+    "searchValue": "UDP,110",
+    "expectedValue": "POP3 (UDP:110) should not be allowed",
+    "actualValue": "POP3 (UDP:110) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 35,
-    "filename": "positive4.tf"
+    "line": 60,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3_ipv6_4",
+    "searchKey": "aws_security_group_rule[positive3_ipv6_4]",
+    "searchValue": "UDP,110",
+    "expectedValue": "POP3 (UDP:110) should not be allowed",
+    "actualValue": "POP3 (UDP:110) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 35,
-    "filename": "positive4.tf"
+    "line": 2,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3_ipv4_1",
+    "searchKey": "aws_security_group_rule[positive3_ipv4_1]",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 41,
-    "filename": "positive4.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 47,
-    "filename": "positive4.tf"
+    "line": 21,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1_array_test_ipv4",
+    "searchKey": "aws_security_group[positive1_array_test_ipv4].ingress[0]",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 53,
-    "filename": "positive4.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2_ipv6_4",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv6_4]",
+    "searchValue": "UDP,110",
+    "expectedValue": "POP3 (UDP:110) should not be allowed",
+    "actualValue": "POP3 (UDP:110) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 39,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2_ipv6_2",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv6_2]",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4_ipv4_1].ingress_with_cidr_blocks.0",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 41,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4_ipv6_1].ingress_with_ipv6_cidr_blocks.1",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2_ipv4_1",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv4_1]",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 16,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2_ipv4_3",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv4_3]",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 53,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4_ipv6_1].ingress_with_ipv6_cidr_blocks.3",
+    "searchValue": "UDP,110",
+    "expectedValue": "POP3 (UDP:110) should not be allowed",
+    "actualValue": "POP3 (UDP:110) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 35,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4_ipv6_1].ingress_with_ipv6_cidr_blocks.0",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 35,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4_ipv6_1].ingress_with_ipv6_cidr_blocks.0",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 36,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3_ipv6_1",
+    "searchKey": "aws_security_group_rule[positive3_ipv6_1]",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 27,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1_array_test_ipv4",
+    "searchKey": "aws_security_group[positive1_array_test_ipv4].ingress[1]",
+    "searchValue": "UDP,110",
+    "expectedValue": "POP3 (UDP:110) should not be allowed",
+    "actualValue": "POP3 (UDP:110) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 63,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1_array_test_ipv6",
+    "searchKey": "aws_security_group[positive1_array_test_ipv6].ingress[1]",
+    "searchValue": "UDP,110",
+    "expectedValue": "POP3 (UDP:110) should not be allowed",
+    "actualValue": "POP3 (UDP:110) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4_ipv4_1].ingress_with_cidr_blocks.2",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3_ipv4_1",
+    "searchKey": "aws_security_group_rule[positive3_ipv4_1]",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3_ipv4_2",
+    "searchKey": "aws_security_group_rule[positive3_ipv4_2]",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 47,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1_ipv6_2",
+    "searchKey": "aws_security_group[positive1_ipv6_2].ingress",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 23,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2_ipv4_4",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv4_4]",
+    "searchValue": "UDP,110",
+    "expectedValue": "POP3 (UDP:110) should not be allowed",
+    "actualValue": "POP3 (UDP:110) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 36,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3_ipv6_1",
+    "searchKey": "aws_security_group_rule[positive3_ipv6_1]",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 3,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1_ipv4_1",
+    "searchKey": "aws_security_group[positive1_ipv4_1].ingress",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 38,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1_ipv6_1",
+    "searchKey": "aws_security_group[positive1_ipv6_1].ingress",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2_ipv4_2",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv4_2]",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 32,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2_ipv6_1",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv6_1]",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 26,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3_ipv4_4",
+    "searchKey": "aws_security_group_rule[positive3_ipv4_4]",
+    "searchValue": "UDP,110",
+    "expectedValue": "POP3 (UDP:110) should not be allowed",
+    "actualValue": "POP3 (UDP:110) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4_ipv4_1].ingress_with_cidr_blocks.0",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2_ipv4_1",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv4_1]",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 32,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2_ipv6_1",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv6_1]",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive4_ipv4_1].ingress_with_cidr_blocks.1",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3_ipv4_3",
+    "searchKey": "aws_security_group_rule[positive3_ipv4_3]",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1_ipv4_2",
+    "searchKey": "aws_security_group[positive1_ipv4_2].ingress",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 38,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1_ipv6_1",
+    "searchKey": "aws_security_group[positive1_ipv6_1].ingress",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 56,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1_array_test_ipv6",
+    "searchKey": "aws_security_group[positive1_array_test_ipv6].ingress[0]",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   }
 ]

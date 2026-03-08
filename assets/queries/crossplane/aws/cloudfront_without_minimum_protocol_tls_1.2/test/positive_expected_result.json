@@ -2,37 +2,73 @@
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive.yaml"
-  },
-  {
-    "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
-    "severity": "MEDIUM",
-    "line": 54,
-    "fileName": "positive.yaml"
-  },
-  {
-    "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
-    "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
-    "severity": "MEDIUM",
-    "line": 44,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
+    "searchValue": "",
+    "expectedValue": "'viewerCertificate.minimumProtocolVersion' should be defined and set to TLSv1.2_x",
+    "actualValue": "'viewerCertificate' is not defined"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.viewerCertificate",
+    "searchValue": "",
+    "expectedValue": "'viewerCertificate.minimumProtocolVersion' should be defined and set to TLSv1.2_x",
+    "actualValue": "'minimumProtocolVersion' is not defined"
+  },
+  {
+    "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.viewerCertificate.minimumProtocolVersion",
+    "searchValue": "",
+    "expectedValue": "'viewerCertificate.minimumProtocolVersion' should be TLSv1.2_x",
+    "actualValue": "'viewerCertificate.minimumProtocolVersion' is TLSv1.1_2016"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
     "severity": "MEDIUM",
     "line": 50,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.viewerCertificate",
+    "searchValue": "",
+    "expectedValue": "'viewerCertificate.minimumProtocolVersion' should be defined and set to TLSv1.2_x",
+    "actualValue": "'minimumProtocolVersion' is not defined"
+  },
+  {
+    "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
+    "severity": "MEDIUM",
+    "line": 44,
+    "filename": "positive2.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
+    "searchValue": "",
+    "expectedValue": "'viewerCertificate.minimumProtocolVersion' should be defined and set to TLSv1.2_x",
+    "actualValue": "'viewerCertificate' is not defined"
+  },
+  {
+    "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
+    "severity": "MEDIUM",
+    "line": 54,
+    "filename": "positive.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.viewerCertificate.minimumProtocolVersion",
+    "searchValue": "",
+    "expectedValue": "'viewerCertificate.minimumProtocolVersion' should be TLSv1.2_x",
+    "actualValue": "'viewerCertificate.minimumProtocolVersion' is TLSv1.1_2016"
   }
 ]

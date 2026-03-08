@@ -1,26 +1,50 @@
 [
-    {
-      "queryName": "Volume Has Sensitive Host Directory",
-      "severity": "HIGH",
-      "line": 11,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Volume Has Sensitive Host Directory",
-      "severity": "HIGH",
-      "line": 18,
-      "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Volume Has Sensitive Host Directory",
-      "severity": "HIGH",
-      "line": 14,
-      "filename": "positive3.yaml"
-    },
-    {
-      "queryName": "Volume Has Sensitive Host Directory",
-      "severity": "HIGH",
-      "line": 11,
-      "filename": "positive4.yaml"
-    }
+  {
+    "queryName": "Volume Has Sensitive Host Directory",
+    "severity": "HIGH",
+    "line": 14,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "volumes.wp-content.driver_opts.mountpoint",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
+    "actualValue": "There is a sensitive directory (/var/data) mounted as a volume"
+  },
+  {
+    "queryName": "Volume Has Sensitive Host Directory",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.backup.volumes",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
+    "actualValue": "There is a sensitive directory (/var/lib/backup/data) mounted as a volume"
+  },
+  {
+    "queryName": "Volume Has Sensitive Host Directory",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.yesno.volumes.source",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
+    "actualValue": "There is a sensitive directory (/etc/exercise) mounted as a volume"
+  },
+  {
+    "queryName": "Volume Has Sensitive Host Directory",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "volumes.vol.driver_opts.device",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
+    "actualValue": "There is a sensitive directory (/var/lib/backup/data) mounted as a volume"
+  }
 ]

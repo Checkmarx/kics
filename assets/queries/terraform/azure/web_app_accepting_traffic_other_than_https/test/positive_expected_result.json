@@ -3,36 +3,72 @@
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-1].https_only",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-1].https_only' should be set to true",
+    "actualValue": "'azurerm_app_service[positive1-1].https_only' is not set to true"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-2].https_only' should be defined and set to true",
+    "actualValue": "'azurerm_app_service[positive1-2].https_only' is undefined"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive2-1].https_only",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive2-1].https_only' should be set to true",
+    "actualValue": "'azurerm_linux_web_app[positive2-1].https_only' is not set to true"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive2-2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive2-2].https_only' should be defined and set to true",
+    "actualValue": "'azurerm_linux_web_app[positive2-2].https_only' is undefined"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive3-1].https_only",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive3-1].https_only' should be set to true",
+    "actualValue": "'azurerm_windows_web_app[positive3-1].https_only' is not set to true"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive3-2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive3-2].https_only' should be defined and set to true",
+    "actualValue": "'azurerm_windows_web_app[positive3-2].https_only' is undefined"
   }
 ]

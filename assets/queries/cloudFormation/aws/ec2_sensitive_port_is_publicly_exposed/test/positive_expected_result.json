@@ -2,1093 +2,2185 @@
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 21,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 31,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 41,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 49,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
     "line": 60,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:138",
+    "expectedValue": "NetBIOS Datagram Service (UDP:138) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Datagram Service (UDP:138) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 60,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:2484",
+    "expectedValue": "Oracle DB SSL (UDP:2484) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracle DB SSL (UDP:2484) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:53",
+    "expectedValue": "DNS (TCP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (TCP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:636",
+    "expectedValue": "LDAP SSL (TCP:636) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "LDAP SSL (TCP:636) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 60,
-    "fileName": "positive1.yaml"
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:139",
+    "expectedValue": "NetBIOS Session Service (TCP:139) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Session Service (TCP:139) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 60,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:3020",
+    "expectedValue": "CIFS / SMB (TCP:3020) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "CIFS / SMB (TCP:3020) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 60,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:7000",
+    "expectedValue": "Cassandra Internode Communication (TCP:7000) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra Internode Communication (TCP:7000) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 60,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:8020",
+    "expectedValue": "HDFS NameNode (TCP:8020) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HDFS NameNode (TCP:8020) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 60,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:5432",
+    "expectedValue": "PostgreSQL (UDP:5432) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "PostgreSQL (UDP:5432) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 60,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 70,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 80,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 84,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 20,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 29,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 38,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 47,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 57,
-    "fileName": "positive2.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:5900",
+    "expectedValue": "VNC Server (TCP:5900) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "VNC Server (TCP:5900) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 66,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress2.Properties",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 75,
-    "fileName": "positive2.yaml"
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:50070",
+    "expectedValue": "HDFS NameNode WebUI (TCP:50070) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HDFS NameNode WebUI (TCP:50070) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 84,
-    "fileName": "positive2.yaml"
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:1433",
+    "expectedValue": "MSSQL Server (TCP:1433) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MSSQL Server (TCP:1433) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:161",
+    "expectedValue": "SNMP (UDP:161) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SNMP (UDP:161) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 25,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4_1",
+    "searchKey": "Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 39,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 53,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 65,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 79,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
     "line": 79,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:80",
+    "expectedValue": "HTTP (TCP:80) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HTTP (TCP:80) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 79,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:389",
+    "expectedValue": "LDAP (TCP:389) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "LDAP (TCP:389) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 79,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:3306",
+    "expectedValue": "MySQL (TCP:3306) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MySQL (TCP:3306) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 79,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:25",
+    "expectedValue": "SMTP (TCP:25) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SMTP (TCP:25) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 79,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2382",
+    "expectedValue": "SQL Server Analysis (TCP:2382) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SQL Server Analysis (TCP:2382) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 93,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_2",
+    "searchKey": "Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 107,
-    "fileName": "positive3.json"
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9000",
+    "expectedValue": "Hadoop Name Node (TCP:9000) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Hadoop Name Node (TCP:9000) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 113,
-    "fileName": "positive3.json"
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:11211",
+    "expectedValue": "Memcached (UDP:11211) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached (UDP:11211) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 24,
-    "fileName": "positive4.json"
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:135",
+    "expectedValue": "MSSQL Debugger (TCP:135) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MSSQL Debugger (TCP:135) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 34,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
-    "severity": "HIGH",
-    "line": 44,
-    "fileName": "positive4.json"
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2484",
+    "expectedValue": "Oracle DB SSL (TCP:2484) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracle DB SSL (TCP:2484) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 54,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress4.Properties",
+    "searchValue": "EC2Instance01/UDP:137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 64,
-    "fileName": "positive4.json"
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:5601",
+    "expectedValue": "Kibana (TCP:5601) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Kibana (TCP:5601) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
-    "line": 74,
-    "fileName": "positive4.json"
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:11214",
+    "expectedValue": "Memcached SSL (TCP:11214) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached SSL (TCP:11214) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 113,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv6",
+    "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]",
+    "searchValue": "EC2Instance01/UDP:137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 44,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress3.Properties",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:21",
+    "expectedValue": "FTP (TCP:21) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "FTP (TCP:21) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:61620",
+    "expectedValue": "Cassandra OpsCenter (TCP:61620) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra OpsCenter (TCP:61620) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Telnet (TCP:23) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:11215",
+    "expectedValue": "Memcached SSL (UDP:11215) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached SSL (UDP:11215) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:2483",
+    "expectedValue": "Oracle DB SSL (UDP:2483) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracle DB SSL (UDP:2483) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:110",
+    "expectedValue": "POP3 (TCP:110) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "POP3 (TCP:110) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:161",
+    "expectedValue": "SNMP (UDP:161) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SNMP (UDP:161) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:11215",
+    "expectedValue": "Memcached SSL (TCP:11215) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached SSL (TCP:11215) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:27018",
+    "expectedValue": "Mongo Web Portal (TCP:27018) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Mongo Web Portal (TCP:27018) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:25",
+    "expectedValue": "SMTP (TCP:25) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SMTP (TCP:25) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2383",
+    "expectedValue": "SQL Server Analysis (TCP:2383) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SQL Server Analysis (TCP:2383) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:8020",
+    "expectedValue": "HDFS NameNode (TCP:8020) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HDFS NameNode (TCP:8020) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:4505",
+    "expectedValue": "SaltStack Master (TCP:4505) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SaltStack Master (TCP:4505) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:21",
+    "expectedValue": "FTP (TCP:21) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "FTP (TCP:21) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:443",
+    "expectedValue": "HTTPS (TCP:443) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HTTPS (TCP:443) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:1433",
+    "expectedValue": "MSSQL Server (TCP:1433) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MSSQL Server (TCP:1433) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:138",
+    "expectedValue": "NetBIOS Datagram Service (TCP:138) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Datagram Service (TCP:138) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:445",
+    "expectedValue": "Microsoft-DS (TCP:445) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Microsoft-DS (TCP:445) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:3000",
+    "expectedValue": "Prevalent known internal port (TCP:3000) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Prevalent known internal port (TCP:3000) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:27017",
+    "expectedValue": "Mongo (TCP:27017) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Mongo (TCP:27017) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 84,
-    "fileName": "positive4.json"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv6",
+    "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]",
+    "searchValue": "EC2Instance01/UDP:137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:139",
+    "expectedValue": "NetBIOS Session Service (UDP:139) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Session Service (UDP:139) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:138",
+    "expectedValue": "NetBIOS Datagram Service (UDP:138) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Datagram Service (UDP:138) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:8888",
+    "expectedValue": "Cassandra OpsCenter Website (TCP:8888) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra OpsCenter Website (TCP:8888) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9160",
+    "expectedValue": "Cassandra Thrift (TCP:9160) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra Thrift (TCP:9160) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:11211",
+    "expectedValue": "Memcached (UDP:11211) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached (UDP:11211) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:4506",
+    "expectedValue": "SaltStack Master (TCP:4506) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SaltStack Master (TCP:4506) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:53",
+    "expectedValue": "DNS (TCP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (TCP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:5985",
+    "expectedValue": "WinRM for HTTP (TCP:5985) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "WinRM for HTTP (TCP:5985) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:389",
+    "expectedValue": "LDAP (UDP:389) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "LDAP (UDP:389) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:139",
+    "expectedValue": "NetBIOS Session Service (UDP:139) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Session Service (UDP:139) is allowed in EC2 security group for instance 'EC2Instance01'"
   },
   {
     "queryName": "EC2 Sensitive Port Is Publicly Exposed",
     "severity": "HIGH",
     "line": 94,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress4.Properties",
+    "searchValue": "EC2Instance01/UDP:137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 34,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress2.Properties",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 31,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4_2",
+    "searchKey": "Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:80",
+    "expectedValue": "HTTP (TCP:80) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HTTP (TCP:80) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:445",
+    "expectedValue": "Microsoft-DS (TCP:445) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Microsoft-DS (TCP:445) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:4333",
+    "expectedValue": "MySQL (TCP:4333) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MySQL (TCP:4333) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:3000",
+    "expectedValue": "Prevalent known internal port (TCP:3000) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Prevalent known internal port (TCP:3000) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 38,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress3.Properties",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9160",
+    "expectedValue": "Cassandra Thrift (TCP:9160) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra Thrift (TCP:9160) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:11211",
+    "expectedValue": "Memcached (TCP:11211) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached (TCP:11211) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 107,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv6",
+    "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2375",
+    "expectedValue": "Docker (TCP:2375) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Docker (TCP:2375) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 21,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4_1",
+    "searchKey": "Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:61621",
+    "expectedValue": "Cassandra OpsCenter (TCP:61621) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra OpsCenter (TCP:61621) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:7000",
+    "expectedValue": "Cassandra Internode Communication (TCP:7000) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra Internode Communication (TCP:7000) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:8888",
+    "expectedValue": "Cassandra OpsCenter Website (TCP:8888) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra OpsCenter Website (TCP:8888) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:4333",
+    "expectedValue": "MySQL (TCP:4333) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MySQL (TCP:4333) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:5432",
+    "expectedValue": "PostgreSQL (UDP:5432) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "PostgreSQL (UDP:5432) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:11211",
+    "expectedValue": "Memcached (TCP:11211) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached (TCP:11211) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:1521",
+    "expectedValue": "Oracl DB (TCP:1521) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracl DB (TCP:1521) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 75,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress3.Properties",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 65,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv4",
+    "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[2]",
+    "searchValue": "EC2Instance01/UDP:137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:1522",
+    "expectedValue": "Oracle Auto Data Warehouse (TCP:1522) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracle Auto Data Warehouse (TCP:1522) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:8080",
+    "expectedValue": "Known internal web port (TCP:8080) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Known internal web port (TCP:8080) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:161",
+    "expectedValue": "SNMP (TCP:161) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SNMP (TCP:161) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:4505",
+    "expectedValue": "SaltStack Master (TCP:4505) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SaltStack Master (TCP:4505) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 47,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress4.Properties",
+    "searchValue": "EC2Instance01/UDP:137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:7001",
+    "expectedValue": "Cassandra (TCP:7001) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra (TCP:7001) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:27017",
+    "expectedValue": "Mongo (TCP:27017) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Mongo (TCP:27017) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 80,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv6",
+    "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:389",
+    "expectedValue": "LDAP (TCP:389) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "LDAP (TCP:389) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:135",
+    "expectedValue": "MSSQL Debugger (TCP:135) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MSSQL Debugger (TCP:135) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2376",
+    "expectedValue": "Docker (TCP:2376) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Docker (TCP:2376) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:50070",
+    "expectedValue": "HDFS NameNode WebUI (TCP:50070) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HDFS NameNode WebUI (TCP:50070) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:137",
+    "expectedValue": "NetBIOS Name Service (TCP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (TCP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:1522",
+    "expectedValue": "Oracle Auto Data Warehouse (TCP:1522) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracle Auto Data Warehouse (TCP:1522) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:8140",
+    "expectedValue": "Puppet Master (TCP:8140) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Puppet Master (TCP:8140) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:20",
+    "expectedValue": "FTP (TCP:20) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "FTP (TCP:20) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:443",
+    "expectedValue": "HTTPS (TCP:443) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HTTPS (TCP:443) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:5601",
+    "expectedValue": "Kibana (TCP:5601) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Kibana (TCP:5601) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:2484",
+    "expectedValue": "Oracle DB SSL (UDP:2484) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracle DB SSL (UDP:2484) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9200",
+    "expectedValue": "Elastic Search (TCP:9200) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Elastic Search (TCP:9200) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:389",
+    "expectedValue": "LDAP (UDP:389) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "LDAP (UDP:389) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:1434",
+    "expectedValue": "MSSQL Browser (UDP:1434) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MSSQL Browser (UDP:1434) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 29,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress2.Properties",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 39,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4_2",
+    "searchKey": "Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:80",
+    "expectedValue": "HTTP (TCP:80) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HTTP (TCP:80) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:8000",
+    "expectedValue": "Known internal web port (TCP:8000) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Known internal web port (TCP:8000) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:6379",
+    "expectedValue": "Redis (TCP:6379) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Redis (TCP:6379) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:3389",
+    "expectedValue": "Remote Desktop (TCP:3389) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Remote Desktop (TCP:3389) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9042",
+    "expectedValue": "Cassandra Client (TCP:9042) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra Client (TCP:9042) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:8140",
+    "expectedValue": "Puppet Master (TCP:8140) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Puppet Master (TCP:8140) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:3389",
+    "expectedValue": "Remote Desktop (TCP:3389) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Remote Desktop (TCP:3389) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:636",
+    "expectedValue": "LDAP SSL (TCP:636) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "LDAP SSL (TCP:636) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:5985",
+    "expectedValue": "WinRM for HTTP (TCP:5985) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "WinRM for HTTP (TCP:5985) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9042",
+    "expectedValue": "Cassandra Client (TCP:9042) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra Client (TCP:9042) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9300",
+    "expectedValue": "Elastic Search (TCP:9300) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Elastic Search (TCP:9300) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:3306",
+    "expectedValue": "MySQL (TCP:3306) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MySQL (TCP:3306) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:5500",
+    "expectedValue": "VNC Listener (TCP:5500) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "VNC Listener (TCP:5500) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:3020",
+    "expectedValue": "CIFS / SMB (TCP:3020) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "CIFS / SMB (TCP:3020) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 53,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv4",
+    "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 84,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress3.Properties",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2483",
+    "expectedValue": "Oracle DB SSL (TCP:2483) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracle DB SSL (TCP:2483) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9300",
+    "expectedValue": "Elastic Search (TCP:9300) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Elastic Search (TCP:9300) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:1434",
+    "expectedValue": "MSSQL Browser (TCP:1434) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MSSQL Browser (TCP:1434) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:5432",
+    "expectedValue": "PostgreSQL (TCP:5432) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "PostgreSQL (TCP:5432) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:5500",
+    "expectedValue": "VNC Listener (TCP:5500) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "VNC Listener (TCP:5500) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:20",
+    "expectedValue": "FTP (TCP:20) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "FTP (TCP:20) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:11215",
+    "expectedValue": "Memcached SSL (UDP:11215) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached SSL (UDP:11215) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 57,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress1.Properties",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:61621",
+    "expectedValue": "Cassandra OpsCenter (TCP:61621) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra OpsCenter (TCP:61621) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9090",
+    "expectedValue": "CiscoSecure, WebSM (TCP:9090) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "CiscoSecure, WebSM (TCP:9090) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9000",
+    "expectedValue": "Hadoop Name Node (TCP:9000) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Hadoop Name Node (TCP:9000) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:11214",
+    "expectedValue": "Memcached SSL (TCP:11214) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached SSL (TCP:11214) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:1521",
+    "expectedValue": "Oracl DB (TCP:1521) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracl DB (TCP:1521) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:50470",
+    "expectedValue": "HDFS NameNode WebUI (TCP:50470) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HDFS NameNode WebUI (TCP:50470) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:80",
+    "expectedValue": "HTTP (TCP:80) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HTTP (TCP:80) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 49,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv4",
+    "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[2]",
+    "searchValue": "EC2Instance01/UDP:137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 84,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress4.Properties",
+    "searchValue": "EC2Instance01/UDP:137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:137",
+    "expectedValue": "NetBIOS Name Service (TCP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (TCP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2483",
+    "expectedValue": "Oracle DB SSL (TCP:2483) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracle DB SSL (TCP:2483) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Telnet (TCP:23) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:5900",
+    "expectedValue": "VNC Server (TCP:5900) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "VNC Server (TCP:5900) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:1434",
+    "expectedValue": "MSSQL Browser (TCP:1434) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MSSQL Browser (TCP:1434) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:139",
+    "expectedValue": "NetBIOS Session Service (TCP:139) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Session Service (TCP:139) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:110",
+    "expectedValue": "POP3 (TCP:110) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "POP3 (TCP:110) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:5432",
+    "expectedValue": "PostgreSQL (TCP:5432) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "PostgreSQL (TCP:5432) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:11214",
+    "expectedValue": "Memcached SSL (UDP:11214) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached SSL (UDP:11214) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 74,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress2.Properties",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 41,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv4",
+    "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:53",
+    "expectedValue": "DNS (UDP:53) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "DNS (UDP:53) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:61620",
+    "expectedValue": "Cassandra OpsCenter (TCP:61620) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra OpsCenter (TCP:61620) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:27018",
+    "expectedValue": "Mongo Web Portal (TCP:27018) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Mongo Web Portal (TCP:27018) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:161",
+    "expectedValue": "SNMP (TCP:161) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SNMP (TCP:161) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 64,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress1.Properties",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2375",
+    "expectedValue": "Docker (TCP:2375) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Docker (TCP:2375) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2484",
+    "expectedValue": "Oracle DB SSL (TCP:2484) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracle DB SSL (TCP:2484) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:4506",
+    "expectedValue": "SaltStack Master (TCP:4506) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SaltStack Master (TCP:4506) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 20,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress1.Properties",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:7199",
+    "expectedValue": "Cassandra Monitoring (TCP:7199) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra Monitoring (TCP:7199) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:50470",
+    "expectedValue": "HDFS NameNode WebUI (TCP:50470) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "HDFS NameNode WebUI (TCP:50470) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:8080",
+    "expectedValue": "Known internal web port (TCP:8080) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Known internal web port (TCP:8080) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 24,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress1.Properties",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:7001",
+    "expectedValue": "Cassandra (TCP:7001) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra (TCP:7001) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2376",
+    "expectedValue": "Docker (TCP:2376) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Docker (TCP:2376) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:11214",
+    "expectedValue": "Memcached SSL (UDP:11214) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached SSL (UDP:11214) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:11215",
+    "expectedValue": "Memcached SSL (TCP:11215) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Memcached SSL (TCP:11215) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:138",
+    "expectedValue": "NetBIOS Datagram Service (TCP:138) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "NetBIOS Datagram Service (TCP:138) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:7199",
+    "expectedValue": "Cassandra Monitoring (TCP:7199) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Cassandra Monitoring (TCP:7199) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 70,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_2",
+    "searchKey": "Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:22",
+    "expectedValue": "SSH (TCP:22) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SSH (TCP:22) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9200",
+    "expectedValue": "Elastic Search (TCP:9200) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Elastic Search (TCP:9200) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:1434",
+    "expectedValue": "MSSQL Browser (UDP:1434) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "MSSQL Browser (UDP:1434) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:9090",
+    "expectedValue": "CiscoSecure, WebSM (TCP:9090) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "CiscoSecure, WebSM (TCP:9090) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/UDP:2483",
+    "expectedValue": "Oracle DB SSL (UDP:2483) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Oracle DB SSL (UDP:2483) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:6379",
+    "expectedValue": "Redis (TCP:6379) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Redis (TCP:6379) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2382",
+    "expectedValue": "SQL Server Analysis (TCP:2382) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SQL Server Analysis (TCP:2382) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 79,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:2383",
+    "expectedValue": "SQL Server Analysis (TCP:2383) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "SQL Server Analysis (TCP:2383) is allowed in EC2 security group for instance 'EC2Instance01'"
+  },
+  {
+    "queryName": "EC2 Sensitive Port Is Publicly Exposed",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "EC2Instance01/TCP:8000",
+    "expectedValue": "Known internal web port (TCP:8000) should not be allowed in EC2 security group for instance 'EC2Instance01'",
+    "actualValue": "Known internal web port (TCP:8000) is allowed in EC2 security group for instance 'EC2Instance01'"
   }
 ]

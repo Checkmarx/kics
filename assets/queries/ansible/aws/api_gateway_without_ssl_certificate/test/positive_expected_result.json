@@ -1,25 +1,50 @@
 [
-	{
-		"queryName": "API Gateway Without SSL Certificate",
-		"severity": "MEDIUM",
-		"line": 6
-	},
-
-	{
-		"queryName": "API Gateway Without SSL Certificate",
-		"severity": "MEDIUM",
-		"line": 8
-	},
-
-	{
-		"queryName": "API Gateway Without SSL Certificate",
-		"severity": "MEDIUM",
-		"line": 21
-	},
-
-	{
-		"queryName": "API Gateway Without SSL Certificate",
-		"severity": "MEDIUM",
-		"line": 23
-	}
+  {
+    "queryName": "API Gateway Without SSL Certificate",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.aws_api_gateway",
+    "resourceName": "Setup AWS API Gateway setup on AWS and deploy API definition",
+    "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition}}.{{community.aws.aws_api_gateway}}.validate_certs",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway.validate_certs should be set to yes",
+    "actualValue": "aws_api_gateway.validate_certs is not set to yes"
+  },
+  {
+    "queryName": "API Gateway Without SSL Certificate",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive.yaml",
+    "resourceType": "aws_api_gateway",
+    "resourceName": "update API",
+    "searchKey": "name={{update API}}.{{aws_api_gateway}}.validate_certs",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway.validate_certs should be set to yes",
+    "actualValue": "aws_api_gateway.validate_certs is not set to yes"
+  },
+  {
+    "queryName": "API Gateway Without SSL Certificate",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.aws_api_gateway",
+    "resourceName": "Setup AWS API Gateway setup on AWS and deploy API definition v1",
+    "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition v1}}.{{community.aws.aws_api_gateway}}",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway.validate_certs should be set",
+    "actualValue": "aws_api_gateway.validate_certs is undefined"
+  },
+  {
+    "queryName": "API Gateway Without SSL Certificate",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "aws_api_gateway",
+    "resourceName": "update API v1",
+    "searchKey": "name={{update API v1}}.{{aws_api_gateway}}",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway.validate_certs should be set",
+    "actualValue": "aws_api_gateway.validate_certs is undefined"
+  }
 ]

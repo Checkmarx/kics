@@ -2,25 +2,49 @@
   {
     "queryName": "Additional Properties Too Restrictive",
     "severity": "LOW",
+    "line": 13,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.allOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should not be false",
+    "actualValue": "'additionalProperties' is false"
+  },
+  {
+    "queryName": "Additional Properties Too Restrictive",
+    "severity": "LOW",
     "line": 41,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.oneOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should not be false",
+    "actualValue": "'additionalProperties' is false"
   },
   {
     "queryName": "Additional Properties Too Restrictive",
     "severity": "LOW",
     "line": 15,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.allOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should not be false",
+    "actualValue": "'additionalProperties' is false"
   },
   {
     "queryName": "Additional Properties Too Restrictive",
     "severity": "LOW",
     "line": 25,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Additional Properties Too Restrictive",
-    "severity": "LOW",
-    "line": 13,
-    "filename": "positive4.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.oneOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should not be false",
+    "actualValue": "'additionalProperties' is false"
   }
 ]

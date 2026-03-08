@@ -2,37 +2,73 @@
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
-    "line": 13,
-    "fileName": "positive1.json"
-  },
-  {
-    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "HIGH",
     "line": 11,
-    "fileName": "positive2.json"
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive3",
+    "searchKey": "resources.name=positive3.properties.publicNetworkAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to 'Enabled')"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "HIGH",
-    "line": 12,
-    "fileName": "positive1.bicep"
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive1",
+    "searchKey": "resources.name=positive1.properties.networkAcls.defaultAction",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to 'Allow')"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive2.bicep"
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive2",
+    "searchKey": "resources.name=positive2.properties.publicNetworkAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is not set (default is 'Enabled')"
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 13,
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive1",
+    "searchKey": "resources.name=positive1.properties.networkAcls.defaultAction",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to 'Allow')"
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive3",
+    "searchKey": "resources.name=positive3.properties.publicNetworkAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to 'Enabled')"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive3.bicep"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive2",
+    "searchKey": "resources.name=positive2.properties.publicNetworkAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is not set (default is 'Enabled')"
   }
 ]

@@ -2,6 +2,13 @@
   {
     "queryName": "Curl or Wget Instead of Add",
     "severity": "LOW",
-    "line": 3
+    "line": 3,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{openjdk:10-jdk}}.{{ADD https://example.com/big.tar.xz /usr/src/things/}}",
+    "searchValue": "",
+    "expectedValue": "Should use 'curl' or 'wget' to download https://example.com/big.tar.xz",
+    "actualValue": "'ADD' https://example.com/big.tar.xz"
   }
 ]

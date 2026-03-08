@@ -1,14 +1,26 @@
 [
   {
-    "line": 8,
-    "fileName": "positive1.yaml",
     "queryName": "SDB Domain Declared As A Resource",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive2.json",
+    "resourceType": "AWS::SDB::Domain",
+    "resourceName": "SBDDomain",
+    "searchKey": "Resources.SBDDomain",
+    "searchValue": "",
+    "expectedValue": "Resources.SBDDomain should not be defined",
+    "actualValue": "Resources.SBDDomain is defined"
   },
   {
     "queryName": "SDB Domain Declared As A Resource",
     "severity": "LOW",
-    "line": 11,
-    "fileName": "positive2.json"
+    "line": 8,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::SDB::Domain",
+    "resourceName": "SBDDomain",
+    "searchKey": "Resources.SBDDomain",
+    "searchValue": "",
+    "expectedValue": "Resources.SBDDomain should not be defined",
+    "actualValue": "Resources.SBDDomain is defined"
   }
 ]

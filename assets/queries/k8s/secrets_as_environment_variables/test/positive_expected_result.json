@@ -1,17 +1,38 @@
 [
-	{
-		"queryName": "Secrets As Environment Variables",
-		"severity": "LOW",
-		"line": 12
-	},
-	{
-		"queryName": "Secrets As Environment Variables",
-		"severity": "LOW",
-		"line": 17
-	},
-	{
-		"queryName": "Secrets As Environment Variables",
-		"severity": "LOW",
-		"line": 31
-	}
+  {
+    "queryName": "Secrets As Environment Variables",
+    "severity": "LOW",
+    "line": 17,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "secret-env-pod",
+    "searchKey": "metadata.name={{secret-env-pod}}.spec.containers.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef",
+    "searchValue": "Pod",
+    "expectedValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' should be undefined",
+    "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' is defined"
+  },
+  {
+    "queryName": "Secrets As Environment Variables",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "secret-env-pod",
+    "searchKey": "metadata.name={{secret-env-pod}}.spec.containers.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef",
+    "searchValue": "Pod",
+    "expectedValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef' should be undefined",
+    "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef' is defined"
+  },
+  {
+    "queryName": "Secrets As Environment Variables",
+    "severity": "LOW",
+    "line": 31,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "envfrom-secret",
+    "searchKey": "metadata.name={{envfrom-secret}}.spec.containers.name={{envars-test-container}}.envFrom",
+    "searchValue": "Pod",
+    "expectedValue": "'spec.containers.name={{envars-test-container}}.envFrom.secretRef' should be undefined",
+    "actualValue": "'spec.containers.name={{envars-test-container}}.envFrom.secretRef' is defined"
+  }
 ]

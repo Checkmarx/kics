@@ -1,14 +1,26 @@
 [
-    {
-      "queryName": "OSS Bucket Allows List Action From All Principals",
-      "severity": "HIGH",
-      "line": 5,
-      "fileName": "positive1.tf"
-    },
-    {
-      "queryName": "OSS Bucket Allows List Action From All Principals",
-      "severity": "HIGH",
-      "line": 5,
-      "fileName": "positive2.tf"
-    }
+  {
+    "queryName": "OSS Bucket Allows List Action From All Principals",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-1-policy",
+    "searchKey": "alicloud_oss_bucket[bucket-policy1].policy",
+    "searchValue": "",
+    "expectedValue": "alicloud_oss_bucket[bucket-policy1].policy to not accept list action from all principals",
+    "actualValue": "alicloud_oss_bucket[bucket-policy1].policy accepts list action from all principals"
+  },
+  {
+    "queryName": "OSS Bucket Allows List Action From All Principals",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-5-policy",
+    "searchKey": "alicloud_oss_bucket[bucket-policy5].policy",
+    "searchValue": "",
+    "expectedValue": "alicloud_oss_bucket[bucket-policy5].policy to not accept list action from all principals",
+    "actualValue": "alicloud_oss_bucket[bucket-policy5].policy accepts list action from all principals"
+  }
 ]

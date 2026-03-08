@@ -1,38 +1,74 @@
 [
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 8,
-      "filename": "positive1.tf"
-    },
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 8,
-      "filename": "positive2.tf"
-    },
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 8,
-      "filename": "positive3.tf"
-    },
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 5,
-      "filename": "positive4.tf"
-    },
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 8,
-      "filename": "positive5.tf"
-    },
-    {
-      "queryName": "Lambda IAM InvokeFunction Misconfigured",
-      "severity": "LOW",
-      "line": 8,
-      "filename": "positive6.tf"
-    }
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive4.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive4policy",
+    "searchKey": "aws_iam_policy[positive4policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive4policy].policy should be misconfigured",
+    "actualValue": "[positive4policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+  },
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive3.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive3policy",
+    "searchKey": "aws_iam_policy[positive3policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive3policy].policy should be misconfigured",
+    "actualValue": "[positive3policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+  },
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive1policy",
+    "searchKey": "aws_iam_policy[positive1policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive1policy].policy should be misconfigured",
+    "actualValue": "[positive1policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+  },
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive6.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive6policy",
+    "searchKey": "aws_iam_policy[positive6policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive6policy].policy should be misconfigured",
+    "actualValue": "[positive6policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+  },
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive5.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive5policy",
+    "searchKey": "aws_iam_policy[positive5policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive5policy].policy should be misconfigured",
+    "actualValue": "[positive5policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+  },
+  {
+    "queryName": "Lambda IAM InvokeFunction Misconfigured",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive2.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive2policy",
+    "searchKey": "aws_iam_policy[positive2policy].policy",
+    "searchValue": "",
+    "expectedValue": "[positive2policy].policy should be misconfigured",
+    "actualValue": "[positive2policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+  }
 ]

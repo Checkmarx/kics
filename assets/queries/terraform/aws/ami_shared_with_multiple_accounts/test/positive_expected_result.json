@@ -2,11 +2,25 @@
   {
     "queryName": "AMI Shared With Multiple Accounts",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive.tf",
+    "resourceType": "aws_ami_launch_permission",
+    "resourceName": "positive1",
+    "searchKey": "aws_ami_launch_permission[positive1].image_id",
+    "searchValue": "",
+    "expectedValue": "'aws_ami_launch_permission[positive1].image_id' should not be shared with multiple accounts",
+    "actualValue": "'aws_ami_launch_permission[positive1].image_id' is shared with multiple accounts"
   },
   {
     "queryName": "AMI Shared With Multiple Accounts",
     "severity": "MEDIUM",
-    "line": 11
+    "line": 11,
+    "filename": "positive.tf",
+    "resourceType": "aws_ami_launch_permission",
+    "resourceName": "positive2",
+    "searchKey": "aws_ami_launch_permission[positive2].image_id",
+    "searchValue": "",
+    "expectedValue": "'aws_ami_launch_permission[positive2].image_id' should not be shared with multiple accounts",
+    "actualValue": "'aws_ami_launch_permission[positive2].image_id' is shared with multiple accounts"
   }
 ]

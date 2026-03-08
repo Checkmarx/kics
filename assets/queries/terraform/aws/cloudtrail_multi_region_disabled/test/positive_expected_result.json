@@ -3,18 +3,36 @@
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "CloudTrail Multi Region Disabled",
-    "severity": "LOW",
-    "line": 4,
-    "fileName": "positive2.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "npositive_1",
+    "searchKey": "aws_cloudtrail[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_cloudtrail[positive1].is_multi_region_trail should be defined and not null",
+    "actualValue": "aws_cloudtrail[positive1].is_multi_region_trail is undefined or null"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "npositive_3",
+    "searchKey": "aws_cloudtrail[positive3].include_global_service_events",
+    "searchValue": "",
+    "expectedValue": "aws_cloudtrail[positive3].include_global_service_events should be undefined or set to true",
+    "actualValue": "aws_cloudtrail[positive3].include_global_service_events is set to false"
+  },
+  {
+    "queryName": "CloudTrail Multi Region Disabled",
+    "severity": "LOW",
+    "line": 4,
+    "filename": "positive2.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "npositive_2",
+    "searchKey": "aws_cloudtrail[positive2].is_multi_region_trail",
+    "searchValue": "",
+    "expectedValue": "aws_cloudtrail[positive2].is_multi_region_trail should be set to true",
+    "actualValue": "aws_cloudtrail[positive2].is_multi_region_trail is set to false"
   }
 ]

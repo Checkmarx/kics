@@ -3,36 +3,72 @@
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
     "severity": "CRITICAL",
     "line": 15,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive1].acl=public-read",
+    "searchValue": "",
+    "expectedValue": "'acl' should equal to 'private'",
+    "actualValue": "'acl' is equal 'public-read'"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
+    "severity": "CRITICAL",
+    "line": 20,
+    "filename": "positive5.tf",
+    "resourceType": "aws_s3_bucket_acl",
+    "resourceName": "example_bucket_acl",
+    "searchKey": "aws_s3_bucket_acl[example_bucket_acl].acl",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_acl[example_bucket_acl].acl should be private",
+    "actualValue": "aws_s3_bucket_acl[public-read].acl is %!s(MISSING)"
+  },
+  {
+    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
+    "severity": "CRITICAL",
+    "line": 6,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].acl",
+    "searchValue": "",
+    "expectedValue": "'acl' should equal to 'private'",
+    "actualValue": "'acl' is equal 'public-read-write'"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
     "severity": "CRITICAL",
     "line": 16,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "CRITICAL",
-    "line": 6,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "CRITICAL",
-    "line": 6,
-    "fileName": "positive4.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive2].acl=public-read-write",
+    "searchValue": "",
+    "expectedValue": "'acl' should equal to 'private'",
+    "actualValue": "'acl' is equal 'public-read-write'"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
     "severity": "CRITICAL",
     "line": 20,
-    "fileName": "positive5.tf"
+    "filename": "positive6.tf",
+    "resourceType": "aws_s3_bucket_acl",
+    "resourceName": "example_bucket_acl",
+    "searchKey": "aws_s3_bucket_acl[example_bucket_acl].acl",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_acl[example_bucket_acl].acl should be private",
+    "actualValue": "aws_s3_bucket_acl[public-read-write].acl is %!s(MISSING)"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
     "severity": "CRITICAL",
-    "line": 20,
-    "fileName": "positive6.tf"
+    "line": 6,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].acl",
+    "searchValue": "",
+    "expectedValue": "'acl' should equal to 'private'",
+    "actualValue": "'acl' is equal 'public-read'"
   }
 ]

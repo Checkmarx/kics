@@ -3,12 +3,24 @@
     "queryName": "IAM Password Without Minimum Length",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "aws:iam:AccountPasswordPolicy",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'minimumPasswordLength' should be defined and set to 14 or higher",
+    "actualValue": "Attribute 'minimumPasswordLength' is not defined"
   },
   {
     "queryName": "IAM Password Without Minimum Length",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "aws:iam:AccountPasswordPolicy",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties.minimumPasswordLength",
+    "searchValue": "",
+    "expectedValue": "Attribute 'minimumPasswordLength' should be set to 14 or higher",
+    "actualValue": "Attribute 'minimumPasswordLength' is set to less than 14"
   }
 ]

@@ -1,8 +1,14 @@
 [
-	{
-		"queryName": "API Gateway Without SSL Certificate",
-		"severity": "MEDIUM",
-		"line": 7,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "API Gateway Without SSL Certificate",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "aws:apigatewayv2:Stage",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'clientCertificateId' should be defined",
+    "actualValue": "Attribute 'clientCertificateId' is not defined"
+  }
 ]

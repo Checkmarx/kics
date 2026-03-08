@@ -1,14 +1,26 @@
 [
-	{
-		"queryName": "Healthcheck Instruction Missing",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive.dockerfile"
-	},
-	{
-		"queryName": "Healthcheck Instruction Missing",
-		"severity": "LOW",
-		"line": 7,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Healthcheck Instruction Missing",
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest  }}",
+    "searchValue": "",
+    "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
+    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+  },
+  {
+    "queryName": "Healthcheck Instruction Missing",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:alpine}}",
+    "searchValue": "",
+    "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
+    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+  }
 ]

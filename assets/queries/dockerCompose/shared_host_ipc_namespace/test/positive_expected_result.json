@@ -1,14 +1,26 @@
 [
-    {
-      "queryName": "Shared Host IPC Namespace",
-      "severity": "MEDIUM",
-      "line": 10,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Shared Host IPC Namespace",
-      "severity": "MEDIUM",
-      "line": 13,
-      "filename": "positive2.yaml"
-    }
+  {
+    "queryName": "Shared Host IPC Namespace",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.privileged",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ipc' attribute not set to host, or not set",
+    "actualValue": "Docker compose file has 'ipc' attribute as host"
+  },
+  {
+    "queryName": "Shared Host IPC Namespace",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.privileged",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ipc' attribute not set to host, or not set",
+    "actualValue": "Docker compose file has 'ipc' attribute as host"
+  }
 ]

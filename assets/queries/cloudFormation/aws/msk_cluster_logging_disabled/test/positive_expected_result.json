@@ -2,79 +2,157 @@
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "MSK Cluster Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "MSK Cluster Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 15,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "MSK Cluster Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 18,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "MSK Cluster Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive3.yaml"
-  },
-  {
-    "queryName": "MSK Cluster Logging Disabled",
-    "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "MSK Cluster Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 13,
-    "fileName": "positive5.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster8.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster8.Properties.LoggingInfo should be defined",
+    "actualValue": "Resources.TestCluster8.Properties.LoggingInfo is undefined"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive5.json"
-  },
-  {
-    "queryName": "MSK Cluster Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 21,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs.Firehose.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is disabled"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "MSK Cluster Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive7.yaml"
+    "filename": "positive6.json",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster10.Properties.LoggingInfo.BrokerLogs.CloudWatchLogs.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster10.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster10.Properties.LoggingInfo.BrokerLogs is disabled"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive7.yaml"
+    "filename": "positive7.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.Firehose.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive7.yaml"
+    "filename": "positive7.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.S3.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
+  },
+  {
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster5.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster5.Properties.LoggingInfo should be defined",
+    "actualValue": "Resources.TestCluster5.Properties.LoggingInfo is undefined"
+  },
+  {
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.Firehose.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
+  },
+  {
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive5.json",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs.CloudWatchLogs.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is disabled"
+  },
+  {
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive5.json",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs.S3.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is disabled"
+  },
+  {
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive7.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.CloudWatchLogs.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
+  },
+  {
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster7.Properties.LoggingInfo.BrokerLogs.CloudWatchLogs.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster7.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster7.Properties.LoggingInfo.BrokerLogs is disabled"
+  },
+  {
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.CloudWatchLogs.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
+  },
+  {
+    "queryName": "MSK Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.S3.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
   }
 ]

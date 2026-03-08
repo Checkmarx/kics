@@ -3,6 +3,12 @@
     "queryName": "IP Forwarding Enabled",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template",
+    "searchKey": "resources.name={{vm-template}}.properties.canIpForward",
+    "searchValue": "",
+    "expectedValue": "'canIpForward' should not be set to true",
+    "actualValue": "'canIpForward' is set to true"
   }
 ]

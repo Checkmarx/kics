@@ -1,50 +1,98 @@
 [
   {
-    "queryName": "Path Is Ambiguous (v3)",
-    "severity": "INFO",
-    "line": 6,
-    "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "Path Is Ambiguous (v3)",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "Path Is Ambiguous (v3)",
-    "severity": "INFO",
-    "line": 8,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Path Is Ambiguous (v3)",
-    "severity": "INFO",
-    "line": 29,
-    "filename": "positive2.json"
-  },
-  {
     "queryName": "Path Is Ambiguous (v2)",
     "severity": "INFO",
-    "line": 10,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "Path Is Ambiguous (v2)",
-    "severity": "INFO",
-    "line": 21,
-    "filename": "positive3.yaml"
+    "line": 31,
+    "filename": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{ids}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path"
   },
   {
     "queryName": "Path Is Ambiguous (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path"
   },
   {
     "queryName": "Path Is Ambiguous (v2)",
     "severity": "INFO",
-    "line": 31,
-    "filename": "positive4.json"
+    "line": 21,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{ids}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v2)",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v3)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{ids}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v3)",
+    "severity": "INFO",
+    "line": 6,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v3)",
+    "severity": "INFO",
+    "line": 29,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{ids}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path"
+  },
+  {
+    "queryName": "Path Is Ambiguous (v3)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be ambiguous path",
+    "actualValue": "There is ambiguous path"
   }
 ]

@@ -3,12 +3,24 @@
     "queryName": "Pod Misconfigured Network Policy",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "positive1-pod",
+    "searchKey": "metadata.name=positive1-pod",
+    "searchValue": "",
+    "expectedValue": "Pod positive1-pod should have ingress and egress rules in matching NetworkPolicy",
+    "actualValue": "Pod positive1-pod has no ingress or egress rules in matching NetworkPolicy"
   },
   {
     "queryName": "Pod Misconfigured Network Policy",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "positive2-pod",
+    "searchKey": "metadata.name=positive2-pod",
+    "searchValue": "",
+    "expectedValue": "Pod positive2-pod should have ingress and egress rules in matching NetworkPolicy",
+    "actualValue": "Pod positive2-pod has no ingress or egress rules in matching NetworkPolicy"
   }
 ]

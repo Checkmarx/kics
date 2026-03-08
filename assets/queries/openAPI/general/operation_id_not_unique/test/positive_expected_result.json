@@ -1,50 +1,98 @@
 [
   {
-    "queryName": "OperationId Not Unique (v3)",
-    "severity": "INFO",
-    "line": 15,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "OperationId Not Unique (v3)",
-    "severity": "INFO",
-    "line": 46,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "OperationId Not Unique (v3)",
-    "severity": "INFO",
-    "line": 8,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "OperationId Not Unique (v3)",
-    "severity": "INFO",
-    "line": 25,
-    "filename": "positive2.yaml"
-  },
-  {
     "queryName": "OperationId Not Unique (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique"
   },
   {
     "queryName": "OperationId Not Unique (v2)",
     "severity": "INFO",
     "line": 23,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{post}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique"
   },
   {
     "queryName": "OperationId Not Unique (v2)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique"
   },
   {
     "queryName": "OperationId Not Unique (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{post}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique"
+  },
+  {
+    "queryName": "OperationId Not Unique (v3)",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique"
+  },
+  {
+    "queryName": "OperationId Not Unique (v3)",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{post}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique"
+  },
+  {
+    "queryName": "OperationId Not Unique (v3)",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique"
+  },
+  {
+    "queryName": "OperationId Not Unique (v3)",
+    "severity": "INFO",
+    "line": 46,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{post}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique"
   }
 ]

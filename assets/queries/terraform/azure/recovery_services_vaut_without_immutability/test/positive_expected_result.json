@@ -2,11 +2,25 @@
   {
     "queryName": "Beta - Recovery Services Vault Without Immutability",
     "severity": "HIGH",
-    "line": 1
+    "line": 16,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_recovery_services_vault",
+    "resourceName": "positive2-recovery-vault",
+    "searchKey": "azurerm_recovery_services_vault[positive2].immutability",
+    "searchValue": "",
+    "expectedValue": "'azurerm_recovery_services_vault[positive2].immutability' should be set and enabled",
+    "actualValue": "'azurerm_recovery_services_vault[positive2].immutability' is set to 'Disabled'"
   },
   {
     "queryName": "Beta - Recovery Services Vault Without Immutability",
     "severity": "HIGH",
-    "line": 16
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_recovery_services_vault",
+    "resourceName": "positive1-recovery-vault",
+    "searchKey": "azurerm_recovery_services_vault[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_recovery_services_vault[positive1].immutability' should be set and enabled",
+    "actualValue": "'azurerm_recovery_services_vault[positive1].immutability' is undefined or null"
   }
 ]

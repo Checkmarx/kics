@@ -2,25 +2,49 @@
   {
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
-    "line": 9,
-    "fileName": "positive.json"
-  },
-  {
-    "queryName": "KMS Key With Vulnerable Policy",
-    "severity": "HIGH",
     "line": 8,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "RSASigningKey",
+    "searchKey": "Resources.RSASigningKey.Properties.KeyPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement should not have wildcard in 'Action' and 'Principal'",
+    "actualValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement has wildcard in 'Action' and 'Principal'"
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "RSASigningKey2",
+    "searchKey": "Resources.RSASigningKey2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RSASigningKey2.Properties.KeyPolicy should be defined and not null",
+    "actualValue": "Resources.RSASigningKey2.Properties.KeyPolicy is undefined or null"
+  },
+  {
+    "queryName": "KMS Key With Vulnerable Policy",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "RSASigningKey",
+    "searchKey": "Resources.RSASigningKey.Properties.KeyPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement should not have wildcard in 'Action' and 'Principal'",
+    "actualValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement has wildcard in 'Action' and 'Principal'"
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "RSASigningKey2",
+    "searchKey": "Resources.RSASigningKey2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RSASigningKey2.Properties.KeyPolicy should be defined and not null",
+    "actualValue": "Resources.RSASigningKey2.Properties.KeyPolicy is undefined or null"
   }
 ]

@@ -3,18 +3,36 @@
     "queryName": "API Gateway API Protocol Not HTTPS",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "API Gateway API Protocol Not HTTPS",
-    "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_api_gateway_api",
+    "resourceName": "${alicloud_api_gateway_group.apiGroup.name}",
+    "searchKey": "alicloud_api_gateway_api[apiGatewayApi].request_config.protocol",
+    "searchValue": "",
+    "expectedValue": "'protocol' value should be 'HTTPS'",
+    "actualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'"
   },
   {
     "queryName": "API Gateway API Protocol Not HTTPS",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_api_gateway_api",
+    "resourceName": "${alicloud_api_gateway_group.apiGroup.name}",
+    "searchKey": "alicloud_api_gateway_api[apiGatewayApi].request_config.protocol",
+    "searchValue": "",
+    "expectedValue": "'protocol' value should be 'HTTPS'",
+    "actualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'"
+  },
+  {
+    "queryName": "API Gateway API Protocol Not HTTPS",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_api_gateway_api",
+    "resourceName": "${alicloud_api_gateway_group.apiGroup.name}",
+    "searchKey": "alicloud_api_gateway_api[apiGatewayApi].request_config.protocol",
+    "searchValue": "",
+    "expectedValue": "'protocol' value should be 'HTTPS'",
+    "actualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'"
   }
 ]

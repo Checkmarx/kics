@@ -2,31 +2,73 @@
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 9
+    "line": 88,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.image should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.image is undefined"
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 36
+    "line": 142,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[0].image has '@'",
+    "actualValue": "kubernetes_pod[positive3].spec.container[0].image does not have '@'"
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 88
+    "line": 170,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[1].image has '@'",
+    "actualValue": "kubernetes_pod[positive3].spec.container[1].image does not have '@'"
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 142
+    "line": 224,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container.image",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.image has '@'",
+    "actualValue": "kubernetes_pod[positive4].spec.container.image does not have '@'"
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 170
+    "line": 9,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].image should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].image is undefined"
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 224
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].image should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].image is undefined"
   }
 ]

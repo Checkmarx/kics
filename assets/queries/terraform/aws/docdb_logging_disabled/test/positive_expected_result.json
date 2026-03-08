@@ -2,25 +2,49 @@
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "positive3",
+    "searchKey": "aws_docdb_cluster[{{positive3}}].enabled_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: audit, profiler",
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports has the following missing values: audit"
+  },
+  {
+    "queryName": "DocDB Logging Is Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive4.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "positive4",
+    "searchKey": "aws_docdb_cluster[{{positive4}}].enabled_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: audit, profiler",
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports has the following missing values: profiler"
+  },
+  {
+    "queryName": "DocDB Logging Is Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive2.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "positive2",
+    "searchKey": "aws_docdb_cluster[{{positive2}}].enabled_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: audit, profiler",
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is empty"
+  },
+  {
+    "queryName": "DocDB Logging Is Disabled",
+    "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "DocDB Logging Is Disabled",
-    "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "DocDB Logging Is Disabled",
-    "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "DocDB Logging Is Disabled",
-    "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive4.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_docdb_cluster[{{positive1}}]",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should be defined",
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is undefined"
   }
 ]

@@ -2,16 +2,37 @@
   {
     "queryName": "AKS Network Policy Misconfigured",
     "severity": "LOW",
-    "line": 21
+    "line": 69,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive3].network_profile.network_policy",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive3].network_profile.network_policy' should be either 'azure' or 'calico'",
+    "actualValue": "'azurerm_kubernetes_cluster[positive3].network_profile.network_policy' is roxanne"
   },
   {
     "queryName": "AKS Network Policy Misconfigured",
     "severity": "LOW",
-    "line": 26
+    "line": 21,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive1].network_profile",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive1].network_profile.network_policy' should be set to either 'azure' or 'calico'",
+    "actualValue": "'azurerm_kubernetes_cluster[positive1].network_profile.network_policy' is undefined"
   },
   {
     "queryName": "AKS Network Policy Misconfigured",
     "severity": "LOW",
-    "line": 69
+    "line": 26,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks2",
+    "searchKey": "azurerm_kubernetes_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive2].network_profile' should be set",
+    "actualValue": "'azurerm_kubernetes_cluster[positive2].network_profile' is undefined"
   }
 ]

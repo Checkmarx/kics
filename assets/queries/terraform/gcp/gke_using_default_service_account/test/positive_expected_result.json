@@ -2,13 +2,25 @@
   {
     "queryName": "GKE Using Default Service Account",
     "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive1.tf"
+    "line": 8,
+    "filename": "positive2.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "my-gke-cluster",
+    "searchKey": "google_container_cluster[positive2].node_config.service_account",
+    "searchValue": "",
+    "expectedValue": "'service_account' should not be default",
+    "actualValue": "'service_account' is default"
   },
   {
     "queryName": "GKE Using Default Service Account",
     "severity": "MEDIUM",
-    "line": 8,
-    "fileName": "positive2.tf"
+    "line": 7,
+    "filename": "positive1.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "my-gke-cluster",
+    "searchKey": "google_container_cluster[positive1].node_config",
+    "searchValue": "",
+    "expectedValue": "'service_account' should not be default",
+    "actualValue": "'service_account' is default"
   }
 ]

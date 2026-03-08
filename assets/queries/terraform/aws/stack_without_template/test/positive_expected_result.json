@@ -2,6 +2,13 @@
   {
     "queryName": "Stack Without Template",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudformation_stack",
+    "resourceName": "networking-stack",
+    "searchKey": "aws_cloudformation_stack[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'template_body' or Attribute 'template_url' should be set",
+    "actualValue": "Both Attribute 'template_body' and Attribute 'template_url' are undefined"
   }
 ]

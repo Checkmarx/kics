@@ -2,16 +2,37 @@
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 50,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster3",
+    "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases should be true",
+    "actualValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is false"
   },
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.ip_allocation_policy should be defined",
+    "actualValue": "gcp_container_cluster.ip_allocation_policy is undefined"
   },
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
-    "line": 50
+    "line": 31,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster2",
+    "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases should be set to true",
+    "actualValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is undefined"
   }
 ]

@@ -3,150 +3,300 @@
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive1.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg].ebs_block_device.0.encrypted",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be true",
+    "actualValue": "'encrypted' is false"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
-    "line": 28,
-    "fileName": "positive1.tf"
+    "line": 29,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg2].block_device_mappings.0.ebs",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be defined",
+    "actualValue": "'encrypted' is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg].ebs_block_device.0",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be defined",
+    "actualValue": "'encrypted' is undefined"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 36,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 7,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 16,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 28,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 35,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 11,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 17,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 27,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 29,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 7,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 18,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 27,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 41,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 7,
-    "fileName": "positive5.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 31,
-    "fileName": "positive5.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive6.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 24,
-    "fileName": "positive6.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 11,
-    "fileName": "positive7.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 29,
-    "fileName": "positive7.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 10,
-    "fileName": "positive8.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 27,
-    "fileName": "positive8.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 9,
-    "fileName": "positive9.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_launch_configuration",
+    "resourceName": "test-launch-config",
+    "searchKey": "aws_launch_configuration[example3].root_block_device.encrypted",
+    "searchValue": "",
+    "expectedValue": "aws_launch_configuration[example3].root_block_device.encrypted should be true",
+    "actualValue": "aws_launch_configuration[example3].root_block_device.encrypted is false"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 26,
-    "fileName": "positive9.tf"
+    "filename": "positive9.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive9-legacy].root_block_device.0",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be defined",
+    "actualValue": "'encrypted' is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 24,
+    "filename": "positive6.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "web-app-instance",
+    "searchKey": "aws_instance[example2].ebs_block_device",
+    "searchValue": "",
+    "expectedValue": "aws_instance[example2].ebs_block_device.encrypted should be set",
+    "actualValue": "aws_instance[example2].ebs_block_device.encrypted is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg].root_block_device.0.encrypted",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be true",
+    "actualValue": "'encrypted' is false"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive5.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "web-app-instance",
+    "searchKey": "aws_instance[example1].root_block_device.encrypted",
+    "searchValue": "",
+    "expectedValue": "aws_instance[example1].root_block_device.encrypted should be true",
+    "actualValue": "aws_instance[example1].root_block_device.encrypted is false"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 27,
+    "filename": "positive8.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive8-legacy].root_block_device.0.encrypted",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be true",
+    "actualValue": "'encrypted' is false"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 41,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg2].block_device_mappings.0.ebs.encrypted",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be true",
+    "actualValue": "'encrypted' is false"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 31,
+    "filename": "positive5.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive5",
+    "searchKey": "aws_instance[example2].ebs_block_device.encrypted",
+    "searchValue": "",
+    "expectedValue": "aws_instance[example2].ebs_block_device.encrypted should be true",
+    "actualValue": "aws_instance[example2].ebs_block_device.encrypted is false"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive8.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive8-aws6].root_block_device.encrypted",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be true",
+    "actualValue": "'encrypted' is false"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 16,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg].root_block_device.0",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be defined",
+    "actualValue": "'encrypted' is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive9.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive9-aws6].root_block_device",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be defined",
+    "actualValue": "'encrypted' is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive6.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "web-app-instance",
+    "searchKey": "aws_instance[example1].root_block_device",
+    "searchValue": "",
+    "expectedValue": "aws_instance[example1].root_block_device.encrypted should be set",
+    "actualValue": "aws_instance[example1].root_block_device.encrypted is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive7.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive7-aws6].root_block_device.encrypted",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be true",
+    "actualValue": "'encrypted' is false"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 29,
+    "filename": "positive7.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive7-legacy].root_block_device.0.encrypted",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be true",
+    "actualValue": "'encrypted' is false"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 35,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg2].block_device_mappings.1.ebs",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be defined",
+    "actualValue": "'encrypted' is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 27,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg2].block_device_mappings.1.ebs.encrypted",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be true",
+    "actualValue": "'encrypted' is false"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg].root_block_device.0",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be defined",
+    "actualValue": "'encrypted' is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 28,
+    "filename": "positive1.tf",
+    "resourceType": "aws_launch_configuration",
+    "resourceName": "example2",
+    "searchKey": "aws_launch_configuration[example2].ebs_block_device.encrypted",
+    "searchValue": "",
+    "expectedValue": "aws_launch_configuration[example2].ebs_block_device.encrypted should be true",
+    "actualValue": "aws_launch_configuration[example2].ebs_block_device.encrypted is false"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive1.tf",
+    "resourceType": "aws_launch_configuration",
+    "resourceName": "example1",
+    "searchKey": "aws_launch_configuration[example1].ebs_block_device",
+    "searchValue": "",
+    "expectedValue": "aws_launch_configuration[example1].ebs_block_device.encrypted should be set",
+    "actualValue": "aws_launch_configuration[example1].ebs_block_device.encrypted is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 28,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg2].block_device_mappings.0.ebs",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be defined",
+    "actualValue": "'encrypted' is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg].ebs_block_device.0",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be defined",
+    "actualValue": "'encrypted' is undefined"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 27,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[asg2].block_device_mappings.1.ebs.encrypted",
+    "searchValue": "",
+    "expectedValue": "'encrypted' should be true",
+    "actualValue": "'encrypted' is false"
   }
 ]

@@ -2,6 +2,13 @@
   {
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 10,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group}}.{{community.aws.rds_instance}}.backup_retention_period",
+    "searchValue": "",
+    "expectedValue": "rds_instance should have the property 'backup_retention_period' greater than 0",
+    "actualValue": "rds_instance has the property 'backup_retention_period' assigned to 0"
   }
 ]

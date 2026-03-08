@@ -2,37 +2,73 @@
   {
     "queryName": "ELBv2 LB Access Log Disabled",
     "severity": "MEDIUM",
-    "line": 13,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "ELBv2 LB Access Log Disabled",
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "ELBv2 LB Access Log Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "ELBv2 LB Access Log Disabled",
-    "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "ELBv2 LB Access Log Disabled",
-    "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_alb[test].access_logs",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs.enabled' is undefined"
+  },
+  {
+    "queryName": "ELBv2 LB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive1.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[test].access_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs.enabled' is not set to true"
   },
   {
     "queryName": "ELBv2 LB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_alb[test]",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs' is undefined"
+  },
+  {
+    "queryName": "ELBv2 LB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive2.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[test].access_logs",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs.enabled' is undefined"
+  },
+  {
+    "queryName": "ELBv2 LB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[test]",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs' is undefined"
+  },
+  {
+    "queryName": "ELBv2 LB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive4.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_alb[test].access_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs.enabled' is not set to true"
   }
 ]

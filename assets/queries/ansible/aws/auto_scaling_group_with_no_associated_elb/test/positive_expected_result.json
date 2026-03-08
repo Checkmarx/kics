@@ -2,13 +2,25 @@
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
-    "line": 4,
-    "fileName": "positive1.yaml"
+    "line": 2,
+    "filename": "positive2.yaml",
+    "resourceType": "ec2_asg",
+    "resourceName": "elb2",
+    "searchKey": "name={{elb2}}.{{ec2_asg}}",
+    "searchValue": "",
+    "expectedValue": "ec2_asg.load_balancers should be set and not empty",
+    "actualValue": "ec2_asg.load_balancers is undefined"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
-    "line": 2,
-    "fileName": "positive2.yaml"
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "community.aws.ec2_asg",
+    "resourceName": "elb1",
+    "searchKey": "name={{elb1}}.{{community.aws.ec2_asg}}.load_balancers",
+    "searchValue": "",
+    "expectedValue": "community.aws.ec2_asg.load_balancers should not be empty",
+    "actualValue": "community.aws.ec2_asg.load_balancers is empty"
   }
 ]

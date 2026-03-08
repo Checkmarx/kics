@@ -2,11 +2,25 @@
   {
     "queryName": "ElastiCache Redis Cluster Without Backup",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 16,
+    "filename": "positive.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive2].snapshot_retention_limit",
+    "searchValue": "",
+    "expectedValue": "'snapshot_retention_limit' should be higher than 0",
+    "actualValue": "'snapshot_retention_limit' is 0"
   },
   {
     "queryName": "ElastiCache Redis Cluster Without Backup",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "'snapshot_retention_limit' should be higher than 0",
+    "actualValue": "'snapshot_retention_limit' is undefined"
   }
 ]

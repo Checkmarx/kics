@@ -2,31 +2,61 @@
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive1.yaml",
+    "resourceType": "google.cloud.gcp_compute_disk",
+    "resourceName": "create a disk4",
+    "searchKey": "name={{create a disk4}}.{{google.cloud.gcp_compute_disk}}.disk_encryption_key.raw_key",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_disk.disk_encryption_key.raw_key should not be empty",
+    "actualValue": "gcp_compute_disk.disk_encryption_key.raw_key is empty"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
     "line": 3,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "google.cloud.gcp_compute_disk",
+    "resourceName": "create a disk1",
+    "searchKey": "name={{create a disk1}}.{{google.cloud.gcp_compute_disk}}",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_disk.disk_encryption_key should be defined and not null",
+    "actualValue": "gcp_compute_disk.disk_encryption_key is undefined or null"
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "Disk Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 27,
-    "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "Disk Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive2.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "google.cloud.gcp_compute_disk",
+    "resourceName": "create a disk3",
+    "searchKey": "name={{create a disk3}}.{{google.cloud.gcp_compute_disk}}.disk_encryption_key",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_disk.disk_encryption_key.raw_key or gcp_compute_disk.disk_encryption_key.kms_key_name should be defined and not null",
+    "actualValue": "gcp_compute_disk.disk_encryption_key.raw_key and gcp_compute_disk.disk_encryption_key.kms_key_name are undefined or null"
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "google.cloud.gcp_compute_disk",
+    "resourceName": "create a disk4",
+    "searchKey": "name={{create a disk4}}.{{google.cloud.gcp_compute_disk}}.disk_encryption_key.kms_key_name",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_disk.disk_encryption_key.kms_key_name should not be empty",
+    "actualValue": "gcp_compute_disk.disk_encryption_key.kms_key_name is empty"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive2.yaml",
+    "resourceType": "google.cloud.gcp_compute_disk",
+    "resourceName": "create a disk3",
+    "searchKey": "name={{create a disk3}}.{{google.cloud.gcp_compute_disk}}.disk_encryption_key",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_disk.disk_encryption_key.raw_key or gcp_compute_disk.disk_encryption_key.kms_key_name should be defined and not null",
+    "actualValue": "gcp_compute_disk.disk_encryption_key.raw_key and gcp_compute_disk.disk_encryption_key.kms_key_name are undefined or null"
   }
 ]

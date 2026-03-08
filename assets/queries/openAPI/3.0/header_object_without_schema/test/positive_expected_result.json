@@ -3,24 +3,48 @@
     "queryName": "Header Object Without Schema",
     "severity": "MEDIUM",
     "line": 72,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Header Object Without Schema",
-    "severity": "MEDIUM",
-    "line": 42,
-    "filename": "positive2.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}} has schema defined",
+    "actualValue": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}} does not have schema defined"
   },
   {
     "queryName": "Header Object Without Schema",
     "severity": "MEDIUM",
     "line": 44,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}} has schema defined",
+    "actualValue": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.{{X-Rate-Limit-Limit}} does not have schema defined"
   },
   {
     "queryName": "Header Object Without Schema",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}} has schema defined",
+    "actualValue": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}} does not have schema defined"
+  },
+  {
+    "queryName": "Header Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 42,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}} has schema defined",
+    "actualValue": "paths.{{/}}.get.responses.6xx.{{X-Rate-Limit-Limit}} does not have schema defined"
   }
 ]

@@ -2,19 +2,37 @@
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "SSH Access Is Not Restricted",
-    "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "SSH Access Is Not Restricted",
-    "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "compute.v1.firewall",
+    "resourceName": "firewall",
+    "searchKey": "resources.name={{firewall}}.properties.allowed[%!d(string=0-65535)].ports=%!s(MISSING)",
+    "searchValue": "",
+    "expectedValue": "'allowed[0].ports' to not include SSH port 22",
+    "actualValue": "'allowed[0].ports' includes SSH port 22"
+  },
+  {
+    "queryName": "SSH Access Is Not Restricted",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive2.yaml",
+    "resourceType": "compute.v1.firewall",
+    "resourceName": "firewall",
+    "searchKey": "resources.name={{firewall}}.properties.allowed[%!d(string=21-3390)].ports=%!s(MISSING)",
+    "searchValue": "",
+    "expectedValue": "'allowed[0].ports' to not include SSH port 22",
+    "actualValue": "'allowed[0].ports' includes SSH port 22"
+  },
+  {
+    "queryName": "SSH Access Is Not Restricted",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive1.yaml",
+    "resourceType": "compute.v1.firewall",
+    "resourceName": "firewall",
+    "searchKey": "resources.name={{firewall}}.properties.allowed[%!d(string=22)].ports=%!s(MISSING)",
+    "searchValue": "",
+    "expectedValue": "'allowed[0].ports' to not include SSH port 22",
+    "actualValue": "'allowed[0].ports' includes SSH port 22"
   }
 ]

@@ -2,13 +2,25 @@
   {
     "queryName": "EBS Volume Encryption Disabled",
     "severity": "HIGH",
-    "line": 4,
-    "fileName": "positive1.tf"
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "aws_ebs_volume",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_ebs_volume[positive2]",
+    "searchValue": "",
+    "expectedValue": "One of 'aws_ebs_volume.encrypted' should be defined",
+    "actualValue": "One of 'aws_ebs_volume.encrypted' is undefined"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
     "severity": "HIGH",
-    "line": 1,
-    "fileName": "positive2.tf"
+    "line": 4,
+    "filename": "positive1.tf",
+    "resourceType": "aws_ebs_volume",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_ebs_volume[positive1].encrypted",
+    "searchValue": "",
+    "expectedValue": "One of 'aws_ebs_volume.encrypted' should be 'true'",
+    "actualValue": "One of 'aws_ebs_volume.encrypted' is 'false'"
   }
 ]

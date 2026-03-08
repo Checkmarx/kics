@@ -3,6 +3,12 @@
     "queryName": "Azure Front Door WAF Disabled",
     "severity": "LOW",
     "line": 38,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "azurerm_frontdoor",
+    "resourceName": "exampleFrontendEndpoint1",
+    "searchKey": "azurerm_frontdoor[positive].frontend_endpoint",
+    "searchValue": "",
+    "expectedValue": "'azurerm_frontdoor[positive].frontend_endpoint.web_application_firewall_policy_link_id' should be defined and not null",
+    "actualValue": "'azurerm_frontdoor[positive].frontend_endpoint.web_application_firewall_policy_link_id' is undefined or null"
   }
 ]

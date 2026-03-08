@@ -3,18 +3,36 @@
     "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 9,
-    "fileName": "positive1.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::DMS::ReplicationInstance",
+    "resourceName": "ReplicationInstance",
+    "searchKey": "Resources.ReplicationInstance.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible should be defined to 'false'",
+    "actualValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible is defined to 'true"
   },
   {
     "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::DMS::ReplicationInstance",
+    "resourceName": "ReplicationInstance",
+    "searchKey": "Resources.ReplicationInstance.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible should be defined to 'false'",
+    "actualValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible is not defined"
   },
   {
     "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 9,
-    "fileName": "positive3.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::DMS::ReplicationInstance",
+    "resourceName": "ReplicationInstance",
+    "searchKey": "Resources.ReplicationInstance.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible should be defined to 'false'",
+    "actualValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible is defined to 'true"
   }
 ]

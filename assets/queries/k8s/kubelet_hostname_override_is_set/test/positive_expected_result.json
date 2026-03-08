@@ -1,14 +1,26 @@
 [
-	{
-		"queryName": "Kubelet Hostname Override Is Set",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Kubelet Hostname Override Is Set",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "Kubelet Hostname Override Is Set",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--hostname-override= flag should not be defined",
+    "actualValue": "--hostname-override= flag is defined"
+  },
+  {
+    "queryName": "Kubelet Hostname Override Is Set",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--hostname-override= flag should not be defined",
+    "actualValue": "--hostname-override= flag is defined"
+  }
 ]

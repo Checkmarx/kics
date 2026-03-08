@@ -2,11 +2,25 @@
   {
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 12
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "community - Create a DB instance using the default AWS KMS encryption key",
+    "searchKey": "name={{community - Create a DB instance using the default AWS KMS encryption key}}.{{community.aws.rds_instance}}.publicly_accessible",
+    "searchValue": "",
+    "expectedValue": "community.aws.rds_instance.publicly_accessible should be false",
+    "actualValue": "community.aws.rds_instance.publicly_accessible is true"
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 22
+    "line": 22,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.rds",
+    "resourceName": "community - Basic mysql provisioning example",
+    "searchKey": "name={{community - Basic mysql provisioning example}}.{{community.aws.rds}}.publicly_accessible",
+    "searchValue": "",
+    "expectedValue": "community.aws.rds.publicly_accessible should be false",
+    "actualValue": "community.aws.rds.publicly_accessible is true"
   }
 ]

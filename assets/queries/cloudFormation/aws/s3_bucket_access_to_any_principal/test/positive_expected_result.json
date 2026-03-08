@@ -2,31 +2,61 @@
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
-    "line": 2,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "S3 Bucket Access to Any Principal",
-    "severity": "CRITICAL",
-    "line": 27,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "S3 Bucket Access to Any Principal",
-    "severity": "CRITICAL",
     "line": 3,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket",
+    "searchKey": "Resources.Bucket",
+    "searchValue": "",
+    "expectedValue": "associated Bucket Policy should not allow access to any principal",
+    "actualValue": "associated Bucket Policy allows access to any principal"
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 42,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket2",
+    "searchKey": "Resources.Bucket2",
+    "searchValue": "",
+    "expectedValue": "associated Bucket Policy should not allow access to any principal",
+    "actualValue": "associated Bucket Policy allows access to any principal"
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 3,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3BucketName",
+    "searchKey": "Resources.SWBS3Bucket",
+    "searchValue": "",
+    "expectedValue": "associated Bucket Policy should not allow access to any principal",
+    "actualValue": "associated Bucket Policy allows access to any principal"
+  },
+  {
+    "queryName": "S3 Bucket Access to Any Principal",
+    "severity": "CRITICAL",
+    "line": 2,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket",
+    "searchKey": "Resources.Bucket",
+    "searchValue": "",
+    "expectedValue": "associated Bucket Policy should not allow access to any principal",
+    "actualValue": "associated Bucket Policy allows access to any principal"
+  },
+  {
+    "queryName": "S3 Bucket Access to Any Principal",
+    "severity": "CRITICAL",
+    "line": 27,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket2",
+    "searchKey": "Resources.Bucket2",
+    "searchValue": "",
+    "expectedValue": "associated Bucket Policy should not allow access to any principal",
+    "actualValue": "associated Bucket Policy allows access to any principal"
   }
 ]

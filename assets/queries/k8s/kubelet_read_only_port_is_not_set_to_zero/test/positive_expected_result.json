@@ -2,25 +2,49 @@
   {
     "queryName": "Kubelet Read Only Port Is Not Set To Zero",
     "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "Kubelet Read Only Port Is Not Set To Zero",
-    "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive2.yaml"
+    "line": 5,
+    "filename": "positive4.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.readOnlyPort",
+    "searchValue": "",
+    "expectedValue": "readOnlyPort attribute to have value of 0",
+    "actualValue": "readOnlyPort attribute has value of 1"
   },
   {
     "queryName": "Kubelet Read Only Port Is Not Set To Zero",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.readOnlyPort",
+    "searchValue": "",
+    "expectedValue": "readOnlyPort attribute to have value of 0",
+    "actualValue": "readOnlyPort attribute has value of 1"
   },
   {
     "queryName": "Kubelet Read Only Port Is Not Set To Zero",
     "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive4.json"
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--read-only-port flag should be '0'",
+    "actualValue": "--read-only-port flag is not set to '0'"
+  },
+  {
+    "queryName": "Kubelet Read Only Port Is Not Set To Zero",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--read-only-port flag should be '0'",
+    "actualValue": "--read-only-port flag is not set to '0'"
   }
 ]

@@ -2,25 +2,49 @@
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "fileName": "positive1.yaml",
-    "line": 7
+    "line": 7,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::SQS::QueuePolicy",
+    "resourceName": "SampleSQSPolicy",
+    "searchKey": "Resources.SampleSQSPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal should not have wildcards when Effect=Allow and Action contains one of [SQS:AddPermission, SQS:CreateQueue, SQS:DeleteQueue, SQS:RemovePermission, SQS:TagQueue, SQS:UnTagQueue]",
+    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:CreateQueue"
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "fileName": "positive2.yaml",
-    "line": 7
+    "line": 7,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::SQS::QueuePolicy",
+    "resourceName": "SampleSQSPolicy",
+    "searchKey": "Resources.SampleSQSPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal should not have wildcards when Effect=Allow and Action contains one of [SQS:AddPermission, SQS:CreateQueue, SQS:DeleteQueue, SQS:RemovePermission, SQS:TagQueue, SQS:UnTagQueue]",
+    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:AddPermission"
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "fileName": "positive3.json",
-    "line": 9
+    "line": 9,
+    "filename": "positive4.json",
+    "resourceType": "AWS::SQS::QueuePolicy",
+    "resourceName": "SampleSQSPolicy",
+    "searchKey": "Resources.SampleSQSPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal should not have wildcards when Effect=Allow and Action contains one of [SQS:AddPermission, SQS:CreateQueue, SQS:DeleteQueue, SQS:RemovePermission, SQS:TagQueue, SQS:UnTagQueue]",
+    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:AddPermission"
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
-    "fileName": "positive4.json",
-    "line": 9
+    "line": 9,
+    "filename": "positive3.json",
+    "resourceType": "AWS::SQS::QueuePolicy",
+    "resourceName": "SampleSQSPolicy",
+    "searchKey": "Resources.SampleSQSPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal should not have wildcards when Effect=Allow and Action contains one of [SQS:AddPermission, SQS:CreateQueue, SQS:DeleteQueue, SQS:RemovePermission, SQS:TagQueue, SQS:UnTagQueue]",
+    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:CreateQueue"
   }
 ]

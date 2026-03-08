@@ -3,6 +3,12 @@
     "queryName": "EKS cluster logging is not enabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_eks_cluster",
+    "resourceName": "example",
+    "searchKey": "aws_eks_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "'enabled_cluster_log_types' should be defined and not null",
+    "actualValue": "'enabled_cluster_log_types' is undefined or null"
   }
 ]

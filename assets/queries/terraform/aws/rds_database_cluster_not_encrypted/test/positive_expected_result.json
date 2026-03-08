@@ -3,12 +3,24 @@
     "queryName": "RDS Database Cluster not Encrypted",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_db_cluster_snapshot",
+    "resourceName": "positive1",
+    "searchKey": "aws_db_cluster_snapshot[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_db_cluster_snapshot.db_cluster_identifier' should be encrypted",
+    "actualValue": "aws_db_cluster_snapshot.db_cluster_identifier' is not encrypted"
   },
   {
     "queryName": "RDS Database Cluster not Encrypted",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_db_cluster_snapshot",
+    "resourceName": "positive2",
+    "searchKey": "aws_db_cluster_snapshot[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_db_cluster_snapshot.db_cluster_identifier' should be encrypted",
+    "actualValue": "aws_db_cluster_snapshot.db_cluster_identifier' is not encrypted"
   }
 ]

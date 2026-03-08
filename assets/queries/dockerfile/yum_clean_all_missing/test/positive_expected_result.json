@@ -3,6 +3,12 @@
     "queryName": "Yum Clean All Missing",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive.dockerfile"
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.4}}.{{RUN yum clean all     yum -y install}}",
+    "searchValue": "",
+    "expectedValue": "{{RUN yum clean all     yum -y install}} should have 'yum clean all' after 'yum install' command",
+    "actualValue": "{{RUN yum clean all     yum -y install}} doesn't have 'yum clean all' after 'yum install' command"
   }
 ]

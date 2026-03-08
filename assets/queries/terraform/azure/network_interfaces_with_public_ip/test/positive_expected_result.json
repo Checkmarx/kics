@@ -3,6 +3,12 @@
     "queryName": "Network Interfaces With Public IP",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_interface",
+    "resourceName": "example-nic",
+    "searchKey": "azurerm_network_interface[positive].ip_configuration.public_ip_address_id",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_interface[positive].ip_configuration.public_ip_address_id' should be undefined",
+    "actualValue": "'azurerm_network_interface[positive].ip_configuration.public_ip_address_id' is defined"
   }
 ]

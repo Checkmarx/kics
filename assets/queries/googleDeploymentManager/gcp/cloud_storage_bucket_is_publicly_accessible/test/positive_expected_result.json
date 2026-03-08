@@ -3,12 +3,24 @@
     "queryName": "Cloud Storage Bucket Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "storage.v1.bucketAccessControl",
+    "resourceName": "bucket-access-control",
+    "searchKey": "resources.name={{bucket-access-control}}.properties.entity",
+    "searchValue": "",
+    "expectedValue": "'entity' should not equal to 'allUsers' or 'allAuthenticatedUsers'",
+    "actualValue": "'entity' is equal to 'allUsers'"
   },
   {
     "queryName": "Cloud Storage Bucket Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "storage.v1.bucketAccessControl",
+    "resourceName": "bucket-access-control",
+    "searchKey": "resources.name={{bucket-access-control}}.properties.entity",
+    "searchValue": "",
+    "expectedValue": "'entity' should not equal to 'allUsers' or 'allAuthenticatedUsers'",
+    "actualValue": "'entity' is equal to 'allAuthenticatedUsers'"
   }
 ]

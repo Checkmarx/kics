@@ -1,50 +1,98 @@
 [
   {
-    "queryName": "Invalid Schema External Documentation URL (v3)",
-    "severity": "INFO",
-    "line": 61,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Invalid Schema External Documentation URL (v3)",
-    "severity": "INFO",
-    "line": 24,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Invalid Schema External Documentation URL (v3)",
-    "severity": "INFO",
-    "line": 35,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "Invalid Schema External Documentation URL (v3)",
-    "severity": "INFO",
-    "line": 17,
-    "filename": "positive4.yaml"
-  },
-  {
     "queryName": "Invalid Schema External Documentation URL (v2)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL"
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v2)",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive7.json"
-  },
-  {
-    "queryName": "Invalid Schema External Documentation URL (v2)",
-    "severity": "INFO",
-    "line": 15,
-    "filename": "positive6.yaml"
+    "filename": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{User}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL"
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v2)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive8.yaml"
+    "filename": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{User}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v2)",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v3)",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v3)",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v3)",
+    "severity": "INFO",
+    "line": 61,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{User}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL"
+  },
+  {
+    "queryName": "Invalid Schema External Documentation URL (v3)",
+    "severity": "INFO",
+    "line": 35,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{User}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "Schema External Documentation URL should be a valid URL",
+    "actualValue": "Schema External Documentation URL is not a valid URL"
   }
 ]

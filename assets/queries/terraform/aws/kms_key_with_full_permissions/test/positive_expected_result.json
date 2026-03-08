@@ -3,18 +3,36 @@
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive1",
+    "searchKey": "aws_kms_key[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive1].policy should not have wildcard in 'Action' and 'Principal'",
+    "actualValue": "aws_kms_key[positive1].policy has wildcard in 'Action' or 'Principal'"
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive2.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive1",
+    "searchKey": "aws_kms_key[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive1].policy should not have wildcard in 'Action' and 'Principal'",
+    "actualValue": "aws_kms_key[positive1].policy has wildcard in 'Action' or 'Principal'"
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive3",
+    "searchKey": "aws_kms_key[positive3]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive3].policy should be defined and not null",
+    "actualValue": "aws_kms_key[positive3].policy is undefined or null"
   }
 ]

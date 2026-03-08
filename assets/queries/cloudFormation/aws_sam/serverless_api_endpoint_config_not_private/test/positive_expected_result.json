@@ -3,18 +3,36 @@
     "queryName": "Serverless API Endpoint Config Not Private",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi",
+    "searchKey": "Resources.ApiGatewayApi.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.ApiGatewayApi.EndpointConfiguration' should be defined and not null",
+    "actualValue": "'Resources.ApiGatewayApi.EndpointConfiguration' is undefined or null"
   },
   {
     "queryName": "Serverless API Endpoint Config Not Private",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi2",
+    "searchKey": "Resources.ApiGatewayApi2.Properties.EndpointConfiguration",
+    "searchValue": "",
+    "expectedValue": "'Resources.ApiGatewayApi2.EndpointConfiguration.Types' should be defined and not null",
+    "actualValue": "'Resources.ApiGatewayApi2.EndpointConfiguration.Types' is undefined or null"
   },
   {
     "queryName": "Serverless API Endpoint Config Not Private",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi3",
+    "searchKey": "Resources.ApiGatewayApi3.Properties.EndpointConfiguration.Types",
+    "searchValue": "",
+    "expectedValue": "'Resources.ApiGatewayApi3.EndpointConfiguration.Types' should contain 'PRIVATE'",
+    "actualValue": "'Resources.ApiGatewayApi3.EndpointConfiguration.Types' does not contain 'PRIVATE'"
   }
 ]

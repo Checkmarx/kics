@@ -2,16 +2,37 @@
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_db_security_group",
+    "resourceName": "positive1",
+    "searchKey": "aws_default_security_group[positive1]",
+    "searchValue": "",
+    "expectedValue": "ingress.cidr_blocks or egress.cidr_blocks diferent from '0.0.0.0/0' and '::/0'",
+    "actualValue": "ingress.cidr_blocks or egress.cidr_blocks are equal to '0.0.0.0/0' or '::/0'"
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 13
+    "line": 13,
+    "filename": "positive.tf",
+    "resourceType": "aws_db_security_group",
+    "resourceName": "positive2",
+    "searchKey": "aws_default_security_group[positive2]",
+    "searchValue": "",
+    "expectedValue": "ingress.cidr_blocks or egress.cidr_blocks diferent from '0.0.0.0/0' and '::/0'",
+    "actualValue": "ingress.cidr_blocks or egress.cidr_blocks are equal to '0.0.0.0/0' or '::/0'"
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 24
+    "line": 24,
+    "filename": "positive.tf",
+    "resourceType": "aws_db_security_group",
+    "resourceName": "positive3",
+    "searchKey": "aws_default_security_group[positive3]",
+    "searchValue": "",
+    "expectedValue": "ingress.cidr_blocks or egress.cidr_blocks diferent from '0.0.0.0/0' and '::/0'",
+    "actualValue": "ingress.cidr_blocks or egress.cidr_blocks are equal to '0.0.0.0/0' or '::/0'"
   }
 ]

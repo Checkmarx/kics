@@ -2,49 +2,97 @@
   {
     "queryName": "CloudWatch Metrics Disabled",
     "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.MethodSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings[1].MetricsEnabled should be set to true",
+    "actualValue": "Resources.Prod.Properties.MethodSettings[1].MetricsEnabled is undefined"
+  },
+  {
+    "queryName": "CloudWatch Metrics Disabled",
+    "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.MethodSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings[0].MetricsEnabled should be set to true",
+    "actualValue": "Resources.Prod.Properties.MethodSettings[0].MetricsEnabled is set to false"
   },
   {
     "queryName": "CloudWatch Metrics Disabled",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "CloudWatch Metrics Disabled",
-    "severity": "MEDIUM",
-    "line": 25,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "CloudWatch Metrics Disabled",
-    "severity": "MEDIUM",
-    "line": 32,
-    "fileName": "positive2.json"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.MethodSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings[1].MetricsEnabled should be set to true",
+    "actualValue": "Resources.Prod.Properties.MethodSettings[1].MetricsEnabled is undefined"
   },
   {
     "queryName": "CloudWatch Metrics Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings should be defined",
+    "actualValue": "Resources.Prod.Properties.MethodSettings is undefined"
+  },
+  {
+    "queryName": "CloudWatch Metrics Disabled",
+    "severity": "MEDIUM",
+    "line": 25,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.MethodSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings[0].MetricsEnabled should be set to true",
+    "actualValue": "Resources.Prod.Properties.MethodSettings[0].MetricsEnabled is undefined"
+  },
+  {
+    "queryName": "CloudWatch Metrics Disabled",
+    "severity": "MEDIUM",
+    "line": 32,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.MethodSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings[1].MetricsEnabled should be set to true",
+    "actualValue": "Resources.Prod.Properties.MethodSettings[1].MetricsEnabled is set to false"
   },
   {
     "queryName": "CloudWatch Metrics Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings should be defined",
+    "actualValue": "Resources.Prod.Properties.MethodSettings is undefined"
   },
   {
     "queryName": "CloudWatch Metrics Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive5.yaml"
-  },
-  {
-    "queryName": "CloudWatch Metrics Disabled",
-    "severity": "MEDIUM",
-    "line": 20,
-    "fileName": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.MethodSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings[0].MetricsEnabled should be set to true",
+    "actualValue": "Resources.Prod.Properties.MethodSettings[0].MetricsEnabled is set to false"
   }
 ]

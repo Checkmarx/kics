@@ -3,12 +3,24 @@
     "queryName": "Invalid Media Type Value (v3)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.content.multipart/form- data",
+    "searchValue": "",
+    "expectedValue": "The Media Type should be a valid value",
+    "actualValue": "The Media Type is an invalid value"
   },
   {
     "queryName": "Invalid Media Type Value (v3)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.content.multipart/form- data",
+    "searchValue": "",
+    "expectedValue": "The Media Type should be a valid value",
+    "actualValue": "The Media Type is an invalid value"
   }
 ]

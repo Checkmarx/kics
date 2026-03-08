@@ -3,6 +3,12 @@
     "queryName": "RAM Account Password Policy Not Required Symbols",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_ram_account_password_policy",
+    "resourceName": "corporate2",
+    "searchKey": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols",
+    "searchValue": "",
+    "expectedValue": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols should be set to 'true'",
+    "actualValue": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols is configured as 'false'"
   }
 ]

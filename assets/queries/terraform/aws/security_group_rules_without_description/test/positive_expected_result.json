@@ -2,109 +2,217 @@
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 3,
-    "filename": "positive1.tf"
+    "line": 10,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3-2",
+    "searchKey": "aws_security_group_rule[positive3-2]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group_rule[positive3-2].description should be defined and not null",
+    "actualValue": "aws_security_group_rule[positive3-2].description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive2.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive2-1",
+    "searchKey": "aws_security_group[positive2-1].ingress.1",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive2-1].ingress[1].description should be defined and not null",
+    "actualValue": "aws_security_group[positive2-1].ingress[1].description is undefined or null"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 3,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 10,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 20,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 27,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 1,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 10,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 1,
-    "filename": "positive4.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 8,
-    "filename": "positive4.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 6,
-    "filename": "positive5.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 12,
-    "filename": "positive5.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 21,
-    "filename": "positive5.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 27,
-    "filename": "positive5.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 40,
-    "filename": "positive5.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 46,
-    "filename": "positive5.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1",
+    "searchKey": "aws_security_group[positive1].egress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1].egress.description should be defined and not null",
+    "actualValue": "aws_security_group[positive1].egress.description is undefined or null"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 55,
-    "filename": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.0.description should be defined and not null",
+    "actualValue": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.0.description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 40,
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.0.description should be defined and not null",
+    "actualValue": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.0.description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 8,
+    "filename": "positive4.tf",
+    "resourceType": "aws_vpc_security_group_egress_rule",
+    "resourceName": "positive4-2",
+    "searchKey": "aws_vpc_security_group_egress_rule[positive4-2]",
+    "searchValue": "",
+    "expectedValue": "aws_vpc_security_group_egress_rule[positive4-2].description should be defined and not null",
+    "actualValue": "aws_vpc_security_group_egress_rule[positive4-2].description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 21,
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive5_ipv4_array].egress_with_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[positive5_ipv4_array].egress_with_cidr_blocks.0.description should be defined and not null",
+    "actualValue": "module[positive5_ipv4_array].egress_with_cidr_blocks.0.description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive5_ipv4_array].ingress_with_cidr_blocks.1",
+    "searchValue": "",
+    "expectedValue": "module[positive5_ipv4_array].ingress_with_cidr_blocks.1.description should be defined and not null",
+    "actualValue": "module[positive5_ipv4_array].ingress_with_cidr_blocks.1.description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive2.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive2-2",
+    "searchKey": "aws_security_group[positive2-2].egress.0",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive2-2].egress[0].description should be defined and not null",
+    "actualValue": "aws_security_group[positive2-2].egress[0].description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1",
+    "searchKey": "aws_security_group[positive1].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1].ingress.description should be defined and not null",
+    "actualValue": "aws_security_group[positive1].ingress.description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 1,
+    "filename": "positive4.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive4-1",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive4-1]",
+    "searchValue": "",
+    "expectedValue": "aws_vpc_security_group_ingress_rule[positive4-1].description should be defined and not null",
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive4-1].description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 6,
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive5_ipv4_array].ingress_with_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[positive5_ipv4_array].ingress_with_cidr_blocks.0.description should be defined and not null",
+    "actualValue": "module[positive5_ipv4_array].ingress_with_cidr_blocks.0.description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 46,
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.1",
+    "searchValue": "",
+    "expectedValue": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.1.description should be defined and not null",
+    "actualValue": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.1.description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive2.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive2-1",
+    "searchKey": "aws_security_group[positive2-1].ingress.0",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive2-1].ingress[0].description should be defined and not null",
+    "actualValue": "aws_security_group[positive2-1].ingress[0].description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive2.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive2-2",
+    "searchKey": "aws_security_group[positive2-2].egress.1",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive2-2].egress[1].description should be defined and not null",
+    "actualValue": "aws_security_group[positive2-2].egress[1].description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive5_ipv4_array].egress_with_cidr_blocks.1",
+    "searchValue": "",
+    "expectedValue": "module[positive5_ipv4_array].egress_with_cidr_blocks.1.description should be defined and not null",
+    "actualValue": "module[positive5_ipv4_array].egress_with_cidr_blocks.1.description is undefined or null"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 61,
-    "filename": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.1",
+    "searchValue": "",
+    "expectedValue": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.1.description should be defined and not null",
+    "actualValue": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.1.description is undefined or null"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 1,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3-1",
+    "searchKey": "aws_security_group_rule[positive3-1]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group_rule[positive3-1].description should be defined and not null",
+    "actualValue": "aws_security_group_rule[positive3-1].description is undefined or null"
   }
 ]

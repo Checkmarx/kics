@@ -1,14 +1,26 @@
 [
-	{
-		"queryName": "DB Security Group Has Public Interface",
-		"severity": "HIGH",
-		"line": 5,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "DB Security Group Has Public Interface",
-		"severity": "HIGH",
-		"line": 9,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "DB Security Group Has Public Interface",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive1.tf",
+    "resourceType": "aws_db_security_group",
+    "resourceName": "rds_sg",
+    "searchKey": "aws_db_security_group[positive1].ingress.cidr",
+    "searchValue": "",
+    "expectedValue": "'aws_db_security_group[positive1].ingress.cidr' should not be '0.0.0.0/0' or '::/0'",
+    "actualValue": "'aws_db_security_group[positive1].ingress.cidr' is '0.0.0.0/0'"
+  },
+  {
+    "queryName": "DB Security Group Has Public Interface",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive2.tf",
+    "resourceType": "aws_db_security_group",
+    "resourceName": "rds_sg",
+    "searchKey": "aws_db_security_group[positive1].ingress.cidr",
+    "searchValue": "",
+    "expectedValue": "'aws_db_security_group[positive1].ingress[1].cidr' should not be '0.0.0.0/0' or '::/0'",
+    "actualValue": "'aws_db_security_group[positive1].ingress[1].cidr' is '0.0.0.0/0'"
+  }
 ]

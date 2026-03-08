@@ -2,26 +2,61 @@
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 17
+    "line": 30,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example2 ec2 group",
+    "searchKey": "name={{example2 ec2 group}}.{{amazon.aws.ec2_group}}.rules_egress.cidr_ip={{0.0.0.0/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules_egress.cidr_ip should not contain the value '0.0.0.0/0'",
+    "actualValue": "ec2_group.rules_egress.cidr_ip contains value '0.0.0.0/0'"
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 30
+    "line": 61,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example4 ec2 group",
+    "searchKey": "name={{example4 ec2 group}}.{{amazon.aws.ec2_group}}.rules_egress.cidr_ipv6={{::/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules_egress.cidr_ipv6 should not contain the value '::/0'",
+    "actualValue": "ec2_group.rules_egress.cidr_ipv6 contains value '::/0'"
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 48
+    "line": 83,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example5 ec2 group",
+    "searchKey": "name={{example5 ec2 group}}.{{amazon.aws.ec2_group}}.rules_egress.cidr_ipv6.{{::/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules_egress.cidr_ipv6 should not contain the value '::/0'",
+    "actualValue": "ec2_group.rules_egress.cidr_ipv6 contains value '::/0'"
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 61
+    "line": 17,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules.cidr_ip.{{0.0.0.0/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ip should not contain the value '0.0.0.0/0'",
+    "actualValue": "ec2_group.rules.cidr_ip contains value '0.0.0.0/0'"
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 83
+    "line": 48,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example3 ec2 group",
+    "searchKey": "name={{example3 ec2 group}}.{{amazon.aws.ec2_group}}.rules.cidr_ipv6={{::/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ipv6 should not contain the value '::/0'",
+    "actualValue": "ec2_group.rules.cidr_ipv6 contains value '::/0'"
   }
 ]

@@ -2,11 +2,25 @@
   {
     "queryName": "ECR Repository Is Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 4
+    "line": 4,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ecs_ecr",
+    "resourceName": "set-policy as object",
+    "searchKey": "name={{set-policy as object}}.{{community.aws.ecs_ecr}}.policy",
+    "searchValue": "",
+    "expectedValue": "ecs_ecr.policy.Principal should not equal to '*'",
+    "actualValue": "ecs_ecr.policy.Principal is equal to '*'"
   },
   {
     "queryName": "ECR Repository Is Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 17
+    "line": 17,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ecs_ecr",
+    "resourceName": "set-policy as string",
+    "searchKey": "name={{set-policy as string}}.{{community.aws.ecs_ecr}}.policy",
+    "searchValue": "",
+    "expectedValue": "ecs_ecr.policy.Principal should not equal to '*'",
+    "actualValue": "ecs_ecr.policy.Principal is equal to '*'"
   }
 ]

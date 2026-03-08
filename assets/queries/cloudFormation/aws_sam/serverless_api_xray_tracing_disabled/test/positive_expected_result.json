@@ -2,19 +2,37 @@
   {
     "queryName": "Serverless API X-Ray Tracing Disabled",
     "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi2",
+    "searchKey": "Resources.ApiGatewayApi2.Properties.TracingEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi2.Properties.TracingEnabled should be set to true",
+    "actualValue": "Resources.ApiGatewayApi2.Properties.TracingEnabled is set to false"
+  },
+  {
+    "queryName": "Serverless API X-Ray Tracing Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi2",
+    "searchKey": "Resources.ApiGatewayApi2.Properties.TracingEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi2.Properties.TracingEnabled should be set to true",
+    "actualValue": "Resources.ApiGatewayApi2.Properties.TracingEnabled is set to false"
+  },
+  {
+    "queryName": "Serverless API X-Ray Tracing Disabled",
+    "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Serverless API X-Ray Tracing Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "Serverless API X-Ray Tracing Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive3.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi",
+    "searchKey": "Resources.ApiGatewayApi.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi.Properties.TracingEnabled should be defined and not null",
+    "actualValue": "Resources.ApiGatewayApi.Properties.TracingEnabled is undefined or null"
   }
 ]

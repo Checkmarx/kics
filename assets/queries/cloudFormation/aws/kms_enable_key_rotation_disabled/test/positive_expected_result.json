@@ -3,36 +3,72 @@
     "queryName": "KMS Key Rotation Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties.EnableKeyRotation",
+    "searchValue": "",
+    "expectedValue": "Resources.myKey.Properties.EnableKeyRotation should not be 'true'",
+    "actualValue": "Resources.myKey.Properties.EnableKeyRotation is true"
   },
   {
     "queryName": "KMS Key Rotation Disabled",
     "severity": "MEDIUM",
     "line": 51,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "KMS Key Rotation Disabled",
-    "severity": "MEDIUM",
-    "line": 60,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "KMS Key Rotation Disabled",
-    "severity": "MEDIUM",
-    "line": 65,
-    "fileName": "positive2.json"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey2",
+    "searchKey": "Resources.myKey2.Properties.EnableKeyRotation",
+    "searchValue": "",
+    "expectedValue": "Resources.myKey2.Properties.EnableKeyRotation should be defined",
+    "actualValue": "Resources.myKey2.Properties.EnableKeyRotation is undefined"
   },
   {
     "queryName": "KMS Key Rotation Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive3.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties.EnableKeyRotation",
+    "searchValue": "",
+    "expectedValue": "Resources.myKey.Properties.EnableKeyRotation should not be 'true'",
+    "actualValue": "Resources.myKey.Properties.EnableKeyRotation is true"
   },
   {
     "queryName": "KMS Key Rotation Disabled",
     "severity": "MEDIUM",
     "line": 51,
-    "fileName": "positive3.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey2",
+    "searchKey": "Resources.myKey2.Properties.EnableKeyRotation",
+    "searchValue": "",
+    "expectedValue": "Resources.myKey2.Properties.EnableKeyRotation should be defined",
+    "actualValue": "Resources.myKey2.Properties.EnableKeyRotation is undefined"
+  },
+  {
+    "queryName": "KMS Key Rotation Disabled",
+    "severity": "MEDIUM",
+    "line": 60,
+    "filename": "positive2.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties.EnableKeyRotation",
+    "searchValue": "",
+    "expectedValue": "Resources.myKey.Properties.EnableKeyRotation should not be 'true'",
+    "actualValue": "Resources.myKey.Properties.EnableKeyRotation is true"
+  },
+  {
+    "queryName": "KMS Key Rotation Disabled",
+    "severity": "MEDIUM",
+    "line": 65,
+    "filename": "positive2.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey2",
+    "searchKey": "Resources.myKey2.Properties.EnableKeyRotation",
+    "searchValue": "",
+    "expectedValue": "Resources.myKey2.Properties.EnableKeyRotation should be defined",
+    "actualValue": "Resources.myKey2.Properties.EnableKeyRotation is undefined"
   }
 ]

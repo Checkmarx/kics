@@ -2,13 +2,25 @@
   {
     "queryName": "EBS Volume Snapshot Not Encrypted",
     "severity": "HIGH",
-    "line": 4,
-    "fileName": "positive1.tf"
+    "line": 10,
+    "filename": "positive2.tf",
+    "resourceType": "aws_ebs_snapshot",
+    "resourceName": "positive2",
+    "searchKey": "aws_ebs_snapshot[positive2]",
+    "searchValue": "",
+    "expectedValue": "'aws_ebs_volume[positive2].encrypted' associated with aws_ebs_snapshot[positive2] should be set",
+    "actualValue": "'aws_ebs_volume[positive2].encrypted' associated with aws_ebs_snapshot[positive2] is undefined"
   },
   {
     "queryName": "EBS Volume Snapshot Not Encrypted",
     "severity": "HIGH",
-    "line": 10,
-    "fileName": "positive2.tf"
+    "line": 4,
+    "filename": "positive1.tf",
+    "resourceType": "aws_ebs_volume",
+    "resourceName": "positive1",
+    "searchKey": "aws_ebs_volume[positive1].encrypted",
+    "searchValue": "",
+    "expectedValue": "'aws_ebs_volume[positive1].encrypted' associated with aws_ebs_snapshot[positive1] should be true",
+    "actualValue": "'aws_ebs_volume[positive1].encrypted' associated with aws_ebs_snapshot[positive1] is false"
   }
 ]

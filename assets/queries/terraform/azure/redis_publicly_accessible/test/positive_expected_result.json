@@ -2,6 +2,13 @@
   {
     "queryName": "Redis Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 22
+    "line": 22,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_redis_firewall_rule",
+    "resourceName": "someIPrange",
+    "searchKey": "azurerm_redis_firewall_rule[positive2].start_ip",
+    "searchValue": "",
+    "expectedValue": "'azurerm_redis_firewall_rule[positive2]' ip range should be private",
+    "actualValue": "'azurerm_redis_firewall_rule[positive2]' ip range is not private"
   }
 ]

@@ -2,26 +2,61 @@
   {
     "queryName": "Pip install Keeping Cached Packages",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3}}.{{pip install --upgrade pip &&     pip install nibabel pydicom matplotlib pillow &&     pip install med2image}}",
+    "searchValue": "",
+    "expectedValue": "The '--no-cache-dir' flag should be set when running 'pip/pip3 install'",
+    "actualValue": "The '--no-cache-dir' flag isn't set when running 'pip/pip3 install'"
   },
   {
     "queryName": "Pip install Keeping Cached Packages",
     "severity": "LOW",
-    "line": 8
+    "line": 11,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3.1}}.{{RUN [\"pip3\", \"install\", \"requests=2.7.0\"]}}",
+    "searchValue": "",
+    "expectedValue": "The '--no-cache-dir' flag should be set when running 'pip/pip3 install'",
+    "actualValue": "The '--no-cache-dir' flag isn't set when running 'pip/pip3 install'"
   },
   {
     "queryName": "Pip install Keeping Cached Packages",
     "severity": "LOW",
-    "line": 9
+    "line": 8,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3.1}}.{{pip install --upgrade pip}}",
+    "searchValue": "",
+    "expectedValue": "The '--no-cache-dir' flag should be set when running 'pip/pip3 install'",
+    "actualValue": "The '--no-cache-dir' flag isn't set when running 'pip/pip3 install'"
   },
   {
     "queryName": "Pip install Keeping Cached Packages",
     "severity": "LOW",
-    "line": 10
+    "line": 10,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3.1}}.{{pip3 install requests=2.7.0}}",
+    "searchValue": "",
+    "expectedValue": "The '--no-cache-dir' flag should be set when running 'pip/pip3 install'",
+    "actualValue": "The '--no-cache-dir' flag isn't set when running 'pip/pip3 install'"
   },
   {
     "queryName": "Pip install Keeping Cached Packages",
     "severity": "LOW",
-    "line": 11
+    "line": 9,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3.1}}.{{python -m pip install nibabel pydicom matplotlib pillow}}",
+    "searchValue": "",
+    "expectedValue": "The '--no-cache-dir' flag should be set when running 'pip/pip3 install'",
+    "actualValue": "The '--no-cache-dir' flag isn't set when running 'pip/pip3 install'"
   }
 ]

@@ -2,37 +2,73 @@
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
-    "line": 59,
-    "filename": "positive1.json"
+    "line": 26,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
-    "line": 26,
-    "filename": "positive2.yaml"
+    "line": 59,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths./users/{id}.get.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths./users/{id}.get.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
+  },
+  {
+    "queryName": "Property 'allowReserved' Improperly Defined",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Property 'allowReserved' Improperly Defined",
-    "severity": "INFO",
-    "line": 43,
-    "filename": "positive3.json"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./users/{id}.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths./users/{id}.get.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths./users/{id}.get.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
   }
 ]

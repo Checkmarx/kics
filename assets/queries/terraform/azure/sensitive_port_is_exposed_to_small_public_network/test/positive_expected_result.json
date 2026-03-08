@@ -2,221 +2,529 @@
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,135",
+    "expectedValue": "MSSQL Debugger (UDP:135) should not be allowed",
+    "actualValue": "MSSQL Debugger (UDP:135) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 22
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,138",
+    "expectedValue": "NetBIOS Datagram Service (TCP:138) should not be allowed",
+    "actualValue": "NetBIOS Datagram Service (TCP:138) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 22
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,139",
+    "expectedValue": "NetBIOS Session Service (UDP:139) should not be allowed",
+    "actualValue": "NetBIOS Session Service (UDP:139) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive3].destination_port_range",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,21",
+    "expectedValue": "FTP (TCP:21) should not be allowed",
+    "actualValue": "FTP (TCP:21) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,25",
+    "expectedValue": "SMTP (TCP:25) should not be allowed",
+    "actualValue": "SMTP (TCP:25) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,25",
+    "expectedValue": "SMTP (UDP:25) should not be allowed",
+    "actualValue": "SMTP (UDP:25) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 50
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 50
+    "line": 92,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive7].destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 64
+    "line": 120,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive9].destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 78
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive1].destination_port_range",
+    "searchValue": "UDP,61621",
+    "expectedValue": "Cassandra OpsCenter (UDP:61621) should not be allowed",
+    "actualValue": "Cassandra OpsCenter (UDP:61621) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 92
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,53",
+    "expectedValue": "DNS (UDP:53) should not be allowed",
+    "actualValue": "DNS (UDP:53) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 92
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,21",
+    "expectedValue": "FTP (UDP:21) should not be allowed",
+    "actualValue": "FTP (UDP:21) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 92
+    "line": 92,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive7].destination_port_range",
+    "searchValue": "UDP,25",
+    "expectedValue": "SMTP (UDP:25) should not be allowed",
+    "actualValue": "SMTP (UDP:25) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 92
+    "line": 106,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive8].destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 106
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive3].destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 120
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive3].destination_port_range",
+    "searchValue": "TCP,21",
+    "expectedValue": "FTP (TCP:21) should not be allowed",
+    "actualValue": "FTP (TCP:21) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 120
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,20",
+    "expectedValue": "FTP (UDP:20) should not be allowed",
+    "actualValue": "FTP (UDP:20) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,138",
+    "expectedValue": "NetBIOS Datagram Service (UDP:138) should not be allowed",
+    "actualValue": "NetBIOS Datagram Service (UDP:138) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 50,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive4].destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 50,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive4].destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,53",
+    "expectedValue": "DNS (TCP:53) should not be allowed",
+    "actualValue": "DNS (TCP:53) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,20",
+    "expectedValue": "FTP (TCP:20) should not be allowed",
+    "actualValue": "FTP (TCP:20) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,139",
+    "expectedValue": "NetBIOS Session Service (TCP:139) should not be allowed",
+    "actualValue": "NetBIOS Session Service (TCP:139) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,110",
+    "expectedValue": "POP3 (UDP:110) should not be allowed",
+    "actualValue": "POP3 (UDP:110) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 78,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive6].destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 64,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive5].destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive3].destination_port_range",
+    "searchValue": "UDP,21",
+    "expectedValue": "FTP (UDP:21) should not be allowed",
+    "actualValue": "FTP (UDP:21) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,135",
+    "expectedValue": "MSSQL Debugger (TCP:135) should not be allowed",
+    "actualValue": "MSSQL Debugger (TCP:135) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,137",
+    "expectedValue": "NetBIOS Name Service (TCP:137) should not be allowed",
+    "actualValue": "NetBIOS Name Service (TCP:137) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive3].destination_port_range",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 120,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive9].destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,80",
+    "expectedValue": "HTTP (TCP:80) should not be allowed",
+    "actualValue": "HTTP (TCP:80) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "TCP,110",
+    "expectedValue": "POP3 (TCP:110) should not be allowed",
+    "actualValue": "POP3 (TCP:110) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 22,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive2].destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 92,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive7].destination_port_range",
+    "searchValue": "UDP,53",
+    "expectedValue": "DNS (UDP:53) should not be allowed",
+    "actualValue": "DNS (UDP:53) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,80",
+    "expectedValue": "HTTP (UDP:80) should not be allowed",
+    "actualValue": "HTTP (UDP:80) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 22,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive2].destination_port_range",
+    "searchValue": "TCP,25",
+    "expectedValue": "SMTP (TCP:25) should not be allowed",
+    "actualValue": "SMTP (TCP:25) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 92,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive7].destination_port_range",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive3].destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed"
   }
 ]

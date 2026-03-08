@@ -2,11 +2,25 @@
   {
     "queryName": "PSP Allows Privilege Escalation",
     "severity": "HIGH",
-    "line": 7
+    "line": 7,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example].spec.allow_privilege_escalation",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod_security_policy[example].spec.allow_privilege_escalation should be set to false",
+    "actualValue": "kubernetes_pod_security_policy[example].spec.allow_privilege_escalation is set to true"
   },
   {
     "queryName": "PSP Allows Privilege Escalation",
     "severity": "HIGH",
-    "line": 50
+    "line": 50,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example2].spec",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod_security_policy[example2].spec.allow_privilege_escalation should be set",
+    "actualValue": "kubernetes_pod_security_policy[example2].spec.allow_privilege_escalation is undefined"
   }
 ]

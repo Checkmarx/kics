@@ -2,31 +2,61 @@
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "ELB Access Log Disabled",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "ELB Access Log Disabled",
-    "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' should exist",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' is missing"
   },
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer2",
+    "searchKey": "Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is true",
+    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false"
   },
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive5.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer2",
+    "searchKey": "Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is true",
+    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false"
+  },
+  {
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 31,
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer2",
+    "searchKey": "Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is true",
+    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false"
+  },
+  {
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' should exist",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' is missing"
   }
 ]

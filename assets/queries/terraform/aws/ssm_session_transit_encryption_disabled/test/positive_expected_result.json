@@ -3,12 +3,24 @@
     "queryName": "SSM Session Transit Encryption Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_ssm_document",
+    "resourceName": "test_document",
+    "searchKey": "aws_ssm_document[positive2].content",
+    "searchValue": "",
+    "expectedValue": "'inputs.kmsKeyId' should be defined and not null",
+    "actualValue": "'inputs.kmsKeyId' is undefined or null"
   },
   {
     "queryName": "SSM Session Transit Encryption Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_ssm_document",
+    "resourceName": "test_document",
+    "searchKey": "aws_ssm_document[positive1].content",
+    "searchValue": "",
+    "expectedValue": "'inputs' should be defined and not null",
+    "actualValue": "'inputs' is undefined or null"
   }
 ]

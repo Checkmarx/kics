@@ -2,19 +2,37 @@
   {
     "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
     "severity": "LOW",
-    "line": 3,
-    "fileName": "positive.dockerfile"
+    "line": 9,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{nginx}}.RUN={{cd ../share/nginx/html}}",
+    "searchValue": "",
+    "expectedValue": "Using WORKDIR to change directory",
+    "actualValue": "RUN cd ../share/nginx/html'"
   },
   {
     "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
     "severity": "LOW",
-    "line": 9,
-    "fileName": "positive.dockerfile"
+    "line": 3,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{nginx}}.RUN={{cd /../share/nginx/html}}",
+    "searchValue": "",
+    "expectedValue": "Using WORKDIR to change directory",
+    "actualValue": "RUN cd /../share/nginx/html'"
   },
   {
     "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive.dockerfile"
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{nginx}}.RUN={{cd /usr/../share/nginx/html}}",
+    "searchValue": "",
+    "expectedValue": "Using WORKDIR to change directory",
+    "actualValue": "RUN cd /usr/../share/nginx/html'"
   }
 ]

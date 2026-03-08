@@ -1,14 +1,26 @@
 [
   {
-    "line": 5,
-    "fileName": "positive1.yaml",
-    "queryName": "SNS Topic Without KmsMasterKeyId",
-    "severity": "LOW"
-  },
-  {
-    "fileName": "positive2.json",
     "queryName": "SNS Topic Without KmsMasterKeyId",
     "severity": "LOW",
-    "line": 6
+    "line": 6,
+    "filename": "positive2.json",
+    "resourceType": "AWS::SNS::Topic",
+    "resourceName": "SampleTopic",
+    "searchKey": "Resources.MySNSTopic.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MySNSTopic.Properties.KmsMasterKeyId should be defined",
+    "actualValue": "Resources.MySNSTopic.Properties.KmsMasterKeyId is undefined"
+  },
+  {
+    "queryName": "SNS Topic Without KmsMasterKeyId",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::SNS::Topic",
+    "resourceName": "SampleTopic",
+    "searchKey": "Resources.MySNSTopic.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MySNSTopic.Properties.KmsMasterKeyId should be defined",
+    "actualValue": "Resources.MySNSTopic.Properties.KmsMasterKeyId is undefined"
   }
 ]

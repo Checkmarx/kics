@@ -2,25 +2,49 @@
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
+    "line": 10,
+    "filename": "positive2.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive2].port",
+    "searchValue": "",
+    "expectedValue": "aws_db_instance[positive2].port should not be set to 5432",
+    "actualValue": "aws_db_instance[positive2].port is set to 5432"
+  },
+  {
+    "queryName": "RDS Using Default Port",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive4.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive4].port",
+    "searchValue": "",
+    "expectedValue": "aws_db_instance[positive4].port should not be set to 1433",
+    "actualValue": "aws_db_instance[positive4].port is set to 1433"
+  },
+  {
+    "queryName": "RDS Using Default Port",
+    "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].port",
+    "searchValue": "",
+    "expectedValue": "aws_db_instance[positive1].port should not be set to 3306",
+    "actualValue": "aws_db_instance[positive1].port is set to 3306"
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "RDS Using Default Port",
-    "severity": "LOW",
-    "line": 10,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "RDS Using Default Port",
-    "severity": "LOW",
-    "line": 10,
-    "fileName": "positive4.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive3].port",
+    "searchValue": "",
+    "expectedValue": "aws_db_instance[positive3].port should not be set to 1521",
+    "actualValue": "aws_db_instance[positive3].port is set to 1521"
   }
 ]

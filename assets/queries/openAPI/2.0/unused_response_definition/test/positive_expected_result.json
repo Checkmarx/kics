@@ -2,25 +2,49 @@
   {
     "queryName": "Global Responses Definition Not Being Used",
     "severity": "INFO",
-    "line": 38,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Global Responses Definition Not Being Used",
-    "severity": "INFO",
-    "line": 25,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Global Responses Definition Not Being Used",
-    "severity": "INFO",
     "line": 41,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{GeneralError}}",
+    "searchValue": "",
+    "expectedValue": "responses definition 'GeneralError' is used",
+    "actualValue": "responses definition 'GeneralError' is not being used"
+  },
+  {
+    "queryName": "Global Responses Definition Not Being Used",
+    "severity": "INFO",
+    "line": 38,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{IllegalInput}}",
+    "searchValue": "",
+    "expectedValue": "responses definition 'IllegalInput' is used",
+    "actualValue": "responses definition 'IllegalInput' is not being used"
   },
   {
     "queryName": "Global Responses Definition Not Being Used",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{GeneralError}}",
+    "searchValue": "",
+    "expectedValue": "responses definition 'GeneralError' is used",
+    "actualValue": "responses definition 'GeneralError' is not being used"
+  },
+  {
+    "queryName": "Global Responses Definition Not Being Used",
+    "severity": "INFO",
+    "line": 25,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{IllegalInput}}",
+    "searchValue": "",
+    "expectedValue": "responses definition 'IllegalInput' is used",
+    "actualValue": "responses definition 'IllegalInput' is not being used"
   }
 ]

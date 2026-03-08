@@ -2,19 +2,37 @@
   {
     "queryName": "User Data Contains Encoded Private Key",
     "severity": "HIGH",
+    "line": 11,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive3].user_data_base64",
+    "searchValue": "",
+    "expectedValue": "'user_data_base64' shouldn't contain RSA Private Key",
+    "actualValue": "'user_data_base64' contains RSA Private Key"
+  },
+  {
+    "queryName": "User Data Contains Encoded Private Key",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive2].user_data_base64",
+    "searchValue": "",
+    "expectedValue": "'user_data_base64' shouldn't contain RSA Private Key",
+    "actualValue": "'user_data_base64' contains RSA Private Key"
+  },
+  {
+    "queryName": "User Data Contains Encoded Private Key",
+    "severity": "HIGH",
     "line": 5,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "User Data Contains Encoded Private Key",
-    "severity": "HIGH",
-    "line": 11,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "User Data Contains Encoded Private Key",
-    "severity": "HIGH",
-    "line": 11,
-    "fileName": "positive3.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_launch_configuration",
+    "resourceName": "positive1",
+    "searchKey": "aws_launch_configuration[positive1].user_data_base64",
+    "searchValue": "",
+    "expectedValue": "aws_launch_configuration[positive1].user_data_base64 shouldn't contain RSA Private Key",
+    "actualValue": "aws_launch_configuration[positive1].user_data_base64 contains RSA Private Key"
   }
 ]

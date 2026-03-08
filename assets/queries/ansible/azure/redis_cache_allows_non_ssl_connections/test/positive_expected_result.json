@@ -2,6 +2,13 @@
   {
     "queryName": "Redis Cache Allows Non SSL Connections",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_rediscache",
+    "resourceName": "Non SSl Allowed",
+    "searchKey": "name={{Non SSl Allowed}}.{{azure_rm_rediscache}}.enable_non_ssl_port",
+    "searchValue": "",
+    "expectedValue": "azure_rm_rediscache.enable_non_ssl_port should be set to false or undefined",
+    "actualValue": "azure_rm_rediscache.enable_non_ssl_port is true"
   }
 ]

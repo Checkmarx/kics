@@ -2,133 +2,265 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 22,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 38,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 51,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 63,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 79,
-    "fileName": "positive1.yaml"
+    "line": 26,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv4Ingress2.Properties' should not open the SSH port (22)",
+    "actualValue": "'Resources.IPv4Ingress2.Properties' opens the SSH port (22)"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress1.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv4Ingress1.Properties' should not open the SSH port (22)",
+    "actualValue": "'Resources.IPv4Ingress1.Properties' opens the SSH port (22)"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 40,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 49,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 25,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 46,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 61,
-    "fileName": "positive3.json"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv4Ingress2.Properties' should not open the SSH port (22)",
+    "actualValue": "'Resources.IPv4Ingress2.Properties' opens the SSH port (22)"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 76,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 97,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 26,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 38,
-    "fileName": "positive4.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_2",
+    "searchKey": "Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 50,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv6Ingress2.Properties' should not open the SSH port (22)",
+    "actualValue": "'Resources.IPv6Ingress2.Properties' opens the SSH port (22)"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 62,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress3.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv6Ingress3.Properties' should not open the SSH port (22)",
+    "actualValue": "'Resources.IPv6Ingress3.Properties' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 40,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv6Ingress2.Properties' should not open the SSH port (22)",
+    "actualValue": "'Resources.IPv6Ingress2.Properties' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 49,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress3.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv6Ingress3.Properties' should not open the SSH port (22)",
+    "actualValue": "'Resources.IPv6Ingress3.Properties' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 79,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv6",
+    "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4_1",
+    "searchKey": "Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 51,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 31,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress1.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv6Ingress1.Properties' should not open the SSH port (22)",
+    "actualValue": "'Resources.IPv6Ingress1.Properties' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 38,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv4",
+    "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4_2",
+    "searchKey": "Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4_1",
+    "searchKey": "Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 38,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress1.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv6Ingress1.Properties' should not open the SSH port (22)",
+    "actualValue": "'Resources.IPv6Ingress1.Properties' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 63,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_2",
+    "searchKey": "Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 46,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv4",
+    "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 97,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv6",
+    "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 25,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4_2",
+    "searchKey": "Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 61,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
+    "actualValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress1.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv4Ingress1.Properties' should not open the SSH port (22)",
+    "actualValue": "'Resources.IPv4Ingress1.Properties' opens the SSH port (22)"
   }
 ]

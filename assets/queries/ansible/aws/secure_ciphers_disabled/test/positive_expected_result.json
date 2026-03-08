@@ -2,6 +2,13 @@
   {
     "queryName": "Secure Ciphers Disabled",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 14,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudfront_distribution",
+    "resourceName": "example",
+    "searchKey": "name={{example}}.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version",
+    "searchValue": "",
+    "expectedValue": "cloudfront_distribution.viewer_certificate.minimum_protocol_version should be TLSv1.1 or TLSv1.2",
+    "actualValue": "cloudfront_distribution.viewer_certificate.minimum_protocol_version isn't TLSv1.1 or TLSv1.2"
   }
 ]

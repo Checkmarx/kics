@@ -2,25 +2,49 @@
   {
     "queryName": "VPC FlowLogs Disabled",
     "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "VPC FlowLogs Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "VPC FlowLogs Disabled",
-    "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "vpc.enable_flow_log",
+    "searchValue": "",
+    "expectedValue": "vpc.enable_flow_log should be set to true",
+    "actualValue": "vpc.enable_flow_log is set to false"
   },
   {
     "queryName": "VPC FlowLogs Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "vpc",
+    "searchValue": "",
+    "expectedValue": "vpc.enable_flow_log should be set to true",
+    "actualValue": "vpc.enable_flow_log is undefined"
+  },
+  {
+    "queryName": "VPC FlowLogs Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc",
+    "resourceName": "main",
+    "searchKey": "aws_vpc[main]",
+    "searchValue": "",
+    "expectedValue": "aws_vpc[main] should be the same as Flow Logs VPC id",
+    "actualValue": "aws_vpc[main] is not the same as Flow Logs VPC id"
+  },
+  {
+    "queryName": "VPC FlowLogs Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.tf",
+    "resourceType": "aws_flow_log",
+    "resourceName": "example",
+    "searchKey": "aws_flow_log[example]",
+    "searchValue": "",
+    "expectedValue": "aws_flow_log[example].vpc_id should be defined and not null",
+    "actualValue": "aws_flow_log[example].vpc_id is undefined or null"
   }
 ]

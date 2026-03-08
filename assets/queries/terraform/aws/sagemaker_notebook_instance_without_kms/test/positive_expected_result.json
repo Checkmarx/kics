@@ -3,6 +3,12 @@
     "queryName": "Sagemaker Notebook Instance Without KMS",
     "severity": "HIGH",
     "line": 1,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_sagemaker_notebook_instance",
+    "resourceName": "my-notebook-instance",
+    "searchKey": "aws_sagemaker_notebook_instance[{{ni}}]",
+    "searchValue": "",
+    "expectedValue": "aws_sagemaker_notebook_instance.kms_key_id should be defined and not null",
+    "actualValue": "aws_sagemaker_notebook_instance.kms_key_id is undefined or null"
   }
 ]

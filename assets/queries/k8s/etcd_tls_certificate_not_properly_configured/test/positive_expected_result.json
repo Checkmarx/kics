@@ -2,19 +2,37 @@
   {
     "queryName": "Etcd TLS Certificate Not Properly Configured",
     "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Etcd TLS Certificate Not Properly Configured",
-    "severity": "MEDIUM",
     "line": 25,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo2",
+    "searchKey": "metadata.name={{command-demo2}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "Pod--etcd-keyfile",
+    "expectedValue": "--etcd-keyfile flag should be defined",
+    "actualValue": "--etcd-keyfile flag is not defined"
   },
   {
     "queryName": "Etcd TLS Certificate Not Properly Configured",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "Pod--etcd-keyfile",
+    "expectedValue": "--etcd-keyfile flag should be defined",
+    "actualValue": "--etcd-keyfile flag is not defined"
+  },
+  {
+    "queryName": "Etcd TLS Certificate Not Properly Configured",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "Pod--etcd-certfile",
+    "expectedValue": "--etcd-certfile flag should be defined",
+    "actualValue": "--etcd-certfile flag is not defined"
   }
 ]

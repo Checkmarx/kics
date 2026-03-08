@@ -2,97 +2,193 @@
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
-    "line": 2,
-    "fileName": "positive.dockerfile"
+    "line": 9,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox3}}.RUN={{apt-get update && apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
+    "searchValue": "python3-pyqt5",
+    "expectedValue": "Package 'python3-pyqt5' has version defined",
+    "actualValue": "Package 'python3-pyqt5' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive.dockerfile"
-  },
-  {
-    "queryName": "Apt Get Install Pin Version Not Defined",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive.dockerfile"
-  },
-  {
-    "queryName": "Apt Get Install Pin Version Not Defined",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive.dockerfile"
-  },
-  {
-    "queryName": "Apt Get Install Pin Version Not Defined",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive.dockerfile"
-  },
-  {
-    "queryName": "Apt Get Install Pin Version Not Defined",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive.dockerfile"
-  },
-  {
-    "queryName": "Apt Get Install Pin Version Not Defined",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive.dockerfile"
-  },
-  {
-    "queryName": "Apt Get Install Pin Version Not Defined",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive.dockerfile"
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox4}}.{{RUN [\"apt-get\", \"install\", \"python\"]}}",
+    "searchValue": "python",
+    "expectedValue": "Package 'python' has version defined",
+    "actualValue": "Package 'python' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive2.dockerfile"
-  },
-  {
-    "queryName": "Apt Get Install Pin Version Not Defined",
-    "severity": "MEDIUM",
-    "line": 3,
-    "fileName": "positive2.dockerfile"
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox4}}.RUN={{apt-get install python}}",
+    "searchValue": "python",
+    "expectedValue": "Package 'python' has version defined",
+    "actualValue": "Package 'python' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.dockerfile"
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox5}}.RUN={{apt-get install -y -t python}}",
+    "searchValue": "python",
+    "expectedValue": "Package 'python' has version defined",
+    "actualValue": "Package 'python' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.dockerfile"
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox6}}.RUN={{apt-get update ;     apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
+    "searchValue": "python-pyside",
+    "expectedValue": "Package 'python-pyside' has version defined",
+    "actualValue": "Package 'python-pyside' does not have version defined"
+  },
+  {
+    "queryName": "Apt Get Install Pin Version Not Defined",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox}}.{{RUN [\"apt-get\", \"install\", \"python\"]}}",
+    "searchValue": "python",
+    "expectedValue": "Package 'python' has version defined",
+    "actualValue": "Package 'python' does not have version defined"
+  },
+  {
+    "queryName": "Apt Get Install Pin Version Not Defined",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox2}}.RUN={{apt-get install -y -t python}}",
+    "searchValue": "python",
+    "expectedValue": "Package 'python' has version defined",
+    "actualValue": "Package 'python' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.dockerfile"
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox3}}.RUN={{apt-get update && apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
+    "searchValue": "python3-pip",
+    "expectedValue": "Package 'python3-pip' has version defined",
+    "actualValue": "Package 'python3-pip' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.dockerfile"
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox3}}.RUN={{apt-get update && apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
+    "searchValue": "python-pyside",
+    "expectedValue": "Package 'python-pyside' has version defined",
+    "actualValue": "Package 'python-pyside' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.dockerfile"
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox6}}.RUN={{apt-get update ;     apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
+    "searchValue": "python-qt4",
+    "expectedValue": "Package 'python-qt4' has version defined",
+    "actualValue": "Package 'python-qt4' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.dockerfile"
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox6}}.RUN={{apt-get update ;     apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
+    "searchValue": "python3-pip",
+    "expectedValue": "Package 'python3-pip' has version defined",
+    "actualValue": "Package 'python3-pip' does not have version defined"
+  },
+  {
+    "queryName": "Apt Get Install Pin Version Not Defined",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox}}.RUN={{apt-get install python}}",
+    "searchValue": "python",
+    "expectedValue": "Package 'python' has version defined",
+    "actualValue": "Package 'python' does not have version defined"
+  },
+  {
+    "queryName": "Apt Get Install Pin Version Not Defined",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox3}}.RUN={{apt-get update && apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
+    "searchValue": "python-pip",
+    "expectedValue": "Package 'python-pip' has version defined",
+    "actualValue": "Package 'python-pip' does not have version defined"
+  },
+  {
+    "queryName": "Apt Get Install Pin Version Not Defined",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox6}}.RUN={{apt-get update ;     apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
+    "searchValue": "python-pip",
+    "expectedValue": "Package 'python-pip' has version defined",
+    "actualValue": "Package 'python-pip' does not have version defined"
+  },
+  {
+    "queryName": "Apt Get Install Pin Version Not Defined",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox6}}.RUN={{apt-get update ;     apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
+    "searchValue": "python3-pyqt5",
+    "expectedValue": "Package 'python3-pyqt5' has version defined",
+    "actualValue": "Package 'python3-pyqt5' does not have version defined"
+  },
+  {
+    "queryName": "Apt Get Install Pin Version Not Defined",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox3}}.RUN={{apt-get update && apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
+    "searchValue": "python-qt4",
+    "expectedValue": "Package 'python-qt4' has version defined",
+    "actualValue": "Package 'python-qt4' does not have version defined"
   }
 ]

@@ -2,61 +2,121 @@
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
-    "line": 16,
-    "filename": "positive1.json"
+    "line": 31,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content[multipart/form-data]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
+  },
+  {
+    "queryName": "Media Type Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.content[multipart/form-data]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
+  },
+  {
+    "queryName": "Media Type Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 49,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Media Type Object Without Schema",
-    "severity": "MEDIUM",
-    "line": 16,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Media Type Object Without Schema",
-    "severity": "MEDIUM",
-    "line": 28,
-    "filename": "positive2.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content[multipart/data]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.requestBody.content[text/plain]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Media Type Object Without Schema",
-    "severity": "MEDIUM",
-    "line": 31,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Media Type Object Without Schema",
-    "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive5.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 20,
-    "filename": "positive5.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.requestBody.content[text/plain]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
-    "line": 20,
-    "filename": "positive6.yaml"
+    "line": 16,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
+  },
+  {
+    "queryName": "Media Type Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.content[multipart/form-data]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
+  },
+  {
+    "queryName": "Media Type Object Without Schema",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   }
 ]

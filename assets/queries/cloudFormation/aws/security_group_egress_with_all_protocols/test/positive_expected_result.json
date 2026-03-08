@@ -3,24 +3,48 @@
     "queryName": "Security Group Egress With All Protocols",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress.IpProtocol",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].IpProtocol should not be set to '-1'",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].IpProtocol is set to '-1'"
   },
   {
     "queryName": "Security Group Egress With All Protocols",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "fileName": "positive2.json",
-    "queryName": "Security Group Egress With All Protocols",
-    "severity": "MEDIUM",
-    "line": 43
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.IpProtocol",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.IpProtocol should not be set to '-1'",
+    "actualValue": "Resources.OutboundRule.Properties.IpProtocol is set to '-1'"
   },
   {
     "queryName": "Security Group Egress With All Protocols",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress.IpProtocol",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].IpProtocol should not be set to '-1'",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].IpProtocol is set to '-1'"
+  },
+  {
+    "queryName": "Security Group Egress With All Protocols",
+    "severity": "MEDIUM",
+    "line": 43,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.IpProtocol",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.IpProtocol should not be set to '-1'",
+    "actualValue": "Resources.OutboundRule.Properties.IpProtocol is set to '-1'"
   }
 ]

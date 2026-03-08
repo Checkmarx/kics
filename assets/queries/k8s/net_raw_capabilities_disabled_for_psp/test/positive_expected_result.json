@@ -2,11 +2,25 @@
   {
     "queryName": "NET_RAW Capabilities Disabled for PSP",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.requiredDropCapabilities",
+    "searchValue": "",
+    "expectedValue": "spec.requiredDropCapabilities 'is ALL or NET_RAW'",
+    "actualValue": "spec.requiredDropCapabilities 'is not ALL or NET_RAW'"
   },
   {
     "queryName": "NET_RAW Capabilities Disabled for PSP",
     "severity": "MEDIUM",
-    "line": 57
+    "line": 57,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted2",
+    "searchKey": "metadata.name={{restricted2}}.spec.requiredDropCapabilities",
+    "searchValue": "",
+    "expectedValue": "spec.requiredDropCapabilities 'is ALL or NET_RAW'",
+    "actualValue": "spec.requiredDropCapabilities 'is not ALL or NET_RAW'"
   }
 ]

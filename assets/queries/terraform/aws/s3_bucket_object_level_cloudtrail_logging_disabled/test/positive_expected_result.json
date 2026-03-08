@@ -3,12 +3,24 @@
     "queryName": "S3 Bucket Object Level CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "tf-trail-foobar",
+    "searchKey": "aws_cloudtrail[example].event_selector",
+    "searchValue": "",
+    "expectedValue": "'read_write_type' should be defined and not null",
+    "actualValue": "'read_write_type' is undefined or null"
   },
   {
     "queryName": "S3 Bucket Object Level CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "tf-trail-foobar",
+    "searchKey": "aws_cloudtrail[example2].event_selector.read_write_type",
+    "searchValue": "",
+    "expectedValue": "'read_write_type' should be set to 'All'",
+    "actualValue": "'read_write_type' is not set to 'All'"
   }
 ]

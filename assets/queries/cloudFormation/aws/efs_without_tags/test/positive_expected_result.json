@@ -3,12 +3,24 @@
     "queryName": "EFS Without Tags",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "FileSystem",
+    "searchKey": "Resources.FileSystem",
+    "searchValue": "",
+    "expectedValue": "'Resources.FileSystem.Properties.FileSystemTags' should be defined and not null",
+    "actualValue": "'Resources.FileSystem.Properties.FileSystemTags' is undefined or null"
   },
   {
     "queryName": "EFS Without Tags",
     "severity": "LOW",
     "line": 40,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "FileSystem",
+    "searchKey": "Resources.FileSystem",
+    "searchValue": "",
+    "expectedValue": "'Resources.FileSystem.Properties.FileSystemTags' should be defined and not null",
+    "actualValue": "'Resources.FileSystem.Properties.FileSystemTags' is undefined or null"
   }
 ]

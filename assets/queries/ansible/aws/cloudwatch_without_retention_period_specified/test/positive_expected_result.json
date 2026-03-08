@@ -2,11 +2,25 @@
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
-    "line": 2
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudwatchlogs_log_group",
+    "resourceName": "example2 ec2 group",
+    "searchKey": "name={{example2 ec2 group}}.{{community.aws.cloudwatchlogs_log_group}}.retention",
+    "searchValue": "",
+    "expectedValue": "cloudwatchlogs_log_group.retention should be set and valid",
+    "actualValue": "cloudwatchlogs_log_group.retention is set and invalid"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
-    "line": 7
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudwatchlogs_log_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{community.aws.cloudwatchlogs_log_group}}",
+    "searchValue": "",
+    "expectedValue": "cloudwatchlogs_log_group.retention should be set",
+    "actualValue": "cloudwatchlogs_log_group.retention is undefined"
   }
 ]

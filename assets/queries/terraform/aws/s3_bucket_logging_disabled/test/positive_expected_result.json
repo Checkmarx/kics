@@ -2,19 +2,37 @@
   {
     "queryName": "S3 Bucket Logging Disabled",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "S3 Bucket Logging Disabled",
-    "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket]",
+    "searchValue": "",
+    "expectedValue": "'logging' should be defined and not null",
+    "actualValue": "'logging' is undefined or null"
   },
   {
     "queryName": "S3 Bucket Logging Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-example-bucket",
+    "searchKey": "aws_s3_bucket[examplee]",
+    "searchValue": "",
+    "expectedValue": "'logging' should be defined and not null",
+    "actualValue": "'logging' is undefined or null"
+  },
+  {
+    "queryName": "S3 Bucket Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive1]",
+    "searchValue": "",
+    "expectedValue": "'logging' should be defined and not null",
+    "actualValue": "'logging' is undefined or null"
   }
 ]

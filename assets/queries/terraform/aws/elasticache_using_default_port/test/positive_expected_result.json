@@ -3,24 +3,48 @@
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_elasticache_cluster.port should be defined and not null",
+    "actualValue": "aws_elasticache_cluster.port is undefined or null"
+  },
+  {
+    "queryName": "ElastiCache Using Default Port",
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive3.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive3].port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 6379",
+    "actualValue": "'port' is set to 6379"
+  },
+  {
+    "queryName": "ElastiCache Using Default Port",
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive4.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive2].port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 11211",
+    "actualValue": "'port' is set to 11211"
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "ElastiCache Using Default Port",
-    "severity": "LOW",
-    "line": 7,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "ElastiCache Using Default Port",
-    "severity": "LOW",
-    "line": 7,
-    "fileName": "positive4.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_elasticache_cluster.port should be defined and not null",
+    "actualValue": "aws_elasticache_cluster.port is undefined or null"
   }
 ]

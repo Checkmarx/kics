@@ -2,13 +2,25 @@
   {
     "queryName": "ROS Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive.tf"
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_ros_stack_instance",
+    "resourceName": "example",
+    "searchKey": "alicloud_ros_stack_instance[example]",
+    "searchValue": "",
+    "expectedValue": "alicloud_ros_stack_instance[example].retain_stacks should be defined and not null",
+    "actualValue": "alicloud_ros_stack_instance[example].retain_stacks is undefined"
   },
   {
     "queryName": "ROS Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive2.tf"
+    "line": 6,
+    "filename": "positive.tf",
+    "resourceType": "alicloud_ros_stack_instance",
+    "resourceName": "example",
+    "searchKey": "alicloud_ros_stack_instance[example].retain_stacks",
+    "searchValue": "",
+    "expectedValue": "alicloud_ros_stack_instance[example].retain_stacks should be true ",
+    "actualValue": "alicloud_ros_stack_instance[example].retain_stacks is false"
   }
 ]

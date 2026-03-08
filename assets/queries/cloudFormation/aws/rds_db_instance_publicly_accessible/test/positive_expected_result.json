@@ -3,18 +3,36 @@
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 69,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "RDS DB Instance Publicly Accessible",
-    "severity": "CRITICAL",
-    "line": 61,
-    "fileName": "positive2.json"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.PubliclyAccessible' should be set to false",
+    "actualValue": "'Resources.MyDB.Properties.PubliclyAccessible' is set to true"
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 69,
-    "fileName": "positive3.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.PubliclyAccessible' should be set to false",
+    "actualValue": "'Resources.MyDB.Properties.PubliclyAccessible' is set to true"
+  },
+  {
+    "queryName": "RDS DB Instance Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 61,
+    "filename": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.PubliclyAccessible' should be set to false",
+    "actualValue": "'Resources.MyDB.Properties.PubliclyAccessible' is set to true"
   }
 ]
