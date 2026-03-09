@@ -1,0 +1,13 @@
+{
+  "id": "e8d97749-2fc2-42d8-b029-6b2153b230e2",
+  "queryName": "Beta - Key Vault Public Network Access Enabled",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Azure Key Vault instances should disable public network access and be accessible only via private endpoints or approved virtual network rules to prevent unauthorized key and secret access.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault#public_network_access_enabled",
+  "platform": "Terraform",
+  "descriptionID": "c9d0e1f2",
+  "cloudProvider": "azure",
+  "cwe": "749",
+  "riskScore": "7.0"
+}

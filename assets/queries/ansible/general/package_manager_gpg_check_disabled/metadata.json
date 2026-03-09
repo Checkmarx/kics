@@ -1,0 +1,13 @@
+{
+  "id": "bd7d338f-3d7f-40d3-9c54-0eee3da1bb20",
+  "queryName": "Beta - Ansible Package Manager GPG Check Disabled",
+  "severity": "HIGH",
+  "category": "Supply Chain",
+  "descriptionText": "Ansible yum/dnf tasks should not disable GPG signature checking (disable_gpg_check: true). Disabling GPG verification allows unsigned or tampered packages to be installed, enabling supply chain attacks.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/builtin/yum_module.html#parameter-disable_gpg_check",
+  "platform": "Ansible",
+  "descriptionID": "f8a9b0c1",
+  "cloudProvider": "common",
+  "cwe": "494",
+  "riskScore": "8.0"
+}

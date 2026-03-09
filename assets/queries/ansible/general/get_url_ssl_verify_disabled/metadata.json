@@ -1,0 +1,13 @@
+{
+  "id": "c319ca0f-2fc1-4a06-9ab0-b5cbe6dfb10b",
+  "queryName": "Beta - Ansible get_url Module SSL Verification Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "The Ansible get_url module should not disable SSL certificate validation (validate_certs: false). Disabling certificate validation when downloading files exposes playbooks to man-in-the-middle attacks and file tampering.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html#parameter-validate_certs",
+  "platform": "Ansible",
+  "descriptionID": "e7f8a9b0",
+  "cloudProvider": "common",
+  "cwe": "295",
+  "riskScore": "7.5"
+}

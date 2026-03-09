@@ -1,0 +1,13 @@
+{
+  "id": "e5d8e7db-45c9-4db8-b5ed-4ce32695c07d",
+  "queryName": "Beta - Cloud PubSub Topic Without Customer-Managed Key",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Google Cloud Pub/Sub topics should use customer-managed encryption keys (CMEK) to give organizations control over the key lifecycle for messages at rest.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic#kms_key_name",
+  "platform": "Terraform",
+  "descriptionID": "c5d6e7f8",
+  "cloudProvider": "gcp",
+  "cwe": "311",
+  "riskScore": "4.5"
+}
