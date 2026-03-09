@@ -1,0 +1,13 @@
+{
+  "id": "3645fc44-db98-4d67-b94e-04e9bc8fde4f",
+  "queryName": "Beta - Azure Data Factory Public Network Access Enabled",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Azure Data Factory instances should disable public network access to ensure data pipelines can only be accessed through private endpoints, reducing exposure of sensitive ETL workflows.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/data_factory#public_network_enabled",
+  "platform": "Terraform",
+  "descriptionID": "d0e1f2a3",
+  "cloudProvider": "azure",
+  "cwe": "668",
+  "riskScore": "7.0"
+}

@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Cognito Identity Pool Allows Unauthenticated Access",
+        "severity": "HIGH",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

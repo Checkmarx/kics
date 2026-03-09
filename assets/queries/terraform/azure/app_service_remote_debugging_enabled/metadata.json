@@ -1,0 +1,13 @@
+{
+  "id": "7e806c88-dafa-4c29-b859-f9fca7ad2fae",
+  "queryName": "Beta - App Service Remote Debugging Enabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "Remote debugging should be disabled on Azure App Services. When enabled, it opens a TCP port that allows direct code execution on the running application, providing a significant attack surface.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_web_app#remote_debugging_enabled",
+  "platform": "Terraform",
+  "descriptionID": "f6a7b8c9",
+  "cloudProvider": "azure",
+  "cwe": "94",
+  "riskScore": "7.5"
+}

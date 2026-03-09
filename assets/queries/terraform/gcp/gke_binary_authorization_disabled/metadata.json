@@ -1,0 +1,13 @@
+{
+  "id": "4ca625e5-1e9e-48b3-a892-b479079ac350",
+  "queryName": "Beta - GKE Binary Authorization Disabled",
+  "severity": "HIGH",
+  "category": "Supply Chain",
+  "descriptionText": "GKE clusters should have Binary Authorization enabled to enforce that only trusted, verified container images are deployed, providing supply chain security controls.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#binary_authorization",
+  "platform": "Terraform",
+  "descriptionID": "a3b4c5d6",
+  "cloudProvider": "gcp",
+  "cwe": "829",
+  "riskScore": "7.5"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "733d2bd2-5a0e-4c0f-9b0b-98415dfca55e",
+  "queryName": "Beta - Ansible URI Module SSL Verification Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "The Ansible uri module should not disable SSL certificate validation (validate_certs: false). Disabling certificate validation makes connections vulnerable to man-in-the-middle attacks.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/builtin/uri_module.html#parameter-validate_certs",
+  "platform": "Ansible",
+  "descriptionID": "d6e7f8a9",
+  "cloudProvider": "common",
+  "cwe": "295",
+  "riskScore": "7.5"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "f9905dd3-065c-4d77-825d-61b9d8157e4a",
+  "queryName": "Beta - GKE Private Nodes Disabled",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "GKE cluster nodes should be private (enable_private_nodes=true) so that node VMs only have internal IP addresses, eliminating direct internet exposure and reducing the attack surface.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#enable_private_nodes",
+  "platform": "Terraform",
+  "descriptionID": "b4c5d6e7",
+  "cloudProvider": "gcp",
+  "cwe": "284",
+  "riskScore": "7.0"
+}

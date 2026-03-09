@@ -1,0 +1,13 @@
+{
+  "id": "2099c608-5f41-4732-891c-2ce13a04878e",
+  "queryName": "Beta - Elasticsearch Domain Without Audit Logging",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Elasticsearch domains should have audit logging enabled (AUDIT_LOGS) to track user access, authentication, and security-relevant events for compliance and forensic purposes.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#log_type",
+  "platform": "Terraform",
+  "descriptionID": "e5f6a7b8",
+  "cloudProvider": "aws",
+  "cwe": "778",
+  "riskScore": "5.0"
+}

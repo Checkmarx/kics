@@ -1,0 +1,13 @@
+{
+  "id": "82d67071-6e5d-4df5-9bdd-eb9ac86822d7",
+  "queryName": "Beta - Memorystore Redis Transit Encryption Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Google Cloud Memorystore for Redis instances should enable in-transit encryption (TLS) to protect data transmitted between clients and the Redis instance from interception.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/redis_instance#transit_encryption_mode",
+  "platform": "Terraform",
+  "descriptionID": "f2a3b4c5",
+  "cloudProvider": "gcp",
+  "cwe": "319",
+  "riskScore": "7.0"
+}

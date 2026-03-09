@@ -1,0 +1,13 @@
+{
+  "id": "01cedb12-081d-4207-8295-cf74215644c9",
+  "queryName": "Beta - CosmosDB Account Without Customer-Managed Key",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Azure CosmosDB accounts should use customer-managed keys (CMK) stored in Azure Key Vault for encryption at rest, providing greater control over the encryption key lifecycle.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account#key_vault_key_id",
+  "platform": "Terraform",
+  "descriptionID": "a7b8c9d0",
+  "cloudProvider": "azure",
+  "cwe": "311",
+  "riskScore": "5.0"
+}

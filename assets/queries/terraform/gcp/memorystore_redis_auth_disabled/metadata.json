@@ -1,0 +1,13 @@
+{
+  "id": "116334b1-bd0a-440c-8e5a-600e1a1ae4e2",
+  "queryName": "Beta - Memorystore Redis Auth Disabled",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Google Cloud Memorystore for Redis instances should have AUTH enabled to require authentication tokens, preventing unauthorized access to Redis data.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/redis_instance#auth_enabled",
+  "platform": "Terraform",
+  "descriptionID": "e1f2a3b4",
+  "cloudProvider": "gcp",
+  "cwe": "306",
+  "riskScore": "7.5"
+}
