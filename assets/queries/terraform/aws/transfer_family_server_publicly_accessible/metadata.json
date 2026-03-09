@@ -1,0 +1,13 @@
+{
+  "id": "ef088173-6ce6-46b6-af2e-708ab73737c1",
+  "queryName": "Beta - Transfer Family Server Publicly Accessible",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "AWS Transfer Family servers should use VPC endpoint type instead of PUBLIC to restrict access and reduce the attack surface. Public endpoints expose the file transfer service directly to the internet.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/transfer_server#endpoint_type",
+  "platform": "Terraform",
+  "descriptionID": "1d9081ec",
+  "cloudProvider": "aws",
+  "cwe": "668",
+  "riskScore": "7.5"
+}

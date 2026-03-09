@@ -1,0 +1,13 @@
+{
+  "id": "34d7d523-ed2c-43f4-9c20-ca22d07a0f56",
+  "queryName": "Beta - Machine Learning Workspace Without CMK",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Azure Machine Learning workspaces store model artifacts, datasets, and experiment logs. These should be encrypted with a customer-managed key using the 'encryption' block to meet data residency and compliance requirements.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/machine_learning_workspace#encryption",
+  "platform": "Terraform",
+  "descriptionID": "b489594d",
+  "cloudProvider": "azure",
+  "cwe": "311",
+  "riskScore": "5.0"
+}

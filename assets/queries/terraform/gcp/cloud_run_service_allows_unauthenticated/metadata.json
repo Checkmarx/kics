@@ -1,0 +1,13 @@
+{
+  "id": "07a27a3b-46e9-4172-bc68-25e3277d7998",
+  "queryName": "Beta - Cloud Run Service Allows Unauthenticated Access",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "GCP Cloud Run services should not allow unauthenticated invocations. Granting 'roles/run.invoker' to 'allUsers' exposes the service publicly without authentication, enabling potential abuse or data exposure.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_service_iam_member",
+  "platform": "Terraform",
+  "descriptionID": "b89d8324",
+  "cloudProvider": "gcp",
+  "cwe": "306",
+  "riskScore": "8.0"
+}
