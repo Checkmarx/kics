@@ -1,0 +1,14 @@
+{
+  "id": "679f7707-a487-4a66-b54b-d44ae88f363e",
+  "queryName": "Beta - GKE Node Pool Auto-Repair Disabled",
+  "severity": "MEDIUM",
+  "category": "Availability",
+  "descriptionText": "GKE node pools should have auto-repair enabled so that Google automatically repairs unhealthy nodes, maintaining cluster stability and reducing the risk of running compromised or degraded nodes.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#auto_repair",
+  "platform": "Terraform",
+  "descriptionID": "a3b4c5d6",
+  "cloudProvider": "gcp",
+  "cwe": "693",
+  "riskScore": "4.5",
+  "experimental": "true"
+}

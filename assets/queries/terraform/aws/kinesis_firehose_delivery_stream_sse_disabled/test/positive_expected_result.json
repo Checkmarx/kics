@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Kinesis Firehose Delivery Stream SSE Disabled",
+        "severity": "HIGH",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

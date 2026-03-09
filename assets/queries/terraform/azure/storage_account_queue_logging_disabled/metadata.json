@@ -1,0 +1,14 @@
+{
+  "id": "ba046489-38ab-4bd2-9189-2b5028ce9e52",
+  "queryName": "Beta - Storage Account Queue Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Azure Storage Account queue storage logging should be enabled for read, write, and delete operations to maintain an audit trail of all queue transactions (CIS Azure 3.3).",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#logging",
+  "platform": "Terraform",
+  "descriptionID": "f8a9b0c1",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "4.5",
+  "experimental": "true"
+}

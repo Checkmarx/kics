@@ -1,0 +1,14 @@
+{
+  "id": "fb07e5be-c561-4d33-afb1-fb6632bdc885",
+  "queryName": "Beta - Step Functions State Machine Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "AWS Step Functions state machines should have logging enabled to CloudWatch Logs to provide execution history, error details, and audit trails for workflow debugging and compliance.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sfn_state_machine#logging_configuration",
+  "platform": "Terraform",
+  "descriptionID": "d4e5f6a7",
+  "cloudProvider": "aws",
+  "cwe": "778",
+  "riskScore": "4.5",
+  "experimental": "true"
+}
