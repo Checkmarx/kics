@@ -3,30 +3,6 @@
     "queryName": "Postgres RDS logging disabled",
     "severity": "LOW",
     "line": 1,
-    "filename": "positive6.tf",
-    "resourceType": "aws_db_parameter_group",
-    "resourceName": "postgres-logging",
-    "searchKey": "aws_db_parameter_group.example",
-    "searchValue": "",
-    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
-    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined"
-  },
-  {
-    "queryName": "Postgres RDS logging disabled",
-    "severity": "LOW",
-    "line": 1,
-    "filename": "positive5.tf",
-    "resourceType": "aws_db_parameter_group",
-    "resourceName": "postgres-logging",
-    "searchKey": "aws_db_parameter_group.example",
-    "searchValue": "",
-    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
-    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined"
-  },
-  {
-    "queryName": "Postgres RDS logging disabled",
-    "severity": "LOW",
-    "line": 1,
     "filename": "positive1.tf",
     "resourceType": "aws_db_parameter_group",
     "resourceName": "postgres-logging",
@@ -34,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
     "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are not set or both have the wrong value"
+  },
+  {
+    "queryName": "Postgres RDS logging disabled",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive2.tf",
+    "resourceType": "aws_db_parameter_group",
+    "resourceName": "postgres-logging",
+    "searchKey": "aws_db_parameter_group.postgres_logging",
+    "searchValue": "",
+    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
+    "actualValue": "aws_db_parameter_group's log_statement has the wrong value"
   },
   {
     "queryName": "Postgres RDS logging disabled",
@@ -62,13 +50,25 @@
   {
     "queryName": "Postgres RDS logging disabled",
     "severity": "LOW",
-    "line": 6,
-    "filename": "positive2.tf",
+    "line": 1,
+    "filename": "positive5.tf",
     "resourceType": "aws_db_parameter_group",
     "resourceName": "postgres-logging",
-    "searchKey": "aws_db_parameter_group.postgres_logging",
+    "searchKey": "aws_db_parameter_group.example",
     "searchValue": "",
-    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
-    "actualValue": "aws_db_parameter_group's log_statement has the wrong value"
+    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
+    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined"
+  },
+  {
+    "queryName": "Postgres RDS logging disabled",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive6.tf",
+    "resourceType": "aws_db_parameter_group",
+    "resourceName": "postgres-logging",
+    "searchKey": "aws_db_parameter_group.example",
+    "searchValue": "",
+    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
+    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined"
   }
 ]

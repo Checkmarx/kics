@@ -2,6 +2,18 @@
   {
     "queryName": "MSK Cluster Encryption Disabled",
     "severity": "HIGH",
+    "line": 5,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithAllProperties",
+    "searchKey": "Resources.TestCluster5.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster5.Properties.EncryptionInfo should be defined",
+    "actualValue": "Resources.TestCluster5.Properties.EncryptionInfo is undefined"
+  },
+  {
+    "queryName": "MSK Cluster Encryption Disabled",
+    "severity": "HIGH",
     "line": 14,
     "filename": "positive2.yaml",
     "resourceType": "AWS::MSK::Cluster",
@@ -26,14 +38,14 @@
   {
     "queryName": "MSK Cluster Encryption Disabled",
     "severity": "HIGH",
-    "line": 5,
-    "filename": "positive1.yaml",
+    "line": 6,
+    "filename": "positive4.json",
     "resourceType": "AWS::MSK::Cluster",
     "resourceName": "ClusterWithAllProperties",
-    "searchKey": "Resources.TestCluster5.Properties",
+    "searchKey": "Resources.TestCluster8.Properties",
     "searchValue": "",
-    "expectedValue": "Resources.TestCluster5.Properties.EncryptionInfo should be defined",
-    "actualValue": "Resources.TestCluster5.Properties.EncryptionInfo is undefined"
+    "expectedValue": "Resources.TestCluster8.Properties.EncryptionInfo should be defined",
+    "actualValue": "Resources.TestCluster8.Properties.EncryptionInfo is undefined"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
@@ -58,17 +70,5 @@
     "searchValue": "",
     "expectedValue": "Resources.TestCluster10.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'true'",
     "actualValue": "Resources.TestCluster10.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'false'"
-  },
-  {
-    "queryName": "MSK Cluster Encryption Disabled",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive4.json",
-    "resourceType": "AWS::MSK::Cluster",
-    "resourceName": "ClusterWithAllProperties",
-    "searchKey": "Resources.TestCluster8.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.TestCluster8.Properties.EncryptionInfo should be defined",
-    "actualValue": "Resources.TestCluster8.Properties.EncryptionInfo is undefined"
   }
 ]

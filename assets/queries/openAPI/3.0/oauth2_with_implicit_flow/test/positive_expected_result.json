@@ -14,6 +14,18 @@
   {
     "queryName": "OAuth2 With Implicit Flow",
     "severity": "MEDIUM",
+    "line": 34,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.implicit",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows should not use 'implicit' flow",
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows is using 'implicit' flow"
+  },
+  {
+    "queryName": "OAuth2 With Implicit Flow",
+    "severity": "MEDIUM",
     "line": 37,
     "filename": "positive3.json",
     "resourceType": "",
@@ -34,18 +46,6 @@
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows should not use 'implicit' flow",
     "actualValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows is using 'implicit' flow"
-  },
-  {
-    "queryName": "OAuth2 With Implicit Flow",
-    "severity": "MEDIUM",
-    "line": 34,
-    "filename": "positive2.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.implicit",
-    "searchValue": "",
-    "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows should not use 'implicit' flow",
-    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows is using 'implicit' flow"
   },
   {
     "queryName": "OAuth2 With Implicit Flow",

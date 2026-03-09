@@ -2,18 +2,6 @@
   {
     "queryName": "ELBv2 LB Access Log Disabled",
     "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive5.tf",
-    "resourceType": "aws_alb",
-    "resourceName": "test-lb-tf",
-    "searchKey": "aws_alb[test].access_logs",
-    "searchValue": "",
-    "expectedValue": "'access_logs.enabled' should be defined and set to true",
-    "actualValue": "'access_logs.enabled' is undefined"
-  },
-  {
-    "queryName": "ELBv2 LB Access Log Disabled",
-    "severity": "MEDIUM",
     "line": 13,
     "filename": "positive1.tf",
     "resourceType": "aws_lb",
@@ -22,18 +10,6 @@
     "searchValue": "",
     "expectedValue": "'access_logs.enabled' should be defined and set to true",
     "actualValue": "'access_logs.enabled' is not set to true"
-  },
-  {
-    "queryName": "ELBv2 LB Access Log Disabled",
-    "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive6.tf",
-    "resourceType": "aws_alb",
-    "resourceName": "test-lb-tf",
-    "searchKey": "aws_alb[test]",
-    "searchValue": "",
-    "expectedValue": "'access_logs.enabled' should be defined and set to true",
-    "actualValue": "'access_logs' is undefined"
   },
   {
     "queryName": "ELBv2 LB Access Log Disabled",
@@ -70,5 +46,29 @@
     "searchValue": "",
     "expectedValue": "'access_logs.enabled' should be defined and set to true",
     "actualValue": "'access_logs.enabled' is not set to true"
+  },
+  {
+    "queryName": "ELBv2 LB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive5.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_alb[test].access_logs",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs.enabled' is undefined"
+  },
+  {
+    "queryName": "ELBv2 LB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive6.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_alb[test]",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs' is undefined"
   }
 ]

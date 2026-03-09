@@ -2,18 +2,6 @@
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 32,
-    "filename": "positive.yaml",
-    "resourceType": "PodSecurityPolicy",
-    "resourceName": "restricted",
-    "searchKey": "metadata.name={{restricted}}.spec.fsGroup",
-    "searchValue": "",
-    "expectedValue": "metadata.name{{restricted}}.spec.fsGroup should not allow range '0' (root)",
-    "actualValue": "metadata.name={{restricted}}.spec.fsGroup allows range '0' (root)"
-  },
-  {
-    "queryName": "Root Containers Admitted",
-    "severity": "MEDIUM",
     "line": 12,
     "filename": "positive.yaml",
     "resourceType": "PodSecurityPolicy",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "metadata.name={{restricted}}.spec.privileged should be set to 'false'",
     "actualValue": "metadata.name={{restricted}}.spec.privileged is set to 'true'"
+  },
+  {
+    "queryName": "Root Containers Admitted",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation should be set to 'false'",
+    "actualValue": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation is set to 'true'"
   },
   {
     "queryName": "Root Containers Admitted",
@@ -50,13 +50,13 @@
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 13,
+    "line": 32,
     "filename": "positive.yaml",
     "resourceType": "PodSecurityPolicy",
     "resourceName": "restricted",
-    "searchKey": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation",
+    "searchKey": "metadata.name={{restricted}}.spec.fsGroup",
     "searchValue": "",
-    "expectedValue": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation should be set to 'false'",
-    "actualValue": "metadata.name={{restricted}}.spec.allowPrivilegeEscalation is set to 'true'"
+    "expectedValue": "metadata.name{{restricted}}.spec.fsGroup should not allow range '0' (root)",
+    "actualValue": "metadata.name={{restricted}}.spec.fsGroup allows range '0' (root)"
   }
 ]

@@ -14,14 +14,14 @@
   {
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
-    "line": 15,
-    "filename": "positive4.yaml",
-    "resourceType": "AWS::OpenSearchService::Domain",
-    "resourceName": "OpenSearchDomain",
-    "searchKey": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS",
+    "line": 24,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "my-elasticsearch-domain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions",
     "searchValue": "",
-    "expectedValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be set to 'true'",
-    "actualValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'"
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is not set"
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
@@ -38,13 +38,13 @@
   {
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::Elasticsearch::Domain",
-    "resourceName": "my-elasticsearch-domain",
-    "searchKey": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions",
+    "line": 15,
+    "filename": "positive4.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "OpenSearchDomain",
+    "searchKey": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS",
     "searchValue": "",
-    "expectedValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is not set"
+    "expectedValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be set to 'true'",
+    "actualValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'"
   }
 ]

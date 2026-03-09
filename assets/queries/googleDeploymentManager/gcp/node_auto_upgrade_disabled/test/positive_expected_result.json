@@ -14,14 +14,14 @@
   {
     "queryName": "Node Auto Upgrade Disabled",
     "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive4.yaml",
+    "line": 6,
+    "filename": "positive2.yaml",
     "resourceType": "container.v1.cluster",
     "resourceName": "cluster",
-    "searchKey": "resources.name={{cluster}}.properties.nodePools.management.autoUpgrade",
+    "searchKey": "resources.name={{cluster}}.properties.nodePools",
     "searchValue": "",
-    "expectedValue": "'nodePools.management.autoUpgrade' should be true",
-    "actualValue": "'nodePools.management.autoUpgrade' is false"
+    "expectedValue": "'nodePools.management' should be defined and not null",
+    "actualValue": "'nodePools.management' is undefined or null"
   },
   {
     "queryName": "Node Auto Upgrade Disabled",
@@ -38,13 +38,13 @@
   {
     "queryName": "Node Auto Upgrade Disabled",
     "severity": "MEDIUM",
-    "line": 6,
-    "filename": "positive2.yaml",
+    "line": 9,
+    "filename": "positive4.yaml",
     "resourceType": "container.v1.cluster",
     "resourceName": "cluster",
-    "searchKey": "resources.name={{cluster}}.properties.nodePools",
+    "searchKey": "resources.name={{cluster}}.properties.nodePools.management.autoUpgrade",
     "searchValue": "",
-    "expectedValue": "'nodePools.management' should be defined and not null",
-    "actualValue": "'nodePools.management' is undefined or null"
+    "expectedValue": "'nodePools.management.autoUpgrade' should be true",
+    "actualValue": "'nodePools.management.autoUpgrade' is false"
   }
 ]

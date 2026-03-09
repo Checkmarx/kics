@@ -3,6 +3,18 @@
     "queryName": "Invalid OAuth2 Authorization URL (v3)",
     "severity": "MEDIUM",
     "line": 50,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.oAuth2AuthCodeNeg2.flows.authorizationCode.authorizationUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+  },
+  {
+    "queryName": "Invalid OAuth2 Authorization URL (v3)",
+    "severity": "MEDIUM",
+    "line": 50,
     "filename": "positive2.json",
     "resourceType": "",
     "resourceName": "",
@@ -31,18 +43,6 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.securitySchemes.oAuth2AuthCodeNeg2.flows.implicit.authorizationUrl",
-    "searchValue": "",
-    "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
-  },
-  {
-    "queryName": "Invalid OAuth2 Authorization URL (v3)",
-    "severity": "MEDIUM",
-    "line": 50,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "components.securitySchemes.oAuth2AuthCodeNeg2.flows.authorizationCode.authorizationUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
     "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"

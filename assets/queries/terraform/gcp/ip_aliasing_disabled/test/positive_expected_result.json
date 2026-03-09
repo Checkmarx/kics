@@ -2,18 +2,6 @@
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive.tf",
-    "resourceType": "google_container_cluster",
-    "resourceName": "marcellus-wallace",
-    "searchKey": "google_container_cluster[positive2]",
-    "searchValue": "",
-    "expectedValue": "Attribute 'ip_allocation_policy' should be defined",
-    "actualValue": "Attribute 'ip_allocation_policy' is undefined"
-  },
-  {
-    "queryName": "IP Aliasing Disabled",
-    "severity": "MEDIUM",
     "line": 2,
     "filename": "positive.tf",
     "resourceType": "google_container_cluster",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "Attributes 'ip_allocation_policy' and 'networking_mode' should be defined",
     "actualValue": "Attributes 'ip_allocation_policy' and 'networking_mode' are undefined"
+  },
+  {
+    "queryName": "IP Aliasing Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'ip_allocation_policy' should be defined",
+    "actualValue": "Attribute 'ip_allocation_policy' is undefined"
   },
   {
     "queryName": "IP Aliasing Disabled",

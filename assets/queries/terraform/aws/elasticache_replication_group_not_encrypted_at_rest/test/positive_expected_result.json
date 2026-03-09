@@ -2,18 +2,6 @@
   {
     "queryName": "ElastiCache Replication Group Not Encrypted At Rest",
     "severity": "HIGH",
-    "line": 9,
-    "filename": "positive2.tf",
-    "resourceType": "aws_elasticache_replication_group",
-    "resourceName": "example2",
-    "searchKey": "aws_elasticache_replication_group[example2].at_rest_encryption_enabled",
-    "searchValue": "",
-    "expectedValue": "The attribute 'at_rest_encryption_enabled' should be set to true",
-    "actualValue": "The attribute 'at_rest_encryption_enabled' is not set to true"
-  },
-  {
-    "queryName": "ElastiCache Replication Group Not Encrypted At Rest",
-    "severity": "HIGH",
     "line": 1,
     "filename": "positive1.tf",
     "resourceType": "aws_elasticache_replication_group",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "The attribute 'at_rest_encryption_enabled' should be set to true",
     "actualValue": "The attribute 'at_rest_encryption_enabled' is undefined"
+  },
+  {
+    "queryName": "ElastiCache Replication Group Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive2.tf",
+    "resourceType": "aws_elasticache_replication_group",
+    "resourceName": "example2",
+    "searchKey": "aws_elasticache_replication_group[example2].at_rest_encryption_enabled",
+    "searchValue": "",
+    "expectedValue": "The attribute 'at_rest_encryption_enabled' should be set to true",
+    "actualValue": "The attribute 'at_rest_encryption_enabled' is not set to true"
   }
 ]

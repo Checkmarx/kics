@@ -2,8 +2,8 @@
   {
     "queryName": "Success Response Code Undefined for Trace Operation",
     "severity": "LOW",
-    "line": 10,
-    "filename": "positive2.yaml",
+    "line": 12,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.trace.responses",
@@ -14,8 +14,8 @@
   {
     "queryName": "Success Response Code Undefined for Trace Operation",
     "severity": "LOW",
-    "line": 12,
-    "filename": "positive1.json",
+    "line": 10,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.trace.responses",

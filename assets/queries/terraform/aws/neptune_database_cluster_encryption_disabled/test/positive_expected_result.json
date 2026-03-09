@@ -2,18 +2,6 @@
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
-    "line": 19,
-    "filename": "positive.tf",
-    "resourceType": "aws_neptune_cluster",
-    "resourceName": "positive2",
-    "searchKey": "aws_neptune_cluster[positive2].storage_encrypted",
-    "searchValue": "",
-    "expectedValue": "'storage_encrypted' should be true",
-    "actualValue": "'storage_encrypted' is false"
-  },
-  {
-    "queryName": "Neptune Database Cluster Encryption Disabled",
-    "severity": "HIGH",
     "line": 1,
     "filename": "positive.tf",
     "resourceType": "aws_neptune_cluster",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'storage_encrypted' should be set with value true",
     "actualValue": "'storage_encrypted' is undefined"
+  },
+  {
+    "queryName": "Neptune Database Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 19,
+    "filename": "positive.tf",
+    "resourceType": "aws_neptune_cluster",
+    "resourceName": "positive2",
+    "searchKey": "aws_neptune_cluster[positive2].storage_encrypted",
+    "searchValue": "",
+    "expectedValue": "'storage_encrypted' should be true",
+    "actualValue": "'storage_encrypted' is false"
   }
 ]

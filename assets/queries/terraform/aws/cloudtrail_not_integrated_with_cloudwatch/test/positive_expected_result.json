@@ -7,9 +7,9 @@
     "resourceType": "aws_cloudtrail",
     "resourceName": "tf-trail-foobar",
     "searchKey": "aws_cloudtrail[positive1]",
-    "searchValue": "cloud_watch_logs_group_arn",
-    "expectedValue": "aws_cloudtrail[positive1].cloud_watch_logs_group_arn should be defined and not null",
-    "actualValue": "aws_cloudtrail[positive1].cloud_watch_logs_group_arn is undefined or null"
+    "searchValue": "cloud_watch_logs_role_arn",
+    "expectedValue": "aws_cloudtrail[positive1].cloud_watch_logs_role_arn should be defined and not null",
+    "actualValue": "aws_cloudtrail[positive1].cloud_watch_logs_role_arn is undefined or null"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -19,8 +19,8 @@
     "resourceType": "aws_cloudtrail",
     "resourceName": "tf-trail-foobar",
     "searchKey": "aws_cloudtrail[positive1]",
-    "searchValue": "cloud_watch_logs_role_arn",
-    "expectedValue": "aws_cloudtrail[positive1].cloud_watch_logs_role_arn should be defined and not null",
-    "actualValue": "aws_cloudtrail[positive1].cloud_watch_logs_role_arn is undefined or null"
+    "searchValue": "cloud_watch_logs_group_arn",
+    "expectedValue": "aws_cloudtrail[positive1].cloud_watch_logs_group_arn should be defined and not null",
+    "actualValue": "aws_cloudtrail[positive1].cloud_watch_logs_group_arn is undefined or null"
   }
 ]

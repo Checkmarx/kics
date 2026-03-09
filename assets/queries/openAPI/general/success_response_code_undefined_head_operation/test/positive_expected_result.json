@@ -1,21 +1,9 @@
 [
   {
-    "queryName": "Success Response Code Undefined for Head Operation (v2)",
-    "severity": "LOW",
-    "line": 10,
-    "filename": "positive4.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/item}}.head.responses",
-    "searchValue": "",
-    "expectedValue": "Head should have at least one successful code (200 or 202)",
-    "actualValue": "Head does not have any successful code"
-  },
-  {
-    "queryName": "Success Response Code Undefined for Head Operation (v2)",
+    "queryName": "Success Response Code Undefined for Head Operation (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive3.json",
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.head.responses",
@@ -36,10 +24,22 @@
     "actualValue": "Head does not have any successful code"
   },
   {
-    "queryName": "Success Response Code Undefined for Head Operation (v3)",
+    "queryName": "Success Response Code Undefined for Head Operation (v2)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive1.json",
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.head.responses",
+    "searchValue": "",
+    "expectedValue": "Head should have at least one successful code (200 or 202)",
+    "actualValue": "Head does not have any successful code"
+  },
+  {
+    "queryName": "Success Response Code Undefined for Head Operation (v2)",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.head.responses",

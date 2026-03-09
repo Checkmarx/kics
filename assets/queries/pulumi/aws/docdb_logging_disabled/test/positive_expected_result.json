@@ -2,14 +2,14 @@
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
-    "line": 18,
-    "filename": "positive3.yaml",
+    "line": 10,
+    "filename": "positive1.yaml",
     "resourceType": "aws:docdb:Cluster",
     "resourceName": "aws:docdb/cluster",
-    "searchKey": "resources[aws:docdb/cluster].properties.enabledCloudwatchLogsExports",
+    "searchKey": "resources[aws:docdb/cluster].properties",
     "searchValue": "",
-    "expectedValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports should have all following values: audit, profiler",
-    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports has the following missing values: profiler"
+    "expectedValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports should be defined",
+    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports is undefined"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -26,13 +26,13 @@
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive1.yaml",
+    "line": 18,
+    "filename": "positive3.yaml",
     "resourceType": "aws:docdb:Cluster",
     "resourceName": "aws:docdb/cluster",
-    "searchKey": "resources[aws:docdb/cluster].properties",
+    "searchKey": "resources[aws:docdb/cluster].properties.enabledCloudwatchLogsExports",
     "searchValue": "",
-    "expectedValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports should be defined",
-    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports is undefined"
+    "expectedValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports has the following missing values: profiler"
   }
 ]

@@ -1,5 +1,29 @@
 [
   {
+    "queryName": "Global Security Field Is Undefined (v3)",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "A default security property should be defined",
+    "actualValue": "A default security property is not defined"
+  },
+  {
+    "queryName": "Global Security Field Is Undefined (v3)",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "A default security property should be defined",
+    "actualValue": "A default security property is not defined"
+  },
+  {
     "queryName": "Global Security Field Is Undefined (v2)",
     "severity": "HIGH",
     "line": 2,
@@ -19,30 +43,6 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "swagger",
-    "searchValue": "",
-    "expectedValue": "A default security property should be defined",
-    "actualValue": "A default security property is not defined"
-  },
-  {
-    "queryName": "Global Security Field Is Undefined (v3)",
-    "severity": "HIGH",
-    "line": 1,
-    "filename": "positive2.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "openapi",
-    "searchValue": "",
-    "expectedValue": "A default security property should be defined",
-    "actualValue": "A default security property is not defined"
-  },
-  {
-    "queryName": "Global Security Field Is Undefined (v3)",
-    "severity": "HIGH",
-    "line": 2,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "openapi",
     "searchValue": "",
     "expectedValue": "A default security property should be defined",
     "actualValue": "A default security property is not defined"

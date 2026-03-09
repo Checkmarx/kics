@@ -2,18 +2,6 @@
   {
     "queryName": "IAM User With No Group",
     "severity": "LOW",
-    "line": 7,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::IAM::User",
-    "resourceName": "TestUser",
-    "searchKey": "Resources.emptyGroup.Properties.Groups",
-    "searchValue": "",
-    "expectedValue": "'Resources.Properties.Groups' should contain groups",
-    "actualValue": "'Resources.Properties.Groups' is empty"
-  },
-  {
-    "queryName": "IAM User With No Group",
-    "severity": "LOW",
     "line": 6,
     "filename": "positive1.yaml",
     "resourceType": "AWS::IAM::User",
@@ -26,8 +14,8 @@
   {
     "queryName": "IAM User With No Group",
     "severity": "LOW",
-    "line": 8,
-    "filename": "positive4.json",
+    "line": 7,
+    "filename": "positive2.yaml",
     "resourceType": "AWS::IAM::User",
     "resourceName": "TestUser",
     "searchKey": "Resources.emptyGroup.Properties.Groups",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "'Resources.Properties should contain Groups",
     "actualValue": "'Resources.Properties' does not contain Groups"
+  },
+  {
+    "queryName": "IAM User With No Group",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive4.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "TestUser",
+    "searchKey": "Resources.emptyGroup.Properties.Groups",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.Groups' should contain groups",
+    "actualValue": "'Resources.Properties.Groups' is empty"
   }
 ]

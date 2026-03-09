@@ -2,6 +2,30 @@
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.web2",
+    "searchValue": "",
+    "expectedValue": "'associate_public_ip_address' should be defined and not null",
+    "actualValue": "'associate_public_ip_address' is undefined or null"
+  },
+  {
+    "queryName": "EC2 Instance Has Public IP",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.web3.associate_public_ip_address",
+    "searchValue": "",
+    "expectedValue": "'associate_public_ip_address' should be set to false",
+    "actualValue": "'associate_public_ip_address' is true"
+  },
+  {
+    "queryName": "EC2 Instance Has Public IP",
+    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive2.tf",
     "resourceType": "n/a",
@@ -22,29 +46,5 @@
     "searchValue": "",
     "expectedValue": "'associate_public_ip_address' should be set to false",
     "actualValue": "'associate_public_ip_address' is true"
-  },
-  {
-    "queryName": "EC2 Instance Has Public IP",
-    "severity": "MEDIUM",
-    "line": 28,
-    "filename": "positive1.tf",
-    "resourceType": "aws_instance",
-    "resourceName": "HelloWorld",
-    "searchKey": "aws_instance.web3.associate_public_ip_address",
-    "searchValue": "",
-    "expectedValue": "'associate_public_ip_address' should be set to false",
-    "actualValue": "'associate_public_ip_address' is true"
-  },
-  {
-    "queryName": "EC2 Instance Has Public IP",
-    "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive1.tf",
-    "resourceType": "aws_instance",
-    "resourceName": "HelloWorld",
-    "searchKey": "aws_instance.web2",
-    "searchValue": "",
-    "expectedValue": "'associate_public_ip_address' should be defined and not null",
-    "actualValue": "'associate_public_ip_address' is undefined or null"
   }
 ]

@@ -14,18 +14,6 @@
   {
     "queryName": "Profiling Not Set To False",
     "severity": "LOW",
-    "line": 3,
-    "filename": "positive6.yaml",
-    "resourceType": "KubeSchedulerConfiguration",
-    "resourceName": "n/a",
-    "searchKey": "kind={{KubeSchedulerConfiguration}}.enableProfiling",
-    "searchValue": "",
-    "expectedValue": "enableProfiling argument flag should be set to false",
-    "actualValue": "enableProfiling argument is set to true"
-  },
-  {
-    "queryName": "Profiling Not Set To False",
-    "severity": "LOW",
     "line": 11,
     "filename": "positive2.yaml",
     "resourceType": "Pod",
@@ -34,18 +22,6 @@
     "searchValue": "",
     "expectedValue": "--profiling flag should be defined and set to false",
     "actualValue": "--profiling flag is not defined"
-  },
-  {
-    "queryName": "Profiling Not Set To False",
-    "severity": "LOW",
-    "line": 2,
-    "filename": "positive5.yaml",
-    "resourceType": "KubeSchedulerConfiguration",
-    "resourceName": "n/a",
-    "searchKey": "kind={{KubeSchedulerConfiguration}}",
-    "searchValue": "",
-    "expectedValue": "enableProfiling argument flag should be defined and set to false",
-    "actualValue": "enableProfiling argument is not defined"
   },
   {
     "queryName": "Profiling Not Set To False",
@@ -70,6 +46,30 @@
     "searchValue": "",
     "expectedValue": "--profiling flag should be defined and set to false",
     "actualValue": "--profiling flag is not defined"
+  },
+  {
+    "queryName": "Profiling Not Set To False",
+    "severity": "LOW",
+    "line": 2,
+    "filename": "positive5.yaml",
+    "resourceType": "KubeSchedulerConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeSchedulerConfiguration}}",
+    "searchValue": "",
+    "expectedValue": "enableProfiling argument flag should be defined and set to false",
+    "actualValue": "enableProfiling argument is not defined"
+  },
+  {
+    "queryName": "Profiling Not Set To False",
+    "severity": "LOW",
+    "line": 3,
+    "filename": "positive6.yaml",
+    "resourceType": "KubeSchedulerConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeSchedulerConfiguration}}.enableProfiling",
+    "searchValue": "",
+    "expectedValue": "enableProfiling argument flag should be set to false",
+    "actualValue": "enableProfiling argument is set to true"
   },
   {
     "queryName": "Profiling Not Set To False",

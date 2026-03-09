@@ -14,8 +14,8 @@
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
-    "line": 27,
-    "filename": "positive3.yaml",
+    "line": 21,
+    "filename": "positive2.json",
     "resourceType": "AWS::Neptune::DBCluster",
     "resourceName": "NeptuneDBCluster",
     "searchKey": "Resources.NeptuneDBCluster.Properties.StorageEncrypted",
@@ -26,8 +26,8 @@
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
-    "line": 21,
-    "filename": "positive2.json",
+    "line": 27,
+    "filename": "positive3.yaml",
     "resourceType": "AWS::Neptune::DBCluster",
     "resourceName": "NeptuneDBCluster",
     "searchKey": "Resources.NeptuneDBCluster.Properties.StorageEncrypted",

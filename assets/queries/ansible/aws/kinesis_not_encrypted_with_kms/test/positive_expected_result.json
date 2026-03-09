@@ -2,26 +2,14 @@
   {
     "queryName": "Kinesis Not Encrypted With KMS",
     "severity": "HIGH",
-    "line": 23,
+    "line": 2,
     "filename": "positive.yaml",
     "resourceType": "community.aws.kinesis_stream",
-    "resourceName": "Encrypt Kinesis Stream test-stream. v3",
-    "searchKey": "name={{Encrypt Kinesis Stream test-stream. v3}}.{{community.aws.kinesis_stream}}",
+    "resourceName": "Encrypt Kinesis Stream test-stream.",
+    "searchKey": "name={{Encrypt Kinesis Stream test-stream.}}.{{community.aws.kinesis_stream}}",
     "searchValue": "",
-    "expectedValue": "kinesis_stream.encryption_type should be set",
-    "actualValue": "kinesis_stream.encryption_type is undefined"
-  },
-  {
-    "queryName": "Kinesis Not Encrypted With KMS",
-    "severity": "HIGH",
-    "line": 44,
-    "filename": "positive.yaml",
-    "resourceType": "community.aws.kinesis_stream",
-    "resourceName": "Encrypt Kinesis Stream test-stream. v5",
-    "searchKey": "name={{Encrypt Kinesis Stream test-stream. v5}}.{{community.aws.kinesis_stream}}",
-    "searchValue": "",
-    "expectedValue": "kinesis_stream.key_id should be set",
-    "actualValue": "kinesis_stream.key_id is undefined"
+    "expectedValue": "kinesis_stream.encryption_state should be set",
+    "actualValue": "kinesis_stream.encryption_state is undefined"
   },
   {
     "queryName": "Kinesis Not Encrypted With KMS",
@@ -38,6 +26,18 @@
   {
     "queryName": "Kinesis Not Encrypted With KMS",
     "severity": "HIGH",
+    "line": 23,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.kinesis_stream",
+    "resourceName": "Encrypt Kinesis Stream test-stream. v3",
+    "searchKey": "name={{Encrypt Kinesis Stream test-stream. v3}}.{{community.aws.kinesis_stream}}",
+    "searchValue": "",
+    "expectedValue": "kinesis_stream.encryption_type should be set",
+    "actualValue": "kinesis_stream.encryption_type is undefined"
+  },
+  {
+    "queryName": "Kinesis Not Encrypted With KMS",
+    "severity": "HIGH",
     "line": 38,
     "filename": "positive.yaml",
     "resourceType": "community.aws.kinesis_stream",
@@ -50,13 +50,13 @@
   {
     "queryName": "Kinesis Not Encrypted With KMS",
     "severity": "HIGH",
-    "line": 2,
+    "line": 44,
     "filename": "positive.yaml",
     "resourceType": "community.aws.kinesis_stream",
-    "resourceName": "Encrypt Kinesis Stream test-stream.",
-    "searchKey": "name={{Encrypt Kinesis Stream test-stream.}}.{{community.aws.kinesis_stream}}",
+    "resourceName": "Encrypt Kinesis Stream test-stream. v5",
+    "searchKey": "name={{Encrypt Kinesis Stream test-stream. v5}}.{{community.aws.kinesis_stream}}",
     "searchValue": "",
-    "expectedValue": "kinesis_stream.encryption_state should be set",
-    "actualValue": "kinesis_stream.encryption_state is undefined"
+    "expectedValue": "kinesis_stream.key_id should be set",
+    "actualValue": "kinesis_stream.key_id is undefined"
   }
 ]

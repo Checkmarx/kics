@@ -2,8 +2,8 @@
   {
     "queryName": "RDS Associated with Public Subnet",
     "severity": "CRITICAL",
-    "line": 9,
-    "filename": "positive2.json",
+    "line": 12,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::RDS::DBInstance",
     "resourceName": "Positive1",
     "searchKey": "Resources.Positive1.Properties.DBSubnetGroupName",
@@ -14,8 +14,8 @@
   {
     "queryName": "RDS Associated with Public Subnet",
     "severity": "CRITICAL",
-    "line": 12,
-    "filename": "positive1.yaml",
+    "line": 9,
+    "filename": "positive2.json",
     "resourceType": "AWS::RDS::DBInstance",
     "resourceName": "Positive1",
     "searchKey": "Resources.Positive1.Properties.DBSubnetGroupName",

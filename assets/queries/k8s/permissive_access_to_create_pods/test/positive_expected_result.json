@@ -2,18 +2,6 @@
   {
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
-    "line": 39,
-    "filename": "positive1.yaml",
-    "resourceType": "Role",
-    "resourceName": "secret-reader4",
-    "searchKey": "metadata.name={{secret-reader4}}.rules.verbs.*",
-    "searchValue": "Role/*",
-    "expectedValue": "metadata.name=secret-reader4.rules.verbs should not contain a wildcard value when metadata.name=secret-reader4.rules.resources contains a wildcard value",
-    "actualValue": "metadata.name=secret-reader4.rules.verbs contains a wildcard value and metadata.name=secret-reader4.rules.resources contains a wildcard value"
-  },
-  {
-    "queryName": "Permissive Access to Create Pods",
-    "severity": "MEDIUM",
     "line": 12,
     "filename": "positive1.yaml",
     "resourceType": "ClusterRole",
@@ -46,6 +34,18 @@
     "searchValue": "ClusterRole/*",
     "expectedValue": "metadata.name=secret-reader3.rules.verbs should not contain a wildcard value when metadata.name=secret-reader3.rules.resources contains the value 'pods'",
     "actualValue": "metadata.name=secret-reader3.rules.verbs contains a wildcard value and metadata.name=secret-reader3.rules.resources contains the value 'pods'"
+  },
+  {
+    "queryName": "Permissive Access to Create Pods",
+    "severity": "MEDIUM",
+    "line": 39,
+    "filename": "positive1.yaml",
+    "resourceType": "Role",
+    "resourceName": "secret-reader4",
+    "searchKey": "metadata.name={{secret-reader4}}.rules.verbs.*",
+    "searchValue": "Role/*",
+    "expectedValue": "metadata.name=secret-reader4.rules.verbs should not contain a wildcard value when metadata.name=secret-reader4.rules.resources contains a wildcard value",
+    "actualValue": "metadata.name=secret-reader4.rules.verbs contains a wildcard value and metadata.name=secret-reader4.rules.resources contains a wildcard value"
   },
   {
     "queryName": "Permissive Access to Create Pods",

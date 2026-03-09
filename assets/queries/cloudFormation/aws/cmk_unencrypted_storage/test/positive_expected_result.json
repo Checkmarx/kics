@@ -14,66 +14,6 @@
   {
     "queryName": "CMK Unencrypted Storage",
     "severity": "HIGH",
-    "line": 4,
-    "filename": "positive7.yaml",
-    "resourceType": "AWS::Redshift::Cluster",
-    "resourceName": "mydb",
-    "searchKey": "Resources.myCluster.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.myCluster.Properties.Encrypted should be defined",
-    "actualValue": "Resources.myCluster.Properties.Encrypted is undefined"
-  },
-  {
-    "queryName": "CMK Unencrypted Storage",
-    "severity": "HIGH",
-    "line": 58,
-    "filename": "positive4.json",
-    "resourceType": "AWS::RDS::DBInstance",
-    "resourceName": "DBName",
-    "searchKey": "Resources.MyDB.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.MyDB.Properties.StorageEncrypted should be defined",
-    "actualValue": "Resources.MyDB.Properties.StorageEncrypted is undefined"
-  },
-  {
-    "queryName": "CMK Unencrypted Storage",
-    "severity": "HIGH",
-    "line": 37,
-    "filename": "positive6.json",
-    "resourceType": "AWS::RDS::DBCluster",
-    "resourceName": "RDSCluster-2",
-    "searchKey": "Resources.RDSCluster-2.Properties.StorageEncrypted",
-    "searchValue": "",
-    "expectedValue": "Resources.RDSCluster-2.Properties.StorageEncrypted should be true",
-    "actualValue": "Resources.RDSCluster-2.Properties.StorageEncrypted is false"
-  },
-  {
-    "queryName": "CMK Unencrypted Storage",
-    "severity": "HIGH",
-    "line": 25,
-    "filename": "positive5.json",
-    "resourceType": "AWS::RDS::DBCluster",
-    "resourceName": "RDSCluster1",
-    "searchKey": "Resources.RDSCluster1.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.RDSCluster1.Properties.StorageEncrypted should be defined",
-    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined"
-  },
-  {
-    "queryName": "CMK Unencrypted Storage",
-    "severity": "HIGH",
-    "line": 5,
-    "filename": "positive8.json",
-    "resourceType": "AWS::Redshift::Cluster",
-    "resourceName": "mydb",
-    "searchKey": "Resources.myCluster.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.myCluster.Properties.Encrypted should be defined",
-    "actualValue": "Resources.myCluster.Properties.Encrypted is undefined"
-  },
-  {
-    "queryName": "CMK Unencrypted Storage",
-    "severity": "HIGH",
     "line": 24,
     "filename": "positive2.yaml",
     "resourceType": "AWS::RDS::DBCluster",
@@ -94,5 +34,65 @@
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster-2.Properties.StorageEncrypted should be true",
     "actualValue": "Resources.RDSCluster-2.Properties.StorageEncrypted is false"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 58,
+    "filename": "positive4.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDB.Properties.StorageEncrypted should be defined",
+    "actualValue": "Resources.MyDB.Properties.StorageEncrypted is undefined"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive5.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster1",
+    "searchKey": "Resources.RDSCluster1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster1.Properties.StorageEncrypted should be defined",
+    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 37,
+    "filename": "positive6.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster-2",
+    "searchKey": "Resources.RDSCluster-2.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster-2.Properties.StorageEncrypted should be true",
+    "actualValue": "Resources.RDSCluster-2.Properties.StorageEncrypted is false"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive7.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.myCluster.Properties.Encrypted should be defined",
+    "actualValue": "Resources.myCluster.Properties.Encrypted is undefined"
+  },
+  {
+    "queryName": "CMK Unencrypted Storage",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive8.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.myCluster.Properties.Encrypted should be defined",
+    "actualValue": "Resources.myCluster.Properties.Encrypted is undefined"
   }
 ]

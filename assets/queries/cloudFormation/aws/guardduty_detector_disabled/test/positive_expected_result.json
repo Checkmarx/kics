@@ -3,18 +3,6 @@
     "queryName": "GuardDuty Detector Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive2.json",
-    "resourceType": "AWS::GuardDuty::Detector",
-    "resourceName": "mydetector4",
-    "searchKey": "Resources.mydetector4.Properties.Enable",
-    "searchValue": "",
-    "expectedValue": "Resources.mydetector4.Properties.Enable should be set to true",
-    "actualValue": "Resources.mydetector4.Properties.Enable is set to false"
-  },
-  {
-    "queryName": "GuardDuty Detector Disabled",
-    "severity": "MEDIUM",
-    "line": 6,
     "filename": "positive1.yaml",
     "resourceType": "AWS::GuardDuty::Detector",
     "resourceName": "mydetector3",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "Resources.mydetector3.Properties.Enable should be set to true",
     "actualValue": "Resources.mydetector3.Properties.Enable is set to false"
+  },
+  {
+    "queryName": "GuardDuty Detector Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive2.json",
+    "resourceType": "AWS::GuardDuty::Detector",
+    "resourceName": "mydetector4",
+    "searchKey": "Resources.mydetector4.Properties.Enable",
+    "searchValue": "",
+    "expectedValue": "Resources.mydetector4.Properties.Enable should be set to true",
+    "actualValue": "Resources.mydetector4.Properties.Enable is set to false"
   },
   {
     "queryName": "GuardDuty Detector Disabled",

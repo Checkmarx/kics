@@ -2,14 +2,14 @@
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
-    "line": 34,
-    "filename": "positive2.yaml",
+    "line": 9,
+    "filename": "positive.yaml",
     "resourceType": "LogGroup",
-    "resourceName": "lg-6",
-    "searchKey": "spec.resources.base.metadata.name={{lg-6}}.spec.forProvider",
+    "resourceName": "lg-3",
+    "searchKey": "metadata.name={{lg-3}}.spec.forProvider.retentionInDays",
     "searchValue": "",
     "expectedValue": "retentionInDays should be set to a valid value",
-    "actualValue": "retentionInDays is undefined"
+    "actualValue": "retentionInDays is set to a invalid value"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
@@ -38,13 +38,13 @@
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
-    "line": 9,
-    "filename": "positive.yaml",
+    "line": 34,
+    "filename": "positive2.yaml",
     "resourceType": "LogGroup",
-    "resourceName": "lg-3",
-    "searchKey": "metadata.name={{lg-3}}.spec.forProvider.retentionInDays",
+    "resourceName": "lg-6",
+    "searchKey": "spec.resources.base.metadata.name={{lg-6}}.spec.forProvider",
     "searchValue": "",
     "expectedValue": "retentionInDays should be set to a valid value",
-    "actualValue": "retentionInDays is set to a invalid value"
+    "actualValue": "retentionInDays is undefined"
   }
 ]

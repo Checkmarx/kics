@@ -2,18 +2,6 @@
   {
     "queryName": "Insecure Relative Path Resolution",
     "severity": "LOW",
-    "line": 12,
-    "filename": "positive1.yaml",
-    "resourceType": "ansible.builtin.copy",
-    "resourceName": "Two",
-    "searchKey": "name={{Two}}.{{ansible.builtin.copy}}.src",
-    "searchValue": "",
-    "expectedValue": "ansible.builtin.copy.src should not be a relative path",
-    "actualValue": "ansible.builtin.copy.src is a relative path"
-  },
-  {
-    "queryName": "Insecure Relative Path Resolution",
-    "severity": "LOW",
     "line": 7,
     "filename": "positive1.yaml",
     "resourceType": "ansible.builtin.template",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "ansible.builtin.template.src should not be a relative path",
     "actualValue": "ansible.builtin.template.src is a relative path"
+  },
+  {
+    "queryName": "Insecure Relative Path Resolution",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive1.yaml",
+    "resourceType": "ansible.builtin.copy",
+    "resourceName": "Two",
+    "searchKey": "name={{Two}}.{{ansible.builtin.copy}}.src",
+    "searchValue": "",
+    "expectedValue": "ansible.builtin.copy.src should not be a relative path",
+    "actualValue": "ansible.builtin.copy.src is a relative path"
   }
 ]

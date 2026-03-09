@@ -2,18 +2,6 @@
   {
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
-    "line": 25,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::ElasticLoadBalancingV2::Listener",
-    "resourceName": "HTTPlistener",
-    "searchKey": "Resources.HTTPlistener.Properties.Protocol=HTTP",
-    "searchValue": "",
-    "expectedValue": "'Resources.HTTPlistener.Protocol' should not equal to 'HTTP'",
-    "actualValue": "'Resources.HTTPlistener.Protocol' equals to 'HTTP'"
-  },
-  {
-    "queryName": "ALB Listening on HTTP",
-    "severity": "MEDIUM",
     "line": 13,
     "filename": "positive1.yaml",
     "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
@@ -26,20 +14,8 @@
   {
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
-    "line": 16,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::ElasticLoadBalancingV2::Listener",
-    "resourceName": "HTTPlistener",
-    "searchKey": "Resources.HTTPlistener.Properties.Protocol=HTTP",
-    "searchValue": "",
-    "expectedValue": "'Resources.HTTPlistener.Protocol' should not equal to 'HTTP'",
-    "actualValue": "'Resources.HTTPlistener.Protocol' equals to 'HTTP'"
-  },
-  {
-    "queryName": "ALB Listening on HTTP",
-    "severity": "MEDIUM",
-    "line": 35,
-    "filename": "positive2.json",
+    "line": 25,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::ElasticLoadBalancingV2::Listener",
     "resourceName": "HTTPlistener",
     "searchKey": "Resources.HTTPlistener.Properties.Protocol=HTTP",
@@ -58,5 +34,29 @@
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Listeners.Protocol' should not equal to 'HTTP'",
     "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' equals to 'HTTP'"
+  },
+  {
+    "queryName": "ALB Listening on HTTP",
+    "severity": "MEDIUM",
+    "line": 35,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancingV2::Listener",
+    "resourceName": "HTTPlistener",
+    "searchKey": "Resources.HTTPlistener.Properties.Protocol=HTTP",
+    "searchValue": "",
+    "expectedValue": "'Resources.HTTPlistener.Protocol' should not equal to 'HTTP'",
+    "actualValue": "'Resources.HTTPlistener.Protocol' equals to 'HTTP'"
+  },
+  {
+    "queryName": "ALB Listening on HTTP",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::ElasticLoadBalancingV2::Listener",
+    "resourceName": "HTTPlistener",
+    "searchKey": "Resources.HTTPlistener.Properties.Protocol=HTTP",
+    "searchValue": "",
+    "expectedValue": "'Resources.HTTPlistener.Protocol' should not equal to 'HTTP'",
+    "actualValue": "'Resources.HTTPlistener.Protocol' equals to 'HTTP'"
   }
 ]

@@ -2,30 +2,6 @@
   {
     "queryName": "RBAC Roles with Read Secrets Permissions",
     "severity": "MEDIUM",
-    "line": 48,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_role",
-    "resourceName": "terraform-example3",
-    "searchKey": "kubernetes_role[example3].rule",
-    "searchValue": "",
-    "expectedValue": "Rules don't give access to 'secrets' resources",
-    "actualValue": "Some rule is giving access to 'secrets' resources"
-  },
-  {
-    "queryName": "RBAC Roles with Read Secrets Permissions",
-    "severity": "MEDIUM",
-    "line": 62,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_cluster_role",
-    "resourceName": "terraform-example4",
-    "searchKey": "kubernetes_cluster_role[example4].rule",
-    "searchValue": "",
-    "expectedValue": "Rules don't give access to 'secrets' resources",
-    "actualValue": "Some rule is giving access to 'secrets' resources"
-  },
-  {
-    "queryName": "RBAC Roles with Read Secrets Permissions",
-    "severity": "MEDIUM",
     "line": 9,
     "filename": "positive.tf",
     "resourceType": "kubernetes_role",
@@ -43,6 +19,30 @@
     "resourceType": "kubernetes_cluster_role",
     "resourceName": "terraform-example2",
     "searchKey": "kubernetes_cluster_role[example2].rule",
+    "searchValue": "",
+    "expectedValue": "Rules don't give access to 'secrets' resources",
+    "actualValue": "Some rule is giving access to 'secrets' resources"
+  },
+  {
+    "queryName": "RBAC Roles with Read Secrets Permissions",
+    "severity": "MEDIUM",
+    "line": 48,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_role",
+    "resourceName": "terraform-example3",
+    "searchKey": "kubernetes_role[example3].rule",
+    "searchValue": "",
+    "expectedValue": "Rules don't give access to 'secrets' resources",
+    "actualValue": "Some rule is giving access to 'secrets' resources"
+  },
+  {
+    "queryName": "RBAC Roles with Read Secrets Permissions",
+    "severity": "MEDIUM",
+    "line": 62,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_cluster_role",
+    "resourceName": "terraform-example4",
+    "searchKey": "kubernetes_cluster_role[example4].rule",
     "searchValue": "",
     "expectedValue": "Rules don't give access to 'secrets' resources",
     "actualValue": "Some rule is giving access to 'secrets' resources"

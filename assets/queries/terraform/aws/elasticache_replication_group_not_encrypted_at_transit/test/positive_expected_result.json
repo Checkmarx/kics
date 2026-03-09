@@ -2,18 +2,6 @@
   {
     "queryName": "ElastiCache Replication Group Not Encrypted At Transit",
     "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive2.tf",
-    "resourceType": "aws_elasticache_replication_group",
-    "resourceName": "example",
-    "searchKey": "aws_elasticache_replication_group[example].transit_encryption_enabled",
-    "searchValue": "",
-    "expectedValue": "The attribute 'transit_encryption_enabled' should be set to true",
-    "actualValue": "The attribute 'transit_encryption_enabled' is not set to true"
-  },
-  {
-    "queryName": "ElastiCache Replication Group Not Encrypted At Transit",
-    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive1.tf",
     "resourceType": "aws_elasticache_replication_group",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "The attribute 'transit_encryption_enabled' should be set to true",
     "actualValue": "The attribute 'transit_encryption_enabled' is undefined"
+  },
+  {
+    "queryName": "ElastiCache Replication Group Not Encrypted At Transit",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive2.tf",
+    "resourceType": "aws_elasticache_replication_group",
+    "resourceName": "example",
+    "searchKey": "aws_elasticache_replication_group[example].transit_encryption_enabled",
+    "searchValue": "",
+    "expectedValue": "The attribute 'transit_encryption_enabled' should be set to true",
+    "actualValue": "The attribute 'transit_encryption_enabled' is not set to true"
   }
 ]

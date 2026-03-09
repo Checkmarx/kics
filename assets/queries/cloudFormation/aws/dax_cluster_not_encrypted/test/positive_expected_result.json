@@ -2,20 +2,20 @@
   {
     "queryName": "DAX Cluster Not Encrypted",
     "severity": "HIGH",
-    "line": 7,
-    "filename": "positive8.json",
+    "line": 8,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::DAX::Cluster",
     "resourceName": "daxCluster",
-    "searchKey": "Resources.daxCluster.Properties",
+    "searchKey": "Resources.daxCluster.Properties.SSESpecification.SSEEnabled",
     "searchValue": "",
-    "expectedValue": "'Resources.daxCluster.Properties' should have SSESpecification declared.",
-    "actualValue": "'Resources.daxCluster.Properties' does not declare SSESpecification."
+    "expectedValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' should be set to true.",
+    "actualValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' is set to false."
   },
   {
     "queryName": "DAX Cluster Not Encrypted",
     "severity": "HIGH",
-    "line": 9,
-    "filename": "positive6.json",
+    "line": 8,
+    "filename": "positive2.yaml",
     "resourceType": "AWS::DAX::Cluster",
     "resourceName": "daxCluster",
     "searchKey": "Resources.daxCluster.Properties.SSESpecification.SSEEnabled",
@@ -50,20 +50,8 @@
   {
     "queryName": "DAX Cluster Not Encrypted",
     "severity": "HIGH",
-    "line": 8,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::DAX::Cluster",
-    "resourceName": "daxCluster",
-    "searchKey": "Resources.daxCluster.Properties.SSESpecification.SSEEnabled",
-    "searchValue": "",
-    "expectedValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' should be set to true.",
-    "actualValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' is set to false."
-  },
-  {
-    "queryName": "DAX Cluster Not Encrypted",
-    "severity": "HIGH",
-    "line": 8,
-    "filename": "positive1.yaml",
+    "line": 9,
+    "filename": "positive5.json",
     "resourceType": "AWS::DAX::Cluster",
     "resourceName": "daxCluster",
     "searchKey": "Resources.daxCluster.Properties.SSESpecification.SSEEnabled",
@@ -75,7 +63,7 @@
     "queryName": "DAX Cluster Not Encrypted",
     "severity": "HIGH",
     "line": 9,
-    "filename": "positive5.json",
+    "filename": "positive6.json",
     "resourceType": "AWS::DAX::Cluster",
     "resourceName": "daxCluster",
     "searchKey": "Resources.daxCluster.Properties.SSESpecification.SSEEnabled",
@@ -94,5 +82,17 @@
     "searchValue": "",
     "expectedValue": "'Resources.daxCluster.Properties.SSESpecification' should have SSEEnabled declared and set to true.",
     "actualValue": "'Resources.daxCluster.Properties.SSESpecification' does not declare SSEEnabled."
+  },
+  {
+    "queryName": "DAX Cluster Not Encrypted",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive8.json",
+    "resourceType": "AWS::DAX::Cluster",
+    "resourceName": "daxCluster",
+    "searchKey": "Resources.daxCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.daxCluster.Properties' should have SSESpecification declared.",
+    "actualValue": "'Resources.daxCluster.Properties' does not declare SSESpecification."
   }
 ]

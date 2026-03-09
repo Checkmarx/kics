@@ -2,18 +2,6 @@
   {
     "queryName": "Invalid Media Type Value (v2)",
     "severity": "INFO",
-    "line": 16,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.consumes.application/ x-www-form-urlencoded",
-    "searchValue": "",
-    "expectedValue": "The Media Type should be a valid value",
-    "actualValue": "The Media Type is a invalid value"
-  },
-  {
-    "queryName": "Invalid Media Type Value (v2)",
-    "severity": "INFO",
     "line": 11,
     "filename": "positive1.json",
     "resourceType": "",
@@ -26,8 +14,8 @@
   {
     "queryName": "Invalid Media Type Value (v2)",
     "severity": "INFO",
-    "line": 18,
-    "filename": "positive2.yaml",
+    "line": 16,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.consumes.application/ x-www-form-urlencoded",
@@ -43,6 +31,18 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.produces.image/ png",
+    "searchValue": "",
+    "expectedValue": "The Media Type should be a valid value",
+    "actualValue": "The Media Type is a invalid value"
+  },
+  {
+    "queryName": "Invalid Media Type Value (v2)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.consumes.application/ x-www-form-urlencoded",
     "searchValue": "",
     "expectedValue": "The Media Type should be a valid value",
     "actualValue": "The Media Type is a invalid value"

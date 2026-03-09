@@ -1,29 +1,5 @@
 [
   {
-    "queryName": "Header Response Name Is Invalid (v2)",
-    "severity": "INFO",
-    "line": 32,
-    "filename": "positive3.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "responses.{{Success}}.headers.{{Accept}}",
-    "searchValue": "",
-    "expectedValue": "responses.{{Success}}.headers should not contain 'Accept'",
-    "actualValue": "responses.{{Success}}.headers contains 'Accept'"
-  },
-  {
-    "queryName": "Header Response Name Is Invalid (v2)",
-    "severity": "INFO",
-    "line": 21,
-    "filename": "positive4.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "responses.{{Success}}.headers.{{Accept}}",
-    "searchValue": "",
-    "expectedValue": "responses.{{Success}}.headers should not contain 'Accept'",
-    "actualValue": "responses.{{Success}}.headers contains 'Accept'"
-  },
-  {
     "queryName": "Header Response Name Is Invalid (v3)",
     "severity": "INFO",
     "line": 42,
@@ -46,5 +22,29 @@
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers should not contain 'Content-Type'",
     "actualValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers contains 'Content-Type'"
+  },
+  {
+    "queryName": "Header Response Name Is Invalid (v2)",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{Success}}.headers.{{Accept}}",
+    "searchValue": "",
+    "expectedValue": "responses.{{Success}}.headers should not contain 'Accept'",
+    "actualValue": "responses.{{Success}}.headers contains 'Accept'"
+  },
+  {
+    "queryName": "Header Response Name Is Invalid (v2)",
+    "severity": "INFO",
+    "line": 21,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{Success}}.headers.{{Accept}}",
+    "searchValue": "",
+    "expectedValue": "responses.{{Success}}.headers should not contain 'Accept'",
+    "actualValue": "responses.{{Success}}.headers contains 'Accept'"
   }
 ]

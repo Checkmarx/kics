@@ -2,11 +2,11 @@
   {
     "queryName": "Hardcoded AWS Access Key",
     "severity": "HIGH",
-    "line": 5,
-    "filename": "positive2.tf",
-    "resourceType": "aws_instance",
-    "resourceName": "HelloWorld",
-    "searchKey": "aws_instance[positive1].user_data",
+    "line": 13,
+    "filename": "positive1.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance].user_data",
     "searchValue": "",
     "expectedValue": "'user_data' shouldn't contain hardcoded access key",
     "actualValue": "'user_data' contains hardcoded access key"
@@ -14,11 +14,11 @@
   {
     "queryName": "Hardcoded AWS Access Key",
     "severity": "HIGH",
-    "line": 13,
-    "filename": "positive1.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[ec2_instance].user_data",
+    "line": 5,
+    "filename": "positive2.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance[positive1].user_data",
     "searchValue": "",
     "expectedValue": "'user_data' shouldn't contain hardcoded access key",
     "actualValue": "'user_data' contains hardcoded access key"

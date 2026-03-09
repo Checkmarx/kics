@@ -2,6 +2,18 @@
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance1",
+    "searchKey": "name={{create a instance1}}.{{google.cloud.gcp_compute_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config should be defined",
+    "actualValue": "gcp_compute_instance.shielded_instance_config is undefined"
+  },
+  {
+    "queryName": "Shielded VM Disabled",
+    "severity": "MEDIUM",
     "line": 42,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_compute_instance",
@@ -70,17 +82,5 @@
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm should be true",
     "actualValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm is false"
-  },
-  {
-    "queryName": "Shielded VM Disabled",
-    "severity": "MEDIUM",
-    "line": 3,
-    "filename": "positive.yaml",
-    "resourceType": "google.cloud.gcp_compute_instance",
-    "resourceName": "create a instance1",
-    "searchKey": "name={{create a instance1}}.{{google.cloud.gcp_compute_instance}}",
-    "searchValue": "",
-    "expectedValue": "gcp_compute_instance.shielded_instance_config should be defined",
-    "actualValue": "gcp_compute_instance.shielded_instance_config is undefined"
   }
 ]

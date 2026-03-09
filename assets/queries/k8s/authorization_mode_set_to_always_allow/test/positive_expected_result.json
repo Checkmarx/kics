@@ -2,20 +2,8 @@
   {
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "HIGH",
-    "line": 6,
-    "filename": "positive6.json",
-    "resourceType": "KubeletConfiguration",
-    "resourceName": "n/a",
-    "searchKey": "kind={{KubeletConfiguration}}.authorization.mode",
-    "searchValue": "",
-    "expectedValue": "authorization.mode attribute should not be 'AlwaysAllow'",
-    "actualValue": "authorization.mode attribute is equal to 'AlwaysAllow'"
-  },
-  {
-    "queryName": "Authorization Mode Set To Always Allow",
-    "severity": "HIGH",
     "line": 11,
-    "filename": "positive4.yaml",
+    "filename": "positive1.yaml",
     "resourceType": "Pod",
     "resourceName": "command-demo",
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
@@ -27,7 +15,31 @@
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "HIGH",
     "line": 11,
-    "filename": "positive1.yaml",
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
+    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode"
+  },
+  {
+    "queryName": "Authorization Mode Set To Always Allow",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
+    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode"
+  },
+  {
+    "queryName": "Authorization Mode Set To Always Allow",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive4.yaml",
     "resourceType": "Pod",
     "resourceName": "command-demo",
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
@@ -50,25 +62,13 @@
   {
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "HIGH",
-    "line": 11,
-    "filename": "positive3.yaml",
-    "resourceType": "Pod",
-    "resourceName": "command-demo",
-    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "line": 6,
+    "filename": "positive6.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.authorization.mode",
     "searchValue": "",
-    "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
-    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode"
-  },
-  {
-    "queryName": "Authorization Mode Set To Always Allow",
-    "severity": "HIGH",
-    "line": 11,
-    "filename": "positive2.yaml",
-    "resourceType": "Pod",
-    "resourceName": "command-demo",
-    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
-    "searchValue": "",
-    "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
-    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode"
+    "expectedValue": "authorization.mode attribute should not be 'AlwaysAllow'",
+    "actualValue": "authorization.mode attribute is equal to 'AlwaysAllow'"
   }
 ]

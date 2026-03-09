@@ -2,14 +2,14 @@
   {
     "queryName": "SQL DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 56,
+    "line": 6,
     "filename": "positive.tf",
     "resourceType": "google_sql_database_instance",
     "resourceName": "master-instance",
-    "searchKey": "google_sql_database_instance[positive4].settings.ip_configuration",
+    "searchKey": "google_sql_database_instance[positive1].settings",
     "searchValue": "",
-    "expectedValue": "'ipv4_enabled' should be disabled and 'private_network' should be defined when there are no authorized networks",
-    "actualValue": "'private_network' is not defined when there are no authorized networks"
+    "expectedValue": "'ip_configuration' should be defined and allow only trusted networks",
+    "actualValue": "'ip_configuration' is not defined"
   },
   {
     "queryName": "SQL DB Instance Publicly Accessible",
@@ -38,13 +38,13 @@
   {
     "queryName": "SQL DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 6,
+    "line": 56,
     "filename": "positive.tf",
     "resourceType": "google_sql_database_instance",
     "resourceName": "master-instance",
-    "searchKey": "google_sql_database_instance[positive1].settings",
+    "searchKey": "google_sql_database_instance[positive4].settings.ip_configuration",
     "searchValue": "",
-    "expectedValue": "'ip_configuration' should be defined and allow only trusted networks",
-    "actualValue": "'ip_configuration' is not defined"
+    "expectedValue": "'ipv4_enabled' should be disabled and 'private_network' should be defined when there are no authorized networks",
+    "actualValue": "'private_network' is not defined when there are no authorized networks"
   }
 ]

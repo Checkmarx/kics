@@ -1,9 +1,9 @@
 [
   {
-    "queryName": "Security Field On Operations Has An Empty Object Definition (v2)",
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
-    "line": 14,
-    "filename": "positive9.yaml",
+    "line": 12,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{get}}.security",
@@ -26,8 +26,8 @@
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
-    "line": 44,
-    "filename": "positive3.json",
+    "line": 51,
+    "filename": "positive2.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{patch}}.security",
@@ -38,32 +38,8 @@
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
-    "line": 10,
-    "filename": "positive5.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.{{get}}.security",
-    "searchValue": "",
-    "expectedValue": "Security operation field should not be empty object",
-    "actualValue": "Security operation field is an empty object"
-  },
-  {
-    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
-    "severity": "HIGH",
-    "line": 32,
-    "filename": "positive8.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/apis}}.{{get}}.security",
-    "searchValue": "",
-    "expectedValue": "Security operation field should not be empty object",
-    "actualValue": "Security operation field is an empty object"
-  },
-  {
-    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
-    "severity": "HIGH",
-    "line": 51,
-    "filename": "positive2.json",
+    "line": 44,
+    "filename": "positive3.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{patch}}.security",
@@ -86,14 +62,26 @@
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
-    "line": 12,
-    "filename": "positive1.json",
+    "line": 10,
+    "filename": "positive5.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{get}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field should not be empty object",
     "actualValue": "Security operation field is an empty object"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
+    "severity": "HIGH",
+    "line": 31,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{patch}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field array should not have an empty object",
+    "actualValue": "Security operation field array has an empty object"
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
@@ -110,13 +98,25 @@
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
-    "line": 31,
-    "filename": "positive6.yaml",
+    "line": 32,
+    "filename": "positive8.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.{{patch}}.security",
+    "searchKey": "paths.{{/apis}}.{{get}}.security",
     "searchValue": "",
-    "expectedValue": "Security operation field array should not have an empty object",
-    "actualValue": "Security operation field array has an empty object"
+    "expectedValue": "Security operation field should not be empty object",
+    "actualValue": "Security operation field is an empty object"
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Object Definition (v2)",
+    "severity": "HIGH",
+    "line": 14,
+    "filename": "positive9.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field should not be empty object",
+    "actualValue": "Security operation field is an empty object"
   }
 ]

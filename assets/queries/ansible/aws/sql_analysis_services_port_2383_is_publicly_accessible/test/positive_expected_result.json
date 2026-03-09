@@ -2,18 +2,6 @@
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
-    "line": 65,
-    "filename": "positive.yaml",
-    "resourceType": "amazon.aws.ec2_group",
-    "resourceName": "example using security group rule descriptions 5",
-    "searchKey": "name={{example using security group rule descriptions 5}}.{{amazon.aws.ec2_group}}.rules",
-    "searchValue": "",
-    "expectedValue": "ec2_group.rules[0] shouldn't open the SQL analysis services port (2383)",
-    "actualValue": "ec2_group.rules[0] opens the SQL analysis services port (2383)"
-  },
-  {
-    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
-    "severity": "MEDIUM",
     "line": 9,
     "filename": "positive.yaml",
     "resourceType": "amazon.aws.ec2_group",
@@ -55,6 +43,18 @@
     "resourceType": "amazon.aws.ec2_group",
     "resourceName": "example using security group rule descriptions 4",
     "searchKey": "name={{example using security group rule descriptions 4}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[0] shouldn't open the SQL analysis services port (2383)",
+    "actualValue": "ec2_group.rules[0] opens the SQL analysis services port (2383)"
+  },
+  {
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 65,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example using security group rule descriptions 5",
+    "searchKey": "name={{example using security group rule descriptions 5}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[0] shouldn't open the SQL analysis services port (2383)",
     "actualValue": "ec2_group.rules[0] opens the SQL analysis services port (2383)"

@@ -2,8 +2,8 @@
   {
     "queryName": "Job's Task is Legacy (spark_submit_task)",
     "severity": "MEDIUM",
-    "line": 18,
-    "filename": "positive2.tf",
+    "line": 36,
+    "filename": "positive1.tf",
     "resourceType": "databricks_job",
     "resourceName": "Job with multiple tasks",
     "searchKey": "databricks_job[positive].task.spark_submit_task",
@@ -14,8 +14,8 @@
   {
     "queryName": "Job's Task is Legacy (spark_submit_task)",
     "severity": "MEDIUM",
-    "line": 36,
-    "filename": "positive1.tf",
+    "line": 18,
+    "filename": "positive2.tf",
     "resourceType": "databricks_job",
     "resourceName": "Job with multiple tasks",
     "searchKey": "databricks_job[positive].task.spark_submit_task",

@@ -2,18 +2,6 @@
   {
     "queryName": "Cloud DNS Without DNSSEC",
     "severity": "MEDIUM",
-    "line": 33,
-    "filename": "positive.yaml",
-    "resourceType": "google.cloud.gcp_dns_managed_zone",
-    "resourceName": "create a third managed zone",
-    "searchKey": "name={{create a third managed zone}}.{{google.cloud.gcp_dns_managed_zone}}.dnssec_config.state",
-    "searchValue": "",
-    "expectedValue": "gcp_dns_managed_zone.dnssec_config.state should equal to 'on'",
-    "actualValue": "gcp_dns_managed_zone.dnssec_config.state is not equal to 'on'"
-  },
-  {
-    "queryName": "Cloud DNS Without DNSSEC",
-    "severity": "MEDIUM",
     "line": 3,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_dns_managed_zone",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "gcp_dns_managed_zone.dnssec_config.state should be defined",
     "actualValue": "gcp_dns_managed_zone.dnssec_config.state is undefined"
+  },
+  {
+    "queryName": "Cloud DNS Without DNSSEC",
+    "severity": "MEDIUM",
+    "line": 33,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_dns_managed_zone",
+    "resourceName": "create a third managed zone",
+    "searchKey": "name={{create a third managed zone}}.{{google.cloud.gcp_dns_managed_zone}}.dnssec_config.state",
+    "searchValue": "",
+    "expectedValue": "gcp_dns_managed_zone.dnssec_config.state should equal to 'on'",
+    "actualValue": "gcp_dns_managed_zone.dnssec_config.state is not equal to 'on'"
   }
 ]

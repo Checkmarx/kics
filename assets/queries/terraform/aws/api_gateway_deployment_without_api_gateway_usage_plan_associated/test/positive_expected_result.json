@@ -2,6 +2,18 @@
   {
     "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
     "severity": "LOW",
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "aws_api_gateway_deployment",
+    "resourceName": "positive1",
+    "searchKey": "aws_api_gateway_deployment[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_deployment[positive1] has a 'aws_api_gateway_usage_plan' resource associated. ",
+    "actualValue": "aws_api_gateway_deployment[positive1] doesn't have a 'aws_api_gateway_usage_plan' resource associated."
+  },
+  {
+    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
     "line": 9,
     "filename": "positive1.tf",
     "resourceType": "aws_api_gateway_deployment",
@@ -34,17 +46,5 @@
     "searchValue": "",
     "expectedValue": "aws_api_gateway_deployment[aws_api_gateway_deployment.positive2] has a 'aws_api_gateway_usage_plan' resource associated. ",
     "actualValue": "aws_api_gateway_deployment[aws_api_gateway_deployment.positive2] doesn't have a 'aws_api_gateway_usage_plan' resource associated."
-  },
-  {
-    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
-    "severity": "LOW",
-    "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "aws_api_gateway_deployment",
-    "resourceName": "positive1",
-    "searchKey": "aws_api_gateway_deployment[positive1]",
-    "searchValue": "",
-    "expectedValue": "aws_api_gateway_deployment[positive1] has a 'aws_api_gateway_usage_plan' resource associated. ",
-    "actualValue": "aws_api_gateway_deployment[positive1] doesn't have a 'aws_api_gateway_usage_plan' resource associated."
   }
 ]

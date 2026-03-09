@@ -14,6 +14,18 @@
   {
     "queryName": "Image Version Not Explicit",
     "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{construction AS final}}",
+    "searchValue": "",
+    "expectedValue": "FROM construction:'version'",
+    "actualValue": "FROM construction'"
+  },
+  {
+    "queryName": "Image Version Not Explicit",
+    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive3.dockerfile",
     "resourceType": "",
@@ -34,18 +46,6 @@
     "searchValue": "",
     "expectedValue": "FROM positive42:'version'",
     "actualValue": "FROM positive42'"
-  },
-  {
-    "queryName": "Image Version Not Explicit",
-    "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive2.dockerfile",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "FROM={{construction AS final}}",
-    "searchValue": "",
-    "expectedValue": "FROM construction:'version'",
-    "actualValue": "FROM construction'"
   },
   {
     "queryName": "Image Version Not Explicit",

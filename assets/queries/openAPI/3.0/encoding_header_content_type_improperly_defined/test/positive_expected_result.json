@@ -14,8 +14,8 @@
   {
     "queryName": "Encoding Header 'Content-Type' Improperly Defined",
     "severity": "INFO",
-    "line": 26,
-    "filename": "positive4.yaml",
+    "line": 36,
+    "filename": "positive2.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}}",
@@ -38,8 +38,8 @@
   {
     "queryName": "Encoding Header 'Content-Type' Improperly Defined",
     "severity": "INFO",
-    "line": 36,
-    "filename": "positive2.json",
+    "line": 26,
+    "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}}",

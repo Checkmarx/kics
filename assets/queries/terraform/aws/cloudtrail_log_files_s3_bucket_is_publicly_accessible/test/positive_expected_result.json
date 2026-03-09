@@ -2,18 +2,6 @@
   {
     "queryName": "CloudTrail Log Files S3 Bucket is Publicly Accessible",
     "severity": "HIGH",
-    "line": 24,
-    "filename": "positive3.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[s3_bucket].acl",
-    "searchValue": "",
-    "expectedValue": "module[s3_bucket] to not be publicly accessible",
-    "actualValue": "module[s3_bucket] is publicly accessible"
-  },
-  {
-    "queryName": "CloudTrail Log Files S3 Bucket is Publicly Accessible",
-    "severity": "HIGH",
     "line": 25,
     "filename": "positive1.tf",
     "resourceType": "aws_s3_bucket",
@@ -28,6 +16,18 @@
     "severity": "HIGH",
     "line": 23,
     "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].acl",
+    "searchValue": "",
+    "expectedValue": "module[s3_bucket] to not be publicly accessible",
+    "actualValue": "module[s3_bucket] is publicly accessible"
+  },
+  {
+    "queryName": "CloudTrail Log Files S3 Bucket is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 24,
+    "filename": "positive3.tf",
     "resourceType": "n/a",
     "resourceName": "n/a",
     "searchKey": "module[s3_bucket].acl",

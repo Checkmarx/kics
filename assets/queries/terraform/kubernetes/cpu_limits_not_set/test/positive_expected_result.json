@@ -2,30 +2,6 @@
   {
     "queryName": "CPU Limits Not Set",
     "severity": "LOW",
-    "line": 192,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "positive3",
-    "searchKey": "kubernetes_pod[positive3].spec.container.resources",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive3].spec.container.resources.limits should be set",
-    "actualValue": "kubernetes_pod[positive3].spec.container.resources.limits is undefined"
-  },
-  {
-    "queryName": "CPU Limits Not Set",
-    "severity": "LOW",
-    "line": 249,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "positive4",
-    "searchKey": "kubernetes_pod[positive4].spec.container.resources.limits",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive4].spec.container.resources.limits.cpu should be set",
-    "actualValue": "kubernetes_pod[positive4].spec.container.resources.limits.cpu is undefined"
-  },
-  {
-    "queryName": "CPU Limits Not Set",
-    "severity": "LOW",
     "line": 8,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod",
@@ -70,5 +46,29 @@
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive2].spec.container.resources should be set",
     "actualValue": "kubernetes_pod[positive2].spec.container.resources is undefined"
+  },
+  {
+    "queryName": "CPU Limits Not Set",
+    "severity": "LOW",
+    "line": 192,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container.resources",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container.resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container.resources.limits is undefined"
+  },
+  {
+    "queryName": "CPU Limits Not Set",
+    "severity": "LOW",
+    "line": 249,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container.resources.limits",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.resources.limits.cpu should be set",
+    "actualValue": "kubernetes_pod[positive4].spec.container.resources.limits.cpu is undefined"
   }
 ]

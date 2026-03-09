@@ -2,8 +2,8 @@
   {
     "queryName": "Elasticsearch Without IAM Authentication",
     "severity": "MEDIUM",
-    "line": 26,
-    "filename": "positive2.json",
+    "line": 24,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::Elasticsearch::Domain",
     "resourceName": "test",
     "searchKey": "Resources.ElasticsearchDomain.Properties.AccessPolicies.Statement",
@@ -14,8 +14,8 @@
   {
     "queryName": "Elasticsearch Without IAM Authentication",
     "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive1.yaml",
+    "line": 26,
+    "filename": "positive2.json",
     "resourceType": "AWS::Elasticsearch::Domain",
     "resourceName": "test",
     "searchKey": "Resources.ElasticsearchDomain.Properties.AccessPolicies.Statement",

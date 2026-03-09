@@ -3,18 +3,6 @@
     "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
     "severity": "LOW",
     "line": 2,
-    "filename": "positive2.dockerfile",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "FROM={{ubuntu}}.{{COPY README.md ./}}",
-    "searchValue": "",
-    "expectedValue": "There isn´t any COPY instruction that could be grouped",
-    "actualValue": "There are COPY instructions that could be grouped"
-  },
-  {
-    "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
-    "severity": "LOW",
-    "line": 2,
     "filename": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "There isn´t any RUN instruction that could be grouped",
     "actualValue": "There are RUN instructions that could be grouped"
+  },
+  {
+    "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
+    "severity": "LOW",
+    "line": 2,
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{ubuntu}}.{{COPY README.md ./}}",
+    "searchValue": "",
+    "expectedValue": "There isn´t any COPY instruction that could be grouped",
+    "actualValue": "There are COPY instructions that could be grouped"
   },
   {
     "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",

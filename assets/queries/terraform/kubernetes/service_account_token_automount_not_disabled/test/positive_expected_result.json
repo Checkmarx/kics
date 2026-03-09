@@ -2,26 +2,14 @@
   {
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
-    "line": 162,
+    "line": 25,
     "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "terraform-example",
-    "searchKey": "kubernetes_pod[test6].spec",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec",
     "searchValue": "",
-    "expectedValue": "kubernetes_pod[test6].spec.automount_service_account_token should be set",
-    "actualValue": "kubernetes_pod[test6].spec.automount_service_account_token is undefined"
-  },
-  {
-    "queryName": "Service Account Token Automount Not Disabled",
-    "severity": "MEDIUM",
-    "line": 144,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_cron_job",
-    "resourceName": "demo",
-    "searchKey": "kubernetes_cron_job[demo3].spec.job_template.spec.template.spec.automount_service_account_token",
-    "searchValue": "",
-    "expectedValue": "kubernetes_cron_job[demo3].spec.job_template.spec.template.spec.automount_service_account_token should be set to false",
-    "actualValue": "kubernetes_cron_job[demo3].spec.job_template.spec.template.spec.automount_service_account_token is set to true"
+    "expectedValue": "kubernetes_deployment[example].spec.template.spec.automount_service_account_token should be set",
+    "actualValue": "kubernetes_deployment[example].spec.template.spec.automount_service_account_token is undefined"
   },
   {
     "queryName": "Service Account Token Automount Not Disabled",
@@ -38,13 +26,25 @@
   {
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
-    "line": 25,
+    "line": 144,
     "filename": "positive.tf",
-    "resourceType": "kubernetes_deployment",
-    "resourceName": "example",
-    "searchKey": "kubernetes_deployment[example].spec.template.spec",
+    "resourceType": "kubernetes_cron_job",
+    "resourceName": "demo",
+    "searchKey": "kubernetes_cron_job[demo3].spec.job_template.spec.template.spec.automount_service_account_token",
     "searchValue": "",
-    "expectedValue": "kubernetes_deployment[example].spec.template.spec.automount_service_account_token should be set",
-    "actualValue": "kubernetes_deployment[example].spec.template.spec.automount_service_account_token is undefined"
+    "expectedValue": "kubernetes_cron_job[demo3].spec.job_template.spec.template.spec.automount_service_account_token should be set to false",
+    "actualValue": "kubernetes_cron_job[demo3].spec.job_template.spec.template.spec.automount_service_account_token is set to true"
+  },
+  {
+    "queryName": "Service Account Token Automount Not Disabled",
+    "severity": "MEDIUM",
+    "line": 162,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test6].spec",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test6].spec.automount_service_account_token should be set",
+    "actualValue": "kubernetes_pod[test6].spec.automount_service_account_token is undefined"
   }
 ]

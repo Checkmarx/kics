@@ -3,7 +3,31 @@
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive6.json",
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "MyOpenSearchDomain",
+    "searchKey": "Resources.MyOpenSearchDomain.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+  },
+  {
+    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive10.json",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "MyOpenSearchDomain",
+    "searchKey": "Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+  },
+  {
+    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive11.yaml",
     "resourceType": "AWS::Elasticsearch::Domain",
     "resourceName": "my-es-domain",
     "searchKey": "Resources.MyElasticsearchDomain.Properties",
@@ -26,18 +50,6 @@
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
     "severity": "MEDIUM",
-    "line": 44,
-    "filename": "positive4.json",
-    "resourceType": "AWS::OpenSearchService::Domain",
-    "resourceName": "MyOpenSearchDomain",
-    "searchKey": "Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled",
-    "searchValue": "",
-    "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
-  },
-  {
-    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
-    "severity": "MEDIUM",
     "line": 7,
     "filename": "positive2.json",
     "resourceType": "AWS::OpenSearchService::Domain",
@@ -50,50 +62,26 @@
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive1.yaml",
+    "line": 34,
+    "filename": "positive3.yaml",
     "resourceType": "AWS::OpenSearchService::Domain",
     "resourceName": "MyOpenSearchDomain",
-    "searchKey": "Resources.MyOpenSearchDomain.Properties",
+    "searchKey": "Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled",
     "searchValue": "",
-    "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+    "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive9.yaml",
+    "line": 44,
+    "filename": "positive4.json",
     "resourceType": "AWS::OpenSearchService::Domain",
     "resourceName": "MyOpenSearchDomain",
-    "searchKey": "Resources.MyOpenSearchDomain.Properties",
+    "searchKey": "Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled",
     "searchValue": "",
-    "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
-  },
-  {
-    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
-    "severity": "MEDIUM",
-    "line": 42,
-    "filename": "positive8.json",
-    "resourceType": "AWS::Elasticsearch::Domain",
-    "resourceName": "my-es-domain",
-    "searchKey": "Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled",
-    "searchValue": "",
-    "expectedValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
-    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
-  },
-  {
-    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
-    "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive10.json",
-    "resourceType": "AWS::OpenSearchService::Domain",
-    "resourceName": "MyOpenSearchDomain",
-    "searchKey": "Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions",
-    "searchValue": "",
-    "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+    "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -111,25 +99,13 @@
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive11.yaml",
+    "filename": "positive6.json",
     "resourceType": "AWS::Elasticsearch::Domain",
     "resourceName": "my-es-domain",
     "searchKey": "Resources.MyElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
     "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
-  },
-  {
-    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
-    "severity": "MEDIUM",
-    "line": 34,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::OpenSearchService::Domain",
-    "resourceName": "MyOpenSearchDomain",
-    "searchKey": "Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled",
-    "searchValue": "",
-    "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -142,5 +118,29 @@
     "searchValue": "",
     "expectedValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
     "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
+  },
+  {
+    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+    "severity": "MEDIUM",
+    "line": 42,
+    "filename": "positive8.json",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "my-es-domain",
+    "searchKey": "Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
+    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
+  },
+  {
+    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive9.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "MyOpenSearchDomain",
+    "searchKey": "Resources.MyOpenSearchDomain.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
   }
 ]

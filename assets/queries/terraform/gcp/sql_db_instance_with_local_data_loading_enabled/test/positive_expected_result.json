@@ -2,18 +2,6 @@
   {
     "queryName": "Beta - SQL DB Instance With Local Data Loading Enabled",
     "severity": "MEDIUM",
-    "line": 60,
-    "filename": "positive.tf",
-    "resourceType": "google_sql_database_instance",
-    "resourceName": "mysql-instance-with-flag",
-    "searchKey": "google_sql_database_instance[positive_5].settings.database_flags.name",
-    "searchValue": "",
-    "expectedValue": "'google_sql_database_instance[positive_5].settings.database_flags' should be defined and set 'local_infile' to 'off'",
-    "actualValue": "'google_sql_database_instance[positive_5].settings.database_flags' sets 'local_infile' to 'on'"
-  },
-  {
-    "queryName": "Beta - SQL DB Instance With Local Data Loading Enabled",
-    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive.tf",
     "resourceType": "google_sql_database_instance",
@@ -58,5 +46,17 @@
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_4].settings.database_flags' should be defined and set 'local_infile' to 'off'",
     "actualValue": "'google_sql_database_instance[positive_4].settings.database_flags' sets 'local_infile' to 'on'"
+  },
+  {
+    "queryName": "Beta - SQL DB Instance With Local Data Loading Enabled",
+    "severity": "MEDIUM",
+    "line": 60,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_5].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_5].settings.database_flags' should be defined and set 'local_infile' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_5].settings.database_flags' sets 'local_infile' to 'on'"
   }
 ]

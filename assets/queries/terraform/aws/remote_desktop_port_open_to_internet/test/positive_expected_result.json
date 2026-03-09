@@ -2,38 +2,14 @@
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
-    "line": 49,
-    "filename": "positive4.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0",
+    "line": 5,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-1].ingress",
     "searchValue": "",
-    "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 shouldn't open the remote desktop port (3389)",
-    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 opens the remote desktop port (3389)"
-  },
-  {
-    "queryName": "Remote Desktop Port Open To Internet",
-    "severity": "HIGH",
-    "line": 63,
-    "filename": "positive4.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2",
-    "searchValue": "",
-    "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 shouldn't open the remote desktop port (3389)",
-    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 opens the remote desktop port (3389)"
-  },
-  {
-    "queryName": "Remote Desktop Port Open To Internet",
-    "severity": "HIGH",
-    "line": 17,
-    "filename": "positive2.tf",
-    "resourceType": "aws_vpc_security_group_ingress_rule",
-    "resourceName": "positive2-2",
-    "searchKey": "aws_vpc_security_group_ingress_rule[positive2-2]",
-    "searchValue": "",
-    "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-2] shouldn't open the remote desktop port (3389)",
-    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-2] opens the remote desktop port (3389)"
+    "expectedValue": "aws_security_group[positive1-1].ingress shouldn't open the remote desktop port (3389)",
+    "actualValue": "aws_security_group[positive1-1].ingress opens the remote desktop port (3389)"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
@@ -50,6 +26,30 @@
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
+    "line": 39,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-3].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-3].ingress shouldn't open the remote desktop port (3389)",
+    "actualValue": "aws_security_group[positive1-3].ingress opens the remote desktop port (3389)"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 60,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-4].ingress[1]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-4].ingress[1] shouldn't open the remote desktop port (3389)",
+    "actualValue": "aws_security_group[positive1-4].ingress[1] opens the remote desktop port (3389)"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
     "line": 73,
     "filename": "positive1.tf",
     "resourceType": "aws_security_group",
@@ -58,6 +58,66 @@
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-5].ingress shouldn't open the remote desktop port (3389)",
     "actualValue": "aws_security_group[positive1-5].ingress opens the remote desktop port (3389)"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 87,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-6].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-6].ingress shouldn't open the remote desktop port (3389)",
+    "actualValue": "aws_security_group[positive1-6].ingress opens the remote desktop port (3389)"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 101,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-7].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-7].ingress shouldn't open the remote desktop port (3389)",
+    "actualValue": "aws_security_group[positive1-7].ingress opens the remote desktop port (3389)"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2-1",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2-1]",
+    "searchValue": "",
+    "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-1] shouldn't open the remote desktop port (3389)",
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-1] opens the remote desktop port (3389)"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2-2",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2-2]",
+    "searchValue": "",
+    "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-2] shouldn't open the remote desktop port (3389)",
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-2] opens the remote desktop port (3389)"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3-1",
+    "searchKey": "aws_security_group_rule[positive3-1]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group_rule[positive3-1] shouldn't open the remote desktop port (3389)",
+    "actualValue": "aws_security_group_rule[positive3-1] opens the remote desktop port (3389)"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
@@ -86,14 +146,38 @@
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
-    "line": 7,
-    "filename": "positive2.tf",
-    "resourceType": "aws_vpc_security_group_ingress_rule",
-    "resourceName": "positive2-1",
-    "searchKey": "aws_vpc_security_group_ingress_rule[positive2-1]",
+    "line": 30,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0",
     "searchValue": "",
-    "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-1] shouldn't open the remote desktop port (3389)",
-    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-1] opens the remote desktop port (3389)"
+    "expectedValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 shouldn't open the remote desktop port (3389)",
+    "actualValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 opens the remote desktop port (3389)"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 49,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 shouldn't open the remote desktop port (3389)",
+    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 opens the remote desktop port (3389)"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 63,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2",
+    "searchValue": "",
+    "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 shouldn't open the remote desktop port (3389)",
+    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 opens the remote desktop port (3389)"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
@@ -110,30 +194,6 @@
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
-    "line": 60,
-    "filename": "positive1.tf",
-    "resourceType": "aws_security_group",
-    "resourceName": "allow_tls",
-    "searchKey": "aws_security_group[positive1-4].ingress[1]",
-    "searchValue": "",
-    "expectedValue": "aws_security_group[positive1-4].ingress[1] shouldn't open the remote desktop port (3389)",
-    "actualValue": "aws_security_group[positive1-4].ingress[1] opens the remote desktop port (3389)"
-  },
-  {
-    "queryName": "Remote Desktop Port Open To Internet",
-    "severity": "HIGH",
-    "line": 87,
-    "filename": "positive1.tf",
-    "resourceType": "aws_security_group",
-    "resourceName": "allow_tls",
-    "searchKey": "aws_security_group[positive1-6].ingress",
-    "searchValue": "",
-    "expectedValue": "aws_security_group[positive1-6].ingress shouldn't open the remote desktop port (3389)",
-    "actualValue": "aws_security_group[positive1-6].ingress opens the remote desktop port (3389)"
-  },
-  {
-    "queryName": "Remote Desktop Port Open To Internet",
-    "severity": "HIGH",
     "line": 96,
     "filename": "positive4.tf",
     "resourceType": "n/a",
@@ -142,65 +202,5 @@
     "searchValue": "",
     "expectedValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 shouldn't open the remote desktop port (3389)",
     "actualValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 opens the remote desktop port (3389)"
-  },
-  {
-    "queryName": "Remote Desktop Port Open To Internet",
-    "severity": "HIGH",
-    "line": 30,
-    "filename": "positive4.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0",
-    "searchValue": "",
-    "expectedValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 shouldn't open the remote desktop port (3389)",
-    "actualValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 opens the remote desktop port (3389)"
-  },
-  {
-    "queryName": "Remote Desktop Port Open To Internet",
-    "severity": "HIGH",
-    "line": 5,
-    "filename": "positive1.tf",
-    "resourceType": "aws_security_group",
-    "resourceName": "allow_tls",
-    "searchKey": "aws_security_group[positive1-1].ingress",
-    "searchValue": "",
-    "expectedValue": "aws_security_group[positive1-1].ingress shouldn't open the remote desktop port (3389)",
-    "actualValue": "aws_security_group[positive1-1].ingress opens the remote desktop port (3389)"
-  },
-  {
-    "queryName": "Remote Desktop Port Open To Internet",
-    "severity": "HIGH",
-    "line": 39,
-    "filename": "positive1.tf",
-    "resourceType": "aws_security_group",
-    "resourceName": "allow_tls",
-    "searchKey": "aws_security_group[positive1-3].ingress",
-    "searchValue": "",
-    "expectedValue": "aws_security_group[positive1-3].ingress shouldn't open the remote desktop port (3389)",
-    "actualValue": "aws_security_group[positive1-3].ingress opens the remote desktop port (3389)"
-  },
-  {
-    "queryName": "Remote Desktop Port Open To Internet",
-    "severity": "HIGH",
-    "line": 101,
-    "filename": "positive1.tf",
-    "resourceType": "aws_security_group",
-    "resourceName": "allow_tls",
-    "searchKey": "aws_security_group[positive1-7].ingress",
-    "searchValue": "",
-    "expectedValue": "aws_security_group[positive1-7].ingress shouldn't open the remote desktop port (3389)",
-    "actualValue": "aws_security_group[positive1-7].ingress opens the remote desktop port (3389)"
-  },
-  {
-    "queryName": "Remote Desktop Port Open To Internet",
-    "severity": "HIGH",
-    "line": 7,
-    "filename": "positive3.tf",
-    "resourceType": "aws_security_group_rule",
-    "resourceName": "positive3-1",
-    "searchKey": "aws_security_group_rule[positive3-1]",
-    "searchValue": "",
-    "expectedValue": "aws_security_group_rule[positive3-1] shouldn't open the remote desktop port (3389)",
-    "actualValue": "aws_security_group_rule[positive3-1] opens the remote desktop port (3389)"
   }
 ]

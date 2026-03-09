@@ -26,6 +26,30 @@
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
     "severity": "LOW",
+    "line": 62,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail2",
+    "searchKey": "Resources.myTrail2.Properties",
+    "searchValue": "CloudWatchLogsLogGroupArn",
+    "expectedValue": "'Resources.myTrail2.Properties.CloudWatchLogsLogGroupArn' should be declared",
+    "actualValue": "'Resources.myTrail2.Properties.CloudWatchLogsLogGroupArn' is not declared"
+  },
+  {
+    "queryName": "CloudTrail Not Integrated With CloudWatch",
+    "severity": "LOW",
+    "line": 62,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail3",
+    "searchKey": "Resources.myTrail3.Properties",
+    "searchValue": "CloudWatchLogsRoleArn",
+    "expectedValue": "'Resources.myTrail3.Properties.CloudWatchLogsRoleArn' should be declared",
+    "actualValue": "'Resources.myTrail3.Properties.CloudWatchLogsRoleArn' is not declared"
+  },
+  {
+    "queryName": "CloudTrail Not Integrated With CloudWatch",
+    "severity": "LOW",
     "line": 82,
     "filename": "positive4.json",
     "resourceType": "AWS::CloudTrail::Trail",
@@ -70,29 +94,5 @@
     "searchValue": "CloudWatchLogsRoleArn",
     "expectedValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' should be declared",
     "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' is not declared"
-  },
-  {
-    "queryName": "CloudTrail Not Integrated With CloudWatch",
-    "severity": "LOW",
-    "line": 62,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::CloudTrail::Trail",
-    "resourceName": "myTrail3",
-    "searchKey": "Resources.myTrail3.Properties",
-    "searchValue": "CloudWatchLogsRoleArn",
-    "expectedValue": "'Resources.myTrail3.Properties.CloudWatchLogsRoleArn' should be declared",
-    "actualValue": "'Resources.myTrail3.Properties.CloudWatchLogsRoleArn' is not declared"
-  },
-  {
-    "queryName": "CloudTrail Not Integrated With CloudWatch",
-    "severity": "LOW",
-    "line": 62,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::CloudTrail::Trail",
-    "resourceName": "myTrail2",
-    "searchKey": "Resources.myTrail2.Properties",
-    "searchValue": "CloudWatchLogsLogGroupArn",
-    "expectedValue": "'Resources.myTrail2.Properties.CloudWatchLogsLogGroupArn' should be declared",
-    "actualValue": "'Resources.myTrail2.Properties.CloudWatchLogsLogGroupArn' is not declared"
   }
 ]

@@ -2,18 +2,6 @@
   {
     "queryName": "Bucket Without Versioning",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive2.yaml",
-    "resourceType": "storage.v1.bucket",
-    "resourceName": "bucket",
-    "searchKey": "resources.name={{bucket}}.properties.versioning.enabled",
-    "searchValue": "",
-    "expectedValue": "'versioning.enabled' should be true",
-    "actualValue": "'versioning.enabled' is false"
-  },
-  {
-    "queryName": "Bucket Without Versioning",
-    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive1.yaml",
     "resourceType": "storage.v1.bucket",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'versioning' should be defined and not null",
     "actualValue": "'versioning' is undefined or null"
+  },
+  {
+    "queryName": "Bucket Without Versioning",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "bucket",
+    "searchKey": "resources.name={{bucket}}.properties.versioning.enabled",
+    "searchValue": "",
+    "expectedValue": "'versioning.enabled' should be true",
+    "actualValue": "'versioning.enabled' is false"
   }
 ]

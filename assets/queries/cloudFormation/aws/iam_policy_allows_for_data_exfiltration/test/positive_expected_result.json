@@ -2,26 +2,14 @@
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::IAM::Group",
-    "resourceName": "RootGroup",
-    "searchKey": "Resources.RootGroup.Properties.Policies.0.PolicyDocument.Statement.0.Action",
+    "line": 14,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "CFNUser",
+    "searchKey": "Resources.CFNUser.Properties.Policies.0.PolicyDocument.Statement.0.Action",
     "searchValue": "",
-    "expectedValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [ssm:GetParameter]"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive12.json",
-    "resourceType": "AWS::IAM::Policy",
-    "resourceName": "CFNUsers",
-    "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
-    "searchValue": "",
-    "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [secretsmanager:GetSecretValue]"
+    "expectedValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [*]"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -50,14 +38,38 @@
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
-    "line": 15,
-    "filename": "positive9.json",
-    "resourceType": "AWS::IAM::Role",
-    "resourceName": "RootRole",
-    "searchKey": "Resources.RootRole.Properties.Policies.0.PolicyDocument.Statement.0.Action",
+    "line": 13,
+    "filename": "positive12.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "CFNUsers",
+    "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
     "searchValue": "",
-    "expectedValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [s3:GetObject, ssm:GetParameter, s3:*]"
+    "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [secretsmanager:GetSecretValue]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::IAM::Group",
+    "resourceName": "RootGroup",
+    "searchKey": "Resources.RootGroup.Properties.Policies.0.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [ssm:GetParameter]"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "CFNUsers",
+    "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [ssm:GetParameters]"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -86,18 +98,6 @@
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive8.json",
-    "resourceType": "AWS::IAM::Policy",
-    "resourceName": "CFNUsers",
-    "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
-    "searchValue": "",
-    "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [secretsmanager:GetSecretValue]"
-  },
-  {
-    "queryName": "IAM policy allows for data exfiltration",
-    "severity": "MEDIUM",
     "line": 18,
     "filename": "positive6.json",
     "resourceType": "AWS::IAM::User",
@@ -122,25 +122,25 @@
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive3.yaml",
+    "line": 13,
+    "filename": "positive8.json",
     "resourceType": "AWS::IAM::Policy",
     "resourceName": "CFNUsers",
     "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [ssm:GetParameters]"
+    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [secretsmanager:GetSecretValue]"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::IAM::User",
-    "resourceName": "CFNUser",
-    "searchKey": "Resources.CFNUser.Properties.Policies.0.PolicyDocument.Statement.0.Action",
+    "line": 15,
+    "filename": "positive9.json",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.Policies.0.PolicyDocument.Statement.0.Action",
     "searchValue": "",
-    "expectedValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [*]"
+    "expectedValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
+    "actualValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [s3:GetObject, ssm:GetParameter, s3:*]"
   }
 ]

@@ -2,18 +2,6 @@
   {
     "queryName": "Service Account Name Undefined Or Empty",
     "severity": "MEDIUM",
-    "line": 36,
-    "filename": "positive3.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "terraform-example",
-    "searchKey": "kubernetes_pod[test3].spec.service_account_name",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[test3].spec.service_account_name is correct",
-    "actualValue": "kubernetes_pod[test3].spec.service_account_name is null or empty"
-  },
-  {
-    "queryName": "Service Account Name Undefined Or Empty",
-    "severity": "MEDIUM",
     "line": 6,
     "filename": "positive1.tf",
     "resourceType": "kubernetes_pod",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test2].spec.service_account_name should be defined and not null",
     "actualValue": "kubernetes_pod[test2].spec.service_account_name is undefined or null"
+  },
+  {
+    "queryName": "Service Account Name Undefined Or Empty",
+    "severity": "MEDIUM",
+    "line": 36,
+    "filename": "positive3.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test3].spec.service_account_name",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test3].spec.service_account_name is correct",
+    "actualValue": "kubernetes_pod[test3].spec.service_account_name is null or empty"
   }
 ]

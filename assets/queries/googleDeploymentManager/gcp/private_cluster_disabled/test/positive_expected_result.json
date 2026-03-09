@@ -2,14 +2,14 @@
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive2.yaml",
+    "line": 4,
+    "filename": "positive1.yaml",
     "resourceType": "container.v1.cluster",
-    "resourceName": "mycluster2",
-    "searchKey": "resources.name={{mycluster2}}.properties.privateClusterConfig.enablePrivateEndpoint",
+    "resourceName": "mycluster",
+    "searchKey": "resources.name={{mycluster}}.properties",
     "searchValue": "",
-    "expectedValue": "'enablePrivateEndpoint' should be set to true",
-    "actualValue": "'enablePrivateEndpoint' is set to false"
+    "expectedValue": "'privateClusterConfig' should be defined and not null",
+    "actualValue": "'privateClusterConfig' is undefined or null"
   },
   {
     "queryName": "Private Cluster Disabled",
@@ -26,13 +26,13 @@
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive1.yaml",
+    "line": 7,
+    "filename": "positive2.yaml",
     "resourceType": "container.v1.cluster",
-    "resourceName": "mycluster",
-    "searchKey": "resources.name={{mycluster}}.properties",
+    "resourceName": "mycluster2",
+    "searchKey": "resources.name={{mycluster2}}.properties.privateClusterConfig.enablePrivateEndpoint",
     "searchValue": "",
-    "expectedValue": "'privateClusterConfig' should be defined and not null",
-    "actualValue": "'privateClusterConfig' is undefined or null"
+    "expectedValue": "'enablePrivateEndpoint' should be set to true",
+    "actualValue": "'enablePrivateEndpoint' is set to false"
   }
 ]

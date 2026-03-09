@@ -2,6 +2,18 @@
   {
     "queryName": "S3 Bucket Allows List Action From All Principals",
     "severity": "HIGH",
+    "line": 7,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy3",
+    "searchKey": "Resources.SampleBucketPolicy3.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement should not allow a 'List' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows a 'List' action from all principals"
+  },
+  {
+    "queryName": "S3 Bucket Allows List Action From All Principals",
+    "severity": "HIGH",
     "line": 22,
     "filename": "positive1.yaml",
     "resourceType": "AWS::S3::BucketPolicy",
@@ -34,17 +46,5 @@
     "searchValue": "",
     "expectedValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement should not allow a 'List' action from all principals",
     "actualValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement allows a 'List' action from all principals"
-  },
-  {
-    "queryName": "S3 Bucket Allows List Action From All Principals",
-    "severity": "HIGH",
-    "line": 7,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::S3::BucketPolicy",
-    "resourceName": "SampleBucketPolicy3",
-    "searchKey": "Resources.SampleBucketPolicy3.Properties.PolicyDocument",
-    "searchValue": "",
-    "expectedValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement should not allow a 'List' action from all principals",
-    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows a 'List' action from all principals"
   }
 ]

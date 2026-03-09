@@ -2,11 +2,11 @@
   {
     "queryName": "Run Using 'wget' and 'curl'",
     "severity": "LOW",
-    "line": 8,
+    "line": 3,
     "filename": "positive.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{baseImage}}.{{RUN [\"curl\", \"http://bing.com\"]}}",
+    "searchKey": "FROM={{debian}}.{{RUN curl http://bing.com}}",
     "searchValue": "",
     "expectedValue": "Exclusively using 'wget' or 'curl'",
     "actualValue": "Using both 'wget' and 'curl'"
@@ -26,11 +26,11 @@
   {
     "queryName": "Run Using 'wget' and 'curl'",
     "severity": "LOW",
-    "line": 3,
+    "line": 8,
     "filename": "positive.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{debian}}.{{RUN curl http://bing.com}}",
+    "searchKey": "FROM={{baseImage}}.{{RUN [\"curl\", \"http://bing.com\"]}}",
     "searchValue": "",
     "expectedValue": "Exclusively using 'wget' or 'curl'",
     "actualValue": "Using both 'wget' and 'curl'"

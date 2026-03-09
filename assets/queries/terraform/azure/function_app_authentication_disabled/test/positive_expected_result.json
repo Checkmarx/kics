@@ -2,50 +2,14 @@
   {
     "queryName": "Function App Authentication Disabled",
     "severity": "MEDIUM",
-    "line": 39,
-    "filename": "positive2.tf",
-    "resourceType": "azurerm_linux_function_app",
-    "resourceName": "example-app-service",
-    "searchKey": "azurerm_linux_function_app[positive2-4].auth_settings_v2.auth_enabled",
-    "searchValue": "",
-    "expectedValue": "'azurerm_linux_function_app[positive2-4].auth_settings_v2.auth_enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_linux_function_app[positive2-4].auth_settings_v2.auth_enabled' is defined to 'false'"
-  },
-  {
-    "queryName": "Function App Authentication Disabled",
-    "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive2.tf",
-    "resourceType": "azurerm_linux_function_app",
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_function_app",
     "resourceName": "example-app-service",
-    "searchKey": "azurerm_linux_function_app[positive2-1]",
+    "searchKey": "azurerm_function_app[positive1-1]",
     "searchValue": "",
-    "expectedValue": "'azurerm_linux_function_app[positive2-1].auth_settings' or 'azurerm_linux_function_app[positive2-1].auth_settings_v2' should be defined",
-    "actualValue": "'azurerm_linux_function_app[positive2-1].auth_settings' and 'azurerm_linux_function_app[positive2-1].auth_settings_v2' are not defined"
-  },
-  {
-    "queryName": "Function App Authentication Disabled",
-    "severity": "MEDIUM",
-    "line": 26,
-    "filename": "positive2.tf",
-    "resourceType": "azurerm_linux_function_app",
-    "resourceName": "example-app-service",
-    "searchKey": "azurerm_linux_function_app[positive2-3].auth_settings_v2",
-    "searchValue": "",
-    "expectedValue": "'azurerm_linux_function_app[positive2-3].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
-    "actualValue": "'azurerm_linux_function_app[positive2-3].auth_settings_v2.auth_enabled' is not defined"
-  },
-  {
-    "queryName": "Function App Authentication Disabled",
-    "severity": "MEDIUM",
-    "line": 52,
-    "filename": "positive2.tf",
-    "resourceType": "azurerm_linux_function_app",
-    "resourceName": "example-app-service",
-    "searchKey": "azurerm_linux_function_app[positive2-5].auth_settings_v2",
-    "searchValue": "",
-    "expectedValue": "'azurerm_linux_function_app[positive2-5].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
-    "actualValue": "'azurerm_linux_function_app[positive2-5].auth_settings_v2.auth_enabled' is not defined"
+    "expectedValue": "'azurerm_function_app[positive1-1].auth_settings' should be defined",
+    "actualValue": "'azurerm_function_app[positive1-1].auth_settings' is not defined"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -62,26 +26,62 @@
   {
     "queryName": "Function App Authentication Disabled",
     "severity": "MEDIUM",
-    "line": 16,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_windows_function_app",
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
     "resourceName": "example-app-service",
-    "searchKey": "'azurerm_windows_function_app[positive3-2].auth_settings.enabled'",
+    "searchKey": "azurerm_linux_function_app[positive2-1]",
     "searchValue": "",
-    "expectedValue": "'azurerm_windows_function_app[positive3-2].auth_settings.enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_windows_function_app[positive3-2].auth_settings.enabled' is defined to 'false'"
+    "expectedValue": "'azurerm_linux_function_app[positive2-1].auth_settings' or 'azurerm_linux_function_app[positive2-1].auth_settings_v2' should be defined",
+    "actualValue": "'azurerm_linux_function_app[positive2-1].auth_settings' and 'azurerm_linux_function_app[positive2-1].auth_settings_v2' are not defined"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "example-app-service",
+    "searchKey": "'azurerm_linux_function_app[positive2-2].auth_settings.enabled'",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2-2].auth_settings.enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_linux_function_app[positive2-2].auth_settings.enabled' is defined to 'false'"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 26,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_function_app[positive2-3].auth_settings_v2",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2-3].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
+    "actualValue": "'azurerm_linux_function_app[positive2-3].auth_settings_v2.auth_enabled' is not defined"
   },
   {
     "queryName": "Function App Authentication Disabled",
     "severity": "MEDIUM",
     "line": 39,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_windows_function_app",
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
     "resourceName": "example-app-service",
-    "searchKey": "azurerm_windows_function_app[positive3-4].auth_settings_v2.auth_enabled",
+    "searchKey": "azurerm_linux_function_app[positive2-4].auth_settings_v2.auth_enabled",
     "searchValue": "",
-    "expectedValue": "'azurerm_windows_function_app[positive3-4].auth_settings_v2.auth_enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_windows_function_app[positive3-4].auth_settings_v2.auth_enabled' is defined to 'false'"
+    "expectedValue": "'azurerm_linux_function_app[positive2-4].auth_settings_v2.auth_enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_linux_function_app[positive2-4].auth_settings_v2.auth_enabled' is defined to 'false'"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 52,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_function_app[positive2-5].auth_settings_v2",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2-5].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
+    "actualValue": "'azurerm_linux_function_app[positive2-5].auth_settings_v2.auth_enabled' is not defined"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -99,30 +99,6 @@
     "queryName": "Function App Authentication Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "azurerm_function_app",
-    "resourceName": "example-app-service",
-    "searchKey": "azurerm_function_app[positive1-1]",
-    "searchValue": "",
-    "expectedValue": "'azurerm_function_app[positive1-1].auth_settings' should be defined",
-    "actualValue": "'azurerm_function_app[positive1-1].auth_settings' is not defined"
-  },
-  {
-    "queryName": "Function App Authentication Disabled",
-    "severity": "MEDIUM",
-    "line": 68,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_windows_function_app",
-    "resourceName": "example-app-service",
-    "searchKey": "azurerm_windows_function_app[positive3-6].auth_settings_v2.auth_enabled",
-    "searchValue": "",
-    "expectedValue": "'azurerm_windows_function_app[positive3-6].auth_settings_v2.auth_enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_windows_function_app[positive3-6].auth_settings_v2.auth_enabled' is defined to 'false'"
-  },
-  {
-    "queryName": "Function App Authentication Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
     "filename": "positive3.tf",
     "resourceType": "azurerm_windows_function_app",
     "resourceName": "example-app-service",
@@ -130,6 +106,18 @@
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-1].auth_settings' or 'azurerm_windows_function_app[positive3-1].auth_settings_v2' should be defined",
     "actualValue": "'azurerm_windows_function_app[positive3-1].auth_settings' and 'azurerm_windows_function_app[positive3-1].auth_settings_v2' are not defined"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "example-app-service",
+    "searchKey": "'azurerm_windows_function_app[positive3-2].auth_settings.enabled'",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3-2].auth_settings.enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_windows_function_app[positive3-2].auth_settings.enabled' is defined to 'false'"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -146,6 +134,18 @@
   {
     "queryName": "Function App Authentication Disabled",
     "severity": "MEDIUM",
+    "line": 39,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_function_app[positive3-4].auth_settings_v2.auth_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3-4].auth_settings_v2.auth_enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_windows_function_app[positive3-4].auth_settings_v2.auth_enabled' is defined to 'false'"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
     "line": 52,
     "filename": "positive3.tf",
     "resourceType": "azurerm_windows_function_app",
@@ -158,13 +158,13 @@
   {
     "queryName": "Function App Authentication Disabled",
     "severity": "MEDIUM",
-    "line": 16,
-    "filename": "positive2.tf",
-    "resourceType": "azurerm_linux_function_app",
+    "line": 68,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
     "resourceName": "example-app-service",
-    "searchKey": "'azurerm_linux_function_app[positive2-2].auth_settings.enabled'",
+    "searchKey": "azurerm_windows_function_app[positive3-6].auth_settings_v2.auth_enabled",
     "searchValue": "",
-    "expectedValue": "'azurerm_linux_function_app[positive2-2].auth_settings.enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_linux_function_app[positive2-2].auth_settings.enabled' is defined to 'false'"
+    "expectedValue": "'azurerm_windows_function_app[positive3-6].auth_settings_v2.auth_enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_windows_function_app[positive3-6].auth_settings_v2.auth_enabled' is defined to 'false'"
   }
 ]

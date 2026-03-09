@@ -2,42 +2,6 @@
   {
     "queryName": "Privilege Escalation Allowed",
     "severity": "HIGH",
-    "line": 13,
-    "filename": "positive2.yaml",
-    "resourceType": "Pod",
-    "resourceName": "example-priv",
-    "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}",
-    "searchValue": "Pod",
-    "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
-    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}.securityContext.allowPrivilegeEscalation is undefined"
-  },
-  {
-    "queryName": "Privilege Escalation Allowed",
-    "severity": "HIGH",
-    "line": 17,
-    "filename": "positive2.yaml",
-    "resourceType": "Pod",
-    "resourceName": "example-priv",
-    "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}",
-    "searchValue": "Pod",
-    "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
-    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}.securityContext.allowPrivilegeEscalation is undefined"
-  },
-  {
-    "queryName": "Privilege Escalation Allowed",
-    "severity": "HIGH",
-    "line": 9,
-    "filename": "positive2.yaml",
-    "resourceType": "Pod",
-    "resourceName": "example-priv",
-    "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment}}",
-    "searchValue": "Pod",
-    "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
-    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment}}.securityContext.allowPrivilegeEscalation is undefined"
-  },
-  {
-    "queryName": "Privilege Escalation Allowed",
-    "severity": "HIGH",
     "line": 10,
     "filename": "positive1.yaml",
     "resourceType": "Pod",
@@ -58,5 +22,41 @@
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{pod2}}.spec.containers.name={{log-aggregator}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
     "actualValue": "metadata.name={{pod2}}.spec.containers.name={{log-aggregator}}.securityContext.allowPrivilegeEscalation is undefined"
+  },
+  {
+    "queryName": "Privilege Escalation Allowed",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example-priv",
+    "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
+    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment}}.securityContext.allowPrivilegeEscalation is undefined"
+  },
+  {
+    "queryName": "Privilege Escalation Allowed",
+    "severity": "HIGH",
+    "line": 13,
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example-priv",
+    "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
+    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}.securityContext.allowPrivilegeEscalation is undefined"
+  },
+  {
+    "queryName": "Privilege Escalation Allowed",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example-priv",
+    "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
+    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}.securityContext.allowPrivilegeEscalation is undefined"
   }
 ]

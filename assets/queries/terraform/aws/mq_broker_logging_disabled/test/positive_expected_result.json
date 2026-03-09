@@ -2,14 +2,14 @@
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
-    "line": 17,
+    "line": 1,
     "filename": "positive.tf",
     "resourceType": "aws_mq_broker",
-    "resourceName": "disabled-logging",
-    "searchKey": "aws_mq_broker[positive3].logs.general",
+    "resourceName": "no-logging",
+    "searchKey": "aws_mq_broker[positive1]",
     "searchValue": "",
-    "expectedValue": "'general' and 'audit' logging should be set to true",
-    "actualValue": "'general' is set to false"
+    "expectedValue": "'logs' should be set and enabling general AND audit logging",
+    "actualValue": "'logs' is undefined"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -26,13 +26,13 @@
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
-    "line": 1,
+    "line": 17,
     "filename": "positive.tf",
     "resourceType": "aws_mq_broker",
-    "resourceName": "no-logging",
-    "searchKey": "aws_mq_broker[positive1]",
+    "resourceName": "disabled-logging",
+    "searchKey": "aws_mq_broker[positive3].logs.general",
     "searchValue": "",
-    "expectedValue": "'logs' should be set and enabling general AND audit logging",
-    "actualValue": "'logs' is undefined"
+    "expectedValue": "'general' and 'audit' logging should be set to true",
+    "actualValue": "'general' is set to false"
   }
 ]

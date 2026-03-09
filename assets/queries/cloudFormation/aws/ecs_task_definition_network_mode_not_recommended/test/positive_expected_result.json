@@ -3,18 +3,6 @@
     "queryName": "ECS Task Definition Network Mode Not Recommended",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive2.json",
-    "resourceType": "AWS::ECS::TaskDefinition",
-    "resourceName": "taskdefinition",
-    "searchKey": "Resources.taskdefinition.Properties",
-    "searchValue": "",
-    "expectedValue": "'Resources.taskdefinition.Properties.NetworkMode' should be set and should be 'awsvpc'",
-    "actualValue": "'Resources.taskdefinition.Properties.NetworkMode' is undefined and defaults to 'bridge'"
-  },
-  {
-    "queryName": "ECS Task Definition Network Mode Not Recommended",
-    "severity": "MEDIUM",
-    "line": 7,
     "filename": "positive1.yaml",
     "resourceType": "AWS::ECS::TaskDefinition",
     "resourceName": "taskdefinition",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'Resources.taskdefinition.Properties.NetworkMode' should be 'awsvpc'",
     "actualValue": "'Resources.taskdefinition.Properties.NetworkMode' is 'none'"
+  },
+  {
+    "queryName": "ECS Task Definition Network Mode Not Recommended",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::TaskDefinition",
+    "resourceName": "taskdefinition",
+    "searchKey": "Resources.taskdefinition.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.taskdefinition.Properties.NetworkMode' should be set and should be 'awsvpc'",
+    "actualValue": "'Resources.taskdefinition.Properties.NetworkMode' is undefined and defaults to 'bridge'"
   }
 ]

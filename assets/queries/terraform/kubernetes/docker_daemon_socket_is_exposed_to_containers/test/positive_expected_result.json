@@ -2,18 +2,6 @@
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 103,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_deployment",
-    "resourceName": "example",
-    "searchKey": "kubernetes_deployment[example].spec.template.spec.volume",
-    "searchValue": "",
-    "expectedValue": "spec.template.spec.volume[1].host_path.path should not be '/var/run/docker.sock'",
-    "actualValue": "spec.template.spec.volume[1].host_path.path is '/var/run/docker.sock'"
-  },
-  {
-    "queryName": "Docker Daemon Socket is Exposed to Containers",
-    "severity": "MEDIUM",
     "line": 9,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod",
@@ -38,6 +26,30 @@
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
+    "line": 96,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec.volume",
+    "searchValue": "",
+    "expectedValue": "spec.template.spec.volume[0].host_path.path should not be '/var/run/docker.sock'",
+    "actualValue": "spec.template.spec.volume[0].host_path.path is '/var/run/docker.sock'"
+  },
+  {
+    "queryName": "Docker Daemon Socket is Exposed to Containers",
+    "severity": "MEDIUM",
+    "line": 103,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec.volume",
+    "searchValue": "",
+    "expectedValue": "spec.template.spec.volume[1].host_path.path should not be '/var/run/docker.sock'",
+    "actualValue": "spec.template.spec.volume[1].host_path.path is '/var/run/docker.sock'"
+  },
+  {
+    "queryName": "Docker Daemon Socket is Exposed to Containers",
+    "severity": "MEDIUM",
     "line": 164,
     "filename": "positive.tf",
     "resourceType": "kubernetes_cron_job",
@@ -58,17 +70,5 @@
     "searchValue": "",
     "expectedValue": "spec.job_template.spec.template.spec.volume[1].host_path.path should not be '/var/run/docker.sock'",
     "actualValue": "spec.job_template.spec.template.spec.volume[1].host_path.path is '/var/run/docker.sock'"
-  },
-  {
-    "queryName": "Docker Daemon Socket is Exposed to Containers",
-    "severity": "MEDIUM",
-    "line": 96,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_deployment",
-    "resourceName": "example",
-    "searchKey": "kubernetes_deployment[example].spec.template.spec.volume",
-    "searchValue": "",
-    "expectedValue": "spec.template.spec.volume[0].host_path.path should not be '/var/run/docker.sock'",
-    "actualValue": "spec.template.spec.volume[0].host_path.path is '/var/run/docker.sock'"
   }
 ]

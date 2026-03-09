@@ -14,18 +14,6 @@
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::EC2::Instance",
-    "resourceName": "MyEC2Instance",
-    "searchKey": "Resources.MyEC2Instance.Properties.Monitoring",
-    "searchValue": "",
-    "expectedValue": "'Resources.MyEC2Instance.Properties.Monitoring' should be set to 'true'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is set to 'false'"
-  },
-  {
-    "queryName": "EC2 Instance Monitoring Disabled",
-    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive2.yaml",
     "resourceType": "AWS::EC2::Instance",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.Monitoring' should be set and to 'true'",
     "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is not set"
+  },
+  {
+    "queryName": "EC2 Instance Monitoring Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.Monitoring",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyEC2Instance.Properties.Monitoring' should be set to 'true'",
+    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is set to 'false'"
   }
 ]

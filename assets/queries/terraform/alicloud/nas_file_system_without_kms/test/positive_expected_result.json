@@ -2,18 +2,6 @@
   {
     "queryName": "NAS File System Without KMS",
     "severity": "HIGH",
-    "line": 5,
-    "filename": "positive2.tf",
-    "resourceType": "alicloud_nas_file_system",
-    "resourceName": "fooabr",
-    "searchKey": "alicloud_nas_file_system[fooabr]",
-    "searchValue": "",
-    "expectedValue": "alicloud_nas_file_system[fooabr].encrypt_type' should be set to 2'",
-    "actualValue": "alicloud_nas_file_system[fooabr].encrypt_type' is not set to 2  "
-  },
-  {
-    "queryName": "NAS File System Without KMS",
-    "severity": "HIGH",
     "line": 1,
     "filename": "positive.tf",
     "resourceType": "alicloud_nas_file_system",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "alicloud_nas_file_system[foo].encrypt_type' should be defined and set to 2'",
     "actualValue": "alicloud_nas_file_system[foo].encrypt_type' is not defined"
+  },
+  {
+    "queryName": "NAS File System Without KMS",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_nas_file_system",
+    "resourceName": "fooabr",
+    "searchKey": "alicloud_nas_file_system[fooabr]",
+    "searchValue": "",
+    "expectedValue": "alicloud_nas_file_system[fooabr].encrypt_type' should be set to 2'",
+    "actualValue": "alicloud_nas_file_system[fooabr].encrypt_type' is not set to 2  "
   }
 ]

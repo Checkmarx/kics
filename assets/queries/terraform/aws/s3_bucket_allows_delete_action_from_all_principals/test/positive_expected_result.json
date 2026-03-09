@@ -14,14 +14,14 @@
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "CRITICAL",
-    "line": 37,
-    "filename": "positive6.tf",
+    "line": 4,
+    "filename": "positive2.tf",
     "resourceType": "aws_s3_bucket_policy",
-    "resourceName": "${var.positive6}",
-    "searchKey": "aws_s3_bucket_policy[positive6].policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[positive2].policy",
     "searchValue": "",
-    "expectedValue": "aws_s3_bucket_policy[positive6].policy.Action should not be a 'Delete' action",
-    "actualValue": "aws_s3_bucket_policy[positive6].policy.Action is a 'Delete' action"
+    "expectedValue": "aws_s3_bucket_policy[positive2].policy.Action should not be a 'Delete' action",
+    "actualValue": "aws_s3_bucket_policy[positive2].policy.Action is a 'Delete' action"
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
@@ -34,18 +34,6 @@
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' should not be a 'Delete' action",
     "actualValue": "'policy.Statement.Action' is a 'Delete' action"
-  },
-  {
-    "queryName": "S3 Bucket Allows Delete Action From All Principals",
-    "severity": "CRITICAL",
-    "line": 4,
-    "filename": "positive2.tf",
-    "resourceType": "aws_s3_bucket_policy",
-    "resourceName": "${aws_s3_bucket.b.id}",
-    "searchKey": "aws_s3_bucket_policy[positive2].policy",
-    "searchValue": "",
-    "expectedValue": "aws_s3_bucket_policy[positive2].policy.Action should not be a 'Delete' action",
-    "actualValue": "aws_s3_bucket_policy[positive2].policy.Action is a 'Delete' action"
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
@@ -70,5 +58,17 @@
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_policy[positive5].policy.Action should not be a 'Delete' action",
     "actualValue": "aws_s3_bucket_policy[positive5].policy.Action is a 'Delete' action"
+  },
+  {
+    "queryName": "S3 Bucket Allows Delete Action From All Principals",
+    "severity": "CRITICAL",
+    "line": 37,
+    "filename": "positive6.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${var.positive6}",
+    "searchKey": "aws_s3_bucket_policy[positive6].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive6].policy.Action should not be a 'Delete' action",
+    "actualValue": "aws_s3_bucket_policy[positive6].policy.Action is a 'Delete' action"
   }
 ]

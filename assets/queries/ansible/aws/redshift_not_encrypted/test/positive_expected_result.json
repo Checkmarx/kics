@@ -2,6 +2,18 @@
   {
     "queryName": "Redshift Not Encrypted",
     "severity": "HIGH",
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.redshift",
+    "resourceName": "Basic cluster provisioning example",
+    "searchKey": "name={{Basic cluster provisioning example}}.{{community.aws.redshift}}",
+    "searchValue": "",
+    "expectedValue": "redshift.encrypted should be set to true",
+    "actualValue": "redshift.encrypted is undefined"
+  },
+  {
+    "queryName": "Redshift Not Encrypted",
+    "severity": "HIGH",
     "line": 19,
     "filename": "positive.yaml",
     "resourceType": "community.aws.redshift",
@@ -22,17 +34,5 @@
     "searchValue": "",
     "expectedValue": "redshift.encrypted should be set to true",
     "actualValue": "redshift.encrypted is set to false"
-  },
-  {
-    "queryName": "Redshift Not Encrypted",
-    "severity": "HIGH",
-    "line": 2,
-    "filename": "positive.yaml",
-    "resourceType": "community.aws.redshift",
-    "resourceName": "Basic cluster provisioning example",
-    "searchKey": "name={{Basic cluster provisioning example}}.{{community.aws.redshift}}",
-    "searchValue": "",
-    "expectedValue": "redshift.encrypted should be set to true",
-    "actualValue": "redshift.encrypted is undefined"
   }
 ]

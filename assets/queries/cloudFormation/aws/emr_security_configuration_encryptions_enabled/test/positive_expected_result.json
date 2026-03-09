@@ -2,50 +2,14 @@
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive5.json",
+    "line": 8,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::EMR::SecurityConfiguration",
     "resourceName": "String",
-    "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption",
+    "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
     "searchValue": "",
-    "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false"
-  },
-  {
-    "queryName": "EMR Security Configuration Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive6.json",
-    "resourceType": "AWS::EMR::SecurityConfiguration",
-    "resourceName": "String",
-    "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption",
-    "searchValue": "",
-    "expectedValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption is false"
-  },
-  {
-    "queryName": "EMR Security Configuration Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive6.json",
-    "resourceType": "AWS::EMR::SecurityConfiguration",
-    "resourceName": "String",
-    "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration",
-    "searchValue": "",
-    "expectedValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType must be defined",
-    "actualValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType is undefined"
-  },
-  {
-    "queryName": "EMR Security Configuration Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive8.json",
-    "resourceType": "AWS::EMR::SecurityConfiguration",
-    "resourceName": "String",
-    "searchKey": "Resources.EMRSecurityConfiguration04.Properties.SecurityConfiguration",
-    "searchValue": "",
-    "expectedValue": "Resources.EMRSecurityConfiguration04.SecurityConfiguration.EncryptionConfiguration must be defined",
-    "actualValue": "Resources.EMRSecurityConfiguration04.SecurityConfiguration.EncryptionConfiguration is undefined"
+    "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
+    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -62,14 +26,26 @@
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive9.yaml",
+    "line": 9,
+    "filename": "positive2.yaml",
     "resourceType": "AWS::EMR::SecurityConfiguration",
     "resourceName": "String",
-    "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
+    "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration",
     "searchValue": "",
-    "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
+    "expectedValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType must be defined",
+    "actualValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType is undefined"
+  },
+  {
+    "queryName": "EMR Security Configuration Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EMR::SecurityConfiguration",
+    "resourceName": "String",
+    "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption",
+    "searchValue": "",
+    "expectedValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption should be true",
+    "actualValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption is false"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -82,6 +58,18 @@
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
     "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
+  },
+  {
+    "queryName": "EMR Security Configuration Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::EMR::SecurityConfiguration",
+    "resourceName": "String",
+    "searchKey": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption",
+    "searchValue": "",
+    "expectedValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true",
+    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -99,6 +87,66 @@
     "queryName": "EMR Security Configuration Encryption Disabled",
     "severity": "MEDIUM",
     "line": 9,
+    "filename": "positive5.json",
+    "resourceType": "AWS::EMR::SecurityConfiguration",
+    "resourceName": "String",
+    "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
+    "searchValue": "",
+    "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
+    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
+  },
+  {
+    "queryName": "EMR Security Configuration Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive5.json",
+    "resourceType": "AWS::EMR::SecurityConfiguration",
+    "resourceName": "String",
+    "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption",
+    "searchValue": "",
+    "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true",
+    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false"
+  },
+  {
+    "queryName": "EMR Security Configuration Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive6.json",
+    "resourceType": "AWS::EMR::SecurityConfiguration",
+    "resourceName": "String",
+    "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType must be defined",
+    "actualValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType is undefined"
+  },
+  {
+    "queryName": "EMR Security Configuration Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive6.json",
+    "resourceType": "AWS::EMR::SecurityConfiguration",
+    "resourceName": "String",
+    "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption",
+    "searchValue": "",
+    "expectedValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption should be true",
+    "actualValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption is false"
+  },
+  {
+    "queryName": "EMR Security Configuration Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive7.json",
+    "resourceType": "AWS::EMR::SecurityConfiguration",
+    "resourceName": "String",
+    "searchKey": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
+    "searchValue": "",
+    "expectedValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
+    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
+  },
+  {
+    "queryName": "EMR Security Configuration Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
     "filename": "positive7.json",
     "resourceType": "AWS::EMR::SecurityConfiguration",
     "resourceName": "String",
@@ -110,8 +158,20 @@
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
     "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive5.json",
+    "line": 7,
+    "filename": "positive8.json",
+    "resourceType": "AWS::EMR::SecurityConfiguration",
+    "resourceName": "String",
+    "searchKey": "Resources.EMRSecurityConfiguration04.Properties.SecurityConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.EMRSecurityConfiguration04.SecurityConfiguration.EncryptionConfiguration must be defined",
+    "actualValue": "Resources.EMRSecurityConfiguration04.SecurityConfiguration.EncryptionConfiguration is undefined"
+  },
+  {
+    "queryName": "EMR Security Configuration Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive9.yaml",
     "resourceType": "AWS::EMR::SecurityConfiguration",
     "resourceName": "String",
     "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
@@ -130,65 +190,5 @@
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true",
     "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false"
-  },
-  {
-    "queryName": "EMR Security Configuration Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::EMR::SecurityConfiguration",
-    "resourceName": "String",
-    "searchKey": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption",
-    "searchValue": "",
-    "expectedValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false"
-  },
-  {
-    "queryName": "EMR Security Configuration Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::EMR::SecurityConfiguration",
-    "resourceName": "String",
-    "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption",
-    "searchValue": "",
-    "expectedValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption is false"
-  },
-  {
-    "queryName": "EMR Security Configuration Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::EMR::SecurityConfiguration",
-    "resourceName": "String",
-    "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration",
-    "searchValue": "",
-    "expectedValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType must be defined",
-    "actualValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType is undefined"
-  },
-  {
-    "queryName": "EMR Security Configuration Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EMR::SecurityConfiguration",
-    "resourceName": "String",
-    "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
-    "searchValue": "",
-    "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
-  },
-  {
-    "queryName": "EMR Security Configuration Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive7.json",
-    "resourceType": "AWS::EMR::SecurityConfiguration",
-    "resourceName": "String",
-    "searchKey": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
-    "searchValue": "",
-    "expectedValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
   }
 ]

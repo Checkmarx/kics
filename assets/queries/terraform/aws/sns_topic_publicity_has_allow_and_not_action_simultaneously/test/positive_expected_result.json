@@ -2,18 +2,6 @@
   {
     "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
     "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive2.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[s3_bucket].policy",
-    "searchValue": "",
-    "expectedValue": "module[s3_bucket].policy shouldn't have 'Effect: Allow' and 'NotAction' simultaneously",
-    "actualValue": "module[s3_bucket].policy has 'Effect: Allow' and 'NotAction' simultaneously"
-  },
-  {
-    "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
-    "severity": "MEDIUM",
     "line": 8,
     "filename": "positive1.tf",
     "resourceType": "aws_sns_topic_policy",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "aws_sns_topic_policy[positive2].policy shouldn't have 'Effect: Allow' and 'NotAction' simultaneously",
     "actualValue": "aws_sns_topic_policy[positive2].policy has 'Effect: Allow' and 'NotAction' simultaneously"
+  },
+  {
+    "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy",
+    "searchValue": "",
+    "expectedValue": "module[s3_bucket].policy shouldn't have 'Effect: Allow' and 'NotAction' simultaneously",
+    "actualValue": "module[s3_bucket].policy has 'Effect: Allow' and 'NotAction' simultaneously"
   }
 ]

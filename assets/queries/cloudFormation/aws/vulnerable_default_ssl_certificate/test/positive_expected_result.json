@@ -2,18 +2,6 @@
   {
     "queryName": "Vulnerable Default SSL Certificate",
     "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive3.json",
-    "resourceType": "AWS::CloudFront::Distribution",
-    "resourceName": "myDistribution",
-    "searchKey": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate",
-    "searchValue": "SslSupportMethod",
-    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod should be defined",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod is not defined"
-  },
-  {
-    "queryName": "Vulnerable Default SSL Certificate",
-    "severity": "MEDIUM",
     "line": 7,
     "filename": "positive1.yaml",
     "resourceType": "AWS::CloudFront::Distribution",
@@ -50,14 +38,14 @@
   {
     "queryName": "Vulnerable Default SSL Certificate",
     "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive4.json",
+    "line": 8,
+    "filename": "positive3.json",
     "resourceType": "AWS::CloudFront::Distribution",
     "resourceName": "myDistribution",
-    "searchKey": "Resources.myDistribution.Properties.DistributionConfig.CloudfrontDefaultCertificate",
-    "searchValue": "",
-    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate should be set to 'false' or not defined.",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'true'."
+    "searchKey": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate",
+    "searchValue": "MinimumProtocolVersion",
+    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion should be defined",
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion is not defined"
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
@@ -67,8 +55,20 @@
     "resourceType": "AWS::CloudFront::Distribution",
     "resourceName": "myDistribution",
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate",
-    "searchValue": "MinimumProtocolVersion",
-    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion should be defined",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion is not defined"
+    "searchValue": "SslSupportMethod",
+    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod should be defined",
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod is not defined"
+  },
+  {
+    "queryName": "Vulnerable Default SSL Certificate",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive4.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution",
+    "searchKey": "Resources.myDistribution.Properties.DistributionConfig.CloudfrontDefaultCertificate",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate should be set to 'false' or not defined.",
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'true'."
   }
 ]

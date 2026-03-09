@@ -2,8 +2,8 @@
   {
     "queryName": "IAM Access Analyzer Not Enabled",
     "severity": "LOW",
-    "line": 6,
-    "filename": "positive2.json",
+    "line": 1,
+    "filename": "positive1.tf",
     "resourceType": "n/a",
     "resourceName": "n/a",
     "searchKey": "resource",
@@ -14,8 +14,8 @@
   {
     "queryName": "IAM Access Analyzer Not Enabled",
     "severity": "LOW",
-    "line": 1,
-    "filename": "positive1.tf",
+    "line": 6,
+    "filename": "positive2.json",
     "resourceType": "n/a",
     "resourceName": "n/a",
     "searchKey": "resource",

@@ -2,18 +2,6 @@
   {
     "queryName": "Connection Between CloudFront Origin Not Encrypted",
     "severity": "MEDIUM",
-    "line": 56,
-    "filename": "positive2.json",
-    "resourceType": "AWS::CloudFront::Distribution",
-    "resourceName": "cloudfrontdistribution_2",
-    "searchKey": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy",
-    "searchValue": "",
-    "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
-    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'"
-  },
-  {
-    "queryName": "Connection Between CloudFront Origin Not Encrypted",
-    "severity": "MEDIUM",
     "line": 13,
     "filename": "positive1.yaml",
     "resourceType": "AWS::CloudFront::Distribution",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
     "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'"
+  },
+  {
+    "queryName": "Connection Between CloudFront Origin Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 56,
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_2",
+    "searchKey": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'"
   }
 ]

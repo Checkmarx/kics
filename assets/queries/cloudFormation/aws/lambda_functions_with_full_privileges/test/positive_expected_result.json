@@ -2,8 +2,8 @@
   {
     "queryName": "Lambda Functions With Full Privileges",
     "severity": "HIGH",
-    "line": 101,
-    "filename": "positive2.json",
+    "line": 76,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::Lambda::Function",
     "resourceName": "AppendItemToListFunction",
     "searchKey": "Resources.LambdaExecutionRole.Properties.Policies.PolicyDocument",
@@ -14,8 +14,8 @@
   {
     "queryName": "Lambda Functions With Full Privileges",
     "severity": "HIGH",
-    "line": 76,
-    "filename": "positive1.yaml",
+    "line": 101,
+    "filename": "positive2.json",
     "resourceType": "AWS::Lambda::Function",
     "resourceName": "AppendItemToListFunction",
     "searchKey": "Resources.LambdaExecutionRole.Properties.Policies.PolicyDocument",

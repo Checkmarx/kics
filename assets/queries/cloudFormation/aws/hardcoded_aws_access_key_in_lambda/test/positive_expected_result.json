@@ -2,26 +2,14 @@
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
     "severity": "HIGH",
-    "line": 29,
-    "filename": "positive4.json",
+    "line": 10,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::Lambda::Function",
-    "resourceName": "LambdaFunction6",
-    "searchKey": "Resources.LambdaFunction6.Properties.Environment.Variables",
+    "resourceName": "LambdaFunction3",
+    "searchKey": "Resources.LambdaFunction3.Properties.Environment.Variables",
     "searchValue": "",
-    "expectedValue": "Resources.LambdaFunction6.Properties.Environment.Variables shouldn't contain access key",
-    "actualValue": "Resources.LambdaFunction6.Properties.Environment.Variables contains access key"
-  },
-  {
-    "queryName": "Hardcoded AWS Access Key In Lambda",
-    "severity": "HIGH",
-    "line": 29,
-    "filename": "positive3.json",
-    "resourceType": "AWS::Lambda::Function",
-    "resourceName": "LambdaFunction5",
-    "searchKey": "Resources.LambdaFunction5.Properties.Environment.Variables",
-    "searchValue": "",
-    "expectedValue": "Resources.LambdaFunction5.Properties.Environment.Variables shouldn't contain access key",
-    "actualValue": "Resources.LambdaFunction5.Properties.Environment.Variables contains access key"
+    "expectedValue": "Resources.LambdaFunction3.Properties.Environment.Variables shouldn't contain access key",
+    "actualValue": "Resources.LambdaFunction3.Properties.Environment.Variables contains access key"
   },
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
@@ -38,13 +26,25 @@
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
     "severity": "HIGH",
-    "line": 10,
-    "filename": "positive1.yaml",
+    "line": 29,
+    "filename": "positive3.json",
     "resourceType": "AWS::Lambda::Function",
-    "resourceName": "LambdaFunction3",
-    "searchKey": "Resources.LambdaFunction3.Properties.Environment.Variables",
+    "resourceName": "LambdaFunction5",
+    "searchKey": "Resources.LambdaFunction5.Properties.Environment.Variables",
     "searchValue": "",
-    "expectedValue": "Resources.LambdaFunction3.Properties.Environment.Variables shouldn't contain access key",
-    "actualValue": "Resources.LambdaFunction3.Properties.Environment.Variables contains access key"
+    "expectedValue": "Resources.LambdaFunction5.Properties.Environment.Variables shouldn't contain access key",
+    "actualValue": "Resources.LambdaFunction5.Properties.Environment.Variables contains access key"
+  },
+  {
+    "queryName": "Hardcoded AWS Access Key In Lambda",
+    "severity": "HIGH",
+    "line": 29,
+    "filename": "positive4.json",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "LambdaFunction6",
+    "searchKey": "Resources.LambdaFunction6.Properties.Environment.Variables",
+    "searchValue": "",
+    "expectedValue": "Resources.LambdaFunction6.Properties.Environment.Variables shouldn't contain access key",
+    "actualValue": "Resources.LambdaFunction6.Properties.Environment.Variables contains access key"
   }
 ]

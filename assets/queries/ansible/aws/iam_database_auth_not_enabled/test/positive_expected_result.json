@@ -2,11 +2,11 @@
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
-    "line": 22,
+    "line": 9,
     "filename": "positive.yaml",
     "resourceType": "community.aws.rds_instance",
-    "resourceName": "Create a DB instance using the default AWS KMS encryption key",
-    "searchKey": "name={{Create a DB instance using the default AWS KMS encryption key}}.{{community.aws.rds_instance}}.enable_iam_database_authentication",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group}}.{{community.aws.rds_instance}}.enable_iam_database_authentication",
     "searchValue": "",
     "expectedValue": "rds_instance.enable_iam_database_authentication should be enabled",
     "actualValue": "rds_instance.enable_iam_database_authentication is disabled"
@@ -14,11 +14,11 @@
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
-    "line": 9,
+    "line": 22,
     "filename": "positive.yaml",
     "resourceType": "community.aws.rds_instance",
-    "resourceName": "create minimal aurora instance in default VPC and default subnet group",
-    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group}}.{{community.aws.rds_instance}}.enable_iam_database_authentication",
+    "resourceName": "Create a DB instance using the default AWS KMS encryption key",
+    "searchKey": "name={{Create a DB instance using the default AWS KMS encryption key}}.{{community.aws.rds_instance}}.enable_iam_database_authentication",
     "searchValue": "",
     "expectedValue": "rds_instance.enable_iam_database_authentication should be enabled",
     "actualValue": "rds_instance.enable_iam_database_authentication is disabled"

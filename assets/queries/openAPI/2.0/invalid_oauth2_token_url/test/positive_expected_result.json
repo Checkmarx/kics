@@ -2,8 +2,8 @@
   {
     "queryName": "Invalid OAuth2 Token URL (v2)",
     "severity": "MEDIUM",
-    "line": 30,
-    "filename": "positive2.json",
+    "line": 22,
+    "filename": "positive1.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "securityDefinitions.oAuth2AuthCodeNeg3.tokenUrl",
@@ -14,8 +14,8 @@
   {
     "queryName": "Invalid OAuth2 Token URL (v2)",
     "severity": "MEDIUM",
-    "line": 22,
-    "filename": "positive1.yaml",
+    "line": 30,
+    "filename": "positive2.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "securityDefinitions.oAuth2AuthCodeNeg3.tokenUrl",

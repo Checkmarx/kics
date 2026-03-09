@@ -2,8 +2,20 @@
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
-    "line": 40,
-    "filename": "positive2.yaml",
+    "line": 43,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "paths.{{/}}.parameters type is not defined%!(EXTRA string=id)"
+  },
+  {
+    "queryName": "Parameter Object With Undefined Type",
+    "severity": "INFO",
+    "line": 55,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/users/{id}}}.{{get}}.parameters.name={{id}}",
@@ -26,14 +38,14 @@
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
-    "line": 8,
-    "filename": "positive4.yaml",
+    "line": 40,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "openapi.components.parameters.name={{id}}",
+    "searchKey": "paths.{{/users/{id}}}.{{get}}.parameters.name={{id}}",
     "searchValue": "",
-    "expectedValue": "openapi.components.parameters type should be defined%!(EXTRA string=id)",
-    "actualValue": "openapi.components.parameters type is not defined%!(EXTRA string=id)"
+    "expectedValue": "paths.{{/users/{id}}}.{{get}}.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "paths.{{/users/{id}}}.{{get}}.parameters type is not defined%!(EXTRA string=id)"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
@@ -50,25 +62,13 @@
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
-    "line": 55,
-    "filename": "positive1.json",
+    "line": 8,
+    "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/users/{id}}}.{{get}}.parameters.name={{id}}",
+    "searchKey": "openapi.components.parameters.name={{id}}",
     "searchValue": "",
-    "expectedValue": "paths.{{/users/{id}}}.{{get}}.parameters type should be defined%!(EXTRA string=id)",
-    "actualValue": "paths.{{/users/{id}}}.{{get}}.parameters type is not defined%!(EXTRA string=id)"
-  },
-  {
-    "queryName": "Parameter Object With Undefined Type",
-    "severity": "INFO",
-    "line": 43,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.parameters.name={{id}}",
-    "searchValue": "",
-    "expectedValue": "paths.{{/}}.parameters type should be defined%!(EXTRA string=id)",
-    "actualValue": "paths.{{/}}.parameters type is not defined%!(EXTRA string=id)"
+    "expectedValue": "openapi.components.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "openapi.components.parameters type is not defined%!(EXTRA string=id)"
   }
 ]

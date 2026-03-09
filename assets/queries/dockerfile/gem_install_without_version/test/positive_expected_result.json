@@ -2,18 +2,6 @@
   {
     "queryName": "Gem Install Without Version",
     "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive.dockerfile",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "FROM={{alpine:3.5}}.{{RUN [\"gem\", \"install\", \"blunder\"]}}",
-    "searchValue": "",
-    "expectedValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>:<version>'",
-    "actualValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>', you should use 'gem install <gem>:<version>"
-  },
-  {
-    "queryName": "Gem Install Without Version",
-    "severity": "MEDIUM",
     "line": 3,
     "filename": "positive.dockerfile",
     "resourceType": "",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "RUN gem install bundler is 'gem install <gem>:<version>'",
     "actualValue": "RUN gem install bundler is 'gem install <gem>', you should use 'gem install <gem>:<version>"
+  },
+  {
+    "queryName": "Gem Install Without Version",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN [\"gem\", \"install\", \"blunder\"]}}",
+    "searchValue": "",
+    "expectedValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>:<version>'",
+    "actualValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>', you should use 'gem install <gem>:<version>"
   },
   {
     "queryName": "Gem Install Without Version",

@@ -2,30 +2,6 @@
   {
     "queryName": "Kinesis SSE Not Configured",
     "severity": "HIGH",
-    "line": 26,
-    "filename": "positive2.json",
-    "resourceType": "AWS::Kinesis::Stream",
-    "resourceName": "EventStream",
-    "searchKey": "Resources.EventStream2.Properties.StreamEncryption",
-    "searchValue": "EncryptionType",
-    "expectedValue": "Resources.EventStream2.Properties.StreamEncryption.EncryptionType should be set",
-    "actualValue": "Resources.EventStream2.Properties.StreamEncryption.EncryptionType is undefined"
-  },
-  {
-    "queryName": "Kinesis SSE Not Configured",
-    "severity": "HIGH",
-    "line": 39,
-    "filename": "positive2.json",
-    "resourceType": "AWS::Kinesis::Stream",
-    "resourceName": "EventStream",
-    "searchKey": "Resources.EventStream3.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.EventStream3.Properties.StreamEncryption should be set",
-    "actualValue": "Resources.EventStream3.Properties.StreamEncryption is undefined"
-  },
-  {
-    "queryName": "Kinesis SSE Not Configured",
-    "severity": "HIGH",
     "line": 8,
     "filename": "positive1.yaml",
     "resourceType": "AWS::Kinesis::Stream",
@@ -70,5 +46,29 @@
     "searchValue": "KeyId",
     "expectedValue": "Resources.EventStream1.Properties.StreamEncryption.KeyId should be set",
     "actualValue": "Resources.EventStream1.Properties.StreamEncryption.KeyId is undefined"
+  },
+  {
+    "queryName": "Kinesis SSE Not Configured",
+    "severity": "HIGH",
+    "line": 26,
+    "filename": "positive2.json",
+    "resourceType": "AWS::Kinesis::Stream",
+    "resourceName": "EventStream",
+    "searchKey": "Resources.EventStream2.Properties.StreamEncryption",
+    "searchValue": "EncryptionType",
+    "expectedValue": "Resources.EventStream2.Properties.StreamEncryption.EncryptionType should be set",
+    "actualValue": "Resources.EventStream2.Properties.StreamEncryption.EncryptionType is undefined"
+  },
+  {
+    "queryName": "Kinesis SSE Not Configured",
+    "severity": "HIGH",
+    "line": 39,
+    "filename": "positive2.json",
+    "resourceType": "AWS::Kinesis::Stream",
+    "resourceName": "EventStream",
+    "searchKey": "Resources.EventStream3.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.EventStream3.Properties.StreamEncryption should be set",
+    "actualValue": "Resources.EventStream3.Properties.StreamEncryption is undefined"
   }
 ]

@@ -3,6 +3,18 @@
     "queryName": "User with IAM Role",
     "severity": "LOW",
     "line": 3,
+    "filename": "positive1.tf",
+    "resourceType": "google_iam_policy",
+    "resourceName": "positive",
+    "searchKey": "google_iam_policy[positive].binding.role",
+    "searchValue": "",
+    "expectedValue": "google_iam_policy[positive].binding.role should not be set",
+    "actualValue": "google_iam_policy[positive].binding.role is set"
+  },
+  {
+    "queryName": "User with IAM Role",
+    "severity": "LOW",
+    "line": 3,
     "filename": "positive2.tf",
     "resourceType": "google_project_iam_binding",
     "resourceName": "positive2",
@@ -22,17 +34,5 @@
     "searchValue": "",
     "expectedValue": "google_project_iam_member[positive3].role should not be set",
     "actualValue": "google_project_iam_member[positive3].role is set"
-  },
-  {
-    "queryName": "User with IAM Role",
-    "severity": "LOW",
-    "line": 3,
-    "filename": "positive1.tf",
-    "resourceType": "google_iam_policy",
-    "resourceName": "positive",
-    "searchKey": "google_iam_policy[positive].binding.role",
-    "searchValue": "",
-    "expectedValue": "google_iam_policy[positive].binding.role should not be set",
-    "actualValue": "google_iam_policy[positive].binding.role is set"
   }
 ]

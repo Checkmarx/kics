@@ -2,18 +2,6 @@
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
-    "line": 15,
-    "filename": "positive.yaml",
-    "resourceType": "amazon.aws.s3_bucket",
-    "resourceName": "foo2",
-    "searchKey": "name={{foo2}}.{{amazon.aws.s3_bucket}}.versioning",
-    "searchValue": "",
-    "expectedValue": "s3_bucket should have versioning set to true",
-    "actualValue": "s3_bucket does has versioning set to false"
-  },
-  {
-    "queryName": "S3 Bucket Without Versioning",
-    "severity": "MEDIUM",
     "line": 3,
     "filename": "positive.yaml",
     "resourceType": "amazon.aws.s3_bucket",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "s3_bucket should have versioning set to true",
     "actualValue": "s3_bucket does not have versioning (defaults to false)"
+  },
+  {
+    "queryName": "S3 Bucket Without Versioning",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.s3_bucket",
+    "resourceName": "foo2",
+    "searchKey": "name={{foo2}}.{{amazon.aws.s3_bucket}}.versioning",
+    "searchValue": "",
+    "expectedValue": "s3_bucket should have versioning set to true",
+    "actualValue": "s3_bucket does has versioning set to false"
   }
 ]

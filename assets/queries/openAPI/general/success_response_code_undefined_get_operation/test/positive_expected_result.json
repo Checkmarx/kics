@@ -2,18 +2,6 @@
   {
     "queryName": "Success Response Code Undefined for Get Operation (v2)",
     "severity": "LOW",
-    "line": 10,
-    "filename": "positive2.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/item}}.get.responses",
-    "searchValue": "",
-    "expectedValue": "Get should have at least one successful code (200 or 202)",
-    "actualValue": "Get does not have any successful code"
-  },
-  {
-    "queryName": "Success Response Code Undefined for Get Operation (v2)",
-    "severity": "LOW",
     "line": 12,
     "filename": "positive1.json",
     "resourceType": "",
@@ -24,10 +12,10 @@
     "actualValue": "Get does not have any successful code"
   },
   {
-    "queryName": "Success Response Code Undefined for Get Operation (v3)",
+    "queryName": "Success Response Code Undefined for Get Operation (v2)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive4.yaml",
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.get.responses",
@@ -40,6 +28,18 @@
     "severity": "LOW",
     "line": 12,
     "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "Get should have at least one successful code (200 or 202)",
+    "actualValue": "Get does not have any successful code"
+  },
+  {
+    "queryName": "Success Response Code Undefined for Get Operation (v3)",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.get.responses",

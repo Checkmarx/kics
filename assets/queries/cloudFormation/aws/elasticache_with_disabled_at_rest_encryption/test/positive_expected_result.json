@@ -3,7 +3,7 @@
     "queryName": "ElastiCache With Disabled at Rest Encryption",
     "severity": "HIGH",
     "line": 10,
-    "filename": "positive5.yaml",
+    "filename": "positive1.yaml",
     "resourceType": "AWS::ElastiCache::ReplicationGroup",
     "resourceName": "ReplicationGroup",
     "searchKey": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled",
@@ -22,18 +22,6 @@
     "searchValue": "",
     "expectedValue": "Resources.MyReplicationGroup.Properties.AtRestEncryptionEnabled should be defined",
     "actualValue": "Resources.MyReplicationGroup.Properties.AtRestEncryptionEnabled is undefined"
-  },
-  {
-    "queryName": "ElastiCache With Disabled at Rest Encryption",
-    "severity": "HIGH",
-    "line": 10,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::ElastiCache::ReplicationGroup",
-    "resourceName": "ReplicationGroup",
-    "searchKey": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled",
-    "searchValue": "",
-    "expectedValue": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled should be true",
-    "actualValue": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled is false"
   },
   {
     "queryName": "ElastiCache With Disabled at Rest Encryption",
@@ -58,5 +46,17 @@
     "searchValue": "",
     "expectedValue": "Resources.MyReplicationGroup.Properties.AtRestEncryptionEnabled should be defined",
     "actualValue": "Resources.MyReplicationGroup.Properties.AtRestEncryptionEnabled is undefined"
+  },
+  {
+    "queryName": "ElastiCache With Disabled at Rest Encryption",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "ReplicationGroup",
+    "searchKey": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled should be true",
+    "actualValue": "Resources.ReplicationGroup.Properties.AtRestEncryptionEnabled is false"
   }
 ]

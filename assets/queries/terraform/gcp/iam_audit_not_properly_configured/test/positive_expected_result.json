@@ -2,23 +2,23 @@
   {
     "queryName": "IAM Audit Not Properly Configured",
     "severity": "LOW",
+    "line": 3,
+    "filename": "positive.tf",
+    "resourceType": "google_project_iam_audit_config",
+    "resourceName": "positive1",
+    "searchKey": "google_project_iam_audit_config[positive1].service",
+    "searchValue": "",
+    "expectedValue": "'service' must be 'allServices'",
+    "actualValue": "'service' is 'some_specific_service'"
+  },
+  {
+    "queryName": "IAM Audit Not Properly Configured",
+    "severity": "LOW",
     "line": 9,
     "filename": "positive.tf",
     "resourceType": "google_project_iam_audit_config",
     "resourceName": "positive1",
     "searchKey": "google_project_iam_audit_config[positive1].audit_log_config.exempted_members",
-    "searchValue": "",
-    "expectedValue": "'exempted_members' should be empty",
-    "actualValue": "'exempted_members' is not empty"
-  },
-  {
-    "queryName": "IAM Audit Not Properly Configured",
-    "severity": "LOW",
-    "line": 23,
-    "filename": "positive.tf",
-    "resourceType": "google_project_iam_audit_config",
-    "resourceName": "positive2",
-    "searchKey": "google_project_iam_audit_config[positive2].audit_log_config.exempted_members",
     "searchValue": "",
     "expectedValue": "'exempted_members' should be empty",
     "actualValue": "'exempted_members' is not empty"
@@ -38,13 +38,13 @@
   {
     "queryName": "IAM Audit Not Properly Configured",
     "severity": "LOW",
-    "line": 3,
+    "line": 23,
     "filename": "positive.tf",
     "resourceType": "google_project_iam_audit_config",
-    "resourceName": "positive1",
-    "searchKey": "google_project_iam_audit_config[positive1].service",
+    "resourceName": "positive2",
+    "searchKey": "google_project_iam_audit_config[positive2].audit_log_config.exempted_members",
     "searchValue": "",
-    "expectedValue": "'service' must be 'allServices'",
-    "actualValue": "'service' is 'some_specific_service'"
+    "expectedValue": "'exempted_members' should be empty",
+    "actualValue": "'exempted_members' is not empty"
   }
 ]

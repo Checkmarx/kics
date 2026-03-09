@@ -2,8 +2,8 @@
   {
     "queryName": "Components Example Definition Is Unused",
     "severity": "INFO",
-    "line": 27,
-    "filename": "positive2.yaml",
+    "line": 42,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.examples.{{objectExample}}",
@@ -14,8 +14,8 @@
   {
     "queryName": "Components Example Definition Is Unused",
     "severity": "INFO",
-    "line": 42,
-    "filename": "positive1.json",
+    "line": 27,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.examples.{{objectExample}}",

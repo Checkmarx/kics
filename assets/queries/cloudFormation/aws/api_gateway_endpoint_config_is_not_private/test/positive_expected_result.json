@@ -2,8 +2,8 @@
   {
     "queryName": "API Gateway Endpoint Config is Not Private",
     "severity": "MEDIUM",
-    "line": 6,
-    "filename": "positive2.json",
+    "line": 5,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::ApiGateway::RestApi",
     "resourceName": "myRestApi",
     "searchKey": "Resources.MyRestApi.Properties",
@@ -26,8 +26,8 @@
   {
     "queryName": "API Gateway Endpoint Config is Not Private",
     "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive1.yaml",
+    "line": 6,
+    "filename": "positive2.json",
     "resourceType": "AWS::ApiGateway::RestApi",
     "resourceName": "myRestApi",
     "searchKey": "Resources.MyRestApi.Properties",

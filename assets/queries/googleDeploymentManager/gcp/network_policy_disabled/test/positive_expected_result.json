@@ -2,6 +2,66 @@
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "addonsConfig",
+    "expectedValue": "'addonsConfig' should be defined and not null",
+    "actualValue": "'addonsConfig' is undefined or null"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "networkPolicy",
+    "expectedValue": "'networkPolicy' should be defined and not null",
+    "actualValue": "'networkPolicy' is undefined or null"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "addonsConfig",
+    "expectedValue": "'addonsConfig' should be defined and not null",
+    "actualValue": "'addonsConfig' is undefined or null"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.networkPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "'networkPolicy.enabled' should be true",
+    "actualValue": "'networkPolicy.enabled' is false"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive3.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "networkPolicy",
+    "expectedValue": "'networkPolicy' should be defined and not null",
+    "actualValue": "'networkPolicy' is undefined or null"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "MEDIUM",
     "line": 8,
     "filename": "positive3.yaml",
     "resourceType": "container.v1.cluster",
@@ -14,38 +74,14 @@
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive3.yaml",
-    "resourceType": "container.v1.cluster",
-    "resourceName": "cluster",
-    "searchKey": "resources.name={{cluster}}.properties",
-    "searchValue": "networkPolicy",
-    "expectedValue": "'networkPolicy' should be defined and not null",
-    "actualValue": "'networkPolicy' is undefined or null"
-  },
-  {
-    "queryName": "Network Policy Disabled",
-    "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive2.yaml",
+    "filename": "positive4.yaml",
     "resourceType": "container.v1.cluster",
     "resourceName": "cluster",
     "searchKey": "resources.name={{cluster}}.properties.networkPolicy.enabled",
     "searchValue": "",
     "expectedValue": "'networkPolicy.enabled' should be true",
     "actualValue": "'networkPolicy.enabled' is false"
-  },
-  {
-    "queryName": "Network Policy Disabled",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive2.yaml",
-    "resourceType": "container.v1.cluster",
-    "resourceName": "cluster",
-    "searchKey": "resources.name={{cluster}}.properties",
-    "searchValue": "addonsConfig",
-    "expectedValue": "'addonsConfig' should be defined and not null",
-    "actualValue": "'addonsConfig' is undefined or null"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -58,41 +94,5 @@
     "searchValue": "",
     "expectedValue": "'addonsConfig.networkPolicyConfig.disabled' should be false",
     "actualValue": "'addonsConfig.networkPolicyConfig.disabled' is true"
-  },
-  {
-    "queryName": "Network Policy Disabled",
-    "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive4.yaml",
-    "resourceType": "container.v1.cluster",
-    "resourceName": "cluster",
-    "searchKey": "resources.name={{cluster}}.properties.networkPolicy.enabled",
-    "searchValue": "",
-    "expectedValue": "'networkPolicy.enabled' should be true",
-    "actualValue": "'networkPolicy.enabled' is false"
-  },
-  {
-    "queryName": "Network Policy Disabled",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive1.yaml",
-    "resourceType": "container.v1.cluster",
-    "resourceName": "cluster",
-    "searchKey": "resources.name={{cluster}}.properties",
-    "searchValue": "addonsConfig",
-    "expectedValue": "'addonsConfig' should be defined and not null",
-    "actualValue": "'addonsConfig' is undefined or null"
-  },
-  {
-    "queryName": "Network Policy Disabled",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive1.yaml",
-    "resourceType": "container.v1.cluster",
-    "resourceName": "cluster",
-    "searchKey": "resources.name={{cluster}}.properties",
-    "searchValue": "networkPolicy",
-    "expectedValue": "'networkPolicy' should be defined and not null",
-    "actualValue": "'networkPolicy' is undefined or null"
   }
 ]

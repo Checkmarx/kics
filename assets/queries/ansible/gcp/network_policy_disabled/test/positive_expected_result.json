@@ -2,26 +2,14 @@
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
-    "line": 96,
+    "line": 3,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_container_cluster",
-    "resourceName": "create a cluster5",
-    "searchKey": "name={{create a cluster5}}.{{google.cloud.gcp_container_cluster}}.addons_config.network_policy_config.disabled",
-    "searchValue": "",
-    "expectedValue": "gcp_container_cluster.addons_config.network_policy_config.disabled should be set to false",
-    "actualValue": "gcp_container_cluster.addons_config.network_policy_config.disabled is true"
-  },
-  {
-    "queryName": "Network Policy Disabled",
-    "severity": "MEDIUM",
-    "line": 73,
-    "filename": "positive.yaml",
-    "resourceType": "google.cloud.gcp_container_cluster",
-    "resourceName": "create a cluster4",
-    "searchKey": "name={{create a cluster4}}.{{google.cloud.gcp_container_cluster}}.network_policy.enabled",
-    "searchValue": "",
-    "expectedValue": "gcp_container_cluster.network_policy.enabled should be true",
-    "actualValue": "gcp_container_cluster.network_policy.enabled is false"
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "network_policy",
+    "expectedValue": "gcp_container_cluster.network_policy should be defined",
+    "actualValue": "gcp_container_cluster.network_policy is undefined"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -50,13 +38,25 @@
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
-    "line": 3,
+    "line": 73,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_container_cluster",
-    "resourceName": "create a cluster1",
-    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
-    "searchValue": "network_policy",
-    "expectedValue": "gcp_container_cluster.network_policy should be defined",
-    "actualValue": "gcp_container_cluster.network_policy is undefined"
+    "resourceName": "create a cluster4",
+    "searchKey": "name={{create a cluster4}}.{{google.cloud.gcp_container_cluster}}.network_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.network_policy.enabled should be true",
+    "actualValue": "gcp_container_cluster.network_policy.enabled is false"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "MEDIUM",
+    "line": 96,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster5",
+    "searchKey": "name={{create a cluster5}}.{{google.cloud.gcp_container_cluster}}.addons_config.network_policy_config.disabled",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.addons_config.network_policy_config.disabled should be set to false",
+    "actualValue": "gcp_container_cluster.addons_config.network_policy_config.disabled is true"
   }
 ]

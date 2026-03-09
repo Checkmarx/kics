@@ -2,6 +2,18 @@
   {
     "queryName": "ECR Image Tag Not Immutable",
     "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository3.Properties.ImageTagMutability",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository3.Properties.ImageTagMutability should be 'IMMUTABLE'",
+    "actualValue": "Resources.MyRepository3.Properties.ImageTagMutability is 'MUTABLE'"
+  },
+  {
+    "queryName": "ECR Image Tag Not Immutable",
+    "severity": "MEDIUM",
     "line": 27,
     "filename": "positive1.yaml",
     "resourceType": "AWS::ECR::Repository",
@@ -34,17 +46,5 @@
     "searchValue": "",
     "expectedValue": "Resources.MyRepository6.Properties.ImageTagMutability should be defined and not null",
     "actualValue": "Resources.MyRepository6.Properties.ImageTagMutability is undefined or null"
-  },
-  {
-    "queryName": "ECR Image Tag Not Immutable",
-    "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::ECR::Repository",
-    "resourceName": "test-repository",
-    "searchKey": "Resources.MyRepository3.Properties.ImageTagMutability",
-    "searchValue": "",
-    "expectedValue": "Resources.MyRepository3.Properties.ImageTagMutability should be 'IMMUTABLE'",
-    "actualValue": "Resources.MyRepository3.Properties.ImageTagMutability is 'MUTABLE'"
   }
 ]

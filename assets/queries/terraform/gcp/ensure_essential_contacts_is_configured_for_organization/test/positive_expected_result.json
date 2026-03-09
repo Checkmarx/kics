@@ -3,18 +3,6 @@
     "queryName": "Beta - Ensure Essential Contacts Is Configured For Organization",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive2.tf",
-    "resourceType": "google_essential_contacts_contact",
-    "resourceName": "positive2",
-    "searchKey": "google_essential_contacts_contact[positive2].notification_category_subscription_field",
-    "searchValue": "",
-    "expectedValue": "'notification_category_subscription_field' should have 'ALL' value or all 'LEGAL', 'SUSPENSION', 'TECHNICAL' and 'SECURITY' values defined",
-    "actualValue": "'notification_category_subscription_field' does not have 'ALL' value or all 'LEGAL', 'SUSPENSION', 'TECHNICAL' and 'SECURITY' values defined"
-  },
-  {
-    "queryName": "Beta - Ensure Essential Contacts Is Configured For Organization",
-    "severity": "LOW",
-    "line": 10,
     "filename": "positive1.tf",
     "resourceType": "google_essential_contacts_contact",
     "resourceName": "positive1",
@@ -26,11 +14,11 @@
   {
     "queryName": "Beta - Ensure Essential Contacts Is Configured For Organization",
     "severity": "LOW",
-    "line": 6,
-    "filename": "positive4.tf",
+    "line": 10,
+    "filename": "positive2.tf",
     "resourceType": "google_essential_contacts_contact",
-    "resourceName": "positive4",
-    "searchKey": "google_essential_contacts_contact[positive4].notification_category_subscription_field",
+    "resourceName": "positive2",
+    "searchKey": "google_essential_contacts_contact[positive2].notification_category_subscription_field",
     "searchValue": "",
     "expectedValue": "'notification_category_subscription_field' should have 'ALL' value or all 'LEGAL', 'SUSPENSION', 'TECHNICAL' and 'SECURITY' values defined",
     "actualValue": "'notification_category_subscription_field' does not have 'ALL' value or all 'LEGAL', 'SUSPENSION', 'TECHNICAL' and 'SECURITY' values defined"
@@ -43,6 +31,18 @@
     "resourceType": "google_essential_contacts_contact",
     "resourceName": "positive3",
     "searchKey": "google_essential_contacts_contact[positive3].notification_category_subscription_field",
+    "searchValue": "",
+    "expectedValue": "'notification_category_subscription_field' should have 'ALL' value or all 'LEGAL', 'SUSPENSION', 'TECHNICAL' and 'SECURITY' values defined",
+    "actualValue": "'notification_category_subscription_field' does not have 'ALL' value or all 'LEGAL', 'SUSPENSION', 'TECHNICAL' and 'SECURITY' values defined"
+  },
+  {
+    "queryName": "Beta - Ensure Essential Contacts Is Configured For Organization",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive4.tf",
+    "resourceType": "google_essential_contacts_contact",
+    "resourceName": "positive4",
+    "searchKey": "google_essential_contacts_contact[positive4].notification_category_subscription_field",
     "searchValue": "",
     "expectedValue": "'notification_category_subscription_field' should have 'ALL' value or all 'LEGAL', 'SUSPENSION', 'TECHNICAL' and 'SECURITY' values defined",
     "actualValue": "'notification_category_subscription_field' does not have 'ALL' value or all 'LEGAL', 'SUSPENSION', 'TECHNICAL' and 'SECURITY' values defined"

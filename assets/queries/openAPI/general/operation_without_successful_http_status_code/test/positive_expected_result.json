@@ -1,29 +1,5 @@
 [
   {
-    "queryName": "Operation Without Successful HTTP Status Code (v2)",
-    "severity": "INFO",
-    "line": 12,
-    "filename": "positive3.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.{{get}}.responses",
-    "searchValue": "",
-    "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined"
-  },
-  {
-    "queryName": "Operation Without Successful HTTP Status Code (v2)",
-    "severity": "INFO",
-    "line": 10,
-    "filename": "positive4.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.{{get}}.responses",
-    "searchValue": "",
-    "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined"
-  },
-  {
     "queryName": "Operation Without Successful HTTP Status Code (v3)",
     "severity": "INFO",
     "line": 12,
@@ -40,6 +16,30 @@
     "severity": "INFO",
     "line": 10,
     "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined"
+  },
+  {
+    "queryName": "Operation Without Successful HTTP Status Code (v2)",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined"
+  },
+  {
+    "queryName": "Operation Without Successful HTTP Status Code (v2)",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{get}}.responses",

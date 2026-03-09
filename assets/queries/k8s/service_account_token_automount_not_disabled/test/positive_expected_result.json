@@ -2,6 +2,30 @@
   {
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.automountServiceAccountToken should be defined and set to false",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.automountServiceAccountToken is undefined"
+  },
+  {
+    "queryName": "Service Account Token Automount Not Disabled",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security.context.demo",
+    "searchKey": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken should be set to false",
+    "actualValue": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken is true"
+  },
+  {
+    "queryName": "Service Account Token Automount Not Disabled",
+    "severity": "MEDIUM",
     "line": 54,
     "filename": "positive1.yaml",
     "resourceType": "Configuration",
@@ -15,18 +39,6 @@
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive1.yaml",
-    "resourceType": "Pod",
-    "resourceName": "security-context-demo",
-    "searchKey": "metadata.name={{security-context-demo}}.spec",
-    "searchValue": "Pod",
-    "expectedValue": "metadata.name={{security-context-demo}}.spec.automountServiceAccountToken should be defined and set to false",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.automountServiceAccountToken is undefined"
-  },
-  {
-    "queryName": "Service Account Token Automount Not Disabled",
-    "severity": "MEDIUM",
-    "line": 5,
     "filename": "positive2.yaml",
     "resourceType": "ServiceAccount",
     "resourceName": "redistest-sa",
@@ -34,17 +46,5 @@
     "searchValue": "",
     "expectedValue": "metadata.name={{redistest-sa}}.automountServiceAccountToken should be set to false",
     "actualValue": "metadata.name={{redistest-sa}}.automountServiceAccountToken is true"
-  },
-  {
-    "queryName": "Service Account Token Automount Not Disabled",
-    "severity": "MEDIUM",
-    "line": 28,
-    "filename": "positive1.yaml",
-    "resourceType": "Pod",
-    "resourceName": "security.context.demo",
-    "searchKey": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken",
-    "searchValue": "Pod",
-    "expectedValue": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken should be set to false",
-    "actualValue": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken is true"
   }
 ]

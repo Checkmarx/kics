@@ -1,0 +1,4467 @@
+[
+  {
+    "id": "1819ac03-542b-4026-976b-f37addd59f3b",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws/ebs_volume_not_attached_to_instances/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws/ebs_volume_not_attached_to_instances/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 54,
+      "files_parsed": 4,
+      "lines_parsed": 54,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:32:46.800174148Z",
+      "end": "2026-03-09T09:32:47.420617652Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws/ebs_volume_not_attached_to_instances/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "f6d299d2-21eb-41cc-b1e1-fe12d857500b",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws/vpc_flowlogs_disabled/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws/vpc_flowlogs_disabled/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 280,
+      "files_parsed": 4,
+      "lines_parsed": 280,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:39:19.582140442Z",
+      "end": "2026-03-09T09:39:19.998238133Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws/vpc_flowlogs_disabled/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "124b173b-e06d-48a6-8acd-f889443d97a4",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/cassandra/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/cassandra/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 3,
+      "lines_scanned": 31,
+      "files_parsed": 3,
+      "lines_parsed": 31,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T09:39:33.621317947Z",
+      "end": "2026-03-09T09:39:34.057060952Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/cassandra/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS Cassandra",
+          "query_id": "124b173b-e06d-48a6-8acd-f889443d97a4",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Cassandra resources found. Amazon Cassandra is an open-source NoSQL database designed to store data for applications that require fast read and write performance",
+          "description_id": "bd2db07c",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/cassandra/test/positive1.yaml",
+              "similarity_id": "cf7a5253ec063fc07a17492a1094d19cb8ee6588a487e1489c94badcd5786d22",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.myNewTable1",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"myNewTable1\",\"resource_type\":\"AWS::Cassandra::Table\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/cassandra/test/positive2.yaml",
+              "similarity_id": "c8f4328271ad118dee81cc8a6ef4e381719cbd0625966224dd3b1c961c3ecd6b",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.myNewTable2",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"myNewTable2\",\"resource_type\":\"AWS::Cassandra::Table\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "4e67c0ae-38a0-47f4-a50c-f0c9b75826df",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/dynamo/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/dynamo/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 6,
+      "lines_scanned": 189,
+      "files_parsed": 6,
+      "lines_parsed": 189,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 5
+      },
+      "total_counter": 0,
+      "total_bom_resources": 5,
+      "start": "2026-03-09T09:39:35.628416208Z",
+      "end": "2026-03-09T09:39:36.14340248Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/dynamo/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS DynamoDB",
+          "query_id": "4e67c0ae-38a0-47f4-a50c-f0c9b75826df",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of DynamoDB resources found. Amazon DynamoDB is a fully managed, serverless, key-value NoSQL database designed to run high-performance applications at any scale.",
+          "description_id": "b0d40495",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/dynamo/test/positive4.yaml",
+              "similarity_id": "d3e3d7f0f6b1a5c83c8dd49daefd3354b11058b71bb71d40caab6461af7766ed",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DynamoDBOnDemandTable2",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"test4\",\"resource_type\":\"AWS::DynamoDB::Table\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/dynamo/test/positive2.yaml",
+              "similarity_id": "dd7b50c6ab79b9db23badd92b800ca8941a9f7f9dee2958b80223e53f48392fb",
+              "line": 27,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DynamoDBOnDemandTable2",
+              "search_line": 27,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"test2\",\"resource_type\":\"AWS::DynamoDB::Table\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/dynamo/test/positive1.yaml",
+              "similarity_id": "cd564d683868c3440f871016300a0c991a2798823d61328bbd4696ec944a3c21",
+              "line": 27,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DynamoDBOnDemandTable2",
+              "search_line": 27,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"test\",\"resource_type\":\"AWS::DynamoDB::Table\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/dynamo/test/positive5.yaml",
+              "similarity_id": "20646266ea6e73c87cdfa62ce4d0bc34da4ef8ca82c6196698659f4c10d44171",
+              "line": 27,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DynamoDBOnDemandTable2",
+              "search_line": 27,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"test\",\"resource_type\":\"AWS::DynamoDB::Table\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/dynamo/test/positive3.yaml",
+              "similarity_id": "5908df1c2e0f1eabea2d89ec9efe40f40e6341c7cc0084f2f13cc33661897f98",
+              "line": 27,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DynamoDBOnDemandTable2",
+              "search_line": 27,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"test3\",\"resource_type\":\"AWS::DynamoDB::Table\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "0b0556ea-9cd9-476f-862e-20679dda752b",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/ebs/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/ebs/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 128,
+      "files_parsed": 8,
+      "lines_parsed": 128,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 6
+      },
+      "total_counter": 0,
+      "total_bom_resources": 6,
+      "start": "2026-03-09T09:39:37.856769268Z",
+      "end": "2026-03-09T09:39:38.278517537Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/ebs/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS EBS",
+          "query_id": "0b0556ea-9cd9-476f-862e-20679dda752b",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of EBS resources found. Amazon Elastic Block Store (Amazon EBS) is an easy-to-use, scalable, high-performance block-storage service designed for Amazon Elastic Compute Cloud (Amazon EC2).",
+          "description_id": "6869b929",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/ebs/test/positive2.json",
+              "similarity_id": "35dbc5db0a8c9a30ac70ed0d652028b9a0cae32464fd3561cc0f9e2314ada1fe",
+              "line": 5,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.NewVolume",
+              "search_line": 5,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"NewVolume\",\"resource_type\":\"AWS::EC2::Volume\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/ebs/test/positive6.json",
+              "similarity_id": "948b6104f5bde62901e2c7823f1e7656d8cd444d279263b357d33020b44d7762",
+              "line": 5,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.NewVolume",
+              "search_line": 5,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"NewVolume\",\"resource_type\":\"AWS::EC2::Volume\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/ebs/test/positive5.yaml",
+              "similarity_id": "b303390a57eff74d8d91f38594a0bbd59c590fda69f43cf5f0e31c5ce41dd889",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.NewVolume",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"NewVolume\",\"resource_type\":\"AWS::EC2::Volume\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/ebs/test/positive3.yaml",
+              "similarity_id": "83658baa6ae1329b12fe5f5afe67d04ae1bf999a8b747f42d275eccd80b56dcd",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.NewVolume",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"NewVolume\",\"resource_type\":\"AWS::EC2::Volume\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/ebs/test/positive1.yaml",
+              "similarity_id": "9f9e21fbce603b2a82f565acd4d7d51064f79a4f979ed5f3118217739f537386",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.NewVolume",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"NewVolume\",\"resource_type\":\"AWS::EC2::Volume\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/ebs/test/positive4.json",
+              "similarity_id": "06bd775bbdbf876bbdd7f312907caa7a89a84bf295b851cd554e31ceff3f6881",
+              "line": 5,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.NewVolume",
+              "search_line": 5,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"NewVolume\",\"resource_type\":\"AWS::EC2::Volume\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "ef05a925-8568-4054-8ff1-f5ba82631c16",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/efs/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/efs/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 6,
+      "lines_scanned": 141,
+      "files_parsed": 6,
+      "lines_parsed": 141,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 4
+      },
+      "total_counter": 0,
+      "total_bom_resources": 4,
+      "start": "2026-03-09T09:39:39.633334188Z",
+      "end": "2026-03-09T09:39:39.95586813Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/efs/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS EFS",
+          "query_id": "ef05a925-8568-4054-8ff1-f5ba82631c16",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of EFS resources found. Amazon Elastic File System (Amazon EFS) automatically grows and shrinks as you add and remove files with no need for management or provisioning.",
+          "description_id": "f6d4e4b8",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/efs/test/positive1.yaml",
+              "similarity_id": "15f1867317e27cb1d592c3004de6a519396c9cc38b18c5aefe95c97353b7f6d0",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.FileSystemResource",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"TestFileSystem\",\"resource_type\":\"AWS::EFS::FileSystem\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/efs/test/positive3.yaml",
+              "similarity_id": "08902adb0230f388141eea24c1490a30ad5ffb029bbfc2af4a9ed5acf5079ab5",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.FileSystemResource",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"TestFileSystem\",\"resource_type\":\"AWS::EFS::FileSystem\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/efs/test/positive2.json",
+              "similarity_id": "eec590ffb1d8a01adb3312249a32b804fceac800ddfba132599977e415e543e4",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.FileSystemResource",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"TestFileSystem\",\"resource_type\":\"AWS::EFS::FileSystem\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/efs/test/positive4.json",
+              "similarity_id": "f22820832038022e83ccb7e551dfbe556a5e4fee9ac50f127b95cae13c03a566",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.FileSystemResource",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"TestFileSystem\",\"resource_type\":\"AWS::EFS::FileSystem\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c689f51b-9203-43b3-9d8b-caed123f706c",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/elasticache/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/elasticache/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 5,
+      "lines_scanned": 101,
+      "files_parsed": 5,
+      "lines_parsed": 101,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 3
+      },
+      "total_counter": 0,
+      "total_bom_resources": 3,
+      "start": "2026-03-09T09:39:41.152428023Z",
+      "end": "2026-03-09T09:39:41.566123528Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/elasticache/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS Elasticache",
+          "query_id": "c689f51b-9203-43b3-9d8b-caed123f706c",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Elasticache resources found. Amazon ElastiCache is a fully managed, in-memory caching service supporting flexible, real-time use cases. You can use ElastiCache for caching, which accelerates application and database performance, or as a primary data store for use cases that don't require durability like session stores, gaming leaderboards, streaming, and analytics. ElastiCache is compatible with Redis and Memcached.",
+          "description_id": "deea2b5c",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/elasticache/test/positive2.json",
+              "similarity_id": "9a857b97727630406960519cb8fcd30e370d5bc6f24a9ceede66d8b200a28b56",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.ElasticacheCluster",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"unknown\",\"resource_engine\":\"memcached\",\"resource_name\":\"ElasticacheCluster\",\"resource_type\":\"AWS::ElastiCache::CacheCluster\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/elasticache/test/positive1.yaml",
+              "similarity_id": "0951669f6e87b1ca8a164c4c71fb3ff4a1921745ad6c426f3456958c93bdb4b6",
+              "line": 2,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.ElasticacheCluster",
+              "search_line": 2,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"at least one security group associated with the elasticache is unrestricted\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"unknown\",\"resource_engine\":\"memcached\",\"resource_name\":\"ElasticacheCluster\",\"resource_type\":\"AWS::ElastiCache::CacheCluster\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/elasticache/test/positive3.yaml",
+              "similarity_id": "8564117e4ff4464bd3b9b59fd2ead8070591acbcdf04e804cc3238968cce4cd3",
+              "line": 2,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.ElasticacheCluster",
+              "search_line": 2,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"all security groups associated with the elasticache are restricted\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"unknown\",\"resource_engine\":\"memcached\",\"resource_name\":\"ElasticacheCluster\",\"resource_type\":\"AWS::ElastiCache::CacheCluster\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "d53323be-dde6-4457-9a43-42df737e71d2",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/kinesis/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/kinesis/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 48,
+      "files_parsed": 4,
+      "lines_parsed": 48,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T09:39:42.915771229Z",
+      "end": "2026-03-09T09:39:43.668867078Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/kinesis/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS Kinesis",
+          "query_id": "d53323be-dde6-4457-9a43-42df737e71d2",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Kinesis resources found. Amazon Kinesis is a real-time streaming service that provides collection, processing, and analysis of video and data streams in real-time",
+          "description_id": "4b8f3b90",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/kinesis/test/positive1.yaml",
+              "similarity_id": "a510b0c07f025705029a3f761b89b73d66246f2be5914c5b94d21d7fcffae3f6",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.MyStream",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Streaming\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"MyKinesisStream1\",\"resource_type\":\"AWS::Kinesis::Stream\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/kinesis/test/positive2.json",
+              "similarity_id": "9678dcd7f0118bae0b4a369ecb1d95ce6da485bb261fed7c1fcfd524c8882910",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.MyStream2",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Streaming\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"MyKinesisStream2\",\"resource_type\":\"AWS::Kinesis::Stream\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "209189f3-c879-48a7-9703-fbcfa96d0cef",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/mq/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/mq/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 5,
+      "lines_scanned": 104,
+      "files_parsed": 5,
+      "lines_parsed": 104,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 3
+      },
+      "total_counter": 0,
+      "total_bom_resources": 3,
+      "start": "2026-03-09T09:39:45.263899826Z",
+      "end": "2026-03-09T09:39:45.651336799Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/mq/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS MQ",
+          "query_id": "209189f3-c879-48a7-9703-fbcfa96d0cef",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of MQ resources found. Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers on AWS.",
+          "description_id": "93a9e162",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/mq/test/positive2.json",
+              "similarity_id": "f953fb95af7da6488a8bcd76d56044700c9bd942df83b1ed0881eb9437cfe507",
+              "line": 5,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.BasicBroker2",
+              "search_line": 5,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Queues\",\"resource_encryption\":\"unencrypted\",\"resource_engine\":\"ActiveMQ\",\"resource_name\":\"MyBasicBroker\",\"resource_type\":\"AWS::AmazonMQ::Broker\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/mq/test/positive3.yaml",
+              "similarity_id": "86d1a91df9e5c5e298df8ef319e60b3b6b8028959b23a090e3c7981451e3544a",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.BasicBroker",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Queues\",\"resource_encryption\":\"encrypted\",\"resource_engine\":\"ActiveMQ\",\"resource_name\":\"MyBasicBroker\",\"resource_type\":\"AWS::AmazonMQ::Broker\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/mq/test/positive1.yaml",
+              "similarity_id": "087f6e3fe1bf6c289cf195331f3de394a07caa7fd41b2c144b3cfa83d3972cf2",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.BasicBroker",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Queues\",\"resource_encryption\":\"encrypted\",\"resource_engine\":\"ActiveMQ\",\"resource_name\":\"MyBasicBroker\",\"resource_type\":\"AWS::AmazonMQ::Broker\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "2730c169-51d7-4ae7-99b5-584379eff1bb",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/msk/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/msk/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 126,
+      "files_parsed": 4,
+      "lines_parsed": 126,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T09:39:46.903221305Z",
+      "end": "2026-03-09T09:39:47.223442445Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/msk/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS MSK",
+          "query_id": "2730c169-51d7-4ae7-99b5-584379eff1bb",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of MSK resources specified. Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables you to build and run applications that use Apache Kafka to process streaming data.",
+          "description_id": "7413f967",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/msk/test/positive2.json",
+              "similarity_id": "2f8974366a0bd8435b2f2d2fd972d85900a9a92ee5b50f8ff59c4ce1b6e6558d",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.TestCluster3",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Streaming\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"ClusterWithAllProperties\",\"resource_type\":\"AWS::MSK::Cluster\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/msk/test/positive1.yaml",
+              "similarity_id": "65e20ebdc816a38212a1a278e0af6a47bf5bc874d1fee76c8d9fd453d8ebd1ec",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.TestCluster",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Streaming\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"ClusterWithAllProperties\",\"resource_type\":\"AWS::MSK::Cluster\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "6ef03ff6-a2bd-483c-851f-631f248bc0ea",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/rds/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/rds/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 276,
+      "files_parsed": 8,
+      "lines_parsed": 276,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 9
+      },
+      "total_counter": 0,
+      "total_bom_resources": 9,
+      "start": "2026-03-09T09:39:48.523869356Z",
+      "end": "2026-03-09T09:39:48.887913661Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/rds/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS RDS",
+          "query_id": "6ef03ff6-a2bd-483c-851f-631f248bc0ea",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of RDS resources found. Amazon Relational Database Service (Amazon RDS) is a collection of managed services that makes it simple to set up, operate, and scale databases in the cloud.",
+          "description_id": "77215b57",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/rds/test/positive7.yaml",
+              "similarity_id": "b1d4b85126b2e1ffbcfc01d2815a41dd1516ab57d60f58632239dd5aa624986a",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DBInstanceSample5",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_engine\":\"aurora\",\"resource_name\":\"DBInstanceSample5\",\"resource_type\":\"AWS::RDS::DBInstance\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/rds/test/positive3.json",
+              "similarity_id": "41755ce4875227ad626298119043c7bcb4ed3c452b893b8b051e480b62180c3e",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DBInstanceRefSample3",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_engine\":\"oracle-ee\",\"resource_name\":\"DBInstanceRefSample3\",\"resource_type\":\"AWS::RDS::DBInstance\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/rds/test/positive2.json",
+              "similarity_id": "5acc77c55ca85fdc8fdd8417c47da1565e786741a9a3707ebbe2f4cb1a419bfc",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DBInstanceSample2",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_engine\":\"oracle-ee\",\"resource_name\":\"DBInstanceSample2\",\"resource_type\":\"AWS::RDS::DBInstance\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/rds/test/positive5.yaml",
+              "similarity_id": "ebc5f4c292f404c8dc54917aa4a26d0bc491a68d8551389aa10966ded9aeee36",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DBInstanceSample5",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_engine\":\"aurora\",\"resource_name\":\"DBInstanceSample5\",\"resource_type\":\"AWS::RDS::DBInstance\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/rds/test/positive4.yaml",
+              "similarity_id": "93c5a73659ce8c5ab856fa6bf2e58e5a80b8b9323ee43658c1890f0b44bd9c55",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DBInstanceSample4",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_engine\":\"aurora\",\"resource_name\":\"DBInstanceSample4\",\"resource_type\":\"AWS::RDS::DBInstance\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/rds/test/positive6.yaml",
+              "similarity_id": "e72b6cf611ed31aca306e0bbafbd54add9303b4c1e841d1302a9972a387d3913",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DBInstanceSample6",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_engine\":\"aurora\",\"resource_name\":\"DBInstanceSample6\",\"resource_type\":\"AWS::RDS::DBInstance\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/rds/test/positive1.json",
+              "similarity_id": "88885662c6157f23d2f26d709d1cee31d686be67c6c95278a809ea7ac1a6ff4b",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DBInstanceSample1",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_engine\":\"oracle-ee\",\"resource_name\":\"DBInstanceSample1\",\"resource_type\":\"AWS::RDS::DBInstance\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/rds/test/positive3.json",
+              "similarity_id": "bb3a6a778d62442e0c43eee6b61a368b20129e06b6ba0d6d1f264f0e5a2aa6a6",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DBInstanceSample3",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_engine\":\"oracle-ee\",\"resource_name\":\"DBInstanceSample3\",\"resource_type\":\"AWS::RDS::DBInstance\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/rds/test/positive2.json",
+              "similarity_id": "7fc5daf0204755894d5b3fbb5e06ea86fcbe622acea2a10d756dd69e9f8c299e",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.DBInstanceRefSample2",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_engine\":\"oracle-ee\",\"resource_name\":\"DBInstanceRefSample2\",\"resource_type\":\"AWS::RDS::DBInstance\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "b5d6a2e0-8f15-4664-bd5b-68ec5c9bab83",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/s3_bucket/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/s3_bucket/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 91,
+      "files_parsed": 4,
+      "lines_parsed": 91,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T09:39:50.286676834Z",
+      "end": "2026-03-09T09:39:50.62670615Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/s3_bucket/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS S3 Buckets",
+          "query_id": "b5d6a2e0-8f15-4664-bd5b-68ec5c9bab83",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.",
+          "description_id": "a46851fb",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/s3_bucket/test/positive1.yaml",
+              "similarity_id": "83b05c898afe18c5d86fdc17d01687a9018c5245083b668e2ce3ff5ae7216dec",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.MyBucket",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"BucketOwnerFullControl\",\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"jenkins-artifacts\",\"resource_type\":\"AWS::S3::Bucket\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/s3_bucket/test/positive2.json",
+              "similarity_id": "f39d35e153d84d94dc27ca59ec732bd3a8450a9d87c8aef49acf5e670c8add2f",
+              "line": 5,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.JenkinsArtifacts03",
+              "search_line": 5,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"BucketOwnerFullControl\",\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"jenkins-artifacts\",\"resource_type\":\"AWS::S3::Bucket\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "42e7dca3-8cce-4325-8df0-108888259136",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/sns/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/sns/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 67,
+      "files_parsed": 4,
+      "lines_parsed": 67,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T09:39:52.027735449Z",
+      "end": "2026-03-09T09:39:52.393462787Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/sns/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS SNS",
+          "query_id": "42e7dca3-8cce-4325-8df0-108888259136",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of SNS resources specified. Amazon Simple Notification Service (Amazon SNS) is a fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication.",
+          "description_id": "3cd7a815",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/sns/test/positive2.json",
+              "similarity_id": "59cfb12ee6a5d78a93dfa26e43507b9061ff2afc2184995d0a0fb557aa5b0cdf",
+              "line": 5,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.SnsTopic",
+              "search_line": 5,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"alarm-action\",\"resource_type\":\"AWS::SNS::Topic\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/sns/test/positive1.yaml",
+              "similarity_id": "3fbfe5c8466f3dc9a882014bdcb855a004187784fd714fafbfa0208ead65cecd",
+              "line": 4,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.SnsTopic",
+              "search_line": 4,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"alarm-action\",\"resource_type\":\"AWS::SNS::Topic\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "59a849c2-1127-4023-85a5-ef906dcd458c",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/sqs/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/sqs/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 56,
+      "files_parsed": 4,
+      "lines_parsed": 56,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T09:39:53.699817733Z",
+      "end": "2026-03-09T09:39:54.022150513Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws_bom/sqs/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS SQS",
+          "query_id": "59a849c2-1127-4023-85a5-ef906dcd458c",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "CloudFormation",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of SQS resources specified. Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.",
+          "description_id": "c57e306b",
+          "files": [
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/sqs/test/positive2.json",
+              "similarity_id": "149b9a5e9a4b7ebd26cdd1cafe08cdb343a3b5cd46e6581a0e5c4f68b4b134fc",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.MyQueue",
+              "search_line": 3,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Queues\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"SampleQueue\",\"resource_type\":\"AWS::SQS::Queue\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/cloudFormation/aws_bom/sqs/test/positive1.yaml",
+              "similarity_id": "5532a7f3ccb0bdbc1d4dcb9c90830482fb8eeab451661eca80e4a0221df51b97",
+              "line": 2,
+              "issue_type": "BillOfMaterials",
+              "search_key": "Resources.MyQueue",
+              "search_line": 2,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Queues\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"SampleQueue\",\"resource_type\":\"AWS::SQS::Queue\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "268c65a8-58ad-43e4-9019-1a9bbc56749f",
+    "test_path": "/home/ricardo/kics/assets/queries/googleDeploymentManager/gcp_bom/pd/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/googleDeploymentManager/gcp_bom/pd/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 58,
+      "files_parsed": 2,
+      "lines_parsed": 58,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 5
+      },
+      "total_counter": 0,
+      "total_bom_resources": 5,
+      "start": "2026-03-09T09:43:58.843023518Z",
+      "end": "2026-03-09T09:43:59.167793482Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/googleDeploymentManager/gcp_bom/pd/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - GCP PD",
+          "query_id": "268c65a8-58ad-43e4-9019-1a9bbc56749f",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "GoogleDeploymentManager",
+          "cwe": "200",
+          "risk_score": "0.0",
+          "cloud_provider": "GCP",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Persistent Disk resources found. Persistent Disk is Google's local durable storage service, fully integrated with Google Cloud products, Compute Engine and Google Kubernetes Engine.",
+          "description_id": "3db91dc6",
+          "files": [
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/pd/test/positive.yaml",
+              "similarity_id": "09202abab426ee50aedb7ac84453dd1afcf043686fc4f12ff8bc98aa957ddaf4",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{disk-1-data}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"disk-1-data\",\"resource_type\":\"compute.v1.disk\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/pd/test/positive.yaml",
+              "similarity_id": "2d3bebd769cfb6587648738fb830f2a44abddd69bd5de993032409cd882beccd",
+              "line": 11,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{disk-2-data}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"disk-2-data\",\"resource_type\":\"compute.v1.disk\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/pd/test/positive.yaml",
+              "similarity_id": "d7ebe593bcea4e7af520b4092449620f7957ebfbf656efdd6cb9ca11343ee985",
+              "line": 19,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{disk-3-data}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"disk-3-data\",\"resource_type\":\"compute.v1.disk\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/pd/test/positive.yaml",
+              "similarity_id": "e853a12d7676044042c98b987904a749c33f75770c2992d35713681f939e4a42",
+              "line": 24,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{disk-4-data}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"disk-4-data\",\"resource_type\":\"compute.v1.disk\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/pd/test/positive.yaml",
+              "similarity_id": "f2a17cd07cdb9153b7c4e2c22b76a00085b0df14ba8e90831e757d46e640a47f",
+              "line": 31,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{disk-5-data}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"disk-5-data\",\"resource_type\":\"compute.v1.disk\",\"resource_vendor\":\"GCP\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "9ed08714-b2f3-4c6d-8fb0-ac0b74ad71d8",
+    "test_path": "/home/ricardo/kics/assets/queries/googleDeploymentManager/gcp_bom/pst/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/googleDeploymentManager/gcp_bom/pst/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 30,
+      "files_parsed": 2,
+      "lines_parsed": 30,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T09:44:00.320717162Z",
+      "end": "2026-03-09T09:44:00.610455878Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/googleDeploymentManager/gcp_bom/pst/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - GCP PST",
+          "query_id": "9ed08714-b2f3-4c6d-8fb0-ac0b74ad71d8",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "GoogleDeploymentManager",
+          "cwe": "200",
+          "risk_score": "0.0",
+          "cloud_provider": "GCP",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Pub/Sub Topic resources found. Cloud Pub/Sub is designed to provide reliable, many-to-many, asynchronous messaging between applications. Publisher applications can send messages to a 'topic' and other applications can subscribe to that topic to receive the messages.",
+          "description_id": "e96debd4",
+          "files": [
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/pst/test/positive.yaml",
+              "similarity_id": "f2126d2a0aa3e7620efb6359cc3e8c4887f1f93d89abefe267ec45922869f308",
+              "line": 3,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{topic-1}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"topic-1\",\"resource_type\":\"pubsub.v1.topic\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/pst/test/positive.yaml",
+              "similarity_id": "3f3749ec8f9648b223ccdf33c627e8d638cdc46116438403fd3fbdab7e56037e",
+              "line": 8,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{topic-2}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"topic-2\",\"resource_type\":\"pubsub.v1.topic\",\"resource_vendor\":\"GCP\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c7781feb-a955-4f9f-b9cf-0d7c6f54bb59",
+    "test_path": "/home/ricardo/kics/assets/queries/googleDeploymentManager/gcp_bom/sb/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/googleDeploymentManager/gcp_bom/sb/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 79,
+      "files_parsed": 2,
+      "lines_parsed": 79,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 5
+      },
+      "total_counter": 0,
+      "total_bom_resources": 5,
+      "start": "2026-03-09T09:44:01.727235408Z",
+      "end": "2026-03-09T09:44:02.045571848Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/googleDeploymentManager/gcp_bom/sb/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - GCP SB",
+          "query_id": "c7781feb-a955-4f9f-b9cf-0d7c6f54bb59",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "GoogleDeploymentManager",
+          "cwe": "200",
+          "risk_score": "0.0",
+          "cloud_provider": "GCP",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Storage Bucket resources found. Buckets are the basic containers that hold your data. Everything that you store in Cloud Storage must be contained in a bucket.",
+          "description_id": "7f40edaa",
+          "files": [
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/sb/test/positive.yaml",
+              "similarity_id": "058098daca1fa02dd63bfc2aeabcdbdbc58fb81d4a71ceceafe12d5be87d8acd",
+              "line": 12,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{sample-input2}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"sample-input2\",\"resource_type\":\"storage.v1.bucket\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/sb/test/positive.yaml",
+              "similarity_id": "9f29e8fb0bc3dfd0052cb5c96a5e98b10be4325b1fc5877896d7b34750773263",
+              "line": 20,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{sample-input3}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"sample-input3\",\"resource_type\":\"storage.v1.bucket\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/sb/test/positive.yaml",
+              "similarity_id": "e24ab4f5f3e303af3b41bc9191a0d8fef924efb85486a27cb67188d38ef2e29f",
+              "line": 33,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{sample-input4}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"sample-input4\",\"resource_type\":\"storage.v1.bucket\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/sb/test/positive.yaml",
+              "similarity_id": "84b1c1ed7834d4382b8ce6087a593b4d080a50384dace3ae6320c64a722f8e6c",
+              "line": 44,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{sample-input5}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"sample-input5\",\"resource_type\":\"storage.v1.bucket\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/googleDeploymentManager/gcp_bom/sb/test/positive.yaml",
+              "similarity_id": "3343669c4a0731690f024b31cea7796118f04f91421cdb2fc409ef437065fe2f",
+              "line": 2,
+              "issue_type": "BillOfMaterials",
+              "search_key": "resources.name={{sample-input}}",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"sample-input\",\"resource_type\":\"storage.v1.bucket\",\"resource_vendor\":\"GCP\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "b9c83569-459b-4110-8f79-6305aa33cb37",
+    "test_path": "/home/ricardo/kics/assets/queries/k8s/using_kubernetes_native_secret_management/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/k8s/using_kubernetes_native_secret_management/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 3,
+      "lines_scanned": 70,
+      "files_parsed": 3,
+      "lines_parsed": 66,
+      "lines_ignored": 4,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:47:43.950731293Z",
+      "end": "2026-03-09T09:47:44.278806776Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/k8s/using_kubernetes_native_secret_management/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "fb889ae9-2d16-40b5-b41f-9da716c5abc1",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/2.0/json_reference_does_not_exists_parameter/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/2.0/json_reference_does_not_exists_parameter/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 184,
+      "files_parsed": 4,
+      "lines_parsed": 184,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:48:18.659706645Z",
+      "end": "2026-03-09T09:48:19.028935138Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/2.0/json_reference_does_not_exists_parameter/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "2596545e-1757-4ff7-a15a-8a9a180a42f3",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/2.0/parameter_object_incorrect_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/2.0/parameter_object_incorrect_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 190,
+      "files_parsed": 4,
+      "lines_parsed": 190,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:48:48.581640914Z",
+      "end": "2026-03-09T09:48:48.965880154Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/2.0/parameter_object_incorrect_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "bccfa089-89e4-47e0-a0e5-185fe6902220",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/2.0/response_object_incorrect_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/2.0/response_object_incorrect_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 206,
+      "files_parsed": 4,
+      "lines_parsed": 206,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:48:53.966179229Z",
+      "end": "2026-03-09T09:48:54.398177483Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/2.0/response_object_incorrect_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "0220e1c5-65d1-49dd-b7c2-cef6d6cb5283",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/2.0/schema_object_incorrect_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/2.0/schema_object_incorrect_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 206,
+      "files_parsed": 4,
+      "lines_parsed": 206,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:48:56.107844112Z",
+      "end": "2026-03-09T09:48:56.529061505Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/2.0/schema_object_incorrect_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "ba066cda-e808-450d-92b6-f29109754d45",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/callback_object_incorrect_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/callback_object_incorrect_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 140,
+      "files_parsed": 4,
+      "lines_parsed": 140,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:49:29.41444685Z",
+      "end": "2026-03-09T09:49:29.789228108Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/callback_object_incorrect_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "bac56e3c-1f71-4a74-8ae6-2fba07efcddb",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/example_json_reference_outside_components_examples/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/example_json_reference_outside_components_examples/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 290,
+      "files_parsed": 4,
+      "lines_parsed": 290,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:49:52.377154779Z",
+      "end": "2026-03-09T09:49:52.714125831Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/example_json_reference_outside_components_examples/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "2d6646f4-2946-420f-8c14-3232d49ae0cb",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/header_object_with_incorrect_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/header_object_with_incorrect_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 494,
+      "files_parsed": 8,
+      "lines_parsed": 494,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:49:57.049539025Z",
+      "end": "2026-03-09T09:49:57.404325431Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/header_object_with_incorrect_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "f29904c8-6041-4bca-b043-dfa0546b8079",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_callback/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_callback/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 130,
+      "files_parsed": 4,
+      "lines_parsed": 130,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:10.339535674Z",
+      "end": "2026-03-09T09:50:10.769235875Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_callback/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "6a2c219f-da5e-4745-941e-5ea8cde23356",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_example/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_example/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 184,
+      "files_parsed": 4,
+      "lines_parsed": 184,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:12.167057495Z",
+      "end": "2026-03-09T09:50:12.566896545Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_example/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "376c9390-7e9e-4cb8-a067-fd31c05451fd",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_header/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_header/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 191,
+      "files_parsed": 4,
+      "lines_parsed": 191,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:13.894986842Z",
+      "end": "2026-03-09T09:50:14.272081539Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_header/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "801f0c6a-a834-4467-89c6-ddecffb46b5a",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_link/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_link/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 174,
+      "files_parsed": 4,
+      "lines_parsed": 174,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:15.570461479Z",
+      "end": "2026-03-09T09:50:15.959039448Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_link/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "2e275f16-b627-4d3f-ae73-a6153a23ae8f",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_parameter/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_parameter/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 126,
+      "files_parsed": 4,
+      "lines_parsed": 126,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:17.186218682Z",
+      "end": "2026-03-09T09:50:17.565655992Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_parameter/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "ca02f4e8-d3ae-4832-b7db-bb037516d9e7",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_request_body/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_request_body/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 164,
+      "files_parsed": 4,
+      "lines_parsed": 164,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:18.854609137Z",
+      "end": "2026-03-09T09:50:19.251965247Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_request_body/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "7a01dfbd-da62-4165-aed7-71349ad42ab4",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_response/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_response/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 168,
+      "files_parsed": 4,
+      "lines_parsed": 168,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:20.605560504Z",
+      "end": "2026-03-09T09:50:20.961653336Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_response/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "015eac96-6313-43c0-84e5-81b1374fa637",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_schema/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_schema/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 117,
+      "files_parsed": 4,
+      "lines_parsed": 117,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:22.188100468Z",
+      "end": "2026-03-09T09:50:22.587987606Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/json_reference_does_not_exists_schema/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "b9db8a10-020c-49ca-88c6-780e5fdb4328",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/link_object_incorrect_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/link_object_incorrect_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 406,
+      "files_parsed": 8,
+      "lines_parsed": 406,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:23.874918823Z",
+      "end": "2026-03-09T09:50:24.272886894Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/link_object_incorrect_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "d40f27e6-15fb-4b56-90f8-fc0ff0291c51",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/parameter_object_incorrect_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/parameter_object_incorrect_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 225,
+      "files_parsed": 4,
+      "lines_parsed": 225,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:37.18262663Z",
+      "end": "2026-03-09T09:50:37.596920722Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/parameter_object_incorrect_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "0f6cd0ab-c366-4595-84fc-fbd8b9901e4d",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/request_body_incorrect_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/request_body_incorrect_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 204,
+      "files_parsed": 4,
+      "lines_parsed": 204,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:53.114728703Z",
+      "end": "2026-03-09T09:50:53.454107435Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/request_body_incorrect_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "b3871dd8-9333-4d6c-bd52-67eb898b71ab",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/response_object_incorrect_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/response_object_incorrect_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 159,
+      "files_parsed": 4,
+      "lines_parsed": 159,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:56.14232327Z",
+      "end": "2026-03-09T09:50:56.464437526Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/response_object_incorrect_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "4cac7ace-b0fb-477d-830d-65395d9109d9",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/schema_object_incorrect_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/3.0/schema_object_incorrect_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 503,
+      "files_parsed": 8,
+      "lines_parsed": 503,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:50:57.630693004Z",
+      "end": "2026-03-09T09:50:57.971033018Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/3.0/schema_object_incorrect_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "9d967a2b-9d64-41a6-abea-dfc4960299bd",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/general/json_object_schema_without_properties/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/general/json_object_schema_without_properties/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 12,
+      "lines_scanned": 584,
+      "files_parsed": 12,
+      "lines_parsed": 584,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 2,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:52:00.280453072Z",
+      "end": "2026-03-09T09:52:00.626235794Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/general/json_object_schema_without_properties/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "e2ffa504-d22a-4c94-b6c5-f661849d2db7",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/general/json_object_schema_without_type/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/general/json_object_schema_without_type/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 12,
+      "lines_scanned": 626,
+      "files_parsed": 12,
+      "lines_parsed": 626,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 2,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:52:02.137167343Z",
+      "end": "2026-03-09T09:52:02.629391769Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/general/json_object_schema_without_type/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "96beb800-566f-49a9-a0ea-dbdf4bc80429",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/general/json_ref_alongside_properties/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/general/json_ref_alongside_properties/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 272,
+      "files_parsed": 8,
+      "lines_parsed": 272,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 2,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:52:04.430604886Z",
+      "end": "2026-03-09T09:52:04.844519019Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/general/json_ref_alongside_properties/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "1a1aea94-745b-40a7-b860-0702ea6ee636",
+    "test_path": "/home/ricardo/kics/assets/queries/openAPI/general/schema_object_with_circular_ref/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/openAPI/general/schema_object_with_circular_ref/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 484,
+      "files_parsed": 8,
+      "lines_parsed": 484,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 2,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T09:52:56.653566424Z",
+      "end": "2026-03-09T09:52:56.994313752Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/openAPI/general/schema_object_with_circular_ref/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "23edf35f-7c22-4ff9-87e6-0ca74261cfbf",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/dynamo/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/dynamo/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 5,
+      "lines_scanned": 261,
+      "files_parsed": 5,
+      "lines_parsed": 261,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 4
+      },
+      "total_counter": 0,
+      "total_bom_resources": 4,
+      "start": "2026-03-09T10:07:18.92729647Z",
+      "end": "2026-03-09T10:07:19.556905796Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/dynamo/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS DynamoDB",
+          "query_id": "23edf35f-7c22-4ff9-87e6-0ca74261cfbf",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of DynamoDB resources found. Amazon DynamoDB is a fully managed, serverless, key-value NoSQL database designed to run high-performance applications at any scale.",
+          "description_id": "c9007e7c",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/dynamo/test/positive1.tf",
+              "similarity_id": "a688628f8f494ab21c1fe105db84b9a5caa859c8f9e8e359ccf3a7c46d64aabb",
+              "line": 21,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_dynamodb_table[basic-dynamodb-table]",
+              "search_line": 21,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"GameScores\",\"resource_type\":\"aws_dynamodb_table\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/dynamo/test/positive4.tf",
+              "similarity_id": "babb019e4356747925dcc712c2a5940d396c97ece2671dfa6285bbd2f6a0f435",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_dynamodb_table[example3-table]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"GameScores3\",\"resource_type\":\"aws_dynamodb_table\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/dynamo/test/positive2.tf",
+              "similarity_id": "a28cf9c3a6cb0794fa3e3a0a805d4944f7dbb3efeade8620fc09c93ea4ae92b4",
+              "line": 21,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_dynamodb_table[example2-table]",
+              "search_line": 21,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"GameScores2\",\"resource_type\":\"aws_dynamodb_table\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/dynamo/test/positive3.tf",
+              "similarity_id": "ad2f2a12485e108e26277af0268a7c3b9114edbb6cdf356c0aadedf859b5521c",
+              "line": 21,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_dynamodb_table[example3-table]",
+              "search_line": 21,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"GameScores3\",\"resource_type\":\"aws_dynamodb_table\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "86571149-eef3-4280-a645-01e60df854b0",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/ebs/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/ebs/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 3,
+      "lines_scanned": 37,
+      "files_parsed": 3,
+      "lines_parsed": 37,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T10:07:22.024620118Z",
+      "end": "2026-03-09T10:07:22.599658585Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/ebs/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS EBS",
+          "query_id": "86571149-eef3-4280-a645-01e60df854b0",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of EBS resources found. Amazon Elastic Block Store (Amazon EBS) is an easy-to-use, scalable, high-performance block-storage service designed for Amazon Elastic Compute Cloud (Amazon EC2).",
+          "description_id": "fd141699",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/ebs/test/positive1.tf",
+              "similarity_id": "4d8f36af2e84d7cb28b112c8e8d635f04c7947104305cecf6c86a7bbe2c7fe2a",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_ebs_volume[positive1]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"HelloWorld\",\"resource_type\":\"aws_ebs_volume\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/ebs/test/positive2.tf",
+              "similarity_id": "8f256b1e26d47e315b73e4cebe2adbd15c45597b21a0d58695758f242b67ca0c",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_ebs_volume[positive2]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"HelloWorld2\",\"resource_type\":\"aws_ebs_volume\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "f53f16d6-46a9-4277-9fbe-617b1e24cdca",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/efs/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/efs/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 3,
+      "lines_scanned": 63,
+      "files_parsed": 3,
+      "lines_parsed": 63,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T10:07:24.791631455Z",
+      "end": "2026-03-09T10:07:25.908126874Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/efs/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS EFS",
+          "query_id": "f53f16d6-46a9-4277-9fbe-617b1e24cdca",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of EFS resources found. Amazon Elastic File System (Amazon EFS) automatically grows and shrinks as you add and remove files with no need for management or provisioning.",
+          "description_id": "5522243f",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/efs/test/positive1.tf",
+              "similarity_id": "a5b0f7d6730685996c338e8c7e6f4e49f2a3a72bc1ffcb3fe0624e511bc2ffbc",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_efs_file_system[positive1]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"MyProduct\",\"resource_type\":\"aws_efs_file_system\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/efs/test/positive2.tf",
+              "similarity_id": "06464310f0d43eb349c3fff2e6587e7437a5684957b470702f7a008343764e2c",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_efs_file_system[positive2]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"MyProduct\",\"resource_type\":\"aws_efs_file_system\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "54229498-850b-4f78-b3a7-218d24ef2c37",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/elasticache/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/elasticache/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 7,
+      "lines_scanned": 206,
+      "files_parsed": 7,
+      "lines_parsed": 206,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 6
+      },
+      "total_counter": 0,
+      "total_bom_resources": 6,
+      "start": "2026-03-09T10:07:27.774375496Z",
+      "end": "2026-03-09T10:07:28.344589595Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/elasticache/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS Elasticache",
+          "query_id": "54229498-850b-4f78-b3a7-218d24ef2c37",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Elasticache resources found. Amazon ElastiCache is a fully managed, in-memory caching service supporting flexible, real-time use cases. You can use ElastiCache for caching, which accelerates application and database performance, or as a primary data store for use cases that don't require durability like session stores, gaming leaderboards, streaming, and analytics. ElastiCache is compatible with Redis and Memcached.",
+          "description_id": "34559ecd",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/elasticache/test/positive6.tf",
+              "similarity_id": "16bfdc91d7f8584245d9da2ba7bf6f274c27b09e6e2e04ce667fe8480f16531c",
+              "line": 13,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_elasticache_cluster[positive6]",
+              "search_line": 13,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"at least one security group associated with the elasticache is unrestricted\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"unknown\",\"resource_engine\":\"redis\",\"resource_name\":\"test-cache\",\"resource_type\":\"aws_elasticache_cluster\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/elasticache/test/positive2.tf",
+              "similarity_id": "5c4b00e3a4a384c86e708ca4b8d7b417d71240bd1ded323b63282352307a7009",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_elasticache_cluster[positive2]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"unknown\",\"resource_engine\":\"redis\",\"resource_name\":\"cluster-example\",\"resource_type\":\"aws_elasticache_cluster\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/elasticache/test/positive5.tf",
+              "similarity_id": "fdb7e16c2955a8816dfe4a1b052052de7715a1bcb67d861fb75378e68f7015ab",
+              "line": 13,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_elasticache_cluster[positive5]",
+              "search_line": 13,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"all security groups associated with the elasticache are restricted\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"unknown\",\"resource_engine\":\"redis\",\"resource_name\":\"test-cache\",\"resource_type\":\"aws_elasticache_cluster\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/elasticache/test/positive4.tf",
+              "similarity_id": "275f666c390b50e088e7781ffa4b47cd6e84f143a4b2583efcd65ec06339a97b",
+              "line": 33,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_elasticache_cluster[positive4]",
+              "search_line": 33,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"all security groups associated with the elasticache are restricted\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"unknown\",\"resource_engine\":\"redis\",\"resource_name\":\"test-cache\",\"resource_type\":\"aws_elasticache_cluster\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/elasticache/test/positive1.tf",
+              "similarity_id": "e757a53e34b7bd24f2beea2a6b7084dc6355f55824f13bc8d292b280c41decc7",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_elasticache_cluster[positive1]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"unknown\",\"resource_engine\":\"memcached\",\"resource_name\":\"cluster-example\",\"resource_type\":\"aws_elasticache_cluster\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/elasticache/test/positive3.tf",
+              "similarity_id": "16c15c14d3784c9762dbdb31769901b5a428a7d48202e3e543e5c08f57efaf0f",
+              "line": 33,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_elasticache_cluster[positive3]",
+              "search_line": 33,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"at least one security group associated with the elasticache is unrestricted\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"unknown\",\"resource_engine\":\"redis\",\"resource_name\":\"test-cache\",\"resource_type\":\"aws_elasticache_cluster\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "0e59d33e-bba2-4037-8f88-9765647ca7ad",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/kinesis/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/kinesis/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 58,
+      "files_parsed": 2,
+      "lines_parsed": 58,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T10:07:31.176454558Z",
+      "end": "2026-03-09T10:07:32.10544652Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/kinesis/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS Kinesis",
+          "query_id": "0e59d33e-bba2-4037-8f88-9765647ca7ad",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Kinesis resources found. Amazon Kinesis is a real-time streaming service that provides collection, processing, and analysis of video and data streams in real-time",
+          "description_id": "45271dee",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/kinesis/test/positive1.tf",
+              "similarity_id": "9b840abafc0548d657e04f603c5bc1e3b92c5031146a20809c0a24bd2b6ee3b2",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_kinesis_stream[positive1]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Streaming\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"terraform-kinesis-test\",\"resource_type\":\"aws_kinesis_stream\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/kinesis/test/positive1.tf",
+              "similarity_id": "1ca83bb6d86b8b32a35729f9e8e2b659439ec246c43ac8f4b3ed27aa45994daf",
+              "line": 20,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_kinesis_stream[positive2]",
+              "search_line": 20,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Streaming\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"terraform-kinesis-test2\",\"resource_type\":\"aws_kinesis_stream\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "fcb1b388-f558-4b7f-9b6e-f4e98abb7380",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/mq/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/mq/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 3,
+      "lines_scanned": 70,
+      "files_parsed": 3,
+      "lines_parsed": 70,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T10:07:35.16610123Z",
+      "end": "2026-03-09T10:07:35.805597952Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/mq/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS MQ",
+          "query_id": "fcb1b388-f558-4b7f-9b6e-f4e98abb7380",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of MQ resources found. Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers on AWS.",
+          "description_id": "5f5ba9bc",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/mq/test/positive1.tf",
+              "similarity_id": "41fc993a63f16f0b851073ffc7b913288f60b17b48a8757a669b9341173703a3",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_mq_broker[positive1]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Queues\",\"resource_encryption\":\"unencrypted\",\"resource_engine\":\"ActiveMQ\",\"resource_name\":\"example\",\"resource_type\":\"aws_mq_broker\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/mq/test/positive2.tf",
+              "similarity_id": "b0dbc9a8c1bb61a40a0b8e60052d5d5c01c88528f407e6d3fc64e46cc0554076",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_mq_broker[positive2]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Queues\",\"resource_encryption\":\"encrypted\",\"resource_engine\":\"RabbitMQ\",\"resource_name\":\"example\",\"resource_type\":\"aws_mq_broker\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "051f2063-2517-4295-ad8e-ba88c1bf5cfc",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/msk/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/msk/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 3,
+      "lines_scanned": 291,
+      "files_parsed": 3,
+      "lines_parsed": 291,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T10:07:37.889778016Z",
+      "end": "2026-03-09T10:07:38.867648205Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/msk/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS MSK",
+          "query_id": "051f2063-2517-4295-ad8e-ba88c1bf5cfc",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of MSK resources specified. Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables you to build and run applications that use Apache Kafka to process streaming data.",
+          "description_id": "cf7ae008",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/msk/test/positive2.tf",
+              "similarity_id": "495dad700d20b8570ab7994a2340362eb4a0bb54d48dfedeafb74dff5f96f7a5",
+              "line": 84,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_msk_cluster[positive2]",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Streaming\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"positive2\",\"resource_type\":\"aws_msk_cluster\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/msk/test/positive1.tf",
+              "similarity_id": "c7a5a95e075a45104b5ddf644b2ceb054924a3a646f264c3b5db725c12521c2f",
+              "line": 84,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_msk_cluster[positive1]",
+              "search_line": -1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Streaming\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"positive1\",\"resource_type\":\"aws_msk_cluster\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "12933609-c5bf-44b4-9a41-a6467c3b685b",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/rds/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/rds/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 62,
+      "files_parsed": 2,
+      "lines_parsed": 62,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 3
+      },
+      "total_counter": 0,
+      "total_bom_resources": 3,
+      "start": "2026-03-09T10:07:43.589402709Z",
+      "end": "2026-03-09T10:07:45.036509119Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/rds/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS RDS",
+          "query_id": "12933609-c5bf-44b4-9a41-a6467c3b685b",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of RDS resources found. Amazon Relational Database Service (Amazon RDS) is a collection of managed services that makes it simple to set up, operate, and scale databases in the cloud.",
+          "description_id": "b621abbb",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/rds/test/positive1.tf",
+              "similarity_id": "59a8bd36bdce2661e626e470a6d980349acc274b6d190d784482d6a1e2ecae24",
+              "line": 23,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_db_instance[default]",
+              "search_line": 23,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_engine\":\"mysql\",\"resource_name\":\"default\",\"resource_type\":\"aws_db_instance\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/rds/test/positive1.tf",
+              "similarity_id": "561de55e9a71394f3d7bb2260195e3d13885513366b0a55e0c3b19d4984a3b6b",
+              "line": 35,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_db_instance[sample3]",
+              "search_line": 35,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_engine\":\"mysql\",\"resource_name\":\"sample3\",\"resource_type\":\"aws_db_instance\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/rds/test/positive1.tf",
+              "similarity_id": "419f26bdd3c83ecb7a5e41a631be94a3d55f515a2553fbb47feb532e0c3dcd22",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_rds_cluster_instance[cluster_instances]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_engine\":\"aurora-mysql\",\"resource_name\":\"cluster_instances\",\"resource_type\":\"aws_rds_cluster_instance\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "2d16c3fb-35ba-4ec0-b4e4-06ee3cbd4045",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/s3_bucket/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/s3_bucket/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 11,
+      "lines_scanned": 459,
+      "files_parsed": 11,
+      "lines_parsed": 457,
+      "lines_ignored": 2,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 10
+      },
+      "total_counter": 0,
+      "total_bom_resources": 10,
+      "start": "2026-03-09T10:07:48.72639731Z",
+      "end": "2026-03-09T10:07:49.828912812Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/s3_bucket/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS S3 Buckets",
+          "query_id": "2d16c3fb-35ba-4ec0-b4e4-06ee3cbd4045",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of S3 resources found. Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.",
+          "description_id": "0bdf2341",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/s3_bucket/test/positive6.tf",
+              "similarity_id": "da2d70344def4ff9dcf4b9e4b452eccff2c365d29ceeed122cdfe53e01682887",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_s3_bucket[positive6]",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/s3_bucket/test/positive2.tf",
+              "similarity_id": "58fccd4caaf8023d0e3915ffff0b0c341cd991a40881f661bd011a6b9f56e1bc",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_s3_bucket[positive2]",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/s3_bucket/test/positive1.tf",
+              "similarity_id": "5e57dcb6f4edeab49dd489d0c79219ac6d6912ded0e2a0289be99a4f6b36de65",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_s3_bucket[positive1]",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/s3_bucket/test/positive9.tf",
+              "similarity_id": "f0989da79c6532b9767c95eb80cb14ce98bfab960143d8d7a1419b4cdfdc5b31",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_s3_bucket[positive9]",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/s3_bucket/test/positive4.tf",
+              "similarity_id": "3e68de88fcf4ab2fd46318782c143c05141b290abf97330dd7df3bbd893a552a",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_s3_bucket[positive4]",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/s3_bucket/test/positive8.tf",
+              "similarity_id": "14b334cb9a98d8a42dcc64465a50fab5defb3f6d11292ae1eb7b38c37b02f703",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_s3_bucket[positive8]",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"public-read\",\"policy\":{\"Id\":\"MYBUCKETPOLICY\",\"Statement\":[{\"Action\":\"s3:GetObject\",\"Condition\":{\"IpAddress\":{\"aws:SourceIp\":\"8.8.8.8/32\"}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::123456789012:root\",\"arn:aws:iam::555555555555:root\"]},\"Resource\":\"arn:aws:s3:::my_tf_test_bucket/*\",\"Sid\":\"IPAllow\"}],\"Version\":\"2012-10-17\"},\"resource_accessibility\":\"hasPolicy\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/s3_bucket/test/positive5.tf",
+              "similarity_id": "0a147aac1b60d48a54fadb1290ea731737959a6f1e44be8b6e81738b7fd4eeac",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_s3_bucket[positive5]",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/s3_bucket/test/positive10.tf",
+              "similarity_id": "60ee2d022cfddee8056f6af2c3c5914ff535635ecb15b42b3bc7c15268bf29dd",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_s3_bucket[positive10]",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/s3_bucket/test/positive3.tf",
+              "similarity_id": "3264a6566dc9a3e362e2e590f5ac094dbee9364c92c6f0ea53070e5a9c0a56bb",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_s3_bucket[positive3]",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/s3_bucket/test/positive7.tf",
+              "similarity_id": "e688b25abb549afda48f834ea47cc6ef1dff6137b06e000a4b63e2cb1a741ea6",
+              "line": 14,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_s3_bucket[positive7]",
+              "search_line": 14,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"acl\":\"private\",\"resource_accessibility\":\"private\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"my-tf-test-bucket\",\"resource_type\":\"aws_s3_bucket\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "eccc4d59-74b9-4974-86f1-74386e0c7f33",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/sns/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/sns/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 6,
+      "lines_scanned": 121,
+      "files_parsed": 6,
+      "lines_parsed": 121,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 5
+      },
+      "total_counter": 0,
+      "total_bom_resources": 5,
+      "start": "2026-03-09T10:07:53.127208138Z",
+      "end": "2026-03-09T10:07:54.006295081Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/sns/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS SNS",
+          "query_id": "eccc4d59-74b9-4974-86f1-74386e0c7f33",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of SNS resources specified. Amazon Simple Notification Service (Amazon SNS) is a fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication.",
+          "description_id": "4c016c6f",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/sns/test/positive1.tf",
+              "similarity_id": "c562a3a715b0c93a8f04f5f9a723f409debb38a0dfcb78b3afebbc5a566aef0a",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_sns_topic[positive1]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"user-updates-topic\",\"resource_type\":\"aws_sns_topic\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/sns/test/positive5.tf",
+              "similarity_id": "04cec60e37b1bd2b698c215f6f989aeb451280f6208ee3e1c7492329894b8184",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_sns_topic[positive5]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"policy\":{\"Statement\":[{\"Action\":[\"*\"],\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::123456789012:root\",\"arn:aws:iam::555555555555:root\"]},\"Resource\":\"aws_sns_topic.positive5.arn\",\"Sid\":\"AWSConfigSNSPolicy20180202\"}],\"Version\":\"2012-10-17\"},\"resource_accessibility\":\"hasPolicy\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"SNS Topic\",\"resource_type\":\"aws_sns_topic\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/sns/test/positive2.tf",
+              "similarity_id": "59953404d92d099671ff06905b6c6f7891a124feb22de621276baa4fa3398857",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_sns_topic[positive2]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"user-updates-topic\",\"resource_type\":\"aws_sns_topic\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/sns/test/positive4.tf",
+              "similarity_id": "2f6a079f820f16fbd192f6f57b369cd844fab0f1fdd83d770e013f7dfde0768f",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_sns_topic[positive4]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"user-updates-topic\",\"resource_type\":\"aws_sns_topic\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/sns/test/positive3.tf",
+              "similarity_id": "1a91e56419ed044bc064e54443071d5b1697615fd2fe63f482d7a63e8d0bce42",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_sns_topic[positive3]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"policy\":{\"Statement\":[{\"Action\":[\"*\"],\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::123456789012:root\",\"arn:aws:iam::555555555555:root\"]},\"Resource\":\"aws_sns_topic.positive3.arn\",\"Sid\":\"AWSConfigSNSPolicy20180202\"}],\"Version\":\"2012-10-17\"},\"resource_accessibility\":\"hasPolicy\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"user-updates-topic\",\"resource_type\":\"aws_sns_topic\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "baecd2da-492a-4d59-b9dc-29540a1398e0",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/sqs/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/aws_bom/sqs/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 6,
+      "lines_scanned": 178,
+      "files_parsed": 6,
+      "lines_parsed": 178,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 5
+      },
+      "total_counter": 0,
+      "total_bom_resources": 5,
+      "start": "2026-03-09T10:07:56.573338121Z",
+      "end": "2026-03-09T10:07:57.477490859Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/aws_bom/sqs/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - AWS SQS",
+          "query_id": "baecd2da-492a-4d59-b9dc-29540a1398e0",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "AWS",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of SQS resources specified. Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.",
+          "description_id": "63fc27c2",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/aws_bom/sqs/test/positive5.tf",
+              "similarity_id": "270592766a30916ef9e37b9b80a9ea23f0051365b60c0200a2474b76cc8ea127",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_sqs_queue[positive5]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Queues\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"terraform-example-queue\",\"resource_type\":\"aws_sqs_queue\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/sqs/test/positive3.tf",
+              "similarity_id": "4c1f945f424abaa50d9666409e0650b91121ace763be1eb79f2dac5e61eb04f5",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_sqs_queue[positive3]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Queues\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"terraform-example-queue\",\"resource_type\":\"aws_sqs_queue\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/sqs/test/positive2.tf",
+              "similarity_id": "f99c8ad7c0318d326af34c293ae571794377a811786a83eb940779729d354f82",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_sqs_queue[positive2]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"policy\":{\"Id\":\"sqspolicy\",\"Statement\":[{\"Action\":\"sqs:SendMessage\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::123456789012:root\",\"arn:aws:iam::555555555555:root\"]},\"Resource\":\"aws_sqs_queue.positive2.arn\",\"Sid\":\"First\"}],\"Version\":\"2012-10-17\"},\"resource_accessibility\":\"hasPolicy\",\"resource_category\":\"Queues\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"terraform-example-queue\",\"resource_type\":\"aws_sqs_queue\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/sqs/test/positive4.tf",
+              "similarity_id": "84235e750d64b613aee6d9365eea3377b3de78ce4f5e6e2b0c1b3d084a926b91",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_sqs_queue[positive4]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"policy\":{\"Id\":\"sqspolicy\",\"Statement\":[{\"Action\":\"sqs:SendMessage\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"arn:aws:iam::123456789012:root\",\"arn:aws:iam::555555555555:root\"]},\"Resource\":\"aws_sqs_queue.positive4.arn\",\"Sid\":\"First\"}],\"Version\":\"2012-10-17\"},\"resource_accessibility\":\"hasPolicy\",\"resource_category\":\"Queues\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"terraform-example-queue\",\"resource_type\":\"aws_sqs_queue\",\"resource_vendor\":\"AWS\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/aws_bom/sqs/test/positive1.tf",
+              "similarity_id": "7562b9d31cf04b34e4e57a5fa16a156e4793e039da59b14f4d8b3db997cb2952",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "aws_sqs_queue[positive1]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Queues\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"terraform-example-queue\",\"resource_type\":\"aws_sqs_queue\",\"resource_vendor\":\"AWS\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "1ec163d0-a9be-4695-89a8-a4028a2cbae7",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_network_security_group_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_network_security_group_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:08:00.918992652Z",
+      "end": "2026-03-09T10:08:01.796919615Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_network_security_group_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "99b47957-c575-4555-b8c0-ff92384249b4",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_public_ip_address_rule_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_public_ip_address_rule_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:08:04.074377978Z",
+      "end": "2026-03-09T10:08:04.768385499Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_public_ip_address_rule_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "8553d83f-fe77-4c96-8850-a95c5895b336",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_security_solution_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_security_solution_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:08:07.700724436Z",
+      "end": "2026-03-09T10:08:09.202455976Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_security_solution_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "1219a37a-9a2c-420d-8b8c-30bdbc3bfeb1",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_sql_server_firewall_rule_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_sql_server_firewall_rule_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:08:11.436451282Z",
+      "end": "2026-03-09T10:08:12.030759227Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_sql_server_firewall_rule_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "d0514e4b-9e95-4a7a-9bc5-0adb32514122",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_policy_assignment_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_policy_assignment_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:08:14.077808707Z",
+      "end": "2026-03-09T10:08:14.660795198Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_policy_assignment_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "62d120b1-b1e0-40ef-a81d-a4994ac88b3b",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_network_security_group_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_network_security_group_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:08:16.678307786Z",
+      "end": "2026-03-09T10:08:17.20995775Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_network_security_group_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "a7b422e3-0b2f-4795-a43a-136dbbd6cbb3",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_policy_assignment_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_policy_assignment_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:08:19.462236424Z",
+      "end": "2026-03-09T10:08:20.11967605Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_policy_assignment_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "b3b9ce2f-c229-4133-9a2b-4e649cf2347e",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_public_ip_address_rule_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_public_ip_address_rule_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:08:21.988393802Z",
+      "end": "2026-03-09T10:08:22.668073796Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_public_ip_address_rule_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "b97a1065-a86b-442f-86c4-f95afd9b3ac6",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_security_solution_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_security_solution_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:08:25.238654558Z",
+      "end": "2026-03-09T10:08:25.789712384Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_security_solution_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "8ce5c61f-5cd1-41bc-b7d9-b26b18efd505",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_sql_server_firewall_rule_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_sql_server_firewall_rule_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:08:27.65907742Z",
+      "end": "2026-03-09T10:08:28.249153919Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_sql_server_firewall_rule_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "609839ae-bd81-4375-9910-5bce72ae7b92",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/mssql_server_auditing_disabled/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/mssql_server_auditing_disabled/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 3,
+      "lines_scanned": 103,
+      "files_parsed": 3,
+      "lines_parsed": 103,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:11:42.314631827Z",
+      "end": "2026-03-09T10:11:43.043770936Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/mssql_server_auditing_disabled/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "4f60da73-190e-4048-8e1d-cc5a3974cd15",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/gcp/cloud_asset_inventory_disabled/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/gcp/cloud_asset_inventory_disabled/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 12,
+      "lines_scanned": 112,
+      "files_parsed": 12,
+      "lines_parsed": 112,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-09T10:17:02.728660527Z",
+      "end": "2026-03-09T10:17:03.596888318Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/gcp/cloud_asset_inventory_disabled/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "895ed0d9-6fec-4567-8614-d7a74b599a53",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/dataflow/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/dataflow/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 57,
+      "files_parsed": 2,
+      "lines_parsed": 56,
+      "lines_ignored": 1,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T10:22:54.077886497Z",
+      "end": "2026-03-09T10:22:54.868465419Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/gcp_bom/dataflow/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - GCP Dataflow",
+          "query_id": "895ed0d9-6fec-4567-8614-d7a74b599a53",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "GCP",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Dataflow resources found. Unified stream and batch data processing that's serverless, fast, and cost-effective.",
+          "description_id": "5d614ad5",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/dataflow/test/positive.tf",
+              "similarity_id": "14da088a3d13e2a488e9498cbf078b3123e6b5db1a7f222e39b4c3c1ca189af7",
+              "line": 17,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_dataflow_job[pubsub_stream2]",
+              "search_line": 17,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Streaming\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"tf-test-dataflow-job1\",\"resource_type\":\"google_dataflow_job\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/dataflow/test/positive.tf",
+              "similarity_id": "dc6e5815b35abb3bcfa9818944daad5a16bd4c4145294ba6c5e25ed0e33b8064",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_dataflow_job[pubsub_stream]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Streaming\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"tf-test-dataflow-job1\",\"resource_type\":\"google_dataflow_job\",\"resource_vendor\":\"GCP\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c9d81239-c818-4869-9917-1570c62b81fd",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/fi/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/fi/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 104,
+      "files_parsed": 2,
+      "lines_parsed": 103,
+      "lines_ignored": 1,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 3
+      },
+      "total_counter": 0,
+      "total_bom_resources": 3,
+      "start": "2026-03-09T10:22:57.433586093Z",
+      "end": "2026-03-09T10:22:58.258149175Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/gcp_bom/fi/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - GCP FI",
+          "query_id": "c9d81239-c818-4869-9917-1570c62b81fd",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "GCP",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Filestore Instance resources found. Filestore instances are fully managed file servers on Google Cloud that can be connected to Compute Engine VMs, GKE clusters, and your on-premises machines. Once provisioned, you can scale the capacity of your instances according to need without any downtime.",
+          "description_id": "4a45b126",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/fi/test/positive.tf",
+              "similarity_id": "8149542ed0c03690d9b70081cf46010e94c3cfc7bff29e6b13a1d8130522e79b",
+              "line": 32,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_filestore_instance[instance2]",
+              "search_line": 32,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"test-instance\",\"resource_type\":\"google_filestore_instance\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/fi/test/positive.tf",
+              "similarity_id": "cdac01a41238e8694925cf9e27f160be4f5984c7ed3469cded298bb7ef9d6064",
+              "line": 59,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_filestore_instance[instance3]",
+              "search_line": 59,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"test-instance\",\"resource_type\":\"google_filestore_instance\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/fi/test/positive.tf",
+              "similarity_id": "be804ed120315b359617885b02a37d5dabda144e420a661a3ed53700b77f3a5f",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_filestore_instance[instance]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"test-instance\",\"resource_type\":\"google_filestore_instance\",\"resource_vendor\":\"GCP\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "dd7d70aa-a6ec-460d-b5d2-38b40253b16f",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/pd/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/pd/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 115,
+      "files_parsed": 2,
+      "lines_parsed": 114,
+      "lines_ignored": 1,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 6
+      },
+      "total_counter": 0,
+      "total_bom_resources": 6,
+      "start": "2026-03-09T10:23:01.158773406Z",
+      "end": "2026-03-09T10:23:02.223732891Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/gcp_bom/pd/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - GCP PD",
+          "query_id": "dd7d70aa-a6ec-460d-b5d2-38b40253b16f",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "GCP",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Persistent Disk resources found. Persistent Disk is Google's local durable storage service, fully integrated with Google Cloud products, Compute Engine and Google Kubernetes Engine.",
+          "description_id": "4b72e52d",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/pd/test/positive.tf",
+              "similarity_id": "f2ddd27a41ebc1dc9c62cb77beb38420bb61b9feae52f5b78b581f63e7cdd7ba",
+              "line": 44,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_compute_disk[positive4]",
+              "search_line": 44,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"test-disk\",\"resource_type\":\"google_compute_disk\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/pd/test/positive.tf",
+              "similarity_id": "258753377be972cab9c7375d16f76f577806e4eaf8808c13a2ed8cfbbee0bc6b",
+              "line": 60,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_compute_disk[negative1]",
+              "search_line": 60,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"test-disk\",\"resource_type\":\"google_compute_disk\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/pd/test/positive.tf",
+              "similarity_id": "17b6d52800b62d4608cde011613db686f789bf1db53194a16bbe183fe20335d6",
+              "line": 76,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_compute_disk[negative2]",
+              "search_line": 76,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"test-disk\",\"resource_type\":\"google_compute_disk\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/pd/test/positive.tf",
+              "similarity_id": "8b1460302c9ff26037fd43ef76ed658ef118c8ec783f237143d10860770d7feb",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_compute_disk[positive1]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"test-disk\",\"resource_type\":\"google_compute_disk\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/pd/test/positive.tf",
+              "similarity_id": "b2f9aff9c6f6e6c9ce6ffedd9779ca0a47d1d1315e44475859dd4860824e055f",
+              "line": 12,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_compute_disk[positive2]",
+              "search_line": 12,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"test-disk\",\"resource_type\":\"google_compute_disk\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/pd/test/positive.tf",
+              "similarity_id": "66ea313536579a7a9c7149d8fb5fb2e051cbd4a9f1dd8c05c2e930fc21440fdc",
+              "line": 28,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_compute_disk[positive3]",
+              "search_line": 28,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"test-disk\",\"resource_type\":\"google_compute_disk\",\"resource_vendor\":\"GCP\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "4b82202a-b18e-4891-a1eb-a0989850bbb3",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/pst/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/pst/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 86,
+      "files_parsed": 2,
+      "lines_parsed": 85,
+      "lines_ignored": 1,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 4
+      },
+      "total_counter": 0,
+      "total_bom_resources": 4,
+      "start": "2026-03-09T10:23:05.503500775Z",
+      "end": "2026-03-09T10:23:07.855625291Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/gcp_bom/pst/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - GCP PST",
+          "query_id": "4b82202a-b18e-4891-a1eb-a0989850bbb3",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "GCP",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Pub/Sub Topic resources found. Cloud Pub/Sub is designed to provide reliable, many-to-many, asynchronous messaging between applications. Publisher applications can send messages to a 'topic' and other applications can subscribe to that topic to receive the messages.",
+          "description_id": "aa371a3b",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/pst/test/positive.tf",
+              "similarity_id": "cfb6ffe2b4d5d2f434b6455b9831665d6c1334ba9096294683f0e2476ace815a",
+              "line": 54,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_pubsub_topic[example4]",
+              "search_line": 54,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"example-topic\",\"resource_type\":\"google_pubsub_topic\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/pst/test/positive.tf",
+              "similarity_id": "e79d3d9fdabefc5bd1c7c487bbdb5e9bf107fff4da675f8c7865914be4d1454d",
+              "line": 34,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_pubsub_topic[example1]",
+              "search_line": 34,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"example-topic\",\"resource_type\":\"google_pubsub_topic\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/pst/test/positive.tf",
+              "similarity_id": "b7f4814219d6c83e3ba809cc50e49b9bd9d99d1f5e1ff10466454128323f121d",
+              "line": 39,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_pubsub_topic[example2]",
+              "search_line": 39,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"example-topic\",\"resource_type\":\"google_pubsub_topic\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/pst/test/positive.tf",
+              "similarity_id": "8053dc098605ade9e48af7eb35916952bfacfa78d04137695b0fdeb14a004a7a",
+              "line": 44,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_pubsub_topic[example3]",
+              "search_line": 44,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Messaging\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"example-topic\",\"resource_type\":\"google_pubsub_topic\",\"resource_vendor\":\"GCP\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "bc75ce52-a60a-4660-b533-bce837a5019b",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/redis/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/redis/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 78,
+      "files_parsed": 2,
+      "lines_parsed": 77,
+      "lines_ignored": 1,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 2
+      },
+      "total_counter": 0,
+      "total_bom_resources": 2,
+      "start": "2026-03-09T10:23:12.528455929Z",
+      "end": "2026-03-09T10:23:13.655799834Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/gcp_bom/redis/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - GCP Redis",
+          "query_id": "bc75ce52-a60a-4660-b533-bce837a5019b",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "GCP",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Redis Instance resources found. Memorystore for Redis is a fully managed Redis service for Google Cloud. Applications running on Google Cloud can achieve extreme performance by leveraging the highly scalable, available, secure Redis service without the burden of managing complex Redis deployments.",
+          "description_id": "1db9d01f",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/redis/test/positive.tf",
+              "similarity_id": "239e99ca63fd9449ab66f45b2c359d88033076182f41d59e5a8d363ce11b8c87",
+              "line": 20,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_redis_instance[cache2]",
+              "search_line": 20,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"private-cache\",\"resource_type\":\"google_redis_instance\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/redis/test/positive.tf",
+              "similarity_id": "dc6c51484ff06cc85798bc42b423e37c956b1f442f1bac6c91b8549dd0c7b789",
+              "line": 1,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_redis_instance[cache]",
+              "search_line": 1,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"In Memory Data Structure\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"memory-cache\",\"resource_type\":\"google_redis_instance\",\"resource_vendor\":\"GCP\"}"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "2f06d22c-56bd-4f73-8a51-db001fcf2150",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/sb/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/gcp_bom/sb/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 2,
+      "lines_scanned": 62,
+      "files_parsed": 2,
+      "lines_parsed": 61,
+      "lines_ignored": 1,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 3
+      },
+      "total_counter": 0,
+      "total_bom_resources": 3,
+      "start": "2026-03-09T10:23:18.741883234Z",
+      "end": "2026-03-09T10:23:20.452102045Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/gcp_bom/sb/test"
+      ],
+      "queries": [],
+      "bill_of_materials": [
+        {
+          "query_name": "BOM - GCP SB",
+          "query_id": "2f06d22c-56bd-4f73-8a51-db001fcf2150",
+          "query_url": "https://kics.io",
+          "severity": "TRACE",
+          "platform": "Terraform",
+          "cwe": "532",
+          "risk_score": "0.0",
+          "cloud_provider": "GCP",
+          "category": "Bill Of Materials",
+          "experimental": false,
+          "description": "A list of Storage Bucket resources found. Buckets are the basic containers that hold your data. Everything that you store in Cloud Storage must be contained in a bucket.",
+          "description_id": "38a18539",
+          "files": [
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/sb/test/positive.tf",
+              "similarity_id": "79b1b75db372e0a3127efdbe4eaa9e0065b6480b953945f5e90cc00f86689386",
+              "line": 21,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_storage_bucket[bucket2]",
+              "search_line": 21,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"encrypted\",\"resource_name\":\"static-content-bucket\",\"resource_type\":\"google_storage_bucket\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/sb/test/positive.tf",
+              "similarity_id": "334ab83ad1641021d18d4f53ca6986e029e9a3dc4039f59f24c262ee7e73a542",
+              "line": 35,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_storage_bucket[bucket3]",
+              "search_line": 35,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"unknown\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"static-content-bucket\",\"resource_type\":\"google_storage_bucket\",\"resource_vendor\":\"GCP\"}"
+            },
+            {
+              "file_name": "assets/queries/terraform/gcp_bom/sb/test/positive.tf",
+              "similarity_id": "d3532b5fafe273c7489124c321138ff536b5503d6e338c8035a5e544ec582bdc",
+              "line": 7,
+              "issue_type": "BillOfMaterials",
+              "search_key": "google_storage_bucket[bucket]",
+              "search_line": 7,
+              "search_value": "",
+              "expected_value": "",
+              "actual_value": "",
+              "value": "{\"resource_accessibility\":\"public\",\"resource_category\":\"Storage\",\"resource_encryption\":\"unencrypted\",\"resource_name\":\"static-content-bucket\",\"resource_type\":\"google_storage_bucket\",\"resource_vendor\":\"GCP\"}"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

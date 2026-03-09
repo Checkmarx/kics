@@ -2,18 +2,6 @@
   {
     "queryName": "Secrets As Environment Variables",
     "severity": "LOW",
-    "line": 17,
-    "filename": "positive.yaml",
-    "resourceType": "Pod",
-    "resourceName": "secret-env-pod",
-    "searchKey": "metadata.name={{secret-env-pod}}.spec.containers.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef",
-    "searchValue": "Pod",
-    "expectedValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' should be undefined",
-    "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' is defined"
-  },
-  {
-    "queryName": "Secrets As Environment Variables",
-    "severity": "LOW",
     "line": 12,
     "filename": "positive.yaml",
     "resourceType": "Pod",
@@ -22,6 +10,18 @@
     "searchValue": "Pod",
     "expectedValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef' should be undefined",
     "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef' is defined"
+  },
+  {
+    "queryName": "Secrets As Environment Variables",
+    "severity": "LOW",
+    "line": 17,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "secret-env-pod",
+    "searchKey": "metadata.name={{secret-env-pod}}.spec.containers.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef",
+    "searchValue": "Pod",
+    "expectedValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' should be undefined",
+    "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' is defined"
   },
   {
     "queryName": "Secrets As Environment Variables",

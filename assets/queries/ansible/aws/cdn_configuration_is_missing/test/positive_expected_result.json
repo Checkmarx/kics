@@ -2,18 +2,6 @@
   {
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
-    "line": 23,
-    "filename": "positive.yaml",
-    "resourceType": "community.aws.cloudfront_distribution",
-    "resourceName": "create a distribution without an origin and with enabled=false",
-    "searchKey": "name={{create a distribution without an origin and with enabled=false}}.{{community.aws.cloudfront_distribution}}.enabled",
-    "searchValue": "",
-    "expectedValue": "name={{create a distribution without an origin and with enabled=false}}.{{community.aws.cloudfront_distribution}}.enabled should be set to 'true'",
-    "actualValue": "name={{create a distribution without an origin and with enabled=false}}.{{community.aws.cloudfront_distribution}}.enabled is set to 'false'"
-  },
-  {
-    "queryName": "CDN Configuration Is Missing",
-    "severity": "LOW",
     "line": 2,
     "filename": "positive.yaml",
     "resourceType": "community.aws.cloudfront_distribution",
@@ -22,5 +10,17 @@
     "searchValue": "origins",
     "expectedValue": "name={{create a distribution without an origin and with enabled=false}}.{{community.aws.cloudfront_distribution}}.origins should be defined",
     "actualValue": "name={{create a distribution without an origin and with enabled=false}}.{{community.aws.cloudfront_distribution}}.origins is not defined"
+  },
+  {
+    "queryName": "CDN Configuration Is Missing",
+    "severity": "LOW",
+    "line": 23,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudfront_distribution",
+    "resourceName": "create a distribution without an origin and with enabled=false",
+    "searchKey": "name={{create a distribution without an origin and with enabled=false}}.{{community.aws.cloudfront_distribution}}.enabled",
+    "searchValue": "",
+    "expectedValue": "name={{create a distribution without an origin and with enabled=false}}.{{community.aws.cloudfront_distribution}}.enabled should be set to 'true'",
+    "actualValue": "name={{create a distribution without an origin and with enabled=false}}.{{community.aws.cloudfront_distribution}}.enabled is set to 'false'"
   }
 ]

@@ -2,14 +2,14 @@
   {
     "queryName": "Elasticsearch Logs Disabled",
     "severity": "MEDIUM",
-    "line": 18,
-    "filename": "positive3.yaml",
+    "line": 14,
+    "filename": "positive1.yaml",
     "resourceType": "aws:elasticsearch:Domain",
     "resourceName": "exampleDomain",
-    "searchKey": "resources.exampleDomain.properties.logPublishingOptions[0].logType",
+    "searchKey": "resources.exampleDomain.properties",
     "searchValue": "",
-    "expectedValue": "Attribute 'enabled' should be set to 'true'",
-    "actualValue": "Attribute 'enabled' is set to 'false'"
+    "expectedValue": "Attribute 'logPublishingOptions' should be defined",
+    "actualValue": "Attribute 'logPublishingOptions' is not defined"
   },
   {
     "queryName": "Elasticsearch Logs Disabled",
@@ -26,13 +26,13 @@
   {
     "queryName": "Elasticsearch Logs Disabled",
     "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive1.yaml",
+    "line": 18,
+    "filename": "positive3.yaml",
     "resourceType": "aws:elasticsearch:Domain",
     "resourceName": "exampleDomain",
-    "searchKey": "resources.exampleDomain.properties",
+    "searchKey": "resources.exampleDomain.properties.logPublishingOptions[0].logType",
     "searchValue": "",
-    "expectedValue": "Attribute 'logPublishingOptions' should be defined",
-    "actualValue": "Attribute 'logPublishingOptions' is not defined"
+    "expectedValue": "Attribute 'enabled' should be set to 'true'",
+    "actualValue": "Attribute 'enabled' is set to 'false'"
   }
 ]

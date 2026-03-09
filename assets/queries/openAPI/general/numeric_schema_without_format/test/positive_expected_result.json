@@ -1,24 +1,12 @@
 [
   {
-    "queryName": "Numeric Schema Without Format (v2)",
+    "queryName": "Numeric Schema Without Format (v3)",
     "severity": "LOW",
-    "line": 23,
-    "filename": "positive5.json",
+    "line": 58,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
-    "searchValue": "",
-    "expectedValue": "Numeric schema should have 'format' defined",
-    "actualValue": "Numeric schema does not have 'format' defined"
-  },
-  {
-    "queryName": "Numeric Schema Without Format (v2)",
-    "severity": "LOW",
-    "line": 20,
-    "filename": "positive6.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
     "searchValue": "",
     "expectedValue": "Numeric schema should have 'format' defined",
     "actualValue": "Numeric schema does not have 'format' defined"
@@ -60,13 +48,25 @@
     "actualValue": "Numeric schema does not have 'format' defined"
   },
   {
-    "queryName": "Numeric Schema Without Format (v3)",
+    "queryName": "Numeric Schema Without Format (v2)",
     "severity": "LOW",
-    "line": 58,
-    "filename": "positive1.json",
+    "line": 23,
+    "filename": "positive5.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'format' defined",
+    "actualValue": "Numeric schema does not have 'format' defined"
+  },
+  {
+    "queryName": "Numeric Schema Without Format (v2)",
+    "severity": "LOW",
+    "line": 20,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
     "searchValue": "",
     "expectedValue": "Numeric schema should have 'format' defined",
     "actualValue": "Numeric schema does not have 'format' defined"

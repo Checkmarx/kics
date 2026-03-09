@@ -2,14 +2,14 @@
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive4.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[ec2_instance].monitoring",
+    "line": 17,
+    "filename": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.{{monitoring_positive1}}",
     "searchValue": "",
-    "expectedValue": "ec2_instance.'monitoring' should be set to true",
-    "actualValue": "ec2_instance.'monitoring' is set to false"
+    "expectedValue": "'monitoring' should be defined and not null",
+    "actualValue": "'monitoring' is undefined or null"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
@@ -38,14 +38,14 @@
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive1.tf",
-    "resourceType": "aws_instance",
-    "resourceName": "HelloWorld",
-    "searchKey": "aws_instance.{{monitoring_positive1}}",
+    "line": 10,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance].monitoring",
     "searchValue": "",
-    "expectedValue": "'monitoring' should be defined and not null",
-    "actualValue": "'monitoring' is undefined or null"
+    "expectedValue": "ec2_instance.'monitoring' should be set to true",
+    "actualValue": "ec2_instance.'monitoring' is set to false"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",

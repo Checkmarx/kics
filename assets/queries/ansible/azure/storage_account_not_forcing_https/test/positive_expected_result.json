@@ -2,11 +2,23 @@
   {
     "queryName": "Storage Account Not Forcing HTTPS",
     "severity": "MEDIUM",
-    "line": 33,
+    "line": 3,
     "filename": "positive.yaml",
     "resourceType": "azure.azcollection.azure_rm_storageaccount",
-    "resourceName": "create an account4",
-    "searchKey": "name={{create an account4}}.{{azure.azcollection.azure_rm_storageaccount}}.https_only",
+    "resourceName": "create an account",
+    "searchKey": "name={{create an account}}.{{azure.azcollection.azure_rm_storageaccount}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.https_only should be defined",
+    "actualValue": "azure_rm_storageaccount.https_only is undefined (defaults to false)"
+  },
+  {
+    "queryName": "Storage Account Not Forcing HTTPS",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_storageaccount",
+    "resourceName": "create an account2",
+    "searchKey": "name={{create an account2}}.{{azure.azcollection.azure_rm_storageaccount}}.https_only",
     "searchValue": "",
     "expectedValue": "azure_rm_storageaccount should have https_only set to true",
     "actualValue": "azure_rm_storageaccount has https_only set to false"
@@ -19,6 +31,18 @@
     "resourceType": "azure.azcollection.azure_rm_storageaccount",
     "resourceName": "create an account3",
     "searchKey": "name={{create an account3}}.{{azure.azcollection.azure_rm_storageaccount}}.https_only",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount should have https_only set to true",
+    "actualValue": "azure_rm_storageaccount has https_only set to false"
+  },
+  {
+    "queryName": "Storage Account Not Forcing HTTPS",
+    "severity": "MEDIUM",
+    "line": 33,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_storageaccount",
+    "resourceName": "create an account4",
+    "searchKey": "name={{create an account4}}.{{azure.azcollection.azure_rm_storageaccount}}.https_only",
     "searchValue": "",
     "expectedValue": "azure_rm_storageaccount should have https_only set to true",
     "actualValue": "azure_rm_storageaccount has https_only set to false"
@@ -79,30 +103,6 @@
     "resourceType": "azure.azcollection.azure_rm_storageaccount",
     "resourceName": "create an account9",
     "searchKey": "name={{create an account9}}.{{azure.azcollection.azure_rm_storageaccount}}.https_only",
-    "searchValue": "",
-    "expectedValue": "azure_rm_storageaccount should have https_only set to true",
-    "actualValue": "azure_rm_storageaccount has https_only set to false"
-  },
-  {
-    "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "MEDIUM",
-    "line": 3,
-    "filename": "positive.yaml",
-    "resourceType": "azure.azcollection.azure_rm_storageaccount",
-    "resourceName": "create an account",
-    "searchKey": "name={{create an account}}.{{azure.azcollection.azure_rm_storageaccount}}",
-    "searchValue": "",
-    "expectedValue": "azure_rm_storageaccount.https_only should be defined",
-    "actualValue": "azure_rm_storageaccount.https_only is undefined (defaults to false)"
-  },
-  {
-    "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "MEDIUM",
-    "line": 15,
-    "filename": "positive.yaml",
-    "resourceType": "azure.azcollection.azure_rm_storageaccount",
-    "resourceName": "create an account2",
-    "searchKey": "name={{create an account2}}.{{azure.azcollection.azure_rm_storageaccount}}.https_only",
     "searchValue": "",
     "expectedValue": "azure_rm_storageaccount should have https_only set to true",
     "actualValue": "azure_rm_storageaccount has https_only set to false"

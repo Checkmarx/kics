@@ -2,6 +2,18 @@
   {
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "frontend",
+    "searchKey": "metadata.name={{frontend}}.namespace",
+    "searchValue": "Pod",
+    "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
+    "actualValue": "'metadata.namespace' is set to default"
+  },
+  {
+    "queryName": "Using Unrecommended Namespace",
+    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive2.yaml",
     "resourceType": "Pod",
@@ -44,18 +56,6 @@
     "resourceName": "dummy-config",
     "searchKey": "metadata.name={{dummy-config}}.namespace",
     "searchValue": "Configuration",
-    "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
-    "actualValue": "'metadata.namespace' is set to default"
-  },
-  {
-    "queryName": "Using Unrecommended Namespace",
-    "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive1.yaml",
-    "resourceType": "Pod",
-    "resourceName": "frontend",
-    "searchKey": "metadata.name={{frontend}}.namespace",
-    "searchValue": "Pod",
     "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
     "actualValue": "'metadata.namespace' is set to default"
   }

@@ -2,26 +2,14 @@
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
-    "line": 88,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::AmazonMQ::Broker",
-    "resourceName": "MyBasicBroker",
-    "searchKey": "Resources.BasicBroker7.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.BasicBroker7.Properties.Logs should be set",
-    "actualValue": "Resources.BasicBroker7.Properties.Logs is undefined"
-  },
-  {
-    "queryName": "MQ Broker Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 84,
+    "line": 22,
     "filename": "positive1.yaml",
     "resourceType": "AWS::AmazonMQ::Broker",
     "resourceName": "MyBasicBroker",
-    "searchKey": "Resources.BasicBroker6.Properties.Logs.Audit",
+    "searchKey": "Resources.BasicBroker3.Properties.Logs",
     "searchValue": "",
-    "expectedValue": "Resources.BasicBroker6.Properties.Logs.Audit is true",
-    "actualValue": "Resources.BasicBroker6.Properties.Logs.Audit is false"
+    "expectedValue": "Resources.BasicBroker3.Properties.Logs.Audit should be set",
+    "actualValue": "Resources.BasicBroker3.Properties.Logs.Audit is undefined"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -38,32 +26,20 @@
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
-    "line": 121,
-    "filename": "positive2.json",
+    "line": 63,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::AmazonMQ::Broker",
     "resourceName": "MyBasicBroker",
-    "searchKey": "Resources.BasicBroker12.Properties",
+    "searchKey": "Resources.BasicBroker5.Properties.Logs.General",
     "searchValue": "",
-    "expectedValue": "Resources.BasicBroker12.Properties.Logs should be set",
-    "actualValue": "Resources.BasicBroker12.Properties.Logs is undefined"
-  },
-  {
-    "queryName": "MQ Broker Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 28,
-    "filename": "positive2.json",
-    "resourceType": "AWS::AmazonMQ::Broker",
-    "resourceName": "MyBasicBroker",
-    "searchKey": "Resources.BasicBroker8.Properties.Logs",
-    "searchValue": "",
-    "expectedValue": "Resources.BasicBroker8.Properties.Logs.Audit should be set",
-    "actualValue": "Resources.BasicBroker8.Properties.Logs.Audit is undefined"
+    "expectedValue": "Resources.BasicBroker5.Properties.Logs.General is true",
+    "actualValue": "Resources.BasicBroker5.Properties.Logs.General is false"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
     "line": 84,
-    "filename": "positive3.yaml",
+    "filename": "positive1.yaml",
     "resourceType": "AWS::AmazonMQ::Broker",
     "resourceName": "MyBasicBroker",
     "searchKey": "Resources.BasicBroker6.Properties.Logs.Audit",
@@ -86,26 +62,26 @@
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
-    "line": 63,
-    "filename": "positive1.yaml",
+    "line": 28,
+    "filename": "positive2.json",
     "resourceType": "AWS::AmazonMQ::Broker",
     "resourceName": "MyBasicBroker",
-    "searchKey": "Resources.BasicBroker5.Properties.Logs.General",
+    "searchKey": "Resources.BasicBroker8.Properties.Logs",
     "searchValue": "",
-    "expectedValue": "Resources.BasicBroker5.Properties.Logs.General is true",
-    "actualValue": "Resources.BasicBroker5.Properties.Logs.General is false"
+    "expectedValue": "Resources.BasicBroker8.Properties.Logs.Audit should be set",
+    "actualValue": "Resources.BasicBroker8.Properties.Logs.Audit is undefined"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
-    "line": 22,
-    "filename": "positive1.yaml",
+    "line": 56,
+    "filename": "positive2.json",
     "resourceType": "AWS::AmazonMQ::Broker",
     "resourceName": "MyBasicBroker",
-    "searchKey": "Resources.BasicBroker3.Properties.Logs",
+    "searchKey": "Resources.BasicBroker9.Properties.Logs",
     "searchValue": "",
-    "expectedValue": "Resources.BasicBroker3.Properties.Logs.Audit should be set",
-    "actualValue": "Resources.BasicBroker3.Properties.Logs.Audit is undefined"
+    "expectedValue": "Resources.BasicBroker9.Properties.Logs.General should be set",
+    "actualValue": "Resources.BasicBroker9.Properties.Logs.General is undefined"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -134,26 +110,14 @@
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
-    "line": 56,
+    "line": 121,
     "filename": "positive2.json",
     "resourceType": "AWS::AmazonMQ::Broker",
     "resourceName": "MyBasicBroker",
-    "searchKey": "Resources.BasicBroker9.Properties.Logs",
+    "searchKey": "Resources.BasicBroker12.Properties",
     "searchValue": "",
-    "expectedValue": "Resources.BasicBroker9.Properties.Logs.General should be set",
-    "actualValue": "Resources.BasicBroker9.Properties.Logs.General is undefined"
-  },
-  {
-    "queryName": "MQ Broker Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 63,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::AmazonMQ::Broker",
-    "resourceName": "MyBasicBroker",
-    "searchKey": "Resources.BasicBroker5.Properties.Logs.General",
-    "searchValue": "",
-    "expectedValue": "Resources.BasicBroker5.Properties.Logs.General is true",
-    "actualValue": "Resources.BasicBroker5.Properties.Logs.General is false"
+    "expectedValue": "Resources.BasicBroker12.Properties.Logs should be set",
+    "actualValue": "Resources.BasicBroker12.Properties.Logs is undefined"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -178,5 +142,41 @@
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker4.Properties.Logs.General should be set",
     "actualValue": "Resources.BasicBroker4.Properties.Logs.General is undefined"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 63,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker5.Properties.Logs.General",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker5.Properties.Logs.General is true",
+    "actualValue": "Resources.BasicBroker5.Properties.Logs.General is false"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 84,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker6.Properties.Logs.Audit",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker6.Properties.Logs.Audit is true",
+    "actualValue": "Resources.BasicBroker6.Properties.Logs.Audit is false"
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 88,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker7.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker7.Properties.Logs should be set",
+    "actualValue": "Resources.BasicBroker7.Properties.Logs is undefined"
   }
 ]

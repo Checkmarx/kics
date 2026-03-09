@@ -2,38 +2,14 @@
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive9.tf",
+    "line": 6,
+    "filename": "positive1.tf",
     "resourceType": "alicloud_actiontrail_trail",
     "resourceName": "action-trail",
-    "searchKey": "alicloud_actiontrail_trail[actiontrail10]",
-    "searchValue": "event_rw",
-    "expectedValue": "'event_rw' should be set.",
-    "actualValue": "'event_rw' is not set."
-  },
-  {
-    "queryName": "Action Trail Logging For All Regions Disabled",
-    "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive3.tf",
-    "resourceType": "alicloud_actiontrail_trail",
-    "resourceName": "action-trail",
-    "searchKey": "alicloud_actiontrail_trail[actiontrail4].event_rw",
+    "searchKey": "alicloud_actiontrail_trail[actiontrail2].trail_region",
     "searchValue": "",
-    "expectedValue": "'event_rw' should be set to All",
-    "actualValue": "'event_rw' is not set to All"
-  },
-  {
-    "queryName": "Action Trail Logging For All Regions Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive8.tf",
-    "resourceType": "alicloud_actiontrail_trail",
-    "resourceName": "action-trail",
-    "searchKey": "alicloud_actiontrail_trail[actiontrail9]",
-    "searchValue": "event_rw",
-    "expectedValue": "'event_rw' should be set.",
-    "actualValue": "'event_rw' is not set."
+    "expectedValue": "'trail_region' should be set to All",
+    "actualValue": "'trail_region' is not set to All"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -51,10 +27,10 @@
     "queryName": "Action Trail Logging For All Regions Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.tf",
+    "filename": "positive2.tf",
     "resourceType": "alicloud_actiontrail_trail",
     "resourceName": "action-trail",
-    "searchKey": "alicloud_actiontrail_trail[actiontrail2].trail_region",
+    "searchKey": "alicloud_actiontrail_trail[actiontrail3].trail_region",
     "searchValue": "",
     "expectedValue": "'trail_region' should be set to All",
     "actualValue": "'trail_region' is not set to All"
@@ -62,26 +38,14 @@
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive7.tf",
+    "line": 5,
+    "filename": "positive3.tf",
     "resourceType": "alicloud_actiontrail_trail",
     "resourceName": "action-trail",
-    "searchKey": "alicloud_actiontrail_trail[actiontrail8]",
-    "searchValue": "trail_region",
-    "expectedValue": "'trail_region' should be set.",
-    "actualValue": "'trail_region' is not set."
-  },
-  {
-    "queryName": "Action Trail Logging For All Regions Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive9.tf",
-    "resourceType": "alicloud_actiontrail_trail",
-    "resourceName": "action-trail",
-    "searchKey": "alicloud_actiontrail_trail[actiontrail10]",
-    "searchValue": "oss_bucket_name",
-    "expectedValue": "oss_bucket_name should be set.",
-    "actualValue": "oss_bucket_name is not set."
+    "searchKey": "alicloud_actiontrail_trail[actiontrail4].event_rw",
+    "searchValue": "",
+    "expectedValue": "'event_rw' should be set to All",
+    "actualValue": "'event_rw' is not set to All"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -98,23 +62,11 @@
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
     "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive6.tf",
-    "resourceType": "alicloud_actiontrail_trail",
-    "resourceName": "action-trail",
-    "searchKey": "alicloud_actiontrail_trail[actiontrail7].event_rw",
-    "searchValue": "",
-    "expectedValue": "'event_rw' should be set to All",
-    "actualValue": "'event_rw' is not set to All"
-  },
-  {
-    "queryName": "Action Trail Logging For All Regions Disabled",
-    "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive6.tf",
+    "filename": "positive4.tf",
     "resourceType": "alicloud_actiontrail_trail",
     "resourceName": "action-trail",
-    "searchKey": "alicloud_actiontrail_trail[actiontrail7].trail_region",
+    "searchKey": "alicloud_actiontrail_trail[actiontrail5].trail_region",
     "searchValue": "",
     "expectedValue": "'trail_region' should be set to All",
     "actualValue": "'trail_region' is not set to All"
@@ -146,11 +98,23 @@
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
     "severity": "MEDIUM",
-    "line": 6,
-    "filename": "positive2.tf",
+    "line": 5,
+    "filename": "positive6.tf",
     "resourceType": "alicloud_actiontrail_trail",
     "resourceName": "action-trail",
-    "searchKey": "alicloud_actiontrail_trail[actiontrail3].trail_region",
+    "searchKey": "alicloud_actiontrail_trail[actiontrail7].event_rw",
+    "searchValue": "",
+    "expectedValue": "'event_rw' should be set to All",
+    "actualValue": "'event_rw' is not set to All"
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive6.tf",
+    "resourceType": "alicloud_actiontrail_trail",
+    "resourceName": "action-trail",
+    "searchKey": "alicloud_actiontrail_trail[actiontrail7].trail_region",
     "searchValue": "",
     "expectedValue": "'trail_region' should be set to All",
     "actualValue": "'trail_region' is not set to All"
@@ -158,13 +122,49 @@
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
     "severity": "MEDIUM",
-    "line": 6,
-    "filename": "positive4.tf",
+    "line": 1,
+    "filename": "positive7.tf",
     "resourceType": "alicloud_actiontrail_trail",
     "resourceName": "action-trail",
-    "searchKey": "alicloud_actiontrail_trail[actiontrail5].trail_region",
-    "searchValue": "",
-    "expectedValue": "'trail_region' should be set to All",
-    "actualValue": "'trail_region' is not set to All"
+    "searchKey": "alicloud_actiontrail_trail[actiontrail8]",
+    "searchValue": "trail_region",
+    "expectedValue": "'trail_region' should be set.",
+    "actualValue": "'trail_region' is not set."
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive8.tf",
+    "resourceType": "alicloud_actiontrail_trail",
+    "resourceName": "action-trail",
+    "searchKey": "alicloud_actiontrail_trail[actiontrail9]",
+    "searchValue": "event_rw",
+    "expectedValue": "'event_rw' should be set.",
+    "actualValue": "'event_rw' is not set."
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive9.tf",
+    "resourceType": "alicloud_actiontrail_trail",
+    "resourceName": "action-trail",
+    "searchKey": "alicloud_actiontrail_trail[actiontrail10]",
+    "searchValue": "event_rw",
+    "expectedValue": "'event_rw' should be set.",
+    "actualValue": "'event_rw' is not set."
+  },
+  {
+    "queryName": "Action Trail Logging For All Regions Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive9.tf",
+    "resourceType": "alicloud_actiontrail_trail",
+    "resourceName": "action-trail",
+    "searchKey": "alicloud_actiontrail_trail[actiontrail10]",
+    "searchValue": "oss_bucket_name",
+    "expectedValue": "oss_bucket_name should be set.",
+    "actualValue": "oss_bucket_name is not set."
   }
 ]

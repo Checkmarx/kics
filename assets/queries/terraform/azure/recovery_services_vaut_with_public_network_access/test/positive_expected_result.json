@@ -2,18 +2,6 @@
   {
     "queryName": "Beta - Recovery Services Vault With Public Network Access",
     "severity": "HIGH",
-    "line": 16,
-    "filename": "positive.tf",
-    "resourceType": "azurerm_recovery_services_vault",
-    "resourceName": "positive2-recovery-vault",
-    "searchKey": "azurerm_recovery_services_vault[positive2].public_network_access_enabled",
-    "searchValue": "",
-    "expectedValue": "'azurerm_recovery_services_vault[positive2].public_network_access_enabled' should be defined and set to false",
-    "actualValue": "'azurerm_recovery_services_vault[positive2].public_network_access_enabled' is set to true"
-  },
-  {
-    "queryName": "Beta - Recovery Services Vault With Public Network Access",
-    "severity": "HIGH",
     "line": 1,
     "filename": "positive.tf",
     "resourceType": "azurerm_recovery_services_vault",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'azurerm_recovery_services_vault[positive1].public_network_access_enabled' should be defined and set to false",
     "actualValue": "'azurerm_recovery_services_vault[positive1].public_network_access_enabled' is undefined or null"
+  },
+  {
+    "queryName": "Beta - Recovery Services Vault With Public Network Access",
+    "severity": "HIGH",
+    "line": 16,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_recovery_services_vault",
+    "resourceName": "positive2-recovery-vault",
+    "searchKey": "azurerm_recovery_services_vault[positive2].public_network_access_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_recovery_services_vault[positive2].public_network_access_enabled' should be defined and set to false",
+    "actualValue": "'azurerm_recovery_services_vault[positive2].public_network_access_enabled' is set to true"
   }
 ]

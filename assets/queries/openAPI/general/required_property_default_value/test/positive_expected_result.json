@@ -1,24 +1,12 @@
 [
   {
-    "queryName": "Required Property With Default Value (v2)",
+    "queryName": "Required Property With Default Value (v3)",
     "severity": "INFO",
-    "line": 23,
-    "filename": "positive5.json",
+    "line": 30,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.post.parameters.schema.properties.{{id}}.default",
-    "searchValue": "",
-    "expectedValue": "Required properties should not have default defined",
-    "actualValue": "Required properties with default defined"
-  },
-  {
-    "queryName": "Required Property With Default Value (v2)",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive6.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.post.parameters.schema.properties.{{id}}.default",
+    "searchKey": "components.schemas.MyObject.properties.{{id}}.default",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
     "actualValue": "Required properties with default defined"
@@ -31,18 +19,6 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.{{id}}.default",
-    "searchValue": "",
-    "expectedValue": "Required properties should not have default defined",
-    "actualValue": "Required properties with default defined"
-  },
-  {
-    "queryName": "Required Property With Default Value (v3)",
-    "severity": "INFO",
-    "line": 30,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "components.schemas.MyObject.properties.{{id}}.default",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
     "actualValue": "Required properties with default defined"
@@ -67,6 +43,30 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.{{id}}.default",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined"
+  },
+  {
+    "queryName": "Required Property With Default Value (v2)",
+    "severity": "INFO",
+    "line": 23,
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.post.parameters.schema.properties.{{id}}.default",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined"
+  },
+  {
+    "queryName": "Required Property With Default Value (v2)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.post.parameters.schema.properties.{{id}}.default",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
     "actualValue": "Required properties with default defined"

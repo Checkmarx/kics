@@ -3,18 +3,6 @@
     "queryName": "API Gateway Method Does Not Contains An API Key",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive6.yaml",
-    "resourceType": "AWS::ApiGateway::Method",
-    "resourceName": "MockMethod",
-    "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
-    "searchValue": "",
-    "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
-    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false"
-  },
-  {
-    "queryName": "API Gateway Method Does Not Contains An API Key",
-    "severity": "MEDIUM",
-    "line": 7,
     "filename": "positive1.yaml",
     "resourceType": "AWS::ApiGateway::Method",
     "resourceName": "MockMethod",
@@ -26,14 +14,14 @@
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
     "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive5.json",
+    "line": 6,
+    "filename": "positive2.yaml",
     "resourceType": "AWS::ApiGateway::Method",
-    "resourceName": "MockMethod",
-    "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
+    "resourceName": "MockMethod1",
+    "searchKey": "Resources.MockMethod1.Properties",
     "searchValue": "",
-    "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
-    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false"
+    "expectedValue": "Resources.MockMethod1.Properties.ApiKeyRequired should be defined",
+    "actualValue": "Resources.MockMethod1.Properties.ApiKeyRequired is undefined"
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
@@ -62,13 +50,25 @@
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
     "severity": "MEDIUM",
-    "line": 6,
-    "filename": "positive2.yaml",
+    "line": 13,
+    "filename": "positive5.json",
     "resourceType": "AWS::ApiGateway::Method",
-    "resourceName": "MockMethod1",
-    "searchKey": "Resources.MockMethod1.Properties",
+    "resourceName": "MockMethod",
+    "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
     "searchValue": "",
-    "expectedValue": "Resources.MockMethod1.Properties.ApiKeyRequired should be defined",
-    "actualValue": "Resources.MockMethod1.Properties.ApiKeyRequired is undefined"
+    "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
+    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false"
+  },
+  {
+    "queryName": "API Gateway Method Does Not Contains An API Key",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive6.yaml",
+    "resourceType": "AWS::ApiGateway::Method",
+    "resourceName": "MockMethod",
+    "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
+    "searchValue": "",
+    "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
+    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false"
   }
 ]

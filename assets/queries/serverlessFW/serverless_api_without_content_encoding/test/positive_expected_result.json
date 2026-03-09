@@ -2,18 +2,6 @@
   {
     "queryName": "Serverless API Without Content Encoding",
     "severity": "LOW",
-    "line": 6,
-    "filename": "positive2.yml",
-    "resourceType": "AWS::ApiGateway",
-    "resourceName": "my-service",
-    "searchKey": "provider.apiGateway.minimumCompressionSize",
-    "searchValue": "",
-    "expectedValue": "'minimumCompressionSize' should be set to a recommended value",
-    "actualValue": "'minimumCompressionSize' is set a unrecommended value"
-  },
-  {
-    "queryName": "Serverless API Without Content Encoding",
-    "severity": "LOW",
     "line": 5,
     "filename": "positive1.yml",
     "resourceType": "AWS::ApiGateway",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "apiGateway should have 'minimumCompressionSize' defined and set to a recommended value",
     "actualValue": "apiGateway does not have 'minimumCompressionSize' defined"
+  },
+  {
+    "queryName": "Serverless API Without Content Encoding",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive2.yml",
+    "resourceType": "AWS::ApiGateway",
+    "resourceName": "my-service",
+    "searchKey": "provider.apiGateway.minimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "'minimumCompressionSize' should be set to a recommended value",
+    "actualValue": "'minimumCompressionSize' is set a unrecommended value"
   }
 ]

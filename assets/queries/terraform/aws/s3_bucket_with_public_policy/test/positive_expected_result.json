@@ -2,32 +2,8 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive7.tf",
-    "resourceType": "aws_s3_bucket_public_access_block",
-    "resourceName": "allow_public",
-    "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
-    "searchValue": "",
-    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive6.tf",
-    "resourceType": "aws_s3_bucket_public_access_block",
-    "resourceName": "allow_public",
-    "searchKey": "aws_s3_bucket_public_access_block[allow_public]",
-    "searchValue": "",
-    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive8.tf",
+    "filename": "positive1.tf",
     "resourceType": "aws_s3_bucket_public_access_block",
     "resourceName": "allow_public",
     "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
@@ -38,14 +14,26 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive9.tf",
+    "line": 1,
+    "filename": "positive10.tf",
     "resourceType": "aws_s3_account_public_access_block",
     "resourceName": "allow_public_acc",
-    "searchKey": "aws_s3_account_public_access_block[allow_public_acc].block_public_policy",
+    "searchKey": "aws_s3_account_public_access_block[allow_public_acc]",
     "searchValue": "",
     "expectedValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is defined to false"
+    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is not defined (defaults to false)"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "allow_public",
+    "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -74,18 +62,6 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive10.tf",
-    "resourceType": "aws_s3_account_public_access_block",
-    "resourceName": "allow_public_acc",
-    "searchKey": "aws_s3_account_public_access_block[allow_public_acc]",
-    "searchValue": "",
-    "expectedValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is not defined (defaults to false)"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
     "line": 11,
     "filename": "positive5.tf",
     "resourceType": "aws_s3_bucket_public_access_block",
@@ -98,8 +74,20 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive1.tf",
+    "line": 5,
+    "filename": "positive6.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "allow_public",
+    "searchKey": "aws_s3_bucket_public_access_block[allow_public]",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive7.tf",
     "resourceType": "aws_s3_bucket_public_access_block",
     "resourceName": "allow_public",
     "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
@@ -110,13 +98,25 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive2.tf",
+    "line": 11,
+    "filename": "positive8.tf",
     "resourceType": "aws_s3_bucket_public_access_block",
     "resourceName": "allow_public",
     "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
     "searchValue": "",
     "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
     "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive9.tf",
+    "resourceType": "aws_s3_account_public_access_block",
+    "resourceName": "allow_public_acc",
+    "searchKey": "aws_s3_account_public_access_block[allow_public_acc].block_public_policy",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is defined to false"
   }
 ]

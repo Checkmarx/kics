@@ -2,18 +2,6 @@
   {
     "queryName": "Beta - SQL DB Instance With Global User Options",
     "severity": "MEDIUM",
-    "line": 31,
-    "filename": "positive.tf",
-    "resourceType": "google_sql_database_instance",
-    "resourceName": "sqlserver-instance-with-flag",
-    "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
-    "searchValue": "",
-    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'user options' to '0'",
-    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'user options' to '16'"
-  },
-  {
-    "queryName": "Beta - SQL DB Instance With Global User Options",
-    "severity": "MEDIUM",
     "line": 13,
     "filename": "positive.tf",
     "resourceType": "google_sql_database_instance",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'user options' to '0'",
     "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'user options' to '32'"
+  },
+  {
+    "queryName": "Beta - SQL DB Instance With Global User Options",
+    "severity": "MEDIUM",
+    "line": 31,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'user options' to '0'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'user options' to '16'"
   }
 ]

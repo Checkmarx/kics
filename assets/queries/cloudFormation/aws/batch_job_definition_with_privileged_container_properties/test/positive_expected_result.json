@@ -2,8 +2,8 @@
   {
     "queryName": "Batch Job Definition With Privileged Container Properties",
     "severity": "HIGH",
-    "line": 12,
-    "filename": "positive4.json",
+    "line": 21,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::Batch::JobDefinition",
     "resourceName": "nvidia-smi",
     "searchKey": "Resources.JobDefinition.Properties.ContainerProperties.Privileged",
@@ -38,8 +38,8 @@
   {
     "queryName": "Batch Job Definition With Privileged Container Properties",
     "severity": "HIGH",
-    "line": 21,
-    "filename": "positive1.yaml",
+    "line": 12,
+    "filename": "positive4.json",
     "resourceType": "AWS::Batch::JobDefinition",
     "resourceName": "nvidia-smi",
     "searchKey": "Resources.JobDefinition.Properties.ContainerProperties.Privileged",

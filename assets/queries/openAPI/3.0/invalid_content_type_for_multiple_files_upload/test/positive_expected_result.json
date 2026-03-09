@@ -3,18 +3,6 @@
     "queryName": "Invalid Content Type For Multiple Files Upload",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive2.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}}",
-    "searchValue": "",
-    "expectedValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} should be set to 'multipart/form-data'",
-    "actualValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} is not set to 'multipart/form-data'"
-  },
-  {
-    "queryName": "Invalid Content Type For Multiple Files Upload",
-    "severity": "INFO",
-    "line": 16,
     "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} should be set to 'multipart/form-data'",
     "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} is not set to 'multipart/form-data'"
+  },
+  {
+    "queryName": "Invalid Content Type For Multiple Files Upload",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}}",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} should be set to 'multipart/form-data'",
+    "actualValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} is not set to 'multipart/form-data'"
   },
   {
     "queryName": "Invalid Content Type For Multiple Files Upload",

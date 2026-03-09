@@ -2,11 +2,11 @@
   {
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
-    "line": 23,
-    "filename": "positive4.yaml",
+    "line": 24,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "components.schemas.MyObject.oneOf",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should be set to false",
     "actualValue": "'additionalProperties' is set true"
@@ -26,14 +26,26 @@
   {
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
-    "line": 12,
-    "filename": "positive6.yaml",
+    "line": 34,
+    "filename": "positive3.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchKey": "components.schemas.MyObject.oneOf",
     "searchValue": "",
-    "expectedValue": "'additionalProperties' needs to be set and to false",
-    "actualValue": "'additionalProperties' is not set"
+    "expectedValue": "'additionalProperties' should be set to false",
+    "actualValue": "'additionalProperties' is set true"
+  },
+  {
+    "queryName": "Additional Properties Too Permissive",
+    "severity": "LOW",
+    "line": 23,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.oneOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set to false",
+    "actualValue": "'additionalProperties' is set true"
   },
   {
     "queryName": "Additional Properties Too Permissive",
@@ -50,25 +62,13 @@
   {
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
-    "line": 24,
-    "filename": "positive1.json",
+    "line": 12,
+    "filename": "positive6.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
     "searchValue": "",
-    "expectedValue": "'additionalProperties' should be set to false",
-    "actualValue": "'additionalProperties' is set true"
-  },
-  {
-    "queryName": "Additional Properties Too Permissive",
-    "severity": "LOW",
-    "line": 34,
-    "filename": "positive3.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "components.schemas.MyObject.oneOf",
-    "searchValue": "",
-    "expectedValue": "'additionalProperties' should be set to false",
-    "actualValue": "'additionalProperties' is set true"
+    "expectedValue": "'additionalProperties' needs to be set and to false",
+    "actualValue": "'additionalProperties' is not set"
   }
 ]

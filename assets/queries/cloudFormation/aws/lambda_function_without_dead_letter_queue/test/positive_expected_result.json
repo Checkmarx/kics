@@ -2,18 +2,6 @@
   {
     "queryName": "Lambda Function Without Dead Letter Queue",
     "severity": "LOW",
-    "line": 27,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::Lambda::Function",
-    "resourceName": "Function2",
-    "searchKey": "Resources.Function2.Properties.DeadLetterConfig",
-    "searchValue": "",
-    "expectedValue": "'Resources.Function2.Properties.DeadLetterConfig.TargetArn' should be defined and not null",
-    "actualValue": "'Resources.Function2.Properties.DeadLetterConfig.TargetArn' is undefined or null"
-  },
-  {
-    "queryName": "Lambda Function Without Dead Letter Queue",
-    "severity": "LOW",
     "line": 6,
     "filename": "positive1.yaml",
     "resourceType": "AWS::Lambda::Function",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "'Resources.Function2.Properties.DeadLetterConfig' should be defined and not null",
     "actualValue": "'Resources.Function2.Properties.DeadLetterConfig' is undefined or null"
+  },
+  {
+    "queryName": "Lambda Function Without Dead Letter Queue",
+    "severity": "LOW",
+    "line": 27,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Function2",
+    "searchKey": "Resources.Function2.Properties.DeadLetterConfig",
+    "searchValue": "",
+    "expectedValue": "'Resources.Function2.Properties.DeadLetterConfig.TargetArn' should be defined and not null",
+    "actualValue": "'Resources.Function2.Properties.DeadLetterConfig.TargetArn' is undefined or null"
   }
 ]

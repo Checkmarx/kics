@@ -2,18 +2,6 @@
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
-    "line": 42,
-    "filename": "positive5.yaml",
-    "resourceType": "Deployment",
-    "resourceName": "security-context-demo",
-    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser",
-    "searchValue": "Deployment",
-    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
-  },
-  {
-    "queryName": "Container Running As Root",
-    "severity": "MEDIUM",
     "line": 12,
     "filename": "positive1.yaml",
     "resourceType": "Pod",
@@ -26,54 +14,6 @@
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
-    "line": 36,
-    "filename": "positive7.yaml",
-    "resourceType": "Deployment",
-    "resourceName": "security-context-demo",
-    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
-    "searchValue": "Deployment",
-    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
-  },
-  {
-    "queryName": "Container Running As Root",
-    "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive4.yaml",
-    "resourceType": "Pod",
-    "resourceName": "security-context-demo-2",
-    "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}",
-    "searchValue": "Pod",
-    "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
-  },
-  {
-    "queryName": "Container Running As Root",
-    "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive3.yaml",
-    "resourceType": "Pod",
-    "resourceName": "containers-runs-as-root",
-    "searchKey": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser",
-    "searchValue": "Pod",
-    "expectedValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
-  },
-  {
-    "queryName": "Container Running As Root",
-    "severity": "MEDIUM",
-    "line": 20,
-    "filename": "positive5.yaml",
-    "resourceType": "StatefulSet",
-    "resourceName": "security-context-demo",
-    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser",
-    "searchValue": "StatefulSet",
-    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
-  },
-  {
-    "queryName": "Container Running As Root",
-    "severity": "MEDIUM",
     "line": 28,
     "filename": "positive1.yaml",
     "resourceType": "Pod",
@@ -82,6 +22,18 @@
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{security-context-demo-3}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
     "actualValue": "metadata.name={{security-context-demo-3}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 43,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-4",
+    "searchKey": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
   },
   {
     "queryName": "Container Running As Root",
@@ -110,26 +62,26 @@
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
-    "line": 18,
-    "filename": "positive7.yaml",
-    "resourceType": "StatefulSet",
-    "resourceName": "security-context-demo",
-    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
-    "searchValue": "StatefulSet",
-    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
+    "line": 12,
+    "filename": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "containers-runs-as-root",
+    "searchKey": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
   },
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive6.yaml",
-    "resourceType": "StatefulSet",
-    "resourceName": "security-context-demo",
-    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser",
-    "searchValue": "StatefulSet",
-    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
+    "line": 7,
+    "filename": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-2",
+    "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
   },
   {
     "queryName": "Container Running As Root",
@@ -146,14 +98,38 @@
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
-    "line": 43,
-    "filename": "positive1.yaml",
-    "resourceType": "Pod",
-    "resourceName": "security-context-demo-4",
-    "searchKey": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser",
-    "searchValue": "Pod",
-    "expectedValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+    "line": 20,
+    "filename": "positive5.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser",
+    "searchValue": "StatefulSet",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 42,
+    "filename": "positive5.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive6.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser",
+    "searchValue": "StatefulSet",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
   },
   {
     "queryName": "Container Running As Root",
@@ -166,5 +142,29 @@
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
     "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive7.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
+    "searchValue": "StatefulSet",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 36,
+    "filename": "positive7.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
   }
 ]

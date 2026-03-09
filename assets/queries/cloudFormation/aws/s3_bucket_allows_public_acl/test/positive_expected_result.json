@@ -2,20 +2,32 @@
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
-    "line": 20,
+    "line": 4,
     "filename": "positive1.yaml",
     "resourceType": "AWS::S3::Bucket",
-    "resourceName": "Bucket13",
-    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.BlockPublicAcls",
+    "resourceName": "Bucket11",
+    "searchKey": "Resources.Bucket11.Properties",
     "searchValue": "",
-    "expectedValue": "'BlockPublicAcls' should be set to true%!(EXTRA string=Bucket13)",
-    "actualValue": "'BlockPublicAcls' is set to false%!(EXTRA string=Bucket13)"
+    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket12",
+    "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
+    "searchValue": "",
+    "expectedValue": "'BlockPublicAcls' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "actualValue": "'BlockPublicAcls' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)"
   },
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
     "line": 20,
-    "filename": "positive3.yaml",
+    "filename": "positive1.yaml",
     "resourceType": "AWS::S3::Bucket",
     "resourceName": "Bucket13",
     "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.BlockPublicAcls",
@@ -38,30 +50,6 @@
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::S3::Bucket",
-    "resourceName": "Bucket12",
-    "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
-    "searchValue": "",
-    "expectedValue": "'BlockPublicAcls' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
-    "actualValue": "'BlockPublicAcls' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public ACL",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::S3::Bucket",
-    "resourceName": "Bucket11",
-    "searchKey": "Resources.Bucket11.Properties",
-    "searchValue": "",
-    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
-    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public ACL",
-    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive3.yaml",
     "resourceType": "AWS::S3::Bucket",
@@ -82,5 +70,17 @@
     "searchValue": "",
     "expectedValue": "'BlockPublicAcls' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
     "actualValue": "'BlockPublicAcls' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket13",
+    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.BlockPublicAcls",
+    "searchValue": "",
+    "expectedValue": "'BlockPublicAcls' should be set to true%!(EXTRA string=Bucket13)",
+    "actualValue": "'BlockPublicAcls' is set to false%!(EXTRA string=Bucket13)"
   }
 ]

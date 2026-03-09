@@ -2,18 +2,6 @@
   {
     "queryName": "High Google KMS Crypto Key Rotation Period",
     "severity": "MEDIUM",
-    "line": 23,
-    "filename": "positive.yaml",
-    "resourceType": "google.cloud.gcp_kms_crypto_key",
-    "resourceName": "create a crypto key2",
-    "searchKey": "name={{create a crypto key2}}.{{google.cloud.gcp_kms_crypto_key}}",
-    "searchValue": "",
-    "expectedValue": "gcp_kms_crypto_key.rotation_period should be defined with a value less or equal to 7776000",
-    "actualValue": "gcp_kms_crypto_key.rotation_period is undefined"
-  },
-  {
-    "queryName": "High Google KMS Crypto Key Rotation Period",
-    "severity": "MEDIUM",
     "line": 18,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_kms_crypto_key",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "gcp_kms_crypto_key.rotation_period should be less or equal to 7776000",
     "actualValue": "gcp_kms_crypto_key.rotation_period exceeds 7776000"
+  },
+  {
+    "queryName": "High Google KMS Crypto Key Rotation Period",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_kms_crypto_key",
+    "resourceName": "create a crypto key2",
+    "searchKey": "name={{create a crypto key2}}.{{google.cloud.gcp_kms_crypto_key}}",
+    "searchValue": "",
+    "expectedValue": "gcp_kms_crypto_key.rotation_period should be defined with a value less or equal to 7776000",
+    "actualValue": "gcp_kms_crypto_key.rotation_period is undefined"
   }
 ]

@@ -2,6 +2,18 @@
   {
     "queryName": "SQL Server Predictable Active Directory Account Name",
     "severity": "LOW",
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "azure_ad_serviceprincipal",
+    "resourceName": "create ad sp",
+    "searchKey": "name={{create ad sp}}.{{azure_ad_serviceprincipal}}.ad_user",
+    "searchValue": "",
+    "expectedValue": "azure_ad_serviceprincipal.ad_user should not be predictable",
+    "actualValue": "azure_ad_serviceprincipal.ad_user is predictable"
+  },
+  {
+    "queryName": "SQL Server Predictable Active Directory Account Name",
+    "severity": "LOW",
     "line": 13,
     "filename": "positive.yaml",
     "resourceType": "azure_ad_serviceprincipal",
@@ -22,17 +34,5 @@
     "searchValue": "",
     "expectedValue": "azure_ad_serviceprincipal.ad_user should be neither empty nor null",
     "actualValue": "azure_ad_serviceprincipal.ad_user is empty or null"
-  },
-  {
-    "queryName": "SQL Server Predictable Active Directory Account Name",
-    "severity": "LOW",
-    "line": 7,
-    "filename": "positive.yaml",
-    "resourceType": "azure_ad_serviceprincipal",
-    "resourceName": "create ad sp",
-    "searchKey": "name={{create ad sp}}.{{azure_ad_serviceprincipal}}.ad_user",
-    "searchValue": "",
-    "expectedValue": "azure_ad_serviceprincipal.ad_user should not be predictable",
-    "actualValue": "azure_ad_serviceprincipal.ad_user is predictable"
   }
 ]

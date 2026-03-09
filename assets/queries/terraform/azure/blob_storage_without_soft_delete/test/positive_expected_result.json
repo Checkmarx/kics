@@ -2,18 +2,6 @@
   {
     "queryName": "Beta - Blob Storage Without Soft Delete",
     "severity": "HIGH",
-    "line": 32,
-    "filename": "positive.tf",
-    "resourceType": "azurerm_storage_account",
-    "resourceName": "positive3",
-    "searchKey": "azurerm_storage_account[positive3].blob_properties.delete_retention_policy.days",
-    "searchValue": "",
-    "expectedValue": "'azurerm_storage_account[positive3].blob_properties.delete_retention_policy.days' should be set to a value higher than '6'",
-    "actualValue": "'azurerm_storage_account[positive3].blob_properties.delete_retention_policy.days' is set to '5'"
-  },
-  {
-    "queryName": "Beta - Blob Storage Without Soft Delete",
-    "severity": "HIGH",
     "line": 1,
     "filename": "positive.tf",
     "resourceType": "azurerm_storage_account",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive2].blob_properties.delete_retention_policy' should be defined and not null",
     "actualValue": "'azurerm_storage_account[positive2].blob_properties.delete_retention_policy' is undefined or null"
+  },
+  {
+    "queryName": "Beta - Blob Storage Without Soft Delete",
+    "severity": "HIGH",
+    "line": 32,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_storage_account[positive3].blob_properties.delete_retention_policy.days",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive3].blob_properties.delete_retention_policy.days' should be set to a value higher than '6'",
+    "actualValue": "'azurerm_storage_account[positive3].blob_properties.delete_retention_policy.days' is set to '5'"
   }
 ]

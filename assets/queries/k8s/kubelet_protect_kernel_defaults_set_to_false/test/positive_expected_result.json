@@ -2,30 +2,6 @@
   {
     "queryName": "Kubelet Protect Kernel Defaults Set To False",
     "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive4.yaml",
-    "resourceType": "KubeletConfiguration",
-    "resourceName": "n/a",
-    "searchKey": "kind={{KubeletConfiguration}}",
-    "searchValue": "",
-    "expectedValue": "protectKernelDefaults flag should defined to true",
-    "actualValue": "protectKernelDefaults flag is not defined"
-  },
-  {
-    "queryName": "Kubelet Protect Kernel Defaults Set To False",
-    "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive3.yaml",
-    "resourceType": "KubeletConfiguration",
-    "resourceName": "n/a",
-    "searchKey": "kind={{KubeletConfiguration}}.protectKernelDefaults",
-    "searchValue": "",
-    "expectedValue": "protectKernelDefaults flag should defined to true",
-    "actualValue": "protectKernelDefaults flag is set to false"
-  },
-  {
-    "queryName": "Kubelet Protect Kernel Defaults Set To False",
-    "severity": "MEDIUM",
     "line": 11,
     "filename": "positive1.yaml",
     "resourceType": "Pod",
@@ -46,5 +22,29 @@
     "searchValue": "",
     "expectedValue": "--protect-kernel-defaults flag should not be set to false",
     "actualValue": "--protect-kernel-defaults flag is set to false"
+  },
+  {
+    "queryName": "Kubelet Protect Kernel Defaults Set To False",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive3.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.protectKernelDefaults",
+    "searchValue": "",
+    "expectedValue": "protectKernelDefaults flag should defined to true",
+    "actualValue": "protectKernelDefaults flag is set to false"
+  },
+  {
+    "queryName": "Kubelet Protect Kernel Defaults Set To False",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive4.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}",
+    "searchValue": "",
+    "expectedValue": "protectKernelDefaults flag should defined to true",
+    "actualValue": "protectKernelDefaults flag is not defined"
   }
 ]

@@ -2,8 +2,20 @@
   {
     "queryName": "Fully Open Ingress",
     "severity": "HIGH",
-    "line": 32,
-    "filename": "positive2.json",
+    "line": 19,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "DBEC2SecurityGroupInline",
+    "searchKey": "Resources.DBEC2SecurityGroupInline.Properties.SecurityGroupIngress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "Resource 'DBEC2SecurityGroupInline' of type 'AWS::EC2::SecurityGroup' should not accept ingress connections from all addresses to all available ports",
+    "actualValue": "Resource 'DBEC2SecurityGroupInline' of type 'AWS::EC2::SecurityGroup' is accepting ingress connections from all addresses to all available ports"
+  },
+  {
+    "queryName": "Fully Open Ingress",
+    "severity": "HIGH",
+    "line": 23,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::SecurityGroup",
     "resourceName": "DBEC2SecurityGroupInline",
     "searchKey": "Resources.DBEC2SecurityGroupInline.Properties.SecurityGroupIngress[1].CidrIpv6",
@@ -38,8 +50,8 @@
   {
     "queryName": "Fully Open Ingress",
     "severity": "HIGH",
-    "line": 19,
-    "filename": "positive1.yaml",
+    "line": 26,
+    "filename": "positive2.json",
     "resourceType": "AWS::EC2::SecurityGroup",
     "resourceName": "DBEC2SecurityGroupInline",
     "searchKey": "Resources.DBEC2SecurityGroupInline.Properties.SecurityGroupIngress[0].CidrIp",
@@ -50,8 +62,8 @@
   {
     "queryName": "Fully Open Ingress",
     "severity": "HIGH",
-    "line": 23,
-    "filename": "positive1.yaml",
+    "line": 32,
+    "filename": "positive2.json",
     "resourceType": "AWS::EC2::SecurityGroup",
     "resourceName": "DBEC2SecurityGroupInline",
     "searchKey": "Resources.DBEC2SecurityGroupInline.Properties.SecurityGroupIngress[1].CidrIpv6",
@@ -82,17 +94,5 @@
     "searchValue": "",
     "expectedValue": "Resource 'DBEC2SecurityGroupIngressIPv6' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all addresses to all available ports",
     "actualValue": "Resource 'DBEC2SecurityGroupIngressIPv6' of type 'AWS::EC2::SecurityGroupIngress' is accepting ingress connections from all addresses to all available ports"
-  },
-  {
-    "queryName": "Fully Open Ingress",
-    "severity": "HIGH",
-    "line": 26,
-    "filename": "positive2.json",
-    "resourceType": "AWS::EC2::SecurityGroup",
-    "resourceName": "DBEC2SecurityGroupInline",
-    "searchKey": "Resources.DBEC2SecurityGroupInline.Properties.SecurityGroupIngress[0].CidrIp",
-    "searchValue": "",
-    "expectedValue": "Resource 'DBEC2SecurityGroupInline' of type 'AWS::EC2::SecurityGroup' should not accept ingress connections from all addresses to all available ports",
-    "actualValue": "Resource 'DBEC2SecurityGroupInline' of type 'AWS::EC2::SecurityGroup' is accepting ingress connections from all addresses to all available ports"
   }
 ]

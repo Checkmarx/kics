@@ -14,18 +14,6 @@
   {
     "queryName": "ECS Cluster with Container Insights Disabled",
     "severity": "LOW",
-    "line": 7,
-    "filename": "positive3.yaml",
-    "resourceType": "aws:ecs:Cluster",
-    "resourceName": "foo",
-    "searchKey": "resources[foo].properties",
-    "searchValue": "",
-    "expectedValue": "Attribute 'settings' should be defined and have a ClusterSetting named 'containerInsights' which value is 'enabled'",
-    "actualValue": "Attribute 'settings' is not defined"
-  },
-  {
-    "queryName": "ECS Cluster with Container Insights Disabled",
-    "severity": "LOW",
     "line": 8,
     "filename": "positive2.yaml",
     "resourceType": "aws:ecs:Cluster",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "Attribute 'settings' should have a ClusterSetting named 'containerInsights' which value is 'enabled'",
     "actualValue": "Attribute 'settings' doesn't have a ClusterSetting named 'containerInsights' which value is 'enabled'"
+  },
+  {
+    "queryName": "ECS Cluster with Container Insights Disabled",
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive3.yaml",
+    "resourceType": "aws:ecs:Cluster",
+    "resourceName": "foo",
+    "searchKey": "resources[foo].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'settings' should be defined and have a ClusterSetting named 'containerInsights' which value is 'enabled'",
+    "actualValue": "Attribute 'settings' is not defined"
   }
 ]

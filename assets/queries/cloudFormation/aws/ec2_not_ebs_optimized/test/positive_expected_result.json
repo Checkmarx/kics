@@ -2,26 +2,14 @@
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
-    "line": 5,
-    "filename": "positive6.json",
+    "line": 4,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::Instance",
     "resourceName": "MyEC2Instance",
     "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
     "searchValue": "",
     "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
     "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true."
-  },
-  {
-    "queryName": "EC2 Not EBS Optimized",
-    "severity": "INFO",
-    "line": 23,
-    "filename": "positive4.json",
-    "resourceType": "AWS::EC2::Instance",
-    "resourceName": "MyEC2Instance",
-    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
-    "searchValue": "",
-    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
-    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false."
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -38,8 +26,44 @@
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
+    "line": 16,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
+    "searchValue": "",
+    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
+    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false."
+  },
+  {
+    "queryName": "EC2 Not EBS Optimized",
+    "severity": "INFO",
+    "line": 23,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
+    "searchValue": "",
+    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
+    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false."
+  },
+  {
+    "queryName": "EC2 Not EBS Optimized",
+    "severity": "INFO",
     "line": 4,
     "filename": "positive5.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
+    "searchValue": "",
+    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
+    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true."
+  },
+  {
+    "queryName": "EC2 Not EBS Optimized",
+    "severity": "INFO",
+    "line": 5,
+    "filename": "positive6.json",
     "resourceType": "AWS::EC2::Instance",
     "resourceName": "MyEC2Instance",
     "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
@@ -58,29 +82,5 @@
     "searchValue": "",
     "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
     "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false."
-  },
-  {
-    "queryName": "EC2 Not EBS Optimized",
-    "severity": "INFO",
-    "line": 16,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::EC2::Instance",
-    "resourceName": "MyEC2Instance",
-    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
-    "searchValue": "",
-    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
-    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false."
-  },
-  {
-    "queryName": "EC2 Not EBS Optimized",
-    "severity": "INFO",
-    "line": 4,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::Instance",
-    "resourceName": "MyEC2Instance",
-    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
-    "searchValue": "",
-    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
-    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true."
   }
 ]

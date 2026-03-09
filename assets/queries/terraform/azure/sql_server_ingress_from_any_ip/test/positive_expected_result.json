@@ -3,13 +3,13 @@
     "queryName": "SQLServer Ingress From Any IP",
     "severity": "CRITICAL",
     "line": 1,
-    "filename": "positive6.tf",
-    "resourceType": "azurerm_mysql_flexible_server_firewall_rule",
-    "resourceName": "office",
-    "searchKey": "azurerm_mysql_flexible_server_firewall_rule[example]",
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_sql_firewall_rule",
+    "resourceName": "FirewallRule1",
+    "searchKey": "azurerm_sql_firewall_rule[positive1]",
     "searchValue": "",
-    "expectedValue": "azurerm_mysql_flexible_server_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
-    "actualValue": "azurerm_mysql_flexible_server_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
+    "expectedValue": "azurerm_sql_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
+    "actualValue": "azurerm_sql_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
   },
   {
     "queryName": "SQLServer Ingress From Any IP",
@@ -39,6 +39,18 @@
     "queryName": "SQLServer Ingress From Any IP",
     "severity": "CRITICAL",
     "line": 1,
+    "filename": "positive4.tf",
+    "resourceType": "azurerm_postgresql_firewall_rule",
+    "resourceName": "office",
+    "searchKey": "azurerm_postgresql_firewall_rule[example]",
+    "searchValue": "",
+    "expectedValue": "azurerm_postgresql_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
+    "actualValue": "azurerm_postgresql_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
+  },
+  {
+    "queryName": "SQLServer Ingress From Any IP",
+    "severity": "CRITICAL",
+    "line": 1,
     "filename": "positive5.tf",
     "resourceType": "azurerm_postgresql_flexible_server_firewall_rule",
     "resourceName": "example-fw",
@@ -51,24 +63,12 @@
     "queryName": "SQLServer Ingress From Any IP",
     "severity": "CRITICAL",
     "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "azurerm_sql_firewall_rule",
-    "resourceName": "FirewallRule1",
-    "searchKey": "azurerm_sql_firewall_rule[positive1]",
-    "searchValue": "",
-    "expectedValue": "azurerm_sql_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
-    "actualValue": "azurerm_sql_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
-  },
-  {
-    "queryName": "SQLServer Ingress From Any IP",
-    "severity": "CRITICAL",
-    "line": 1,
-    "filename": "positive4.tf",
-    "resourceType": "azurerm_postgresql_firewall_rule",
+    "filename": "positive6.tf",
+    "resourceType": "azurerm_mysql_flexible_server_firewall_rule",
     "resourceName": "office",
-    "searchKey": "azurerm_postgresql_firewall_rule[example]",
+    "searchKey": "azurerm_mysql_flexible_server_firewall_rule[example]",
     "searchValue": "",
-    "expectedValue": "azurerm_postgresql_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
-    "actualValue": "azurerm_postgresql_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
+    "expectedValue": "azurerm_mysql_flexible_server_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
+    "actualValue": "azurerm_mysql_flexible_server_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
   }
 ]

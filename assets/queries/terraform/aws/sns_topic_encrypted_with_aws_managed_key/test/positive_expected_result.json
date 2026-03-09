@@ -2,11 +2,11 @@
   {
     "queryName": "SNS Topic Encrypted With AWS Managed Key",
     "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive2.tf",
+    "line": 3,
+    "filename": "positive1.tf",
     "resourceType": "aws_sns_topic",
-    "resourceName": "sns_ecnrypted",
-    "searchKey": "aws_sns_topic[test].kms_master_key_id",
+    "resourceName": "user-updates-topic",
+    "searchKey": "aws_sns_topic[user_updates].kms_master_key_id",
     "searchValue": "",
     "expectedValue": "SNS Topic should not be encrypted with AWS managed key",
     "actualValue": "SNS Topic is encrypted with AWS managed key"
@@ -14,11 +14,11 @@
   {
     "queryName": "SNS Topic Encrypted With AWS Managed Key",
     "severity": "MEDIUM",
-    "line": 3,
-    "filename": "positive1.tf",
+    "line": 11,
+    "filename": "positive2.tf",
     "resourceType": "aws_sns_topic",
-    "resourceName": "user-updates-topic",
-    "searchKey": "aws_sns_topic[user_updates].kms_master_key_id",
+    "resourceName": "sns_ecnrypted",
+    "searchKey": "aws_sns_topic[test].kms_master_key_id",
     "searchValue": "",
     "expectedValue": "SNS Topic should not be encrypted with AWS managed key",
     "actualValue": "SNS Topic is encrypted with AWS managed key"

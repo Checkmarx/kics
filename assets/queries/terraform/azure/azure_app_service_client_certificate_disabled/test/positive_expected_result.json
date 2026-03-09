@@ -2,66 +2,6 @@
   {
     "queryName": "Azure App Service Client Certificate Disabled",
     "severity": "MEDIUM",
-    "line": 27,
-    "filename": "positive1.tf",
-    "resourceType": "azurerm_app_service",
-    "resourceName": "example-app-service",
-    "searchKey": "azurerm_app_service[positive1-3].client_cert_enabled",
-    "searchValue": "",
-    "expectedValue": "'azurerm_app_service[positive1-3].client_cert_enabled' or 'azurerm_app_service[positive1-3].site_config.http2_enabled' is true",
-    "actualValue": "'azurerm_app_service[positive1-3].client_cert_enabled' and 'azurerm_app_service[positive1-3].site_config.http2_enabled' are set to false"
-  },
-  {
-    "queryName": "Azure App Service Client Certificate Disabled",
-    "severity": "MEDIUM",
-    "line": 58,
-    "filename": "positive1.tf",
-    "resourceType": "azurerm_app_service",
-    "resourceName": "example-app-service",
-    "searchKey": "azurerm_app_service[positive1-6].client_cert_enabled",
-    "searchValue": "",
-    "expectedValue": "'azurerm_app_service[positive1-6].client_cert_enabled' should be set to true",
-    "actualValue": "'azurerm_app_service[positive1-6].client_cert_enabled' is set to false"
-  },
-  {
-    "queryName": "Azure App Service Client Certificate Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive2.tf",
-    "resourceType": "azurerm_linux_web_app",
-    "resourceName": "example-app-service",
-    "searchKey": "azurerm_linux_web_app[positive2-1]",
-    "searchValue": "",
-    "expectedValue": "'azurerm_linux_web_app[positive2-1].client_certificate_enabled' should be defined and set to true",
-    "actualValue": "'azurerm_linux_web_app[positive2-1].client_cert_enabled' is undefined"
-  },
-  {
-    "queryName": "Azure App Service Client Certificate Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_windows_web_app",
-    "resourceName": "example-app-service",
-    "searchKey": "azurerm_windows_web_app[positive3-1]",
-    "searchValue": "",
-    "expectedValue": "'azurerm_windows_web_app[positive3-1].client_certificate_enabled' should be defined and set to true",
-    "actualValue": "'azurerm_windows_web_app[positive3-1].client_cert_enabled' is undefined"
-  },
-  {
-    "queryName": "Azure App Service Client Certificate Disabled",
-    "severity": "MEDIUM",
-    "line": 33,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_windows_web_app",
-    "resourceName": "example-app-service",
-    "searchKey": "azurerm_windows_web_app[positive3-4]",
-    "searchValue": "",
-    "expectedValue": "'azurerm_windows_web_app[positive3-4].client_certificate_enabled' should be defined and set to true",
-    "actualValue": "'azurerm_windows_web_app[positive3-4].client_cert_enabled' is undefined"
-  },
-  {
-    "queryName": "Azure App Service Client Certificate Disabled",
-    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive1.tf",
     "resourceType": "azurerm_app_service",
@@ -70,6 +10,30 @@
     "searchValue": "",
     "expectedValue": "'azurerm_app_service[positive1-1].client_cert_enabled' should be defined and set to true",
     "actualValue": "'azurerm_app_service[positive1-1].client_cert_enabled' is undefined"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-2].client_cert_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-2].client_cert_enabled' should be set to true",
+    "actualValue": "'azurerm_app_service[positive1-2].client_cert_enabled' is set to false"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-3].client_cert_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-3].client_cert_enabled' or 'azurerm_app_service[positive1-3].site_config.http2_enabled' is true",
+    "actualValue": "'azurerm_app_service[positive1-3].client_cert_enabled' and 'azurerm_app_service[positive1-3].site_config.http2_enabled' are set to false"
   },
   {
     "queryName": "Azure App Service Client Certificate Disabled",
@@ -94,6 +58,30 @@
     "searchValue": "",
     "expectedValue": "'azurerm_app_service[positive1-5].client_cert_enabled' should be defined and set to true",
     "actualValue": "'azurerm_app_service[positive1-5].client_cert_enabled' is undefined"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 58,
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-6].client_cert_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-6].client_cert_enabled' should be set to true",
+    "actualValue": "'azurerm_app_service[positive1-6].client_cert_enabled' is set to false"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive2-1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive2-1].client_certificate_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_linux_web_app[positive2-1].client_cert_enabled' is undefined"
   },
   {
     "queryName": "Azure App Service Client Certificate Disabled",
@@ -134,6 +122,18 @@
   {
     "queryName": "Azure App Service Client Certificate Disabled",
     "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive3-1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive3-1].client_certificate_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_windows_web_app[positive3-1].client_cert_enabled' is undefined"
+  },
+  {
+    "queryName": "Azure App Service Client Certificate Disabled",
+    "severity": "MEDIUM",
     "line": 17,
     "filename": "positive3.tf",
     "resourceType": "azurerm_windows_web_app",
@@ -158,13 +158,13 @@
   {
     "queryName": "Azure App Service Client Certificate Disabled",
     "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive1.tf",
-    "resourceType": "azurerm_app_service",
+    "line": 33,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
     "resourceName": "example-app-service",
-    "searchKey": "azurerm_app_service[positive1-2].client_cert_enabled",
+    "searchKey": "azurerm_windows_web_app[positive3-4]",
     "searchValue": "",
-    "expectedValue": "'azurerm_app_service[positive1-2].client_cert_enabled' should be set to true",
-    "actualValue": "'azurerm_app_service[positive1-2].client_cert_enabled' is set to false"
+    "expectedValue": "'azurerm_windows_web_app[positive3-4].client_certificate_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_windows_web_app[positive3-4].client_cert_enabled' is undefined"
   }
 ]

@@ -2,18 +2,6 @@
   {
     "queryName": "ServiceAccount Allows Access Secrets",
     "severity": "MEDIUM",
-    "line": 58,
-    "filename": "positive.yaml",
-    "resourceType": "ClusterRole",
-    "resourceName": "testClusterRoleVulnerable",
-    "searchKey": "metadata.name={{testClusterRoleVulnerable}}.rules",
-    "searchValue": "ClusterRole",
-    "expectedValue": "The metadata.name={{testClusterRoleVulnerable}}.rules.verbs should not contain the following verbs: [[\"update\", \"list\"]]",
-    "actualValue": "The metadata.name={{testClusterRoleVulnerable}}.rules.verbs contain the following verbs: [[\"update\", \"list\"]]"
-  },
-  {
-    "queryName": "ServiceAccount Allows Access Secrets",
-    "severity": "MEDIUM",
     "line": 10,
     "filename": "positive.yaml",
     "resourceType": "Role",
@@ -34,5 +22,17 @@
     "searchValue": "Role",
     "expectedValue": "The metadata.name={{testRoleVulnerable2}}.rules.verbs should not contain the following verbs: [[\"*\"]]",
     "actualValue": "The metadata.name={{testRoleVulnerable2}}.rules.verbs contain the following verbs: [[\"*\"]]"
+  },
+  {
+    "queryName": "ServiceAccount Allows Access Secrets",
+    "severity": "MEDIUM",
+    "line": 58,
+    "filename": "positive.yaml",
+    "resourceType": "ClusterRole",
+    "resourceName": "testClusterRoleVulnerable",
+    "searchKey": "metadata.name={{testClusterRoleVulnerable}}.rules",
+    "searchValue": "ClusterRole",
+    "expectedValue": "The metadata.name={{testClusterRoleVulnerable}}.rules.verbs should not contain the following verbs: [[\"update\", \"list\"]]",
+    "actualValue": "The metadata.name={{testClusterRoleVulnerable}}.rules.verbs contain the following verbs: [[\"update\", \"list\"]]"
   }
 ]

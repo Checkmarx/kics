@@ -14,18 +14,6 @@
   {
     "queryName": "Container Is Privileged",
     "severity": "HIGH",
-    "line": 21,
-    "filename": "positive2.yaml",
-    "resourceType": "Deployment",
-    "resourceName": "test-deployment",
-    "searchKey": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged",
-    "searchValue": "",
-    "expectedValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged is unset or false",
-    "actualValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged is true"
-  },
-  {
-    "queryName": "Container Is Privileged",
-    "severity": "HIGH",
     "line": 23,
     "filename": "positive1.yaml",
     "resourceType": "Pod",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "metadata.name={{security-context-demo-5}}.spec.initContainers.name={{sec-ctx-4}}.securityContext.privileged is unset or false",
     "actualValue": "metadata.name={{security-context-demo-5}}.spec.initContainers.name={{sec-ctx-4}}.securityContext.privileged is true"
+  },
+  {
+    "queryName": "Container Is Privileged",
+    "severity": "HIGH",
+    "line": 21,
+    "filename": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "test-deployment",
+    "searchKey": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged is unset or false",
+    "actualValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged is true"
   }
 ]

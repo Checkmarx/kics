@@ -14,18 +14,6 @@
   {
     "queryName": "Global Accelerator Flow Logs Disabled",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive3.tf",
-    "resourceType": "aws_globalaccelerator_accelerator",
-    "resourceName": "Example",
-    "searchKey": "aws_globalaccelerator_accelerator[{{positive3}}].attributes.flow_logs_enabled",
-    "searchValue": "",
-    "expectedValue": "aws_globalaccelerator_accelerator[{{positive3}}].flow_logs_enabled should be true",
-    "actualValue": "aws_globalaccelerator_accelerator[{{positive3}}].flow_logs_enabled is false"
-  },
-  {
-    "queryName": "Global Accelerator Flow Logs Disabled",
-    "severity": "MEDIUM",
     "line": 6,
     "filename": "positive2.tf",
     "resourceType": "aws_globalaccelerator_accelerator",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "aws_globalaccelerator_accelerator[{{positive2}}].flow_logs_enabled should be defined and not null",
     "actualValue": "aws_globalaccelerator_accelerator[{{positive2}}].flow_logs_enabled is undefined or null"
+  },
+  {
+    "queryName": "Global Accelerator Flow Logs Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive3.tf",
+    "resourceType": "aws_globalaccelerator_accelerator",
+    "resourceName": "Example",
+    "searchKey": "aws_globalaccelerator_accelerator[{{positive3}}].attributes.flow_logs_enabled",
+    "searchValue": "",
+    "expectedValue": "aws_globalaccelerator_accelerator[{{positive3}}].flow_logs_enabled should be true",
+    "actualValue": "aws_globalaccelerator_accelerator[{{positive3}}].flow_logs_enabled is false"
   }
 ]

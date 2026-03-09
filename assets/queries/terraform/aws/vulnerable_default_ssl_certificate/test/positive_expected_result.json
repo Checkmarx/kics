@@ -2,6 +2,18 @@
   {
     "queryName": "Vulnerable Default SSL Certificate",
     "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive2",
+    "searchKey": "aws_cloudfront_distribution[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_cloudfront_distribution[positive2].viewer_certificate should be defined and not null",
+    "actualValue": "aws_cloudfront_distribution[positive2].viewer_certificate is undefined or null"
+  },
+  {
+    "queryName": "Vulnerable Default SSL Certificate",
+    "severity": "MEDIUM",
     "line": 88,
     "filename": "positive.tf",
     "resourceType": "aws_cloudfront_distribution",
@@ -34,17 +46,5 @@
     "searchValue": "ssl_support_method",
     "expectedValue": "Attributes 'ssl_support_method' and 'minimum_protocol_version' should be defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.",
     "actualValue": "Attribute 'ssl_support_method' is not defined"
-  },
-  {
-    "queryName": "Vulnerable Default SSL Certificate",
-    "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive.tf",
-    "resourceType": "aws_cloudfront_distribution",
-    "resourceName": "positive2",
-    "searchKey": "aws_cloudfront_distribution[positive2]",
-    "searchValue": "",
-    "expectedValue": "aws_cloudfront_distribution[positive2].viewer_certificate should be defined and not null",
-    "actualValue": "aws_cloudfront_distribution[positive2].viewer_certificate is undefined or null"
   }
 ]

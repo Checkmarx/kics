@@ -2,8 +2,8 @@
   {
     "queryName": "Empty Array",
     "severity": "INFO",
-    "line": 25,
-    "filename": "positive2.yaml",
+    "line": 43,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "security",
@@ -14,8 +14,8 @@
   {
     "queryName": "Empty Array",
     "severity": "INFO",
-    "line": 43,
-    "filename": "positive1.json",
+    "line": 25,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "security",

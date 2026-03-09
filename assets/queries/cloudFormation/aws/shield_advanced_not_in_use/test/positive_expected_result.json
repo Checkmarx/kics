@@ -2,8 +2,8 @@
   {
     "queryName": "Shield Advanced Not In Use",
     "severity": "LOW",
-    "line": 3,
-    "filename": "positive2.json",
+    "line": 2,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::Route53::HostedZone",
     "resourceName": "HostedZone",
     "searchKey": "Resources.HostedZone",
@@ -14,8 +14,8 @@
   {
     "queryName": "Shield Advanced Not In Use",
     "severity": "LOW",
-    "line": 2,
-    "filename": "positive1.yaml",
+    "line": 3,
+    "filename": "positive2.json",
     "resourceType": "AWS::Route53::HostedZone",
     "resourceName": "HostedZone",
     "searchKey": "Resources.HostedZone",

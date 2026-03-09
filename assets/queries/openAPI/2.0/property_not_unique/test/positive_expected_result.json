@@ -2,14 +2,14 @@
   {
     "queryName": "Property Not Unique",
     "severity": "INFO",
-    "line": 57,
+    "line": 27,
     "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "parameters.limitParam.properties.address",
+    "searchKey": "paths.{{/}}.get.parameters.schema.properties.name",
     "searchValue": "",
-    "expectedValue": "'address' property is unique throughout the whole API",
-    "actualValue": "'address' property is not unique throughout the whole API"
+    "expectedValue": "'name' property is unique throughout the whole API",
+    "actualValue": "'name' property is not unique throughout the whole API"
   },
   {
     "queryName": "Property Not Unique",
@@ -19,6 +19,42 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.parameters.schema.properties.address",
+    "searchValue": "",
+    "expectedValue": "'address' property is unique throughout the whole API",
+    "actualValue": "'address' property is not unique throughout the whole API"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 33,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.properties.age",
+    "searchValue": "",
+    "expectedValue": "'age' property is unique throughout the whole API",
+    "actualValue": "'age' property is not unique throughout the whole API"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 54,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.properties.name",
+    "searchValue": "",
+    "expectedValue": "'name' property is unique throughout the whole API",
+    "actualValue": "'name' property is not unique throughout the whole API"
+  },
+  {
+    "queryName": "Property Not Unique",
+    "severity": "INFO",
+    "line": 57,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.properties.address",
     "searchValue": "",
     "expectedValue": "'address' property is unique throughout the whole API",
     "actualValue": "'address' property is not unique throughout the whole API"
@@ -38,20 +74,8 @@
   {
     "queryName": "Property Not Unique",
     "severity": "INFO",
-    "line": 33,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.parameters.schema.properties.age",
-    "searchValue": "",
-    "expectedValue": "'age' property is unique throughout the whole API",
-    "actualValue": "'age' property is not unique throughout the whole API"
-  },
-  {
-    "queryName": "Property Not Unique",
-    "severity": "INFO",
-    "line": 27,
-    "filename": "positive1.json",
+    "line": 22,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.parameters.schema.properties.name",
@@ -62,11 +86,11 @@
   {
     "queryName": "Property Not Unique",
     "severity": "INFO",
-    "line": 40,
+    "line": 24,
     "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "parameters.limitParam.properties.address",
+    "searchKey": "paths.{{/}}.get.parameters.schema.properties.address",
     "searchValue": "",
     "expectedValue": "'address' property is unique throughout the whole API",
     "actualValue": "'address' property is not unique throughout the whole API"
@@ -98,23 +122,11 @@
   {
     "queryName": "Property Not Unique",
     "severity": "INFO",
-    "line": 54,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "parameters.limitParam.properties.name",
-    "searchValue": "",
-    "expectedValue": "'name' property is unique throughout the whole API",
-    "actualValue": "'name' property is not unique throughout the whole API"
-  },
-  {
-    "queryName": "Property Not Unique",
-    "severity": "INFO",
-    "line": 24,
+    "line": 40,
     "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.parameters.schema.properties.address",
+    "searchKey": "parameters.limitParam.properties.address",
     "searchValue": "",
     "expectedValue": "'address' property is unique throughout the whole API",
     "actualValue": "'address' property is not unique throughout the whole API"
@@ -130,17 +142,5 @@
     "searchValue": "",
     "expectedValue": "'age' property is unique throughout the whole API",
     "actualValue": "'age' property is not unique throughout the whole API"
-  },
-  {
-    "queryName": "Property Not Unique",
-    "severity": "INFO",
-    "line": 22,
-    "filename": "positive2.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.parameters.schema.properties.name",
-    "searchValue": "",
-    "expectedValue": "'name' property is unique throughout the whole API",
-    "actualValue": "'name' property is not unique throughout the whole API"
   }
 ]

@@ -26,8 +26,8 @@
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
     "severity": "HIGH",
-    "line": 16,
-    "filename": "positive5.yaml",
+    "line": 8,
+    "filename": "positive3.json",
     "resourceType": "AWS::Elasticsearch::Domain",
     "resourceName": "test",
     "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.Enabled",
@@ -50,8 +50,8 @@
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
     "severity": "HIGH",
-    "line": 8,
-    "filename": "positive3.json",
+    "line": 16,
+    "filename": "positive5.yaml",
     "resourceType": "AWS::Elasticsearch::Domain",
     "resourceName": "test",
     "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.Enabled",

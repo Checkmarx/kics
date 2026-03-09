@@ -2,26 +2,26 @@
   {
     "queryName": "Function App HTTP2 Disabled",
     "severity": "MEDIUM",
-    "line": 29,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_windows_function_app",
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_function_app",
     "resourceName": "test-azure-functions",
-    "searchKey": "azurerm_windows_function_app[positive3-3].site_config.http2_enabled",
+    "searchKey": "azurerm_function_app[positive1-1]",
     "searchValue": "",
-    "expectedValue": "'azurerm_windows_function_app[positive3-3].site_config.http2_enabled' should be set to true",
-    "actualValue": "'azurerm_windows_function_app[positive3-3].site_config.http2_enabled' is set to false"
+    "expectedValue": "'azurerm_function_app[positive1-1].site_config' should be defined and not null",
+    "actualValue": "'azurerm_function_app[positive1-1].site_config' is undefined or null"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_windows_function_app",
+    "line": 14,
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_function_app",
     "resourceName": "test-azure-functions",
-    "searchKey": "azurerm_windows_function_app[positive3-1]",
+    "searchKey": "azurerm_function_app[positive1-2].site_config",
     "searchValue": "",
-    "expectedValue": "'azurerm_windows_function_app[positive3-1].site_config' should be defined and not null",
-    "actualValue": "'azurerm_windows_function_app[positive3-1].site_config' is undefined or null"
+    "expectedValue": "'azurerm_function_app[positive1-2].site_config.http2_enabled' should be defined and not null",
+    "actualValue": "'azurerm_function_app[positive1-2].site_config.http2_enabled' is undefined or null"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -34,6 +34,18 @@
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-3].site_config.http2_enabled' should be set to true",
     "actualValue": "'azurerm_function_app[positive1-3].site_config.http2_enabled' is set to false"
+  },
+  {
+    "queryName": "Function App HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_linux_function_app[positive2-1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2-1].site_config' should be defined and not null",
+    "actualValue": "'azurerm_linux_function_app[positive2-1].site_config' is undefined or null"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -63,37 +75,13 @@
     "queryName": "Function App HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive2.tf",
-    "resourceType": "azurerm_linux_function_app",
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
     "resourceName": "test-azure-functions",
-    "searchKey": "azurerm_linux_function_app[positive2-1]",
+    "searchKey": "azurerm_windows_function_app[positive3-1]",
     "searchValue": "",
-    "expectedValue": "'azurerm_linux_function_app[positive2-1].site_config' should be defined and not null",
-    "actualValue": "'azurerm_linux_function_app[positive2-1].site_config' is undefined or null"
-  },
-  {
-    "queryName": "Function App HTTP2 Disabled",
-    "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive1.tf",
-    "resourceType": "azurerm_function_app",
-    "resourceName": "test-azure-functions",
-    "searchKey": "azurerm_function_app[positive1-2].site_config",
-    "searchValue": "",
-    "expectedValue": "'azurerm_function_app[positive1-2].site_config.http2_enabled' should be defined and not null",
-    "actualValue": "'azurerm_function_app[positive1-2].site_config.http2_enabled' is undefined or null"
-  },
-  {
-    "queryName": "Function App HTTP2 Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "azurerm_function_app",
-    "resourceName": "test-azure-functions",
-    "searchKey": "azurerm_function_app[positive1-1]",
-    "searchValue": "",
-    "expectedValue": "'azurerm_function_app[positive1-1].site_config' should be defined and not null",
-    "actualValue": "'azurerm_function_app[positive1-1].site_config' is undefined or null"
+    "expectedValue": "'azurerm_windows_function_app[positive3-1].site_config' should be defined and not null",
+    "actualValue": "'azurerm_windows_function_app[positive3-1].site_config' is undefined or null"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -106,5 +94,17 @@
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-2].site_config.http2_enabled' should be defined and not null",
     "actualValue": "'azurerm_windows_function_app[positive3-2].site_config.http2_enabled' is undefined or null"
+  },
+  {
+    "queryName": "Function App HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 29,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_windows_function_app[positive3-3].site_config.http2_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3-3].site_config.http2_enabled' should be set to true",
+    "actualValue": "'azurerm_windows_function_app[positive3-3].site_config.http2_enabled' is set to false"
   }
 ]

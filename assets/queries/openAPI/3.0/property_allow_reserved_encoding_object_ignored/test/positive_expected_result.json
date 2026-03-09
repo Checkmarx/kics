@@ -2,14 +2,14 @@
   {
     "queryName": "Property 'allowReserved' of Encoding Object Ignored",
     "severity": "INFO",
-    "line": 30,
-    "filename": "positive4.yaml",
+    "line": 49,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}}",
+    "searchKey": "components.requestBodies.{{NewItem}}.content.{{multipart/data}}",
     "searchValue": "",
-    "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}} should be 'application/x-www-form-urlencoded' when 'allowReserved' is set",
-    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}} is not 'application/x-www-form-urlencoded' when 'allowReserved' is set"
+    "expectedValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'allowReserved' is set",
+    "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'allowReserved' is set"
   },
   {
     "queryName": "Property 'allowReserved' of Encoding Object Ignored",
@@ -26,18 +26,6 @@
   {
     "queryName": "Property 'allowReserved' of Encoding Object Ignored",
     "severity": "INFO",
-    "line": 49,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "components.requestBodies.{{NewItem}}.content.{{multipart/data}}",
-    "searchValue": "",
-    "expectedValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'allowReserved' is set",
-    "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'allowReserved' is set"
-  },
-  {
-    "queryName": "Property 'allowReserved' of Encoding Object Ignored",
-    "severity": "INFO",
     "line": 31,
     "filename": "positive3.yaml",
     "resourceType": "",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "components.requestBodies.{{NewItem}}.content.{{multipart/form-data}} should be 'application/x-www-form-urlencoded' when 'allowReserved' is set",
     "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/form-data}} is not 'application/x-www-form-urlencoded' when 'allowReserved' is set"
+  },
+  {
+    "queryName": "Property 'allowReserved' of Encoding Object Ignored",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}} should be 'application/x-www-form-urlencoded' when 'allowReserved' is set",
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/form-data}} is not 'application/x-www-form-urlencoded' when 'allowReserved' is set"
   }
 ]

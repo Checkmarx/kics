@@ -2,14 +2,14 @@
   {
     "queryName": "Rotate Kubelet Server Certificate Not Active",
     "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive4.yaml",
-    "resourceType": "Pod",
-    "resourceName": "command-demo",
-    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container7}}.command",
+    "line": 8,
+    "filename": "positive1.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.featureGates",
     "searchValue": "",
-    "expectedValue": "--feature-gates=RotateKubeletServerCertificate flag should be true",
-    "actualValue": "--feature-gates=RotateKubeletServerCertificate flag is false"
+    "expectedValue": "RotateKubeletServerCertificates should be true",
+    "actualValue": "RotateKubeletServerCertificate is false"
   },
   {
     "queryName": "Rotate Kubelet Server Certificate Not Active",
@@ -27,7 +27,7 @@
     "queryName": "Rotate Kubelet Server Certificate Not Active",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive1.yaml",
+    "filename": "positive3.json",
     "resourceType": "KubeletConfiguration",
     "resourceName": "n/a",
     "searchKey": "kind={{KubeletConfiguration}}.featureGates",
@@ -38,13 +38,13 @@
   {
     "queryName": "Rotate Kubelet Server Certificate Not Active",
     "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive3.json",
-    "resourceType": "KubeletConfiguration",
-    "resourceName": "n/a",
-    "searchKey": "kind={{KubeletConfiguration}}.featureGates",
+    "line": 11,
+    "filename": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container7}}.command",
     "searchValue": "",
-    "expectedValue": "RotateKubeletServerCertificates should be true",
-    "actualValue": "RotateKubeletServerCertificate is false"
+    "expectedValue": "--feature-gates=RotateKubeletServerCertificate flag should be true",
+    "actualValue": "--feature-gates=RotateKubeletServerCertificate flag is false"
   }
 ]

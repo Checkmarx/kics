@@ -2,18 +2,6 @@
   {
     "queryName": "Security Group is Not Configured",
     "severity": "HIGH",
-    "line": 21,
-    "filename": "positive.tf",
-    "resourceType": "azure_virtual_network",
-    "resourceName": "test-network",
-    "searchKey": "azure_virtual_network[positive2].subnet.security_group",
-    "searchValue": "",
-    "expectedValue": "'azure_virtual_network[positive2].subnet.security_group' should not be empty",
-    "actualValue": "'azure_virtual_network[positive2].subnet.security_group' is empty"
-  },
-  {
-    "queryName": "Security Group is Not Configured",
-    "severity": "HIGH",
     "line": 7,
     "filename": "positive.tf",
     "resourceType": "azure_virtual_network",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'azure_virtual_network[positive1].subnet.security_group' should be defined and not null",
     "actualValue": "'azure_virtual_network[positive1].subnet.security_group' is undefined or null"
+  },
+  {
+    "queryName": "Security Group is Not Configured",
+    "severity": "HIGH",
+    "line": 21,
+    "filename": "positive.tf",
+    "resourceType": "azure_virtual_network",
+    "resourceName": "test-network",
+    "searchKey": "azure_virtual_network[positive2].subnet.security_group",
+    "searchValue": "",
+    "expectedValue": "'azure_virtual_network[positive2].subnet.security_group' should not be empty",
+    "actualValue": "'azure_virtual_network[positive2].subnet.security_group' is empty"
   }
 ]

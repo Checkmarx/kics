@@ -2,18 +2,6 @@
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 31,
-    "filename": "positive2.yaml",
-    "resourceType": "Deployment",
-    "resourceName": "redis-unhealthy-deployment",
-    "searchKey": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}",
-    "searchValue": "Deployment",
-    "expectedValue": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}.securityContext.capabilities.drop should be defined",
-    "actualValue": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}.securityContext.capabilities.drop is undefined"
-  },
-  {
-    "queryName": "NET_RAW Capabilities Not Being Dropped",
-    "severity": "MEDIUM",
     "line": 11,
     "filename": "positive1.yaml",
     "resourceType": "Pod",
@@ -38,6 +26,18 @@
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.containers.name={{payment4}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example}}.spec.containers.name={{payment4}}.securityContext.capabilities.drop should be defined",
+    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment4}}.securityContext.capabilities.drop is undefined"
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
     "line": 23,
     "filename": "positive1.yaml",
     "resourceType": "Pod",
@@ -50,13 +50,13 @@
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 18,
-    "filename": "positive1.yaml",
-    "resourceType": "Pod",
-    "resourceName": "example",
-    "searchKey": "metadata.name={{example}}.spec.containers.name={{payment4}}",
-    "searchValue": "Pod",
-    "expectedValue": "metadata.name={{example}}.spec.containers.name={{payment4}}.securityContext.capabilities.drop should be defined",
-    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment4}}.securityContext.capabilities.drop is undefined"
+    "line": 31,
+    "filename": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "redis-unhealthy-deployment",
+    "searchKey": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}.securityContext.capabilities.drop should be defined",
+    "actualValue": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}.securityContext.capabilities.drop is undefined"
   }
 ]

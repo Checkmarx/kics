@@ -2,11 +2,11 @@
   {
     "queryName": "Client Certificate Authentication Not Setup Properly",
     "severity": "HIGH",
-    "line": 2,
-    "filename": "positive4.yaml",
-    "resourceType": "KubeletConfiguration",
-    "resourceName": "n/a",
-    "searchKey": "kind={{KubeletConfiguration}}",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "Client Certification should have a .pem or .crt file",
     "actualValue": "Client Certification is not properly set"
@@ -26,11 +26,11 @@
   {
     "queryName": "Client Certificate Authentication Not Setup Properly",
     "severity": "HIGH",
-    "line": 2,
-    "filename": "positive5.yaml",
-    "resourceType": "KubeletConfiguration",
-    "resourceName": "n/a",
-    "searchKey": "kind={{KubeletConfiguration}}",
+    "line": 11,
+    "filename": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "Client Certification should be set",
     "actualValue": "Client Certification is not set"
@@ -38,11 +38,23 @@
   {
     "queryName": "Client Certificate Authentication Not Setup Properly",
     "severity": "HIGH",
-    "line": 11,
-    "filename": "positive3.yaml",
-    "resourceType": "Pod",
-    "resourceName": "command-demo",
-    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "line": 2,
+    "filename": "positive4.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}",
+    "searchValue": "",
+    "expectedValue": "Client Certification should have a .pem or .crt file",
+    "actualValue": "Client Certification is not properly set"
+  },
+  {
+    "queryName": "Client Certificate Authentication Not Setup Properly",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive5.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}",
     "searchValue": "",
     "expectedValue": "Client Certification should be set",
     "actualValue": "Client Certification is not set"
@@ -58,17 +70,5 @@
     "searchValue": "",
     "expectedValue": "Client Certification should be set",
     "actualValue": "Client Certification is not set"
-  },
-  {
-    "queryName": "Client Certificate Authentication Not Setup Properly",
-    "severity": "HIGH",
-    "line": 11,
-    "filename": "positive1.yaml",
-    "resourceType": "Pod",
-    "resourceName": "command-demo",
-    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
-    "searchValue": "",
-    "expectedValue": "Client Certification should have a .pem or .crt file",
-    "actualValue": "Client Certification is not properly set"
   }
 ]

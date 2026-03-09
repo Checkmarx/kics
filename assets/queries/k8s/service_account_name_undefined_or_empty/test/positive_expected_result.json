@@ -2,18 +2,6 @@
   {
     "queryName": "Service Account Name Undefined Or Empty",
     "severity": "MEDIUM",
-    "line": 58,
-    "filename": "positive.yaml",
-    "resourceType": "Pod",
-    "resourceName": "nginx3",
-    "searchKey": "metadata.name={{nginx3}}.spec.serviceAccountName",
-    "searchValue": "",
-    "expectedValue": "metadata.name=nginx3.spec.serviceAccountName should not be empty",
-    "actualValue": "metadata.name=nginx3.spec.serviceAccountName is empty"
-  },
-  {
-    "queryName": "Service Account Name Undefined Or Empty",
-    "severity": "MEDIUM",
     "line": 6,
     "filename": "positive.yaml",
     "resourceType": "Pod",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "metadata.name=nginx2.container.group.spec.serviceAccountName should be defined",
     "actualValue": "metadata.name=nginx2.container.group.spec.serviceAccountName is undefined"
+  },
+  {
+    "queryName": "Service Account Name Undefined Or Empty",
+    "severity": "MEDIUM",
+    "line": 58,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "nginx3",
+    "searchKey": "metadata.name={{nginx3}}.spec.serviceAccountName",
+    "searchValue": "",
+    "expectedValue": "metadata.name=nginx3.spec.serviceAccountName should not be empty",
+    "actualValue": "metadata.name=nginx3.spec.serviceAccountName is empty"
   }
 ]

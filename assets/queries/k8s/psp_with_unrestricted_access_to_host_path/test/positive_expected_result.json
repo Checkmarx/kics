@@ -2,14 +2,14 @@
   {
     "queryName": "PSP With Unrestricted Access to Host Path",
     "severity": "HIGH",
-    "line": 9,
-    "filename": "positive3.yaml",
+    "line": 5,
+    "filename": "positive1.yaml",
     "resourceType": "PodSecurityPolicy",
     "resourceName": "example",
-    "searchKey": "metadata.name={{example}}.spec.allowedHostPaths.readOnly",
+    "searchKey": "metadata.name={{example}}.spec",
     "searchValue": "",
-    "expectedValue": "'spec.allowedHostPaths[0].readOnly' should be set to true",
-    "actualValue": "'spec.allowedHostPaths[0].readOnly' is set to false"
+    "expectedValue": "'spec.allowedHostPaths' should be defined and not null",
+    "actualValue": "'spec.allowedHostPaths' is undefined or null"
   },
   {
     "queryName": "PSP With Unrestricted Access to Host Path",
@@ -26,13 +26,13 @@
   {
     "queryName": "PSP With Unrestricted Access to Host Path",
     "severity": "HIGH",
-    "line": 5,
-    "filename": "positive1.yaml",
+    "line": 9,
+    "filename": "positive3.yaml",
     "resourceType": "PodSecurityPolicy",
     "resourceName": "example",
-    "searchKey": "metadata.name={{example}}.spec",
+    "searchKey": "metadata.name={{example}}.spec.allowedHostPaths.readOnly",
     "searchValue": "",
-    "expectedValue": "'spec.allowedHostPaths' should be defined and not null",
-    "actualValue": "'spec.allowedHostPaths' is undefined or null"
+    "expectedValue": "'spec.allowedHostPaths[0].readOnly' should be set to true",
+    "actualValue": "'spec.allowedHostPaths[0].readOnly' is set to false"
   }
 ]

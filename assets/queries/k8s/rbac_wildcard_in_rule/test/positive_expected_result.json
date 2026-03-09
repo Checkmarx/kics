@@ -2,6 +2,30 @@
   {
     "queryName": "RBAC Wildcard In Rule",
     "severity": "HIGH",
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "ClusterRole",
+    "resourceName": "configmap-modifier",
+    "searchKey": "metadata.name={{configmap-modifier}}.rules",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{configmap-modifier}}.rules[0].apiGroups should list the minimal set of needed objects or actions",
+    "actualValue": "metadata.name={{configmap-modifier}}.rules[0].apiGroups uses wildcards to specify objects or actions"
+  },
+  {
+    "queryName": "RBAC Wildcard In Rule",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive.yaml",
+    "resourceType": "ClusterRole",
+    "resourceName": "configmap-modifier",
+    "searchKey": "metadata.name={{configmap-modifier}}.rules",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{configmap-modifier}}.rules[0].verbs should list the minimal set of needed objects or actions",
+    "actualValue": "metadata.name={{configmap-modifier}}.rules[0].verbs uses wildcards to specify objects or actions"
+  },
+  {
+    "queryName": "RBAC Wildcard In Rule",
+    "severity": "HIGH",
     "line": 18,
     "filename": "positive.yaml",
     "resourceType": "Role",
@@ -58,29 +82,5 @@
     "searchValue": "",
     "expectedValue": "metadata.name={{configmap-modifier2}}.rules[0].resources should list the minimal set of needed objects or actions",
     "actualValue": "metadata.name={{configmap-modifier2}}.rules[0].resources uses wildcards to specify objects or actions"
-  },
-  {
-    "queryName": "RBAC Wildcard In Rule",
-    "severity": "HIGH",
-    "line": 7,
-    "filename": "positive.yaml",
-    "resourceType": "ClusterRole",
-    "resourceName": "configmap-modifier",
-    "searchKey": "metadata.name={{configmap-modifier}}.rules",
-    "searchValue": "",
-    "expectedValue": "metadata.name={{configmap-modifier}}.rules[0].apiGroups should list the minimal set of needed objects or actions",
-    "actualValue": "metadata.name={{configmap-modifier}}.rules[0].apiGroups uses wildcards to specify objects or actions"
-  },
-  {
-    "queryName": "RBAC Wildcard In Rule",
-    "severity": "HIGH",
-    "line": 9,
-    "filename": "positive.yaml",
-    "resourceType": "ClusterRole",
-    "resourceName": "configmap-modifier",
-    "searchKey": "metadata.name={{configmap-modifier}}.rules",
-    "searchValue": "",
-    "expectedValue": "metadata.name={{configmap-modifier}}.rules[0].verbs should list the minimal set of needed objects or actions",
-    "actualValue": "metadata.name={{configmap-modifier}}.rules[0].verbs uses wildcards to specify objects or actions"
   }
 ]

@@ -3,13 +3,13 @@
     "queryName": "Azure Container Registry With No Locks",
     "severity": "HIGH",
     "line": 2,
-    "filename": "positive2.yaml",
-    "resourceType": "azure.azcollection.azure_rm_containerregistry",
-    "resourceName": "Create an azure container registryy1",
-    "searchKey": "name={{Create an azure container registryy1}}.{{azure.azcollection.azure_rm_containerregistry}}",
+    "filename": "positive1.yaml",
+    "resourceType": "azure_rm_containerregistry",
+    "resourceName": "Create an azure container registry",
+    "searchKey": "name={{Create an azure container registry}}.{{azure_rm_containerregistry}}",
     "searchValue": "",
-    "expectedValue": "'azure.azcollection.azure_rm_containerregistry' should be referenced by an existing lock",
-    "actualValue": "'azure.azcollection.azure_rm_containerregistry' is not referenced by an existing lock"
+    "expectedValue": "'azure_rm_containerregistry' should be referenced by an existing lock",
+    "actualValue": "'azure_rm_containerregistry' is not referenced by an existing lock"
   },
   {
     "queryName": "Azure Container Registry With No Locks",
@@ -27,12 +27,12 @@
     "queryName": "Azure Container Registry With No Locks",
     "severity": "HIGH",
     "line": 2,
-    "filename": "positive1.yaml",
-    "resourceType": "azure_rm_containerregistry",
-    "resourceName": "Create an azure container registry",
-    "searchKey": "name={{Create an azure container registry}}.{{azure_rm_containerregistry}}",
+    "filename": "positive2.yaml",
+    "resourceType": "azure.azcollection.azure_rm_containerregistry",
+    "resourceName": "Create an azure container registryy1",
+    "searchKey": "name={{Create an azure container registryy1}}.{{azure.azcollection.azure_rm_containerregistry}}",
     "searchValue": "",
-    "expectedValue": "'azure_rm_containerregistry' should be referenced by an existing lock",
-    "actualValue": "'azure_rm_containerregistry' is not referenced by an existing lock"
+    "expectedValue": "'azure.azcollection.azure_rm_containerregistry' should be referenced by an existing lock",
+    "actualValue": "'azure.azcollection.azure_rm_containerregistry' is not referenced by an existing lock"
   }
 ]

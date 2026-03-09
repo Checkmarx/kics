@@ -2,8 +2,8 @@
   {
     "queryName": "Parameter File Type Not In 'formData'",
     "severity": "INFO",
-    "line": 10,
-    "filename": "positive2.yaml",
+    "line": 12,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.parameters.name=limit2",
@@ -26,8 +26,8 @@
   {
     "queryName": "Parameter File Type Not In 'formData'",
     "severity": "INFO",
-    "line": 12,
-    "filename": "positive1.json",
+    "line": 10,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.parameters.name=limit2",

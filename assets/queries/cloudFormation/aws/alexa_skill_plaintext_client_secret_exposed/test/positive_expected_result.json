@@ -2,8 +2,8 @@
   {
     "queryName": "Alexa Skill Plaintext Client Secret Exposed",
     "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive2.json",
+    "line": 17,
+    "filename": "positive1.yaml",
     "resourceType": "Alexa::ASK::Skill",
     "resourceName": "MySkill",
     "searchKey": "Resources.MySkill.Properties.AuthenticationConfiguration.ClientSecret",
@@ -14,8 +14,8 @@
   {
     "queryName": "Alexa Skill Plaintext Client Secret Exposed",
     "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive1.yaml",
+    "line": 24,
+    "filename": "positive2.json",
     "resourceType": "Alexa::ASK::Skill",
     "resourceName": "MySkill",
     "searchKey": "Resources.MySkill.Properties.AuthenticationConfiguration.ClientSecret",

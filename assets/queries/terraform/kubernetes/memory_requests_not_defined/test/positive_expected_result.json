@@ -2,54 +2,6 @@
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 109,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "positive2",
-    "searchKey": "kubernetes_pod[positive2].spec.container",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive2].spec.container[0].resources should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.container[0].resources is undefined"
-  },
-  {
-    "queryName": "Memory Requests Not Defined",
-    "severity": "MEDIUM",
-    "line": 138,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "positive2",
-    "searchKey": "kubernetes_pod[positive2].spec.container",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive2].spec.container[1].resources should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.container[1].resources is undefined"
-  },
-  {
-    "queryName": "Memory Requests Not Defined",
-    "severity": "MEDIUM",
-    "line": 231,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "positive3",
-    "searchKey": "kubernetes_pod[positive3].spec.container",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive3].spec.container[1].resources.requests should be set",
-    "actualValue": "kubernetes_pod[positive3].spec.container[1].resources.requests is undefined"
-  },
-  {
-    "queryName": "Memory Requests Not Defined",
-    "severity": "MEDIUM",
-    "line": 350,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "positive5",
-    "searchKey": "kubernetes_pod[positive5].spec.container",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive5].spec.container.resources should be set",
-    "actualValue": "kubernetes_pod[positive5].spec.container.resources is undefined"
-  },
-  {
-    "queryName": "Memory Requests Not Defined",
-    "severity": "MEDIUM",
     "line": 12,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod",
@@ -74,6 +26,30 @@
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
+    "line": 109,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container[0].resources should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container[0].resources is undefined"
+  },
+  {
+    "queryName": "Memory Requests Not Defined",
+    "severity": "MEDIUM",
+    "line": 138,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container[1].resources should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container[1].resources is undefined"
+  },
+  {
+    "queryName": "Memory Requests Not Defined",
+    "severity": "MEDIUM",
     "line": 195,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod",
@@ -86,6 +62,18 @@
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
+    "line": 231,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[1].resources.requests should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container[1].resources.requests is undefined"
+  },
+  {
+    "queryName": "Memory Requests Not Defined",
+    "severity": "MEDIUM",
     "line": 296,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod",
@@ -94,6 +82,18 @@
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive4].spec.container.resources.requests.memory should be set",
     "actualValue": "kubernetes_pod[positive4].spec.container.resources.requests.memory is undefined"
+  },
+  {
+    "queryName": "Memory Requests Not Defined",
+    "severity": "MEDIUM",
+    "line": 350,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive5",
+    "searchKey": "kubernetes_pod[positive5].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive5].spec.container.resources should be set",
+    "actualValue": "kubernetes_pod[positive5].spec.container.resources is undefined"
   },
   {
     "queryName": "Memory Requests Not Defined",

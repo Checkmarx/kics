@@ -2,11 +2,11 @@
   {
     "queryName": "Weak TLS Cipher Suites",
     "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive3.yaml",
-    "resourceType": "KubeletConfiguration",
-    "resourceName": "n/a",
-    "searchKey": "kind={{KubeletConfiguration}}.tlsCipherSuites",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "TLS cipher suites should use strong ciphers",
     "actualValue": "TLS cipher suites uses a weak cipher"
@@ -26,11 +26,11 @@
   {
     "queryName": "Weak TLS Cipher Suites",
     "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive1.yaml",
-    "resourceType": "Pod",
-    "resourceName": "command-demo",
-    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "line": 9,
+    "filename": "positive3.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.tlsCipherSuites",
     "searchValue": "",
     "expectedValue": "TLS cipher suites should use strong ciphers",
     "actualValue": "TLS cipher suites uses a weak cipher"

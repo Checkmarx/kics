@@ -14,6 +14,18 @@
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
+    "line": 7,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::SNS::TopicPolicy",
+    "resourceName": "snsPolicy",
+    "searchKey": "Resources.snsPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal",
+    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal"
+  },
+  {
+    "queryName": "SNS Topic is Publicly Accessible",
+    "severity": "CRITICAL",
     "line": 8,
     "filename": "positive3.json",
     "resourceType": "AWS::SNS::TopicPolicy",
@@ -28,18 +40,6 @@
     "severity": "CRITICAL",
     "line": 8,
     "filename": "positive4.json",
-    "resourceType": "AWS::SNS::TopicPolicy",
-    "resourceName": "snsPolicy",
-    "searchKey": "Resources.snsPolicy.Properties.PolicyDocument",
-    "searchValue": "",
-    "expectedValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal",
-    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal"
-  },
-  {
-    "queryName": "SNS Topic is Publicly Accessible",
-    "severity": "CRITICAL",
-    "line": 7,
-    "filename": "positive2.yaml",
     "resourceType": "AWS::SNS::TopicPolicy",
     "resourceName": "snsPolicy",
     "searchKey": "Resources.snsPolicy.Properties.PolicyDocument",

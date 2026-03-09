@@ -2,18 +2,6 @@
   {
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
     "severity": "HIGH",
-    "line": 7,
-    "filename": "positive2.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[s3_bucket].acl",
-    "searchValue": "",
-    "expectedValue": "S3 Bucket public ACL to not be overridden by public access block",
-    "actualValue": "S3 Bucket public ACL is overridden by public access block"
-  },
-  {
-    "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
-    "severity": "HIGH",
     "line": 16,
     "filename": "positive1.tf",
     "resourceType": "aws_s3_bucket",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "S3 Bucket public ACL to not be overridden by S3 bucket Public Access Block",
     "actualValue": "S3 Bucket public ACL is overridden by S3 bucket Public Access Block"
+  },
+  {
+    "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].acl",
+    "searchValue": "",
+    "expectedValue": "S3 Bucket public ACL to not be overridden by public access block",
+    "actualValue": "S3 Bucket public ACL is overridden by public access block"
   },
   {
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",

@@ -2,20 +2,8 @@
   {
     "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
     "severity": "INFO",
-    "line": 26,
-    "filename": "positive2.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "parameters.name=limit.in",
-    "searchValue": "",
-    "expectedValue": "'in' field should be 'query' or 'formData'",
-    "actualValue": "'in' field is path"
-  },
-  {
-    "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
-    "severity": "INFO",
-    "line": 10,
-    "filename": "positive2.yaml",
+    "line": 13,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.parameters.name=limit2.in",
@@ -38,11 +26,23 @@
   {
     "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
     "severity": "INFO",
-    "line": 13,
-    "filename": "positive1.json",
+    "line": 10,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.parameters.name=limit2.in",
+    "searchValue": "",
+    "expectedValue": "'in' field should be 'query' or 'formData'",
+    "actualValue": "'in' field is path"
+  },
+  {
+    "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit.in",
     "searchValue": "",
     "expectedValue": "'in' field should be 'query' or 'formData'",
     "actualValue": "'in' field is path"

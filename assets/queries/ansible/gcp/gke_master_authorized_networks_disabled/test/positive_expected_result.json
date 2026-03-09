@@ -14,18 +14,6 @@
   {
     "queryName": "GKE Master Authorized Networks Disabled",
     "severity": "MEDIUM",
-    "line": 22,
-    "filename": "positive.yaml",
-    "resourceType": "google.cloud.gcp_container_cluster",
-    "resourceName": "create a third cluster",
-    "searchKey": "name={{create a third cluster}}.{{google.cloud.gcp_container_cluster}}",
-    "searchValue": "",
-    "expectedValue": "gcp_container_cluster.master_authorized_networks_config should be defined",
-    "actualValue": "gcp_container_cluster.master_authorized_networks_config is undefined"
-  },
-  {
-    "queryName": "GKE Master Authorized Networks Disabled",
-    "severity": "MEDIUM",
     "line": 17,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_container_cluster",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_authorized_networks_config.enabled should be defined",
     "actualValue": "gcp_container_cluster.master_authorized_networks_config.enabled is undefined"
+  },
+  {
+    "queryName": "GKE Master Authorized Networks Disabled",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a third cluster",
+    "searchKey": "name={{create a third cluster}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_authorized_networks_config should be defined",
+    "actualValue": "gcp_container_cluster.master_authorized_networks_config is undefined"
   }
 ]

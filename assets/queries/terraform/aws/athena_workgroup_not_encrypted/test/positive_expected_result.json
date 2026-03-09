@@ -2,6 +2,18 @@
   {
     "queryName": "Athena Workgroup Not Encrypted",
     "severity": "HIGH",
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "aws_athena_workgroup",
+    "resourceName": "example",
+    "searchKey": "aws_athena_workgroup[{{example}}]",
+    "searchValue": "",
+    "expectedValue": "aws_athena_workgroup[{{example}}].configuration.result_configuration.encryption_configuration should be defined",
+    "actualValue": "aws_athena_workgroup[{{example}}].configuration is missing"
+  },
+  {
+    "queryName": "Athena Workgroup Not Encrypted",
+    "severity": "HIGH",
     "line": 8,
     "filename": "positive1.tf",
     "resourceType": "aws_athena_workgroup",
@@ -22,17 +34,5 @@
     "searchValue": "",
     "expectedValue": "aws_athena_workgroup[{{example_3}}].configuration.result_configuration.encryption_configuration should be defined",
     "actualValue": "aws_athena_workgroup[{{example_3}}].configuration.result_configuration.encryption_configuration is missing"
-  },
-  {
-    "queryName": "Athena Workgroup Not Encrypted",
-    "severity": "HIGH",
-    "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "aws_athena_workgroup",
-    "resourceName": "example",
-    "searchKey": "aws_athena_workgroup[{{example}}]",
-    "searchValue": "",
-    "expectedValue": "aws_athena_workgroup[{{example}}].configuration.result_configuration.encryption_configuration should be defined",
-    "actualValue": "aws_athena_workgroup[{{example}}].configuration is missing"
   }
 ]

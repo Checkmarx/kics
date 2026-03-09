@@ -14,18 +14,6 @@
   {
     "queryName": "S3 Bucket Allows Put Action From All Principals",
     "severity": "CRITICAL",
-    "line": 12,
-    "filename": "positive3.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[s3_bucket].policy",
-    "searchValue": "",
-    "expectedValue": "'policy.Statement.Action' should not be a 'Put' action",
-    "actualValue": "'policy.Statement.Action' is a 'Put' action"
-  },
-  {
-    "queryName": "S3 Bucket Allows Put Action From All Principals",
-    "severity": "CRITICAL",
     "line": 5,
     "filename": "positive2.tf",
     "resourceType": "aws_s3_bucket_policy",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_policy[positive2].policy.Statement.Action should not be a 'Put' action",
     "actualValue": "aws_s3_bucket_policy[positive2].policy.Statement.Action is a 'Put' action"
+  },
+  {
+    "queryName": "S3 Bucket Allows Put Action From All Principals",
+    "severity": "CRITICAL",
+    "line": 12,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' should not be a 'Put' action",
+    "actualValue": "'policy.Statement.Action' is a 'Put' action"
   }
 ]

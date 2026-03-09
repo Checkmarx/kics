@@ -14,18 +14,6 @@
   {
     "queryName": "Invalid Image",
     "severity": "LOW",
-    "line": 113,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "positive3",
-    "searchKey": "kubernetes_pod[positive3].spec.container",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive3].spec.container[0].image should not be empty or latest",
-    "actualValue": "kubernetes_pod[positive3].spec.container[0].image is empty or latest"
-  },
-  {
-    "queryName": "Invalid Image",
-    "severity": "LOW",
     "line": 60,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive2].spec.container.image should be set",
     "actualValue": "kubernetes_pod[positive2].spec.container.image is undefined"
+  },
+  {
+    "queryName": "Invalid Image",
+    "severity": "LOW",
+    "line": 113,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[0].image should not be empty or latest",
+    "actualValue": "kubernetes_pod[positive3].spec.container[0].image is empty or latest"
   }
 ]

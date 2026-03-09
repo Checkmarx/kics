@@ -2,18 +2,6 @@
   {
     "queryName": "ECS Services assigned with public IP address",
     "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive2.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[ecs].services.frontend.assign_public_ip",
-    "searchValue": "",
-    "expectedValue": "'module[ecs].services.frontend.assign_public_ip' should be set to 'false'(default value is 'false')",
-    "actualValue": "'module[ecs].services.frontend.assign_public_ip' is set to true"
-  },
-  {
-    "queryName": "ECS Services assigned with public IP address",
-    "severity": "MEDIUM",
     "line": 15,
     "filename": "positive1.tf",
     "resourceType": "aws_ecs_service",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'aws_ecs_service[example_ecs_service].network_configuration.assign_public_ip' should be set to 'false'(default value is 'false')",
     "actualValue": "'aws_ecs_service[example_ecs_service].network_configuration.assign_public_ip' is set to true"
+  },
+  {
+    "queryName": "ECS Services assigned with public IP address",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ecs].services.frontend.assign_public_ip",
+    "searchValue": "",
+    "expectedValue": "'module[ecs].services.frontend.assign_public_ip' should be set to 'false'(default value is 'false')",
+    "actualValue": "'module[ecs].services.frontend.assign_public_ip' is set to true"
   }
 ]

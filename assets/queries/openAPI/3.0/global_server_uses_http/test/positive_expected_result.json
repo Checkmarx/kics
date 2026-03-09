@@ -2,14 +2,14 @@
   {
     "queryName": "Global Server Object Uses HTTP",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive3.yaml",
+    "line": 13,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "openapi",
+    "searchKey": "servers.url.http://staging.gigantic-server.com/v1",
     "searchValue": "",
-    "expectedValue": "Global servers array should be defined",
-    "actualValue": "Global servers array is not defined"
+    "expectedValue": "Global servers' URL should use HTTPS protocol",
+    "actualValue": "Global servers' URL are not using HTTPS protocol"
   },
   {
     "queryName": "Global Server Object Uses HTTP",
@@ -26,13 +26,13 @@
   {
     "queryName": "Global Server Object Uses HTTP",
     "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive1.json",
+    "line": 1,
+    "filename": "positive3.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "servers.url.http://staging.gigantic-server.com/v1",
+    "searchKey": "openapi",
     "searchValue": "",
-    "expectedValue": "Global servers' URL should use HTTPS protocol",
-    "actualValue": "Global servers' URL are not using HTTPS protocol"
+    "expectedValue": "Global servers array should be defined",
+    "actualValue": "Global servers array is not defined"
   }
 ]

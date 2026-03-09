@@ -2,6 +2,18 @@
   {
     "queryName": "Low RDS Backup Retention Period",
     "severity": "LOW",
+    "line": 52,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "DatabaseCluster",
+    "searchKey": "Resources.DatabaseCluster.Properties.BackupRetentionPeriod",
+    "searchValue": "",
+    "expectedValue": "The RDS DBCluster 'DatabaseCluster' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBCluster 'DatabaseCluster' resource has backup retention period of '%!s(int=3)' which is less than the minimum of 7 days"
+  },
+  {
+    "queryName": "Low RDS Backup Retention Period",
+    "severity": "LOW",
     "line": 35,
     "filename": "positive2.yaml",
     "resourceType": "AWS::RDS::DBInstance",
@@ -38,30 +50,6 @@
   {
     "queryName": "Low RDS Backup Retention Period",
     "severity": "LOW",
-    "line": 52,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::RDS::DBCluster",
-    "resourceName": "DatabaseCluster",
-    "searchKey": "Resources.DatabaseCluster.Properties.BackupRetentionPeriod",
-    "searchValue": "",
-    "expectedValue": "The RDS DBCluster 'DatabaseCluster' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBCluster 'DatabaseCluster' resource has backup retention period of '%!s(int=3)' which is less than the minimum of 7 days"
-  },
-  {
-    "queryName": "Low RDS Backup Retention Period",
-    "severity": "LOW",
-    "line": 54,
-    "filename": "positive8.json",
-    "resourceType": "AWS::RDS::DBCluster",
-    "resourceName": "BadDatabaseCluster",
-    "searchKey": "Resources.BadDatabaseCluster.Properties",
-    "searchValue": "",
-    "expectedValue": "The RDS DBCluster 'BadDatabaseCluster' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBCluster 'BadDatabaseCluster' resource doesn't define a backup retention period"
-  },
-  {
-    "queryName": "Low RDS Backup Retention Period",
-    "severity": "LOW",
     "line": 113,
     "filename": "positive5.json",
     "resourceType": "AWS::RDS::DBCluster",
@@ -70,6 +58,18 @@
     "searchValue": "",
     "expectedValue": "The RDS DBCluster 'DatabaseCluster' resource should have backup retention period of at least 7 days",
     "actualValue": "The RDS DBCluster 'DatabaseCluster' resource has backup retention period of '%!s(int=3)' which is less than the minimum of 7 days"
+  },
+  {
+    "queryName": "Low RDS Backup Retention Period",
+    "severity": "LOW",
+    "line": 55,
+    "filename": "positive6.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.BackupRetentionPeriod",
+    "searchValue": "",
+    "expectedValue": "The RDS DBInstance 'MyDBSmall' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBCluster 'MyDBSmall' resource has backup retention period of '%!s(int=6)' which is less than the minimum of 7 days, and no RDS Cluster are defined"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
@@ -86,13 +86,13 @@
   {
     "queryName": "Low RDS Backup Retention Period",
     "severity": "LOW",
-    "line": 55,
-    "filename": "positive6.json",
-    "resourceType": "AWS::RDS::DBInstance",
-    "resourceName": "MyDBSmall",
-    "searchKey": "Resources.MyDBSmall.Properties.BackupRetentionPeriod",
+    "line": 54,
+    "filename": "positive8.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "BadDatabaseCluster",
+    "searchKey": "Resources.BadDatabaseCluster.Properties",
     "searchValue": "",
-    "expectedValue": "The RDS DBInstance 'MyDBSmall' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBCluster 'MyDBSmall' resource has backup retention period of '%!s(int=6)' which is less than the minimum of 7 days, and no RDS Cluster are defined"
+    "expectedValue": "The RDS DBCluster 'BadDatabaseCluster' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBCluster 'BadDatabaseCluster' resource doesn't define a backup retention period"
   }
 ]

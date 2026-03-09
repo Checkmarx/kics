@@ -1,27 +1,15 @@
 [
   {
-    "queryName": "Array Items Has No Type (v2)",
+    "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
-    "line": 25,
-    "filename": "positive7.json",
+    "line": 65,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.parameters.schema.items",
+    "searchKey": "components.schemas.MyIntArray.items",
     "searchValue": "",
-    "expectedValue": "paths.{{/}}.get.parameters.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
-  },
-  {
-    "queryName": "Array Items Has No Type (v2)",
-    "severity": "LOW",
-    "line": 20,
-    "filename": "positive8.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.parameters.schema.items",
-    "searchValue": "",
-    "expectedValue": "paths.{{/}}.get.parameters.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+    "expectedValue": "components.schemas.MyIntArray.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "components.schemas.MyIntArray.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
@@ -46,18 +34,6 @@
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
     "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
-  },
-  {
-    "queryName": "Array Items Has No Type (v3)",
-    "severity": "LOW",
-    "line": 65,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "components.schemas.MyIntArray.items",
-    "searchValue": "",
-    "expectedValue": "components.schemas.MyIntArray.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "components.schemas.MyIntArray.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
@@ -94,5 +70,29 @@
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
     "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+  },
+  {
+    "queryName": "Array Items Has No Type (v2)",
+    "severity": "LOW",
+    "line": 25,
+    "filename": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.parameters.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+  },
+  {
+    "queryName": "Array Items Has No Type (v2)",
+    "severity": "LOW",
+    "line": 20,
+    "filename": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.parameters.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
   }
 ]

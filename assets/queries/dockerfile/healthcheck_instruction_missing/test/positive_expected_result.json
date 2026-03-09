@@ -2,11 +2,11 @@
   {
     "queryName": "Healthcheck Instruction Missing",
     "severity": "LOW",
-    "line": 7,
-    "filename": "positive2.dockerfile",
+    "line": 1,
+    "filename": "positive.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{alpine:latest  }}",
+    "searchKey": "FROM={{node:alpine}}",
     "searchValue": "",
     "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
     "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
@@ -14,11 +14,11 @@
   {
     "queryName": "Healthcheck Instruction Missing",
     "severity": "LOW",
-    "line": 1,
-    "filename": "positive.dockerfile",
+    "line": 7,
+    "filename": "positive2.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{node:alpine}}",
+    "searchKey": "FROM={{alpine:latest  }}",
     "searchValue": "",
     "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
     "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"

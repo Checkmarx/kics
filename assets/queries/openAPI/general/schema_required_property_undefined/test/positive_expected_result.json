@@ -1,41 +1,5 @@
 [
   {
-    "queryName": "Schema Has A Required Property Undefined (v2)",
-    "severity": "INFO",
-    "line": 20,
-    "filename": "positive5.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema",
-    "searchValue": "",
-    "expectedValue": "Schema should have all required properties defined",
-    "actualValue": "Schema has required properties that are not defined"
-  },
-  {
-    "queryName": "Schema Has A Required Property Undefined (v2)",
-    "severity": "INFO",
-    "line": 17,
-    "filename": "positive6.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema",
-    "searchValue": "",
-    "expectedValue": "Schema should have all required properties defined",
-    "actualValue": "Schema has required properties that are not defined"
-  },
-  {
-    "queryName": "Schema Has A Required Property Undefined (v3)",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive4.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
-    "searchValue": "",
-    "expectedValue": "Schema should have all required properties defined",
-    "actualValue": "Schema has required properties that are not defined"
-  },
-  {
     "queryName": "Schema Has A Required Property Undefined (v3)",
     "severity": "INFO",
     "line": 50,
@@ -67,6 +31,42 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.GeneralError.schema",
+    "searchValue": "",
+    "expectedValue": "Schema should have all required properties defined",
+    "actualValue": "Schema has required properties that are not defined"
+  },
+  {
+    "queryName": "Schema Has A Required Property Undefined (v3)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "Schema should have all required properties defined",
+    "actualValue": "Schema has required properties that are not defined"
+  },
+  {
+    "queryName": "Schema Has A Required Property Undefined (v2)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "Schema should have all required properties defined",
+    "actualValue": "Schema has required properties that are not defined"
+  },
+  {
+    "queryName": "Schema Has A Required Property Undefined (v2)",
+    "severity": "INFO",
+    "line": 17,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
     "searchValue": "",
     "expectedValue": "Schema should have all required properties defined",
     "actualValue": "Schema has required properties that are not defined"

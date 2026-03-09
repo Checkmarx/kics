@@ -15,18 +15,6 @@
     "queryName": "Security Group Rule Set Accepts All Traffic",
     "severity": "HIGH",
     "line": 9,
-    "filename": "positive4.tf",
-    "resourceType": "tencentcloud_security_group_rule_set",
-    "resourceName": "base",
-    "searchKey": "tencentcloud_security_group_rule_set[base].ingress",
-    "searchValue": "",
-    "expectedValue": "tencentcloud_security_group_rule_set[base] ingress should not be set to accept all traffic",
-    "actualValue": "tencentcloud_security_group_rule_set[base] ingress is set to accept all traffic"
-  },
-  {
-    "queryName": "Security Group Rule Set Accepts All Traffic",
-    "severity": "HIGH",
-    "line": 9,
     "filename": "positive2.tf",
     "resourceType": "tencentcloud_security_group_rule_set",
     "resourceName": "base",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "tencentcloud_security_group_rule_set[base] ingress should not set accept all traffic",
     "actualValue": "tencentcloud_security_group_rule_set[base] ingress accept all traffic"
+  },
+  {
+    "queryName": "Security Group Rule Set Accepts All Traffic",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive4.tf",
+    "resourceType": "tencentcloud_security_group_rule_set",
+    "resourceName": "base",
+    "searchKey": "tencentcloud_security_group_rule_set[base].ingress",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_security_group_rule_set[base] ingress should not be set to accept all traffic",
+    "actualValue": "tencentcloud_security_group_rule_set[base] ingress is set to accept all traffic"
   }
 ]

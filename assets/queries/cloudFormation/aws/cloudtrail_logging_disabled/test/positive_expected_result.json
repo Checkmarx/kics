@@ -2,18 +2,6 @@
   {
     "queryName": "CloudTrail Logging Disabled",
     "severity": "MEDIUM",
-    "line": 20,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::CloudTrail::Trail",
-    "resourceName": "myTrail",
-    "searchKey": "Resources.myTrail.Properties.IsLogging",
-    "searchValue": "",
-    "expectedValue": "'Resources.myTrail.Properties.IsLogging' should be true",
-    "actualValue": "'Resources.myTrail.Properties.IsLogging' is false"
-  },
-  {
-    "queryName": "CloudTrail Logging Disabled",
-    "severity": "MEDIUM",
     "line": 19,
     "filename": "positive1.yaml",
     "resourceType": "AWS::CloudTrail::Trail",
@@ -39,18 +27,6 @@
     "queryName": "CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 25,
-    "filename": "positive4.json",
-    "resourceType": "AWS::CloudTrail::Trail",
-    "resourceName": "myTrail5",
-    "searchKey": "Resources.myTrail5.Properties.IsLogging",
-    "searchValue": "",
-    "expectedValue": "'Resources.myTrail5.Properties.IsLogging' should be true",
-    "actualValue": "'Resources.myTrail5.Properties.IsLogging' is false"
-  },
-  {
-    "queryName": "CloudTrail Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 25,
     "filename": "positive2.json",
     "resourceType": "AWS::CloudTrail::Trail",
     "resourceName": "myTrail5",
@@ -70,5 +46,29 @@
     "searchValue": "",
     "expectedValue": "'Resources.myTrail6.Properties.IsLogging' should be true",
     "actualValue": "'Resources.myTrail6.Properties.IsLogging' is false"
+  },
+  {
+    "queryName": "CloudTrail Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties.IsLogging",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.IsLogging' should be true",
+    "actualValue": "'Resources.myTrail.Properties.IsLogging' is false"
+  },
+  {
+    "queryName": "CloudTrail Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 25,
+    "filename": "positive4.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail5",
+    "searchKey": "Resources.myTrail5.Properties.IsLogging",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail5.Properties.IsLogging' should be true",
+    "actualValue": "'Resources.myTrail5.Properties.IsLogging' is false"
   }
 ]

@@ -14,35 +14,11 @@
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 27,
-    "filename": "positive.yaml",
-    "resourceType": "amazon.aws.ec2_group",
-    "resourceName": "example ec2 group v2",
-    "searchKey": "name={{example ec2 group v2}}.{{amazon.aws.ec2_group}}.rules",
-    "searchValue": "",
-    "expectedValue": "ec2_group.rules[0] should be restricted",
-    "actualValue": "ec2_group.rules[0] is not restricted"
-  },
-  {
-    "queryName": "Security Group Ingress Not Restricted",
-    "severity": "HIGH",
     "line": 12,
     "filename": "positive.yaml",
     "resourceType": "amazon.aws.ec2_group",
     "resourceName": "example ec2 group",
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
-    "searchValue": "",
-    "expectedValue": "ec2_group.rules[1] should be restricted",
-    "actualValue": "ec2_group.rules[1] is not restricted"
-  },
-  {
-    "queryName": "Security Group Ingress Not Restricted",
-    "severity": "HIGH",
-    "line": 31,
-    "filename": "positive.yaml",
-    "resourceType": "amazon.aws.ec2_group",
-    "resourceName": "example ec2 group v2",
-    "searchKey": "name={{example ec2 group v2}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[1] should be restricted",
     "actualValue": "ec2_group.rules[1] is not restricted"
@@ -58,6 +34,30 @@
     "searchValue": "",
     "expectedValue": "ec2_group.rules[2] should be restricted",
     "actualValue": "ec2_group.rules[2] is not restricted"
+  },
+  {
+    "queryName": "Security Group Ingress Not Restricted",
+    "severity": "HIGH",
+    "line": 27,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group v2",
+    "searchKey": "name={{example ec2 group v2}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[0] should be restricted",
+    "actualValue": "ec2_group.rules[0] is not restricted"
+  },
+  {
+    "queryName": "Security Group Ingress Not Restricted",
+    "severity": "HIGH",
+    "line": 31,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group v2",
+    "searchKey": "name={{example ec2 group v2}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[1] should be restricted",
+    "actualValue": "ec2_group.rules[1] is not restricted"
   },
   {
     "queryName": "Security Group Ingress Not Restricted",

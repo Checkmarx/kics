@@ -2,30 +2,6 @@
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "CRITICAL",
-    "line": 9,
-    "filename": "positive2.json",
-    "resourceType": "AWS::S3::BucketPolicy",
-    "resourceName": "SampleBucketPolicy5",
-    "searchKey": "Resources.SampleBucketPolicy5.Properties.PolicyDocument",
-    "searchValue": "",
-    "expectedValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement should not allow a 'Delete' action from all principals",
-    "actualValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement allows a 'Delete' action from all principals"
-  },
-  {
-    "queryName": "S3 Bucket Allows Delete Action From All Principals",
-    "severity": "CRITICAL",
-    "line": 35,
-    "filename": "positive2.json",
-    "resourceType": "AWS::S3::BucketPolicy",
-    "resourceName": "SampleBucketPolicy6",
-    "searchKey": "Resources.SampleBucketPolicy6.Properties.PolicyDocument",
-    "searchValue": "",
-    "expectedValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement should not allow a 'Delete' action from all principals",
-    "actualValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement allows a 'Delete' action from all principals"
-  },
-  {
-    "queryName": "S3 Bucket Allows Delete Action From All Principals",
-    "severity": "CRITICAL",
     "line": 7,
     "filename": "positive1.yaml",
     "resourceType": "AWS::S3::BucketPolicy",
@@ -46,5 +22,29 @@
     "searchValue": "",
     "expectedValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement should not allow a 'Delete' action from all principals",
     "actualValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement allows a 'Delete' action from all principals"
+  },
+  {
+    "queryName": "S3 Bucket Allows Delete Action From All Principals",
+    "severity": "CRITICAL",
+    "line": 9,
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy5",
+    "searchKey": "Resources.SampleBucketPolicy5.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement should not allow a 'Delete' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement allows a 'Delete' action from all principals"
+  },
+  {
+    "queryName": "S3 Bucket Allows Delete Action From All Principals",
+    "severity": "CRITICAL",
+    "line": 35,
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy6",
+    "searchKey": "Resources.SampleBucketPolicy6.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement should not allow a 'Delete' action from all principals",
+    "actualValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement allows a 'Delete' action from all principals"
   }
 ]

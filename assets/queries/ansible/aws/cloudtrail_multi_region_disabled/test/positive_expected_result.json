@@ -2,18 +2,6 @@
   {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
-    "line": 18,
-    "filename": "positive.yaml",
-    "resourceType": "community.aws.cloudtrail",
-    "resourceName": "example2",
-    "searchKey": "name={{example2}}.{{community.aws.cloudtrail}}",
-    "searchValue": "",
-    "expectedValue": "cloudtrail.is_multi_region_trail should be defined and set to true",
-    "actualValue": "cloudtrail.is_multi_region_trail is undefined"
-  },
-  {
-    "queryName": "CloudTrail Multi Region Disabled",
-    "severity": "LOW",
     "line": 7,
     "filename": "positive.yaml",
     "resourceType": "community.aws.cloudtrail",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "cloudtrail.is_multi_region_trail should be true",
     "actualValue": "cloudtrail.is_multi_region_trail is false"
+  },
+  {
+    "queryName": "CloudTrail Multi Region Disabled",
+    "severity": "LOW",
+    "line": 18,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "example2",
+    "searchKey": "name={{example2}}.{{community.aws.cloudtrail}}",
+    "searchValue": "",
+    "expectedValue": "cloudtrail.is_multi_region_trail should be defined and set to true",
+    "actualValue": "cloudtrail.is_multi_region_trail is undefined"
   }
 ]

@@ -2,18 +2,6 @@
   {
     "queryName": "MSSQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_mssql_server",
-    "resourceName": "my-mssql-server",
-    "searchKey": "azurerm_mssql_server[example]",
-    "searchValue": "",
-    "expectedValue": "Security alert policy should be defined and enabled",
-    "actualValue": "Security alert policy is undefined"
-  },
-  {
-    "queryName": "MSSQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
     "line": 17,
     "filename": "positive1.tf",
     "resourceType": "azurerm_mssql_server_security_alert_policy",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_server_security_alert_policy.positive2.state' should be enabled",
     "actualValue": "'azurerm_mssql_server_security_alert_policy.positive2.state' is not enabled"
+  },
+  {
+    "queryName": "MSSQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_mssql_server",
+    "resourceName": "my-mssql-server",
+    "searchKey": "azurerm_mssql_server[example]",
+    "searchValue": "",
+    "expectedValue": "Security alert policy should be defined and enabled",
+    "actualValue": "Security alert policy is undefined"
   }
 ]

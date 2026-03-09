@@ -2,6 +2,30 @@
   {
     "queryName": "ElastiCache With Disabled Transit Encryption",
     "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "ReplicationGroup",
+    "searchKey": "Resources.ReplicationGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled should be defined",
+    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined"
+  },
+  {
+    "queryName": "ElastiCache With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 26,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "MyReplicationGroup",
+    "searchKey": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled should be true",
+    "actualValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled is false"
+  },
+  {
+    "queryName": "ElastiCache With Disabled Transit Encryption",
+    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive3.json",
     "resourceType": "AWS::ElastiCache::ReplicationGroup",
@@ -34,29 +58,5 @@
     "searchValue": "",
     "expectedValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled should be defined",
     "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined"
-  },
-  {
-    "queryName": "ElastiCache With Disabled Transit Encryption",
-    "severity": "MEDIUM",
-    "line": 6,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::ElastiCache::ReplicationGroup",
-    "resourceName": "ReplicationGroup",
-    "searchKey": "Resources.ReplicationGroup.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled should be defined",
-    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined"
-  },
-  {
-    "queryName": "ElastiCache With Disabled Transit Encryption",
-    "severity": "MEDIUM",
-    "line": 26,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::ElastiCache::ReplicationGroup",
-    "resourceName": "MyReplicationGroup",
-    "searchKey": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled",
-    "searchValue": "",
-    "expectedValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled should be true",
-    "actualValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled is false"
   }
 ]

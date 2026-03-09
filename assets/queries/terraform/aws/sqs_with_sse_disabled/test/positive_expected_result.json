@@ -2,14 +2,14 @@
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
-    "line": 3,
-    "filename": "positive7.tf",
+    "line": 1,
+    "filename": "positive1.tf",
     "resourceType": "aws_sqs_queue",
     "resourceName": "terraform-example-queue",
-    "searchKey": "aws_sqs_queue[positive7].sqs_managed_sse_enabled",
+    "searchKey": "aws_sqs_queue[positive1]",
     "searchValue": "",
-    "expectedValue": "aws_sqs_queue[positive7].sqs_managed_sse_enabled must be set to true",
-    "actualValue": "aws_sqs_queue[positive7].sqs_managed_sse_enabled is set to false"
+    "expectedValue": "aws_sqs_queue[positive1].kms_master_key_id or aws_sqs_queue[positive1].sqs_managed_sse_enabled should be defined and not null",
+    "actualValue": "aws_sqs_queue[positive1].kms_master_key_id and aws_sqs_queue[positive1].sqs_managed_sse_enabled are undefined or null"
   },
   {
     "queryName": "SQS With SSE Disabled",
@@ -22,6 +22,30 @@
     "searchValue": "",
     "expectedValue": "aws_sqs_queue.kms_master_key_id should not be ''",
     "actualValue": "aws_sqs_queue.kms_master_key_id is ''"
+  },
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf",
+    "resourceType": "aws_sqs_queue",
+    "resourceName": "terraform-example-queue",
+    "searchKey": "aws_sqs_queue[positive3]",
+    "searchValue": "",
+    "expectedValue": "aws_sqs_queue[positive3].kms_master_key_id or aws_sqs_queue[positive3].sqs_managed_sse_enabled should be defined and not null",
+    "actualValue": "aws_sqs_queue[positive3].kms_master_key_id and aws_sqs_queue[positive3].sqs_managed_sse_enabled are undefined or null"
+  },
+  {
+    "queryName": "SQS With SSE Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[user_queue]",
+    "searchValue": "",
+    "expectedValue": "'kms_master_key_id' should be defined and not null",
+    "actualValue": "'kms_master_key_id' is undefined or null"
   },
   {
     "queryName": "SQS With SSE Disabled",
@@ -50,37 +74,13 @@
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive4.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[user_queue]",
-    "searchValue": "",
-    "expectedValue": "'kms_master_key_id' should be defined and not null",
-    "actualValue": "'kms_master_key_id' is undefined or null"
-  },
-  {
-    "queryName": "SQS With SSE Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive3.tf",
+    "line": 3,
+    "filename": "positive7.tf",
     "resourceType": "aws_sqs_queue",
     "resourceName": "terraform-example-queue",
-    "searchKey": "aws_sqs_queue[positive3]",
+    "searchKey": "aws_sqs_queue[positive7].sqs_managed_sse_enabled",
     "searchValue": "",
-    "expectedValue": "aws_sqs_queue[positive3].kms_master_key_id or aws_sqs_queue[positive3].sqs_managed_sse_enabled should be defined and not null",
-    "actualValue": "aws_sqs_queue[positive3].kms_master_key_id and aws_sqs_queue[positive3].sqs_managed_sse_enabled are undefined or null"
-  },
-  {
-    "queryName": "SQS With SSE Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "aws_sqs_queue",
-    "resourceName": "terraform-example-queue",
-    "searchKey": "aws_sqs_queue[positive1]",
-    "searchValue": "",
-    "expectedValue": "aws_sqs_queue[positive1].kms_master_key_id or aws_sqs_queue[positive1].sqs_managed_sse_enabled should be defined and not null",
-    "actualValue": "aws_sqs_queue[positive1].kms_master_key_id and aws_sqs_queue[positive1].sqs_managed_sse_enabled are undefined or null"
+    "expectedValue": "aws_sqs_queue[positive7].sqs_managed_sse_enabled must be set to true",
+    "actualValue": "aws_sqs_queue[positive7].sqs_managed_sse_enabled is set to false"
   }
 ]

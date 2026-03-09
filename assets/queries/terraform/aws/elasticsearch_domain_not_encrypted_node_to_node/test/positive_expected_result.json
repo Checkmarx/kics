@@ -2,18 +2,6 @@
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
     "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive2.tf",
-    "resourceType": "aws_elasticsearch_domain",
-    "resourceName": "positive1",
-    "searchKey": "aws_elasticsearch_domain[{{positive1}}].node_to_node_encryption.enabled",
-    "searchValue": "",
-    "expectedValue": "The attribute 'node_to_node_encryption' should be set to true",
-    "actualValue": "The attribute 'node_to_node_encryption' is not set to true"
-  },
-  {
-    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
-    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive1.tf",
     "resourceType": "aws_elasticsearch_domain",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "The attribute 'node_to_node_encryption' should be set to true",
     "actualValue": "The attribute 'node_to_node_encryption' is undefined"
+  },
+  {
+    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive2.tf",
+    "resourceType": "aws_elasticsearch_domain",
+    "resourceName": "positive1",
+    "searchKey": "aws_elasticsearch_domain[{{positive1}}].node_to_node_encryption.enabled",
+    "searchValue": "",
+    "expectedValue": "The attribute 'node_to_node_encryption' should be set to true",
+    "actualValue": "The attribute 'node_to_node_encryption' is not set to true"
   }
 ]

@@ -2,30 +2,6 @@
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
     "severity": "LOW",
-    "line": 9,
-    "filename": "positive5.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[rds_cluster].copy_tags_to_snapshot",
-    "searchValue": "",
-    "expectedValue": "'module[rds_cluster].copy_tags_to_snapshot' should be set to true",
-    "actualValue": "'module[rds_cluster].copy_tags_to_snapshot' is set to false"
-  },
-  {
-    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
-    "severity": "LOW",
-    "line": 1,
-    "filename": "positive6.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[rds_cluster]",
-    "searchValue": "",
-    "expectedValue": "'module[rds_cluster].copy_tags_to_snapshot' should be defined to true",
-    "actualValue": "'module[rds_cluster].copy_tags_to_snapshot' is not defined"
-  },
-  {
-    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
-    "severity": "LOW",
     "line": 8,
     "filename": "positive1.tf",
     "resourceType": "aws_rds_cluster",
@@ -70,5 +46,29 @@
     "searchValue": "",
     "expectedValue": "'aws_db_instance[example].copy_tags_to_snapshot' should be defined to true",
     "actualValue": "'aws_db_instance[example].copy_tags_to_snapshot' is not defined"
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 9,
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[rds_cluster].copy_tags_to_snapshot",
+    "searchValue": "",
+    "expectedValue": "'module[rds_cluster].copy_tags_to_snapshot' should be set to true",
+    "actualValue": "'module[rds_cluster].copy_tags_to_snapshot' is set to false"
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[rds_cluster]",
+    "searchValue": "",
+    "expectedValue": "'module[rds_cluster].copy_tags_to_snapshot' should be defined to true",
+    "actualValue": "'module[rds_cluster].copy_tags_to_snapshot' is not defined"
   }
 ]

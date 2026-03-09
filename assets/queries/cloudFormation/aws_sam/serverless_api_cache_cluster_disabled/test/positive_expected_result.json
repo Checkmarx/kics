@@ -2,14 +2,14 @@
   {
     "queryName": "Serverless API Cache Cluster Disabled",
     "severity": "LOW",
-    "line": 10,
-    "filename": "positive3.yaml",
+    "line": 7,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::Serverless::Api",
-    "resourceName": "ApiGatewayApi2",
-    "searchKey": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled",
+    "resourceName": "ApiGatewayApi",
+    "searchKey": "Resources.ApiGatewayApi.Properties",
     "searchValue": "",
-    "expectedValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled should be set to true",
-    "actualValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled is set to false"
+    "expectedValue": "Resources.ApiGatewayApi.Properties.CacheClusterEnabled should be defined and not null",
+    "actualValue": "Resources.ApiGatewayApi.Properties.CacheClusterEnabled is undefined or null"
   },
   {
     "queryName": "Serverless API Cache Cluster Disabled",
@@ -26,13 +26,13 @@
   {
     "queryName": "Serverless API Cache Cluster Disabled",
     "severity": "LOW",
-    "line": 7,
-    "filename": "positive1.yaml",
+    "line": 10,
+    "filename": "positive3.yaml",
     "resourceType": "AWS::Serverless::Api",
-    "resourceName": "ApiGatewayApi",
-    "searchKey": "Resources.ApiGatewayApi.Properties",
+    "resourceName": "ApiGatewayApi2",
+    "searchKey": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled",
     "searchValue": "",
-    "expectedValue": "Resources.ApiGatewayApi.Properties.CacheClusterEnabled should be defined and not null",
-    "actualValue": "Resources.ApiGatewayApi.Properties.CacheClusterEnabled is undefined or null"
+    "expectedValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled should be set to true",
+    "actualValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled is set to false"
   }
 ]

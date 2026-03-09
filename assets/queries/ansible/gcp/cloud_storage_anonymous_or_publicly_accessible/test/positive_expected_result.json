@@ -2,18 +2,6 @@
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 22,
-    "filename": "positive.yaml",
-    "resourceType": "google.cloud.gcp_storage_bucket",
-    "resourceName": "create a bucket2",
-    "searchKey": "name={{create a bucket2}}.{{google.cloud.gcp_storage_bucket}}.acl.entity",
-    "searchValue": "",
-    "expectedValue": "gcp_storage_bucket.acl.entity should not be 'allUsers' or 'allAuthenticatedUsers'",
-    "actualValue": "gcp_storage_bucket.acl.entity is 'allUsers' or 'allAuthenticatedUsers'"
-  },
-  {
-    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
-    "severity": "CRITICAL",
     "line": 11,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_storage_bucket",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "gcp_storage_bucket.default_object_acl.entity should not be 'allUsers' or 'allAuthenticatedUsers'",
     "actualValue": "gcp_storage_bucket.default_object_acl.entity is 'allUsers' or 'allAuthenticatedUsers'"
+  },
+  {
+    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 22,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_storage_bucket",
+    "resourceName": "create a bucket2",
+    "searchKey": "name={{create a bucket2}}.{{google.cloud.gcp_storage_bucket}}.acl.entity",
+    "searchValue": "",
+    "expectedValue": "gcp_storage_bucket.acl.entity should not be 'allUsers' or 'allAuthenticatedUsers'",
+    "actualValue": "gcp_storage_bucket.acl.entity is 'allUsers' or 'allAuthenticatedUsers'"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",

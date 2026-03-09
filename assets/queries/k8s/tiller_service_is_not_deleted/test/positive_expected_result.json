@@ -2,18 +2,6 @@
   {
     "queryName": "Tiller Service Is Not Deleted",
     "severity": "HIGH",
-    "line": 7,
-    "filename": "positive.yaml",
-    "resourceType": "Service",
-    "resourceName": "tiller-deploy",
-    "searchKey": "metadata.name={{tiller-deploy}}",
-    "searchValue": "Service",
-    "expectedValue": "metadata.labels of Service should not have values that contain 'tiller'",
-    "actualValue": "metadata.labels.Service of name contains 'tiller'"
-  },
-  {
-    "queryName": "Tiller Service Is Not Deleted",
-    "severity": "HIGH",
     "line": 4,
     "filename": "positive.yaml",
     "resourceType": "Service",
@@ -22,6 +10,18 @@
     "searchValue": "Service",
     "expectedValue": "metadata.name of Service should not contain 'tiller'",
     "actualValue": "metadata.name of Service contains 'tiller'"
+  },
+  {
+    "queryName": "Tiller Service Is Not Deleted",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "Service",
+    "resourceName": "tiller-deploy",
+    "searchKey": "metadata.name={{tiller-deploy}}",
+    "searchValue": "Service",
+    "expectedValue": "metadata.labels of Service should not have values that contain 'tiller'",
+    "actualValue": "metadata.labels.Service of name contains 'tiller'"
   },
   {
     "queryName": "Tiller Service Is Not Deleted",

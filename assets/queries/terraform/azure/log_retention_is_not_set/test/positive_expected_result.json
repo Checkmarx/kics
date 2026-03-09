@@ -2,18 +2,6 @@
   {
     "queryName": "Log Retention Is Not Set",
     "severity": "MEDIUM",
-    "line": 19,
-    "filename": "positive.tf",
-    "resourceType": "azurerm_postgresql_configuration",
-    "resourceName": "log_retention",
-    "searchKey": "azurerm_postgresql_configuration[positive3].value",
-    "searchValue": "",
-    "expectedValue": "'azurerm_postgresql_configuration.positive3.value' should be 'ON'",
-    "actualValue": "'azurerm_postgresql_configuration.positive3.value' is 'OFF'"
-  },
-  {
-    "queryName": "Log Retention Is Not Set",
-    "severity": "MEDIUM",
     "line": 5,
     "filename": "positive.tf",
     "resourceType": "azurerm_postgresql_configuration",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_configuration.positive2.value' should be 'ON'",
     "actualValue": "'azurerm_postgresql_configuration.positive2.value' is 'OFF'"
+  },
+  {
+    "queryName": "Log Retention Is Not Set",
+    "severity": "MEDIUM",
+    "line": 19,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_retention",
+    "searchKey": "azurerm_postgresql_configuration[positive3].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive3.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive3.value' is 'OFF'"
   }
 ]

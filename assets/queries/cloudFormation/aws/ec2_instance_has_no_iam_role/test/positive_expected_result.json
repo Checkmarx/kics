@@ -2,6 +2,30 @@
   {
     "queryName": "EC2 Instance Has No IAM Role",
     "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.NoIAM.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoIAM.Properties.IamInstanceProfile' should be set",
+    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined"
+  },
+  {
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
+    "line": 29,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.IAM_Missing.Properties.IamInstanceProfile",
+    "searchValue": "",
+    "expectedValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource",
+    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource"
+  },
+  {
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
     "line": 55,
     "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::Instance",
@@ -26,54 +50,6 @@
   {
     "queryName": "EC2 Instance Has No IAM Role",
     "severity": "MEDIUM",
-    "line": 94,
-    "filename": "positive2.json",
-    "resourceType": "AWS::EC2::Instance",
-    "resourceName": "Test",
-    "searchKey": "Resources.NoRolesProfile.Properties",
-    "searchValue": "",
-    "expectedValue": "'Resources.NoRolesProfile.Properties.Roles' should be set",
-    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined"
-  },
-  {
-    "queryName": "EC2 Instance Has No IAM Role",
-    "severity": "MEDIUM",
-    "line": 29,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::EC2::Instance",
-    "resourceName": "Test",
-    "searchKey": "Resources.IAM_Missing.Properties.IamInstanceProfile",
-    "searchValue": "",
-    "expectedValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource",
-    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource"
-  },
-  {
-    "queryName": "EC2 Instance Has No IAM Role",
-    "severity": "MEDIUM",
-    "line": 29,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::Instance",
-    "resourceName": "Test",
-    "searchKey": "Resources.IAM_Missing.Properties.IamInstanceProfile",
-    "searchValue": "",
-    "expectedValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource",
-    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource"
-  },
-  {
-    "queryName": "EC2 Instance Has No IAM Role",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::Instance",
-    "resourceName": "Test",
-    "searchKey": "Resources.NoIAM.Properties",
-    "searchValue": "",
-    "expectedValue": "'Resources.NoIAM.Properties.IamInstanceProfile' should be set",
-    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined"
-  },
-  {
-    "queryName": "EC2 Instance Has No IAM Role",
-    "severity": "MEDIUM",
     "line": 47,
     "filename": "positive2.json",
     "resourceType": "AWS::EC2::Instance",
@@ -86,6 +62,18 @@
   {
     "queryName": "EC2 Instance Has No IAM Role",
     "severity": "MEDIUM",
+    "line": 94,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.NoRolesProfile.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoRolesProfile.Properties.Roles' should be set",
+    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined"
+  },
+  {
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive3.yaml",
     "resourceType": "AWS::EC2::Instance",
@@ -94,6 +82,18 @@
     "searchValue": "",
     "expectedValue": "'Resources.NoIAM.Properties.IamInstanceProfile' should be set",
     "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined"
+  },
+  {
+    "queryName": "EC2 Instance Has No IAM Role",
+    "severity": "MEDIUM",
+    "line": 29,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Test",
+    "searchKey": "Resources.IAM_Missing.Properties.IamInstanceProfile",
+    "searchValue": "",
+    "expectedValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource",
+    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource"
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",

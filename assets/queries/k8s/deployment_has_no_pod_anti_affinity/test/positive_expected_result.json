@@ -2,18 +2,6 @@
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
-    "line": 39,
-    "filename": "positive.yaml",
-    "resourceType": "Deployment",
-    "resourceName": "no-affinity",
-    "searchKey": "metadata.name={{no-affinity}}.spec.template.spec",
-    "searchValue": "",
-    "expectedValue": "'spec.template.spec.affinity' should be set",
-    "actualValue": "'spec.template.spec.affinity' is undefined"
-  },
-  {
-    "queryName": "Deployment Has No PodAntiAffinity",
-    "severity": "LOW",
     "line": 19,
     "filename": "positive.yaml",
     "resourceType": "Deployment",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchLabels' match any label on template metadata",
     "actualValue": "'spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchLabels' don't match any label on template metadata"
+  },
+  {
+    "queryName": "Deployment Has No PodAntiAffinity",
+    "severity": "LOW",
+    "line": 39,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "no-affinity",
+    "searchKey": "metadata.name={{no-affinity}}.spec.template.spec",
+    "searchValue": "",
+    "expectedValue": "'spec.template.spec.affinity' should be set",
+    "actualValue": "'spec.template.spec.affinity' is undefined"
   }
 ]

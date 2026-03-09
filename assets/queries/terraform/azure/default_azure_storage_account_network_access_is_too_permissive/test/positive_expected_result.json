@@ -2,30 +2,6 @@
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
-    "line": 6,
-    "filename": "positive4.tf",
-    "resourceType": "azurerm_storage_account",
-    "resourceName": "positive4storageaccount",
-    "searchKey": "azurerm_storage_account[positive4].public_network_access_enabled",
-    "searchValue": "",
-    "expectedValue": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
-    "actualValue": "azurerm_storage_account.public_network_access_enabled is not set (default is 'true')"
-  },
-  {
-    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "HIGH",
-    "line": 12,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_storage_account",
-    "resourceName": "positive3storageaccount",
-    "searchKey": "azurerm_storage_account[positive3].public_network_access_enabled",
-    "searchValue": "",
-    "expectedValue": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
-    "actualValue": "azurerm_storage_account.public_network_access_enabled set to 'true'"
-  },
-  {
-    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "HIGH",
     "line": 30,
     "filename": "positive1.tf",
     "resourceType": "azurerm_storage_account",
@@ -46,5 +22,29 @@
     "searchValue": "",
     "expectedValue": "azurerm_storage_account_network_rules.default_action should be set to 'Deny'",
     "actualValue": "azurerm_storage_account_network_rules.default_action is set to 'Allow'"
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive3storageaccount",
+    "searchKey": "azurerm_storage_account[positive3].public_network_access_enabled",
+    "searchValue": "",
+    "expectedValue": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
+    "actualValue": "azurerm_storage_account.public_network_access_enabled set to 'true'"
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive4.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive4storageaccount",
+    "searchKey": "azurerm_storage_account[positive4].public_network_access_enabled",
+    "searchValue": "",
+    "expectedValue": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
+    "actualValue": "azurerm_storage_account.public_network_access_enabled is not set (default is 'true')"
   }
 ]

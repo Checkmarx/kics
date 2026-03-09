@@ -2,6 +2,18 @@
   {
     "queryName": "ECS Cluster with Container Insights Disabled",
     "severity": "LOW",
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Cluster",
+    "resourceName": "ECSCluster",
+    "searchKey": "Resources.ECSCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ECSCluster.Properties.ClusterSettings should be defined and have a ClusterSetting named containerInsights which value is 'enabled'",
+    "actualValue": "Resources.ECSCluster.Properties.ClusterSettings is not defined"
+  },
+  {
+    "queryName": "ECS Cluster with Container Insights Disabled",
+    "severity": "LOW",
     "line": 7,
     "filename": "positive2.json",
     "resourceType": "AWS::ECS::Cluster",
@@ -22,17 +34,5 @@
     "searchValue": "",
     "expectedValue": "Resources.ECSCluster.Properties.ClusterSettings should have a ClusterSetting named 'containerInsights' which value is 'enabled'",
     "actualValue": "Resources.ECSCluster.Properties.ClusterSettings hasn't got a ClusterSetting named 'containerInsights' which value is 'enabled'"
-  },
-  {
-    "queryName": "ECS Cluster with Container Insights Disabled",
-    "severity": "LOW",
-    "line": 4,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::ECS::Cluster",
-    "resourceName": "ECSCluster",
-    "searchKey": "Resources.ECSCluster.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.ECSCluster.Properties.ClusterSettings should be defined and have a ClusterSetting named containerInsights which value is 'enabled'",
-    "actualValue": "Resources.ECSCluster.Properties.ClusterSettings is not defined"
   }
 ]

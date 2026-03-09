@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Property Defining Minimum Greater Than Maximum (v2)",
+    "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
     "severity": "INFO",
-    "line": 25,
-    "filename": "positive7.json",
+    "line": 52,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "definitions.GeneralError.properties.code",
+    "searchKey": "components.schemas.GeneralError.properties.code",
     "searchValue": "",
     "expectedValue": "Numeric schema value should not have 'minimum' larger than 'maximum'",
     "actualValue": "Numeric schema value has 'minimum' larger than 'maximum'"
@@ -14,20 +14,8 @@
   {
     "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
     "severity": "INFO",
-    "line": 32,
-    "filename": "positive6.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "components.schemas.GeneralError.properties.message",
-    "searchValue": "",
-    "expectedValue": "Array schema value should not have 'minItems' larger than 'maxItems'",
-    "actualValue": "Array schema value has 'minItems' larger than 'maxItems'"
-  },
-  {
-    "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
-    "severity": "INFO",
-    "line": 21,
-    "filename": "positive4.yaml",
+    "line": 24,
+    "filename": "positive2.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code",
@@ -50,6 +38,18 @@
   {
     "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
     "severity": "INFO",
+    "line": 21,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code",
+    "searchValue": "",
+    "expectedValue": "Numeric schema value should not have 'minimum' larger than 'maximum'",
+    "actualValue": "Numeric schema value has 'minimum' larger than 'maximum'"
+  },
+  {
+    "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
+    "severity": "INFO",
     "line": 33,
     "filename": "positive5.yaml",
     "resourceType": "",
@@ -62,23 +62,23 @@
   {
     "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
     "severity": "INFO",
-    "line": 24,
-    "filename": "positive2.json",
+    "line": 32,
+    "filename": "positive6.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code",
+    "searchKey": "components.schemas.GeneralError.properties.message",
     "searchValue": "",
-    "expectedValue": "Numeric schema value should not have 'minimum' larger than 'maximum'",
-    "actualValue": "Numeric schema value has 'minimum' larger than 'maximum'"
+    "expectedValue": "Array schema value should not have 'minItems' larger than 'maxItems'",
+    "actualValue": "Array schema value has 'minItems' larger than 'maxItems'"
   },
   {
-    "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
+    "queryName": "Property Defining Minimum Greater Than Maximum (v2)",
     "severity": "INFO",
-    "line": 52,
-    "filename": "positive1.json",
+    "line": 25,
+    "filename": "positive7.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "components.schemas.GeneralError.properties.code",
+    "searchKey": "definitions.GeneralError.properties.code",
     "searchValue": "",
     "expectedValue": "Numeric schema value should not have 'minimum' larger than 'maximum'",
     "actualValue": "Numeric schema value has 'minimum' larger than 'maximum'"

@@ -2,18 +2,6 @@
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
-    "line": 7,
-    "filename": "positive2.yaml",
-    "resourceType": "community.aws.aws_kms",
-    "resourceName": "Update IAM policy on an existing KMS key2",
-    "searchKey": "name={{Update IAM policy on an existing KMS key2}}.{{community.aws.aws_kms}}.enable_key_rotation",
-    "searchValue": "",
-    "expectedValue": "community.aws.aws_kms.enable_key_rotation should be set to true",
-    "actualValue": "community.aws.aws_kms.enable_key_rotation is set to false"
-  },
-  {
-    "queryName": "CMK Rotation Disabled",
-    "severity": "LOW",
     "line": 2,
     "filename": "positive1.yaml",
     "resourceType": "community.aws.aws_kms",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "community.aws.aws_kms.enable_key_rotation should be set",
     "actualValue": "community.aws.aws_kms.enable_key_rotation is undefined"
+  },
+  {
+    "queryName": "CMK Rotation Disabled",
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive2.yaml",
+    "resourceType": "community.aws.aws_kms",
+    "resourceName": "Update IAM policy on an existing KMS key2",
+    "searchKey": "name={{Update IAM policy on an existing KMS key2}}.{{community.aws.aws_kms}}.enable_key_rotation",
+    "searchValue": "",
+    "expectedValue": "community.aws.aws_kms.enable_key_rotation should be set to true",
+    "actualValue": "community.aws.aws_kms.enable_key_rotation is set to false"
   }
 ]

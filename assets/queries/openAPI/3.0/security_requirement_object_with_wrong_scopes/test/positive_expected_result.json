@@ -2,11 +2,11 @@
   {
     "queryName": "Security Requirement Object With Wrong Scopes",
     "severity": "INFO",
-    "line": 19,
-    "filename": "positive4.yaml",
+    "line": 9,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/pets}}.get.security.api_key",
+    "searchKey": "security.api_key",
     "searchValue": "",
     "expectedValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
     "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'"
@@ -38,11 +38,11 @@
   {
     "queryName": "Security Requirement Object With Wrong Scopes",
     "severity": "INFO",
-    "line": 9,
-    "filename": "positive1.json",
+    "line": 19,
+    "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "security.api_key",
+    "searchKey": "paths.{{/pets}}.get.security.api_key",
     "searchValue": "",
     "expectedValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
     "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'"

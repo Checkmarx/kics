@@ -2,11 +2,11 @@
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
-    "line": 11,
-    "filename": "positive2.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[db].auto_minor_version_upgrade",
+    "line": 13,
+    "filename": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].auto_minor_version_upgrade",
     "searchValue": "",
     "expectedValue": "'auto_minor_version_upgrade' should be set to true",
     "actualValue": "'auto_minor_version_upgrade' is set to false"
@@ -14,11 +14,11 @@
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
-    "line": 13,
-    "filename": "positive1.tf",
-    "resourceType": "aws_db_instance",
-    "resourceName": "mydb",
-    "searchKey": "aws_db_instance[positive1].auto_minor_version_upgrade",
+    "line": 11,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db].auto_minor_version_upgrade",
     "searchValue": "",
     "expectedValue": "'auto_minor_version_upgrade' should be set to true",
     "actualValue": "'auto_minor_version_upgrade' is set to false"

@@ -3,18 +3,6 @@
     "queryName": "EMR Cluster Without Security Configuration",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::EMR::Cluster",
-    "resourceName": "CFNtest2",
-    "searchKey": "Resources.cluster1.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.cluster1.Properties.SecurityConfiguration should be defined",
-    "actualValue": "Resources.cluster1.Properties.SecurityConfiguration is undefined"
-  },
-  {
-    "queryName": "EMR Cluster Without Security Configuration",
-    "severity": "MEDIUM",
-    "line": 18,
     "filename": "positive1.yaml",
     "resourceType": "AWS::EMR::Cluster",
     "resourceName": "CFNtest2",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "Resources.cluster has the same name as the AWS::EMR::SecurityConfiguration Resource",
     "actualValue": "Resources.cluster has a different name from AWS::EMR::SecurityConfiguration Resource"
+  },
+  {
+    "queryName": "EMR Cluster Without Security Configuration",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EMR::Cluster",
+    "resourceName": "CFNtest2",
+    "searchKey": "Resources.cluster1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.cluster1.Properties.SecurityConfiguration should be defined",
+    "actualValue": "Resources.cluster1.Properties.SecurityConfiguration is undefined"
   },
   {
     "queryName": "EMR Cluster Without Security Configuration",

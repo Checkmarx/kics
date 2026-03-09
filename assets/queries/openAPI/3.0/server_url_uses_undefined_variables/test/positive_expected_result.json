@@ -2,18 +2,6 @@
   {
     "queryName": "Server URL Uses Undefined Variables",
     "severity": "INFO",
-    "line": 32,
-    "filename": "positive2.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.{{get}}.servers.url=https://development.{server}.com/{base}",
-    "searchValue": "",
-    "expectedValue": "paths.{{/}}.{{get}}.servers.{{0}}.url uses server object variables defined in the server object variables",
-    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not use server object variables defined in the server object variables"
-  },
-  {
-    "queryName": "Server URL Uses Undefined Variables",
-    "severity": "INFO",
     "line": 30,
     "filename": "positive1.json",
     "resourceType": "",
@@ -26,8 +14,8 @@
   {
     "queryName": "Server URL Uses Undefined Variables",
     "severity": "INFO",
-    "line": 22,
-    "filename": "positive4.yaml",
+    "line": 32,
+    "filename": "positive2.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{get}}.servers.url=https://development.{server}.com/{base}",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url uses server object variables defined in the server object variables",
     "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not use server object variables defined in the server object variables"
+  },
+  {
+    "queryName": "Server URL Uses Undefined Variables",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.url=https://development.{server}.com/{base}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.servers.{{0}}.url uses server object variables defined in the server object variables",
+    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not use server object variables defined in the server object variables"
   }
 ]

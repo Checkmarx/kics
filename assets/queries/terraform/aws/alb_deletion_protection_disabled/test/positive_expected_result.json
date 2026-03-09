@@ -2,42 +2,6 @@
   {
     "queryName": "ALB Deletion Protection Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive6.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[alb]",
-    "searchValue": "",
-    "expectedValue": "'enable_deletion_protection' should be defined and set to true",
-    "actualValue": "'enable_deletion_protection' is undefined or null"
-  },
-  {
-    "queryName": "ALB Deletion Protection Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive4.tf",
-    "resourceType": "aws_lb",
-    "resourceName": "test-lb-tf",
-    "searchKey": "aws_lb[positive4]",
-    "searchValue": "",
-    "expectedValue": "'enable_deletion_protection' should be defined and set to true",
-    "actualValue": "'enable_deletion_protection' is undefined or null"
-  },
-  {
-    "queryName": "ALB Deletion Protection Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive5.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[alb].enable_deletion_protection",
-    "searchValue": "",
-    "expectedValue": "'enable_deletion_protection' should be set to true",
-    "actualValue": "'enable_deletion_protection' is set to false"
-  },
-  {
-    "queryName": "ALB Deletion Protection Disabled",
-    "severity": "MEDIUM",
     "line": 7,
     "filename": "positive1.tf",
     "resourceType": "aws_alb",
@@ -70,5 +34,41 @@
     "searchValue": "",
     "expectedValue": "'enable_deletion_protection' should be set to true",
     "actualValue": "'enable_deletion_protection' is set to false"
+  },
+  {
+    "queryName": "ALB Deletion Protection Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive4.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[positive4]",
+    "searchValue": "",
+    "expectedValue": "'enable_deletion_protection' should be defined and set to true",
+    "actualValue": "'enable_deletion_protection' is undefined or null"
+  },
+  {
+    "queryName": "ALB Deletion Protection Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[alb].enable_deletion_protection",
+    "searchValue": "",
+    "expectedValue": "'enable_deletion_protection' should be set to true",
+    "actualValue": "'enable_deletion_protection' is set to false"
+  },
+  {
+    "queryName": "ALB Deletion Protection Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[alb]",
+    "searchValue": "",
+    "expectedValue": "'enable_deletion_protection' should be defined and set to true",
+    "actualValue": "'enable_deletion_protection' is undefined or null"
   }
 ]

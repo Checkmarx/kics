@@ -14,8 +14,8 @@
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
-    "line": 49,
-    "filename": "positive3.yaml",
+    "line": 90,
+    "filename": "positive2.json",
     "resourceType": "AWS::EFS::FileSystem",
     "resourceName": "test-VPC-EFS",
     "searchKey": "Resources.EFSFileSystem01.Properties.Encrypted",
@@ -26,8 +26,8 @@
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
-    "line": 90,
-    "filename": "positive2.json",
+    "line": 49,
+    "filename": "positive3.yaml",
     "resourceType": "AWS::EFS::FileSystem",
     "resourceName": "test-VPC-EFS",
     "searchKey": "Resources.EFSFileSystem01.Properties.Encrypted",

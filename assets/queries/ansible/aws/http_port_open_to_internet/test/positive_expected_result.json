@@ -2,6 +2,18 @@
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group1",
+    "searchKey": "name={{example ec2 group1}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[0] shouldn't open the http port (80)",
+    "actualValue": "ec2_group.rules[0] opens the http port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
     "line": 23,
     "filename": "positive.yaml",
     "resourceType": "amazon.aws.ec2_group",
@@ -67,18 +79,6 @@
     "resourceType": "amazon.aws.ec2_group",
     "resourceName": "example ec2 group7",
     "searchKey": "name={{example ec2 group7}}.{{amazon.aws.ec2_group}}.rules",
-    "searchValue": "",
-    "expectedValue": "ec2_group.rules[0] shouldn't open the http port (80)",
-    "actualValue": "ec2_group.rules[0] opens the http port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive.yaml",
-    "resourceType": "amazon.aws.ec2_group",
-    "resourceName": "example ec2 group1",
-    "searchKey": "name={{example ec2 group1}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[0] shouldn't open the http port (80)",
     "actualValue": "ec2_group.rules[0] opens the http port (80)"

@@ -3,6 +3,18 @@
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_elasticache_cluster.port should be defined and not null",
+    "actualValue": "aws_elasticache_cluster.port is undefined or null"
+  },
+  {
+    "queryName": "ElastiCache Using Default Port",
+    "severity": "LOW",
+    "line": 1,
     "filename": "positive2.tf",
     "resourceType": "aws_elasticache_cluster",
     "resourceName": "cluster",
@@ -34,17 +46,5 @@
     "searchValue": "",
     "expectedValue": "'port' should not be set to 11211",
     "actualValue": "'port' is set to 11211"
-  },
-  {
-    "queryName": "ElastiCache Using Default Port",
-    "severity": "LOW",
-    "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "aws_elasticache_cluster",
-    "resourceName": "cluster",
-    "searchKey": "aws_elasticache_cluster[positive1]",
-    "searchValue": "",
-    "expectedValue": "aws_elasticache_cluster.port should be defined and not null",
-    "actualValue": "aws_elasticache_cluster.port is undefined or null"
   }
 ]

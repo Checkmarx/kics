@@ -2,20 +2,8 @@
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
-    "line": 126,
-    "filename": "positive2.json",
-    "resourceType": "AWS::AutoScaling::AutoScalingGroup",
-    "resourceName": "myASG",
-    "searchKey": "Resources.myASG3.Properties.LoadBalancerNames",
-    "searchValue": "",
-    "expectedValue": "'Resources.myASG3.Properties.LoadBalancerNames' should not be empty",
-    "actualValue": "'Resources.myASG3.Properties.LoadBalancerNames' is empty"
-  },
-  {
-    "queryName": "Auto Scaling Group With No Associated ELB",
-    "severity": "MEDIUM",
-    "line": 38,
-    "filename": "positive2.json",
+    "line": 28,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::AutoScaling::AutoScalingGroup",
     "resourceName": "myASG",
     "searchKey": "Resources.myASG.Properties",
@@ -50,8 +38,8 @@
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
     "severity": "MEDIUM",
-    "line": 28,
-    "filename": "positive1.yaml",
+    "line": 38,
+    "filename": "positive2.json",
     "resourceType": "AWS::AutoScaling::AutoScalingGroup",
     "resourceName": "myASG",
     "searchKey": "Resources.myASG.Properties",
@@ -70,5 +58,17 @@
     "searchValue": "",
     "expectedValue": "'Resources.myASG2.Properties.LoadBalancerNames' should not be empty",
     "actualValue": "'Resources.myASG2.Properties.LoadBalancerNames' is empty"
+  },
+  {
+    "queryName": "Auto Scaling Group With No Associated ELB",
+    "severity": "MEDIUM",
+    "line": 126,
+    "filename": "positive2.json",
+    "resourceType": "AWS::AutoScaling::AutoScalingGroup",
+    "resourceName": "myASG",
+    "searchKey": "Resources.myASG3.Properties.LoadBalancerNames",
+    "searchValue": "",
+    "expectedValue": "'Resources.myASG3.Properties.LoadBalancerNames' should not be empty",
+    "actualValue": "'Resources.myASG3.Properties.LoadBalancerNames' is empty"
   }
 ]

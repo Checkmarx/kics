@@ -2,18 +2,6 @@
   {
     "queryName": "API Gateway Without Security Policy",
     "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::ApiGateway::DomainName",
-    "resourceName": "cfnDomainName",
-    "searchKey": "Resources.myDomainName1.Properties.SecurityPolicy",
-    "searchValue": "",
-    "expectedValue": "Resources.myDomainName1.Properties.SecurityPolicy should not be defined",
-    "actualValue": "Resources.myDomainName1.Properties.SecurityPolicy is defined"
-  },
-  {
-    "queryName": "API Gateway Without Security Policy",
-    "severity": "MEDIUM",
     "line": 20,
     "filename": "positive1.yaml",
     "resourceType": "AWS::ApiGateway::DomainName",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2",
     "actualValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2"
+  },
+  {
+    "queryName": "API Gateway Without Security Policy",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::DomainName",
+    "resourceName": "cfnDomainName",
+    "searchKey": "Resources.myDomainName1.Properties.SecurityPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.myDomainName1.Properties.SecurityPolicy should not be defined",
+    "actualValue": "Resources.myDomainName1.Properties.SecurityPolicy is defined"
   },
   {
     "queryName": "API Gateway Without Security Policy",

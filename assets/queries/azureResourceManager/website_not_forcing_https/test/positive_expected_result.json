@@ -3,7 +3,19 @@
     "queryName": "Website Not Forcing HTTPS",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive3.bicep",
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined"
+  },
+  {
+    "queryName": "Website Not Forcing HTTPS",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive1.json",
     "resourceType": "Microsoft.Web/sites",
     "resourceName": "webSite",
     "searchKey": "resources.name={{webSite}}.properties",
@@ -26,8 +38,20 @@
   {
     "queryName": "Website Not Forcing HTTPS",
     "severity": "MEDIUM",
-    "line": 15,
-    "filename": "positive1.json",
+    "line": 17,
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties.httpsOnly",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
+  },
+  {
+    "queryName": "Website Not Forcing HTTPS",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive3.bicep",
     "resourceType": "Microsoft.Web/sites",
     "resourceName": "webSite",
     "searchKey": "resources.name={{webSite}}.properties",
@@ -50,30 +74,6 @@
   {
     "queryName": "Website Not Forcing HTTPS",
     "severity": "MEDIUM",
-    "line": 19,
-    "filename": "positive4.json",
-    "resourceType": "Microsoft.Web/sites",
-    "resourceName": "webSite",
-    "searchKey": "properties.template.resources.name={{webSite}}.properties.httpsOnly",
-    "searchValue": "",
-    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
-  },
-  {
-    "queryName": "Website Not Forcing HTTPS",
-    "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive2.json",
-    "resourceType": "Microsoft.Web/sites",
-    "resourceName": "webSite",
-    "searchKey": "resources.name={{webSite}}.properties.httpsOnly",
-    "searchValue": "",
-    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
-  },
-  {
-    "queryName": "Website Not Forcing HTTPS",
-    "severity": "MEDIUM",
     "line": 7,
     "filename": "positive4.bicep",
     "resourceType": "Microsoft.Web/sites",
@@ -86,13 +86,13 @@
   {
     "queryName": "Website Not Forcing HTTPS",
     "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive1.bicep",
+    "line": 19,
+    "filename": "positive4.json",
     "resourceType": "Microsoft.Web/sites",
     "resourceName": "webSite",
-    "searchKey": "resources.name={{webSite}}.properties",
+    "searchKey": "properties.template.resources.name={{webSite}}.properties.httpsOnly",
     "searchValue": "",
-    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined"
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
   }
 ]

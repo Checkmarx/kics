@@ -2,14 +2,14 @@
   {
     "queryName": "IAM Access Key Is Exposed",
     "severity": "MEDIUM",
-    "line": 36,
+    "line": 7,
     "filename": "positive.yaml",
     "resourceType": "community.aws.iam",
-    "resourceName": "Update user",
-    "searchKey": "name={{Update user}}.{{community.aws.iam}}.access_key_state",
+    "resourceName": "Create two new IAM users with API keys",
+    "searchKey": "name={{Create two new IAM users with API keys}}.{{community.aws.iam}}.access_key_state",
     "searchValue": "",
     "expectedValue": "iam.name should be 'root' for an active access key",
-    "actualValue": "iam.name is 'jdavila' for an active access key"
+    "actualValue": "iam.name is '{{ item }}' for an active access key"
   },
   {
     "queryName": "IAM Access Key Is Exposed",
@@ -26,13 +26,13 @@
   {
     "queryName": "IAM Access Key Is Exposed",
     "severity": "MEDIUM",
-    "line": 7,
+    "line": 36,
     "filename": "positive.yaml",
     "resourceType": "community.aws.iam",
-    "resourceName": "Create two new IAM users with API keys",
-    "searchKey": "name={{Create two new IAM users with API keys}}.{{community.aws.iam}}.access_key_state",
+    "resourceName": "Update user",
+    "searchKey": "name={{Update user}}.{{community.aws.iam}}.access_key_state",
     "searchValue": "",
     "expectedValue": "iam.name should be 'root' for an active access key",
-    "actualValue": "iam.name is '{{ item }}' for an active access key"
+    "actualValue": "iam.name is 'jdavila' for an active access key"
   }
 ]

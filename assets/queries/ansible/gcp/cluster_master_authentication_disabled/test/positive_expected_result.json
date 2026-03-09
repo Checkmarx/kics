@@ -14,30 +14,6 @@
   {
     "queryName": "Cluster Master Authentication Disabled",
     "severity": "MEDIUM",
-    "line": 32,
-    "filename": "positive.yaml",
-    "resourceType": "google.cloud.gcp_container_cluster",
-    "resourceName": "create a cluster3",
-    "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.master_auth",
-    "searchValue": "",
-    "expectedValue": "gcp_container_cluster.master_auth.password should be defined and not null",
-    "actualValue": "gcp_container_cluster.master_auth.password is undefined or null"
-  },
-  {
-    "queryName": "Cluster Master Authentication Disabled",
-    "severity": "MEDIUM",
-    "line": 61,
-    "filename": "positive.yaml",
-    "resourceType": "google.cloud.gcp_container_cluster",
-    "resourceName": "create a cluster5",
-    "searchKey": "name={{create a cluster5}}.{{google.cloud.gcp_container_cluster}}.master_auth",
-    "searchValue": "",
-    "expectedValue": "gcp_container_cluster.master_auth.password should be defined and not null",
-    "actualValue": "gcp_container_cluster.master_auth.password is undefined or null"
-  },
-  {
-    "queryName": "Cluster Master Authentication Disabled",
-    "severity": "MEDIUM",
     "line": 18,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_container_cluster",
@@ -50,6 +26,18 @@
   {
     "queryName": "Cluster Master Authentication Disabled",
     "severity": "MEDIUM",
+    "line": 32,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster3",
+    "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.master_auth",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_auth.password should be defined and not null",
+    "actualValue": "gcp_container_cluster.master_auth.password is undefined or null"
+  },
+  {
+    "queryName": "Cluster Master Authentication Disabled",
+    "severity": "MEDIUM",
     "line": 46,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_container_cluster",
@@ -58,5 +46,17 @@
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_auth.username should be defined and not null",
     "actualValue": "gcp_container_cluster.master_auth.username is undefined or null"
+  },
+  {
+    "queryName": "Cluster Master Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 61,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster5",
+    "searchKey": "name={{create a cluster5}}.{{google.cloud.gcp_container_cluster}}.master_auth",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_auth.password should be defined and not null",
+    "actualValue": "gcp_container_cluster.master_auth.password is undefined or null"
   }
 ]

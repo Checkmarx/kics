@@ -2,6 +2,18 @@
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
     "severity": "LOW",
+    "line": 12,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail3",
+    "searchKey": "Resources.myTrail3.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail3.Properties.SnsTopicName' should be set",
+    "actualValue": "'Resources.myTrail3.Properties.SnsTopicName' is undefined"
+  },
+  {
+    "queryName": "CloudTrail SNS Topic Name Undefined",
+    "severity": "LOW",
     "line": 22,
     "filename": "positive1.yaml",
     "resourceType": "AWS::CloudTrail::Trail",
@@ -34,17 +46,5 @@
     "searchValue": "",
     "expectedValue": "'Resources.myTrail6.Properties.SnsTopicName' should be set",
     "actualValue": "'Resources.myTrail6.Properties.SnsTopicName' is undefined"
-  },
-  {
-    "queryName": "CloudTrail SNS Topic Name Undefined",
-    "severity": "LOW",
-    "line": 12,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::CloudTrail::Trail",
-    "resourceName": "myTrail3",
-    "searchKey": "Resources.myTrail3.Properties",
-    "searchValue": "",
-    "expectedValue": "'Resources.myTrail3.Properties.SnsTopicName' should be set",
-    "actualValue": "'Resources.myTrail3.Properties.SnsTopicName' is undefined"
   }
 ]

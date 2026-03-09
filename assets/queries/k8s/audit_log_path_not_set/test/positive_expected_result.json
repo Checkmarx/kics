@@ -14,18 +14,6 @@
   {
     "queryName": "Audit Log Path Not Set",
     "severity": "MEDIUM",
-    "line": 55,
-    "filename": "positive2.yaml",
-    "resourceType": "ContainerSource",
-    "resourceName": "dummy-cs",
-    "searchKey": "metadata.name={{dummy-cs}}.spec.template.spec.containers.name={{command-demo-container}}.command",
-    "searchValue": "",
-    "expectedValue": "--audit-log-path flag should be defined",
-    "actualValue": "--audit-log-path flag is not defined"
-  },
-  {
-    "queryName": "Audit Log Path Not Set",
-    "severity": "MEDIUM",
     "line": 12,
     "filename": "positive2.yaml",
     "resourceType": "Service",
@@ -55,6 +43,18 @@
     "resourceType": "Revision",
     "resourceName": "dummy-rev",
     "searchKey": "metadata.name={{dummy-rev}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-path flag should be defined",
+    "actualValue": "--audit-log-path flag is not defined"
+  },
+  {
+    "queryName": "Audit Log Path Not Set",
+    "severity": "MEDIUM",
+    "line": 55,
+    "filename": "positive2.yaml",
+    "resourceType": "ContainerSource",
+    "resourceName": "dummy-cs",
+    "searchKey": "metadata.name={{dummy-cs}}.spec.template.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-path flag should be defined",
     "actualValue": "--audit-log-path flag is not defined"

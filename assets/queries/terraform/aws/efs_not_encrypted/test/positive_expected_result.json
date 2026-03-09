@@ -2,18 +2,6 @@
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
-    "line": 11,
-    "filename": "positive.tf",
-    "resourceType": "aws_efs_file_system",
-    "resourceName": "MyProduct",
-    "searchKey": "aws_efs_file_system[positive2].encrypted",
-    "searchValue": "",
-    "expectedValue": "aws_efs_file_system[positive2].encrypted' should be true",
-    "actualValue": "aws_efs_file_system[positive2].encrypted' is false"
-  },
-  {
-    "queryName": "EFS Not Encrypted",
-    "severity": "HIGH",
     "line": 1,
     "filename": "positive.tf",
     "resourceType": "aws_efs_file_system",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "aws_efs_file_system[positive1].encrypted' should be defined and not null",
     "actualValue": "aws_efs_file_system[positive1].encrypted' is undefined or null"
+  },
+  {
+    "queryName": "EFS Not Encrypted",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive.tf",
+    "resourceType": "aws_efs_file_system",
+    "resourceName": "MyProduct",
+    "searchKey": "aws_efs_file_system[positive2].encrypted",
+    "searchValue": "",
+    "expectedValue": "aws_efs_file_system[positive2].encrypted' should be true",
+    "actualValue": "aws_efs_file_system[positive2].encrypted' is false"
   }
 ]

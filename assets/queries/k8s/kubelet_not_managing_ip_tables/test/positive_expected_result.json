@@ -2,18 +2,6 @@
   {
     "queryName": "Kubelet Not Managing Ip Tables",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive3.json",
-    "resourceType": "KubeletConfiguration",
-    "resourceName": "n/a",
-    "searchKey": "kind={{KubeletConfiguration}}.makeIPTablesUtilChains",
-    "searchValue": "",
-    "expectedValue": "makeIPTablesUtilChains should be true",
-    "actualValue": "makeIPTablesUtilChains is false"
-  },
-  {
-    "queryName": "Kubelet Not Managing Ip Tables",
-    "severity": "MEDIUM",
     "line": 11,
     "filename": "positive1.yaml",
     "resourceType": "Pod",
@@ -28,6 +16,18 @@
     "severity": "MEDIUM",
     "line": 8,
     "filename": "positive2.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.makeIPTablesUtilChains",
+    "searchValue": "",
+    "expectedValue": "makeIPTablesUtilChains should be true",
+    "actualValue": "makeIPTablesUtilChains is false"
+  },
+  {
+    "queryName": "Kubelet Not Managing Ip Tables",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive3.json",
     "resourceType": "KubeletConfiguration",
     "resourceName": "n/a",
     "searchKey": "kind={{KubeletConfiguration}}.makeIPTablesUtilChains",

@@ -2,18 +2,6 @@
   {
     "queryName": "KMS Key With No Deletion Window",
     "severity": "LOW",
-    "line": 18,
-    "filename": "positive.tf",
-    "resourceType": "aws_kms_key",
-    "resourceName": "positive2",
-    "searchKey": "aws_kms_key[positive2].deletion_window_in_days",
-    "searchValue": "",
-    "expectedValue": "aws_kms_key[positive2].deletion_window_in_days should be set and valid",
-    "actualValue": "aws_kms_key[positive2].deletion_window_in_days is set but invalid"
-  },
-  {
-    "queryName": "KMS Key With No Deletion Window",
-    "severity": "LOW",
     "line": 1,
     "filename": "positive.tf",
     "resourceType": "aws_kms_key",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "aws_kms_key[positive1].deletion_window_in_days should be set and valid",
     "actualValue": "aws_kms_key[positive1].deletion_window_in_days is undefined"
+  },
+  {
+    "queryName": "KMS Key With No Deletion Window",
+    "severity": "LOW",
+    "line": 18,
+    "filename": "positive.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive2",
+    "searchKey": "aws_kms_key[positive2].deletion_window_in_days",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive2].deletion_window_in_days should be set and valid",
+    "actualValue": "aws_kms_key[positive2].deletion_window_in_days is set but invalid"
   }
 ]

@@ -15,13 +15,13 @@
     "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive4.json",
+    "filename": "positive2.yaml",
     "resourceType": "AWS::ElastiCache::CacheCluster",
-    "resourceName": "myCacheCluster6",
-    "searchKey": "Resources.myCacheCluster6.Properties",
+    "resourceName": "myCacheCluster4",
+    "searchKey": "Resources.myCacheCluster4.Properties",
     "searchValue": "",
-    "expectedValue": "Resources.myCacheCluster6.Properties.AZMode should be defined and is 'cross-az'",
-    "actualValue": "Resources.myCacheCluster6.Properties.AZMode is not defined, default value is 'single-az'"
+    "expectedValue": "Resources.myCacheCluster4.Properties.AZMode should be defined and is 'cross-az'",
+    "actualValue": "Resources.myCacheCluster4.Properties.AZMode is not defined, default value is 'single-az'"
   },
   {
     "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
@@ -39,12 +39,12 @@
     "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive2.yaml",
+    "filename": "positive4.json",
     "resourceType": "AWS::ElastiCache::CacheCluster",
-    "resourceName": "myCacheCluster4",
-    "searchKey": "Resources.myCacheCluster4.Properties",
+    "resourceName": "myCacheCluster6",
+    "searchKey": "Resources.myCacheCluster6.Properties",
     "searchValue": "",
-    "expectedValue": "Resources.myCacheCluster4.Properties.AZMode should be defined and is 'cross-az'",
-    "actualValue": "Resources.myCacheCluster4.Properties.AZMode is not defined, default value is 'single-az'"
+    "expectedValue": "Resources.myCacheCluster6.Properties.AZMode should be defined and is 'cross-az'",
+    "actualValue": "Resources.myCacheCluster6.Properties.AZMode is not defined, default value is 'single-az'"
   }
 ]

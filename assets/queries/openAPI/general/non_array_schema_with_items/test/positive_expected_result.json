@@ -1,41 +1,5 @@
 [
   {
-    "queryName": "Non-Array Schema With Items (v2)",
-    "severity": "INFO",
-    "line": 32,
-    "filename": "positive6.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "definitions.User.properties.name.items",
-    "searchValue": "",
-    "expectedValue": "Schema items property should be undefined",
-    "actualValue": "Schema items property is defined"
-  },
-  {
-    "queryName": "Non-Array Schema With Items (v2)",
-    "severity": "INFO",
-    "line": 44,
-    "filename": "positive5.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "definitions.User.properties.name.items",
-    "searchValue": "",
-    "expectedValue": "Schema items property should be undefined",
-    "actualValue": "Schema items property is defined"
-  },
-  {
-    "queryName": "Non-Array Schema With Items (v3)",
-    "severity": "INFO",
-    "line": 29,
-    "filename": "positive3.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "components.schemas.GeneralError.items",
-    "searchValue": "",
-    "expectedValue": "Schema items property should be undefined",
-    "actualValue": "Schema items property is defined"
-  },
-  {
     "queryName": "Non-Array Schema With Items (v3)",
     "severity": "INFO",
     "line": 52,
@@ -62,11 +26,47 @@
   {
     "queryName": "Non-Array Schema With Items (v3)",
     "severity": "INFO",
+    "line": 29,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.items",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined"
+  },
+  {
+    "queryName": "Non-Array Schema With Items (v3)",
+    "severity": "INFO",
     "line": 17,
     "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined"
+  },
+  {
+    "queryName": "Non-Array Schema With Items (v2)",
+    "severity": "INFO",
+    "line": 44,
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.User.properties.name.items",
+    "searchValue": "",
+    "expectedValue": "Schema items property should be undefined",
+    "actualValue": "Schema items property is defined"
+  },
+  {
+    "queryName": "Non-Array Schema With Items (v2)",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.User.properties.name.items",
     "searchValue": "",
     "expectedValue": "Schema items property should be undefined",
     "actualValue": "Schema items property is defined"

@@ -2,6 +2,18 @@
   {
     "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
     "severity": "LOW",
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_container_group",
+    "resourceName": "cg-positive1",
+    "searchKey": "azurerm_container_group[positive1]",
+    "searchValue": "",
+    "expectedValue": "'ip_address_type' should be set to 'Private'",
+    "actualValue": "'ip_address_type' is not defined"
+  },
+  {
+    "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
+    "severity": "LOW",
     "line": 7,
     "filename": "positive2.tf",
     "resourceType": "azurerm_container_group",
@@ -22,17 +34,5 @@
     "searchValue": "",
     "expectedValue": "'ip_address_type' should be set to 'Private'",
     "actualValue": "'ip_address_type' is defined to 'None'"
-  },
-  {
-    "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
-    "severity": "LOW",
-    "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "azurerm_container_group",
-    "resourceName": "cg-positive1",
-    "searchKey": "azurerm_container_group[positive1]",
-    "searchValue": "",
-    "expectedValue": "'ip_address_type' should be set to 'Private'",
-    "actualValue": "'ip_address_type' is not defined"
   }
 ]

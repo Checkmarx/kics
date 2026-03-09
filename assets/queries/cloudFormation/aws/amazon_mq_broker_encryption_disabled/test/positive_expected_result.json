@@ -2,8 +2,8 @@
   {
     "queryName": "AmazonMQ Broker Encryption Disabled",
     "severity": "HIGH",
-    "line": 7,
-    "filename": "positive2.json",
+    "line": 6,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::AmazonMQ::Broker",
     "resourceName": "MyBasicBroker",
     "searchKey": "Resources.BasicBroker.Properties.EncryptionOptions",
@@ -14,8 +14,8 @@
   {
     "queryName": "AmazonMQ Broker Encryption Disabled",
     "severity": "HIGH",
-    "line": 6,
-    "filename": "positive1.yaml",
+    "line": 7,
+    "filename": "positive2.json",
     "resourceType": "AWS::AmazonMQ::Broker",
     "resourceName": "MyBasicBroker",
     "searchKey": "Resources.BasicBroker.Properties.EncryptionOptions",

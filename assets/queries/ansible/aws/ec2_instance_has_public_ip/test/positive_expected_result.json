@@ -14,18 +14,6 @@
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive.yaml",
-    "resourceType": "community.aws.ec2_instance",
-    "resourceName": "start an instance with a public IP address",
-    "searchKey": "name={{start an instance with a public IP address}}.{{community.aws.ec2_instance}}.network.assign_public_ip",
-    "searchValue": "",
-    "expectedValue": "ec2_instance.network.assign_public_ip should be set to false, 'no' or undefined",
-    "actualValue": "ec2_instance.network.assign_public_ip is 'true'"
-  },
-  {
-    "queryName": "EC2 Instance Has Public IP",
-    "severity": "MEDIUM",
     "line": 15,
     "filename": "positive.yaml",
     "resourceType": "community.aws.ec2_launch_template",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "ec2_launch_template.network_interfaces.associate_public_ip_address should be set to false, 'no' or undefined",
     "actualValue": "ec2_launch_template.network_interfaces.associate_public_ip_address is 'true'"
+  },
+  {
+    "queryName": "EC2 Instance Has Public IP",
+    "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ec2_instance",
+    "resourceName": "start an instance with a public IP address",
+    "searchKey": "name={{start an instance with a public IP address}}.{{community.aws.ec2_instance}}.network.assign_public_ip",
+    "searchValue": "",
+    "expectedValue": "ec2_instance.network.assign_public_ip should be set to false, 'no' or undefined",
+    "actualValue": "ec2_instance.network.assign_public_ip is 'true'"
   }
 ]

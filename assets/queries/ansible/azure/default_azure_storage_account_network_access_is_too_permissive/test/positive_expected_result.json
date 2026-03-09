@@ -3,13 +3,13 @@
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
     "line": 3,
-    "filename": "positive3.yaml",
+    "filename": "positive1.yaml",
     "resourceType": "azure.azcollection.azure_rm_storageaccount",
     "resourceName": "create an account",
     "searchKey": "name={{create an account}}.{{azure.azcollection.azure_rm_storageaccount}}",
     "searchValue": "",
-    "expectedValue": "azure_rm_storageaccountnetworkAcls.network_acls.default_action should be set to 'Deny'",
-    "actualValue": "azure_rm_storageaccountnetworkAcls.network_acls.default_action is set to 'Allow'"
+    "expectedValue": "azure_rm_storageaccount.public_network_access should be set to 'Disabled'",
+    "actualValue": "azure_rm_storageaccount.public_network_access is set to 'Enabled'"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -27,12 +27,12 @@
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
     "line": 3,
-    "filename": "positive1.yaml",
+    "filename": "positive3.yaml",
     "resourceType": "azure.azcollection.azure_rm_storageaccount",
     "resourceName": "create an account",
     "searchKey": "name={{create an account}}.{{azure.azcollection.azure_rm_storageaccount}}",
     "searchValue": "",
-    "expectedValue": "azure_rm_storageaccount.public_network_access should be set to 'Disabled'",
-    "actualValue": "azure_rm_storageaccount.public_network_access is set to 'Enabled'"
+    "expectedValue": "azure_rm_storageaccountnetworkAcls.network_acls.default_action should be set to 'Deny'",
+    "actualValue": "azure_rm_storageaccountnetworkAcls.network_acls.default_action is set to 'Allow'"
   }
 ]

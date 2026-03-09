@@ -2,6 +2,18 @@
   {
     "queryName": "EC2 Instance Subnet Has Public IP Mapping On Launch",
     "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Subnet",
+    "resourceName": "mySubnet",
+    "searchKey": "Resources.mySubnet.Properties.MapPublicIpOnLaunch",
+    "searchValue": "",
+    "expectedValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' should be false",
+    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true"
+  },
+  {
+    "queryName": "EC2 Instance Subnet Has Public IP Mapping On Launch",
+    "severity": "MEDIUM",
     "line": 8,
     "filename": "positive2.json",
     "resourceType": "AWS::EC2::Subnet",
@@ -16,18 +28,6 @@
     "severity": "MEDIUM",
     "line": 7,
     "filename": "positive3.yaml",
-    "resourceType": "AWS::EC2::Subnet",
-    "resourceName": "mySubnet",
-    "searchKey": "Resources.mySubnet.Properties.MapPublicIpOnLaunch",
-    "searchValue": "",
-    "expectedValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' should be false",
-    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true"
-  },
-  {
-    "queryName": "EC2 Instance Subnet Has Public IP Mapping On Launch",
-    "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::Subnet",
     "resourceName": "mySubnet",
     "searchKey": "Resources.mySubnet.Properties.MapPublicIpOnLaunch",

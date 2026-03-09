@@ -1,33 +1,9 @@
 [
   {
-    "queryName": "Items Undefined (v2)",
-    "severity": "INFO",
-    "line": 16,
-    "filename": "positive6.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/users}}.get.responses.200.schema",
-    "searchValue": "",
-    "expectedValue": "Array items property should be defined",
-    "actualValue": "Array items property is undefined"
-  },
-  {
-    "queryName": "Items Undefined (v2)",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive5.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/users}}.get.responses.200.schema",
-    "searchValue": "",
-    "expectedValue": "Array items property should be defined",
-    "actualValue": "Array items property is undefined"
-  },
-  {
     "queryName": "Items Undefined (v3)",
     "severity": "INFO",
-    "line": 27,
-    "filename": "positive3.yaml",
+    "line": 50,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.schemas.GeneralError",
@@ -50,8 +26,8 @@
   {
     "queryName": "Items Undefined (v3)",
     "severity": "INFO",
-    "line": 50,
-    "filename": "positive1.json",
+    "line": 27,
+    "filename": "positive3.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.schemas.GeneralError",
@@ -67,6 +43,30 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "Array items property should be defined",
+    "actualValue": "Array items property is undefined"
+  },
+  {
+    "queryName": "Items Undefined (v2)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "Array items property should be defined",
+    "actualValue": "Array items property is undefined"
+  },
+  {
+    "queryName": "Items Undefined (v2)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users}}.get.responses.200.schema",
     "searchValue": "",
     "expectedValue": "Array items property should be defined",
     "actualValue": "Array items property is undefined"

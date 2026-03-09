@@ -2,18 +2,6 @@
   {
     "queryName": "Cluster Allows Unsafe Sysctls",
     "severity": "HIGH",
-    "line": 13,
-    "filename": "positive1.yaml",
-    "resourceType": "Pod",
-    "resourceName": "sysctl-example",
-    "searchKey": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}}",
-    "searchValue": "",
-    "expectedValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}} should not be used",
-    "actualValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}} is an unsafe sysctl"
-  },
-  {
-    "queryName": "Cluster Allows Unsafe Sysctls",
-    "severity": "HIGH",
     "line": 11,
     "filename": "positive1.yaml",
     "resourceType": "Pod",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{net.core.somaxconn}} should not be used",
     "actualValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{net.core.somaxconn}} is an unsafe sysctl"
+  },
+  {
+    "queryName": "Cluster Allows Unsafe Sysctls",
+    "severity": "HIGH",
+    "line": 13,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "sysctl-example",
+    "searchKey": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}} should not be used",
+    "actualValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}} is an unsafe sysctl"
   },
   {
     "queryName": "Cluster Allows Unsafe Sysctls",

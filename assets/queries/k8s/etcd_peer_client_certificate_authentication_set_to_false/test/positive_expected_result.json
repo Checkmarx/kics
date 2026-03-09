@@ -3,18 +3,6 @@
     "queryName": "Etcd Peer Client Certificate Authentication Set To False",
     "severity": "MEDIUM",
     "line": 21,
-    "filename": "positive2.yaml",
-    "resourceType": "Deployment",
-    "resourceName": "app-etcd-deployment",
-    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
-    "searchValue": "",
-    "expectedValue": "--peer-client-cert-auth flag should be defined and set to true",
-    "actualValue": "--peer-client-cert-auth flag is not defined"
-  },
-  {
-    "queryName": "Etcd Peer Client Certificate Authentication Set To False",
-    "severity": "MEDIUM",
-    "line": 21,
     "filename": "positive1.yaml",
     "resourceType": "Deployment",
     "resourceName": "app-etcd-deployment",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "--peer-client-cert-auth flag should be set to true",
     "actualValue": "--peer-client-cert-auth flag is set to false"
+  },
+  {
+    "queryName": "Etcd Peer Client Certificate Authentication Set To False",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "app-etcd-deployment",
+    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "",
+    "expectedValue": "--peer-client-cert-auth flag should be defined and set to true",
+    "actualValue": "--peer-client-cert-auth flag is not defined"
   }
 ]

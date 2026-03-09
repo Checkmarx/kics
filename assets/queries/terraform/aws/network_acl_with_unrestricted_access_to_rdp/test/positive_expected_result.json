@@ -2,14 +2,14 @@
   {
     "queryName": "Network ACL With Unrestricted Access To RDP",
     "severity": "HIGH",
-    "line": 14,
-    "filename": "positive4.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[vpc].default_network_acl_ingress",
+    "line": 30,
+    "filename": "positive1.tf",
+    "resourceType": "aws_network_acl",
+    "resourceName": "main",
+    "searchKey": "aws_network_acl[positive1].ingress",
     "searchValue": "",
-    "expectedValue": "module[vpc].default_network_acl_ingress[0] 'RDP' (TCP:3389) should not be public",
-    "actualValue": "module[vpc].default_network_acl_ingress[0] 'RDP' (TCP:3389) is public"
+    "expectedValue": "aws_network_acl[positive1].ingress[0] 'RDP' (TCP:3389) should not be public",
+    "actualValue": "aws_network_acl[positive1].ingress[0] 'RDP' (TCP:3389) is public"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To RDP",
@@ -26,18 +26,6 @@
   {
     "queryName": "Network ACL With Unrestricted Access To RDP",
     "severity": "HIGH",
-    "line": 30,
-    "filename": "positive1.tf",
-    "resourceType": "aws_network_acl",
-    "resourceName": "main",
-    "searchKey": "aws_network_acl[positive1].ingress",
-    "searchValue": "",
-    "expectedValue": "aws_network_acl[positive1].ingress[0] 'RDP' (TCP:3389) should not be public",
-    "actualValue": "aws_network_acl[positive1].ingress[0] 'RDP' (TCP:3389) is public"
-  },
-  {
-    "queryName": "Network ACL With Unrestricted Access To RDP",
-    "severity": "HIGH",
     "line": 26,
     "filename": "positive3.tf",
     "resourceType": "aws_network_acl",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "aws_network_acl[positive3].ingress 'RDP' (TCP:3389) should not be public",
     "actualValue": "aws_network_acl[positive3].ingress 'RDP' (TCP:3389) is public"
+  },
+  {
+    "queryName": "Network ACL With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 14,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vpc].default_network_acl_ingress",
+    "searchValue": "",
+    "expectedValue": "module[vpc].default_network_acl_ingress[0] 'RDP' (TCP:3389) should not be public",
+    "actualValue": "module[vpc].default_network_acl_ingress[0] 'RDP' (TCP:3389) is public"
   }
 ]

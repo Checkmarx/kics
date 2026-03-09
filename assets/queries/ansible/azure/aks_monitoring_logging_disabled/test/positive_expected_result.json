@@ -2,6 +2,18 @@
   {
     "queryName": "AKS Monitoring Logging Disabled",
     "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_aks",
+    "resourceName": "Create an AKS instance v0",
+    "searchKey": "name={{Create an AKS instance v0}}.{{azure_rm_aks}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_aks.addon should be set",
+    "actualValue": "azure_rm_aks.addon is undefined"
+  },
+  {
+    "queryName": "AKS Monitoring Logging Disabled",
+    "severity": "MEDIUM",
     "line": 43,
     "filename": "positive.yaml",
     "resourceType": "azure_rm_aks",
@@ -34,17 +46,5 @@
     "searchValue": "",
     "expectedValue": "azure_rm_aks.addon.monitoring.enabled should be set to 'yes' or 'false'",
     "actualValue": "azure_rm_aks.addon.monitoring.enabled is not set to 'yes' or 'false'"
-  },
-  {
-    "queryName": "AKS Monitoring Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive.yaml",
-    "resourceType": "azure_rm_aks",
-    "resourceName": "Create an AKS instance v0",
-    "searchKey": "name={{Create an AKS instance v0}}.{{azure_rm_aks}}",
-    "searchValue": "",
-    "expectedValue": "azure_rm_aks.addon should be set",
-    "actualValue": "azure_rm_aks.addon is undefined"
   }
 ]

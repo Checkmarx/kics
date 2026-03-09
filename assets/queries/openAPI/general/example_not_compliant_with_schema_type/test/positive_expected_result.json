@@ -1,27 +1,27 @@
 [
   {
+    "queryName": "Example Not Compliant With Schema Type (v3)",
+    "severity": "INFO",
+    "line": 21,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.object",
+    "searchValue": "",
+    "expectedValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING)' should not be compliant with the schema type",
+    "actualValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING) is not compliant with the schema type"
+  },
+  {
     "queryName": "Example Not Compliant With Schema Type (v2)",
     "severity": "INFO",
-    "line": 25,
-    "filename": "positive9.json",
+    "line": 20,
+    "filename": "positive10.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.parameters.example",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.parameters.example should not be compliant with the schema type",
     "actualValue": "paths.{{/}}.get.parameters.example is not compliant with the schema type"
-  },
-  {
-    "queryName": "Example Not Compliant With Schema Type (v2)",
-    "severity": "INFO",
-    "line": 30,
-    "filename": "positive12.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "definitions.Tag.example",
-    "searchValue": "",
-    "expectedValue": "definitions.Tag.example should not be compliant with the schema type",
-    "actualValue": "definitions.Tag.example is not compliant with the schema type"
   },
   {
     "queryName": "Example Not Compliant With Schema Type (v2)",
@@ -38,14 +38,74 @@
   {
     "queryName": "Example Not Compliant With Schema Type (v2)",
     "severity": "INFO",
-    "line": 20,
-    "filename": "positive10.yaml",
+    "line": 30,
+    "filename": "positive12.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.parameters.example",
+    "searchKey": "definitions.Tag.example",
     "searchValue": "",
-    "expectedValue": "paths.{{/}}.get.parameters.example should not be compliant with the schema type",
-    "actualValue": "paths.{{/}}.get.parameters.example is not compliant with the schema type"
+    "expectedValue": "definitions.Tag.example should not be compliant with the schema type",
+    "actualValue": "definitions.Tag.example is not compliant with the schema type"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type (v3)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.object",
+    "searchValue": "",
+    "expectedValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING)' should not be compliant with the schema type",
+    "actualValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING) is not compliant with the schema type"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type (v3)",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.foo_2",
+    "searchValue": "",
+    "expectedValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING)' should not be compliant with the schema type",
+    "actualValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING) is not compliant with the schema type"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type (v3)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.foo_2",
+    "searchValue": "",
+    "expectedValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING)' should not be compliant with the schema type",
+    "actualValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING) is not compliant with the schema type"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type (v3)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.example",
+    "searchValue": "",
+    "expectedValue": "paths./.get.responses.200.content.application/json.example should not be compliant with the schema type",
+    "actualValue": "paths./.get.responses.200.content.application/json.example is not compliant with the schema type"
+  },
+  {
+    "queryName": "Example Not Compliant With Schema Type (v3)",
+    "severity": "INFO",
+    "line": 34,
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.400.content.{{application/json}}.example",
+    "searchValue": "",
+    "expectedValue": "paths./.get.responses.400.content.application/json.example should not be compliant with the schema type",
+    "actualValue": "paths./.get.responses.400.content.application/json.example is not compliant with the schema type"
   },
   {
     "queryName": "Example Not Compliant With Schema Type (v3)",
@@ -86,66 +146,6 @@
   {
     "queryName": "Example Not Compliant With Schema Type (v3)",
     "severity": "INFO",
-    "line": 24,
-    "filename": "positive3.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.foo_2",
-    "searchValue": "",
-    "expectedValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING)' should not be compliant with the schema type",
-    "actualValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING) is not compliant with the schema type"
-  },
-  {
-    "queryName": "Example Not Compliant With Schema Type (v3)",
-    "severity": "INFO",
-    "line": 20,
-    "filename": "positive4.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.foo_2",
-    "searchValue": "",
-    "expectedValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING)' should not be compliant with the schema type",
-    "actualValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING) is not compliant with the schema type"
-  },
-  {
-    "queryName": "Example Not Compliant With Schema Type (v3)",
-    "severity": "INFO",
-    "line": 21,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.object",
-    "searchValue": "",
-    "expectedValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING)' should not be compliant with the schema type",
-    "actualValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING) is not compliant with the schema type"
-  },
-  {
-    "queryName": "Example Not Compliant With Schema Type (v3)",
-    "severity": "INFO",
-    "line": 20,
-    "filename": "positive5.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.example",
-    "searchValue": "",
-    "expectedValue": "paths./.get.responses.200.content.application/json.example should not be compliant with the schema type",
-    "actualValue": "paths./.get.responses.200.content.application/json.example is not compliant with the schema type"
-  },
-  {
-    "queryName": "Example Not Compliant With Schema Type (v3)",
-    "severity": "INFO",
-    "line": 34,
-    "filename": "positive5.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.400.content.{{application/json}}.example",
-    "searchValue": "",
-    "expectedValue": "paths./.get.responses.400.content.application/json.example should not be compliant with the schema type",
-    "actualValue": "paths./.get.responses.400.content.application/json.example is not compliant with the schema type"
-  },
-  {
-    "queryName": "Example Not Compliant With Schema Type (v3)",
-    "severity": "INFO",
     "line": 20,
     "filename": "positive8.yaml",
     "resourceType": "",
@@ -156,15 +156,15 @@
     "actualValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING) is not compliant with the schema type"
   },
   {
-    "queryName": "Example Not Compliant With Schema Type (v3)",
+    "queryName": "Example Not Compliant With Schema Type (v2)",
     "severity": "INFO",
-    "line": 18,
-    "filename": "positive2.yaml",
+    "line": 25,
+    "filename": "positive9.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.object",
+    "searchKey": "paths.{{/}}.get.parameters.example",
     "searchValue": "",
-    "expectedValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING)' should not be compliant with the schema type",
-    "actualValue": "paths./.get.responses.200.content.application/json.examples.%!s(MISSING) is not compliant with the schema type"
+    "expectedValue": "paths.{{/}}.get.parameters.example should not be compliant with the schema type",
+    "actualValue": "paths.{{/}}.get.parameters.example is not compliant with the schema type"
   }
 ]

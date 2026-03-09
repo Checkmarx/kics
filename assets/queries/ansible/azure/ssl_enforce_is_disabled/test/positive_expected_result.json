@@ -2,18 +2,6 @@
   {
     "queryName": "SSL Enforce Disabled",
     "severity": "MEDIUM",
-    "line": 21,
-    "filename": "positive.yaml",
-    "resourceType": "azure.azcollection.azure_rm_postgresqlserver",
-    "resourceName": "Create (or update) PostgreSQL Server2",
-    "searchKey": "name={{Create (or update) PostgreSQL Server2}}.{{azure.azcollection.azure_rm_postgresqlserver}}.enforce_ssl",
-    "searchValue": "",
-    "expectedValue": "azure_rm_postgresqlserver should have enforce_ssl set to true",
-    "actualValue": "azure_rm_postgresqlserver does has enforce_ssl set to false"
-  },
-  {
-    "queryName": "SSL Enforce Disabled",
-    "severity": "MEDIUM",
     "line": 2,
     "filename": "positive.yaml",
     "resourceType": "azure.azcollection.azure_rm_postgresqlserver",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlserver should have enforce_ssl set to true",
     "actualValue": "azure_rm_postgresqlserver does not have enforce_ssl (defaults to false)"
+  },
+  {
+    "queryName": "SSL Enforce Disabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlserver",
+    "resourceName": "Create (or update) PostgreSQL Server2",
+    "searchKey": "name={{Create (or update) PostgreSQL Server2}}.{{azure.azcollection.azure_rm_postgresqlserver}}.enforce_ssl",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlserver should have enforce_ssl set to true",
+    "actualValue": "azure_rm_postgresqlserver does has enforce_ssl set to false"
   }
 ]

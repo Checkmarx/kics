@@ -2,18 +2,6 @@
   {
     "queryName": "Default Service Account In Use",
     "severity": "LOW",
-    "line": 12,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_service_account",
-    "resourceName": "default",
-    "searchKey": "kubernetes_service_account[example2].automount_service_account_token",
-    "searchValue": "",
-    "expectedValue": "kubernetes_service_account[example2].automount_service_account_token should be set to false",
-    "actualValue": "kubernetes_service_account[example2].automount_service_account_token is not set to false"
-  },
-  {
-    "queryName": "Default Service Account In Use",
-    "severity": "LOW",
     "line": 1,
     "filename": "positive.tf",
     "resourceType": "kubernetes_service_account",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "kubernetes_service_account[example].automount_service_account_token should be set",
     "actualValue": "kubernetes_service_account[example].automount_service_account_token is undefined"
+  },
+  {
+    "queryName": "Default Service Account In Use",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_service_account",
+    "resourceName": "default",
+    "searchKey": "kubernetes_service_account[example2].automount_service_account_token",
+    "searchValue": "",
+    "expectedValue": "kubernetes_service_account[example2].automount_service_account_token should be set to false",
+    "actualValue": "kubernetes_service_account[example2].automount_service_account_token is not set to false"
   }
 ]

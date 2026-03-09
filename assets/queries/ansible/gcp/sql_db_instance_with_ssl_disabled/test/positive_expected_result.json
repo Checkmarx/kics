@@ -2,18 +2,6 @@
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
-    "line": 39,
-    "filename": "positive.yaml",
-    "resourceType": "google.cloud.gcp_sql_instance",
-    "resourceName": "create a forth instance",
-    "searchKey": "name={{create a forth instance}}.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration.require_ssl",
-    "searchValue": "",
-    "expectedValue": "gcp_sql_instance.settings.ip_configuration.require_ssl should be true",
-    "actualValue": "gcp_sql_instance.settings.ip_configuration.require_ssl is false"
-  },
-  {
-    "queryName": "SQL DB Instance With SSL Disabled",
-    "severity": "HIGH",
     "line": 3,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_sql_instance",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "gcp_sql_instance.settings.ip_configuration.require_ssl should be defined",
     "actualValue": "gcp_sql_instance.settings.ip_configuration.require_ssl is undefined"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 39,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a forth instance",
+    "searchKey": "name={{create a forth instance}}.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration.require_ssl",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.ip_configuration.require_ssl should be true",
+    "actualValue": "gcp_sql_instance.settings.ip_configuration.require_ssl is false"
   }
 ]

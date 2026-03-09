@@ -2,18 +2,6 @@
   {
     "queryName": "ECS Task Definition Invalid CPU or Memory",
     "severity": "LOW",
-    "line": 93,
-    "filename": "positive2.json",
-    "resourceType": "AWS::ECS::Service",
-    "resourceName": "ECSService",
-    "searchKey": "Resources.taskdefinition2.Properties.ContainerDefinitions.Name.Ref=AppName2",
-    "searchValue": "",
-    "expectedValue": "'Resources.taskdefinition2.Properties.ContainerDefinitions.Cpu' shouldn't have incorrect values",
-    "actualValue": "'Resources.taskdefinition2.Properties.ContainerDefinitions.Cpu' has incorrect value"
-  },
-  {
-    "queryName": "ECS Task Definition Invalid CPU or Memory",
-    "severity": "LOW",
     "line": 42,
     "filename": "positive1.yaml",
     "resourceType": "AWS::ECS::Service",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "'Resources.taskdefinition.Properties.ContainerDefinitions.Memory' shouldn't have incorrect values",
     "actualValue": "'Resources.taskdefinition.Properties.ContainerDefinitions.Memory' has incorrect value"
+  },
+  {
+    "queryName": "ECS Task Definition Invalid CPU or Memory",
+    "severity": "LOW",
+    "line": 93,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "ECSService",
+    "searchKey": "Resources.taskdefinition2.Properties.ContainerDefinitions.Name.Ref=AppName2",
+    "searchValue": "",
+    "expectedValue": "'Resources.taskdefinition2.Properties.ContainerDefinitions.Cpu' shouldn't have incorrect values",
+    "actualValue": "'Resources.taskdefinition2.Properties.ContainerDefinitions.Cpu' has incorrect value"
   }
 ]

@@ -2,6 +2,30 @@
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
+    "line": 9,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].image should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].image is undefined"
+  },
+  {
+    "queryName": "Image Without Digest",
+    "severity": "LOW",
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].image should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].image is undefined"
+  },
+  {
+    "queryName": "Image Without Digest",
+    "severity": "LOW",
     "line": 88,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod",
@@ -46,29 +70,5 @@
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive4].spec.container.image has '@'",
     "actualValue": "kubernetes_pod[positive4].spec.container.image does not have '@'"
-  },
-  {
-    "queryName": "Image Without Digest",
-    "severity": "LOW",
-    "line": 9,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "positive1",
-    "searchKey": "kubernetes_pod[positive1].spec.container",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive1].spec.container[0].image should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[0].image is undefined"
-  },
-  {
-    "queryName": "Image Without Digest",
-    "severity": "LOW",
-    "line": 36,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "positive1",
-    "searchKey": "kubernetes_pod[positive1].spec.container",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive1].spec.container[1].image should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[1].image is undefined"
   }
 ]

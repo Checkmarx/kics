@@ -2,6 +2,18 @@
   {
     "queryName": "Default KMS Key Usage",
     "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster1",
+    "searchKey": "Resources.RDSCluster1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster1.Properties.KmsKeyId should be defined with AWS-Managed CMK",
+    "actualValue": "Resources.RDSCluster1.Properties.KmsKeyId is undefined"
+  },
+  {
+    "queryName": "Default KMS Key Usage",
+    "severity": "MEDIUM",
     "line": 25,
     "filename": "positive2.json",
     "resourceType": "AWS::RDS::DBCluster",
@@ -16,18 +28,6 @@
     "severity": "MEDIUM",
     "line": 24,
     "filename": "positive3.yaml",
-    "resourceType": "AWS::RDS::DBCluster",
-    "resourceName": "RDSCluster1",
-    "searchKey": "Resources.RDSCluster1.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.RDSCluster1.Properties.KmsKeyId should be defined with AWS-Managed CMK",
-    "actualValue": "Resources.RDSCluster1.Properties.KmsKeyId is undefined"
-  },
-  {
-    "queryName": "Default KMS Key Usage",
-    "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive1.yaml",
     "resourceType": "AWS::RDS::DBCluster",
     "resourceName": "RDSCluster1",
     "searchKey": "Resources.RDSCluster1.Properties",

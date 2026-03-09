@@ -2,18 +2,6 @@
   {
     "queryName": "DB Instance Storage Not Encrypted",
     "severity": "HIGH",
-    "line": 1,
-    "filename": "positive2.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[db]",
-    "searchValue": "",
-    "expectedValue": "'storage_encrypted' should be set to true",
-    "actualValue": "'storage_encrypted' is undefined or null"
-  },
-  {
-    "queryName": "DB Instance Storage Not Encrypted",
-    "severity": "HIGH",
     "line": 11,
     "filename": "positive1.tf",
     "resourceType": "aws_db_instance",
@@ -31,6 +19,18 @@
     "resourceType": "aws_db_instance",
     "resourceName": "mydb",
     "searchKey": "aws_db_instance[positive2]",
+    "searchValue": "",
+    "expectedValue": "'storage_encrypted' should be set to true",
+    "actualValue": "'storage_encrypted' is undefined or null"
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db]",
     "searchValue": "",
     "expectedValue": "'storage_encrypted' should be set to true",
     "actualValue": "'storage_encrypted' is undefined or null"

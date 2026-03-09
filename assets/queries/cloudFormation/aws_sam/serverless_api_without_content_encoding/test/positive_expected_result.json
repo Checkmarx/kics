@@ -2,18 +2,6 @@
   {
     "queryName": "Serverless API Without Content Encoding",
     "severity": "LOW",
-    "line": 19,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::Serverless::Api",
-    "resourceName": "ApiGatewayApi3",
-    "searchKey": "Resources.ApiGatewayApi3.Properties.MinimumCompressionSize",
-    "searchValue": "",
-    "expectedValue": "Resources.ApiGatewayApi3.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
-    "actualValue": "Resources.ApiGatewayApi3.Properties.MinimumCompressionSize is set but smaller than 0 or greater than 10485759"
-  },
-  {
-    "queryName": "Serverless API Without Content Encoding",
-    "severity": "LOW",
     "line": 7,
     "filename": "positive1.yaml",
     "resourceType": "AWS::Serverless::Api",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "Resources.ApiGatewayApi2.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
     "actualValue": "Resources.ApiGatewayApi2.Properties.MinimumCompressionSize is set but smaller than 0 or greater than 10485759"
+  },
+  {
+    "queryName": "Serverless API Without Content Encoding",
+    "severity": "LOW",
+    "line": 19,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi3",
+    "searchKey": "Resources.ApiGatewayApi3.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi3.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.ApiGatewayApi3.Properties.MinimumCompressionSize is set but smaller than 0 or greater than 10485759"
   }
 ]

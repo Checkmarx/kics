@@ -2,6 +2,30 @@
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
+    "line": 35,
+    "filename": "positive1.json",
+    "resourceType": "AWS::ECS::TaskDefinition",
+    "resourceName": "taskdefinition",
+    "searchKey": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption",
+    "searchValue": "",
+    "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be enabled",
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 31,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::TaskDefinition",
+    "resourceName": "taskdefinition",
+    "searchKey": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be defined",
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
     "line": 30,
     "filename": "positive3.json",
     "resourceType": "AWS::ECS::TaskDefinition",
@@ -26,20 +50,8 @@
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
-    "line": 31,
-    "filename": "positive2.json",
-    "resourceType": "AWS::ECS::TaskDefinition",
-    "resourceName": "taskdefinition",
-    "searchKey": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration",
-    "searchValue": "",
-    "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be defined",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)"
-  },
-  {
-    "queryName": "EFS Volume With Disabled Transit Encryption",
-    "severity": "MEDIUM",
     "line": 35,
-    "filename": "positive1.json",
+    "filename": "positive5.yaml",
     "resourceType": "AWS::ECS::TaskDefinition",
     "resourceName": "taskdefinition",
     "searchKey": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption",
@@ -58,18 +70,6 @@
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be defined",
     "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)"
-  },
-  {
-    "queryName": "EFS Volume With Disabled Transit Encryption",
-    "severity": "MEDIUM",
-    "line": 35,
-    "filename": "positive5.yaml",
-    "resourceType": "AWS::ECS::TaskDefinition",
-    "resourceName": "taskdefinition",
-    "searchKey": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption",
-    "searchValue": "",
-    "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be enabled",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",

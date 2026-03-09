@@ -2,6 +2,18 @@
   {
     "queryName": "Cloud DNS Without DNSSEC",
     "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "dns.v1.managedZone",
+    "resourceName": "dns",
+    "searchKey": "resources.name={{dns}}.properties",
+    "searchValue": "",
+    "expectedValue": "'dnssecConfig' should be defined and not null",
+    "actualValue": "'dnssecConfig' is undefined or null"
+  },
+  {
+    "queryName": "Cloud DNS Without DNSSEC",
+    "severity": "MEDIUM",
     "line": 6,
     "filename": "positive2.yaml",
     "resourceType": "dns.v1.managedZone",
@@ -22,17 +34,5 @@
     "searchValue": "",
     "expectedValue": "'state' should be set to 'on'",
     "actualValue": "'state' is not set to 'on'"
-  },
-  {
-    "queryName": "Cloud DNS Without DNSSEC",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive1.yaml",
-    "resourceType": "dns.v1.managedZone",
-    "resourceName": "dns",
-    "searchKey": "resources.name={{dns}}.properties",
-    "searchValue": "",
-    "expectedValue": "'dnssecConfig' should be defined and not null",
-    "actualValue": "'dnssecConfig' is undefined or null"
   }
 ]

@@ -2,8 +2,8 @@
   {
     "queryName": "Undefined Scope 'securityDefinition' On 'security' Field On Operations",
     "severity": "LOW",
-    "line": 12,
-    "filename": "positive2.json",
+    "line": 10,
+    "filename": "positive1.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{get}}.security",
@@ -14,8 +14,8 @@
   {
     "queryName": "Undefined Scope 'securityDefinition' On 'security' Field On Operations",
     "severity": "LOW",
-    "line": 10,
-    "filename": "positive1.yaml",
+    "line": 12,
+    "filename": "positive2.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{get}}.security",

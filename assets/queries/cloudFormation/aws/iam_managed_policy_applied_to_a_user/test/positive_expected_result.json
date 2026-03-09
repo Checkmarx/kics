@@ -2,8 +2,8 @@
   {
     "queryName": "IAM Managed Policy Applied to a User",
     "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive2.json",
+    "line": 10,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::IAM::ManagedPolicy",
     "resourceName": "CreateTestDBPolicy",
     "searchKey": "Resources.CreateTestDBPolicy.Properties.Users",
@@ -14,8 +14,8 @@
   {
     "queryName": "IAM Managed Policy Applied to a User",
     "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive1.yaml",
+    "line": 11,
+    "filename": "positive2.json",
     "resourceType": "AWS::IAM::ManagedPolicy",
     "resourceName": "CreateTestDBPolicy",
     "searchKey": "Resources.CreateTestDBPolicy.Properties.Users",

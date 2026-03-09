@@ -2,11 +2,23 @@
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
-    "line": 29,
-    "filename": "positive2.json",
+    "line": 8,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::IAM::Policy",
     "resourceName": "mygrouppolicy",
     "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'"
+  },
+  {
+    "queryName": "IAM Policy Grants Full Permissions",
+    "severity": "HIGH",
+    "line": 21,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
     "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'"
@@ -26,23 +38,11 @@
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
-    "line": 8,
-    "filename": "positive1.yaml",
+    "line": 29,
+    "filename": "positive2.json",
     "resourceType": "AWS::IAM::Policy",
     "resourceName": "mygrouppolicy",
     "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
-    "searchValue": "",
-    "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
-    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'"
-  },
-  {
-    "queryName": "IAM Policy Grants Full Permissions",
-    "severity": "HIGH",
-    "line": 21,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::IAM::Policy",
-    "resourceName": "mygrouppolicy",
-    "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
     "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'"

@@ -1,9 +1,21 @@
 [
   {
-    "queryName": "Global Security Field Has An Empty Array (v2)",
+    "queryName": "Global Security Field Has An Empty Array (v3)",
     "severity": "HIGH",
-    "line": 60,
-    "filename": "positive4.json",
+    "line": 43,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "A default security schema should be defined",
+    "actualValue": "A default security schema is not defined"
+  },
+  {
+    "queryName": "Global Security Field Has An Empty Array (v3)",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "security",
@@ -24,22 +36,10 @@
     "actualValue": "A default security schema is not defined"
   },
   {
-    "queryName": "Global Security Field Has An Empty Array (v3)",
+    "queryName": "Global Security Field Has An Empty Array (v2)",
     "severity": "HIGH",
-    "line": 43,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "security",
-    "searchValue": "",
-    "expectedValue": "A default security schema should be defined",
-    "actualValue": "A default security schema is not defined"
-  },
-  {
-    "queryName": "Global Security Field Has An Empty Array (v3)",
-    "severity": "HIGH",
-    "line": 25,
-    "filename": "positive2.yaml",
+    "line": 60,
+    "filename": "positive4.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "security",

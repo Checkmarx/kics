@@ -2,18 +2,6 @@
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 43,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::SecurityGroupIngress",
-    "resourceName": "InboundRule",
-    "searchKey": "Resources.InboundRule.Properties.CidrIpv6",
-    "searchValue": "",
-    "expectedValue": "Resources.InboundRule.Properties.CidrIpv6 should not be open to the world (::/0)",
-    "actualValue": "Resources.InboundRule.Properties.CidrIpv6 is open to the world (::/0)"
-  },
-  {
-    "queryName": "Unrestricted Security Group Ingress",
-    "severity": "HIGH",
     "line": 13,
     "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::SecurityGroup",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp should not be open to the world (0.0.0.0/0)",
     "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp is open to the world (0.0.0.0/0)"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 43,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.CidrIpv6 should not be open to the world (::/0)",
+    "actualValue": "Resources.InboundRule.Properties.CidrIpv6 is open to the world (::/0)"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",

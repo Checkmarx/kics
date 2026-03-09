@@ -2,42 +2,6 @@
   {
     "queryName": "ALB Not Dropping Invalid Headers",
     "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive3.tf",
-    "resourceType": "aws_lb",
-    "resourceName": "alb",
-    "searchKey": "aws_lb[{{disabled_2}}].drop_invalid_header_fields",
-    "searchValue": "",
-    "expectedValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields should be set to true",
-    "actualValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields is set to false"
-  },
-  {
-    "queryName": "ALB Not Dropping Invalid Headers",
-    "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive2.tf",
-    "resourceType": "aws_lb",
-    "resourceName": "alb",
-    "searchKey": "aws_lb[{{disabled_2}}].drop_invalid_header_fields",
-    "searchValue": "",
-    "expectedValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields should be set to true",
-    "actualValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields is set to false"
-  },
-  {
-    "queryName": "ALB Not Dropping Invalid Headers",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive6.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[alb]",
-    "searchValue": "",
-    "expectedValue": "module[alb].drop_invalid_header_fields should be set to true",
-    "actualValue": "module[alb].drop_invalid_header_fields is missing"
-  },
-  {
-    "queryName": "ALB Not Dropping Invalid Headers",
-    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive1.tf",
     "resourceType": "aws_alb",
@@ -50,26 +14,14 @@
   {
     "queryName": "ALB Not Dropping Invalid Headers",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive5.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[alb]",
-    "searchValue": "",
-    "expectedValue": "module[alb].drop_invalid_header_fields should be set to true",
-    "actualValue": "module[alb].drop_invalid_header_fields is missing"
-  },
-  {
-    "queryName": "ALB Not Dropping Invalid Headers",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive3.tf",
+    "line": 14,
+    "filename": "positive1.tf",
     "resourceType": "aws_alb",
     "resourceName": "alb",
-    "searchKey": "aws_alb[{{disabled_1}}]",
+    "searchKey": "aws_alb[{{disabled_2}}].drop_invalid_header_fields",
     "searchValue": "",
-    "expectedValue": "aws_alb[{{disabled_1}}].drop_invalid_header_fields should be set to true",
-    "actualValue": "aws_alb[{{disabled_1}}].drop_invalid_header_fields is missing"
+    "expectedValue": "aws_alb[{{disabled_2}}].drop_invalid_header_fields should be set to true",
+    "actualValue": "aws_alb[{{disabled_2}}].drop_invalid_header_fields is set to false"
   },
   {
     "queryName": "ALB Not Dropping Invalid Headers",
@@ -87,13 +39,37 @@
     "queryName": "ALB Not Dropping Invalid Headers",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive1.tf",
+    "filename": "positive2.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "alb",
+    "searchKey": "aws_lb[{{disabled_2}}].drop_invalid_header_fields",
+    "searchValue": "",
+    "expectedValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields should be set to true",
+    "actualValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields is set to false"
+  },
+  {
+    "queryName": "ALB Not Dropping Invalid Headers",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf",
     "resourceType": "aws_alb",
     "resourceName": "alb",
-    "searchKey": "aws_alb[{{disabled_2}}].drop_invalid_header_fields",
+    "searchKey": "aws_alb[{{disabled_1}}]",
     "searchValue": "",
-    "expectedValue": "aws_alb[{{disabled_2}}].drop_invalid_header_fields should be set to true",
-    "actualValue": "aws_alb[{{disabled_2}}].drop_invalid_header_fields is set to false"
+    "expectedValue": "aws_alb[{{disabled_1}}].drop_invalid_header_fields should be set to true",
+    "actualValue": "aws_alb[{{disabled_1}}].drop_invalid_header_fields is missing"
+  },
+  {
+    "queryName": "ALB Not Dropping Invalid Headers",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive3.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "alb",
+    "searchKey": "aws_lb[{{disabled_2}}].drop_invalid_header_fields",
+    "searchValue": "",
+    "expectedValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields should be set to true",
+    "actualValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields is set to false"
   },
   {
     "queryName": "ALB Not Dropping Invalid Headers",
@@ -106,5 +82,29 @@
     "searchValue": "",
     "expectedValue": "module[alb].drop_invalid_header_fields should be set to true",
     "actualValue": "module[alb].drop_invalid_header_fields is set to false"
+  },
+  {
+    "queryName": "ALB Not Dropping Invalid Headers",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[alb]",
+    "searchValue": "",
+    "expectedValue": "module[alb].drop_invalid_header_fields should be set to true",
+    "actualValue": "module[alb].drop_invalid_header_fields is missing"
+  },
+  {
+    "queryName": "ALB Not Dropping Invalid Headers",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[alb]",
+    "searchValue": "",
+    "expectedValue": "module[alb].drop_invalid_header_fields should be set to true",
+    "actualValue": "module[alb].drop_invalid_header_fields is missing"
   }
 ]

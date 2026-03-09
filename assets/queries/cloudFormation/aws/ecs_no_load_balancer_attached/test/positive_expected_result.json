@@ -2,6 +2,18 @@
   {
     "queryName": "ECS No Load Balancer Attached",
     "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "ECSService",
+    "searchKey": "Resources.ECSService.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.ECSService.Properties.LoadBalancers' should be defined",
+    "actualValue": "'Resources.ECSService.Properties.LoadBalancers' is not defined"
+  },
+  {
+    "queryName": "ECS No Load Balancer Attached",
+    "severity": "MEDIUM",
     "line": 25,
     "filename": "positive1.yaml",
     "resourceType": "AWS::ECS::Service",
@@ -15,7 +27,7 @@
     "queryName": "ECS No Load Balancer Attached",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive1.yaml",
+    "filename": "positive2.json",
     "resourceType": "AWS::ECS::Service",
     "resourceName": "ECSService",
     "searchKey": "Resources.ECSService.Properties",
@@ -34,17 +46,5 @@
     "searchValue": "",
     "expectedValue": "'Resources.ECSService2.Properties.LoadBalancers' should not be empty",
     "actualValue": "'Resources.ECSService2.Properties.LoadBalancers' is empty"
-  },
-  {
-    "queryName": "ECS No Load Balancer Attached",
-    "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive2.json",
-    "resourceType": "AWS::ECS::Service",
-    "resourceName": "ECSService",
-    "searchKey": "Resources.ECSService.Properties",
-    "searchValue": "",
-    "expectedValue": "'Resources.ECSService.Properties.LoadBalancers' should be defined",
-    "actualValue": "'Resources.ECSService.Properties.LoadBalancers' is not defined"
   }
 ]

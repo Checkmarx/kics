@@ -14,11 +14,11 @@
   {
     "queryName": "App Service Without Latest PHP Version",
     "severity": "LOW",
-    "line": 26,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_linux_web_app",
-    "resourceName": "example6",
-    "searchKey": "azurerm_linux_web_app[example6].site_config.application_stack.php_version",
+    "line": 25,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example5",
+    "searchKey": "azurerm_windows_web_app[example5].site_config.application_stack.php_version",
     "searchValue": "",
     "expectedValue": "for the attribute 'php_version' should be the latest avaliable stable version (8.1)",
     "actualValue": "'php_version' is not the latest avaliable stable version (8.1)"
@@ -26,11 +26,11 @@
   {
     "queryName": "App Service Without Latest PHP Version",
     "severity": "LOW",
-    "line": 25,
-    "filename": "positive2.tf",
-    "resourceType": "azurerm_windows_web_app",
-    "resourceName": "example5",
-    "searchKey": "azurerm_windows_web_app[example5].site_config.application_stack.php_version",
+    "line": 26,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example6",
+    "searchKey": "azurerm_linux_web_app[example6].site_config.application_stack.php_version",
     "searchValue": "",
     "expectedValue": "for the attribute 'php_version' should be the latest avaliable stable version (8.1)",
     "actualValue": "'php_version' is not the latest avaliable stable version (8.1)"

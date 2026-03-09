@@ -2,14 +2,14 @@
   {
     "queryName": "Client Certificate Disabled",
     "severity": "HIGH",
-    "line": 8,
-    "filename": "positive3.yaml",
+    "line": 4,
+    "filename": "positive1.yaml",
     "resourceType": "container.v1.cluster",
     "resourceName": "cluster",
-    "searchKey": "resources.name={{cluster}}.properties.masterAuth.clientCertificateConfig.issueClientCertificate",
+    "searchKey": "resources.name={{cluster}}.properties",
     "searchValue": "",
-    "expectedValue": "'masterAuth.clientCertificateConfig.issueClientCertificate' should be true",
-    "actualValue": "'masterAuth.clientCertificateConfig.issueClientCertificate' is false"
+    "expectedValue": "'masterAuth' should be defined and not null",
+    "actualValue": "'masterAuth' is undefined or null"
   },
   {
     "queryName": "Client Certificate Disabled",
@@ -26,13 +26,13 @@
   {
     "queryName": "Client Certificate Disabled",
     "severity": "HIGH",
-    "line": 4,
-    "filename": "positive1.yaml",
+    "line": 8,
+    "filename": "positive3.yaml",
     "resourceType": "container.v1.cluster",
     "resourceName": "cluster",
-    "searchKey": "resources.name={{cluster}}.properties",
+    "searchKey": "resources.name={{cluster}}.properties.masterAuth.clientCertificateConfig.issueClientCertificate",
     "searchValue": "",
-    "expectedValue": "'masterAuth' should be defined and not null",
-    "actualValue": "'masterAuth' is undefined or null"
+    "expectedValue": "'masterAuth.clientCertificateConfig.issueClientCertificate' should be true",
+    "actualValue": "'masterAuth.clientCertificateConfig.issueClientCertificate' is false"
   }
 ]

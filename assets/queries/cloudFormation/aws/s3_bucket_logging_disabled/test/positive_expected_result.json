@@ -2,8 +2,8 @@
   {
     "queryName": "S3 Bucket Logging Disabled",
     "severity": "MEDIUM",
-    "line": 113,
-    "filename": "positive2.json",
+    "line": 7,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::S3::Bucket",
     "resourceName": "mybucket",
     "searchKey": "Resources.mybucket.Properties",
@@ -14,8 +14,8 @@
   {
     "queryName": "S3 Bucket Logging Disabled",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive1.yaml",
+    "line": 113,
+    "filename": "positive2.json",
     "resourceType": "AWS::S3::Bucket",
     "resourceName": "mybucket",
     "searchKey": "Resources.mybucket.Properties",

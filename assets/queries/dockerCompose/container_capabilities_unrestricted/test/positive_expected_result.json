@@ -2,18 +2,6 @@
   {
     "queryName": "Container Capabilities Unrestricted",
     "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive1.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "services.webapp.cap_add",
-    "searchValue": "",
-    "expectedValue": "Make sure you only add the necessary capabilities to your container.",
-    "actualValue": "Docker compose file has 'cap_add' attribute."
-  },
-  {
-    "queryName": "Container Capabilities Unrestricted",
-    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive1.yaml",
     "resourceType": "",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'cap_drop' attribute",
     "actualValue": "Docker compose file doesn't have 'cap_drop' attribute. Make sure your container only has necessary capabilities."
+  },
+  {
+    "queryName": "Container Capabilities Unrestricted",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.cap_add",
+    "searchValue": "",
+    "expectedValue": "Make sure you only add the necessary capabilities to your container.",
+    "actualValue": "Docker compose file has 'cap_add' attribute."
   },
   {
     "queryName": "Container Capabilities Unrestricted",

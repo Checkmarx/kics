@@ -14,6 +14,18 @@
   {
     "queryName": "AKS Dashboard Is Enabled",
     "severity": "LOW",
+    "line": 14,
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
+    "searchValue": "",
+    "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
+    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false"
+  },
+  {
+    "queryName": "AKS Dashboard Is Enabled",
+    "severity": "LOW",
     "line": 8,
     "filename": "positive2.bicep",
     "resourceType": "Microsoft.ContainerService/managedClusters",
@@ -31,18 +43,6 @@
     "resourceType": "Microsoft.ContainerService/managedClusters",
     "resourceName": "aksCluster1",
     "searchKey": "properties.template.resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
-    "searchValue": "",
-    "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false"
-  },
-  {
-    "queryName": "AKS Dashboard Is Enabled",
-    "severity": "LOW",
-    "line": 14,
-    "filename": "positive1.json",
-    "resourceType": "Microsoft.ContainerService/managedClusters",
-    "resourceName": "aksCluster1",
-    "searchKey": "resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
     "searchValue": "",
     "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
     "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false"

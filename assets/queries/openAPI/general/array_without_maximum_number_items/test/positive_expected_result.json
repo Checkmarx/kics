@@ -1,24 +1,12 @@
 [
   {
-    "queryName": "Array Without Maximum Number of Items (v2)",
+    "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "MEDIUM",
-    "line": 23,
-    "filename": "positive6.yaml",
+    "line": 56,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.parameters.schema.properties.message.type",
-    "searchValue": "",
-    "expectedValue": "Array schema has 'maxItems' set",
-    "actualValue": "Array schema has 'maxItems' undefined"
-  },
-  {
-    "queryName": "Array Without Maximum Number of Items (v2)",
-    "severity": "MEDIUM",
-    "line": 31,
-    "filename": "positive5.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.parameters.schema.properties.message.type",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
     "searchValue": "",
     "expectedValue": "Array schema has 'maxItems' set",
     "actualValue": "Array schema has 'maxItems' undefined"
@@ -60,13 +48,25 @@
     "actualValue": "Array schema has 'maxItems' undefined"
   },
   {
-    "queryName": "Array Without Maximum Number of Items (v3)",
+    "queryName": "Array Without Maximum Number of Items (v2)",
     "severity": "MEDIUM",
-    "line": 56,
-    "filename": "positive1.json",
+    "line": 31,
+    "filename": "positive5.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined"
+  },
+  {
+    "queryName": "Array Without Maximum Number of Items (v2)",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "Array schema has 'maxItems' set",
     "actualValue": "Array schema has 'maxItems' undefined"

@@ -1,29 +1,5 @@
 [
   {
-    "queryName": "String Schema with Broad Pattern (v2)",
-    "severity": "LOW",
-    "line": 30,
-    "filename": "positive6.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.pattern",
-    "searchValue": "",
-    "expectedValue": "String schema has 'pattern' restricted",
-    "actualValue": "String schema does not have 'pattern' restricted"
-  },
-  {
-    "queryName": "String Schema with Broad Pattern (v2)",
-    "severity": "LOW",
-    "line": 26,
-    "filename": "positive5.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.pattern",
-    "searchValue": "",
-    "expectedValue": "String schema has 'pattern' restricted",
-    "actualValue": "String schema does not have 'pattern' restricted"
-  },
-  {
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "LOW",
     "line": 61,
@@ -50,6 +26,18 @@
   {
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "LOW",
+    "line": 37,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.pattern",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted"
+  },
+  {
+    "queryName": "String Schema with Broad Pattern (v3)",
+    "severity": "LOW",
     "line": 25,
     "filename": "positive4.yaml",
     "resourceType": "",
@@ -60,13 +48,25 @@
     "actualValue": "String schema does not have 'pattern' restricted"
   },
   {
-    "queryName": "String Schema with Broad Pattern (v3)",
+    "queryName": "String Schema with Broad Pattern (v2)",
     "severity": "LOW",
-    "line": 37,
-    "filename": "positive3.yaml",
+    "line": 26,
+    "filename": "positive5.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "components.schemas.GeneralError.properties.code.pattern",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.pattern",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted"
+  },
+  {
+    "queryName": "String Schema with Broad Pattern (v2)",
+    "severity": "LOW",
+    "line": 30,
+    "filename": "positive6.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.pattern",
     "searchValue": "",
     "expectedValue": "String schema has 'pattern' restricted",
     "actualValue": "String schema does not have 'pattern' restricted"

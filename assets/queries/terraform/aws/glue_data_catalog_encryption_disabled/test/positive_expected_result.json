@@ -2,18 +2,6 @@
   {
     "queryName": "Glue Data Catalog Encryption Disabled",
     "severity": "HIGH",
-    "line": 9,
-    "filename": "positive3.tf",
-    "resourceType": "aws_glue_data_catalog_encryption_settings",
-    "resourceName": "positive3",
-    "searchKey": "aws_glue_data_catalog_encryption_settings[positive3].data_catalog_encryption_settings.encryption_at_rest.catalog_encryption_mode",
-    "searchValue": "",
-    "expectedValue": "'catalog_encryption_mode' should be set to 'SSE-KMS'",
-    "actualValue": "'catalog_encryption_mode' is not set to 'SSE-KMS'"
-  },
-  {
-    "queryName": "Glue Data Catalog Encryption Disabled",
-    "severity": "HIGH",
     "line": 5,
     "filename": "positive1.tf",
     "resourceType": "aws_glue_data_catalog_encryption_settings",
@@ -26,18 +14,6 @@
   {
     "queryName": "Glue Data Catalog Encryption Disabled",
     "severity": "HIGH",
-    "line": 8,
-    "filename": "positive4.tf",
-    "resourceType": "aws_glue_data_catalog_encryption_settings",
-    "resourceName": "positive4",
-    "searchKey": "aws_glue_data_catalog_encryption_settings[positive4].data_catalog_encryption_settings.encryption_at_rest",
-    "searchValue": "",
-    "expectedValue": "'sse_aws_kms_key_id' should be defined and not null",
-    "actualValue": "'sse_aws_kms_key_id' is undefined or null"
-  },
-  {
-    "queryName": "Glue Data Catalog Encryption Disabled",
-    "severity": "HIGH",
     "line": 3,
     "filename": "positive2.tf",
     "resourceType": "aws_glue_data_catalog_encryption_settings",
@@ -46,5 +22,29 @@
     "searchValue": "",
     "expectedValue": "'aws_kms_key_id' should be defined and not null",
     "actualValue": "'aws_kms_key_id' is undefined or null"
+  },
+  {
+    "queryName": "Glue Data Catalog Encryption Disabled",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive3.tf",
+    "resourceType": "aws_glue_data_catalog_encryption_settings",
+    "resourceName": "positive3",
+    "searchKey": "aws_glue_data_catalog_encryption_settings[positive3].data_catalog_encryption_settings.encryption_at_rest.catalog_encryption_mode",
+    "searchValue": "",
+    "expectedValue": "'catalog_encryption_mode' should be set to 'SSE-KMS'",
+    "actualValue": "'catalog_encryption_mode' is not set to 'SSE-KMS'"
+  },
+  {
+    "queryName": "Glue Data Catalog Encryption Disabled",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive4.tf",
+    "resourceType": "aws_glue_data_catalog_encryption_settings",
+    "resourceName": "positive4",
+    "searchKey": "aws_glue_data_catalog_encryption_settings[positive4].data_catalog_encryption_settings.encryption_at_rest",
+    "searchValue": "",
+    "expectedValue": "'sse_aws_kms_key_id' should be defined and not null",
+    "actualValue": "'sse_aws_kms_key_id' is undefined or null"
   }
 ]

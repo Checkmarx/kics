@@ -14,18 +14,6 @@
   {
     "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
     "severity": "MEDIUM",
-    "line": 15,
-    "filename": "positive.yaml",
-    "resourceType": "google.cloud.gcp_compute_instance",
-    "resourceName": "no_metadata",
-    "searchKey": "name={{no_metadata}}.{{google.cloud.gcp_compute_instance}}",
-    "searchValue": "",
-    "expectedValue": "gcp_compute_instance.metadata should be set",
-    "actualValue": "gcp_compute_instance.metadata is undefined"
-  },
-  {
-    "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
-    "severity": "MEDIUM",
     "line": 9,
     "filename": "positive.yaml",
     "resourceType": "google.cloud.gcp_compute_instance",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.metadata.block-project-ssh-keys should be set to true",
     "actualValue": "gcp_compute_instance.metadata.block-project-ssh-keys is undefined"
+  },
+  {
+    "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "no_metadata",
+    "searchKey": "name={{no_metadata}}.{{google.cloud.gcp_compute_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.metadata should be set",
+    "actualValue": "gcp_compute_instance.metadata is undefined"
   }
 ]

@@ -2,8 +2,20 @@
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket11",
+    "searchKey": "Resources.Bucket11.Properties",
+    "searchValue": "",
+    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)"
+  },
+  {
+    "queryName": "S3 Bucket Without Restriction Of Public Bucket",
+    "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive3.yaml",
+    "filename": "positive1.yaml",
     "resourceType": "AWS::S3::Bucket",
     "resourceName": "Bucket12",
     "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
@@ -16,18 +28,6 @@
     "severity": "MEDIUM",
     "line": 21,
     "filename": "positive1.yaml",
-    "resourceType": "AWS::S3::Bucket",
-    "resourceName": "Bucket13",
-    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets",
-    "searchValue": "",
-    "expectedValue": "'RestrictPublicBuckets' should be set to true%!(EXTRA string=Bucket13)",
-    "actualValue": "'RestrictPublicBuckets' is set to false%!(EXTRA string=Bucket13)"
-  },
-  {
-    "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "MEDIUM",
-    "line": 21,
-    "filename": "positive3.yaml",
     "resourceType": "AWS::S3::Bucket",
     "resourceName": "Bucket13",
     "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets",
@@ -63,7 +63,7 @@
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive1.yaml",
+    "filename": "positive3.yaml",
     "resourceType": "AWS::S3::Bucket",
     "resourceName": "Bucket12",
     "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
@@ -74,13 +74,13 @@
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive1.yaml",
+    "line": 21,
+    "filename": "positive3.yaml",
     "resourceType": "AWS::S3::Bucket",
-    "resourceName": "Bucket11",
-    "searchKey": "Resources.Bucket11.Properties",
+    "resourceName": "Bucket13",
+    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.RestrictPublicBuckets",
     "searchValue": "",
-    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
-    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)"
+    "expectedValue": "'RestrictPublicBuckets' should be set to true%!(EXTRA string=Bucket13)",
+    "actualValue": "'RestrictPublicBuckets' is set to false%!(EXTRA string=Bucket13)"
   }
 ]

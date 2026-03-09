@@ -14,18 +14,6 @@
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
-    "line": 32,
-    "filename": "positive4.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
-    "searchValue": "",
-    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
-    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
-  },
-  {
-    "queryName": "Property 'allowEmptyValue' Ignored",
-    "severity": "INFO",
     "line": 30,
     "filename": "positive2.yaml",
     "resourceType": "",
@@ -38,8 +26,20 @@
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
-    "line": 31,
-    "filename": "positive6.yaml",
+    "line": 12,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
+  },
+  {
+    "queryName": "Property 'allowEmptyValue' Ignored",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
@@ -62,8 +62,8 @@
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
-    "line": 12,
-    "filename": "positive3.json",
+    "line": 31,
+    "filename": "positive6.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.parameters.allowEmptyValue",

@@ -2,18 +2,6 @@
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive2.yaml",
-    "resourceType": "sqladmin.v1beta4.instance",
-    "resourceName": "sql-instance",
-    "searchKey": "resources.name={{sql-instance}}.properties.settings.backupConfiguration",
-    "searchValue": "",
-    "expectedValue": "'settings.backupConfiguration.enabled' should be defined and not null",
-    "actualValue": "'settings.backupConfiguration.enabled' is undefined or null"
-  },
-  {
-    "queryName": "SQL DB Instance Backup Disabled",
-    "severity": "MEDIUM",
     "line": 5,
     "filename": "positive1.yaml",
     "resourceType": "sqladmin.v1beta4.instance",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "'settings.backupConfiguration' should be defined and not null",
     "actualValue": "'settings.backupConfiguration' is undefined or null"
+  },
+  {
+    "queryName": "SQL DB Instance Backup Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.yaml",
+    "resourceType": "sqladmin.v1beta4.instance",
+    "resourceName": "sql-instance",
+    "searchKey": "resources.name={{sql-instance}}.properties.settings.backupConfiguration",
+    "searchValue": "",
+    "expectedValue": "'settings.backupConfiguration.enabled' should be defined and not null",
+    "actualValue": "'settings.backupConfiguration.enabled' is undefined or null"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",

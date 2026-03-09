@@ -2,18 +2,6 @@
   {
     "queryName": "AMI Not Encrypted",
     "severity": "MEDIUM",
-    "line": 25,
-    "filename": "positive.tf",
-    "resourceType": "aws_ami",
-    "resourceName": "terraform-example",
-    "searchKey": "aws_ami[positive2].ebs_block_device.encrypted",
-    "searchValue": "",
-    "expectedValue": "One of 'rule.ebs_block_device.encrypted' should be 'true'",
-    "actualValue": "One of 'rule.ebs_block_device.encrypted' is not 'true'"
-  },
-  {
-    "queryName": "AMI Not Encrypted",
-    "severity": "MEDIUM",
     "line": 7,
     "filename": "positive.tf",
     "resourceType": "aws_ami",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "One of 'rule.ebs_block_device.encrypted' should be 'true'",
     "actualValue": "'rule.ebs_block_device' is undefined"
+  },
+  {
+    "queryName": "AMI Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 25,
+    "filename": "positive.tf",
+    "resourceType": "aws_ami",
+    "resourceName": "terraform-example",
+    "searchKey": "aws_ami[positive2].ebs_block_device.encrypted",
+    "searchValue": "",
+    "expectedValue": "One of 'rule.ebs_block_device.encrypted' should be 'true'",
+    "actualValue": "One of 'rule.ebs_block_device.encrypted' is not 'true'"
   },
   {
     "queryName": "AMI Not Encrypted",

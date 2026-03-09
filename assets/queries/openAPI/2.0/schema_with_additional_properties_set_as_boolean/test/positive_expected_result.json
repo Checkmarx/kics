@@ -2,11 +2,11 @@
   {
     "queryName": "Schema with 'additionalProperties' set as Boolean",
     "severity": "INFO",
-    "line": 34,
-    "filename": "positive4.yaml",
+    "line": 28,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "definitions.User.additionalProperties",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should be set as an object value",
     "actualValue": "'additionalProperties' is set as a boolean value"
@@ -38,11 +38,11 @@
   {
     "queryName": "Schema with 'additionalProperties' set as Boolean",
     "severity": "INFO",
-    "line": 28,
-    "filename": "positive1.json",
+    "line": 34,
+    "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
+    "searchKey": "definitions.User.additionalProperties",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should be set as an object value",
     "actualValue": "'additionalProperties' is set as a boolean value"

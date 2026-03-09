@@ -2,8 +2,8 @@
   {
     "queryName": "Security Definitions Allows Password Flow",
     "severity": "MEDIUM",
-    "line": 19,
-    "filename": "positive2.yaml",
+    "line": 27,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "securityDefinitions.{{oAuth2AuthCodeNeg2}}.flow",
@@ -14,8 +14,8 @@
   {
     "queryName": "Security Definitions Allows Password Flow",
     "severity": "MEDIUM",
-    "line": 27,
-    "filename": "positive1.json",
+    "line": 19,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "securityDefinitions.{{oAuth2AuthCodeNeg2}}.flow",

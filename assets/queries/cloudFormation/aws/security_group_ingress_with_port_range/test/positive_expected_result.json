@@ -14,8 +14,8 @@
   {
     "queryName": "Security Group Ingress With Port Range",
     "severity": "MEDIUM",
-    "line": 53,
-    "filename": "positive2.json",
+    "line": 37,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::SecurityGroupIngress",
     "resourceName": "InboundRule",
     "searchKey": "Resources.InboundRule.Properties",
@@ -38,8 +38,8 @@
   {
     "queryName": "Security Group Ingress With Port Range",
     "severity": "MEDIUM",
-    "line": 37,
-    "filename": "positive1.yaml",
+    "line": 53,
+    "filename": "positive2.json",
     "resourceType": "AWS::EC2::SecurityGroupIngress",
     "resourceName": "InboundRule",
     "searchKey": "Resources.InboundRule.Properties",

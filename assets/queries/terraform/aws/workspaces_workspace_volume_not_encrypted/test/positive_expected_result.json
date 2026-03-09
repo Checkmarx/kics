@@ -2,47 +2,11 @@
   {
     "queryName": "Workspaces Workspace Volume Not Encrypted",
     "severity": "HIGH",
-    "line": 7,
-    "filename": "positive4.tf",
-    "resourceType": "aws_workspaces_workspace",
-    "resourceName": "example_4",
-    "searchKey": "aws_workspaces_workspace[{{example_4}}].user_volume_encryption_enabled",
-    "searchValue": "",
-    "expectedValue": "aws_workspaces_workspace.user_volume_encryption_enabled should be set to true",
-    "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is set to false"
-  },
-  {
-    "queryName": "Workspaces Workspace Volume Not Encrypted",
-    "severity": "HIGH",
     "line": 11,
     "filename": "positive1.tf",
     "resourceType": "aws_workspaces_workspace",
     "resourceName": "example",
     "searchKey": "aws_workspaces_workspace[{{example}}].workspace_properties.user_volume_size_gib",
-    "searchValue": "",
-    "expectedValue": "aws_workspaces_workspace.user_volume_encryption_enabled should be set to true",
-    "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is missing"
-  },
-  {
-    "queryName": "Workspaces Workspace Volume Not Encrypted",
-    "severity": "HIGH",
-    "line": 11,
-    "filename": "positive3.tf",
-    "resourceType": "aws_workspaces_workspace",
-    "resourceName": "example_3",
-    "searchKey": "aws_workspaces_workspace[{{example_3}}].workspace_properties.root_volume_size_gib",
-    "searchValue": "",
-    "expectedValue": "aws_workspaces_workspace.root_volume_encryption_enabled should be set to true",
-    "actualValue": "aws_workspaces_workspace.root_volume_encryption_enabled is missing"
-  },
-  {
-    "queryName": "Workspaces Workspace Volume Not Encrypted",
-    "severity": "HIGH",
-    "line": 10,
-    "filename": "positive3.tf",
-    "resourceType": "aws_workspaces_workspace",
-    "resourceName": "example_3",
-    "searchKey": "aws_workspaces_workspace[{{example_3}}].workspace_properties.user_volume_size_gib",
     "searchValue": "",
     "expectedValue": "aws_workspaces_workspace.user_volume_encryption_enabled should be set to true",
     "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is missing"
@@ -62,6 +26,30 @@
   {
     "queryName": "Workspaces Workspace Volume Not Encrypted",
     "severity": "HIGH",
+    "line": 10,
+    "filename": "positive3.tf",
+    "resourceType": "aws_workspaces_workspace",
+    "resourceName": "example_3",
+    "searchKey": "aws_workspaces_workspace[{{example_3}}].workspace_properties.user_volume_size_gib",
+    "searchValue": "",
+    "expectedValue": "aws_workspaces_workspace.user_volume_encryption_enabled should be set to true",
+    "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is missing"
+  },
+  {
+    "queryName": "Workspaces Workspace Volume Not Encrypted",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive3.tf",
+    "resourceType": "aws_workspaces_workspace",
+    "resourceName": "example_3",
+    "searchKey": "aws_workspaces_workspace[{{example_3}}].workspace_properties.root_volume_size_gib",
+    "searchValue": "",
+    "expectedValue": "aws_workspaces_workspace.root_volume_encryption_enabled should be set to true",
+    "actualValue": "aws_workspaces_workspace.root_volume_encryption_enabled is missing"
+  },
+  {
+    "queryName": "Workspaces Workspace Volume Not Encrypted",
+    "severity": "HIGH",
     "line": 6,
     "filename": "positive4.tf",
     "resourceType": "aws_workspaces_workspace",
@@ -70,5 +58,17 @@
     "searchValue": "",
     "expectedValue": "aws_workspaces_workspace.root_volume_encryption_enabled should be set to true",
     "actualValue": "aws_workspaces_workspace.root_volume_encryption_enabled is set to false"
+  },
+  {
+    "queryName": "Workspaces Workspace Volume Not Encrypted",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive4.tf",
+    "resourceType": "aws_workspaces_workspace",
+    "resourceName": "example_4",
+    "searchKey": "aws_workspaces_workspace[{{example_4}}].user_volume_encryption_enabled",
+    "searchValue": "",
+    "expectedValue": "aws_workspaces_workspace.user_volume_encryption_enabled should be set to true",
+    "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is set to false"
   }
 ]

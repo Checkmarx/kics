@@ -2,14 +2,14 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
-    "line": 19,
-    "filename": "positive3.yaml",
+    "line": 4,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::S3::Bucket",
-    "resourceName": "Bucket13",
-    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.BlockPublicPolicy",
+    "resourceName": "Bucket11",
+    "searchKey": "Resources.Bucket11.Properties",
     "searchValue": "",
-    "expectedValue": "'BlockPublicPolicy' should be set to true%!(EXTRA string=Bucket13)",
-    "actualValue": "'BlockPublicPolicy' is set to false%!(EXTRA string=Bucket13)"
+    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -22,6 +22,18 @@
     "searchValue": "",
     "expectedValue": "'BlockPublicPolicy' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
     "actualValue": "'BlockPublicPolicy' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "HIGH",
+    "line": 19,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket13",
+    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.BlockPublicPolicy",
+    "searchValue": "",
+    "expectedValue": "'BlockPublicPolicy' should be set to true%!(EXTRA string=Bucket13)",
+    "actualValue": "'BlockPublicPolicy' is set to false%!(EXTRA string=Bucket13)"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -50,18 +62,6 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
-    "line": 19,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::S3::Bucket",
-    "resourceName": "Bucket13",
-    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.BlockPublicPolicy",
-    "searchValue": "",
-    "expectedValue": "'BlockPublicPolicy' should be set to true%!(EXTRA string=Bucket13)",
-    "actualValue": "'BlockPublicPolicy' is set to false%!(EXTRA string=Bucket13)"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "HIGH",
     "line": 10,
     "filename": "positive3.yaml",
     "resourceType": "AWS::S3::Bucket",
@@ -74,13 +74,13 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "HIGH",
-    "line": 4,
-    "filename": "positive1.yaml",
+    "line": 19,
+    "filename": "positive3.yaml",
     "resourceType": "AWS::S3::Bucket",
-    "resourceName": "Bucket11",
-    "searchKey": "Resources.Bucket11.Properties",
+    "resourceName": "Bucket13",
+    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.BlockPublicPolicy",
     "searchValue": "",
-    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
-    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)"
+    "expectedValue": "'BlockPublicPolicy' should be set to true%!(EXTRA string=Bucket13)",
+    "actualValue": "'BlockPublicPolicy' is set to false%!(EXTRA string=Bucket13)"
   }
 ]

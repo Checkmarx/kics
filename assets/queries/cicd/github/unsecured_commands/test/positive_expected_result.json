@@ -2,8 +2,8 @@
   {
     "queryName": "Unsecured Commands",
     "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive2.yaml",
+    "line": 8,
+    "filename": "positive1.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "env.actions_allow_unsecure_commands={{true}}",
@@ -14,8 +14,8 @@
   {
     "queryName": "Unsecured Commands",
     "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive1.yaml",
+    "line": 11,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "env.actions_allow_unsecure_commands={{true}}",

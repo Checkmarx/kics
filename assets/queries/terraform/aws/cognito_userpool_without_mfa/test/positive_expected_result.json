@@ -2,18 +2,6 @@
   {
     "queryName": "Cognito UserPool Without MFA",
     "severity": "LOW",
-    "line": 16,
-    "filename": "positive.tf",
-    "resourceType": "aws_cognito_user_pool",
-    "resourceName": "positive2",
-    "searchKey": "aws_cognito_user_pool[positive2]",
-    "searchValue": "",
-    "expectedValue": "aws_cognito_user_pool[positive2].mfa_configuration should be set to 'ON' or 'OPTIONAL",
-    "actualValue": "aws_cognito_user_pool[positive2].mfa_configuration is set to 'OFF'"
-  },
-  {
-    "queryName": "Cognito UserPool Without MFA",
-    "severity": "LOW",
     "line": 1,
     "filename": "positive.tf",
     "resourceType": "aws_cognito_user_pool",
@@ -22,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "aws_cognito_user_pool[positive1].mfa_configuration should be set",
     "actualValue": "aws_cognito_user_pool[positive1].mfa_configuration is undefined"
+  },
+  {
+    "queryName": "Cognito UserPool Without MFA",
+    "severity": "LOW",
+    "line": 16,
+    "filename": "positive.tf",
+    "resourceType": "aws_cognito_user_pool",
+    "resourceName": "positive2",
+    "searchKey": "aws_cognito_user_pool[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_cognito_user_pool[positive2].mfa_configuration should be set to 'ON' or 'OPTIONAL",
+    "actualValue": "aws_cognito_user_pool[positive2].mfa_configuration is set to 'OFF'"
   },
   {
     "queryName": "Cognito UserPool Without MFA",

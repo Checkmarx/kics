@@ -2,18 +2,6 @@
   {
     "queryName": "Beta - Storage Account With Shared Access Key",
     "severity": "MEDIUM",
-    "line": 18,
-    "filename": "positive.tf",
-    "resourceType": "azurerm_storage_account",
-    "resourceName": "positive2",
-    "searchKey": "azurerm_storage_account[positive2].shared_access_key_enabled",
-    "searchValue": "",
-    "expectedValue": "'azurerm_storage_account[positive2].shared_access_key_enabled' should be defined and set to false",
-    "actualValue": "'azurerm_storage_account[positive2].shared_access_key_enabled' is set to 'true'"
-  },
-  {
-    "queryName": "Beta - Storage Account With Shared Access Key",
-    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive.tf",
     "resourceType": "azurerm_storage_account",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive1].shared_access_key_enabled' should be defined and set to false",
     "actualValue": "'azurerm_storage_account[positive1].shared_access_key_enabled' is undefined or null"
+  },
+  {
+    "queryName": "Beta - Storage Account With Shared Access Key",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_storage_account[positive2].shared_access_key_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive2].shared_access_key_enabled' should be defined and set to false",
+    "actualValue": "'azurerm_storage_account[positive2].shared_access_key_enabled' is set to 'true'"
   }
 ]

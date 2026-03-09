@@ -26,18 +26,6 @@
   {
     "queryName": "IAM User Has Too Many Access Keys",
     "severity": "MEDIUM",
-    "line": 20,
-    "filename": "positive2.json",
-    "resourceType": "AWS::IAM::AccessKey",
-    "resourceName": "firstKey",
-    "searchKey": "Resources.firstKey",
-    "searchValue": "",
-    "expectedValue": "'Resources.firstKey' is the only AccessKey of user 'myuser'",
-    "actualValue": "'Resources.firstKey' is not the only AccessKey of user 'myuser'"
-  },
-  {
-    "queryName": "IAM User Has Too Many Access Keys",
-    "severity": "MEDIUM",
     "line": 5,
     "filename": "positive2.json",
     "resourceType": "AWS::IAM::AccessKey",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "'Resources.secondKey' is the only AccessKey of user 'myuser'",
     "actualValue": "'Resources.secondKey' is not the only AccessKey of user 'myuser'"
+  },
+  {
+    "queryName": "IAM User Has Too Many Access Keys",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::AccessKey",
+    "resourceName": "firstKey",
+    "searchKey": "Resources.firstKey",
+    "searchValue": "",
+    "expectedValue": "'Resources.firstKey' is the only AccessKey of user 'myuser'",
+    "actualValue": "'Resources.firstKey' is not the only AccessKey of user 'myuser'"
   }
 ]

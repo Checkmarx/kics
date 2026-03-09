@@ -1,9 +1,9 @@
 [
   {
-    "queryName": "Paths Object is Empty (v2)",
+    "queryName": "Paths Object is Empty (v3)",
     "severity": "INFO",
-    "line": 5,
-    "filename": "positive4.yaml",
+    "line": 7,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths",
@@ -26,8 +26,8 @@
   {
     "queryName": "Paths Object is Empty (v3)",
     "severity": "INFO",
-    "line": 7,
-    "filename": "positive1.json",
+    "line": 5,
+    "filename": "positive3.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths",
@@ -36,10 +36,10 @@
     "actualValue": "The Paths Object is empty"
   },
   {
-    "queryName": "Paths Object is Empty (v3)",
+    "queryName": "Paths Object is Empty (v2)",
     "severity": "INFO",
     "line": 5,
-    "filename": "positive3.yaml",
+    "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths",

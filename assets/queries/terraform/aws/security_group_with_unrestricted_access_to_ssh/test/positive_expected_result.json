@@ -2,6 +2,30 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-1].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-1].ingress 'SSH' (Port:22) should not be open",
+    "actualValue": "aws_security_group[positive1-1].ingress 'SSH' (Port:22) is open"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 26,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-2].ingress[1]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-2].ingress[1] 'SSH' (Port:22) should not be open",
+    "actualValue": "aws_security_group[positive1-2].ingress[1] 'SSH' (Port:22) is open"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
     "line": 39,
     "filename": "positive1.tf",
     "resourceType": "aws_security_group",
@@ -14,6 +38,42 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
+    "line": 60,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-4].ingress[1]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-4].ingress[1] 'SSH' (Port:22) should not be open",
+    "actualValue": "aws_security_group[positive1-4].ingress[1] 'SSH' (Port:22) is open"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 73,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-5].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-5].ingress 'SSH' (Port:22) should not be open",
+    "actualValue": "aws_security_group[positive1-5].ingress 'SSH' (Port:22) is open"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 87,
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-6].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-6].ingress 'SSH' (Port:22) should not be open",
+    "actualValue": "aws_security_group[positive1-6].ingress 'SSH' (Port:22) is open"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
     "line": 101,
     "filename": "positive1.tf",
     "resourceType": "aws_security_group",
@@ -22,18 +82,6 @@
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-7].ingress 'SSH' (Port:22) should not be open",
     "actualValue": "aws_security_group[positive1-7].ingress 'SSH' (Port:22) is open"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 49,
-    "filename": "positive4.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0",
-    "searchValue": "",
-    "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 'SSH' (Port:22) should not be open",
-    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 'SSH' (Port:22) is open"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -62,18 +110,6 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 73,
-    "filename": "positive1.tf",
-    "resourceType": "aws_security_group",
-    "resourceName": "allow_tls",
-    "searchKey": "aws_security_group[positive1-5].ingress",
-    "searchValue": "",
-    "expectedValue": "aws_security_group[positive1-5].ingress 'SSH' (Port:22) should not be open",
-    "actualValue": "aws_security_group[positive1-5].ingress 'SSH' (Port:22) is open"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
     "line": 7,
     "filename": "positive3.tf",
     "resourceType": "aws_security_group_rule",
@@ -82,30 +118,6 @@
     "searchValue": "",
     "expectedValue": "aws_security_group_rule[positive3-1] 'SSH' (Port:22) should not be open",
     "actualValue": "aws_security_group_rule[positive3-1] 'SSH' (Port:22) is open"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 30,
-    "filename": "positive4.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0",
-    "searchValue": "",
-    "expectedValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 'SSH' (Port:22) should not be open",
-    "actualValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 'SSH' (Port:22) is open"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 60,
-    "filename": "positive1.tf",
-    "resourceType": "aws_security_group",
-    "resourceName": "allow_tls",
-    "searchKey": "aws_security_group[positive1-4].ingress[1]",
-    "searchValue": "",
-    "expectedValue": "aws_security_group[positive1-4].ingress[1] 'SSH' (Port:22) should not be open",
-    "actualValue": "aws_security_group[positive1-4].ingress[1] 'SSH' (Port:22) is open"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -134,6 +146,30 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
+    "line": 30,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 'SSH' (Port:22) should not be open",
+    "actualValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 'SSH' (Port:22) is open"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 49,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 'SSH' (Port:22) should not be open",
+    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 'SSH' (Port:22) is open"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
     "line": 63,
     "filename": "positive4.tf",
     "resourceType": "n/a",
@@ -142,42 +178,6 @@
     "searchValue": "",
     "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 'SSH' (Port:22) should not be open",
     "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 'SSH' (Port:22) is open"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 96,
-    "filename": "positive4.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2",
-    "searchValue": "",
-    "expectedValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 'SSH' (Port:22) should not be open",
-    "actualValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 'SSH' (Port:22) is open"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive1.tf",
-    "resourceType": "aws_security_group",
-    "resourceName": "allow_tls",
-    "searchKey": "aws_security_group[positive1-1].ingress",
-    "searchValue": "",
-    "expectedValue": "aws_security_group[positive1-1].ingress 'SSH' (Port:22) should not be open",
-    "actualValue": "aws_security_group[positive1-1].ingress 'SSH' (Port:22) is open"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 87,
-    "filename": "positive1.tf",
-    "resourceType": "aws_security_group",
-    "resourceName": "allow_tls",
-    "searchKey": "aws_security_group[positive1-6].ingress",
-    "searchValue": "",
-    "expectedValue": "aws_security_group[positive1-6].ingress 'SSH' (Port:22) should not be open",
-    "actualValue": "aws_security_group[positive1-6].ingress 'SSH' (Port:22) is open"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -194,13 +194,13 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 26,
-    "filename": "positive1.tf",
-    "resourceType": "aws_security_group",
-    "resourceName": "allow_tls",
-    "searchKey": "aws_security_group[positive1-2].ingress[1]",
+    "line": 96,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2",
     "searchValue": "",
-    "expectedValue": "aws_security_group[positive1-2].ingress[1] 'SSH' (Port:22) should not be open",
-    "actualValue": "aws_security_group[positive1-2].ingress[1] 'SSH' (Port:22) is open"
+    "expectedValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 'SSH' (Port:22) should not be open",
+    "actualValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 'SSH' (Port:22) is open"
   }
 ]

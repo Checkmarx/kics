@@ -2,18 +2,6 @@
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
     "severity": "MEDIUM",
-    "line": 105,
-    "filename": "positive2.json",
-    "resourceType": "AWS::EC2::NetworkAclEntry",
-    "resourceName": "OutboundTests",
-    "searchKey": "Resources.OutboundTests.Properties.PortRange",
-    "searchValue": "",
-    "expectedValue": "'Resources.OutboundTests.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.OutboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
-  },
-  {
-    "queryName": "EC2 Network ACL Overlapping Ports",
-    "severity": "MEDIUM",
     "line": 18,
     "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::NetworkAclEntry",
@@ -22,6 +10,30 @@
     "searchValue": "",
     "expectedValue": "'Resources.InboundRule.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
     "actualValue": "'Resources.InboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+  },
+  {
+    "queryName": "EC2 Network ACL Overlapping Ports",
+    "severity": "MEDIUM",
+    "line": 30,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
+    "actualValue": "'Resources.OutboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+  },
+  {
+    "queryName": "EC2 Network ACL Overlapping Ports",
+    "severity": "MEDIUM",
+    "line": 42,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundTests",
+    "searchKey": "Resources.OutboundTests.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundTests.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
+    "actualValue": "'Resources.OutboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -50,68 +62,8 @@
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
     "severity": "MEDIUM",
-    "line": 42,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::NetworkAclEntry",
-    "resourceName": "OutboundTests",
-    "searchKey": "Resources.OutboundTests.Properties.PortRange",
-    "searchValue": "",
-    "expectedValue": "'Resources.OutboundTests.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.OutboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
-  },
-  {
-    "queryName": "EC2 Network ACL Overlapping Ports",
-    "severity": "MEDIUM",
-    "line": 73,
-    "filename": "positive2.json",
-    "resourceType": "AWS::EC2::NetworkAclEntry",
-    "resourceName": "InboundRule",
-    "searchKey": "Resources.InboundRule.Properties.PortRange",
-    "searchValue": "",
-    "expectedValue": "'Resources.InboundRule.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.InboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
-  },
-  {
-    "queryName": "EC2 Network ACL Overlapping Ports",
-    "severity": "MEDIUM",
-    "line": 116,
-    "filename": "positive2.json",
-    "resourceType": "AWS::EC2::NetworkAclEntry",
-    "resourceName": "InboundTests",
-    "searchKey": "Resources.InboundTests.Properties.PortRange",
-    "searchValue": "",
-    "expectedValue": "'Resources.InboundTests.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.InboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
-  },
-  {
-    "queryName": "EC2 Network ACL Overlapping Ports",
-    "severity": "MEDIUM",
     "line": 90,
     "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::NetworkAclEntry",
-    "resourceName": "EqualMatch",
-    "searchKey": "Resources.EqualMatch.Properties.PortRange",
-    "searchValue": "",
-    "expectedValue": "'Resources.EqualMatch.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.EqualMatch.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
-  },
-  {
-    "queryName": "EC2 Network ACL Overlapping Ports",
-    "severity": "MEDIUM",
-    "line": 30,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::NetworkAclEntry",
-    "resourceName": "OutboundRule",
-    "searchKey": "Resources.OutboundRule.Properties.PortRange",
-    "searchValue": "",
-    "expectedValue": "'Resources.OutboundRule.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.OutboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
-  },
-  {
-    "queryName": "EC2 Network ACL Overlapping Ports",
-    "severity": "MEDIUM",
-    "line": 38,
-    "filename": "positive2.json",
     "resourceType": "AWS::EC2::NetworkAclEntry",
     "resourceName": "EqualMatch",
     "searchKey": "Resources.EqualMatch.Properties.PortRange",
@@ -134,6 +86,30 @@
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
     "severity": "MEDIUM",
+    "line": 38,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "EqualMatch",
+    "searchKey": "Resources.EqualMatch.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "'Resources.EqualMatch.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
+    "actualValue": "'Resources.EqualMatch.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+  },
+  {
+    "queryName": "EC2 Network ACL Overlapping Ports",
+    "severity": "MEDIUM",
+    "line": 73,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
+    "actualValue": "'Resources.InboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+  },
+  {
+    "queryName": "EC2 Network ACL Overlapping Ports",
+    "severity": "MEDIUM",
     "line": 82,
     "filename": "positive2.json",
     "resourceType": "AWS::EC2::NetworkAclEntry",
@@ -142,5 +118,29 @@
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
     "actualValue": "'Resources.OutboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+  },
+  {
+    "queryName": "EC2 Network ACL Overlapping Ports",
+    "severity": "MEDIUM",
+    "line": 105,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundTests",
+    "searchKey": "Resources.OutboundTests.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundTests.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
+    "actualValue": "'Resources.OutboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+  },
+  {
+    "queryName": "EC2 Network ACL Overlapping Ports",
+    "severity": "MEDIUM",
+    "line": 116,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundTests",
+    "searchKey": "Resources.InboundTests.Properties.PortRange",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundTests.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
+    "actualValue": "'Resources.InboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
   }
 ]

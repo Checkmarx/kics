@@ -14,18 +14,6 @@
   {
     "queryName": "CloudTrail Log Files S3 Bucket with Logging Disabled",
     "severity": "MEDIUM",
-    "line": 21,
-    "filename": "positive3.tf",
-    "resourceType": "aws_s3_bucket",
-    "resourceName": "my-tf-example-bucket",
-    "searchKey": "aws_s3_bucket[bb]",
-    "searchValue": "",
-    "expectedValue": "aws_s3_bucket[bb] to have 'logging' defined",
-    "actualValue": "aws_s3_bucket[bb] does not have 'logging' defined"
-  },
-  {
-    "queryName": "CloudTrail Log Files S3 Bucket with Logging Disabled",
-    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive2.tf",
     "resourceType": "n/a",
@@ -34,5 +22,17 @@
     "searchValue": "",
     "expectedValue": "'logging' should be defined",
     "actualValue": "'logging' is undefined"
+  },
+  {
+    "queryName": "CloudTrail Log Files S3 Bucket with Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive3.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-example-bucket",
+    "searchKey": "aws_s3_bucket[bb]",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket[bb] to have 'logging' defined",
+    "actualValue": "aws_s3_bucket[bb] does not have 'logging' defined"
   }
 ]

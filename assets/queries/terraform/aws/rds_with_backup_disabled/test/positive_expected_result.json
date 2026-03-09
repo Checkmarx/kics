@@ -2,14 +2,14 @@
   {
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive3.tf",
+    "line": 12,
+    "filename": "positive1.tf",
     "resourceType": "aws_db_instance",
     "resourceName": "mydb",
-    "searchKey": "aws_db_instance[positive1]",
+    "searchKey": "aws_db_instance[positive1].backup_retention_period",
     "searchValue": "",
-    "expectedValue": "'backup_retention_period' should be defined, and bigger than '0'",
-    "actualValue": "'backup_retention_period' is not defined"
+    "expectedValue": "'backup_retention_period' should not equal '0'",
+    "actualValue": "'backup_retention_period' is equal '0'"
   },
   {
     "queryName": "RDS With Backup Disabled",
@@ -27,10 +27,10 @@
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive4.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[db]",
+    "filename": "positive3.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1]",
     "searchValue": "",
     "expectedValue": "'backup_retention_period' should be defined, and bigger than '0'",
     "actualValue": "'backup_retention_period' is not defined"
@@ -38,13 +38,13 @@
   {
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive1.tf",
-    "resourceType": "aws_db_instance",
-    "resourceName": "mydb",
-    "searchKey": "aws_db_instance[positive1].backup_retention_period",
+    "line": 1,
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db]",
     "searchValue": "",
-    "expectedValue": "'backup_retention_period' should not equal '0'",
-    "actualValue": "'backup_retention_period' is equal '0'"
+    "expectedValue": "'backup_retention_period' should be defined, and bigger than '0'",
+    "actualValue": "'backup_retention_period' is not defined"
   }
 ]

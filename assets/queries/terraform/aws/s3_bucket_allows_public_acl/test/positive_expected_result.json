@@ -26,18 +26,6 @@
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive3.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[s3_bucket]",
-    "searchValue": "",
-    "expectedValue": "'block_public_acls' should equal 'true'",
-    "actualValue": "'block_public_acls' is missing"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public ACL",
-    "severity": "MEDIUM",
     "line": 8,
     "filename": "positive2.tf",
     "resourceType": "n/a",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "'block_public_acls' should equal 'true'",
     "actualValue": "'block_public_acls' is equal 'false'"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket]",
+    "searchValue": "",
+    "expectedValue": "'block_public_acls' should equal 'true'",
+    "actualValue": "'block_public_acls' is missing"
   }
 ]

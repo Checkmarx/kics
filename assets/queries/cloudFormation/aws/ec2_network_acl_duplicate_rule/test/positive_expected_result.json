@@ -2,14 +2,14 @@
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
-    "line": 39,
+    "line": 12,
     "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::NetworkAclEntry",
-    "resourceName": "InboundRule2",
-    "searchKey": "Resources.InboundRule2.Properties.RuleNumber",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.RuleNumber",
     "searchValue": "",
-    "expectedValue": "'Resources.InboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL"
+    "expectedValue": "'Resources.InboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule' has the same rule number as other entry for the same NetworkACL"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
@@ -22,6 +22,18 @@
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
     "actualValue": "'Resources.OutboundRule' has the same rule number as other entry for the same NetworkACL"
+  },
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "INFO",
+    "line": 39,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule2",
+    "searchKey": "Resources.InboundRule2.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
@@ -50,18 +62,6 @@
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
-    "line": 57,
-    "filename": "positive2.json",
-    "resourceType": "AWS::EC2::NetworkAclEntry",
-    "resourceName": "InboundRule2",
-    "searchKey": "Resources.InboundRule2.Properties.RuleNumber",
-    "searchValue": "",
-    "expectedValue": "'Resources.InboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL"
-  },
-  {
-    "queryName": "EC2 Network ACL Duplicate Rule",
-    "severity": "INFO",
     "line": 33,
     "filename": "positive2.json",
     "resourceType": "AWS::EC2::NetworkAclEntry",
@@ -74,6 +74,18 @@
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
+    "line": 57,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule2",
+    "searchKey": "Resources.InboundRule2.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL"
+  },
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "INFO",
     "line": 71,
     "filename": "positive2.json",
     "resourceType": "AWS::EC2::NetworkAclEntry",
@@ -82,17 +94,5 @@
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
     "actualValue": "'Resources.OutboundRule2' has the same rule number as other entry for the same NetworkACL"
-  },
-  {
-    "queryName": "EC2 Network ACL Duplicate Rule",
-    "severity": "INFO",
-    "line": 12,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::NetworkAclEntry",
-    "resourceName": "InboundRule",
-    "searchKey": "Resources.InboundRule.Properties.RuleNumber",
-    "searchValue": "",
-    "expectedValue": "'Resources.InboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.InboundRule' has the same rule number as other entry for the same NetworkACL"
   }
 ]

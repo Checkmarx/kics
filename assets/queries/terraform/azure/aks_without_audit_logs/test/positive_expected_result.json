@@ -14,42 +14,6 @@
   {
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
-    "line": 34,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_monitor_diagnostic_setting",
-    "resourceName": "myAKSClusterLogs",
-    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2].log[0].enabled",
-    "searchValue": "",
-    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'",
-    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' has the 'enabled' field set to 'false' instead of 'true'"
-  },
-  {
-    "queryName": "Beta - AKS Without Audit Logs",
-    "severity": "MEDIUM",
-    "line": 39,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_monitor_diagnostic_setting",
-    "resourceName": "myAKSClusterLogs",
-    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2].log[1].enabled",
-    "searchValue": "",
-    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'",
-    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' has the 'enabled' field set to 'false' instead of 'true'"
-  },
-  {
-    "queryName": "Beta - AKS Without Audit Logs",
-    "severity": "MEDIUM",
-    "line": 38,
-    "filename": "positive2.tf",
-    "resourceType": "azurerm_monitor_diagnostic_setting",
-    "resourceName": "myAKSClusterLogs",
-    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[1].category",
-    "searchValue": "",
-    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[1].category' should be defined to 'kube-audit' or 'kube-audit-admin' and 'enabled' field set to 'true'",
-    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[1].category' is not defined to 'kube-audit' or 'kube-audit-admin'"
-  },
-  {
-    "queryName": "Beta - AKS Without Audit Logs",
-    "severity": "MEDIUM",
     "line": 31,
     "filename": "positive1.tf",
     "resourceType": "azurerm_monitor_diagnostic_setting",
@@ -74,18 +38,6 @@
   {
     "queryName": "Beta - AKS Without Audit Logs",
     "severity": "MEDIUM",
-    "line": 16,
-    "filename": "positive3.tf",
-    "resourceType": "azurerm_monitor_diagnostic_setting",
-    "resourceName": "myAKSClusterLogs",
-    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_1].log.enabled",
-    "searchValue": "",
-    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_1]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'",
-    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_1]' has the 'enabled' field set to 'false' instead of 'true'"
-  },
-  {
-    "queryName": "Beta - AKS Without Audit Logs",
-    "severity": "MEDIUM",
     "line": 15,
     "filename": "positive2.tf",
     "resourceType": "azurerm_monitor_diagnostic_setting",
@@ -106,5 +58,53 @@
     "searchValue": "",
     "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[0].category' should be defined to 'kube-audit' or 'kube-audit-admin' and 'enabled' field set to 'true'",
     "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[0].category' is not defined to 'kube-audit' or 'kube-audit-admin'"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 38,
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[1].category",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[1].category' should be defined to 'kube-audit' or 'kube-audit-admin' and 'enabled' field set to 'true'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos2_2].log[1].category' is not defined to 'kube-audit' or 'kube-audit-admin'"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_1].log.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_1]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_1]' has the 'enabled' field set to 'false' instead of 'true'"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 34,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2].log[0].enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' has the 'enabled' field set to 'false' instead of 'true'"
+  },
+  {
+    "queryName": "Beta - AKS Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 39,
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "myAKSClusterLogs",
+    "searchKey": "azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2].log[1].enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' should enable audit logging through a 'azurerm_monitor_diagnostic_setting'",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[aks_diagnostics_pos3_2]' has the 'enabled' field set to 'false' instead of 'true'"
   }
 ]

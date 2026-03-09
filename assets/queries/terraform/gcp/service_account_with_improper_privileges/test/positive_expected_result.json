@@ -2,6 +2,42 @@
   {
     "queryName": "Service Account with Improper Privileges",
     "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive1.tf",
+    "resourceType": "google_iam_policy",
+    "resourceName": "admin",
+    "searchKey": "google_iam_policy[admin].binding.role",
+    "searchValue": "",
+    "expectedValue": "google_iam_policy[admin].binding.role should not have admin, editor, owner, or write privileges for service account member",
+    "actualValue": "google_iam_policy[admin].binding.role has admin, editor, owner, or write privilege for service account member"
+  },
+  {
+    "queryName": "Service Account with Improper Privileges",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive2.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "project1",
+    "searchKey": "google_project_iam_binding[project1].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[project1].role should not have admin, editor, owner, or write privileges for service account member",
+    "actualValue": "google_project_iam_binding[project1].role has admin, editor, owner, or write privilege for service account member"
+  },
+  {
+    "queryName": "Service Account with Improper Privileges",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive2.tf",
+    "resourceType": "google_project_iam_member",
+    "resourceName": "project2",
+    "searchKey": "google_project_iam_member[project2].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_member[project2].role should not have admin, editor, owner, or write privileges for service account member",
+    "actualValue": "google_project_iam_member[project2].role has admin, editor, owner, or write privilege for service account member"
+  },
+  {
+    "queryName": "Service Account with Improper Privileges",
+    "severity": "MEDIUM",
     "line": 10,
     "filename": "positive3.tf",
     "resourceType": "google_iam_policy",
@@ -34,41 +70,5 @@
     "searchValue": "",
     "expectedValue": "google_iam_policy[admin].binding[1].role should not have admin, editor, owner, or write privileges for service account member",
     "actualValue": "google_iam_policy[admin].binding[1].role has admin, editor, owner, or write privilege for service account member"
-  },
-  {
-    "queryName": "Service Account with Improper Privileges",
-    "severity": "MEDIUM",
-    "line": 3,
-    "filename": "positive2.tf",
-    "resourceType": "google_project_iam_binding",
-    "resourceName": "project1",
-    "searchKey": "google_project_iam_binding[project1].role",
-    "searchValue": "",
-    "expectedValue": "google_project_iam_binding[project1].role should not have admin, editor, owner, or write privileges for service account member",
-    "actualValue": "google_project_iam_binding[project1].role has admin, editor, owner, or write privilege for service account member"
-  },
-  {
-    "queryName": "Service Account with Improper Privileges",
-    "severity": "MEDIUM",
-    "line": 18,
-    "filename": "positive2.tf",
-    "resourceType": "google_project_iam_member",
-    "resourceName": "project2",
-    "searchKey": "google_project_iam_member[project2].role",
-    "searchValue": "",
-    "expectedValue": "google_project_iam_member[project2].role should not have admin, editor, owner, or write privileges for service account member",
-    "actualValue": "google_project_iam_member[project2].role has admin, editor, owner, or write privilege for service account member"
-  },
-  {
-    "queryName": "Service Account with Improper Privileges",
-    "severity": "MEDIUM",
-    "line": 3,
-    "filename": "positive1.tf",
-    "resourceType": "google_iam_policy",
-    "resourceName": "admin",
-    "searchKey": "google_iam_policy[admin].binding.role",
-    "searchValue": "",
-    "expectedValue": "google_iam_policy[admin].binding.role should not have admin, editor, owner, or write privileges for service account member",
-    "actualValue": "google_iam_policy[admin].binding.role has admin, editor, owner, or write privilege for service account member"
   }
 ]

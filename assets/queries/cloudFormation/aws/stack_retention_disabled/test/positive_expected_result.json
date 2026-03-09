@@ -2,18 +2,6 @@
   {
     "queryName": "Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 22,
-    "filename": "positive2.json",
-    "resourceType": "AWS::CloudFormation::StackSet",
-    "resourceName": "some_stack_name",
-    "searchKey": "Resources.stackset9.Properties.AutoDeployment",
-    "searchValue": "",
-    "expectedValue": "Resources.stackset9.Properties.AutoDeployment.RetainStacksOnAccountRemoval should be set",
-    "actualValue": "Resources.stackset9.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined"
-  },
-  {
-    "queryName": "Stack Retention Disabled",
-    "severity": "MEDIUM",
     "line": 11,
     "filename": "positive1.yaml",
     "resourceType": "AWS::CloudFormation::StackSet",
@@ -26,6 +14,30 @@
   {
     "queryName": "Stack Retention Disabled",
     "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudFormation::StackSet",
+    "resourceName": "some_stack_name",
+    "searchKey": "Resources.stackset4.Properties.AutoDeployment",
+    "searchValue": "",
+    "expectedValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval should be set",
+    "actualValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudFormation::StackSet",
+    "resourceName": "some_stack_name",
+    "searchKey": "Resources.stackset5.Properties.AutoDeployment.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.stackset5.Properties.AutoDeployment.Enabled is true",
+    "actualValue": "Resources.stackset5.Properties.AutoDeployment.Enabled is false"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
     "line": 35,
     "filename": "positive1.yaml",
     "resourceType": "AWS::CloudFormation::StackSet",
@@ -38,38 +50,38 @@
   {
     "queryName": "Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 18,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::CloudFormation::StackSet",
-    "resourceName": "some_stack_name",
-    "searchKey": "Resources.stackset4.Properties.AutoDeployment",
-    "searchValue": "",
-    "expectedValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval should be set",
-    "actualValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined"
-  },
-  {
-    "queryName": "Stack Retention Disabled",
-    "severity": "MEDIUM",
-    "line": 35,
-    "filename": "positive3.yaml",
-    "resourceType": "AWS::CloudFormation::StackSet",
-    "resourceName": "some_stack_name",
-    "searchKey": "Resources.stackset6.Properties.AutoDeployment",
-    "searchValue": "",
-    "expectedValue": "Resources.stackset6.Properties.AutoDeployment.Enabled should be set",
-    "actualValue": "Resources.stackset6.Properties.AutoDeployment.Enabled is undefined"
-  },
-  {
-    "queryName": "Stack Retention Disabled",
-    "severity": "MEDIUM",
     "line": 39,
-    "filename": "positive3.yaml",
+    "filename": "positive1.yaml",
     "resourceType": "AWS::CloudFormation::StackSet",
     "resourceName": "some_stack_name",
     "searchKey": "Resources.stackset7.Properties",
     "searchValue": "",
     "expectedValue": "Resources.stackset7.Properties.AutoDeployment should be set",
     "actualValue": "Resources.stackset7.Properties.AutoDeployment is undefined"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudFormation::StackSet",
+    "resourceName": "some_stack_name",
+    "searchKey": "Resources.stackset8.Properties.AutoDeployment.RetainStacksOnAccountRemoval",
+    "searchValue": "",
+    "expectedValue": "Resources.stackset8.Properties.AutoDeployment.RetainStacksOnAccountRemoval is true",
+    "actualValue": "Resources.stackset8.Properties.AutoDeployment.RetainStacksOnAccountRemoval is false"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudFormation::StackSet",
+    "resourceName": "some_stack_name",
+    "searchKey": "Resources.stackset9.Properties.AutoDeployment",
+    "searchValue": "",
+    "expectedValue": "Resources.stackset9.Properties.AutoDeployment.RetainStacksOnAccountRemoval should be set",
+    "actualValue": "Resources.stackset9.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -86,6 +98,18 @@
   {
     "queryName": "Stack Retention Disabled",
     "severity": "MEDIUM",
+    "line": 45,
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudFormation::StackSet",
+    "resourceName": "some_stack_name",
+    "searchKey": "Resources.stackset11.Properties.AutoDeployment",
+    "searchValue": "",
+    "expectedValue": "Resources.stackset11.Properties.AutoDeployment.Enabled should be set",
+    "actualValue": "Resources.stackset11.Properties.AutoDeployment.Enabled is undefined"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
     "line": 52,
     "filename": "positive2.json",
     "resourceType": "AWS::CloudFormation::StackSet",
@@ -94,30 +118,6 @@
     "searchValue": "",
     "expectedValue": "Resources.stackset12.Properties.AutoDeployment should be set",
     "actualValue": "Resources.stackset12.Properties.AutoDeployment is undefined"
-  },
-  {
-    "queryName": "Stack Retention Disabled",
-    "severity": "MEDIUM",
-    "line": 27,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::CloudFormation::StackSet",
-    "resourceName": "some_stack_name",
-    "searchKey": "Resources.stackset5.Properties.AutoDeployment.Enabled",
-    "searchValue": "",
-    "expectedValue": "Resources.stackset5.Properties.AutoDeployment.Enabled is true",
-    "actualValue": "Resources.stackset5.Properties.AutoDeployment.Enabled is false"
-  },
-  {
-    "queryName": "Stack Retention Disabled",
-    "severity": "MEDIUM",
-    "line": 18,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::CloudFormation::StackSet",
-    "resourceName": "some_stack_name",
-    "searchKey": "Resources.stackset4.Properties.AutoDeployment",
-    "searchValue": "",
-    "expectedValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval should be set",
-    "actualValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -134,26 +134,14 @@
   {
     "queryName": "Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 45,
-    "filename": "positive2.json",
+    "line": 18,
+    "filename": "positive3.yaml",
     "resourceType": "AWS::CloudFormation::StackSet",
     "resourceName": "some_stack_name",
-    "searchKey": "Resources.stackset11.Properties.AutoDeployment",
+    "searchKey": "Resources.stackset4.Properties.AutoDeployment",
     "searchValue": "",
-    "expectedValue": "Resources.stackset11.Properties.AutoDeployment.Enabled should be set",
-    "actualValue": "Resources.stackset11.Properties.AutoDeployment.Enabled is undefined"
-  },
-  {
-    "queryName": "Stack Retention Disabled",
-    "severity": "MEDIUM",
-    "line": 39,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::CloudFormation::StackSet",
-    "resourceName": "some_stack_name",
-    "searchKey": "Resources.stackset7.Properties",
-    "searchValue": "",
-    "expectedValue": "Resources.stackset7.Properties.AutoDeployment should be set",
-    "actualValue": "Resources.stackset7.Properties.AutoDeployment is undefined"
+    "expectedValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval should be set",
+    "actualValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -170,13 +158,25 @@
   {
     "queryName": "Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive2.json",
+    "line": 35,
+    "filename": "positive3.yaml",
     "resourceType": "AWS::CloudFormation::StackSet",
     "resourceName": "some_stack_name",
-    "searchKey": "Resources.stackset8.Properties.AutoDeployment.RetainStacksOnAccountRemoval",
+    "searchKey": "Resources.stackset6.Properties.AutoDeployment",
     "searchValue": "",
-    "expectedValue": "Resources.stackset8.Properties.AutoDeployment.RetainStacksOnAccountRemoval is true",
-    "actualValue": "Resources.stackset8.Properties.AutoDeployment.RetainStacksOnAccountRemoval is false"
+    "expectedValue": "Resources.stackset6.Properties.AutoDeployment.Enabled should be set",
+    "actualValue": "Resources.stackset6.Properties.AutoDeployment.Enabled is undefined"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 39,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::CloudFormation::StackSet",
+    "resourceName": "some_stack_name",
+    "searchKey": "Resources.stackset7.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.stackset7.Properties.AutoDeployment should be set",
+    "actualValue": "Resources.stackset7.Properties.AutoDeployment is undefined"
   }
 ]

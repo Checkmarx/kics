@@ -2,6 +2,30 @@
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
+    "line": 20,
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "excess_policy",
+    "searchKey": "aws_iam_user_policy[positive3].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should not equal '*'",
+    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'"
+  },
+  {
+    "queryName": "IAM Policy Grants Full Permissions",
+    "severity": "HIGH",
+    "line": 3,
+    "filename": "positive2.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "s3-permission",
+    "searchKey": "aws_iam_policy[s3-permission].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should not equal '*'",
+    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'"
+  },
+  {
+    "queryName": "IAM Policy Grants Full Permissions",
+    "severity": "HIGH",
     "line": 12,
     "filename": "positive3.tf",
     "resourceType": "aws_iam_policy_document",
@@ -34,29 +58,5 @@
     "searchValue": "",
     "expectedValue": "'statement.resources' and 'statement.actions' should not contain '*'",
     "actualValue": "'statement.resources' and 'statement.actions' contain '*'"
-  },
-  {
-    "queryName": "IAM Policy Grants Full Permissions",
-    "severity": "HIGH",
-    "line": 3,
-    "filename": "positive2.tf",
-    "resourceType": "aws_iam_policy",
-    "resourceName": "s3-permission",
-    "searchKey": "aws_iam_policy[s3-permission].policy",
-    "searchValue": "",
-    "expectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should not equal '*'",
-    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'"
-  },
-  {
-    "queryName": "IAM Policy Grants Full Permissions",
-    "severity": "HIGH",
-    "line": 20,
-    "filename": "positive1.tf",
-    "resourceType": "aws_iam_user_policy",
-    "resourceName": "excess_policy",
-    "searchKey": "aws_iam_user_policy[positive3].policy",
-    "searchValue": "",
-    "expectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should not equal '*'",
-    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'"
   }
 ]

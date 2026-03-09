@@ -2,11 +2,11 @@
   {
     "queryName": "AKS RBAC Disabled",
     "severity": "MEDIUM",
-    "line": 40,
+    "line": 13,
     "filename": "positive.yaml",
     "resourceType": "AKSCluster",
     "resourceName": "anais-crossplane-demo",
-    "searchKey": "spec.resources.base.metadata.name={{anais-crossplane-demo}}.spec.disableRBAC",
+    "searchKey": "metadata.name={{anais-crossplane-demo}}.spec.disableRBAC",
     "searchValue": "",
     "expectedValue": "disableRBAC should be set to false",
     "actualValue": "disableRBAC is set to true"
@@ -14,11 +14,11 @@
   {
     "queryName": "AKS RBAC Disabled",
     "severity": "MEDIUM",
-    "line": 13,
+    "line": 40,
     "filename": "positive.yaml",
     "resourceType": "AKSCluster",
     "resourceName": "anais-crossplane-demo",
-    "searchKey": "metadata.name={{anais-crossplane-demo}}.spec.disableRBAC",
+    "searchKey": "spec.resources.base.metadata.name={{anais-crossplane-demo}}.spec.disableRBAC",
     "searchValue": "",
     "expectedValue": "disableRBAC should be set to false",
     "actualValue": "disableRBAC is set to true"

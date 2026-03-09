@@ -14,6 +14,30 @@
   {
     "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
     "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive2.tf",
+    "resourceType": "google_compute_network",
+    "resourceName": "legacy-network",
+    "searchKey": "google_compute_network[legacy_network].auto_create_subnetworks",
+    "searchValue": "",
+    "expectedValue": "'auto_create_subnetworks' should be defined to false",
+    "actualValue": "'auto_create_subnetworks' is defined to true"
+  },
+  {
+    "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive3.tf",
+    "resourceType": "google_compute_network",
+    "resourceName": "legacy-network",
+    "searchKey": "google_compute_network[legacy_network].auto_create_subnetworks",
+    "searchValue": "",
+    "expectedValue": "'auto_create_subnetworks' should be defined to false",
+    "actualValue": "'auto_create_subnetworks' is defined to true"
+  },
+  {
+    "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
+    "severity": "MEDIUM",
     "line": 7,
     "filename": "positive4.tf",
     "resourceType": "google_compute_network",
@@ -38,18 +62,6 @@
   {
     "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
     "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive3.tf",
-    "resourceType": "google_compute_network",
-    "resourceName": "legacy-network",
-    "searchKey": "google_compute_network[legacy_network].auto_create_subnetworks",
-    "searchValue": "",
-    "expectedValue": "'auto_create_subnetworks' should be defined to false",
-    "actualValue": "'auto_create_subnetworks' is defined to true"
-  },
-  {
-    "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
-    "severity": "MEDIUM",
     "line": 12,
     "filename": "positive6.tf",
     "resourceType": "google_compute_network",
@@ -58,17 +70,5 @@
     "searchValue": "",
     "expectedValue": "'auto_create_subnetworks' should be defined to false",
     "actualValue": "'auto_create_subnetworks' is not defined"
-  },
-  {
-    "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
-    "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive2.tf",
-    "resourceType": "google_compute_network",
-    "resourceName": "legacy-network",
-    "searchKey": "google_compute_network[legacy_network].auto_create_subnetworks",
-    "searchValue": "",
-    "expectedValue": "'auto_create_subnetworks' should be defined to false",
-    "actualValue": "'auto_create_subnetworks' is defined to true"
   }
 ]

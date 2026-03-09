@@ -2,26 +2,14 @@
   {
     "queryName": "Pod or Container Without Security Context",
     "severity": "LOW",
-    "line": 89,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod",
-    "resourceName": "positive2",
-    "searchKey": "kubernetes_pod[positive2].spec.container",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive2].spec.container.security_context should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.container.security_context is undefined"
-  },
-  {
-    "queryName": "Pod or Container Without Security Context",
-    "severity": "LOW",
-    "line": 88,
+    "line": 6,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod",
     "resourceName": "terraform-example",
-    "searchKey": "kubernetes_pod[positive2].spec",
+    "searchKey": "kubernetes_pod[positive1].spec",
     "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive2].spec.security_context should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.security_context is undefined"
+    "expectedValue": "kubernetes_pod[positive1].spec.security_context should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.security_context is undefined"
   },
   {
     "queryName": "Pod or Container Without Security Context",
@@ -50,13 +38,25 @@
   {
     "queryName": "Pod or Container Without Security Context",
     "severity": "LOW",
-    "line": 6,
+    "line": 88,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod",
     "resourceName": "terraform-example",
-    "searchKey": "kubernetes_pod[positive1].spec",
+    "searchKey": "kubernetes_pod[positive2].spec",
     "searchValue": "",
-    "expectedValue": "kubernetes_pod[positive1].spec.security_context should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.security_context is undefined"
+    "expectedValue": "kubernetes_pod[positive2].spec.security_context should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.security_context is undefined"
+  },
+  {
+    "queryName": "Pod or Container Without Security Context",
+    "severity": "LOW",
+    "line": 89,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.security_context should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.security_context is undefined"
   }
 ]

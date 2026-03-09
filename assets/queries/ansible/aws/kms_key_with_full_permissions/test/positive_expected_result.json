@@ -2,18 +2,6 @@
   {
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
-    "line": 3,
-    "filename": "positive2.yaml",
-    "resourceType": "community.aws.aws_kms",
-    "resourceName": "Update IAM policy on an existing KMS key2",
-    "searchKey": "name={{Update IAM policy on an existing KMS key2}}.{{community.aws.aws_kms}}",
-    "searchValue": "",
-    "expectedValue": "'policy' should be undefined or null",
-    "actualValue": "'policy' is defined and not null"
-  },
-  {
-    "queryName": "KMS Key With Vulnerable Policy",
-    "severity": "HIGH",
     "line": 5,
     "filename": "positive.yaml",
     "resourceType": "community.aws.aws_kms",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "aws_kms.policy should not have wildcard in 'Action' and 'Principal'",
     "actualValue": "aws_kms.policy has wildcard in 'Action' or 'Principal'"
+  },
+  {
+    "queryName": "KMS Key With Vulnerable Policy",
+    "severity": "HIGH",
+    "line": 3,
+    "filename": "positive2.yaml",
+    "resourceType": "community.aws.aws_kms",
+    "resourceName": "Update IAM policy on an existing KMS key2",
+    "searchKey": "name={{Update IAM policy on an existing KMS key2}}.{{community.aws.aws_kms}}",
+    "searchValue": "",
+    "expectedValue": "'policy' should be undefined or null",
+    "actualValue": "'policy' is defined and not null"
   }
 ]

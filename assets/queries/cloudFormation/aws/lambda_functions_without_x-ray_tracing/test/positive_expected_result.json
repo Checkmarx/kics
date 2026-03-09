@@ -2,14 +2,14 @@
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
     "severity": "LOW",
-    "line": 4,
-    "filename": "positive4.json",
+    "line": 37,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::Lambda::Function",
-    "resourceName": "Function",
-    "searchKey": "Resources.Function.Properties",
+    "resourceName": "primer",
+    "searchKey": "Resources.primer.Properties.TracingConfig.Mode",
     "searchValue": "",
-    "expectedValue": "Property 'TracingConfig' should be defined",
-    "actualValue": "Property 'TracingConfig' is undefined"
+    "expectedValue": "TracingConfig.Mode should be set to 'Active'",
+    "actualValue": "TracingConfig.Mode is set to 'PassThrough'"
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
@@ -26,8 +26,8 @@
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
     "severity": "LOW",
-    "line": 37,
-    "filename": "positive1.yaml",
+    "line": 16,
+    "filename": "positive3.json",
     "resourceType": "AWS::Lambda::Function",
     "resourceName": "primer",
     "searchKey": "Resources.primer.Properties.TracingConfig.Mode",
@@ -38,13 +38,13 @@
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
     "severity": "LOW",
-    "line": 16,
-    "filename": "positive3.json",
+    "line": 4,
+    "filename": "positive4.json",
     "resourceType": "AWS::Lambda::Function",
-    "resourceName": "primer",
-    "searchKey": "Resources.primer.Properties.TracingConfig.Mode",
+    "resourceName": "Function",
+    "searchKey": "Resources.Function.Properties",
     "searchValue": "",
-    "expectedValue": "TracingConfig.Mode should be set to 'Active'",
-    "actualValue": "TracingConfig.Mode is set to 'PassThrough'"
+    "expectedValue": "Property 'TracingConfig' should be defined",
+    "actualValue": "Property 'TracingConfig' is undefined"
   }
 ]

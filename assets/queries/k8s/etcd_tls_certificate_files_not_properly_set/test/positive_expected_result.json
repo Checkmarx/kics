@@ -14,18 +14,6 @@
   {
     "queryName": "Etcd TLS Certificate Files Not Properly Set",
     "severity": "MEDIUM",
-    "line": 21,
-    "filename": "positive2.yaml",
-    "resourceType": "Deployment",
-    "resourceName": "app-etcd-deployment",
-    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
-    "searchValue": "Deployment--cert-file",
-    "expectedValue": "--cert-file flag should be defined",
-    "actualValue": "--cert-file flag is not defined"
-  },
-  {
-    "queryName": "Etcd TLS Certificate Files Not Properly Set",
-    "severity": "MEDIUM",
     "line": 46,
     "filename": "positive1.yaml",
     "resourceType": "Deployment",
@@ -34,5 +22,17 @@
     "searchValue": "Deployment--key-file",
     "expectedValue": "--key-file flag should be defined",
     "actualValue": "--key-file flag is not defined"
+  },
+  {
+    "queryName": "Etcd TLS Certificate Files Not Properly Set",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "app-etcd-deployment",
+    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "Deployment--cert-file",
+    "expectedValue": "--cert-file flag should be defined",
+    "actualValue": "--cert-file flag is not defined"
   }
 ]

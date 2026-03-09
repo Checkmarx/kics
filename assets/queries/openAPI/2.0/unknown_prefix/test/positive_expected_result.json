@@ -2,14 +2,14 @@
   {
     "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 24,
-    "filename": "positive4.yaml",
+    "line": 12,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "produces",
+    "searchKey": "paths.{{/}}.get.produces",
     "searchValue": "",
-    "expectedValue": "produces has only known prefixes",
-    "actualValue": "aplication/json on 'produces' is an unknown prefix"
+    "expectedValue": "paths.{{/}}.get.produces has only known prefixes",
+    "actualValue": "aplication/json on 'paths.{{/}}.get.produces' is an unknown prefix"
   },
   {
     "queryName": "Unknown Prefix (v2)",
@@ -26,8 +26,8 @@
   {
     "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 12,
-    "filename": "positive1.json",
+    "line": 10,
+    "filename": "positive3.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.produces",
@@ -38,13 +38,13 @@
   {
     "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
-    "line": 10,
-    "filename": "positive3.yaml",
+    "line": 24,
+    "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.produces",
+    "searchKey": "produces",
     "searchValue": "",
-    "expectedValue": "paths.{{/}}.get.produces has only known prefixes",
-    "actualValue": "aplication/json on 'paths.{{/}}.get.produces' is an unknown prefix"
+    "expectedValue": "produces has only known prefixes",
+    "actualValue": "aplication/json on 'produces' is an unknown prefix"
   }
 ]

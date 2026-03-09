@@ -2,26 +2,14 @@
   {
     "queryName": "CPU Requests Not Set",
     "severity": "LOW",
-    "line": 37,
+    "line": 10,
     "filename": "positive.yaml",
-    "resourceType": "Configuration",
-    "resourceName": "dummy-config",
-    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{log-aggregator}}.resources",
-    "searchValue": "Configuration",
-    "expectedValue": "spec.template.spec.containers.name=log-aggregator.resources should have requests defined",
-    "actualValue": "spec.template.spec.containers.name=log-aggregator.resources doesn't have requests defined"
-  },
-  {
-    "queryName": "CPU Requests Not Set",
-    "severity": "LOW",
-    "line": 30,
-    "filename": "positive.yaml",
-    "resourceType": "Configuration",
-    "resourceName": "dummy-config",
-    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{app}}.resources.requests",
-    "searchValue": "Configuration",
-    "expectedValue": "spec.template.spec.containers.name={{app}}.resources.requests should have CPU requests",
-    "actualValue": "spec.template.spec.containers.name={{app}}.resources.requests doesn't have CPU requests"
+    "resourceType": "Pod",
+    "resourceName": "frontend",
+    "searchKey": "metadata.name={{frontend}}.spec.containers.name={{app}}.resources.requests",
+    "searchValue": "Pod",
+    "expectedValue": "spec.containers.name={{app}}.resources.requests should have CPU requests",
+    "actualValue": "spec.containers.name={{app}}.resources.requests doesn't have CPU requests"
   },
   {
     "queryName": "CPU Requests Not Set",
@@ -38,13 +26,25 @@
   {
     "queryName": "CPU Requests Not Set",
     "severity": "LOW",
-    "line": 10,
+    "line": 30,
     "filename": "positive.yaml",
-    "resourceType": "Pod",
-    "resourceName": "frontend",
-    "searchKey": "metadata.name={{frontend}}.spec.containers.name={{app}}.resources.requests",
-    "searchValue": "Pod",
-    "expectedValue": "spec.containers.name={{app}}.resources.requests should have CPU requests",
-    "actualValue": "spec.containers.name={{app}}.resources.requests doesn't have CPU requests"
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{app}}.resources.requests",
+    "searchValue": "Configuration",
+    "expectedValue": "spec.template.spec.containers.name={{app}}.resources.requests should have CPU requests",
+    "actualValue": "spec.template.spec.containers.name={{app}}.resources.requests doesn't have CPU requests"
+  },
+  {
+    "queryName": "CPU Requests Not Set",
+    "severity": "LOW",
+    "line": 37,
+    "filename": "positive.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{log-aggregator}}.resources",
+    "searchValue": "Configuration",
+    "expectedValue": "spec.template.spec.containers.name=log-aggregator.resources should have requests defined",
+    "actualValue": "spec.template.spec.containers.name=log-aggregator.resources doesn't have requests defined"
   }
 ]

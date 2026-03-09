@@ -2,18 +2,6 @@
   {
     "queryName": "Tiller (Helm v2) Is Deployed",
     "severity": "HIGH",
-    "line": 200,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_deployment",
-    "resourceName": "example",
-    "searchKey": "kubernetes_deployment[example].spec.template.spec.container.image",
-    "searchValue": "",
-    "expectedValue": "kubernetes_deployment[example].spec.template.spec.container.image shouldn't have any Tiller containers",
-    "actualValue": "kubernetes_deployment[example].spec.template.spec.container.image contains a Tiller container"
-  },
-  {
-    "queryName": "Tiller (Helm v2) Is Deployed",
-    "severity": "HIGH",
     "line": 3,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod",
@@ -58,5 +46,17 @@
     "searchValue": "",
     "expectedValue": "kubernetes_deployment[example].spec.template.metadata should not refer to any Tiller resource",
     "actualValue": "kubernetes_deployment[example].spec.template.metadata does not refer to any Tiller resource"
+  },
+  {
+    "queryName": "Tiller (Helm v2) Is Deployed",
+    "severity": "HIGH",
+    "line": 200,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec.container.image",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example].spec.template.spec.container.image shouldn't have any Tiller containers",
+    "actualValue": "kubernetes_deployment[example].spec.template.spec.container.image contains a Tiller container"
   }
 ]

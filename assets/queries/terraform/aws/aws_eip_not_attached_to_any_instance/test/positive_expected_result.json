@@ -2,6 +2,18 @@
   {
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "ok_eip",
+    "searchKey": "aws_eip[ok_eip]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "EIP is missing domain field set to \"vpc\""
+  },
+  {
+    "queryName": "AWS EIP not attached to any instance",
+    "severity": "LOW",
     "line": 6,
     "filename": "positive2.tf",
     "resourceType": "aws_eip",
@@ -15,22 +27,10 @@
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 1,
-    "filename": "positive6.tf",
+    "filename": "positive3.tf",
     "resourceType": "aws_eip",
-    "resourceName": "ok_eip",
-    "searchKey": "aws_eip[ok_eip]",
-    "searchValue": "",
-    "expectedValue": "All EIPs should be attached",
-    "actualValue": "Vpc is not set to true"
-  },
-  {
-    "queryName": "AWS EIP not attached to any instance",
-    "severity": "LOW",
-    "line": 6,
-    "filename": "positive9.tf",
-    "resourceType": "aws_eip",
-    "resourceName": "web_eip",
-    "searchKey": "aws_eip[web_eip]",
+    "resourceName": "nat_eip",
+    "searchKey": "aws_eip[nat_eip]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
     "actualValue": "EIP is not attached"
@@ -43,30 +43,6 @@
     "resourceType": "aws_eip",
     "resourceName": "transfer_eip",
     "searchKey": "aws_eip[transfer_eip]",
-    "searchValue": "",
-    "expectedValue": "All EIPs should be attached",
-    "actualValue": "EIP is not attached"
-  },
-  {
-    "queryName": "AWS EIP not attached to any instance",
-    "severity": "LOW",
-    "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "aws_eip",
-    "resourceName": "ok_eip",
-    "searchKey": "aws_eip[ok_eip]",
-    "searchValue": "",
-    "expectedValue": "All EIPs should be attached",
-    "actualValue": "EIP is missing domain field set to \"vpc\""
-  },
-  {
-    "queryName": "AWS EIP not attached to any instance",
-    "severity": "LOW",
-    "line": 1,
-    "filename": "positive8.tf",
-    "resourceType": "aws_eip",
-    "resourceName": "eip_example",
-    "searchKey": "aws_eip[eip_example]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
     "actualValue": "EIP is not attached"
@@ -87,13 +63,13 @@
     "queryName": "AWS EIP not attached to any instance",
     "severity": "LOW",
     "line": 1,
-    "filename": "positive3.tf",
+    "filename": "positive6.tf",
     "resourceType": "aws_eip",
-    "resourceName": "nat_eip",
-    "searchKey": "aws_eip[nat_eip]",
+    "resourceName": "ok_eip",
+    "searchKey": "aws_eip[ok_eip]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
-    "actualValue": "EIP is not attached"
+    "actualValue": "Vpc is not set to true"
   },
   {
     "queryName": "AWS EIP not attached to any instance",
@@ -106,5 +82,29 @@
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
     "actualValue": "Domain is not set to \"vpc\""
+  },
+  {
+    "queryName": "AWS EIP not attached to any instance",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive8.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "eip_example",
+    "searchKey": "aws_eip[eip_example]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "EIP is not attached"
+  },
+  {
+    "queryName": "AWS EIP not attached to any instance",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive9.tf",
+    "resourceType": "aws_eip",
+    "resourceName": "web_eip",
+    "searchKey": "aws_eip[web_eip]",
+    "searchValue": "",
+    "expectedValue": "All EIPs should be attached",
+    "actualValue": "EIP is not attached"
   }
 ]

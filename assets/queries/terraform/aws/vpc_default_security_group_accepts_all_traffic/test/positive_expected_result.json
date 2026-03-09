@@ -2,6 +2,18 @@
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
     "severity": "HIGH",
+    "line": 8,
+    "filename": "positive1.tf",
+    "resourceType": "aws_default_security_group",
+    "resourceName": "default",
+    "searchKey": "aws_default_security_group[{{default}}].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_default_security_group[{{default}}] should not have 'ingress' defined",
+    "actualValue": "aws_default_security_group[{{default}}] has 'ingress' defined"
+  },
+  {
+    "queryName": "VPC Default Security Group Accepts All Traffic",
+    "severity": "HIGH",
     "line": 17,
     "filename": "positive1.tf",
     "resourceType": "aws_default_security_group",
@@ -15,25 +27,13 @@
     "queryName": "VPC Default Security Group Accepts All Traffic",
     "severity": "HIGH",
     "line": 8,
-    "filename": "positive1.tf",
-    "resourceType": "aws_default_security_group",
-    "resourceName": "default",
-    "searchKey": "aws_default_security_group[{{default}}].ingress",
-    "searchValue": "",
-    "expectedValue": "aws_default_security_group[{{default}}] should not have 'ingress' defined",
-    "actualValue": "aws_default_security_group[{{default}}] has 'ingress' defined"
-  },
-  {
-    "queryName": "VPC Default Security Group Accepts All Traffic",
-    "severity": "HIGH",
-    "line": 23,
     "filename": "positive2.tf",
     "resourceType": "aws_default_security_group",
     "resourceName": "default3",
-    "searchKey": "aws_default_security_group[{{default3}}].egress.cidr_blocks",
+    "searchKey": "aws_default_security_group[{{default3}}].ingress",
     "searchValue": "",
-    "expectedValue": "'egress' should be undefined",
-    "actualValue": "'egress' accepts all traffic"
+    "expectedValue": "aws_default_security_group[{{default3}}] should not have 'ingress' defined",
+    "actualValue": "aws_default_security_group[{{default3}}] has 'ingress' defined"
   },
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
@@ -62,13 +62,13 @@
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
     "severity": "HIGH",
-    "line": 8,
+    "line": 23,
     "filename": "positive2.tf",
     "resourceType": "aws_default_security_group",
     "resourceName": "default3",
-    "searchKey": "aws_default_security_group[{{default3}}].ingress",
+    "searchKey": "aws_default_security_group[{{default3}}].egress.cidr_blocks",
     "searchValue": "",
-    "expectedValue": "aws_default_security_group[{{default3}}] should not have 'ingress' defined",
-    "actualValue": "aws_default_security_group[{{default3}}] has 'ingress' defined"
+    "expectedValue": "'egress' should be undefined",
+    "actualValue": "'egress' accepts all traffic"
   }
 ]

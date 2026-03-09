@@ -2,8 +2,8 @@
   {
     "queryName": "Route53 Record Undefined",
     "severity": "HIGH",
-    "line": 5,
-    "filename": "positive2.json",
+    "line": 4,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::Route53::HostedZone",
     "resourceName": "HostedZone",
     "searchKey": "Resources.HostedZone",
@@ -14,8 +14,8 @@
   {
     "queryName": "Route53 Record Undefined",
     "severity": "HIGH",
-    "line": 4,
-    "filename": "positive1.yaml",
+    "line": 5,
+    "filename": "positive2.json",
     "resourceType": "AWS::Route53::HostedZone",
     "resourceName": "HostedZone",
     "searchKey": "Resources.HostedZone",

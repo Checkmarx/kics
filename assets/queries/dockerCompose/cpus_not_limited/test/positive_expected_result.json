@@ -2,6 +2,18 @@
   {
     "queryName": "Cpus Not Limited",
     "severity": "LOW",
+    "line": 9,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop.deploy.resources.limits",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources.limits.cpus' should be defined",
+    "actualValue": "'deploy.resources.limits.cpus' is not defined"
+  },
+  {
+    "queryName": "Cpus Not Limited",
+    "severity": "LOW",
     "line": 4,
     "filename": "positive2.yaml",
     "resourceType": "",
@@ -34,18 +46,6 @@
     "searchValue": "",
     "expectedValue": "'deploy.resources' should be defined",
     "actualValue": "'deploy.resources' is not defined"
-  },
-  {
-    "queryName": "Cpus Not Limited",
-    "severity": "LOW",
-    "line": 9,
-    "filename": "positive1.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "services.zapzop.deploy.resources.limits",
-    "searchValue": "",
-    "expectedValue": "'deploy.resources.limits.cpus' should be defined",
-    "actualValue": "'deploy.resources.limits.cpus' is not defined"
   },
   {
     "queryName": "Cpus Not Limited",

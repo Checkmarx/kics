@@ -2,11 +2,11 @@
   {
     "queryName": "Ansible Tower Exposed To Internet",
     "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive2.yaml",
+    "line": 1,
+    "filename": "positive1.ini",
     "resourceType": "n/a",
     "resourceName": "children",
-    "searchKey": "all.children.tower.hosts",
+    "searchKey": "[tower]",
     "searchValue": "",
     "expectedValue": "Ansible Tower IP should be private",
     "actualValue": "Ansible Tower IP is public"
@@ -14,11 +14,11 @@
   {
     "queryName": "Ansible Tower Exposed To Internet",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive1.ini",
+    "line": 24,
+    "filename": "positive2.yaml",
     "resourceType": "n/a",
     "resourceName": "children",
-    "searchKey": "[tower]",
+    "searchKey": "all.children.tower.hosts",
     "searchValue": "",
     "expectedValue": "Ansible Tower IP should be private",
     "actualValue": "Ansible Tower IP is public"

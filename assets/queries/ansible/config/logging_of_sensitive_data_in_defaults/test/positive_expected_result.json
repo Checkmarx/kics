@@ -2,18 +2,6 @@
   {
     "queryName": "Logging of Sensitive Data In Defaults",
     "severity": "LOW",
-    "line": 39,
-    "filename": "positive2.cfg",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "defaults.no_log",
-    "searchValue": "",
-    "expectedValue": "no_log should be set to 'true'",
-    "actualValue": "no_log is set to 'false'"
-  },
-  {
-    "queryName": "Logging of Sensitive Data In Defaults",
-    "severity": "LOW",
     "line": 1,
     "filename": "positive1.cfg",
     "resourceType": "n/a",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "no_log should be defined and set to 'true'",
     "actualValue": "no_log is not defined"
+  },
+  {
+    "queryName": "Logging of Sensitive Data In Defaults",
+    "severity": "LOW",
+    "line": 39,
+    "filename": "positive2.cfg",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "defaults.no_log",
+    "searchValue": "",
+    "expectedValue": "no_log should be set to 'true'",
+    "actualValue": "no_log is set to 'false'"
   }
 ]

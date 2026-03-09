@@ -14,18 +14,6 @@
   {
     "queryName": "DB Instance Storage Not Encrypted",
     "severity": "HIGH",
-    "line": 6,
-    "filename": "positive2.yaml",
-    "resourceType": "RDSInstance",
-    "resourceName": "rds5",
-    "searchKey": ".metadata.name={{rds5}}.spec.forProvider",
-    "searchValue": "",
-    "expectedValue": "storageEncrypted should be defined and set to true",
-    "actualValue": "storageEncrypted is not defined"
-  },
-  {
-    "queryName": "DB Instance Storage Not Encrypted",
-    "severity": "HIGH",
     "line": 63,
     "filename": "positive.yaml",
     "resourceType": "RDSInstance",
@@ -34,6 +22,18 @@
     "searchValue": "",
     "expectedValue": "storageEncrypted should be set to true",
     "actualValue": "storageEncrypted is set to false"
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive2.yaml",
+    "resourceType": "RDSInstance",
+    "resourceName": "rds5",
+    "searchKey": ".metadata.name={{rds5}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "storageEncrypted should be defined and set to true",
+    "actualValue": "storageEncrypted is not defined"
   },
   {
     "queryName": "DB Instance Storage Not Encrypted",

@@ -2,6 +2,18 @@
   {
     "queryName": "Output Without Description",
     "severity": "INFO",
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "output.{{cluster_name}}",
+    "searchValue": "",
+    "expectedValue": "'description' should be defined and not null",
+    "actualValue": "'description' is undefined or null"
+  },
+  {
+    "queryName": "Output Without Description",
+    "severity": "INFO",
     "line": 3,
     "filename": "positive2.tf",
     "resourceType": "n/a",
@@ -22,17 +34,5 @@
     "searchValue": "",
     "expectedValue": "'description' should not be empty",
     "actualValue": "'description' is empty"
-  },
-  {
-    "queryName": "Output Without Description",
-    "severity": "INFO",
-    "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "output.{{cluster_name}}",
-    "searchValue": "",
-    "expectedValue": "'description' should be defined and not null",
-    "actualValue": "'description' is undefined or null"
   }
 ]

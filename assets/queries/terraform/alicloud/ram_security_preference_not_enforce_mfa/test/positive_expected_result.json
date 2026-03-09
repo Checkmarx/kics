@@ -2,18 +2,6 @@
   {
     "queryName": "RAM Security Preference Not Enforce MFA Login",
     "severity": "LOW",
-    "line": 14,
-    "filename": "positive2.tf",
-    "resourceType": "alicloud_ram_security_preference",
-    "resourceName": "example2",
-    "searchKey": "alicloud_ram_security_preference[example2]",
-    "searchValue": "",
-    "expectedValue": "'enforce_mfa_for_login' should be set to true",
-    "actualValue": "'enforce_mfa_for_login' is set to 'false'"
-  },
-  {
-    "queryName": "RAM Security Preference Not Enforce MFA Login",
-    "severity": "LOW",
     "line": 11,
     "filename": "positive1.tf",
     "resourceType": "alicloud_ram_security_preference",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'enforce_mfa_for_login' should be defined and set to true",
     "actualValue": "'enforce_mfa_for_login' is not defined"
+  },
+  {
+    "queryName": "RAM Security Preference Not Enforce MFA Login",
+    "severity": "LOW",
+    "line": 14,
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_ram_security_preference",
+    "resourceName": "example2",
+    "searchKey": "alicloud_ram_security_preference[example2]",
+    "searchValue": "",
+    "expectedValue": "'enforce_mfa_for_login' should be set to true",
+    "actualValue": "'enforce_mfa_for_login' is set to 'false'"
   }
 ]

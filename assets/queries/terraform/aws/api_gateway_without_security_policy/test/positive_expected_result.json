@@ -2,18 +2,6 @@
   {
     "queryName": "API Gateway Without Security Policy",
     "severity": "MEDIUM",
-    "line": 3,
-    "filename": "positive2.tf",
-    "resourceType": "aws_api_gateway_domain_name",
-    "resourceName": "example2",
-    "searchKey": "aws_api_gateway_domain_name[example2].security_policy",
-    "searchValue": "",
-    "expectedValue": "aws_api_gateway_domain_name[example2].security_policy should be set to TLS_1_2",
-    "actualValue": "aws_api_gateway_domain_name[example2].security_policy is set to TLS_1_0"
-  },
-  {
-    "queryName": "API Gateway Without Security Policy",
-    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive1.tf",
     "resourceType": "aws_api_gateway_domain_name",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "aws_api_gateway_domain_name[example].security_policy should be set",
     "actualValue": "aws_api_gateway_domain_name[example].security_policy is undefined"
+  },
+  {
+    "queryName": "API Gateway Without Security Policy",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive2.tf",
+    "resourceType": "aws_api_gateway_domain_name",
+    "resourceName": "example2",
+    "searchKey": "aws_api_gateway_domain_name[example2].security_policy",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_domain_name[example2].security_policy should be set to TLS_1_2",
+    "actualValue": "aws_api_gateway_domain_name[example2].security_policy is set to TLS_1_0"
   }
 ]

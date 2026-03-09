@@ -2,8 +2,8 @@
   {
     "queryName": "ECS Services assigned with public IP address",
     "severity": "MEDIUM",
-    "line": 66,
-    "filename": "positive2.json",
+    "line": 54,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::ECS::Service",
     "resourceName": "cfn-service",
     "searchKey": "Resources.ECSService.Properties.NetworkConfiguration.AwsvpcConfiguration.AssignPublicIp",
@@ -14,8 +14,8 @@
   {
     "queryName": "ECS Services assigned with public IP address",
     "severity": "MEDIUM",
-    "line": 54,
-    "filename": "positive1.yaml",
+    "line": 66,
+    "filename": "positive2.json",
     "resourceType": "AWS::ECS::Service",
     "resourceName": "cfn-service",
     "searchKey": "Resources.ECSService.Properties.NetworkConfiguration.AwsvpcConfiguration.AssignPublicIp",

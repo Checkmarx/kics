@@ -2,18 +2,6 @@
   {
     "queryName": "Beta - Backup Vault Without Immutability",
     "severity": "HIGH",
-    "line": 18,
-    "filename": "positive1.tf",
-    "resourceType": "azurerm_data_protection_backup_vault",
-    "resourceName": "positive2-backup-vault",
-    "searchKey": "azurerm_data_protection_backup_vault[positive2].immutability",
-    "searchValue": "",
-    "expectedValue": "'azurerm_data_protection_backup_vault[positive2].immutability' should be set and enabled",
-    "actualValue": "'azurerm_data_protection_backup_vault[positive2].immutability' is set to 'Disabled'"
-  },
-  {
-    "queryName": "Beta - Backup Vault Without Immutability",
-    "severity": "HIGH",
     "line": 1,
     "filename": "positive1.tf",
     "resourceType": "azurerm_data_protection_backup_vault",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'azurerm_data_protection_backup_vault[positive1].immutability' should be set and enabled",
     "actualValue": "'azurerm_data_protection_backup_vault[positive1].immutability' is undefined or null"
+  },
+  {
+    "queryName": "Beta - Backup Vault Without Immutability",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_data_protection_backup_vault",
+    "resourceName": "positive2-backup-vault",
+    "searchKey": "azurerm_data_protection_backup_vault[positive2].immutability",
+    "searchValue": "",
+    "expectedValue": "'azurerm_data_protection_backup_vault[positive2].immutability' should be set and enabled",
+    "actualValue": "'azurerm_data_protection_backup_vault[positive2].immutability' is set to 'Disabled'"
   }
 ]

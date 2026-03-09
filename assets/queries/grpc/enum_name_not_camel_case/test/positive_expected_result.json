@@ -2,11 +2,11 @@
   {
     "queryName": "Enum Name Not CamelCase",
     "severity": "INFO",
-    "line": 10,
+    "line": 3,
     "filename": "positive.proto",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "enum[NOT_CAMEL_CASE]",
+    "searchKey": "enum[noInitCap]",
     "searchValue": "",
     "expectedValue": "Enum Name should follow CamelCase (Initial Letter is Capital)",
     "actualValue": "Enum Name doesn't follow CamelCase"
@@ -14,11 +14,11 @@
   {
     "queryName": "Enum Name Not CamelCase",
     "severity": "INFO",
-    "line": 3,
+    "line": 10,
     "filename": "positive.proto",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "enum[noInitCap]",
+    "searchKey": "enum[NOT_CAMEL_CASE]",
     "searchValue": "",
     "expectedValue": "Enum Name should follow CamelCase (Initial Letter is Capital)",
     "actualValue": "Enum Name doesn't follow CamelCase"

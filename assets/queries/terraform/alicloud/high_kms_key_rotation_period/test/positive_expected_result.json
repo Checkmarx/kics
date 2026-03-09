@@ -2,18 +2,6 @@
   {
     "queryName": "High KMS Key Rotation Period",
     "severity": "MEDIUM",
-    "line": 6,
-    "filename": "positive2.tf",
-    "resourceType": "alicloud_kms_key",
-    "resourceName": "keypos1",
-    "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
-    "searchValue": "",
-    "expectedValue": "'rotation_interval' value should not be higher than a year",
-    "actualValue": "'rotation_interval' value is higher than a year"
-  },
-  {
-    "queryName": "High KMS Key Rotation Period",
-    "severity": "MEDIUM",
     "line": 5,
     "filename": "positive.tf",
     "resourceType": "alicloud_kms_key",
@@ -26,14 +14,14 @@
   {
     "queryName": "High KMS Key Rotation Period",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive4.tf",
+    "line": 6,
+    "filename": "positive2.tf",
     "resourceType": "alicloud_kms_key",
     "resourceName": "keypos1",
     "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
     "searchValue": "",
-    "expectedValue": "'automatic_rotation' should be defined and set to Enabled",
-    "actualValue": "'automatic_rotation' is not defined"
+    "expectedValue": "'rotation_interval' value should not be higher than a year",
+    "actualValue": "'rotation_interval' value is higher than a year"
   },
   {
     "queryName": "High KMS Key Rotation Period",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "'rotation_interval' value should not be higher than a year",
     "actualValue": "'rotation_interval' value is higher than a year"
+  },
+  {
+    "queryName": "High KMS Key Rotation Period",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive4.tf",
+    "resourceType": "alicloud_kms_key",
+    "resourceName": "keypos1",
+    "searchKey": "alicloud_kms_key[keypos1].rotation_interval",
+    "searchValue": "",
+    "expectedValue": "'automatic_rotation' should be defined and set to Enabled",
+    "actualValue": "'automatic_rotation' is not defined"
   }
 ]

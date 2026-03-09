@@ -2,18 +2,6 @@
   {
     "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 35,
-    "filename": "positive2.yaml",
-    "resourceType": "aws:dms:ReplicationInstance",
-    "resourceName": "test",
-    "searchKey": "resources[test].properties",
-    "searchValue": "",
-    "expectedValue": "Attribute 'publiclyAccessible' should be defined",
-    "actualValue": "Attribute 'publiclyAccessible' is not defined"
-  },
-  {
-    "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
-    "severity": "CRITICAL",
     "line": 44,
     "filename": "positive1.yaml",
     "resourceType": "aws:dms:ReplicationInstance",
@@ -22,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "Attribute 'publiclyAccessible' is should be set to 'false'",
     "actualValue": "Attribute 'publiclyAccessible' is defined to 'true'"
+  },
+  {
+    "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 35,
+    "filename": "positive2.yaml",
+    "resourceType": "aws:dms:ReplicationInstance",
+    "resourceName": "test",
+    "searchKey": "resources[test].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'publiclyAccessible' should be defined",
+    "actualValue": "Attribute 'publiclyAccessible' is not defined"
   }
 ]

@@ -2,6 +2,18 @@
   {
     "queryName": "EBS Volume Encryption Disabled",
     "severity": "HIGH",
+    "line": 5,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_vol",
+    "resourceName": "Creating EBS volume01",
+    "searchKey": "name={{Creating EBS volume01}}.{{amazon.aws.ec2_vol}}.encrypted",
+    "searchValue": "",
+    "expectedValue": "ec2_vol.encrypted should be enabled",
+    "actualValue": "ec2_vol.encrypted is disabled"
+  },
+  {
+    "queryName": "EBS Volume Encryption Disabled",
+    "severity": "HIGH",
     "line": 12,
     "filename": "positive.yaml",
     "resourceType": "amazon.aws.ec2_vol",
@@ -34,17 +46,5 @@
     "searchValue": "",
     "expectedValue": "ec2_vol.encrypted should be defined",
     "actualValue": "ec2_vol.encrypted is undefined"
-  },
-  {
-    "queryName": "EBS Volume Encryption Disabled",
-    "severity": "HIGH",
-    "line": 5,
-    "filename": "positive.yaml",
-    "resourceType": "amazon.aws.ec2_vol",
-    "resourceName": "Creating EBS volume01",
-    "searchKey": "name={{Creating EBS volume01}}.{{amazon.aws.ec2_vol}}.encrypted",
-    "searchValue": "",
-    "expectedValue": "ec2_vol.encrypted should be enabled",
-    "actualValue": "ec2_vol.encrypted is disabled"
   }
 ]

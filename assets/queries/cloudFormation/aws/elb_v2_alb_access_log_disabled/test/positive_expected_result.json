@@ -2,18 +2,6 @@
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
     "severity": "MEDIUM",
-    "line": 36,
-    "filename": "positive4.json",
-    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
-    "resourceName": "EnvironmentName",
-    "searchKey": "Resources.LoadBalancertest.Properties.LoadBalancerAttributes",
-    "searchValue": "",
-    "expectedValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' has access_logs.s3.enabled with Value true",
-    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true"
-  },
-  {
-    "queryName": "ELBv2 ALB Access Log Disabled",
-    "severity": "MEDIUM",
     "line": 22,
     "filename": "positive1.yaml",
     "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
@@ -38,8 +26,20 @@
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
     "severity": "MEDIUM",
-    "line": 30,
-    "filename": "positive5.yaml",
+    "line": 23,
+    "filename": "positive3.json",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "EnvironmentName",
+    "searchKey": "Resources.LoadBalancer.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.LoadBalancer.Properties' has LoadBalancerAttributes defined",
+    "actualValue": "'Resources.LoadBalancer.Properties' doesn't have LoadBalancerAttributes defined"
+  },
+  {
+    "queryName": "ELBv2 ALB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 36,
+    "filename": "positive4.json",
     "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
     "resourceName": "EnvironmentName",
     "searchKey": "Resources.LoadBalancertest.Properties.LoadBalancerAttributes",
@@ -50,13 +50,13 @@
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
     "severity": "MEDIUM",
-    "line": 23,
-    "filename": "positive3.json",
+    "line": 30,
+    "filename": "positive5.yaml",
     "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
     "resourceName": "EnvironmentName",
-    "searchKey": "Resources.LoadBalancer.Properties",
+    "searchKey": "Resources.LoadBalancertest.Properties.LoadBalancerAttributes",
     "searchValue": "",
-    "expectedValue": "'Resources.LoadBalancer.Properties' has LoadBalancerAttributes defined",
-    "actualValue": "'Resources.LoadBalancer.Properties' doesn't have LoadBalancerAttributes defined"
+    "expectedValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' has access_logs.s3.enabled with Value true",
+    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true"
   }
 ]

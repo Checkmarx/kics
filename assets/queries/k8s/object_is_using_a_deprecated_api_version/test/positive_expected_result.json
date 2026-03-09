@@ -14,6 +14,18 @@
   {
     "queryName": "Object Is Using A Deprecated API Version",
     "severity": "LOW",
+    "line": 23,
+    "filename": "positive.yaml",
+    "resourceType": "DaemonSet",
+    "resourceName": "fluentd-elasticsearch",
+    "searchKey": "apiVersion={{apps/v1beta2}}",
+    "searchValue": "DaemonSet",
+    "expectedValue": "metadata.name={{fluentd-elasticsearch}}.apiVersion of DaemonSet should be {{apps/v1}}",
+    "actualValue": "metadata.name={{fluentd-elasticsearch}}.apiVersion of DaemonSet  is deprecated and is {{apps/v1beta2}}"
+  },
+  {
+    "queryName": "Object Is Using A Deprecated API Version",
+    "severity": "LOW",
     "line": 58,
     "filename": "positive.yaml",
     "resourceType": "Ingress",
@@ -34,18 +46,6 @@
     "searchValue": "Ingress",
     "expectedValue": "metadata.name={{minimal-ingress1}}.apiVersion of Ingress should be {{networking.k8s.io/v1}}",
     "actualValue": "metadata.name={{minimal-ingress1}}.apiVersion of Ingress  is deprecated and is {{networking.k8s.io/v1beta1}}"
-  },
-  {
-    "queryName": "Object Is Using A Deprecated API Version",
-    "severity": "LOW",
-    "line": 23,
-    "filename": "positive.yaml",
-    "resourceType": "DaemonSet",
-    "resourceName": "fluentd-elasticsearch",
-    "searchKey": "apiVersion={{apps/v1beta2}}",
-    "searchValue": "DaemonSet",
-    "expectedValue": "metadata.name={{fluentd-elasticsearch}}.apiVersion of DaemonSet should be {{apps/v1}}",
-    "actualValue": "metadata.name={{fluentd-elasticsearch}}.apiVersion of DaemonSet  is deprecated and is {{apps/v1beta2}}"
   },
   {
     "queryName": "Object Is Using A Deprecated API Version",

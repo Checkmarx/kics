@@ -2,6 +2,18 @@
   {
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
     "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_1",
+    "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy is 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy is 'allow-all'"
+  },
+  {
+    "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
+    "severity": "MEDIUM",
     "line": 30,
     "filename": "positive1.yaml",
     "resourceType": "AWS::CloudFront::Distribution",
@@ -10,18 +22,6 @@
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy is 'https-only' or 'redirect-to-https'",
     "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy is 'allow-all'"
-  },
-  {
-    "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
-    "severity": "MEDIUM",
-    "line": 50,
-    "filename": "positive2.json",
-    "resourceType": "AWS::CloudFront::Distribution",
-    "resourceName": "cloudfrontdistribution_1",
-    "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",
-    "searchValue": "",
-    "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy is 'https-only' or 'redirect-to-https'",
-    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy is 'allow-all'"
   },
   {
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
@@ -38,8 +38,8 @@
   {
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
     "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive1.yaml",
+    "line": 50,
+    "filename": "positive2.json",
     "resourceType": "AWS::CloudFront::Distribution",
     "resourceName": "cloudfrontdistribution_1",
     "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",

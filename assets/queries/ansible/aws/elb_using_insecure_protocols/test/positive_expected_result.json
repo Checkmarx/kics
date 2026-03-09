@@ -14,18 +14,6 @@
   {
     "queryName": "ELB Using Insecure Protocols",
     "severity": "MEDIUM",
-    "line": 52,
-    "filename": "positive.yaml",
-    "resourceType": "community.aws.elb_network_lb",
-    "resourceName": "elb4",
-    "searchKey": "name={{elb4}}.{{community.aws.elb_network_lb}}",
-    "searchValue": "",
-    "expectedValue": "community.aws.elb_network_lb.listeners should be defined",
-    "actualValue": "%!&(string=community.aws.elb_network_lb)s.listeners is undefined"
-  },
-  {
-    "queryName": "ELB Using Insecure Protocols",
-    "severity": "MEDIUM",
     "line": 21,
     "filename": "positive.yaml",
     "resourceType": "community.aws.elb_application_lb",
@@ -38,18 +26,6 @@
   {
     "queryName": "ELB Using Insecure Protocols",
     "severity": "MEDIUM",
-    "line": 70,
-    "filename": "positive.yaml",
-    "resourceType": "community.aws.elb_network_lb",
-    "resourceName": "elb5",
-    "searchKey": "name={{elb5}}.{{community.aws.elb_network_lb}}.listeners.%!s(int=0)",
-    "searchValue": "",
-    "expectedValue": "community.aws.elb_network_lb.listeners.SslPolicy should be defined",
-    "actualValue": "community.aws.elb_network_lb.listeners.SslPolicy is undefined"
-  },
-  {
-    "queryName": "ELB Using Insecure Protocols",
-    "severity": "MEDIUM",
     "line": 40,
     "filename": "positive.yaml",
     "resourceType": "community.aws.elb_application_lb",
@@ -58,6 +34,30 @@
     "searchValue": "",
     "expectedValue": "community.aws.elb_application_lb.listeners.SslPolicy is a secure protocol",
     "actualValue": "community.aws.elb_application_lb.listeners.SslPolicy is an insecure protocol"
+  },
+  {
+    "queryName": "ELB Using Insecure Protocols",
+    "severity": "MEDIUM",
+    "line": 52,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.elb_network_lb",
+    "resourceName": "elb4",
+    "searchKey": "name={{elb4}}.{{community.aws.elb_network_lb}}",
+    "searchValue": "",
+    "expectedValue": "community.aws.elb_network_lb.listeners should be defined",
+    "actualValue": "%!&(string=community.aws.elb_network_lb)s.listeners is undefined"
+  },
+  {
+    "queryName": "ELB Using Insecure Protocols",
+    "severity": "MEDIUM",
+    "line": 70,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.elb_network_lb",
+    "resourceName": "elb5",
+    "searchKey": "name={{elb5}}.{{community.aws.elb_network_lb}}.listeners.%!s(int=0)",
+    "searchValue": "",
+    "expectedValue": "community.aws.elb_network_lb.listeners.SslPolicy should be defined",
+    "actualValue": "community.aws.elb_network_lb.listeners.SslPolicy is undefined"
   },
   {
     "queryName": "ELB Using Insecure Protocols",

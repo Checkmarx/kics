@@ -2,6 +2,18 @@
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive1.tf",
+    "resourceType": "aws_elb",
+    "resourceName": "foobar-terraform-elb",
+    "searchKey": "aws_elb[{{postive1}}].access_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'aws_elb[{{postive1}}].access_logs.enabled' should be true",
+    "actualValue": "'aws_elb[{{postive1}}].access_logs.enabled' is false"
+  },
+  {
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive2.tf",
     "resourceType": "aws_elb",
@@ -22,18 +34,6 @@
     "searchValue": "",
     "expectedValue": "'access_logs' should be defined and not null",
     "actualValue": "'access_logs' is undefined or null"
-  },
-  {
-    "queryName": "ELB Access Log Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive1.tf",
-    "resourceType": "aws_elb",
-    "resourceName": "foobar-terraform-elb",
-    "searchKey": "aws_elb[{{postive1}}].access_logs.enabled",
-    "searchValue": "",
-    "expectedValue": "'aws_elb[{{postive1}}].access_logs.enabled' should be true",
-    "actualValue": "'aws_elb[{{postive1}}].access_logs.enabled' is false"
   },
   {
     "queryName": "ELB Access Log Disabled",

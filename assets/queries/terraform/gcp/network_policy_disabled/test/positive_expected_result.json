@@ -2,6 +2,18 @@
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'network_policy' should be defined and Attribute 'addons_config' should be defined",
+    "actualValue": "Attribute 'network_policy' is undefined or Attribute 'addons_config' is undefined"
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "MEDIUM",
     "line": 16,
     "filename": "positive.tf",
     "resourceType": "google_container_cluster",
@@ -26,14 +38,14 @@
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
-    "line": 86,
+    "line": 48,
     "filename": "positive.tf",
     "resourceType": "google_container_cluster",
     "resourceName": "marcellus-wallace",
-    "searchKey": "google_container_cluster[positive6].addons_config.network_policy_config.disabled",
+    "searchKey": "google_container_cluster[positive4].addons_config",
     "searchValue": "",
-    "expectedValue": "Attribute 'addons_config.network_policy_config.disabled' should be set to false",
-    "actualValue": "Attribute 'addons_config.network_policy_config.disabled' is true"
+    "expectedValue": "Attribute 'addons_config.network_policy_config' should be defined",
+    "actualValue": "Attribute 'addons_config.network_policy_config' is undefined"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -50,25 +62,13 @@
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
-    "line": 48,
+    "line": 86,
     "filename": "positive.tf",
     "resourceType": "google_container_cluster",
     "resourceName": "marcellus-wallace",
-    "searchKey": "google_container_cluster[positive4].addons_config",
+    "searchKey": "google_container_cluster[positive6].addons_config.network_policy_config.disabled",
     "searchValue": "",
-    "expectedValue": "Attribute 'addons_config.network_policy_config' should be defined",
-    "actualValue": "Attribute 'addons_config.network_policy_config' is undefined"
-  },
-  {
-    "queryName": "Network Policy Disabled",
-    "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive.tf",
-    "resourceType": "google_container_cluster",
-    "resourceName": "marcellus-wallace",
-    "searchKey": "google_container_cluster[positive1]",
-    "searchValue": "",
-    "expectedValue": "Attribute 'network_policy' should be defined and Attribute 'addons_config' should be defined",
-    "actualValue": "Attribute 'network_policy' is undefined or Attribute 'addons_config' is undefined"
+    "expectedValue": "Attribute 'addons_config.network_policy_config.disabled' should be set to false",
+    "actualValue": "Attribute 'addons_config.network_policy_config.disabled' is true"
   }
 ]

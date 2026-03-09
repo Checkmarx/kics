@@ -2,6 +2,18 @@
   {
     "queryName": "CS Kubernetes Node Pool Auto Repair Disabled",
     "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_cs_kubernetes_node_pool",
+    "resourceName": "${var.name}",
+    "searchKey": "alicloud_cs_kubernetes_node_pool[default2]",
+    "searchValue": "",
+    "expectedValue": "For the resource alicloud_cs_kubernetes_node_pool[default2] to have a 'management' block containing 'auto_repair' set to true.",
+    "actualValue": "The resource alicloud_cs_kubernetes_node_pool[default2] does not have a 'management' block."
+  },
+  {
+    "queryName": "CS Kubernetes Node Pool Auto Repair Disabled",
+    "severity": "MEDIUM",
     "line": 17,
     "filename": "positive2.tf",
     "resourceType": "alicloud_cs_kubernetes_node_pool",
@@ -22,17 +34,5 @@
     "searchValue": "",
     "expectedValue": "For the resource alicloud_cs_kubernetes_node_pool[default4] to have a 'management' block containing 'auto_repair' set to true.",
     "actualValue": "The resource alicloud_cs_kubernetes_node_pool[default4] has a 'management' block but it doesn't contain 'auto_repair' "
-  },
-  {
-    "queryName": "CS Kubernetes Node Pool Auto Repair Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive1.tf",
-    "resourceType": "alicloud_cs_kubernetes_node_pool",
-    "resourceName": "${var.name}",
-    "searchKey": "alicloud_cs_kubernetes_node_pool[default2]",
-    "searchValue": "",
-    "expectedValue": "For the resource alicloud_cs_kubernetes_node_pool[default2] to have a 'management' block containing 'auto_repair' set to true.",
-    "actualValue": "The resource alicloud_cs_kubernetes_node_pool[default2] does not have a 'management' block."
   }
 ]

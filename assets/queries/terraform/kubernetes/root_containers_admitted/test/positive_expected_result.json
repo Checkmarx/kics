@@ -2,30 +2,6 @@
   {
     "queryName": "Root Containers Admitted",
     "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod_security_policy",
-    "resourceName": "terraform-example",
-    "searchKey": "kubernetes_pod_security_policy[example].spec.allow_privilege_escalation",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod_security_policy[example].spec.allow_privilege_escalation should be set to false",
-    "actualValue": "kubernetes_pod_security_policy[example].spec.allow_privilege_escalation is set to true"
-  },
-  {
-    "queryName": "Root Containers Admitted",
-    "severity": "MEDIUM",
-    "line": 37,
-    "filename": "positive.tf",
-    "resourceType": "kubernetes_pod_security_policy",
-    "resourceName": "terraform-example",
-    "searchKey": "kubernetes_pod_security_policy[example].spec.fs_group.range.min",
-    "searchValue": "",
-    "expectedValue": "kubernetes_pod_security_policy[example].spec.fs_group.range.min should not allow range '0' (root)",
-    "actualValue": "kubernetes_pod_security_policy[example].spec.fs_group.range.min allows range '0' (root)"
-  },
-  {
-    "queryName": "Root Containers Admitted",
-    "severity": "MEDIUM",
     "line": 6,
     "filename": "positive.tf",
     "resourceType": "kubernetes_pod_security_policy",
@@ -34,6 +10,18 @@
     "searchValue": "",
     "expectedValue": "kubernetes_pod_security_policy[example].spec.privileged should be set to false",
     "actualValue": "kubernetes_pod_security_policy[example].spec.privileged is set to true"
+  },
+  {
+    "queryName": "Root Containers Admitted",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example].spec.allow_privilege_escalation",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod_security_policy[example].spec.allow_privilege_escalation should be set to false",
+    "actualValue": "kubernetes_pod_security_policy[example].spec.allow_privilege_escalation is set to true"
   },
   {
     "queryName": "Root Containers Admitted",
@@ -58,5 +46,17 @@
     "searchValue": "",
     "expectedValue": "kubernetes_pod_security_policy[example].spec.supplemental_groups.rule limits its ranges",
     "actualValue": "kubernetes_pod_security_policy[example].spec.supplemental_groups.rule does not limit its ranges"
+  },
+  {
+    "queryName": "Root Containers Admitted",
+    "severity": "MEDIUM",
+    "line": 37,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example].spec.fs_group.range.min",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod_security_policy[example].spec.fs_group.range.min should not allow range '0' (root)",
+    "actualValue": "kubernetes_pod_security_policy[example].spec.fs_group.range.min allows range '0' (root)"
   }
 ]

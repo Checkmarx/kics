@@ -14,6 +14,30 @@
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4_2",
+    "searchKey": "Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' should not open the HTTP port (80)",
+    "actualValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' opens the HTTP port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 38,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv4",
+    "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' should not open the HTTP port (80)",
+    "actualValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' opens the HTTP port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
     "line": 51,
     "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::SecurityGroup",
@@ -22,6 +46,30 @@
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' should not open the HTTP port (80)",
     "actualValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' opens the HTTP port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 63,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_2",
+    "searchKey": "Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' should not open the HTTP port (80)",
+    "actualValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' opens the HTTP port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 79,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv6",
+    "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' should not open the HTTP port (80)",
+    "actualValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' opens the HTTP port (80)"
   },
   {
     "queryName": "HTTP Port Open To Internet",
@@ -38,20 +86,8 @@
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
-    "line": 49,
+    "line": 21,
     "filename": "positive2.yaml",
-    "resourceType": "AWS::EC2::SecurityGroupIngress",
-    "resourceName": "DualStackSecurityGroup",
-    "searchKey": "Resources.IPv6Ingress3.Properties",
-    "searchValue": "",
-    "expectedValue": "'Resources.IPv6Ingress3.Properties' should not open the HTTP port (80)",
-    "actualValue": "'Resources.IPv6Ingress3.Properties' opens the HTTP port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 26,
-    "filename": "positive4.json",
     "resourceType": "AWS::EC2::SecurityGroupIngress",
     "resourceName": "DualStackSecurityGroup",
     "searchKey": "Resources.IPv4Ingress2.Properties",
@@ -86,62 +122,14 @@
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
-    "line": 97,
-    "filename": "positive3.json",
-    "resourceType": "AWS::EC2::SecurityGroup",
-    "resourceName": "Positive1ArrayTestIPv6",
-    "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]",
+    "line": 49,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv6Ingress3.Properties",
     "searchValue": "",
-    "expectedValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' should not open the HTTP port (80)",
-    "actualValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' opens the HTTP port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 61,
-    "filename": "positive3.json",
-    "resourceType": "AWS::EC2::SecurityGroup",
-    "resourceName": "Positive1IPv6_1",
-    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
-    "searchValue": "",
-    "expectedValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' should not open the HTTP port (80)",
-    "actualValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' opens the HTTP port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 38,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::SecurityGroup",
-    "resourceName": "Positive1ArrayTestIPv4",
-    "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]",
-    "searchValue": "",
-    "expectedValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' should not open the HTTP port (80)",
-    "actualValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' opens the HTTP port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 79,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::SecurityGroup",
-    "resourceName": "Positive1ArrayTestIPv6",
-    "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]",
-    "searchValue": "",
-    "expectedValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' should not open the HTTP port (80)",
-    "actualValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' opens the HTTP port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 46,
-    "filename": "positive3.json",
-    "resourceType": "AWS::EC2::SecurityGroup",
-    "resourceName": "Positive1ArrayTestIPv4",
-    "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]",
-    "searchValue": "",
-    "expectedValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' should not open the HTTP port (80)",
-    "actualValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' opens the HTTP port (80)"
+    "expectedValue": "'Resources.IPv6Ingress3.Properties' should not open the HTTP port (80)",
+    "actualValue": "'Resources.IPv6Ingress3.Properties' opens the HTTP port (80)"
   },
   {
     "queryName": "HTTP Port Open To Internet",
@@ -158,6 +146,42 @@
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
+    "line": 25,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4_2",
+    "searchKey": "Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' should not open the HTTP port (80)",
+    "actualValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' opens the HTTP port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 46,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv4",
+    "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' should not open the HTTP port (80)",
+    "actualValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' opens the HTTP port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 61,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6_1",
+    "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' should not open the HTTP port (80)",
+    "actualValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' opens the HTTP port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
     "line": 76,
     "filename": "positive3.json",
     "resourceType": "AWS::EC2::SecurityGroup",
@@ -166,6 +190,42 @@
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' should not open the HTTP port (80)",
     "actualValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' opens the HTTP port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 97,
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1ArrayTestIPv6",
+    "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' should not open the HTTP port (80)",
+    "actualValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' opens the HTTP port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress1.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv4Ingress1.Properties' should not open the HTTP port (80)",
+    "actualValue": "'Resources.IPv4Ingress1.Properties' opens the HTTP port (80)"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 26,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "DualStackSecurityGroup",
+    "searchKey": "Resources.IPv4Ingress2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv4Ingress2.Properties' should not open the HTTP port (80)",
+    "actualValue": "'Resources.IPv4Ingress2.Properties' opens the HTTP port (80)"
   },
   {
     "queryName": "HTTP Port Open To Internet",
@@ -202,65 +262,5 @@
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress3.Properties' should not open the HTTP port (80)",
     "actualValue": "'Resources.IPv6Ingress3.Properties' opens the HTTP port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 22,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::SecurityGroup",
-    "resourceName": "Positive1IPv4_2",
-    "searchKey": "Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]",
-    "searchValue": "",
-    "expectedValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' should not open the HTTP port (80)",
-    "actualValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' opens the HTTP port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 63,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::SecurityGroup",
-    "resourceName": "Positive1IPv6_2",
-    "searchKey": "Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]",
-    "searchValue": "",
-    "expectedValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' should not open the HTTP port (80)",
-    "actualValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' opens the HTTP port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 21,
-    "filename": "positive2.yaml",
-    "resourceType": "AWS::EC2::SecurityGroupIngress",
-    "resourceName": "DualStackSecurityGroup",
-    "searchKey": "Resources.IPv4Ingress2.Properties",
-    "searchValue": "",
-    "expectedValue": "'Resources.IPv4Ingress2.Properties' should not open the HTTP port (80)",
-    "actualValue": "'Resources.IPv4Ingress2.Properties' opens the HTTP port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 25,
-    "filename": "positive3.json",
-    "resourceType": "AWS::EC2::SecurityGroup",
-    "resourceName": "Positive1IPv4_2",
-    "searchKey": "Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]",
-    "searchValue": "",
-    "expectedValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' should not open the HTTP port (80)",
-    "actualValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' opens the HTTP port (80)"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive4.json",
-    "resourceType": "AWS::EC2::SecurityGroupIngress",
-    "resourceName": "DualStackSecurityGroup",
-    "searchKey": "Resources.IPv4Ingress1.Properties",
-    "searchValue": "",
-    "expectedValue": "'Resources.IPv4Ingress1.Properties' should not open the HTTP port (80)",
-    "actualValue": "'Resources.IPv4Ingress1.Properties' opens the HTTP port (80)"
   }
 ]

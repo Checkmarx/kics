@@ -2,8 +2,8 @@
   {
     "queryName": "EMR Without VPC",
     "severity": "LOW",
-    "line": 32,
-    "filename": "positive2.json",
+    "line": 23,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::EMR::Cluster",
     "resourceName": "CFNtest",
     "searchKey": "Resources.cluster.Properties.Instances",
@@ -14,8 +14,8 @@
   {
     "queryName": "EMR Without VPC",
     "severity": "LOW",
-    "line": 23,
-    "filename": "positive1.yaml",
+    "line": 32,
+    "filename": "positive2.json",
     "resourceType": "AWS::EMR::Cluster",
     "resourceName": "CFNtest",
     "searchKey": "Resources.cluster.Properties.Instances",

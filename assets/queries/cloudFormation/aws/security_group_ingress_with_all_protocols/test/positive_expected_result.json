@@ -2,18 +2,6 @@
   {
     "queryName": "Security Group Ingress With All Protocols",
     "severity": "MEDIUM",
-    "line": 35,
-    "filename": "positive1.yaml",
-    "resourceType": "AWS::EC2::SecurityGroupIngress",
-    "resourceName": "InboundRule",
-    "searchKey": "Resources.InboundRule.Properties.IpProtocol",
-    "searchValue": "",
-    "expectedValue": "Resources.InboundRule.Properties.IpProtocol should not be set to '-1'",
-    "actualValue": "Resources.InboundRule.Properties.IpProtocol is set to '-1'"
-  },
-  {
-    "queryName": "Security Group Ingress With All Protocols",
-    "severity": "MEDIUM",
     "line": 9,
     "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::SecurityGroup",
@@ -26,8 +14,8 @@
   {
     "queryName": "Security Group Ingress With All Protocols",
     "severity": "MEDIUM",
-    "line": 51,
-    "filename": "positive2.json",
+    "line": 35,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::EC2::SecurityGroupIngress",
     "resourceName": "InboundRule",
     "searchKey": "Resources.InboundRule.Properties.IpProtocol",
@@ -46,5 +34,17 @@
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].IpProtocol should not be set to '-1'",
     "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].IpProtocol is set to '-1'"
+  },
+  {
+    "queryName": "Security Group Ingress With All Protocols",
+    "severity": "MEDIUM",
+    "line": 51,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.IpProtocol",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.IpProtocol should not be set to '-1'",
+    "actualValue": "Resources.InboundRule.Properties.IpProtocol is set to '-1'"
   }
 ]

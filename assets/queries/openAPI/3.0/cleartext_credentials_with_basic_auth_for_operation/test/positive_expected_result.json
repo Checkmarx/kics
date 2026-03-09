@@ -2,8 +2,8 @@
   {
     "queryName": "Cleartext Credentials With Basic Authentication For Operation",
     "severity": "MEDIUM",
-    "line": 19,
-    "filename": "positive2.yaml",
+    "line": 28,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{get}}.security.{{regularSecurity}}",
@@ -14,8 +14,8 @@
   {
     "queryName": "Cleartext Credentials With Basic Authentication For Operation",
     "severity": "MEDIUM",
-    "line": 28,
-    "filename": "positive1.json",
+    "line": 19,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.{{get}}.security.{{regularSecurity}}",

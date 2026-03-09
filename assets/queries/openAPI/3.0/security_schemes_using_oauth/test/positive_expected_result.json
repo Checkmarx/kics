@@ -2,8 +2,8 @@
   {
     "queryName": "Security Scheme Using Oauth 1.0",
     "severity": "LOW",
-    "line": 31,
-    "filename": "positive2.yaml",
+    "line": 55,
+    "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.securitySchemes.{{petstore_auth}}",
@@ -14,8 +14,8 @@
   {
     "queryName": "Security Scheme Using Oauth 1.0",
     "severity": "LOW",
-    "line": 55,
-    "filename": "positive1.json",
+    "line": 31,
+    "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.securitySchemes.{{petstore_auth}}",

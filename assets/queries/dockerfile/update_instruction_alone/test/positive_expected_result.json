@@ -3,13 +3,13 @@
     "queryName": "Update Instruction Alone",
     "severity": "LOW",
     "line": 3,
-    "filename": "positive4.dockerfile",
+    "filename": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{centos:latest}}.RUN={{yum install nginx}}",
+    "searchKey": "FROM={{alpine:latest}}.RUN={{apk add nginx}}",
     "searchValue": "",
-    "expectedValue": "Instruction 'RUN yum [\"install\"]' should be combined with 'RUN yum [\"update\"]' in the same 'RUN' statement",
-    "actualValue": "Instruction 'RUN yum [\"install\"]' isn't combined with 'RUN yum [\"update\"] in the same 'RUN' statement"
+    "expectedValue": "Instruction 'RUN apk [\"add\"]' should be combined with 'RUN apk [\"update\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN apk [\"add\"]' isn't combined with 'RUN apk [\"update\"] in the same 'RUN' statement"
   },
   {
     "queryName": "Update Instruction Alone",
@@ -27,18 +27,6 @@
     "queryName": "Update Instruction Alone",
     "severity": "LOW",
     "line": 3,
-    "filename": "positive1.dockerfile",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "FROM={{alpine:latest}}.RUN={{apk add nginx}}",
-    "searchValue": "",
-    "expectedValue": "Instruction 'RUN apk [\"add\"]' should be combined with 'RUN apk [\"update\"]' in the same 'RUN' statement",
-    "actualValue": "Instruction 'RUN apk [\"add\"]' isn't combined with 'RUN apk [\"update\"] in the same 'RUN' statement"
-  },
-  {
-    "queryName": "Update Instruction Alone",
-    "severity": "LOW",
-    "line": 3,
     "filename": "positive3.dockerfile",
     "resourceType": "",
     "resourceName": "",
@@ -46,6 +34,30 @@
     "searchValue": "",
     "expectedValue": "Instruction 'RUN apt [\"install\"]' should be combined with 'RUN apt [\"update\"]' in the same 'RUN' statement",
     "actualValue": "Instruction 'RUN apt [\"install\"]' isn't combined with 'RUN apt [\"update\"] in the same 'RUN' statement"
+  },
+  {
+    "queryName": "Update Instruction Alone",
+    "severity": "LOW",
+    "line": 3,
+    "filename": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{centos:latest}}.RUN={{yum install nginx}}",
+    "searchValue": "",
+    "expectedValue": "Instruction 'RUN yum [\"install\"]' should be combined with 'RUN yum [\"update\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN yum [\"install\"]' isn't combined with 'RUN yum [\"update\"] in the same 'RUN' statement"
+  },
+  {
+    "queryName": "Update Instruction Alone",
+    "severity": "LOW",
+    "line": 3,
+    "filename": "positive5.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:latest}}.RUN={{dnf install nginx}}",
+    "searchValue": "",
+    "expectedValue": "Instruction 'RUN dnf [\"install\"]' should be combined with 'RUN dnf [\"update\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN dnf [\"install\"]' isn't combined with 'RUN dnf [\"update\"] in the same 'RUN' statement"
   },
   {
     "queryName": "Update Instruction Alone",
@@ -70,17 +82,5 @@
     "searchValue": "",
     "expectedValue": "Instruction 'RUN apt-get [\"install\", \"source-install\", \"reinstall\"]' should be combined with 'RUN apt-get [\"update\"]' in the same 'RUN' statement",
     "actualValue": "Instruction 'RUN apt-get [\"install\", \"source-install\", \"reinstall\"]' isn't combined with 'RUN apt-get [\"update\"] in the same 'RUN' statement"
-  },
-  {
-    "queryName": "Update Instruction Alone",
-    "severity": "LOW",
-    "line": 3,
-    "filename": "positive5.dockerfile",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "FROM={{fedora:latest}}.RUN={{dnf install nginx}}",
-    "searchValue": "",
-    "expectedValue": "Instruction 'RUN dnf [\"install\"]' should be combined with 'RUN dnf [\"update\"]' in the same 'RUN' statement",
-    "actualValue": "Instruction 'RUN dnf [\"install\"]' isn't combined with 'RUN dnf [\"update\"] in the same 'RUN' statement"
   }
 ]

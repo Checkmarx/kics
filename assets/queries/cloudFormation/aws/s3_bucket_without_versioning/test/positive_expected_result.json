@@ -2,20 +2,8 @@
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
-    "line": 48,
-    "filename": "positive4.json",
-    "resourceType": "AWS::S3::Bucket",
-    "resourceName": "RecordServiceS3Bucket2",
-    "searchKey": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status",
-    "searchValue": "",
-    "expectedValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status should be set to Enabled",
-    "actualValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status is set to Suspended"
-  },
-  {
-    "queryName": "S3 Bucket Without Versioning",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive3.json",
+    "line": 5,
+    "filename": "positive1.yaml",
     "resourceType": "AWS::S3::Bucket",
     "resourceName": "RecordServiceS3Bucket",
     "searchKey": "Resources.RecordServiceS3Bucket.Properties",
@@ -38,13 +26,25 @@
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive1.yaml",
+    "line": 4,
+    "filename": "positive3.json",
     "resourceType": "AWS::S3::Bucket",
     "resourceName": "RecordServiceS3Bucket",
     "searchKey": "Resources.RecordServiceS3Bucket.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration should be defined",
     "actualValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration is undefined"
+  },
+  {
+    "queryName": "S3 Bucket Without Versioning",
+    "severity": "MEDIUM",
+    "line": 48,
+    "filename": "positive4.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "RecordServiceS3Bucket2",
+    "searchKey": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status",
+    "searchValue": "",
+    "expectedValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status should be set to Enabled",
+    "actualValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status is set to Suspended"
   }
 ]

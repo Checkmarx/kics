@@ -2,6 +2,18 @@
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive1].versioning.enabled",
+    "searchValue": "",
+    "expectedValue": "'versioning.enabled' should be true",
+    "actualValue": "'versioning.enabled' is set to false"
+  },
+  {
+    "queryName": "S3 Bucket Without Versioning",
+    "severity": "MEDIUM",
     "line": 14,
     "filename": "positive2.tf",
     "resourceType": "aws_s3_bucket",
@@ -14,35 +26,23 @@
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive3.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive3].versioning",
+    "searchValue": "",
+    "expectedValue": "'versioning.enabled' should be true",
+    "actualValue": "'versioning.enabled' is undefined or null"
+  },
+  {
+    "queryName": "S3 Bucket Without Versioning",
+    "severity": "MEDIUM",
     "line": 10,
     "filename": "positive4.tf",
     "resourceType": "n/a",
     "resourceName": "n/a",
     "searchKey": "module[s3_bucket].versioning.enabled",
-    "searchValue": "",
-    "expectedValue": "'versioning.enabled' should be true",
-    "actualValue": "'versioning.enabled' is set to false"
-  },
-  {
-    "queryName": "S3 Bucket Without Versioning",
-    "severity": "MEDIUM",
-    "line": 27,
-    "filename": "positive7.tf",
-    "resourceType": "aws_s3_bucket_versioning",
-    "resourceName": "example",
-    "searchKey": "aws_s3_bucket_versioning[example].versioning_configuration.status",
-    "searchValue": "",
-    "expectedValue": "'versioning_configuration.status' should be set to 'Enabled'",
-    "actualValue": "'versioning_configuration.status' is set to 'Suspended'"
-  },
-  {
-    "queryName": "S3 Bucket Without Versioning",
-    "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive1.tf",
-    "resourceType": "aws_s3_bucket",
-    "resourceName": "my-tf-test-bucket",
-    "searchKey": "aws_s3_bucket[positive1].versioning.enabled",
     "searchValue": "",
     "expectedValue": "'versioning.enabled' should be true",
     "actualValue": "'versioning.enabled' is set to false"
@@ -62,18 +62,6 @@
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive8.tf",
-    "resourceType": "aws_s3_bucket",
-    "resourceName": "my-tf-test-bucket",
-    "searchKey": "aws_s3_bucket[b2]",
-    "searchValue": "",
-    "expectedValue": "'versioning' should be true",
-    "actualValue": "'versioning' is undefined or null"
-  },
-  {
-    "queryName": "S3 Bucket Without Versioning",
-    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive6.tf",
     "resourceType": "n/a",
@@ -86,13 +74,25 @@
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
-    "line": 23,
-    "filename": "positive3.tf",
+    "line": 27,
+    "filename": "positive7.tf",
+    "resourceType": "aws_s3_bucket_versioning",
+    "resourceName": "example",
+    "searchKey": "aws_s3_bucket_versioning[example].versioning_configuration.status",
+    "searchValue": "",
+    "expectedValue": "'versioning_configuration.status' should be set to 'Enabled'",
+    "actualValue": "'versioning_configuration.status' is set to 'Suspended'"
+  },
+  {
+    "queryName": "S3 Bucket Without Versioning",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive8.tf",
     "resourceType": "aws_s3_bucket",
     "resourceName": "my-tf-test-bucket",
-    "searchKey": "aws_s3_bucket[positive3].versioning",
+    "searchKey": "aws_s3_bucket[b2]",
     "searchValue": "",
-    "expectedValue": "'versioning.enabled' should be true",
-    "actualValue": "'versioning.enabled' is undefined or null"
+    "expectedValue": "'versioning' should be true",
+    "actualValue": "'versioning' is undefined or null"
   }
 ]
