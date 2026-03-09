@@ -1,0 +1,13 @@
+{
+  "id": "0cbdf8fb-83cd-418f-918f-de86df0621b6",
+  "queryName": "Beta - Lambda Function URL Without Authentication",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "AWS Lambda Function URLs should require authentication. Setting 'authorization_type' to 'NONE' allows unauthenticated public invocation of the function, exposing it to abuse or data exfiltration.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function_url#authorization_type",
+  "platform": "Terraform",
+  "descriptionID": "1c4bf6dc",
+  "cloudProvider": "aws",
+  "cwe": "306",
+  "riskScore": "8.1"
+}

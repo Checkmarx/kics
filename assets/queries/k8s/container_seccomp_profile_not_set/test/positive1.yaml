@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: positive-pod
+spec:
+  containers:
+  - name: app
+    image: nginx:1.21
+    securityContext:
+      runAsNonRoot: true

@@ -1,0 +1,13 @@
+{
+  "id": "8a800912-0bcb-441c-aa95-306d3d9a7bdd",
+  "queryName": "Beta - Service Bus Namespace Without CMK",
+  "severity": "LOW",
+  "category": "Encryption",
+  "descriptionText": "Azure Service Bus namespaces should be encrypted with a customer-managed key (CMK) for enhanced control over encryption keys. Without a 'customer_managed_key' block, Microsoft-managed keys are used with no customer key management.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/servicebus_namespace#customer_managed_key",
+  "platform": "Terraform",
+  "descriptionID": "39e5eb1f",
+  "cloudProvider": "azure",
+  "cwe": "311",
+  "riskScore": "3.0"
+}

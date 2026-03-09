@@ -1,0 +1,13 @@
+{
+  "id": "beb57138-c9ee-421a-8332-6224ab3a2a6a",
+  "queryName": "Beta - AKS Defender Profile Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Azure Kubernetes Service clusters should have Microsoft Defender enabled via the 'microsoft_defender' block. Without it, threat detection for the cluster workloads is not active, leaving security incidents undetected.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster#microsoft_defender",
+  "platform": "Terraform",
+  "descriptionID": "f8f4f141",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "5.3"
+}

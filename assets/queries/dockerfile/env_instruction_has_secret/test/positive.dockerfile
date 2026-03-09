@@ -1,0 +1,5 @@
+FROM python:3.11-slim
+ENV APP_SECRET=my_super_secret_value
+ENV DATABASE_PASSWORD=s3cr3t123
+ENV API_KEY=AKIAIOSFODNN7EXAMPLE
+RUN pip install flask
