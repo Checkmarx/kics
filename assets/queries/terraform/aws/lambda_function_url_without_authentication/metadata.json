@@ -9,5 +9,6 @@
   "descriptionID": "1c4bf6dc",
   "cloudProvider": "aws",
   "cwe": "306",
-  "riskScore": "8.1"
+  "riskScore": "8.1",
+  "experimental": "true"
 }
