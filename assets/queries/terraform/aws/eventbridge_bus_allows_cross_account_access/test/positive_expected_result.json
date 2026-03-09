@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - EventBridge Bus Allows Cross-Account Access",
+        "severity": "HIGH",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

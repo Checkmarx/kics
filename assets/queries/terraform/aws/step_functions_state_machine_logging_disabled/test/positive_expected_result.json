@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Step Functions State Machine Logging Disabled",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

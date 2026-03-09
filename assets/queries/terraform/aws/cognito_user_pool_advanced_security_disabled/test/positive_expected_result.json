@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Cognito User Pool Advanced Security Disabled",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

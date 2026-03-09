@@ -1,0 +1,14 @@
+{
+  "id": "f28c98bd-1552-44d9-bc4b-499990bb33b4",
+  "queryName": "Beta - GKE Cluster Stackdriver Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "GKE clusters should use Stackdriver (Cloud Logging) for logging. Disabling cluster logging removes visibility into container and system logs, making incident response and compliance auditing impossible.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#logging_service",
+  "platform": "Terraform",
+  "descriptionID": "c5d6e7f8",
+  "cloudProvider": "gcp",
+  "cwe": "778",
+  "riskScore": "5.0",
+  "experimental": "true"
+}

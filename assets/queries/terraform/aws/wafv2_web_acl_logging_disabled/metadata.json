@@ -1,0 +1,14 @@
+{
+  "id": "3795666c-7407-44b1-8983-f1bf8f2460ac",
+  "queryName": "Beta - WAFv2 Web ACL Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "AWS WAFv2 Web ACLs should have logging enabled to track web requests, rule evaluations, and blocked traffic. WAF logs are essential for incident response and security analysis.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl_logging_configuration",
+  "platform": "Terraform",
+  "descriptionID": "e5f6a7b8",
+  "cloudProvider": "aws",
+  "cwe": "778",
+  "riskScore": "5.0",
+  "experimental": "true"
+}
