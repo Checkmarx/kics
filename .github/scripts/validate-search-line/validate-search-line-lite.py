@@ -90,13 +90,13 @@ def validate_expected_results(query_dir):
     test_dir = query_dir / 'test'
 
     if not test_dir.exists():
-        print(f"  [SKIP] No test directory found")
+        print("  [SKIP] No test directory found")
         return True
 
     expected_files = list(test_dir.glob('*expected_result*.json'))
 
     if not expected_files:
-        print(f"  [SKIP] No expected result files found")
+        print("  [SKIP] No expected result files found")
         return True
 
     all_valid = True
@@ -104,10 +104,10 @@ def validate_expected_results(query_dir):
         try:
             results = json.loads(expected_file.read_text())
         except json.JSONDecodeError:
-            print(f"  ::warning file={expected_file.relative_to(REPO_ROOT)}::Invalid JSON")
+            print("  ::warning file={expected_file.relative_to(REPO_ROOT)}::Invalid JSON")
             continue
         except Exception as e:
-            print(f"  ::warning file={expected_file.relative_to(REPO_ROOT)}::Error reading: {e}")
+            print("  ::warning file={expected_file.relative_to(REPO_ROOT)}::Error reading: {e}")
             continue
 
         if not isinstance(results, list):
@@ -123,13 +123,13 @@ def validate_expected_results(query_dir):
             rel_path = expected_file.relative_to(REPO_ROOT)
 
             if search_line == -1:
-                print(f"  ::error file={rel_path}::Result [{idx}]: searchLine is -1 (line={line})")
+                print("  ::error file={rel_path}::Result [{idx}]: searchLine is -1 (line={line})")
                 all_valid = False
             elif search_line != line:
-                print(f"  ::error file={rel_path}::Result [{idx}]: searchLine ({search_line}) != line ({line})")
+                print("  ::error file={rel_path}::Result [{idx}]: searchLine ({search_line}) != line ({line})")
                 all_valid = False
             else:
-                print(f"  [OK] {rel_path}: result [{idx}] searchLine={search_line} matches line")
+                print("  [OK] {rel_path}: result [{idx}] searchLine={search_line} matches line")
 
     return all_valid
 

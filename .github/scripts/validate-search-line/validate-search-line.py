@@ -77,12 +77,12 @@ def validate_query_results(query_dir):
     
     test_dir = Path(query_dir) / 'test'
     if not test_dir.exists():
-        print(f"No test directory found")
+        print("No test directory found")
         return True
     
     test_files = list(test_dir.glob('positive*')) + list(test_dir.glob('negative*'))
     if not test_files:
-        print(f"No test files found")
+        print("No test files found")
         return True
     
     # Run KICS on test directory using the compiled binary
@@ -115,14 +115,14 @@ def validate_query_results(query_dir):
         with open('/tmp/kics-result.json', 'r') as f:
             results = json.load(f)
     except:
-        print(f"No results file generated")
+        print("No results file generated")
         return True
     
     all_valid = True
     results_list = results.get('results', [])
     
     if not results_list:
-        print(f"No issues found in test files")
+        print("No issues found in test files")
         return True
     
     for result in results_list:
