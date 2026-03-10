@@ -1,6 +1,5 @@
 import json
 import subprocess
-import sys
 from pathlib import Path
 
 from generate import build_test_list
