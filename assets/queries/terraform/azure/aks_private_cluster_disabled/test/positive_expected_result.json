@@ -3,12 +3,24 @@
     "queryName": "AKS Private Cluster Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive1].private_cluster_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive1].private_cluster_enabled' should be set to true",
+    "actualValue": "'azurerm_kubernetes_cluster[positive1].private_cluster_enabled' is set to false"
   },
   {
     "queryName": "AKS Private Cluster Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive2].private_cluster_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_kubernetes_cluster[positive2].private_cluster_enabled' is undefined"
   }
 ]
