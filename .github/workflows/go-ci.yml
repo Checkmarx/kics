@@ -121,7 +121,7 @@ jobs:
           CHANGED_QUERIES: ${{ steps.filter.outputs.queries_files }}
           KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_PR_NUMBER: ${{ github.event.number }}
-        working-directory: .gitu«hub/scripts/validate-search-line/
+        working-directory: .github/scripts/validate-search-line/
         run: |
           pip3 install -r requirements.txt
           python3 validate-search-line.py
