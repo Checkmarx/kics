@@ -55,9 +55,9 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{busybox3}}.RUN={{apt-get update && apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
-    "searchValue": "python-pip",
-    "expectedValue": "Package 'python-pip' has version defined",
-    "actualValue": "Package 'python-pip' does not have version defined"
+    "searchValue": "python3-pyqt5",
+    "expectedValue": "Package 'python3-pyqt5' has version defined",
+    "actualValue": "Package 'python3-pyqt5' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
@@ -79,9 +79,9 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{busybox3}}.RUN={{apt-get update && apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
-    "searchValue": "python3-pyqt5",
-    "expectedValue": "Package 'python3-pyqt5' has version defined",
-    "actualValue": "Package 'python3-pyqt5' does not have version defined"
+    "searchValue": "python-pip",
+    "expectedValue": "Package 'python-pip' has version defined",
+    "actualValue": "Package 'python-pip' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
@@ -139,9 +139,9 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{busybox6}}.RUN={{apt-get update ;     apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
-    "searchValue": "python-pip",
-    "expectedValue": "Package 'python-pip' has version defined",
-    "actualValue": "Package 'python-pip' does not have version defined"
+    "searchValue": "python-pyside",
+    "expectedValue": "Package 'python-pyside' has version defined",
+    "actualValue": "Package 'python-pyside' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
@@ -151,9 +151,9 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{busybox6}}.RUN={{apt-get update ;     apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
-    "searchValue": "python3-pip",
-    "expectedValue": "Package 'python3-pip' has version defined",
-    "actualValue": "Package 'python3-pip' does not have version defined"
+    "searchValue": "python-qt4",
+    "expectedValue": "Package 'python-qt4' has version defined",
+    "actualValue": "Package 'python-qt4' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
@@ -175,9 +175,9 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{busybox6}}.RUN={{apt-get update ;     apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
-    "searchValue": "python-pyside",
-    "expectedValue": "Package 'python-pyside' has version defined",
-    "actualValue": "Package 'python-pyside' does not have version defined"
+    "searchValue": "python-pip",
+    "expectedValue": "Package 'python-pip' has version defined",
+    "actualValue": "Package 'python-pip' does not have version defined"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
@@ -187,8 +187,8 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{busybox6}}.RUN={{apt-get update ;     apt-get install -y     python-qt4     python-pyside     python-pip     python3-pip     python3-pyqt5}}",
-    "searchValue": "python-qt4",
-    "expectedValue": "Package 'python-qt4' has version defined",
-    "actualValue": "Package 'python-qt4' does not have version defined"
+    "searchValue": "python3-pip",
+    "expectedValue": "Package 'python3-pip' has version defined",
+    "actualValue": "Package 'python3-pip' does not have version defined"
   }
 ]

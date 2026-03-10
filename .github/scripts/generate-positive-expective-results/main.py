@@ -1,5 +1,6 @@
 from runner import run_all
 from write_expected_results import write_positive_expected_results, write_skipped_queries_report
+from run_skipped import main as run_skipped_main
 
 
 def main():
@@ -15,6 +16,11 @@ def main():
     print(f"\n{'='*60}")
     print("Writing skipped queries report...\n")
     write_skipped_queries_report(test_list)
+
+    # 4. Re-run skipped queries individually per test file
+    print(f"\n{'='*60}")
+    print("Re-running skipped queries with per-file scans...\n")
+    run_skipped_main()
 
 
 if __name__ == "__main__":

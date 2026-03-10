@@ -7,9 +7,9 @@
     "resourceType": "AWS::CloudFront::Distribution",
     "resourceName": "myDistribution",
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate",
-    "searchValue": "MinimumProtocolVersion",
-    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion should be defined",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion is not defined"
+    "searchValue": "SslSupportMethod",
+    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod should be defined",
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod is not defined"
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
@@ -19,9 +19,9 @@
     "resourceType": "AWS::CloudFront::Distribution",
     "resourceName": "myDistribution",
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate",
-    "searchValue": "SslSupportMethod",
-    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod should be defined",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod is not defined"
+    "searchValue": "MinimumProtocolVersion",
+    "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion should be defined",
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion is not defined"
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",

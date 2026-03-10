@@ -56,8 +56,8 @@
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
     "searchValue": "",
-    "expectedValue": "Type string should not have enum and constraining keywords",
-    "actualValue": "Type string has enum and maxLength"
+    "expectedValue": "Type numeric should not have enum and constraining keywords",
+    "actualValue": "Type numeric has enum and minimum"
   },
   {
     "queryName": "Constraining Enum Property",
@@ -68,8 +68,8 @@
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
     "searchValue": "",
-    "expectedValue": "Type numeric should not have enum and constraining keywords",
-    "actualValue": "Type numeric has enum and minimum"
+    "expectedValue": "Type string should not have enum and constraining keywords",
+    "actualValue": "Type string has enum and maxLength"
   },
   {
     "queryName": "Constraining Enum Property",

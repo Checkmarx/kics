@@ -26,8 +26,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T09:50:40.373333785Z",
-      "end": "2026-03-10T09:50:41.42904951Z",
+      "start": "2026-03-10T14:53:46.607674039Z",
+      "end": "2026-03-10T14:53:47.006405134Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/cloudFormation/aws/ebs_volume_not_attached_to_instances/test"
       ],
@@ -61,8 +61,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T09:56:40.654558993Z",
-      "end": "2026-03-10T09:56:41.08021575Z",
+      "start": "2026-03-10T15:02:25.593818306Z",
+      "end": "2026-03-10T15:02:26.116217563Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/cloudFormation/aws/vpc_flowlogs_disabled/test"
       ],
@@ -96,8 +96,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:08:22.975031393Z",
-      "end": "2026-03-10T10:08:23.502338168Z",
+      "start": "2026-03-10T15:13:57.507354521Z",
+      "end": "2026-03-10T15:13:57.893460826Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/k8s/using_kubernetes_native_secret_management/test"
       ],
@@ -131,8 +131,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:35:39.96934281Z",
-      "end": "2026-03-10T10:35:40.363185192Z",
+      "start": "2026-03-10T15:41:34.169229294Z",
+      "end": "2026-03-10T15:41:34.64605518Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_network_security_group_not_configured/test"
       ],
@@ -166,8 +166,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:35:41.487879903Z",
-      "end": "2026-03-10T10:35:41.883123189Z",
+      "start": "2026-03-10T15:41:36.3876682Z",
+      "end": "2026-03-10T15:41:36.898643621Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_public_ip_address_rule_not_configured/test"
       ],
@@ -201,8 +201,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:35:42.999894705Z",
-      "end": "2026-03-10T10:35:43.386747991Z",
+      "start": "2026-03-10T15:41:39.084678364Z",
+      "end": "2026-03-10T15:41:39.555173138Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_security_solution_not_configured/test"
       ],
@@ -236,8 +236,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:35:44.557565359Z",
-      "end": "2026-03-10T10:35:44.933280039Z",
+      "start": "2026-03-10T15:41:41.399525019Z",
+      "end": "2026-03-10T15:41:41.912024454Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_sql_server_firewall_rule_not_configured/test"
       ],
@@ -271,8 +271,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:35:46.117743929Z",
-      "end": "2026-03-10T10:35:46.480237804Z",
+      "start": "2026-03-10T15:41:44.053372126Z",
+      "end": "2026-03-10T15:41:44.884172725Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_policy_assignment_not_configured/test"
       ],
@@ -306,8 +306,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:35:47.547157418Z",
-      "end": "2026-03-10T10:35:47.91013176Z",
+      "start": "2026-03-10T15:41:47.183986741Z",
+      "end": "2026-03-10T15:41:47.923680008Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_network_security_group_not_configured/test"
       ],
@@ -341,8 +341,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:35:49.26455017Z",
-      "end": "2026-03-10T10:35:49.709881076Z",
+      "start": "2026-03-10T15:41:50.459484987Z",
+      "end": "2026-03-10T15:41:50.949910239Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_policy_assignment_not_configured/test"
       ],
@@ -376,8 +376,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:35:51.071943301Z",
-      "end": "2026-03-10T10:35:51.511123113Z",
+      "start": "2026-03-10T15:41:52.762161089Z",
+      "end": "2026-03-10T15:41:53.280330049Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_public_ip_address_rule_not_configured/test"
       ],
@@ -411,8 +411,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:35:52.765083354Z",
-      "end": "2026-03-10T10:35:53.213700999Z",
+      "start": "2026-03-10T15:41:54.989824773Z",
+      "end": "2026-03-10T15:41:55.834692885Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_security_solution_not_configured/test"
       ],
@@ -446,8 +446,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:35:54.549384235Z",
-      "end": "2026-03-10T10:35:54.944776943Z",
+      "start": "2026-03-10T15:41:57.517448938Z",
+      "end": "2026-03-10T15:41:58.070237141Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_sql_server_firewall_rule_not_configured/test"
       ],
@@ -481,8 +481,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:37:42.315642653Z",
-      "end": "2026-03-10T10:37:42.739224631Z",
+      "start": "2026-03-10T15:44:36.795482746Z",
+      "end": "2026-03-10T15:44:37.389720721Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/azure/mssql_server_auditing_disabled/test"
       ],
@@ -490,7 +490,7 @@
     }
   },
   {
-    "id": "",
+    "id": "4f60da73-190e-4048-8e1d-cc5a3974cd15",
     "test_path": "/home/ricardo/kics/assets/queries/terraform/gcp/cloud_asset_inventory_disabled/test",
     "results_file_path": "/home/ricardo/kics/assets/queries/terraform/gcp/cloud_asset_inventory_disabled/results",
     "return_code": 0,
@@ -516,8 +516,8 @@
       },
       "total_counter": 0,
       "total_bom_resources": 0,
-      "start": "2026-03-10T10:40:19.203678117Z",
-      "end": "2026-03-10T10:40:19.576151492Z",
+      "start": "2026-03-10T15:48:11.696935812Z",
+      "end": "2026-03-10T15:48:12.272461036Z",
       "paths": [
         "/home/ricardo/kics/assets/queries/terraform/gcp/cloud_asset_inventory_disabled/test"
       ],

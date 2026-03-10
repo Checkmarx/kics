@@ -32,8 +32,8 @@
     "resourceName": "",
     "searchKey": "paths.{{/}}.parameters.schema.items.properties.myObject.$ref=#/components/schemas/MyObject",
     "searchValue": "",
-    "expectedValue": "integer is int32 or int64 formats",
-    "actualValue": "integer is double format"
+    "expectedValue": "number is float or double formats",
+    "actualValue": "number is int32 format"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -44,8 +44,8 @@
     "resourceName": "",
     "searchKey": "paths.{{/}}.parameters.schema.items.properties.myObject.$ref=#/components/schemas/MyObject",
     "searchValue": "",
-    "expectedValue": "number is float or double formats",
-    "actualValue": "number is int32 format"
+    "expectedValue": "integer is int32 or int64 formats",
+    "actualValue": "integer is double format"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -92,8 +92,8 @@
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
     "searchValue": "",
-    "expectedValue": "number is float or double formats",
-    "actualValue": "number is int32 format"
+    "expectedValue": "integer is int32 or int64 formats",
+    "actualValue": "integer is double format"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -104,8 +104,8 @@
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
     "searchValue": "",
-    "expectedValue": "integer is int32 or int64 formats",
-    "actualValue": "integer is double format"
+    "expectedValue": "number is float or double formats",
+    "actualValue": "number is int32 format"
   },
   {
     "queryName": "Invalid Format (v3)",

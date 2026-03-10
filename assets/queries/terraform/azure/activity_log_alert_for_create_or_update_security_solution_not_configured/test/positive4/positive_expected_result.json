@@ -1,5 +1,5 @@
 [
-    {
+  {
     "queryName": "Beta - Activity Log Alert For Create or Update Security Solution Not Configured",
     "severity": "MEDIUM",
     "line": 9,

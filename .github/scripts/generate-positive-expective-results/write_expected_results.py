@@ -28,8 +28,41 @@ def deduplicate_results(results: list[dict]) -> list[dict]:
     return deduplicated
 
 
+def _get_subdir_filenames(test_dir: Path) -> dict[str, Path]:
+    """Build a mapping of filename -> subdirectory path for files inside positive subdirectories.
+
+    Some test directories contain positive test subdirectories (e.g. positive2/) that have their
+    own files and their own positive_expected_result.json. This function maps filenames found
+    inside those subdirectories so results can be routed to the correct location.
+    """
+    filename_to_subdir: dict[str, Path] = {}
+    for item in test_dir.iterdir():
+        if item.is_dir() and item.name.startswith("positive"):
+            for child in item.iterdir():
+                if child.is_file() and child.name != "positive_expected_result.json":
+                    filename_to_subdir[child.name] = item
+    return filename_to_subdir
+
+
+def _write_results_file(output_file: Path, results: list[dict]) -> None:
+    """Deduplicate, sort, and write results to a positive_expected_result.json file."""
+    results = deduplicate_results(results)
+    results.sort(key=lambda r: (
+        r["filename"],
+        r["line"] if isinstance(r["line"], int) else 0,
+    ))
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
+
+
 def write_positive_expected_results(test_list: TestList) -> None:
-    """For each query, write positive_expected_result.json in the test_path directory."""
+    """For each query, write positive_expected_result.json in the test_path directory.
+
+    When a test directory contains positive subdirectories (e.g. positive2/), results
+    for files inside those subdirectories are written to the subdirectory's own
+    positive_expected_result.json instead of the top-level one.
+    """
     total = len(test_list.queries_list)
     written = 0
     skipped = 0
@@ -43,11 +76,15 @@ def write_positive_expected_results(test_list: TestList) -> None:
         test_dir = Path(query.test_path)
         test_dir.mkdir(parents=True, exist_ok=True)
 
-        output_file = test_dir / "positive_expected_result.json"
+        # Map filenames inside positive subdirectories to their subdirectory
+        subdir_filenames = _get_subdir_filenames(test_dir)
 
-        expected_results = []
+        # Route results: top-level vs subdirectory
+        top_level_results: list[dict] = []
+        subdir_results: dict[str, list[dict]] = {}
+
         for ri in query.results_info:
-            expected_results.append({
+            result = {
                 "queryName": ri.query_name,
                 "severity": ri.severity,
                 "line": int(ri.line) if ri.line.isdigit() else ri.line,
@@ -58,20 +95,31 @@ def write_positive_expected_results(test_list: TestList) -> None:
                 "searchValue": ri.search_value,
                 "expectedValue": ri.expected_value,
                 "actualValue": ri.actual_value,
-            })
+            }
 
-        expected_results = deduplicate_results(expected_results)
+            if ri.filename in subdir_filenames:
+                subdir_path = str(subdir_filenames[ri.filename])
+                subdir_results.setdefault(subdir_path, []).append(result)
+            else:
+                top_level_results.append(result)
 
-        expected_results.sort(key=lambda r: (
-            r["filename"],
-            r["line"] if isinstance(r["line"], int) else 0,
-        ))
+        # Write top-level positive_expected_result.json
+        if top_level_results:
+            output_file = test_dir / "positive_expected_result.json"
+            _write_results_file(output_file, top_level_results)
+            print(f"[{i}/{total}] Wrote {output_file} ({len(top_level_results)} results)")
+            written += 1
 
-        with open(output_file, "w", encoding="utf-8") as f:
-            json.dump(expected_results, f, indent=2, ensure_ascii=False)
+        # Write subdirectory positive_expected_result.json files
+        for subdir_path, results in subdir_results.items():
+            output_file = Path(subdir_path) / "positive_expected_result.json"
+            _write_results_file(output_file, results)
+            print(f"[{i}/{total}] Wrote {output_file} ({len(results)} results)")
+            written += 1
 
-        print(f"[{i}/{total}] Wrote {output_file} ({len(expected_results)} results)")
-        written += 1
+        if not top_level_results and not subdir_results:
+            print(f"[{i}/{total}] Skipping query {query.id} — no results after routing")
+            skipped += 1
 
     print(f"\nDone: {written} files written, {skipped} skipped")
 

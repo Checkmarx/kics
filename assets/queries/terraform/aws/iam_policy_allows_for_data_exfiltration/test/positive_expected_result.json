@@ -92,8 +92,8 @@
     "resourceName": "positive5_${var.environment}",
     "searchKey": "aws_iam_role_policy[positive5].policy",
     "searchValue": "ssm:GetParameters",
-    "expectedValue": "'positive5.policy.Statement.Action[1]' shouldn't contain illegal actions",
-    "actualValue": "'positive5.policy.Statement.Action[1]' contains [ssm:GetParameters]"
+    "expectedValue": "'positive5.policy.Statement.Action[0]' shouldn't contain illegal actions",
+    "actualValue": "'positive5.policy.Statement.Action[0]' contains [ssm:GetParameters]"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -104,8 +104,8 @@
     "resourceName": "positive5_${var.environment}",
     "searchKey": "aws_iam_role_policy[positive5].policy",
     "searchValue": "ssm:GetParameters",
-    "expectedValue": "'positive5.policy.Statement.Action[0]' shouldn't contain illegal actions",
-    "actualValue": "'positive5.policy.Statement.Action[0]' contains [ssm:GetParameters]"
+    "expectedValue": "'positive5.policy.Statement.Action[1]' shouldn't contain illegal actions",
+    "actualValue": "'positive5.policy.Statement.Action[1]' contains [ssm:GetParameters]"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",

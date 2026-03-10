@@ -110,8 +110,14 @@ def parse_results_from_file(results_file: Path) -> list[dict]:
     return results
 
 
-def process_skipped_query(query: dict) -> list[dict]:
-    """Run per-file scans for a skipped query and return aggregated results."""
+def process_skipped_query(query: dict) -> dict[str, list[dict]]:
+    """Run per-file scans for a skipped query and return results grouped by destination.
+
+    Returns a dict mapping destination paths (as strings) to their result lists.
+    For positive test files, results are grouped under the top-level test_path.
+    For positive test directories (which have their own positive_expected_result.json),
+    results are grouped under the subdirectory path.
+    """
     query_id = query["id"]
     test_path = Path(query["test_path"])
     results_dir = Path(query["results_file_path"])
@@ -121,16 +127,18 @@ def process_skipped_query(query: dict) -> list[dict]:
 
     if not test_path.is_dir():
         print("  ⚠ Test directory not found")
-        return []
+        return {}
 
     positive_files = get_positive_test_files(test_path)
     if not positive_files:
         print("  ⚠ No positive test files found")
-        return []
+        return {}
 
     print(f"  Positive files: {[f.name for f in positive_files]}")
 
-    all_results = []
+    # Group results by destination: top-level test_path for files, subdirectory for directories
+    results_by_dest: dict[str, list[dict]] = {}
+
     for test_file in positive_files:
         payload_file = get_payload_for_test(test_file, payload_dir)
         print(f"\n  [{test_file.name}] payload → {payload_file.name}")
@@ -149,9 +157,16 @@ def process_skipped_query(query: dict) -> list[dict]:
 
         file_results = parse_results_from_file(output_file)
         print(f"    → {len(file_results)} result(s) found")
-        all_results.extend(file_results)
 
-    return all_results
+        # Determine destination: subdirectory gets its own positive_expected_result.json
+        if test_file.is_dir():
+            dest = str(test_file)
+        else:
+            dest = str(test_path)
+
+        results_by_dest.setdefault(dest, []).extend(file_results)
+
+    return results_by_dest
 
 
 def write_positive_expected_result(test_path: Path, results: list[dict]) -> None:
@@ -187,14 +202,16 @@ def main() -> None:
 
     for i, query in enumerate(skipped_queries, start=1):
         print(f"\n[{i}/{total}] Query: {query['id']}")
-        results = process_skipped_query(query)
+        results_by_dest = process_skipped_query(query)
 
-        if not results:
+        if not results_by_dest:
             print("  ⚠ No results produced — skipping positive_expected_result.json")
             still_skipped.append(query["id"])
             continue
 
-        write_positive_expected_result(Path(query["test_path"]), results)
+        for dest_path, results in results_by_dest.items():
+            if results:
+                write_positive_expected_result(Path(dest_path), results)
 
     print(f"\n{'=' * 60}")
     succeeded = total - len(still_skipped)
