@@ -107,7 +107,7 @@ def validate_expected_results(query_dir):
             print("  ::warning file={expected_file.relative_to(REPO_ROOT)}::Invalid JSON")
             continue
         except Exception as e:
-            print("  ::warning file={expected_file.relative_to(REPO_ROOT)}::Error reading: {e}")
+            print(f"  ::warning file={expected_file.relative_to(REPO_ROOT)}::Error reading: {e}")
             continue
 
         if not isinstance(results, list):
@@ -123,13 +123,13 @@ def validate_expected_results(query_dir):
             rel_path = expected_file.relative_to(REPO_ROOT)
 
             if search_line == -1:
-                print("  ::error file={rel_path}::Result [{idx}]: searchLine is -1 (line={line})")
+                print(f"  ::error file={rel_path}::Result [{idx}]: searchLine is -1 (line={line})")
                 all_valid = False
             elif search_line != line:
-                print("  ::error file={rel_path}::Result [{idx}]: searchLine ({search_line}) != line ({line})")
+                print(f"  ::error file={rel_path}::Result [{idx}]: searchLine ({search_line}) != line ({line})")
                 all_valid = False
             else:
-                print("  [OK] {rel_path}: result [{idx}] searchLine={search_line} matches line")
+                print(f"  [OK] {rel_path}: result [{idx}] searchLine={search_line} matches line")
 
     return all_valid
 
