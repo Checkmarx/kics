@@ -2,13 +2,25 @@
   {
     "queryName": "IAM Group Without Users",
     "severity": "MEDIUM",
-    "fileName": "positive2_1.tf",
-    "line": 1
+    "line": 1,
+    "filename": "positive2_1.tf",
+    "resourceType": "aws_iam_group",
+    "resourceName": "test-group",
+    "searchKey": "aws_iam_group[group2]",
+    "searchValue": "",
+    "expectedValue": "aws_iam_group[group2] should be associated with an aws_iam_group_membership that has at least one user set",
+    "actualValue": "aws_iam_group[group2] is not associated with an aws_iam_group_membership that has at least one user set"
   },
   {
     "queryName": "IAM Group Without Users",
     "severity": "MEDIUM",
-    "fileName": "positive2_1.tf",
-    "line": 5
+    "line": 5,
+    "filename": "positive2_1.tf",
+    "resourceType": "aws_iam_group",
+    "resourceName": "test-group",
+    "searchKey": "aws_iam_group[group3]",
+    "searchValue": "",
+    "expectedValue": "aws_iam_group[group3] should be associated with an aws_iam_group_membership that has at least one user set",
+    "actualValue": "aws_iam_group[group3] is not associated with an aws_iam_group_membership that has at least one user set"
   }
 ]

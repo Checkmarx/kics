@@ -48,7 +48,14 @@ def parse_results(query: QueryInfo) -> list[ResultInfo]:
         severity = q.get("severity", "")
 
         for file_entry in q.get("files", []):
-            filename = Path(file_entry.get("file_name", "")).name
+            file_path = Path(file_entry.get("file_name", ""))
+            filename = file_path.name
+
+            # Skip results from negative test files — only positive files belong
+            # in positive_expected_result.json. Also check the parent directory name
+            # for cases where positive tests live inside subdirectories (e.g. positive2/).
+            if not filename.startswith("positive") and not file_path.parent.name.startswith("positive"):
+                continue
 
             results.append(ResultInfo(
                 query_name=query_name,

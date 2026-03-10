@@ -3,18 +3,6 @@
     "queryName": "Shared Service Account",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "negative.yaml",
-    "resourceType": "Pod",
-    "resourceName": "pod1",
-    "searchKey": "metadata.name={{pod1}}.spec.serviceAccountName",
-    "searchValue": "",
-    "expectedValue": "'spec.serviceAccountName' should not be shared with other workloads",
-    "actualValue": "'spec.serviceAccountName' is shared with other workloads"
-  },
-  {
-    "queryName": "Shared Service Account",
-    "severity": "MEDIUM",
-    "line": 6,
     "filename": "positive.yaml",
     "resourceType": "Pod",
     "resourceName": "pod1",

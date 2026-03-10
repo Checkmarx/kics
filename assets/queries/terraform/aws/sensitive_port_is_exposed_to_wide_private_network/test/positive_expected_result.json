@@ -247,9 +247,9 @@
     "resourceType": "aws_security_group_rule",
     "resourceName": "positive3_ipv4_1",
     "searchKey": "aws_security_group_rule[positive3_ipv4_1]",
-    "searchValue": "TCP,22",
-    "expectedValue": "SSH (TCP:22) should not be allowed",
-    "actualValue": "SSH (TCP:22) is allowed"
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
@@ -259,9 +259,9 @@
     "resourceType": "aws_security_group_rule",
     "resourceName": "positive3_ipv4_1",
     "searchKey": "aws_security_group_rule[positive3_ipv4_1]",
-    "searchValue": "UDP,22",
-    "expectedValue": "SSH (UDP:22) should not be allowed",
-    "actualValue": "SSH (UDP:22) is allowed"
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",

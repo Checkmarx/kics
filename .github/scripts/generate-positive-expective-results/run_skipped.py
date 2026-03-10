@@ -93,7 +93,13 @@ def parse_results_from_file(results_file: Path) -> list[dict]:
         query_name = q.get("query_name", "")
         severity = q.get("severity", "")
         for file_entry in q.get("files", []):
-            filename = Path(file_entry.get("file_name", "")).name
+            file_path = Path(file_entry.get("file_name", ""))
+            filename = file_path.name
+
+            # Skip results from negative test files
+            if not filename.startswith("positive") and not file_path.parent.name.startswith("positive"):
+                continue
+
             results.append({
                 "queryName": query_name,
                 "severity": severity,

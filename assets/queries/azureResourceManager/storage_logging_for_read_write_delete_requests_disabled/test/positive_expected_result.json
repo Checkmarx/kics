@@ -186,18 +186,6 @@
     "filename": "positive3.json",
     "resourceType": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
     "resourceName": "[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))]",
-    "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageRead",
-    "searchValue": "StorageRead",
-    "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
-  },
-  {
-    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
-    "severity": "MEDIUM",
-    "line": 67,
-    "filename": "positive3.json",
-    "resourceType": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
-    "resourceName": "[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))]",
     "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
@@ -206,14 +194,14 @@
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive4.bicep",
+    "line": 67,
+    "filename": "positive3.json",
     "resourceType": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
-    "resourceName": "Microsoft.Storage/storageAccounts/queueServices/providers",
-    "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageDelete",
-    "searchValue": "StorageDelete",
-    "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
+    "resourceName": "[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))]",
+    "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageRead",
+    "searchValue": "StorageRead",
+    "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -226,6 +214,18 @@
     "searchValue": "StorageRead",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
     "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
+    "resourceName": "Microsoft.Storage/storageAccounts/queueServices/providers",
+    "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageDelete",
+    "searchValue": "StorageDelete",
+    "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -342,18 +342,6 @@
     "filename": "positive6.bicep",
     "resourceType": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
     "resourceName": "Microsoft.Storage/storageAccounts/queueServices/providers",
-    "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageWrite",
-    "searchValue": "StorageWrite",
-    "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
-  },
-  {
-    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
-    "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive6.bicep",
-    "resourceType": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
-    "resourceName": "Microsoft.Storage/storageAccounts/queueServices/providers",
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
@@ -366,22 +354,22 @@
     "filename": "positive6.bicep",
     "resourceType": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
     "resourceName": "Microsoft.Storage/storageAccounts/queueServices/providers",
-    "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageRead",
-    "searchValue": "StorageRead",
-    "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
+    "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageWrite",
+    "searchValue": "StorageWrite",
+    "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 69,
-    "filename": "positive6.json",
+    "line": 2,
+    "filename": "positive6.bicep",
     "resourceType": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
-    "resourceName": "[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))]",
-    "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageWrite",
-    "searchValue": "StorageWrite",
-    "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
+    "resourceName": "Microsoft.Storage/storageAccounts/queueServices/providers",
+    "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageRead",
+    "searchValue": "StorageRead",
+    "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -410,11 +398,11 @@
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 3,
-    "filename": "positive7.bicep",
+    "line": 69,
+    "filename": "positive6.json",
     "resourceType": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
-    "resourceName": "Microsoft.Storage/storageAccounts/queueServices/providers",
-    "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageWrite",
+    "resourceName": "[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))]",
+    "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageWrite",
     "searchValue": "StorageWrite",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
     "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
@@ -442,5 +430,17 @@
     "searchValue": "StorageRead",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
     "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive7.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings",
+    "resourceName": "Microsoft.Storage/storageAccounts/queueServices/providers",
+    "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageWrite",
+    "searchValue": "StorageWrite",
+    "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
   }
 ]

@@ -7,9 +7,9 @@
     "resourceType": "Pod",
     "resourceName": "command-demo",
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
-    "searchValue": "--tls-private-key-file",
-    "expectedValue": "TLS --tls-private-key-file connection setting should be set",
-    "actualValue": "TLS --tls-private-key-file connection not set"
+    "searchValue": "--tls-cert-file",
+    "expectedValue": "TLS --tls-cert-file connection setting should be set",
+    "actualValue": "TLS --tls-cert-file connection not set"
   },
   {
     "queryName": "TSL Connection Certificate Not Setup",
@@ -19,9 +19,9 @@
     "resourceType": "Pod",
     "resourceName": "command-demo",
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
-    "searchValue": "--tls-cert-file",
-    "expectedValue": "TLS --tls-cert-file connection setting should be set",
-    "actualValue": "TLS --tls-cert-file connection not set"
+    "searchValue": "--tls-private-key-file",
+    "expectedValue": "TLS --tls-private-key-file connection setting should be set",
+    "actualValue": "TLS --tls-private-key-file connection not set"
   },
   {
     "queryName": "TSL Connection Certificate Not Setup",

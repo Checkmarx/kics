@@ -55,9 +55,9 @@
     "resourceType": "aws_sns_topic",
     "resourceName": "positive1",
     "searchKey": "aws_sns_topic[positive1].policy",
-    "searchValue": "2",
-    "expectedValue": "'Statement[2].Principal.AWS' shouldn't contain '*'",
-    "actualValue": "'Statement[2].Principal.AWS' contains '*'"
+    "searchValue": "0",
+    "expectedValue": "'Statement[0].Principal.AWS' shouldn't contain '*'",
+    "actualValue": "'Statement[0].Principal.AWS' contains '*'"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
@@ -67,9 +67,9 @@
     "resourceType": "aws_sns_topic",
     "resourceName": "positive1",
     "searchKey": "aws_sns_topic[positive1].policy",
-    "searchValue": "0",
-    "expectedValue": "'Statement[0].Principal.AWS' shouldn't contain '*'",
-    "actualValue": "'Statement[0].Principal.AWS' contains '*'"
+    "searchValue": "2",
+    "expectedValue": "'Statement[2].Principal.AWS' shouldn't contain '*'",
+    "actualValue": "'Statement[2].Principal.AWS' contains '*'"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
