@@ -3,12 +3,24 @@
     "queryName": "Schema JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref",
+    "searchValue": "",
+    "expectedValue": "MyWrongObject from #/components/schemas/MyWrongObject should be declared on components.schemas",
+    "actualValue": "MyWrongObject from #/components/schemas/MyWrongObject is not declared on components.schemas"
   },
   {
     "queryName": "Schema JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref",
+    "searchValue": "",
+    "expectedValue": "MyWrongObject from #/components/schemas/MyWrongObject should be declared on components.schemas",
+    "actualValue": "MyWrongObject from #/components/schemas/MyWrongObject is not declared on components.schemas"
   }
 ]

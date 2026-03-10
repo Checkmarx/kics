@@ -151,9 +151,9 @@
     "resourceType": "alicloud_actiontrail_trail",
     "resourceName": "action-trail",
     "searchKey": "alicloud_actiontrail_trail[actiontrail10]",
-    "searchValue": "event_rw",
-    "expectedValue": "'event_rw' should be set.",
-    "actualValue": "'event_rw' is not set."
+    "searchValue": "oss_bucket_name",
+    "expectedValue": "oss_bucket_name should be set.",
+    "actualValue": "oss_bucket_name is not set."
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -163,8 +163,8 @@
     "resourceType": "alicloud_actiontrail_trail",
     "resourceName": "action-trail",
     "searchKey": "alicloud_actiontrail_trail[actiontrail10]",
-    "searchValue": "oss_bucket_name",
-    "expectedValue": "oss_bucket_name should be set.",
-    "actualValue": "oss_bucket_name is not set."
+    "searchValue": "event_rw",
+    "expectedValue": "'event_rw' should be set.",
+    "actualValue": "'event_rw' is not set."
   }
 ]

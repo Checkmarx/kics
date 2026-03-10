@@ -127,9 +127,9 @@
     "resourceType": "Microsoft.KeyVault/vaults",
     "resourceName": "[parameters('vaults_pgs_bot_prod_name')]",
     "searchKey": "resources.name={{[parameters('vaults_pgs_bot_prod_name')]}}.properties",
-    "searchValue": "enablePurgeProtection",
-    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+    "searchValue": "enableSoftDelete",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enableSoftDelete' property defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enableSoftDelete' property defined"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -139,8 +139,8 @@
     "resourceType": "Microsoft.KeyVault/vaults",
     "resourceName": "[parameters('vaults_pgs_bot_prod_name')]",
     "searchKey": "resources.name={{[parameters('vaults_pgs_bot_prod_name')]}}.properties",
-    "searchValue": "enableSoftDelete",
-    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enableSoftDelete' property defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enableSoftDelete' property defined"
+    "searchValue": "enablePurgeProtection",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
   }
 ]

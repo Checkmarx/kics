@@ -21,6 +21,8 @@ def build_command(query: QueryInfo) -> list[str]:
         "-d", f"{query.payload_path}/all_payloads.json",
         "-v",
         "--experimental-queries",
+        "--bom",
+        "--enable-openapi-refs"
     ]
 
 
@@ -35,7 +37,14 @@ def parse_results(query: QueryInfo) -> list[ResultInfo]:
 
     results: list[ResultInfo] = []
 
-    for q in data.get("queries", []):
+    bom_entries = data.get("bill_of_materials", [])
+    query_entries = data.get("queries", [])
+
+    if bom_entries:
+        query.is_bom = True
+
+    all_entries = bom_entries if bom_entries else query_entries
+    for q in all_entries:
         query_name = q.get("query_name", "")
         severity = q.get("severity", "")
 

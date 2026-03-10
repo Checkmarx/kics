@@ -3,12 +3,24 @@
     "queryName": "BOM - AWS Kinesis",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.MyStream",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS Kinesis",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.MyStream2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

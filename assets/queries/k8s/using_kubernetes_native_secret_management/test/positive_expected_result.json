@@ -3,6 +3,12 @@
     "queryName": "Using Kubernetes Native Secret Management",
     "severity": "INFO",
     "line": 4,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Secret",
+    "resourceName": "cluster-secrets",
+    "searchKey": "metadata.name={{cluster-secrets}}",
+    "searchValue": "",
+    "expectedValue": "External secret storage should be used",
+    "actualValue": "External secret storage is not in use"
   }
 ]

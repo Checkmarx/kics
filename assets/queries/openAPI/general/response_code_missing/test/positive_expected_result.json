@@ -7,30 +7,6 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.{{put}}.responses",
-    "searchValue": "400 response",
-    "expectedValue": "400 response should be set",
-    "actualValue": "400 response is undefined"
-  },
-  {
-    "queryName": "Response Code Missing (v3)",
-    "severity": "LOW",
-    "line": 12,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/item}}.{{put}}.responses",
-    "searchValue": "415 response",
-    "expectedValue": "415 response should be set",
-    "actualValue": "415 response is undefined"
-  },
-  {
-    "queryName": "Response Code Missing (v3)",
-    "severity": "LOW",
-    "line": 12,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/item}}.{{put}}.responses",
     "searchValue": "429 response",
     "expectedValue": "429 response should be set",
     "actualValue": "429 response is undefined"
@@ -55,9 +31,57 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.{{put}}.responses",
+    "searchValue": "400 response",
+    "expectedValue": "400 response should be set",
+    "actualValue": "400 response is undefined"
+  },
+  {
+    "queryName": "Response Code Missing (v3)",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{put}}.responses",
     "searchValue": "404 response",
     "expectedValue": "404 response should be set",
     "actualValue": "404 response is undefined"
+  },
+  {
+    "queryName": "Response Code Missing (v3)",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{put}}.responses",
+    "searchValue": "415 response",
+    "expectedValue": "415 response should be set",
+    "actualValue": "415 response is undefined"
+  },
+  {
+    "queryName": "Response Code Missing (v3)",
+    "severity": "LOW",
+    "line": 21,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{options}}.responses",
+    "searchValue": "429 response",
+    "expectedValue": "429 response should be set",
+    "actualValue": "429 response is undefined"
+  },
+  {
+    "queryName": "Response Code Missing (v3)",
+    "severity": "LOW",
+    "line": 21,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{options}}.responses",
+    "searchValue": "500 response",
+    "expectedValue": "500 response should be set",
+    "actualValue": "500 response is undefined"
   },
   {
     "queryName": "Response Code Missing (v3)",
@@ -82,30 +106,6 @@
     "searchValue": "400 response",
     "expectedValue": "400 response should be set",
     "actualValue": "400 response is undefined"
-  },
-  {
-    "queryName": "Response Code Missing (v3)",
-    "severity": "LOW",
-    "line": 21,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/item}}.{{options}}.responses",
-    "searchValue": "429 response",
-    "expectedValue": "429 response should be set",
-    "actualValue": "429 response is undefined"
-  },
-  {
-    "queryName": "Response Code Missing (v3)",
-    "severity": "LOW",
-    "line": 21,
-    "filename": "positive1.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/item}}.{{options}}.responses",
-    "searchValue": "500 response",
-    "expectedValue": "500 response should be set",
-    "actualValue": "500 response is undefined"
   },
   {
     "queryName": "Response Code Missing (v3)",
@@ -139,6 +139,18 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.{{put}}.responses",
+    "searchValue": "415 response",
+    "expectedValue": "415 response should be set",
+    "actualValue": "415 response is undefined"
+  },
+  {
+    "queryName": "Response Code Missing (v3)",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{put}}.responses",
     "searchValue": "400 response",
     "expectedValue": "400 response should be set",
     "actualValue": "400 response is undefined"
@@ -163,18 +175,6 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.{{put}}.responses",
-    "searchValue": "415 response",
-    "expectedValue": "415 response should be set",
-    "actualValue": "415 response is undefined"
-  },
-  {
-    "queryName": "Response Code Missing (v3)",
-    "severity": "LOW",
-    "line": 10,
-    "filename": "positive3.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/item}}.{{put}}.responses",
     "searchValue": "429 response",
     "expectedValue": "429 response should be set",
     "actualValue": "429 response is undefined"
@@ -211,9 +211,9 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.{{options}}.responses",
-    "searchValue": "429 response",
-    "expectedValue": "429 response should be set",
-    "actualValue": "429 response is undefined"
+    "searchValue": "500 response",
+    "expectedValue": "500 response should be set",
+    "actualValue": "500 response is undefined"
   },
   {
     "queryName": "Response Code Missing (v3)",
@@ -235,21 +235,9 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.{{options}}.responses",
-    "searchValue": "500 response",
-    "expectedValue": "500 response should be set",
-    "actualValue": "500 response is undefined"
-  },
-  {
-    "queryName": "Response Code Missing (v3)",
-    "severity": "LOW",
-    "line": 10,
-    "filename": "positive4.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/item}}.{{put}}.responses",
-    "searchValue": "401 response",
-    "expectedValue": "401 response should be set when security field is defined",
-    "actualValue": "401 response is undefined when security field is defined"
+    "searchValue": "429 response",
+    "expectedValue": "429 response should be set",
+    "actualValue": "429 response is undefined"
   },
   {
     "queryName": "Response Code Missing (v3)",
@@ -262,6 +250,18 @@
     "searchValue": "403 response",
     "expectedValue": "403 response should be set when security field is defined",
     "actualValue": "403 response is undefined when security field is defined"
+  },
+  {
+    "queryName": "Response Code Missing (v3)",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{put}}.responses",
+    "searchValue": "401 response",
+    "expectedValue": "401 response should be set when security field is defined",
+    "actualValue": "401 response is undefined when security field is defined"
   },
   {
     "queryName": "Response Code Missing (v2)",
@@ -295,9 +295,9 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.{{put}}.responses",
-    "searchValue": "403 response",
-    "expectedValue": "403 response should be set when security field is defined",
-    "actualValue": "403 response is undefined when security field is defined"
+    "searchValue": "401 response",
+    "expectedValue": "401 response should be set when security field is defined",
+    "actualValue": "401 response is undefined when security field is defined"
   },
   {
     "queryName": "Response Code Missing (v2)",
@@ -307,8 +307,8 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/item}}.{{put}}.responses",
-    "searchValue": "401 response",
-    "expectedValue": "401 response should be set when security field is defined",
-    "actualValue": "401 response is undefined when security field is defined"
+    "searchValue": "403 response",
+    "expectedValue": "403 response should be set when security field is defined",
+    "actualValue": "403 response is undefined when security field is defined"
   }
 ]

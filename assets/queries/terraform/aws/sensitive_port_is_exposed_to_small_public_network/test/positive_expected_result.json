@@ -7,9 +7,9 @@
     "resourceType": "aws_security_group",
     "resourceName": "positive1_ipv4_1",
     "searchKey": "aws_security_group[positive1_ipv4_1].ingress",
-    "searchValue": "TCP,22",
-    "expectedValue": "SSH (TCP:22) should not be allowed",
-    "actualValue": "SSH (TCP:22) is allowed"
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -19,9 +19,9 @@
     "resourceType": "aws_security_group",
     "resourceName": "positive1_ipv4_1",
     "searchKey": "aws_security_group[positive1_ipv4_1].ingress",
-    "searchValue": "UDP,22",
-    "expectedValue": "SSH (UDP:22) should not be allowed",
-    "actualValue": "SSH (UDP:22) is allowed"
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -67,9 +67,9 @@
     "resourceType": "aws_security_group",
     "resourceName": "positive1_ipv6_1",
     "searchKey": "aws_security_group[positive1_ipv6_1].ingress",
-    "searchValue": "TCP,22",
-    "expectedValue": "SSH (TCP:22) should not be allowed",
-    "actualValue": "SSH (TCP:22) is allowed"
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -79,9 +79,9 @@
     "resourceType": "aws_security_group",
     "resourceName": "positive1_ipv6_1",
     "searchKey": "aws_security_group[positive1_ipv6_1].ingress",
-    "searchValue": "UDP,22",
-    "expectedValue": "SSH (UDP:22) should not be allowed",
-    "actualValue": "SSH (UDP:22) is allowed"
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -127,9 +127,9 @@
     "resourceType": "aws_vpc_security_group_ingress_rule",
     "resourceName": "positive2_ipv4_1",
     "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv4_1]",
-    "searchValue": "TCP,22",
-    "expectedValue": "SSH (TCP:22) should not be allowed",
-    "actualValue": "SSH (TCP:22) is allowed"
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -139,9 +139,9 @@
     "resourceType": "aws_vpc_security_group_ingress_rule",
     "resourceName": "positive2_ipv4_1",
     "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv4_1]",
-    "searchValue": "UDP,22",
-    "expectedValue": "SSH (UDP:22) should not be allowed",
-    "actualValue": "SSH (UDP:22) is allowed"
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -187,9 +187,9 @@
     "resourceType": "aws_vpc_security_group_ingress_rule",
     "resourceName": "positive2_ipv6_1",
     "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv6_1]",
-    "searchValue": "TCP,22",
-    "expectedValue": "SSH (TCP:22) should not be allowed",
-    "actualValue": "SSH (TCP:22) is allowed"
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -199,9 +199,9 @@
     "resourceType": "aws_vpc_security_group_ingress_rule",
     "resourceName": "positive2_ipv6_1",
     "searchKey": "aws_vpc_security_group_ingress_rule[positive2_ipv6_1]",
-    "searchValue": "UDP,22",
-    "expectedValue": "SSH (UDP:22) should not be allowed",
-    "actualValue": "SSH (UDP:22) is allowed"
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -307,9 +307,9 @@
     "resourceType": "aws_security_group_rule",
     "resourceName": "positive3_ipv6_1",
     "searchKey": "aws_security_group_rule[positive3_ipv6_1]",
-    "searchValue": "UDP,22",
-    "expectedValue": "SSH (UDP:22) should not be allowed",
-    "actualValue": "SSH (UDP:22) is allowed"
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -319,9 +319,9 @@
     "resourceType": "aws_security_group_rule",
     "resourceName": "positive3_ipv6_1",
     "searchKey": "aws_security_group_rule[positive3_ipv6_1]",
-    "searchValue": "TCP,22",
-    "expectedValue": "SSH (TCP:22) should not be allowed",
-    "actualValue": "SSH (TCP:22) is allowed"
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -367,9 +367,9 @@
     "resourceType": "n/a",
     "resourceName": "n/a",
     "searchKey": "module[positive4_ipv4_1].ingress_with_cidr_blocks.0",
-    "searchValue": "UDP,22",
-    "expectedValue": "SSH (UDP:22) should not be allowed",
-    "actualValue": "SSH (UDP:22) is allowed"
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -379,9 +379,9 @@
     "resourceType": "n/a",
     "resourceName": "n/a",
     "searchKey": "module[positive4_ipv4_1].ingress_with_cidr_blocks.0",
-    "searchValue": "TCP,22",
-    "expectedValue": "SSH (TCP:22) should not be allowed",
-    "actualValue": "SSH (TCP:22) is allowed"
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -427,9 +427,9 @@
     "resourceType": "n/a",
     "resourceName": "n/a",
     "searchKey": "module[positive4_ipv6_1].ingress_with_ipv6_cidr_blocks.0",
-    "searchValue": "TCP,22",
-    "expectedValue": "SSH (TCP:22) should not be allowed",
-    "actualValue": "SSH (TCP:22) is allowed"
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",
@@ -439,9 +439,9 @@
     "resourceType": "n/a",
     "resourceName": "n/a",
     "searchKey": "module[positive4_ipv6_1].ingress_with_ipv6_cidr_blocks.0",
-    "searchValue": "UDP,22",
-    "expectedValue": "SSH (UDP:22) should not be allowed",
-    "actualValue": "SSH (UDP:22) is allowed"
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Small Public Network",

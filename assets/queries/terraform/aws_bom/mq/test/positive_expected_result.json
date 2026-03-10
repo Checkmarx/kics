@@ -3,12 +3,24 @@
     "queryName": "BOM - AWS MQ",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_mq_broker[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS MQ",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_mq_broker[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

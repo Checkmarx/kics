@@ -3,18 +3,36 @@
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_rds_cluster_instance[cluster_instances]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 23,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_db_instance[default]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 35,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_db_instance[sample3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

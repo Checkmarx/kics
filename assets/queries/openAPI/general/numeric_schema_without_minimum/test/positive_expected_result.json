@@ -14,6 +14,18 @@
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
+    "line": 74,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined"
+  },
+  {
+    "queryName": "Numeric Schema Without Minimum (v3)",
+    "severity": "LOW",
     "line": 27,
     "filename": "positive2.json",
     "resourceType": "",
@@ -31,6 +43,18 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined"
+  },
+  {
+    "queryName": "Numeric Schema Without Minimum (v3)",
+    "severity": "LOW",
+    "line": 45,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "Numeric schema should have 'minimum' defined",
     "actualValue": "Numeric schema does not have 'minimum' defined"

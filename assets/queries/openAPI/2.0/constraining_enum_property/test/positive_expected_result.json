@@ -2,6 +2,30 @@
   {
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
+    "line": 24,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
+    "searchValue": "",
+    "expectedValue": "Type numeric should not have enum and constraining keywords",
+    "actualValue": "Type numeric has enum and minimum"
+  },
+  {
+    "queryName": "Constraining Enum Property",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
+    "searchValue": "",
+    "expectedValue": "Type string should not have enum and constraining keywords",
+    "actualValue": "Type string has enum and maxLength"
+  },
+  {
+    "queryName": "Constraining Enum Property",
+    "severity": "INFO",
     "line": 38,
     "filename": "positive1.json",
     "resourceType": "",
@@ -22,6 +46,30 @@
     "searchValue": "",
     "expectedValue": "Type string should not have enum and constraining keywords",
     "actualValue": "Type string has enum and maxLength"
+  },
+  {
+    "queryName": "Constraining Enum Property",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
+    "searchValue": "",
+    "expectedValue": "Type string should not have enum and constraining keywords",
+    "actualValue": "Type string has enum and maxLength"
+  },
+  {
+    "queryName": "Constraining Enum Property",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
+    "searchValue": "",
+    "expectedValue": "Type numeric should not have enum and constraining keywords",
+    "actualValue": "Type numeric has enum and minimum"
   },
   {
     "queryName": "Constraining Enum Property",

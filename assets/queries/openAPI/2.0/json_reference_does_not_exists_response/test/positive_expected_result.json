@@ -6,7 +6,7 @@
     "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.$ref",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/responses/Succes",
     "searchValue": "",
     "expectedValue": "Succes from #/responses/Succes should be declared on responses",
     "actualValue": "Succes from #/responses/Succes is not declared on responses"
@@ -18,7 +18,7 @@
     "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.$ref",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/responses/Succes",
     "searchValue": "",
     "expectedValue": "Succes from #/responses/Succes should be declared on responses",
     "actualValue": "Succes from #/responses/Succes is not declared on responses"

@@ -3,12 +3,24 @@
     "queryName": "Parameter JSON Reference Does Not Exist (v2)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.$ref={{#/parameters/maxParam}}",
+    "searchValue": "",
+    "expectedValue": "maxParam from #/parameters/maxParam should be declared on parameters",
+    "actualValue": "maxParam from #/parameters/maxParam is not declared on parameters"
   },
   {
     "queryName": "Parameter JSON Reference Does Not Exist (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.$ref={{#/parameters/maxParam}}",
+    "searchValue": "",
+    "expectedValue": "maxParam from #/parameters/maxParam should be declared on parameters",
+    "actualValue": "maxParam from #/parameters/maxParam is not declared on parameters"
   }
 ]

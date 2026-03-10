@@ -2,6 +2,18 @@
   {
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
+    "line": 18,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
     "line": 52,
     "filename": "positive1.json",
     "resourceType": "",
@@ -50,6 +62,18 @@
   {
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
+    "line": 18,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword minLength is not valid for type integer"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
     "line": 42,
     "filename": "positive2.json",
     "resourceType": "",
@@ -58,6 +82,18 @@
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
     "actualValue": "Keyword minLength is not valid for type integer"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword required is not valid for type string"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -74,6 +110,18 @@
   {
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
+    "line": 16,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
     "line": 37,
     "filename": "positive4.yaml",
     "resourceType": "",
@@ -86,6 +134,18 @@
   {
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
+    "line": 16,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword minLength is not valid for type integer"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
     "line": 29,
     "filename": "positive5.yaml",
     "resourceType": "",
@@ -94,6 +154,18 @@
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
     "actualValue": "Keyword minLength is not valid for type integer"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",

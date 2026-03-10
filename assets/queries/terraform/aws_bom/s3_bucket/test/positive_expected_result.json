@@ -3,60 +3,120 @@
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive2.tf"
+    "filename": "positive10.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive10]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive3.tf"
+    "filename": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive4.tf"
+    "filename": "positive3.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive5.tf"
+    "filename": "positive4.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive6.tf"
+    "filename": "positive5.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive5]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive7.tf"
+    "filename": "positive6.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive6]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive8.tf"
+    "filename": "positive7.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive7]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive9.tf"
+    "filename": "positive8.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive8]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive10.tf"
+    "filename": "positive9.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive9]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

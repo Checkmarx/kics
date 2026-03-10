@@ -6,7 +6,7 @@
     "filename": "positive1.json",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema.$ref",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.$ref=#/definitions/Use",
     "searchValue": "",
     "expectedValue": "Use from #/definitions/Use should be declared on definitions",
     "actualValue": "Use from #/definitions/Use is not declared on definitions"
@@ -18,7 +18,7 @@
     "filename": "positive2.yaml",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema.$ref",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.$ref=#/definitions/Use",
     "searchValue": "",
     "expectedValue": "Use from #/definitions/Use should be declared on definitions",
     "actualValue": "Use from #/definitions/Use is not declared on definitions"

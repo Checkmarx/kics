@@ -1,32 +1,62 @@
 [
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 2,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 12,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 20,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 33,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 44,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{sample-input}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{sample-input2}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 20,
+    "filename": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{sample-input3}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 33,
+    "filename": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{sample-input4}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 44,
+    "filename": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{sample-input5}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  }
 ]

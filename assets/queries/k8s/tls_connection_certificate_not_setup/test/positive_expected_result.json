@@ -31,9 +31,9 @@
     "resourceType": "KubeletConfiguration",
     "resourceName": "n/a",
     "searchKey": "kind={{KubeletConfiguration}}",
-    "searchValue": "tlsCertFile",
-    "expectedValue": "TLS tlsCertFile connection setting should be set",
-    "actualValue": "TLS tlsCertFile connection not set"
+    "searchValue": "tlsPrivateKeyFile",
+    "expectedValue": "TLS tlsPrivateKeyFile connection setting should be set",
+    "actualValue": "TLS tlsPrivateKeyFile connection not set"
   },
   {
     "queryName": "TSL Connection Certificate Not Setup",
@@ -43,9 +43,9 @@
     "resourceType": "KubeletConfiguration",
     "resourceName": "n/a",
     "searchKey": "kind={{KubeletConfiguration}}",
-    "searchValue": "tlsPrivateKeyFile",
-    "expectedValue": "TLS tlsPrivateKeyFile connection setting should be set",
-    "actualValue": "TLS tlsPrivateKeyFile connection not set"
+    "searchValue": "tlsCertFile",
+    "expectedValue": "TLS tlsCertFile connection setting should be set",
+    "actualValue": "TLS tlsCertFile connection not set"
   },
   {
     "queryName": "TSL Connection Certificate Not Setup",

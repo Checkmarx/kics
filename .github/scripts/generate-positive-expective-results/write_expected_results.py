@@ -5,6 +5,29 @@ from models import TestList
 from runner import run_all
 
 
+def deduplicate_results(results: list[dict]) -> list[dict]:
+    """Remove duplicate results, keeping only the first occurrence of each unique result."""
+    seen = set()
+    deduplicated = []
+    for result in results:
+        result_tuple = (
+            result["queryName"],
+            result["severity"],
+            result["line"],
+            result["filename"],
+            result["resourceType"],
+            result["resourceName"],
+            result["searchKey"],
+            result["searchValue"],
+            result["expectedValue"],
+            result["actualValue"],
+        )
+        if result_tuple not in seen:
+            seen.add(result_tuple)
+            deduplicated.append(result)
+    return deduplicated
+
+
 def write_positive_expected_results(test_list: TestList) -> None:
     """For each query, write positive_expected_result.json in the test_path directory."""
     total = len(test_list.queries_list)
@@ -36,6 +59,8 @@ def write_positive_expected_results(test_list: TestList) -> None:
                 "expectedValue": ri.expected_value,
                 "actualValue": ri.actual_value,
             })
+
+        expected_results = deduplicate_results(expected_results)
 
         expected_results.sort(key=lambda r: (
             r["filename"],

@@ -7,9 +7,9 @@
     "resourceType": "container.v1.cluster",
     "resourceName": "cluster",
     "searchKey": "resources.name={{cluster}}.properties",
-    "searchValue": "addonsConfig",
-    "expectedValue": "'addonsConfig' should be defined and not null",
-    "actualValue": "'addonsConfig' is undefined or null"
+    "searchValue": "networkPolicy",
+    "expectedValue": "'networkPolicy' should be defined and not null",
+    "actualValue": "'networkPolicy' is undefined or null"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -19,9 +19,9 @@
     "resourceType": "container.v1.cluster",
     "resourceName": "cluster",
     "searchKey": "resources.name={{cluster}}.properties",
-    "searchValue": "networkPolicy",
-    "expectedValue": "'networkPolicy' should be defined and not null",
-    "actualValue": "'networkPolicy' is undefined or null"
+    "searchValue": "addonsConfig",
+    "expectedValue": "'addonsConfig' should be defined and not null",
+    "actualValue": "'addonsConfig' is undefined or null"
   },
   {
     "queryName": "Network Policy Disabled",

@@ -3,12 +3,24 @@
     "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.SnsTopic",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 5,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.SnsTopic",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

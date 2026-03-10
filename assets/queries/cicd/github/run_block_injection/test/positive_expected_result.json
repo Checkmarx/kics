@@ -7,7 +7,7 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1>&2\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1>&2\n  exit 1;\nfi;\n}}",
-    "searchValue": "github.event.issue.title",
+    "searchValue": "github.event.issue.body",
     "expectedValue": "Run block does not contain dangerous input controlled by user.",
     "actualValue": "Run block contains dangerous input controlled by user."
   },
@@ -19,7 +19,7 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1>&2\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1>&2\n  exit 1;\nfi;\n}}",
-    "searchValue": "github.event.issue.body",
+    "searchValue": "github.event.issue.title",
     "expectedValue": "Run block does not contain dangerous input controlled by user.",
     "actualValue": "Run block contains dangerous input controlled by user."
   },

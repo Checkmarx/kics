@@ -1,26 +1,50 @@
 [
-	{
-		"queryName": "BOM - GCP PST",
-		"severity": "TRACE",
-		"line": 34,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PST",
-		"severity": "TRACE",
-		"line": 39,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PST",
-		"severity": "TRACE",
-		"line": 44,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PST",
-		"severity": "TRACE",
-		"line": 54,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "line": 34,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_pubsub_topic[example1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "line": 39,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_pubsub_topic[example2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "line": 44,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_pubsub_topic[example3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "line": 54,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_pubsub_topic[example4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  }
 ]

@@ -14,6 +14,18 @@
   {
     "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
     "severity": "INFO",
+    "line": 71,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema value should not have 'minimum' larger than 'maximum'",
+    "actualValue": "Numeric schema value has 'minimum' larger than 'maximum'"
+  },
+  {
+    "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
+    "severity": "INFO",
     "line": 24,
     "filename": "positive2.json",
     "resourceType": "",
@@ -38,6 +50,18 @@
   {
     "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
     "severity": "INFO",
+    "line": 47,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema value should not have 'minimum' larger than 'maximum'",
+    "actualValue": "Numeric schema value has 'minimum' larger than 'maximum'"
+  },
+  {
+    "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
+    "severity": "INFO",
     "line": 21,
     "filename": "positive4.yaml",
     "resourceType": "",
@@ -55,6 +79,18 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.schemas.GeneralError.properties.code",
+    "searchValue": "",
+    "expectedValue": "String schema value should not have 'minLength' larger than 'maxLength'",
+    "actualValue": "String schema value has 'minLength' larger than 'maxLength'"
+  },
+  {
+    "queryName": "Property Defining Minimum Greater Than Maximum (v3)",
+    "severity": "INFO",
+    "line": 50,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "String schema value should not have 'minLength' larger than 'maxLength'",
     "actualValue": "String schema value has 'minLength' larger than 'maxLength'"

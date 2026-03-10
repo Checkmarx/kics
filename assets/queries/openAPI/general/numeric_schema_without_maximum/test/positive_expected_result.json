@@ -14,6 +14,18 @@
   {
     "queryName": "Numeric Schema Without Maximum (v3)",
     "severity": "LOW",
+    "line": 75,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'maximum' defined",
+    "actualValue": "Numeric schema does not have 'maximum' defined"
+  },
+  {
+    "queryName": "Numeric Schema Without Maximum (v3)",
+    "severity": "LOW",
     "line": 27,
     "filename": "positive2.json",
     "resourceType": "",
@@ -31,6 +43,18 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'maximum' defined",
+    "actualValue": "Numeric schema does not have 'maximum' defined"
+  },
+  {
+    "queryName": "Numeric Schema Without Maximum (v3)",
+    "severity": "LOW",
+    "line": 46,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "Numeric schema should have 'maximum' defined",
     "actualValue": "Numeric schema does not have 'maximum' defined"

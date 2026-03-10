@@ -14,6 +14,18 @@
   {
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "LOW",
+    "line": 81,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted"
+  },
+  {
+    "queryName": "String Schema with Broad Pattern (v3)",
+    "severity": "LOW",
     "line": 30,
     "filename": "positive2.json",
     "resourceType": "",
@@ -31,6 +43,18 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.schemas.GeneralError.properties.code.pattern",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted"
+  },
+  {
+    "queryName": "String Schema with Broad Pattern (v3)",
+    "severity": "LOW",
+    "line": 51,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "String schema has 'pattern' restricted",
     "actualValue": "String schema does not have 'pattern' restricted"

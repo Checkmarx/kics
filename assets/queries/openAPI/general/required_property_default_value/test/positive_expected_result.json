@@ -2,6 +2,18 @@
   {
     "queryName": "Required Property With Default Value (v3)",
     "severity": "INFO",
+    "line": 14,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined"
+  },
+  {
+    "queryName": "Required Property With Default Value (v3)",
+    "severity": "INFO",
     "line": 30,
     "filename": "positive1.json",
     "resourceType": "",
@@ -19,6 +31,18 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.{{id}}.default",
+    "searchValue": "",
+    "expectedValue": "Required properties should not have default defined",
+    "actualValue": "Required properties with default defined"
+  },
+  {
+    "queryName": "Required Property With Default Value (v3)",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
     "actualValue": "Required properties with default defined"

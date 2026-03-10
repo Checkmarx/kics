@@ -21,6 +21,7 @@ class QueryInfo:
     payload_path: str
     results_info: list[ResultInfo] = field(default_factory=list)
     return_code: int | None = None
+    is_bom: bool = False
 
 @dataclass
 class TestList:

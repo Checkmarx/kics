@@ -7,9 +7,9 @@
     "resourceType": "alicloud_cs_kubernetes",
     "resourceName": "positive1",
     "searchKey": "alicloud_cs_kubernetes[positive1]",
-    "searchValue": "terway-eniip",
-    "expectedValue": "alicloud_cs_kubernetes[positive1].addons specifies the terway-eniip",
-    "actualValue": "alicloud_cs_kubernetes[positive1].addons does not specify the terway-eniip"
+    "searchValue": "pod_vswitch_ids",
+    "expectedValue": "alicloud_cs_kubernetes[positive1].pod_vswitch_ids should be defined and not null",
+    "actualValue": "alicloud_cs_kubernetes[positive1].pod_vswitch_ids is undefined or  null"
   },
   {
     "queryName": "Kubernetes Cluster Without Terway as CNI Network Plugin",
@@ -19,9 +19,9 @@
     "resourceType": "alicloud_cs_kubernetes",
     "resourceName": "positive1",
     "searchKey": "alicloud_cs_kubernetes[positive1]",
-    "searchValue": "pod_vswitch_ids",
-    "expectedValue": "alicloud_cs_kubernetes[positive1].pod_vswitch_ids should be defined and not null",
-    "actualValue": "alicloud_cs_kubernetes[positive1].pod_vswitch_ids is undefined or  null"
+    "searchValue": "terway-eniip",
+    "expectedValue": "alicloud_cs_kubernetes[positive1].addons specifies the terway-eniip",
+    "actualValue": "alicloud_cs_kubernetes[positive1].addons does not specify the terway-eniip"
   },
   {
     "queryName": "Kubernetes Cluster Without Terway as CNI Network Plugin",

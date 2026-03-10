@@ -26,6 +26,18 @@
   {
     "queryName": "Header Response Name Is Invalid (v2)",
     "severity": "INFO",
+    "line": 14,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.$ref=#/responses/Success",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers should not contain 'Accept'",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers contains 'Accept'"
+  },
+  {
+    "queryName": "Header Response Name Is Invalid (v2)",
+    "severity": "INFO",
     "line": 32,
     "filename": "positive3.json",
     "resourceType": "",
@@ -34,6 +46,18 @@
     "searchValue": "",
     "expectedValue": "responses.{{Success}}.headers should not contain 'Accept'",
     "actualValue": "responses.{{Success}}.headers contains 'Accept'"
+  },
+  {
+    "queryName": "Header Response Name Is Invalid (v2)",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.$ref=#/responses/Success",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers should not contain 'Accept'",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers contains 'Accept'"
   },
   {
     "queryName": "Header Response Name Is Invalid (v2)",
