@@ -120,12 +120,12 @@ def process_skipped_query(query: dict) -> list[dict]:
     print(f"  Test path : {test_path}")
 
     if not test_path.is_dir():
-        print(f"  ⚠ Test directory not found")
+        print("  ⚠ Test directory not found")
         return []
 
     positive_files = get_positive_test_files(test_path)
     if not positive_files:
-        print(f"  ⚠ No positive test files found")
+        print("  ⚠ No positive test files found")
         return []
 
     print(f"  Positive files: {[f.name for f in positive_files]}")
@@ -145,7 +145,7 @@ def process_skipped_query(query: dict) -> list[dict]:
         if return_code != 0:
             print(f"  ⚠ Scan failed with return code {return_code}")
         else:
-            print(f"  ✓ Scan completed")
+            print("  ✓ Scan completed")
 
         file_results = parse_results_from_file(output_file)
         print(f"    → {len(file_results)} result(s) found")
@@ -190,7 +190,7 @@ def main() -> None:
         results = process_skipped_query(query)
 
         if not results:
-            print(f"  ⚠ No results produced — skipping positive_expected_result.json")
+            print("  ⚠ No results produced — skipping positive_expected_result.json")
             still_skipped.append(query["id"])
             continue
 
