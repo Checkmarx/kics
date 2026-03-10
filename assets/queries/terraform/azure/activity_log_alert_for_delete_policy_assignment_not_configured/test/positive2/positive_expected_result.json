@@ -82,5 +82,5 @@
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete policy assignment' events should be defined",
     "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'delete policy assignment' events but sets 1 filter(s): sub_statuses"
-  },
+  }
 ]
