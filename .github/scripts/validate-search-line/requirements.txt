@@ -1,2 +1,1 @@
-# No external dependencies required.
-# Changed files are provided by dorny/paths-filter via CHANGED_QUERIES env var.
+requests
