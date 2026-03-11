@@ -434,7 +434,7 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
 		ext := strings.ToLower(ext)
-		
+
 		switch ext {
 		// Dockerfile (direct identification)
 		case ".dockerfile", "dockerfile":
@@ -445,7 +445,7 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 			}
 		// Dockerfile (indirect identification)
 		case "possibleDockerfile", ".ubi8", ".debian":
-			if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
+			if a.isAvailableType(dockerfile) {
 				results <- dockerfile
 				locCount <- linesCount
 				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
@@ -487,30 +487,6 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 			a.checkContent(results, unwanted, locCount, fileInfo, linesCount, ext)
 		}
 	}
-}
-
-func isDockerfile(path string) bool {
-	content, err := os.ReadFile(filepath.Clean(path))
-	if err != nil {
-		log.Error().Msgf("failed to analyze file: %s", err)
-		return false
-	}
-
-	regexes := []*regexp.Regexp{
-		regexp.MustCompile(`\s*FROM\s*`),
-		regexp.MustCompile(`\s*RUN\s*`),
-	}
-
-	check := true
-
-	for _, regex := range regexes {
-		if !regex.Match(content) {
-			check = false
-			break
-		}
-	}
-
-	return check
 }
 
 // overrides k8s match when all regexes pass for azureresourcemanager key and extension is set to json
