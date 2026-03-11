@@ -155,7 +155,7 @@ def main():
     
     # Find modified queries
     modified_queries = find_modified_queries(pr_files)
-    for i, entry in range(modified_queries):
+    for i, entry in enumerate(modified_queries):
         print(f"modified_queries[{i}: {entry}]\n")
     
     if not modified_queries:
