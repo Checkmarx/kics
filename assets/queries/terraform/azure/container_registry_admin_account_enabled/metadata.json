@@ -1,0 +1,14 @@
+{
+  "id": "bd252825-fc09-4737-bbab-755d6096af19",
+  "queryName": "Beta - Container Registry Admin Account Enabled",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Azure Container Registry admin account should be disabled. The admin account uses a shared, long-lived password that cannot be scoped to specific operations or individuals, violating least-privilege principles.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry#admin_enabled",
+  "platform": "Terraform",
+  "descriptionID": "a9b0c1d2",
+  "cloudProvider": "azure",
+  "cwe": "269",
+  "riskScore": "7.0",
+  "experimental": "true"
+}

@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - GKE Cluster Stackdriver Logging Disabled",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

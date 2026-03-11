@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - EMR Cluster Local Disk Encryption Disabled",
+        "severity": "HIGH",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Cloud SQL PostgreSQL log_checkpoints Not Enabled",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

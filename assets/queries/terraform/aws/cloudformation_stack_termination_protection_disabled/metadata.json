@@ -1,0 +1,14 @@
+{
+  "id": "c1c08f98-c7f0-4b28-8a6b-f9e99763c73a",
+  "queryName": "Beta - CloudFormation Stack Termination Protection Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "CloudFormation stacks should have termination protection enabled to prevent accidental or unauthorized stack deletion, which could cause irreversible infrastructure loss.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack#termination_protection",
+  "platform": "Terraform",
+  "descriptionID": "b2c3d4e5",
+  "cloudProvider": "aws",
+  "cwe": "693",
+  "riskScore": "5.0",
+  "experimental": "true"
+}

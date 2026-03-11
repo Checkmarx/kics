@@ -1,0 +1,14 @@
+{
+  "id": "3f533062-c04b-4f50-aab8-67cb3e5f898e",
+  "queryName": "Beta - Cloud SQL PostgreSQL log_lock_waits Not Enabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Google Cloud SQL PostgreSQL instances should enable the log_lock_waits flag to record lock wait events, helping identify deadlocks, performance issues, and potential denial-of-service conditions (CIS GCP 6.2.4).",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#database_flags",
+  "platform": "Terraform",
+  "descriptionID": "f2a3b4c5",
+  "cloudProvider": "gcp",
+  "cwe": "778",
+  "riskScore": "4.0",
+  "experimental": "true"
+}
