@@ -433,24 +433,13 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 	if errExt == nil {
 		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
-		ext := strings.ToLower(ext)
-
 		switch ext {
-		// Dockerfile (direct identification)
+		// Dockerfile
 		case ".dockerfile", "dockerfile":
 			if a.isAvailableType(dockerfile) {
 				results <- dockerfile
 				locCount <- linesCount
 				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
-			}
-		// Dockerfile (indirect identification)
-		case "possibleDockerfile", ".ubi8", ".debian":
-			if a.isAvailableType(dockerfile) {
-				results <- dockerfile
-				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
-			} else {
-				unwanted <- a.filePath
 			}
 		// Terraform
 		case ".tf", "tfvars":
