@@ -15,6 +15,8 @@ CxPolicy[result] {
         "keyExpectedValue": sprintf("aws_cloudformation_stack[%s].termination_protection should be true", [name]),
         "keyActualValue": sprintf("aws_cloudformation_stack[%s].termination_protection is not defined", [name]),
         "searchLine": common_lib.build_search_line(["resource", "aws_cloudformation_stack", name], []),
+        "remediation": "termination_protection = true",
+        "remediationType": "addition",
     }
 }
 
@@ -30,5 +32,10 @@ CxPolicy[result] {
         "keyExpectedValue": sprintf("aws_cloudformation_stack[%s].termination_protection should be true", [name]),
         "keyActualValue": sprintf("aws_cloudformation_stack[%s].termination_protection is false", [name]),
         "searchLine": common_lib.build_search_line(["resource", "aws_cloudformation_stack", name, "termination_protection"], []),
+        "remediation": json.marshal({
+            "before": "false",
+            "after": "true",
+        }),
+        "remediationType": "replacement",
     }
 }
