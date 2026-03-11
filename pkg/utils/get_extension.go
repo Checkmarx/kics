@@ -14,7 +14,6 @@ import (
 
 // GetExtension gets the extension of a file path
 func GetExtension(path string) (string, error) {
-	targets := []string{"Dockerfile", "tfvars"}
 
 	// Get file information
 	fileInfo, err := os.Stat(path)
@@ -26,12 +25,24 @@ func GetExtension(path string) (string, error) {
 		return "", fmt.Errorf("the path %s is a directory", path)
 	}
 
-	ext := filepath.Ext(path)
-	if ext == "" {
-		base := filepath.Base(path)
+	base := filepath.Base(path)
+	if strings.HasPrefix(strings.ToLower(base), "dockerfile.") {
+		return ".dockerfile", nil
+	}
 
-		if Contains(base, targets) {
-			ext = base
+	ext := filepath.Ext(path)
+	if strings.ToLower(ext) == ".dockerfile" {
+		return ".dockerfile", nil
+	}
+
+	dir := strings.ToLower(filepath.Base(filepath.Dir(path)))
+	if (dir == "docker" || dir == "dockerfile" || dir == "dockerfiles") && readPossibleDockerFile(path) {
+		return ".dockerfile", nil
+	}
+
+	if ext == "" {
+		if base == "tfvars" {
+			ext = ".tfvars"
 		} else {
 			isText, err := isTextFile(path)
 
@@ -39,10 +50,8 @@ func GetExtension(path string) (string, error) {
 				return "", err
 			}
 
-			if isText {
-				if readPossibleDockerFile(path) {
-					ext = "possibleDockerfile"
-				}
+			if isText && readPossibleDockerFile(path) {
+				return ".dockerfile", nil
 			}
 		}
 	}
@@ -70,7 +79,7 @@ func readPossibleDockerFile(path string) bool {
 	for scanner.Scan() {
 		if strings.HasPrefix(scanner.Text(), "FROM") {
 			return true
-		} else if strings.HasPrefix(scanner.Text(), "#") {
+		} else if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(scanner.Text(), "ARG") || scanner.Text() == "" {
 			continue
 		} else {
 			return false
