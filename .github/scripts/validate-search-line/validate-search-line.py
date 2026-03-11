@@ -85,6 +85,9 @@ def validate_query_results(query_dir):
         print("No test files found")
         return True
     
+    for i, entry in range(test_files):
+        print(f"test_files[{i}]: {entry}\n")
+
     # Run KICS on test directory using the compiled binary
     kics_binary = './bin/kics'
     cmd = [
@@ -153,6 +156,8 @@ def main():
     
     # Find modified queries
     modified_queries = find_modified_queries(pr_files)
+    for i, entry in range(modified_queries):
+        print(f"modified_queries[{i}: {entry}]\n")
     
     if not modified_queries:
         print("No modified queries found in this PR")
