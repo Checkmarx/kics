@@ -433,9 +433,11 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 	if errExt == nil {
 		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
+		ext := strings.ToLower(ext)
+		
 		switch ext {
 		// Dockerfile (direct identification)
-		case ".dockerfile", "Dockerfile":
+		case ".dockerfile", "dockerfile":
 			if a.isAvailableType(dockerfile) {
 				results <- dockerfile
 				locCount <- linesCount
