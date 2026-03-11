@@ -56,7 +56,6 @@ def find_modified_queries(files):
         if file.startswith('assets/queries/') and file.endswith('/query.rego'):
             query_dir = str(Path(file).parent)
             modified_queries.append(query_dir)
-    
     return modified_queries
 
 def find_test_fixtures(query_dir):
@@ -117,7 +116,7 @@ def validate_query_results(query_dir):
     try:
         with open('/tmp/kics-result.json', 'r') as f:
             results = json.load(f)
-    except:
+    except (FileNotFoundError, json.JSONDecodeError):
         print("No results file generated")
         return True
     
