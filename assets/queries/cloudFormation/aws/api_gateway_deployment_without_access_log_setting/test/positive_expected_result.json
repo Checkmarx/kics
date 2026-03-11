@@ -2,37 +2,73 @@
   {
     "queryName": "API Gateway Deployment Without Access Log Setting",
     "severity": "MEDIUM",
-    "line": 21,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "fileName": "positive3.yaml",
-    "queryName": "API Gateway Deployment Without Access Log Setting",
-    "severity": "MEDIUM",
-    "line": 21
-  },
-  {
-    "queryName": "API Gateway Deployment Without Access Log Setting",
-    "severity": "MEDIUM",
     "line": 29,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment.Properties.StageDescription.AccessLogSetting",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment.Properties.StageDescriptionAccessLogSetting should be defined",
+    "actualValue": "Resources.ApiDeployment.Properties.StageDescription.AccessLogSetting is not defined"
   },
   {
-    "fileName": "positive4.json",
     "queryName": "API Gateway Deployment Without Access Log Setting",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 21,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment1",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment1 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same as the ApiGateway::Stage resource",
+    "actualValue": "Resources.ApiDeployment1 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource"
+  },
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment2",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment2 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same as the ApiGateway::Stage resource",
+    "actualValue": "Resources.ApiDeployment2 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource"
+  },
+  {
+    "queryName": "API Gateway Deployment Without Access Log Setting",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive4.json",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment.Properties.StageDescription.AccessLogSetting",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment.Properties.StageDescriptionAccessLogSetting should be defined",
+    "actualValue": "Resources.ApiDeployment.Properties.StageDescription.AccessLogSetting is not defined"
   },
   {
     "queryName": "API Gateway Deployment Without Access Log Setting",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment1",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment1 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same as the ApiGateway::Stage resource",
+    "actualValue": "Resources.ApiDeployment1 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource"
   },
   {
     "queryName": "API Gateway Deployment Without Access Log Setting",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.ApiDeployment2",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiDeployment2 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same as the ApiGateway::Stage resource",
+    "actualValue": "Resources.ApiDeployment2 should have AWS::ApiGateway::Stage associated, DeploymentId.Ref should be the same in the ApiGateway::Stage resource"
   }
 ]

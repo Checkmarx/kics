@@ -3,72 +3,144 @@
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_role_policy",
+    "resourceName": "apigateway-cloudwatch-logging",
+    "searchKey": "aws_iam_role_policy[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_policy_document",
+    "resourceName": "example",
+    "searchKey": "aws_iam_policy_document[example].statement",
+    "searchValue": "",
+    "expectedValue": "'statement.actions' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'statement.actions' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_iam_policy_document",
+    "resourceName": "example",
+    "searchKey": "aws_iam_policy_document[example].statement[1]",
+    "searchValue": "",
+    "expectedValue": "'statement.actions' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'statement.actions' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_iam_policy_document",
+    "resourceName": "example",
+    "searchKey": "aws_iam_policy_document[example].statement[2]",
+    "searchValue": "",
+    "expectedValue": "'statement.actions' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'statement.actions' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_iam_role_policy",
+    "resourceName": "apigateway-cloudwatch-logging",
+    "searchKey": "aws_iam_role_policy[positive3].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_iam_policy_document",
+    "resourceName": "example",
+    "searchKey": "aws_iam_policy_document[example].statement",
+    "searchValue": "",
+    "expectedValue": "'statement.actions' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'statement.actions' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "test",
+    "searchKey": "aws_iam_user_policy[positive4-1].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "test",
+    "searchKey": "aws_iam_user_policy[positive4-2].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "aws_iam_group_policy",
+    "resourceName": "my_developer_policy",
+    "searchKey": "aws_iam_group_policy[positive5-1].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "aws_iam_group_policy",
+    "resourceName": "my_developer_policy",
+    "searchKey": "aws_iam_group_policy[positive5-2].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive6-1",
+    "searchKey": "aws_iam_policy[positive6-1].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "positive6-2",
+    "searchKey": "aws_iam_policy[positive6-2].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
   }
 ]

@@ -3,12 +3,24 @@
     "queryName": "Cloud Storage Bucket Versioning Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "a-new-pubsub-topic",
+    "searchKey": "resources.name={{a-new-pubsub-topic}}.properties",
+    "searchValue": "",
+    "expectedValue": "'versioning' should be defined and not null",
+    "actualValue": "'versioning' is undefined or null"
   },
   {
     "queryName": "Cloud Storage Bucket Versioning Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "a-new-pubsub-topic2",
+    "searchKey": "resources.name={{a-new-pubsub-topic2}}.properties.versioning.enabled",
+    "searchValue": "",
+    "expectedValue": "'enabled' should be set to true",
+    "actualValue": "'enabled' is set to false"
   }
 ]

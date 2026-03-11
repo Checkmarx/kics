@@ -3,6 +3,12 @@
     "queryName": "ECS Service Without Running Tasks",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_ecs_service",
+    "resourceName": "positive1",
+    "searchKey": "aws_ecs_service[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_ecs_service[positive1]' has at least 1 task running",
+    "actualValue": "'aws_ecs_service[positive1]' must have at least 1 task running"
   }
 ]

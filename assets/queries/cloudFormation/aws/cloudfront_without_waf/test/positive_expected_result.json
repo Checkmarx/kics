@@ -3,24 +3,48 @@
     "queryName": "CloudFront Without WAF",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId should be defined",
+    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId is undefined"
   },
   {
-    "fileName": "positive2.json",
     "queryName": "CloudFront Without WAF",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId should be defined",
+    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId is undefined"
   },
   {
-    "fileName": "positive3.yaml",
     "queryName": "CloudFront Without WAF",
     "severity": "MEDIUM",
-    "line": 21
+    "line": 21,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId",
+    "searchValue": "",
+    "expectedValue": "Resources..Properties.DistributionConfig.WebACLId should be properly defined",
+    "actualValue": "Resources..Properties.DistributionConfig.WebACLId contains invalid value"
   },
   {
-    "fileName": "positive4.json",
     "queryName": "CloudFront Without WAF",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 36,
+    "filename": "positive4.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId",
+    "searchValue": "",
+    "expectedValue": "Resources..Properties.DistributionConfig.WebACLId should be properly defined",
+    "actualValue": "Resources..Properties.DistributionConfig.WebACLId contains invalid value"
   }
 ]

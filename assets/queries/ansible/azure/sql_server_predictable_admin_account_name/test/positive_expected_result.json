@@ -2,16 +2,37 @@
   {
     "queryName": "SQL Server Predictable Admin Account Name",
     "severity": "LOW",
-    "line": 7
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_sqlserver",
+    "resourceName": "Create (or update) SQL Server1",
+    "searchKey": "name={{Create (or update) SQL Server1}}.{{azure_rm_sqlserver}}.admin_username",
+    "searchValue": "",
+    "expectedValue": "azure_rm_sqlserver.admin_username should not be empty",
+    "actualValue": "azure_rm_sqlserver.admin_username is empty"
   },
   {
     "queryName": "SQL Server Predictable Admin Account Name",
     "severity": "LOW",
-    "line": 14
+    "line": 14,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_sqlserver",
+    "resourceName": "Create (or update) SQL Server2",
+    "searchKey": "name={{Create (or update) SQL Server2}}.{{azure_rm_sqlserver}}.admin_username",
+    "searchValue": "",
+    "expectedValue": "azure_rm_sqlserver.admin_username should not be empty",
+    "actualValue": "azure_rm_sqlserver.admin_username is empty"
   },
   {
     "queryName": "SQL Server Predictable Admin Account Name",
     "severity": "LOW",
-    "line": 21
+    "line": 21,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_sqlserver",
+    "resourceName": "Create (or update) SQL Server3",
+    "searchKey": "name={{Create (or update) SQL Server3}}.{{azure_rm_sqlserver}}.admin_username",
+    "searchValue": "",
+    "expectedValue": "azure_rm_sqlserver.admin_username should not be predictable",
+    "actualValue": "azure_rm_sqlserver.admin_username is predictable"
   }
 ]

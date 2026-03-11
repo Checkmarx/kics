@@ -3,12 +3,24 @@
     "queryName": "PostgreSQL Server Threat Detection Policy Disabled",
     "severity": "MEDIUM",
     "line": 22,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_postgresql_server",
+    "resourceName": "example-psqlserver",
+    "searchKey": "azurerm_postgresql_server[positive1].threat_detection_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_server[positive1].threat_detection_policy.enabled' should be set to true",
+    "actualValue": "'azurerm_postgresql_server[positive1].threat_detection_policy.enabled' is set to false"
   },
   {
     "queryName": "PostgreSQL Server Threat Detection Policy Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_postgresql_server",
+    "resourceName": "example-psqlserver",
+    "searchKey": "azurerm_postgresql_server[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_server[positive2].threat_detection_policy' is a defined object",
+    "actualValue": "'azurerm_postgresql_server[positive2].threat_detection_policy' is undefined or null"
   }
 ]

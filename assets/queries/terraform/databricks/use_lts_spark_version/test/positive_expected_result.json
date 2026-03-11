@@ -3,18 +3,36 @@
     "queryName": "Check use no LTS Spark Version",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "databricks_spark_version",
+    "resourceName": "postive1_gpu_ml",
+    "searchKey": "databricks_spark_version[postive1_gpu_ml].long_term_support",
+    "searchValue": "",
+    "expectedValue": "'databricks_spark_version[postive1_gpu_ml]' should be a LTS version'",
+    "actualValue": "'databricks_spark_version[postive1_gpu_ml]' is not a LTS version'"
   },
   {
     "queryName": "Check use no LTS Spark Version",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "databricks_spark_version",
+    "resourceName": "positive2_gpu_ml",
+    "searchKey": "databricks_spark_version[positive2_gpu_ml].long_term_support",
+    "searchValue": "",
+    "expectedValue": "'databricks_spark_version[positive2_gpu_ml]' should be a LTS version'",
+    "actualValue": "'databricks_spark_version[positive2_gpu_ml]' is not a LTS version'"
   },
   {
     "queryName": "Check use no LTS Spark Version",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "databricks_spark_version",
+    "resourceName": "positive3_research",
+    "searchKey": "databricks_cluster[positive3_research].spark_version",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive3_research].spark_version' should be a LTS version'",
+    "actualValue": "'databricks_cluster[positive3_research].spark_version' is not a LTS version'"
   }
 ]

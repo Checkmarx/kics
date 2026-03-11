@@ -3,18 +3,36 @@
     "queryName": "Glue Security Configuration Encryption Disabled",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_glue_security_configuration",
+    "resourceName": "example",
+    "searchKey": "aws_glue_security_configuration[positive1].encryption_configuration.cloudwatch_encryption",
+    "searchValue": "",
+    "expectedValue": "aws_glue_security_configuration[positive1].encryption_configuration.cloudwatch_encryption has 'kms_key_arn' defined and not null",
+    "actualValue": "aws_glue_security_configuration[positive1].encryption_configuration.cloudwatch_encryption has 'kms_key_arn' undefined or null"
   },
   {
     "queryName": "Glue Security Configuration Encryption Disabled",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_glue_security_configuration",
+    "resourceName": "example",
+    "searchKey": "aws_glue_security_configuration[positive2].encryption_configuration.job_bookmarks_encryption.job_bookmarks_encryption_mode",
+    "searchValue": "",
+    "expectedValue": "'job_bookmarks_encryption_mode' should be set to 'CSE-KMS'",
+    "actualValue": "'job_bookmarks_encryption_mode' is not set to 'CSE-KMS'"
   },
   {
     "queryName": "Glue Security Configuration Encryption Disabled",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_glue_security_configuration",
+    "resourceName": "example",
+    "searchKey": "aws_glue_security_configuration[positive2].job_bookmarks_encryption",
+    "searchValue": "",
+    "expectedValue": "aws_glue_security_configuration[positive2].job_bookmarks_encryption has 'job_bookmarks_encryption_mode' defined and not null",
+    "actualValue": "aws_glue_security_configKeyiguration[positive2].job_bookmarks_encryption has 'job_bookmarks_encryption_mode' undefined or null"
   }
 ]

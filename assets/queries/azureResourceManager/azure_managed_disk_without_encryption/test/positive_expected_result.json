@@ -2,49 +2,97 @@
   {
     "queryName": "Azure Managed Disk Without Encryption",
     "severity": "HIGH",
+    "line": 18,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "['${variables('vmName')}-disk1']",
+    "searchKey": "resources.name=['${variables('vmName')}-disk1'].properties.encryptionSettingsCollection.enabled",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
     "line": 30,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "[concat(variables('vmName'),'-disk1')]",
+    "searchKey": "resources.name=[concat(variables('vmName'),'-disk1')].properties.encryptionSettingsCollection.enabled",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "['${variables('vmName')}-disk1']",
+    "searchKey": "resources.name=['${variables('vmName')}-disk1']",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined"
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
     "severity": "HIGH",
     "line": 19,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "[concat(variables('vmName'),'-disk1')]",
+    "searchKey": "resources.name=[concat(variables('vmName'),'-disk1')]",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "['${variables('vmName')}-disk1']",
+    "searchKey": "resources.name=['${variables('vmName')}-disk1'].properties.encryptionSettingsCollection.enabled",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false"
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
     "severity": "HIGH",
     "line": 32,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "[concat(variables('vmName'),'-disk1')]",
+    "searchKey": "properties.template.resources.name=[concat(variables('vmName'),'-disk1')].properties.encryptionSettingsCollection.enabled",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "['${variables('vmName')}-disk1']",
+    "searchKey": "resources.name=['${variables('vmName')}-disk1']",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined"
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
     "severity": "HIGH",
     "line": 21,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "Azure Managed Disk Without Encryption",
-    "severity": "HIGH",
-    "line": 18,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "Azure Managed Disk Without Encryption",
-    "severity": "HIGH",
-    "line": 7,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "Azure Managed Disk Without Encryption",
-    "severity": "HIGH",
-    "line": 18,
-    "filename": "positive3.bicep"
-  },
-  {
-    "queryName": "Azure Managed Disk Without Encryption",
-    "severity": "HIGH",
-    "line": 7,
-    "filename": "positive4.bicep"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Compute/disks",
+    "resourceName": "[concat(variables('vmName'),'-disk1')]",
+    "searchKey": "properties.template.resources.name=[concat(variables('vmName'),'-disk1')]",
+    "searchValue": "",
+    "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined"
   }
 ]

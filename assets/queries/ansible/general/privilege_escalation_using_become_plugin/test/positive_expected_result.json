@@ -1,38 +1,74 @@
 [
-	{
-		"queryName": "Privilege Escalation Using Become Plugin",
-		"severity": "MEDIUM",
-		"line": 4,
-		"fileName": "positive1.yaml"
-	},
-    {
-		"queryName": "Privilege Escalation Using Become Plugin",
-		"severity": "MEDIUM",
-		"line": 15,
-		"fileName": "positive1.yaml"
-	},
-    {
-		"queryName": "Privilege Escalation Using Become Plugin",
-		"severity": "MEDIUM",
-		"line": 31,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Privilege Escalation Using Become Plugin",
-		"severity": "MEDIUM",
-		"line": 44,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Privilege Escalation Using Become Plugin",
-		"severity": "MEDIUM",
-		"line": 53,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Privilege Escalation Using Become Plugin",
-		"severity": "MEDIUM",
-		"line": 61,
-		"fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Privilege Escalation Using Become Plugin",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "become_user={{bar}}",
+    "searchValue": "",
+    "expectedValue": "'become' should be defined and set to 'true' in order to perform an action with bar",
+    "actualValue": "'become' is not defined"
+  },
+  {
+    "queryName": "Privilege Escalation Using Become Plugin",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive1.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "become",
+    "searchValue": "",
+    "expectedValue": "'become' should be defined and set to 'true' in order to perform an action with root",
+    "actualValue": "'become' is set to 'false'"
+  },
+  {
+    "queryName": "Privilege Escalation Using Become Plugin",
+    "severity": "MEDIUM",
+    "line": 31,
+    "filename": "positive1.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "name={{Sample become_user}}.become_user={{foo}}",
+    "searchValue": "",
+    "expectedValue": "'become' should be defined and set to 'true' in order to perform an action with foo",
+    "actualValue": "'become' is not defined"
+  },
+  {
+    "queryName": "Privilege Escalation Using Become Plugin",
+    "severity": "MEDIUM",
+    "line": 44,
+    "filename": "positive1.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "name={{Sample become_user}}.become_user={{postgres}}.become",
+    "searchValue": "",
+    "expectedValue": "'become' should be to 'true' in order to perform an action with postgres",
+    "actualValue": "'become' is set to 'false'"
+  },
+  {
+    "queryName": "Privilege Escalation Using Become Plugin",
+    "severity": "MEDIUM",
+    "line": 53,
+    "filename": "positive1.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "name={{become_user with become task as false}}.become_user={{mongodb}}.become",
+    "searchValue": "",
+    "expectedValue": "'become' should be to 'true' in order to perform an action with mongodb",
+    "actualValue": "'become' is set to 'false'"
+  },
+  {
+    "queryName": "Privilege Escalation Using Become Plugin",
+    "severity": "MEDIUM",
+    "line": 61,
+    "filename": "positive1.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "name={{become_user without become}}.become_user={{mysql}}",
+    "searchValue": "",
+    "expectedValue": "'become' should be defined and set to 'true' in order to perform an action with mysql",
+    "actualValue": "'become' is not defined"
+  }
 ]

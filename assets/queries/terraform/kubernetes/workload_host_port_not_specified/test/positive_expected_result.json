@@ -3,12 +3,24 @@
     "queryName": "Workload Host Port Not Specified",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test].spec.container.port",
+    "searchValue": "",
+    "expectedValue": "Attribute 'host_port' should be defined and not null",
+    "actualValue": "Attribute 'host_port' is undefined or null"
   },
   {
     "queryName": "Workload Host Port Not Specified",
     "severity": "LOW",
     "line": 41,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec.container.port",
+    "searchValue": "",
+    "expectedValue": "Attribute 'host_port' should be defined and not null",
+    "actualValue": "Attribute 'host_port' is undefined or null"
   }
 ]

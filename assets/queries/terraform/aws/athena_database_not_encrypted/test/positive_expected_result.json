@@ -3,6 +3,12 @@
     "queryName": "Athena Database Not Encrypted",
     "severity": "HIGH",
     "line": 5,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_athena_database",
+    "resourceName": "database_name",
+    "searchKey": "aws_athena_database[{{hoge}}]",
+    "searchValue": "",
+    "expectedValue": "aws_athena_database[{{hoge}}] encryption_configuration should be defined",
+    "actualValue": "aws_athena_database[{{hoge}}] encryption_configuration is missing"
   }
 ]

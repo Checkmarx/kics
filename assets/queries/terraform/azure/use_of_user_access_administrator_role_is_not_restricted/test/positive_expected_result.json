@@ -3,36 +3,72 @@
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_role_assignment[positive1].role_definition_name",
+    "searchValue": "",
+    "expectedValue": "'role_definition_name' field should not be defined to 'User Access Administrator'",
+    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'"
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_role_assignment[positive2].role_definition_id",
+    "searchValue": "",
+    "expectedValue": "'role_definition_id' field should not have an id associated with the 'User Access Administrator' role.",
+    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role."
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_role_assignment[positive3].role_definition_name",
+    "searchValue": "",
+    "expectedValue": "'role_definition_name' field should not be defined to 'User Access Administrator'",
+    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'"
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive4",
+    "searchKey": "azurerm_role_assignment[positive4].role_definition_id",
+    "searchValue": "",
+    "expectedValue": "'role_definition_id' field should not have an id associated with the 'User Access Administrator' role.",
+    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role."
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive5",
+    "searchKey": "azurerm_role_assignment[positive5].role_definition_name",
+    "searchValue": "",
+    "expectedValue": "'role_definition_name' field should not be defined to 'User Access Administrator'",
+    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'"
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive6",
+    "searchKey": "azurerm_role_assignment[positive6].role_definition_id",
+    "searchValue": "",
+    "expectedValue": "'role_definition_id' field should not have an id associated with the 'User Access Administrator' role.",
+    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role."
   }
 ]

@@ -3,24 +3,48 @@
     "queryName": "Schema Object Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 76,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema reference points to '#components/schemas'",
+    "actualValue": "Schema reference does not point to '#components/schemas'"
   },
   {
     "queryName": "Schema Object Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema reference points to '#components/schemas'",
+    "actualValue": "Schema reference does not point to '#components/schemas'"
   },
   {
     "queryName": "Schema Object Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 46,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema reference points to '#components/schemas'",
+    "actualValue": "Schema reference does not point to '#components/schemas'"
   },
   {
     "queryName": "Schema Object Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema reference points to '#components/schemas'",
+    "actualValue": "Schema reference does not point to '#components/schemas'"
   }
 ]

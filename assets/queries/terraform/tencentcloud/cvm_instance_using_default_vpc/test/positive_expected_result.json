@@ -3,12 +3,24 @@
     "queryName": "CVM Instance Using Default VPC",
     "severity": "LOW",
     "line": 22,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "tencentcloud_instance",
+    "resourceName": "cvm_postpaid",
+    "searchKey": "tencentcloud_instance[cvm_postpaid].vpc_id",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_instance[cvm_postpaid].vpc_id should not contain 'default'",
+    "actualValue": "tencentcloud_instance[cvm_postpaid].vpc_id contains 'default'"
   },
   {
     "queryName": "CVM Instance Using Default VPC",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "tencentcloud_instance",
+    "resourceName": "cvm_postpaid",
+    "searchKey": "tencentcloud_instance[cvm_postpaid].subnet_id",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_instance[cvm_postpaid].subnet_id should not be associated with a default Subnet",
+    "actualValue": "tencentcloud_instance[cvm_postpaid].subnet_id is associated with a default Subnet"
   }
 ]

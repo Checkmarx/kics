@@ -3,18 +3,36 @@
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 27,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster",
+    "searchKey": "Resources.NeptuneDBCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted should be set to True",
+    "actualValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted is False"
   },
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster",
+    "searchKey": "Resources.NeptuneDBCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted should be set to True",
+    "actualValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted is False"
   },
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 27,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster",
+    "searchKey": "Resources.NeptuneDBCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted should be set to True",
+    "actualValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted is False"
   }
 ]

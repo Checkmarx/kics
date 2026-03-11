@@ -2,97 +2,169 @@
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
-    "line": 63,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Pattern Undefined (v3)",
-    "severity": "MEDIUM",
     "line": 58,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
+  },
+  {
+    "queryName": "Pattern Undefined (v3)",
+    "severity": "MEDIUM",
+    "line": 63,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 79,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Pattern Undefined (v3)",
-    "severity": "MEDIUM",
-    "line": 79,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 27,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 32,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 34,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 38,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 49,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "Pattern Undefined (v3)",
-    "severity": "MEDIUM",
-    "line": 49,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v2)",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v2)",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v2)",
     "severity": "MEDIUM",
     "line": 19,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   },
   {
     "queryName": "Pattern Undefined (v2)",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
   }
 ]

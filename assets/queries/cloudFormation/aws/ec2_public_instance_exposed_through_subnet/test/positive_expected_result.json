@@ -1,14 +1,26 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "EC2 Public Instance Exposed Through Subnet",
     "severity": "MEDIUM",
-    "line": 28
+    "line": 28,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Ec2Instance",
+    "searchKey": "Resources.mySubnet",
+    "searchValue": "",
+    "expectedValue": "Resources.mySubnet should be a private subnet",
+    "actualValue": "Resources.mySubnet has a route for unrestricted internet traffic"
   },
   {
     "queryName": "EC2 Public Instance Exposed Through Subnet",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Ec2Instance",
+    "searchKey": "Resources.mySubnet",
+    "searchValue": "",
+    "expectedValue": "Resources.mySubnet should be a private subnet",
+    "actualValue": "Resources.mySubnet has a route for unrestricted internet traffic"
   }
 ]

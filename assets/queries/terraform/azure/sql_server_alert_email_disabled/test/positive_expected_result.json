@@ -3,12 +3,24 @@
     "queryName": "SQL Server Alert Email Disabled",
     "severity": "INFO",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_mssql_server_security_alert_policy",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_mssql_server_security_alert_policy[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mssql_server_security_alert_policy[positive1].email_account_admins' should be defined",
+    "actualValue": "'azurerm_mssql_server_security_alert_policy[positive1].email_account_admins' is undefined"
   },
   {
     "queryName": "SQL Server Alert Email Disabled",
     "severity": "INFO",
     "line": 12,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_mssql_server_security_alert_policy",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_mssql_server_security_alert_policy[positive2].email_account_admins",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mssql_server_security_alert_policy[positive2].email_account_admins' should be true",
+    "actualValue": "'azurerm_mssql_server_security_alert_policy[positive2].email_account_admins' is false"
   }
 ]

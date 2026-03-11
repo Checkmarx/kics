@@ -3,24 +3,48 @@
     "queryName": "Invalid OAuth2 Authorization URL (v2)",
     "severity": "MEDIUM",
     "line": 19,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.api_key.authorizationUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
   },
   {
     "queryName": "Invalid OAuth2 Authorization URL (v2)",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.petstore_auth.authorizationUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
   },
   {
     "queryName": "Invalid OAuth2 Authorization URL (v2)",
     "severity": "MEDIUM",
     "line": 27,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.api_key.authorizationUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
   },
   {
     "queryName": "Invalid OAuth2 Authorization URL (v2)",
     "severity": "MEDIUM",
     "line": 32,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.petstore_auth.authorizationUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
   }
 ]

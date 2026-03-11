@@ -3,120 +3,240 @@
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
     "line": 52,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v3)",
-    "severity": "INFO",
-    "line": 18,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v3)",
-    "severity": "INFO",
-    "line": 42,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v3)",
-    "severity": "INFO",
-    "line": 18,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v3)",
-    "severity": "INFO",
-    "line": 46,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v3)",
-    "severity": "INFO",
-    "line": 16,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v3)",
-    "severity": "INFO",
-    "line": 37,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v3)",
-    "severity": "INFO",
-    "line": 16,
-    "filename": "positive5.yaml"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v3)",
-    "severity": "INFO",
-    "line": 29,
-    "filename": "positive5.yaml"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v3)",
-    "severity": "INFO",
-    "line": 16,
-    "filename": "positive6.yaml"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v3)",
-    "severity": "INFO",
-    "line": 37,
-    "filename": "positive6.yaml"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v2)",
-    "severity": "INFO",
-    "line": 41,
-    "filename": "positive7.json"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v2)",
-    "severity": "INFO",
-    "line": 55,
-    "filename": "positive7.json"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v2)",
-    "severity": "INFO",
-    "line": 33,
-    "filename": "positive8.yaml"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v2)",
-    "severity": "INFO",
-    "line": 42,
-    "filename": "positive8.yaml"
-  },
-  {
-    "queryName": "Type Has Invalid Keyword (v2)",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive9.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.phones.items.pattern",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
   },
   {
     "queryName": "Type Has Invalid Keyword (v2)",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive10.yaml"
+    "filename": "positive10.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.headers.X-Rate-Limit-Limit.minLength",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword minLength is not valid for type integer"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive11.yaml"
+    "filename": "positive11.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.PointGenre.minimum",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword minimum is not valid for type string"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive11.yaml"
+    "filename": "positive11.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.PointGenre.maximum",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword maximum is not valid for type string"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword minLength is not valid for type integer"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 42,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.id.minLength",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword minLength is not valid for type integer"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword required is not valid for type string"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 46,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.name.required",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword required is not valid for type string"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 37,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.phones.items.pattern",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword minLength is not valid for type integer"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 29,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.id.minLength",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword minLength is not valid for type integer"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 37,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.phones.items.pattern",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v2)",
+    "severity": "INFO",
+    "line": 41,
+    "filename": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.phones.items.pattern",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v2)",
+    "severity": "INFO",
+    "line": 55,
+    "filename": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.maximum",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword maximum is not valid for type string"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v2)",
+    "severity": "INFO",
+    "line": 33,
+    "filename": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.phones.items.pattern",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword pattern is not valid for type number"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v2)",
+    "severity": "INFO",
+    "line": 42,
+    "filename": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.maximum",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword maximum is not valid for type string"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v2)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive9.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.headers.X-Rate-Limit-Limit.minLength",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be any invalid keywords",
+    "actualValue": "Keyword minLength is not valid for type integer"
   }
 ]

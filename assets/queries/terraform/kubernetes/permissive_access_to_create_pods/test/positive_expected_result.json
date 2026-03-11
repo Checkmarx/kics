@@ -3,48 +3,96 @@
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_role",
+    "resourceName": "terraform-example1",
+    "searchKey": "kubernetes_role[example1].rule.verbs.create",
+    "searchValue": "create/pods",
+    "expectedValue": "kubernetes_role[example1].rule.verbs should not contain the value 'create' when kubernetes_role[example1].rule.resources contains the value 'pods'",
+    "actualValue": "kubernetes_role[example1].rule.verbs contains the value 'create' and kubernetes_role[example1].rule.resources contains the value 'pods'"
   },
   {
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
     "line": 35,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_role",
+    "resourceName": "terraform-example2",
+    "searchKey": "kubernetes_role[example2].rule.verbs.create",
+    "searchValue": "create/*",
+    "expectedValue": "kubernetes_role[example2].rule.verbs should not contain the value 'create' when kubernetes_role[example2].rule.resources contains a wildcard value",
+    "actualValue": "kubernetes_role[example2].rule.verbs contains the value 'create' and kubernetes_role[example2].rule.resources contains a wildcard value"
   },
   {
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
     "line": 57,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_role",
+    "resourceName": "terraform-example3",
+    "searchKey": "kubernetes_role[example3].rule.verbs.*",
+    "searchValue": "*/pods",
+    "expectedValue": "kubernetes_role[example3].rule.verbs should not contain a wildcard value when kubernetes_role[example3].rule.resources contains the value 'pods'",
+    "actualValue": "kubernetes_role[example3].rule.verbs contains a wildcard value and kubernetes_role[example3].rule.resources contains the value 'pods'"
   },
   {
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
     "line": 79,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_role",
+    "resourceName": "terraform-example4",
+    "searchKey": "kubernetes_role[example4].rule.verbs.*",
+    "searchValue": "*/*",
+    "expectedValue": "kubernetes_role[example4].rule.verbs should not contain a wildcard value when kubernetes_role[example4].rule.resources contains a wildcard value",
+    "actualValue": "kubernetes_role[example4].rule.verbs contains a wildcard value and kubernetes_role[example4].rule.resources contains a wildcard value"
   },
   {
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_cluster_role",
+    "resourceName": "terraform-example1",
+    "searchKey": "kubernetes_cluster_role[example1].rule.verbs.create",
+    "searchValue": "create/pods",
+    "expectedValue": "kubernetes_cluster_role[example1].rule.verbs should not contain the value 'create' when kubernetes_cluster_role[example1].rule.resources contains the value 'pods'",
+    "actualValue": "kubernetes_cluster_role[example1].rule.verbs contains the value 'create' and kubernetes_cluster_role[example1].rule.resources contains the value 'pods'"
   },
   {
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_cluster_role",
+    "resourceName": "terraform-example2",
+    "searchKey": "kubernetes_cluster_role[example2].rule.verbs.create",
+    "searchValue": "create/*",
+    "expectedValue": "kubernetes_cluster_role[example2].rule.verbs should not contain the value 'create' when kubernetes_cluster_role[example2].rule.resources contains a wildcard value",
+    "actualValue": "kubernetes_cluster_role[example2].rule.verbs contains the value 'create' and kubernetes_cluster_role[example2].rule.resources contains a wildcard value"
   },
   {
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
     "line": 33,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_cluster_role",
+    "resourceName": "terraform-example3",
+    "searchKey": "kubernetes_cluster_role[example3].rule.verbs.*",
+    "searchValue": "*/*",
+    "expectedValue": "kubernetes_cluster_role[example3].rule.verbs should not contain a wildcard value when kubernetes_cluster_role[example3].rule.resources contains a wildcard value",
+    "actualValue": "kubernetes_cluster_role[example3].rule.verbs contains a wildcard value and kubernetes_cluster_role[example3].rule.resources contains a wildcard value"
   },
   {
     "queryName": "Permissive Access to Create Pods",
     "severity": "MEDIUM",
     "line": 45,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_cluster_role",
+    "resourceName": "terraform-example4",
+    "searchKey": "kubernetes_cluster_role[example4].rule.verbs.*",
+    "searchValue": "*/pods",
+    "expectedValue": "kubernetes_cluster_role[example4].rule.verb should not contain a wildcard value when kubernetes_cluster_role[example4].rule.resources contains the value 'pods'",
+    "actualValue": "kubernetes_cluster_role[example4].rule.verb contains a wildcard value and kubernetes_cluster_role[example4].rule.resources contains the value 'pods'"
   }
 ]

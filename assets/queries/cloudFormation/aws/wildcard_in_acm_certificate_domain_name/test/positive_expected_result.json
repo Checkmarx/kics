@@ -3,12 +3,24 @@
     "queryName": "Wildcard In ACM Certificate Domain Name",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CertificateManager::Certificate",
+    "resourceName": "Certificate",
+    "searchKey": "Resources.Certificate.Properties.DomainName",
+    "searchValue": "",
+    "expectedValue": "'Resources.Certificate.Properties.DomainName' should not contain '*'",
+    "actualValue": "'Resources.Certificate.Properties.DomainName' contains '*'"
   },
   {
-    "line": 19,
-    "fileName": "positive2.json",
     "queryName": "Wildcard In ACM Certificate Domain Name",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 19,
+    "filename": "positive2.json",
+    "resourceType": "AWS::CertificateManager::Certificate",
+    "resourceName": "Certificate",
+    "searchKey": "Resources.Certificate.Properties.DomainName",
+    "searchValue": "",
+    "expectedValue": "'Resources.Certificate.Properties.DomainName' should not contain '*'",
+    "actualValue": "'Resources.Certificate.Properties.DomainName' contains '*'"
   }
 ]

@@ -1,12 +1,26 @@
 [
-	{
-		"queryName": "Public Storage Account",
-		"severity": "HIGH",
-		"line": 9
-	},
-	{
-		"queryName": "Public Storage Account",
-		"severity": "HIGH",
-		"line": 19
-	}
+  {
+    "queryName": "Public Storage Account",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_storageaccount",
+    "resourceName": "configure firewall and virtual networks",
+    "searchKey": "name={{configure firewall and virtual networks}}.{{azure_rm_storageaccount}}.network_acls.ip_rules",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.network_acls.default_action should be set to 'Deny' and azure_rm_storageaccount.network_acls.ip_rules should not contain value '0.0.0.0/0' ",
+    "actualValue": "azure_rm_storageaccount.network_acls.default_action is 'Deny' and azure_rm_storageaccount.network_acls.ip_rules contains value '0.0.0.0/0'"
+  },
+  {
+    "queryName": "Public Storage Account",
+    "severity": "HIGH",
+    "line": 19,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_storageaccount",
+    "resourceName": "configure firewall and more virtual networks",
+    "searchKey": "name={{configure firewall and more virtual networks}}.{{azure_rm_storageaccount}}.network_acls.default_action",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.network_acls.default_action should not be set",
+    "actualValue": "azure_rm_storageaccount.network_acls.default_action is 'Allow'"
+  }
 ]

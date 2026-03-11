@@ -3,12 +3,24 @@
     "queryName": "IAM Group Without Users",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::Group",
+    "resourceName": "myuseeer",
+    "searchKey": "Resources.myuseeer",
+    "searchValue": "",
+    "expectedValue": "Resources.myuseeer has at least one user",
+    "actualValue": "Resources.myuseeer does not have at least one user"
   },
   {
     "queryName": "IAM Group Without Users",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::Group",
+    "resourceName": "myuseeer2",
+    "searchKey": "Resources.myuseeer2",
+    "searchValue": "",
+    "expectedValue": "Resources.myuseeer2 has at least one user",
+    "actualValue": "Resources.myuseeer2 does not have at least one user"
   }
 ]

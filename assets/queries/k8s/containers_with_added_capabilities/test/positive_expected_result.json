@@ -2,11 +2,25 @@
   {
     "queryName": "Containers With Added Capabilities",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod2",
+    "searchKey": "metadata.name={{pod2}}.spec.containers.name={{app}}.securityContext.capabilities.add",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{pod2}}.spec.containers.name={{app}} has no capability added other than NET_BIND_SERVICE",
+    "actualValue": "metadata.name={{pod2}}.spec.containers.name={{app}} has a capability added other than NET_BIND_SERVICE"
   },
   {
     "queryName": "Containers With Added Capabilities",
     "severity": "MEDIUM",
-    "line": 43
+    "line": 43,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod3",
+    "searchKey": "metadata.name={{pod3}}.spec.initContainers.name={{app}}.securityContext.capabilities.add",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{pod3}}.spec.initContainers.name={{app}} has no capability added other than NET_BIND_SERVICE",
+    "actualValue": "metadata.name={{pod3}}.spec.initContainers.name={{app}} has a capability added other than NET_BIND_SERVICE"
   }
 ]

@@ -3,12 +3,24 @@
     "queryName": "OAuth2 With Password Flow",
     "severity": "MEDIUM",
     "line": 58,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.password",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows do not contain an 'password' flow",
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows contain an 'password' flow"
   },
   {
     "queryName": "OAuth2 With Password Flow",
     "severity": "MEDIUM",
     "line": 34,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.password",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows do not contain an 'password' flow",
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows contain an 'password' flow"
   }
 ]

@@ -3,6 +3,12 @@
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 10,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "example",
+    "searchKey": "alicloud_db_instance[example].address",
+    "searchValue": "",
+    "expectedValue": "'address' should not be set to '0.0.0.0/0'",
+    "actualValue": "'address' is set to '0.0.0.0/0'"
   }
 ]

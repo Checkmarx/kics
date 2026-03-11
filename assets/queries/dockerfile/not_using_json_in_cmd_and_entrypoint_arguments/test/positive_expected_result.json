@@ -1,12 +1,26 @@
 [
-	{
-		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
-		"severity": "MEDIUM",
-		"line": 10
-	},
-	{
-		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
-		"severity": "MEDIUM",
-		"line": 11
-	}
+  {
+    "queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{CMD [python, /usr/src/app/app.py] }}",
+    "searchValue": "",
+    "expectedValue": "{{CMD [python, /usr/src/app/app.py] }} should be in the JSON Notation",
+    "actualValue": "{{CMD [python, /usr/src/app/app.py] }} isn't in JSON Notation"
+  },
+  {
+    "queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{ENTRYPOINT [top, -b]}}",
+    "searchValue": "",
+    "expectedValue": "{{ENTRYPOINT [top, -b]}} should be in the JSON Notation",
+    "actualValue": "{{ENTRYPOINT [top, -b]}} isn't in JSON Notation"
+  }
 ]

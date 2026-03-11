@@ -3,36 +3,72 @@
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   },
   {
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 64,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/user/}}.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   },
   {
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 44,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   },
   {
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   },
   {
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 39,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/user/}}.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   },
   {
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined"
   }
 ]

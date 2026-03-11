@@ -3,24 +3,48 @@
     "queryName": "Paths Object is Empty (v3)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths",
+    "searchValue": "",
+    "expectedValue": "The Paths Object should should not be empty",
+    "actualValue": "The Paths Object is empty"
   },
   {
     "queryName": "Paths Object is Empty (v2)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths",
+    "searchValue": "",
+    "expectedValue": "The Paths Object should should not be empty",
+    "actualValue": "The Paths Object is empty"
   },
   {
     "queryName": "Paths Object is Empty (v3)",
     "severity": "INFO",
     "line": 5,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths",
+    "searchValue": "",
+    "expectedValue": "The Paths Object should should not be empty",
+    "actualValue": "The Paths Object is empty"
   },
   {
     "queryName": "Paths Object is Empty (v2)",
     "severity": "INFO",
     "line": 5,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths",
+    "searchValue": "",
+    "expectedValue": "The Paths Object should should not be empty",
+    "actualValue": "The Paths Object is empty"
   }
 ]

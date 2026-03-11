@@ -3,12 +3,24 @@
     "queryName": "Parameter JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.$ref={{#/components/parameters/wrongParameter}}",
+    "searchValue": "",
+    "expectedValue": "wrongParameter from #/components/parameters/wrongParameter should be declared on components.parameters",
+    "actualValue": "wrongParameter from #/components/parameters/wrongParameter is not declared on components.parameters"
   },
   {
     "queryName": "Parameter JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.$ref={{#/components/parameters/wrongParameter}}",
+    "searchValue": "",
+    "expectedValue": "wrongParameter from #/components/parameters/wrongParameter should be declared on components.parameters",
+    "actualValue": "wrongParameter from #/components/parameters/wrongParameter is not declared on components.parameters"
   }
 ]

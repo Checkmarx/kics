@@ -2,11 +2,25 @@
   {
     "queryName": "Cloud Storage Bucket Versioning Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_storage_bucket",
+    "resourceName": "create a bucket",
+    "searchKey": "name={{create a bucket}}.{{google.cloud.gcp_storage_bucket}}",
+    "searchValue": "",
+    "expectedValue": "gcp_storage_bucket.versioning should be defined",
+    "actualValue": "gcp_storage_bucket.versioning is undefined"
   },
   {
     "queryName": "Cloud Storage Bucket Versioning Disabled",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_storage_bucket",
+    "resourceName": "create a second bucket",
+    "searchKey": "name={{create a second bucket}}.{{google.cloud.gcp_storage_bucket}}.versioning.enabled",
+    "searchValue": "",
+    "expectedValue": "gcp_storage_bucket.versioning.enabled should be true",
+    "actualValue": "gcp_storage_bucket.versioning.enabled is false"
   }
 ]

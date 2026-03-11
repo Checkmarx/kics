@@ -1,12 +1,26 @@
 [
-	{
-		"queryName": "Root Container Not Mounted Read-only",
-		"severity": "LOW",
-		"line": 12
-	},
-	{
-		"queryName": "Root Container Not Mounted Read-only",
-		"severity": "LOW",
-		"line": 24
-	}
+  {
+    "queryName": "Root Container Not Mounted Read-only",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "rootfalse",
+    "searchKey": "metadata.name={{rootfalse}}.spec.containers.name={{contain1_1}}.securityContext.readOnlyRootFilesystem",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{rootfalse}}.spec.containers.name={{contain1_1}}.securityContext.readOnlyRootFilesystem is true",
+    "actualValue": "metadata.name={{rootfalse}}.spec.containers.name={{contain1_1}}.securityContext.readOnlyRootFilesystem is false"
+  },
+  {
+    "queryName": "Root Container Not Mounted Read-only",
+    "severity": "LOW",
+    "line": 24,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "noroot",
+    "searchKey": "metadata.name={{noroot}}.spec.containers.name={{contain1_2}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{noroot}}.spec.containers.name={{contain1_2}}.securityContext.readOnlyRootFilesystem should be set to true",
+    "actualValue": "metadata.name={{noroot}}.spec.containers.name={{contain1_2}}.securityContext.readOnlyRootFilesystem is undefined"
+  }
 ]

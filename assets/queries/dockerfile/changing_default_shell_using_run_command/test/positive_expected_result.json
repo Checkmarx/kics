@@ -1,14 +1,26 @@
 [
-	{
-		"queryName": "Changing Default Shell Using RUN Command",
-		"severity": "MEDIUM",
-		"line": 5,
-		"filename": "positive1.dockerfile"
-	},
-	{
-		"queryName": "Changing Default Shell Using RUN Command",
-		"severity": "MEDIUM",
-		"line": 5,
-		"filename": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Changing Default Shell Using RUN Command",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN ln -sfv /bin/bash /bin/sh}}",
+    "searchValue": "",
+    "expectedValue": "{{RUN ln -sfv /bin/bash /bin/sh}} should use the SHELL command to change the default shell",
+    "actualValue": "{{RUN ln -sfv /bin/bash /bin/sh}} uses the RUN command to change the default shell"
+  },
+  {
+    "queryName": "Changing Default Shell Using RUN Command",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN powershell -command}}",
+    "searchValue": "",
+    "expectedValue": "{{RUN powershell -command}} should use the SHELL command to change the default shell",
+    "actualValue": "{{RUN powershell -command}} uses the RUN command to change the default shell"
+  }
 ]

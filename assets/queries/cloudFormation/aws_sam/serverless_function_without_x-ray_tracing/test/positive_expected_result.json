@@ -3,12 +3,24 @@
     "queryName": "Serverless Function Without X-Ray Tracing",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Function",
+    "resourceName": "Function1",
+    "searchKey": "Resources.Function1.Properties",
+    "searchValue": "",
+    "expectedValue": "Property 'TracingConfig' should be defined and not null",
+    "actualValue": "Property 'TracingConfig' is undefined or null"
   },
   {
     "queryName": "Serverless Function Without X-Ray Tracing",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::Serverless::Function",
+    "resourceName": "Function2",
+    "searchKey": "Resources.Function2.Properties.Tracing",
+    "searchValue": "",
+    "expectedValue": "'Tracing' should be set to 'Active'",
+    "actualValue": "'Tracing' is set to 'PassThrough'"
   }
 ]

@@ -2,13 +2,25 @@
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
     "severity": "HIGH",
-    "line": 57,
-    "fileName": "positive.tf"
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "positive2",
+    "searchKey": "aws_lambda_function[positive2].environment.variables.foo",
+    "searchValue": "",
+    "expectedValue": "'environment.variables' shouldn't contain AWS Access Key",
+    "actualValue": "'environment.variables' contains AWS Access Key"
   },
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
     "severity": "HIGH",
-    "line": 36,
-    "fileName": "positive.tf"
+    "line": 57,
+    "filename": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "positive3",
+    "searchKey": "aws_lambda_function[positive3].environment.variables.foo",
+    "searchValue": "",
+    "expectedValue": "'environment.variables' shouldn't contain AWS Access Key",
+    "actualValue": "'environment.variables' contains AWS Access Key"
   }
 ]

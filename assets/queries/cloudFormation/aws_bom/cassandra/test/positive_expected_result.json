@@ -3,12 +3,24 @@
     "queryName": "BOM - AWS Cassandra",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.myNewTable1",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS Cassandra",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.myNewTable2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

@@ -3,12 +3,24 @@
     "queryName": "BasePath With Wrong Format",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "basePath={{api/incorrect}}",
+    "searchValue": "",
+    "expectedValue": "'basePath' value matches the pattern '^/'",
+    "actualValue": "'basePath' value doesn't match the pattern '^/'"
   },
   {
     "queryName": "BasePath With Wrong Format",
     "severity": "INFO",
     "line": 5,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "basePath={{api/incorrect}}",
+    "searchValue": "",
+    "expectedValue": "'basePath' value matches the pattern '^/'",
+    "actualValue": "'basePath' value doesn't match the pattern '^/'"
   }
 ]

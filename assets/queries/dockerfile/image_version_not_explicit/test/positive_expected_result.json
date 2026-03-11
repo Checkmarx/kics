@@ -1,38 +1,62 @@
 [
-	{
-		"queryName": "Image Version Not Explicit",
-		"severity": "MEDIUM",
-		"fileName": "positive1.dockerfile",
-		"line": 1
-	},
-	{
-		"queryName": "Image Version Not Explicit",
-		"severity": "MEDIUM",
-		"fileName": "positive2.dockerfile",
-		"line": 7
-	},
-	{
-		"queryName": "Image Version Not Explicit",
-		"severity": "MEDIUM",
-		"fileName": "positive3.dockerfile",
-		"line": 4
-	},
-	{
-		"queryName": "Image Version Not Explicit",
-		"severity": "MEDIUM",
-		"fileName": "positive3.dockerfile",
-		"line": 7
-	},
-	{
-		"queryName": "Image Version Not Explicit",
-		"severity": "MEDIUM",
-		"fileName": "positive4.dockerfile",
-		"line": 7
-	},
-	{
-		"queryName": "Image Version Not Explicit",
-		"severity": "MEDIUM",
-		"fileName": "positive4.dockerfile",
-		"line": 10
-	}
+  {
+    "queryName": "Image Version Not Explicit",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine}}",
+    "searchValue": "",
+    "expectedValue": "FROM alpine:'version'",
+    "actualValue": "FROM alpine'"
+  },
+  {
+    "queryName": "Image Version Not Explicit",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{construction AS final}}",
+    "searchValue": "",
+    "expectedValue": "FROM construction:'version'",
+    "actualValue": "FROM construction'"
+  },
+  {
+    "queryName": "Image Version Not Explicit",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{positive4 }}",
+    "searchValue": "",
+    "expectedValue": "FROM positive4:'version'",
+    "actualValue": "FROM positive4'"
+  },
+  {
+    "queryName": "Image Version Not Explicit",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{positive42}}",
+    "searchValue": "",
+    "expectedValue": "FROM positive42:'version'",
+    "actualValue": "FROM positive42'"
+  },
+  {
+    "queryName": "Image Version Not Explicit",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{test_fail_1}}",
+    "searchValue": "",
+    "expectedValue": "FROM test_fail_1:'version'",
+    "actualValue": "FROM test_fail_1'"
+  }
 ]

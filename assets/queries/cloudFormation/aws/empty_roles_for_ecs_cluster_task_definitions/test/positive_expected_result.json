@@ -1,38 +1,74 @@
 [
   {
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive1.yaml",
-    "queryName": "Empty Roles For ECS Cluster Task Definitions"
-  },
-  {
-    "fileName": "positive1.yaml",
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 6,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "NoTaskDefinition",
+    "searchKey": "Resources.NoTaskDefinition.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' should be set",
+    "actualValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' is undefined"
+  },
+  {
+    "queryName": "Empty Roles For ECS Cluster Task Definitions",
+    "severity": "MEDIUM",
+    "line": 24,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "InvalidTaskDefinition",
+    "searchKey": "Resources.InvalidTaskDefinition.Properties.TaskDefinition",
+    "searchValue": "",
+    "expectedValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' refers to a valid TaskDefinition",
+    "actualValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' does not refers to a valid TaskDefinition"
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
     "severity": "MEDIUM",
     "line": 41,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Empty Roles For ECS Cluster Task Definitions",
-    "severity": "MEDIUM",
-    "line": 96,
-    "fileName": "positive2.json"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "TaskNoRole",
+    "searchKey": "Resources.TaskNoRole.Properties.TaskDefinition",
+    "searchValue": "",
+    "expectedValue": "'Resources.TaskNoRole.Properties.TaskDefinition' refers to a TaskDefinition with Role",
+    "actualValue": "'Resources.TaskNoRole.Properties.TaskDefinition' does not refer to a TaskDefinition with Role"
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "InvalidTaskDefinition",
+    "searchKey": "Resources.InvalidTaskDefinition.Properties.TaskDefinition",
+    "searchValue": "",
+    "expectedValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' refers to a valid TaskDefinition",
+    "actualValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' does not refers to a valid TaskDefinition"
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
     "severity": "MEDIUM",
     "line": 39,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "TaskNoRole",
+    "searchKey": "Resources.TaskNoRole.Properties.TaskDefinition",
+    "searchValue": "",
+    "expectedValue": "'Resources.TaskNoRole.Properties.TaskDefinition' refers to a TaskDefinition with Role",
+    "actualValue": "'Resources.TaskNoRole.Properties.TaskDefinition' does not refer to a TaskDefinition with Role"
+  },
+  {
+    "queryName": "Empty Roles For ECS Cluster Task Definitions",
+    "severity": "MEDIUM",
+    "line": 96,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "NoTaskDefinition",
+    "searchKey": "Resources.NoTaskDefinition.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' should be set",
+    "actualValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' is undefined"
   }
 ]

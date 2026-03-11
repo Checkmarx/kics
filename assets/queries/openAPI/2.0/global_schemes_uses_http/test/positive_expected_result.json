@@ -3,12 +3,24 @@
     "queryName": "Global Schemes Uses HTTP",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "schemes.http",
+    "searchValue": "",
+    "expectedValue": "The Scheme list uses only 'HTTPS' protocol",
+    "actualValue": "The Scheme list uses 'HTTP' protocol"
   },
   {
     "queryName": "Global Schemes Uses HTTP",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "schemes.http",
+    "searchValue": "",
+    "expectedValue": "The Scheme list uses only 'HTTPS' protocol",
+    "actualValue": "The Scheme list uses 'HTTP' protocol"
   }
 ]

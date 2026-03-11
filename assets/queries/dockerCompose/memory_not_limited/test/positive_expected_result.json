@@ -1,38 +1,74 @@
 [
-    {
-      "queryName": "Memory Not Limited",
-      "severity": "MEDIUM",
-      "line": 9,
-      "filename": "positive1.yaml"
-    },
-    {
-        "queryName": "Memory Not Limited",
-        "severity": "MEDIUM",
-        "line": 4,
-        "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Memory Not Limited",
-      "severity": "MEDIUM",
-      "line": 3,
-      "filename": "positive3.yaml"
-    },
-    {
-      "queryName": "Memory Not Limited",
-      "severity": "MEDIUM",
-      "line": 7,
-      "filename": "positive3.yaml"
-    },
-    {
-      "queryName": "Memory Not Limited",
-      "severity": "MEDIUM",
-      "line": 8,
-      "filename": "positive4.yaml"
-    },
-    {
-      "queryName": "Memory Not Limited",
-      "severity": "MEDIUM",
-      "line": 5,
-      "filename": "positive5.yaml"
-    }
-  ]
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop.deploy.resources.limits",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources.limits.memory' should be defined",
+    "actualValue": "'deploy.resources.limits.memory' is not defined"
+  },
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.criwhat",
+    "searchValue": "",
+    "expectedValue": "For mem_limit should be declared.",
+    "actualValue": "There is no mem_limit declared."
+  },
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources.limits.memory' should be defined",
+    "actualValue": "'deploy' is not defined"
+  },
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop.deploy",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources' should be defined",
+    "actualValue": "'deploy.resources' is not defined"
+  },
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop.deploy.resources",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources.limits' should be defined",
+    "actualValue": "'deploy.resources.limits' is not defined"
+  },
+  {
+    "queryName": "Memory Not Limited",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.redis.deploy",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources' should be defined",
+    "actualValue": "'deploy.resources' is not defined"
+  }
+]

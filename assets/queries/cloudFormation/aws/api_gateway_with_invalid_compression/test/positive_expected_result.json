@@ -3,36 +3,72 @@
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "API Gateway With Invalid Compression",
-    "severity": "LOW",
-    "line": 22,
-    "fileName": "positive4.json"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi3.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi3.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.RestApi3.Properties.MinimumCompressionSize is set to smaller than 0"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi4.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi4.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.RestApi4.Properties.MinimumCompressionSize is set to greater than 10485759"
+  },
+  {
+    "queryName": "API Gateway With Invalid Compression",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi5.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi5.Properties.MinimumCompressionSize should be defined",
+    "actualValue": "Resources.RestApi5.Properties.MinimumCompressionSize is not defined"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
     "line": 22,
-    "fileName": "positive5.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi6.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi6.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.RestApi6.Properties.MinimumCompressionSize is set to smaller than 0"
+  },
+  {
+    "queryName": "API Gateway With Invalid Compression",
+    "severity": "LOW",
+    "line": 22,
+    "filename": "positive5.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi7.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi7.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.RestApi7.Properties.MinimumCompressionSize is set to greater than 10485759"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive3.yaml"
-  },
-  {
-    "queryName": "API Gateway With Invalid Compression",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi8.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi8.Properties.MinimumCompressionSize should be defined",
+    "actualValue": "Resources.RestApi8.Properties.MinimumCompressionSize is not defined"
   }
 ]

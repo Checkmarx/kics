@@ -3,120 +3,240 @@
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "ElasticSearch Without Es Application Logs",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "ElasticSearch Without Es Application Logs",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive3.yaml"
-  },
-  {
-    "queryName": "ElasticSearch Without Es Application Logs",
-    "severity": "MEDIUM",
-    "line": 13,
-    "fileName": "positive4.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is set to 'false'"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive5.yaml"
+    "filename": "positive10.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "ElasticsearchDomain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is undefined"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 13,
-    "fileName": "positive6.yaml"
+    "line": 14,
+    "filename": "positive11.json",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is set to 'false'"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive12.json",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should declare es application logs",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare es application logs"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive13.json",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticsearchDomain.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should be defined and not null",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive14.json",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is set to 'false'"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive15.json",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is undefined"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive16.json",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "ElasticsearchDomain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is set to 'false'"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive17.json",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "ElasticsearchDomain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should declare es application logs",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare es application logs"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive18.json",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "ElasticsearchDomain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should be defined and not null",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive19.json",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "ElasticsearchDomain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is set to 'false'"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive7.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should declare es application logs",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare es application logs"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive20.json",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "ElasticsearchDomain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is undefined"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive8.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticsearchDomain.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should be defined and not null",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive9.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is set to 'false'"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive10.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is undefined"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive11.json"
+    "line": 13,
+    "filename": "positive6.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "ElasticsearchDomain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is set to 'false'"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive12.json"
+    "line": 9,
+    "filename": "positive7.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "ElasticsearchDomain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should declare es application logs",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare es application logs"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive13.json"
+    "line": 6,
+    "filename": "positive8.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "ElasticsearchDomain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should be defined and not null",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive14.json"
-  },
-  {
-    "queryName": "ElasticSearch Without Es Application Logs",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive15.json"
-  },
-  {
-    "queryName": "ElasticSearch Without Es Application Logs",
-    "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive16.json"
-  },
-  {
-    "queryName": "ElasticSearch Without Es Application Logs",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive17.json"
-  },
-  {
-    "queryName": "ElasticSearch Without Es Application Logs",
-    "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive18.json"
-  },
-  {
-    "queryName": "ElasticSearch Without Es Application Logs",
-    "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive19.json"
-  },
-  {
-    "queryName": "ElasticSearch Without Es Application Logs",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive20.json"
+    "line": 13,
+    "filename": "positive9.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "ElasticsearchDomain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.ES_APPLICATION_LOGS.Enabled is set to 'false'"
   }
 ]

@@ -3,12 +3,24 @@
     "queryName": "S3 Bucket With All Permissions",
     "severity": "CRITICAL",
     "line": 5,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "S3B_181355",
+    "searchKey": "aws_s3_bucket[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement' should not allow all actions to all principal",
+    "actualValue": "'policy.Statement' allows all actions to all principal"
   },
   {
     "queryName": "S3 Bucket With All Permissions",
     "severity": "CRITICAL",
     "line": 12,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement' should not allow all actions to all principal",
+    "actualValue": "'policy.Statement' allows all actions to all principal"
   }
 ]

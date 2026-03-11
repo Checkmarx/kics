@@ -3,24 +3,48 @@
     "queryName": "SageMaker Data Encryption Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "BasicNotebookInstance",
+    "searchKey": "Resources.BasicNotebookInstance.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' should be defined",
+    "actualValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' is not defined"
   },
   {
-    "line": 20,
-    "fileName": "positive1.yaml",
     "queryName": "SageMaker Data Encryption Disabled",
-    "severity": "HIGH"
+    "severity": "HIGH",
+    "line": 20,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "BasicNotebookInstance3",
+    "searchKey": "Resources.BasicNotebookInstance3.Properties.KmsKeyId",
+    "searchValue": "",
+    "expectedValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' should not be empty",
+    "actualValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' is empty"
+  },
+  {
+    "queryName": "SageMaker Data Encryption Disabled",
+    "severity": "HIGH",
+    "line": 16,
+    "filename": "positive2.json",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "BasicNotebookInstance3",
+    "searchKey": "Resources.BasicNotebookInstance3.Properties.KmsKeyId",
+    "searchValue": "",
+    "expectedValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' should not be empty",
+    "actualValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' is empty"
   },
   {
     "queryName": "SageMaker Data Encryption Disabled",
     "severity": "HIGH",
     "line": 59,
-    "fileName": "positive2.json"
-  },
-  {
-    "line": 16,
-    "fileName": "positive2.json",
-    "queryName": "SageMaker Data Encryption Disabled",
-    "severity": "HIGH"
+    "filename": "positive2.json",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "BasicNotebookInstance",
+    "searchKey": "Resources.BasicNotebookInstance.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' should be defined",
+    "actualValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' is not defined"
   }
 ]

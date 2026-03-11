@@ -1,8 +1,14 @@
 [
-	{
-		"queryName": "Google Compute Network Using Default Firewall Rule",
-		"severity": "MEDIUM",
-		"line": 6,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Google Compute Network Using Default Firewall Rule",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_network",
+    "resourceName": "test-network",
+    "searchKey": "google_compute_network[positive1]",
+    "searchValue": "",
+    "expectedValue": "'google_compute_network[positive1]' should not be using a default firewall rule",
+    "actualValue": "'google_compute_network[positive1]' is using a default firewall rule"
+  }
 ]

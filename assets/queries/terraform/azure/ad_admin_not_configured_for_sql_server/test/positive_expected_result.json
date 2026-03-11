@@ -2,6 +2,13 @@
   {
     "queryName": "AD Admin Not Configured For SQL Server",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_sql_server",
+    "resourceName": "mysqlserver1",
+    "searchKey": "azurerm_sql_server[positive2]",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_sql_active_directory_administrator' should be defined for 'azurerm_sql_server[positive2]'",
+    "actualValue": "A 'azurerm_sql_active_directory_administrator' is not defined for 'azurerm_sql_server[positive2]'"
   }
 ]

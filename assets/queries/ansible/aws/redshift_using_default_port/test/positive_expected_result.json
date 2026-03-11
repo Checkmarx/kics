@@ -3,6 +3,12 @@
     "queryName": "Redshift Using Default Port",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.redshift",
+    "resourceName": "Redshift",
+    "searchKey": "name={{Redshift}}.{{community.aws.redshift}}.port",
+    "searchValue": "",
+    "expectedValue": "redshift.port should not be set to 5439",
+    "actualValue": "redshift.port is set to 5439"
   }
 ]

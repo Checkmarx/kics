@@ -2,16 +2,37 @@
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive1].allow.ports",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive1].allow.ports' should not include RDP port 3389",
+    "actualValue": "'google_compute_firewall[positive1].allow.ports' includes RDP port 3389"
   },
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
-    "line": 25
+    "line": 25,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive2].allow.ports",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive2].allow.ports' should not include RDP port 3389",
+    "actualValue": "'google_compute_firewall[positive2].allow.ports' includes RDP port 3389"
   },
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
-    "line": 36
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive3].allow.ports",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive3].allow.ports' should not include RDP port 3389",
+    "actualValue": "'google_compute_firewall[positive3].allow.ports' includes RDP port 3389"
   }
 ]

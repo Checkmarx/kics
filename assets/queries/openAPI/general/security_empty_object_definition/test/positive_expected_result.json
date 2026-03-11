@@ -3,72 +3,144 @@
     "queryName": "Global security field has an empty object (v3)",
     "severity": "HIGH",
     "line": 43,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 43,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 43,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 43,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 25,
-    "filename": "positive5.yaml"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 25,
-    "filename": "positive6.yaml"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 25,
-    "filename": "positive7.yaml"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 25,
-    "filename": "positive8.yaml"
-  },
-  {
-    "queryName": "Global security field has an empty object (v2)",
-    "severity": "HIGH",
-    "line": 38,
-    "filename": "positive9.yaml"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
   },
   {
     "queryName": "Global security field has an empty object (v2)",
     "severity": "HIGH",
     "line": 60,
-    "filename": "positive10.json"
+    "filename": "positive10.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
   },
   {
     "queryName": "Global security field has an empty object (v2)",
     "severity": "HIGH",
     "line": 38,
-    "filename": "positive11.yaml"
+    "filename": "positive11.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
   },
   {
     "queryName": "Global security field has an empty object (v2)",
     "severity": "HIGH",
     "line": 60,
-    "filename": "positive12.json"
+    "filename": "positive12.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 43,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 43,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 43,
+    "filename": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 25,
+    "filename": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
+  },
+  {
+    "queryName": "Global security field has an empty object (v2)",
+    "severity": "HIGH",
+    "line": 38,
+    "filename": "positive9.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object"
   }
 ]

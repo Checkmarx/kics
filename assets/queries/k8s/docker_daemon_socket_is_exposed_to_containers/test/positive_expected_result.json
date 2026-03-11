@@ -2,16 +2,37 @@
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "test-pd",
+    "searchKey": "metadata.name={{test-pd}}.spec.volumes.name={{test-volume}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{test-pd}}.spec.volumes.name={{test-volume}}.hostPath.path should not be '/var/run/docker.sock'",
+    "actualValue": "metadata.name={{test-pd}}.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'"
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 43
+    "line": 43,
+    "filename": "positive.yaml",
+    "resourceType": "ReplicationController",
+    "resourceName": "node-manager",
+    "searchKey": "metadata.name={{node-manager}}.spec.template.spec.volumes.name={{test-volume}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{node-manager}}.spec.template.spec.volumes.name={{test-volume}}.hostPath.path should not be '/var/run/docker.sock'",
+    "actualValue": "metadata.name={{node-manager}}.spec.template.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'"
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 67
+    "line": 67,
+    "filename": "positive.yaml",
+    "resourceType": "CronJob",
+    "resourceName": "hello",
+    "searchKey": "metadata.name={{hello}}.spec.jobTemplate.spec.template.spec.volumes.name={{test-volume}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.spec.volumes.name={{test-volume}}.hostPath.path should not be '/var/run/docker.sock'",
+    "actualValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'"
   }
 ]

@@ -1,8 +1,14 @@
 [
-	{
-		"queryName": "Nifcloud Computing Undefined Description To Security Group Rule",
-		"severity": "INFO",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud Computing Undefined Description To Security Group Rule",
+    "severity": "INFO",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "nifcloud_security_group_rule",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_security_group_rule[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_security_group_rule[positive]' should include a description for auditing purposes",
+    "actualValue": "'nifcloud_security_group_rule[positive]' does not have a description"
+  }
 ]

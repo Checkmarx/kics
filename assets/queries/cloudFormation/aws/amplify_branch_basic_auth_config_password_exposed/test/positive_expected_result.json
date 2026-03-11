@@ -3,37 +3,72 @@
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Amplify::Branch",
+    "resourceName": "NewAmpApp1",
+    "searchKey": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced"
   },
   {
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined"
   },
   {
-    
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 19,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::Amplify::Branch",
+    "resourceName": "NewAmpApp1",
+    "searchKey": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced"
   },
   {
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined"
   },
   {
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::Amplify::Branch",
+    "resourceName": "NewAmpApp1",
+    "searchKey": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced"
   },
   {
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 19,
-    "fileName": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "AWS::Amplify::Branch",
+    "resourceName": "NewAmpApp1",
+    "searchKey": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced"
   }
 ]

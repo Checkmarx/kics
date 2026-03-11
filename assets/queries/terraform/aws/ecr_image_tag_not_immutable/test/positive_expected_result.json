@@ -3,12 +3,24 @@
     "queryName": "ECR Image Tag Not Immutable",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "bar",
+    "searchKey": "aws_ecr_repository.foo2.image_tag_mutability",
+    "searchValue": "",
+    "expectedValue": "aws_ecr_repository.foo2.image_tag_mutability should be 'IMMUTABLE'",
+    "actualValue": "aws_ecr_repository.foo2.image_tag_mutability is 'MUTABLE'"
   },
   {
     "queryName": "ECR Image Tag Not Immutable",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "bar",
+    "searchKey": "aws_ecr_repository.foo3",
+    "searchValue": "",
+    "expectedValue": "aws_ecr_repository.foo3.image_tag_mutability should be defined and not null",
+    "actualValue": "aws_ecr_repository.foo3.image_tag_mutability is undefined or null"
   }
 ]

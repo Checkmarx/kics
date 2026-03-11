@@ -3,6 +3,12 @@
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 17,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "aws:rds:Instance",
+    "resourceName": "default",
+    "searchKey": "resources[default].properties.publiclyAccessible",
+    "searchValue": "",
+    "expectedValue": "'resources.default.properties.publiclyAccessible' should be set to 'false'",
+    "actualValue": "'resources.default.properties.publiclyAccessible' is set to 'true'"
   }
 ]

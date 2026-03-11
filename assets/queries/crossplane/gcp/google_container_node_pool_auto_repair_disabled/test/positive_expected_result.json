@@ -3,12 +3,24 @@
     "queryName": "Google Container Node Pool Auto Repair Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "NodePool",
+    "resourceName": "cluster-np",
+    "searchKey": "metadata.name={{cluster-np}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "management should be defined with autoRepair set to true",
+    "actualValue": "management is not defined"
   },
   {
     "queryName": "Google Container Node Pool Auto Repair Disabled",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "NodePool",
+    "resourceName": "cluster-np",
+    "searchKey": "metadata.name={{cluster-np}}.spec.forProvider.management.autoRepair",
+    "searchValue": "",
+    "expectedValue": "autoRepair should be set to true",
+    "actualValue": "autoRepair is set to false"
   }
 ]

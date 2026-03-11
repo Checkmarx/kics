@@ -2,6 +2,13 @@
   {
     "queryName": "Run Using Sudo",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.RUN={{sudo pip install --upgrade pip}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction shouldn't contain sudo",
+    "actualValue": "RUN instruction contains sudo"
   }
 ]

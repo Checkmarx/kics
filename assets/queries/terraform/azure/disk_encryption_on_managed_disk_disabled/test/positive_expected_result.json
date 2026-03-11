@@ -2,6 +2,13 @@
   {
     "queryName": "Beta - Disk Encryption On Managed Disk Disabled",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_managed_disk",
+    "resourceName": "secure-vm-disk",
+    "searchKey": "azurerm_managed_disk[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_managed_disk[positive1]' should set a 'disk_encryption_set_id' or 'secure_vm_disk_encryption_set_id'",
+    "actualValue": "'azurerm_managed_disk[positive1]' does not set a disk encryption id field"
   }
 ]

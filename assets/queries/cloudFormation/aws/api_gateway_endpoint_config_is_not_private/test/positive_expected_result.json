@@ -3,24 +3,48 @@
     "queryName": "API Gateway Endpoint Config is Not Private",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi",
+    "searchKey": "Resources.MyRestApi.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRestApi.EndpointConfiguration' should be defined",
+    "actualValue": "'Resources.MyRestApi.EndpointConfiguration' is undefined"
   },
   {
     "queryName": "API Gateway Endpoint Config is Not Private",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi2",
+    "searchKey": "Resources.MyRestApi2.Properties.EndpointConfiguration.Types",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRestApi2.EndpointConfiguration.Types' should contain 'PRIVATE'",
+    "actualValue": "'Resources.MyRestApi2.EndpointConfiguration.Types' does not contain 'PRIVATE'"
   },
   {
     "queryName": "API Gateway Endpoint Config is Not Private",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi",
+    "searchKey": "Resources.MyRestApi.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRestApi.EndpointConfiguration' should be defined",
+    "actualValue": "'Resources.MyRestApi.EndpointConfiguration' is undefined"
   },
   {
-    "line": 14,
-    "fileName": "positive2.json",
     "queryName": "API Gateway Endpoint Config is Not Private",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myRestApi2",
+    "searchKey": "Resources.MyRestApi2.Properties.EndpointConfiguration.Types",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyRestApi2.EndpointConfiguration.Types' should contain 'PRIVATE'",
+    "actualValue": "'Resources.MyRestApi2.EndpointConfiguration.Types' does not contain 'PRIVATE'"
   }
 ]

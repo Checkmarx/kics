@@ -3,24 +3,48 @@
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
     "line": 19,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Function",
+    "resourceName": "Function1",
+    "searchKey": "Resources.Function1.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Resource.Function1.Properties.Role is only assigned to the function in question",
+    "actualValue": "Resource.Function1.Properties.Role is assigned to another funtion"
   },
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
     "line": 34,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Function",
+    "resourceName": "Function2",
+    "searchKey": "Resources.Function2.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Resource.Function2.Properties.Role is only assigned to the function in question",
+    "actualValue": "Resource.Function2.Properties.Role is assigned to another funtion"
   },
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
     "line": 19,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::Serverless::Function",
+    "resourceName": "Function1",
+    "searchKey": "Resources.Function1.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Resource.Function1.Properties.Role is only assigned to the function in question",
+    "actualValue": "Resource.Function1.Properties.Role is assigned to another funtion"
   },
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
     "line": 34,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::Serverless::Function",
+    "resourceName": "Function2",
+    "searchKey": "Resources.Function2.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Resource.Function2.Properties.Role is only assigned to the function in question",
+    "actualValue": "Resource.Function2.Properties.Role is assigned to another funtion"
   }
 ]

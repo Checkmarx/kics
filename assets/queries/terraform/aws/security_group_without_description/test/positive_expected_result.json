@@ -3,24 +3,48 @@
     "queryName": "Security Group Without Description",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1-1",
+    "searchKey": "aws_security_group[positive1-1]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-1] description should be defined and not null",
+    "actualValue": "aws_security_group[positive1-1] description is undefined or null"
   },
   {
     "queryName": "Security Group Without Description",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "positive1-2",
+    "searchKey": "aws_security_group[positive1-2]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-2] description should be defined and not null",
+    "actualValue": "aws_security_group[positive1-2] description is undefined or null"
   },
   {
     "queryName": "Security Group Without Description",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive2-1]",
+    "searchValue": "",
+    "expectedValue": "module[positive2-1] description should be defined and not null",
+    "actualValue": "module[positive2-1] description is undefined or null"
   },
   {
     "queryName": "Security Group Without Description",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive2-2]",
+    "searchValue": "",
+    "expectedValue": "module[positive2-2] description should be defined and not null",
+    "actualValue": "module[positive2-2] description is undefined or null"
   }
 ]

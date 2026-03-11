@@ -3,12 +3,24 @@
     "queryName": "Components Callback Definition Is Unused",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.callbacks.{{inProgress}}",
+    "searchValue": "",
+    "expectedValue": "Callback should be used as reference somewhere",
+    "actualValue": "Callback is not used as reference"
   },
   {
     "queryName": "Components Callback Definition Is Unused",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.callbacks.{{inProgress}}",
+    "searchValue": "",
+    "expectedValue": "Callback should be used as reference somewhere",
+    "actualValue": "Callback is not used as reference"
   }
 ]

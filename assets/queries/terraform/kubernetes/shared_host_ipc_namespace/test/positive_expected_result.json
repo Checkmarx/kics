@@ -2,6 +2,13 @@
   {
     "queryName": "Shared Host IPC Namespace",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.host_ipc",
+    "searchValue": "",
+    "expectedValue": "Attribute 'host_ipc' should be undefined or false",
+    "actualValue": "Attribute 'host_ipc' is true"
   }
 ]

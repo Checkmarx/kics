@@ -3,30 +3,60 @@
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "frontend",
+    "searchKey": "metadata.name={{frontend}}.namespace",
+    "searchValue": "Pod",
+    "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
+    "actualValue": "'metadata.namespace' is set to default"
   },
   {
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "frontend2",
+    "searchKey": "kind={{Pod}}.metadata.name={{frontend2}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.namespace should be defined and not null",
+    "actualValue": "metadata.namespace is undefined or null"
   },
   {
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "mongo.db.collection.com",
+    "searchKey": "metadata.name={{mongo.db.collection.com}}.namespace",
+    "searchValue": "Pod",
+    "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
+    "actualValue": "'metadata.namespace' is set to kube-public"
   },
   {
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "mongo.db.collection.com",
+    "searchKey": "metadata.name={{mongo.db.collection.com}}.namespace",
+    "searchValue": "Pod",
+    "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
+    "actualValue": "'metadata.namespace' is set to kube-system"
   },
   {
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.namespace",
+    "searchValue": "Configuration",
+    "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
+    "actualValue": "'metadata.namespace' is set to default"
   }
 ]

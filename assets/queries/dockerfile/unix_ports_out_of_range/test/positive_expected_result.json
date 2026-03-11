@@ -2,6 +2,13 @@
   {
     "queryName": "UNIX Ports Out Of Range",
     "severity": "INFO",
-    "line": 3
+    "line": 3,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{gliderlabs/alpine:3.3}}.{{EXPOSE 65536/tcp 80 443 22}}",
+    "searchValue": "",
+    "expectedValue": "'EXPOSE' should not contain ports out of range [0, 65535]",
+    "actualValue": "'EXPOSE' contains ports out of range [0, 65535]"
   }
 ]

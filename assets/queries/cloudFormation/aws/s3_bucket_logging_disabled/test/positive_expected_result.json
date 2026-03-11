@@ -3,12 +3,24 @@
     "queryName": "S3 Bucket Logging Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "mybucket",
+    "searchKey": "Resources.mybucket.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.mybucket.Properties' should have property 'LoggingConfiguration'",
+    "actualValue": "'Resources.mybucket.Properties' doesn't have property 'LoggingConfiguration'"
   },
   {
-    "line": 113,
-    "fileName": "positive2.json",
     "queryName": "S3 Bucket Logging Disabled",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 113,
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "mybucket",
+    "searchKey": "Resources.mybucket.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.mybucket.Properties' should have property 'LoggingConfiguration'",
+    "actualValue": "'Resources.mybucket.Properties' doesn't have property 'LoggingConfiguration'"
   }
 ]

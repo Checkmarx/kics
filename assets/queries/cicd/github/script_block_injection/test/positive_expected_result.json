@@ -1,44 +1,86 @@
 [
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive1.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive2.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive3.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive4.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive5.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive6.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive7.yaml"
-	}
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.issue.title }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.issue.title",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user."
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.pull_request.title }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.pull_request.title",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user."
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.issue.title }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.issue.title",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user."
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.discussion.title }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.discussion.title",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user."
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.discussion.title }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.discussion.title",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user."
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.workflow.path }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.workflow.path",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user."
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.authors.name }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.*.authors.name",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user."
+  }
 ]

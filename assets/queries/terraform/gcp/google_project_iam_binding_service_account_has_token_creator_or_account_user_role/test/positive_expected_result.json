@@ -2,21 +2,49 @@
   {
     "queryName": "Google Project IAM Binding Service Account has Token Creator or Account User Role",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "filename": "positive.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "positive1",
+    "searchKey": "google_project_iam_binding[positive1].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[positive1].role should not be Service Account Token Creator",
+    "actualValue": "google_project_iam_binding[positive1].role is Service Account Token Creator"
   },
   {
     "queryName": "Google Project IAM Binding Service Account has Token Creator or Account User Role",
     "severity": "HIGH",
-    "line": 13
+    "line": 13,
+    "filename": "positive.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "positive2",
+    "searchKey": "google_project_iam_binding[positive2].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[positive2].role should not be Service Account Token Creator",
+    "actualValue": "google_project_iam_binding[positive2].role is Service Account Token Creator"
   },
   {
     "queryName": "Google Project IAM Binding Service Account has Token Creator or Account User Role",
     "severity": "HIGH",
-    "line": 19
+    "line": 19,
+    "filename": "positive.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "positive3",
+    "searchKey": "google_project_iam_binding[positive3].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[positive3].role should not be Service Account User",
+    "actualValue": "google_project_iam_binding[positive3].role is Service Account User"
   },
   {
     "queryName": "Google Project IAM Binding Service Account has Token Creator or Account User Role",
     "severity": "HIGH",
-    "line": 29
+    "line": 29,
+    "filename": "positive.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "positive4",
+    "searchKey": "google_project_iam_binding[positive4].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[positive4].role should not be Service Account User",
+    "actualValue": "google_project_iam_binding[positive4].role is Service Account User"
   }
 ]

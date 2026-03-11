@@ -3,18 +3,36 @@
     "queryName": "Secure Ciphers Disabled",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2",
+    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2"
   },
   {
     "queryName": "Secure Ciphers Disabled",
     "severity": "MEDIUM",
     "line": 44,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2",
+    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2"
   },
   {
     "queryName": "Secure Ciphers Disabled",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution",
+    "searchKey": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2",
+    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2"
   }
 ]

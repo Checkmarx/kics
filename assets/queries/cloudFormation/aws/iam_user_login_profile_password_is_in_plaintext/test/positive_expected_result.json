@@ -1,14 +1,26 @@
 [
   {
+    "queryName": "IAM User LoginProfile Password Is In Plaintext",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive1.yaml",
-    "queryName": "IAM User LoginProfile Password Is In Plaintext"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.LoginProfile.Password",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.LoginProfile.Password' should be a ref to a secretsmanager value",
+    "actualValue": "'Resources.myuser.Properties.LoginProfile.Password' is a string literal"
   },
   {
     "queryName": "IAM User LoginProfile Password Is In Plaintext",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.LoginProfile.Password",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.LoginProfile.Password' should be a ref to a secretsmanager value",
+    "actualValue": "'Resources.myuser.Properties.LoginProfile.Password' is a string literal"
   }
 ]

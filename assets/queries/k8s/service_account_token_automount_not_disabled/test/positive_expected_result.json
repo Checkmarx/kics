@@ -3,24 +3,48 @@
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.automountServiceAccountToken should be defined and set to false",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.automountServiceAccountToken is undefined"
   },
   {
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security.context.demo",
+    "searchKey": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken should be set to false",
+    "actualValue": "metadata.name={{security.context.demo}}.spec.automountServiceAccountToken is true"
   },
   {
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
     "line": 54,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.automountServiceAccountToken",
+    "searchValue": "Configuration",
+    "expectedValue": "metadata.name={{dummy-config}}.spec.template.spec.automountServiceAccountToken should be set to false",
+    "actualValue": "metadata.name={{dummy-config}}.spec.template.spec.automountServiceAccountToken is true"
   },
   {
     "queryName": "Service Account Token Automount Not Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "ServiceAccount",
+    "resourceName": "redistest-sa",
+    "searchKey": "metadata.name={{redistest-sa}}.automountServiceAccountToken",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{redistest-sa}}.automountServiceAccountToken should be set to false",
+    "actualValue": "metadata.name={{redistest-sa}}.automountServiceAccountToken is true"
   }
 ]

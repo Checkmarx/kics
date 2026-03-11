@@ -3,24 +3,48 @@
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
     "line": 9,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "LogGroup",
+    "resourceName": "lg-3",
+    "searchKey": "metadata.name={{lg-3}}.spec.forProvider.retentionInDays",
+    "searchValue": "",
+    "expectedValue": "retentionInDays should be set to a valid value",
+    "actualValue": "retentionInDays is set to a invalid value"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
     "line": 38,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "LogGroup",
+    "resourceName": "lg-4",
+    "searchKey": "spec.resources.base.metadata.name={{lg-4}}.spec.forProvider.retentionInDays",
+    "searchValue": "",
+    "expectedValue": "retentionInDays should be set to a valid value",
+    "actualValue": "retentionInDays is set to a invalid value"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
     "line": 6,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "LogGroup",
+    "resourceName": "lg-5",
+    "searchKey": "metadata.name={{lg-5}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "retentionInDays should be set to a valid value",
+    "actualValue": "retentionInDays is undefined"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
     "line": 34,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "LogGroup",
+    "resourceName": "lg-6",
+    "searchKey": "spec.resources.base.metadata.name={{lg-6}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "retentionInDays should be set to a valid value",
+    "actualValue": "retentionInDays is undefined"
   }
 ]

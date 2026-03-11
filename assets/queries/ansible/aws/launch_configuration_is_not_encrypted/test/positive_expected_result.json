@@ -2,16 +2,37 @@
   {
     "queryName": "Launch Configuration Is Not Encrypted",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ec2_lc",
+    "resourceName": "note that encrypted volumes are only supported in >= Ansible 2.4",
+    "searchKey": "name={{note that encrypted volumes are only supported in >= Ansible 2.4}}.{{community.aws.ec2_lc}}.volumes",
+    "searchValue": "",
+    "expectedValue": "ec2_lc.volumes[0].encrypted should be set to true or yes",
+    "actualValue": "ec2_lc.volumes[0].encrypted is not set to true or yes"
   },
   {
     "queryName": "Launch Configuration Is Not Encrypted",
     "severity": "HIGH",
-    "line": 22
+    "line": 22,
+    "filename": "positive.yaml",
+    "resourceType": "ec2_lc",
+    "resourceName": "note that encrypted volumes are only supported in >= Ansible 2.4 v2",
+    "searchKey": "name={{note that encrypted volumes are only supported in >= Ansible 2.4 v2}}.{{ec2_lc}}.volumes",
+    "searchValue": "",
+    "expectedValue": "ec2_lc.volumes[0].encrypted should be set",
+    "actualValue": "ec2_lc.volumes[0].encrypted is undefined"
   },
   {
     "queryName": "Launch Configuration Is Not Encrypted",
     "severity": "HIGH",
-    "line": 29
+    "line": 29,
+    "filename": "positive.yaml",
+    "resourceType": "ec2_lc",
+    "resourceName": "note that encrypted volumes are only supported in >= Ansible 2.4 v3",
+    "searchKey": "name={{note that encrypted volumes are only supported in >= Ansible 2.4 v3}}.{{ec2_lc}}",
+    "searchValue": "",
+    "expectedValue": "ec2_lc.volumes should be set",
+    "actualValue": "ec2_lc.volumes is undefined"
   }
 ]

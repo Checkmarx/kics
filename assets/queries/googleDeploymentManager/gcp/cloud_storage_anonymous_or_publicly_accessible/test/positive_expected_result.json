@@ -3,36 +3,72 @@
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
     "line": 4,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties",
+    "searchValue": "acl",
+    "expectedValue": "'acl' should be defined",
+    "actualValue": "'acl' is undefined or null"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
     "line": 4,
-    "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
-    "severity": "CRITICAL",
-    "line": 7,
-    "filename": "positive2.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties",
+    "searchValue": "defaultObjectAcl",
+    "expectedValue": "'defaultObjectAcl' should be defined",
+    "actualValue": "'defaultObjectAcl' is undefined or null"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties",
+    "searchValue": "acl",
+    "expectedValue": "'acl' should be defined",
+    "actualValue": "'acl' is undefined or null"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "filename": "positive3.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties.defaultObjectAcl[0].entity",
+    "searchValue": "",
+    "expectedValue": "properties.defaultObjectAcl[0].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "actualValue": "properties.defaultObjectAcl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'"
+  },
+  {
+    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 7,
+    "filename": "positive3.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties.acl[0].entity",
+    "searchValue": "",
+    "expectedValue": "properties.acl[0].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "actualValue": "properties.acl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
     "line": 10,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties.defaultObjectAcl[0].entity",
+    "searchValue": "",
+    "expectedValue": "properties.defaultObjectAcl[0].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "actualValue": "properties.defaultObjectAcl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'"
   }
 ]

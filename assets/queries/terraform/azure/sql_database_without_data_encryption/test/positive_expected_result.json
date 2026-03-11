@@ -2,6 +2,13 @@
   {
     "queryName": "Beta - SQL Database Without Data Encryption",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_mssql_database",
+    "resourceName": "example-db",
+    "searchKey": "azurerm_mssql_database[example].transparent_data_encryption_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mssql_database[example].transparent_data_encryption_enabled' should be set to 'true'",
+    "actualValue": "'azurerm_mssql_database[example].transparent_data_encryption_enabled' is set to 'false'"
   }
 ]

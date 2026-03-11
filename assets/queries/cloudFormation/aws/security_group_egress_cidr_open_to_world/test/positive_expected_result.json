@@ -3,24 +3,48 @@
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp should not be open to the world",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp is open to the world"
   },
   {
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.CidrIpv6 should not be open to the world",
+    "actualValue": "Resources.OutboundRule.Properties.CidrIpv6 is open to the world"
   },
   {
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp should not be open to the world",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp is open to the world"
   },
   {
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
     "line": 34,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.CidrIpv6 should not be open to the world",
+    "actualValue": "Resources.OutboundRule.Properties.CidrIpv6 is open to the world"
   }
 ]

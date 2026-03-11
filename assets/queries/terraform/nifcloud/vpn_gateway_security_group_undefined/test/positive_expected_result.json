@@ -1,8 +1,14 @@
 [
-	{
-		"queryName": "Nifcloud VPN Gateway Undefined Security Group",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud VPN Gateway Undefined Security Group",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "nifcloud_vpn_gateway",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_vpn_gateway[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_vpn_gateway[positive]' should include a security_group for security purposes.",
+    "actualValue": "'nifcloud_vpn_gateway[positive]' does not have a security_group defined."
+  }
 ]

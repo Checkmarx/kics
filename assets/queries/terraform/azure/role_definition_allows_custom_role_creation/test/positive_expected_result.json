@@ -3,12 +3,24 @@
     "queryName": "Role Definition Allows Custom Role Creation",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_role_definition",
+    "resourceName": "my-custom-role-definition",
+    "searchKey": "azurerm_role_definition[example2].permissions.actions",
+    "searchValue": "",
+    "expectedValue": "azurerm_role_definition[example2].permissions.actions should not allow custom role creation",
+    "actualValue": "azurerm_role_definition[example2].permissions.actions allows custom role creation"
   },
   {
     "queryName": "Role Definition Allows Custom Role Creation",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_role_definition",
+    "resourceName": "my-custom-role",
+    "searchKey": "azurerm_role_definition[example].permissions.actions",
+    "searchValue": "",
+    "expectedValue": "azurerm_role_definition[example].permissions.actions should not allow custom role creation",
+    "actualValue": "azurerm_role_definition[example].permissions.actions allows custom role creation"
   }
 ]

@@ -3,12 +3,24 @@
     "queryName": "Empty Array",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "The array should not be empty",
+    "actualValue": "The array is empty"
   },
   {
     "queryName": "Empty Array",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "The array should not be empty",
+    "actualValue": "The array is empty"
   }
 ]

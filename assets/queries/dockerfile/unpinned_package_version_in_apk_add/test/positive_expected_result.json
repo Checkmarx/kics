@@ -2,26 +2,61 @@
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.9}}.{{RUN apk add --update py-pip}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+    "actualValue": "RUN instruction apk add --update py-pip does not use package pinning form"
   },
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.7}}.{{RUN apk add py-pip && apk add tea}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+    "actualValue": "RUN instruction apk add py-pip && apk add tea does not use package pinning form"
   },
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 14,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.7}}.{{RUN apk add py-pip     && rm -rf /tmp/*}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+    "actualValue": "RUN instruction apk add py-pip     && rm -rf /tmp/* does not use package pinning form"
   },
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.7}}.{{RUN apk add --dir /dir libimagequant     && minidlna}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+    "actualValue": "RUN instruction apk add --dir /dir libimagequant     && minidlna does not use package pinning form"
   },
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.7}}.{{RUN [\"apk\", \"add\", \"py-pip\"]}}",
+    "searchValue": "py-pip",
+    "expectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+    "actualValue": "RUN instruction py-pip does not use package pinning form"
   }
 ]

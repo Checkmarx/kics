@@ -2,46 +2,109 @@
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].resources.limits.memory should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources.limits.memory is undefined"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 53
+    "line": 53,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].resources.limits.memory should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.limits.memory is undefined"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 107
+    "line": 107,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container[0].resources should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container[0].resources is undefined"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 136
+    "line": 136,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container[1].resources should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container[1].resources is undefined"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 193
+    "line": 193,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[0].resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container[0].resources.limits is undefined"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 228
+    "line": 228,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[1].resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container[1].resources.limits is undefined"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 288
+    "line": 288,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container.resources.limits",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.resources.limits.memory should be set",
+    "actualValue": "kubernetes_pod[positive4].spec.container.resources.limits.memory is undefined"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 343
+    "line": 343,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive5",
+    "searchKey": "kubernetes_pod[positive5].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive5].spec.container.resources should be set",
+    "actualValue": "kubernetes_pod[positive5].spec.container.resources is undefined"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 400
+    "line": 400,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive6",
+    "searchKey": "kubernetes_pod[positive6].spec.container.resources",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive6].spec.container.resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive6].spec.container.resources.limits is undefined"
   }
 ]

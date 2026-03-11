@@ -3,18 +3,36 @@
     "queryName": "Serverless Function Environment Variables Not Encrypted",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yml"
+    "filename": "positive1.yml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "provider",
+    "searchValue": "",
+    "expectedValue": "'kmsKeyArn' should be defined inside the provider",
+    "actualValue": "'kmsKeyArn' is not defined"
   },
   {
     "queryName": "Serverless Function Environment Variables Not Encrypted",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive1.yml"
+    "filename": "positive1.yml",
+    "resourceType": "AWS::Lambda",
+    "resourceName": "hello",
+    "searchKey": "functions.hello",
+    "searchValue": "",
+    "expectedValue": "'kmsKeyArn' should be defined inside the function",
+    "actualValue": "'kmsKeyArn' is not defined"
   },
   {
     "queryName": "Serverless Function Environment Variables Not Encrypted",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.yml"
+    "filename": "positive2.yml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "provider",
+    "searchValue": "",
+    "expectedValue": "'kmsKeyArn' should be defined inside the provider",
+    "actualValue": "'kmsKeyArn' is not defined"
   }
 ]

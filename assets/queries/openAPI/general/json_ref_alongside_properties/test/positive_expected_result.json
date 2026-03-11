@@ -3,24 +3,48 @@
     "queryName": "JSON '$ref' alongside other properties (v3)",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
+    "actualValue": "Property '$ref'alongside other properties"
   },
   {
     "queryName": "JSON '$ref' alongside other properties (v3)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
+    "actualValue": "Property '$ref'alongside other properties"
   },
   {
     "queryName": "JSON '$ref' alongside other properties (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
+    "actualValue": "Property '$ref'alongside other properties"
   },
   {
     "queryName": "JSON '$ref' alongside other properties (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
+    "actualValue": "Property '$ref'alongside other properties"
   }
 ]

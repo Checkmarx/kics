@@ -3,36 +3,72 @@
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "AWS::IAM::Role",
+    "resourceName": "RootRole",
+    "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
   }
 ]

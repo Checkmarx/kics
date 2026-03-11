@@ -3,6 +3,12 @@
     "queryName": "TKE Cluster Encryption Protection Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "none_encryption_protection",
+    "searchKey": "tencentcloud_kubernetes_cluster[none_encryption_protection]",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[none_encryption_protection] should have 'tencentcloud_kubernetes_encryption_protection' enabled",
+    "actualValue": "tencentcloud_kubernetes_cluster[none_encryption_protection] does not have 'tencentcloud_kubernetes_encryption_protection' enabled or is undefined"
   }
 ]

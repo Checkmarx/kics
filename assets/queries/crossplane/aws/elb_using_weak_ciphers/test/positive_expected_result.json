@@ -3,12 +3,24 @@
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "Listener",
+    "resourceName": "test-listener",
+    "searchKey": "metadata.name={{test-listener}}.spec.forProvider.sslPolicy",
+    "searchValue": "",
+    "expectedValue": "sslPolicy should use a secure protocol or cipher",
+    "actualValue": "sslPolicy is using a weak cipher"
   },
   {
     "queryName": "ELB Using Weak Ciphers",
     "severity": "HIGH",
     "line": 58,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "Listener",
+    "resourceName": "test-listener2",
+    "searchKey": "spec.resources.base.metadata.name={{test-listener2}}.spec.forProvider.sslPolicy",
+    "searchValue": "",
+    "expectedValue": "sslPolicy should use a secure protocol or cipher",
+    "actualValue": "sslPolicy is using a weak cipher"
   }
 ]

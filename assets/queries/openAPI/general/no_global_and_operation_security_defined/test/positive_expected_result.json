@@ -3,36 +3,72 @@
     "queryName": "No Global And Operation Security Defined (v3)",
     "severity": "HIGH",
     "line": 9,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used"
   },
   {
     "queryName": "No Global And Operation Security Defined (v3)",
     "severity": "HIGH",
     "line": 46,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{patch}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used"
   },
   {
     "queryName": "No Global And Operation Security Defined (v3)",
     "severity": "HIGH",
     "line": 7,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used"
   },
   {
     "queryName": "No Global And Operation Security Defined (v3)",
     "severity": "HIGH",
     "line": 27,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{patch}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used"
   },
   {
     "queryName": "No Global And Operation Security Defined (v2)",
     "severity": "HIGH",
     "line": 7,
-    "filename": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used"
   },
   {
     "queryName": "No Global And Operation Security Defined (v2)",
     "severity": "HIGH",
     "line": 9,
-    "filename": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used"
   }
 ]

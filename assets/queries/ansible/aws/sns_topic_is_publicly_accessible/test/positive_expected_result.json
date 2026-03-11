@@ -1,26 +1,50 @@
 [
-	{
-		"queryName": "SNS Topic is Publicly Accessible",
-		"severity": "CRITICAL",
-		"line": 23,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "SNS Topic is Publicly Accessible",
-		"severity": "CRITICAL",
-		"line": 52,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "SNS Topic is Publicly Accessible",
-		"severity": "CRITICAL",
-		"line": 23,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "SNS Topic is Publicly Accessible",
-		"severity": "CRITICAL",
-		"line": 55,
-		"fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "SNS Topic is Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 23,
+    "filename": "positive1.yaml",
+    "resourceType": "community.aws.sns_topic",
+    "resourceName": "Create alarm SNS topic community",
+    "searchKey": "name={{Create alarm SNS topic community}}.{{community.aws.sns_topic}}.policy",
+    "searchValue": "",
+    "expectedValue": "sns_topic.policy.Statement shouldn't contain '*' for an AWS Principal",
+    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal"
+  },
+  {
+    "queryName": "SNS Topic is Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 52,
+    "filename": "positive1.yaml",
+    "resourceType": "sns_topic",
+    "resourceName": "Create alarm SNS topic",
+    "searchKey": "name={{Create alarm SNS topic}}.{{sns_topic}}.policy",
+    "searchValue": "",
+    "expectedValue": "sns_topic.policy.Statement shouldn't contain '*' for an AWS Principal",
+    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal"
+  },
+  {
+    "queryName": "SNS Topic is Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 23,
+    "filename": "positive2.yaml",
+    "resourceType": "community.aws.sns_topic",
+    "resourceName": "Create alarm SNS topic community",
+    "searchKey": "name={{Create alarm SNS topic community}}.{{community.aws.sns_topic}}.policy",
+    "searchValue": "",
+    "expectedValue": "sns_topic.policy.Statement shouldn't contain '*' for an AWS Principal",
+    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal"
+  },
+  {
+    "queryName": "SNS Topic is Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 55,
+    "filename": "positive2.yaml",
+    "resourceType": "sns_topic",
+    "resourceName": "Create alarm SNS topic",
+    "searchKey": "name={{Create alarm SNS topic}}.{{sns_topic}}.policy",
+    "searchValue": "",
+    "expectedValue": "sns_topic.policy.Statement shouldn't contain '*' for an AWS Principal",
+    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal"
+  }
 ]

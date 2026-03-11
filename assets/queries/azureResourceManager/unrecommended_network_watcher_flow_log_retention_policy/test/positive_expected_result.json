@@ -2,145 +2,289 @@
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
+    "line": 10,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/flowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' property value higher than 90",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'days' property higher than 90"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/flowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property value set to true",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' set to true"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
     "line": 20,
-    "fileName": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Network/networkWatchers/flowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' property value higher than 90",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'days' property higher than 90"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 21,
-    "fileName": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Network/networkWatchers/flowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property value set to true",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' set to true"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 9,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' property defined"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' property value higher than 90",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'days' property higher than 90"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' property defined"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 20,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' property value higher than 90",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'days' property higher than 90"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'retentionPolicy' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'retentionPolicy' property defined"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'retentionPolicy' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'retentionPolicy' property defined"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' property defined"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' property defined"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive5.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/flowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' property value higher than 90",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'days' property higher than 90"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive5.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/flowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property value set to true",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' set to true"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 22,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "Microsoft.Network/networkWatchers/flowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "properties.template.resources.name={{flowlogs/sample}}.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' property value higher than 90",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'days' property higher than 90"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "Microsoft.Network/networkWatchers/flowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "properties.template.resources.name={{flowlogs/sample}}.properties.retentionPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property value set to true",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' set to true"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 9,
+    "filename": "positive6.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' property defined"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive6.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' property value higher than 90",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'days' property higher than 90"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 21,
-    "fileName": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "properties.template.resources.name={{flowlogs/sample}}.properties.retentionPolicy",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' property defined"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 22,
-    "fileName": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "properties.template.resources.name={{flowlogs/sample}}.properties.retentionPolicy.days",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'days' property value higher than 90",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'days' property higher than 90"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive7.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'retentionPolicy' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'retentionPolicy' property defined"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive7.json"
+    "filename": "positive7.json",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "properties.template.resources.name={{flowlogs/sample}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'retentionPolicy' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'retentionPolicy' property defined"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive8.bicep",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "resources.name={{flowlogs/sample}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' property defined"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive8.json"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 10,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 11,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 10,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 9,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 10,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 11,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 9,
-    "fileName": "positive6.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 10,
-    "fileName": "positive6.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive7.bicep"
-  },
-  {
-    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive8.bicep"
+    "filename": "positive8.json",
+    "resourceType": "Microsoft.Network/networkWatchers/FlowLogs",
+    "resourceName": "flowlogs/sample",
+    "searchKey": "properties.template.resources.name={{flowlogs/sample}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' should have 'enabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Network/networkWatchers/FlowLogs' doesn't have 'enabled' property defined"
   }
 ]

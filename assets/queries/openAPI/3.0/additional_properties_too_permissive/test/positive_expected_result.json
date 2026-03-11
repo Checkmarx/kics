@@ -3,36 +3,72 @@
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
     "line": 24,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Additional Properties Too Permissive",
-    "severity": "LOW",
-    "line": 34,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Additional Properties Too Permissive",
-    "severity": "LOW",
-    "line": 14,
-    "filename": "positive5.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set to false",
+    "actualValue": "'additionalProperties' is set true"
   },
   {
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
     "line": 19,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set to false",
+    "actualValue": "'additionalProperties' is set true"
+  },
+  {
+    "queryName": "Additional Properties Too Permissive",
+    "severity": "LOW",
+    "line": 34,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.oneOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set to false",
+    "actualValue": "'additionalProperties' is set true"
   },
   {
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.oneOf",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' should be set to false",
+    "actualValue": "'additionalProperties' is set true"
+  },
+  {
+    "queryName": "Additional Properties Too Permissive",
+    "severity": "LOW",
+    "line": 14,
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' needs to be set and to false",
+    "actualValue": "'additionalProperties' is not set"
   },
   {
     "queryName": "Additional Properties Too Permissive",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "'additionalProperties' needs to be set and to false",
+    "actualValue": "'additionalProperties' is not set"
   }
 ]

@@ -3,30 +3,60 @@
     "queryName": "CMK Is Unusable",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties.Enabled",
+    "searchValue": "",
+    "expectedValue": "'Resources.myKey.Properties.Enabled' should be true",
+    "actualValue": "'Resources.myKey.Properties.Enabled' is false"
   },
   {
     "queryName": "CMK Is Unusable",
     "severity": "MEDIUM",
     "line": 30,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey2",
+    "searchKey": "Resources.myKey2.Properties.PendingWindowInDays",
+    "searchValue": "",
+    "expectedValue": "'Resources.myKey2.Properties.PendingWindowInDays' should be undefined",
+    "actualValue": "'Resources.myKey2.Properties.PendingWindowInDays' is defined"
   },
   {
     "queryName": "CMK Is Unusable",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties.Enabled",
+    "searchValue": "",
+    "expectedValue": "'Resources.myKey.Properties.Enabled' should be true",
+    "actualValue": "'Resources.myKey.Properties.Enabled' is false"
   },
   {
     "queryName": "CMK Is Unusable",
     "severity": "MEDIUM",
     "line": 59,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey2",
+    "searchKey": "Resources.myKey2.Properties.PendingWindowInDays",
+    "searchValue": "",
+    "expectedValue": "'Resources.myKey2.Properties.PendingWindowInDays' should be undefined",
+    "actualValue": "'Resources.myKey2.Properties.PendingWindowInDays' is defined"
   },
   {
     "queryName": "CMK Is Unusable",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties.Enabled",
+    "searchValue": "",
+    "expectedValue": "'Resources.myKey.Properties.Enabled' should be true",
+    "actualValue": "'Resources.myKey.Properties.Enabled' is false"
   }
 ]

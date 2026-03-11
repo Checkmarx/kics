@@ -3,18 +3,36 @@
     "queryName": "Cluster Master Authentication Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "",
+    "expectedValue": "'masterAuth' should be defined and not null",
+    "actualValue": "'masterAuth' is undefined or null"
   },
   {
     "queryName": "Cluster Master Authentication Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.masterAuth",
+    "searchValue": "",
+    "expectedValue": "Attribute 'masterAuth.username' should be defined and Attribute 'masterAuth.password' should be defined",
+    "actualValue": "Attribute 'masterAuth.username' is undefined or attribute 'masterAuth.password' is undefined"
   },
   {
     "queryName": "Cluster Master Authentication Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.masterAuth",
+    "searchValue": "",
+    "expectedValue": "Attribute 'masterAuth.username' should be defined and Attribute 'masterAuth.password' should be defined",
+    "actualValue": "Attribute 'masterAuth.username' is undefined or attribute 'masterAuth.password' is undefined"
   }
 ]

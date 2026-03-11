@@ -2,73 +2,145 @@
   {
     "queryName": "Storage Account Allows Default Network Access",
     "severity": "LOW",
+    "line": 19,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "[variables('storageAccountName')]",
+    "searchKey": "resources.name=[variables('storageAccountName')].properties.networkAcls.defaultAction",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'properties.networkAcls.defaultAction' set to 'Deny'",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'"
+  },
+  {
+    "queryName": "Storage Account Allows Default Network Access",
+    "severity": "LOW",
     "line": 41,
-    "fileName": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "[variables('storageAccountName')]",
+    "searchKey": "resources.name=[variables('storageAccountName')].properties.networkAcls.defaultAction",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'properties.networkAcls.defaultAction' set to 'Deny'",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'"
+  },
+  {
+    "queryName": "Storage Account Allows Default Network Access",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storageaccount1Positive2",
+    "searchKey": "resources.name=storageaccount1Positive2.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'properties.networkAcls.defaultAction' defined",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storageaccount1Positive2",
+    "searchKey": "resources.name=storageaccount1Positive2.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'properties.networkAcls.defaultAction' defined",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined"
+  },
+  {
+    "queryName": "Storage Account Allows Default Network Access",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storageaccount1Positive3",
+    "searchKey": "resources.name=storageaccount1Positive3.apiVersion=2016-12-01",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion should be newer than 2017 and enable setting networkAcls",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storageaccount1Positive3",
+    "searchKey": "resources.name=storageaccount1Positive3.apiVersion=2016-12-01",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion should be newer than 2017 and enable setting networkAcls",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls"
+  },
+  {
+    "queryName": "Storage Account Allows Default Network Access",
+    "severity": "LOW",
+    "line": 19,
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "[variables('storageAccountName')]",
+    "searchKey": "resources.name=[variables('storageAccountName')].properties.networkAcls.defaultAction",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'properties.networkAcls.defaultAction' set to 'Deny'",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
     "severity": "LOW",
     "line": 43,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "[variables('storageAccountName')]",
+    "searchKey": "properties.template.resources.name=[variables('storageAccountName')].properties.networkAcls.defaultAction",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'properties.networkAcls.defaultAction' set to 'Deny'",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'"
+  },
+  {
+    "queryName": "Storage Account Allows Default Network Access",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive5.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storageaccount1Positive2",
+    "searchKey": "resources.name=storageaccount1Positive2.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'properties.networkAcls.defaultAction' defined",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
     "severity": "LOW",
     "line": 20,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storageaccount1Positive2",
+    "searchKey": "properties.template.resources.name=storageaccount1Positive2.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'properties.networkAcls.defaultAction' defined",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined"
+  },
+  {
+    "queryName": "Storage Account Allows Default Network Access",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive6.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storageaccount1Positive3",
+    "searchKey": "resources.name=storageaccount1Positive3.apiVersion=2016-12-01",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion should be newer than 2017 and enable setting networkAcls",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "Storage Account Allows Default Network Access",
-    "severity": "LOW",
-    "line": 19,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Storage Account Allows Default Network Access",
-    "severity": "LOW",
-    "line": 12,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Storage Account Allows Default Network Access",
-    "severity": "LOW",
-    "line": 1,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Storage Account Allows Default Network Access",
-    "severity": "LOW",
-    "line": 19,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "Storage Account Allows Default Network Access",
-    "severity": "LOW",
-    "line": 12,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "Storage Account Allows Default Network Access",
-    "severity": "LOW",
-    "line": 1,
-    "fileName": "positive6.bicep"
+    "filename": "positive6.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storageaccount1Positive3",
+    "searchKey": "properties.template.resources.name=storageaccount1Positive3.apiVersion=2016-12-01",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion should be newer than 2017 and enable setting networkAcls",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls"
   }
 ]

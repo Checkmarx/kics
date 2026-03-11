@@ -3,24 +3,48 @@
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance[{{web}}]",
+    "searchValue": "",
+    "expectedValue": "'ebs_optimized' should be set to true",
+    "actualValue": "'ebs_optimized' is undefined or null"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance[{{web}}].ebs_optimized",
+    "searchValue": "",
+    "expectedValue": "'ebs_optimized' should be set to true",
+    "actualValue": "'ebs_optimized' is set to false"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance]",
+    "searchValue": "",
+    "expectedValue": "'ebs_optimized' should be set to true",
+    "actualValue": "'ebs_optimized' is undefined or null"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 9,
-    "filename": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance].ebs_optimized",
+    "searchValue": "",
+    "expectedValue": "'ebs_optimized' should be set to true",
+    "actualValue": "'ebs_optimized' is set to false"
   }
 ]

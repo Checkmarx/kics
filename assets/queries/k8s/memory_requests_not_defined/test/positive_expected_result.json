@@ -3,30 +3,60 @@
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo",
+    "searchKey": "metadata.name={{memory-demo}}.spec.containers.name={{memory-demo-ctr-1}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{memory-demo}}.spec.containers.name={{memory-demo-ctr-1}}.resources.requests.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo}}.spec.containers.name={{memory-demo-ctr-1}}.resources.requests.memory is undefined"
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-1",
+    "searchKey": "metadata.name={{memory-demo-1}}.spec.containers.name={{memory-demo-ctr-2}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{memory-demo-1}}.spec.containers.name={{memory-demo-ctr-2}}.resources.requests.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-1}}.spec.containers.name={{memory-demo-ctr-2}}.resources.requests.memory is undefined"
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
     "line": 40,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-2",
+    "searchKey": "metadata.name={{memory-demo-2}}.spec.containers.name={{memory-demo-ctr-3}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{memory-demo-2}}.spec.containers.name={{memory-demo-ctr-3}}.resources.requests.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-2}}.spec.containers.name={{memory-demo-ctr-3}}.resources.requests.memory is undefined"
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
     "line": 59,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-3",
+    "searchKey": "metadata.name={{memory-demo-3}}.spec.containers.name={{memory-demo-ctr-4}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{memory-demo-3}}.spec.containers.name={{memory-demo-ctr-4}}.resources.requests.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-3}}.spec.containers.name={{memory-demo-ctr-4}}.resources.requests.memory is undefined"
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "test-deployment2",
+    "searchKey": "metadata.name={{test-deployment2}}.spec.template.spec.containers.name={{pause}}",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{test-deployment2}}.spec.template.spec.containers.name={{pause}}.resources.requests.memory should be defined",
+    "actualValue": "metadata.name={{test-deployment2}}.spec.template.spec.containers.name={{pause}}.resources.requests.memory is undefined"
   }
 ]

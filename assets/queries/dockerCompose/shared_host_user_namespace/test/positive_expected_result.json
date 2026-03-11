@@ -3,7 +3,12 @@
     "queryName": "Shared Host User Namespace",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.service1.userns_mode",
+    "searchValue": "",
+    "expectedValue": "Attribute 'userns_mode' should not be set or not set to host",
+    "actualValue": "Attribute 'userns_mode' is set to host"
   }
 ]
-  

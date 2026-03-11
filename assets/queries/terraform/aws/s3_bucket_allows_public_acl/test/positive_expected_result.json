@@ -2,25 +2,49 @@
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "positive2",
+    "searchKey": "aws_s3_bucket_public_access_block[positive2].block_public_acls",
+    "searchValue": "",
+    "expectedValue": "'block_public_acls' should equal 'true'",
+    "actualValue": "'block_public_acls' is equal 'false'"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "positive3",
+    "searchKey": "aws_s3_bucket_public_access_block[positive3]",
+    "searchValue": "",
+    "expectedValue": "'block_public_acls' should equal 'true'",
+    "actualValue": "'block_public_acls' is missing"
   },
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].block_public_acls",
+    "searchValue": "",
+    "expectedValue": "'block_public_acls' should equal 'true'",
+    "actualValue": "'block_public_acls' is equal 'false'"
   },
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public ACL",
-    "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive2.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket]",
+    "searchValue": "",
+    "expectedValue": "'block_public_acls' should equal 'true'",
+    "actualValue": "'block_public_acls' is missing"
   }
 ]

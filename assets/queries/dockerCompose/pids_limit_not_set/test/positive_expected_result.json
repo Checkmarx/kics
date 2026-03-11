@@ -1,14 +1,26 @@
 [
-    {
-      "queryName": "Pids Limit Not Set",
-      "severity": "MEDIUM",
-      "line": 7,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Pids Limit Not Set",
-      "severity": "MEDIUM",
-      "line": 12,
-      "filename": "positive2.yaml"
-    }
+  {
+    "queryName": "Pids Limit Not Set",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.auth",
+    "searchValue": "",
+    "expectedValue": "Pids_limit should be defined.",
+    "actualValue": "Pids_limit is not defined."
+  },
+  {
+    "queryName": "Pids Limit Not Set",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.auth.pids_limit",
+    "searchValue": "",
+    "expectedValue": "Pids_limit should be limited.",
+    "actualValue": "Pids_limit is not limited."
+  }
 ]

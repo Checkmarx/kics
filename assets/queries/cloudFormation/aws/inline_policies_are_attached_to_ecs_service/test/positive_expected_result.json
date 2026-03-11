@@ -3,12 +3,24 @@
     "queryName": "Inline Policies Are Attached To ECS Service",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "InlinePolicy",
+    "searchKey": "Resources.InlinePolicy.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "'Resources.InlinePolicy.Properties.Role' should not refer an inline IAM Policy",
+    "actualValue": "'Resources.InlinePolicy.Properties.Role' refers to inline IAM Policy 'IAMPolicy'"
   },
   {
     "queryName": "Inline Policies Are Attached To ECS Service",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "InlinePolicy",
+    "searchKey": "Resources.InlinePolicy.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "'Resources.InlinePolicy.Properties.Role' should not refer an inline IAM Policy",
+    "actualValue": "'Resources.InlinePolicy.Properties.Role' refers to inline IAM Policy 'IAMPolicy'"
   }
 ]

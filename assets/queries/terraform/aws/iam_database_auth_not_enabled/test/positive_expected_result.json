@@ -3,24 +3,48 @@
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is set to false"
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined or null"
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined or null"
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is set to false"
   }
 ]

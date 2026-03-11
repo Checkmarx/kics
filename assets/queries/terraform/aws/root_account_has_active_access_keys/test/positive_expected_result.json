@@ -3,12 +3,24 @@
     "queryName": "Root Account Has Active Access Keys",
     "severity": "HIGH",
     "line": 2,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_access_key",
+    "resourceName": "positive1",
+    "searchKey": "aws_iam_access_key[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_iam_access_key[positive1].status' should be defined and set to 'Inactive'",
+    "actualValue": "'aws_iam_access_key[positive1].status' is undefined, that defaults to 'Active'"
   },
   {
     "queryName": "Root Account Has Active Access Keys",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_iam_access_key",
+    "resourceName": "positive2",
+    "searchKey": "aws_iam_access_key[positive2].status",
+    "searchValue": "",
+    "expectedValue": "'aws_iam_access_key[positive2].status' should be defined and set to 'Inactive'",
+    "actualValue": "'aws_iam_access_key[positive2].status' is set to 'Active'"
   }
 ]

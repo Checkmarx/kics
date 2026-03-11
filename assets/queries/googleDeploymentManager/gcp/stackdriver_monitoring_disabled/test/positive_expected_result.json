@@ -3,12 +3,24 @@
     "queryName": "Stackdriver Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "my-cluster",
+    "searchKey": "resources.name={{my-cluster}}.properties",
+    "searchValue": "",
+    "expectedValue": "'monitoringService' should be defined and not null",
+    "actualValue": "'monitoringService' is undefined or null"
   },
   {
     "queryName": "Stackdriver Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "my-cluster",
+    "searchKey": "resources.name={{my-cluster}}.properties.monitoringService",
+    "searchValue": "",
+    "expectedValue": "'monitoringService' to not be 'none'",
+    "actualValue": "'monitoringService' is 'none'"
   }
 ]

@@ -1,7 +1,14 @@
 [
-	{
-		"queryName": "HPA Targets Invalid Object",
-		"severity": "LOW",
-		"line": 12
-	}
+  {
+    "queryName": "HPA Targets Invalid Object",
+    "severity": "LOW",
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "HorizontalPodAutoscaler",
+    "resourceName": "php-apache",
+    "searchKey": "spec.metrics",
+    "searchValue": "",
+    "expectedValue": "spec.metrics[0] is a valid object ",
+    "actualValue": "spec.metrics[0] is an invalid object "
+  }
 ]

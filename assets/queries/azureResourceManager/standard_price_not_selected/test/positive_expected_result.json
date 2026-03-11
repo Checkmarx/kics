@@ -2,37 +2,73 @@
   {
     "queryName": "Standard Price Is Not Selected",
     "severity": "LOW",
+    "line": 18,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "Princing",
+    "searchKey": "resources.name=Princing.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' property value is set to Free"
+  },
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "LOW",
     "line": 27,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "Princing",
+    "searchKey": "resources.name=Princing.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' property value is set to Free"
+  },
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "LOW",
+    "line": 18,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "Princing",
+    "searchKey": "resources.name=Princing.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' property value is set to Free"
   },
   {
     "queryName": "Standard Price Is Not Selected",
     "severity": "LOW",
     "line": 29,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Standard Price Is Not Selected",
-    "severity": "LOW",
-    "line": 23,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Standard Price Is Not Selected",
-    "severity": "LOW",
-    "line": 18,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "Standard Price Is Not Selected",
-    "severity": "LOW",
-    "line": 18,
-    "filename": "positive2.bicep"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "Princing",
+    "searchKey": "properties.template.resources.name=Princing.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' property value is set to Free"
   },
   {
     "queryName": "Standard Price Is Not Selected",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive3.bicep"
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "VirtualMachines",
+    "searchKey": "resources.name=VirtualMachines.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' parameter default value is set to Free"
+  },
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "LOW",
+    "line": 23,
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.Security/pricings",
+    "resourceName": "VirtualMachines",
+    "searchKey": "resources.name=VirtualMachines.properties.pricingTier",
+    "searchValue": "",
+    "expectedValue": "'pricingTier' should be set to standard",
+    "actualValue": "'pricingTier' parameter default value is set to Free"
   }
 ]

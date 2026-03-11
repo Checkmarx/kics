@@ -3,96 +3,192 @@
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4",
+    "searchKey": "Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 14,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4",
+    "searchKey": "Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1IPv4",
+    "searchKey": "Resources.IPv4Ingress1.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv4Ingress1.Properties' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.IPv4Ingress1.Properties' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 30,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1IPv4",
+    "searchKey": "Resources.IPv4Ingress2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv4Ingress2.Properties' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.IPv4Ingress2.Properties' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 45,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6",
+    "searchKey": "Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 49,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6",
+    "searchKey": "Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 56,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1IPv6",
+    "searchKey": "Resources.IPv6Ingress1.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv6Ingress1.Properties' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.IPv6Ingress1.Properties' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 65,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1IPv6",
+    "searchKey": "Resources.IPv6Ingress2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv6Ingress2.Properties' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.IPv6Ingress2.Properties' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4",
+    "searchKey": "Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv4",
+    "searchKey": "Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 26,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1IPv4",
+    "searchKey": "Resources.IPv4Ingress1.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv4Ingress1.Properties' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.IPv4Ingress1.Properties' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 36,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1IPv4",
+    "searchKey": "Resources.IPv4Ingress2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv4Ingress2.Properties' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.IPv4Ingress2.Properties' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 51,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6",
+    "searchKey": "Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 57,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1IPv6",
+    "searchKey": "Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 67,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1IPv6",
+    "searchKey": "Resources.IPv6Ingress1.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv6Ingress1.Properties' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.IPv6Ingress1.Properties' opens unknown ports to the Internet"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
     "line": 77,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1IPv6",
+    "searchKey": "Resources.IPv6Ingress2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.IPv6Ingress2.Properties' should not open unknown ports to the Internet",
+    "actualValue": "'Resources.IPv6Ingress2.Properties' opens unknown ports to the Internet"
   }
 ]

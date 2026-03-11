@@ -2,97 +2,193 @@
   {
     "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/databases/default",
+    "searchKey": "resources.name={{sample/databases/default}}.properties.disabledAlerts",
+    "searchValue": "",
+    "expectedValue": "'resources.name=sample/databases/default.disabledAlerts' should be empty",
+    "actualValue": "'resources.name=sample/databases/default.disabledAlerts' is not empty"
+  },
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/databases/default",
+    "searchKey": "resources.name={{sample/databases/default}}.properties.disabledAlerts",
+    "searchValue": "",
+    "expectedValue": "'resources.name=sample/databases/default.disabledAlerts' should be empty",
+    "actualValue": "'resources.name=sample/databases/default.disabledAlerts' is not empty"
+  },
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/databases/default",
+    "searchKey": "resources.name={{sample/databases/default}}.properties.disabledAlerts",
+    "searchValue": "",
+    "expectedValue": "'resources.name=sample/databases/default.disabledAlerts' should be empty",
+    "actualValue": "'resources.name=sample/databases/default.disabledAlerts' is not empty"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/databases/default",
+    "searchKey": "properties.template.resources.name={{sample/databases/default}}.properties.disabledAlerts",
+    "searchValue": "",
+    "expectedValue": "'properties.template.resources.name=sample/databases/default.disabledAlerts' should be empty",
+    "actualValue": "'properties.template.resources.name=sample/databases/default.disabledAlerts' is not empty"
+  },
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/databases/default",
+    "searchKey": "resources.name={{sample/databases/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'resources.name=sample/databases/default.state' should be enabled",
+    "actualValue": "'resources.name=sample/databases/default.state' is not enabled"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/databases/default",
+    "searchKey": "resources.name={{sample/databases/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'resources.name=sample/databases/default.state' should be enabled",
+    "actualValue": "'resources.name=sample/databases/default.state' is not enabled"
+  },
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/databases/default",
+    "searchKey": "resources.name={{sample/databases/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'resources.name=sample/databases/default.state' should be enabled",
+    "actualValue": "'resources.name=sample/databases/default.state' is not enabled"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 19,
-    "filename": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sample/databases/default",
+    "searchKey": "properties.template.resources.name={{sample/databases/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'properties.template.resources.name=sample/databases/default.state' should be enabled",
+    "actualValue": "'properties.template.resources.name=sample/databases/default.state' is not enabled"
+  },
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive5.bicep",
+    "resourceType": "Microsoft.Sql/servers/databases",
+    "resourceName": "sample/default",
+    "searchKey": "resources.name={{sample/default}}",
+    "searchValue": "",
+    "expectedValue": "Security alert policy should be defined and enabled",
+    "actualValue": "Security alert policy is undefined"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 12,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "Microsoft.Sql/servers/databases",
+    "resourceName": "sample/default",
+    "searchKey": "properties.template.resources.name={{sample/default}}",
+    "searchValue": "",
+    "expectedValue": "Security alert policy should be defined and enabled",
+    "actualValue": "Security alert policy is undefined"
+  },
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive6.bicep",
+    "resourceType": "Microsoft.Sql/servers/securityAlertPolicies",
+    "resourceName": "sampleServer/default",
+    "searchKey": "resources.name={{sampleServer/default}}.properties.disabledAlerts",
+    "searchValue": "",
+    "expectedValue": "'resources.name=sampleServer/default.disabledAlerts' should be empty",
+    "actualValue": "'resources.name=sampleServer/default.disabledAlerts' is not empty"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive6.json"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 23,
-    "filename": "positive7.json"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive8.json"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive3.bicep"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive4.bicep"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive5.bicep"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive6.bicep"
+    "filename": "positive6.json",
+    "resourceType": "Microsoft.Sql/servers/securityAlertPolicies",
+    "resourceName": "sampleServer/default",
+    "searchKey": "resources.name={{sampleServer/default}}.properties.disabledAlerts",
+    "searchValue": "",
+    "expectedValue": "'resources.name=sampleServer/default.disabledAlerts' should be empty",
+    "actualValue": "'resources.name=sampleServer/default.disabledAlerts' is not empty"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive7.bicep"
+    "filename": "positive7.bicep",
+    "resourceType": "Microsoft.Sql/servers/securityAlertPolicies",
+    "resourceName": "sampleServer/default",
+    "searchKey": "resources.name={{sampleServer/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'resources.name=sampleServer/default.state' should be enabled",
+    "actualValue": "'resources.name=sampleServer/default.state' is not enabled"
+  },
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive7.json",
+    "resourceType": "Microsoft.Sql/servers/securityAlertPolicies",
+    "resourceName": "sampleServer/default",
+    "searchKey": "resources.name={{sampleServer/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'resources.name=sampleServer/default.state' should be enabled",
+    "actualValue": "'resources.name=sampleServer/default.state' is not enabled"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive8.bicep"
+    "filename": "positive8.bicep",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sample",
+    "searchKey": "resources.name={{sample}}",
+    "searchValue": "",
+    "expectedValue": "Security alert policy should be defined and enabled",
+    "actualValue": "Security alert policy is undefined"
+  },
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive8.json",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sample",
+    "searchKey": "resources.name={{sample}}",
+    "searchValue": "",
+    "expectedValue": "Security alert policy should be defined and enabled",
+    "actualValue": "Security alert policy is undefined"
   }
 ]

@@ -1,14 +1,26 @@
 [
-    {
-      "queryName": "No New Privileges Not Set",
-      "severity": "HIGH",
-      "line": 12,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "No New Privileges Not Set",
-      "severity": "HIGH",
-      "line": 12,
-      "filename": "positive2.yaml"
-    }
+  {
+    "queryName": "No New Privileges Not Set",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.service-service-service.security_opt",
+    "searchValue": "",
+    "expectedValue": "no-new-privileges should be set in security_opt.",
+    "actualValue": "no-new-privileges is not set in security_opt"
+  },
+  {
+    "queryName": "No New Privileges Not Set",
+    "severity": "HIGH",
+    "line": 12,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.service-service-service.security_opt",
+    "searchValue": "",
+    "expectedValue": "no-new-privileges should be set in security_opt.",
+    "actualValue": "no-new-privileges is not set in security_opt"
+  }
 ]

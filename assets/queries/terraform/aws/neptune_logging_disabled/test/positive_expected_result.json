@@ -3,24 +3,48 @@
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_neptune_cluster",
+    "resourceName": "postive1",
+    "searchKey": "aws_neptune_cluster[{{postive1}}]",
+    "searchValue": "",
+    "expectedValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports should be defined",
+    "actualValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports is undefined"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_neptune_cluster",
+    "resourceName": "postive2",
+    "searchKey": "aws_neptune_cluster[{{postive2}}].enable_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports should have all following values: audit",
+    "actualValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports is empty"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_neptune_cluster",
+    "resourceName": "postive3",
+    "searchKey": "aws_neptune_cluster[{{postive3}}].enable_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports should have all following values: audit",
+    "actualValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports has the following missing values: audit"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "aws_neptune_cluster",
+    "resourceName": "postive3",
+    "searchKey": "aws_neptune_cluster[{{postive3}}].enable_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports should have all following values: audit",
+    "actualValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports has the following missing values: audit"
   }
 ]

@@ -2,11 +2,25 @@
   {
     "queryName": "Admin User Enabled For Container Registry",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_containerregistry",
+    "resourceName": "Create an azure container registry",
+    "searchKey": "name={{Create an azure container registry}}.{{azure.azcollection.azure_rm_containerregistry}}.admin_user_enabled",
+    "searchValue": "",
+    "expectedValue": "azure_rm_containerregistry.admin_user_enabled should be false or undefined (defaults to false)",
+    "actualValue": "azure_rm_containerregistry.admin_user_enabled is true"
   },
   {
     "queryName": "Admin User Enabled For Container Registry",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_containerregistry",
+    "resourceName": "Create an azure container registry2",
+    "searchKey": "name={{Create an azure container registry2}}.{{azure.azcollection.azure_rm_containerregistry}}.admin_user_enabled",
+    "searchValue": "",
+    "expectedValue": "azure_rm_containerregistry.admin_user_enabled should be false or undefined (defaults to false)",
+    "actualValue": "azure_rm_containerregistry.admin_user_enabled is true"
   }
 ]

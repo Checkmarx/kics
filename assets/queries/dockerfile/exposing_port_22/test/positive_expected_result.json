@@ -2,6 +2,13 @@
   {
     "queryName": "Exposing Port 22 (SSH)",
     "severity": "LOW",
-    "line": 3
+    "line": 3,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{gliderlabs/alpine:3.3}}.{{EXPOSE 3000 80 443 22}}",
+    "searchValue": "",
+    "expectedValue": "'EXPOSE' shouldn't contain the port 22 ",
+    "actualValue": "'EXPOSE' contains the port 22 "
   }
 ]

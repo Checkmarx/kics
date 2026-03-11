@@ -3,12 +3,24 @@
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "Queue",
+    "resourceName": "test-queue3",
+    "searchKey": "metadata.name={{test-queue3}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "kmsMasterKeyId should be defined",
+    "actualValue": "kmsMasterKeyId is not defined"
   },
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
     "line": 40,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "Queue",
+    "resourceName": "test-queue4",
+    "searchKey": "spec.resources.base.metadata.name={{test-queue4}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "kmsMasterKeyId should be defined",
+    "actualValue": "kmsMasterKeyId is not defined"
   }
 ]

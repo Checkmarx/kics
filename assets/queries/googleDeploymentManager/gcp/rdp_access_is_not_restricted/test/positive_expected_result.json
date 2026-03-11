@@ -3,18 +3,36 @@
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
     "line": 14,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "compute.v1.firewall",
+    "resourceName": "firewall",
+    "searchKey": "resources.name={{firewall}}.properties.allowed",
+    "searchValue": "",
+    "expectedValue": "'allowed.ports' to not include RDP port 3389",
+    "actualValue": "'allowed.ports' includes RDP port 3389"
   },
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
     "line": 14,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "compute.v1.firewall",
+    "resourceName": "firewall",
+    "searchKey": "resources.name={{firewall}}.properties.allowed",
+    "searchValue": "",
+    "expectedValue": "'allowed.ports' to not include RDP port 3389",
+    "actualValue": "'allowed.ports' includes RDP port 3389"
   },
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
     "line": 9,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "compute.v1.firewall",
+    "resourceName": "firewall",
+    "searchKey": "resources.name={{firewall}}.properties.allowed",
+    "searchValue": "",
+    "expectedValue": "'allowed.ports' to not include RDP port 3389",
+    "actualValue": "'allowed.ports' includes RDP port 3389"
   }
 ]

@@ -1,7 +1,14 @@
 [
-	{
-		"queryName": "Serial Ports Are Enabled For VM Instances",
-		"severity": "MEDIUM",
-		"line": 4
-	}
+  {
+    "queryName": "Serial Ports Are Enabled For VM Instances",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "serial_enabled",
+    "searchKey": "name={{serial_enabled}}.{{google.cloud.gcp_compute_instance}}.metadata.serial-port-enable",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.metadata.serial-port-enable should be undefined or set to false",
+    "actualValue": "gcp_compute_instance.metadata.serial-port-enable is set to true"
+  }
 ]

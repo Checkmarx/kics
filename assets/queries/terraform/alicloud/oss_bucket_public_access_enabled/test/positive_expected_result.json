@@ -3,12 +3,24 @@
     "queryName": "OSS Bucket Public Access Enabled",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-acl",
+    "searchKey": "alicloud_oss_bucket[bucket_public_access_enabled2].acl",
+    "searchValue": "",
+    "expectedValue": "'acl' should be set to private or not set",
+    "actualValue": "'acl' is public-read"
   },
   {
     "queryName": "OSS Bucket Public Access Enabled",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-acl",
+    "searchKey": "alicloud_oss_bucket[bucket_public_access_enabled3].acl",
+    "searchValue": "",
+    "expectedValue": "'acl' should be set to private or not set",
+    "actualValue": "'acl' is public-read-write"
   }
 ]

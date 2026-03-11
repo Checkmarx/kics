@@ -3,36 +3,72 @@
     "queryName": "Cpus Not Limited",
     "severity": "LOW",
     "line": 9,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop.deploy.resources.limits",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources.limits.cpus' should be defined",
+    "actualValue": "'deploy.resources.limits.cpus' is not defined"
   },
   {
     "queryName": "Cpus Not Limited",
     "severity": "LOW",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.criwhat",
+    "searchValue": "",
+    "expectedValue": "For cpus priority should be declared.",
+    "actualValue": "There is no cpus priority declared."
   },
   {
     "queryName": "Cpus Not Limited",
     "severity": "LOW",
     "line": 3,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources.limits.cpus' should be defined",
+    "actualValue": "'deploy' is not defined"
   },
   {
     "queryName": "Cpus Not Limited",
     "severity": "LOW",
     "line": 7,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop.deploy",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources' should be defined",
+    "actualValue": "'deploy.resources' is not defined"
   },
   {
     "queryName": "Cpus Not Limited",
     "severity": "LOW",
     "line": 5,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.redis.deploy",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources' should be defined",
+    "actualValue": "'deploy.resources' is not defined"
   },
   {
     "queryName": "Cpus Not Limited",
     "severity": "LOW",
     "line": 8,
-    "filename": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.zapzop.deploy.resources",
+    "searchValue": "",
+    "expectedValue": "'deploy.resources.limits' should be defined",
+    "actualValue": "'deploy.resources.limits' is not defined"
   }
 ]

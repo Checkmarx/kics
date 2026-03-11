@@ -3,12 +3,24 @@
     "queryName": "Security Definitions Using Basic Auth",
     "severity": "MEDIUM",
     "line": 25,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.{{oAuth2AuthCodeNeg2}}.type",
+    "searchValue": "",
+    "expectedValue": "security definition should not be using basic authentication",
+    "actualValue": "security definition is using basic authentication"
   },
   {
     "queryName": "Security Definitions Using Basic Auth",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.{{oAuth2AuthCodeNeg2}}.type",
+    "searchValue": "",
+    "expectedValue": "security definition should not be using basic authentication",
+    "actualValue": "security definition is using basic authentication"
   }
 ]

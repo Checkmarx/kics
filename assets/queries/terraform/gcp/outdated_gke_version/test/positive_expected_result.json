@@ -3,12 +3,24 @@
     "queryName": "Outdated GKE Version",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "GKE should not be using outated versions on min_master_version or node_version 1.25",
+    "actualValue": "GKE is using outated versions on min_master_version or node_version"
   },
   {
     "queryName": "Outdated GKE Version",
     "severity": "LOW",
     "line": 25,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "GKE should not be using outated versions on min_master_version or node_version 1.25",
+    "actualValue": "GKE is using outated versions on min_master_version or node_version"
   }
 ]

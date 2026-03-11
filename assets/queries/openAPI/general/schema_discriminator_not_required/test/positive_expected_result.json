@@ -3,48 +3,96 @@
     "queryName": "Schema Discriminator Not Required (v3)",
     "severity": "INFO",
     "line": 53,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is a required property",
+    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not a required property"
   },
   {
     "queryName": "Schema Discriminator Not Required (v3)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is a required property",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not a required property"
   },
   {
     "queryName": "Schema Discriminator Not Required (v3)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is a required property",
+    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not a required property"
   },
   {
     "queryName": "Schema Discriminator Not Required (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.discriminator.propertyName",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is a required property",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not a required property"
   },
   {
     "queryName": "Schema Discriminator Not Required (v2)",
     "severity": "INFO",
     "line": 35,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{GeneralError}}.discriminator",
+    "searchValue": "",
+    "expectedValue": "definitions.{{GeneralError}}.discriminator is a required property",
+    "actualValue": "definitions.{{GeneralError}}.discriminator is not a required property"
   },
   {
     "queryName": "Schema Discriminator Not Required (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{GeneralError}}.discriminator",
+    "searchValue": "",
+    "expectedValue": "definitions.{{GeneralError}}.discriminator is a required property",
+    "actualValue": "definitions.{{GeneralError}}.discriminator is not a required property"
   },
   {
     "queryName": "Schema Discriminator Not Required (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive7.json"
+    "filename": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.discriminator",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is a required property",
+    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not a required property"
   },
   {
     "queryName": "Schema Discriminator Not Required (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive8.yaml"
+    "filename": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.discriminator",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is a required property",
+    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not a required property"
   }
 ]

@@ -1,50 +1,98 @@
 [
   {
+    "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 12,
-    "fileName": "positive1.yaml",
-    "queryName": "EC2 Network ACL Duplicate Rule"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule' has the same rule number as other entry for the same NetworkACL"
   },
   {
+    "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 25,
-    "fileName": "positive1.yaml",
-    "queryName": "EC2 Network ACL Duplicate Rule"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.OutboundRule' has the same rule number as other entry for the same NetworkACL"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 39,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule2",
+    "searchKey": "Resources.InboundRule2.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 52,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "line": 33,
-    "fileName": "positive2.json",
-    "queryName": "EC2 Network ACL Duplicate Rule",
-    "severity": "INFO"
-  },
-  {
-    "queryName": "EC2 Network ACL Duplicate Rule",
-    "severity": "INFO",
-    "line": 71,
-    "fileName": "positive2.json"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule2",
+    "searchKey": "Resources.OutboundRule2.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.OutboundRule2' has the same rule number as other entry for the same NetworkACL"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 23,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule' has the same rule number as other entry for the same NetworkACL"
+  },
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "INFO",
+    "line": 33,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.OutboundRule' has the same rule number as other entry for the same NetworkACL"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
     "severity": "INFO",
     "line": 57,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "InboundRule2",
+    "searchKey": "Resources.InboundRule2.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.InboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL"
+  },
+  {
+    "queryName": "EC2 Network ACL Duplicate Rule",
+    "severity": "INFO",
+    "line": 71,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::NetworkAclEntry",
+    "resourceName": "OutboundRule2",
+    "searchKey": "Resources.OutboundRule2.Properties.RuleNumber",
+    "searchValue": "",
+    "expectedValue": "'Resources.OutboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
+    "actualValue": "'Resources.OutboundRule2' has the same rule number as other entry for the same NetworkACL"
   }
 ]

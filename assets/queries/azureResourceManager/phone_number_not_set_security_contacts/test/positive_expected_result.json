@@ -2,25 +2,49 @@
   {
     "queryName": "Phone Number Not Set For Security Contacts",
     "severity": "LOW",
+    "line": 3,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Security/securityContacts",
+    "resourceName": "security contact",
+    "searchKey": "resources.name={{security contact}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined"
+  },
+  {
+    "queryName": "Phone Number Not Set For Security Contacts",
+    "severity": "LOW",
     "line": 13,
-    "fileName": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Security/securityContacts",
+    "resourceName": "security contact",
+    "searchKey": "resources.name={{security contact}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined"
+  },
+  {
+    "queryName": "Phone Number Not Set For Security Contacts",
+    "severity": "LOW",
+    "line": 3,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Security/securityContacts",
+    "resourceName": "security contact",
+    "searchKey": "resources.name={{security contact}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined"
   },
   {
     "queryName": "Phone Number Not Set For Security Contacts",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "Phone Number Not Set For Security Contacts",
-    "severity": "LOW",
-    "line": 3,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Phone Number Not Set For Security Contacts",
-    "severity": "LOW",
-    "line": 3,
-    "fileName": "positive2.bicep"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Security/securityContacts",
+    "resourceName": "security contact",
+    "searchKey": "properties.template.resources.name={{security contact}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined"
   }
 ]

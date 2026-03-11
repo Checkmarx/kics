@@ -2,6 +2,13 @@
   {
     "queryName": "COS Node Image Not Used",
     "severity": "LOW",
-    "line": 13
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_node_pool",
+    "resourceName": "create a node pool",
+    "searchKey": "name={{create a node pool}}.{{google.cloud.gcp_container_node_pool}}.config.image_type",
+    "searchValue": "",
+    "expectedValue": "gcp_container_node_pool.config.image_type should start with 'COS'",
+    "actualValue": "gcp_container_node_pool.config.image_type does not start with 'COS'"
   }
 ]

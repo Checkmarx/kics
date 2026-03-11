@@ -3,24 +3,48 @@
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_elb",
+    "resourceName": "foobar-terraform-elb",
+    "searchKey": "aws_elb[{{postive1}}].access_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'aws_elb[{{postive1}}].access_logs.enabled' should be true",
+    "actualValue": "'aws_elb[{{postive1}}].access_logs.enabled' is false"
   },
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_elb",
+    "resourceName": "foobar-terraform-elb",
+    "searchKey": "aws_elb[{{postive2}}]",
+    "searchValue": "",
+    "expectedValue": "'aws_elb[{{postive2}}].access_logs' should be defined and not null",
+    "actualValue": "'aws_elb[{{postive2}}].access_logs' is undefined or null"
+  },
+  {
+    "queryName": "ELB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[elb_http]",
+    "searchValue": "",
+    "expectedValue": "'access_logs' should be defined and not null",
+    "actualValue": "'access_logs' is undefined or null"
   },
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 39,
-    "filename": "positive4.tf"
-  },
-  {
-    "queryName": "ELB Access Log Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive3.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[elb_http].access_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be true",
+    "actualValue": "'access_logs.enabled' is false"
   }
 ]

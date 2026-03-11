@@ -3,6 +3,12 @@
     "queryName": "DOCDB Cluster Without KMS",
     "severity": "HIGH",
     "line": 1,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "docdb",
+    "searchKey": "aws_docdb_cluster[{{docdb}}]",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.kms_key_id should be defined and not null",
+    "actualValue": "aws_docdb_cluster.kms_key_id is undefined or null"
   }
 ]

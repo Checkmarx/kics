@@ -3,78 +3,156 @@
     "queryName": "S3 Bucket Without SSL In Write Actions",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 3,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 3,
-    "fileName": "positive3.yaml"
-  },
-  {
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive3.yaml"
-  },
-  {
-    "fileName": "positive4.yaml",
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 3
-  },
-  {
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive4.yaml"
-  },
-  {
-    "fileName": "positive5.json",
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 30
-  },
-  {
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 4,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 47,
-    "fileName": "positive7.json"
-  },
-  {
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 4,
-    "fileName": "positive8.json"
-  },
-  {
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 15,
-    "fileName": "positive8.json"
-  },
-  {
-    "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "MEDIUM",
-    "line": 3,
-    "fileName": "positive9.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket",
+    "searchKey": "Resources.S3Bucket",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket bucket doesn't have a policy or has a policy that doesn't enforce SSL"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
     "severity": "MEDIUM",
     "line": 34,
-    "fileName": "positive10.json"
+    "filename": "positive10.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket33",
+    "searchKey": "Resources.S3Bucket33",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket33 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket33 bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket2",
+    "searchKey": "Resources.S3Bucket2",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket2 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket2 bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket3",
+    "searchKey": "Resources.S3Bucket3",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket3 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket3 bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket4",
+    "searchKey": "Resources.S3Bucket4",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket4 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket4 bucket doesn't have a policy"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive4.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket5",
+    "searchKey": "Resources.S3Bucket5",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket5 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket5 bucket doesn't have a policy"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive4.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket6",
+    "searchKey": "Resources.S3Bucket6",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket6 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket6 bucket doesn't have a policy"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 30,
+    "filename": "positive5.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket",
+    "searchKey": "Resources.S3Bucket",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive6.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket2",
+    "searchKey": "Resources.S3Bucket2",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket2 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket2 bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 47,
+    "filename": "positive7.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket4",
+    "searchKey": "Resources.S3Bucket4",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket4 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket4 bucket doesn't have a policy"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive8.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket5",
+    "searchKey": "Resources.S3Bucket5",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket5 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket5 bucket doesn't have a policy"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive8.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket6",
+    "searchKey": "Resources.S3Bucket6",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket6 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket6 bucket doesn't have a policy"
+  },
+  {
+    "queryName": "S3 Bucket Without SSL In Write Actions",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive9.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket33,",
+    "searchKey": "Resources.S3Bucket33",
+    "searchValue": "",
+    "expectedValue": "Resources.S3Bucket33 bucket has a policy that enforces SSL",
+    "actualValue": "Resources.S3Bucket33 bucket doesn't have a policy or has a policy that doesn't enforce SSL"
   }
 ]

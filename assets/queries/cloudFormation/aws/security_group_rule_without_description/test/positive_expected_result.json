@@ -3,72 +3,144 @@
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.GroupDescription should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.GroupDescription is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].Description should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].Description is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].Description should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].Description is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 19,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.Description should be set",
+    "actualValue": "Resources.OutboundRule.Properties.Description is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 33,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.Description should be set",
+    "actualValue": "Resources.InboundRule.Properties.Description is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 47,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBSecurityGroup",
+    "resourceName": "LegacySecurityGroup",
+    "searchKey": "Resources.LegacySecurityGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.LegacySecurityGroup.Properties.GroupDescription should be set",
+    "actualValue": "Resources.LegacySecurityGroup.Properties.GroupDescription is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 5,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.GroupDescription should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.GroupDescription is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 11,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].Description should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].Description is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 19,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].Description should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].Description is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 29,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.Description should be set",
+    "actualValue": "Resources.OutboundRule.Properties.Description is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 49,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.Description should be set",
+    "actualValue": "Resources.InboundRule.Properties.Description is undefined"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 69,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::RDS::DBSecurityGroup",
+    "resourceName": "LegacySecurityGroup",
+    "searchKey": "Resources.LegacySecurityGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.LegacySecurityGroup.Properties.GroupDescription should be set",
+    "actualValue": "Resources.LegacySecurityGroup.Properties.GroupDescription is undefined"
   }
 ]

@@ -3,12 +3,24 @@
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_config_configuration_aggregator",
+    "resourceName": "example",
+    "searchKey": "aws_config_configuration_aggregator[positive1].account_aggregation_source",
+    "searchValue": "",
+    "expectedValue": "'aws_config_configuration_aggregator[positive1].account_aggregation_source.all_regions' should be set to true",
+    "actualValue": "'aws_config_configuration_aggregator[positive1].account_aggregation_source.all_regions' is undefined"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_config_configuration_aggregator",
+    "resourceName": "example",
+    "searchKey": "aws_config_configuration_aggregator[positive2].organization_aggregation_source.all_regions",
+    "searchValue": "",
+    "expectedValue": "'aws_config_configuration_aggregator[positive2].organization_aggregation_source.all_regions' should be set to true",
+    "actualValue": "'aws_config_configuration_aggregator[positive2].organization_aggregation_source.all_regions' is set to false"
   }
 ]

@@ -3,18 +3,36 @@
     "queryName": "EFS Without KMS",
     "severity": "LOW",
     "line": 82,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "test-VPC-EFS",
+    "searchKey": "Resources.EFSFileSystem01",
+    "searchValue": "",
+    "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys"
   },
   {
     "queryName": "EFS Without KMS",
     "severity": "LOW",
     "line": 157,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "test-VPC-EFS",
+    "searchKey": "Resources.EFSFileSystem01",
+    "searchValue": "",
+    "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys"
   },
   {
     "queryName": "EFS Without KMS",
     "severity": "LOW",
     "line": 82,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "test-VPC-EFS",
+    "searchKey": "Resources.EFSFileSystem01",
+    "searchValue": "",
+    "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys"
   }
 ]

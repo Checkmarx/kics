@@ -1,12 +1,26 @@
 [
-	{
-		"queryName": "RBAC Roles with Read Secrets Permissions",
-		"severity": "MEDIUM",
-		"line": 9
-	},
-	{
-		"queryName": "RBAC Roles with Read Secrets Permissions",
-		"severity": "MEDIUM",
-		"line": 18
-	}
+  {
+    "queryName": "RBAC Roles with Read Secrets Permissions",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive.yaml",
+    "resourceType": "Role",
+    "resourceName": "role-secret-reader",
+    "searchKey": "metadata.name={{role-secret-reader}}.rules",
+    "searchValue": "Role0",
+    "expectedValue": "metadata.name={{role-secret-reader}}.rules[0] should not be granted read access to Secrets objects",
+    "actualValue": "metadata.name={{role-secret-reader}}.rules[0] is granted read access (verbs: get, watch, list) to Secrets objects"
+  },
+  {
+    "queryName": "RBAC Roles with Read Secrets Permissions",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive.yaml",
+    "resourceType": "ClusterRole",
+    "resourceName": "cluster-role-secret-reader",
+    "searchKey": "metadata.name={{cluster-role-secret-reader}}.rules",
+    "searchValue": "ClusterRole0",
+    "expectedValue": "metadata.name={{cluster-role-secret-reader}}.rules[0] should not be granted read access to Secrets objects",
+    "actualValue": "metadata.name={{cluster-role-secret-reader}}.rules[0] is granted read access (verbs: get, watch, list) to Secrets objects"
+  }
 ]

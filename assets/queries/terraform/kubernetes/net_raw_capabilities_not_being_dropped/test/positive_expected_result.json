@@ -2,61 +2,145 @@
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].security_context.capabilities.drop should be set",
+    "actualValue": "kkubernetes_pod[positive1].spec.container[0].security_context.capabilities.drop is undefined"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 47
+    "line": 47,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].security_context.capabilities.drop should be set",
+    "actualValue": "kkubernetes_pod[positive1].spec.container[1].security_context.capabilities.drop is undefined"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 82
+    "line": 82,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[2].security_context.capabilities.drop is ALL or NET_RAW",
+    "actualValue": "kubernetes_pod[positive1].spec.container[2].security_context.capabilities.drop is not ALL or NET_RAW"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 117
+    "line": 117,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[3].security_context.capabilities.drop is ALL or NET_RAW",
+    "actualValue": "kubernetes_pod[positive1].spec.container[3].security_context.capabilities.drop is not ALL or NET_RAW"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 150
+    "line": 150,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[4].security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[4].security_context.capabilities is undefined"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 183
+    "line": 183,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[5].security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[5].security_context.capabilities is undefined"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 212
+    "line": 212,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[6].security_context should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[6].security_context is undefined"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 241
+    "line": 241,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[7].security_context should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[7].security_context is undefined"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 299
+    "line": 299,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container.security_context.capabilities",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.security_context.capabilities.drop should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.security_context.capabilities.drop is undefined"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 358
+    "line": 358,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container.security_context.capabilities.drop",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container.security_context.capabilities.drop is ALL or NET_RAW",
+    "actualValue": "kubernetes_pod[positive3].spec.container.security_context.capabilities.drop is not ALL or NET_RAW"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 415
+    "line": 415,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container.security_context",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[positive4].spec.container.security_context.capabilities is undefined"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 467
+    "line": 467,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive5",
+    "searchKey": "kubernetes_pod[positive5].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive5].spec.container.security_context should be set",
+    "actualValue": "kubernetes_pod[positive5].spec.container.security_context is undefined"
   }
 ]

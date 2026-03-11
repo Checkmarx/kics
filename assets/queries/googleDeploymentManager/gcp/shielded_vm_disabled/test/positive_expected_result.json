@@ -3,24 +3,48 @@
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template",
+    "searchKey": "resources.name={{vm-template}}.properties",
+    "searchValue": "",
+    "expectedValue": "'shieldedInstanceConfig' should be defined and not null",
+    "actualValue": "'shieldedInstanceConfig' is undefined or null"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template2",
+    "searchKey": "resources.name={{vm-template2}}.properties.shieldedInstanceConfig",
+    "searchValue": "enableIntegrityMonitoring",
+    "expectedValue": "'enableIntegrityMonitoring' should be defined and not null",
+    "actualValue": "'enableIntegrityMonitoring' is undefined or null"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template2",
+    "searchKey": "resources.name={{vm-template2}}.properties.shieldedInstanceConfig",
+    "searchValue": "enableVtpm",
+    "expectedValue": "'enableVtpm' should be defined and not null",
+    "actualValue": "'enableVtpm' is undefined or null"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template2",
+    "searchKey": "resources.name={{vm-template2}}.properties.shieldedInstanceConfig.enableSecureBoot",
+    "searchValue": "",
+    "expectedValue": "'enableSecureBoot' should be set to true",
+    "actualValue": "'enableSecureBoot' is set to false"
   }
 ]

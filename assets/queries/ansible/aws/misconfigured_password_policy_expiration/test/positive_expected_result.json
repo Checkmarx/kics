@@ -2,16 +2,37 @@
   {
     "queryName": "Misconfigured Password Policy Expiration",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_password_policy",
+    "resourceName": "Missing Password policy for AWS account",
+    "searchKey": "name={{Missing Password policy for AWS account}}.{{community.aws.iam_password_policy}}",
+    "searchValue": "",
+    "expectedValue": "iam_password_policy should have the property 'pw_max_age/password_max_age' lower than 90",
+    "actualValue": "iam_password_policy has the property 'pw_max_age/password_max_age' unassigned or greater than 90"
   },
   {
     "queryName": "Misconfigured Password Policy Expiration",
     "severity": "LOW",
-    "line": 21
+    "line": 21,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_password_policy",
+    "resourceName": "Extreme Password policy for AWS account",
+    "searchKey": "name={{Extreme Password policy for AWS account}}.{{community.aws.iam_password_policy}}.pw_max_age",
+    "searchValue": "",
+    "expectedValue": "iam_password_policy should have the property 'pw_max_age/password_max_age' lower than 90",
+    "actualValue": "iam_password_policy has the property 'pw_max_age/password_max_age' unassigned or greater than 90"
   },
   {
     "queryName": "Misconfigured Password Policy Expiration",
     "severity": "LOW",
-    "line": 33
+    "line": 33,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_password_policy",
+    "resourceName": "Alias extreme Password policy for AWS account",
+    "searchKey": "name={{Alias extreme Password policy for AWS account}}.{{community.aws.iam_password_policy}}.password_max_age",
+    "searchValue": "",
+    "expectedValue": "iam_password_policy should have the property 'pw_max_age/password_max_age' lower than 90",
+    "actualValue": "iam_password_policy has the property 'pw_max_age/password_max_age' unassigned or greater than 90"
   }
 ]

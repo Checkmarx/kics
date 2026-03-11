@@ -3,36 +3,72 @@
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 5,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 5,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 5,
-    "fileName": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

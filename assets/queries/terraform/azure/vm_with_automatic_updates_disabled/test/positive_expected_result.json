@@ -2,16 +2,37 @@
   {
     "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "MEDIUM",
-    "line": 11
+    "line": 11,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_windows_virtual_machine",
+    "resourceName": "positive1-machine",
+    "searchKey": "azurerm_windows_virtual_machine[positive1].enable_automatic_updates",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine[positive1].enable_automatic_updates' should be set to 'true'",
+    "actualValue": "'azurerm_windows_virtual_machine[positive1].enable_automatic_updates' is set to 'false'"
   },
   {
     "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 24,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_windows_virtual_machine",
+    "resourceName": "positive2-machine",
+    "searchKey": "azurerm_windows_virtual_machine[positive2].automatic_updates_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine[positive2].automatic_updates_enabled' should be set to 'true'",
+    "actualValue": "'azurerm_windows_virtual_machine[positive2].automatic_updates_enabled' is set to 'false'"
   },
   {
     "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "MEDIUM",
-    "line": 37
+    "line": 37,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_windows_virtual_machine_scale_set",
+    "resourceName": "positive3-vmss",
+    "searchKey": "azurerm_windows_virtual_machine_scale_set[positive3].enable_automatic_updates",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine_scale_set[positive3].enable_automatic_updates' should be set to 'true'",
+    "actualValue": "'azurerm_windows_virtual_machine_scale_set[positive3].enable_automatic_updates' is set to 'false'"
   }
 ]

@@ -2,11 +2,25 @@
   {
     "queryName": "PSP Allows Privilege Escalation",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "privileged",
+    "searchKey": "metadata.name={{privileged}}.spec.allowPrivilegeEscalation",
+    "searchValue": "",
+    "expectedValue": "Attribute 'allowPrivilegeEscalation' should be set to false",
+    "actualValue": "Attribute 'allowPrivilegeEscalation' is true"
   },
   {
     "queryName": "PSP Allows Privilege Escalation",
     "severity": "HIGH",
-    "line": 32
+    "line": 32,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "privileged2",
+    "searchKey": "metadata.name={{privileged2}}.spec",
+    "searchValue": "",
+    "expectedValue": "Attribute 'allowPrivilegeEscalation' should be set",
+    "actualValue": "Attribute 'allowPrivilegeEscalation' is undefined"
   }
 ]

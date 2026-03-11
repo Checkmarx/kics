@@ -3,12 +3,24 @@
     "queryName": "BOM - AWS MSK",
     "severity": "TRACE",
     "line": 84,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_msk_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS MSK",
     "severity": "TRACE",
     "line": 84,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_msk_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

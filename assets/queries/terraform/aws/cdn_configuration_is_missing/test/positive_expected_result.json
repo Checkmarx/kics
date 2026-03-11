@@ -2,16 +2,37 @@
   {
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
-    "line": 11
+    "line": 11,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive1",
+    "searchKey": "resource.aws_cloudfront_distribution[positive1].enabled",
+    "searchValue": "",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive1].enabled should be set to 'true'",
+    "actualValue": "resource.aws_cloudfront_distribution[positive1].enabled is configured as 'false'"
   },
   {
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
-    "line": 61
+    "line": 61,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive2",
+    "searchKey": "resource.aws_cloudfront_distribution[positive2]",
+    "searchValue": "origin",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive2].origin should be defined",
+    "actualValue": "resource.aws_cloudfront_distribution[positive2].origin is not defined"
   },
   {
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
-    "line": 61
+    "line": 61,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive2",
+    "searchKey": "resource.aws_cloudfront_distribution[positive2]",
+    "searchValue": "enabled",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive2].enabled should be set to 'true'",
+    "actualValue": "resource.aws_cloudfront_distribution[positive2].enabled is not defined"
   }
 ]

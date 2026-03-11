@@ -2,49 +2,97 @@
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
     "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer",
+    "searchKey": "resources.name={{MyDBServer}}.properties.sslEnforcement",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property value set to 'Enabled'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer",
+    "searchKey": "resources.name={{MyDBServer}}.properties.sslEnforcement",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property value set to 'Enabled'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer",
+    "searchKey": "resources.name={{MyDBServer}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property defined",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined"
   },
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer",
+    "searchKey": "resources.name={{MyDBServer}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property defined",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer",
+    "searchKey": "resources.name={{MyDBServer}}.properties.sslEnforcement",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property value set to 'Enabled'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'"
   },
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
     "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer",
+    "searchKey": "properties.template.resources.name={{MyDBServer}}.properties.sslEnforcement",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property value set to 'Enabled'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer",
+    "searchKey": "resources.name={{MyDBServer}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property defined",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined"
   },
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "PostgreSQL Database Server SSL Disabled",
-    "severity": "MEDIUM",
-    "line": 13,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server SSL Disabled",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server SSL Disabled",
-    "severity": "MEDIUM",
-    "line": 13,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server SSL Disabled",
-    "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive4.bicep"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer",
+    "searchKey": "properties.template.resources.name={{MyDBServer}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property defined",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined"
   }
 ]

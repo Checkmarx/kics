@@ -3,24 +3,48 @@
     "queryName": "ECR Image Tag Not Immutable",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository3.Properties.ImageTagMutability",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository3.Properties.ImageTagMutability should be 'IMMUTABLE'",
+    "actualValue": "Resources.MyRepository3.Properties.ImageTagMutability is 'MUTABLE'"
   },
   {
     "queryName": "ECR Image Tag Not Immutable",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository4.Properties.ImageTagMutability should be defined and not null",
+    "actualValue": "Resources.MyRepository4.Properties.ImageTagMutability is undefined or null"
   },
   {
     "queryName": "ECR Image Tag Not Immutable",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository5.Properties.ImageTagMutability",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository5.Properties.ImageTagMutability should be 'IMMUTABLE'",
+    "actualValue": "Resources.MyRepository5.Properties.ImageTagMutability is 'MUTABLE'"
   },
   {
     "queryName": "ECR Image Tag Not Immutable",
     "severity": "MEDIUM",
     "line": 36,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository6.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository6.Properties.ImageTagMutability should be defined and not null",
+    "actualValue": "Resources.MyRepository6.Properties.ImageTagMutability is undefined or null"
   }
 ]

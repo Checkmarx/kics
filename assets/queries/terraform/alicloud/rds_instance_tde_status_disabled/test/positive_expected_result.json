@@ -3,24 +3,48 @@
     "queryName": "RDS Instance TDE Status Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].tde_status",
+    "searchValue": "",
+    "expectedValue": "'tde_status' value should be 'Enabled'",
+    "actualValue": "'tde_status' value is set to 'Disabled'"
   },
   {
     "queryName": "RDS Instance TDE Status Disabled",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "",
+    "expectedValue": "'tde_status' value should be 'Enabled'",
+    "actualValue": "'tde_status' is not declared"
   },
   {
     "queryName": "RDS Instance TDE Status Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].tde_status",
+    "searchValue": "",
+    "expectedValue": "'tde_status' value should be 'Enabled'",
+    "actualValue": "'tde_status' value is set to 'Disabled'"
   },
   {
     "queryName": "RDS Instance TDE Status Disabled",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "",
+    "expectedValue": "'tde_status' value should be 'Enabled'",
+    "actualValue": "'tde_status' is not declared"
   }
 ]

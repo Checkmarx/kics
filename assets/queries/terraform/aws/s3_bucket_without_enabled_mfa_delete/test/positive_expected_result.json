@@ -3,60 +3,120 @@
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive1].versioning",
+    "searchValue": "mfa_delete",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is undefined or null"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 25,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "S3 Bucket Without Enabled MFA Delete",
-    "severity": "LOW",
-    "line": 24,
-    "fileName": "positive3.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive2].versioning.mfa_delete",
+    "searchValue": "",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is set to false"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive3].versioning",
+    "searchValue": "mfa_delete",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is undefined or null"
+  },
+  {
+    "queryName": "S3 Bucket Without Enabled MFA Delete",
+    "severity": "LOW",
+    "line": 24,
+    "filename": "positive3.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive3].versioning.enabled",
+    "searchValue": "",
+    "expectedValue": "'enabled' should be set to true",
+    "actualValue": "'enabled' is set to false"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].versioning",
+    "searchValue": "mfa_delete",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is undefined or null"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].versioning.mfa_delete",
+    "searchValue": "",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is set to false"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].versioning",
+    "searchValue": "mfa_delete",
+    "expectedValue": "'mfa_delete' should be set to true",
+    "actualValue": "'mfa_delete' is undefined or null"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].versioning.enabled",
+    "searchValue": "",
+    "expectedValue": "'enabled' should be set to true",
+    "actualValue": "'enabled' is set to false"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 28,
-    "fileName": "positive7.tf"
+    "filename": "positive7.tf",
+    "resourceType": "aws_s3_bucket_versioning",
+    "resourceName": "example2",
+    "searchKey": "aws_s3_bucket_versioning[example2].versioning_configuration.mfa_delete",
+    "searchValue": "",
+    "expectedValue": "'versioning_configuration.mfa_delete' should be set to 'Enabled'",
+    "actualValue": "'versioning_configuration.mfa_delete' is set to 'Disabled'"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
     "line": 27,
-    "fileName": "positive8.tf"
+    "filename": "positive8.tf",
+    "resourceType": "aws_s3_bucket_versioning",
+    "resourceName": "example",
+    "searchKey": "aws_s3_bucket_versioning[example].versioning_configuration.status",
+    "searchValue": "",
+    "expectedValue": "'versioning_configuration.status' should be set to 'Enabled'",
+    "actualValue": "'versioning_configuration.status' is set to 'Disabled'"
   }
 ]

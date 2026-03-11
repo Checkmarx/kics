@@ -3,6 +3,12 @@
     "queryName": "BigQuery Dataset Is Public",
     "severity": "HIGH",
     "line": 7,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "bigquery.v2.dataset",
+    "resourceName": "bigquery",
+    "searchKey": "resources.name={{bigquery}}.properties.access[0].specialGroup",
+    "searchValue": "",
+    "expectedValue": "'access[0].specialGroup' should not equal to 'allAuthenticatedUsers'",
+    "actualValue": "'access[0].specialGroup' is equal to 'allAuthenticatedUsers'"
   }
 ]

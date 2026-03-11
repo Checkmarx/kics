@@ -3,24 +3,48 @@
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "sample-cluster3",
+    "searchKey": "metadata.name={{sample-cluster3}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "storageEncrypted should be defined and set to true",
+    "actualValue": "storageEncrypted is not defined"
   },
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 40,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "sample-cluster4",
+    "searchKey": "spec.resources.base.metadata.name={{sample-cluster4}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "storageEncrypted should be defined and set to true",
+    "actualValue": "storageEncrypted is not defined"
   },
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "sample-cluster3",
+    "searchKey": "metadata.name={{sample-cluster3}}.spec.forProvider.storageEncrypted",
+    "searchValue": "",
+    "expectedValue": "storageEncrypted should be defined and set to true",
+    "actualValue": "storageEncrypted is set to false"
   },
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 50,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "sample-cluster4",
+    "searchKey": "spec.resources.base.metadata.name={{sample-cluster4}}.spec.forProvider.storageEncrypted",
+    "searchValue": "",
+    "expectedValue": "storageEncrypted should be defined and set to true",
+    "actualValue": "storageEncrypted is set to false"
   }
 ]

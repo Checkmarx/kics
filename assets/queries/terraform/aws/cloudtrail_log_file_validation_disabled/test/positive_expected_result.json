@@ -2,11 +2,25 @@
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "positive1",
+    "searchKey": "aws_cloudtrail[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_cloudtrail[positive1].enable_log_file_validation' should be set",
+    "actualValue": "'aws_cloudtrail[positive1].enable_log_file_validation' is undefined"
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
-    "line": 9
+    "line": 9,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "positive2",
+    "searchKey": "aws_cloudtrail[positive2].enable_log_file_validation",
+    "searchValue": "",
+    "expectedValue": "'aws_cloudtrail[positive2].enable_log_file_validation' should be true",
+    "actualValue": "'aws_cloudtrail[positive2].enable_log_file_validation' is false"
   }
 ]

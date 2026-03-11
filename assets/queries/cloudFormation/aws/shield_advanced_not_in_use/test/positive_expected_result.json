@@ -3,12 +3,24 @@
     "queryName": "Shield Advanced Not In Use",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Route53::HostedZone",
+    "resourceName": "HostedZone",
+    "searchKey": "Resources.HostedZone",
+    "searchValue": "",
+    "expectedValue": "Resources.HostedZone has shield advanced associated",
+    "actualValue": "Resources.HostedZone does not have shield advanced associated"
   },
   {
     "queryName": "Shield Advanced Not In Use",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::Route53::HostedZone",
+    "resourceName": "HostedZone",
+    "searchKey": "Resources.HostedZone",
+    "searchValue": "",
+    "expectedValue": "Resources.HostedZone has shield advanced associated",
+    "actualValue": "Resources.HostedZone does not have shield advanced associated"
   }
 ]

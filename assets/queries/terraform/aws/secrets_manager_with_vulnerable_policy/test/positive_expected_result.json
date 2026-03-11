@@ -3,6 +3,12 @@
     "queryName": "Secrets Manager With Vulnerable Policy",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_secretsmanager_secret_policy",
+    "resourceName": "example",
+    "searchKey": "aws_secretsmanager_secret_policy[example].policy",
+    "searchValue": "",
+    "expectedValue": "aws_secretsmanager_secret_policy[example].policy should not have wildcard in 'Principal' and 'Action'",
+    "actualValue": "aws_secretsmanager_secret_policy[example].policy has wildcard in 'Principal' or 'Action'"
   }
 ]

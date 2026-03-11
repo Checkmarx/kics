@@ -2,6 +2,13 @@
   {
     "queryName": "Admin User Enabled For Container Registry",
     "severity": "MEDIUM",
-    "line": 11
+    "line": 11,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_container_registry",
+    "resourceName": "containerRegistry1",
+    "searchKey": "azurerm_container_registry[positive2].admin_enabled",
+    "searchValue": "",
+    "expectedValue": "'admin_enabled' equal 'false'",
+    "actualValue": "'admin_enabled' equal 'true'"
   }
 ]

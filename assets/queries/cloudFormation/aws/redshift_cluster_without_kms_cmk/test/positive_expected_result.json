@@ -3,12 +3,24 @@
     "queryName": "Redshift Cluster Without KMS CMK",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties.KmsKeyId should be set",
+    "actualValue": "Resources.RedshiftCluster.Properties.KmsKeyId is undefined"
   },
   {
-    "fileName": "positive2.json",
     "queryName": "Redshift Cluster Without KMS CMK",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "filename": "positive2.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties.KmsKeyId should be set",
+    "actualValue": "Resources.RedshiftCluster.Properties.KmsKeyId is undefined"
   }
 ]

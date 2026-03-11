@@ -2,6 +2,13 @@
   {
     "queryName": "PSP With Added Capabilities",
     "severity": "HIGH",
-    "line": 10
+    "line": 10,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "privileged",
+    "searchKey": "metadata.name={{privileged}}.spec.allowedCapabilities",
+    "searchValue": "",
+    "expectedValue": "PodSecurityPolicy should not have allowed capabilities",
+    "actualValue": "PodSecurityPolicy has allowed capabilities"
   }
 ]

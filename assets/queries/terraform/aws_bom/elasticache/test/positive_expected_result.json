@@ -3,36 +3,72 @@
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 33,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 33,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 13,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive5]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 13,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_elasticache_cluster[positive6]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

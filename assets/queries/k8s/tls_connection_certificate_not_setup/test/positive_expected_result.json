@@ -3,30 +3,60 @@
     "queryName": "TSL Connection Certificate Not Setup",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "--tls-cert-file",
+    "expectedValue": "TLS --tls-cert-file connection setting should be set",
+    "actualValue": "TLS --tls-cert-file connection not set"
   },
   {
     "queryName": "TSL Connection Certificate Not Setup",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "--tls-private-key-file",
+    "expectedValue": "TLS --tls-private-key-file connection setting should be set",
+    "actualValue": "TLS --tls-private-key-file connection not set"
   },
   {
     "queryName": "TSL Connection Certificate Not Setup",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}",
+    "searchValue": "tlsCertFile",
+    "expectedValue": "TLS tlsCertFile connection setting should be set",
+    "actualValue": "TLS tlsCertFile connection not set"
   },
   {
     "queryName": "TSL Connection Certificate Not Setup",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}",
+    "searchValue": "tlsPrivateKeyFile",
+    "expectedValue": "TLS tlsPrivateKeyFile connection setting should be set",
+    "actualValue": "TLS tlsPrivateKeyFile connection not set"
   },
   {
     "queryName": "TSL Connection Certificate Not Setup",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}",
+    "searchValue": "tlsPrivateKeyFile",
+    "expectedValue": "TLS tlsPrivateKeyFile connection setting should be set",
+    "actualValue": "TLS tlsPrivateKeyFile connection not set"
   }
 ]

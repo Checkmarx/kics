@@ -3,24 +3,48 @@
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.web2",
+    "searchValue": "",
+    "expectedValue": "'associate_public_ip_address' should be defined and not null",
+    "actualValue": "'associate_public_ip_address' is undefined or null"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.web3.associate_public_ip_address",
+    "searchValue": "",
+    "expectedValue": "'associate_public_ip_address' should be set to false",
+    "actualValue": "'associate_public_ip_address' is true"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance]",
+    "searchValue": "",
+    "expectedValue": "'associate_public_ip_address' should be defined and not null",
+    "actualValue": "'associate_public_ip_address' is undefined or null"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance].associate_public_ip_address",
+    "searchValue": "",
+    "expectedValue": "'associate_public_ip_address' should be set to false",
+    "actualValue": "'associate_public_ip_address' is true"
   }
 ]

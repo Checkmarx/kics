@@ -2,21 +2,49 @@
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 14
+    "line": 14,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example1",
+    "searchKey": "name={{example1}}.{{amazon.aws.ec2_group}}.rules.cidr_ip={{0.0.0.0/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ip should not contain the value '0.0.0.0/0'",
+    "actualValue": "ec2_group.rules.cidr_ip contains value '0.0.0.0/0'"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 28
+    "line": 28,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example2",
+    "searchKey": "name={{example2}}.{{amazon.aws.ec2_group}}.rules.cidr_ip.{{0.0.0.0/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ip should not contain the value '0.0.0.0/0'",
+    "actualValue": "ec2_group.rules.cidr_ip contains value '0.0.0.0/0'"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 41
+    "line": 41,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example3",
+    "searchKey": "name={{example3}}.{{amazon.aws.ec2_group}}.rules.cidr_ipv6={{::/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ipv6 should not contain the value '::/0'",
+    "actualValue": "ec2_group.rules.cidr_ipv6 contains value '::/0'"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 55
+    "line": 55,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example4",
+    "searchKey": "name={{example4}}.{{amazon.aws.ec2_group}}.rules.cidr_ipv6.{{::/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ipv6 should not contain the value '::/0'",
+    "actualValue": "ec2_group.rules.cidr_ipv6 contains value '::/0'"
   }
 ]

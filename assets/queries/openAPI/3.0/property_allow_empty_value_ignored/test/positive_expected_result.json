@@ -3,36 +3,72 @@
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 47,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 31,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
   }
 ]

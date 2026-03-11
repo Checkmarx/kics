@@ -3,12 +3,24 @@
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_ebs_volume[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_ebs_volume[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

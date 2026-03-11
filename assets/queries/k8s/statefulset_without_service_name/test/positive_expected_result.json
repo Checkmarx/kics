@@ -2,6 +2,13 @@
   {
     "queryName": "StatefulSet Without Service Name",
     "severity": "LOW",
-    "line": 26
+    "line": 26,
+    "filename": "positive.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "web",
+    "searchKey": "metadata.name=web.spec.serviceName",
+    "searchValue": "",
+    "expectedValue": "metadata.name=web.spec.serviceName should refer to a Headless Service",
+    "actualValue": "metadata.name=web.spec.serviceName doesn't refers to a Headless Service"
   }
 ]

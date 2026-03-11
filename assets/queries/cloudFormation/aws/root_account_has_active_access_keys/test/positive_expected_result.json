@@ -3,12 +3,24 @@
     "queryName": "Root Account Has Active Access Keys",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::AccessKey",
+    "resourceName": "CFNKeys",
+    "searchKey": "Resources.CFNKeys.Properties.UserName",
+    "searchValue": "",
+    "expectedValue": "'Resources.CFNKeys.Properties.UserName' should not be asssociated to root account.",
+    "actualValue": "'Resources.CFNKeys.Properties.UserName' is asssociated to root account."
   },
   {
     "queryName": "Root Account Has Active Access Keys",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::AccessKey",
+    "resourceName": "CFNKeys",
+    "searchKey": "Resources.CFNKeys.Properties.UserName",
+    "searchValue": "",
+    "expectedValue": "'Resources.CFNKeys.Properties.UserName' should not be asssociated to root account.",
+    "actualValue": "'Resources.CFNKeys.Properties.UserName' is asssociated to root account."
   }
 ]

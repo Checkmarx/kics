@@ -3,12 +3,24 @@
     "queryName": "Image Pull Policy Of The Container Is Not Set To Always",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "busybox-tf",
+    "searchKey": "kubernetes_pod[busybox].spec.container.image_pull_policy",
+    "searchValue": "",
+    "expectedValue": "Attribute 'image_pull_policy' should be defined as 'Always'",
+    "actualValue": "Attribute 'image_pull_policy' is incorrect"
   },
   {
     "queryName": "Image Pull Policy Of The Container Is Not Set To Always",
     "severity": "LOW",
     "line": 30,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec.container.image_pull_policy",
+    "searchValue": "",
+    "expectedValue": "Attribute 'image_pull_policy' should be defined as 'Always'",
+    "actualValue": "Attribute 'image_pull_policy' is incorrect"
   }
 ]

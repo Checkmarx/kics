@@ -2,11 +2,25 @@
   {
     "queryName": "Beta - Cluster Without Network Policy Support Enabled",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "gke-network-policy-cluster",
+    "searchKey": "google_container_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "'google_container_cluster[positive1].network_policy' should be defined and not null",
+    "actualValue": "'google_container_cluster[positive1].network_policy' is undefined or null"
   },
   {
     "queryName": "Beta - Cluster Without Network Policy Support Enabled",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "gke-network-policy-cluster",
+    "searchKey": "google_container_cluster[positive2].network_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "'google_container_cluster[positive2].network_policy.enabled' should be set to 'true'",
+    "actualValue": "'google_container_cluster[positive2].network_policy.enabled' is set to 'false'"
   }
 ]

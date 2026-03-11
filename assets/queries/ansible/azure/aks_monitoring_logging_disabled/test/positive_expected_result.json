@@ -2,21 +2,49 @@
   {
     "queryName": "AKS Monitoring Logging Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_aks",
+    "resourceName": "Create an AKS instance v0",
+    "searchKey": "name={{Create an AKS instance v0}}.{{azure_rm_aks}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_aks.addon should be set",
+    "actualValue": "azure_rm_aks.addon is undefined"
   },
   {
     "queryName": "AKS Monitoring Logging Disabled",
     "severity": "MEDIUM",
-    "line": 43
+    "line": 43,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_aks",
+    "resourceName": "Create an AKS instance",
+    "searchKey": "name={{Create an AKS instance}}.{{azure_rm_aks}}.addon",
+    "searchValue": "",
+    "expectedValue": "azure_rm_aks.addon.monitoring should be set",
+    "actualValue": "azure_rm_aks.addon.monitoring is undefined"
   },
   {
     "queryName": "AKS Monitoring Logging Disabled",
     "severity": "MEDIUM",
-    "line": 68
+    "line": 68,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_aks",
+    "resourceName": "Create an AKS instance v3",
+    "searchKey": "name={{Create an AKS instance v3}}.{{azure_rm_aks}}.addon.monitoring",
+    "searchValue": "",
+    "expectedValue": "azure_rm_aks.addon.monitoring.{\"enabled\", \"log_analytics_workspace_resource_id\"} should be set",
+    "actualValue": "azure_rm_aks.addon.monitoring.{\"enabled\", \"log_analytics_workspace_resource_id\"} is undefined"
   },
   {
     "queryName": "AKS Monitoring Logging Disabled",
     "severity": "MEDIUM",
-    "line": 94
+    "line": 94,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_aks",
+    "resourceName": "Create an AKS instance v9",
+    "searchKey": "name={{Create an AKS instance v9}}.{{azure_rm_aks}}.addon.monitoring.enabled",
+    "searchValue": "",
+    "expectedValue": "azure_rm_aks.addon.monitoring.enabled should be set to 'yes' or 'false'",
+    "actualValue": "azure_rm_aks.addon.monitoring.enabled is not set to 'yes' or 'false'"
   }
 ]

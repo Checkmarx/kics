@@ -1,27 +1,62 @@
 [
-	{
-		"queryName": "Service With External Load Balancer",
-		"severity": "MEDIUM",
-		"line": 4
-	},
   {
-		"queryName": "Service With External Load Balancer",
-		"severity": "MEDIUM",
-		"line": 18
-	},
+    "queryName": "Service With External Load Balancer",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive.yaml",
+    "resourceType": "Service",
+    "resourceName": "sample-service 05",
+    "searchKey": "metadata.name={{sample-service 05}}",
+    "searchValue": "",
+    "expectedValue": "'metadata.annotations' should be set",
+    "actualValue": "'metadata.annotations' is undefined"
+  },
   {
-		"queryName": "Service With External Load Balancer",
-		"severity": "MEDIUM",
-		"line": 33
-	},
+    "queryName": "Service With External Load Balancer",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive.yaml",
+    "resourceType": "Service",
+    "resourceName": "sample-service 05334443",
+    "searchKey": "metadata.name={{sample-service 05334443}}.annotations",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{sample-service 05334443}} using an external Load Balancer provider by cloud provider",
+    "actualValue": "metadata.name={{sample-service 05334443}} is exposing a workload, not using an external Load Balancer provider by cloud provider"
+  },
   {
-		"queryName": "Service With External Load Balancer",
-		"severity": "MEDIUM",
-		"line": 48
-	},
+    "queryName": "Service With External Load Balancer",
+    "severity": "MEDIUM",
+    "line": 33,
+    "filename": "positive.yaml",
+    "resourceType": "Service",
+    "resourceName": "sample-service 07",
+    "searchKey": "metadata.name={{sample-service 07}}.annotations",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{sample-service 07}} using an external Load Balancer provider by cloud provider",
+    "actualValue": "metadata.name={{sample-service 07}} is exposing a workload, not using an external Load Balancer provider by cloud provider"
+  },
   {
-		"queryName": "Service With External Load Balancer",
-		"severity": "MEDIUM",
-		"line": 63
-	}
+    "queryName": "Service With External Load Balancer",
+    "severity": "MEDIUM",
+    "line": 48,
+    "filename": "positive.yaml",
+    "resourceType": "Service",
+    "resourceName": "sample-service 08",
+    "searchKey": "metadata.name={{sample-service 08}}.annotations",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{sample-service 08}} using an external Load Balancer provider by cloud provider",
+    "actualValue": "metadata.name={{sample-service 08}} is exposing a workload, not using an external Load Balancer provider by cloud provider"
+  },
+  {
+    "queryName": "Service With External Load Balancer",
+    "severity": "MEDIUM",
+    "line": 63,
+    "filename": "positive.yaml",
+    "resourceType": "Service",
+    "resourceName": "sample-service 09",
+    "searchKey": "metadata.name={{sample-service 09}}.annotations",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{sample-service 09}} using an external Load Balancer provider by cloud provider",
+    "actualValue": "metadata.name={{sample-service 09}} is exposing a workload, not using an external Load Balancer provider by cloud provider"
+  }
 ]

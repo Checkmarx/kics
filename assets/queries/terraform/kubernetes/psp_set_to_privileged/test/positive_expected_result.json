@@ -2,6 +2,13 @@
   {
     "queryName": "PSP Set To Privileged",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example].spec.privileged",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod_security_policy[example].spec.privileged should be set to false",
+    "actualValue": "kubernetes_pod_security_policy[example].spec.privileged is not set to false"
   }
 ]

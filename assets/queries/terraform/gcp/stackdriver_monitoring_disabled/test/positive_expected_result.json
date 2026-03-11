@@ -3,12 +3,24 @@
     "queryName": "Stackdriver Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1].monitoring_service",
+    "searchValue": "",
+    "expectedValue": "Attribute 'monitoring_service' should be undefined or 'monitoring.googleapis.com/kubernetes'",
+    "actualValue": "Attribute 'monitoring_service' is 'none'"
   },
   {
     "queryName": "Stackdriver Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive2].monitoring_service",
+    "searchValue": "",
+    "expectedValue": "Attribute 'monitoring_service' should be undefined or 'monitoring.googleapis.com/kubernetes'",
+    "actualValue": "Attribute 'monitoring_service' is 'monitoring.googleapis.com'"
   }
 ]

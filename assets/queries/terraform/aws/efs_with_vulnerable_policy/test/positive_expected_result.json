@@ -3,6 +3,12 @@
     "queryName": "EFS With Vulnerable Policy",
     "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_efs_file_system_policy",
+    "resourceName": "not_secure_policy",
+    "searchKey": "aws_efs_file_system_policy[not_secure_policy].policy",
+    "searchValue": "",
+    "expectedValue": "aws_efs_file_system_policy[not_secure_policy].policy should not have wildcard in 'Action' and 'Principal'",
+    "actualValue": "aws_efs_file_system_policy[not_secure_policy].policy has wildcard in 'Action' or 'Principal'"
   }
 ]

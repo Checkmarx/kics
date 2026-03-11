@@ -2,16 +2,37 @@
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_api_gateway_rest_api",
+    "resourceName": "regional-example",
+    "searchKey": "aws_api_gateway_rest_api[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'minimum_compression_size' should be set and have a value greater than -1 and smaller than 10485760",
+    "actualValue": "Attribute 'minimum_compression_size' is undefined"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
-    "line": 17
+    "line": 17,
+    "filename": "positive.tf",
+    "resourceType": "aws_api_gateway_rest_api",
+    "resourceName": "regional-example",
+    "searchKey": "aws_api_gateway_rest_api[positive2].minimum_compression_size",
+    "searchValue": "",
+    "expectedValue": "Attribute 'minimum_compression_size' should be greater than -1 and smaller than 10485760",
+    "actualValue": "Attribute 'minimum_compression_size' is -1"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
-    "line": 28
+    "line": 28,
+    "filename": "positive.tf",
+    "resourceType": "aws_api_gateway_rest_api",
+    "resourceName": "regional-example",
+    "searchKey": "aws_api_gateway_rest_api[positive3].minimum_compression_size",
+    "searchValue": "",
+    "expectedValue": "Attribute 'minimum_compression_size' should be greater than -1 and smaller than 10485760",
+    "actualValue": "Attribute 'minimum_compression_size' is 10485760"
   }
 ]

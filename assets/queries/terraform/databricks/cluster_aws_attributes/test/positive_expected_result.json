@@ -3,24 +3,48 @@
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "databricks_cluster",
+    "resourceName": "positive1",
+    "searchKey": "databricks_cluster[positive1].aws_attributes.availability",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive1].aws_attributes.availability' should not be equal to 'SPOT'",
+    "actualValue": "'databricks_cluster[positive1].aws_attributes.availability' is equal to 'SPOT'"
   },
   {
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "databricks_cluster",
+    "resourceName": "positive2",
+    "searchKey": "databricks_cluster[positive2].aws_attributes.first_on_demand",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive2].aws_attributes.first_on_demand' should not be equal to '0'",
+    "actualValue": "'databricks_cluster[positive2].aws_attributes.first_on_demand' is equal to '0'"
   },
   {
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "databricks_cluster",
+    "resourceName": "positive3",
+    "searchKey": "databricks_cluster[positive3].aws_attributes.first_on_demand",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive3].aws_attributes.first_on_demand' should present",
+    "actualValue": "'databricks_cluster[positive3].aws_attributes.first_on_demand' is not present"
   },
   {
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "databricks_cluster",
+    "resourceName": "positive4",
+    "searchKey": "databricks_cluster[positive4].aws_attributes.zone_id",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive4].aws_attributes.zone_id' should be egal to 'auto'",
+    "actualValue": "'databricks_cluster[positive4].aws_attributes.zone_id' is not equal to 'auto'"
   }
 ]

@@ -2,16 +2,37 @@
   {
     "queryName": "Password Without Reuse Prevention",
     "severity": "LOW",
-    "line": 3
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_password_policy",
+    "resourceName": "Password policy for AWS account",
+    "searchKey": "name={{Password policy for AWS account}}.{{community.aws.iam_password_policy}}",
+    "searchValue": "",
+    "expectedValue": "iam_password_policy should have the property 'password_reuse_prevent' greater than 0",
+    "actualValue": "iam_password_policy has the property 'password_reuse_prevent' unassigned or assigned to 0"
   },
   {
     "queryName": "Password Without Reuse Prevention",
     "severity": "LOW",
-    "line": 23
+    "line": 23,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_password_policy",
+    "resourceName": "Password policy for AWS account2",
+    "searchKey": "name={{Password policy for AWS account2}}.{{community.aws.iam_password_policy}}.password_reuse_prevent",
+    "searchValue": "",
+    "expectedValue": "iam_password_policy should have the property 'password_reuse_prevent' greater than 0",
+    "actualValue": "iam_password_policy has the property 'password_reuse_prevent' unassigned or assigned to 0"
   },
   {
     "queryName": "Password Without Reuse Prevention",
     "severity": "LOW",
-    "line": 26
+    "line": 26,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_password_policy",
+    "resourceName": "Password policy for AWS account3",
+    "searchKey": "name={{Password policy for AWS account3}}.{{community.aws.iam_password_policy}}",
+    "searchValue": "",
+    "expectedValue": "iam_password_policy should have the property 'password_reuse_prevent' greater than 0",
+    "actualValue": "iam_password_policy has the property 'password_reuse_prevent' unassigned or assigned to 0"
   }
 ]

@@ -3,30 +3,60 @@
     "queryName": "Kubelet Client Certificate Or Key Not Set",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "Pod--kubelet-client-certificate",
+    "expectedValue": "--kubelet-client-certificate flag should be set",
+    "actualValue": "--kubelet-client-certificate flag is not set"
   },
   {
     "queryName": "Kubelet Client Certificate Or Key Not Set",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "Pod--kubelet-client-key",
+    "expectedValue": "--kubelet-client-key flag should be set",
+    "actualValue": "--kubelet-client-key flag is not set"
   },
   {
     "queryName": "Kubelet Client Certificate Or Key Not Set",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "Pod--kubelet-client-key",
+    "expectedValue": "--kubelet-client-key flag should be set",
+    "actualValue": "--kubelet-client-key flag is not set"
   },
   {
     "queryName": "Kubelet Client Certificate Or Key Not Set",
     "severity": "MEDIUM",
     "line": 25,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo2",
+    "searchKey": "metadata.name={{command-demo2}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "Pod--kubelet-client-certificate",
+    "expectedValue": "--kubelet-client-certificate flag should be set",
+    "actualValue": "--kubelet-client-certificate flag is not set"
   },
   {
     "queryName": "Kubelet Client Certificate Or Key Not Set",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "Pod--kubelet-client-certificate",
+    "expectedValue": "--kubelet-client-certificate flag should be set",
+    "actualValue": "--kubelet-client-certificate flag is not set"
   }
 ]

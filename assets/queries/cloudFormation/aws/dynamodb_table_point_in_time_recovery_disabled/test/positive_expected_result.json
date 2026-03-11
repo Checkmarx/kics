@@ -3,42 +3,84 @@
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "MyDynamoDBTable",
+    "searchKey": "Resources.MyDynamoDBTable.Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be set to 'true'",
+    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is set to 'false'"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "my-table",
+    "searchKey": "Resources.MyDynamoDBTable.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be defined and set to 'true'",
+    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification is not defined"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "DynamoDBOnDemandTable1",
+    "searchKey": "Resources.DynamoDBOnDemandTable1.Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be set to 'true'",
+    "actualValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is set to 'false'"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 5,
-    "filename": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "DynamoDBOnDemandTable1",
+    "searchKey": "Resources.DynamoDBOnDemandTable1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be defined and set to 'true'",
+    "actualValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification is not defined"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 5,
-    "filename": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "MyDynamoDBTable",
+    "searchKey": "Resources.MyDynamoDBTable.Properties.PointInTimeRecoverySpecification",
+    "searchValue": "",
+    "expectedValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be defined and set to 'true'",
+    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is not defined"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "DynamoDBOnDemandTable1",
+    "searchKey": "Resources.DynamoDBOnDemandTable1.Properties.PointInTimeRecoverySpecification",
+    "searchValue": "",
+    "expectedValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be defined and set to 'true'",
+    "actualValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is not defined"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
     "severity": "INFO",
     "line": 6,
-    "filename": "positive7.yaml"
+    "filename": "positive7.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "MyDynamoDBTable",
+    "searchKey": "Resources.MyDynamoDBTable.Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be set to 'true'",
+    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is set to 'false'"
   }
 ]

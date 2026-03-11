@@ -1,14 +1,26 @@
 [
-	{
-		"queryName": "Job's Task is Legacy (spark_submit_task)",
-		"severity": "MEDIUM",
-		"line": 36,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Job's Task is Legacy (spark_submit_task)",
-		"severity": "MEDIUM",
-		"line": 18,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "Job's Task is Legacy (spark_submit_task)",
+    "severity": "MEDIUM",
+    "line": 36,
+    "filename": "positive1.tf",
+    "resourceType": "databricks_job",
+    "resourceName": "Job with multiple tasks",
+    "searchKey": "databricks_job[positive].task.spark_submit_task",
+    "searchValue": "",
+    "expectedValue": "'databricks_job[positive].task.spark_submit_task' should not contains to 'spark_submit_task'",
+    "actualValue": "'databricks_job[positive].task.spark_submit_task' contains to 'spark_submit_task'"
+  },
+  {
+    "queryName": "Job's Task is Legacy (spark_submit_task)",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive2.tf",
+    "resourceType": "databricks_job",
+    "resourceName": "Job with multiple tasks",
+    "searchKey": "databricks_job[positive].task.spark_submit_task",
+    "searchValue": "",
+    "expectedValue": "'databricks_job[positive].task.spark_submit_task' should not contains to 'spark_submit_task'",
+    "actualValue": "'databricks_job[positive].task.spark_submit_task' contains to 'spark_submit_task'"
+  }
 ]

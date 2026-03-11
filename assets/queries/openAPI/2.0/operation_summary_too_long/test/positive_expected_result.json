@@ -3,12 +3,24 @@
     "queryName": "Operation Summary Too Long",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.summary",
+    "searchValue": "",
+    "expectedValue": "Operation summary should not be less than 120 characters",
+    "actualValue": "Operation summary is less than 120 characters"
   },
   {
     "queryName": "Operation Summary Too Long",
     "severity": "INFO",
     "line": 9,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.summary",
+    "searchValue": "",
+    "expectedValue": "Operation summary should not be less than 120 characters",
+    "actualValue": "Operation summary is less than 120 characters"
   }
 ]

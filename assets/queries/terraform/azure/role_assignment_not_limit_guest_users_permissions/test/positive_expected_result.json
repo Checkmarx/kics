@@ -2,6 +2,13 @@
   {
     "queryName": "Role Assignment Not Limit Guest User Permissions",
     "severity": "MEDIUM",
-    "line": 20
+    "line": 20,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "00000000-0000-0000-0000-000000000000",
+    "searchKey": "azurerm_role_assignment[example].role_definition_id",
+    "searchValue": "",
+    "expectedValue": "azurerm_role_assignment[example].role_definition_id limits guest user permissions",
+    "actualValue": "azurerm_role_assignment[example].role_definition_id does not limit guest user permissions"
   }
 ]

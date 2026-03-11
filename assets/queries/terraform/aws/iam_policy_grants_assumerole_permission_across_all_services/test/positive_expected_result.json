@@ -2,11 +2,25 @@
   {
     "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "${var.name_tag_prefix}-openshift-instance-role",
+    "searchKey": "aws_iam_role[positive1].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy.Statement.Principal' shouldn't contain '*'",
+    "actualValue": "'assume_role_policy.Statement.Principal' contains '*'"
   },
   {
     "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
     "severity": "MEDIUM",
-    "line": 70
+    "line": 70,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "${var.name_tag_prefix}-openshift-instance-role",
+    "searchKey": "aws_iam_role[positive2].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy.Statement.Principal' shouldn't contain '*'",
+    "actualValue": "'assume_role_policy.Statement.Principal' contains '*'"
   }
 ]

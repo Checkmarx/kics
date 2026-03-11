@@ -3,48 +3,96 @@
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 42,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 44,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 42,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
     "line": 44,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "DBName",
+    "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false"
   }
 ]

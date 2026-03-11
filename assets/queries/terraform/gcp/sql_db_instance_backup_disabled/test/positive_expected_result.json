@@ -2,16 +2,37 @@
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "master-instance",
+    "searchKey": "google_sql_database_instance[positive1].settings",
+    "searchValue": "",
+    "expectedValue": "settings.backup_configuration should be defined and not null",
+    "actualValue": "settings.backup_configuration is undefined or null"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "master-instance",
+    "searchKey": "google_sql_database_instance[positive2].settings.backup_configuration",
+    "searchValue": "",
+    "expectedValue": "settings.backup_configuration.enabled should be defined and not null",
+    "actualValue": "settings.backup_configuration.enabled is undefined or null"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "master-instance",
+    "searchKey": "google_sql_database_instance[positive3].settings.backup_configuration.enabled",
+    "searchValue": "",
+    "expectedValue": "settings.backup_configuration.enabled should be true",
+    "actualValue": "settings.backup_configuration.enabled is false"
   }
 ]

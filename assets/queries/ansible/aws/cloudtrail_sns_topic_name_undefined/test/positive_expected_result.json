@@ -2,11 +2,25 @@
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "no sns topic name",
+    "searchKey": "name={{no sns topic name}}.{{community.aws.cloudtrail}}",
+    "searchValue": "",
+    "expectedValue": "cloudtrail.sns_topic_name should be set",
+    "actualValue": "cloudtrail.sns_topic_name is undefined"
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
     "severity": "LOW",
-    "line": 15
+    "line": 15,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "sns topic name defined",
+    "searchKey": "name={{sns topic name defined}}.{{community.aws.cloudtrail}}.sns_topic_name",
+    "searchValue": "",
+    "expectedValue": "cloudtrail.sns_topic_name should be set",
+    "actualValue": "cloudtrail.sns_topic_name is empty"
   }
 ]

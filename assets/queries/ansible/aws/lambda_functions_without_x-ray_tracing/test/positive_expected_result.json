@@ -2,11 +2,25 @@
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.lambda",
+    "resourceName": "looped creation",
+    "searchKey": "name={{looped creation}}.{{community.aws.lambda}}",
+    "searchValue": "",
+    "expectedValue": "lambda.tracing_mode should be set",
+    "actualValue": "lambda.tracing_mode is undefined"
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
     "severity": "LOW",
-    "line": 37
+    "line": 37,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.lambda",
+    "resourceName": "looped creation V2",
+    "searchKey": "name={{looped creation V2}}.{{community.aws.lambda}}.tracing_mode",
+    "searchValue": "",
+    "expectedValue": "lambda.tracing_mode should be set to 'Active'",
+    "actualValue": "lambda.tracing_mode is not set to 'Active'"
   }
 ]

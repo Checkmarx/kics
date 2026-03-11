@@ -2,6 +2,13 @@
   {
     "queryName": "Redis Not Updated Regularly",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_redis_cache",
+    "resourceName": "timeout-redis",
+    "searchKey": "azurerm_redis_cache[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_redis_cache[positive1].patch_schedule' should be defined and not null",
+    "actualValue": "'azurerm_redis_cache[positive1].patch_schedule' is undefined or null"
   }
 ]

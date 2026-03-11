@@ -3,60 +3,120 @@
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'"
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 58,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Authorization is 'Authorization'"
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'"
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 36,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Authorization is 'Authorization'"
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'"
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'"
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v2)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Header Parameter Named as 'Authorization' (v2)",
-    "severity": "INFO",
-    "line": 14,
-    "filename": "positive6.yaml"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'"
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v2)",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "parameters.limitParam.name=Authorization should not be 'Authorization",
+    "actualValue": "parameters.limitParam.name=Authorization is 'Authorization'"
+  },
+  {
+    "queryName": "Header Parameter Named as 'Authorization' (v2)",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Authorization should not be 'Authorization",
+    "actualValue": "paths.{{/}}.parameters.name=Authorization is 'Authorization'"
   },
   {
     "queryName": "Header Parameter Named as 'Authorization' (v2)",
     "severity": "INFO",
     "line": 23,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.name=Authorization",
+    "searchValue": "",
+    "expectedValue": "parameters.limitParam.name=Authorization should not be 'Authorization",
+    "actualValue": "parameters.limitParam.name=Authorization is 'Authorization'"
   }
 ]

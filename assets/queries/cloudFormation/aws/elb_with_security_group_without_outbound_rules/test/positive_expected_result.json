@@ -3,72 +3,24 @@
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.sgwithoutegress.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' should be defined",
+    "actualValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' is undefined"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "ELB With Security Group Without Outbound Rules",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive3.yaml"
-  },
-  {
-    "queryName": "ELB With Security Group Without Outbound Rules",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "ELB With Security Group Without Outbound Rules",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive5.yaml"
-  },
-  {
-    "queryName": "ELB With Security Group Without Outbound Rules",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "ELB With Security Group Without Outbound Rules",
-    "severity": "MEDIUM",
-    "line": 8,
-    "fileName": "positive7.yaml"
-  },
-  {
-    "queryName": "ELB With Security Group Without Outbound Rules",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive8.json"
-  },
-  {
-    "queryName": "ELB With Security Group Without Outbound Rules",
-    "severity": "MEDIUM",
-    "line": 8,
-    "fileName": "positive9.yaml"
-  },
-  {
-    "queryName": "ELB With Security Group Without Outbound Rules",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive10.json"
-  },
-  {
-    "queryName": "ELB With Security Group Without Outbound Rules",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive11.yaml"
-  },
-  {
-    "queryName": "ELB With Security Group Without Outbound Rules",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive12.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.sgwithoutegress.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' should be defined",
+    "actualValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' is undefined"
   }
 ]

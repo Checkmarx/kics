@@ -1,26 +1,50 @@
 [
   {
-    "line": 21,
-    "fileName": "positive1.yaml",
     "queryName": "Instance With No VPC",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 21,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Subnet",
+    "resourceName": "${AWS::StackName}-Public-A",
+    "searchKey": "Resources.PublicSubnetA.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicSubnetA.Properties.VpcId should be defined",
+    "actualValue": "Resources.PublicSubnetA.Properties.VpcId is undefined"
   },
   {
     "queryName": "Instance With No VPC",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Ec2Instance-02",
+    "searchKey": "Resources.Ec2Instance-02.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces should be defined",
+    "actualValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces is undefined"
   },
   {
     "queryName": "Instance With No VPC",
     "severity": "LOW",
     "line": 35,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::Subnet",
+    "resourceName": "${AWS::StackName}-Public-A",
+    "searchKey": "Resources.PublicSubnetA.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicSubnetA.Properties.VpcId should be defined",
+    "actualValue": "Resources.PublicSubnetA.Properties.VpcId is undefined"
   },
   {
-    "fileName": "positive4.json",
     "queryName": "Instance With No VPC",
     "severity": "LOW",
-    "line": 5
+    "line": 5,
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Ec2Instance-02",
+    "searchKey": "Resources.Ec2Instance-02.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces should be defined",
+    "actualValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces is undefined"
   }
 ]

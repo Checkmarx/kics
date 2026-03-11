@@ -2,6 +2,13 @@
   {
     "queryName": "S3 Bucket Logging Disabled",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.s3_bucket",
+    "resourceName": "Create S3 bucket",
+    "searchKey": "name={{Create S3 bucket}}.{{amazon.aws.s3_bucket}}.debug_botocore_endpoint_logs",
+    "searchValue": "",
+    "expectedValue": "s3_bucket.debug_botocore_endpoint_logs should be true",
+    "actualValue": "s3_bucket.debug_botocore_endpoint_logs is false"
   }
 ]

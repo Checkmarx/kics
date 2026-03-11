@@ -1,8 +1,14 @@
 [
-	{
-		"queryName": "Nifcloud RDB Has Public DB Access",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud RDB Has Public DB Access",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "nifcloud_db_instance",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_db_instance[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_db_instance[positive]' should not use publicly accessible set to true. You should limit all access to the minimum that is required for your application to function.",
+    "actualValue": "'nifcloud_db_instance[positive]' has publicly accessible set to true."
+  }
 ]

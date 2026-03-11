@@ -3,12 +3,24 @@
     "queryName": "EBS Volume Without KmsKeyId",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Volume",
+    "resourceName": "NewVolume",
+    "searchKey": "Resources.NewVolume.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.NewVolume.Properties.KmsKeyId should be defined",
+    "actualValue": "Resources.NewVolume.Properties.KmsKeyId is undefined"
   },
   {
-    "line": 7,
-    "fileName": "positive2.json",
     "queryName": "EBS Volume Without KmsKeyId",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 7,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::Volume",
+    "resourceName": "NewVolume",
+    "searchKey": "Resources.NewVolume.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.NewVolume.Properties.KmsKeyId should be defined",
+    "actualValue": "Resources.NewVolume.Properties.KmsKeyId is undefined"
   }
 ]

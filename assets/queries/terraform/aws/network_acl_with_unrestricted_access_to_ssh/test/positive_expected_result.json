@@ -3,24 +3,48 @@
     "queryName": "Network ACL With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 30,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_network_acl",
+    "resourceName": "main",
+    "searchKey": "aws_network_acl[positive1].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[positive1].ingress[0] 'SSH' (Port:22) should not be public",
+    "actualValue": "aws_network_acl[positive1].ingress[0] 'SSH' (Port:22) is public"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 22,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aaws_network_acl_rule",
+    "resourceName": "postive2",
+    "searchKey": "aws_network_acl_rule[postive2]",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[postive2] 'SSH' (TCP:22) should not be public",
+    "actualValue": "aws_network_acl[postive2] 'SSH' (TCP:22) is public"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_network_acl",
+    "resourceName": "main",
+    "searchKey": "aws_network_acl[positive3].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[positive3].ingress 'SSH' (TCP:22) should not be public",
+    "actualValue": "aws_network_acl[positive3].ingress 'SSH' (TCP:22) is public"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vpc].default_network_acl_ingress",
+    "searchValue": "",
+    "expectedValue": "aws_network_acl[vpc].ingress[0] 'SSH' (Port:22) should not be public",
+    "actualValue": "aws_network_acl[vpc].ingress[0] 'SSH' (Port:22) is public"
   }
 ]

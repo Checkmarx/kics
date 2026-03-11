@@ -3,102 +3,204 @@
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "pods/exec",
+    "expectedValue": "Resource 'pods/exec' should be defined in one of following levels '[\"Metadata\", \"Request\", \"RequestResponse\"]'",
+    "actualValue": "Resource 'pods/exec' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "pods",
+    "expectedValue": "Resource 'pods' should be defined in one of following levels '[\"Metadata\"]'",
+    "actualValue": "Resource 'pods' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "secrets",
+    "expectedValue": "Resource 'secrets' should be defined in one of following levels '[\"Metadata\"]'",
+    "actualValue": "Resource 'secrets' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "deployments",
+    "expectedValue": "Resource 'deployments' should be defined in one of following levels '[\"Metadata\"]'",
+    "actualValue": "Resource 'deployments' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "pods/proxy",
+    "expectedValue": "Resource 'pods/proxy' should be defined in one of following levels '[\"Metadata\", \"Request\", \"RequestResponse\"]'",
+    "actualValue": "Resource 'pods/proxy' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "configmaps",
+    "expectedValue": "Resource 'configmaps' should be defined in one of following levels '[\"Metadata\"]'",
+    "actualValue": "Resource 'configmaps' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "services/proxy",
+    "expectedValue": "Resource 'services/proxy' should be defined in one of following levels '[\"Metadata\", \"Request\", \"RequestResponse\"]'",
+    "actualValue": "Resource 'services/proxy' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "tokenreviews",
+    "expectedValue": "Resource 'tokenreviews' should be defined in one of following levels '[\"Metadata\"]'",
+    "actualValue": "Resource 'tokenreviews' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "pods/portforward",
+    "expectedValue": "Resource 'pods/portforward' should be defined in one of following levels '[\"Metadata\", \"Request\", \"RequestResponse\"]'",
+    "actualValue": "Resource 'pods/portforward' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "pods/exec",
+    "expectedValue": "Resource 'pods/exec' should be defined in one of following levels '[\"Metadata\", \"Request\", \"RequestResponse\"]'",
+    "actualValue": "Resource 'pods/exec' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "pods/portforward",
+    "expectedValue": "Resource 'pods/portforward' should be defined in one of following levels '[\"Metadata\", \"Request\", \"RequestResponse\"]'",
+    "actualValue": "Resource 'pods/portforward' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "pods/proxy",
+    "expectedValue": "Resource 'pods/proxy' should be defined in one of following levels '[\"Metadata\", \"Request\", \"RequestResponse\"]'",
+    "actualValue": "Resource 'pods/proxy' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "secrets",
+    "expectedValue": "Resource 'secrets' should be defined in one of following levels '[\"Metadata\"]'",
+    "actualValue": "Resource 'secrets' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "tokenreviews",
+    "expectedValue": "Resource 'tokenreviews' should be defined in one of following levels '[\"Metadata\"]'",
+    "actualValue": "Resource 'tokenreviews' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "configmaps",
+    "expectedValue": "Resource 'configmaps' should be defined in one of following levels '[\"Metadata\"]'",
+    "actualValue": "Resource 'configmaps' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 4,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "services/proxy",
+    "expectedValue": "Resource 'services/proxy' should be defined in one of following levels '[\"Metadata\", \"Request\", \"RequestResponse\"]'",
+    "actualValue": "Resource 'services/proxy' is currently defined with the following levels '[]'"
   },
   {
     "queryName": "Audit Policy Not Cover Key Security Concerns",
     "severity": "LOW",
     "line": 6,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "Policy",
+    "resourceName": "n/a",
+    "searchKey": "kind={{Policy}}.rules",
+    "searchValue": "deployments",
+    "expectedValue": "Resource 'deployments' should be defined in one of following levels '[\"Metadata\"]'",
+    "actualValue": "Resource 'deployments' is currently defined with the following levels '[]'"
   }
 ]

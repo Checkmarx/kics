@@ -1,20 +1,38 @@
 [
-    {
-        "queryName": "Public Security Group Rule Sensitive Port",
-        "severity": "HIGH",
-        "line": 10,
-        "fileName": "positive1.tf"
-    },
-    {
-        "queryName": "Public Security Group Rule Sensitive Port",
-        "severity": "HIGH",
-        "line": 10,
-        "fileName": "positive2.tf"
-    },
-    {
-        "queryName": "Public Security Group Rule Sensitive Port",
-        "severity": "HIGH",
-        "line": 10,
-        "fileName": "positive3.tf"
-    }
+  {
+    "queryName": "Public Security Group Rule Sensitive Port",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
+    "searchValue": "20",
+    "expectedValue": "tcp:20 port should not be allowed",
+    "actualValue": "tcp:20 port is allowed"
+  },
+  {
+    "queryName": "Public Security Group Rule Sensitive Port",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
+    "searchValue": "4333",
+    "expectedValue": "udp:4333 port should not be allowed",
+    "actualValue": "udp:4333 port is allowed"
+  },
+  {
+    "queryName": "Public Security Group Rule Sensitive Port",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive3.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
+    "searchValue": "445",
+    "expectedValue": "all:445 port should not be allowed",
+    "actualValue": "all:445 port is allowed"
+  }
 ]

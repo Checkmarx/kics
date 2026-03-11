@@ -1,20 +1,38 @@
 [
-    {
-		"queryName": "Unsecured Commands",
-		"severity": "MEDIUM",
-		"line": 8,
-		"fileName": "positive1.yaml"
-	},
-    {
-		"queryName": "Unsecured Commands",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive2.yaml"
-	},
-    {
-		"queryName": "Unsecured Commands",
-		"severity": "MEDIUM",
-		"line": 16,
-		"fileName": "positive3.yaml"
-	}
+  {
+    "queryName": "Unsecured Commands",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "env.actions_allow_unsecure_commands={{true}}",
+    "searchValue": "",
+    "expectedValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is not set as true.",
+    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true."
+  },
+  {
+    "queryName": "Unsecured Commands",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "env.actions_allow_unsecure_commands={{true}}",
+    "searchValue": "",
+    "expectedValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is not set as true.",
+    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true."
+  },
+  {
+    "queryName": "Unsecured Commands",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "env.actions_allow_unsecure_commands={{true}}",
+    "searchValue": "",
+    "expectedValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is not set as true.",
+    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true."
+  }
 ]

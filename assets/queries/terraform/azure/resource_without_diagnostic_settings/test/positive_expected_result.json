@@ -3,156 +3,312 @@
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_subscription",
+    "resourceName": "positive1_1",
+    "searchKey": "azurerm_subscription[positive1_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_subscription[positive1_1]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_subscription[positive1_1]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_subscription",
+    "resourceName": "positive1_2",
+    "searchKey": "azurerm_subscription[positive1_2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_subscription[positive1_2]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_subscription[positive1_2]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_key_vault",
+    "resourceName": "example-keyvault",
+    "searchKey": "azurerm_key_vault[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_key_vault[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_key_vault[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_application_gateway",
+    "resourceName": "example-appgateway",
+    "searchKey": "azurerm_application_gateway[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_application_gateway[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_application_gateway[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_firewall",
+    "resourceName": "testfirewall",
+    "searchKey": "azurerm_firewall[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_firewall[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_firewall[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_lb",
+    "resourceName": "TestLoadBalancer",
+    "searchKey": "azurerm_lb[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_lb[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_lb[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 29,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_public_ip",
+    "resourceName": "acceptanceTestPublicIp1",
+    "searchKey": "azurerm_public_ip[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_public_ip[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_public_ip[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 36,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_frontdoor",
+    "resourceName": "example-FrontDoor",
+    "searchKey": "azurerm_frontdoor[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_frontdoor[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_frontdoor[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 41,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_cdn_frontdoor_profile",
+    "resourceName": "example-cdn-profile",
+    "searchKey": "azurerm_cdn_frontdoor_profile[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_cdn_frontdoor_profile[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_cdn_frontdoor_profile[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 48,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_cdn_frontdoor_endpoint",
+    "resourceName": "example-endpoint",
+    "searchKey": "azurerm_cdn_frontdoor_endpoint[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_cdn_frontdoor_endpoint[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_cdn_frontdoor_endpoint[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 53,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_cdn_profile",
+    "resourceName": "exampleCdnProfile",
+    "searchKey": "azurerm_cdn_profile[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_cdn_profile[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_cdn_profile[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 60,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_cdn_endpoint",
+    "resourceName": "pos_example",
+    "searchKey": "azurerm_cdn_endpoint[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_cdn_endpoint[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_cdn_endpoint[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 67,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "storageaccountname",
+    "searchKey": "azurerm_storage_account[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_storage_account[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 75,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_mssql_server",
+    "resourceName": "mssqlserver",
+    "searchKey": "azurerm_mssql_server[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mssql_server[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_mssql_server[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 85,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_mssql_managed_instance",
+    "resourceName": "managedsqlinstance",
+    "searchKey": "azurerm_mssql_managed_instance[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mssql_managed_instance[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_mssql_managed_instance[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 91,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_mssql_database",
+    "resourceName": "example-db",
+    "searchKey": "azurerm_mssql_database[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mssql_database[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_mssql_database[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 101,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_cosmosdb_account",
+    "resourceName": "tfex-cosmos-db-${random_integer.ri.result}",
+    "searchKey": "azurerm_cosmosdb_account[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_cosmosdb_account[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_cosmosdb_account[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 109,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "pos_example",
+    "searchKey": "azurerm_linux_web_app[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_linux_web_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 118,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "pos_example",
+    "searchKey": "azurerm_windows_web_app[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_windows_web_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 127,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "example-linux-function-app",
+    "searchKey": "azurerm_linux_function_app[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_linux_function_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 139,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "example-windows-function-app",
+    "searchKey": "azurerm_windows_function_app[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_windows_function_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 151,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_kubernetes_cluster[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 158,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_eventhub_namespace",
+    "resourceName": "example-namespace",
+    "searchKey": "azurerm_eventhub_namespace[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_eventhub_namespace[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_eventhub_namespace[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 166,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_servicebus_namespace",
+    "resourceName": "tfex-servicebus-namespace",
+    "searchKey": "azurerm_servicebus_namespace[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_servicebus_namespace[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_servicebus_namespace[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 173,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_container_registry",
+    "resourceName": "containerRegistry1",
+    "searchKey": "azurerm_container_registry[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_container_registry[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_container_registry[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
     "severity": "MEDIUM",
     "line": 181,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_api_management",
+    "resourceName": "example-apim",
+    "searchKey": "azurerm_api_management[pos_example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_api_management[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "actualValue": "'azurerm_api_management[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
   }
 ]

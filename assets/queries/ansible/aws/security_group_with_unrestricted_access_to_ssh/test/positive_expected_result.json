@@ -2,16 +2,37 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[0] SSH' (Port:22) should not be public",
+    "actualValue": "ec2_group.rules[0] SSH' (Port:22) is public"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[1] SSH' (Port:22) should not be public",
+    "actualValue": "ec2_group.rules[1] SSH' (Port:22) is public"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[2] SSH' (Port:22) should not be public",
+    "actualValue": "ec2_group.rules[2] SSH' (Port:22) is public"
   }
 ]

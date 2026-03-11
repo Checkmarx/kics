@@ -2,11 +2,25 @@
   {
     "queryName": "Workload Host Port Not Specified",
     "severity": "LOW",
-    "line": 9
+    "line": 9,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "firstpod",
+    "searchKey": "metadata.name=firstpod.spec.containers.name=container.ports",
+    "searchValue": "",
+    "expectedValue": "spec[firstpod].containers[container].ports[10.0.0.1].hostPort should not be defined",
+    "actualValue": "spec[firstpod].containers[container].ports[10.0.0.1].hostPort is defined"
   },
   {
     "queryName": "Workload Host Port Not Specified",
     "severity": "LOW",
-    "line": 24
+    "line": 24,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "secondpod",
+    "searchKey": "metadata.name=secondpod.spec.template.spec.containers.name=container2.ports",
+    "searchValue": "",
+    "expectedValue": "spec[secondpod].template.spec.containers[container2].ports[10.0.0.2].hostPort should not be defined",
+    "actualValue": "spec[secondpod].template.spec.containers[container2].ports[10.0.0.2].hostPort is defined"
   }
 ]

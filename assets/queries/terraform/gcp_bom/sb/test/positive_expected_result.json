@@ -1,20 +1,38 @@
 [
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 7,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 21,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP SB",
-		"severity": "TRACE",
-		"line": 35,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 7,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_storage_bucket[bucket]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 21,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_storage_bucket[bucket2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP SB",
+    "severity": "TRACE",
+    "line": 35,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_storage_bucket[bucket3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  }
 ]

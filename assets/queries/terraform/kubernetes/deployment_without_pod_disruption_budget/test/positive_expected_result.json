@@ -2,6 +2,13 @@
   {
     "queryName": "Deployment Without PodDisruptionBudget",
     "severity": "LOW",
-    "line": 13
+    "line": 13,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example].spec.selector.match_labels",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example].spec.selector.match_labels is targeted by a PodDisruptionBudget",
+    "actualValue": "kubernetes_deployment[example].spec.selector.match_labels is not targeted by a PodDisruptionBudget"
   }
 ]

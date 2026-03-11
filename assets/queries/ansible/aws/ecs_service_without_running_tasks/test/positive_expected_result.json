@@ -2,6 +2,13 @@
   {
     "queryName": "ECS Service Without Running Tasks",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ecs_service",
+    "resourceName": "ECS Service",
+    "searchKey": "name={{ECS Service}}.{{community.aws.ecs_service}}",
+    "searchValue": "",
+    "expectedValue": "community.aws.ecs_service.deployment_configuration should be defined",
+    "actualValue": "%!&(string=community.aws.ecs_service)s.deployment_configuration is undefined"
   }
 ]

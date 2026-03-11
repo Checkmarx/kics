@@ -2,46 +2,109 @@
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 40
+    "line": 40,
+    "filename": "positive.yaml",
+    "resourceType": "DaemonSet",
+    "resourceName": "fluentd-elasticsearch",
+    "searchKey": "metadata.name={{fluentd-elasticsearch}}.spec.template.spec.volumes.name={{varlog}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'fluentd-elasticsearch' of kind 'DaemonSet' in non kube-system namespace 'default' should not have hostPath '/var/log' mounted",
+    "actualValue": "Resource name 'fluentd-elasticsearch' of kind 'DaemonSet' in non kube-system namespace 'default' has a hostPath '/var/log' mounted"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 43
+    "line": 43,
+    "filename": "positive.yaml",
+    "resourceType": "DaemonSet",
+    "resourceName": "fluentd-elasticsearch",
+    "searchKey": "metadata.name={{fluentd-elasticsearch}}.spec.template.spec.volumes.name={{varlibdockercontainers}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'fluentd-elasticsearch' of kind 'DaemonSet' in non kube-system namespace 'default' should not have hostPath '/var/lib/docker/containers' mounted",
+    "actualValue": "Resource name 'fluentd-elasticsearch' of kind 'DaemonSet' in non kube-system namespace 'default' has a hostPath '/var/lib/docker/containers' mounted"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 59
+    "line": 59,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "redis",
+    "searchKey": "metadata.name={{redis}}.spec.volumes.name={{redis-storage}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'redis' of kind 'Pod' in non kube-system namespace 'default' should not have hostPath '/var/redis/data' mounted",
+    "actualValue": "Resource name 'redis' of kind 'Pod' in non kube-system namespace 'default' has a hostPath '/var/redis/data' mounted"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 76
+    "line": 76,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "redis-memcache",
+    "searchKey": "metadata.name={{redis-memcache}}.spec.volumes.name={{redis-storage}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'redis-memcache' of kind 'Pod' in non kube-system namespace 'memcache' should not have hostPath '/var/redis/data' mounted",
+    "actualValue": "Resource name 'redis-memcache' of kind 'Pod' in non kube-system namespace 'memcache' has a hostPath '/var/redis/data' mounted"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 106
+    "line": 106,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "nginx-deployment",
+    "searchKey": "metadata.name={{nginx-deployment}}.spec.template.spec.volumes.name={{static-page-dir}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'nginx-deployment' of kind 'Deployment' in non kube-system namespace 'default' should not have hostPath '/var/local/static' mounted",
+    "actualValue": "Resource name 'nginx-deployment' of kind 'Deployment' in non kube-system namespace 'default' has a hostPath '/var/local/static' mounted"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 136
+    "line": 136,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "nginx-deployment-undefined-ns",
+    "searchKey": "metadata.name={{nginx-deployment-undefined-ns}}.spec.template.spec.volumes.name={{static-page-dir}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'nginx-deployment-undefined-ns' of kind 'Deployment' in a non kube-system namespace 'default' should not have hostPath '/var/local/static' mounted",
+    "actualValue": "Resource name 'nginx-deployment-undefined-ns' of kind 'Deployment' in a non kube-system namespace 'default' has a hostPath '/var/local/static' mounted"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 153
+    "line": 153,
+    "filename": "positive.yaml",
+    "resourceType": "PersistentVolume",
+    "resourceName": "pv-001",
+    "searchKey": "metadata.name={{pv-001}}.spec.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "PersistentVolume name 'pv-001' of kind 'PersistentVolume' in non kube-system namespace 'default' should not mount a host sensitive OS directory '/' with hostPath",
+    "actualValue": "PersistentVolume name 'pv-001' of kind 'PersistentVolume' in non kube-system namespace 'default' is mounting a host sensitive OS directory '/' with hostPath"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 168
+    "line": 168,
+    "filename": "positive.yaml",
+    "resourceType": "PersistentVolume",
+    "resourceName": "pv-002",
+    "searchKey": "metadata.name={{pv-002}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "PersistentVolume name 'pv-002' of kind 'PersistentVolume' in non kube-system namespace 'default' should not mount a host sensitive OS directory '/boot' with hostPath",
+    "actualValue": "PersistentVolume name 'pv-002' of kind 'PersistentVolume' in non kube-system namespace 'default' is mounting a host sensitive OS directory '/boot' with hostPath"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
     "severity": "HIGH",
-    "line": 185
+    "line": 185,
+    "filename": "positive.yaml",
+    "resourceType": "Revision",
+    "resourceName": "dummy-rev",
+    "searchKey": "metadata.name={{dummy-rev}}.spec.volumes.name={{redis-storage}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "Resource name 'dummy-rev' of kind 'Revision' in non kube-system namespace 'knative-sequence' should not have hostPath '/var/redis/data' mounted",
+    "actualValue": "Resource name 'dummy-rev' of kind 'Revision' in non kube-system namespace 'knative-sequence' has a hostPath '/var/redis/data' mounted"
   }
 ]

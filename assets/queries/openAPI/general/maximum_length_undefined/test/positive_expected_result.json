@@ -3,126 +3,228 @@
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 58,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 62,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 77,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Maximum Length Undefined (v3)",
-    "severity": "LOW",
-    "line": 77,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 27,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 31,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 34,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 37,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 47,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "Maximum Length Undefined (v3)",
-    "severity": "LOW",
-    "line": 47,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 22,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 25,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
     "severity": "LOW",
     "line": 27,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
     "severity": "LOW",
     "line": 19,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
     "severity": "LOW",
     "line": 22,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive7.json"
+    "filename": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
     "severity": "LOW",
     "line": 28,
-    "filename": "positive7.json"
+    "filename": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
     "severity": "LOW",
     "line": 28,
-    "filename": "positive8.json"
+    "filename": "positive8.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 46,
-    "filename": "positive9.json"
+    "filename": "positive9.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/api/adjectives}}.get.parameters.schema.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
     "severity": "LOW",
     "line": 55,
-    "filename": "positive9.json"
+    "filename": "positive9.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/api/adjectives}}.get.parameters.schema.type",
+    "searchValue": "",
+    "expectedValue": "'maxLength' should be defined",
+    "actualValue": "'maxLength' is undefined"
   }
 ]

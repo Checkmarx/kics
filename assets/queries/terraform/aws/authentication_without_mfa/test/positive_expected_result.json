@@ -3,12 +3,24 @@
     "queryName": "Authentication Without MFA",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "aws-foundations-benchmark-1-4-0-terraform-user",
+    "searchKey": "aws_iam_user_policy[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Principal.AWS' should contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' should be set to true",
+    "actualValue": "'policy.Statement.Principal.AWS' doesn't contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is set to false"
   },
   {
     "queryName": "Authentication Without MFA",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "aws-foundations-benchmark-1-4-0-terraform-user",
+    "searchKey": "aws_iam_user_policy[positive2].policy",
+    "searchValue": "",
+    "expectedValue": "The attributes 'policy.Statement.Condition', 'policy.Statement.Condition.BoolIfExists', and 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' should be defined and not null",
+    "actualValue": "The attribute(s) 'policy.Statement.Condition' or/and 'policy.Statement.Condition.BoolIfExists' or/and 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is/are undefined or null"
   }
 ]

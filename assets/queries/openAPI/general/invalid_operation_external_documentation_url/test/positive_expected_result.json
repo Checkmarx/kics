@@ -3,24 +3,48 @@
     "queryName": "Invalid Operation External Documentation URL (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL"
   },
   {
     "queryName": "Invalid Operation External Documentation URL (v3)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL"
   },
   {
     "queryName": "Invalid Operation External Documentation URL (v2)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL"
   },
   {
     "queryName": "Invalid Operation External Documentation URL (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL"
   }
 ]

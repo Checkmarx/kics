@@ -3,6 +3,12 @@
     "queryName": "Always Admit Admission Control Plugin Set",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--enable-admission-plugins flag should not contain 'AlwaysAdmit' plugin",
+    "actualValue": "--enable-admission-plugins flag contains 'AlwaysAdmit' plugin"
   }
 ]

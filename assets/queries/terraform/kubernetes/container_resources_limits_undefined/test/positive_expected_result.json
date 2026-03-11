@@ -2,26 +2,61 @@
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].resources should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources is undefined"
   },
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 42
+    "line": 42,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "limits",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.limits is undefined"
   },
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 106
+    "line": 106,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container.resources",
+    "searchValue": "requests",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.resources.requests should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.resources.requests is undefined"
   },
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 167
+    "line": 167,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container.resources",
+    "searchValue": "limits",
+    "expectedValue": "kubernetes_pod[positive3].spec.container.resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container.resources.limits is undefined"
   },
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 224
+    "line": 224,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.resources should be set",
+    "actualValue": "kubernetes_pod[positive4].spec.container.resources is undefined"
   }
 ]

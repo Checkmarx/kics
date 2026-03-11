@@ -3,54 +3,108 @@
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test10",
+    "searchKey": "kubernetes_pod[test10].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test10].spec.container[0].security_context.capabilities.drop should be set",
+    "actualValue": "kubernetes_pod[test10].spec.container[0].security_context.capabilities.drop is undefined"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 47,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test10",
+    "searchKey": "kubernetes_pod[test10].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test10].spec.container[1].security_context.capabilities.drop should be set",
+    "actualValue": "kubernetes_pod[test10].spec.container[1].security_context.capabilities.drop is undefined"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 141,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test11",
+    "searchKey": "kubernetes_pod[test11].spec.container.security_context.capabilities",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test11].spec.container.security_context.capabilities.drop should be set",
+    "actualValue": "kubernetes_pod[test11].spec.container.security_context.capabilities.drop is undefined"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test20",
+    "searchKey": "kubernetes_pod[test20].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test20].spec.container[0].security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[test20].spec.container[0].security_context.capabilities is undefined"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 44,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test20",
+    "searchKey": "kubernetes_pod[test20].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test20].spec.container[1].security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[test20].spec.container[1].security_context.capabilities is undefined"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 136,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test21",
+    "searchKey": "kubernetes_pod[test21].spec.container.security_context",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test21].spec.container.security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[test21].spec.container.security_context.capabilities is undefined"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test30",
+    "searchKey": "kubernetes_pod[test30].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test30].spec.container[0].security_context should be set",
+    "actualValue": "kubernetes_pod[test30].spec.container[0].security_context is undefined"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 36,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test30",
+    "searchKey": "kubernetes_pod[test30].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test30].spec.container[1].security_context should be set",
+    "actualValue": "kubernetes_pod[test30].spec.container[1].security_context is undefined"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 124,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test31",
+    "searchKey": "kubernetes_pod[test31].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test31].spec.container.security_context should be set",
+    "actualValue": "kubernetes_pod[test31].spec.container.security_context is undefined"
   }
 ]

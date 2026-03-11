@@ -2,16 +2,37 @@
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 20
+    "line": 20,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_monitor_log_profile",
+    "resourceName": "default",
+    "searchKey": "azurerm_monitor_log_profile[positive1].retention_policy.days",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_log_profile[positive1].retention_policy.days' should be greater than or equal to 365 days or 0 (indefinitely)",
+    "actualValue": "'azurerm_monitor_log_profile[positive1].retention_policy.days' is less than 365 days or different than 0 (indefinitely)"
   },
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 41
+    "line": 41,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_monitor_log_profile",
+    "resourceName": "default",
+    "searchKey": "azurerm_monitor_log_profile[positive2].retention_policy",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_log_profile[positive2].retention_policy.days' should be defined and not null",
+    "actualValue": "'azurerm_monitor_log_profile[positive2].retention_policy.days' is undefined or null"
   },
   {
     "queryName": "Small Activity Log Retention Period",
     "severity": "LOW",
-    "line": 64
+    "line": 64,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_monitor_log_profile",
+    "resourceName": "default",
+    "searchKey": "azurerm_monitor_log_profile[positive3].retention_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_log_profile[positive3].retention_policy.enabled' should be set to true",
+    "actualValue": "'azurerm_monitor_log_profile[positive3].retention_policy.enabled' is set to false"
   }
 ]

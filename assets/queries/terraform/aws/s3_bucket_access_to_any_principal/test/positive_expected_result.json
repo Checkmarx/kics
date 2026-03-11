@@ -3,12 +3,24 @@
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 4,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive1].policy.Principal should not equal to, nor contain '*'",
+    "actualValue": "aws_s3_bucket_policy[positive1].policy.Principal is equal to or contains '*'"
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 12,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Principal' should not equal to, nor contain '*'",
+    "actualValue": "'policy.Principal' is equal to or contains '*'"
   }
 ]

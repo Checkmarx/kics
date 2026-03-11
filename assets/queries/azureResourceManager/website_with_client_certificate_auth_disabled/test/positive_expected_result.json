@@ -2,73 +2,145 @@
   {
     "queryName": "Website with Client Certificate Auth Disabled",
     "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties.clientCertEnabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties.clientCertEnabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "properties.template.resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties.clientCertEnabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "Website with Client Certificate Auth Disabled",
-    "severity": "MEDIUM",
-    "line": 46,
-    "fileName": "positive5.json"
-  },
-  {
-    "queryName": "Website with Client Certificate Auth Disabled",
-    "severity": "MEDIUM",
-    "line": 44,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "Website with Client Certificate Auth Disabled",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Website with Client Certificate Auth Disabled",
-    "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Website with Client Certificate Auth Disabled",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Website with Client Certificate Auth Disabled",
-    "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive4.bicep"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "properties.template.resources.name={{webSite}}.properties.clientCertEnabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
     "severity": "MEDIUM",
     "line": 25,
-    "fileName": "positive5.bicep"
+    "filename": "positive5.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "[parameters('siteName')]",
+    "searchKey": "resources.name={{[parameters('siteName')]}}.properties.clientCertEnabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value or 'http20Enabled' field set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' or 'http20Enabled' set to true"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
+    "line": 46,
+    "filename": "positive5.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "[parameters('siteName')]",
+    "searchKey": "resources.name={{[parameters('siteName')]}}.properties.clientCertEnabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value or 'http20Enabled' field set to true",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' or 'http20Enabled' set to true"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive6.bicep"
+    "filename": "positive6.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "[parameters('siteName')]",
+    "searchKey": "resources.name={{[parameters('siteName')]}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
+    "line": 44,
+    "filename": "positive6.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "[parameters('siteName')]",
+    "searchKey": "resources.name={{[parameters('siteName')]}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
   }
 ]

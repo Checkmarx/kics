@@ -2,6 +2,13 @@
   {
     "queryName": "Last User Is 'root'",
     "severity": "HIGH",
-    "line": 2
+    "line": 2,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:2.6}}.{{USER root}}",
+    "searchValue": "",
+    "expectedValue": "Last User shouldn't be root",
+    "actualValue": "Last User is root"
   }
 ]

@@ -3,12 +3,24 @@
     "queryName": "High Access Key Rotation Period",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Config::ConfigRule",
+    "resourceName": "access-keys-rotated",
+    "searchKey": "Resources.ConfigRule.Properties.InputParameters.maxAccessKeyAge",
+    "searchValue": "",
+    "expectedValue": "Resources.ConfigRule.InputParameters.maxAccessKeyAge should be less or equal to 90 (days)",
+    "actualValue": "Resources.ConfigRule.InputParameters.maxAccessKeyAge is more than 90 (days)."
   },
   {
-    "fileName": "positive2.json",
     "queryName": "High Access Key Rotation Period",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive2.json",
+    "resourceType": "AWS::Config::ConfigRule",
+    "resourceName": "access-keys-rotated",
+    "searchKey": "Resources.ConfigRule.Properties.InputParameters.maxAccessKeyAge",
+    "searchValue": "",
+    "expectedValue": "Resources.ConfigRule.InputParameters.maxAccessKeyAge should be less or equal to 90 (days)",
+    "actualValue": "Resources.ConfigRule.InputParameters.maxAccessKeyAge is more than 90 (days)."
   }
 ]

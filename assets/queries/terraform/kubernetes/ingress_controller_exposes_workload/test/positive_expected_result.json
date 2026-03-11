@@ -1,20 +1,38 @@
 [
-	{
-		"queryName": "Ingress Controller Exposes Workload",
-		"severity": "MEDIUM",
-		"line": 28,
-    "fileName": "positive1.tf"
-	},
   {
-		"queryName": "Ingress Controller Exposes Workload",
-		"severity": "MEDIUM",
-		"line": 32,
-    "fileName": "positive2.tf"
-	},
+    "queryName": "Ingress Controller Exposes Workload",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_ingress",
+    "resourceName": "example",
+    "searchKey": "kubernetes_ingress[example].spec.rule.http.path.backend",
+    "searchValue": "",
+    "expectedValue": "kubernetes_ingress[example] should not be exposing the workload",
+    "actualValue": "kubernetes_ingress[example] is exposing the workload"
+  },
   {
-		"queryName": "Ingress Controller Exposes Workload",
-		"severity": "MEDIUM",
-		"line": 28,
-    "fileName": "positive3.tf"
-	}
+    "queryName": "Ingress Controller Exposes Workload",
+    "severity": "MEDIUM",
+    "line": 32,
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_ingress",
+    "resourceName": "example-ingress",
+    "searchKey": "kubernetes_ingress[example-ingress-2].spec.rule.http.path.backend",
+    "searchValue": "",
+    "expectedValue": "kubernetes_ingress[example-ingress-2] should not be exposing the workload",
+    "actualValue": "kubernetes_ingress[example-ingress-2] is exposing the workload"
+  },
+  {
+    "queryName": "Ingress Controller Exposes Workload",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive3.tf",
+    "resourceType": "kubernetes_ingress",
+    "resourceName": "example-4",
+    "searchKey": "kubernetes_ingress[example-4].spec.rule.http.path.backend",
+    "searchValue": "",
+    "expectedValue": "kubernetes_ingress[example-4] should not be exposing the workload",
+    "actualValue": "kubernetes_ingress[example-4] is exposing the workload"
+  }
 ]

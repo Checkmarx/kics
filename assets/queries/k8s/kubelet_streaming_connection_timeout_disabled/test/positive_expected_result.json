@@ -3,18 +3,36 @@
     "queryName": "Kubelet Streaming Connection Timeout Disabled",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--streaming-connection-idle-timeout flag not should be 0",
+    "actualValue": "--streaming-connection-idle-timeout flag is 0"
   },
   {
     "queryName": "Kubelet Streaming Connection Timeout Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.streamingConnectionIdleTimeout",
+    "searchValue": "",
+    "expectedValue": "streamingConnectionIdleTimeout not should be 0s",
+    "actualValue": "streamingConnectionIdleTimeout is 0s"
   },
   {
     "queryName": "Kubelet Streaming Connection Timeout Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.streamingConnectionIdleTimeout",
+    "searchValue": "",
+    "expectedValue": "streamingConnectionIdleTimeout not should be 0s",
+    "actualValue": "streamingConnectionIdleTimeout is 0s"
   }
 ]

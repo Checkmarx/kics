@@ -1,13 +1,26 @@
 [
-	{
-		"queryName": "ECR Image Tag Not Immutable",
-		"severity": "MEDIUM",
-		"line": 2
-	},
-
-	{
-		"queryName": "ECR Image Tag Not Immutable",
-		"severity": "MEDIUM",
-		"line": 7
-	}
+  {
+    "queryName": "ECR Image Tag Not Immutable",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ecs_ecr",
+    "resourceName": "create immutable ecr-repo",
+    "searchKey": "name={{create immutable ecr-repo}}.{{community.aws.ecs_ecr}}",
+    "searchValue": "",
+    "expectedValue": "ecs_ecr.image_tag_mutability should be set ",
+    "actualValue": "ecs_ecr.image_tag_mutability is undefined"
+  },
+  {
+    "queryName": "ECR Image Tag Not Immutable",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ecs_ecr",
+    "resourceName": "create immutable ecr-repo v2",
+    "searchKey": "name={{create immutable ecr-repo v2}}.{{community.aws.ecs_ecr}}.image_tag_mutability",
+    "searchValue": "",
+    "expectedValue": "ecs_ecr.image_tag_mutability should be set to 'immutable'",
+    "actualValue": "ecs_ecr.image_tag_mutability is not set to 'immutable'"
+  }
 ]

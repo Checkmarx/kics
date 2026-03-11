@@ -3,36 +3,72 @@
     "queryName": "Service Account with Improper Privileges",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "google_iam_policy",
+    "resourceName": "admin",
+    "searchKey": "google_iam_policy[admin].binding.role",
+    "searchValue": "",
+    "expectedValue": "google_iam_policy[admin].binding.role should not have admin, editor, owner, or write privileges for service account member",
+    "actualValue": "google_iam_policy[admin].binding.role has admin, editor, owner, or write privilege for service account member"
   },
   {
     "queryName": "Service Account with Improper Privileges",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "project1",
+    "searchKey": "google_project_iam_binding[project1].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_binding[project1].role should not have admin, editor, owner, or write privileges for service account member",
+    "actualValue": "google_project_iam_binding[project1].role has admin, editor, owner, or write privilege for service account member"
   },
   {
     "queryName": "Service Account with Improper Privileges",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "google_project_iam_member",
+    "resourceName": "project2",
+    "searchKey": "google_project_iam_member[project2].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_member[project2].role should not have admin, editor, owner, or write privileges for service account member",
+    "actualValue": "google_project_iam_member[project2].role has admin, editor, owner, or write privilege for service account member"
   },
   {
     "queryName": "Service Account with Improper Privileges",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "google_iam_policy",
+    "resourceName": "admin",
+    "searchKey": "google_iam_policy[admin].binding[1].role",
+    "searchValue": "",
+    "expectedValue": "google_iam_policy[admin].binding[1].role should not have admin, editor, owner, or write privileges for service account member",
+    "actualValue": "google_iam_policy[admin].binding[1].role has admin, editor, owner, or write privilege for service account member"
   },
   {
     "queryName": "Service Account with Improper Privileges",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "google_iam_policy",
+    "resourceName": "admin",
+    "searchKey": "google_iam_policy[admin].binding[0].role",
+    "searchValue": "",
+    "expectedValue": "google_iam_policy[admin].binding[0].role should not have admin, editor, owner, or write privileges for service account member",
+    "actualValue": "google_iam_policy[admin].binding[0].role has admin, editor, owner, or write privilege for service account member"
   },
   {
     "queryName": "Service Account with Improper Privileges",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "google_iam_policy",
+    "resourceName": "admin",
+    "searchKey": "google_iam_policy[admin].binding[1].role",
+    "searchValue": "",
+    "expectedValue": "google_iam_policy[admin].binding[1].role should not have admin, editor, owner, or write privileges for service account member",
+    "actualValue": "google_iam_policy[admin].binding[1].role has admin, editor, owner, or write privilege for service account member"
   }
 ]

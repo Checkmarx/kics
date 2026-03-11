@@ -2,49 +2,97 @@
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'disablePasswordAuthentication' property value is set to false"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
     "line": 53,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'disablePasswordAuthentication' property value is set to false"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')]",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 40,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')]",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'disablePasswordAuthentication' property value is set to false"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 55,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "properties.template.resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'disablePasswordAuthentication' property value is set to false"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')]",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 42,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "Azure Instance Using Basic Authentication",
-    "severity": "MEDIUM",
-    "line": 27,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "Azure Instance Using Basic Authentication",
-    "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "Azure Instance Using Basic Authentication",
-    "severity": "MEDIUM",
-    "line": 27,
-    "filename": "positive3.bicep"
-  },
-  {
-    "queryName": "Azure Instance Using Basic Authentication",
-    "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive4.bicep"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "properties.template.resources.name=[variables('vmName')]",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined"
   }
 ]

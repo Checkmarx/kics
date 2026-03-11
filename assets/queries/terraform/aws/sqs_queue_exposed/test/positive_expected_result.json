@@ -3,12 +3,24 @@
     "queryName": "SQS Queue Exposed",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_sqs_queue",
+    "resourceName": "examplequeue",
+    "searchKey": "aws_sqs_queue[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "resource.aws_sqs_queue[positive1].policy.Principal shouldn't get the queue publicly accessible",
+    "actualValue": "resource.aws_sqs_queue[positive1].policy.Principal does get the queue publicly accessible"
   },
   {
     "queryName": "SQS Queue Exposed",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[user_queue]",
+    "searchValue": "",
+    "expectedValue": "'policy.Principal' shouldn't get the queue publicly accessible",
+    "actualValue": "'policy.Principal' does get the queue publicly accessible"
   }
 ]

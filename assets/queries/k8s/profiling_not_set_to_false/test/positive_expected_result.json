@@ -1,44 +1,86 @@
 [
-	{
-		"queryName": "Profiling Not Set To False",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Profiling Not Set To False",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Profiling Not Set To False",
-		"severity": "LOW",
-		"line": 21,
-		"fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Profiling Not Set To False",
-		"severity": "LOW",
-		"line": 21,
-		"fileName": "positive4.yaml"
-	},
-	{
-		"queryName": "Profiling Not Set To False",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive5.yaml"
-	},
-	{
-		"queryName": "Profiling Not Set To False",
-		"severity": "LOW",
-		"line": 3,
-		"fileName": "positive6.yaml"
-	},
-	{
-		"queryName": "Profiling Not Set To False",
-		"severity": "LOW",
-		"line": 14,
-		"fileName": "positive7.yaml"
-	}
+  {
+    "queryName": "Profiling Not Set To False",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--profiling flag should be set to false",
+    "actualValue": "--profiling flag is set to true"
+  },
+  {
+    "queryName": "Profiling Not Set To False",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo-1",
+    "searchKey": "metadata.name={{command-demo-1}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--profiling flag should be defined and set to false",
+    "actualValue": "--profiling flag is not defined"
+  },
+  {
+    "queryName": "Profiling Not Set To False",
+    "severity": "LOW",
+    "line": 21,
+    "filename": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "kube-controller-manager-master-3",
+    "searchKey": "metadata.name={{kube-controller-manager-master-3}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--profiling flag should be set to false",
+    "actualValue": "--profiling flag is set to true"
+  },
+  {
+    "queryName": "Profiling Not Set To False",
+    "severity": "LOW",
+    "line": 21,
+    "filename": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "kube-controller-manager-master-4",
+    "searchKey": "metadata.name={{kube-controller-manager-master-4}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--profiling flag should be defined and set to false",
+    "actualValue": "--profiling flag is not defined"
+  },
+  {
+    "queryName": "Profiling Not Set To False",
+    "severity": "LOW",
+    "line": 2,
+    "filename": "positive5.yaml",
+    "resourceType": "KubeSchedulerConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeSchedulerConfiguration}}",
+    "searchValue": "",
+    "expectedValue": "enableProfiling argument flag should be defined and set to false",
+    "actualValue": "enableProfiling argument is not defined"
+  },
+  {
+    "queryName": "Profiling Not Set To False",
+    "severity": "LOW",
+    "line": 3,
+    "filename": "positive6.yaml",
+    "resourceType": "KubeSchedulerConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeSchedulerConfiguration}}.enableProfiling",
+    "searchValue": "",
+    "expectedValue": "enableProfiling argument flag should be set to false",
+    "actualValue": "enableProfiling argument is set to true"
+  },
+  {
+    "queryName": "Profiling Not Set To False",
+    "severity": "LOW",
+    "line": 14,
+    "filename": "positive7.yaml",
+    "resourceType": "Pod",
+    "resourceName": "kube-scheduler-master-2",
+    "searchKey": "metadata.name={{kube-scheduler-master-2}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--profiling flag should be set to false",
+    "actualValue": "--profiling flag is set to true"
+  }
 ]

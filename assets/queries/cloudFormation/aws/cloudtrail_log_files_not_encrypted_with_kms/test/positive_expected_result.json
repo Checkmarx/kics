@@ -3,18 +3,36 @@
     "queryName": "CloudTrail Log Files Not Encrypted With KMS",
     "severity": "LOW",
     "line": 62,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.KMSKeyId' should be defined and not null",
+    "actualValue": "'Resources.myTrail.Properties.KMSKeyId' is undefined or null"
   },
   {
     "queryName": "CloudTrail Log Files Not Encrypted With KMS",
     "severity": "LOW",
     "line": 53,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.KMSKeyId' should be defined and not null",
+    "actualValue": "'Resources.myTrail.Properties.KMSKeyId' is undefined or null"
   },
   {
     "queryName": "CloudTrail Log Files Not Encrypted With KMS",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.KMSKeyId' should be defined and not null",
+    "actualValue": "'Resources.myTrail.Properties.KMSKeyId' is undefined or null"
   }
 ]

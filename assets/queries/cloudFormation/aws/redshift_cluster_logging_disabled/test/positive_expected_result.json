@@ -3,12 +3,24 @@
     "queryName": "Redshift Cluster Logging Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster3.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster3.Properties.LoggingProperties should be set",
+    "actualValue": "Resources.RedshiftCluster3.Properties.LoggingProperties is undefined"
   },
   {
-    "fileName": "positive2.json",
     "queryName": "Redshift Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "filename": "positive2.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "${DatabaseName}",
+    "searchKey": "Resources.RedshiftCluster4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster4.Properties.LoggingProperties should be set",
+    "actualValue": "Resources.RedshiftCluster4.Properties.LoggingProperties is undefined"
   }
 ]

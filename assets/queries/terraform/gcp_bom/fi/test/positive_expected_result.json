@@ -1,20 +1,38 @@
 [
-	{
-		"queryName": "BOM - GCP FI",
-		"severity": "TRACE",
-		"line": 1,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP FI",
-		"severity": "TRACE",
-		"line": 32,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP FI",
-		"severity": "TRACE",
-		"line": 59,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "BOM - GCP FI",
+    "severity": "TRACE",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_filestore_instance[instance]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP FI",
+    "severity": "TRACE",
+    "line": 32,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_filestore_instance[instance2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP FI",
+    "severity": "TRACE",
+    "line": 59,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_filestore_instance[instance3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  }
 ]

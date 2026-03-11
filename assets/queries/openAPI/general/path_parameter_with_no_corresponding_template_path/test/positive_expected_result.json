@@ -3,24 +3,48 @@
     "queryName": "Path Parameter With No Corresponding Template Path (v3)",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./yada/foo.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'"
   },
   {
     "queryName": "Path Parameter With No Corresponding Template Path (v3)",
     "severity": "INFO",
     "line": 59,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'"
   },
   {
     "queryName": "Path Parameter With No Corresponding Template Path (v2)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./people/foo.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'"
   },
   {
     "queryName": "Path Parameter With No Corresponding Template Path (v2)",
     "severity": "INFO",
     "line": 51,
-    "filename": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./people/foo.get.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'"
   }
 ]

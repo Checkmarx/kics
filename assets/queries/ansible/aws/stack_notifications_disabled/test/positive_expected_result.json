@@ -2,6 +2,13 @@
   {
     "queryName": "Stack Notifications Disabled",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.cloudformation",
+    "resourceName": "create a stack, pass in the template via an URL",
+    "searchKey": "name={{create a stack, pass in the template via an URL}}.{{amazon.aws.cloudformation}}",
+    "searchValue": "",
+    "expectedValue": "cloudformation.notification_arns should be set",
+    "actualValue": "cloudformation.notification_arns is undefined"
   }
 ]

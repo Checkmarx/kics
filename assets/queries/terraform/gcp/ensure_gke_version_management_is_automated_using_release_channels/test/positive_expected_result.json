@@ -3,24 +3,48 @@
     "queryName": "Beta - Ensure GKE Version Management Is Automated Using Release Channels",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "my-gke-cluster",
+    "searchKey": "google_container_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "'channel' should be defined to 'STABLE' or 'REGULAR' inside the 'release_channel' block",
+    "actualValue": "'release_channel' block is not defined"
   },
   {
     "queryName": "Beta - Ensure GKE Version Management Is Automated Using Release Channels",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "my-gke-cluster",
+    "searchKey": "google_container_cluster[positive2].release_channel.channel",
+    "searchValue": "",
+    "expectedValue": "'channel' should be defined to 'STABLE' or 'REGULAR' inside the 'release_channel' block",
+    "actualValue": "'release_channel.channel' is defined to 'UNSPECIFIED'"
   },
   {
     "queryName": "Beta - Ensure GKE Version Management Is Automated Using Release Channels",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "my-gke-cluster",
+    "searchKey": "google_container_cluster[positive3].release_channel.channel",
+    "searchValue": "",
+    "expectedValue": "'channel' should be defined to 'STABLE' or 'REGULAR' inside the 'release_channel' block",
+    "actualValue": "'release_channel.channel' is defined to 'RAPID'"
   },
   {
     "queryName": "Beta - Ensure GKE Version Management Is Automated Using Release Channels",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "my-gke-cluster",
+    "searchKey": "google_container_cluster[positive4].release_channel.channel",
+    "searchValue": "",
+    "expectedValue": "'channel' should be defined to 'STABLE' or 'REGULAR' inside the 'release_channel' block",
+    "actualValue": "'release_channel.channel' is defined to 'EXTENDED'"
   }
 ]

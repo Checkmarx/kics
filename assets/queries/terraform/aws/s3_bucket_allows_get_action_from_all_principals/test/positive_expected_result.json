@@ -3,18 +3,36 @@
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
     "line": 17,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[positive2].policy.Action",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive2].policy.Action should not be a 'Get' action",
+    "actualValue": "aws_s3_bucket_policy[positive2].policy.Action is a 'Get' action"
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
     "line": 42,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[positive3].policy.Action",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive3].policy.Action should not be a 'Get' action",
+    "actualValue": "aws_s3_bucket_policy[positive3].policy.Action is a 'Get' action"
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
     "severity": "HIGH",
     "line": 23,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy.Action",
+    "searchValue": "",
+    "expectedValue": "module[s3_bucket].policy.Action should not be a 'Get' action",
+    "actualValue": "module[s3_bucket].policy.Action is a 'Get' action"
   }
 ]

@@ -3,48 +3,96 @@
     "queryName": "Invalid Tag External Documentation URL (v3)",
     "severity": "INFO",
     "line": 53,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=pets",
+    "searchValue": "",
+    "expectedValue": "tags[0].externalDocs.url has a valid URL",
+    "actualValue": "tags[0].externalDocs.url has an invalid URL"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
     "severity": "INFO",
     "line": 57,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=store",
+    "searchValue": "",
+    "expectedValue": "tags[1].externalDocs.url has a valid URL",
+    "actualValue": "tags[1].externalDocs.url has an invalid URL"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=pets",
+    "searchValue": "",
+    "expectedValue": "tags[0].externalDocs.url has a valid URL",
+    "actualValue": "tags[0].externalDocs.url has an invalid URL"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=store",
+    "searchValue": "",
+    "expectedValue": "tags[1].externalDocs.url has a valid URL",
+    "actualValue": "tags[1].externalDocs.url has an invalid URL"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=pets",
+    "searchValue": "",
+    "expectedValue": "tags[0].externalDocs.url has a valid URL",
+    "actualValue": "tags[0].externalDocs.url has an invalid URL"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
     "severity": "INFO",
     "line": 34,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=store",
+    "searchValue": "",
+    "expectedValue": "tags[1].externalDocs.url has a valid URL",
+    "actualValue": "tags[1].externalDocs.url has an invalid URL"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=pets",
+    "searchValue": "",
+    "expectedValue": "tags[0].externalDocs.url has a valid URL",
+    "actualValue": "tags[0].externalDocs.url has an invalid URL"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=store",
+    "searchValue": "",
+    "expectedValue": "tags[1].externalDocs.url has a valid URL",
+    "actualValue": "tags[1].externalDocs.url has an invalid URL"
   }
 ]

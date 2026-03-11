@@ -2,11 +2,25 @@
   {
     "queryName": "PostgreSQL Log Connections Disabled",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create instance",
+    "searchKey": "name={{create instance}}.{{google.cloud.gcp_sql_instance}}.settings.databaseFlags",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.databaseFlags should have 'log_connections' flag set to 'on'",
+    "actualValue": "gcp_sql_instance.settings.databaseFlags has 'log_connections' flag set to 'off'"
   },
   {
     "queryName": "PostgreSQL Log Connections Disabled",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create another instance",
+    "searchKey": "name={{create another instance}}.{{google.cloud.gcp_sql_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.databaseFlags should be defined",
+    "actualValue": "gcp_sql_instance.settings.databaseFlags is not defined"
   }
 ]

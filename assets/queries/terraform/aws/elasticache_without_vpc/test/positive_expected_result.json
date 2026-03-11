@@ -1,8 +1,14 @@
 [
-	{
-		"queryName": "ElastiCache Without VPC",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "ElastiCache Without VPC",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster-example",
+    "searchKey": "aws_elasticache_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_elasticache_cluster[positive1].subnet_group_name' should be defined and not null'",
+    "actualValue": "'aws_elasticache_cluster[positive1].subnet_group_name' is undefined or null"
+  }
 ]

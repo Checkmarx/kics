@@ -2,16 +2,37 @@
   {
     "queryName": "IAM Password Without Minimum Length",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_password_policy",
+    "resourceName": "Password policy for AWS account",
+    "searchKey": "name={{Password policy for AWS account}}.{{community.aws.iam_password_policy}}",
+    "searchValue": "",
+    "expectedValue": "iam_password_policy.min_pw_length/minimum_password_length should be set and no less than 8",
+    "actualValue": "iam_password_policy.min_pw_length/minimum_password_length is undefined"
   },
   {
     "queryName": "IAM Password Without Minimum Length",
     "severity": "LOW",
-    "line": 16
+    "line": 16,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_password_policy",
+    "resourceName": "aws_iam_account_password_policy",
+    "searchKey": "name={{aws_iam_account_password_policy}}.{{community.aws.iam_password_policy}}.{{min_pw_length}}",
+    "searchValue": "",
+    "expectedValue": "iam_password_policy.min_pw_length should be set and no less than 8",
+    "actualValue": "iam_password_policy.min_pw_length is less than 8"
   },
   {
     "queryName": "IAM Password Without Minimum Length",
     "severity": "LOW",
-    "line": 27
+    "line": 27,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_password_policy",
+    "resourceName": "aws_iam_account_password_policy_2",
+    "searchKey": "name={{aws_iam_account_password_policy_2}}.{{community.aws.iam_password_policy}}.{{min_pw_length}}",
+    "searchValue": "",
+    "expectedValue": "iam_password_policy.minimum_password_length should be set and no less than 8",
+    "actualValue": "iam_password_policy.minimum_password_length is less than 8"
   }
 ]

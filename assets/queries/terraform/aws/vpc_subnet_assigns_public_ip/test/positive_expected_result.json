@@ -3,18 +3,36 @@
     "queryName": "VPC Subnet Assigns Public IP",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_subnet",
+    "resourceName": "Positive",
+    "searchKey": "aws_subnet[positive].map_public_ip_on_launch",
+    "searchValue": "",
+    "expectedValue": "aws_subnet[positive].map_public_ip_on_launch should be set to false or undefined",
+    "actualValue": "aws_subnet[positive].map_public_ip_on_launch is set to true"
   },
   {
     "queryName": "VPC Subnet Assigns Public IP",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "vpc.map_public_ip_on_launch",
+    "searchValue": "",
+    "expectedValue": "vpc.map_public_ip_on_launch should be set to false",
+    "actualValue": "vpc.map_public_ip_on_launch is set to true"
   },
   {
     "queryName": "VPC Subnet Assigns Public IP",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "vpc",
+    "searchValue": "",
+    "expectedValue": "vpc.map_public_ip_on_launch should be set to false",
+    "actualValue": "vpc.map_public_ip_on_launch is set undefined"
   }
 ]

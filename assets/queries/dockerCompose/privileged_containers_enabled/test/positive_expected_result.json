@@ -1,14 +1,26 @@
 [
-    {
-      "queryName": "Privileged Containers Enabled",
-      "severity": "HIGH",
-      "line": 10,
-      "filename": "positive1.yaml"
-    },
-    {
-        "queryName": "Privileged Containers Enabled",
-        "severity": "HIGH",
-        "line": 13,
-        "filename": "positive2.yaml"
-    }
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.privileged",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'privileged' attribute set to false or not set",
+    "actualValue": "Docker compose file has 'privileged' attribute as true"
+  },
+  {
+    "queryName": "Privileged Containers Enabled",
+    "severity": "HIGH",
+    "line": 13,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.privileged",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'privileged' attribute set to false or not set",
+    "actualValue": "Docker compose file has 'privileged' attribute as true"
+  }
 ]

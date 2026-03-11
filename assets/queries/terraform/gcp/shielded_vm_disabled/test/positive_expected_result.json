@@ -2,36 +2,85 @@
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "primary-application-server",
+    "searchKey": "google_compute_instance[appserver1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'shielded_instance_config' should be defined and not null",
+    "actualValue": "Attribute 'shielded_instance_config' is undefined or null"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 10,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "primary-application-server",
+    "searchKey": "google_compute_instance[appserver2].shielded_instance_config",
+    "searchValue": "",
+    "expectedValue": "Attribute 'shielded_instance_config.enable_integrity_monitoring' should be defined",
+    "actualValue": "Attribute 'shielded_instance_config.enable_integrity_monitoring' is undefined"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 19
+    "line": 19,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "primary-application-server",
+    "searchKey": "google_compute_instance[appserver3].shielded_instance_config",
+    "searchValue": "",
+    "expectedValue": "Attribute 'shielded_instance_config.enable_vtpm' should be defined",
+    "actualValue": "Attribute 'shielded_instance_config.enable_vtpm' is undefined"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 28
+    "line": 28,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "primary-application-server",
+    "searchKey": "google_compute_instance[appserver4].shielded_instance_config",
+    "searchValue": "",
+    "expectedValue": "Attribute 'shielded_instance_config.enable_secure_boot' should be defined",
+    "actualValue": "Attribute 'shielded_instance_config.enable_secure_boot' is undefined"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 38
+    "line": 38,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "primary-application-server",
+    "searchKey": "google_compute_instance[appserver5].shielded_instance_config.enable_secure_boot",
+    "searchValue": "",
+    "expectedValue": "Attribute 'shielded_instance_config.enable_secure_boot' should be true",
+    "actualValue": "Attribute 'shielded_instance_config.enable_secure_boot' is false"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 49
+    "line": 49,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "primary-application-server",
+    "searchKey": "google_compute_instance[appserver6].shielded_instance_config.enable_vtpm",
+    "searchValue": "",
+    "expectedValue": "Attribute 'shielded_instance_config.enable_vtpm' should be true",
+    "actualValue": "Attribute 'shielded_instance_config.enable_vtpm' is false"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 60
+    "line": 60,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "primary-application-server",
+    "searchKey": "google_compute_instance[appserver7].shielded_instance_config.enable_integrity_monitoring",
+    "searchValue": "",
+    "expectedValue": "Attribute 'shielded_instance_config.enable_integrity_monitoring' should be true",
+    "actualValue": "Attribute 'shielded_instance_config.enable_integrity_monitoring' is false"
   }
 ]

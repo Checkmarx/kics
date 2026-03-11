@@ -2,21 +2,49 @@
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.sqs_queue",
+    "resourceName": "Create SQS queue with redrive policy",
+    "searchKey": "name={{Create SQS queue with redrive policy}}.{{community.aws.sqs_queue}}.kms_master_key_id",
+    "searchValue": "",
+    "expectedValue": "'kms_master_key_id' should be set",
+    "actualValue": "'kms_master_key_id' is undefined"
   },
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.sqs_queue",
+    "resourceName": "Drop redrive policy",
+    "searchKey": "name={{Drop redrive policy}}.{{community.aws.sqs_queue}}.kms_master_key_id",
+    "searchValue": "",
+    "expectedValue": "'kms_master_key_id' should be set",
+    "actualValue": "'kms_master_key_id' is undefined"
   },
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
-    "line": 22
+    "line": 22,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.sqs_queue",
+    "resourceName": "Create FIFO queue",
+    "searchKey": "name={{Create FIFO queue}}.{{community.aws.sqs_queue}}.kms_master_key_id",
+    "searchValue": "",
+    "expectedValue": "'kms_master_key_id' should be set",
+    "actualValue": "'kms_master_key_id' is undefined"
   },
   {
     "queryName": "SQS With SSE Disabled",
     "severity": "MEDIUM",
-    "line": 29
+    "line": 29,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.sqs_queue",
+    "resourceName": "Tag queue",
+    "searchKey": "name={{Tag queue}}.{{community.aws.sqs_queue}}.kms_master_key_id",
+    "searchValue": "",
+    "expectedValue": "'kms_master_key_id' should be set",
+    "actualValue": "'kms_master_key_id' is undefined"
   }
 ]

@@ -3,12 +3,24 @@
     "queryName": "Google Compute Subnetwork with Private Google Access Disabled",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "google.cloud.gcp_compute_subnetwork",
+    "resourceName": "create a subnetwork",
+    "searchKey": "name={{create a subnetwork}}.{{google.cloud.gcp_compute_subnetwork}}",
+    "searchValue": "",
+    "expectedValue": "google.cloud.gcp_compute_subnetwork.private_ip_google_access should be defined and not null",
+    "actualValue": "google.cloud.gcp_compute_subnetwork.private_ip_google_access is undefined or null"
   },
   {
     "queryName": "Google Compute Subnetwork with Private Google Access Disabled",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "google.cloud.gcp_compute_subnetwork",
+    "resourceName": "create a subnetwork2",
+    "searchKey": "name={{create a subnetwork2}}.{{google.cloud.gcp_compute_subnetwork}}.private_ip_google_access",
+    "searchValue": "",
+    "expectedValue": "google.cloud.gcp_compute_subnetwork.private_ip_google_access should be set to yes",
+    "actualValue": "google.cloud.gcp_compute_subnetwork.private_ip_google_access is set to no"
   }
 ]

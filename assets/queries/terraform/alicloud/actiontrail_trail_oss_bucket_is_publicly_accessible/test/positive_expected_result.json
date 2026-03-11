@@ -3,12 +3,24 @@
     "queryName": "ActionTrail Trail OSS Bucket is Publicly Accessible",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive2.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "actiontrail3",
+    "searchKey": "alicloud_oss_bucket[actiontrail3].acl",
+    "searchValue": "",
+    "expectedValue": "'alicloud_oss_bucket[actiontrail3].oss_bucket_name' is private",
+    "actualValue": "'alicloud_oss_bucket[actiontrail3].oss_bucket_name' is public-read"
   },
   {
     "queryName": "ActionTrail Trail OSS Bucket is Publicly Accessible",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive1.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "actiontrail4",
+    "searchKey": "alicloud_oss_bucket[actiontrail4].acl",
+    "searchValue": "",
+    "expectedValue": "'alicloud_oss_bucket[actiontrail4].oss_bucket_name' is private",
+    "actualValue": "'alicloud_oss_bucket[actiontrail4].oss_bucket_name' is public-read-write"
   }
 ]

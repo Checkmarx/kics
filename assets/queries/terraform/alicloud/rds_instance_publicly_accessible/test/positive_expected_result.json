@@ -3,12 +3,24 @@
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].security_ips[0]",
+    "searchValue": "",
+    "expectedValue": "'0.0.0.0' should not be in 'security_ips' list",
+    "actualValue": "'0.0.0.0' is in 'security_ips' list"
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].security_ips[0]",
+    "searchValue": "",
+    "expectedValue": "'0.0.0.0/0' should not be in 'security_ips' list",
+    "actualValue": "'0.0.0.0/0' is in 'security_ips' list"
   }
 ]

@@ -3,24 +3,48 @@
     "queryName": "BOM - AWS DynamoDB",
     "severity": "TRACE",
     "line": 21,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_dynamodb_table[basic-dynamodb-table]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS DynamoDB",
     "severity": "TRACE",
     "line": 21,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_dynamodb_table[example2-table]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS DynamoDB",
     "severity": "TRACE",
     "line": 21,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_dynamodb_table[example3-table]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   },
   {
     "queryName": "BOM - AWS DynamoDB",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_dynamodb_table[example3-table]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
   }
 ]

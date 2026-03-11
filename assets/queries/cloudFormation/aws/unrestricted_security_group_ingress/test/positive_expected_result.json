@@ -3,24 +3,48 @@
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp should not be open to the world (0.0.0.0/0)",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp is open to the world (0.0.0.0/0)"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
     "line": 43,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.CidrIpv6 should not be open to the world (::/0)",
+    "actualValue": "Resources.InboundRule.Properties.CidrIpv6 is open to the world (::/0)"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
     "line": 30,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.CidrIpv6 should not be open to the world (::/0)",
+    "actualValue": "Resources.InboundRule.Properties.CidrIpv6 is open to the world (::/0)"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
     "line": 56,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp should not be open to the world (0.0.0.0/0)",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp is open to the world (0.0.0.0/0)"
   }
 ]

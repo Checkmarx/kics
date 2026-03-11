@@ -3,12 +3,24 @@
     "queryName": "Cluster Allows Unsafe Sysctls",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example].spec.allowed_unsafe_sysctls",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod_security_policy[example].spec.allowed_unsafe_sysctls should be undefined",
+    "actualValue": "kubernetes_pod_security_policy[example].spec.allowed_unsafe_sysctls is set"
   },
   {
     "queryName": "Cluster Allows Unsafe Sysctls",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[test].spec.security_context.sysctl",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test].spec.security_context.sysctl[%!s(int=0)].name should not have an unsafe sysctl",
+    "actualValue": "kubernetes_pod[test].spec.security_context.sysctl[%!s(int=0)].name has an unsafe sysctl"
   }
 ]

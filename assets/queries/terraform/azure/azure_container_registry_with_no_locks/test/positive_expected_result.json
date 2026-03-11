@@ -2,6 +2,13 @@
   {
     "queryName": "Azure Container Registry With No Locks",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_container_registry",
+    "resourceName": "containerRegistry1",
+    "searchKey": "azurerm_container_registry[acr]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_container_registry[acr] scope' should contain azurerm_management_lock'",
+    "actualValue": "'azurerm_container_registry[acr] scope' does not contain azurerm_management_lock'"
   }
 ]

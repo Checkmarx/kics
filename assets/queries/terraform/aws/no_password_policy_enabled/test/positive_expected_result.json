@@ -2,26 +2,61 @@
   {
     "queryName": "No Password Policy Enabled",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "positive2",
+    "searchKey": "aws_iam_user_login_profile[positive2].password_reset_required",
+    "searchValue": "",
+    "expectedValue": "Attribute 'password_reset_required' should be true",
+    "actualValue": "Attribute 'password_reset_required' is false"
   },
   {
     "queryName": "No Password Policy Enabled",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "positive3",
+    "searchKey": "aws_iam_user_login_profile[positive3].password_length",
+    "searchValue": "",
+    "expectedValue": "Attribute 'password_length' should be 14 or greater",
+    "actualValue": "Attribute 'password_length' is smaller than 14"
   },
   {
     "queryName": "No Password Policy Enabled",
     "severity": "MEDIUM",
-    "line": 23
+    "line": 23,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "positive6",
+    "searchKey": "aws_iam_user_login_profile[positive6].password_length",
+    "searchValue": "",
+    "expectedValue": "Attribute 'password_length' should be 14 or greater",
+    "actualValue": "Attribute 'password_length' is smaller than 14"
   },
   {
     "queryName": "No Password Policy Enabled",
     "severity": "MEDIUM",
-    "line": 30
+    "line": 30,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "positive7",
+    "searchKey": "aws_iam_user_login_profile[positive7].password_reset_required",
+    "searchValue": "",
+    "expectedValue": "Attribute 'password_reset_required' should be true",
+    "actualValue": "Attribute 'password_reset_required' is false"
   },
   {
     "queryName": "No Password Policy Enabled",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "positive7",
+    "searchKey": "aws_iam_user_login_profile[positive7].password_length",
+    "searchValue": "",
+    "expectedValue": "Attribute 'password_length' should be 14 or greater",
+    "actualValue": "Attribute 'password_length' is smaller than 14"
   }
 ]

@@ -2,6 +2,13 @@
   {
     "queryName": "Network Watcher Flow Disabled",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_watcher_flow_log",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_network_watcher_flow_log[positive1].enable",
+    "searchValue": "",
+    "expectedValue": "azurerm_network_watcher_flow_log.enabled should be true",
+    "actualValue": "azurerm_network_watcher_flow_log.enabled is false"
   }
 ]

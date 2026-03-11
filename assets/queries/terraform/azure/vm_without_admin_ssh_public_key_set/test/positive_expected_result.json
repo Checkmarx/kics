@@ -3,54 +3,108 @@
     "queryName": "Beta - VM Without Admin SSH Public Key Set",
     "severity": "MEDIUM",
     "line": 1,
-		"fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "positive1_1-machine",
+    "searchKey": "azurerm_linux_virtual_machine[positive1_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[positive1_1].admin_ssh_key.public_key' should be defined and not null",
+    "actualValue": "'azurerm_linux_virtual_machine[positive1_1].admin_ssh_key' is undefined or null"
   },
   {
     "queryName": "Beta - VM Without Admin SSH Public Key Set",
     "severity": "MEDIUM",
     "line": 24,
-		"fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "positive1_2-machine",
+    "searchKey": "azurerm_linux_virtual_machine[positive1_2].admin_ssh_key",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[positive1_2].admin_ssh_key.public_key' should be defined and not null",
+    "actualValue": "'azurerm_linux_virtual_machine[positive1_2].admin_ssh_key.public_key' is undefined or null"
   },
   {
     "queryName": "Beta - VM Without Admin SSH Public Key Set",
     "severity": "MEDIUM",
     "line": 40,
-		"fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "positive1_3-machine",
+    "searchKey": "azurerm_linux_virtual_machine[positive1_3].admin_ssh_key[0]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[positive1_3].admin_ssh_key.public_key' should be defined and not null",
+    "actualValue": "'azurerm_linux_virtual_machine[positive1_3].admin_ssh_key[0].public_key' is undefined or null"
   },
   {
     "queryName": "Beta - VM Without Admin SSH Public Key Set",
     "severity": "MEDIUM",
     "line": 45,
-		"fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "positive1_3-machine",
+    "searchKey": "azurerm_linux_virtual_machine[positive1_3].admin_ssh_key[1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[positive1_3].admin_ssh_key.public_key' should be defined and not null",
+    "actualValue": "'azurerm_linux_virtual_machine[positive1_3].admin_ssh_key[1].public_key' is undefined or null"
   },
   {
     "queryName": "Beta - VM Without Admin SSH Public Key Set",
     "severity": "MEDIUM",
     "line": 1,
-		"fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_virtual_machine_scale_set",
+    "resourceName": "positive2_1-machine",
+    "searchKey": "azurerm_linux_virtual_machine_scale_set[positive2_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive2_1].admin_ssh_key.public_key' should be defined and not null",
+    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive2_1].admin_ssh_key' is undefined or null"
   },
   {
     "queryName": "Beta - VM Without Admin SSH Public Key Set",
     "severity": "MEDIUM",
     "line": 24,
-		"fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_virtual_machine_scale_set",
+    "resourceName": "positive2_2-machine",
+    "searchKey": "azurerm_linux_virtual_machine_scale_set[positive2_2].admin_ssh_key",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive2_2].admin_ssh_key.public_key' should be defined and not null",
+    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive2_2].admin_ssh_key.public_key' is undefined or null"
   },
   {
     "queryName": "Beta - VM Without Admin SSH Public Key Set",
     "severity": "MEDIUM",
     "line": 40,
-		"fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_virtual_machine_scale_set",
+    "resourceName": "positive2_3-machine",
+    "searchKey": "azurerm_linux_virtual_machine_scale_set[positive2_3].admin_ssh_key[0]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive2_3].admin_ssh_key.public_key' should be defined and not null",
+    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive2_3].admin_ssh_key[0].public_key' is undefined or null"
   },
   {
     "queryName": "Beta - VM Without Admin SSH Public Key Set",
     "severity": "MEDIUM",
     "line": 45,
-		"fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_linux_virtual_machine_scale_set",
+    "resourceName": "positive2_3-machine",
+    "searchKey": "azurerm_linux_virtual_machine_scale_set[positive2_3].admin_ssh_key[1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive2_3].admin_ssh_key.public_key' should be defined and not null",
+    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive2_3].admin_ssh_key[1].public_key' is undefined or null"
   },
   {
     "queryName": "Beta - VM Without Admin SSH Public Key Set",
     "severity": "MEDIUM",
     "line": 20,
-		"fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "example-vm",
+    "searchKey": "azurerm_linux_virtual_machine[module.example_module.azurerm_linux_virtual_machine.example_vm[0]].admin_ssh_key",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[module.example_module.azurerm_linux_virtual_machine.example_vm[0]].admin_ssh_key.public_key' should be defined and not null",
+    "actualValue": "'azurerm_linux_virtual_machine[module.example_module.azurerm_linux_virtual_machine.example_vm[0]].admin_ssh_key' is undefined or null"
   }
 ]

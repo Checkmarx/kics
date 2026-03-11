@@ -3,12 +3,24 @@
     "queryName": "Beta - Redis Cache Managed Identity Is Not Set To System Assigned",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_redis_cache",
+    "resourceName": "example-cache-positive1",
+    "searchKey": "azurerm_redis_cache[positive1]",
+    "searchValue": "",
+    "expectedValue": "'identity' block should have 'SystemAssigned' defined on 'type' field",
+    "actualValue": "'identity' block is not defined"
   },
   {
     "queryName": "Beta - Redis Cache Managed Identity Is Not Set To System Assigned",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_redis_cache",
+    "resourceName": "example-cache-negative2",
+    "searchKey": "azurerm_redis_cache[positive2]",
+    "searchValue": "",
+    "expectedValue": "'identity' block should have 'SystemAssigned' defined on 'type' field",
+    "actualValue": "'identity' block does not have 'SystemAssigned' defined on 'type' field"
   }
 ]

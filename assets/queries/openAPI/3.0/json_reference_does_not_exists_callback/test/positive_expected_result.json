@@ -3,12 +3,24 @@
     "queryName": "Callback JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.callbacks.myEvent.$ref",
+    "searchValue": "",
+    "expectedValue": "inProgress from #/components/callbacks/inProgress should be declared on components.callbacks",
+    "actualValue": "inProgress from #/components/callbacks/inProgress is not declared on components.callbacks"
   },
   {
     "queryName": "Callback JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.callbacks.myEvent.$ref",
+    "searchValue": "",
+    "expectedValue": "inProgress from #/components/callbacks/inProgress should be declared on components.callbacks",
+    "actualValue": "inProgress from #/components/callbacks/inProgress is not declared on components.callbacks"
   }
 ]

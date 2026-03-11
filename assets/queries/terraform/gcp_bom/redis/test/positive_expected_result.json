@@ -1,14 +1,26 @@
 [
-	{
-		"queryName": "BOM - GCP Redis",
-		"severity": "TRACE",
-		"line": 1,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP Redis",
-		"severity": "TRACE",
-		"line": 20,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "BOM - GCP Redis",
+    "severity": "TRACE",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_redis_instance[cache]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  },
+  {
+    "queryName": "BOM - GCP Redis",
+    "severity": "TRACE",
+    "line": 20,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_redis_instance[cache2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": ""
+  }
 ]
