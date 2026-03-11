@@ -281,16 +281,37 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 }
 
 func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bool {
-	if vulnerabilitySlice[i].FileName != "" {
-		compareFile := strings.Compare(filepath.Base(vulnerabilitySlice[i].FileName), filepath.Base(vulnerabilitySlice[j].FileName))
-		if compareFile == 0 {
-			return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
-		} else if compareFile < 0 {
-			return true
+	a := vulnerabilitySlice[i]
+	b := vulnerabilitySlice[j]
+
+	if a.FileName != "" {
+		compareFile := strings.Compare(filepath.Base(a.FileName), filepath.Base(b.FileName))
+		if compareFile != 0 {
+			return compareFile < 0
 		}
-		return false
 	}
-	return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
+	if a.Line != b.Line {
+		return a.Line < b.Line
+	}
+	if cmp := strings.Compare(a.SearchKey, b.SearchKey); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.SearchValue, b.SearchValue); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.ResourceType, b.ResourceType); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.ResourceName, b.ResourceName); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.QueryName, b.QueryName); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.KeyExpectedValue, b.KeyExpectedValue); cmp != 0 {
+		return cmp < 0
+	}
+	return strings.Compare(a.KeyActualValue, b.KeyActualValue) < 0
 }
 
 func validateQueryResultFields(tb testing.TB, vulnerabilities []model.Vulnerability) {
