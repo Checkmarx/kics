@@ -23,6 +23,10 @@ func GetExtension(path string) (string, error) {
 		return "", fmt.Errorf("the path %s is a directory", path)
 	}
 
+	if strings.HasSuffix(filepath.Clean(path), "gitignore") {
+		return "gitignore", nil
+	}
+
 	if ext, ok := isDockerfileExtension(path); ok {
 		return ext, nil
 	}
@@ -69,10 +73,6 @@ func isDockerfileExtension(path string) (string, bool) {
 }
 
 func readPossibleDockerFile(path string) bool {
-	path = filepath.Clean(path)
-	if strings.HasSuffix(path, "gitignore") {
-		return true
-	}
 	file, err := os.Open(path)
 	if err != nil {
 		return false
