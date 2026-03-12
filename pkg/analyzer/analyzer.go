@@ -436,9 +436,7 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 
 		switch ext {
 		case "gitignore":
-			{
-				unwanted <- a.filePath
-			}
+			unwanted <- a.filePath
 		// Dockerfile
 		case ".dockerfile", "dockerfile":
 			if a.isAvailableType(dockerfile) {
