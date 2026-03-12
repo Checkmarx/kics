@@ -8,7 +8,7 @@ Resources:
       DeploymentId: !Ref TestDeployment
       DocumentationVersion: ""
       MethodSettings:
-        LoggingLevel: "ON"
+        - LoggingLevel: "INFO"
       AccessLogSetting:
         DestinationArn: "dest"
         Format: "format"

@@ -11,4 +11,4 @@ Resources:
       DeploymentId: !Ref TestDeployment
       DocumentationVersion: ""
       MethodSettings:
-        LoggingLevel: "OFF"
+        - LoggingLevel: "OFF"

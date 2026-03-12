@@ -16,13 +16,15 @@
         "RestApiId": {
           "Ref": "CFNWebSocket"
         },
-        "MethodSettings": {
-          "DetailedMetricsEnabled": true,
-          "LoggingLevel": "OFF",
-          "DataTraceEnabled": false,
-          "ThrottlingBurstLimit": 10,
-          "ThrottlingRateLimit": 10
-        }
+        "MethodSettings": [
+          {
+            "DetailedMetricsEnabled": true,
+            "LoggingLevel": "OFF",
+            "DataTraceEnabled": false,
+            "ThrottlingBurstLimit": 10,
+            "ThrottlingRateLimit": 10
+          }
+        ]
       }
     }
   }

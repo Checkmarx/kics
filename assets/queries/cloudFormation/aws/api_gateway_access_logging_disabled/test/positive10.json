@@ -16,8 +16,9 @@
         "RestApiId": {
           "Ref": "CFNWebSocket"
         },
-        "MethodSettings": {
-        }
+        "MethodSettings": [
+          {}
+        ]
       }
     }
   }
