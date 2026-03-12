@@ -14,6 +14,7 @@ import (
 
 // GetExtension gets the extension of a file path
 func GetExtension(path string) (string, error) {
+	extDockerfile := ".dockerfile"
 	fileInfo, err := os.Stat(path)
 	if err != nil {
 		return "", fmt.Errorf("file %s not found", path)
@@ -27,7 +28,7 @@ func GetExtension(path string) (string, error) {
 		return "gitignore", nil
 	}
 
-	if ext, ok := isDockerfileExtension(path); ok {
+	if ext, ok := isDockerfileExtension(path, extDockerfile); ok {
 		return ext, nil
 	}
 
@@ -35,7 +36,7 @@ func GetExtension(path string) (string, error) {
 	switch ext {
 	case ".ubi8", ".debian":
 		if readPossibleDockerFile(path) {
-			return ".dockerfile", nil
+			return extDockerfile, nil
 		}
 	case "":
 		if filepath.Base(path) == "tfvars" {
@@ -46,17 +47,17 @@ func GetExtension(path string) (string, error) {
 			return "", err
 		}
 		if isText && readPossibleDockerFile(path) {
-			return ".dockerfile", nil
+			return extDockerfile, nil
 		}
 	}
 	return ext, nil
 }
 
-func isDockerfileExtension(path string) (string, bool) {
-	extDockerfile := ".dockerfile"
+func isDockerfileExtension(path string, extDockerfile string) (string, bool) {
 	base := filepath.Base(path)
 
-	if strings.HasPrefix(strings.ToLower(base), "dockerfile.") {
+	lower := strings.ToLower(base)
+	if lower == "dockerfile" || strings.HasPrefix(lower, "dockerfile.") {
 		return extDockerfile, true
 	}
 
@@ -73,6 +74,7 @@ func isDockerfileExtension(path string) (string, bool) {
 }
 
 func readPossibleDockerFile(path string) bool {
+	path = filepath.Clean(path)
 	file, err := os.Open(path)
 	if err != nil {
 		return false
