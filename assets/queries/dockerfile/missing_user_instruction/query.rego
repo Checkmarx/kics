@@ -1,7 +1,6 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
-import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].command[name]
@@ -17,7 +16,7 @@ CxPolicy[result] {
 		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}", [from_command.Value, name]), from_command.EndLine-1),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The 'Dockerfile' should contain the 'USER' instruction",
-		"keyActualValue": "The 'Dockerfile' does not contain any 'USER' instruction"
+		"keyActualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
 	}
 }
 
