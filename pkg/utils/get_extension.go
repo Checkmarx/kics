@@ -53,20 +53,21 @@ func GetExtension(path string) (string, error) {
 	return ext, nil
 }
 
-func isDockerfileExtension(path string, extDockerfile string) (string, bool) {
+func isDockerfileExtension(path, extDockerfile string) (string, bool) {
 	base := filepath.Base(path)
+	d := "dockerfile"
 
 	lower := strings.ToLower(base)
-	if lower == "dockerfile" || strings.HasPrefix(lower, "dockerfile.") {
+	if lower == d || strings.HasPrefix(lower, "dockerfile.") {
 		return extDockerfile, true
 	}
 
-	if strings.EqualFold(filepath.Ext(path), ".dockerfile") {
+	if strings.EqualFold(filepath.Ext(path), extDockerfile) {
 		return extDockerfile, true
 	}
 
 	dir := strings.ToLower(filepath.Base(filepath.Dir(path)))
-	if (dir == "docker" || dir == "dockerfile" || dir == "dockerfiles") && readPossibleDockerFile(path) {
+	if (dir == "docker" || dir == d || dir == "dockerfiles") && readPossibleDockerFile(path) {
 		return extDockerfile, true
 	}
 
