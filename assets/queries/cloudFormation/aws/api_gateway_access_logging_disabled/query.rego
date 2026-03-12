@@ -114,8 +114,8 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGateway::Stage"
 
 	properties := resource.Properties
-	methodSettings := properties.MethodSettings
-	not common_lib.valid_key(methodSettings, "LoggingLevel")
+	methodSetting := properties.MethodSettings[j]
+	not common_lib.valid_key(methodSetting, "LoggingLevel")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -123,9 +123,9 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.MethodSettings", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel should be defined and not null", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel are undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "MethodSettings"], []),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings[%d].LoggingLevel should be defined and not null", [name, j]),
+		"keyActualValue": sprintf("Resources.%s.Properties.MethodSettings[%d].LoggingLevel is undefined or null", [name, j]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "MethodSettings", j], []),
 	}
 }
 
@@ -135,18 +135,18 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGateway::Stage"
 
 	properties := resource.Properties
-	loggingLevel := properties.MethodSettings.LoggingLevel
+	loggingLevel := properties.MethodSettings[j].LoggingLevel
 	loggingLevel == ""
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.MethodSettings[%d].LoggingLevel", [name, j]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel should be not be empty", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel is empty", [name]),
-		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "MethodSettings", "LoggingLevel"], []),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings[%d].LoggingLevel should not be empty", [name, j]),
+		"keyActualValue": sprintf("Resources.%s.Properties.MethodSettings[%d].LoggingLevel is empty", [name, j]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "MethodSettings", j, "LoggingLevel"], []),
 	}
 }
 
@@ -156,18 +156,18 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGateway::Stage"
 
 	properties := resource.Properties
-	loggingLevel := properties.MethodSettings.LoggingLevel
+	loggingLevel := properties.MethodSettings[j].LoggingLevel
 	loggingLevel == "OFF"
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.MethodSettings[%d].LoggingLevel", [name, j]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel should not be set to OFF", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel is OFF", [name]),
-		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "MethodSettings", "LoggingLevel"], []),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings[%d].LoggingLevel should not be set to OFF", [name, j]),
+		"keyActualValue": sprintf("Resources.%s.Properties.MethodSettings[%d].LoggingLevel is OFF", [name, j]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "MethodSettings", j, "LoggingLevel"], []),
 	}
 }
 
