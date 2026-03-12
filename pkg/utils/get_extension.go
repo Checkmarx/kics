@@ -14,9 +14,7 @@ import (
 
 // GetExtension gets the extension of a file path
 func GetExtension(path string) (string, error) {
-	// Get file information
 	fileInfo, err := os.Stat(path)
-	extDockerfile := ".dockerfile"
 	if err != nil {
 		return "", fmt.Errorf("file %s not found", path)
 	}
@@ -25,44 +23,49 @@ func GetExtension(path string) (string, error) {
 		return "", fmt.Errorf("the path %s is a directory", path)
 	}
 
-	base := filepath.Base(path)
-	if strings.HasPrefix(strings.ToLower(base), "dockerfile.") {
-		return extDockerfile, nil
+	if ext, ok := isDockerfileExtension(path); ok {
+		return ext, nil
 	}
 
 	ext := filepath.Ext(path)
-	if strings.EqualFold(ext, ".dockerfile") {
-		return extDockerfile, nil
+	switch ext {
+	case ".ubi8", ".debian":
+		if readPossibleDockerFile(path) {
+			return ".dockerfile", nil
+		}
+	case "":
+		if filepath.Base(path) == "tfvars" {
+			return ".tfvars", nil
+		}
+		isText, err := isTextFile(path)
+		if err != nil {
+			return "", err
+		}
+		if isText && readPossibleDockerFile(path) {
+			return ".dockerfile", nil
+		}
+	}
+	return ext, nil
+}
+
+func isDockerfileExtension(path string) (string, bool) {
+	extDockerfile := ".dockerfile"
+	base := filepath.Base(path)
+
+	if strings.HasPrefix(strings.ToLower(base), "dockerfile.") {
+		return extDockerfile, true
+	}
+
+	if strings.EqualFold(filepath.Ext(path), ".dockerfile") {
+		return extDockerfile, true
 	}
 
 	dir := strings.ToLower(filepath.Base(filepath.Dir(path)))
 	if (dir == "docker" || dir == "dockerfile" || dir == "dockerfiles") && readPossibleDockerFile(path) {
-		return extDockerfile, nil
+		return extDockerfile, true
 	}
 
-	switch ext {
-	case ".ubi8", ".debian":
-		if readPossibleDockerFile(path) {
-			return extDockerfile, nil
-		}
-	case "":
-		if base == "tfvars" {
-			ext = ".tfvars"
-		} else {
-			isText, err := isTextFile(path)
-
-			if err != nil {
-				return "", err
-			}
-
-			if isText && readPossibleDockerFile(path) {
-				return extDockerfile, nil
-			}
-		}
-
-	}
-
-	return ext, nil
+	return "", false
 }
 
 func readPossibleDockerFile(path string) bool {
