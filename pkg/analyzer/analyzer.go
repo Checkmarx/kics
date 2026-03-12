@@ -98,22 +98,21 @@ var (
 	listKeywordsGoogleDeployment = []string{"resources"}
 	armRegexTypes                = []string{"blueprint", "templateArtifact", "roleAssignmentArtifact", "policyAssignmentArtifact"}
 	possibleFileTypes            = map[string]bool{
-		".yml":               true,
-		".yaml":              true,
-		".json":              true,
-		".dockerfile":        true,
-		"Dockerfile":         true,
-		"possibleDockerfile": true,
-		".debian":            true,
-		".ubi8":              true,
-		".tf":                true,
-		"tfvars":             true,
-		".proto":             true,
-		".sh":                true,
-		".cfg":               true,
-		".conf":              true,
-		".ini":               true,
-		".bicep":             true,
+		".yml":        true,
+		".yaml":       true,
+		".json":       true,
+		".dockerfile": true,
+		"dockerfile":  true,
+		".debian":     true,
+		".ubi8":       true,
+		".tf":         true,
+		"tfvars":      true,
+		".proto":      true,
+		".sh":         true,
+		".cfg":        true,
+		".conf":       true,
+		".ini":        true,
+		".bicep":      true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
@@ -430,6 +429,7 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 	}()
 
 	ext, errExt := utils.GetExtension(a.filePath)
+
 	if errExt == nil {
 		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
