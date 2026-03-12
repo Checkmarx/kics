@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].command[name]
