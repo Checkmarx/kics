@@ -1,5 +1,8 @@
 ARG BASE_IMAGE=ubuntu:22.04
 
+# Comments between arg 
+ARG JAR_FILE
+
 FROM alpine:3.19 AS builder
 
 COPY . .
