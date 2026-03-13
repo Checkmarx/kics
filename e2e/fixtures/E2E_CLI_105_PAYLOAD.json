@@ -1,0 +1,1896 @@
+{
+	"document": [
+		{
+			"args": [],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 13,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 13
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 15,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 15
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 17,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 17
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"openjdk:10-jdk": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM openjdk:10-jdk",
+						"SubCmd": "",
+						"Value": [
+							"openjdk:10-jdk"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "volume",
+						"EndLine": 2,
+						"Flags": [],
+						"JSON": false,
+						"Original": "VOLUME /tmp",
+						"SubCmd": "",
+						"Value": [
+							"/tmp"
+						],
+						"_kics_line": 2
+					},
+					{
+						"Cmd": "add",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ADD http://source.file/package.file.tar.gz /temp",
+						"SubCmd": "",
+						"Value": [
+							"http://source.file/package.file.tar.gz",
+							"/temp"
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "run",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "RUN tar -xjf /temp/package.file.tar.gz ",
+						"SubCmd": "",
+						"Value": [
+							"tar -xjf /temp/package.file.tar.gz"
+						],
+						"_kics_line": 4
+					},
+					{
+						"Cmd": "arg",
+						"EndLine": 5,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ARG JAR_FILE",
+						"SubCmd": "",
+						"Value": [
+							"JAR_FILE"
+						],
+						"_kics_line": 5
+					},
+					{
+						"Cmd": "add",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "ADD ${JAR_FILE} app.jar",
+						"SubCmd": "",
+						"Value": [
+							"${JAR_FILE}",
+							"app.jar"
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "entrypoint",
+						"EndLine": 7,
+						"Flags": [],
+						"JSON": true,
+						"Original": "ENTRYPOINT [\"java\",\"-Djava.security.egd=file:/dev/./urandom\",\"-jar\",\"/app.jar\"]",
+						"SubCmd": "",
+						"Value": [
+							"java",
+							"-Djava.security.egd=file:/dev/./urandom",
+							"-jar",
+							"/app.jar"
+						],
+						"_kics_line": 7
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG VERSION=1.0",
+					"SubCmd": "",
+					"Value": [
+						"VERSION=1.0"
+					],
+					"_kics_line": 1
+				},
+				{
+					"Cmd": "arg",
+					"EndLine": 2,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 2
+				}
+			],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 4
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 8,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 8
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG VERSION=1.0",
+					"SubCmd": "",
+					"Value": [
+						"VERSION=1.0"
+					],
+					"_kics_line": 1
+				},
+				{
+					"Cmd": "arg",
+					"EndLine": 2,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 2
+				}
+			],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 4
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 8,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 8
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG VERSION=1.0",
+					"SubCmd": "",
+					"Value": [
+						"VERSION=1.0"
+					],
+					"_kics_line": 1
+				},
+				{
+					"Cmd": "arg",
+					"EndLine": 2,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 2
+				}
+			],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 4
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 8,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 8
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"alpine:latest": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:latest",
+						"SubCmd": "",
+						"Value": [
+							"alpine:latest"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY {{ file_path }} /test",
+						"SubCmd": "",
+						"Value": [
+							"{{",
+							"file_path",
+							"}}",
+							"/test"
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "run",
+						"EndLine": 5,
+						"Flags": [],
+						"JSON": false,
+						"Original": "RUN echo \"failure\"",
+						"SubCmd": "",
+						"Value": [
+							"echo \"failure\""
+						],
+						"_kics_line": 5
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 1
+				},
+				{
+					"Cmd": "arg",
+					"EndLine": 4,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG JAR_FILE",
+					"SubCmd": "",
+					"Value": [
+						"JAR_FILE"
+					],
+					"_kics_line": 4
+				}
+			],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 8,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 8
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 10,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 10
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 2,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 2
+				}
+			],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 8,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY .. .",
+						"SubCmd": "",
+						"Value": [
+							"..",
+							"."
+						],
+						"_kics_line": 8
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 10,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 10
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 1
+				}
+			],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 4
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY .. .",
+						"SubCmd": "",
+						"Value": [
+							"..",
+							"."
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 8,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 8
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "ARG BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 1
+				}
+			],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 5,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 5
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 7,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 7
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"alpine:3.19 as builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 13,
+						"Flags": [],
+						"JSON": false,
+						"Original": "from alpine:3.19 as builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"as",
+							"builder"
+						],
+						"_kics_line": 13
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 15,
+						"Flags": [],
+						"JSON": false,
+						"Original": "copy . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 15
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 17,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "healthcheck --interval=30s --timeout=30s --start-period=5s --retries=3 cmd [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"cmd",
+							"executable"
+						],
+						"_kics_line": 17
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"openjdk:10-jdk": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "from openjdk:10-jdk",
+						"SubCmd": "",
+						"Value": [
+							"openjdk:10-jdk"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "volume",
+						"EndLine": 2,
+						"Flags": [],
+						"JSON": false,
+						"Original": "volume /tmp",
+						"SubCmd": "",
+						"Value": [
+							"/tmp"
+						],
+						"_kics_line": 2
+					},
+					{
+						"Cmd": "add",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "add http://source.file/package.file.tar.gz /temp",
+						"SubCmd": "",
+						"Value": [
+							"http://source.file/package.file.tar.gz",
+							"/temp"
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "run",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "run tar -xjf /temp/package.file.tar.gz ",
+						"SubCmd": "",
+						"Value": [
+							"tar -xjf /temp/package.file.tar.gz"
+						],
+						"_kics_line": 4
+					},
+					{
+						"Cmd": "arg",
+						"EndLine": 5,
+						"Flags": [],
+						"JSON": false,
+						"Original": "arg JAR_FILE",
+						"SubCmd": "",
+						"Value": [
+							"JAR_FILE"
+						],
+						"_kics_line": 5
+					},
+					{
+						"Cmd": "add",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "add ${JAR_FILE} app.jar",
+						"SubCmd": "",
+						"Value": [
+							"${JAR_FILE}",
+							"app.jar"
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "entrypoint",
+						"EndLine": 7,
+						"Flags": [],
+						"JSON": true,
+						"Original": "entrypoint [\"java\",\"-Djava.security.egd=file:/dev/./urandom\",\"-jar\",\"/app.jar\"]",
+						"SubCmd": "",
+						"Value": [
+							"java",
+							"-Djava.security.egd=file:/dev/./urandom",
+							"-jar",
+							"/app.jar"
+						],
+						"_kics_line": 7
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg VERSION=1.0",
+					"SubCmd": "",
+					"Value": [
+						"VERSION=1.0"
+					],
+					"_kics_line": 1
+				},
+				{
+					"Cmd": "arg",
+					"EndLine": 2,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 2
+				}
+			],
+			"command": {
+				"alpine:3.19 as builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "from alpine:3.19 as builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"as",
+							"builder"
+						],
+						"_kics_line": 4
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "copy . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 8,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "healthcheck --interval=30s --timeout=30s --start-period=5s --retries=3 cmd [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"cmd",
+							"executable"
+						],
+						"_kics_line": 8
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg VERSION=1.0",
+					"SubCmd": "",
+					"Value": [
+						"VERSION=1.0"
+					],
+					"_kics_line": 1
+				},
+				{
+					"Cmd": "arg",
+					"EndLine": 2,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 2
+				}
+			],
+			"command": {
+				"alpine:3.19 as builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "from alpine:3.19 as builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"as",
+							"builder"
+						],
+						"_kics_line": 4
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "copy . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 8,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "healthcheck --interval=30s --timeout=30s --start-period=5s --retries=3 cmd [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"cmd",
+							"executable"
+						],
+						"_kics_line": 8
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg VERSION=1.0",
+					"SubCmd": "",
+					"Value": [
+						"VERSION=1.0"
+					],
+					"_kics_line": 1
+				},
+				{
+					"Cmd": "arg",
+					"EndLine": 2,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 2
+				}
+			],
+			"command": {
+				"alpine:3.19 as builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "from alpine:3.19 as builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"as",
+							"builder"
+						],
+						"_kics_line": 4
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "copy . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 8,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "healthcheck --interval=30s --timeout=30s --start-period=5s --retries=3 cmd [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"cmd",
+							"executable"
+						],
+						"_kics_line": 8
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"alpine:latest": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "from alpine:latest",
+						"SubCmd": "",
+						"Value": [
+							"alpine:latest"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "copy {{ file_path }} /test",
+						"SubCmd": "",
+						"Value": [
+							"{{",
+							"file_path",
+							"}}",
+							"/test"
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "run",
+						"EndLine": 5,
+						"Flags": [],
+						"JSON": false,
+						"Original": "run echo \"failure\"",
+						"SubCmd": "",
+						"Value": [
+							"echo \"failure\""
+						],
+						"_kics_line": 5
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 1
+				},
+				{
+					"Cmd": "arg",
+					"EndLine": 4,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg JAR_FILE",
+					"SubCmd": "",
+					"Value": [
+						"JAR_FILE"
+					],
+					"_kics_line": 4
+				}
+			],
+			"command": {
+				"alpine:3.19 as builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "from alpine:3.19 as builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"as",
+							"builder"
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 8,
+						"Flags": [],
+						"JSON": false,
+						"Original": "copy . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 8
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 10,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "healthcheck --interval=30s --timeout=30s --start-period=5s --retries=3 cmd [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"cmd",
+							"executable"
+						],
+						"_kics_line": 10
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 2,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 2
+				}
+			],
+			"command": {
+				"alpine:3.19 as builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "from alpine:3.19 as builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"as",
+							"builder"
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 8,
+						"Flags": [],
+						"JSON": false,
+						"Original": "copy . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 8
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 10,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "healthcheck --interval=30s --timeout=30s --start-period=5s --retries=3 cmd [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"cmd",
+							"executable"
+						],
+						"_kics_line": 10
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 1
+				}
+			],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 4,
+						"Flags": [],
+						"JSON": false,
+						"Original": "from alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 4
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 6,
+						"Flags": [],
+						"JSON": false,
+						"Original": "copy .. .",
+						"SubCmd": "",
+						"Value": [
+							"..",
+							"."
+						],
+						"_kics_line": 6
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 8,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "healthcheck --interval=30s --timeout=30s --start-period=5s --retries=3 cmd [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"cmd",
+							"executable"
+						],
+						"_kics_line": 8
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "arg",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "arg BASE_IMAGE=ubuntu:22.04",
+					"SubCmd": "",
+					"Value": [
+						"BASE_IMAGE=ubuntu:22.04"
+					],
+					"_kics_line": 1
+				}
+			],
+			"command": {
+				"alpine:3.19 as builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "from alpine:3.19 as builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"as",
+							"builder"
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 5,
+						"Flags": [],
+						"JSON": false,
+						"Original": "copy . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 5
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 7,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "healthcheck --interval=30s --timeout=30s --start-period=5s --retries=3 cmd [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"cmd",
+							"executable"
+						],
+						"_kics_line": 7
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 5,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 5
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 5,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 5
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 5,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 5
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 5,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 5
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 5,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 5
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [],
+			"command": {
+				"alpine:3.19 AS builder": [
+					{
+						"Cmd": "from",
+						"EndLine": 1,
+						"Flags": [],
+						"JSON": false,
+						"Original": "FROM alpine:3.19 AS builder",
+						"SubCmd": "",
+						"Value": [
+							"alpine:3.19",
+							"AS",
+							"builder"
+						],
+						"_kics_line": 1
+					},
+					{
+						"Cmd": "copy",
+						"EndLine": 3,
+						"Flags": [],
+						"JSON": false,
+						"Original": "COPY . .",
+						"SubCmd": "",
+						"Value": [
+							".",
+							"."
+						],
+						"_kics_line": 3
+					},
+					{
+						"Cmd": "healthcheck",
+						"EndLine": 5,
+						"Flags": [
+							"--interval=30s",
+							"--timeout=30s",
+							"--start-period=5s",
+							"--retries=3"
+						],
+						"JSON": true,
+						"Original": "HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ \"executable\" ]",
+						"SubCmd": "",
+						"Value": [
+							"CMD",
+							"executable"
+						],
+						"_kics_line": 5
+					}
+				]
+			},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "package",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "package main",
+					"SubCmd": "",
+					"Value": [
+						""
+					],
+					"_kics_line": 1
+				},
+				{
+					"Cmd": "import",
+					"EndLine": 3,
+					"Flags": [],
+					"JSON": false,
+					"Original": "import \"fmt\"",
+					"SubCmd": "",
+					"Value": [
+						""
+					],
+					"_kics_line": 3
+				},
+				{
+					"Cmd": "func",
+					"EndLine": 5,
+					"Flags": [],
+					"JSON": false,
+					"Original": "func main() {",
+					"SubCmd": "",
+					"Value": [
+						""
+					],
+					"_kics_line": 5
+				},
+				{
+					"Cmd": "fmt.println(\"hello,",
+					"EndLine": 6,
+					"Flags": [],
+					"JSON": false,
+					"Original": "fmt.Println(\"Hello, World!\")",
+					"SubCmd": "",
+					"Value": [
+						""
+					],
+					"_kics_line": 6
+				},
+				{
+					"Cmd": "}",
+					"EndLine": 7,
+					"Flags": null,
+					"JSON": false,
+					"Original": "}",
+					"SubCmd": "",
+					"Value": [
+						""
+					],
+					"_kics_line": 7
+				}
+			],
+			"command": {},
+			"file": "file",
+			"id": "0"
+		},
+		{
+			"args": [
+				{
+					"Cmd": "public",
+					"EndLine": 1,
+					"Flags": [],
+					"JSON": false,
+					"Original": "public class HelloWorld {",
+					"SubCmd": "",
+					"Value": [
+						""
+					],
+					"_kics_line": 1
+				},
+				{
+					"Cmd": "public",
+					"EndLine": 2,
+					"Flags": [],
+					"JSON": false,
+					"Original": "public static void main(String[] args) {",
+					"SubCmd": "",
+					"Value": [
+						""
+					],
+					"_kics_line": 2
+				},
+				{
+					"Cmd": "system.out.println(\"hello,",
+					"EndLine": 3,
+					"Flags": [],
+					"JSON": false,
+					"Original": "System.out.println(\"Hello, World!\");",
+					"SubCmd": "",
+					"Value": [
+						""
+					],
+					"_kics_line": 3
+				},
+				{
+					"Cmd": "}",
+					"EndLine": 4,
+					"Flags": null,
+					"JSON": false,
+					"Original": "}",
+					"SubCmd": "",
+					"Value": [
+						""
+					],
+					"_kics_line": 4
+				},
+				{
+					"Cmd": "}",
+					"EndLine": 5,
+					"Flags": null,
+					"JSON": false,
+					"Original": "}",
+					"SubCmd": "",
+					"Value": [
+						""
+					],
+					"_kics_line": 5
+				}
+			],
+			"command": {},
+			"file": "file",
+			"id": "0"
+		}
+	]
+}
