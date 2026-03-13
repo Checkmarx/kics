@@ -238,8 +238,22 @@ func checkQueryExcludeField(id interface{}, excludeQueries []string) bool {
 }
 
 func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryInspectorParameters) bool {
-	return checkQueryExcludeField(metadata["id"], queryParameters.ExcludeQueries.ByIDs) ||
-		checkQueryExcludeField(metadata["category"], queryParameters.ExcludeQueries.ByCategories) ||
+	if checkQueryExcludeField(metadata["id"], queryParameters.ExcludeQueries.ByIDs) {
+		return true
+	}
+
+	// Also check override IDs (e.g. OpenAPI queries with version-specific variants like Swagger 2.0)
+	if override, ok := metadata["override"].(map[string]interface{}); ok {
+		for _, overrideData := range override {
+			if overrideObj, ok := overrideData.(map[string]interface{}); ok {
+				if checkQueryExcludeField(overrideObj["id"], queryParameters.ExcludeQueries.ByIDs) {
+					return true
+				}
+			}
+		}
+	}
+
+	return checkQueryExcludeField(metadata["category"], queryParameters.ExcludeQueries.ByCategories) ||
 		checkQueryExcludeField(metadata["severity"], queryParameters.ExcludeQueries.BySeverities) ||
 		(!queryParameters.BomQueries && metadata["severity"] == model.SeverityTrace)
 }
