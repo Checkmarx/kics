@@ -9,8 +9,8 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_105_RESULT",
-					"-p", "\"/path/test/fixtures/dockerfile\"",
-					"-p", "\"/path/test/fixtures/negative_dockerfile\"",
+					"-p", "/path/test/fixtures/dockerfile",
+					"-p", "/path/test/fixtures/negative_dockerfile",
 					"--payload-path", "/path/e2e/output/E2E_CLI_105_PAYLOAD.json",
 				},
 			},
