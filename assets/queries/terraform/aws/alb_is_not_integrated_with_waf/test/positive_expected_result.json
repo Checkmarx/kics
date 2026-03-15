@@ -10,5 +10,17 @@
     "searchValue": "",
     "expectedValue": "'aws_alb[foo]' should not be 'internal' and has a 'aws_wafregional_web_acl_association' associated",
     "actualValue": "'aws_alb[foo]' is not 'internal' and does not have a 'aws_wafregional_web_acl_association' associated"
+  },
+  {
+    "queryName": "ALB Is Not Integrated With WAF",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[alb]",
+    "searchValue": "",
+    "expectedValue": "'aws_lb[alb]' should not be 'internal' and has a 'aws_wafregional_web_acl_association' associated",
+    "actualValue": "'aws_lb[alb]' is not 'internal' and does not have a 'aws_wafregional_web_acl_association' associated"
   }
 ]

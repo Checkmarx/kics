@@ -58,5 +58,17 @@
     "searchValue": "",
     "expectedValue": "FROM test_fail_1:'version'",
     "actualValue": "FROM test_fail_1'"
+  },
+  {
+    "queryName": "Image Version Not Explicit",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{test3 AS test_fail_2}}",
+    "searchValue": "",
+    "expectedValue": "FROM test3:'version'",
+    "actualValue": "FROM test3'"
   }
 ]
