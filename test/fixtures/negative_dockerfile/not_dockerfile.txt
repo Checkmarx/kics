@@ -1,0 +1,3 @@
+# should not flag since name is not "dockerfile" and extension is not .dockerfile, .ubi8 or .debian (.txt)
+
+FROM alpine:3.19 AS builder

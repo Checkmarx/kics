@@ -59,7 +59,9 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	for _, child := range parsed.AST.Children {
 		child.Value = strings.ToLower(child.Value)
 		if child.Value == "from" {
-			fromValue = strings.TrimPrefix(child.Original, "FROM ")
+			if strings.HasPrefix(strings.ToUpper(child.Original), "FROM ") {
+				fromValue = child.Original[5:]
+			}
 		}
 
 		if ignoreStruct.getIgnoreComments(child) {
@@ -133,7 +135,7 @@ func (p *Parser) GetKind() model.FileKind {
 
 // SupportedExtensions returns Dockerfile extensions
 func (p *Parser) SupportedExtensions() []string {
-	return []string{"Dockerfile", ".dockerfile", ".ubi8", ".debian", "possibleDockerfile"}
+	return []string{".dockerfile", ".ubi8", ".debian"}
 }
 
 // SupportedTypes returns types supported by this parser, which are dockerfile
