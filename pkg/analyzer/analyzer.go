@@ -102,7 +102,6 @@ var (
 		".yaml":       true,
 		".json":       true,
 		".dockerfile": true,
-		"dockerfile":  true,
 		".debian":     true,
 		".ubi8":       true,
 		".tf":         true,
