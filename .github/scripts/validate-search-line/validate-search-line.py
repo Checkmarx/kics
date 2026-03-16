@@ -63,7 +63,6 @@ def find_test_fixtures(query_dir):
     test_dir = Path(query_dir) / 'test'
     if not test_dir.exists():
         return []
-    
     fixtures = []
     for item in test_dir.glob('positive*.json'):
         fixtures.append(str(item))
