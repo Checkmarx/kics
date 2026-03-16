@@ -8,7 +8,6 @@ CxPolicy[result] {
 
 	not common_lib.valid_key(cluster, "private_cluster_enabled")
 
-
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_kubernetes_cluster",
