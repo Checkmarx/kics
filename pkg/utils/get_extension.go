@@ -24,10 +24,6 @@ func GetExtension(path string) (string, error) {
 		return "", fmt.Errorf("the path %s is a directory", path)
 	}
 
-	if strings.HasSuffix(filepath.Clean(path), "gitignore") {
-		return "gitignore", nil
-	}
-
 	if ext, ok := isDockerfileExtension(path, extDockerfile); ok {
 		return ext, nil
 	}
@@ -39,6 +35,9 @@ func GetExtension(path string) (string, error) {
 			return extDockerfile, nil
 		}
 	case "":
+		if strings.HasSuffix(filepath.Clean(path), "gitignore") {
+			return "gitignore", nil
+		}
 		if filepath.Base(path) == "tfvars" {
 			return ".tfvars", nil
 		}
