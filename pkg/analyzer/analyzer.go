@@ -437,7 +437,7 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 		case "gitignore":
 			unwanted <- a.filePath
 		// Dockerfile
-		case ".dockerfile", "dockerfile":
+		case ".dockerfile":
 			if a.isAvailableType(dockerfile) {
 				results <- dockerfile
 				locCount <- linesCount
