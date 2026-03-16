@@ -35,7 +35,8 @@ def fetch_pr_files():
     while page < 50:
         response = fetch(page, max_items)
         if response['status'] != 200:
-            return exit_with_error(f'Failed to fetch PR files\n- status code: {response["status"]}')
+            print(f"::error::Failed to fetch PR files\n- status code: {response["status"]}")
+            return sys.exit(1)
 
         for obj in response['data']:
             if obj['status'] != 'removed':
@@ -46,7 +47,8 @@ def fetch_pr_files():
 
         page += 1
 
-    return exit_with_error('Failed to fetch PR files - too many pages')
+    print("::error::Failed to fetch PR files - too many pages")
+    return sys.exit(1)
 
 def find_modified_queries(files):
     """Find modified query files (query.rego files)"""
@@ -75,7 +77,7 @@ def validate_query_results(query_dir):
     
     test_dir = Path(query_dir) / 'test'
     if not test_dir.exists():
-        print("No test directory found")
+        print(f"No test directory found with the path: {test_dir}")
         return True
     
     test_files = list(test_dir.glob('positive*')) + list(test_dir.glob('negative*'))
