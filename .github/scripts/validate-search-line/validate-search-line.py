@@ -49,7 +49,7 @@ def validate_query(query_dir):
 
     rego_file = query_dir / 'query.rego'
     if not rego_file.exists():
-        print(f"  [SKIP] query.rego not found")
+        print("  [SKIP] query.rego not found")
         return True
 
     try:
@@ -59,7 +59,7 @@ def validate_query(query_dir):
         return True
 
     if 'searchLine' not in content:
-        print(f"  [SKIP] searchLine not defined in query.rego")
+        print("  [SKIP] searchLine not defined in query.rego")
         return True
 
     # searchLine is defined — check if hardcoded to -1
@@ -67,7 +67,7 @@ def validate_query(query_dir):
         print(f"  ::error file={rego_file.relative_to(REPO_ROOT)}::searchLine is hardcoded to -1")
         return False
 
-    print(f"  [OK] query.rego defines searchLine correctly")
+    print("  [OK] query.rego defines searchLine correctly")
 
     return validate_expected_results(query_dir)
 
