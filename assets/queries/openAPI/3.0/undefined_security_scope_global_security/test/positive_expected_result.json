@@ -14,7 +14,7 @@
   {
     "queryName": "Undefined Scope 'securityScheme' On Global 'security' Field",
     "severity": "LOW",
-    "line": 23,
+    "line": 26,
     "filename": "positive2.json",
     "resourceType": "",
     "resourceName": "",
@@ -38,7 +38,7 @@
   {
     "queryName": "Undefined Scope 'securityScheme' On Global 'security' Field",
     "severity": "LOW",
-    "line": 15,
+    "line": 17,
     "filename": "positive4.yaml",
     "resourceType": "",
     "resourceName": "",

@@ -2,6 +2,18 @@
   {
     "queryName": "CNI Plugin Does Not Support Network Policies",
     "severity": "MEDIUM",
+    "line": 8,
+    "filename": "",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "plugins",
+    "searchValue": "",
+    "expectedValue": "Plugins should not contain a plugin that does not support Network Policies",
+    "actualValue": "Plugins contains a plugin that does not support Network Policies"
+  },
+  {
+    "queryName": "CNI Plugin Does Not Support Network Policies",
+    "severity": "MEDIUM",
     "line": 10,
     "filename": "positive2.yaml",
     "resourceType": "ConfigMap",

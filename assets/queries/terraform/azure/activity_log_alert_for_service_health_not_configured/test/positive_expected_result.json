@@ -2,13 +2,25 @@
   {
     "queryName": "Beta - Activity Log Alert For Service Health Not Configured",
     "severity": "MEDIUM",
-    "line": 3,
-    "filename": "positive6_1.tf",
+    "line": 8,
+    "filename": "positive1.tf",
     "resourceType": "azurerm_monitor_activity_log_alert",
-    "resourceName": "",
-    "searchKey": "azurerm_subscription[positive6]",
+    "resourceName": "ServiceHealthActivityLogAlert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive1_1].criteria",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'ServiceHealth' events should be defined for each subscription",
-    "actualValue": "There is not a single 'azurerm_monitor_activity_log_alert' resource associated with the 'positive6' subscription"
+    "actualValue": "None of the 'azurerm_monitor_activity_log_alert' resources monitor 'ServiceHealth' events"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Service Health Not Configured",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "ServiceHealthActivityLogAlert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive1_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'ServiceHealth' events should be defined for each subscription",
+    "actualValue": "None of the 'azurerm_monitor_activity_log_alert' resources monitor 'ServiceHealth' events"
   }
 ]

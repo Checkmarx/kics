@@ -38,6 +38,18 @@
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
+    "line": 79,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
+  },
+  {
+    "queryName": "Pattern Undefined (v3)",
+    "severity": "MEDIUM",
     "line": 27,
     "filename": "positive2.json",
     "resourceType": "",
@@ -79,6 +91,18 @@
     "resourceType": "",
     "resourceName": "",
     "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined"
+  },
+  {
+    "queryName": "Pattern Undefined (v3)",
+    "severity": "MEDIUM",
+    "line": 49,
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
     "actualValue": "'pattern' is undefined"

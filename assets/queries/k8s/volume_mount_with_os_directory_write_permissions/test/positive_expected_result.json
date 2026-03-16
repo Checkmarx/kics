@@ -9,7 +9,7 @@
     "searchKey": "metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-0}}",
     "searchValue": "PodreadOnly",
     "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-0}} should be defined and set to true and Enabled, respectively",
-    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-0}}%!(EXTRA string=pod-0, string=spec, string=containers, string=pod-0, string=vol-0)"
+    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-0}}"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
@@ -21,7 +21,7 @@
     "searchKey": "metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}}",
     "searchValue": "PodreadOnly",
     "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}} should be defined and set to true and Enabled, respectively",
-    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}}%!(EXTRA string=pod-0, string=spec, string=containers, string=pod-0, string=vol-1)"
+    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-0}}.spec.containers.name={{pod-0}}.volumeMounts.name={{vol-1}}"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
@@ -45,7 +45,7 @@
     "searchKey": "metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}}",
     "searchValue": "PodreadOnly",
     "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}} should be defined and set to true and Enabled, respectively",
-    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}}%!(EXTRA string=pod-1, string=spec, string=containers, string=pod-1, string=vol-0)"
+    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}}"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
@@ -69,7 +69,7 @@
     "searchKey": "metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}}",
     "searchValue": "PodrecursiveReadOnly",
     "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}} should be defined and set to true and Enabled, respectively",
-    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}}%!(EXTRA string=pod-1, string=spec, string=containers, string=pod-1, string=vol-1)"
+    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-1}}"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
@@ -105,7 +105,7 @@
     "searchKey": "metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}}",
     "searchValue": "PodrecursiveReadOnly",
     "expectedValue": "The properties readOnly and recursiveReadOnly in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}} should be defined and set to true and Enabled, respectively",
-    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}}%!(EXTRA string=pod-1, string=spec, string=containers, string=pod-1, string=vol-0)"
+    "actualValue": "Either readOnly or recursiveReadOnly is missing in metadata.name={{pod-1}}.spec.containers.name={{pod-1}}.volumeMounts.name={{vol-0}}"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
