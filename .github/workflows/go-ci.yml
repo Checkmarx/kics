@@ -124,7 +124,7 @@ jobs:
         working-directory: .github/scripts/validate-search-line/
         run: |
           pip3 install -r requirements.txt
-          python3 validate-search-line-lite.py
+          python3 validate-search-line.py
 
   security-scan:
     name: security-scan

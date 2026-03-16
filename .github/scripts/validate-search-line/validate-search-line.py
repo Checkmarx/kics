@@ -1,180 +1,149 @@
 #!/usr/bin/env python3
+"""
+Validates searchLine in modified KICS queries.
+Receives the list of changed files via CHANGED_QUERIES (JSON array from dorny/paths-filter).
+
+Validations (only run if query.rego defines searchLine):
+  1. searchLine must not be hardcoded to -1 in query.rego
+  2. In expected result files, searchLine must equal line
+"""
 
 import os
-import requests
+import re
 import json
-import subprocess
 import sys
 from pathlib import Path
 
-KICS_PR_NUMBER = os.getenv('KICS_PR_NUMBER')
-KICS_GITHUB_TOKEN = os.getenv('KICS_GITHUB_TOKEN')
+# Script lives at .github/scripts/validate-search-line/
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+
 
 def exit_with_error(message):
     print(f"::error::{message}")
     sys.exit(1)
 
-def exit_success():
-    print("All searchLine validations passed!")
-    sys.exit(0)
 
-def fetch(page=1, max_items=100):
-    """Fetch PR files from GitHub API"""
-    print(f'Fetching PR #{KICS_PR_NUMBER} files... page {page}')
-    headers = {'Authorization': f'token {KICS_GITHUB_TOKEN}'}
-    url = f'https://api.github.com/repos/checkmarx/kics/pulls/{KICS_PR_NUMBER}/files?per_page={max_items}&page={page}'
-    response = requests.get(url, headers=headers)
-    return {"data": response.json(), "status": response.status_code}
+def get_changed_queries():
+    """Get changed query.rego directories from CHANGED_QUERIES env var (JSON array from dorny/paths-filter)."""
+    changed = os.getenv('CHANGED_QUERIES', '')
+    if not changed:
+        exit_with_error("CHANGED_QUERIES environment variable is empty or not set")
 
-def fetch_pr_files():
-    """Fetch all files modified in the PR"""
-    files = []
-    page = 1
-    max_items = 100
-
-    while page < 50:
-        response = fetch(page, max_items)
-        if response['status'] != 200:
-            print(f"::error::Failed to fetch PR files\n- status code: {response["status"]}")
-            return sys.exit(1)
-
-        for obj in response['data']:
-            if obj['status'] != 'removed':
-                files.append(obj['filename'])
-
-        if len(response['data']) < max_items:
-            return files
-
-        page += 1
-
-    print("::error::Failed to fetch PR files - too many pages")
-    return sys.exit(1)
-
-def find_modified_queries(files):
-    """Find modified query files (query.rego files)"""
-    modified_queries = []
-    for file in files:
-        # Match patterns like assets/queries/terraform/*/query.rego
-        if file.startswith('assets/queries/') and file.endswith('/query.rego'):
-            query_dir = str(Path(file).parent)
-            modified_queries.append(query_dir)
-    return modified_queries
-
-def find_test_fixtures(query_dir):
-    """Find test fixtures for a query"""
-    test_dir = Path(query_dir) / 'test'
-    if not test_dir.exists():
-        return []
-    fixtures = []
-    for item in test_dir.glob('positive*.json'):
-        fixtures.append(str(item))
-    
-    return fixtures
-
-def validate_query_results(query_dir):
-    """Run KICS on test files and validate searchLine"""
-    print(f"\n🔍 Validating query: {query_dir}")
-    
-    test_dir = Path(query_dir) / 'test'
-    if not test_dir.exists():
-        print(f"No test directory found with the path: {test_dir}")
-        return True
-    
-    test_files = list(test_dir.glob('positive*')) + list(test_dir.glob('negative*'))
-    if not test_files:
-        print("No test files found")
-        return True
-    
-    for i, entry in range(test_files):
-        print(f"test_files[{i}]: {entry}\n")
-
-    # Run KICS on test directory using the compiled binary
-    kics_binary = './bin/kics'
-    cmd = [
-        kics_binary, 'scan',
-        '-p', str(test_dir),
-        '--queries', str(query_dir),
-        '-o', '/tmp/kics-result.json',
-        '--output-formats', 'json',
-        '--exclude-paths', 'test'
-    ]
-    
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, cwd='../..')
-        if result.returncode not in [0, 20, 40, 50]:  # KICS returns different codes for different scenarios
-            print(f"KICS scan returned code {result.returncode}")
-            if result.stderr:
-                print(f"       stderr: {result.stderr[:200]}")
-            return True  # Don't fail the validation if KICS itself fails
-    except FileNotFoundError:
-        print(f"KICS binary not found at {kics_binary}")
+        files = json.loads(changed)
+    except json.JSONDecodeError:
+        exit_with_error(f"CHANGED_QUERIES is not valid JSON: {changed}")
+
+    query_dirs = []
+    for f in files:
+        if f.endswith('/query.rego'):
+            query_dirs.append(REPO_ROOT / Path(f).parent)
+
+    return query_dirs
+
+
+def validate_query(query_dir):
+    """Validate searchLine for a single query directory."""
+    rel_dir = query_dir.relative_to(REPO_ROOT)
+    print(f"--- Validating: {rel_dir}")
+
+    rego_file = query_dir / 'query.rego'
+    if not rego_file.exists():
+        print(f"  [SKIP] query.rego not found")
         return True
+
+    try:
+        content = rego_file.read_text()
     except Exception as e:
-        print(f"Failed to run KICS: {e}")
+        print(f"  ::warning file={rego_file.relative_to(REPO_ROOT)}::Cannot read file: {e}")
         return True
-    
-    # Validate results
-    try:
-        with open('/tmp/kics-result.json', 'r') as f:
-            results = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        print("No results file generated")
+
+    if 'searchLine' not in content:
+        print(f"  [SKIP] searchLine not defined in query.rego")
         return True
-    
+
+    # searchLine is defined — check if hardcoded to -1
+    if re.search(r'"searchLine"\s*:\s*-1', content):
+        print(f"  ::error file={rego_file.relative_to(REPO_ROOT)}::searchLine is hardcoded to -1")
+        return False
+
+    print(f"  [OK] query.rego defines searchLine correctly")
+
+    return validate_expected_results(query_dir)
+
+
+def validate_expected_results(query_dir):
+    """Validate expected result files: searchLine must equal line."""
+    test_dir = query_dir / 'test'
+
+    if not test_dir.exists():
+        print("  [SKIP] No test directory found")
+        return True
+
+    expected_files = list(test_dir.glob('*expected_result*.json'))
+
+    if not expected_files:
+        print("  [SKIP] No expected result files found")
+        return True
+
     all_valid = True
-    results_list = results.get('results', [])
-    
-    if not results_list:
-        print("No issues found in test files")
-        return True
-    
-    for result in results_list:
-        search_line = result.get('searchLine', -1)
-        line = result.get('line', -1)
-        
-        # Validate searchLine
-        if search_line == -1:
-            print(f"searchLine is -1 for {result.get('fileName')}:{line}")
-            all_valid = False
-        elif search_line != line:
-            print(f"searchLine ({search_line}) != line ({line}) in {result.get('fileName')}")
-            all_valid = False
-        else:
-            print(f"{result.get('fileName')}:{line} - searchLine correctly set to {search_line}")
-    
+    for expected_file in expected_files:
+        try:
+            results = json.loads(expected_file.read_text())
+        except json.JSONDecodeError:
+            print(f"  ::warning file={expected_file.relative_to(REPO_ROOT)}::Invalid JSON")
+            continue
+        except Exception as e:
+            print(f"  ::warning file={expected_file.relative_to(REPO_ROOT)}::Error reading: {e}")
+            continue
+
+        if not isinstance(results, list):
+            results = [results]
+
+        for idx, result in enumerate(results):
+            search_line = result.get('searchLine')
+            line = result.get('line')
+
+            if search_line is None or line is None:
+                continue
+
+            rel_path = expected_file.relative_to(REPO_ROOT)
+
+            if search_line == -1:
+                print(f"  ::error file={rel_path}::Result [{idx}]: searchLine is -1 (line={line})")
+                all_valid = False
+            elif search_line != line:
+                print(f"  ::error file={rel_path}::Result [{idx}]: searchLine ({search_line}) != line ({line})")
+                all_valid = False
+            else:
+                print(f"  [OK] {rel_path}: result [{idx}] searchLine={search_line} matches line")
+
     return all_valid
+
 
 def main():
     print("Starting searchLine validation...\n")
-    
-    if not KICS_PR_NUMBER or not KICS_GITHUB_TOKEN:
-        exit_with_error("Missing KICS_PR_NUMBER or KICS_GITHUB_TOKEN environment variables")
-    
-    # Fetch modified files
-    pr_files = fetch_pr_files()
-    print(f"Found {len(pr_files)} modified files in PR\n")
-    
-    # Find modified queries
-    modified_queries = find_modified_queries(pr_files)
-    for i, entry in enumerate(modified_queries):
-        print(f"modified_queries[{i}: {entry}]\n")
-    
+
+    modified_queries = get_changed_queries()
+
     if not modified_queries:
-        print("No modified queries found in this PR")
-        exit_success()
-    
-    print(f"Found {len(modified_queries)} modified queries\n")
-    
-    # Validate each query
+        print("No query.rego files found in CHANGED_QUERIES - nothing to validate")
+        sys.exit(0)
+
+    print(f"Found {len(modified_queries)} modified queries to validate:\n")
+
     all_valid = True
     for query_dir in modified_queries:
-        if not validate_query_results(query_dir):
+        if not validate_query(query_dir):
             all_valid = False
-    
+        print()
+
     if all_valid:
-        exit_success()
+        print("All searchLine validations passed!")
+        sys.exit(0)
     else:
-        exit_with_error("Some searchLine validations failed. Please fix the issues above.")
+        exit_with_error("Some searchLine validations failed. See errors above.")
+
 
 if __name__ == "__main__":
     main()
