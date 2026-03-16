@@ -63,11 +63,10 @@ def validate_query(query_dir):
         return True
 
     # searchLine is defined — check if hardcoded to -1
+    print(f"I will check if re.search matches the regex with the following content: {content}")
     if re.search(r'"searchLine"\s*:\s*-1\b', content):
         print(f"  ::error file={rego_file.relative_to(REPO_ROOT)}::searchLine is hardcoded to -1")
         return False
-    else:
-        print(f"re.search returned false for the following content: {content}")
 
     print("  [OK] query.rego defines searchLine correctly")
 
