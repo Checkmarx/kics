@@ -91,7 +91,7 @@ func readPossibleDockerFile(path string) bool {
 		if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(strings.ToLower(scanner.Text()), "arg") || scanner.Text() == "" {
 			continue
 		} else {
-			if strings.HasPrefix(strings.ToLower(scanner.Text()), "from") {
+			if strings.HasPrefix(strings.ToLower(scanner.Text()), "from ") {
 				return true
 			} else {
 				return false
