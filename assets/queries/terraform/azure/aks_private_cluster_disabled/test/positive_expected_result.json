@@ -3,12 +3,12 @@
     "queryName": "AKS Private Cluster Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "AKS Private Cluster Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf"
   }
 ]
