@@ -1,0 +1,52 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Single volume with empty/null EFSVolumeConfiguration",
+  "Resources": {
+    "taskdefinition": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Name": {
+              "Ref": "AppName"
+            },
+            "MountPoints": [
+              {
+                "SourceVolume": "my-vol",
+                "ContainerPath": "/var/www/my-vol"
+              }
+            ],
+            "EntryPoint": [
+              "sh",
+              "-c"
+            ],
+            "Image": "busybox",
+            "Cpu": 256,
+            "Memory": 512,
+            "Command": [
+              "/bin/sh -c \"while true; do /bin/date > /var/www/my-vol/date; sleep 1; done\""
+            ],
+            "Essential": false,
+            "VolumesFrom": [
+              {
+                "SourceContainer": {
+                  "Ref": "AppName"
+                }
+              }
+            ]
+          }
+        ],
+        "Volumes": [
+          {
+            "Host": {
+              "SourcePath": "/var/lib/docker/vfs/dir/"
+            },
+            "EFSVolumeConfiguration": null,
+            "Name": "my-vol"
+          }
+        ]
+      }
+    }
+  }
+}
+
