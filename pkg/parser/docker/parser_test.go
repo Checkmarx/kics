@@ -235,3 +235,37 @@ func TestParser_GetResolvedFiles(t *testing.T) {
 		})
 	}
 }
+
+// TestParser_Parse_CaseInsensitive tests that the parser handles Dockerfile commands
+// in a case-insensitive manner
+func TestParser_Parse_CaseInsensitive(t *testing.T) {
+	p := &Parser{}
+
+	lower := `
+from alpine:3.18
+run echo "hello"
+`
+	mixed := `
+fRoM alpine:3.18
+rUn echo "hello"
+`
+
+	docUpper, _, err := p.Parse("Dockerfile", []byte(lower))
+	require.NoError(t, err)
+	require.Len(t, docUpper, 1)
+	require.Contains(t, docUpper[0]["command"], "alpine:3.18")
+
+	docMixed, _, err := p.Parse("Dockerfile", []byte(mixed))
+	require.NoError(t, err)
+	require.Len(t, docMixed, 1)
+	require.Contains(t, docMixed[0]["command"], "alpine:3.18")
+
+	cmdsUpper := docUpper[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
+	cmdsMixed := docMixed[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
+
+	require.Len(t, cmdsUpper, len(cmdsMixed))
+	for i := range cmdsUpper {
+		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Cmd"], cmdsMixed[i].(map[string]interface{})["Cmd"])
+		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Value"], cmdsMixed[i].(map[string]interface{})["Value"])
+	}
+}
