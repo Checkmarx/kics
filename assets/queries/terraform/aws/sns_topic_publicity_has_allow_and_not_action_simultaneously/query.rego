@@ -11,7 +11,7 @@ CxPolicy[result] {
 
 	validate_json(policy)
 
-	pol := common_lib.json_unmarshal(policy)
+	pol := common_lib.get_policy(policy)
 	st := common_lib.get_statement(pol)
 	statement := st[_]
 
@@ -38,7 +38,7 @@ CxPolicy[result] {
 
 	validate_json(policy)
 
-	pol := common_lib.json_unmarshal(policy)
+	pol := common_lib.get_policy(policy)
 	st := common_lib.get_statement(pol)
 	statement := st[_]
 
