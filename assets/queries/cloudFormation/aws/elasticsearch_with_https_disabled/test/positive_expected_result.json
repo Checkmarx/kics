@@ -9,7 +9,8 @@
     "searchKey": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS",
     "searchValue": "",
     "expectedValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be set to 'true'",
-    "actualValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'"
+    "actualValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is not set"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is not set"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS",
     "searchValue": "",
     "expectedValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be set to 'true'",
-    "actualValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'"
+    "actualValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

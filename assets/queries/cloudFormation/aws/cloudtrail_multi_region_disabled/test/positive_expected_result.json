@@ -9,7 +9,8 @@
     "searchKey": "Resources.myTrail.Properties.IsMultiRegionTrail",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' should be true",
-    "actualValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' is not true"
+    "actualValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' is not true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myTrail2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail2.Properties.IsMultiRegionTrail' should exist",
-    "actualValue": "'Resources.myTrail2.Properties.IsMultiRegionTrail' is missing"
+    "actualValue": "'Resources.myTrail2.Properties.IsMultiRegionTrail' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myTrail.Properties.IsMultiRegionTrail",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' should be true",
-    "actualValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' is not true"
+    "actualValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' is not true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.myTrail2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail2.Properties.IsMultiRegionTrail' should exist",
-    "actualValue": "'Resources.myTrail2.Properties.IsMultiRegionTrail' is missing"
+    "actualValue": "'Resources.myTrail2.Properties.IsMultiRegionTrail' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.myTrail.Properties.IsMultiRegionTrail",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' should be true",
-    "actualValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' is not true"
+    "actualValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' is not true",
+    "issueType": "IncorrectValue"
   }
 ]

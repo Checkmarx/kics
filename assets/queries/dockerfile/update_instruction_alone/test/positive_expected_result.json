@@ -9,7 +9,8 @@
     "searchKey": "FROM={{alpine:latest}}.RUN={{apk add nginx}}",
     "searchValue": "",
     "expectedValue": "Instruction 'RUN apk [\"add\"]' should be combined with 'RUN apk [\"update\"]' in the same 'RUN' statement",
-    "actualValue": "Instruction 'RUN apk [\"add\"]' isn't combined with 'RUN apk [\"update\"] in the same 'RUN' statement"
+    "actualValue": "Instruction 'RUN apk [\"add\"]' isn't combined with 'RUN apk [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Update Instruction Alone",
@@ -21,7 +22,8 @@
     "searchKey": "FROM={{opensuse:latest}}.RUN={{zypper install nginx}}",
     "searchValue": "",
     "expectedValue": "Instruction 'RUN zypper [\"install\"]' should be combined with 'RUN zypper [\"refresh\"]' in the same 'RUN' statement",
-    "actualValue": "Instruction 'RUN zypper [\"install\"]' isn't combined with 'RUN zypper [\"refresh\"] in the same 'RUN' statement"
+    "actualValue": "Instruction 'RUN zypper [\"install\"]' isn't combined with 'RUN zypper [\"refresh\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Update Instruction Alone",
@@ -33,7 +35,8 @@
     "searchKey": "FROM={{debian:latest}}.RUN={{apt install nginx}}",
     "searchValue": "",
     "expectedValue": "Instruction 'RUN apt [\"install\"]' should be combined with 'RUN apt [\"update\"]' in the same 'RUN' statement",
-    "actualValue": "Instruction 'RUN apt [\"install\"]' isn't combined with 'RUN apt [\"update\"] in the same 'RUN' statement"
+    "actualValue": "Instruction 'RUN apt [\"install\"]' isn't combined with 'RUN apt [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Update Instruction Alone",
@@ -45,7 +48,8 @@
     "searchKey": "FROM={{centos:latest}}.RUN={{yum install nginx}}",
     "searchValue": "",
     "expectedValue": "Instruction 'RUN yum [\"install\"]' should be combined with 'RUN yum [\"update\"]' in the same 'RUN' statement",
-    "actualValue": "Instruction 'RUN yum [\"install\"]' isn't combined with 'RUN yum [\"update\"] in the same 'RUN' statement"
+    "actualValue": "Instruction 'RUN yum [\"install\"]' isn't combined with 'RUN yum [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Update Instruction Alone",
@@ -57,7 +61,8 @@
     "searchKey": "FROM={{fedora:latest}}.RUN={{dnf install nginx}}",
     "searchValue": "",
     "expectedValue": "Instruction 'RUN dnf [\"install\"]' should be combined with 'RUN dnf [\"update\"]' in the same 'RUN' statement",
-    "actualValue": "Instruction 'RUN dnf [\"install\"]' isn't combined with 'RUN dnf [\"update\"] in the same 'RUN' statement"
+    "actualValue": "Instruction 'RUN dnf [\"install\"]' isn't combined with 'RUN dnf [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Update Instruction Alone",
@@ -69,7 +74,8 @@
     "searchKey": "FROM={{archlinux:latest}}.RUN={{pacman -S nginx}}",
     "searchValue": "",
     "expectedValue": "Instruction 'RUN pacman [\"-S\"]' should be combined with 'RUN pacman [\"-Syu\"]' in the same 'RUN' statement",
-    "actualValue": "Instruction 'RUN pacman [\"-S\"]' isn't combined with 'RUN pacman [\"-Syu\"] in the same 'RUN' statement"
+    "actualValue": "Instruction 'RUN pacman [\"-S\"]' isn't combined with 'RUN pacman [\"-Syu\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Update Instruction Alone",
@@ -81,6 +87,7 @@
     "searchKey": "FROM={{ubuntu:18.04}}.RUN={{apt-get install -y --no-install-recommends mysql-client     && rm -rf /var/lib/apt/lists/*}}",
     "searchValue": "",
     "expectedValue": "Instruction 'RUN apt-get [\"install\", \"source-install\", \"reinstall\"]' should be combined with 'RUN apt-get [\"update\"]' in the same 'RUN' statement",
-    "actualValue": "Instruction 'RUN apt-get [\"install\", \"source-install\", \"reinstall\"]' isn't combined with 'RUN apt-get [\"update\"] in the same 'RUN' statement"
+    "actualValue": "Instruction 'RUN apt-get [\"install\", \"source-install\", \"reinstall\"]' isn't combined with 'RUN apt-get [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue"
   }
 ]

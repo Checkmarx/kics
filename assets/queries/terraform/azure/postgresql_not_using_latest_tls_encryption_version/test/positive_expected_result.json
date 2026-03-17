@@ -9,6 +9,7 @@
     "searchKey": "azurerm_postgresql_server[negative2].minimum_tls_version",
     "searchValue": "",
     "expectedValue": "'ssl_minimal_tls_version_enforced' should be defined to 'TLS1_2'",
-    "actualValue": "'ssl_minimal_tls_version_enforced' is defined to 'TLS1_1'"
+    "actualValue": "'ssl_minimal_tls_version_enforced' is defined to 'TLS1_1'",
+    "issueType": "IncorrectValue"
   }
 ]

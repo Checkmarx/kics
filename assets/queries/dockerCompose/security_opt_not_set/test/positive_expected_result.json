@@ -9,6 +9,7 @@
     "searchKey": "services.webapp",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'security_opt' attribute",
-    "actualValue": "Docker compose file does not have 'security_opt' attribute"
+    "actualValue": "Docker compose file does not have 'security_opt' attribute",
+    "issueType": "MissingAttribute"
   }
 ]

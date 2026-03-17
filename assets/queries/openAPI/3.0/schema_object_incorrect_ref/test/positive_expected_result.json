@@ -9,7 +9,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema reference points to '#components/schemas'",
-    "actualValue": "Schema reference does not point to '#components/schemas'"
+    "actualValue": "Schema reference does not point to '#components/schemas'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Incorrect Ref (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema reference points to '#components/schemas'",
-    "actualValue": "Schema reference does not point to '#components/schemas'"
+    "actualValue": "Schema reference does not point to '#components/schemas'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Incorrect Ref (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema reference points to '#components/schemas'",
-    "actualValue": "Schema reference does not point to '#components/schemas'"
+    "actualValue": "Schema reference does not point to '#components/schemas'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Incorrect Ref (v3)",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema reference points to '#components/schemas'",
-    "actualValue": "Schema reference does not point to '#components/schemas'"
+    "actualValue": "Schema reference does not point to '#components/schemas'",
+    "issueType": "IncorrectValue"
   }
 ]

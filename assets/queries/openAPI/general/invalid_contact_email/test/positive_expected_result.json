@@ -9,7 +9,8 @@
     "searchKey": "info.contact.email",
     "searchValue": "",
     "expectedValue": "info.contact.email has a valid email",
-    "actualValue": "info.contact.email has an invalid email"
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Contact Email (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "info.contact.email",
     "searchValue": "",
     "expectedValue": "info.contact.email has a valid email",
-    "actualValue": "info.contact.email has an invalid email"
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Contact Email (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "info.contact.email",
     "searchValue": "",
     "expectedValue": "info.contact.email has a valid email",
-    "actualValue": "info.contact.email has an invalid email"
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Contact Email (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "info.contact.email",
     "searchValue": "",
     "expectedValue": "info.contact.email has a valid email",
-    "actualValue": "info.contact.email has an invalid email"
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue"
   }
 ]

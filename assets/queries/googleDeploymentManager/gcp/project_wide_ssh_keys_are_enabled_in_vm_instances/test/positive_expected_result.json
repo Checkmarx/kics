@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{vm}}.properties",
     "searchValue": "",
     "expectedValue": "'metadata' should be defined and not null",
-    "actualValue": "'metadata' is undefined or null"
+    "actualValue": "'metadata' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{vm}}.properties.metadata.items",
     "searchValue": "",
     "expectedValue": "'metadata.items' should have 'block-project-ssh-keys'",
-    "actualValue": "'metadata.items' does not have 'block-project-ssh-keys'"
+    "actualValue": "'metadata.items' does not have 'block-project-ssh-keys'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
@@ -33,6 +35,7 @@
     "searchKey": "resources.name={{vm}}.properties.metadata.items[1].key",
     "searchValue": "",
     "expectedValue": "'metadata.items[1].value' should be true",
-    "actualValue": "'metadata.items[1].value' is false"
+    "actualValue": "'metadata.items[1].value' is false",
+    "issueType": "IncorrectValue"
   }
 ]

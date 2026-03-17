@@ -9,7 +9,8 @@
     "searchKey": "Resources.DatabaseCluster.Properties.BackupRetentionPeriod",
     "searchValue": "",
     "expectedValue": "The RDS DBCluster 'DatabaseCluster' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBCluster 'DatabaseCluster' resource has backup retention period of '%!s(int=3)' which is less than the minimum of 7 days"
+    "actualValue": "The RDS DBCluster 'DatabaseCluster' resource has backup retention period of '%!s(int=3)' which is less than the minimum of 7 days",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyDBSmall.Properties.BackupRetentionPeriod",
     "searchValue": "",
     "expectedValue": "The RDS DBInstance 'MyDBSmall' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBCluster 'MyDBSmall' resource has backup retention period of '%!s(int=6)' which is less than the minimum of 7 days, and no RDS Cluster are defined"
+    "actualValue": "The RDS DBCluster 'MyDBSmall' resource has backup retention period of '%!s(int=6)' which is less than the minimum of 7 days, and no RDS Cluster are defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyDB.Properties",
     "searchValue": "",
     "expectedValue": "The RDS DBInstance 'MyDB' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBInstance 'MyDB' resource doesn't define a backup retention period and no RDS Cluster are defined"
+    "actualValue": "The RDS DBInstance 'MyDB' resource doesn't define a backup retention period and no RDS Cluster are defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.BadDatabaseCluster.Properties",
     "searchValue": "",
     "expectedValue": "The RDS DBCluster 'BadDatabaseCluster' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBCluster 'BadDatabaseCluster' resource doesn't define a backup retention period"
+    "actualValue": "The RDS DBCluster 'BadDatabaseCluster' resource doesn't define a backup retention period",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.DatabaseCluster.Properties.BackupRetentionPeriod",
     "searchValue": "",
     "expectedValue": "The RDS DBCluster 'DatabaseCluster' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBCluster 'DatabaseCluster' resource has backup retention period of '%!s(int=3)' which is less than the minimum of 7 days"
+    "actualValue": "The RDS DBCluster 'DatabaseCluster' resource has backup retention period of '%!s(int=3)' which is less than the minimum of 7 days",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.MyDBSmall.Properties.BackupRetentionPeriod",
     "searchValue": "",
     "expectedValue": "The RDS DBInstance 'MyDBSmall' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBCluster 'MyDBSmall' resource has backup retention period of '%!s(int=6)' which is less than the minimum of 7 days, and no RDS Cluster are defined"
+    "actualValue": "The RDS DBCluster 'MyDBSmall' resource has backup retention period of '%!s(int=6)' which is less than the minimum of 7 days, and no RDS Cluster are defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.MyDB.Properties",
     "searchValue": "",
     "expectedValue": "The RDS DBInstance 'MyDB' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBInstance 'MyDB' resource doesn't define a backup retention period and no RDS Cluster are defined"
+    "actualValue": "The RDS DBInstance 'MyDB' resource doesn't define a backup retention period and no RDS Cluster are defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.BadDatabaseCluster.Properties",
     "searchValue": "",
     "expectedValue": "The RDS DBCluster 'BadDatabaseCluster' resource should have backup retention period of at least 7 days",
-    "actualValue": "The RDS DBCluster 'BadDatabaseCluster' resource doesn't define a backup retention period"
+    "actualValue": "The RDS DBCluster 'BadDatabaseCluster' resource doesn't define a backup retention period",
+    "issueType": "MissingAttribute"
   }
 ]

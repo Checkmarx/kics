@@ -9,7 +9,8 @@
     "searchKey": "azurerm_virtual_machine[positive1]",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_machine[positive1].storage_os_disk' should be defined and not null",
-    "actualValue": "'azurerm_virtual_machine[positive1].storage_os_disk' is undefined or null"
+    "actualValue": "'azurerm_virtual_machine[positive1].storage_os_disk' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_virtual_machine[positive1_2].storage_os_disk.vhd_uri",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_machine[positive1_2].storage_os_disk.vhd_uri' should not be set",
-    "actualValue": "'azurerm_virtual_machine[positive1_2].storage_os_disk.vhd_uri' is set"
+    "actualValue": "'azurerm_virtual_machine[positive1_2].storage_os_disk.vhd_uri' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_virtual_machine[positive1_3].storage_os_disk",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_machine[positive1_3].storage_os_disk' should define a 'managed_disk_id' or 'managed_disk_type'",
-    "actualValue": "'azurerm_virtual_machine[positive1_3].storage_os_disk' does not define or sets to null 'managed_disk_id' and 'managed_disk_type'"
+    "actualValue": "'azurerm_virtual_machine[positive1_3].storage_os_disk' does not define or sets to null 'managed_disk_id' and 'managed_disk_type'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_linux_virtual_machine[positive2]",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_virtual_machine[positive2].os_managed_disk_id' should be defined and not null",
-    "actualValue": "'azurerm_linux_virtual_machine[positive2].os_managed_disk_id' is undefined or null"
+    "actualValue": "'azurerm_linux_virtual_machine[positive2].os_managed_disk_id' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_windows_virtual_machine[positive3]",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_virtual_machine[positive3].os_managed_disk_id' should be defined and not null",
-    "actualValue": "'azurerm_windows_virtual_machine[positive3].os_managed_disk_id' is undefined or null"
+    "actualValue": "'azurerm_windows_virtual_machine[positive3].os_managed_disk_id' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
@@ -69,7 +74,8 @@
     "searchKey": "azurerm_virtual_machine_scale_set[positive4_1].storage_profile_os_disk.vhd_containers",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_machine_scale_set[positive4_1].storage_profile_os_disk.vhd_containers' should not be set",
-    "actualValue": "'azurerm_virtual_machine_scale_set[positive4_1].storage_profile_os_disk.vhd_containers' is set"
+    "actualValue": "'azurerm_virtual_machine_scale_set[positive4_1].storage_profile_os_disk.vhd_containers' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
@@ -81,7 +87,8 @@
     "searchKey": "azurerm_virtual_machine_scale_set[positive4_2].storage_profile_os_disk",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_machine_scale_set[positive4_2].storage_profile_os_disk.managed_disk_type' should be defined and not null",
-    "actualValue": "'azurerm_virtual_machine_scale_set[positive4_2].storage_profile_os_disk.managed_disk_type' is undefined or null"
+    "actualValue": "'azurerm_virtual_machine_scale_set[positive4_2].storage_profile_os_disk.managed_disk_type' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
@@ -93,7 +100,8 @@
     "searchKey": "azurerm_virtual_machine[positive5].storage_os_disk.vhd_uri",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_machine[positive5].storage_os_disk.vhd_uri' should not be set",
-    "actualValue": "'azurerm_virtual_machine[positive5].storage_os_disk.vhd_uri' is set"
+    "actualValue": "'azurerm_virtual_machine[positive5].storage_os_disk.vhd_uri' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - VM Without Managed Disk",
@@ -105,6 +113,7 @@
     "searchKey": "azurerm_virtual_machine[positive6].storage_os_disk",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_machine[positive6].storage_os_disk' should define a 'managed_disk_id' or 'managed_disk_type'",
-    "actualValue": "'azurerm_virtual_machine[positive6].storage_os_disk' does not define or sets to null 'managed_disk_id' and 'managed_disk_type'"
+    "actualValue": "'azurerm_virtual_machine[positive6].storage_os_disk' does not define or sets to null 'managed_disk_id' and 'managed_disk_type'",
+    "issueType": "MissingAttribute"
   }
 ]

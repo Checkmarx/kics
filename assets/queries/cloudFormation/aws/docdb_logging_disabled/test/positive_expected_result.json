@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyDocDBCluster.Properties",
     "searchValue": "",
     "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should be defined",
-    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports is undefined"
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyDocDBCluster.Properties.EnableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should have all following values: audit, profiler",
-    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: audit, profiler"
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: audit, profiler",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyDocDBCluster.Properties.EnableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should have all following values: audit, profiler",
-    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: audit"
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: audit",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.MyDocDBCluster.Properties.EnableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should have all following values: audit, profiler",
-    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: profiler"
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: profiler",
+    "issueType": "IncorrectValue"
   }
 ]

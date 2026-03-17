@@ -9,6 +9,7 @@
     "searchKey": "alicloud_oss_bucket[bucket-website1].website",
     "searchValue": "",
     "expectedValue": "'website' to not be used.",
-    "actualValue": "'website' is being used."
+    "actualValue": "'website' is being used.",
+    "issueType": "IncorrectValue"
   }
 ]

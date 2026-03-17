@@ -9,7 +9,8 @@
     "searchKey": "resources[aws:docdb/cluster].properties",
     "searchValue": "",
     "expectedValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports should be defined",
-    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports is undefined"
+    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources[aws:docdb/cluster].properties.enabledCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports should have all following values: audit, profiler",
-    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports has the following missing values: audit, profiler"
+    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports has the following missing values: audit, profiler",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "resources[aws:docdb/cluster].properties.enabledCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports should have all following values: audit, profiler",
-    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports has the following missing values: profiler"
+    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports has the following missing values: profiler",
+    "issueType": "IncorrectValue"
   }
 ]

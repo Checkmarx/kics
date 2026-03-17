@@ -9,7 +9,8 @@
     "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
-    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'"
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
-    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'"
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
-    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'"
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
-    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'"
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "nifcloud_vpn_gateway[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_vpn_gateway[positive]' should include a security_group for security purposes.",
-    "actualValue": "'nifcloud_vpn_gateway[positive]' does not have a security_group defined."
+    "actualValue": "'nifcloud_vpn_gateway[positive]' does not have a security_group defined.",
+    "issueType": "MissingAttribute"
   }
 ]

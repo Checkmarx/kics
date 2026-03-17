@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{mycluster}}.properties",
     "searchValue": "",
     "expectedValue": "'privateClusterConfig' should be defined and not null",
-    "actualValue": "'privateClusterConfig' is undefined or null"
+    "actualValue": "'privateClusterConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Private Cluster Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{mycluster2}}.properties.privateClusterConfig",
     "searchValue": "",
     "expectedValue": "'enablePrivateNodes' should be defined and not null",
-    "actualValue": "'enablePrivateNodes' is undefined or null"
+    "actualValue": "'enablePrivateNodes' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Private Cluster Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "resources.name={{mycluster2}}.properties.privateClusterConfig.enablePrivateEndpoint",
     "searchValue": "",
     "expectedValue": "'enablePrivateEndpoint' should be set to true",
-    "actualValue": "'enablePrivateEndpoint' is set to false"
+    "actualValue": "'enablePrivateEndpoint' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

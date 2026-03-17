@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{server}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property defined",
-    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined"
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{server}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property defined",
-    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined"
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{server}}.properties.sslEnforcement",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property value set to 'Enabled'",
-    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'"
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{server}}.properties.sslEnforcement",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property value set to 'Enabled'",
-    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'"
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{server}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property defined",
-    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined"
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name={{server}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property defined",
-    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined"
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{server}}.properties.sslEnforcement",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property value set to 'Enabled'",
-    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'"
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name={{server}}.properties.sslEnforcement",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property value set to 'Enabled'",
-    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'"
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'",
+    "issueType": "IncorrectValue"
   }
 ]

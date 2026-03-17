@@ -9,7 +9,8 @@
     "searchKey": "Resources.LambdaFunction3.Properties.Environment.Variables",
     "searchValue": "",
     "expectedValue": "Resources.LambdaFunction3.Properties.Environment.Variables shouldn't contain access key",
-    "actualValue": "Resources.LambdaFunction3.Properties.Environment.Variables contains access key"
+    "actualValue": "Resources.LambdaFunction3.Properties.Environment.Variables contains access key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.LambdaFunction4.Properties.Environment.Variables",
     "searchValue": "",
     "expectedValue": "Resources.LambdaFunction4.Properties.Environment.Variables shouldn't contain access key",
-    "actualValue": "Resources.LambdaFunction4.Properties.Environment.Variables contains access key"
+    "actualValue": "Resources.LambdaFunction4.Properties.Environment.Variables contains access key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.LambdaFunction5.Properties.Environment.Variables",
     "searchValue": "",
     "expectedValue": "Resources.LambdaFunction5.Properties.Environment.Variables shouldn't contain access key",
-    "actualValue": "Resources.LambdaFunction5.Properties.Environment.Variables contains access key"
+    "actualValue": "Resources.LambdaFunction5.Properties.Environment.Variables contains access key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.LambdaFunction6.Properties.Environment.Variables",
     "searchValue": "",
     "expectedValue": "Resources.LambdaFunction6.Properties.Environment.Variables shouldn't contain access key",
-    "actualValue": "Resources.LambdaFunction6.Properties.Environment.Variables contains access key"
+    "actualValue": "Resources.LambdaFunction6.Properties.Environment.Variables contains access key",
+    "issueType": "IncorrectValue"
   }
 ]

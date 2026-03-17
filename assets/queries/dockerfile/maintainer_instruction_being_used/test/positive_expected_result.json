@@ -9,6 +9,7 @@
     "searchKey": "FROM={{alpine:3.5}}.MAINTAINER={{\"SvenDowideit@home.org.au\"}}",
     "searchValue": "",
     "expectedValue": "Maintainer instruction being used in Label 'LABEL maintainer=\"SvenDowideit@home.org.au\"'",
-    "actualValue": "Maintainer instruction not being used in Label 'MAINTAINER \"SvenDowideit@home.org.au\"'"
+    "actualValue": "Maintainer instruction not being used in Label 'MAINTAINER \"SvenDowideit@home.org.au\"'",
+    "issueType": "IncorrectValue"
   }
 ]

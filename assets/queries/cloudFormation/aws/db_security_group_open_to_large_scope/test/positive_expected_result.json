@@ -9,7 +9,8 @@
     "searchKey": "Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP",
     "searchValue": "",
     "expectedValue": "'Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP' should not have more than 256 hosts.",
-    "actualValue": "'Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP' has more than 256 hosts."
+    "actualValue": "'Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp",
     "searchValue": "",
     "expectedValue": "'Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp' should not have more than 256 hosts.",
-    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp' has more than 256 hosts."
+    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6",
     "searchValue": "",
     "expectedValue": "'Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6' should not have more than 256 hosts.",
-    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6' has more than 256 hosts."
+    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyDBSecurityGroupIngress.Properties.CIDRIP",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBSecurityGroupIngress.Properties.CIDRIP' should not have more than 256 hosts.",
-    "actualValue": "'Resources.MyDBSecurityGroupIngress.Properties.CIDRIP' has more than 256 hosts."
+    "actualValue": "'Resources.MyDBSecurityGroupIngress.Properties.CIDRIP' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.StandaloneIngressIPv4.Properties.CidrIp",
     "searchValue": "",
     "expectedValue": "'Resources.StandaloneIngressIPv4.Properties.CidrIp' should not have more than 256 hosts.",
-    "actualValue": "'Resources.StandaloneIngressIPv4.Properties.CidrIp' has more than 256 hosts."
+    "actualValue": "'Resources.StandaloneIngressIPv4.Properties.CidrIp' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.StandaloneIngressIPv6.Properties.CidrIpv6",
     "searchValue": "",
     "expectedValue": "'Resources.StandaloneIngressIPv6.Properties.CidrIpv6' should not have more than 256 hosts.",
-    "actualValue": "'Resources.StandaloneIngressIPv6.Properties.CidrIpv6' has more than 256 hosts."
+    "actualValue": "'Resources.StandaloneIngressIPv6.Properties.CidrIpv6' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP",
     "searchValue": "",
     "expectedValue": "'Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP' should not have more than 256 hosts.",
-    "actualValue": "'Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP' has more than 256 hosts."
+    "actualValue": "'Resources.DbSecurity.Properties.DBSecurityGroupIngress[0].CIDRIP' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp",
     "searchValue": "",
     "expectedValue": "'Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp' should not have more than 256 hosts.",
-    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp' has more than 256 hosts."
+    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup1.Properties.SecurityGroupIngress[0].CidrIp' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6",
     "searchValue": "",
     "expectedValue": "'Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6' should not have more than 256 hosts.",
-    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6' has more than 256 hosts."
+    "actualValue": "'Resources.DbSecurityByEC2SecurityGroup2.Properties.SecurityGroupIngress[0].CidrIpv6' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.MyDBSecurityGroupIngress.Properties.CIDRIP",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBSecurityGroupIngress.Properties.CIDRIP' should not have more than 256 hosts.",
-    "actualValue": "'Resources.MyDBSecurityGroupIngress.Properties.CIDRIP' has more than 256 hosts."
+    "actualValue": "'Resources.MyDBSecurityGroupIngress.Properties.CIDRIP' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.StandaloneIngressIPv4.Properties.CidrIp",
     "searchValue": "",
     "expectedValue": "'Resources.StandaloneIngressIPv4.Properties.CidrIp' should not have more than 256 hosts.",
-    "actualValue": "'Resources.StandaloneIngressIPv4.Properties.CidrIp' has more than 256 hosts."
+    "actualValue": "'Resources.StandaloneIngressIPv4.Properties.CidrIp' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Open To Large Scope",
@@ -141,6 +152,7 @@
     "searchKey": "Resources.StandaloneIngressIPv6.Properties.CidrIpv6",
     "searchValue": "",
     "expectedValue": "'Resources.StandaloneIngressIPv6.Properties.CidrIpv6' should not have more than 256 hosts.",
-    "actualValue": "'Resources.StandaloneIngressIPv6.Properties.CidrIpv6' has more than 256 hosts."
+    "actualValue": "'Resources.StandaloneIngressIPv6.Properties.CidrIpv6' has more than 256 hosts.",
+    "issueType": "IncorrectValue"
   }
 ]

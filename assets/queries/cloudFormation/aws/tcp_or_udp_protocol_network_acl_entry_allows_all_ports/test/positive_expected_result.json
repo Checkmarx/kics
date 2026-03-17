@@ -9,7 +9,8 @@
     "searchKey": "Resources.InboundRule2.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule2.Properties.PortRange.To should be set",
-    "actualValue": "Resources.InboundRule2.Properties.PortRange.To is undefined"
+    "actualValue": "Resources.InboundRule2.Properties.PortRange.To is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.InboundRule3.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule3.Properties.PortRange.From should be set",
-    "actualValue": "Resources.InboundRule3.Properties.PortRange.From is undefined"
+    "actualValue": "Resources.InboundRule3.Properties.PortRange.From is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.InboundRule4.Properties",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule4.Properties.PortRange should be set",
-    "actualValue": "Resources.InboundRule4.Properties.PortRange is undefined"
+    "actualValue": "Resources.InboundRule4.Properties.PortRange is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.InboundRule5.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule5.Properties.PortRange should not allow all ports",
-    "actualValue": "Resources.InboundRule5.Properties.PortRange allows all ports"
+    "actualValue": "Resources.InboundRule5.Properties.PortRange allows all ports",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.InboundRule2.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule2.Properties.PortRange.To should be set",
-    "actualValue": "Resources.InboundRule2.Properties.PortRange.To is undefined"
+    "actualValue": "Resources.InboundRule2.Properties.PortRange.To is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.InboundRule3.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule3.Properties.PortRange.From should be set",
-    "actualValue": "Resources.InboundRule3.Properties.PortRange.From is undefined"
+    "actualValue": "Resources.InboundRule3.Properties.PortRange.From is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.InboundRule4.Properties",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule4.Properties.PortRange should be set",
-    "actualValue": "Resources.InboundRule4.Properties.PortRange is undefined"
+    "actualValue": "Resources.InboundRule4.Properties.PortRange is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "TCP UDP Protocol Network ACL Entry Allows All Ports",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.InboundRule5.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule5.Properties.PortRange should not allow all ports",
-    "actualValue": "Resources.InboundRule5.Properties.PortRange allows all ports"
+    "actualValue": "Resources.InboundRule5.Properties.PortRange allows all ports",
+    "issueType": "MissingAttribute"
   }
 ]

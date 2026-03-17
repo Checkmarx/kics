@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/responses/Succes",
     "searchValue": "",
     "expectedValue": "Succes from #/responses/Succes should be declared on responses",
-    "actualValue": "Succes from #/responses/Succes is not declared on responses"
+    "actualValue": "Succes from #/responses/Succes is not declared on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Responses JSON Reference Does Not Exists (v2)",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/responses/Succes",
     "searchValue": "",
     "expectedValue": "Succes from #/responses/Succes should be declared on responses",
-    "actualValue": "Succes from #/responses/Succes is not declared on responses"
+    "actualValue": "Succes from #/responses/Succes is not declared on responses",
+    "issueType": "MissingAttribute"
   }
 ]

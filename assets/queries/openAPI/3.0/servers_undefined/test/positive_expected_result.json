@@ -9,7 +9,8 @@
     "searchKey": "openapi",
     "searchValue": "",
     "expectedValue": "Servers array has at least one server defined",
-    "actualValue": "Servers array does not have at least one server defined"
+    "actualValue": "Servers array does not have at least one server defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Servers Array Undefined",
@@ -21,7 +22,8 @@
     "searchKey": "servers",
     "searchValue": "",
     "expectedValue": "Servers array has at least one server defined",
-    "actualValue": "Servers array is empty"
+    "actualValue": "Servers array is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Servers Array Undefined",
@@ -33,7 +35,8 @@
     "searchKey": "openapi",
     "searchValue": "",
     "expectedValue": "Servers array has at least one server defined",
-    "actualValue": "Servers array does not have at least one server defined"
+    "actualValue": "Servers array does not have at least one server defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Servers Array Undefined",
@@ -45,6 +48,7 @@
     "searchKey": "servers",
     "searchValue": "",
     "expectedValue": "Servers array has at least one server defined",
-    "actualValue": "Servers array is empty"
+    "actualValue": "Servers array is empty",
+    "issueType": "IncorrectValue"
   }
 ]

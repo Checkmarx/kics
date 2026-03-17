@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyStream",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Kinesis",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.MyStream2",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "google_compute_disk[positive1]",
     "searchValue": "",
     "expectedValue": "'google_compute_disk[positive1].disk_encryption_key' should be defined and not null",
-    "actualValue": "'google_compute_disk[positive1].disk_encryption_key' is undefined or null"
+    "actualValue": "'google_compute_disk[positive1].disk_encryption_key' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "google_compute_disk[positive2].disk_encryption_key",
     "searchValue": "",
     "expectedValue": "'google_compute_disk[positive2].disk_encryption_key.raw_key' or 'google_compute_disk[%!s(MISSING)].disk_encryption_key.kms_key_self_link' should be defined and not null",
-    "actualValue": "'google_compute_disk[positive2].disk_encryption_key.raw_key' and 'google_compute_disk[%!s(MISSING)].disk_encryption_key.kms_key_self_link' are undefined or null"
+    "actualValue": "'google_compute_disk[positive2].disk_encryption_key.raw_key' and 'google_compute_disk[%!s(MISSING)].disk_encryption_key.kms_key_self_link' are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "google_compute_disk[positive3].disk_encryption_key.raw_key",
     "searchValue": "",
     "expectedValue": "'google_compute_disk[positive3].disk_encryption_key.raw_key' should not be empty or null",
-    "actualValue": "'google_compute_disk[positive3].disk_encryption_key.raw_key' is not empty or null"
+    "actualValue": "'google_compute_disk[positive3].disk_encryption_key.raw_key' is not empty or null",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "google_compute_disk[positive4].disk_encryption_key.kms_key_self_link",
     "searchValue": "",
     "expectedValue": "'google_compute_disk[positive4].disk_encryption_key.kms_key_self_link' should not be empty or null",
-    "actualValue": "'google_compute_disk[positive4].disk_encryption_key.kms_key_self_link' is not empty or null"
+    "actualValue": "'google_compute_disk[positive4].disk_encryption_key.kms_key_self_link' is not empty or null",
+    "issueType": "IncorrectValue"
   }
 ]

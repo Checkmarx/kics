@@ -9,7 +9,8 @@
     "searchKey": "FROM={{alpine:3.5}}.{{RUN gem install bundler}}",
     "searchValue": "",
     "expectedValue": "RUN gem install bundler is 'gem install <gem>:<version>'",
-    "actualValue": "RUN gem install bundler is 'gem install <gem>', you should use 'gem install <gem>:<version>"
+    "actualValue": "RUN gem install bundler is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Gem Install Without Version",
@@ -21,7 +22,8 @@
     "searchKey": "FROM={{alpine:3.5}}.{{RUN [\"gem\", \"install\", \"blunder\"]}}",
     "searchValue": "",
     "expectedValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>:<version>'",
-    "actualValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>', you should use 'gem install <gem>:<version>"
+    "actualValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Gem Install Without Version",
@@ -33,6 +35,7 @@
     "searchKey": "FROM={{alpine:3.5}}.{{RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder}}",
     "searchValue": "",
     "expectedValue": "RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>:<version>'",
-    "actualValue": "RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>', you should use 'gem install <gem>:<version>"
+    "actualValue": "RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue"
   }
 ]

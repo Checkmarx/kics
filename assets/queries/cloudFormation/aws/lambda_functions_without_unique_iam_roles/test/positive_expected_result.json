@@ -9,7 +9,8 @@
     "searchKey": "Resources.Primer01.Properties.Role",
     "searchValue": "",
     "expectedValue": "Each AWS Lambda Function has a unique role",
-    "actualValue": "Resource.Primer01.Properties.Role is assigned to another funtion"
+    "actualValue": "Resource.Primer01.Properties.Role is assigned to another funtion",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda Functions Without Unique IAM Roles",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Primer02.Properties.Role",
     "searchValue": "",
     "expectedValue": "Each AWS Lambda Function has a unique role",
-    "actualValue": "Resource.Primer02.Properties.Role is assigned to another funtion"
+    "actualValue": "Resource.Primer02.Properties.Role is assigned to another funtion",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda Functions Without Unique IAM Roles",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.Primer01.Properties.Role",
     "searchValue": "",
     "expectedValue": "Each AWS Lambda Function has a unique role",
-    "actualValue": "Resource.Primer01.Properties.Role is assigned to another funtion"
+    "actualValue": "Resource.Primer01.Properties.Role is assigned to another funtion",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda Functions Without Unique IAM Roles",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.Primer02.Properties.Role",
     "searchValue": "",
     "expectedValue": "Each AWS Lambda Function has a unique role",
-    "actualValue": "Resource.Primer02.Properties.Role is assigned to another funtion"
+    "actualValue": "Resource.Primer02.Properties.Role is assigned to another funtion",
+    "issueType": "IncorrectValue"
   }
 ]

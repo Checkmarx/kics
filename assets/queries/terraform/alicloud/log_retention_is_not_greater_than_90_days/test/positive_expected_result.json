@@ -9,7 +9,8 @@
     "searchKey": "alicloud_log_store[example2]",
     "searchValue": "",
     "expectedValue": "For attribute 'retention_period' should be set and over 90 days.",
-    "actualValue": "The attribute 'retention_period' is undefined. The default duration when undefined is 30 days, which is too short."
+    "actualValue": "The attribute 'retention_period' is undefined. The default duration when undefined is 30 days, which is too short.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Log Retention Is Not Greater Than 90 Days",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_log_store[example4].retention_period",
     "searchValue": "",
     "expectedValue": "For the attribite 'retention_period' should be set to 90+ days",
-    "actualValue": "The attribute 'retention_period' is not set to 90+ days"
+    "actualValue": "The attribute 'retention_period' is not set to 90+ days",
+    "issueType": "IncorrectValue"
   }
 ]

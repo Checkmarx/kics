@@ -9,7 +9,8 @@
     "searchKey": "Resources.NewAmpApp.Properties.AccessToken",
     "searchValue": "",
     "expectedValue": "Resources.NewAmpApp.Properties.AccessToken must not be in plain text string",
-    "actualValue": "Resources.NewAmpApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced"
+    "actualValue": "Resources.NewAmpApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Amplify App Access Token Exposed",
@@ -21,7 +22,8 @@
     "searchKey": "Parameters.ParentAccessToken.Default",
     "searchValue": "",
     "expectedValue": "Parameters.ParentAccessToken.Default should be defined",
-    "actualValue": "Parameters.ParentAccessToken.Default shouldn't be defined"
+    "actualValue": "Parameters.ParentAccessToken.Default shouldn't be defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Amplify App Access Token Exposed",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.NewApp.Properties.AccessToken",
     "searchValue": "",
     "expectedValue": "Resources.NewApp.Properties.AccessToken must not be in plain text string",
-    "actualValue": "Resources.NewApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced"
+    "actualValue": "Resources.NewApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Amplify App Access Token Exposed",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.NewAmpApp.Properties.AccessToken",
     "searchValue": "",
     "expectedValue": "Resources.NewAmpApp.Properties.AccessToken must not be in plain text string",
-    "actualValue": "Resources.NewAmpApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced"
+    "actualValue": "Resources.NewAmpApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Amplify App Access Token Exposed",
@@ -57,7 +61,8 @@
     "searchKey": "Parameters.ParentAccessToken.Default",
     "searchValue": "",
     "expectedValue": "Parameters.ParentAccessToken.Default should be defined",
-    "actualValue": "Parameters.ParentAccessToken.Default shouldn't be defined"
+    "actualValue": "Parameters.ParentAccessToken.Default shouldn't be defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Amplify App Access Token Exposed",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.NewApp.Properties.AccessToken",
     "searchValue": "",
     "expectedValue": "Resources.NewApp.Properties.AccessToken must not be in plain text string",
-    "actualValue": "Resources.NewApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced"
+    "actualValue": "Resources.NewApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   }
 ]

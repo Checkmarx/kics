@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket_policy[positive1].policy",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_policy[positive1].policy.Principal should not equal to, nor contain '*'",
-    "actualValue": "aws_s3_bucket_policy[positive1].policy.Principal is equal to or contains '*'"
+    "actualValue": "aws_s3_bucket_policy[positive1].policy.Principal is equal to or contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
@@ -21,6 +22,7 @@
     "searchKey": "module[s3_bucket].policy",
     "searchValue": "",
     "expectedValue": "'policy.Principal' should not equal to, nor contain '*'",
-    "actualValue": "'policy.Principal' is equal to or contains '*'"
+    "actualValue": "'policy.Principal' is equal to or contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "aws_sagemaker_notebook_instance[{{ni}}]",
     "searchValue": "",
     "expectedValue": "aws_sagemaker_notebook_instance.kms_key_id should be defined and not null",
-    "actualValue": "aws_sagemaker_notebook_instance.kms_key_id is undefined or null"
+    "actualValue": "aws_sagemaker_notebook_instance.kms_key_id is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

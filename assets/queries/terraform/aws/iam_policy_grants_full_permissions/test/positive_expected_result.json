@@ -9,7 +9,8 @@
     "searchKey": "aws_iam_user_policy[positive3].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should not equal '*'",
-    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'"
+    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
@@ -21,7 +22,8 @@
     "searchKey": "aws_iam_policy[s3-permission].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should not equal '*'",
-    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'"
+    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
@@ -33,7 +35,8 @@
     "searchKey": "aws_iam_policy_document[example-0]",
     "searchValue": "",
     "expectedValue": "'statement.resources' and 'statement.actions' should not contain '*'",
-    "actualValue": "'statement.resources' and 'statement.actions' contain '*'"
+    "actualValue": "'statement.resources' and 'statement.actions' contain '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
@@ -45,7 +48,8 @@
     "searchKey": "aws_iam_policy_document[example-1]",
     "searchValue": "",
     "expectedValue": "'statement.resources' and 'statement.actions' should not contain '*'",
-    "actualValue": "'statement.resources' and 'statement.actions' contain '*'"
+    "actualValue": "'statement.resources' and 'statement.actions' contain '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
@@ -57,6 +61,7 @@
     "searchKey": "aws_iam_policy_document[example-2]",
     "searchValue": "",
     "expectedValue": "'statement.resources' and 'statement.actions' should not contain '*'",
-    "actualValue": "'statement.resources' and 'statement.actions' contain '*'"
+    "actualValue": "'statement.resources' and 'statement.actions' contain '*'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "parameters.adminPassword.defaultValue",
     "searchValue": "",
     "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
-    "actualValue": "parameters.adminPassword.defaultValue is hardcoded"
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Hardcoded SecureString Parameter Default Value",
@@ -21,7 +22,8 @@
     "searchKey": "parameters.adminPassword.defaultValue",
     "searchValue": "",
     "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
-    "actualValue": "parameters.adminPassword.defaultValue is hardcoded"
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Hardcoded SecureString Parameter Default Value",
@@ -33,7 +35,8 @@
     "searchKey": "parameters.adminPassword.defaultValue",
     "searchValue": "",
     "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
-    "actualValue": "parameters.adminPassword.defaultValue is hardcoded"
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Hardcoded SecureString Parameter Default Value",
@@ -45,6 +48,7 @@
     "searchKey": "parameters.adminPassword.defaultValue",
     "searchValue": "",
     "expectedValue": "parameters.adminPassword.defaultValue should not be hardcoded",
-    "actualValue": "parameters.adminPassword.defaultValue is hardcoded"
+    "actualValue": "parameters.adminPassword.defaultValue is hardcoded",
+    "issueType": "IncorrectValue"
   }
 ]

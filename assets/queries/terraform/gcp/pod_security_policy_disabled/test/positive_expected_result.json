@@ -9,7 +9,8 @@
     "searchKey": "google_container_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "Attribute 'pod_security_policy_config' should be defined",
-    "actualValue": "Attribute 'pod_security_policy_config' is undefined"
+    "actualValue": "Attribute 'pod_security_policy_config' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pod Security Policy Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "google_container_cluster[positive2].pod_security_policy_config.enabled",
     "searchValue": "",
     "expectedValue": "Attribute 'enabled' of 'pod_security_policy_config' should be true",
-    "actualValue": "Attribute 'enabled' of 'pod_security_policy_config' is false"
+    "actualValue": "Attribute 'enabled' of 'pod_security_policy_config' is false",
+    "issueType": "IncorrectValue"
   }
 ]

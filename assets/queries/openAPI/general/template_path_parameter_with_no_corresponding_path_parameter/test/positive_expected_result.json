@@ -9,7 +9,8 @@
     "searchKey": "paths./users/{test-id}.get.parameters.name=test-id",
     "searchValue": "",
     "expectedValue": "Template path parameter should have an operation parameter with the same name and 'in' set to 'path'",
-    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'"
+    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths./users/{blabla}.get.parameters.name=id",
     "searchValue": "",
     "expectedValue": "Template path parameter should have an operation parameter with the same name and 'in' set to 'path'",
-    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'"
+    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths./people/{id}.get.parameters",
     "searchValue": "",
     "expectedValue": "Template path parameters should be defined for operation",
-    "actualValue": "Template path parameters is not defined for operation"
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths./users/{id}.get.parameters",
     "searchValue": "",
     "expectedValue": "Template path parameters should be defined for operation",
-    "actualValue": "Template path parameters is not defined for operation"
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths./people/{id}.get.parameters",
     "searchValue": "",
     "expectedValue": "Template path parameters should be defined for operation",
-    "actualValue": "Template path parameters is not defined for operation"
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths./users/{id}.get.parameters",
     "searchValue": "",
     "expectedValue": "Template path parameters should be defined for operation",
-    "actualValue": "Template path parameters is not defined for operation"
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths./users/{test-id}.get.parameters.name=test-id",
     "searchValue": "",
     "expectedValue": "Template path parameter should have an operation parameter with the same name and 'in' set to 'path'",
-    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'"
+    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
@@ -93,7 +100,8 @@
     "searchKey": "paths./users/{blabla}.get.parameters.name=id",
     "searchValue": "",
     "expectedValue": "Template path parameter should have an operation parameter with the same name and 'in' set to 'path'",
-    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'"
+    "actualValue": "Template path parameter does not have an operation parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
@@ -105,7 +113,8 @@
     "searchKey": "paths./people/{id}.get.parameters",
     "searchValue": "",
     "expectedValue": "Template path parameters should be defined for operation",
-    "actualValue": "Template path parameters is not defined for operation"
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
@@ -117,7 +126,8 @@
     "searchKey": "paths./users/{id}.get.parameters",
     "searchValue": "",
     "expectedValue": "Template path parameters should be defined for operation",
-    "actualValue": "Template path parameters is not defined for operation"
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
@@ -129,7 +139,8 @@
     "searchKey": "paths./people/{id}.get.parameters",
     "searchValue": "",
     "expectedValue": "Template path parameters should be defined for operation",
-    "actualValue": "Template path parameters is not defined for operation"
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Template Path With No Corresponding Path Parameter (v2)",
@@ -141,6 +152,7 @@
     "searchKey": "paths./users/{id}.get.parameters",
     "searchValue": "",
     "expectedValue": "Template path parameters should be defined for operation",
-    "actualValue": "Template path parameters is not defined for operation"
+    "actualValue": "Template path parameters is not defined for operation",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "nifcloud_db_security_group[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_db_security_group[positive]' set a more restrictive cidr range",
-    "actualValue": "'nifcloud_db_security_group[positive]' allows traffic from /0"
+    "actualValue": "'nifcloud_db_security_group[positive]' allows traffic from /0",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_ecr_repository[foo]",
     "searchValue": "",
     "expectedValue": "aws_ecr_repository[foo] has policies attached",
-    "actualValue": "aws_ecr_repository[foo] doesn't have policies attached"
+    "actualValue": "aws_ecr_repository[foo] doesn't have policies attached",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Repository Without Policy",
@@ -21,6 +22,7 @@
     "searchKey": "aws_ecr_repository[foo2]",
     "searchValue": "",
     "expectedValue": "aws_ecr_repository[foo2] has policies attached",
-    "actualValue": "aws_ecr_repository[foo2] doesn't have policies attached"
+    "actualValue": "aws_ecr_repository[foo2] doesn't have policies attached",
+    "issueType": "MissingAttribute"
   }
 ]

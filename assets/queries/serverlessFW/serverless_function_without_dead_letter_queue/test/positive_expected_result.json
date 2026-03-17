@@ -9,6 +9,7 @@
     "searchKey": "functions.hello",
     "searchValue": "",
     "expectedValue": "'onError' should be defined inside the function",
-    "actualValue": "'onError' is not defined"
+    "actualValue": "'onError' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

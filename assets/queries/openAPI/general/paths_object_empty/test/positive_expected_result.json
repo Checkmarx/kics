@@ -9,7 +9,8 @@
     "searchKey": "paths",
     "searchValue": "",
     "expectedValue": "The Paths Object should should not be empty",
-    "actualValue": "The Paths Object is empty"
+    "actualValue": "The Paths Object is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Paths Object is Empty (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "paths",
     "searchValue": "",
     "expectedValue": "The Paths Object should should not be empty",
-    "actualValue": "The Paths Object is empty"
+    "actualValue": "The Paths Object is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Paths Object is Empty (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths",
     "searchValue": "",
     "expectedValue": "The Paths Object should should not be empty",
-    "actualValue": "The Paths Object is empty"
+    "actualValue": "The Paths Object is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Paths Object is Empty (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "paths",
     "searchValue": "",
     "expectedValue": "The Paths Object should should not be empty",
-    "actualValue": "The Paths Object is empty"
+    "actualValue": "The Paths Object is empty",
+    "issueType": "IncorrectValue"
   }
 ]

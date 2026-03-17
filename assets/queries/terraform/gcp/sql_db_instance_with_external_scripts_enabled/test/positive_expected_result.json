@@ -9,7 +9,8 @@
     "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'external scripts enabled' to 'off'",
-    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'external scripts enabled' to 'on'"
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'external scripts enabled' to 'on'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - SQL DB Instance With External Scripts Enabled",
@@ -21,6 +22,7 @@
     "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'external scripts enabled' to 'off'",
-    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'external scripts enabled' to 'on'"
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'external scripts enabled' to 'on'",
+    "issueType": "IncorrectValue"
   }
 ]

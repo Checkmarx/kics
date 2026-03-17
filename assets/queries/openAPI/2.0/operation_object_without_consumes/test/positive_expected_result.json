@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.put",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.put 'consumes' should be defined",
-    "actualValue": "paths.{{/}}.put 'consumes' is missing"
+    "actualValue": "paths.{{/}}.put 'consumes' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Operation Object Without 'consumes'",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.put",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.put 'consumes' should be defined",
-    "actualValue": "paths.{{/}}.put 'consumes' is missing"
+    "actualValue": "paths.{{/}}.put 'consumes' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

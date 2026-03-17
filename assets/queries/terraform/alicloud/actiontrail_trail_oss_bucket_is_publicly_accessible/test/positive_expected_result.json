@@ -9,7 +9,8 @@
     "searchKey": "alicloud_oss_bucket[actiontrail3].acl",
     "searchValue": "",
     "expectedValue": "'alicloud_oss_bucket[actiontrail3].oss_bucket_name' is private",
-    "actualValue": "'alicloud_oss_bucket[actiontrail3].oss_bucket_name' is public-read"
+    "actualValue": "'alicloud_oss_bucket[actiontrail3].oss_bucket_name' is public-read",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ActionTrail Trail OSS Bucket is Publicly Accessible",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_oss_bucket[actiontrail4].acl",
     "searchValue": "",
     "expectedValue": "'alicloud_oss_bucket[actiontrail4].oss_bucket_name' is private",
-    "actualValue": "'alicloud_oss_bucket[actiontrail4].oss_bucket_name' is public-read-write"
+    "actualValue": "'alicloud_oss_bucket[actiontrail4].oss_bucket_name' is public-read-write",
+    "issueType": "IncorrectValue"
   }
 ]

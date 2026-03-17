@@ -9,7 +9,8 @@
     "searchKey": "Resources.TestCluster5.Properties",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster5.Properties.LoggingInfo should be defined",
-    "actualValue": "Resources.TestCluster5.Properties.LoggingInfo is undefined"
+    "actualValue": "Resources.TestCluster5.Properties.LoggingInfo is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.CloudWatchLogs.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.Firehose.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.S3.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.TestCluster7.Properties.LoggingInfo.BrokerLogs.CloudWatchLogs.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster7.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster7.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster7.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.TestCluster8.Properties",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster8.Properties.LoggingInfo should be defined",
-    "actualValue": "Resources.TestCluster8.Properties.LoggingInfo is undefined"
+    "actualValue": "Resources.TestCluster8.Properties.LoggingInfo is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs.CloudWatchLogs.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs.Firehose.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs.S3.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster9.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.TestCluster10.Properties.LoggingInfo.BrokerLogs.CloudWatchLogs.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster10.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster10.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster10.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.CloudWatchLogs.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.Firehose.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -153,6 +165,7 @@
     "searchKey": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs.S3.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is enabled",
-    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled"
+    "actualValue": "Resources.TestCluster6.Properties.LoggingInfo.BrokerLogs is disabled",
+    "issueType": "IncorrectValue"
   }
 ]

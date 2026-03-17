@@ -9,7 +9,8 @@
     "searchKey": "name={{example1}}.{{community.aws.cloudtrail}}.is_multi_region_trail",
     "searchValue": "",
     "expectedValue": "cloudtrail.is_multi_region_trail should be true",
-    "actualValue": "cloudtrail.is_multi_region_trail is false"
+    "actualValue": "cloudtrail.is_multi_region_trail is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "name={{example2}}.{{community.aws.cloudtrail}}",
     "searchValue": "",
     "expectedValue": "cloudtrail.is_multi_region_trail should be defined and set to true",
-    "actualValue": "cloudtrail.is_multi_region_trail is undefined"
+    "actualValue": "cloudtrail.is_multi_region_trail is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

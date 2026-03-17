@@ -9,6 +9,7 @@
     "searchKey": "azurerm_sql_server[positive2]",
     "searchValue": "",
     "expectedValue": "A 'azurerm_sql_active_directory_administrator' should be defined for 'azurerm_sql_server[positive2]'",
-    "actualValue": "A 'azurerm_sql_active_directory_administrator' is not defined for 'azurerm_sql_server[positive2]'"
+    "actualValue": "A 'azurerm_sql_active_directory_administrator' is not defined for 'azurerm_sql_server[positive2]'",
+    "issueType": "MissingAttribute"
   }
 ]

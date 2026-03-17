@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{tiller-deploy}}",
     "searchValue": "Service",
     "expectedValue": "metadata.name of Service should not contain 'tiller'",
-    "actualValue": "metadata.name of Service contains 'tiller'"
+    "actualValue": "metadata.name of Service contains 'tiller'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tiller Service Is Not Deleted",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{tiller-deploy}}",
     "searchValue": "Service",
     "expectedValue": "metadata.labels of Service should not have values that contain 'tiller'",
-    "actualValue": "metadata.labels.Service of name contains 'tiller'"
+    "actualValue": "metadata.labels.Service of name contains 'tiller'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tiller Service Is Not Deleted",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{tiller-deploy}}.spec.selector.name",
     "searchValue": "Service",
     "expectedValue": "spec.selector of Service should not have values that contain 'tiller'",
-    "actualValue": "spec.selector.Service of name contains 'tiller'"
+    "actualValue": "spec.selector.Service of name contains 'tiller'",
+    "issueType": "IncorrectValue"
   }
 ]

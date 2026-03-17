@@ -9,6 +9,7 @@
     "searchKey": "azure_rm_virtualmachine[testvm001].ssh_public_keys",
     "searchValue": "",
     "expectedValue": "'azure_rm_virtualmachine[testvm001]' should be using SSH keys for authentication",
-    "actualValue": "'azure_rm_virtualmachine[testvm001]' is using username and password for authentication"
+    "actualValue": "'azure_rm_virtualmachine[testvm001]' is using username and password for authentication",
+    "issueType": "MissingAttribute"
   }
 ]

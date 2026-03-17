@@ -9,7 +9,8 @@
     "searchKey": "Resources.LoadBalancer.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.LoadBalancer.Properties' has LoadBalancerAttributes defined",
-    "actualValue": "'Resources.LoadBalancer.Properties' doesn't have LoadBalancerAttributes defined"
+    "actualValue": "'Resources.LoadBalancer.Properties' doesn't have LoadBalancerAttributes defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.LoadBalancertest.Properties.LoadBalancerAttributes",
     "searchValue": "",
     "expectedValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' has access_logs.s3.enabled with Value true",
-    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true"
+    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.LoadBalancer.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.LoadBalancer.Properties' has LoadBalancerAttributes defined",
-    "actualValue": "'Resources.LoadBalancer.Properties' doesn't have LoadBalancerAttributes defined"
+    "actualValue": "'Resources.LoadBalancer.Properties' doesn't have LoadBalancerAttributes defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.LoadBalancertest.Properties.LoadBalancerAttributes",
     "searchValue": "",
     "expectedValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' has access_logs.s3.enabled with Value true",
-    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true"
+    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELBv2 ALB Access Log Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.LoadBalancertest.Properties.LoadBalancerAttributes",
     "searchValue": "",
     "expectedValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' has access_logs.s3.enabled with Value true",
-    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true"
+    "actualValue": "'Resources.LoadBalancertest.Properties.LoadBalancerAttributes' doesn't have access_logs.s3.enabled with Value true",
+    "issueType": "IncorrectValue"
   }
 ]

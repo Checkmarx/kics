@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyRepository.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration should be defined and not null",
-    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration is undefined or null"
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
-    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey is undefined or null"
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
-    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType is 'AES256'"
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
-    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType is 'AES256'"
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
-    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey is undefined or null"
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
-    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey is undefined or null"
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.ecrepo.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration should be defined and not null",
-    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration is undefined or null"
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType",
     "searchValue": "",
     "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
-    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType is 'AES256'"
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType",
     "searchValue": "",
     "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
-    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType is 'AES256'"
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
@@ -117,6 +126,7 @@
     "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
-    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey is undefined or null"
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

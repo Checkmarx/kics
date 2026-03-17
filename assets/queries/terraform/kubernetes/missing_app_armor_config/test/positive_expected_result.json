@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[example1].metadata.annotations",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[example1].metadata.annotations should contain AppArmor profile config: 'container.apparmor.security.beta.kubernetes.io'",
-    "actualValue": "kubernetes_pod[example1].metadata.annotations doesn't contain AppArmor profile config: 'container.apparmor.security.beta.kubernetes.io'"
+    "actualValue": "kubernetes_pod[example1].metadata.annotations doesn't contain AppArmor profile config: 'container.apparmor.security.beta.kubernetes.io'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Missing App Armor Config",
@@ -21,6 +22,7 @@
     "searchKey": "kubernetes_pod[example2].metadata",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[example2].metadata should include annotations for AppArmor profile config",
-    "actualValue": "kubernetes_pod[example2].metadata doesn't contain AppArmor profile config in annotations"
+    "actualValue": "kubernetes_pod[example2].metadata doesn't contain AppArmor profile config in annotations",
+    "issueType": "MissingAttribute"
   }
 ]

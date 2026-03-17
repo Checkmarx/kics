@@ -9,7 +9,8 @@
     "searchKey": "name={{create a node pool}}.{{google.cloud.gcp_container_node_pool}}",
     "searchValue": "",
     "expectedValue": "gcp_container_node_pool.management should be defined",
-    "actualValue": "gcp_container_node_pool.management is undefined"
+    "actualValue": "gcp_container_node_pool.management is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Node Auto Upgrade Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a second node pool}}.{{google.cloud.gcp_container_node_pool}}.management",
     "searchValue": "",
     "expectedValue": "gcp_container_node_pool.management.auto_upgrade should be defined",
-    "actualValue": "gcp_container_node_pool.management.auto_upgrade is undefined"
+    "actualValue": "gcp_container_node_pool.management.auto_upgrade is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Node Auto Upgrade Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "name={{create a third node pool}}.{{google.cloud.gcp_container_node_pool}}.management.auto_upgrade",
     "searchValue": "",
     "expectedValue": "gcp_container_node_pool.management.auto_upgrade should be true",
-    "actualValue": "gcp_container_node_pool.management.auto_upgrade is false"
+    "actualValue": "gcp_container_node_pool.management.auto_upgrade is false",
+    "issueType": "IncorrectValue"
   }
 ]

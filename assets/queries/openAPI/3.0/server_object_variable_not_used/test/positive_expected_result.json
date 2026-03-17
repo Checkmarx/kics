@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is not used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is not used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server Object Variable Not Used",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.servers.variables.{{base}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is used in 'paths.{{/}}.{{get}}.servers.{{0}}.url'",
-    "actualValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is not used in 'paths.{{/}}.{{get}}.servers.{{0}}.url '"
+    "actualValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is not used in 'paths.{{/}}.{{get}}.servers.{{0}}.url '",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server Object Variable Not Used",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is not used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is not used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server Object Variable Not Used",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.{{get}}.servers.variables.{{base}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is used in 'paths.{{/}}.{{get}}.servers.{{0}}.url'",
-    "actualValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is not used in 'paths.{{/}}.{{get}}.servers.{{0}}.url '"
+    "actualValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is not used in 'paths.{{/}}.{{get}}.servers.{{0}}.url '",
+    "issueType": "IncorrectValue"
   }
 ]

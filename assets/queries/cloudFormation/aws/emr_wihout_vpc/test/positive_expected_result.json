@@ -9,7 +9,8 @@
     "searchKey": "Resources.cluster.Properties.Instances",
     "searchValue": "",
     "expectedValue": "Resources.cluster.Properties.Instances.Ec2SubnetId should be defined and not null",
-    "actualValue": "Resources.cluster.Properties.Instances.Ec2SubnetId is undefined or null"
+    "actualValue": "Resources.cluster.Properties.Instances.Ec2SubnetId is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EMR Without VPC",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.cluster.Properties.Instances",
     "searchValue": "",
     "expectedValue": "Resources.cluster.Properties.Instances.Ec2SubnetId should be defined and not null",
-    "actualValue": "Resources.cluster.Properties.Instances.Ec2SubnetId is undefined or null"
+    "actualValue": "Resources.cluster.Properties.Instances.Ec2SubnetId is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

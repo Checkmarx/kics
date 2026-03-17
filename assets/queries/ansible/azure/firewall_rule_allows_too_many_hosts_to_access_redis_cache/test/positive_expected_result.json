@@ -9,6 +9,7 @@
     "searchKey": "name={{too_many_hosts}}.{{azure_rm_rediscachefirewallrule}}.start_ip_address",
     "searchValue": "",
     "expectedValue": "azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address should allow up to 255 hosts",
-    "actualValue": "azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address allow 65539 hosts"
+    "actualValue": "azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address allow 65539 hosts",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
     "searchValue": "",
     "expectedValue": "Type numeric should not have enum and constraining keywords",
-    "actualValue": "Type numeric has enum and minimum"
+    "actualValue": "Type numeric has enum and minimum",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Constraining Enum Property",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
     "searchValue": "",
     "expectedValue": "Type string should not have enum and constraining keywords",
-    "actualValue": "Type string has enum and maxLength"
+    "actualValue": "Type string has enum and maxLength",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Constraining Enum Property",
@@ -33,7 +35,8 @@
     "searchKey": "definitions.Category.properties.id.minimum",
     "searchValue": "",
     "expectedValue": "Type numeric should not have enum and constraining keywords",
-    "actualValue": "Type numeric has enum and minimum"
+    "actualValue": "Type numeric has enum and minimum",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Constraining Enum Property",
@@ -45,7 +48,8 @@
     "searchKey": "definitions.Category.properties.name.maxLength",
     "searchValue": "",
     "expectedValue": "Type string should not have enum and constraining keywords",
-    "actualValue": "Type string has enum and maxLength"
+    "actualValue": "Type string has enum and maxLength",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Constraining Enum Property",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
     "searchValue": "",
     "expectedValue": "Type numeric should not have enum and constraining keywords",
-    "actualValue": "Type numeric has enum and minimum"
+    "actualValue": "Type numeric has enum and minimum",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Constraining Enum Property",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
     "searchValue": "",
     "expectedValue": "Type string should not have enum and constraining keywords",
-    "actualValue": "Type string has enum and maxLength"
+    "actualValue": "Type string has enum and maxLength",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Constraining Enum Property",
@@ -81,7 +87,8 @@
     "searchKey": "definitions.Category.properties.id.minimum",
     "searchValue": "",
     "expectedValue": "Type numeric should not have enum and constraining keywords",
-    "actualValue": "Type numeric has enum and minimum"
+    "actualValue": "Type numeric has enum and minimum",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Constraining Enum Property",
@@ -93,6 +100,7 @@
     "searchKey": "definitions.Category.properties.name.maxLength",
     "searchValue": "",
     "expectedValue": "Type string should not have enum and constraining keywords",
-    "actualValue": "Type string has enum and maxLength"
+    "actualValue": "Type string has enum and maxLength",
+    "issueType": "IncorrectValue"
   }
 ]

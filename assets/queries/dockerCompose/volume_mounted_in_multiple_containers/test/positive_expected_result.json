@@ -9,7 +9,8 @@
     "searchKey": "services.old8k.volumes.bind.propagation",
     "searchValue": "",
     "expectedValue": "Volumes should not be mounted in multiple containers",
-    "actualValue": "Volumes are being mounted in multiple containers, mode: rshared"
+    "actualValue": "Volumes are being mounted in multiple containers, mode: rshared",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Volume Mounted In Multiple Containers",
@@ -21,7 +22,8 @@
     "searchKey": "services.old8k.volumes.bind.propagation",
     "searchValue": "",
     "expectedValue": "Volumes should not be mounted in multiple containers",
-    "actualValue": "Volumes are being mounted in multiple containers, mode: shared"
+    "actualValue": "Volumes are being mounted in multiple containers, mode: shared",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Volume Mounted In Multiple Containers",
@@ -33,7 +35,8 @@
     "searchKey": "services.old8k.volumes.bind.propagation",
     "searchValue": "",
     "expectedValue": "Volumes should not be mounted in multiple containers",
-    "actualValue": "Volumes are being mounted in multiple containers, mode: rslave"
+    "actualValue": "Volumes are being mounted in multiple containers, mode: rslave",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Volume Mounted In Multiple Containers",
@@ -45,6 +48,7 @@
     "searchKey": "services.old8k.volumes.bind.propagation",
     "searchValue": "",
     "expectedValue": "Volumes should not be mounted in multiple containers",
-    "actualValue": "Volumes are being mounted in multiple containers, mode: slave"
+    "actualValue": "Volumes are being mounted in multiple containers, mode: slave",
+    "issueType": "IncorrectValue"
   }
 ]

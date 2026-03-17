@@ -9,7 +9,8 @@
     "searchKey": "Resources.RDSCluster.Properties.StorageEncrypted",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster.Properties.StorageEncrypted should be set to true",
-    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false"
+    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.RDSCluster1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster1.Properties.StorageEncrypted should be defined",
-    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined"
+    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.RDSCluster.Properties.StorageEncrypted",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster.Properties.StorageEncrypted should be set to true",
-    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false"
+    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.RDSCluster1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster1.Properties.StorageEncrypted should be defined",
-    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined"
+    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.NoEncryption.Properties",
     "searchValue": "",
     "expectedValue": "Resources.NoEncryption.Properties.StorageEncrypted should be defined",
-    "actualValue": "Resources.NoEncryption.Properties.StorageEncrypted is undefined"
+    "actualValue": "Resources.NoEncryption.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.RDSCluster.Properties.StorageEncrypted",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster.Properties.StorageEncrypted should be set to true",
-    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false"
+    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue"
   }
 ]

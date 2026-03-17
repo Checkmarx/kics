@@ -9,6 +9,7 @@
     "searchKey": "name={{example ec2 group}}.{{ec2_group}}.rules.cidr_ip",
     "searchValue": "",
     "expectedValue": "'ec2_group.rules.cidr_ip' should be one of [10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12]",
-    "actualValue": "'ec2_group.rules.cidr_ip' is [0.0.0.0/0,10.0.0.0/8,192.168.1.0/24]"
+    "actualValue": "'ec2_group.rules.cidr_ip' is [0.0.0.0/0,10.0.0.0/8,192.168.1.0/24]",
+    "issueType": "IncorrectValue"
   }
 ]

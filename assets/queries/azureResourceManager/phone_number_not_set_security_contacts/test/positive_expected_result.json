@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Phone Number Not Set For Security Contacts",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Phone Number Not Set For Security Contacts",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Phone Number Not Set For Security Contacts",
@@ -45,6 +48,7 @@
     "searchKey": "properties.template.resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'phone' property defined",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'phone' property defined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.ConfigurationAggregator1.Properties.AccountAggregationSources",
     "searchValue": "",
     "expectedValue": "'Resources.ConfigurationAggregator1.Properties.AccountAggregationSources' have all configurations with AllAwsRegions",
-    "actualValue": "'Resources.ConfigurationAggregator1.Properties.AccountAggregationSources' has a configuration without AllAwsRegions"
+    "actualValue": "'Resources.ConfigurationAggregator1.Properties.AccountAggregationSources' has a configuration without AllAwsRegions",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ConfigurationAggregator2.Properties.AccountAggregationSources",
     "searchValue": "",
     "expectedValue": "'Resources.ConfigurationAggregator2.Properties.AccountAggregationSources' have all configurations with AllAwsRegions set to true",
-    "actualValue": "'Resources.ConfigurationAggregator2.Properties.AccountAggregationSources' has a configuration with AllAwsRegions set to false"
+    "actualValue": "'Resources.ConfigurationAggregator2.Properties.AccountAggregationSources' has a configuration with AllAwsRegions set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.ConfigurationAggregator3.Properties.OrganizationAggregationSource",
     "searchValue": "",
     "expectedValue": "'Resources.ConfigurationAggregator3.Properties.OrganizationAggregationSource.AllAwsRegions' should be set",
-    "actualValue": "'Resources.ConfigurationAggregator3.Properties.OrganizationAggregationSource.AllAwsRegions' is undefined"
+    "actualValue": "'Resources.ConfigurationAggregator3.Properties.OrganizationAggregationSource.AllAwsRegions' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.ConfigurationAggregator4.Properties.OrganizationAggregationSource.AllAwsRegions",
     "searchValue": "",
     "expectedValue": "'Resources.ConfigurationAggregator4.Properties.OrganizationAggregationSource.AllAwsRegions' is true",
-    "actualValue": "'Resources.ConfigurationAggregator4.Properties.OrganizationAggregationSource.AllAwsRegions' is false"
+    "actualValue": "'Resources.ConfigurationAggregator4.Properties.OrganizationAggregationSource.AllAwsRegions' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.ConfigurationAggregator5.Properties.AccountAggregationSources",
     "searchValue": "",
     "expectedValue": "'Resources.ConfigurationAggregator5.Properties.AccountAggregationSources' have all configurations with AllAwsRegions",
-    "actualValue": "'Resources.ConfigurationAggregator5.Properties.AccountAggregationSources' has a configuration without AllAwsRegions"
+    "actualValue": "'Resources.ConfigurationAggregator5.Properties.AccountAggregationSources' has a configuration without AllAwsRegions",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.ConfigurationAggregator6.Properties.AccountAggregationSources",
     "searchValue": "",
     "expectedValue": "'Resources.ConfigurationAggregator6.Properties.AccountAggregationSources' have all configurations with AllAwsRegions set to true",
-    "actualValue": "'Resources.ConfigurationAggregator6.Properties.AccountAggregationSources' has a configuration with AllAwsRegions set to false"
+    "actualValue": "'Resources.ConfigurationAggregator6.Properties.AccountAggregationSources' has a configuration with AllAwsRegions set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.ConfigurationAggregator7.Properties.OrganizationAggregationSource",
     "searchValue": "",
     "expectedValue": "'Resources.ConfigurationAggregator7.Properties.OrganizationAggregationSource.AllAwsRegions' should be set",
-    "actualValue": "'Resources.ConfigurationAggregator7.Properties.OrganizationAggregationSource.AllAwsRegions' is undefined"
+    "actualValue": "'Resources.ConfigurationAggregator7.Properties.OrganizationAggregationSource.AllAwsRegions' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.ConfigurationAggregator8.Properties.OrganizationAggregationSource.AllAwsRegions",
     "searchValue": "",
     "expectedValue": "'Resources.ConfigurationAggregator8.Properties.OrganizationAggregationSource.AllAwsRegions' is true",
-    "actualValue": "'Resources.ConfigurationAggregator8.Properties.OrganizationAggregationSource.AllAwsRegions' is false"
+    "actualValue": "'Resources.ConfigurationAggregator8.Properties.OrganizationAggregationSource.AllAwsRegions' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
@@ -105,6 +113,7 @@
     "searchKey": "Resources.ConfigurationAggregator2.Properties.AccountAggregationSources",
     "searchValue": "",
     "expectedValue": "'Resources.ConfigurationAggregator2.Properties.AccountAggregationSources' have all configurations with AllAwsRegions set to true",
-    "actualValue": "'Resources.ConfigurationAggregator2.Properties.AccountAggregationSources' has a configuration with AllAwsRegions set to false"
+    "actualValue": "'Resources.ConfigurationAggregator2.Properties.AccountAggregationSources' has a configuration with AllAwsRegions set to false",
+    "issueType": "IncorrectValue"
   }
 ]

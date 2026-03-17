@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' should be set to 'SSL' or 'HTTPS'",
-    "actualValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' isn't set to 'SSL' or 'HTTPS'"
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' isn't set to 'SSL' or 'HTTPS'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Without Secure Protocol",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Listeners.Protocol' should be set to 'SSL' or 'HTTPS'",
-    "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' isn't set to 'SSL' or 'HTTPS'"
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' isn't set to 'SSL' or 'HTTPS'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Without Secure Protocol",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' should be set to 'SSL' or 'HTTPS'",
-    "actualValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' isn't set to 'SSL' or 'HTTPS'"
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.InstanceProtocol' isn't set to 'SSL' or 'HTTPS'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Without Secure Protocol",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.MyLoadBalancer.Properties.Listeners",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Listeners.Protocol' should be set to 'SSL' or 'HTTPS'",
-    "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' isn't set to 'SSL' or 'HTTPS'"
+    "actualValue": "'Resources.MyLoadBalancer.Listeners.Protocol' isn't set to 'SSL' or 'HTTPS'",
+    "issueType": "MissingAttribute"
   }
 ]

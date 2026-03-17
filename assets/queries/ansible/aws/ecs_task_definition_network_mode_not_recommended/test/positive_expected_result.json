@@ -9,7 +9,8 @@
     "searchKey": "name={{Create task definition}}.{{community.aws.ecs_taskdefinition}}.network_mode",
     "searchValue": "",
     "expectedValue": "'ecs_taskdefinition.network_mode' should be set to 'awsvpc'",
-    "actualValue": "'ecs_taskdefinition.network_mode' is 'default'"
+    "actualValue": "'ecs_taskdefinition.network_mode' is 'default'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECS Task Definition Network Mode Not Recommended",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create task definition2}}.{{community.aws.ecs_taskdefinition}}.network_mode",
     "searchValue": "",
     "expectedValue": "'ecs_taskdefinition.network_mode' should be set to 'awsvpc'",
-    "actualValue": "'ecs_taskdefinition.network_mode' is 'none'"
+    "actualValue": "'ecs_taskdefinition.network_mode' is 'none'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{pod1}}.spec.serviceAccountName",
     "searchValue": "",
     "expectedValue": "'spec.serviceAccountName' should not be shared with other workloads",
-    "actualValue": "'spec.serviceAccountName' is shared with other workloads"
+    "actualValue": "'spec.serviceAccountName' is shared with other workloads",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shared Service Account",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{pod2}}.spec.serviceAccountName",
     "searchValue": "",
     "expectedValue": "'spec.serviceAccountName' should not be shared with other workloads",
-    "actualValue": "'spec.serviceAccountName' is shared with other workloads"
+    "actualValue": "'spec.serviceAccountName' is shared with other workloads",
+    "issueType": "IncorrectValue"
   }
 ]

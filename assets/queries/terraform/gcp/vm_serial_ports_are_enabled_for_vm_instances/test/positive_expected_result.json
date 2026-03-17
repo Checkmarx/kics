@@ -9,7 +9,8 @@
     "searchKey": "google_compute_instance[positive1].metadata.serial-port-enable",
     "searchValue": "",
     "expectedValue": "google_compute_instance[positive1].metadata.serial-port-enable should be set to false or undefined",
-    "actualValue": "google_compute_instance[positive1].metadata.serial-port-enable is true"
+    "actualValue": "google_compute_instance[positive1].metadata.serial-port-enable is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Serial Ports Are Enabled For VM Instances",
@@ -21,7 +22,8 @@
     "searchKey": "google_compute_project_metadata[positive2].metadata.serial-port-enable",
     "searchValue": "",
     "expectedValue": "google_compute_project_metadata[positive2].metadata.serial-port-enable should be set to false or undefined",
-    "actualValue": "google_compute_project_metadata[positive2].metadata.serial-port-enable is true"
+    "actualValue": "google_compute_project_metadata[positive2].metadata.serial-port-enable is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Serial Ports Are Enabled For VM Instances",
@@ -33,6 +35,7 @@
     "searchKey": "google_compute_project_metadata_item[positive3].value",
     "searchValue": "",
     "expectedValue": "google_compute_project_metadata[positive3].value should be set to false",
-    "actualValue": "google_compute_project_metadata[positive3].value is true"
+    "actualValue": "google_compute_project_metadata[positive3].value is true",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "aws_cloudtrail.positive1.enable_logging",
     "searchValue": "",
     "expectedValue": "aws_cloudtrail.positive1.enable_logging should be true",
-    "actualValue": "aws_cloudtrail.positive1.enable_logging is false"
+    "actualValue": "aws_cloudtrail.positive1.enable_logging is false",
+    "issueType": "IncorrectValue"
   }
 ]

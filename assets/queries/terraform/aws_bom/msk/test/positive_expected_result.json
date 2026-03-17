@@ -9,7 +9,8 @@
     "searchKey": "aws_msk_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS MSK",
@@ -21,6 +22,7 @@
     "searchKey": "aws_msk_cluster[positive2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

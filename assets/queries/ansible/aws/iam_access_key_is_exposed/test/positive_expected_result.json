@@ -9,7 +9,8 @@
     "searchKey": "name={{Create two new IAM users with API keys}}.{{community.aws.iam}}.access_key_state",
     "searchValue": "",
     "expectedValue": "iam.name should be 'root' for an active access key",
-    "actualValue": "iam.name is '{{ item }}' for an active access key"
+    "actualValue": "iam.name is '{{ item }}' for an active access key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Access Key Is Exposed",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Create Two Groups, Mario and Luigi}}.{{community.aws.iam}}.access_key_state",
     "searchValue": "",
     "expectedValue": "iam.name should be 'root' for an active access key",
-    "actualValue": "iam.name is '{{ item }}' for an active access key"
+    "actualValue": "iam.name is '{{ item }}' for an active access key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Access Key Is Exposed",
@@ -33,6 +35,7 @@
     "searchKey": "name={{Update user}}.{{community.aws.iam}}.access_key_state",
     "searchValue": "",
     "expectedValue": "iam.name should be 'root' for an active access key",
-    "actualValue": "iam.name is 'jdavila' for an active access key"
+    "actualValue": "iam.name is 'jdavila' for an active access key",
+    "issueType": "IncorrectValue"
   }
 ]

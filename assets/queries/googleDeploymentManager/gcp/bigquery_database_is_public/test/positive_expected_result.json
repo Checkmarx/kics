@@ -9,6 +9,7 @@
     "searchKey": "resources.name={{bigquery}}.properties.access[0].specialGroup",
     "searchValue": "",
     "expectedValue": "'access[0].specialGroup' should not equal to 'allAuthenticatedUsers'",
-    "actualValue": "'access[0].specialGroup' is equal to 'allAuthenticatedUsers'"
+    "actualValue": "'access[0].specialGroup' is equal to 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   }
 ]

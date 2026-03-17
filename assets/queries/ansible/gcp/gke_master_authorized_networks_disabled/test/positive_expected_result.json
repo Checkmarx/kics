@@ -9,7 +9,8 @@
     "searchKey": "name={{create a cluster}}.{{google.cloud.gcp_container_cluster}}.master_authorized_networks_config.enabled",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_authorized_networks_config.enabled should be true",
-    "actualValue": "gcp_container_cluster.master_authorized_networks_config.enabled is false"
+    "actualValue": "gcp_container_cluster.master_authorized_networks_config.enabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GKE Master Authorized Networks Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a second cluster}}.{{google.cloud.gcp_container_cluster}}.master_authorized_networks_config",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_authorized_networks_config.enabled should be defined",
-    "actualValue": "gcp_container_cluster.master_authorized_networks_config.enabled is undefined"
+    "actualValue": "gcp_container_cluster.master_authorized_networks_config.enabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GKE Master Authorized Networks Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "name={{create a third cluster}}.{{google.cloud.gcp_container_cluster}}",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_authorized_networks_config should be defined",
-    "actualValue": "gcp_container_cluster.master_authorized_networks_config is undefined"
+    "actualValue": "gcp_container_cluster.master_authorized_networks_config is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

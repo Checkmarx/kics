@@ -9,6 +9,7 @@
     "searchKey": "nifcloud_security_group[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_security_group[positive]' should include a description for auditing purposes",
-    "actualValue": "'nifcloud_security_group[positive]' does not have a description"
+    "actualValue": "'nifcloud_security_group[positive]' does not have a description",
+    "issueType": "MissingAttribute"
   }
 ]

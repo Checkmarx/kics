@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{my-cluster}}.properties",
     "searchValue": "",
     "expectedValue": "'masterAuthorizedNetworksConfig' should be defined and not null",
-    "actualValue": "'masterAuthorizedNetworksConfig' is undefined or null"
+    "actualValue": "'masterAuthorizedNetworksConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GKE Master Authorized Networks Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "resources.name={{my-cluster}}.properties.masterAuthorizedNetworksConfig.enabled",
     "searchValue": "",
     "expectedValue": "'masterAuthorizedNetworksConfig.enabled' should be true",
-    "actualValue": "'masterAuthorizedNetworksConfig.enabled' is false"
+    "actualValue": "'masterAuthorizedNetworksConfig.enabled' is false",
+    "issueType": "IncorrectValue"
   }
 ]

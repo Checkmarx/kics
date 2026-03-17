@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyDBInstance.Properties.CopyTagsToSnapshot",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false"
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyDBCluster.Properties.CopyTagsToSnapshot",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false"
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyDBInstance.Properties.CopyTagsToSnapshot",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false"
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyDBCluster.Properties.CopyTagsToSnapshot",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false"
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MyDBInstance.Properties.CopyTagsToSnapshot",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false"
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.MyDBCluster.Properties.CopyTagsToSnapshot",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false"
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.MyDBInstance.Properties.CopyTagsToSnapshot",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false"
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.MyDBCluster.Properties.CopyTagsToSnapshot",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false"
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.MyDBInstance.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is not defined"
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.MyDBCluster.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is not defined"
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.MyDBInstance.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is not defined"
+    "actualValue": "'Resources.MyDBInstance.Properties.CopyTagsToSnapshot' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Tags Not Copied to RDS Cluster Snapshot",
@@ -141,6 +152,7 @@
     "searchKey": "Resources.MyDBCluster.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' should be set to true",
-    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is not defined"
+    "actualValue": "'Resources.MyDBCluster.Properties.CopyTagsToSnapshot' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

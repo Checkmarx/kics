@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{bucket}}.properties",
     "searchValue": "",
     "expectedValue": "'versioning' should be defined and not null",
-    "actualValue": "'versioning' is undefined or null"
+    "actualValue": "'versioning' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Bucket Without Versioning",
@@ -21,6 +22,7 @@
     "searchKey": "resources.name={{bucket}}.properties.versioning.enabled",
     "searchValue": "",
     "expectedValue": "'versioning.enabled' should be true",
-    "actualValue": "'versioning.enabled' is false"
+    "actualValue": "'versioning.enabled' is false",
+    "issueType": "IncorrectValue"
   }
 ]

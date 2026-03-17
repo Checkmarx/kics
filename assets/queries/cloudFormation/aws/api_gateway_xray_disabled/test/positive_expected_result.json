@@ -9,7 +9,8 @@
     "searchKey": "Resources.ProdPos3.Properties.TracingEnabled",
     "searchValue": "",
     "expectedValue": "Resources.ProdPos3.Properties.TracingEnabled should be true",
-    "actualValue": "Resources.ProdPos3.Properties.TracingEnabled is false"
+    "actualValue": "Resources.ProdPos3.Properties.TracingEnabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ProdPos4.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ProdPos4.Properties.TracingEnabled should be defined",
-    "actualValue": "Resources.ProdPos4.Properties.TracingEnabled is undefined"
+    "actualValue": "Resources.ProdPos4.Properties.TracingEnabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.ProdPos1.Properties.TracingEnabled",
     "searchValue": "",
     "expectedValue": "Resources.ProdPos1.Properties.TracingEnabled should be true",
-    "actualValue": "Resources.ProdPos1.Properties.TracingEnabled is false"
+    "actualValue": "Resources.ProdPos1.Properties.TracingEnabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.ProdPos2.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ProdPos2.Properties.TracingEnabled should be defined",
-    "actualValue": "Resources.ProdPos2.Properties.TracingEnabled is undefined"
+    "actualValue": "Resources.ProdPos2.Properties.TracingEnabled is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

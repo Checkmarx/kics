@@ -9,6 +9,7 @@
     "searchKey": "aws_lambda_permission[apigw].source_arn",
     "searchValue": "",
     "expectedValue": "'source_arn' should not equal '/*/*'",
-    "actualValue": "'source_arn' is equal '/*/*'"
+    "actualValue": "'source_arn' is equal '/*/*'",
+    "issueType": "IncorrectValue"
   }
 ]

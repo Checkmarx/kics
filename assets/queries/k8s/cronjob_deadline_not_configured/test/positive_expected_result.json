@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{hello}}.spec",
     "searchValue": "",
     "expectedValue": "spec.startingDeadlineSeconds should be defined",
-    "actualValue": "spec.startingDeadlineSeconds is not defined"
+    "actualValue": "spec.startingDeadlineSeconds is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

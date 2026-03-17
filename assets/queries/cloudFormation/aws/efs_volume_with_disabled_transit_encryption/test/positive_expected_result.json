@@ -9,7 +9,8 @@
     "searchKey": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be enabled",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled"
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be defined",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)"
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.taskdefinition.Properties.Volumes[0]",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration should be defined",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration is not defined"
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.taskdefinition.Properties",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes should be defined",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes is not defined"
+    "actualValue": "Resources.taskdefinition.Properties.Volumes is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be enabled",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled"
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be defined",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)"
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.taskdefinition.Properties.Volumes[0]",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration should be defined",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration is not defined"
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.taskdefinition.Properties",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes should be defined",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes is not defined"
+    "actualValue": "Resources.taskdefinition.Properties.Volumes is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

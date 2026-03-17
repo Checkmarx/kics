@@ -9,7 +9,8 @@
     "searchKey": "name={{Basic cluster provisioning example04}}.{{community.aws.redshift}}.publicly_accessible",
     "searchValue": "",
     "expectedValue": "redshift.publicly_accessible should be set to false",
-    "actualValue": "redshift.publicly_accessible is true"
+    "actualValue": "redshift.publicly_accessible is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Publicly Accessible",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Basic cluster provisioning example05}}.{{community.aws.redshift}}.publicly_accessible",
     "searchValue": "",
     "expectedValue": "redshift.publicly_accessible should be set to false",
-    "actualValue": "redshift.publicly_accessible is true"
+    "actualValue": "redshift.publicly_accessible is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Publicly Accessible",
@@ -33,6 +35,7 @@
     "searchKey": "name={{Basic cluster provisioning example06}}.{{redshift}}.publicly_accessible",
     "searchValue": "",
     "expectedValue": "redshift.publicly_accessible should be set to false",
-    "actualValue": "redshift.publicly_accessible is true"
+    "actualValue": "redshift.publicly_accessible is true",
+    "issueType": "IncorrectValue"
   }
 ]

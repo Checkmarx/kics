@@ -9,7 +9,8 @@
     "searchKey": "Resources.RecordServiceS3Bucket.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration should be defined",
-    "actualValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration is undefined"
+    "actualValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status",
     "searchValue": "",
     "expectedValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status should be set to Enabled",
-    "actualValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status is set to Suspended"
+    "actualValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status is set to Suspended",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.RecordServiceS3Bucket.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration should be defined",
-    "actualValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration is undefined"
+    "actualValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status",
     "searchValue": "",
     "expectedValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status should be set to Enabled",
-    "actualValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status is set to Suspended"
+    "actualValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status is set to Suspended",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "aws_efs_file_system_policy[not_secure_policy].policy",
     "searchValue": "",
     "expectedValue": "aws_efs_file_system_policy[not_secure_policy].policy should not have wildcard in 'Action' and 'Principal'",
-    "actualValue": "aws_efs_file_system_policy[not_secure_policy].policy has wildcard in 'Action' or 'Principal'"
+    "actualValue": "aws_efs_file_system_policy[not_secure_policy].policy has wildcard in 'Action' or 'Principal'",
+    "issueType": "IncorrectValue"
   }
 ]

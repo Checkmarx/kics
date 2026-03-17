@@ -9,7 +9,8 @@
     "searchKey": "Resources.SampleBucketPolicy3.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement should not allow all actions from all principals",
-    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows all actions from all principals"
+    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows all actions from all principals",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket With All Permissions",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.SampleBucketPolicy4.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement should not allow all actions from all principals",
-    "actualValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement allows all actions from all principals"
+    "actualValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement allows all actions from all principals",
+    "issueType": "IncorrectValue"
   }
 ]

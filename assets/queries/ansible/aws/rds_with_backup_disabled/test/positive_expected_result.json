@@ -9,6 +9,7 @@
     "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group}}.{{community.aws.rds_instance}}.backup_retention_period",
     "searchValue": "",
     "expectedValue": "rds_instance should have the property 'backup_retention_period' greater than 0",
-    "actualValue": "rds_instance has the property 'backup_retention_period' assigned to 0"
+    "actualValue": "rds_instance has the property 'backup_retention_period' assigned to 0",
+    "issueType": "IncorrectValue"
   }
 ]

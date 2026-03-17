@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} should be set to 'multipart/form-data'",
-    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} is not set to 'multipart/form-data'"
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} is not set to 'multipart/form-data'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Content Type For Multiple Files Upload",
@@ -21,7 +22,8 @@
     "searchKey": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}}",
     "searchValue": "",
     "expectedValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} should be set to 'multipart/form-data'",
-    "actualValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} is not set to 'multipart/form-data'"
+    "actualValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} is not set to 'multipart/form-data'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Content Type For Multiple Files Upload",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} should be set to 'multipart/form-data'",
-    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} is not set to 'multipart/form-data'"
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} is not set to 'multipart/form-data'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Content Type For Multiple Files Upload",
@@ -45,6 +48,7 @@
     "searchKey": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}}",
     "searchValue": "",
     "expectedValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} should be set to 'multipart/form-data'",
-    "actualValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} is not set to 'multipart/form-data'"
+    "actualValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} is not set to 'multipart/form-data'",
+    "issueType": "IncorrectValue"
   }
 ]

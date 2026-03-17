@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{example}}.spec.forProvider",
     "searchValue": "",
     "expectedValue": "Cluster.spec.forProvider.settings should be defined and have a ClusterSetting which name is 'containerInsights' with 'enabled' value",
-    "actualValue": "Cluster.spec.forProvider.settings is not defined"
+    "actualValue": "Cluster.spec.forProvider.settings is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECS Cluster with Container Insights Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{example}}.spec.forProvider.settings",
     "searchValue": "",
     "expectedValue": "Cluster.spec.forProvider.settings should have a ClusterSetting which name is 'containerInsights' with 'enabled' value",
-    "actualValue": "Cluster.spec.forProvider.settings doesn't have a ClusterSetting which name is 'containerInsights' with 'enabled' value"
+    "actualValue": "Cluster.spec.forProvider.settings doesn't have a ClusterSetting which name is 'containerInsights' with 'enabled' value",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECS Cluster with Container Insights Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{example}}.spec.forProvider.settings",
     "searchValue": "",
     "expectedValue": "Cluster.spec.forProvider.settings should have a ClusterSetting which name is 'containerInsights' with 'enabled' value",
-    "actualValue": "Cluster.spec.forProvider.settings doesn't have a ClusterSetting which name is 'containerInsights' with 'enabled' value"
+    "actualValue": "Cluster.spec.forProvider.settings doesn't have a ClusterSetting which name is 'containerInsights' with 'enabled' value",
+    "issueType": "MissingAttribute"
   }
 ]

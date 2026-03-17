@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
     "searchValue": "",
     "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
-    "actualValue": "Property '$ref'alongside other properties"
+    "actualValue": "Property '$ref'alongside other properties",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "JSON '$ref' alongside other properties (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
     "searchValue": "",
     "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
-    "actualValue": "Property '$ref'alongside other properties"
+    "actualValue": "Property '$ref'alongside other properties",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "JSON '$ref' alongside other properties (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema",
     "searchValue": "",
     "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
-    "actualValue": "Property '$ref'alongside other properties"
+    "actualValue": "Property '$ref'alongside other properties",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "JSON '$ref' alongside other properties (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema",
     "searchValue": "",
     "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
-    "actualValue": "Property '$ref'alongside other properties"
+    "actualValue": "Property '$ref'alongside other properties",
+    "issueType": "MissingAttribute"
   }
 ]

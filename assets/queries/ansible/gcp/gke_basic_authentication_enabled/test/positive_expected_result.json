@@ -9,7 +9,8 @@
     "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_auth should be defined",
-    "actualValue": "gcp_container_cluster.master_auth is undefined"
+    "actualValue": "gcp_container_cluster.master_auth is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GKE Basic Authentication Enabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.master_auth",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_auth.username should be defined",
-    "actualValue": "gcp_container_cluster.master_auth.username is undefined"
+    "actualValue": "gcp_container_cluster.master_auth.username is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GKE Basic Authentication Enabled",
@@ -33,7 +35,8 @@
     "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.master_auth",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_auth.password should be defined",
-    "actualValue": "gcp_container_cluster.master_auth.password is undefined"
+    "actualValue": "gcp_container_cluster.master_auth.password is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GKE Basic Authentication Enabled",
@@ -45,7 +48,8 @@
     "searchKey": "name={{create a cluster4}}.{{google.cloud.gcp_container_cluster}}.master_auth.username",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_auth.username should be empty",
-    "actualValue": "gcp_container_cluster.master_auth.username is not empty"
+    "actualValue": "gcp_container_cluster.master_auth.username is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GKE Basic Authentication Enabled",
@@ -57,6 +61,7 @@
     "searchKey": "name={{create a cluster5}}.{{google.cloud.gcp_container_cluster}}.master_auth.password",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_auth.password should be empty",
-    "actualValue": "gcp_container_cluster.master_auth.password is not empty"
+    "actualValue": "gcp_container_cluster.master_auth.password is not empty",
+    "issueType": "IncorrectValue"
   }
 ]

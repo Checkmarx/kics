@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket[positive1]",
     "searchValue": "",
     "expectedValue": "'logging' should be defined and not null",
-    "actualValue": "'logging' is undefined or null"
+    "actualValue": "'logging' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Logging Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "module[s3_bucket]",
     "searchValue": "",
     "expectedValue": "'logging' should be defined and not null",
-    "actualValue": "'logging' is undefined or null"
+    "actualValue": "'logging' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Logging Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "aws_s3_bucket[examplee]",
     "searchValue": "",
     "expectedValue": "'logging' should be defined and not null",
-    "actualValue": "'logging' is undefined or null"
+    "actualValue": "'logging' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

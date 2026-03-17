@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--secure-port flag should not be set to 0",
-    "actualValue": "--secure-port flag is set to 0"
+    "actualValue": "--secure-port flag is set to 0",
+    "issueType": "IncorrectValue"
   }
 ]

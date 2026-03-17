@@ -9,7 +9,8 @@
     "searchKey": "Resources.DBInstanceSample1",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.DBInstanceSample2",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.DBInstanceRefSample2",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.DBInstanceSample3",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.DBInstanceRefSample3",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.DBInstanceSample4",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.DBInstanceSample5",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.DBInstanceSample6",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
@@ -105,6 +113,7 @@
     "searchKey": "Resources.DBInstanceSample5",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

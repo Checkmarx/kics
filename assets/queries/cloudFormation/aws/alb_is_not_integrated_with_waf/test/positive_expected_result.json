@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyLoadBalancer22",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer22' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
-    "actualValue": "'Resources.MyLoadBalancer22' does not have an 'internal' scheme and a 'WebACLAssociation' associated"
+    "actualValue": "'Resources.MyLoadBalancer22' does not have an 'internal' scheme and a 'WebACLAssociation' associated",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ALB Is Not Integrated With WAF",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyLoadBalancerV2",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancerV2' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
-    "actualValue": "'Resources.MyLoadBalancerV2' does not have an 'internal' scheme and a 'WebACLAssociation' associated"
+    "actualValue": "'Resources.MyLoadBalancerV2' does not have an 'internal' scheme and a 'WebACLAssociation' associated",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ALB Is Not Integrated With WAF",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyLoadBalancer22222222",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer22222222' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
-    "actualValue": "'Resources.MyLoadBalancer22222222' does not have an 'internal' scheme and a 'WebACLAssociation' associated"
+    "actualValue": "'Resources.MyLoadBalancer22222222' does not have an 'internal' scheme and a 'WebACLAssociation' associated",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ALB Is Not Integrated With WAF",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.MyLoadBalancerV22222",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancerV22222' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
-    "actualValue": "'Resources.MyLoadBalancerV22222' does not have an 'internal' scheme and a 'WebACLAssociation' associated"
+    "actualValue": "'Resources.MyLoadBalancerV22222' does not have an 'internal' scheme and a 'WebACLAssociation' associated",
+    "issueType": "MissingAttribute"
   }
 ]

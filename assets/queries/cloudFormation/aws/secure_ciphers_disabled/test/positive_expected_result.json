@@ -9,7 +9,8 @@
     "searchKey": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2",
-    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2"
+    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Secure Ciphers Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2",
-    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2"
+    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Secure Ciphers Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion is TLSv1.1 or TLSv1.2",
-    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2"
+    "actualValue": "Resources.cloudfrontdistribution.Properties.ViewerCertificate.MinimumProtocolVersion isn't TLSv1.1 or TLSv1.2",
+    "issueType": "IncorrectValue"
   }
 ]

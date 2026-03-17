@@ -9,7 +9,8 @@
     "searchKey": "name={{no sns topic name}}.{{community.aws.cloudtrail}}",
     "searchValue": "",
     "expectedValue": "cloudtrail.sns_topic_name should be set",
-    "actualValue": "cloudtrail.sns_topic_name is undefined"
+    "actualValue": "cloudtrail.sns_topic_name is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
@@ -21,6 +22,7 @@
     "searchKey": "name={{sns topic name defined}}.{{community.aws.cloudtrail}}.sns_topic_name",
     "searchValue": "",
     "expectedValue": "cloudtrail.sns_topic_name should be set",
-    "actualValue": "cloudtrail.sns_topic_name is empty"
+    "actualValue": "cloudtrail.sns_topic_name is empty",
+    "issueType": "IncorrectValue"
   }
 ]

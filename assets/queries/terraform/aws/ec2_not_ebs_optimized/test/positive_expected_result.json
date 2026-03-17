@@ -9,7 +9,8 @@
     "searchKey": "aws_instance[{{web}}]",
     "searchValue": "",
     "expectedValue": "'ebs_optimized' should be set to true",
-    "actualValue": "'ebs_optimized' is undefined or null"
+    "actualValue": "'ebs_optimized' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -21,7 +22,8 @@
     "searchKey": "aws_instance[{{web}}].ebs_optimized",
     "searchValue": "",
     "expectedValue": "'ebs_optimized' should be set to true",
-    "actualValue": "'ebs_optimized' is set to false"
+    "actualValue": "'ebs_optimized' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -33,7 +35,8 @@
     "searchKey": "module[ec2_instance]",
     "searchValue": "",
     "expectedValue": "'ebs_optimized' should be set to true",
-    "actualValue": "'ebs_optimized' is undefined or null"
+    "actualValue": "'ebs_optimized' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -45,6 +48,7 @@
     "searchKey": "module[ec2_instance].ebs_optimized",
     "searchValue": "",
     "expectedValue": "'ebs_optimized' should be set to true",
-    "actualValue": "'ebs_optimized' is set to false"
+    "actualValue": "'ebs_optimized' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

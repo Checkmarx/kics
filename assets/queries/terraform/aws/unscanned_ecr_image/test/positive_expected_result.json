@@ -9,7 +9,8 @@
     "searchKey": "aws_ecr_repository[positive1]",
     "searchValue": "",
     "expectedValue": "aws_ecr_repository[positive1].image_scanning_configuration should be defined",
-    "actualValue": "aws_ecr_repository[positive1].image_scanning_configuration is undefined"
+    "actualValue": "aws_ecr_repository[positive1].image_scanning_configuration is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Unscanned ECR Image",
@@ -21,6 +22,7 @@
     "searchKey": "aws_ecr_repository[positive2].image_scanning_configuration.scan_on_push",
     "searchValue": "",
     "expectedValue": "aws_ecr_repository[positive2].image_scanning_configuration.scan_on_push is true",
-    "actualValue": "aws_ecr_repository[positive2].image_scanning_configuration.scan_on_push is false"
+    "actualValue": "aws_ecr_repository[positive2].image_scanning_configuration.scan_on_push is false",
+    "issueType": "IncorrectValue"
   }
 ]

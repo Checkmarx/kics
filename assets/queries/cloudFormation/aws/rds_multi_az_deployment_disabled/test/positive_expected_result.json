@@ -9,7 +9,8 @@
     "searchKey": "Resources.MasterDB.Properties.MultiAZ",
     "searchValue": "",
     "expectedValue": "The RDS DBInstance 'MasterDB' should have Multi-Availability Zone enabled",
-    "actualValue": "The RDS DBInstance 'MasterDB' has MultiAZ value set to false"
+    "actualValue": "The RDS DBInstance 'MasterDB' has MultiAZ value set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Multi-AZ Deployment Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ReplicaDB.Properties",
     "searchValue": "",
     "expectedValue": "The RDS DBInstance 'ReplicaDB' should have Multi-Availability Zone enabled",
-    "actualValue": "The RDS DBInstance 'ReplicaDB' MultiAZ property is undefined and by default disabled"
+    "actualValue": "The RDS DBInstance 'ReplicaDB' MultiAZ property is undefined and by default disabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Multi-AZ Deployment Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MasterDB.Properties.MultiAZ",
     "searchValue": "",
     "expectedValue": "The RDS DBInstance 'MasterDB' should have Multi-Availability Zone enabled",
-    "actualValue": "The RDS DBInstance 'MasterDB' has MultiAZ value set to false"
+    "actualValue": "The RDS DBInstance 'MasterDB' has MultiAZ value set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Multi-AZ Deployment Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.ReplicaDB.Properties",
     "searchValue": "",
     "expectedValue": "The RDS DBInstance 'ReplicaDB' should have Multi-Availability Zone enabled",
-    "actualValue": "The RDS DBInstance 'ReplicaDB' MultiAZ property is undefined and by default disabled"
+    "actualValue": "The RDS DBInstance 'ReplicaDB' MultiAZ property is undefined and by default disabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Multi-AZ Deployment Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.MasterDB.Properties.MultiAZ",
     "searchValue": "",
     "expectedValue": "The RDS DBInstance 'MasterDB' should have Multi-Availability Zone enabled",
-    "actualValue": "The RDS DBInstance 'MasterDB' has MultiAZ value set to false"
+    "actualValue": "The RDS DBInstance 'MasterDB' has MultiAZ value set to false",
+    "issueType": "IncorrectValue"
   }
 ]

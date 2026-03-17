@@ -9,7 +9,8 @@
     "searchKey": "aws_athena_workgroup[{{example}}]",
     "searchValue": "",
     "expectedValue": "aws_athena_workgroup[{{example}}].configuration.result_configuration.encryption_configuration should be defined",
-    "actualValue": "aws_athena_workgroup[{{example}}].configuration is missing"
+    "actualValue": "aws_athena_workgroup[{{example}}].configuration is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Athena Workgroup Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "aws_athena_workgroup[{{example_2}}].configuration",
     "searchValue": "",
     "expectedValue": "aws_athena_workgroup[{{example_2}}].configuration.result_configuration.encryption_configuration should be defined",
-    "actualValue": "aws_athena_workgroup[{{example_2}}].configuration.result_configuration is missing"
+    "actualValue": "aws_athena_workgroup[{{example_2}}].configuration.result_configuration is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Athena Workgroup Not Encrypted",
@@ -33,6 +35,7 @@
     "searchKey": "aws_athena_workgroup[{{example_3}}].configuration.result_configuration",
     "searchValue": "",
     "expectedValue": "aws_athena_workgroup[{{example_3}}].configuration.result_configuration.encryption_configuration should be defined",
-    "actualValue": "aws_athena_workgroup[{{example_3}}].configuration.result_configuration.encryption_configuration is missing"
+    "actualValue": "aws_athena_workgroup[{{example_3}}].configuration.result_configuration.encryption_configuration is missing",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{restricted}}.spec.allowedProcMountTypes",
     "searchValue": "",
     "expectedValue": "AllowedProcMountTypes should contain the value Default",
-    "actualValue": "AllowedProcMountTypes contains the value Unmasked"
+    "actualValue": "AllowedProcMountTypes contains the value Unmasked",
+    "issueType": "IncorrectValue"
   }
 ]

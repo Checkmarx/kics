@@ -9,7 +9,8 @@
     "searchKey": "aws_default_vpc[positive1]",
     "searchValue": "",
     "expectedValue": "'aws_default_vpc' should not exist",
-    "actualValue": "'aws_default_vpc' exists"
+    "actualValue": "'aws_default_vpc' exists",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default VPC Exists",
@@ -21,6 +22,7 @@
     "searchKey": "vpc.default_vpc_name",
     "searchValue": "",
     "expectedValue": "'aws_default_vpc' should not exist",
-    "actualValue": "'aws_default_vpc' exists"
+    "actualValue": "'aws_default_vpc' exists",
+    "issueType": "IncorrectValue"
   }
 ]

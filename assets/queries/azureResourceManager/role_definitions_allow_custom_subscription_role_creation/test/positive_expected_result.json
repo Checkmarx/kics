@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
-    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')"
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
-    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')"
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
-    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')"
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
-    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')"
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
-    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')"
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name={{roleDef}}.properties.permissions.actions",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
-    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')"
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{roleDef}}.properties.permissions.actions",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
-    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')"
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Role Definitions Allow Custom Subscription Role Creation",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name={{roleDef}}.properties.permissions.actions",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Authorization/roleDefinitions' should not allow custom role creation",
-    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')"
+    "actualValue": "resource with type 'Microsoft.Authorization/roleDefinitions' allows custom role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
+    "issueType": "IncorrectValue"
   }
 ]

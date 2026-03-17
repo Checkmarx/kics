@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.404.$ref",
     "searchValue": "",
     "expectedValue": "NotRight from #/components/responses/NotRight should be declared on components.responses",
-    "actualValue": "NotRight from #/components/responses/NotRight is not declared on components.responses"
+    "actualValue": "NotRight from #/components/responses/NotRight is not declared on components.responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response JSON Reference Does Not Exist (v3)",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.responses.404.$ref",
     "searchValue": "",
     "expectedValue": "NotRight from #/components/responses/NotRight should be declared on components.responses",
-    "actualValue": "NotRight from #/components/responses/NotRight is not declared on components.responses"
+    "actualValue": "NotRight from #/components/responses/NotRight is not declared on components.responses",
+    "issueType": "MissingAttribute"
   }
 ]

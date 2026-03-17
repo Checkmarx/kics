@@ -9,6 +9,7 @@
     "searchKey": "name={{create a instance}}.{{google.cloud.gcp_compute_instance}}.service_accounts",
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.service_accounts.scopes should not contain 'cloud-platform'",
-    "actualValue": "gcp_compute_instance.service_accounts.scopes contains 'cloud-platform'"
+    "actualValue": "gcp_compute_instance.service_accounts.scopes contains 'cloud-platform'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{foo}}.{{community.aws.rds_instance}}.storage_encrypted",
     "searchValue": "",
     "expectedValue": "rds_instance.storage_encrypted should be set to true",
-    "actualValue": "rds_instance.storage_encrypted is set to false"
+    "actualValue": "rds_instance.storage_encrypted is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Instance Storage Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "name={{foo2}}.{{community.aws.rds_instance}}.storage_encrypted",
     "searchValue": "",
     "expectedValue": "rds_instance.storage_encrypted should be set to true",
-    "actualValue": "rds_instance.storage_encrypted is set to false"
+    "actualValue": "rds_instance.storage_encrypted is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Instance Storage Not Encrypted",
@@ -33,6 +35,7 @@
     "searchKey": "name={{foo3}}.{{community.aws.rds_instance}}",
     "searchValue": "",
     "expectedValue": "rds_instance.storage_encrypted should be set to true",
-    "actualValue": "rds_instance.storage_encrypted is undefined"
+    "actualValue": "rds_instance.storage_encrypted is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

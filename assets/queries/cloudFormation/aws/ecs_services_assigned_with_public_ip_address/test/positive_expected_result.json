@@ -9,7 +9,8 @@
     "searchKey": "Resources.ECSService.Properties.NetworkConfiguration.AwsvpcConfiguration.AssignPublicIp",
     "searchValue": "",
     "expectedValue": "'AssignPublicIp' field should be defined to 'DISABLED' (defaults to 'DISABLED')",
-    "actualValue": "'AssignPublicIp' field is defined to 'ENABLED'"
+    "actualValue": "'AssignPublicIp' field is defined to 'ENABLED'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECS Services assigned with public IP address",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.ECSService.Properties.NetworkConfiguration.AwsvpcConfiguration.AssignPublicIp",
     "searchValue": "",
     "expectedValue": "'AssignPublicIp' field should be defined to 'DISABLED' (defaults to 'DISABLED')",
-    "actualValue": "'AssignPublicIp' field is defined to 'ENABLED'"
+    "actualValue": "'AssignPublicIp' field is defined to 'ENABLED'",
+    "issueType": "IncorrectValue"
   }
 ]

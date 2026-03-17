@@ -9,7 +9,8 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp should not be open to the world",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp is open to the world"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp is open to the world",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Egress CIDR Open To World",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.OutboundRule.Properties.CidrIpv6",
     "searchValue": "",
     "expectedValue": "Resources.OutboundRule.Properties.CidrIpv6 should not be open to the world",
-    "actualValue": "Resources.OutboundRule.Properties.CidrIpv6 is open to the world"
+    "actualValue": "Resources.OutboundRule.Properties.CidrIpv6 is open to the world",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Egress CIDR Open To World",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp should not be open to the world",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp is open to the world"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp is open to the world",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Egress CIDR Open To World",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.OutboundRule.Properties.CidrIpv6",
     "searchValue": "",
     "expectedValue": "Resources.OutboundRule.Properties.CidrIpv6 should not be open to the world",
-    "actualValue": "Resources.OutboundRule.Properties.CidrIpv6 is open to the world"
+    "actualValue": "Resources.OutboundRule.Properties.CidrIpv6 is open to the world",
+    "issueType": "IncorrectValue"
   }
 ]

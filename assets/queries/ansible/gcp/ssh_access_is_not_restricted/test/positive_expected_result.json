@@ -9,6 +9,7 @@
     "searchKey": "name={{ssh_unrestricted}}.{{google.cloud.gcp_compute_firewall}}.allowed.ip_protocol=tcp.ports",
     "searchValue": "",
     "expectedValue": "gcp_compute_firewall.allowed.ip_protocol=tcp.ports shouldn't contain SSH port (22) with unrestricted ingress traffic",
-    "actualValue": "gcp_compute_firewall.allowed.ip_protocol=tcp.ports contain SSH port (22) with unrestricted ingress traffic"
+    "actualValue": "gcp_compute_firewall.allowed.ip_protocol=tcp.ports contain SSH port (22) with unrestricted ingress traffic",
+    "issueType": "IncorrectValue"
   }
 ]

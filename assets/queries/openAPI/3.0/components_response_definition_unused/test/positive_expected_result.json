@@ -9,7 +9,8 @@
     "searchKey": "components.responses.{{NotFound}}",
     "searchValue": "",
     "expectedValue": "Response should be used as reference somewhere",
-    "actualValue": "Response is not used as reference"
+    "actualValue": "Response is not used as reference",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Components Response Definition Is Unused",
@@ -21,6 +22,7 @@
     "searchKey": "components.responses.{{NotFound}}",
     "searchValue": "",
     "expectedValue": "Response should be used as reference somewhere",
-    "actualValue": "Response is not used as reference"
+    "actualValue": "Response is not used as reference",
+    "issueType": "IncorrectValue"
   }
 ]

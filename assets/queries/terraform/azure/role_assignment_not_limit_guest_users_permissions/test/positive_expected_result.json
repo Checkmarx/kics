@@ -9,6 +9,7 @@
     "searchKey": "azurerm_role_assignment[example].role_definition_id",
     "searchValue": "",
     "expectedValue": "azurerm_role_assignment[example].role_definition_id limits guest user permissions",
-    "actualValue": "azurerm_role_assignment[example].role_definition_id does not limit guest user permissions"
+    "actualValue": "azurerm_role_assignment[example].role_definition_id does not limit guest user permissions",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyDB.Properties.Port",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB.Properties.Port' should not be set to 1521",
-    "actualValue": "'Resources.MyDB.Properties.Port' is set to 1521"
+    "actualValue": "'Resources.MyDB.Properties.Port' is set to 1521",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Using Default Port",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyDB.Properties.Port",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB.Properties.Port' should not be set to 1521",
-    "actualValue": "'Resources.MyDB.Properties.Port' is set to 1521"
+    "actualValue": "'Resources.MyDB.Properties.Port' is set to 1521",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Using Default Port",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyDB.Properties.Port",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB.Properties.Port' should not be set to 3306",
-    "actualValue": "'Resources.MyDB.Properties.Port' is set to 3306"
+    "actualValue": "'Resources.MyDB.Properties.Port' is set to 3306",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Using Default Port",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.MyDB.Properties.Port",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB.Properties.Port' should not be set to 3306",
-    "actualValue": "'Resources.MyDB.Properties.Port' is set to 3306"
+    "actualValue": "'Resources.MyDB.Properties.Port' is set to 3306",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "google_container_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "'channel' should be defined to 'STABLE' or 'REGULAR' inside the 'release_channel' block",
-    "actualValue": "'release_channel' block is not defined"
+    "actualValue": "'release_channel' block is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Ensure GKE Version Management Is Automated Using Release Channels",
@@ -21,7 +22,8 @@
     "searchKey": "google_container_cluster[positive2].release_channel.channel",
     "searchValue": "",
     "expectedValue": "'channel' should be defined to 'STABLE' or 'REGULAR' inside the 'release_channel' block",
-    "actualValue": "'release_channel.channel' is defined to 'UNSPECIFIED'"
+    "actualValue": "'release_channel.channel' is defined to 'UNSPECIFIED'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Ensure GKE Version Management Is Automated Using Release Channels",
@@ -33,7 +35,8 @@
     "searchKey": "google_container_cluster[positive3].release_channel.channel",
     "searchValue": "",
     "expectedValue": "'channel' should be defined to 'STABLE' or 'REGULAR' inside the 'release_channel' block",
-    "actualValue": "'release_channel.channel' is defined to 'RAPID'"
+    "actualValue": "'release_channel.channel' is defined to 'RAPID'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Ensure GKE Version Management Is Automated Using Release Channels",
@@ -45,6 +48,7 @@
     "searchKey": "google_container_cluster[positive4].release_channel.channel",
     "searchValue": "",
     "expectedValue": "'channel' should be defined to 'STABLE' or 'REGULAR' inside the 'release_channel' block",
-    "actualValue": "'release_channel.channel' is defined to 'EXTENDED'"
+    "actualValue": "'release_channel.channel' is defined to 'EXTENDED'",
+    "issueType": "IncorrectValue"
   }
 ]

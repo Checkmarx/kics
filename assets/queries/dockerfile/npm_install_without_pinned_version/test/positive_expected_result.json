@@ -9,7 +9,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN npm install sax}}",
     "searchValue": "",
     "expectedValue": "'RUN npm install sax' uses npm install with a pinned version",
-    "actualValue": "'RUN npm install sax' does not uses npm install with a pinned version"
+    "actualValue": "'RUN npm install sax' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
@@ -21,7 +22,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN npm install sax --no-cache}}",
     "searchValue": "",
     "expectedValue": "'RUN npm install sax --no-cache' uses npm install with a pinned version",
-    "actualValue": "'RUN npm install sax --no-cache' does not uses npm install with a pinned version"
+    "actualValue": "'RUN npm install sax --no-cache' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
@@ -33,7 +35,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN npm install sax | grep fail && npm install sax@latest}}",
     "searchValue": "",
     "expectedValue": "'RUN npm install sax | grep fail && npm install sax@latest' uses npm install with a pinned version",
-    "actualValue": "'RUN npm install sax | grep fail && npm install sax@latest' does not uses npm install with a pinned version"
+    "actualValue": "'RUN npm install sax | grep fail && npm install sax@latest' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
@@ -45,7 +48,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN npm install sax@latest | grep fail && npm install sax}}",
     "searchValue": "",
     "expectedValue": "'RUN npm install sax@latest | grep fail && npm install sax' uses npm install with a pinned version",
-    "actualValue": "'RUN npm install sax@latest | grep fail && npm install sax' does not uses npm install with a pinned version"
+    "actualValue": "'RUN npm install sax@latest | grep fail && npm install sax' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
@@ -57,7 +61,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN npm install sax | grep fail && npm install sax}}",
     "searchValue": "",
     "expectedValue": "'RUN npm install sax | grep fail && npm install sax' uses npm install with a pinned version",
-    "actualValue": "'RUN npm install sax | grep fail && npm install sax' does not uses npm install with a pinned version"
+    "actualValue": "'RUN npm install sax | grep fail && npm install sax' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
@@ -69,7 +74,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN npm i -g @angular/cli}}",
     "searchValue": "",
     "expectedValue": "'RUN npm i -g @angular/cli' uses npm install with a pinned version",
-    "actualValue": "'RUN npm i -g @angular/cli' does not uses npm install with a pinned version"
+    "actualValue": "'RUN npm i -g @angular/cli' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
@@ -81,6 +87,7 @@
     "searchKey": "FROM={{node:12}}.{{RUN [\"npm\",\"add\",\"sax\"]}}",
     "searchValue": "",
     "expectedValue": "'RUN [\"npm\",\"add\",\"sax\"]' uses npm install with a pinned version",
-    "actualValue": "'RUN [\"npm\",\"add\",\"sax\"]' does not uses npm install with a pinned version"
+    "actualValue": "'RUN [\"npm\",\"add\",\"sax\"]' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "name={{Create s3 bucket}}.{{amazon.aws.s3_bucket}}.policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement' should not allow all actions to all principal",
-    "actualValue": "'policy.Statement' allows all actions to all principal"
+    "actualValue": "'policy.Statement' allows all actions to all principal",
+    "issueType": "IncorrectValue"
   }
 ]

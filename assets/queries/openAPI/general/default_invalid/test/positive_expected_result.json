@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
     "searchValue": "",
     "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type"
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Invalid (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.default",
     "searchValue": "",
     "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type"
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Invalid (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
     "searchValue": "",
     "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type"
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Invalid (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
     "searchValue": "",
     "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type"
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Invalid (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
     "searchValue": "",
     "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type"
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Invalid (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
     "searchValue": "",
     "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type"
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Invalid (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
     "searchValue": "",
     "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type"
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Invalid (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
     "searchValue": "",
     "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type"
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Invalid (v3)",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
     "searchValue": "",
     "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type"
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Invalid (v2)",
@@ -117,6 +126,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.default",
     "searchValue": "",
     "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type"
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   }
 ]

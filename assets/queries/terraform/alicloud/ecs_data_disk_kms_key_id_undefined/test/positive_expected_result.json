@@ -9,6 +9,7 @@
     "searchKey": "alicloud_disk[ecs_disk]",
     "searchValue": "",
     "expectedValue": "[ecs_disk] has kms key id defined",
-    "actualValue": "[ecs_disk] does not have kms key id defined"
+    "actualValue": "[ecs_disk] does not have kms key id defined",
+    "issueType": "MissingAttribute"
   }
 ]

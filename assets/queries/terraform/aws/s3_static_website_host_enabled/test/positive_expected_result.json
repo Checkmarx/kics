@@ -9,7 +9,8 @@
     "searchKey": "resource.aws_s3_bucket[positive1].website",
     "searchValue": "",
     "expectedValue": "resource.aws_s3_bucket[positive1].website to not have static websites inside",
-    "actualValue": "resource.aws_s3_bucket[positive1].website does have static websites inside"
+    "actualValue": "resource.aws_s3_bucket[positive1].website does have static websites inside",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Static Website Host Enabled",
@@ -21,7 +22,8 @@
     "searchKey": "module[s3_bucket].website",
     "searchValue": "",
     "expectedValue": "'website' to not have static websites inside",
-    "actualValue": "'website' does have static websites inside"
+    "actualValue": "'website' does have static websites inside",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Static Website Host Enabled",
@@ -33,6 +35,7 @@
     "searchKey": "aws_s3_bucket[buc]",
     "searchValue": "",
     "expectedValue": "'aws_s3_bucket' to not have 'aws_s3_bucket_website_configuration' associated",
-    "actualValue": "'aws_s3_bucket' has 'aws_s3_bucket_website_configuration' associated"
+    "actualValue": "'aws_s3_bucket' has 'aws_s3_bucket_website_configuration' associated",
+    "issueType": "MissingAttribute"
   }
 ]

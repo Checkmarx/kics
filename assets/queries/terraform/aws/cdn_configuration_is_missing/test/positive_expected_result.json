@@ -9,7 +9,8 @@
     "searchKey": "resource.aws_cloudfront_distribution[positive1].enabled",
     "searchValue": "",
     "expectedValue": "resource.aws_cloudfront_distribution[positive1].enabled should be set to 'true'",
-    "actualValue": "resource.aws_cloudfront_distribution[positive1].enabled is configured as 'false'"
+    "actualValue": "resource.aws_cloudfront_distribution[positive1].enabled is configured as 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CDN Configuration Is Missing",
@@ -21,7 +22,8 @@
     "searchKey": "resource.aws_cloudfront_distribution[positive2]",
     "searchValue": "origin",
     "expectedValue": "resource.aws_cloudfront_distribution[positive2].origin should be defined",
-    "actualValue": "resource.aws_cloudfront_distribution[positive2].origin is not defined"
+    "actualValue": "resource.aws_cloudfront_distribution[positive2].origin is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CDN Configuration Is Missing",
@@ -33,6 +35,7 @@
     "searchKey": "resource.aws_cloudfront_distribution[positive2]",
     "searchValue": "enabled",
     "expectedValue": "resource.aws_cloudfront_distribution[positive2].enabled should be set to 'true'",
-    "actualValue": "resource.aws_cloudfront_distribution[positive2].enabled is not defined"
+    "actualValue": "resource.aws_cloudfront_distribution[positive2].enabled is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

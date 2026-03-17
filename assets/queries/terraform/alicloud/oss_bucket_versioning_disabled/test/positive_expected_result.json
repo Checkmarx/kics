@@ -9,7 +9,8 @@
     "searchKey": "alicloud_oss_bucket[bucket-versioning2].versioning.status",
     "searchValue": "",
     "expectedValue": "'versioning.status' should be enabled",
-    "actualValue": "'versioning.status' is suspended"
+    "actualValue": "'versioning.status' is suspended",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OSS Bucket Versioning Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_oss_bucket[bucket-versioning3]",
     "searchValue": "",
     "expectedValue": "'versioning.status' should be defined and set to enabled",
-    "actualValue": "'versioning' is missing"
+    "actualValue": "'versioning' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

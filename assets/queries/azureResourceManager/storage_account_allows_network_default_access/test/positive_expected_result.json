@@ -9,7 +9,8 @@
     "searchKey": "resources.name=[variables('storageAccountName')].properties.networkAcls.defaultAction",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'properties.networkAcls.defaultAction' set to 'Deny'",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=[variables('storageAccountName')].properties.networkAcls.defaultAction",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'properties.networkAcls.defaultAction' set to 'Deny'",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=storageaccount1Positive2.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'properties.networkAcls.defaultAction' defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name=storageaccount1Positive2.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'properties.networkAcls.defaultAction' defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=storageaccount1Positive3.apiVersion=2016-12-01",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion should be newer than 2017 and enable setting networkAcls",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -69,7 +74,8 @@
     "searchKey": "resources.name=storageaccount1Positive3.apiVersion=2016-12-01",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion should be newer than 2017 and enable setting networkAcls",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=[variables('storageAccountName')].properties.networkAcls.defaultAction",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'properties.networkAcls.defaultAction' set to 'Deny'",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name=[variables('storageAccountName')].properties.networkAcls.defaultAction",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'properties.networkAcls.defaultAction' set to 'Deny'",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' has the 'properties.networkAcls.defaultAction' set to 'Allow'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name=storageaccount1Positive2.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'properties.networkAcls.defaultAction' defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -117,7 +126,8 @@
     "searchKey": "properties.template.resources.name=storageaccount1Positive2.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'properties.networkAcls.defaultAction' defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'properties.networkAcls.defaultAction' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name=storageaccount1Positive3.apiVersion=2016-12-01",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion should be newer than 2017 and enable setting networkAcls",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Default Network Access",
@@ -141,6 +152,7 @@
     "searchKey": "properties.template.resources.name=storageaccount1Positive3.apiVersion=2016-12-01",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion should be newer than 2017 and enable setting networkAcls",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' apiVersion is older than 2017 and doesn't enable setting networkAcls",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.DefaultVPC.Properties.SubnetId",
     "searchValue": "",
     "expectedValue": "Resources.DefaultVPC.Properties.SubnetId should not be associated with a default VPC",
-    "actualValue": "Resources.DefaultVPC.Properties.SubnetId is associated with a default VPC"
+    "actualValue": "Resources.DefaultVPC.Properties.SubnetId is associated with a default VPC",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Using Default VPC",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.DefaultVPC.Properties.SubnetId",
     "searchValue": "",
     "expectedValue": "Resources.DefaultVPC.Properties.SubnetId should not be associated with a default VPC",
-    "actualValue": "Resources.DefaultVPC.Properties.SubnetId is associated with a default VPC"
+    "actualValue": "Resources.DefaultVPC.Properties.SubnetId is associated with a default VPC",
+    "issueType": "IncorrectValue"
   }
 ]

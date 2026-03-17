@@ -9,7 +9,8 @@
     "searchKey": "Resources.myKey.Properties.EnableKeyRotation",
     "searchValue": "",
     "expectedValue": "Resources.myKey.Properties.EnableKeyRotation should not be 'true'",
-    "actualValue": "Resources.myKey.Properties.EnableKeyRotation is true"
+    "actualValue": "Resources.myKey.Properties.EnableKeyRotation is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "KMS Key Rotation Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myKey2.Properties.EnableKeyRotation",
     "searchValue": "",
     "expectedValue": "Resources.myKey2.Properties.EnableKeyRotation should be defined",
-    "actualValue": "Resources.myKey2.Properties.EnableKeyRotation is undefined"
+    "actualValue": "Resources.myKey2.Properties.EnableKeyRotation is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "KMS Key Rotation Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myKey.Properties.EnableKeyRotation",
     "searchValue": "",
     "expectedValue": "Resources.myKey.Properties.EnableKeyRotation should not be 'true'",
-    "actualValue": "Resources.myKey.Properties.EnableKeyRotation is true"
+    "actualValue": "Resources.myKey.Properties.EnableKeyRotation is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "KMS Key Rotation Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.myKey2.Properties.EnableKeyRotation",
     "searchValue": "",
     "expectedValue": "Resources.myKey2.Properties.EnableKeyRotation should be defined",
-    "actualValue": "Resources.myKey2.Properties.EnableKeyRotation is undefined"
+    "actualValue": "Resources.myKey2.Properties.EnableKeyRotation is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "KMS Key Rotation Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.myKey.Properties.EnableKeyRotation",
     "searchValue": "",
     "expectedValue": "Resources.myKey.Properties.EnableKeyRotation should not be 'true'",
-    "actualValue": "Resources.myKey.Properties.EnableKeyRotation is true"
+    "actualValue": "Resources.myKey.Properties.EnableKeyRotation is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "KMS Key Rotation Disabled",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.myKey2.Properties.EnableKeyRotation",
     "searchValue": "",
     "expectedValue": "Resources.myKey2.Properties.EnableKeyRotation should be defined",
-    "actualValue": "Resources.myKey2.Properties.EnableKeyRotation is undefined"
+    "actualValue": "Resources.myKey2.Properties.EnableKeyRotation is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

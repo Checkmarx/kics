@@ -9,6 +9,7 @@
     "searchKey": "aws_instance[positive1].subnet_id",
     "searchValue": "",
     "expectedValue": "aws_instance[positive1].subnet_id should not be associated with a default VPC",
-    "actualValue": "aws_instance[positive1].subnet_id is associated with a default VPC"
+    "actualValue": "aws_instance[positive1].subnet_id is associated with a default VPC",
+    "issueType": "IncorrectValue"
   }
 ]

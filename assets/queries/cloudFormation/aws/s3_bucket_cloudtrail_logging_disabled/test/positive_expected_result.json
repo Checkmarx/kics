@@ -9,7 +9,8 @@
     "searchKey": "Resources.mybucketVulnerable.Properties",
     "searchValue": "",
     "expectedValue": "S3 bucket 'mybucketVulnerable' should have logging enabled",
-    "actualValue": "S3 bucket 'mybucketVulnerable' doesn't have logging enabled"
+    "actualValue": "S3 bucket 'mybucketVulnerable' doesn't have logging enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket CloudTrail Logging Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.mybucketVulnerable.Properties",
     "searchValue": "",
     "expectedValue": "S3 bucket 'mybucketVulnerable' should have logging enabled",
-    "actualValue": "S3 bucket 'mybucketVulnerable' doesn't have logging enabled"
+    "actualValue": "S3 bucket 'mybucketVulnerable' doesn't have logging enabled",
+    "issueType": "MissingAttribute"
   }
 ]

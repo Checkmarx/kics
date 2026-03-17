@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket[positive1].versioning.enabled",
     "searchValue": "",
     "expectedValue": "'versioning.enabled' should be true",
-    "actualValue": "'versioning.enabled' is set to false"
+    "actualValue": "'versioning.enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -21,7 +22,8 @@
     "searchKey": "aws_s3_bucket[positive2]",
     "searchValue": "",
     "expectedValue": "'versioning' should be true",
-    "actualValue": "'versioning' is undefined or null"
+    "actualValue": "'versioning' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -33,7 +35,8 @@
     "searchKey": "aws_s3_bucket[positive3].versioning",
     "searchValue": "",
     "expectedValue": "'versioning.enabled' should be true",
-    "actualValue": "'versioning.enabled' is undefined or null"
+    "actualValue": "'versioning.enabled' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -45,7 +48,8 @@
     "searchKey": "module[s3_bucket].versioning.enabled",
     "searchValue": "",
     "expectedValue": "'versioning.enabled' should be true",
-    "actualValue": "'versioning.enabled' is set to false"
+    "actualValue": "'versioning.enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -57,7 +61,8 @@
     "searchKey": "module[s3_bucket].versioning",
     "searchValue": "",
     "expectedValue": "'versioning.enabled' should be true",
-    "actualValue": "'versioning.enabled' is undefined or null"
+    "actualValue": "'versioning.enabled' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -69,7 +74,8 @@
     "searchKey": "module[s3_bucket]",
     "searchValue": "",
     "expectedValue": "'versioning' should be true",
-    "actualValue": "'versioning' is undefined or null"
+    "actualValue": "'versioning' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -81,7 +87,8 @@
     "searchKey": "aws_s3_bucket_versioning[example].versioning_configuration.status",
     "searchValue": "",
     "expectedValue": "'versioning_configuration.status' should be set to 'Enabled'",
-    "actualValue": "'versioning_configuration.status' is set to 'Suspended'"
+    "actualValue": "'versioning_configuration.status' is set to 'Suspended'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -93,6 +100,7 @@
     "searchKey": "aws_s3_bucket[b2]",
     "searchValue": "",
     "expectedValue": "'versioning' should be true",
-    "actualValue": "'versioning' is undefined or null"
+    "actualValue": "'versioning' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

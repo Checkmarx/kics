@@ -9,6 +9,7 @@
     "searchKey": "aws_docdb_cluster[test2].kms_key_id",
     "searchValue": "",
     "expectedValue": "DOCDB Cluster should not be encrypted with AWS managed key",
-    "actualValue": "DOCDB Cluster is encrypted with AWS managed key"
+    "actualValue": "DOCDB Cluster is encrypted with AWS managed key",
+    "issueType": "IncorrectValue"
   }
 ]

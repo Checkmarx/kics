@@ -9,7 +9,8 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}.scheme",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}}.scheme is registered in the IANA Authentication Scheme registry",
-    "actualValue": "components.securitySchemes.{{petstore_auth}}.scheme is not registered in the IANA Authentication Scheme registry"
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.scheme is not registered in the IANA Authentication Scheme registry",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Scheme HTTP Unknown Scheme",
@@ -21,6 +22,7 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}.scheme",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}}.scheme is registered in the IANA Authentication Scheme registry",
-    "actualValue": "components.securitySchemes.{{petstore_auth}}.scheme is not registered in the IANA Authentication Scheme registry"
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.scheme is not registered in the IANA Authentication Scheme registry",
+    "issueType": "IncorrectValue"
   }
 ]

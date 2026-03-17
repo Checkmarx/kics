@@ -9,6 +9,7 @@
     "searchKey": "FROM={{alpine:3.5}}.WORKDIR={{workdir}}",
     "searchValue": "",
     "expectedValue": "'WORKDIR' Command has absolute path",
-    "actualValue": "'WORKDIR' Command doesn't have absolute path"
+    "actualValue": "'WORKDIR' Command doesn't have absolute path",
+    "issueType": "IncorrectValue"
   }
 ]

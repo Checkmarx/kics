@@ -9,7 +9,8 @@
     "searchKey": "Resources.myCluster.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myCluster.Properties.Port' should be defined",
-    "actualValue": "'Resources.myCluster.Properties.Port' is not defined"
+    "actualValue": "'Resources.myCluster.Properties.Port' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Using Default Port",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myCluster2.Properties.Port",
     "searchValue": "",
     "expectedValue": "'Resources.myCluster2.Properties.Port' should not be set to 5439",
-    "actualValue": "'Resources.myCluster2.Properties.Port' is set to 5439"
+    "actualValue": "'Resources.myCluster2.Properties.Port' is set to 5439",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Using Default Port",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myCluster.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myCluster.Properties.Port' should be defined",
-    "actualValue": "'Resources.myCluster.Properties.Port' is not defined"
+    "actualValue": "'Resources.myCluster.Properties.Port' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Using Default Port",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.myCluster2.Properties.Port",
     "searchValue": "",
     "expectedValue": "'Resources.myCluster2.Properties.Port' should not be set to 5439",
-    "actualValue": "'Resources.myCluster2.Properties.Port' is set to 5439"
+    "actualValue": "'Resources.myCluster2.Properties.Port' is set to 5439",
+    "issueType": "IncorrectValue"
   }
 ]

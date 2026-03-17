@@ -9,7 +9,8 @@
     "searchKey": "azurerm_application_gateway[positive1].waf_configuration.enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_application_gateway[positive1].waf_configuration.enabled' is true",
-    "actualValue": "'azurerm_application_gateway[positive1].waf_configuration.enabled' is false"
+    "actualValue": "'azurerm_application_gateway[positive1].waf_configuration.enabled' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "WAF Is Disabled For Azure Application Gateway",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_application_gateway[positive2]",
     "searchValue": "",
     "expectedValue": "'azurerm_application_gateway[positive2]' should be set",
-    "actualValue": "'azurerm_application_gateway[positive2]' is undefined"
+    "actualValue": "'azurerm_application_gateway[positive2]' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

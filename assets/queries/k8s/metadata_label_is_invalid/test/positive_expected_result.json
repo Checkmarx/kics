@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{goproxy}}.labels.app",
     "searchValue": "Pod",
     "expectedValue": "'metadata.labels.{{app}}' has valid label g**dy.l+bel.",
-    "actualValue": "'metadata.labels.{{app}}' has invalid label g**dy.l+bel."
+    "actualValue": "'metadata.labels.{{app}}' has invalid label g**dy.l+bel.",
+    "issueType": "IncorrectValue"
   }
 ]

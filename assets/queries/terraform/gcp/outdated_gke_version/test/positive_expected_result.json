@@ -9,7 +9,8 @@
     "searchKey": "google_container_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "GKE should not be using outated versions on min_master_version or node_version 1.25",
-    "actualValue": "GKE is using outated versions on min_master_version or node_version"
+    "actualValue": "GKE is using outated versions on min_master_version or node_version",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Outdated GKE Version",
@@ -21,6 +22,7 @@
     "searchKey": "google_container_cluster[positive2]",
     "searchValue": "",
     "expectedValue": "GKE should not be using outated versions on min_master_version or node_version 1.25",
-    "actualValue": "GKE is using outated versions on min_master_version or node_version"
+    "actualValue": "GKE is using outated versions on min_master_version or node_version",
+    "issueType": "IncorrectValue"
   }
 ]

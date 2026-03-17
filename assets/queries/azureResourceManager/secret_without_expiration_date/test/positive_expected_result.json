@@ -9,7 +9,8 @@
     "searchKey": "resources.resources.name={{secretid1}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Secret Without Expiration Date",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{keyVault1/secretid1}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Secret Without Expiration Date",
@@ -33,7 +35,8 @@
     "searchKey": "resources.resources.name={{keyVaultSecret1}}.properties.attributes",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Secret Without Expiration Date",
@@ -45,7 +48,8 @@
     "searchKey": "resources.resources.name={{keyVaultSecret1}}.properties.attributes",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Secret Without Expiration Date",
@@ -57,7 +61,8 @@
     "searchKey": "resources.resources.name={{secretid1}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Secret Without Expiration Date",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name={{keyVault1/secretid1}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Secret Without Expiration Date",
@@ -81,7 +87,8 @@
     "searchKey": "resources.resources.name={{keyVaultSecret1}}.properties.attributes",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Secret Without Expiration Date",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.resources.name={{keyVaultSecret1}}.properties.attributes",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined",
+    "issueType": "MissingAttribute"
   }
 ]

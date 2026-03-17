@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "TLS cipher suites should use strong ciphers",
-    "actualValue": "TLS cipher suites uses a weak cipher"
+    "actualValue": "TLS cipher suites uses a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Weak TLS Cipher Suites",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "TLS cipher suites should use strong ciphers",
-    "actualValue": "TLS cipher suites uses a weak cipher"
+    "actualValue": "TLS cipher suites uses a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Weak TLS Cipher Suites",
@@ -33,7 +35,8 @@
     "searchKey": "kind={{KubeletConfiguration}}.tlsCipherSuites",
     "searchValue": "",
     "expectedValue": "TLS cipher suites should use strong ciphers",
-    "actualValue": "TLS cipher suites uses a weak cipher"
+    "actualValue": "TLS cipher suites uses a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Weak TLS Cipher Suites",
@@ -45,6 +48,7 @@
     "searchKey": "kind={{KubeletConfiguration}}",
     "searchValue": "",
     "expectedValue": "KubeletConfiguration should have 'tlsCipherSuites' attribute with strong ciphers defined",
-    "actualValue": "TLS cipher suites are not defined"
+    "actualValue": "TLS cipher suites are not defined",
+    "issueType": "MissingAttribute"
   }
 ]

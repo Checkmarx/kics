@@ -9,6 +9,7 @@
     "searchKey": "google_compute_instance[positive1].metadata.enable-oslogin",
     "searchValue": "",
     "expectedValue": "google_compute_instance[positive1].metadata.enable-oslogin should be true or undefined",
-    "actualValue": "google_compute_instance[positive1].metadata.enable-oslogin is false"
+    "actualValue": "google_compute_instance[positive1].metadata.enable-oslogin is false",
+    "issueType": "IncorrectValue"
   }
 ]

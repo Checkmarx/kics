@@ -9,7 +9,8 @@
     "searchKey": "services.zapzop.deploy.resources.limits",
     "searchValue": "",
     "expectedValue": "'deploy.resources.limits.cpus' should be defined",
-    "actualValue": "'deploy.resources.limits.cpus' is not defined"
+    "actualValue": "'deploy.resources.limits.cpus' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cpus Not Limited",
@@ -21,7 +22,8 @@
     "searchKey": "services.criwhat",
     "searchValue": "",
     "expectedValue": "For cpus priority should be declared.",
-    "actualValue": "There is no cpus priority declared."
+    "actualValue": "There is no cpus priority declared.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cpus Not Limited",
@@ -33,7 +35,8 @@
     "searchKey": "services.zapzop",
     "searchValue": "",
     "expectedValue": "'deploy.resources.limits.cpus' should be defined",
-    "actualValue": "'deploy' is not defined"
+    "actualValue": "'deploy' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cpus Not Limited",
@@ -45,7 +48,8 @@
     "searchKey": "services.zapzop.deploy",
     "searchValue": "",
     "expectedValue": "'deploy.resources' should be defined",
-    "actualValue": "'deploy.resources' is not defined"
+    "actualValue": "'deploy.resources' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cpus Not Limited",
@@ -57,7 +61,8 @@
     "searchKey": "services.redis.deploy",
     "searchValue": "",
     "expectedValue": "'deploy.resources' should be defined",
-    "actualValue": "'deploy.resources' is not defined"
+    "actualValue": "'deploy.resources' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cpus Not Limited",
@@ -69,6 +74,7 @@
     "searchKey": "services.zapzop.deploy.resources",
     "searchValue": "",
     "expectedValue": "'deploy.resources.limits' should be defined",
-    "actualValue": "'deploy.resources.limits' is not defined"
+    "actualValue": "'deploy.resources.limits' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

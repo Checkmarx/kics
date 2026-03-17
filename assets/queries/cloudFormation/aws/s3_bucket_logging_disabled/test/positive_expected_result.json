@@ -9,7 +9,8 @@
     "searchKey": "Resources.mybucket.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.mybucket.Properties' should have property 'LoggingConfiguration'",
-    "actualValue": "'Resources.mybucket.Properties' doesn't have property 'LoggingConfiguration'"
+    "actualValue": "'Resources.mybucket.Properties' doesn't have property 'LoggingConfiguration'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Logging Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.mybucket.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.mybucket.Properties' should have property 'LoggingConfiguration'",
-    "actualValue": "'Resources.mybucket.Properties' doesn't have property 'LoggingConfiguration'"
+    "actualValue": "'Resources.mybucket.Properties' doesn't have property 'LoggingConfiguration'",
+    "issueType": "MissingAttribute"
   }
 ]

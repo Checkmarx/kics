@@ -9,7 +9,8 @@
     "searchKey": "securityDefinitions.oAuth2AuthCodeNeg2.flow=implicit",
     "searchValue": "",
     "expectedValue": "OAuth2 security definitions flow should not use implicit flow",
-    "actualValue": "OAuth2 security definitions flow is using implicit flow"
+    "actualValue": "OAuth2 security definitions flow is using implicit flow",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Implicit Flow in OAuth2 (v2)",
@@ -21,6 +22,7 @@
     "searchKey": "securityDefinitions.oAuth2AuthCodeNeg2.flow=implicit",
     "searchValue": "",
     "expectedValue": "OAuth2 security definitions flow should not use implicit flow",
-    "actualValue": "OAuth2 security definitions flow is using implicit flow"
+    "actualValue": "OAuth2 security definitions flow is using implicit flow",
+    "issueType": "IncorrectValue"
   }
 ]

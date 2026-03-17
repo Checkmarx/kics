@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{dummy}}.spec.template.spec",
     "searchValue": "",
     "expectedValue": "Service should have 'timeoutSeconds' defined in 'template.spec'",
-    "actualValue": "Service 'timeoutSeconds' is not defined in 'template.spec'"
+    "actualValue": "Service 'timeoutSeconds' is not defined in 'template.spec'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Serving Revision Spec Without Timeout Seconds",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{dummy}}.spec.template.spec.timeoutSeconds",
     "searchValue": "",
     "expectedValue": "Service should have 'timeoutSeconds' defined to a value higher than '0'",
-    "actualValue": "Service 'timeoutSeconds' is set to '0'"
+    "actualValue": "Service 'timeoutSeconds' is set to '0'",
+    "issueType": "IncorrectValue"
   }
 ]

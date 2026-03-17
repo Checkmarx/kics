@@ -9,7 +9,8 @@
     "searchKey": "aws_elb[{{postive1}}].access_logs.enabled",
     "searchValue": "",
     "expectedValue": "'aws_elb[{{postive1}}].access_logs.enabled' should be true",
-    "actualValue": "'aws_elb[{{postive1}}].access_logs.enabled' is false"
+    "actualValue": "'aws_elb[{{postive1}}].access_logs.enabled' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Access Log Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_elb[{{postive2}}]",
     "searchValue": "",
     "expectedValue": "'aws_elb[{{postive2}}].access_logs' should be defined and not null",
-    "actualValue": "'aws_elb[{{postive2}}].access_logs' is undefined or null"
+    "actualValue": "'aws_elb[{{postive2}}].access_logs' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Access Log Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "module[elb_http]",
     "searchValue": "",
     "expectedValue": "'access_logs' should be defined and not null",
-    "actualValue": "'access_logs' is undefined or null"
+    "actualValue": "'access_logs' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Access Log Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "module[elb_http].access_logs.enabled",
     "searchValue": "",
     "expectedValue": "'access_logs.enabled' should be true",
-    "actualValue": "'access_logs.enabled' is false"
+    "actualValue": "'access_logs.enabled' is false",
+    "issueType": "IncorrectValue"
   }
 ]

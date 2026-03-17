@@ -9,7 +9,8 @@
     "searchKey": "name={{Basic cluster provisioning example}}.{{community.aws.redshift}}",
     "searchValue": "",
     "expectedValue": "redshift.encrypted should be set to true",
-    "actualValue": "redshift.encrypted is undefined"
+    "actualValue": "redshift.encrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Basic cluster provisioning example2}}.{{community.aws.redshift}}.encrypted",
     "searchValue": "",
     "expectedValue": "redshift.encrypted should be set to true",
-    "actualValue": "redshift.encrypted is set to false"
+    "actualValue": "redshift.encrypted is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Not Encrypted",
@@ -33,6 +35,7 @@
     "searchKey": "name={{Basic cluster provisioning example3}}.{{community.aws.redshift}}.encrypted",
     "searchValue": "",
     "expectedValue": "redshift.encrypted should be set to true",
-    "actualValue": "redshift.encrypted is set to false"
+    "actualValue": "redshift.encrypted is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

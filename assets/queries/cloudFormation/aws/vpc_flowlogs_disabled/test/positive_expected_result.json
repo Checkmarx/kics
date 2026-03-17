@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyVPC",
     "searchValue": "",
     "expectedValue": "Resources.MyVPC has a FlowLogs resource associated",
-    "actualValue": "Resources.MyVPC doesn't have a FlowLogs resource associated"
+    "actualValue": "Resources.MyVPC doesn't have a FlowLogs resource associated",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "VPC FlowLogs Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.MyVPC",
     "searchValue": "",
     "expectedValue": "Resources.MyVPC has a FlowLogs resource associated",
-    "actualValue": "Resources.MyVPC doesn't have a FlowLogs resource associated"
+    "actualValue": "Resources.MyVPC doesn't have a FlowLogs resource associated",
+    "issueType": "MissingAttribute"
   }
 ]

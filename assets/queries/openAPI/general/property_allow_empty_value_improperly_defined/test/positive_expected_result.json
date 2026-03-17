@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
-    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set"
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/users/{id}}}.get.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
-    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set"
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
-    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set"
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/users/{id}}}.get.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
-    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set"
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
-    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set"
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
-    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set"
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{metadata}}",
     "searchValue": "",
     "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
-    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set"
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Improperly Defined (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "paths.{{/}}.parameters.name={{metadata}}",
     "searchValue": "",
     "expectedValue": "'parameters' should have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
-    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set"
+    "actualValue": "'parameters' does not have 'in' set to 'query'/'formData' when 'allowEmptyValue' is set",
+    "issueType": "IncorrectValue"
   }
 ]

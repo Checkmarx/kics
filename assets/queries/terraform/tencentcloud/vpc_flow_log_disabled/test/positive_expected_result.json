@@ -9,6 +9,7 @@
     "searchKey": "tencentcloud_vpc_flow_log_config[config].enable",
     "searchValue": "",
     "expectedValue": "[config] should have enable set to true",
-    "actualValue": "[config] has enable set to false"
+    "actualValue": "[config] has enable set to false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "FROM={{myimage:tag as dep}}.{{COPY --from=dep /binary /}}",
     "searchValue": "",
     "expectedValue": "COPY --from should not reference the current FROM alias",
-    "actualValue": "COPY --from references the current FROM alias"
+    "actualValue": "COPY --from references the current FROM alias",
+    "issueType": "IncorrectValue"
   }
 ]

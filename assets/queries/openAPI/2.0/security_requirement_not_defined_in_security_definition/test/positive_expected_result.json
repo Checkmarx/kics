@@ -9,7 +9,8 @@
     "searchKey": "security.petstore_auth",
     "searchValue": "",
     "expectedValue": "petstore_auth should be defined in 'securityDefinitions'",
-    "actualValue": "petstore_auth is not defined in 'securityDefinitions'"
+    "actualValue": "petstore_auth is not defined in 'securityDefinitions'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Requirement Not Defined In Security Definition",
@@ -21,7 +22,8 @@
     "searchKey": "security.petstore_auth",
     "searchValue": "",
     "expectedValue": "petstore_auth should be defined in 'securityDefinitions'",
-    "actualValue": "petstore_auth is not defined in 'securityDefinitions'"
+    "actualValue": "petstore_auth is not defined in 'securityDefinitions'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Requirement Not Defined In Security Definition",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.security.petstore_auth",
     "searchValue": "",
     "expectedValue": "petstore_auth should be defined in 'securityDefinitions'",
-    "actualValue": "petstore_auth is not defined in 'securityDefinitions'"
+    "actualValue": "petstore_auth is not defined in 'securityDefinitions'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Requirement Not Defined In Security Definition",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.get.security.petstore_auth",
     "searchValue": "",
     "expectedValue": "petstore_auth should be defined in 'securityDefinitions'",
-    "actualValue": "petstore_auth is not defined in 'securityDefinitions'"
+    "actualValue": "petstore_auth is not defined in 'securityDefinitions'",
+    "issueType": "IncorrectValue"
   }
 ]

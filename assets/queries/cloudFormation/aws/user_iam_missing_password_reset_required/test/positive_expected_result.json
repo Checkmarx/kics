@@ -9,7 +9,8 @@
     "searchKey": "Resources.myuser.Properties.LoginProfile.PasswordResetRequired",
     "searchValue": "",
     "expectedValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' should be configured as true",
-    "actualValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' is configured as false"
+    "actualValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' is configured as false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM User Without Password Reset",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.newuser.Properties.LoginProfile",
     "searchValue": "",
     "expectedValue": "'Resources.newuser.Properties.LoginProfile' should also include PasswordResetRequired property set to true",
-    "actualValue": "'Resources.newuser.Properties.LoginProfile' contains only Password property"
+    "actualValue": "'Resources.newuser.Properties.LoginProfile' contains only Password property",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM User Without Password Reset",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.topuser.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.topuser.Properties' should be configured with LoginProfile with PasswordResetRequired property set to true",
-    "actualValue": "'Resources.topuser.Properties' does not include LoginProfile"
+    "actualValue": "'Resources.topuser.Properties' does not include LoginProfile",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM User Without Password Reset",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.myuser.Properties.LoginProfile.PasswordResetRequired",
     "searchValue": "",
     "expectedValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' should be configured as true",
-    "actualValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' is configured as false"
+    "actualValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' is configured as false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM User Without Password Reset",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.newuser.Properties.LoginProfile",
     "searchValue": "",
     "expectedValue": "'Resources.newuser.Properties.LoginProfile' should also include PasswordResetRequired property set to true",
-    "actualValue": "'Resources.newuser.Properties.LoginProfile' contains only Password property"
+    "actualValue": "'Resources.newuser.Properties.LoginProfile' contains only Password property",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM User Without Password Reset",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.topuser.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.topuser.Properties' should be configured with LoginProfile with PasswordResetRequired property set to true",
-    "actualValue": "'Resources.topuser.Properties' does not include LoginProfile"
+    "actualValue": "'Resources.topuser.Properties' does not include LoginProfile",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM User Without Password Reset",
@@ -81,6 +87,7 @@
     "searchKey": "Resources.myuser.Properties.LoginProfile.PasswordResetRequired",
     "searchValue": "",
     "expectedValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' should be configured as true",
-    "actualValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' is configured as false"
+    "actualValue": "'Resources.myuser.Properties.LoginProfile.PasswordResetRequired' is configured as false",
+    "issueType": "IncorrectValue"
   }
 ]

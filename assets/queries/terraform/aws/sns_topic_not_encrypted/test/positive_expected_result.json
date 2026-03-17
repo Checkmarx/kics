@@ -9,7 +9,8 @@
     "searchKey": "aws_sns_topic[user_updates].kms_master_key_id",
     "searchValue": "",
     "expectedValue": "SNS Topic should be encrypted",
-    "actualValue": "SNS Topic is not encrypted"
+    "actualValue": "SNS Topic is not encrypted",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SNS Topic Not Encrypted",
@@ -21,6 +22,7 @@
     "searchKey": "aws_sns_topic[test]",
     "searchValue": "",
     "expectedValue": "SNS Topic should be encrypted",
-    "actualValue": "SNS Topic is not encrypted"
+    "actualValue": "SNS Topic is not encrypted",
+    "issueType": "MissingAttribute"
   }
 ]

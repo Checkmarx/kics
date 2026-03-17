@@ -9,7 +9,8 @@
     "searchKey": "Resources.PublicSubnetA.Properties",
     "searchValue": "",
     "expectedValue": "Resources.PublicSubnetA.Properties.VpcId should be defined",
-    "actualValue": "Resources.PublicSubnetA.Properties.VpcId is undefined"
+    "actualValue": "Resources.PublicSubnetA.Properties.VpcId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance With No VPC",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Ec2Instance-02.Properties",
     "searchValue": "",
     "expectedValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces should be defined",
-    "actualValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces is undefined"
+    "actualValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance With No VPC",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.PublicSubnetA.Properties",
     "searchValue": "",
     "expectedValue": "Resources.PublicSubnetA.Properties.VpcId should be defined",
-    "actualValue": "Resources.PublicSubnetA.Properties.VpcId is undefined"
+    "actualValue": "Resources.PublicSubnetA.Properties.VpcId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance With No VPC",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.Ec2Instance-02.Properties",
     "searchValue": "",
     "expectedValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces should be defined",
-    "actualValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces is undefined"
+    "actualValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

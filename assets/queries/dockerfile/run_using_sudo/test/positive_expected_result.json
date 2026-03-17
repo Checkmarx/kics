@@ -9,6 +9,7 @@
     "searchKey": "FROM={{alpine:3.5}}.RUN={{sudo pip install --upgrade pip}}",
     "searchValue": "",
     "expectedValue": "RUN instruction shouldn't contain sudo",
-    "actualValue": "RUN instruction contains sudo"
+    "actualValue": "RUN instruction contains sudo",
+    "issueType": "IncorrectValue"
   }
 ]

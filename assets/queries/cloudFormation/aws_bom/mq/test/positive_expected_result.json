@@ -9,7 +9,8 @@
     "searchKey": "Resources.BasicBroker",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS MQ",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.BasicBroker2",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS MQ",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.BasicBroker",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

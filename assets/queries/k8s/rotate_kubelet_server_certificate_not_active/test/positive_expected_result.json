@@ -9,7 +9,8 @@
     "searchKey": "kind={{KubeletConfiguration}}.featureGates",
     "searchValue": "",
     "expectedValue": "RotateKubeletServerCertificates should be true",
-    "actualValue": "RotateKubeletServerCertificate is false"
+    "actualValue": "RotateKubeletServerCertificate is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Rotate Kubelet Server Certificate Not Active",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--feature-gates=RotateKubeletServerCertificate flag should be true",
-    "actualValue": "--feature-gates=RotateKubeletServerCertificate flag is false"
+    "actualValue": "--feature-gates=RotateKubeletServerCertificate flag is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Rotate Kubelet Server Certificate Not Active",
@@ -33,7 +35,8 @@
     "searchKey": "kind={{KubeletConfiguration}}.featureGates",
     "searchValue": "",
     "expectedValue": "RotateKubeletServerCertificates should be true",
-    "actualValue": "RotateKubeletServerCertificate is false"
+    "actualValue": "RotateKubeletServerCertificate is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Rotate Kubelet Server Certificate Not Active",
@@ -45,6 +48,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container7}}.command",
     "searchValue": "",
     "expectedValue": "--feature-gates=RotateKubeletServerCertificate flag should be true",
-    "actualValue": "--feature-gates=RotateKubeletServerCertificate flag is false"
+    "actualValue": "--feature-gates=RotateKubeletServerCertificate flag is false",
+    "issueType": "IncorrectValue"
   }
 ]

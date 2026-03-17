@@ -9,7 +9,8 @@
     "searchKey": "resources.name=positive1.properties.networkAcls.defaultAction",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to 'Allow')"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to 'Allow')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=positive1.properties.networkAcls.defaultAction",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to 'Allow')"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to 'Allow')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=positive2.properties.publicNetworkAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is not set (default is 'Enabled')"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is not set (default is 'Enabled')",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name=positive2.properties.publicNetworkAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is not set (default is 'Enabled')"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is not set (default is 'Enabled')",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=positive3.properties.publicNetworkAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to 'Enabled')"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to 'Enabled')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -69,6 +74,7 @@
     "searchKey": "resources.name=positive3.properties.publicNetworkAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to 'Enabled')"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to 'Enabled')",
+    "issueType": "IncorrectValue"
   }
 ]

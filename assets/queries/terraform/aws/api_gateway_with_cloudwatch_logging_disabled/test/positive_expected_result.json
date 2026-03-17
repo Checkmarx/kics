@@ -9,7 +9,8 @@
     "searchKey": "aws_api_gateway_stage[positive1]",
     "searchValue": "",
     "expectedValue": "'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[positive1]' should be defined and use the correct naming convention",
-    "actualValue": "'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[positive1]' is undefined or is not using the correct naming convention"
+    "actualValue": "'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[positive1]' is undefined or is not using the correct naming convention",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway With CloudWatch Logging Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_api_gateway_stage[positive2].access_log_settings.destination_arn",
     "searchValue": "",
     "expectedValue": "'aws_api_gateway_stage[positive2].access_log_settings.destination_arn' should reference a valid 'aws_cloudwatch_log_group' arn",
-    "actualValue": "'aws_api_gateway_stage[positive2].access_log_settings.destination_arn' does not reference a valid 'aws_cloudwatch_log_group' arn"
+    "actualValue": "'aws_api_gateway_stage[positive2].access_log_settings.destination_arn' does not reference a valid 'aws_cloudwatch_log_group' arn",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway With CloudWatch Logging Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "aws_api_gateway_stage[positive3].access_log_settings.destination_arn",
     "searchValue": "",
     "expectedValue": "'aws_api_gateway_stage[positive3].access_log_settings.destination_arn' should reference a valid 'aws_cloudwatch_log_group' arn",
-    "actualValue": "'aws_api_gateway_stage[positive3].access_log_settings.destination_arn' does not reference a valid 'aws_cloudwatch_log_group' arn"
+    "actualValue": "'aws_api_gateway_stage[positive3].access_log_settings.destination_arn' does not reference a valid 'aws_cloudwatch_log_group' arn",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway With CloudWatch Logging Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "aws_api_gateway_stage[positive4]",
     "searchValue": "",
     "expectedValue": "'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[positive4]' should be defined and use the correct naming convention",
-    "actualValue": "'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[positive4]' is undefined or is not using the correct naming convention"
+    "actualValue": "'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[positive4]' is undefined or is not using the correct naming convention",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy.Attributes.Name=TLS_RSA_NULL_SHA1",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.TLS_RSA_NULL_SHA1' should not be a weak cipher",
-    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.TLS_RSA_NULL_SHA1' is a weak cipher"
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.TLS_RSA_NULL_SHA1' is a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Using Weak Ciphers",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy.Attributes.Name=DHE-DSS-DES-CBC3-SHA",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.DHE-DSS-DES-CBC3-SHA' should not be a weak cipher",
-    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.DHE-DSS-DES-CBC3-SHA' is a weak cipher"
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.DHE-DSS-DES-CBC3-SHA' is a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Using Weak Ciphers",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy2.Attributes.Name=TLS_DHE_PSK_WITH_NULL_SHA256",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.TLS_DHE_PSK_WITH_NULL_SHA256' should not be a weak cipher",
-    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.TLS_DHE_PSK_WITH_NULL_SHA256' is a weak cipher"
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.TLS_DHE_PSK_WITH_NULL_SHA256' is a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Using Weak Ciphers",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy.Attributes.Name=TLS_RSA_NULL_SHA1",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.TLS_RSA_NULL_SHA1' should not be a weak cipher",
-    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.TLS_RSA_NULL_SHA1' is a weak cipher"
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.TLS_RSA_NULL_SHA1' is a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Using Weak Ciphers",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy.Attributes.Name=DHE-DSS-DES-CBC3-SHA",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.DHE-DSS-DES-CBC3-SHA' should not be a weak cipher",
-    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.DHE-DSS-DES-CBC3-SHA' is a weak cipher"
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.DHE-DSS-DES-CBC3-SHA' is a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Using Weak Ciphers",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy2.Attributes.Name=TLS_DHE_PSK_WITH_NULL_SHA256",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.TLS_DHE_PSK_WITH_NULL_SHA256' should not be a weak cipher",
-    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.TLS_DHE_PSK_WITH_NULL_SHA256' is a weak cipher"
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.TLS_DHE_PSK_WITH_NULL_SHA256' is a weak cipher",
+    "issueType": "IncorrectValue"
   }
 ]

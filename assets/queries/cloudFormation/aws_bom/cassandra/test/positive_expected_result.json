@@ -9,7 +9,8 @@
     "searchKey": "Resources.myNewTable1",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Cassandra",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myNewTable2",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

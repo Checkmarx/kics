@@ -9,6 +9,7 @@
     "searchKey": "aws_eks_cluster[positive1].vpc_config.endpoint_public_access",
     "searchValue": "",
     "expectedValue": "'vpc_config.endpoint_public_access' should equal 'false'",
-    "actualValue": "'vpc_config.endpoint_public_access' is equal 'true'"
+    "actualValue": "'vpc_config.endpoint_public_access' is equal 'true'",
+    "issueType": "IncorrectValue"
   }
 ]

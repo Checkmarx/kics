@@ -9,7 +9,8 @@
     "searchKey": "Resources.SBDDomain",
     "searchValue": "",
     "expectedValue": "Resources.SBDDomain should not be defined",
-    "actualValue": "Resources.SBDDomain is defined"
+    "actualValue": "Resources.SBDDomain is defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SDB Domain Declared As A Resource",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.SBDDomain",
     "searchValue": "",
     "expectedValue": "Resources.SBDDomain should not be defined",
-    "actualValue": "Resources.SBDDomain is defined"
+    "actualValue": "Resources.SBDDomain is defined",
+    "issueType": "MissingAttribute"
   }
 ]

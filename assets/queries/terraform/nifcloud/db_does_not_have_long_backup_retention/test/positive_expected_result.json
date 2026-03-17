@@ -9,7 +9,8 @@
     "searchKey": "nifcloud_db_instance[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_db_instance[positive]' should have backup retention of at least 7 days",
-    "actualValue": "'nifcloud_db_instance[positive]' doesn't have a backup retention period defined"
+    "actualValue": "'nifcloud_db_instance[positive]' doesn't have a backup retention period defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Nifcloud Low RDB Backup Retention Period",
@@ -21,6 +22,7 @@
     "searchKey": "nifcloud_db_instance[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_db_instance[positive]' should have backup retention of at least 7 days",
-    "actualValue": "'nifcloud_db_instance[positive]' has backup retention period of '%!s(int=5)' which is less than minimum of 7 days"
+    "actualValue": "'nifcloud_db_instance[positive]' has backup retention period of '%!s(int=5)' which is less than minimum of 7 days",
+    "issueType": "IncorrectValue"
   }
 ]

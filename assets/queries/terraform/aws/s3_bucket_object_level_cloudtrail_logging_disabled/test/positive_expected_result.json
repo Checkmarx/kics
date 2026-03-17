@@ -9,7 +9,8 @@
     "searchKey": "aws_cloudtrail[example].event_selector",
     "searchValue": "",
     "expectedValue": "'read_write_type' should be defined and not null",
-    "actualValue": "'read_write_type' is undefined or null"
+    "actualValue": "'read_write_type' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Object Level CloudTrail Logging Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_cloudtrail[example2].event_selector.read_write_type",
     "searchValue": "",
     "expectedValue": "'read_write_type' should be set to 'All'",
-    "actualValue": "'read_write_type' is not set to 'All'"
+    "actualValue": "'read_write_type' is not set to 'All'",
+    "issueType": "IncorrectValue"
   }
 ]

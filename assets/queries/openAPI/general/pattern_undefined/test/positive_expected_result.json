@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.GeneralError.properties.code.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "components.schemas.GeneralError.properties.message.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "components.schemas.GeneralError.properties.code.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "components.schemas.GeneralError.properties.message.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -105,7 +113,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -117,7 +126,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -129,7 +139,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v3)",
@@ -141,7 +152,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v2)",
@@ -153,7 +165,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v2)",
@@ -165,7 +178,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v2)",
@@ -177,7 +191,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pattern Undefined (v2)",
@@ -189,6 +204,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "'pattern' should be defined",
-    "actualValue": "'pattern' is undefined"
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

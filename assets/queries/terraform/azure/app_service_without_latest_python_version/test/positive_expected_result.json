@@ -9,7 +9,8 @@
     "searchKey": "azurerm_app_service[example4].site_config.python_version",
     "searchValue": "",
     "expectedValue": "attribute 'python_version' should be the latest avaliable stable version (3.10)",
-    "actualValue": "'python_version' is not the latest avaliable stable version (3.10)"
+    "actualValue": "'python_version' is not the latest avaliable stable version (3.10)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "App Service Without Latest Python Version",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_windows_web_app[example5].site_config.application_stack.python_version",
     "searchValue": "",
     "expectedValue": "attribute 'python_version' should be the latest avaliable stable version (3.10)",
-    "actualValue": "'python_version' is not the latest avaliable stable version (3.10)"
+    "actualValue": "'python_version' is not the latest avaliable stable version (3.10)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "App Service Without Latest Python Version",
@@ -33,6 +35,7 @@
     "searchKey": "azurerm_linux_web_app[example6].site_config.application_stack.python_version",
     "searchValue": "",
     "expectedValue": "attribute 'python_version' should be the latest avaliable stable version (3.10)",
-    "actualValue": "'python_version' is not the latest avaliable stable version (3.10)"
+    "actualValue": "'python_version' is not the latest avaliable stable version (3.10)",
+    "issueType": "IncorrectValue"
   }
 ]

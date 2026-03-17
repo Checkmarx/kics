@@ -9,7 +9,8 @@
     "searchKey": "resources.name=sqlServer1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -21,7 +22,8 @@
     "searchKey": "resources.resources.name=sqlDatabase1",
     "searchValue": "",
     "expectedValue": "resource 'sqlDatabase1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=sqlServer1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -45,7 +48,8 @@
     "searchKey": "resources.resources.name=sqlDatabase1",
     "searchValue": "",
     "expectedValue": "resource 'sqlDatabase1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=sqlServer1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -69,7 +74,8 @@
     "searchKey": "resources.name=sqlServer1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=sqlServer1/sqlDatabase1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1/sqlDatabase1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1/sqlDatabase1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1/sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -93,7 +100,8 @@
     "searchKey": "resources.name=sqlServer1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -105,7 +113,8 @@
     "searchKey": "resources.resources.name=sqlDatabase1",
     "searchValue": "",
     "expectedValue": "resource 'sqlDatabase1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -117,7 +126,8 @@
     "searchKey": "resources.name=sqlServer1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name=sqlServer1/sqlDatabase1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1/sqlDatabase1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1/sqlDatabase1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1/sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -141,7 +152,8 @@
     "searchKey": "resources.name=sqlServer1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -153,7 +165,8 @@
     "searchKey": "resources.resources.name=sqlDatabase1",
     "searchValue": "",
     "expectedValue": "resource 'sqlDatabase1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -165,7 +178,8 @@
     "searchKey": "resources.name=sqlServer1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
@@ -177,6 +191,7 @@
     "searchKey": "resources.name=sqlServer1",
     "searchValue": "",
     "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
-    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource"
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   }
 ]

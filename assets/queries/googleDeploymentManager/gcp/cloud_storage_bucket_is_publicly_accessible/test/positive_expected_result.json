@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{bucket-access-control}}.properties.entity",
     "searchValue": "",
     "expectedValue": "'entity' should not equal to 'allUsers' or 'allAuthenticatedUsers'",
-    "actualValue": "'entity' is equal to 'allUsers'"
+    "actualValue": "'entity' is equal to 'allUsers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cloud Storage Bucket Is Publicly Accessible",
@@ -21,6 +22,7 @@
     "searchKey": "resources.name={{bucket-access-control}}.properties.entity",
     "searchValue": "",
     "expectedValue": "'entity' should not equal to 'allUsers' or 'allAuthenticatedUsers'",
-    "actualValue": "'entity' is equal to 'allAuthenticatedUsers'"
+    "actualValue": "'entity' is equal to 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   }
 ]

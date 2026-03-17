@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--kubelet-certificate-authority flag should be set",
-    "actualValue": "--kubelet-certificate-authority flag is not set"
+    "actualValue": "--kubelet-certificate-authority flag is not set",
+    "issueType": "MissingAttribute"
   }
 ]

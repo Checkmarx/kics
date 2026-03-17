@@ -9,7 +9,8 @@
     "searchKey": "name={{positive1}}.{{community.aws.cloudtrail}}",
     "searchValue": "cloudwatch_logs_log_group_arn",
     "expectedValue": "name={{positive1}}.{{community.aws.cloudtrail}}.cloudwatch_logs_log_group_arn should be defined",
-    "actualValue": "name={{positive1}}.{{community.aws.cloudtrail}}.cloudwatch_logs_log_group_arn is not defined"
+    "actualValue": "name={{positive1}}.{{community.aws.cloudtrail}}.cloudwatch_logs_log_group_arn is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -21,7 +22,8 @@
     "searchKey": "name={{positive1}}.{{community.aws.cloudtrail}}",
     "searchValue": "cloudwatch_logs_role_arn",
     "expectedValue": "name={{positive1}}.{{community.aws.cloudtrail}}.cloudwatch_logs_role_arn should be defined",
-    "actualValue": "name={{positive1}}.{{community.aws.cloudtrail}}.cloudwatch_logs_role_arn is not defined"
+    "actualValue": "name={{positive1}}.{{community.aws.cloudtrail}}.cloudwatch_logs_role_arn is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -33,7 +35,8 @@
     "searchKey": "name={{positive2}}.{{community.aws.cloudtrail}}",
     "searchValue": "cloudwatch_logs_log_group_arn",
     "expectedValue": "name={{positive2}}.{{community.aws.cloudtrail}}.cloudwatch_logs_log_group_arn should be defined",
-    "actualValue": "name={{positive2}}.{{community.aws.cloudtrail}}.cloudwatch_logs_log_group_arn is not defined"
+    "actualValue": "name={{positive2}}.{{community.aws.cloudtrail}}.cloudwatch_logs_log_group_arn is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -45,6 +48,7 @@
     "searchKey": "name={{positive3}}.{{community.aws.cloudtrail}}",
     "searchValue": "cloudwatch_logs_role_arn",
     "expectedValue": "name={{positive3}}.{{community.aws.cloudtrail}}.cloudwatch_logs_role_arn should be defined",
-    "actualValue": "name={{positive3}}.{{community.aws.cloudtrail}}.cloudwatch_logs_role_arn is not defined"
+    "actualValue": "name={{positive3}}.{{community.aws.cloudtrail}}.cloudwatch_logs_role_arn is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

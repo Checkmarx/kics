@@ -9,7 +9,8 @@
     "searchKey": "aws_alb[positive1].enable_deletion_protection",
     "searchValue": "",
     "expectedValue": "'enable_deletion_protection' should be set to true",
-    "actualValue": "'enable_deletion_protection' is set to false"
+    "actualValue": "'enable_deletion_protection' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ALB Deletion Protection Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_alb[positive2]",
     "searchValue": "",
     "expectedValue": "'enable_deletion_protection' should be defined and set to true",
-    "actualValue": "'enable_deletion_protection' is undefined or null"
+    "actualValue": "'enable_deletion_protection' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ALB Deletion Protection Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "aws_lb[positive3].enable_deletion_protection",
     "searchValue": "",
     "expectedValue": "'enable_deletion_protection' should be set to true",
-    "actualValue": "'enable_deletion_protection' is set to false"
+    "actualValue": "'enable_deletion_protection' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ALB Deletion Protection Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "aws_lb[positive4]",
     "searchValue": "",
     "expectedValue": "'enable_deletion_protection' should be defined and set to true",
-    "actualValue": "'enable_deletion_protection' is undefined or null"
+    "actualValue": "'enable_deletion_protection' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ALB Deletion Protection Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "module[alb].enable_deletion_protection",
     "searchValue": "",
     "expectedValue": "'enable_deletion_protection' should be set to true",
-    "actualValue": "'enable_deletion_protection' is set to false"
+    "actualValue": "'enable_deletion_protection' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ALB Deletion Protection Disabled",
@@ -69,6 +74,7 @@
     "searchKey": "module[alb]",
     "searchValue": "",
     "expectedValue": "'enable_deletion_protection' should be defined and set to true",
-    "actualValue": "'enable_deletion_protection' is undefined or null"
+    "actualValue": "'enable_deletion_protection' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

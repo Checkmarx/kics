@@ -9,7 +9,8 @@
     "searchKey": "Resources.ElasticacheCluster",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Elasticache",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ElasticacheCluster",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Elasticache",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.ElasticacheCluster",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

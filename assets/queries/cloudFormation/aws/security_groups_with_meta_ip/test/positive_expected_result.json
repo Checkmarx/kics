@@ -9,7 +9,8 @@
     "searchKey": "Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[0].CidrIp",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with 'IpProtocol' set to '-1'.",
-    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'."
+    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[1].CidrIpv6",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with 'IpProtocol' set to '-1'.",
-    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'."
+    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.Positive1_ingress_ipv4_1.Properties.CidrIp",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with 'IpProtocol' set to '-1'.",
-    "actualValue": "'Resources.Positive1_ingress_ipv4_1.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'."
+    "actualValue": "'Resources.Positive1_ingress_ipv4_1.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.Positive1_ingress_ipv6_1.Properties.CidrIpv6",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with 'IpProtocol' set to '-1'.",
-    "actualValue": "'Resources.Positive1_ingress_ipv6_1.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'."
+    "actualValue": "'Resources.Positive1_ingress_ipv6_1.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[0].CidrIp",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with all 65535 ports open.",
-    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open."
+    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[1].CidrIpv6",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with all 65535 ports open.",
-    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open."
+    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.Positive1_ingress_ipv4_2.Properties.CidrIp",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with all 65535 ports open.",
-    "actualValue": "'Resources.Positive1_ingress_ipv4_2.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open."
+    "actualValue": "'Resources.Positive1_ingress_ipv4_2.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.Positive1_ingress_ipv6_2.Properties.CidrIpv6",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with all 65535 ports open.",
-    "actualValue": "'Resources.Positive1_ingress_ipv6_2.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open."
+    "actualValue": "'Resources.Positive1_ingress_ipv6_2.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[0].CidrIp",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with 'IpProtocol' set to '-1'.",
-    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'."
+    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[1].CidrIpv6",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with 'IpProtocol' set to '-1'.",
-    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'."
+    "actualValue": "'Resources.Positive1_security_group_1.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.Positive1_ingress_ipv4_1.Properties.CidrIp",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with 'IpProtocol' set to '-1'.",
-    "actualValue": "'Resources.Positive1_ingress_ipv4_1.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'."
+    "actualValue": "'Resources.Positive1_ingress_ipv4_1.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with 'IpProtocol' set to '-1'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.Positive1_ingress_ipv6_1.Properties.CidrIpv6",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with 'IpProtocol' set to '-1'.",
-    "actualValue": "'Resources.Positive1_ingress_ipv6_1.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'."
+    "actualValue": "'Resources.Positive1_ingress_ipv6_1.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with 'IpProtocol' set to '-1'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -153,7 +165,8 @@
     "searchKey": "Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[0].CidrIp",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with all 65535 ports open.",
-    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open."
+    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[0].CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -165,7 +178,8 @@
     "searchKey": "Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[1].CidrIpv6",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with all 65535 ports open.",
-    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open."
+    "actualValue": "'Resources.Positive1_security_group_2.Properties.SecurityGroupIngress[1].CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -177,7 +191,8 @@
     "searchKey": "Resources.Positive1_ingress_ipv4_2.Properties.CidrIp",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIp' set to '0.0.0.0/0' with all 65535 ports open.",
-    "actualValue": "'Resources.Positive1_ingress_ipv4_2.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open."
+    "actualValue": "'Resources.Positive1_ingress_ipv4_2.Properties.CidrIp' has CidrIp equal to 0.0.0.0/0 with all 65535 ports open.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Meta IP",
@@ -189,6 +204,7 @@
     "searchKey": "Resources.Positive1_ingress_ipv6_2.Properties.CidrIpv6",
     "searchValue": "",
     "expectedValue": "No ingress should have a 'CidrIpv6' set to '::/0' with all 65535 ports open.",
-    "actualValue": "'Resources.Positive1_ingress_ipv6_2.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open."
+    "actualValue": "'Resources.Positive1_ingress_ipv6_2.Properties.CidrIpv6' has CidrIpv6 equal to ::/0 with all 65535 ports open.",
+    "issueType": "IncorrectValue"
   }
 ]

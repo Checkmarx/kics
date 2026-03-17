@@ -9,7 +9,8 @@
     "searchKey": "services.frontend.volumes",
     "searchValue": "shared",
     "expectedValue": "There shouldn't be volumes shared between containers",
-    "actualValue": "Volume ./logic:/app shared between containers"
+    "actualValue": "Volume ./logic:/app shared between containers",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shared Volumes Between Containers",
@@ -21,7 +22,8 @@
     "searchKey": "services.backend.volumes",
     "searchValue": "shared",
     "expectedValue": "There shouldn't be volumes shared between containers",
-    "actualValue": "Volume ./logic:/app shared between containers"
+    "actualValue": "Volume ./logic:/app shared between containers",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shared Volumes Between Containers",
@@ -33,7 +35,8 @@
     "searchKey": "services.app.volumes",
     "searchValue": "created-and-shared",
     "expectedValue": "There shouldn't be volumes created and shared between containers",
-    "actualValue": "Volume shared-volume created and shared between containers"
+    "actualValue": "Volume shared-volume created and shared between containers",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shared Volumes Between Containers",
@@ -45,6 +48,7 @@
     "searchKey": "services.checker.volumes",
     "searchValue": "created-and-shared",
     "expectedValue": "There shouldn't be volumes created and shared between containers",
-    "actualValue": "Volume shared-volume created and shared between containers"
+    "actualValue": "Volume shared-volume created and shared between containers",
+    "issueType": "IncorrectValue"
   }
 ]

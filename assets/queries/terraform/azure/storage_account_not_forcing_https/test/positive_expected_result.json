@@ -9,7 +9,8 @@
     "searchKey": "azurerm_storage_account[example1].enable_https_traffic_only",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account.example1.enable_https_traffic_only' equals 'true'",
-    "actualValue": "'azurerm_storage_account.example1.enable_https_traffic_only' equals 'false'"
+    "actualValue": "'azurerm_storage_account.example1.enable_https_traffic_only' equals 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_storage_account[example2]",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account.example2.enable_https_traffic_only' equals 'true', or (since Terraform v4.0) 'azurerm_storage_account.example2.https_traffic_only_enabled' equals 'true'",
-    "actualValue": "Neither 'azurerm_storage_account.example2.enable_https_traffic_only' nor 'azurerm_storage_account.example2.https_traffic_only_enabled' exists"
+    "actualValue": "Neither 'azurerm_storage_account.example2.enable_https_traffic_only' nor 'azurerm_storage_account.example2.https_traffic_only_enabled' exists",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_storage_account[example1].https_traffic_only_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account.example1.https_traffic_only_enabled' equals 'true'",
-    "actualValue": "'azurerm_storage_account.example1.https_traffic_only_enabled' equals 'false'"
+    "actualValue": "'azurerm_storage_account.example1.https_traffic_only_enabled' equals 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
@@ -45,6 +48,7 @@
     "searchKey": "azurerm_storage_account[example2]",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account.example2.enable_https_traffic_only' equals 'true', or (since Terraform v4.0) 'azurerm_storage_account.example2.https_traffic_only_enabled' equals 'true'",
-    "actualValue": "Neither 'azurerm_storage_account.example2.enable_https_traffic_only' nor 'azurerm_storage_account.example2.https_traffic_only_enabled' exists"
+    "actualValue": "Neither 'azurerm_storage_account.example2.enable_https_traffic_only' nor 'azurerm_storage_account.example2.https_traffic_only_enabled' exists",
+    "issueType": "MissingAttribute"
   }
 ]

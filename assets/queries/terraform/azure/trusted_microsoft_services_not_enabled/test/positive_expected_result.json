@@ -9,7 +9,8 @@
     "searchKey": "azurerm_storage_account_network_rules[positive1].bypass",
     "searchValue": "",
     "expectedValue": "'bypass' should contain 'AzureServices'",
-    "actualValue": "'bypass' does not contain 'AzureServices'"
+    "actualValue": "'bypass' does not contain 'AzureServices'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_storage_account[positive2].network_rules.bypass",
     "searchValue": "",
     "expectedValue": "'network_rules.bypass' should contain 'AzureServices'",
-    "actualValue": "'network_rules.bypass' does not contain 'AzureServices'"
+    "actualValue": "'network_rules.bypass' does not contain 'AzureServices'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{example}}.{{community.aws.sqs_queue}}.policy",
     "searchValue": "",
     "expectedValue": "sqs_queue.policy.Principal shouldn't get the queue publicly accessible",
-    "actualValue": "sqs_queue.policy.Principal does get the queue publicly accessible"
+    "actualValue": "sqs_queue.policy.Principal does get the queue publicly accessible",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS Queue Exposed",
@@ -21,6 +22,7 @@
     "searchKey": "name={{example with list}}.{{community.aws.sqs_queue}}.policy",
     "searchValue": "",
     "expectedValue": "sqs_queue.policy.Principal shouldn't get the queue publicly accessible",
-    "actualValue": "sqs_queue.policy.Principal does get the queue publicly accessible"
+    "actualValue": "sqs_queue.policy.Principal does get the queue publicly accessible",
+    "issueType": "IncorrectValue"
   }
 ]

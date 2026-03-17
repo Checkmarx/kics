@@ -9,7 +9,8 @@
     "searchKey": "Resources.cluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.cluster has the same name as the AWS::EMR::SecurityConfiguration Resource",
-    "actualValue": "Resources.cluster has a different name from AWS::EMR::SecurityConfiguration Resource"
+    "actualValue": "Resources.cluster has a different name from AWS::EMR::SecurityConfiguration Resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Cluster Without Security Configuration",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.cluster1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.cluster1.Properties.SecurityConfiguration should be defined",
-    "actualValue": "Resources.cluster1.Properties.SecurityConfiguration is undefined"
+    "actualValue": "Resources.cluster1.Properties.SecurityConfiguration is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EMR Cluster Without Security Configuration",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.cluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.cluster has the same name as the AWS::EMR::SecurityConfiguration Resource",
-    "actualValue": "Resources.cluster has a different name from AWS::EMR::SecurityConfiguration Resource"
+    "actualValue": "Resources.cluster has a different name from AWS::EMR::SecurityConfiguration Resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Cluster Without Security Configuration",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.cluster1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.cluster1.Properties.SecurityConfiguration should be defined",
-    "actualValue": "Resources.cluster1.Properties.SecurityConfiguration is undefined"
+    "actualValue": "Resources.cluster1.Properties.SecurityConfiguration is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -406,7 +406,8 @@ func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnera
 		require.Equal(tb, expectedItem.SearchKey, actualItem.SearchKey, "Invalid searchKey for query %s\n Expected: %s\n Actual: %s", dir, expectedItem.SearchKey, actualItem.SearchKey)
 		require.Equal(tb, expectedItem.SearchValue, actualItem.SearchValue, "Invalid searchValue for query %s\n Expected: %s\n Actual: %s", dir, expectedItem.SearchValue, actualItem.SearchValue)
 		require.Equal(tb, expectedItem.KeyExpectedValue, actualItem.KeyExpectedValue, "Invalid expected value for query: %s\n Expected: %s\n Actual: %s", dir, expectedItem.KeyExpectedValue, actualItem.KeyExpectedValue)
-		require.Equal(tb, expectedItem.KeyActualValue, actualItem.KeyActualValue, "Invalid actual value for query: %s\n Expected: %s\n Actual: %s", dir, actualItem.KeyActualValue, actualItem.KeyActualValue)
+		require.Equal(tb, expectedItem.KeyActualValue, actualItem.KeyActualValue, "Invalid actual value for query: %s\n Expected: %s\n Actual: %s", dir, expectedItem.KeyActualValue, actualItem.KeyActualValue)
+		require.Equal(tb, expectedItem.IssueType, actualItem.IssueType, "Invalid issue type for query %s\n Expected: %s\n Actual: %s", dir, expectedItem.IssueType, actualItem.IssueType)
 	}
 }
 

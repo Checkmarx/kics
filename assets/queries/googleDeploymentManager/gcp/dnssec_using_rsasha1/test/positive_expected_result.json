@@ -9,6 +9,7 @@
     "searchKey": "resources.name={{dns}}.properties.dnssecConfig.defaultKeySpecs",
     "searchValue": "",
     "expectedValue": "'algorithm' should not equal to 'rsasha1'",
-    "actualValue": "'algorithm' is equal to 'rsasha1'"
+    "actualValue": "'algorithm' is equal to 'rsasha1'",
+    "issueType": "IncorrectValue"
   }
 ]

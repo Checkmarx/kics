@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyRepository3.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository3.Properties.ImageScanningConfiguration should be defined",
-    "actualValue": "Resources.MyRepository3.Properties.ImageScanningConfiguration is undefined"
+    "actualValue": "Resources.MyRepository3.Properties.ImageScanningConfiguration is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Unscanned ECR Image",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyRepository4.Properties.ImageScanningConfiguration.ScanOnPush",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository4.Properties.ImageScanningConfiguration.ScanOnPush should be set to true",
-    "actualValue": "Resources.MyRepository4.Properties.ImageScanningConfiguration.ScanOnPush is set to false"
+    "actualValue": "Resources.MyRepository4.Properties.ImageScanningConfiguration.ScanOnPush is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unscanned ECR Image",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyRepository5.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository5.Properties.ImageScanningConfiguration should be defined",
-    "actualValue": "Resources.MyRepository5.Properties.ImageScanningConfiguration is undefined"
+    "actualValue": "Resources.MyRepository5.Properties.ImageScanningConfiguration is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Unscanned ECR Image",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.MyRepository6.Properties.ImageScanningConfiguration.ScanOnPush",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository6.Properties.ImageScanningConfiguration.ScanOnPush should be set to true",
-    "actualValue": "Resources.MyRepository6.Properties.ImageScanningConfiguration.ScanOnPush is set to false"
+    "actualValue": "Resources.MyRepository6.Properties.ImageScanningConfiguration.ScanOnPush is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

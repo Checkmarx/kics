@@ -9,7 +9,8 @@
     "searchKey": "alicloud_ros_stack_instance[example].retain_stacks",
     "searchValue": "",
     "expectedValue": "alicloud_ros_stack_instance[example].retain_stacks should be true ",
-    "actualValue": "alicloud_ros_stack_instance[example].retain_stacks is false"
+    "actualValue": "alicloud_ros_stack_instance[example].retain_stacks is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ROS Stack Retention Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_ros_stack_instance[example]",
     "searchValue": "",
     "expectedValue": "alicloud_ros_stack_instance[example].retain_stacks should be defined and not null",
-    "actualValue": "alicloud_ros_stack_instance[example].retain_stacks is undefined"
+    "actualValue": "alicloud_ros_stack_instance[example].retain_stacks is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

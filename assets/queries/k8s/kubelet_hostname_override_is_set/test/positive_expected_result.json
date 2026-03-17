@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--hostname-override= flag should not be defined",
-    "actualValue": "--hostname-override= flag is defined"
+    "actualValue": "--hostname-override= flag is defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Hostname Override Is Set",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--hostname-override= flag should not be defined",
-    "actualValue": "--hostname-override= flag is defined"
+    "actualValue": "--hostname-override= flag is defined",
+    "issueType": "IncorrectValue"
   }
 ]

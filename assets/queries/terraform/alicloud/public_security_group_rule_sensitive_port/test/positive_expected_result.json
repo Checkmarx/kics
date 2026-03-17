@@ -9,7 +9,8 @@
     "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
     "searchValue": "20",
     "expectedValue": "tcp:20 port should not be allowed",
-    "actualValue": "tcp:20 port is allowed"
+    "actualValue": "tcp:20 port is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Public Security Group Rule Sensitive Port",
@@ -21,7 +22,8 @@
     "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
     "searchValue": "4333",
     "expectedValue": "udp:4333 port should not be allowed",
-    "actualValue": "udp:4333 port is allowed"
+    "actualValue": "udp:4333 port is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Public Security Group Rule Sensitive Port",
@@ -33,6 +35,7 @@
     "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
     "searchValue": "445",
     "expectedValue": "all:445 port should not be allowed",
-    "actualValue": "all:445 port is allowed"
+    "actualValue": "all:445 port is allowed",
+    "issueType": "IncorrectValue"
   }
 ]

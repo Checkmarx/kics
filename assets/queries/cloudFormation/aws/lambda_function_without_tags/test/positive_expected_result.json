@@ -9,7 +9,8 @@
     "searchKey": "Resources.AppendItemToListFunction.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.AppendItemToListFunction.Properties.Tags' should be defined",
-    "actualValue": "'Resources.AppendItemToListFunction.Properties.Tags' is undefined"
+    "actualValue": "'Resources.AppendItemToListFunction.Properties.Tags' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Lambda Function Without Tags",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.AppendItemToListFunction.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.AppendItemToListFunction.Properties.Tags' should be defined",
-    "actualValue": "'Resources.AppendItemToListFunction.Properties.Tags' is undefined"
+    "actualValue": "'Resources.AppendItemToListFunction.Properties.Tags' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "azurerm_databricks_workspace[example_pos1]",
     "searchValue": "",
     "expectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
-    "actualValue": "'azurerm_databricks_workspace' is not associated with an 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_databricks_workspace' is not associated with an 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Not Configured",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_databricks_workspace[example_pos2]",
     "searchValue": "",
     "expectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
-    "actualValue": "'azurerm_databricks_workspace' is associated with 3 'azurerm_monitor_diagnostic_setting' resource(s), but is missing logs for 3 category(s): 'Filesystem', 'jobs', 'notebook'"
+    "actualValue": "'azurerm_databricks_workspace' is associated with 3 'azurerm_monitor_diagnostic_setting' resource(s), but is missing logs for 3 category(s): 'Filesystem', 'jobs', 'notebook'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Not Configured",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_databricks_workspace[example_pos3]",
     "searchValue": "",
     "expectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
-    "actualValue": "'azurerm_databricks_workspace' is associated with 4 'azurerm_monitor_diagnostic_setting' resource(s), but is missing logs for 1 category(s): 'notebook'"
+    "actualValue": "'azurerm_databricks_workspace' is associated with 4 'azurerm_monitor_diagnostic_setting' resource(s), but is missing logs for 1 category(s): 'notebook'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Not Configured",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_databricks_workspace[example_pos4]",
     "searchValue": "",
     "expectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
-    "actualValue": "'azurerm_databricks_workspace' is not associated with an 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_databricks_workspace' is not associated with an 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Databricks Diagnostic Logging Not Configured",
@@ -57,6 +61,7 @@
     "searchKey": "azurerm_databricks_workspace[example_pos5]",
     "searchValue": "",
     "expectedValue": "'azurerm_databricks_workspace' should be associated with 'azurerm_monitor_diagnostic_setting' resources that log all required logs to valid destinations",
-    "actualValue": "'azurerm_databricks_workspace' is associated with 2 'azurerm_monitor_diagnostic_setting' resource(s), but is missing logs for 5 category(s): 'Filesystem', 'accounts', 'clusters', 'jobs', 'notebook'"
+    "actualValue": "'azurerm_databricks_workspace' is associated with 2 'azurerm_monitor_diagnostic_setting' resource(s), but is missing logs for 5 category(s): 'Filesystem', 'accounts', 'clusters', 'jobs', 'notebook'",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "FROM={{alpine:3.5}}.{{RUN sudo yum install bundler}}",
     "searchValue": "",
     "expectedValue": "{{RUN sudo yum install bundler}} should avoid manual input",
-    "actualValue": "{{RUN sudo yum install bundler}} doesn't avoid manual input"
+    "actualValue": "{{RUN sudo yum install bundler}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Yum Install Allows Manual Input",
@@ -21,6 +22,7 @@
     "searchKey": "FROM={{alpine:3.5}}.{{RUN [\"sudo yum\", \"install\", \"bundler\"]}}",
     "searchValue": "",
     "expectedValue": "{{RUN [\"sudo yum\", \"install\", \"bundler\"]}} should avoid manual input",
-    "actualValue": "{{RUN [\"sudo yum\", \"install\", \"bundler\"]}} doesn't avoid manual input"
+    "actualValue": "{{RUN [\"sudo yum\", \"install\", \"bundler\"]}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   }
 ]

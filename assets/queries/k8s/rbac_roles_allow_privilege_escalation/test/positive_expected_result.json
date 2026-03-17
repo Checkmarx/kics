@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{rbac-binder}}.rules",
     "searchValue": "",
     "expectedValue": "metadata.name={{rbac-binder}}.rules[0].verbs should not include the 'bind' and/or 'escalate' permission",
-    "actualValue": "metadata.name={{rbac-binder}}.rules[0].verbs includes the 'bind' and/or 'escalate' permission"
+    "actualValue": "metadata.name={{rbac-binder}}.rules[0].verbs includes the 'bind' and/or 'escalate' permission",
+    "issueType": "IncorrectValue"
   }
 ]

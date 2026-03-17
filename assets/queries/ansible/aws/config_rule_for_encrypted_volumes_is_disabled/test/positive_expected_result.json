@@ -9,6 +9,7 @@
     "searchKey": "name={{foo}}",
     "searchValue": "",
     "expectedValue": "There should be a aws_config_rule with source.identifier equal to 'ENCRYPTED_VOLUMES'",
-    "actualValue": "There is no aws_config_rule with source.identifier equal to 'ENCRYPTED_VOLUMES'"
+    "actualValue": "There is no aws_config_rule with source.identifier equal to 'ENCRYPTED_VOLUMES'",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
     "searchValue": "",
     "expectedValue": "--peer-auto-tls flag should be set to false or not be defined",
-    "actualValue": "--peer-auto-tls flag is set to true"
+    "actualValue": "--peer-auto-tls flag is set to true",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "FROM={{alpine:3.5}}.{{CMD [python, /usr/src/app/app.py] }}",
     "searchValue": "",
     "expectedValue": "{{CMD [python, /usr/src/app/app.py] }} should be in the JSON Notation",
-    "actualValue": "{{CMD [python, /usr/src/app/app.py] }} isn't in JSON Notation"
+    "actualValue": "{{CMD [python, /usr/src/app/app.py] }} isn't in JSON Notation",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
@@ -21,6 +22,7 @@
     "searchKey": "FROM={{alpine:3.5}}.{{ENTRYPOINT [top, -b]}}",
     "searchValue": "",
     "expectedValue": "{{ENTRYPOINT [top, -b]}} should be in the JSON Notation",
-    "actualValue": "{{ENTRYPOINT [top, -b]}} isn't in JSON Notation"
+    "actualValue": "{{ENTRYPOINT [top, -b]}} isn't in JSON Notation",
+    "issueType": "IncorrectValue"
   }
 ]

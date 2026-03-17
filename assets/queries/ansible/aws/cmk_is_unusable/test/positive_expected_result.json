@@ -9,7 +9,8 @@
     "searchKey": "name={{Update IAM policy on an existing KMS key1}}.{{community.aws.aws_kms}}.enabled",
     "searchValue": "",
     "expectedValue": "community.aws.aws_kms.enabled should be set to true",
-    "actualValue": "community.aws.aws_kms.enabled is set to false"
+    "actualValue": "community.aws.aws_kms.enabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CMK Is Unusable",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Update IAM policy on an existing KMS key2}}.{{community.aws.aws_kms}}.pending_window",
     "searchValue": "",
     "expectedValue": "community.aws.aws_kms.pending_window should be undefined",
-    "actualValue": "community.aws.aws_kms.pending_windowis is set"
+    "actualValue": "community.aws.aws_kms.pending_windowis is set",
+    "issueType": "IncorrectValue"
   }
 ]

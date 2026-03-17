@@ -9,7 +9,8 @@
     "searchKey": "Resources.ApiGatewayApi.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ApiGatewayApi.Properties.CacheClusterEnabled should be defined and not null",
-    "actualValue": "Resources.ApiGatewayApi.Properties.CacheClusterEnabled is undefined or null"
+    "actualValue": "Resources.ApiGatewayApi.Properties.CacheClusterEnabled is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Serverless API Cache Cluster Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled",
     "searchValue": "",
     "expectedValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled should be set to true",
-    "actualValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled is set to false"
+    "actualValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Serverless API Cache Cluster Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled",
     "searchValue": "",
     "expectedValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled should be set to true",
-    "actualValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled is set to false"
+    "actualValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

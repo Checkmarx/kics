@@ -9,6 +9,7 @@
     "searchKey": "azurerm_network_interface[positive].ip_configuration.public_ip_address_id",
     "searchValue": "",
     "expectedValue": "'azurerm_network_interface[positive].ip_configuration.public_ip_address_id' should be undefined",
-    "actualValue": "'azurerm_network_interface[positive].ip_configuration.public_ip_address_id' is defined"
+    "actualValue": "'azurerm_network_interface[positive].ip_configuration.public_ip_address_id' is defined",
+    "issueType": "IncorrectValue"
   }
 ]

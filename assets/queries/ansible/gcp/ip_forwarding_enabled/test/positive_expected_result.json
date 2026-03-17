@@ -9,6 +9,7 @@
     "searchKey": "name={{create a instance}}.{{google.cloud.gcp_compute_instance}}.can_ip_forward",
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.can_ip_forward should be set to false",
-    "actualValue": "gcp_compute_instance.can_ip_forward is true"
+    "actualValue": "gcp_compute_instance.can_ip_forward is true",
+    "issueType": "IncorrectValue"
   }
 ]

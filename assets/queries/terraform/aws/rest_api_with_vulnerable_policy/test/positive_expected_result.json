@@ -9,6 +9,7 @@
     "searchKey": "aws_api_gateway_rest_api_policy[test].policy",
     "searchValue": "",
     "expectedValue": "aws_api_gateway_rest_api_policy[test].policy should not have wildcard in 'Action' and 'Principal'",
-    "actualValue": "aws_api_gateway_rest_api_policy[test].policy has wildcard in 'Action' or 'Principal'"
+    "actualValue": "aws_api_gateway_rest_api_policy[test].policy has wildcard in 'Action' or 'Principal'",
+    "issueType": "IncorrectValue"
   }
 ]

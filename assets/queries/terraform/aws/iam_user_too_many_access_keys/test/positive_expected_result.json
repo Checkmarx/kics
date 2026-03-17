@@ -9,7 +9,8 @@
     "searchKey": "aws_iam_access_key[positive1].user",
     "searchValue": "",
     "expectedValue": "One Access Key associated with the same IAM User",
-    "actualValue": "More than one Access Key associated with the same IAM User"
+    "actualValue": "More than one Access Key associated with the same IAM User",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM User Has Too Many Access Keys",
@@ -21,6 +22,7 @@
     "searchKey": "aws_iam_access_key[positive2].user",
     "searchValue": "",
     "expectedValue": "One Access Key associated with the same IAM User",
-    "actualValue": "More than one Access Key associated with the same IAM User"
+    "actualValue": "More than one Access Key associated with the same IAM User",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
     "searchValue": "",
     "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
-    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false"
+    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MockMethod1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MockMethod1.Properties.ApiKeyRequired should be defined",
-    "actualValue": "Resources.MockMethod1.Properties.ApiKeyRequired is undefined"
+    "actualValue": "Resources.MockMethod1.Properties.ApiKeyRequired is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
     "searchValue": "",
     "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
-    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false"
+    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MockMethod1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MockMethod1.Properties.ApiKeyRequired should be defined",
-    "actualValue": "Resources.MockMethod1.Properties.ApiKeyRequired is undefined"
+    "actualValue": "Resources.MockMethod1.Properties.ApiKeyRequired is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
     "searchValue": "",
     "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
-    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false"
+    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
     "searchValue": "",
     "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
-    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false"
+    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--basic-auth-file flag should not be set",
-    "actualValue": "--basic-auth-file flag is set"
+    "actualValue": "--basic-auth-file flag is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Basic Auth File Is Set",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--basic-auth-file flag should not be set",
-    "actualValue": "--basic-auth-file flag is set"
+    "actualValue": "--basic-auth-file flag is set",
+    "issueType": "IncorrectValue"
   }
 ]

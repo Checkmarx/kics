@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
     "searchValue": "",
     "expectedValue": "Operation Object should not be using 'password' flow in OAuth2 authentication",
-    "actualValue": "Operation Object is using 'password' flow in OAuth2 authentication"
+    "actualValue": "Operation Object is using 'password' flow in OAuth2 authentication",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Operation Using Password Flow",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
     "searchValue": "",
     "expectedValue": "Operation Object should not be using 'password' flow in OAuth2 authentication",
-    "actualValue": "Operation Object is using 'password' flow in OAuth2 authentication"
+    "actualValue": "Operation Object is using 'password' flow in OAuth2 authentication",
+    "issueType": "IncorrectValue"
   }
 ]

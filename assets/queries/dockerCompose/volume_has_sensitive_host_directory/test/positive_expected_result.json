@@ -9,7 +9,8 @@
     "searchKey": "services.backup.volumes",
     "searchValue": "",
     "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
-    "actualValue": "There is a sensitive directory (/var/lib/backup/data) mounted as a volume"
+    "actualValue": "There is a sensitive directory (/var/lib/backup/data) mounted as a volume",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Volume Has Sensitive Host Directory",
@@ -21,7 +22,8 @@
     "searchKey": "volumes.vol.driver_opts.device",
     "searchValue": "",
     "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
-    "actualValue": "There is a sensitive directory (/var/lib/backup/data) mounted as a volume"
+    "actualValue": "There is a sensitive directory (/var/lib/backup/data) mounted as a volume",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Volume Has Sensitive Host Directory",
@@ -33,7 +35,8 @@
     "searchKey": "volumes.wp-content.driver_opts.mountpoint",
     "searchValue": "",
     "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
-    "actualValue": "There is a sensitive directory (/var/data) mounted as a volume"
+    "actualValue": "There is a sensitive directory (/var/data) mounted as a volume",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Volume Has Sensitive Host Directory",
@@ -45,6 +48,7 @@
     "searchKey": "services.yesno.volumes.source",
     "searchValue": "",
     "expectedValue": "There shouldn't be sensitive directory mounted as a volume",
-    "actualValue": "There is a sensitive directory (/etc/exercise) mounted as a volume"
+    "actualValue": "There is a sensitive directory (/etc/exercise) mounted as a volume",
+    "issueType": "IncorrectValue"
   }
 ]

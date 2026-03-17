@@ -9,7 +9,8 @@
     "searchKey": "aws_dynamodb_table[basic-dynamodb-table]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS DynamoDB",
@@ -21,7 +22,8 @@
     "searchKey": "aws_dynamodb_table[example2-table]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS DynamoDB",
@@ -33,7 +35,8 @@
     "searchKey": "aws_dynamodb_table[example3-table]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS DynamoDB",
@@ -45,6 +48,7 @@
     "searchKey": "aws_dynamodb_table[example3-table]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{Create (or update) SQL Server1}}.{{azure_rm_sqlserver}}.admin_username",
     "searchValue": "",
     "expectedValue": "azure_rm_sqlserver.admin_username should not be empty",
-    "actualValue": "azure_rm_sqlserver.admin_username is empty"
+    "actualValue": "azure_rm_sqlserver.admin_username is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Predictable Admin Account Name",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Create (or update) SQL Server2}}.{{azure_rm_sqlserver}}.admin_username",
     "searchValue": "",
     "expectedValue": "azure_rm_sqlserver.admin_username should not be empty",
-    "actualValue": "azure_rm_sqlserver.admin_username is empty"
+    "actualValue": "azure_rm_sqlserver.admin_username is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Predictable Admin Account Name",
@@ -33,6 +35,7 @@
     "searchKey": "name={{Create (or update) SQL Server3}}.{{azure_rm_sqlserver}}.admin_username",
     "searchValue": "",
     "expectedValue": "azure_rm_sqlserver.admin_username should not be predictable",
-    "actualValue": "azure_rm_sqlserver.admin_username is predictable"
+    "actualValue": "azure_rm_sqlserver.admin_username is predictable",
+    "issueType": "IncorrectValue"
   }
 ]

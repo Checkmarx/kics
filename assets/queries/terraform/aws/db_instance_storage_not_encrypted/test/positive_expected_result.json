@@ -9,7 +9,8 @@
     "searchKey": "aws_db_instance[positive1].storage_encrypted",
     "searchValue": "",
     "expectedValue": "'storage_encrypted' should be set to true",
-    "actualValue": "'storage_encrypted' is set to false"
+    "actualValue": "'storage_encrypted' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Instance Storage Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "aws_db_instance[positive2]",
     "searchValue": "",
     "expectedValue": "'storage_encrypted' should be set to true",
-    "actualValue": "'storage_encrypted' is undefined or null"
+    "actualValue": "'storage_encrypted' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DB Instance Storage Not Encrypted",
@@ -33,7 +35,8 @@
     "searchKey": "module[db]",
     "searchValue": "",
     "expectedValue": "'storage_encrypted' should be set to true",
-    "actualValue": "'storage_encrypted' is undefined or null"
+    "actualValue": "'storage_encrypted' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DB Instance Storage Not Encrypted",
@@ -45,6 +48,7 @@
     "searchKey": "module[db].storage_encrypted",
     "searchValue": "",
     "expectedValue": "'storage_encrypted' should be set to true",
-    "actualValue": "'storage_encrypted' is set to false"
+    "actualValue": "'storage_encrypted' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

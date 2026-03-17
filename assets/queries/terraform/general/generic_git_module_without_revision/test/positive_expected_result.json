@@ -9,6 +9,7 @@
     "searchKey": "module.{{acm}}.source",
     "searchValue": "",
     "expectedValue": "Module 'source' field should have a reference",
-    "actualValue": "Module 'source' field does not have reference"
+    "actualValue": "Module 'source' field does not have reference",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "name={{add sending authorization policy to email identityyy}}.{{community.aws.aws_ses_identity_policy}}.policy",
     "searchValue": "",
     "expectedValue": "'policy' should not allow IAM actions to all principals",
-    "actualValue": "'policy' allows IAM actions to all principals"
+    "actualValue": "'policy' allows IAM actions to all principals",
+    "issueType": "IncorrectValue"
   }
 ]

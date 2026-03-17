@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}",
     "searchValue": "",
     "expectedValue": "A security schema should be used",
-    "actualValue": "No security schema is used"
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Global And Operation Security Defined (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{patch}}",
     "searchValue": "",
     "expectedValue": "A security schema should be used",
-    "actualValue": "No security schema is used"
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Global And Operation Security Defined (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}",
     "searchValue": "",
     "expectedValue": "A security schema should be used",
-    "actualValue": "No security schema is used"
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Global And Operation Security Defined (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.{{patch}}",
     "searchValue": "",
     "expectedValue": "A security schema should be used",
-    "actualValue": "No security schema is used"
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Global And Operation Security Defined (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.{{get}}",
     "searchValue": "",
     "expectedValue": "A security schema should be used",
-    "actualValue": "No security schema is used"
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Global And Operation Security Defined (v2)",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/}}.{{get}}",
     "searchValue": "",
     "expectedValue": "A security schema should be used",
-    "actualValue": "No security schema is used"
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute"
   }
 ]

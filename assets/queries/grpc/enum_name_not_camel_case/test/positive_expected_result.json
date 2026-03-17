@@ -9,7 +9,8 @@
     "searchKey": "enum[noInitCap]",
     "searchValue": "",
     "expectedValue": "Enum Name should follow CamelCase (Initial Letter is Capital)",
-    "actualValue": "Enum Name doesn't follow CamelCase"
+    "actualValue": "Enum Name doesn't follow CamelCase",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Enum Name Not CamelCase",
@@ -21,7 +22,8 @@
     "searchKey": "enum[NOT_CAMEL_CASE]",
     "searchValue": "",
     "expectedValue": "Enum Name should follow CamelCase (Initial Letter is Capital)",
-    "actualValue": "Enum Name doesn't follow CamelCase"
+    "actualValue": "Enum Name doesn't follow CamelCase",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Enum Name Not CamelCase",
@@ -33,6 +35,7 @@
     "searchKey": "enum[ALLCAPS]",
     "searchValue": "",
     "expectedValue": "Enum Name should follow CamelCase (Initial Letter is Capital)",
-    "actualValue": "Enum Name doesn't follow CamelCase"
+    "actualValue": "Enum Name doesn't follow CamelCase",
+    "issueType": "IncorrectValue"
   }
 ]

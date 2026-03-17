@@ -9,7 +9,8 @@
     "searchKey": "nifcloud_elb[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_elb[positive]' should switch to HTTPS to benefit from TLS security features.",
-    "actualValue": "'nifcloud_elb[positive]' using HTTP protocol."
+    "actualValue": "'nifcloud_elb[positive]' using HTTP protocol.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Nifcloud ELB Using HTTP Protocol",
@@ -21,6 +22,7 @@
     "searchKey": "nifcloud_elb[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_elb[positive]' should switch to HTTPS to benefit from TLS security features",
-    "actualValue": "'nifcloud_elb[positive]' use HTTP protocol"
+    "actualValue": "'nifcloud_elb[positive]' use HTTP protocol",
+    "issueType": "IncorrectValue"
   }
 ]

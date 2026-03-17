@@ -9,7 +9,8 @@
     "searchKey": "Resources.MySkill.Properties.AuthenticationConfiguration.RefreshToken",
     "searchValue": "",
     "expectedValue": "'Resources.MySkill.Properties.RefreshToken' starts with '{{resolve:secretsmanager:' or starts with '{{resolve:ssm-secure:'",
-    "actualValue": "'Resources.MySkill.Properties.RefreshToken' does not start with '{{resolve:secretsmanager:' or with '{{resolve:ssm-secure:'"
+    "actualValue": "'Resources.MySkill.Properties.RefreshToken' does not start with '{{resolve:secretsmanager:' or with '{{resolve:ssm-secure:'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RefreshToken Is Exposed",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.MySkill.Properties.AuthenticationConfiguration.RefreshToken",
     "searchValue": "",
     "expectedValue": "'Resources.MySkill.Properties.RefreshToken' starts with '{{resolve:secretsmanager:' or starts with '{{resolve:ssm-secure:'",
-    "actualValue": "'Resources.MySkill.Properties.RefreshToken' does not start with '{{resolve:secretsmanager:' or with '{{resolve:ssm-secure:'"
+    "actualValue": "'Resources.MySkill.Properties.RefreshToken' does not start with '{{resolve:secretsmanager:' or with '{{resolve:ssm-secure:'",
+    "issueType": "IncorrectValue"
   }
 ]

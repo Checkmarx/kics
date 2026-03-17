@@ -9,7 +9,8 @@
     "searchKey": "provider.apiGateway",
     "searchValue": "",
     "expectedValue": "apiGateway should have 'minimumCompressionSize' defined and set to a recommended value",
-    "actualValue": "apiGateway does not have 'minimumCompressionSize' defined"
+    "actualValue": "apiGateway does not have 'minimumCompressionSize' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Serverless API Without Content Encoding",
@@ -21,6 +22,7 @@
     "searchKey": "provider.apiGateway.minimumCompressionSize",
     "searchValue": "",
     "expectedValue": "'minimumCompressionSize' should be set to a recommended value",
-    "actualValue": "'minimumCompressionSize' is set a unrecommended value"
+    "actualValue": "'minimumCompressionSize' is set a unrecommended value",
+    "issueType": "IncorrectValue"
   }
 ]

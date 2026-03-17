@@ -9,7 +9,8 @@
     "searchKey": "azurerm_subscription[positive1_1]",
     "searchValue": "",
     "expectedValue": "'azurerm_subscription[positive1_1]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_subscription[positive1_1]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_subscription[positive1_1]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_subscription[positive1_2]",
     "searchValue": "",
     "expectedValue": "'azurerm_subscription[positive1_2]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_subscription[positive1_2]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_subscription[positive1_2]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_key_vault[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_key_vault[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_key_vault[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_key_vault[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_application_gateway[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_application_gateway[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_application_gateway[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_application_gateway[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_firewall[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_firewall[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_firewall[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_firewall[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -69,7 +74,8 @@
     "searchKey": "azurerm_lb[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_lb[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_lb[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_lb[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -81,7 +87,8 @@
     "searchKey": "azurerm_public_ip[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_public_ip[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_public_ip[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_public_ip[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -93,7 +100,8 @@
     "searchKey": "azurerm_frontdoor[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_frontdoor[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_frontdoor[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_frontdoor[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -105,7 +113,8 @@
     "searchKey": "azurerm_cdn_frontdoor_profile[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_cdn_frontdoor_profile[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_cdn_frontdoor_profile[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_cdn_frontdoor_profile[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -117,7 +126,8 @@
     "searchKey": "azurerm_cdn_frontdoor_endpoint[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_cdn_frontdoor_endpoint[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_cdn_frontdoor_endpoint[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_cdn_frontdoor_endpoint[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -129,7 +139,8 @@
     "searchKey": "azurerm_cdn_profile[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_cdn_profile[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_cdn_profile[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_cdn_profile[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -141,7 +152,8 @@
     "searchKey": "azurerm_cdn_endpoint[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_cdn_endpoint[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_cdn_endpoint[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_cdn_endpoint[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -153,7 +165,8 @@
     "searchKey": "azurerm_storage_account[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_storage_account[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_storage_account[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -165,7 +178,8 @@
     "searchKey": "azurerm_mssql_server[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_server[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_mssql_server[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_mssql_server[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -177,7 +191,8 @@
     "searchKey": "azurerm_mssql_managed_instance[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_managed_instance[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_mssql_managed_instance[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_mssql_managed_instance[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -189,7 +204,8 @@
     "searchKey": "azurerm_mssql_database[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_database[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_mssql_database[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_mssql_database[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -201,7 +217,8 @@
     "searchKey": "azurerm_cosmosdb_account[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_cosmosdb_account[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_cosmosdb_account[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_cosmosdb_account[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -213,7 +230,8 @@
     "searchKey": "azurerm_linux_web_app[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_web_app[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_linux_web_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_linux_web_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -225,7 +243,8 @@
     "searchKey": "azurerm_windows_web_app[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_web_app[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_windows_web_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_windows_web_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -237,7 +256,8 @@
     "searchKey": "azurerm_linux_function_app[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_linux_function_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_linux_function_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -249,7 +269,8 @@
     "searchKey": "azurerm_windows_function_app[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_windows_function_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_windows_function_app[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -261,7 +282,8 @@
     "searchKey": "azurerm_kubernetes_cluster[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_kubernetes_cluster[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_kubernetes_cluster[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_kubernetes_cluster[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -273,7 +295,8 @@
     "searchKey": "azurerm_eventhub_namespace[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_eventhub_namespace[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_eventhub_namespace[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_eventhub_namespace[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -285,7 +308,8 @@
     "searchKey": "azurerm_servicebus_namespace[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_servicebus_namespace[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_servicebus_namespace[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_servicebus_namespace[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -297,7 +321,8 @@
     "searchKey": "azurerm_container_registry[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_container_registry[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_container_registry[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_container_registry[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Resource Without Diagnostic Settings",
@@ -309,6 +334,7 @@
     "searchKey": "azurerm_api_management[pos_example]",
     "searchValue": "",
     "expectedValue": "'azurerm_api_management[pos_example]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_api_management[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_api_management[pos_example]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   }
 ]

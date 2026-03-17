@@ -9,7 +9,8 @@
     "searchKey": "google_filestore_instance[instance]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP FI",
@@ -21,7 +22,8 @@
     "searchKey": "google_filestore_instance[instance2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP FI",
@@ -33,6 +35,7 @@
     "searchKey": "google_filestore_instance[instance3]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

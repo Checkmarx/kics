@@ -9,6 +9,7 @@
     "searchKey": "google_container_cluster[false].enable_shielded_nodes",
     "searchValue": "",
     "expectedValue": "google_container_cluster.enable_shielded_nodes should be set to true",
-    "actualValue": "google_container_cluster.enable_shielded_nodes is set to false"
+    "actualValue": "google_container_cluster.enable_shielded_nodes is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

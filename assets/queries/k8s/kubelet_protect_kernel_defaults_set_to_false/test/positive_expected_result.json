@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--protect-kernel-defaults flag should not be set to false",
-    "actualValue": "--protect-kernel-defaults flag is set to false"
+    "actualValue": "--protect-kernel-defaults flag is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Protect Kernel Defaults Set To False",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--protect-kernel-defaults flag should not be set to false",
-    "actualValue": "--protect-kernel-defaults flag is set to false"
+    "actualValue": "--protect-kernel-defaults flag is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Protect Kernel Defaults Set To False",
@@ -33,7 +35,8 @@
     "searchKey": "kind={{KubeletConfiguration}}.protectKernelDefaults",
     "searchValue": "",
     "expectedValue": "protectKernelDefaults flag should defined to true",
-    "actualValue": "protectKernelDefaults flag is set to false"
+    "actualValue": "protectKernelDefaults flag is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Protect Kernel Defaults Set To False",
@@ -45,6 +48,7 @@
     "searchKey": "kind={{KubeletConfiguration}}",
     "searchValue": "",
     "expectedValue": "protectKernelDefaults flag should defined to true",
-    "actualValue": "protectKernelDefaults flag is not defined"
+    "actualValue": "protectKernelDefaults flag is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

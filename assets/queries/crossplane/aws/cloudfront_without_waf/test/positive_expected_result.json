@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
     "searchValue": "",
     "expectedValue": "'webACLID' should be defined",
-    "actualValue": "'webACLID' is not defined"
+    "actualValue": "'webACLID' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Without WAF",
@@ -21,6 +22,7 @@
     "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
     "searchValue": "",
     "expectedValue": "'webACLID' should be defined",
-    "actualValue": "'webACLID' is not defined"
+    "actualValue": "'webACLID' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

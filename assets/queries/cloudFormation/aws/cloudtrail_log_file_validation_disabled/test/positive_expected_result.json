@@ -9,7 +9,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.EnableLogFileValidation' should exist",
-    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing"
+    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myTrail2.Properties.EnableLogFileValidation",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' should be true",
-    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true"
+    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.EnableLogFileValidation' should exist",
-    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing"
+    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.myTrail2.Properties.EnableLogFileValidation",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' should be true",
-    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true"
+    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.EnableLogFileValidation' should exist",
-    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing"
+    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.myTrail2.Properties.EnableLogFileValidation",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' should be true",
-    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true"
+    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.EnableLogFileValidation' should exist",
-    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing"
+    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.myTrail2.Properties.EnableLogFileValidation",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' should be true",
-    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true"
+    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true",
+    "issueType": "IncorrectValue"
   }
 ]

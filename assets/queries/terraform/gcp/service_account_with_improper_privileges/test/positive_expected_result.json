@@ -9,7 +9,8 @@
     "searchKey": "google_iam_policy[admin].binding.role",
     "searchValue": "",
     "expectedValue": "google_iam_policy[admin].binding.role should not have admin, editor, owner, or write privileges for service account member",
-    "actualValue": "google_iam_policy[admin].binding.role has admin, editor, owner, or write privilege for service account member"
+    "actualValue": "google_iam_policy[admin].binding.role has admin, editor, owner, or write privilege for service account member",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service Account with Improper Privileges",
@@ -21,7 +22,8 @@
     "searchKey": "google_project_iam_binding[project1].role",
     "searchValue": "",
     "expectedValue": "google_project_iam_binding[project1].role should not have admin, editor, owner, or write privileges for service account member",
-    "actualValue": "google_project_iam_binding[project1].role has admin, editor, owner, or write privilege for service account member"
+    "actualValue": "google_project_iam_binding[project1].role has admin, editor, owner, or write privilege for service account member",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service Account with Improper Privileges",
@@ -33,7 +35,8 @@
     "searchKey": "google_project_iam_member[project2].role",
     "searchValue": "",
     "expectedValue": "google_project_iam_member[project2].role should not have admin, editor, owner, or write privileges for service account member",
-    "actualValue": "google_project_iam_member[project2].role has admin, editor, owner, or write privilege for service account member"
+    "actualValue": "google_project_iam_member[project2].role has admin, editor, owner, or write privilege for service account member",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service Account with Improper Privileges",
@@ -45,7 +48,8 @@
     "searchKey": "google_iam_policy[admin].binding[1].role",
     "searchValue": "",
     "expectedValue": "google_iam_policy[admin].binding[1].role should not have admin, editor, owner, or write privileges for service account member",
-    "actualValue": "google_iam_policy[admin].binding[1].role has admin, editor, owner, or write privilege for service account member"
+    "actualValue": "google_iam_policy[admin].binding[1].role has admin, editor, owner, or write privilege for service account member",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service Account with Improper Privileges",
@@ -57,7 +61,8 @@
     "searchKey": "google_iam_policy[admin].binding[0].role",
     "searchValue": "",
     "expectedValue": "google_iam_policy[admin].binding[0].role should not have admin, editor, owner, or write privileges for service account member",
-    "actualValue": "google_iam_policy[admin].binding[0].role has admin, editor, owner, or write privilege for service account member"
+    "actualValue": "google_iam_policy[admin].binding[0].role has admin, editor, owner, or write privilege for service account member",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service Account with Improper Privileges",
@@ -69,6 +74,7 @@
     "searchKey": "google_iam_policy[admin].binding[1].role",
     "searchValue": "",
     "expectedValue": "google_iam_policy[admin].binding[1].role should not have admin, editor, owner, or write privileges for service account member",
-    "actualValue": "google_iam_policy[admin].binding[1].role has admin, editor, owner, or write privilege for service account member"
+    "actualValue": "google_iam_policy[admin].binding[1].role has admin, editor, owner, or write privilege for service account member",
+    "issueType": "IncorrectValue"
   }
 ]

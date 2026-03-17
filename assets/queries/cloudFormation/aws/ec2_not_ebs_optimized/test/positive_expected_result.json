@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
     "searchValue": "",
     "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
-    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true."
+    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
     "searchValue": "",
     "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
-    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true."
+    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
     "searchValue": "",
     "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
-    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false."
+    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
     "searchValue": "",
     "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
-    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false."
+    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
     "searchValue": "",
     "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
-    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true."
+    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
     "searchValue": "",
     "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
-    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true."
+    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -81,6 +87,7 @@
     "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
     "searchValue": "",
     "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
-    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false."
+    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false.",
+    "issueType": "IncorrectValue"
   }
 ]

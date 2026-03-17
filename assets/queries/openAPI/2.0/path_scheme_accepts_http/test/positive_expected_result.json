@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.schemes.http",
     "searchValue": "",
     "expectedValue": "The Scheme list uses only 'HTTPS' protocol",
-    "actualValue": "The Scheme list uses 'HTTP' protocol"
+    "actualValue": "The Scheme list uses 'HTTP' protocol",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Scheme Accepts HTTP (v2)",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.{{get}}.schemes.http",
     "searchValue": "",
     "expectedValue": "The Scheme list uses only 'HTTPS' protocol",
-    "actualValue": "The Scheme list uses 'HTTP' protocol"
+    "actualValue": "The Scheme list uses 'HTTP' protocol",
+    "issueType": "IncorrectValue"
   }
 ]

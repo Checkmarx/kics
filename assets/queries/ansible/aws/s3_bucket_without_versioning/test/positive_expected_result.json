@@ -9,7 +9,8 @@
     "searchKey": "name={{foo}}.{{amazon.aws.s3_bucket}}",
     "searchValue": "",
     "expectedValue": "s3_bucket should have versioning set to true",
-    "actualValue": "s3_bucket does not have versioning (defaults to false)"
+    "actualValue": "s3_bucket does not have versioning (defaults to false)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Versioning",
@@ -21,6 +22,7 @@
     "searchKey": "name={{foo2}}.{{amazon.aws.s3_bucket}}.versioning",
     "searchValue": "",
     "expectedValue": "s3_bucket should have versioning set to true",
-    "actualValue": "s3_bucket does has versioning set to false"
+    "actualValue": "s3_bucket does has versioning set to false",
+    "issueType": "IncorrectValue"
   }
 ]

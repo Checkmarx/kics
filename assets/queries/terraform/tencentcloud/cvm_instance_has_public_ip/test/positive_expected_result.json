@@ -9,6 +9,7 @@
     "searchKey": "tencentcloud_instance[cvm_postpaid].allocate_public_ip",
     "searchValue": "",
     "expectedValue": "[cvm_postpaid] 'allocate_public_ip' should be set to false",
-    "actualValue": "[cvm_postpaid] 'allocate_public_ip' is true"
+    "actualValue": "[cvm_postpaid] 'allocate_public_ip' is true",
+    "issueType": "IncorrectValue"
   }
 ]

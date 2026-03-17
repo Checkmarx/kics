@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
@@ -141,6 +152,7 @@
     "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
     "searchValue": "",
     "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
-    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'"
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue"
   }
 ]

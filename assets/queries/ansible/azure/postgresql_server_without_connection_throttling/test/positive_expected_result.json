@@ -9,7 +9,8 @@
     "searchKey": "name={{Update PostgreSQL Server setting}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Update PostgreSQL Server setting2}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
@@ -33,7 +35,8 @@
     "searchKey": "name={{Update PostgreSQL Server setting3}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
@@ -45,7 +48,8 @@
     "searchKey": "name={{Update PostgreSQL Server setting4}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
@@ -57,7 +61,8 @@
     "searchKey": "name={{Update PostgreSQL Server setting5}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
@@ -69,6 +74,7 @@
     "searchKey": "name={{Update PostgreSQL Server setting6}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   }
 ]

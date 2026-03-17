@@ -9,7 +9,8 @@
     "searchKey": "aws_ebs_volume[positive1].encrypted",
     "searchValue": "",
     "expectedValue": "One of 'aws_ebs_volume.encrypted' should be 'true'",
-    "actualValue": "One of 'aws_ebs_volume.encrypted' is 'false'"
+    "actualValue": "One of 'aws_ebs_volume.encrypted' is 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_ebs_volume[positive2]",
     "searchValue": "",
     "expectedValue": "One of 'aws_ebs_volume.encrypted' should be defined",
-    "actualValue": "One of 'aws_ebs_volume.encrypted' is undefined"
+    "actualValue": "One of 'aws_ebs_volume.encrypted' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

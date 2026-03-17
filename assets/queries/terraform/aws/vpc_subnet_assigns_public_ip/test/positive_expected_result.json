@@ -9,7 +9,8 @@
     "searchKey": "aws_subnet[positive].map_public_ip_on_launch",
     "searchValue": "",
     "expectedValue": "aws_subnet[positive].map_public_ip_on_launch should be set to false or undefined",
-    "actualValue": "aws_subnet[positive].map_public_ip_on_launch is set to true"
+    "actualValue": "aws_subnet[positive].map_public_ip_on_launch is set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Subnet Assigns Public IP",
@@ -21,7 +22,8 @@
     "searchKey": "vpc.map_public_ip_on_launch",
     "searchValue": "",
     "expectedValue": "vpc.map_public_ip_on_launch should be set to false",
-    "actualValue": "vpc.map_public_ip_on_launch is set to true"
+    "actualValue": "vpc.map_public_ip_on_launch is set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Subnet Assigns Public IP",
@@ -33,6 +35,7 @@
     "searchKey": "vpc",
     "searchValue": "",
     "expectedValue": "vpc.map_public_ip_on_launch should be set to false",
-    "actualValue": "vpc.map_public_ip_on_launch is set undefined"
+    "actualValue": "vpc.map_public_ip_on_launch is set undefined",
+    "issueType": "IncorrectValue"
   }
 ]

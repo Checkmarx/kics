@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--terminated-pod-gc-threshold flag should be set between 0 and 12501",
-    "actualValue": "--terminated-pod-gc-threshold flag is set to a incorrect value"
+    "actualValue": "--terminated-pod-gc-threshold flag is set to a incorrect value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Terminated Pod Garbage Collector Threshold Not Properly Set",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--terminated-pod-gc-threshold flag should be set between 0 and 12501",
-    "actualValue": "--terminated-pod-gc-threshold flag is set to a incorrect value"
+    "actualValue": "--terminated-pod-gc-threshold flag is set to a incorrect value",
+    "issueType": "IncorrectValue"
   }
 ]

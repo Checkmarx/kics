@@ -9,7 +9,8 @@
     "searchKey": "name={{Creating EBS volume01}}.{{amazon.aws.ec2_vol}}.encrypted",
     "searchValue": "",
     "expectedValue": "ec2_vol.encrypted should be enabled",
-    "actualValue": "ec2_vol.encrypted is disabled"
+    "actualValue": "ec2_vol.encrypted is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Creating EBS volume02}}.{{amazon.aws.ec2_vol}}.encrypted",
     "searchValue": "",
     "expectedValue": "ec2_vol.encrypted should be enabled",
-    "actualValue": "ec2_vol.encrypted is disabled"
+    "actualValue": "ec2_vol.encrypted is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "name={{Creating EBS volume03}}.{{amazon.aws.ec2_vol}}.encrypted",
     "searchValue": "",
     "expectedValue": "ec2_vol.encrypted should be enabled",
-    "actualValue": "ec2_vol.encrypted is disabled"
+    "actualValue": "ec2_vol.encrypted is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "name={{Creating EBS volume04}}.{{amazon.aws.ec2_vol}}",
     "searchValue": "",
     "expectedValue": "ec2_vol.encrypted should be defined",
-    "actualValue": "ec2_vol.encrypted is undefined"
+    "actualValue": "ec2_vol.encrypted is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

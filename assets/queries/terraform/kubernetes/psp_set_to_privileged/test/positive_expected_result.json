@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_pod_security_policy[example].spec.privileged",
     "searchValue": "",
     "expectedValue": "kubernetes_pod_security_policy[example].spec.privileged should be set to false",
-    "actualValue": "kubernetes_pod_security_policy[example].spec.privileged is not set to false"
+    "actualValue": "kubernetes_pod_security_policy[example].spec.privileged is not set to false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_cognito_user_pool[positive1]",
     "searchValue": "",
     "expectedValue": "aws_cognito_user_pool[positive1].mfa_configuration should be set",
-    "actualValue": "aws_cognito_user_pool[positive1].mfa_configuration is undefined"
+    "actualValue": "aws_cognito_user_pool[positive1].mfa_configuration is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cognito UserPool Without MFA",
@@ -21,7 +22,8 @@
     "searchKey": "aws_cognito_user_pool[positive2]",
     "searchValue": "",
     "expectedValue": "aws_cognito_user_pool[positive2].mfa_configuration should be set to 'ON' or 'OPTIONAL",
-    "actualValue": "aws_cognito_user_pool[positive2].mfa_configuration is set to 'OFF'"
+    "actualValue": "aws_cognito_user_pool[positive2].mfa_configuration is set to 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cognito UserPool Without MFA",
@@ -33,6 +35,7 @@
     "searchKey": "aws_cognito_user_pool[positive3]",
     "searchValue": "",
     "expectedValue": "aws_cognito_user_pool[positive3] should have 'sms_configuration' or 'software_token_mfa_configuration' defined",
-    "actualValue": "aws_cognito_user_pool[positive3] doesn't have 'sms_configuration' or 'software_token_mfa_configuration' defined"
+    "actualValue": "aws_cognito_user_pool[positive3] doesn't have 'sms_configuration' or 'software_token_mfa_configuration' defined",
+    "issueType": "MissingAttribute"
   }
 ]

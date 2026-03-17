@@ -9,6 +9,7 @@
     "searchKey": "aws_iam_role_policy[test_policy].policy",
     "searchValue": "",
     "expectedValue": "'aws_iam_role_policy.policy.Statement.Action' iam:passrole shouldn't have Resource '*'",
-    "actualValue": "'aws_iam_role_policy.policy.Statement.Action' iam:passrole has Resource '*'"
+    "actualValue": "'aws_iam_role_policy.policy.Statement.Action' iam:passrole has Resource '*'",
+    "issueType": "IncorrectValue"
   }
 ]

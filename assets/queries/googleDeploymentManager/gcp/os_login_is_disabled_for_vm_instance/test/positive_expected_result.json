@@ -9,6 +9,7 @@
     "searchKey": "resources.name={{vm}}.properties.metadata.items[0]",
     "searchValue": "",
     "expectedValue": "'metadata.items[0]'.value should be true",
-    "actualValue": "'metadata.items[0]'.value is false"
+    "actualValue": "'metadata.items[0]'.value is false",
+    "issueType": "IncorrectValue"
   }
 ]

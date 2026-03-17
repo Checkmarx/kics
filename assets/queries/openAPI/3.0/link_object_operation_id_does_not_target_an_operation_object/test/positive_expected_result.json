@@ -9,7 +9,8 @@
     "searchKey": "components.responses.{{200}}.links.{{address}}.operationId",
     "searchValue": "",
     "expectedValue": "components.responses.200.links.address.operationId points to an operationId of an operation object",
-    "actualValue": "components.responses.200.links.address.operationId does not point to an operationId of an operation object"
+    "actualValue": "components.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/test}}.{{get}}.responses.{{200}}.links.{{address}}.operationId",
     "searchValue": "",
     "expectedValue": "paths/test.get.responses.200.links.address.operationId points to an operationId of an operation object",
-    "actualValue": "paths./test.get.responses.200.links.address.operationId does not point to an operationId of an operation object"
+    "actualValue": "paths./test.get.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
@@ -33,7 +35,8 @@
     "searchKey": "components.links.{{address}}.operationId",
     "searchValue": "",
     "expectedValue": "components.links.{{address}}.operationId points to an operationId of an operation object",
-    "actualValue": "components.links.{{address}}.operationId does not point to an operationId of an operation object"
+    "actualValue": "components.links.{{address}}.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
@@ -45,7 +48,8 @@
     "searchKey": "components.responses.{{200}}.links.{{address}}.operationId",
     "searchValue": "",
     "expectedValue": "components.responses.200.links.address.operationId points to an operationId of an operation object",
-    "actualValue": "components.responses.200.links.address.operationId does not point to an operationId of an operation object"
+    "actualValue": "components.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/test}}.{{get}}.responses.{{200}}.links.{{address}}.operationId",
     "searchValue": "",
     "expectedValue": "paths/test.get.responses.200.links.address.operationId points to an operationId of an operation object",
-    "actualValue": "paths./test.get.responses.200.links.address.operationId does not point to an operationId of an operation object"
+    "actualValue": "paths./test.get.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
@@ -69,6 +74,7 @@
     "searchKey": "components.links.{{address}}.operationId",
     "searchValue": "",
     "expectedValue": "components.links.{{address}}.operationId points to an operationId of an operation object",
-    "actualValue": "components.links.{{address}}.operationId does not point to an operationId of an operation object"
+    "actualValue": "components.links.{{address}}.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   }
 ]

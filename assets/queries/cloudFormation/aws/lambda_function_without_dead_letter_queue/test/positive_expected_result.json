@@ -9,7 +9,8 @@
     "searchKey": "Resources.Function.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Function.Properties.DeadLetterConfig' should be defined and not null",
-    "actualValue": "'Resources.Function.Properties.DeadLetterConfig' is undefined or null"
+    "actualValue": "'Resources.Function.Properties.DeadLetterConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Lambda Function Without Dead Letter Queue",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Function2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Function2.Properties.DeadLetterConfig' should be defined and not null",
-    "actualValue": "'Resources.Function2.Properties.DeadLetterConfig' is undefined or null"
+    "actualValue": "'Resources.Function2.Properties.DeadLetterConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Lambda Function Without Dead Letter Queue",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.Function2.Properties.DeadLetterConfig",
     "searchValue": "",
     "expectedValue": "'Resources.Function2.Properties.DeadLetterConfig.TargetArn' should be defined and not null",
-    "actualValue": "'Resources.Function2.Properties.DeadLetterConfig.TargetArn' is undefined or null"
+    "actualValue": "'Resources.Function2.Properties.DeadLetterConfig.TargetArn' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

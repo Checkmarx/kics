@@ -9,7 +9,8 @@
     "searchKey": "name={{Use a routing policy to distribute traffic02}}.{{community.aws.route53}}",
     "searchValue": "",
     "expectedValue": "route53.value should be defined or not null",
-    "actualValue": "route53.value is undefined or null"
+    "actualValue": "route53.value is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Route53 Record Undefined",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Use a routing policy to distribute traffic03}}.{{community.aws.route53}}",
     "searchValue": "",
     "expectedValue": "route53.value should be defined or not null",
-    "actualValue": "route53.value is undefined or null"
+    "actualValue": "route53.value is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

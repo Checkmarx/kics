@@ -9,7 +9,8 @@
     "searchKey": "name={{elb1}}.{{community.aws.elb_application_lb}}",
     "searchValue": "",
     "expectedValue": "community.aws.elb_application_lb.listeners should be defined",
-    "actualValue": "%!&(string=community.aws.elb_application_lb)s.listeners is undefined"
+    "actualValue": "%!&(string=community.aws.elb_application_lb)s.listeners is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Using Insecure Protocols",
@@ -21,7 +22,8 @@
     "searchKey": "name={{elb2}}.{{community.aws.elb_application_lb}}.listeners.%!s(int=0)",
     "searchValue": "",
     "expectedValue": "community.aws.elb_application_lb.listeners.SslPolicy should be defined",
-    "actualValue": "community.aws.elb_application_lb.listeners.SslPolicy is undefined"
+    "actualValue": "community.aws.elb_application_lb.listeners.SslPolicy is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Using Insecure Protocols",
@@ -33,7 +35,8 @@
     "searchKey": "name={{elb3}}.{{community.aws.elb_application_lb}}.listeners.%!s(int=0)",
     "searchValue": "",
     "expectedValue": "community.aws.elb_application_lb.listeners.SslPolicy is a secure protocol",
-    "actualValue": "community.aws.elb_application_lb.listeners.SslPolicy is an insecure protocol"
+    "actualValue": "community.aws.elb_application_lb.listeners.SslPolicy is an insecure protocol",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Using Insecure Protocols",
@@ -45,7 +48,8 @@
     "searchKey": "name={{elb4}}.{{community.aws.elb_network_lb}}",
     "searchValue": "",
     "expectedValue": "community.aws.elb_network_lb.listeners should be defined",
-    "actualValue": "%!&(string=community.aws.elb_network_lb)s.listeners is undefined"
+    "actualValue": "%!&(string=community.aws.elb_network_lb)s.listeners is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Using Insecure Protocols",
@@ -57,7 +61,8 @@
     "searchKey": "name={{elb5}}.{{community.aws.elb_network_lb}}.listeners.%!s(int=0)",
     "searchValue": "",
     "expectedValue": "community.aws.elb_network_lb.listeners.SslPolicy should be defined",
-    "actualValue": "community.aws.elb_network_lb.listeners.SslPolicy is undefined"
+    "actualValue": "community.aws.elb_network_lb.listeners.SslPolicy is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Using Insecure Protocols",
@@ -69,6 +74,7 @@
     "searchKey": "name={{elb6}}.{{community.aws.elb_network_lb}}.listeners.%!s(int=0)",
     "searchValue": "",
     "expectedValue": "community.aws.elb_network_lb.listeners.SslPolicy is a secure protocol",
-    "actualValue": "community.aws.elb_network_lb.listeners.SslPolicy is an insecure protocol"
+    "actualValue": "community.aws.elb_network_lb.listeners.SslPolicy is an insecure protocol",
+    "issueType": "IncorrectValue"
   }
 ]

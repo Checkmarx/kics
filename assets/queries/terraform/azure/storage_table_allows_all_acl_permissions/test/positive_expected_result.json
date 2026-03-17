@@ -9,6 +9,7 @@
     "searchKey": "azurerm_storage_table[table_resource].acl.permissions",
     "searchValue": "",
     "expectedValue": "azurerm_storage_table[table_resource].acl.permissions should not allow all ACL permissions",
-    "actualValue": "azurerm_storage_table[table_resource].acl.permissions allows all ACL permissions"
+    "actualValue": "azurerm_storage_table[table_resource].acl.permissions allows all ACL permissions",
+    "issueType": "IncorrectValue"
   }
 ]

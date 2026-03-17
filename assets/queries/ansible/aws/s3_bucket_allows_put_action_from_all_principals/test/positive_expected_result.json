@@ -9,6 +9,7 @@
     "searchKey": "name={{Bucket}}.{{amazon.aws.s3_bucket}}.policy",
     "searchValue": "",
     "expectedValue": "s3_bucket[mys3bucket] should not allow Put Action From All Principals",
-    "actualValue": "s3_bucket[mys3bucket] allows Put Action From All Principals"
+    "actualValue": "s3_bucket[mys3bucket] allows Put Action From All Principals",
+    "issueType": "IncorrectValue"
   }
 ]

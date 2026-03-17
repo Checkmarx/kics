@@ -9,7 +9,8 @@
     "searchKey": "Resources.LambdaExecutionRole.Properties.Policies.PolicyDocument",
     "searchValue": "AppendItemToListFunction",
     "expectedValue": "Resources.LambdaExecutionRole.Properties.Policies[root].PolicyDocument should not give admin privileges to Resources.AppendItemToListFunction ",
-    "actualValue": "Resources.LambdaExecutionRole.Properties.Policies[root].PolicyDocument gives admin privileges to Resources.AppendItemToListFunction "
+    "actualValue": "Resources.LambdaExecutionRole.Properties.Policies[root].PolicyDocument gives admin privileges to Resources.AppendItemToListFunction ",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda Functions With Full Privileges",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.LambdaExecutionRole.Properties.Policies.PolicyDocument",
     "searchValue": "AppendItemToListFunction",
     "expectedValue": "Resources.LambdaExecutionRole.Properties.Policies[root].PolicyDocument should not give admin privileges to Resources.AppendItemToListFunction ",
-    "actualValue": "Resources.LambdaExecutionRole.Properties.Policies[root].PolicyDocument gives admin privileges to Resources.AppendItemToListFunction "
+    "actualValue": "Resources.LambdaExecutionRole.Properties.Policies[root].PolicyDocument gives admin privileges to Resources.AppendItemToListFunction ",
+    "issueType": "IncorrectValue"
   }
 ]

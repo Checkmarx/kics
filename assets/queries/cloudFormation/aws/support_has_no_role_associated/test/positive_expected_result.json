@@ -9,7 +9,8 @@
     "searchKey": "Resources.noRoles",
     "searchValue": "",
     "expectedValue": "'Resources.noRoles.Roles' should be set",
-    "actualValue": "'Resources.noRoles.Roles' is undefined"
+    "actualValue": "'Resources.noRoles.Roles' is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Support Has No Role Associated",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.noUsers",
     "searchValue": "",
     "expectedValue": "'Resources.noUsers.Users' should be set",
-    "actualValue": "'Resources.noUsers.Users' is undefined"
+    "actualValue": "'Resources.noUsers.Users' is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Support Has No Role Associated",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.noGroups",
     "searchValue": "",
     "expectedValue": "'Resources.noGroups.Groups' should be set",
-    "actualValue": "'Resources.noGroups.Groups' is undefined"
+    "actualValue": "'Resources.noGroups.Groups' is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Support Has No Role Associated",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.noRoles",
     "searchValue": "",
     "expectedValue": "'Resources.noRoles.Roles' should be set",
-    "actualValue": "'Resources.noRoles.Roles' is undefined"
+    "actualValue": "'Resources.noRoles.Roles' is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Support Has No Role Associated",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.noUsers",
     "searchValue": "",
     "expectedValue": "'Resources.noUsers.Users' should be set",
-    "actualValue": "'Resources.noUsers.Users' is undefined"
+    "actualValue": "'Resources.noUsers.Users' is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Support Has No Role Associated",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.noGroups",
     "searchValue": "",
     "expectedValue": "'Resources.noGroups.Groups' should be set",
-    "actualValue": "'Resources.noGroups.Groups' is undefined"
+    "actualValue": "'Resources.noGroups.Groups' is undefined",
+    "issueType": "IncorrectValue"
   }
 ]

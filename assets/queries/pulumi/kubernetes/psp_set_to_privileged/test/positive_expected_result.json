@@ -9,6 +9,7 @@
     "searchKey": "resources[example].properties.spec.privileged",
     "searchValue": "",
     "expectedValue": "PSP should have 'privileged' set to false or not defined",
-    "actualValue": "PSP has 'privileged' set to true"
+    "actualValue": "PSP has 'privileged' set to true",
+    "issueType": "IncorrectValue"
   }
 ]

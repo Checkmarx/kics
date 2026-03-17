@@ -9,7 +9,8 @@
     "searchKey": "paths./users/{}",
     "searchValue": "",
     "expectedValue": "The path template should not be empty",
-    "actualValue": "The path template is empty"
+    "actualValue": "The path template is empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Template is Empty (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths./users/{}",
     "searchValue": "",
     "expectedValue": "The path template should not be empty",
-    "actualValue": "The path template is empty"
+    "actualValue": "The path template is empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Template is Empty (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "paths./users/{}",
     "searchValue": "",
     "expectedValue": "The path template should not be empty",
-    "actualValue": "The path template is empty"
+    "actualValue": "The path template is empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Template is Empty (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "paths./users/{}",
     "searchValue": "",
     "expectedValue": "The path template should not be empty",
-    "actualValue": "The path template is empty"
+    "actualValue": "The path template is empty",
+    "issueType": "MissingAttribute"
   }
 ]

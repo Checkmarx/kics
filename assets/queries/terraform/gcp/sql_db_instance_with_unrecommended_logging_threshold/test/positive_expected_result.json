@@ -9,7 +9,8 @@
     "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'log_min_messages' to 'WARNING' or a higher severity",
-    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'log_min_messages' to 'NOTICE'"
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'log_min_messages' to 'NOTICE'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
@@ -21,7 +22,8 @@
     "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'log_min_messages' to 'WARNING' or a higher severity",
-    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'log_min_messages' to 'DEBUG5'"
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'log_min_messages' to 'DEBUG5'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
@@ -33,6 +35,7 @@
     "searchKey": "google_sql_database_instance[positive_3].settings.database_flags.name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_3].settings.database_flags' should set 'log_min_messages' to 'WARNING' or a higher severity",
-    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' sets 'log_min_messages' to 'INFO'"
+    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' sets 'log_min_messages' to 'INFO'",
+    "issueType": "IncorrectValue"
   }
 ]

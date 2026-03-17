@@ -9,7 +9,8 @@
     "searchKey": "aws_ecr_repository.foo2.image_tag_mutability",
     "searchValue": "",
     "expectedValue": "aws_ecr_repository.foo2.image_tag_mutability should be 'IMMUTABLE'",
-    "actualValue": "aws_ecr_repository.foo2.image_tag_mutability is 'MUTABLE'"
+    "actualValue": "aws_ecr_repository.foo2.image_tag_mutability is 'MUTABLE'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Image Tag Not Immutable",
@@ -21,6 +22,7 @@
     "searchKey": "aws_ecr_repository.foo3",
     "searchValue": "",
     "expectedValue": "aws_ecr_repository.foo3.image_tag_mutability should be defined and not null",
-    "actualValue": "aws_ecr_repository.foo3.image_tag_mutability is undefined or null"
+    "actualValue": "aws_ecr_repository.foo3.image_tag_mutability is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

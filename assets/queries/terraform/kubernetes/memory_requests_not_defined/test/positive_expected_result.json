@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[0].resources.requests.memory should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources.requests.memory is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources.requests.memory is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Requests Not Defined",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[1].resources.requests.memory should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.requests.memory is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.requests.memory is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Requests Not Defined",
@@ -33,7 +35,8 @@
     "searchKey": "kubernetes_pod[positive2].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive2].spec.container[0].resources should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.container[0].resources is undefined"
+    "actualValue": "kubernetes_pod[positive2].spec.container[0].resources is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Requests Not Defined",
@@ -45,7 +48,8 @@
     "searchKey": "kubernetes_pod[positive2].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive2].spec.container[1].resources should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.container[1].resources is undefined"
+    "actualValue": "kubernetes_pod[positive2].spec.container[1].resources is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Requests Not Defined",
@@ -57,7 +61,8 @@
     "searchKey": "kubernetes_pod[positive3].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive3].spec.container[0].resources.requests should be set",
-    "actualValue": "kubernetes_pod[positive3].spec.container[0].resources.requests is undefined"
+    "actualValue": "kubernetes_pod[positive3].spec.container[0].resources.requests is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Requests Not Defined",
@@ -69,7 +74,8 @@
     "searchKey": "kubernetes_pod[positive3].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive3].spec.container[1].resources.requests should be set",
-    "actualValue": "kubernetes_pod[positive3].spec.container[1].resources.requests is undefined"
+    "actualValue": "kubernetes_pod[positive3].spec.container[1].resources.requests is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Requests Not Defined",
@@ -81,7 +87,8 @@
     "searchKey": "kubernetes_pod[positive4].spec.container.resources.requests",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive4].spec.container.resources.requests.memory should be set",
-    "actualValue": "kubernetes_pod[positive4].spec.container.resources.requests.memory is undefined"
+    "actualValue": "kubernetes_pod[positive4].spec.container.resources.requests.memory is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Requests Not Defined",
@@ -93,7 +100,8 @@
     "searchKey": "kubernetes_pod[positive5].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive5].spec.container.resources should be set",
-    "actualValue": "kubernetes_pod[positive5].spec.container.resources is undefined"
+    "actualValue": "kubernetes_pod[positive5].spec.container.resources is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Requests Not Defined",
@@ -105,6 +113,7 @@
     "searchKey": "kubernetes_pod[positive6].spec.container.resources",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive6].spec.container.resources.requests should be set",
-    "actualValue": "kubernetes_pod[positive6].spec.container.resources.requests is undefined"
+    "actualValue": "kubernetes_pod[positive6].spec.container.resources.requests is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "FROM={{debian}}.{{RUN curl http://bing.com}}",
     "searchValue": "",
     "expectedValue": "Exclusively using 'wget' or 'curl'",
-    "actualValue": "Using both 'wget' and 'curl'"
+    "actualValue": "Using both 'wget' and 'curl'",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Run Using 'wget' and 'curl'",
@@ -21,7 +22,8 @@
     "searchKey": "FROM={{baseImage}}.{{RUN curl http://bing.com}}",
     "searchValue": "",
     "expectedValue": "Exclusively using 'wget' or 'curl'",
-    "actualValue": "Using both 'wget' and 'curl'"
+    "actualValue": "Using both 'wget' and 'curl'",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Run Using 'wget' and 'curl'",
@@ -33,6 +35,7 @@
     "searchKey": "FROM={{baseImage}}.{{RUN [\"curl\", \"http://bing.com\"]}}",
     "searchValue": "",
     "expectedValue": "Exclusively using 'wget' or 'curl'",
-    "actualValue": "Using both 'wget' and 'curl'"
+    "actualValue": "Using both 'wget' and 'curl'",
+    "issueType": "RedundantAttribute"
   }
 ]

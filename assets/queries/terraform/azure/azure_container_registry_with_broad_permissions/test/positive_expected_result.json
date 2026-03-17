@@ -9,7 +9,8 @@
     "searchKey": "azurerm_role_assignment[positive1].role_definition_name",
     "searchValue": "",
     "expectedValue": "'azurerm_role_assignment[positive1].role_definition_name' should be set to 'AcrPull'",
-    "actualValue": "'azurerm_role_assignment[positive1].role_definition_name' is set to 'AcrPush'"
+    "actualValue": "'azurerm_role_assignment[positive1].role_definition_name' is set to 'AcrPush'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Azure Container Registry With Broad Permissions",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_role_assignment[positive2].role_definition_id",
     "searchValue": "",
     "expectedValue": "'azurerm_role_assignment[positive2].role_definition_id' should be set to '7f951dda-4ed3-4680-a7ca-43fe172d538d'",
-    "actualValue": "'azurerm_role_assignment[positive2].role_definition_id' is set to '8311e382-0749-4cb8-b61a-304f252e45ec'"
+    "actualValue": "'azurerm_role_assignment[positive2].role_definition_id' is set to '8311e382-0749-4cb8-b61a-304f252e45ec'",
+    "issueType": "IncorrectValue"
   }
 ]

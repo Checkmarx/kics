@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{example}}.spec",
     "searchValue": "",
     "expectedValue": "'spec.allowedHostPaths' should be defined and not null",
-    "actualValue": "'spec.allowedHostPaths' is undefined or null"
+    "actualValue": "'spec.allowedHostPaths' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PSP With Unrestricted Access to Host Path",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{example}}.spec.allowedHostPaths",
     "searchValue": "",
     "expectedValue": "'spec.allowedHostPaths[0].readOnly' should be set to true",
-    "actualValue": "'spec.allowedHostPaths[0].readOnly' is undefined or null"
+    "actualValue": "'spec.allowedHostPaths[0].readOnly' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PSP With Unrestricted Access to Host Path",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{example}}.spec.allowedHostPaths.readOnly",
     "searchValue": "",
     "expectedValue": "'spec.allowedHostPaths[0].readOnly' should be set to true",
-    "actualValue": "'spec.allowedHostPaths[0].readOnly' is set to false"
+    "actualValue": "'spec.allowedHostPaths[0].readOnly' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_horizontal_pod_autoscaler[example].spec.metric",
     "searchValue": "",
     "expectedValue": "kubernetes_horizontal_pod_autoscaler[example].spec.metric is a valid object",
-    "actualValue": "kubernetes_horizontal_pod_autoscaler[example].spec.metric is a invalid object"
+    "actualValue": "kubernetes_horizontal_pod_autoscaler[example].spec.metric is a invalid object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "HPA Targets Invalid Object",
@@ -21,6 +22,7 @@
     "searchKey": "kubernetes_horizontal_pod_autoscaler[example2].spec.metric",
     "searchValue": "",
     "expectedValue": "kubernetes_horizontal_pod_autoscaler[example2].spec.metric is a valid object",
-    "actualValue": "kubernetes_horizontal_pod_autoscaler[example2].spec.metric is a invalid object"
+    "actualValue": "kubernetes_horizontal_pod_autoscaler[example2].spec.metric is a invalid object",
+    "issueType": "IncorrectValue"
   }
 ]

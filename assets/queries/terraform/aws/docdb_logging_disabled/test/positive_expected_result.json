@@ -9,7 +9,8 @@
     "searchKey": "aws_docdb_cluster[{{positive1}}]",
     "searchValue": "",
     "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should be defined",
-    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is undefined"
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_docdb_cluster[{{positive2}}].enabled_cloudwatch_logs_exports",
     "searchValue": "",
     "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: audit, profiler",
-    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is empty"
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "aws_docdb_cluster[{{positive3}}].enabled_cloudwatch_logs_exports",
     "searchValue": "",
     "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: audit, profiler",
-    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports has the following missing values: audit"
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports has the following missing values: audit",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "aws_docdb_cluster[{{positive4}}].enabled_cloudwatch_logs_exports",
     "searchValue": "",
     "expectedValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: audit, profiler",
-    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports has the following missing values: profiler"
+    "actualValue": "aws_docdb_cluster.enabled_cloudwatch_logs_exports has the following missing values: profiler",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.NoIAM.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.NoIAM.Properties.IamInstanceProfile' should be set",
-    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined"
+    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.IAM_Missing.Properties.IamInstanceProfile",
     "searchValue": "",
     "expectedValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource",
-    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource"
+    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.NoRolesProfile.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.NoRolesProfile.Properties.Roles' should be set",
-    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined"
+    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.NoIAM.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.NoIAM.Properties.IamInstanceProfile' should be set",
-    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined"
+    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.IAM_Missing.Properties.IamInstanceProfile",
     "searchValue": "",
     "expectedValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource",
-    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource"
+    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.NoRolesProfile.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.NoRolesProfile.Properties.Roles' should be set",
-    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined"
+    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.NoIAM.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.NoIAM.Properties.IamInstanceProfile' should be set",
-    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined"
+    "actualValue": "'Resources.NoIAM.Properties.IamInstanceProfile' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.IAM_Missing.Properties.IamInstanceProfile",
     "searchValue": "",
     "expectedValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' should have a matching IamInstanceProfile resource",
-    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource"
+    "actualValue": "'Resources.IAM_Missing.Properties.IamInstanceProfile' does not have matching IamInstanceProfile resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Has No IAM Role",
@@ -105,6 +113,7 @@
     "searchKey": "Resources.NoRolesProfile.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.NoRolesProfile.Properties.Roles' should be set",
-    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined"
+    "actualValue": "'Resources.NoRolesProfile.Properties.Roles' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

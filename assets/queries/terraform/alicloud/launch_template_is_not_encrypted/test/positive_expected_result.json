@@ -9,7 +9,8 @@
     "searchKey": "alicloud_launch_template[templatepos1].encrypted",
     "searchValue": "",
     "expectedValue": "alicloud_launch_template[templatepos1].encrypted should be true",
-    "actualValue": "alicloud_launch_template[templatepos1].encrypted is false"
+    "actualValue": "alicloud_launch_template[templatepos1].encrypted is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Launch Template Is Not Encrypted",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_launch_template[templatepos2]",
     "searchValue": "",
     "expectedValue": "alicloud_launch_template[templatepos2] 'encrypted' should be defined and set to true",
-    "actualValue": "alicloud_launch_template[templatepos2] 'encrypted' argument is not defined"
+    "actualValue": "alicloud_launch_template[templatepos2] 'encrypted' argument is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

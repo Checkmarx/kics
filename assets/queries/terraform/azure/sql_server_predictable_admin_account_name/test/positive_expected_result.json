@@ -9,7 +9,8 @@
     "searchKey": "azurerm_sql_server[positive3].administrator_login",
     "searchValue": "",
     "expectedValue": "'azurerm_sql_server[positive3].administrator_login' should not be empty'",
-    "actualValue": "'azurerm_sql_server[positive3].administrator_login' is empty"
+    "actualValue": "'azurerm_sql_server[positive3].administrator_login' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Predictable Admin Account Name",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_sql_server[positive4].administrator_login",
     "searchValue": "",
     "expectedValue": "'azurerm_sql_server[positive4].administrator_login' should not be predictable'",
-    "actualValue": "'azurerm_sql_server[positive4].administrator_login' is predictable"
+    "actualValue": "'azurerm_sql_server[positive4].administrator_login' is predictable",
+    "issueType": "IncorrectValue"
   }
 ]

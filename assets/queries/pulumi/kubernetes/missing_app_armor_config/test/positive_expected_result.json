@@ -9,7 +9,8 @@
     "searchKey": "resources[pod].properties.metadata",
     "searchValue": "",
     "expectedValue": "Pod should have annotation 'container.apparmor.security.beta.kubernetes.io' defined",
-    "actualValue": "Pod does not have annotations defined in metadata"
+    "actualValue": "Pod does not have annotations defined in metadata",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Missing App Armor Config",
@@ -21,7 +22,8 @@
     "searchKey": "resources[pod].properties.metadata",
     "searchValue": "",
     "expectedValue": "Pod should have annotation 'container.apparmor.security.beta.kubernetes.io' defined",
-    "actualValue": "Pod does not have annotations defined in metadata"
+    "actualValue": "Pod does not have annotations defined in metadata",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Missing App Armor Config",
@@ -33,6 +35,7 @@
     "searchKey": "resources[pod].properties.metadata.annotations",
     "searchValue": "",
     "expectedValue": "Pod should have annotation 'container.apparmor.security.beta.kubernetes.io' defined",
-    "actualValue": "Pod does not have annotation 'container.apparmor.security.beta.kubernetes.io' defined"
+    "actualValue": "Pod does not have annotation 'container.apparmor.security.beta.kubernetes.io' defined",
+    "issueType": "MissingAttribute"
   }
 ]

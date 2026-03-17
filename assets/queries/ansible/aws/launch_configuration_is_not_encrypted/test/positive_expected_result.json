@@ -9,7 +9,8 @@
     "searchKey": "name={{note that encrypted volumes are only supported in >= Ansible 2.4}}.{{community.aws.ec2_lc}}.volumes",
     "searchValue": "",
     "expectedValue": "ec2_lc.volumes[0].encrypted should be set to true or yes",
-    "actualValue": "ec2_lc.volumes[0].encrypted is not set to true or yes"
+    "actualValue": "ec2_lc.volumes[0].encrypted is not set to true or yes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Launch Configuration Is Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "name={{note that encrypted volumes are only supported in >= Ansible 2.4 v2}}.{{ec2_lc}}.volumes",
     "searchValue": "",
     "expectedValue": "ec2_lc.volumes[0].encrypted should be set",
-    "actualValue": "ec2_lc.volumes[0].encrypted is undefined"
+    "actualValue": "ec2_lc.volumes[0].encrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Launch Configuration Is Not Encrypted",
@@ -33,6 +35,7 @@
     "searchKey": "name={{note that encrypted volumes are only supported in >= Ansible 2.4 v3}}.{{ec2_lc}}",
     "searchValue": "",
     "expectedValue": "ec2_lc.volumes should be set",
-    "actualValue": "ec2_lc.volumes is undefined"
+    "actualValue": "ec2_lc.volumes is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

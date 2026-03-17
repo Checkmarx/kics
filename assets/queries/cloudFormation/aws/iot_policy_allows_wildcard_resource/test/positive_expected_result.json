@@ -9,7 +9,8 @@
     "searchKey": "Resources.IoTPolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Resource should not be '*'",
-    "actualValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Recource is '*'"
+    "actualValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Recource is '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IoT Policy Allows Wildcard Resource",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.IoTPolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Resource should not be '*'",
-    "actualValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Recource is '*'"
+    "actualValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Recource is '*'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema of the JSON object should have 'type' defined",
-    "actualValue": "Schema of the JSON object does not have 'type' defined"
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "JSON Object Schema Without Type (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema of the JSON object should have 'type' defined",
-    "actualValue": "Schema of the JSON object does not have 'type' defined"
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "JSON Object Schema Without Type (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema of the JSON object should have 'type' defined",
-    "actualValue": "Schema of the JSON object does not have 'type' defined"
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "JSON Object Schema Without Type (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema of the JSON object should have 'type' defined",
-    "actualValue": "Schema of the JSON object does not have 'type' defined"
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "JSON Object Schema Without Type (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema of the JSON object should have 'type' defined",
-    "actualValue": "Schema of the JSON object does not have 'type' defined"
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "JSON Object Schema Without Type (v2)",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema of the JSON object should have 'type' defined",
-    "actualValue": "Schema of the JSON object does not have 'type' defined"
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "azurerm_kubernetes_cluster[positive]",
     "searchValue": "",
     "expectedValue": "'azurerm_kubernetes_cluster[positive].disk_encryption_set_id' should be defined and not null",
-    "actualValue": "'azurerm_kubernetes_cluster[positive].disk_encryption_set_id' is undefined or null"
+    "actualValue": "'azurerm_kubernetes_cluster[positive].disk_encryption_set_id' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

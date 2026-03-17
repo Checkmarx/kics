@@ -9,7 +9,8 @@
     "searchKey": "resources.name=storageaccount1.properties.supportsHttpsTrafficOnly",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'supportsHttpsTrafficOnly' property set to true",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=storageaccount1.properties.supportsHttpsTrafficOnly",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'supportsHttpsTrafficOnly' property set to true",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{storageaccount1Positive2}}",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{storageaccount1Positive2}}",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{storageaccount1Positive3}}properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -69,7 +74,8 @@
     "searchKey": "resources.name={{storageaccount1Positive3}}properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=storageaccount1.properties.supportsHttpsTrafficOnly",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'supportsHttpsTrafficOnly' property set to true",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name=storageaccount1.properties.supportsHttpsTrafficOnly",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' property value should have the 'supportsHttpsTrafficOnly' property set to true",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name={{storageaccount1Positive2}}",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -117,7 +126,8 @@
     "searchKey": "resources.name={{storageaccount1Positive2}}",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name={{storageaccount1Positive3}}properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Account Allows Unsecure Transfer",
@@ -141,6 +152,7 @@
     "searchKey": "resources.name={{storageaccount1Positive3}}properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have the 'supportsHttpsTrafficOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'supportsHttpsTrafficOnly' property defined",
+    "issueType": "MissingAttribute"
   }
 ]

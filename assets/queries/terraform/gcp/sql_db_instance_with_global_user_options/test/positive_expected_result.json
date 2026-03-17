@@ -9,7 +9,8 @@
     "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'user options' to '0'",
-    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'user options' to '32'"
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'user options' to '32'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - SQL DB Instance With Global User Options",
@@ -21,6 +22,7 @@
     "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'user options' to '0'",
-    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'user options' to '16'"
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'user options' to '16'",
+    "issueType": "IncorrectValue"
   }
 ]

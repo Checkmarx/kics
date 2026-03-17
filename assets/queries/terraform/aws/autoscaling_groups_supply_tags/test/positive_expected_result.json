@@ -9,7 +9,8 @@
     "searchKey": "aws_autoscaling_group[positive1]",
     "searchValue": "",
     "expectedValue": "'tags' or 'tag' should be defined and not null",
-    "actualValue": "'tags' and 'tag' are undefined or null"
+    "actualValue": "'tags' and 'tag' are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Autoscaling Groups Supply Tags",
@@ -21,6 +22,7 @@
     "searchKey": "module[asg]",
     "searchValue": "",
     "expectedValue": "'tags' should be defined and not null",
-    "actualValue": "'tags' is undefined or null"
+    "actualValue": "'tags' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

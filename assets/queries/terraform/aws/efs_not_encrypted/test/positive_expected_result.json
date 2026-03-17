@@ -9,7 +9,8 @@
     "searchKey": "aws_efs_file_system[positive1]",
     "searchValue": "",
     "expectedValue": "aws_efs_file_system[positive1].encrypted' should be defined and not null",
-    "actualValue": "aws_efs_file_system[positive1].encrypted' is undefined or null"
+    "actualValue": "aws_efs_file_system[positive1].encrypted' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EFS Not Encrypted",
@@ -21,6 +22,7 @@
     "searchKey": "aws_efs_file_system[positive2].encrypted",
     "searchValue": "",
     "expectedValue": "aws_efs_file_system[positive2].encrypted' should be true",
-    "actualValue": "aws_efs_file_system[positive2].encrypted' is false"
+    "actualValue": "aws_efs_file_system[positive2].encrypted' is false",
+    "issueType": "IncorrectValue"
   }
 ]

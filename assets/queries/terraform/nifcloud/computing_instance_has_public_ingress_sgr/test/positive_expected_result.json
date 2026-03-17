@@ -9,6 +9,7 @@
     "searchKey": "nifcloud_security_group_rule[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_security_group_rule[positive]' set a more restrictive cidr range",
-    "actualValue": "'nifcloud_security_group_rule[positive]' allows traffic from /0"
+    "actualValue": "'nifcloud_security_group_rule[positive]' allows traffic from /0",
+    "issueType": "IncorrectValue"
   }
 ]

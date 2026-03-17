@@ -9,7 +9,8 @@
     "searchKey": "Resources.myVPC11",
     "searchValue": "",
     "expectedValue": "'Resources.myVPC11' should be associated with a AWS Network Firewall",
-    "actualValue": "'Resources.myVPC11' is not associated with a AWS Network Firewall"
+    "actualValue": "'Resources.myVPC11' is not associated with a AWS Network Firewall",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "VPC Without Network Firewall",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myVPC11",
     "searchValue": "",
     "expectedValue": "'Resources.myVPC11' should be associated with a AWS Network Firewall",
-    "actualValue": "'Resources.myVPC11' is not associated with a AWS Network Firewall"
+    "actualValue": "'Resources.myVPC11' is not associated with a AWS Network Firewall",
+    "issueType": "MissingAttribute"
   }
 ]

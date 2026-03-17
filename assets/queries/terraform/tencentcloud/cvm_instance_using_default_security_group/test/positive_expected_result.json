@@ -9,7 +9,8 @@
     "searchKey": "tencentcloud_instance[cvm_postpaid].orderly_security_groups",
     "searchValue": "",
     "expectedValue": "tencentcloud_instance[cvm_postpaid].orderly_security_groups should not contain 'default'",
-    "actualValue": "tencentcloud_instance[cvm_postpaid].orderly_security_groups contains 'default'"
+    "actualValue": "tencentcloud_instance[cvm_postpaid].orderly_security_groups contains 'default'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CVM Instance Using Default Security Group",
@@ -21,6 +22,7 @@
     "searchKey": "tencentcloud_instance[cvm_postpaid].security_groups",
     "searchValue": "",
     "expectedValue": "tencentcloud_instance[cvm_postpaid].security_groups should not contain 'default'",
-    "actualValue": "tencentcloud_instance[cvm_postpaid].security_groups contains 'default'"
+    "actualValue": "tencentcloud_instance[cvm_postpaid].security_groups contains 'default'",
+    "issueType": "IncorrectValue"
   }
 ]

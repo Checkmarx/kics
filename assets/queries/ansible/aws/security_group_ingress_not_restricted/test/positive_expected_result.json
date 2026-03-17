@@ -9,7 +9,8 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[0] should be restricted",
-    "actualValue": "ec2_group.rules[0] is not restricted"
+    "actualValue": "ec2_group.rules[0] is not restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
@@ -21,7 +22,8 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[1] should be restricted",
-    "actualValue": "ec2_group.rules[1] is not restricted"
+    "actualValue": "ec2_group.rules[1] is not restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
@@ -33,7 +35,8 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[2] should be restricted",
-    "actualValue": "ec2_group.rules[2] is not restricted"
+    "actualValue": "ec2_group.rules[2] is not restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
@@ -45,7 +48,8 @@
     "searchKey": "name={{example ec2 group v2}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[0] should be restricted",
-    "actualValue": "ec2_group.rules[0] is not restricted"
+    "actualValue": "ec2_group.rules[0] is not restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
@@ -57,7 +61,8 @@
     "searchKey": "name={{example ec2 group v2}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[1] should be restricted",
-    "actualValue": "ec2_group.rules[1] is not restricted"
+    "actualValue": "ec2_group.rules[1] is not restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
@@ -69,6 +74,7 @@
     "searchKey": "name={{example ec2 group v2}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[2] should be restricted",
-    "actualValue": "ec2_group.rules[2] is not restricted"
+    "actualValue": "ec2_group.rules[2] is not restricted",
+    "issueType": "IncorrectValue"
   }
 ]

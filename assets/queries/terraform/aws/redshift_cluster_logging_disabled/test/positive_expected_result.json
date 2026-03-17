@@ -9,7 +9,8 @@
     "searchKey": "aws_redshift_cluster[positive1].logging.enable",
     "searchValue": "",
     "expectedValue": "'aws_redshift_cluster.logging' should be true",
-    "actualValue": "'aws_redshift_cluster.logging' is false"
+    "actualValue": "'aws_redshift_cluster.logging' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Cluster Logging Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_redshift_cluster[positive2]",
     "searchValue": "",
     "expectedValue": "'aws_redshift_cluster.logging' should be true",
-    "actualValue": "'aws_redshift_cluster.logging' is undefined"
+    "actualValue": "'aws_redshift_cluster.logging' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Password in URL",
@@ -21,7 +22,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Slack Webhook",
@@ -33,7 +35,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - MSTeams Webhook",
@@ -45,7 +48,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Password in URL",
@@ -57,7 +61,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Slack Webhook",
@@ -69,7 +74,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - MSTeams Webhook",
@@ -81,7 +87,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -93,7 +100,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Password in URL",
@@ -105,7 +113,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Slack Webhook",
@@ -117,7 +126,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - MSTeams Webhook",
@@ -129,7 +139,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Asymmetric private key",
@@ -141,7 +152,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - AWS Access Key",
@@ -153,7 +165,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - AWS Secret Key",
@@ -165,7 +178,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - AWS Access Key",
@@ -177,7 +191,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - AWS Secret Key",
@@ -189,7 +204,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - K8s Environment Variable Password",
@@ -201,7 +217,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - K8s Environment Variable Password",
@@ -213,7 +230,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -225,7 +243,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Google OAuth",
@@ -237,7 +256,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Slack Token",
@@ -249,7 +269,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -261,7 +282,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Stripe API Key",
@@ -273,7 +295,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Google API Key",
@@ -285,7 +308,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Heroku API Key",
@@ -297,7 +321,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Token",
@@ -309,7 +334,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic API Key",
@@ -321,7 +347,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Square Access Token",
@@ -333,7 +360,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Picatic API Key",
@@ -345,7 +373,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Amazon MWS Auth Token",
@@ -357,7 +386,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - MailChimp API Key",
@@ -369,7 +399,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - SendGrid API Key",
@@ -381,7 +412,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Private Key",
@@ -393,7 +425,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Token",
@@ -405,7 +438,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Token",
@@ -417,7 +451,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Token",
@@ -429,7 +464,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Mailgun API Key",
@@ -441,7 +477,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -453,7 +490,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Stripe Restricted API Key",
@@ -465,7 +503,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Twilio API Key",
@@ -477,7 +516,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - PayPal Braintree Access Token",
@@ -489,7 +529,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Facebook Access Token",
@@ -501,7 +542,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Square OAuth Secret",
@@ -513,7 +555,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Google OAuth Access Token",
@@ -525,7 +568,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Putty User Key File Content",
@@ -537,7 +581,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Secret",
@@ -549,7 +594,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - CloudFormation Secret Template",
@@ -561,7 +607,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Secret",
@@ -573,7 +620,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -585,7 +633,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - AWS Context-specific credential",
@@ -597,7 +646,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - AWS Certificate",
@@ -609,7 +659,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Asymmetric private key",
@@ -621,7 +672,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Access Key",
@@ -633,7 +685,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Token",
@@ -645,7 +698,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Secret",
@@ -657,7 +711,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -669,7 +724,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -681,7 +737,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -693,7 +750,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Google OAuth",
@@ -705,7 +763,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Secret",
@@ -717,7 +776,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -729,7 +789,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Private Key",
@@ -741,7 +802,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Secret",
@@ -753,7 +815,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password on YAML files when value in tuple",
@@ -765,7 +828,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password on YAML files when value in tuple",
@@ -777,7 +841,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Dockerfile ENV hardcoded password with omitted equals",
@@ -789,7 +854,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -801,7 +867,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -813,7 +880,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -825,7 +893,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -837,7 +906,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Secret",
@@ -849,7 +919,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -861,7 +932,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -873,7 +945,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -885,7 +958,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -897,7 +971,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -909,7 +984,8 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
@@ -921,6 +997,7 @@
     "searchKey": "",
     "searchValue": "",
     "expectedValue": "Hardcoded secret key should not appear in source",
-    "actualValue": "Hardcoded secret key appears in source"
+    "actualValue": "Hardcoded secret key appears in source",
+    "issueType": "RedundantAttribute"
   }
 ]

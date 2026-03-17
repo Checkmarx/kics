@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_network_policy[example].spec.pod_selector.match_labels",
     "searchValue": "",
     "expectedValue": "kubernetes_network_policy[example].spec.pod_selector.match_labels is targeting at least a pod",
-    "actualValue": "kubernetes_network_policy[example].spec.pod_selector.match_labels is not targeting any pod"
+    "actualValue": "kubernetes_network_policy[example].spec.pod_selector.match_labels is not targeting any pod",
+    "issueType": "IncorrectValue"
   }
 ]

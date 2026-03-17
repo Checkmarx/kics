@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Content-Type",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
-    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'"
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Content-Type",
     "searchValue": "",
     "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Content-Type should not be 'Content-Type",
-    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Content-Type is 'Content-Type'"
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Content-Type",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
-    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'"
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Content-Type",
     "searchValue": "",
     "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Content-Type should not be 'Content-Type",
-    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Content-Type is 'Content-Type'"
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Content-Type",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
-    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'"
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Content-Type",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
-    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'"
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Content-Type",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
-    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'"
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v2)",
@@ -93,7 +100,8 @@
     "searchKey": "parameters.limitParam.name=Content-Type",
     "searchValue": "",
     "expectedValue": "parameters.limitParam.name=Content-Type should not be 'Content-Type",
-    "actualValue": "parameters.limitParam.name=Content-Type is 'Content-Type'"
+    "actualValue": "parameters.limitParam.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v2)",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Content-Type",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
-    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'"
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v2)",
@@ -117,6 +126,7 @@
     "searchKey": "parameters.limitParam.name=Content-Type",
     "searchValue": "",
     "expectedValue": "parameters.limitParam.name=Content-Type should not be 'Content-Type",
-    "actualValue": "parameters.limitParam.name=Content-Type is 'Content-Type'"
+    "actualValue": "parameters.limitParam.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue"
   }
 ]

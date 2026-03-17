@@ -9,7 +9,8 @@
     "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
-    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'"
+    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Connection Between CloudFront Origin Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
-    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'"
+    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Connection Between CloudFront Origin Not Encrypted",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
-    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'"
+    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Connection Between CloudFront Origin Not Encrypted",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
-    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'"
+    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   }
 ]

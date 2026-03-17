@@ -9,6 +9,7 @@
     "searchKey": "aws_cloudwatch_log_group[negative1]",
     "searchValue": "",
     "expectedValue": "Attribute 'kms_key_id' should be set",
-    "actualValue": "Attribute 'kms_key_id' is undefined"
+    "actualValue": "Attribute 'kms_key_id' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyWebACL.Properties.DefaultAction.Type",
     "searchValue": "",
     "expectedValue": "Resources.MyWebACL.Properties.DefaultAction.Type should not be ALLOW",
-    "actualValue": "Resources.MyWebACL.Properties.DefaultAction.Type is set to ALLOW"
+    "actualValue": "Resources.MyWebACL.Properties.DefaultAction.Type is set to ALLOW",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Permissive Web ACL Default Action",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.MyWebACL.Properties.DefaultAction.Type",
     "searchValue": "",
     "expectedValue": "Resources.MyWebACL.Properties.DefaultAction.Type should not be ALLOW",
-    "actualValue": "Resources.MyWebACL.Properties.DefaultAction.Type is set to ALLOW"
+    "actualValue": "Resources.MyWebACL.Properties.DefaultAction.Type is set to ALLOW",
+    "issueType": "IncorrectValue"
   }
 ]

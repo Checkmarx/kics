@@ -9,7 +9,8 @@
     "searchKey": "Resources.S3Bucket.Properties",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket.Properties.BucketEncryption.ServerSideEncryptionConfiguration should be defined and not empty",
-    "actualValue": "Resources.S3Bucket.Properties.BucketEncryption.ServerSideEncryptionConfiguration is undefined or empty"
+    "actualValue": "Resources.S3Bucket.Properties.BucketEncryption.ServerSideEncryptionConfiguration is undefined or empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Server-side-encryption",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.S3Bucket.Properties",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket.Properties.BucketEncryption.ServerSideEncryptionConfiguration should be defined and not empty",
-    "actualValue": "Resources.S3Bucket.Properties.BucketEncryption.ServerSideEncryptionConfiguration is undefined or empty"
+    "actualValue": "Resources.S3Bucket.Properties.BucketEncryption.ServerSideEncryptionConfiguration is undefined or empty",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "info.license.url",
     "searchValue": "",
     "expectedValue": "info.license.url has a valid URL",
-    "actualValue": "info.license.url has an invalid URL"
+    "actualValue": "info.license.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid License URL (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "info.license.url",
     "searchValue": "",
     "expectedValue": "info.license.url has a valid URL",
-    "actualValue": "info.license.url has an invalid URL"
+    "actualValue": "info.license.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid License URL (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "info.license.url",
     "searchValue": "",
     "expectedValue": "info.license.url has a valid URL",
-    "actualValue": "info.license.url has an invalid URL"
+    "actualValue": "info.license.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid License URL (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "info.license.url",
     "searchValue": "",
     "expectedValue": "info.license.url has a valid URL",
-    "actualValue": "info.license.url has an invalid URL"
+    "actualValue": "info.license.url has an invalid URL",
+    "issueType": "IncorrectValue"
   }
 ]

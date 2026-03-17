@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket[positive1].acl=public-read",
     "searchValue": "",
     "expectedValue": "'acl' should equal to 'private'",
-    "actualValue": "'acl' is equal 'public-read'"
+    "actualValue": "'acl' is equal 'public-read'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
@@ -21,7 +22,8 @@
     "searchKey": "aws_s3_bucket[positive2].acl=public-read-write",
     "searchValue": "",
     "expectedValue": "'acl' should equal to 'private'",
-    "actualValue": "'acl' is equal 'public-read-write'"
+    "actualValue": "'acl' is equal 'public-read-write'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
@@ -33,7 +35,8 @@
     "searchKey": "module[s3_bucket].acl",
     "searchValue": "",
     "expectedValue": "'acl' should equal to 'private'",
-    "actualValue": "'acl' is equal 'public-read'"
+    "actualValue": "'acl' is equal 'public-read'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
@@ -45,7 +48,8 @@
     "searchKey": "module[s3_bucket].acl",
     "searchValue": "",
     "expectedValue": "'acl' should equal to 'private'",
-    "actualValue": "'acl' is equal 'public-read-write'"
+    "actualValue": "'acl' is equal 'public-read-write'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
@@ -57,7 +61,8 @@
     "searchKey": "aws_s3_bucket_acl[example_bucket_acl].acl",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_acl[example_bucket_acl].acl should be private",
-    "actualValue": "aws_s3_bucket_acl[public-read].acl is %!s(MISSING)"
+    "actualValue": "aws_s3_bucket_acl[public-read].acl is %!s(MISSING)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
@@ -69,6 +74,7 @@
     "searchKey": "aws_s3_bucket_acl[example_bucket_acl].acl",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_acl[example_bucket_acl].acl should be private",
-    "actualValue": "aws_s3_bucket_acl[public-read-write].acl is %!s(MISSING)"
+    "actualValue": "aws_s3_bucket_acl[public-read-write].acl is %!s(MISSING)",
+    "issueType": "IncorrectValue"
   }
 ]

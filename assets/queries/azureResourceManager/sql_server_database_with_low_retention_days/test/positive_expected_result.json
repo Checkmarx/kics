@@ -9,7 +9,8 @@
     "searchKey": "resources.resources.resources.name={{default}}.properties.retentionDays",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50"
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -21,7 +22,8 @@
     "searchKey": "resources.resources.resources.name={{sqlServer1/sqlDatabase1/default}}.properties.retentionDays",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50"
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -33,7 +35,8 @@
     "searchKey": "resources.resources.resources.name={{default}}.properties",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' is missing"
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -45,7 +48,8 @@
     "searchKey": "resources.resources.resources.name={{sqlServer1/sqlDatabase1/default}}.properties",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' is missing"
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -57,7 +61,8 @@
     "searchKey": "resources.resources.resources.name={{default}}.properties.retentionDays",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50"
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.resources.resources.name={{sqlServer1/sqlDatabase1/default}}.properties.retentionDays",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50"
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -81,7 +87,8 @@
     "searchKey": "resources.resources.resources.name={{default}}.properties",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' is missing"
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.resources.resources.name={{sqlServer1/sqlDatabase1/default}}.properties",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' is missing"
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -105,7 +113,8 @@
     "searchKey": "resources.resources.name={{default}}.properties.retentionDays",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' property value is 89"
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 89",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -117,7 +126,8 @@
     "searchKey": "resources.name={{sqlServer1/default}}.properties.retentionDays",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' property value is 89"
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 89",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -129,7 +139,8 @@
     "searchKey": "resources.resources.name={{default}}.properties",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' is missing"
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -141,7 +152,8 @@
     "searchKey": "resources.name={{[format('{0}/{1}', 'sqlServer1', 'default')]}}.properties",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' is missing"
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -153,7 +165,8 @@
     "searchKey": "resources.resources.resources.name={{default}}.properties",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' is missing"
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
@@ -165,6 +178,7 @@
     "searchKey": "resources.resources.resources.name={{sqlServer1/sqlDatabase1/default}}.properties",
     "searchValue": "",
     "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
-    "actualValue": "'auditingSettings.properties.retentionDays' is missing"
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

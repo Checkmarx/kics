@@ -9,6 +9,7 @@
     "searchKey": "name={{Basic example}}.{{community.aws.elasticache}}",
     "searchValue": "",
     "expectedValue": "'cache_subnet_group' should be defined and not null",
-    "actualValue": "'cache_subnet_group' is undefined or null"
+    "actualValue": "'cache_subnet_group' is undefined or null",
+    "issueType": "IncorrectValue"
   }
 ]

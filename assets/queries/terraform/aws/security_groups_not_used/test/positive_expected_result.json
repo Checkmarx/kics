@@ -9,7 +9,8 @@
     "searchKey": "aws_security_group[allow_tls]",
     "searchValue": "",
     "expectedValue": "'aws_security_group[allow_tls]' should be used",
-    "actualValue": "'aws_security_group[allow_tls]' is not used"
+    "actualValue": "'aws_security_group[allow_tls]' is not used",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Not Used",
@@ -21,7 +22,8 @@
     "searchKey": "aws_security_group[unused-sg]",
     "searchValue": "",
     "expectedValue": "'aws_security_group[unused-sg]' should be used",
-    "actualValue": "'aws_security_group[unused-sg]' is not used"
+    "actualValue": "'aws_security_group[unused-sg]' is not used",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Not Used",
@@ -33,7 +35,8 @@
     "searchKey": "aws_security_group[unused_sg]",
     "searchValue": "",
     "expectedValue": "'aws_security_group[unused_sg]' should be used",
-    "actualValue": "'aws_security_group[unused_sg]' is not used"
+    "actualValue": "'aws_security_group[unused_sg]' is not used",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Not Used",
@@ -45,7 +48,8 @@
     "searchKey": "aws_security_group[unused_sg]",
     "searchValue": "",
     "expectedValue": "'aws_security_group[unused_sg]' should be used",
-    "actualValue": "'aws_security_group[unused_sg]' is not used"
+    "actualValue": "'aws_security_group[unused_sg]' is not used",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Not Used",
@@ -57,7 +61,8 @@
     "searchKey": "aws_security_group[example]",
     "searchValue": "",
     "expectedValue": "'aws_security_group[example]' should be used",
-    "actualValue": "'aws_security_group[example]' is not used"
+    "actualValue": "'aws_security_group[example]' is not used",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Not Used",
@@ -69,7 +74,8 @@
     "searchKey": "aws_security_group[default_name]",
     "searchValue": "",
     "expectedValue": "'aws_security_group[default_name]' should be used",
-    "actualValue": "'aws_security_group[default_name]' is not used"
+    "actualValue": "'aws_security_group[default_name]' is not used",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Not Used",
@@ -81,7 +87,8 @@
     "searchKey": "aws_security_group[unused_sg]",
     "searchValue": "",
     "expectedValue": "'aws_security_group[unused_sg]' should be used",
-    "actualValue": "'aws_security_group[unused_sg]' is not used"
+    "actualValue": "'aws_security_group[unused_sg]' is not used",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Not Used",
@@ -93,6 +100,7 @@
     "searchKey": "aws_security_group[default_name]",
     "searchValue": "",
     "expectedValue": "'aws_security_group[default_name]' should be used",
-    "actualValue": "'aws_security_group[default_name]' is not used"
+    "actualValue": "'aws_security_group[default_name]' is not used",
+    "issueType": "IncorrectValue"
   }
 ]

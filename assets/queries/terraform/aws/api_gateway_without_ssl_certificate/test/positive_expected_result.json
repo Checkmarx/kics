@@ -9,6 +9,7 @@
     "searchKey": "aws_api_gateway_stage[positive1]",
     "searchValue": "",
     "expectedValue": "Attribute 'client_certificate_id' should be set",
-    "actualValue": "Attribute 'client_certificate_id' is undefined"
+    "actualValue": "Attribute 'client_certificate_id' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "resources[example].properties.snapshotRetentionLimit",
     "searchValue": "",
     "expectedValue": "Attribute 'snapshotRetentionLimit' should be set to higher than 0",
-    "actualValue": "Attribute 'snapshotRetentionLimit' is set to 0"
+    "actualValue": "Attribute 'snapshotRetentionLimit' is set to 0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Redis Cluster Without Backup",
@@ -21,6 +22,7 @@
     "searchKey": "resources[example].properties",
     "searchValue": "",
     "expectedValue": "Attribute 'snapshotRetentionLimit' should be defined and set to higher than 0",
-    "actualValue": "Attribute 'snapshotRetentionLimit' is not defined"
+    "actualValue": "Attribute 'snapshotRetentionLimit' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

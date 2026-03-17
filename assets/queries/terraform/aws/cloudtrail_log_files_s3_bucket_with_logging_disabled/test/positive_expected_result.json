@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket[foo]",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket[foo] to have 'logging' defined",
-    "actualValue": "aws_s3_bucket[foo] does not have 'logging' defined"
+    "actualValue": "aws_s3_bucket[foo] does not have 'logging' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Log Files S3 Bucket with Logging Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "module[foo]",
     "searchValue": "",
     "expectedValue": "'logging' should be defined",
-    "actualValue": "'logging' is undefined"
+    "actualValue": "'logging' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Log Files S3 Bucket with Logging Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "aws_s3_bucket[bb]",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket[bb] to have 'logging' defined",
-    "actualValue": "aws_s3_bucket[bb] does not have 'logging' defined"
+    "actualValue": "aws_s3_bucket[bb] does not have 'logging' defined",
+    "issueType": "MissingAttribute"
   }
 ]

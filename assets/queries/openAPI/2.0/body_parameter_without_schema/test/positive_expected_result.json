@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.parameters.name=limit2",
     "searchValue": "",
     "expectedValue": "'schema' should be set",
-    "actualValue": "'schema' is undefined"
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Body Parameter Without Schema",
@@ -21,7 +22,8 @@
     "searchKey": "parameters.name=limit",
     "searchValue": "",
     "expectedValue": "'schema' should be set",
-    "actualValue": "'schema' is undefined"
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Body Parameter Without Schema",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.parameters.name=limit2",
     "searchValue": "",
     "expectedValue": "'schema' should be set",
-    "actualValue": "'schema' is undefined"
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Body Parameter Without Schema",
@@ -45,6 +48,7 @@
     "searchKey": "parameters.name=limit",
     "searchValue": "",
     "expectedValue": "'schema' should be set",
-    "actualValue": "'schema' is undefined"
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "azurerm_storage_account[positive1].network_rules.default_action",
     "searchValue": "",
     "expectedValue": "azurerm_storage_account.network_rules.default_action should be set to 'Deny'",
-    "actualValue": "azurerm_storage_account.network_rules.default_action is set to 'Allow'"
+    "actualValue": "azurerm_storage_account.network_rules.default_action is set to 'Allow'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_storage_account_network_rules[positive2].default_action",
     "searchValue": "",
     "expectedValue": "azurerm_storage_account_network_rules.default_action should be set to 'Deny'",
-    "actualValue": "azurerm_storage_account_network_rules.default_action is set to 'Allow'"
+    "actualValue": "azurerm_storage_account_network_rules.default_action is set to 'Allow'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_storage_account[positive3].public_network_access_enabled",
     "searchValue": "",
     "expectedValue": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
-    "actualValue": "azurerm_storage_account.public_network_access_enabled set to 'true'"
+    "actualValue": "azurerm_storage_account.public_network_access_enabled set to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -45,6 +48,7 @@
     "searchKey": "azurerm_storage_account[positive4].public_network_access_enabled",
     "searchValue": "",
     "expectedValue": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
-    "actualValue": "azurerm_storage_account.public_network_access_enabled is not set (default is 'true')"
+    "actualValue": "azurerm_storage_account.public_network_access_enabled is not set (default is 'true')",
+    "issueType": "MissingAttribute"
   }
 ]

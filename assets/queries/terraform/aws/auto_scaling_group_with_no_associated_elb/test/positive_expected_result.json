@@ -9,7 +9,8 @@
     "searchKey": "aws_autoscaling_group[bar]",
     "searchValue": "",
     "expectedValue": "aws_autoscaling_group[bar].load_balancers should be set and not empty",
-    "actualValue": "aws_autoscaling_group[bar].load_balancers is undefined"
+    "actualValue": "aws_autoscaling_group[bar].load_balancers is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
@@ -21,7 +22,8 @@
     "searchKey": "aws_autoscaling_group[positive2].load_balancers",
     "searchValue": "",
     "expectedValue": "aws_autoscaling_group[positive2].load_balancers should be set and not empty",
-    "actualValue": "aws_autoscaling_group[positive2].load_balancers is empty"
+    "actualValue": "aws_autoscaling_group[positive2].load_balancers is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
@@ -33,7 +35,8 @@
     "searchKey": "module[positive3]",
     "searchValue": "",
     "expectedValue": "'load_balancers' should be set and not empty",
-    "actualValue": "'load_balancers' is undefined"
+    "actualValue": "'load_balancers' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
@@ -45,7 +48,8 @@
     "searchKey": "module[positive4].load_balancers",
     "searchValue": "",
     "expectedValue": "'load_balancers' should be set and not empty",
-    "actualValue": "'load_balancers' is undefined"
+    "actualValue": "'load_balancers' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
@@ -57,7 +61,8 @@
     "searchKey": "aws_autoscaling_group[foo]",
     "searchValue": "",
     "expectedValue": "aws_autoscaling_group[foo].load_balancers should be set and not empty",
-    "actualValue": "aws_autoscaling_group[foo].load_balancers is undefined"
+    "actualValue": "aws_autoscaling_group[foo].load_balancers is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
@@ -69,6 +74,7 @@
     "searchKey": "aws_autoscaling_group[foo]",
     "searchValue": "",
     "expectedValue": "aws_autoscaling_group[foo].load_balancers should be set and not empty",
-    "actualValue": "aws_autoscaling_group[foo].load_balancers is undefined"
+    "actualValue": "aws_autoscaling_group[foo].load_balancers is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

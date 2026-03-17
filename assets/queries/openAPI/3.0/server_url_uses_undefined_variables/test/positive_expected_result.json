@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url uses server object variables defined in the server object variables",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not use server object variables defined in the server object variables"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not use server object variables defined in the server object variables",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server URL Uses Undefined Variables",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.servers.url=https://development.{server}.com/{base}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.servers.{{0}}.url uses server object variables defined in the server object variables",
-    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not use server object variables defined in the server object variables"
+    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not use server object variables defined in the server object variables",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server URL Uses Undefined Variables",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url uses server object variables defined in the server object variables",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not use server object variables defined in the server object variables"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not use server object variables defined in the server object variables",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server URL Uses Undefined Variables",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.{{get}}.servers.url=https://development.{server}.com/{base}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.servers.{{0}}.url uses server object variables defined in the server object variables",
-    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not use server object variables defined in the server object variables"
+    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not use server object variables defined in the server object variables",
+    "issueType": "IncorrectValue"
   }
 ]

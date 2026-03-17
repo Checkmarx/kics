@@ -9,7 +9,8 @@
     "searchKey": "name={{example1}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
@@ -21,7 +22,8 @@
     "searchKey": "name={{example2}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
@@ -33,7 +35,8 @@
     "searchKey": "name={{example3}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
@@ -45,7 +48,8 @@
     "searchKey": "name={{example4}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
@@ -57,7 +61,8 @@
     "searchKey": "name={{example5}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
@@ -69,6 +74,7 @@
     "searchKey": "name={{example6}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   }
 ]

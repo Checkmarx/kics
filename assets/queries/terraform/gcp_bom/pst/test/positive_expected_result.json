@@ -9,7 +9,8 @@
     "searchKey": "google_pubsub_topic[example1]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP PST",
@@ -21,7 +22,8 @@
     "searchKey": "google_pubsub_topic[example2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP PST",
@@ -33,7 +35,8 @@
     "searchKey": "google_pubsub_topic[example3]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP PST",
@@ -45,6 +48,7 @@
     "searchKey": "google_pubsub_topic[example4]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

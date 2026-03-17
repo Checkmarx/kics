@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket_policy[positive1].policy",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_policy[positive1].policy.Action should not be a 'Delete' action",
-    "actualValue": "aws_s3_bucket_policy[positive1].policy.Action is a 'Delete' action"
+    "actualValue": "aws_s3_bucket_policy[positive1].policy.Action is a 'Delete' action",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
@@ -21,7 +22,8 @@
     "searchKey": "aws_s3_bucket_policy[positive2].policy",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_policy[positive2].policy.Action should not be a 'Delete' action",
-    "actualValue": "aws_s3_bucket_policy[positive2].policy.Action is a 'Delete' action"
+    "actualValue": "aws_s3_bucket_policy[positive2].policy.Action is a 'Delete' action",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
@@ -33,7 +35,8 @@
     "searchKey": "module[s3_bucket].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' should not be a 'Delete' action",
-    "actualValue": "'policy.Statement.Action' is a 'Delete' action"
+    "actualValue": "'policy.Statement.Action' is a 'Delete' action",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
@@ -45,7 +48,8 @@
     "searchKey": "aws_s3_bucket_policy[positive4].policy",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_policy[positive4].policy.Action should not be a 'Delete' action",
-    "actualValue": "aws_s3_bucket_policy[positive4].policy.Action is a 'Delete' action"
+    "actualValue": "aws_s3_bucket_policy[positive4].policy.Action is a 'Delete' action",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
@@ -57,7 +61,8 @@
     "searchKey": "aws_s3_bucket_policy[positive5].policy",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_policy[positive5].policy.Action should not be a 'Delete' action",
-    "actualValue": "aws_s3_bucket_policy[positive5].policy.Action is a 'Delete' action"
+    "actualValue": "aws_s3_bucket_policy[positive5].policy.Action is a 'Delete' action",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
@@ -69,6 +74,7 @@
     "searchKey": "aws_s3_bucket_policy[positive6].policy",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_policy[positive6].policy.Action should not be a 'Delete' action",
-    "actualValue": "aws_s3_bucket_policy[positive6].policy.Action is a 'Delete' action"
+    "actualValue": "aws_s3_bucket_policy[positive6].policy.Action is a 'Delete' action",
+    "issueType": "IncorrectValue"
   }
 ]

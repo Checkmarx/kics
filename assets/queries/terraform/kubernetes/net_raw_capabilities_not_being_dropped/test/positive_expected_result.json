@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[0].security_context.capabilities.drop should be set",
-    "actualValue": "kkubernetes_pod[positive1].spec.container[0].security_context.capabilities.drop is undefined"
+    "actualValue": "kkubernetes_pod[positive1].spec.container[0].security_context.capabilities.drop is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[1].security_context.capabilities.drop should be set",
-    "actualValue": "kkubernetes_pod[positive1].spec.container[1].security_context.capabilities.drop is undefined"
+    "actualValue": "kkubernetes_pod[positive1].spec.container[1].security_context.capabilities.drop is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -33,7 +35,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[2].security_context.capabilities.drop is ALL or NET_RAW",
-    "actualValue": "kubernetes_pod[positive1].spec.container[2].security_context.capabilities.drop is not ALL or NET_RAW"
+    "actualValue": "kubernetes_pod[positive1].spec.container[2].security_context.capabilities.drop is not ALL or NET_RAW",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -45,7 +48,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[3].security_context.capabilities.drop is ALL or NET_RAW",
-    "actualValue": "kubernetes_pod[positive1].spec.container[3].security_context.capabilities.drop is not ALL or NET_RAW"
+    "actualValue": "kubernetes_pod[positive1].spec.container[3].security_context.capabilities.drop is not ALL or NET_RAW",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -57,7 +61,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[4].security_context.capabilities should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[4].security_context.capabilities is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.container[4].security_context.capabilities is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -69,7 +74,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[5].security_context.capabilities should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[5].security_context.capabilities is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.container[5].security_context.capabilities is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -81,7 +87,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[6].security_context should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[6].security_context is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.container[6].security_context is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -93,7 +100,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[7].security_context should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[7].security_context is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.container[7].security_context is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -105,7 +113,8 @@
     "searchKey": "kubernetes_pod[positive2].spec.container.security_context.capabilities",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive2].spec.container.security_context.capabilities.drop should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.container.security_context.capabilities.drop is undefined"
+    "actualValue": "kubernetes_pod[positive2].spec.container.security_context.capabilities.drop is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -117,7 +126,8 @@
     "searchKey": "kubernetes_pod[positive3].spec.container.security_context.capabilities.drop",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive3].spec.container.security_context.capabilities.drop is ALL or NET_RAW",
-    "actualValue": "kubernetes_pod[positive3].spec.container.security_context.capabilities.drop is not ALL or NET_RAW"
+    "actualValue": "kubernetes_pod[positive3].spec.container.security_context.capabilities.drop is not ALL or NET_RAW",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -129,7 +139,8 @@
     "searchKey": "kubernetes_pod[positive4].spec.container.security_context",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive4].spec.container.security_context.capabilities should be set",
-    "actualValue": "kubernetes_pod[positive4].spec.container.security_context.capabilities is undefined"
+    "actualValue": "kubernetes_pod[positive4].spec.container.security_context.capabilities is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -141,6 +152,7 @@
     "searchKey": "kubernetes_pod[positive5].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive5].spec.container.security_context should be set",
-    "actualValue": "kubernetes_pod[positive5].spec.container.security_context is undefined"
+    "actualValue": "kubernetes_pod[positive5].spec.container.security_context is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

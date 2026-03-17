@@ -9,7 +9,8 @@
     "searchKey": "Resources.RSASigningKey.Properties.KeyPolicy",
     "searchValue": "",
     "expectedValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement should not have wildcard in 'Action' and 'Principal'",
-    "actualValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement has wildcard in 'Action' and 'Principal'"
+    "actualValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement has wildcard in 'Action' and 'Principal'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.RSASigningKey.Properties.KeyPolicy",
     "searchValue": "",
     "expectedValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement should not have wildcard in 'Action' and 'Principal'",
-    "actualValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement has wildcard in 'Action' and 'Principal'"
+    "actualValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement has wildcard in 'Action' and 'Principal'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.RSASigningKey2.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RSASigningKey2.Properties.KeyPolicy should be defined and not null",
-    "actualValue": "Resources.RSASigningKey2.Properties.KeyPolicy is undefined or null"
+    "actualValue": "Resources.RSASigningKey2.Properties.KeyPolicy is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.RSASigningKey2.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RSASigningKey2.Properties.KeyPolicy should be defined and not null",
-    "actualValue": "Resources.RSASigningKey2.Properties.KeyPolicy is undefined or null"
+    "actualValue": "Resources.RSASigningKey2.Properties.KeyPolicy is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

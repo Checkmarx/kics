@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
-    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'"
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
-    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'"
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
-    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'"
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
-    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'"
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "components.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
-    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'"
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "components.parameters.name={{nameAPI}}",
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
-    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'"
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "components.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
-    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'"
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "components.parameters.name={{nameAPI}}",
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
-    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'"
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Parameter Not Required (v2)",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
-    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'"
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Parameter Not Required (v2)",
@@ -117,6 +126,7 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
-    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'"
+    "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
+    "issueType": "MissingAttribute"
   }
 ]

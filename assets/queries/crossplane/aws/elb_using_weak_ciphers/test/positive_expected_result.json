@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{test-listener}}.spec.forProvider.sslPolicy",
     "searchValue": "",
     "expectedValue": "sslPolicy should use a secure protocol or cipher",
-    "actualValue": "sslPolicy is using a weak cipher"
+    "actualValue": "sslPolicy is using a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Using Weak Ciphers",
@@ -21,6 +22,7 @@
     "searchKey": "spec.resources.base.metadata.name={{test-listener2}}.spec.forProvider.sslPolicy",
     "searchValue": "",
     "expectedValue": "sslPolicy should use a secure protocol or cipher",
-    "actualValue": "sslPolicy is using a weak cipher"
+    "actualValue": "sslPolicy is using a weak cipher",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.BasicBroker.Properties.EncryptionOptions",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker.Properties.EncryptionOptions should be defined",
-    "actualValue": "Resources.BasicBroker.Properties.EncryptionOptions is not defined"
+    "actualValue": "Resources.BasicBroker.Properties.EncryptionOptions is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AmazonMQ Broker Encryption Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.BasicBroker.Properties.EncryptionOptions",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker.Properties.EncryptionOptions should be defined",
-    "actualValue": "Resources.BasicBroker.Properties.EncryptionOptions is not defined"
+    "actualValue": "Resources.BasicBroker.Properties.EncryptionOptions is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

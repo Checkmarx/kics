@@ -9,6 +9,7 @@
     "searchKey": "resource.aws_elasticache_cluster[positive1].engine",
     "searchValue": "",
     "expectedValue": "resource.aws_elasticache_cluster[positive1].engine should have Redis enabled",
-    "actualValue": "resource.aws_elasticache_cluster[positive1].engine doesn't enable Redis"
+    "actualValue": "resource.aws_elasticache_cluster[positive1].engine doesn't enable Redis",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "azurerm_network_watcher_flow_log[positive1].retention_policy.days",
     "searchValue": "",
     "expectedValue": "'positive1.retention_policy.days' should be bigger than 90)",
-    "actualValue": "'retention_policy.days' is less than 90 [89])"
+    "actualValue": "'retention_policy.days' is less than 90 [89])",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Small Flow Logs Retention Period",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_network_watcher_flow_log[positive2].retention_policy.days",
     "searchValue": "",
     "expectedValue": "'positive2.retention_policy.days' should be bigger than 90)",
-    "actualValue": "'retention_policy.days' is less than 90 [3])"
+    "actualValue": "'retention_policy.days' is less than 90 [3])",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Small Flow Logs Retention Period",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_network_watcher_flow_log[positive3]",
     "searchValue": "",
     "expectedValue": "'positive3.retention_policy' should exist)",
-    "actualValue": "'positive3.retention_policy' doesn't exist)"
+    "actualValue": "'positive3.retention_policy' doesn't exist)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Small Flow Logs Retention Period",
@@ -45,6 +48,7 @@
     "searchKey": "azurerm_network_watcher_flow_log[positive4].retention_policy.enabled",
     "searchValue": "",
     "expectedValue": "'positive4.retention_policy' should be enabled)",
-    "actualValue": "'positive4.retention_policy' is disabled)"
+    "actualValue": "'positive4.retention_policy' is disabled)",
+    "issueType": "IncorrectValue"
   }
 ]

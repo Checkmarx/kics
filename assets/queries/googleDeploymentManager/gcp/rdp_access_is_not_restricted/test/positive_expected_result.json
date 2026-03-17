@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{firewall}}.properties.allowed",
     "searchValue": "",
     "expectedValue": "'allowed.ports' to not include RDP port 3389",
-    "actualValue": "'allowed.ports' includes RDP port 3389"
+    "actualValue": "'allowed.ports' includes RDP port 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDP Access Is Not Restricted",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{firewall}}.properties.allowed",
     "searchValue": "",
     "expectedValue": "'allowed.ports' to not include RDP port 3389",
-    "actualValue": "'allowed.ports' includes RDP port 3389"
+    "actualValue": "'allowed.ports' includes RDP port 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDP Access Is Not Restricted",
@@ -33,6 +35,7 @@
     "searchKey": "resources.name={{firewall}}.properties.allowed",
     "searchValue": "",
     "expectedValue": "'allowed.ports' to not include RDP port 3389",
-    "actualValue": "'allowed.ports' includes RDP port 3389"
+    "actualValue": "'allowed.ports' includes RDP port 3389",
+    "issueType": "IncorrectValue"
   }
 ]

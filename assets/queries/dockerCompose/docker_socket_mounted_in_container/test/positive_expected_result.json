@@ -9,6 +9,7 @@
     "searchKey": "services.service1.volumes",
     "searchValue": "",
     "expectedValue": "To not have docker socket named 'docker.sock' mounted in a volume",
-    "actualValue": "There is a docker socket named 'docker.sock' mounted in a volume"
+    "actualValue": "There is a docker socket named 'docker.sock' mounted in a volume",
+    "issueType": "IncorrectValue"
   }
 ]

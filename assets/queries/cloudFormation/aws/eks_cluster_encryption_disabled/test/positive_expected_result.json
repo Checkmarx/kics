@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyEKSClusterA.Properties",
     "searchValue": "",
     "expectedValue": "'EncryptionConfig' should be defined and not null",
-    "actualValue": "'EncryptionConfig' is undefined or null"
+    "actualValue": "'EncryptionConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EKS Cluster Encryption Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyEKSClusterA.Properties",
     "searchValue": "",
     "expectedValue": "'EncryptionConfig' should be defined and not null",
-    "actualValue": "'EncryptionConfig' is undefined or null"
+    "actualValue": "'EncryptionConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EKS Cluster Encryption Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyEKSClusterB.Properties.EncryptionConfig",
     "searchValue": "",
     "expectedValue": "'secrets' should be defined inside the Resources field",
-    "actualValue": "'secrets' is undefined on the Resources field"
+    "actualValue": "'secrets' is undefined on the Resources field",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EKS Cluster Encryption Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.MyEKSClusterB.Properties.EncryptionConfig",
     "searchValue": "",
     "expectedValue": "'secrets' should be defined inside the Resources field",
-    "actualValue": "'secrets' is undefined on the Resources field"
+    "actualValue": "'secrets' is undefined on the Resources field",
+    "issueType": "IncorrectValue"
   }
 ]

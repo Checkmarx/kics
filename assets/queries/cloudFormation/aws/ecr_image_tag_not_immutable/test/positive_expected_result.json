@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyRepository3.Properties.ImageTagMutability",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository3.Properties.ImageTagMutability should be 'IMMUTABLE'",
-    "actualValue": "Resources.MyRepository3.Properties.ImageTagMutability is 'MUTABLE'"
+    "actualValue": "Resources.MyRepository3.Properties.ImageTagMutability is 'MUTABLE'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Image Tag Not Immutable",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyRepository4.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository4.Properties.ImageTagMutability should be defined and not null",
-    "actualValue": "Resources.MyRepository4.Properties.ImageTagMutability is undefined or null"
+    "actualValue": "Resources.MyRepository4.Properties.ImageTagMutability is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Image Tag Not Immutable",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyRepository5.Properties.ImageTagMutability",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository5.Properties.ImageTagMutability should be 'IMMUTABLE'",
-    "actualValue": "Resources.MyRepository5.Properties.ImageTagMutability is 'MUTABLE'"
+    "actualValue": "Resources.MyRepository5.Properties.ImageTagMutability is 'MUTABLE'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Image Tag Not Immutable",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.MyRepository6.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository6.Properties.ImageTagMutability should be defined and not null",
-    "actualValue": "Resources.MyRepository6.Properties.ImageTagMutability is undefined or null"
+    "actualValue": "Resources.MyRepository6.Properties.ImageTagMutability is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{Create an AKS instance}}.{{azure_rm_aks}}.enable_rbac",
     "searchValue": "",
     "expectedValue": "azure_rm_aks.enable_rbac should be set to 'yes' or 'true'",
-    "actualValue": "azure_rm_aks.enable_rbac is not set to 'yes' or 'true'"
+    "actualValue": "azure_rm_aks.enable_rbac is not set to 'yes' or 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS RBAC Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create an AKS instance v2}}.{{azure_rm_aks}}",
     "searchValue": "",
     "expectedValue": "azure_rm_aks.enable_rbac should be defined",
-    "actualValue": "azure_rm_aks.enable_rbac is undefined"
+    "actualValue": "azure_rm_aks.enable_rbac is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

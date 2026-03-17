@@ -9,7 +9,8 @@
     "searchKey": "name={{create a disk1}}.{{google.cloud.gcp_compute_disk}}",
     "searchValue": "",
     "expectedValue": "gcp_compute_disk.disk_encryption_key should be defined and not null",
-    "actualValue": "gcp_compute_disk.disk_encryption_key is undefined or null"
+    "actualValue": "gcp_compute_disk.disk_encryption_key is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a disk3}}.{{google.cloud.gcp_compute_disk}}.disk_encryption_key",
     "searchValue": "",
     "expectedValue": "gcp_compute_disk.disk_encryption_key.raw_key or gcp_compute_disk.disk_encryption_key.kms_key_name should be defined and not null",
-    "actualValue": "gcp_compute_disk.disk_encryption_key.raw_key and gcp_compute_disk.disk_encryption_key.kms_key_name are undefined or null"
+    "actualValue": "gcp_compute_disk.disk_encryption_key.raw_key and gcp_compute_disk.disk_encryption_key.kms_key_name are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "name={{create a disk4}}.{{google.cloud.gcp_compute_disk}}.disk_encryption_key.raw_key",
     "searchValue": "",
     "expectedValue": "gcp_compute_disk.disk_encryption_key.raw_key should not be empty",
-    "actualValue": "gcp_compute_disk.disk_encryption_key.raw_key is empty"
+    "actualValue": "gcp_compute_disk.disk_encryption_key.raw_key is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "name={{create a disk3}}.{{google.cloud.gcp_compute_disk}}.disk_encryption_key",
     "searchValue": "",
     "expectedValue": "gcp_compute_disk.disk_encryption_key.raw_key or gcp_compute_disk.disk_encryption_key.kms_key_name should be defined and not null",
-    "actualValue": "gcp_compute_disk.disk_encryption_key.raw_key and gcp_compute_disk.disk_encryption_key.kms_key_name are undefined or null"
+    "actualValue": "gcp_compute_disk.disk_encryption_key.raw_key and gcp_compute_disk.disk_encryption_key.kms_key_name are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "name={{create a disk4}}.{{google.cloud.gcp_compute_disk}}.disk_encryption_key.kms_key_name",
     "searchValue": "",
     "expectedValue": "gcp_compute_disk.disk_encryption_key.kms_key_name should not be empty",
-    "actualValue": "gcp_compute_disk.disk_encryption_key.kms_key_name is empty"
+    "actualValue": "gcp_compute_disk.disk_encryption_key.kms_key_name is empty",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "azurerm_mssql_server[positive1]",
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_server[positive1].public_network_access_enabled' should be defined and not null",
-    "actualValue": "'azurerm_mssql_server[positive1].public_network_access_enabled' is undefined or null"
+    "actualValue": "'azurerm_mssql_server[positive1].public_network_access_enabled' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MSSQL Server Public Network Access Enabled",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_mssql_server[positive2].public_network_access_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_server[positive2].public_network_access_enabled' should be set to false",
-    "actualValue": "'azurerm_mssql_server[positive2].public_network_access_enabled' is set to true"
+    "actualValue": "'azurerm_mssql_server[positive2].public_network_access_enabled' is set to true",
+    "issueType": "IncorrectValue"
   }
 ]

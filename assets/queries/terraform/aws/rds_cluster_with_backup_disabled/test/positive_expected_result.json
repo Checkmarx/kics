@@ -9,6 +9,7 @@
     "searchKey": "aws_rds_cluster[{{postgresql}}]",
     "searchValue": "",
     "expectedValue": "aws_rds_cluster.backup_retention_period should be defined and not null",
-    "actualValue": "aws_rds_cluster.backup_retention_period is undefined or null"
+    "actualValue": "aws_rds_cluster.backup_retention_period is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyLoadBalancer.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' should exist",
-    "actualValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' is missing"
+    "actualValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Access Log Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is true",
-    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false"
+    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Access Log Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyLoadBalancer.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' should exist",
-    "actualValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' is missing"
+    "actualValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB Access Log Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is true",
-    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false"
+    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Access Log Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled",
     "searchValue": "",
     "expectedValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is true",
-    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false"
+    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false",
+    "issueType": "IncorrectValue"
   }
 ]

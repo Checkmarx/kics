@@ -9,7 +9,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageRead",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Read' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageWrite",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Write' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Write' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Write' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageDelete",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Delete' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Delete' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Delete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageRead",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Read' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageWrite",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Write' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Write' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Write' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageDelete",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Delete' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Delete' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Delete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageWrite",
     "searchValue": "StorageWrite",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageRead",
     "searchValue": "StorageRead",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageWrite",
     "searchValue": "StorageWrite",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -141,7 +152,8 @@
     "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageRead",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Read' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -153,7 +165,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageRead",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Read' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -165,7 +178,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageDelete",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Delete' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Delete' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Delete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -177,7 +191,8 @@
     "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageWrite",
     "searchValue": "StorageWrite",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -189,7 +204,8 @@
     "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -201,7 +217,8 @@
     "searchKey": "resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageRead",
     "searchValue": "StorageRead",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -213,7 +230,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageRead",
     "searchValue": "StorageRead",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -225,7 +243,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -237,7 +256,8 @@
     "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageRead",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Read' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -249,7 +269,8 @@
     "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageWrite",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Write' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Write' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Write' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -261,7 +282,8 @@
     "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageDelete",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Delete' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Delete' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Delete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -273,7 +295,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageRead",
     "searchValue": "StorageRead",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -285,7 +308,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -297,7 +321,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageWrite",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Write' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Write' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Write' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -309,7 +334,8 @@
     "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageWrite",
     "searchValue": "StorageWrite",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -321,7 +347,8 @@
     "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -333,7 +360,8 @@
     "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageRead",
     "searchValue": "",
     "expectedValue": "Storage Logging in 'diagnosticsettings' should be enabled for 'Read' method",
-    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method"
+    "actualValue": "Storage Logging in 'diagnosticsettings' is disabled for 'Read' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -345,7 +373,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -357,7 +386,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageWrite",
     "searchValue": "StorageWrite",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -369,7 +399,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageRead",
     "searchValue": "StorageRead",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -381,7 +412,8 @@
     "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -393,7 +425,8 @@
     "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageRead",
     "searchValue": "StorageRead",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -405,7 +438,8 @@
     "searchKey": "properties.template.resources.properties.template.resources.name=[concat(parameters('storageAccountName'),'/default/Microsoft.Insights/', parameters('settingName'))].properties.logs.StorageWrite",
     "searchValue": "StorageWrite",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -417,7 +451,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageDelete",
     "searchValue": "StorageDelete",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageDelete' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageDelete' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -429,7 +464,8 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageRead",
     "searchValue": "StorageRead",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageRead' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageRead' method",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
@@ -441,6 +477,7 @@
     "searchKey": "resources.name=Microsoft.Storage/storageAccounts/queueServices/providers.properties.logs.StorageWrite",
     "searchValue": "StorageWrite",
     "expectedValue": "'Storage Logging' in 'diagnosticsettings' needs 'StorageWrite' method",
-    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method"
+    "actualValue": "'Storage Logging' in 'diagnosticsettings' doesn't have a 'StorageWrite' method",
+    "issueType": "MissingAttribute"
   }
 ]

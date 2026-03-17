@@ -9,7 +9,8 @@
     "searchKey": "aws_efs_file_system[positive1]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS EFS",
@@ -21,6 +22,7 @@
     "searchKey": "aws_efs_file_system[positive2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

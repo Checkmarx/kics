@@ -9,7 +9,8 @@
     "searchKey": "Resources.InboundRule.Properties.RuleNumber",
     "searchValue": "",
     "expectedValue": "'Resources.InboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.InboundRule' has the same rule number as other entry for the same NetworkACL"
+    "actualValue": "'Resources.InboundRule' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.OutboundRule.Properties.RuleNumber",
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.OutboundRule' has the same rule number as other entry for the same NetworkACL"
+    "actualValue": "'Resources.OutboundRule' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.InboundRule2.Properties.RuleNumber",
     "searchValue": "",
     "expectedValue": "'Resources.InboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL"
+    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.OutboundRule2.Properties.RuleNumber",
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.OutboundRule2' has the same rule number as other entry for the same NetworkACL"
+    "actualValue": "'Resources.OutboundRule2' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.InboundRule.Properties.RuleNumber",
     "searchValue": "",
     "expectedValue": "'Resources.InboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.InboundRule' has the same rule number as other entry for the same NetworkACL"
+    "actualValue": "'Resources.InboundRule' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.OutboundRule.Properties.RuleNumber",
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.OutboundRule' has the same rule number as other entry for the same NetworkACL"
+    "actualValue": "'Resources.OutboundRule' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.InboundRule2.Properties.RuleNumber",
     "searchValue": "",
     "expectedValue": "'Resources.InboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL"
+    "actualValue": "'Resources.InboundRule2' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Duplicate Rule",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.OutboundRule2.Properties.RuleNumber",
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule2' shouldn't have the same rule number as other entry for the same NetworkACL",
-    "actualValue": "'Resources.OutboundRule2' has the same rule number as other entry for the same NetworkACL"
+    "actualValue": "'Resources.OutboundRule2' has the same rule number as other entry for the same NetworkACL",
+    "issueType": "IncorrectValue"
   }
 ]

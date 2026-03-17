@@ -9,7 +9,8 @@
     "searchKey": "FROM={{alpine}}",
     "searchValue": "",
     "expectedValue": "FROM alpine:'version'",
-    "actualValue": "FROM alpine'"
+    "actualValue": "FROM alpine'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Image Version Not Explicit",
@@ -21,7 +22,8 @@
     "searchKey": "FROM={{construction AS final}}",
     "searchValue": "",
     "expectedValue": "FROM construction:'version'",
-    "actualValue": "FROM construction'"
+    "actualValue": "FROM construction'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Image Version Not Explicit",
@@ -33,7 +35,8 @@
     "searchKey": "FROM={{positive4 }}",
     "searchValue": "",
     "expectedValue": "FROM positive4:'version'",
-    "actualValue": "FROM positive4'"
+    "actualValue": "FROM positive4'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Image Version Not Explicit",
@@ -45,7 +48,8 @@
     "searchKey": "FROM={{positive42}}",
     "searchValue": "",
     "expectedValue": "FROM positive42:'version'",
-    "actualValue": "FROM positive42'"
+    "actualValue": "FROM positive42'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Image Version Not Explicit",
@@ -57,7 +61,8 @@
     "searchKey": "FROM={{test_fail_1}}",
     "searchValue": "",
     "expectedValue": "FROM test_fail_1:'version'",
-    "actualValue": "FROM test_fail_1'"
+    "actualValue": "FROM test_fail_1'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Image Version Not Explicit",
@@ -69,6 +74,7 @@
     "searchKey": "FROM={{test3 AS test_fail_2}}",
     "searchValue": "",
     "expectedValue": "FROM test3:'version'",
-    "actualValue": "FROM test3'"
+    "actualValue": "FROM test3'",
+    "issueType": "MissingAttribute"
   }
 ]

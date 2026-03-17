@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--read-only-port flag should be '0'",
-    "actualValue": "--read-only-port flag is not set to '0'"
+    "actualValue": "--read-only-port flag is not set to '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Read Only Port Is Not Set To Zero",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--read-only-port flag should be '0'",
-    "actualValue": "--read-only-port flag is not set to '0'"
+    "actualValue": "--read-only-port flag is not set to '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Read Only Port Is Not Set To Zero",
@@ -33,7 +35,8 @@
     "searchKey": "kind={{KubeletConfiguration}}.readOnlyPort",
     "searchValue": "",
     "expectedValue": "readOnlyPort attribute to have value of 0",
-    "actualValue": "readOnlyPort attribute has value of 1"
+    "actualValue": "readOnlyPort attribute has value of 1",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Read Only Port Is Not Set To Zero",
@@ -45,6 +48,7 @@
     "searchKey": "kind={{KubeletConfiguration}}.readOnlyPort",
     "searchValue": "",
     "expectedValue": "readOnlyPort attribute to have value of 0",
-    "actualValue": "readOnlyPort attribute has value of 1"
+    "actualValue": "readOnlyPort attribute has value of 1",
+    "issueType": "IncorrectValue"
   }
 ]

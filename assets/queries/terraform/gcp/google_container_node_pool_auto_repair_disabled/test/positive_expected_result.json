@@ -9,7 +9,8 @@
     "searchKey": "google_container_node_pool[positive2].management.auto_repair",
     "searchValue": "",
     "expectedValue": "google_container_node_pool[positive2].management.auto_repair should be true",
-    "actualValue": "google_container_node_pool[positive2].management.auto_repair is false"
+    "actualValue": "google_container_node_pool[positive2].management.auto_repair is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Google Container Node Pool Auto Repair Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "google_container_node_pool[positive3].management",
     "searchValue": "",
     "expectedValue": "google_container_node_pool[positive3].management.auto_repair should be defined and not null",
-    "actualValue": "google_container_node_pool[positive3].management.auto_repair is undefined or null"
+    "actualValue": "google_container_node_pool[positive3].management.auto_repair is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{vm-template}}.properties.disks",
     "searchValue": "",
     "expectedValue": "'diskEncryptionKey' should be defined and not null",
-    "actualValue": "'diskEncryptionKey' is undefined or null"
+    "actualValue": "'diskEncryptionKey' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{disk-3-data}}.properties.disks",
     "searchValue": "",
     "expectedValue": "'diskEncryptionKey' should be defined and not null",
-    "actualValue": "'diskEncryptionKey' is undefined or null"
+    "actualValue": "'diskEncryptionKey' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{vm-template2}}.properties.disks.diskEncryptionKey",
     "searchValue": "",
     "expectedValue": "'disk_encryption_key.rawKey' or 'disk_encryption_key.kmsKeyName' should be defined and not null",
-    "actualValue": "'disk_encryption_key.rawKey' and 'disk_encryption_key.kmsKeyName' are undefined or null"
+    "actualValue": "'disk_encryption_key.rawKey' and 'disk_encryption_key.kmsKeyName' are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{disk-4-data}}.properties.diskEncryptionKey",
     "searchValue": "",
     "expectedValue": "'disk_encryption_key.rawKey' or 'disk_encryption_key.kmsKeyName' should be defined and not null",
-    "actualValue": "'disk_encryption_key.rawKey' and 'disk_encryption_key.kmsKeyName' are undefined or null"
+    "actualValue": "'disk_encryption_key.rawKey' and 'disk_encryption_key.kmsKeyName' are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{vm-template3}}.properties.disks.diskEncryptionKey.rawKey",
     "searchValue": "",
     "expectedValue": "'diskEncryptionKey.rawKey' should not be empty",
-    "actualValue": "'diskEncryptionKey.rawKey' is empty"
+    "actualValue": "'diskEncryptionKey.rawKey' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -69,6 +74,7 @@
     "searchKey": "resources.name={{disk-5-data}}.properties.diskEncryptionKey.rawKey",
     "searchValue": "",
     "expectedValue": "'diskEncryptionKey.rawKey' should not be empty",
-    "actualValue": "'diskEncryptionKey.rawKey' is empty"
+    "actualValue": "'diskEncryptionKey.rawKey' is empty",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_iam_role_policy[positive1].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -21,7 +22,8 @@
     "searchKey": "aws_iam_policy_document[example].statement",
     "searchValue": "",
     "expectedValue": "'statement.actions' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'statement.actions' contains '*' or 'iam:*'"
+    "actualValue": "'statement.actions' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -33,7 +35,8 @@
     "searchKey": "aws_iam_policy_document[example].statement[1]",
     "searchValue": "",
     "expectedValue": "'statement.actions' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'statement.actions' contains '*' or 'iam:*'"
+    "actualValue": "'statement.actions' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -45,7 +48,8 @@
     "searchKey": "aws_iam_policy_document[example].statement[2]",
     "searchValue": "",
     "expectedValue": "'statement.actions' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'statement.actions' contains '*' or 'iam:*'"
+    "actualValue": "'statement.actions' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -57,7 +61,8 @@
     "searchKey": "aws_iam_role_policy[positive3].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -69,7 +74,8 @@
     "searchKey": "aws_iam_policy_document[example].statement",
     "searchValue": "",
     "expectedValue": "'statement.actions' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'statement.actions' contains '*' or 'iam:*'"
+    "actualValue": "'statement.actions' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -81,7 +87,8 @@
     "searchKey": "aws_iam_user_policy[positive4-1].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -93,7 +100,8 @@
     "searchKey": "aws_iam_user_policy[positive4-2].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -105,7 +113,8 @@
     "searchKey": "aws_iam_group_policy[positive5-1].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -117,7 +126,8 @@
     "searchKey": "aws_iam_group_policy[positive5-2].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -129,7 +139,8 @@
     "searchKey": "aws_iam_policy[positive6-1].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -141,6 +152,7 @@
     "searchKey": "aws_iam_policy[positive6-2].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
-    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'"
+    "actualValue": "'policy.Statement.Action' contains '*' or 'iam:*'",
+    "issueType": "IncorrectValue"
   }
 ]

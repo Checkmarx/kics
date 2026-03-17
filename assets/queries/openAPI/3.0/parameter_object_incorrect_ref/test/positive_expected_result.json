@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.parameters.$ref=#path/parameters/idParam",
     "searchValue": "",
     "expectedValue": "Parameter Object ref points to '#/components/parameters'",
-    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'"
+    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object With Incorrect Ref (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.parameters.$ref=#components/schemas/idParam",
     "searchValue": "",
     "expectedValue": "Parameter Object ref points to '#/components/parameters'",
-    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'"
+    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object With Incorrect Ref (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/user/id}}.get.parameters.$ref=#path/parameters/idParam",
     "searchValue": "",
     "expectedValue": "Parameter Object ref points to '#/components/parameters'",
-    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'"
+    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object With Incorrect Ref (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.parameters.$ref=#path/parameters/idParam",
     "searchValue": "",
     "expectedValue": "Parameter Object ref points to '#/components/parameters'",
-    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'"
+    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object With Incorrect Ref (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.parameters.$ref=#components/schemas/idParam",
     "searchValue": "",
     "expectedValue": "Parameter Object ref points to '#/components/parameters'",
-    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'"
+    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object With Incorrect Ref (v3)",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/user/id}}.get.parameters.$ref=#path/parameters/idParam",
     "searchValue": "",
     "expectedValue": "Parameter Object ref points to '#/components/parameters'",
-    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'"
+    "actualValue": "Parameter Object ref doesn't point to '#/components/parameters'",
+    "issueType": "IncorrectValue"
   }
 ]

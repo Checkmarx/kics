@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{cluster-secrets}}",
     "searchValue": "",
     "expectedValue": "External secret storage should be used",
-    "actualValue": "External secret storage is not in use"
+    "actualValue": "External secret storage is not in use",
+    "issueType": "MissingAttribute"
   }
 ]

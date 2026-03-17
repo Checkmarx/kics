@@ -9,7 +9,8 @@
     "searchKey": "google_container_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "Attributes 'ip_allocation_policy' and 'networking_mode' should be defined",
-    "actualValue": "Attributes 'ip_allocation_policy' and 'networking_mode' are undefined"
+    "actualValue": "Attributes 'ip_allocation_policy' and 'networking_mode' are undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IP Aliasing Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "google_container_cluster[positive2]",
     "searchValue": "",
     "expectedValue": "Attribute 'ip_allocation_policy' should be defined",
-    "actualValue": "Attribute 'ip_allocation_policy' is undefined"
+    "actualValue": "Attribute 'ip_allocation_policy' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IP Aliasing Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "google_container_cluster[positive3]",
     "searchValue": "",
     "expectedValue": "Attribute 'networking_mode' should be VPC_NATIVE",
-    "actualValue": "Attribute 'networking_mode' is ROUTES"
+    "actualValue": "Attribute 'networking_mode' is ROUTES",
+    "issueType": "IncorrectValue"
   }
 ]

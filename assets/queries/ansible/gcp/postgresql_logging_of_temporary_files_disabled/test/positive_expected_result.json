@@ -9,6 +9,7 @@
     "searchKey": "name={{sql_instance}}.{{google.cloud.gcp_sql_instance}}.settings.database_flags",
     "searchValue": "",
     "expectedValue": "gcp_sql_instance.settings.database_flags should set the log_temp_files to 0",
-    "actualValue": "gcp_sql_instance.settings.database_flags doesn't set the log_temp_files to 0"
+    "actualValue": "gcp_sql_instance.settings.database_flags doesn't set the log_temp_files to 0",
+    "issueType": "IncorrectValue"
   }
 ]

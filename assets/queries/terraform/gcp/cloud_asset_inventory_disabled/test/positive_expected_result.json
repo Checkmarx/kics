@@ -9,7 +9,8 @@
     "searchKey": "google_project_service[positive1_1].service",
     "searchValue": "",
     "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
-    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'"
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "google_project_service[positive1_2].service",
     "searchValue": "",
     "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
-    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'"
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "google_project_service[positive_2].service",
     "searchValue": "",
     "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
-    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'"
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "google_project_service[positive_3].service",
     "searchValue": "",
     "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
-    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'"
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "google_project_service[positive_4].service",
     "searchValue": "",
     "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
-    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'"
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "google_project_service[positive_5].service",
     "searchValue": "",
     "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
-    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'"
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
@@ -81,6 +87,7 @@
     "searchKey": "google_project_service[positive_6].service",
     "searchValue": "",
     "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
-    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'"
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue"
   }
 ]

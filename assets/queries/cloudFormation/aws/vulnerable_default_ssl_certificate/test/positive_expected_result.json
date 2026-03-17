@@ -9,7 +9,8 @@
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate",
     "searchValue": "MinimumProtocolVersion",
     "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion should be defined",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion is not defined"
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate",
     "searchValue": "SslSupportMethod",
     "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod should be defined",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod is not defined"
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.CloudfrontDefaultCertificate",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate should be set to 'false' or not defined.",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'true'."
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'true'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate",
     "searchValue": "MinimumProtocolVersion",
     "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion should be defined",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion is not defined"
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate",
     "searchValue": "SslSupportMethod",
     "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod should be defined",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod is not defined"
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.SslSupportMethod is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.CloudfrontDefaultCertificate",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate should be set to 'false' or not defined.",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'true'."
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate is 'true'.",
+    "issueType": "IncorrectValue"
   }
 ]

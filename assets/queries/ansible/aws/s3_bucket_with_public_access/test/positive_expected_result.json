@@ -9,7 +9,8 @@
     "searchKey": "name={{Create an empty bucket}}.{{amazon.aws.aws_s3}}.permission",
     "searchValue": "",
     "expectedValue": "aws_s3.permission shouldn't allow public access",
-    "actualValue": "aws_s3.permission allows public access"
+    "actualValue": "aws_s3.permission allows public access",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket With Public Access",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create an empty bucket 01}}.{{amazon.aws.aws_s3}}.permission",
     "searchValue": "",
     "expectedValue": "aws_s3.permission shouldn't allow public access",
-    "actualValue": "aws_s3.permission allows public access"
+    "actualValue": "aws_s3.permission allows public access",
+    "issueType": "IncorrectValue"
   }
 ]

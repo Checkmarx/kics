@@ -9,7 +9,8 @@
     "searchKey": "Resources.ProdPos1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ProdPos1.Properties.CacheClusterEnabled should be defined and not null",
-    "actualValue": "Resources.ProdPos1.Properties.CacheClusterEnabled is undefined or null"
+    "actualValue": "Resources.ProdPos1.Properties.CacheClusterEnabled is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Cache Cluster Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ProdPos2.Properties.CacheClusterEnabled",
     "searchValue": "",
     "expectedValue": "Resources.ProdPos2.Properties.CacheClusterEnabled should be set to true",
-    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false"
+    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Cache Cluster Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.ProdPos1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ProdPos1.Properties.CacheClusterEnabled should be defined and not null",
-    "actualValue": "Resources.ProdPos1.Properties.CacheClusterEnabled is undefined or null"
+    "actualValue": "Resources.ProdPos1.Properties.CacheClusterEnabled is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Cache Cluster Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.ProdPos2.Properties.CacheClusterEnabled",
     "searchValue": "",
     "expectedValue": "Resources.ProdPos2.Properties.CacheClusterEnabled should be set to true",
-    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false"
+    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Cache Cluster Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.ProdPos2.Properties.CacheClusterEnabled",
     "searchValue": "",
     "expectedValue": "Resources.ProdPos2.Properties.CacheClusterEnabled should be set to true",
-    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false"
+    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Cache Cluster Disabled",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.ProdPos2.Properties.CacheClusterEnabled",
     "searchValue": "",
     "expectedValue": "Resources.ProdPos2.Properties.CacheClusterEnabled should be set to true",
-    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false"
+    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

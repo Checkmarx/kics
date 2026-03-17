@@ -9,6 +9,7 @@
     "searchKey": "[galaxy].server",
     "searchValue": "",
     "expectedValue": "'server' from galaxy group should be accessed via the HTTPS protocol",
-    "actualValue": "'server' from galaxy group is accessed via the HTTP protocol'"
+    "actualValue": "'server' from galaxy group is accessed via the HTTP protocol'",
+    "issueType": "IncorrectValue"
   }
 ]

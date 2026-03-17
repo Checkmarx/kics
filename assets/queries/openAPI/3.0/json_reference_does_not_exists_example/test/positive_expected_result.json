@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.objectExample.$ref",
     "searchValue": "",
     "expectedValue": "wrongExample from #/components/examples/wrongExample should be declared on components.examples",
-    "actualValue": "wrongExample from #/components/examples/wrongExample is not declared on components.examples"
+    "actualValue": "wrongExample from #/components/examples/wrongExample is not declared on components.examples",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Example JSON Reference Does Not Exist",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.objectExample.$ref",
     "searchValue": "",
     "expectedValue": "wrongExample from #/components/examples/wrongExample should be declared on components.examples",
-    "actualValue": "wrongExample from #/components/examples/wrongExample is not declared on components.examples"
+    "actualValue": "wrongExample from #/components/examples/wrongExample is not declared on components.examples",
+    "issueType": "MissingAttribute"
   }
 ]

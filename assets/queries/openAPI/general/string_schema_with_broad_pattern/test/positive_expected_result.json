@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.GeneralError.properties.code.pattern",
     "searchValue": "",
     "expectedValue": "String schema has 'pattern' restricted",
-    "actualValue": "String schema does not have 'pattern' restricted"
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "String Schema with Broad Pattern (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "String schema has 'pattern' restricted",
-    "actualValue": "String schema does not have 'pattern' restricted"
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "String Schema with Broad Pattern (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.pattern",
     "searchValue": "",
     "expectedValue": "String schema has 'pattern' restricted",
-    "actualValue": "String schema does not have 'pattern' restricted"
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "String Schema with Broad Pattern (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "components.schemas.GeneralError.properties.code.pattern",
     "searchValue": "",
     "expectedValue": "String schema has 'pattern' restricted",
-    "actualValue": "String schema does not have 'pattern' restricted"
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "String Schema with Broad Pattern (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "String schema has 'pattern' restricted",
-    "actualValue": "String schema does not have 'pattern' restricted"
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "String Schema with Broad Pattern (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.pattern",
     "searchValue": "",
     "expectedValue": "String schema has 'pattern' restricted",
-    "actualValue": "String schema does not have 'pattern' restricted"
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "String Schema with Broad Pattern (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.pattern",
     "searchValue": "",
     "expectedValue": "String schema has 'pattern' restricted",
-    "actualValue": "String schema does not have 'pattern' restricted"
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "String Schema with Broad Pattern (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.pattern",
     "searchValue": "",
     "expectedValue": "String schema has 'pattern' restricted",
-    "actualValue": "String schema does not have 'pattern' restricted"
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue"
   }
 ]

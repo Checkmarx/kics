@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{50}}",
     "searchValue": "",
     "expectedValue": "HTTP responses status codes should be in range of [200-599]",
-    "actualValue": "HTTP responses status codes are not in range of [200-599]"
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}",
     "searchValue": "",
     "expectedValue": "HTTP responses status codes should be in range of [200-599]",
-    "actualValue": "HTTP responses status codes are not in range of [200-599]"
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{50}}",
     "searchValue": "",
     "expectedValue": "HTTP responses status codes should be in range of [200-599]",
-    "actualValue": "HTTP responses status codes are not in range of [200-599]"
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}",
     "searchValue": "",
     "expectedValue": "HTTP responses status codes should be in range of [200-599]",
-    "actualValue": "HTTP responses status codes are not in range of [200-599]"
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{50}}",
     "searchValue": "",
     "expectedValue": "HTTP responses status codes should be in range of [200-599]",
-    "actualValue": "HTTP responses status codes are not in range of [200-599]"
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v2)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}",
     "searchValue": "",
     "expectedValue": "HTTP responses status codes should be in range of [200-599]",
-    "actualValue": "HTTP responses status codes are not in range of [200-599]"
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{50}}",
     "searchValue": "",
     "expectedValue": "HTTP responses status codes should be in range of [200-599]",
-    "actualValue": "HTTP responses status codes are not in range of [200-599]"
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Responses With Wrong HTTP Status Code (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}",
     "searchValue": "",
     "expectedValue": "HTTP responses status codes should be in range of [200-599]",
-    "actualValue": "HTTP responses status codes are not in range of [200-599]"
+    "actualValue": "HTTP responses status codes are not in range of [200-599]",
+    "issueType": "IncorrectValue"
   }
 ]

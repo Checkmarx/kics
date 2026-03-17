@@ -9,7 +9,8 @@
     "searchKey": "resource",
     "searchValue": "",
     "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) } and be associated an aws_cloudwatch_metric_alarm",
-    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) } or not associated with any aws_cloudwatch_metric_alarm"
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudWatch Network Gateways Changes Alarm Missing",
@@ -21,7 +22,8 @@
     "searchKey": "resource",
     "searchValue": "",
     "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) } and be associated an aws_cloudwatch_metric_alarm",
-    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) } or not associated with any aws_cloudwatch_metric_alarm"
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudWatch Network Gateways Changes Alarm Missing",
@@ -33,6 +35,7 @@
     "searchKey": "resource",
     "searchValue": "",
     "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) } and be associated an aws_cloudwatch_metric_alarm",
-    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) } or not associated with any aws_cloudwatch_metric_alarm"
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute"
   }
 ]

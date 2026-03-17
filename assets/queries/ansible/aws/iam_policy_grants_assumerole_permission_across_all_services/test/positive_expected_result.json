@@ -9,6 +9,7 @@
     "searchKey": "name={{Create IAM Managed Policy}}.{{community.aws.iam_managed_policy}}.policy",
     "searchValue": "",
     "expectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain '*'",
-    "actualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains '*'"
+    "actualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

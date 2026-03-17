@@ -9,7 +9,8 @@
     "searchKey": "aws_db_instance[positive1].iam_database_authentication_enabled",
     "searchValue": "",
     "expectedValue": "'iam_database_authentication_enabled' should be set to true",
-    "actualValue": "'iam_database_authentication_enabled' is set to false"
+    "actualValue": "'iam_database_authentication_enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_db_instance[positive1]",
     "searchValue": "",
     "expectedValue": "'iam_database_authentication_enabled' should be set to true",
-    "actualValue": "'iam_database_authentication_enabled' is undefined or null"
+    "actualValue": "'iam_database_authentication_enabled' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
@@ -33,7 +35,8 @@
     "searchKey": "module[db]",
     "searchValue": "",
     "expectedValue": "'iam_database_authentication_enabled' should be set to true",
-    "actualValue": "'iam_database_authentication_enabled' is undefined or null"
+    "actualValue": "'iam_database_authentication_enabled' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
@@ -45,6 +48,7 @@
     "searchKey": "module[db].iam_database_authentication_enabled",
     "searchValue": "",
     "expectedValue": "'iam_database_authentication_enabled' should be set to true",
-    "actualValue": "'iam_database_authentication_enabled' is set to false"
+    "actualValue": "'iam_database_authentication_enabled' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

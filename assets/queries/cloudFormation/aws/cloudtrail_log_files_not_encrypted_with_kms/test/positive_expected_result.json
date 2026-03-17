@@ -9,7 +9,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.KMSKeyId' should be defined and not null",
-    "actualValue": "'Resources.myTrail.Properties.KMSKeyId' is undefined or null"
+    "actualValue": "'Resources.myTrail.Properties.KMSKeyId' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Log Files Not Encrypted With KMS",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.KMSKeyId' should be defined and not null",
-    "actualValue": "'Resources.myTrail.Properties.KMSKeyId' is undefined or null"
+    "actualValue": "'Resources.myTrail.Properties.KMSKeyId' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Log Files Not Encrypted With KMS",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.KMSKeyId' should be defined and not null",
-    "actualValue": "'Resources.myTrail.Properties.KMSKeyId' is undefined or null"
+    "actualValue": "'Resources.myTrail.Properties.KMSKeyId' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_service[example1].metadata.name.annotations",
     "searchValue": "",
     "expectedValue": "metadata.annotations using an external Load Balancer provider by cloud provider%!(EXTRA string=example1)",
-    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example1)"
+    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example1)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service With External Load Balancer",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_service[example2].metadata.name",
     "searchValue": "",
     "expectedValue": "'metadata.annotations' should be set",
-    "actualValue": "'metadata.annotations' is undefined"
+    "actualValue": "'metadata.annotations' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Service With External Load Balancer",
@@ -33,7 +35,8 @@
     "searchKey": "kubernetes_service[example2].metadata.name.annotations",
     "searchValue": "",
     "expectedValue": "metadata.annotations using an external Load Balancer provider by cloud provider%!(EXTRA string=example2)",
-    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example2)"
+    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example2)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service With External Load Balancer",
@@ -45,7 +48,8 @@
     "searchKey": "kubernetes_service[example3].metadata.name.annotations",
     "searchValue": "",
     "expectedValue": "metadata.annotations using an external Load Balancer provider by cloud provider%!(EXTRA string=example3)",
-    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example3)"
+    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example3)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service With External Load Balancer",
@@ -57,6 +61,7 @@
     "searchKey": "kubernetes_service[example4].metadata.name.annotations",
     "searchValue": "",
     "expectedValue": "metadata.annotations using an external Load Balancer provider by cloud provider%!(EXTRA string=example4)",
-    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example4)"
+    "actualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider%!(EXTRA string=example4)",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "aws_ecr_repository_policy[positive2].policy",
     "searchValue": "",
     "expectedValue": "'Statement.Principal' shouldn't contain '*'",
-    "actualValue": "'Statement.Principal' contains '*'"
+    "actualValue": "'Statement.Principal' contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

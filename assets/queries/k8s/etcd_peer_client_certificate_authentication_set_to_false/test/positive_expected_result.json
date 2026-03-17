@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
     "searchValue": "",
     "expectedValue": "--peer-client-cert-auth flag should be set to true",
-    "actualValue": "--peer-client-cert-auth flag is set to false"
+    "actualValue": "--peer-client-cert-auth flag is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Etcd Peer Client Certificate Authentication Set To False",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
     "searchValue": "",
     "expectedValue": "--peer-client-cert-auth flag should be defined and set to true",
-    "actualValue": "--peer-client-cert-auth flag is not defined"
+    "actualValue": "--peer-client-cert-auth flag is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

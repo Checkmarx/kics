@@ -9,7 +9,8 @@
     "searchKey": "name={{Create an azure container registry}}.{{azure.azcollection.azure_rm_containerregistry}}.admin_user_enabled",
     "searchValue": "",
     "expectedValue": "azure_rm_containerregistry.admin_user_enabled should be false or undefined (defaults to false)",
-    "actualValue": "azure_rm_containerregistry.admin_user_enabled is true"
+    "actualValue": "azure_rm_containerregistry.admin_user_enabled is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Admin User Enabled For Container Registry",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create an azure container registry2}}.{{azure.azcollection.azure_rm_containerregistry}}.admin_user_enabled",
     "searchValue": "",
     "expectedValue": "azure_rm_containerregistry.admin_user_enabled should be false or undefined (defaults to false)",
-    "actualValue": "azure_rm_containerregistry.admin_user_enabled is true"
+    "actualValue": "azure_rm_containerregistry.admin_user_enabled is true",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "azurerm_storage_share[default_storage_share].acl.access_policy.permissions",
     "searchValue": "",
     "expectedValue": "azurerm_storage_share[default_storage_share].acl.access_policy.permissions should not allow all ACL permissions",
-    "actualValue": "azurerm_storage_share[default_storage_share].acl.access_policy.permissions allows all ACL permissions"
+    "actualValue": "azurerm_storage_share[default_storage_share].acl.access_policy.permissions allows all ACL permissions",
+    "issueType": "IncorrectValue"
   }
 ]

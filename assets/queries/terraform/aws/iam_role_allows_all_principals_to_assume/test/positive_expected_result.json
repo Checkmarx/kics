@@ -9,6 +9,7 @@
     "searchKey": "aws_iam_role[positive2].assume_role_policy.Principal.AWS",
     "searchValue": "",
     "expectedValue": "'assume_role_policy.Statement.Principal.AWS' should not contain ':root'",
-    "actualValue": "'assume_role_policy.Statement.Principal.AWS' contains ':root'"
+    "actualValue": "'assume_role_policy.Statement.Principal.AWS' contains ':root'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.sgwithoutingress.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sgwithoutingress.Properties.SecurityGroupIngress' should be defined",
-    "actualValue": "'Resources.sgwithoutingress.Properties.SecurityGroupIngress' is undefined"
+    "actualValue": "'Resources.sgwithoutingress.Properties.SecurityGroupIngress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Inbound Rules",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.sgwithoutingress.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sgwithoutingress.Properties.SecurityGroupIngress' should be defined",
-    "actualValue": "'Resources.sgwithoutingress.Properties.SecurityGroupIngress' is undefined"
+    "actualValue": "'Resources.sgwithoutingress.Properties.SecurityGroupIngress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Inbound Rules",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.sgwithingress.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sgwithingress.Properties.SecurityGroupIngress' should be defined",
-    "actualValue": "'Resources.sgwithingress.Properties.SecurityGroupIngress' is undefined"
+    "actualValue": "'Resources.sgwithingress.Properties.SecurityGroupIngress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Inbound Rules",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.sgwithingress.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sgwithingress.Properties.SecurityGroupIngress' should be defined",
-    "actualValue": "'Resources.sgwithingress.Properties.SecurityGroupIngress' is undefined"
+    "actualValue": "'Resources.sgwithingress.Properties.SecurityGroupIngress' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

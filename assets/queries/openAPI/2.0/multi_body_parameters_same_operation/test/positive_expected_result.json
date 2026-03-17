@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.parameters",
     "searchValue": "",
     "expectedValue": "Operation's parameters should have just one body type parameter",
-    "actualValue": "Operation's parameters has more than one body type parameter"
+    "actualValue": "Operation's parameters has more than one body type parameter",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Multiple Body Parameters In The Same Operation",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.parameters",
     "searchValue": "",
     "expectedValue": "Operation's parameters should have just one body type parameter",
-    "actualValue": "Operation's parameters has more than one body type parameter"
+    "actualValue": "Operation's parameters has more than one body type parameter",
+    "issueType": "IncorrectValue"
   }
 ]

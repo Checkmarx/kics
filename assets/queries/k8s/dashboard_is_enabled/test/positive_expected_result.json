@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{kubernetes-dashboard-1}}.spec.template.spec.containers.name={{kubernetes-dashboard}}.image",
     "searchValue": "",
     "expectedValue": "metadata.name={{kubernetes-dashboard-1}}.spec.template.spec.containers.name={{kubernetes-dashboard}}.image has not kubernetes-dashboard deployed",
-    "actualValue": "metadata.name={{kubernetes-dashboard-1}}.spec.template.spec.containers.name={{kubernetes-dashboard}}.image has kubernetes-dashboard deployed"
+    "actualValue": "metadata.name={{kubernetes-dashboard-1}}.spec.template.spec.containers.name={{kubernetes-dashboard}}.image has kubernetes-dashboard deployed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Dashboard Is Enabled",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{myapp-pod}}.spec.initContainers.name={{init-myservice}}.image",
     "searchValue": "",
     "expectedValue": "metadata.name={{myapp-pod}}.spec.initContainers.name={{init-myservice}}.image has not kubernetes-dashboard deployed",
-    "actualValue": "metadata.name={{myapp-pod}}.spec.initContainers.name={{init-myservice}}.image has kubernetes-dashboard deployed"
+    "actualValue": "metadata.name={{myapp-pod}}.spec.initContainers.name={{init-myservice}}.image has kubernetes-dashboard deployed",
+    "issueType": "IncorrectValue"
   }
 ]

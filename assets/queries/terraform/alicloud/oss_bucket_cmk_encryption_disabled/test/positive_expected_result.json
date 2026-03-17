@@ -9,7 +9,8 @@
     "searchKey": "alicloud_oss_bucket[bucket_cmk_encryption2].server_side_encryption_rule",
     "searchValue": "",
     "expectedValue": "[bucket_cmk_encryption2].policy has kms master key id defined",
-    "actualValue": "[bucket_cmk_encryption2].policy does not kms master key id defined"
+    "actualValue": "[bucket_cmk_encryption2].policy does not kms master key id defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "OSS Bucket Encryption Using CMK Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_oss_bucket[bucket_cmk_encryption3]",
     "searchValue": "",
     "expectedValue": "[bucket_cmk_encryption3].policy has server side encryption rule and kms master key id defined",
-    "actualValue": "[bucket_cmk_encryption3].policy does not have server side encryption rule and kms master key id defined"
+    "actualValue": "[bucket_cmk_encryption3].policy does not have server side encryption rule and kms master key id defined",
+    "issueType": "MissingAttribute"
   }
 ]

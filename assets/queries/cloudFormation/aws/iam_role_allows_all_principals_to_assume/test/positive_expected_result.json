@@ -9,7 +9,8 @@
     "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS should not contain ':root'",
-    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS contains ':root'"
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS contains ':root'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Role Allows All Principals To Assume",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS should not contain ':root'",
-    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS contains ':root'"
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument.Statement.Principal.AWS contains ':root'",
+    "issueType": "IncorrectValue"
   }
 ]

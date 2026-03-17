@@ -9,7 +9,8 @@
     "searchKey": "services.webapp.privileged",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ipc' attribute not set to host, or not set",
-    "actualValue": "Docker compose file has 'ipc' attribute as host"
+    "actualValue": "Docker compose file has 'ipc' attribute as host",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shared Host IPC Namespace",
@@ -21,6 +22,7 @@
     "searchKey": "services.webapp.privileged",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ipc' attribute not set to host, or not set",
-    "actualValue": "Docker compose file has 'ipc' attribute as host"
+    "actualValue": "Docker compose file has 'ipc' attribute as host",
+    "issueType": "IncorrectValue"
   }
 ]

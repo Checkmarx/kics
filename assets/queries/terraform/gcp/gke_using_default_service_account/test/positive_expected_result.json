@@ -9,7 +9,8 @@
     "searchKey": "google_container_cluster[positive1].node_config",
     "searchValue": "",
     "expectedValue": "'service_account' should not be default",
-    "actualValue": "'service_account' is default"
+    "actualValue": "'service_account' is default",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GKE Using Default Service Account",
@@ -21,6 +22,7 @@
     "searchKey": "google_container_cluster[positive2].node_config.service_account",
     "searchValue": "",
     "expectedValue": "'service_account' should not be default",
-    "actualValue": "'service_account' is default"
+    "actualValue": "'service_account' is default",
+    "issueType": "IncorrectValue"
   }
 ]

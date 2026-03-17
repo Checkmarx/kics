@@ -9,7 +9,8 @@
     "searchKey": "azurerm_mssql_server_security_alert_policy[positive1].disabled_alerts",
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_server_security_alert_policy.positive1.disabled_alerts' should be empty",
-    "actualValue": "'azurerm_mssql_server_security_alert_policy.positive1.disabled_alerts' is not empty"
+    "actualValue": "'azurerm_mssql_server_security_alert_policy.positive1.disabled_alerts' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSSQL Server Database With Alerts Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_mssql_server_security_alert_policy[positive2].state",
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_server_security_alert_policy.positive2.state' should be enabled",
-    "actualValue": "'azurerm_mssql_server_security_alert_policy.positive2.state' is not enabled"
+    "actualValue": "'azurerm_mssql_server_security_alert_policy.positive2.state' is not enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSSQL Server Database With Alerts Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "azurerm_mssql_server[example]",
     "searchValue": "",
     "expectedValue": "Security alert policy should be defined and enabled",
-    "actualValue": "Security alert policy is undefined"
+    "actualValue": "Security alert policy is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

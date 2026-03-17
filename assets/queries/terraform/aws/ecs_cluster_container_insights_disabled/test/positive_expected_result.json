@@ -9,6 +9,7 @@
     "searchKey": "aws_ecs_cluster[foo]",
     "searchValue": "",
     "expectedValue": "'aws_ecs_cluster[foo].setting.name' should be set to 'containerInsights' and 'aws_ecs_cluster[foo].setting.value' should be set to 'enabled'",
-    "actualValue": "'aws_ecs_cluster[foo].setting.name' is not set to 'containerInsights' and/or 'aws_ecs_cluster[foo].setting.value' is not set to 'enabled'"
+    "actualValue": "'aws_ecs_cluster[foo].setting.name' is not set to 'containerInsights' and/or 'aws_ecs_cluster[foo].setting.value' is not set to 'enabled'",
+    "issueType": "IncorrectValue"
   }
 ]

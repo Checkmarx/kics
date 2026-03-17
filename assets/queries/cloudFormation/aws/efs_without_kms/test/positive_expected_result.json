@@ -9,7 +9,8 @@
     "searchKey": "Resources.EFSFileSystem01",
     "searchValue": "",
     "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
-    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys"
+    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EFS Without KMS",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.EFSFileSystem01",
     "searchValue": "",
     "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
-    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys"
+    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EFS Without KMS",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.EFSFileSystem01",
     "searchValue": "",
     "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
-    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys"
+    "actualValue": "EFS resource 'EFSFileSystem01' is not encrypted using KMS CMK customer-managed keys instead of AWS managed-keys",
+    "issueType": "MissingAttribute"
   }
 ]

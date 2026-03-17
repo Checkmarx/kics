@@ -9,7 +9,8 @@
     "searchKey": "resources[example].properties",
     "searchValue": "",
     "expectedValue": "Attribute 'minimumPasswordLength' should be defined and set to 14 or higher",
-    "actualValue": "Attribute 'minimumPasswordLength' is not defined"
+    "actualValue": "Attribute 'minimumPasswordLength' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM Password Without Minimum Length",
@@ -21,6 +22,7 @@
     "searchKey": "resources[example].properties.minimumPasswordLength",
     "searchValue": "",
     "expectedValue": "Attribute 'minimumPasswordLength' should be set to 14 or higher",
-    "actualValue": "Attribute 'minimumPasswordLength' is set to less than 14"
+    "actualValue": "Attribute 'minimumPasswordLength' is set to less than 14",
+    "issueType": "IncorrectValue"
   }
 ]

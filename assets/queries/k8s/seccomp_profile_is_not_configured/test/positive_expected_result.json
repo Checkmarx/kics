@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{pod-test-1}}.spec.containers.name={{foobar}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{pod-test-1}}.spec.containers.name={{foobar}}.securityContext.seccompProfile.type should be defined",
-    "actualValue": "metadata.name={{pod-test-1}}.spec.containers.name={{foobar}}.securityContext.seccompProfile.type is undefined"
+    "actualValue": "metadata.name={{pod-test-1}}.spec.containers.name={{foobar}}.securityContext.seccompProfile.type is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{pod-test-2}}.spec.containers.name={{foobar}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{pod-test-2}}.spec.containers.name={{foobar}}.securityContext.seccompProfile.type should be defined",
-    "actualValue": "metadata.name={{pod-test-2}}.spec.containers.name={{foobar}}.securityContext.seccompProfile.type is undefined"
+    "actualValue": "metadata.name={{pod-test-2}}.spec.containers.name={{foobar}}.securityContext.seccompProfile.type is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{pod-test-3}}.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{pod-test-3}}.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'runtime/default'",
-    "actualValue": "metadata.name={{pod-test-3}}.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'rntim/dfl'"
+    "actualValue": "metadata.name={{pod-test-3}}.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'rntim/dfl'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{hello}}.spec.jobTemplate.spec.template.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName",
     "searchValue": "CronJob",
     "expectedValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'runtime/default'",
-    "actualValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'rntim/dfl'"
+    "actualValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.annotations.seccomp.security.alpha.kubernetes.io/defaultProfileName is 'rntim/dfl'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
@@ -57,7 +61,8 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext",
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.seccompProfile.type should be defined",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.seccompProfile.type is undefined"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.seccompProfile.type is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
@@ -69,7 +74,8 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext",
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.seccompProfile.type should be defined",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.seccompProfile.type is undefined"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.seccompProfile.type is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
@@ -81,7 +87,8 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type=Unconfined",
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type should be set to 'RuntimeDefault' or 'Localhost'",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type is set to 'Unconfined'"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type is set to 'Unconfined'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Seccomp Profile Is Not Configured",
@@ -93,6 +100,7 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type=Unconfined",
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type should be set to 'RuntimeDefault' or 'Localhost'",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type is set to 'Unconfined'"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.seccompProfile.type is set to 'Unconfined'",
+    "issueType": "IncorrectValue"
   }
 ]

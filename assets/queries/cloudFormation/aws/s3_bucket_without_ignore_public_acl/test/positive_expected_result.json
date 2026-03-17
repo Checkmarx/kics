@@ -9,7 +9,8 @@
     "searchKey": "Resources.Bucket11.Properties",
     "searchValue": "",
     "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
-    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)"
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
     "searchValue": "",
     "expectedValue": "'IgnorePublicAcls' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
-    "actualValue": "'IgnorePublicAcls' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)"
+    "actualValue": "'IgnorePublicAcls' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls",
     "searchValue": "",
     "expectedValue": "'IgnorePublicAcls' should be set to true%!(EXTRA string=Bucket13)",
-    "actualValue": "'IgnorePublicAcls' is set to false%!(EXTRA string=Bucket13)"
+    "actualValue": "'IgnorePublicAcls' is set to false%!(EXTRA string=Bucket13)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.Bucket1.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls",
     "searchValue": "",
     "expectedValue": "'IgnorePublicAcls' should be set to true%!(EXTRA string=Bucket1)",
-    "actualValue": "'IgnorePublicAcls' is set to false%!(EXTRA string=Bucket1)"
+    "actualValue": "'IgnorePublicAcls' is set to false%!(EXTRA string=Bucket1)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.Bucket11.Properties",
     "searchValue": "",
     "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
-    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)"
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
     "searchValue": "",
     "expectedValue": "'IgnorePublicAcls' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
-    "actualValue": "'IgnorePublicAcls' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)"
+    "actualValue": "'IgnorePublicAcls' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
@@ -81,6 +87,7 @@
     "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls",
     "searchValue": "",
     "expectedValue": "'IgnorePublicAcls' should be set to true%!(EXTRA string=Bucket13)",
-    "actualValue": "'IgnorePublicAcls' is set to false%!(EXTRA string=Bucket13)"
+    "actualValue": "'IgnorePublicAcls' is set to false%!(EXTRA string=Bucket13)",
+    "issueType": "IncorrectValue"
   }
 ]

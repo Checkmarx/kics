@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.post.requestBody.content.{{application/json}}.examples.Address.$ref",
     "searchValue": "",
     "expectedValue": "#/components/schemas/Address should be declared on components.schemas",
-    "actualValue": "#/components/schemas/Address is not declared on components.schemas"
+    "actualValue": "#/components/schemas/Address is not declared on components.schemas",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Example JSON Reference Outside Components Examples",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.post.requestBody.content.{{application/json}}.examples.Address.$ref",
     "searchValue": "",
     "expectedValue": "#/components/schemas/Address should be declared on components.schemas",
-    "actualValue": "#/components/schemas/Address is not declared on components.schemas"
+    "actualValue": "#/components/schemas/Address is not declared on components.schemas",
+    "issueType": "MissingAttribute"
   }
 ]

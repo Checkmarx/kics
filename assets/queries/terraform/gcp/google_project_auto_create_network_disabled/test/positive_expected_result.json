@@ -9,7 +9,8 @@
     "searchKey": "google_project[positive1].auto_create_network",
     "searchValue": "",
     "expectedValue": "google_project[positive1].auto_create_network should be set to false",
-    "actualValue": "google_project[positive1].auto_create_network is true"
+    "actualValue": "google_project[positive1].auto_create_network is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Google Project Auto Create Network Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "google_project[positive2]",
     "searchValue": "",
     "expectedValue": "google_project[positive2].auto_create_network should be set to false",
-    "actualValue": "google_project[positive2].auto_create_network is undefined"
+    "actualValue": "google_project[positive2].auto_create_network is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{MyDBServer}}.properties.sslEnforcement",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property value set to 'Enabled'",
-    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'"
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{MyDBServer}}.properties.sslEnforcement",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property value set to 'Enabled'",
-    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'"
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{MyDBServer}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property defined",
-    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined"
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{MyDBServer}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property defined",
-    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined"
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{MyDBServer}}.properties.sslEnforcement",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property value set to 'Enabled'",
-    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'"
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name={{MyDBServer}}.properties.sslEnforcement",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property value set to 'Enabled'",
-    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'"
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property set to 'Enabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{MyDBServer}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property defined",
-    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined"
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PostgreSQL Database Server SSL Disabled",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name={{MyDBServer}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' should have 'sslEnforcement' property defined",
-    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined"
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute"
   }
 ]

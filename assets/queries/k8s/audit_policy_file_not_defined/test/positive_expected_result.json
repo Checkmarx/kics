@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-policy-file flag should be defined",
-    "actualValue": "--audit-policy-file is not defined"
+    "actualValue": "--audit-policy-file is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Audit Policy File Not Defined",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-policy-file flag should have a valid file",
-    "actualValue": "--audit-policy-file does not have a valid file"
+    "actualValue": "--audit-policy-file does not have a valid file",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Audit Policy File Not Defined",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{dummy}}.spec.template.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-policy-file flag should be defined",
-    "actualValue": "--audit-policy-file is not defined"
+    "actualValue": "--audit-policy-file is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

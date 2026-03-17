@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{cluster}}.properties",
     "searchValue": "",
     "expectedValue": "'ipAllocationPolicy' should be defined and not null",
-    "actualValue": "'ipAllocationPolicy' is undefined or null"
+    "actualValue": "'ipAllocationPolicy' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IP Aliasing Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{cluster}}.properties.ipAllocationPolicy",
     "searchValue": "",
     "expectedValue": "'ipAllocationPolicy.useIpAliases' should be defined and not null",
-    "actualValue": "'ipAllocationPolicy.useIpAliases' is undefined or null"
+    "actualValue": "'ipAllocationPolicy.useIpAliases' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IP Aliasing Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "resources.name={{cluster}}.properties.ipAllocationPolicy.useIpAliases",
     "searchValue": "",
     "expectedValue": "'ipAllocationPolicy.useIpAliases' should be true",
-    "actualValue": "'ipAllocationPolicy.useIpAliases' is false"
+    "actualValue": "'ipAllocationPolicy.useIpAliases' is false",
+    "issueType": "IncorrectValue"
   }
 ]

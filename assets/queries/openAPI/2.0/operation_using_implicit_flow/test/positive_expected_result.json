@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
     "searchValue": "",
     "expectedValue": "Operation Object should not be using implicit flow",
-    "actualValue": "Operation Object is using implicit flow"
+    "actualValue": "Operation Object is using implicit flow",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Operation Using Implicit Flow",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
     "searchValue": "",
     "expectedValue": "Operation Object should not be using implicit flow",
-    "actualValue": "Operation Object is using implicit flow"
+    "actualValue": "Operation Object is using implicit flow",
+    "issueType": "IncorrectValue"
   }
 ]

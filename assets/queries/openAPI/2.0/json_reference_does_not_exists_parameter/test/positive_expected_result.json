@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.parameters.$ref={{#/parameters/maxParam}}",
     "searchValue": "",
     "expectedValue": "maxParam from #/parameters/maxParam should be declared on parameters",
-    "actualValue": "maxParam from #/parameters/maxParam is not declared on parameters"
+    "actualValue": "maxParam from #/parameters/maxParam is not declared on parameters",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter JSON Reference Does Not Exist (v2)",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.parameters.$ref={{#/parameters/maxParam}}",
     "searchValue": "",
     "expectedValue": "maxParam from #/parameters/maxParam should be declared on parameters",
-    "actualValue": "maxParam from #/parameters/maxParam is not declared on parameters"
+    "actualValue": "maxParam from #/parameters/maxParam is not declared on parameters",
+    "issueType": "MissingAttribute"
   }
 ]

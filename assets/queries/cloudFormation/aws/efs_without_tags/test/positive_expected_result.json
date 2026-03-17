@@ -9,7 +9,8 @@
     "searchKey": "Resources.FileSystem",
     "searchValue": "",
     "expectedValue": "'Resources.FileSystem.Properties.FileSystemTags' should be defined and not null",
-    "actualValue": "'Resources.FileSystem.Properties.FileSystemTags' is undefined or null"
+    "actualValue": "'Resources.FileSystem.Properties.FileSystemTags' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EFS Without Tags",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.FileSystem",
     "searchValue": "",
     "expectedValue": "'Resources.FileSystem.Properties.FileSystemTags' should be defined and not null",
-    "actualValue": "'Resources.FileSystem.Properties.FileSystemTags' is undefined or null"
+    "actualValue": "'Resources.FileSystem.Properties.FileSystemTags' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

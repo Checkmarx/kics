@@ -9,6 +9,7 @@
     "searchKey": "metadata.namespace={{cosmic-namespace}}",
     "searchValue": "",
     "expectedValue": "ensure that these namespaces are the ones you need and are adequately administered as per your requirements.",
-    "actualValue": "namespaces in use: cosmic-namespace"
+    "actualValue": "namespaces in use: cosmic-namespace",
+    "issueType": "IncorrectValue"
   }
 ]

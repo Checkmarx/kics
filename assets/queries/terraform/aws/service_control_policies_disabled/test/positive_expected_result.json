@@ -9,6 +9,7 @@
     "searchKey": "aws_organizations_organization[positive1].feature_set",
     "searchValue": "",
     "expectedValue": "'feature_set' should be set to 'ALL' or undefined",
-    "actualValue": "'feature_set' is set to 'CONSOLIDATED_BILLING'"
+    "actualValue": "'feature_set' is set to 'CONSOLIDATED_BILLING'",
+    "issueType": "IncorrectValue"
   }
 ]

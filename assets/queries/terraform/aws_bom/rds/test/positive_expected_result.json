@@ -9,7 +9,8 @@
     "searchKey": "aws_rds_cluster_instance[cluster_instances]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
@@ -21,7 +22,8 @@
     "searchKey": "aws_db_instance[default]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
@@ -33,6 +35,7 @@
     "searchKey": "aws_db_instance[sample3]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

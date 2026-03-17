@@ -9,7 +9,8 @@
     "searchKey": "components.securitySchemes.apiKey1",
     "searchValue": "",
     "expectedValue": "The API Key should not be transported over network",
-    "actualValue": "The API Key is transported over network"
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
@@ -21,7 +22,8 @@
     "searchKey": "components.securitySchemes.apiKey2",
     "searchValue": "",
     "expectedValue": "The API Key should not be transported over network",
-    "actualValue": "The API Key is transported over network"
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
@@ -33,7 +35,8 @@
     "searchKey": "components.securitySchemes.apiKey3",
     "searchValue": "",
     "expectedValue": "The API Key should not be transported over network",
-    "actualValue": "The API Key is transported over network"
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
@@ -45,7 +48,8 @@
     "searchKey": "components.securitySchemes.apiKey1",
     "searchValue": "",
     "expectedValue": "The API Key should not be transported over network",
-    "actualValue": "The API Key is transported over network"
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
@@ -57,7 +61,8 @@
     "searchKey": "components.securitySchemes.apiKey2",
     "searchValue": "",
     "expectedValue": "The API Key should not be transported over network",
-    "actualValue": "The API Key is transported over network"
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
@@ -69,6 +74,7 @@
     "searchKey": "components.securitySchemes.apiKey3",
     "searchValue": "",
     "expectedValue": "The API Key should not be transported over network",
-    "actualValue": "The API Key is transported over network"
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue"
   }
 ]

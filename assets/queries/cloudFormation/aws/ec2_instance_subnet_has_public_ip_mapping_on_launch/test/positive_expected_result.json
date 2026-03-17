@@ -9,7 +9,8 @@
     "searchKey": "Resources.mySubnet.Properties.MapPublicIpOnLaunch",
     "searchValue": "",
     "expectedValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' should be false",
-    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true"
+    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Subnet Has Public IP Mapping On Launch",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.mySubnet.Properties.MapPublicIpOnLaunch",
     "searchValue": "",
     "expectedValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' should be false",
-    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true"
+    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Subnet Has Public IP Mapping On Launch",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.mySubnet.Properties.MapPublicIpOnLaunch",
     "searchValue": "",
     "expectedValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' should be false",
-    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true"
+    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true",
+    "issueType": "IncorrectValue"
   }
 ]

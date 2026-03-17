@@ -9,6 +9,7 @@
     "searchKey": "name={{create a dataset}}.{{google.cloud.gcp_bigquery_dataset}}.access",
     "searchValue": "",
     "expectedValue": "gcp_bigquery_dataset.access.special_group should not equal to 'allAuthenticatedUsers'",
-    "actualValue": "gcp_bigquery_dataset.access.special_group is equal to 'allAuthenticatedUsers'"
+    "actualValue": "gcp_bigquery_dataset.access.special_group is equal to 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   }
 ]

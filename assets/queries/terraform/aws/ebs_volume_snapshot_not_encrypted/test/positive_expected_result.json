@@ -9,7 +9,8 @@
     "searchKey": "aws_ebs_volume[positive1].encrypted",
     "searchValue": "",
     "expectedValue": "'aws_ebs_volume[positive1].encrypted' associated with aws_ebs_snapshot[positive1] should be true",
-    "actualValue": "'aws_ebs_volume[positive1].encrypted' associated with aws_ebs_snapshot[positive1] is false"
+    "actualValue": "'aws_ebs_volume[positive1].encrypted' associated with aws_ebs_snapshot[positive1] is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EBS Volume Snapshot Not Encrypted",
@@ -21,6 +22,7 @@
     "searchKey": "aws_ebs_snapshot[positive2]",
     "searchValue": "",
     "expectedValue": "'aws_ebs_volume[positive2].encrypted' associated with aws_ebs_snapshot[positive2] should be set",
-    "actualValue": "'aws_ebs_volume[positive2].encrypted' associated with aws_ebs_snapshot[positive2] is undefined"
+    "actualValue": "'aws_ebs_volume[positive2].encrypted' associated with aws_ebs_snapshot[positive2] is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

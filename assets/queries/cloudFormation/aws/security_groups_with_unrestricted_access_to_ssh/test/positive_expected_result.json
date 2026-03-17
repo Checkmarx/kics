@@ -9,7 +9,8 @@
     "searchKey": "Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.IPv4Ingress1.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv4Ingress1.Properties' should not open the SSH port (22)",
-    "actualValue": "'Resources.IPv4Ingress1.Properties' opens the SSH port (22)"
+    "actualValue": "'Resources.IPv4Ingress1.Properties' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.IPv4Ingress2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv4Ingress2.Properties' should not open the SSH port (22)",
-    "actualValue": "'Resources.IPv4Ingress2.Properties' opens the SSH port (22)"
+    "actualValue": "'Resources.IPv4Ingress2.Properties' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.IPv6Ingress1.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress1.Properties' should not open the SSH port (22)",
-    "actualValue": "'Resources.IPv6Ingress1.Properties' opens the SSH port (22)"
+    "actualValue": "'Resources.IPv6Ingress1.Properties' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.IPv6Ingress2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress2.Properties' should not open the SSH port (22)",
-    "actualValue": "'Resources.IPv6Ingress2.Properties' opens the SSH port (22)"
+    "actualValue": "'Resources.IPv6Ingress2.Properties' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.IPv6Ingress3.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress3.Properties' should not open the SSH port (22)",
-    "actualValue": "'Resources.IPv6Ingress3.Properties' opens the SSH port (22)"
+    "actualValue": "'Resources.IPv6Ingress3.Properties' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1IPv4_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -153,7 +165,8 @@
     "searchKey": "Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1IPv4_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -165,7 +178,8 @@
     "searchKey": "Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1ArrayTestIPv4.Properties.SecurityGroupIngress[1]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -177,7 +191,8 @@
     "searchKey": "Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1IPv6_1.Properties.SecurityGroupIngress[0]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -189,7 +204,8 @@
     "searchKey": "Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1IPv6_2.Properties.SecurityGroupIngress[0]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -201,7 +217,8 @@
     "searchKey": "Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' should not open the SSH port (22)",
-    "actualValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' opens the SSH port (22)"
+    "actualValue": "'Resources.Positive1ArrayTestIPv6.Properties.SecurityGroupIngress[1]' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -213,7 +230,8 @@
     "searchKey": "Resources.IPv4Ingress1.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv4Ingress1.Properties' should not open the SSH port (22)",
-    "actualValue": "'Resources.IPv4Ingress1.Properties' opens the SSH port (22)"
+    "actualValue": "'Resources.IPv4Ingress1.Properties' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -225,7 +243,8 @@
     "searchKey": "Resources.IPv4Ingress2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv4Ingress2.Properties' should not open the SSH port (22)",
-    "actualValue": "'Resources.IPv4Ingress2.Properties' opens the SSH port (22)"
+    "actualValue": "'Resources.IPv4Ingress2.Properties' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -237,7 +256,8 @@
     "searchKey": "Resources.IPv6Ingress1.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress1.Properties' should not open the SSH port (22)",
-    "actualValue": "'Resources.IPv6Ingress1.Properties' opens the SSH port (22)"
+    "actualValue": "'Resources.IPv6Ingress1.Properties' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -249,7 +269,8 @@
     "searchKey": "Resources.IPv6Ingress2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress2.Properties' should not open the SSH port (22)",
-    "actualValue": "'Resources.IPv6Ingress2.Properties' opens the SSH port (22)"
+    "actualValue": "'Resources.IPv6Ingress2.Properties' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -261,6 +282,7 @@
     "searchKey": "Resources.IPv6Ingress3.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress3.Properties' should not open the SSH port (22)",
-    "actualValue": "'Resources.IPv6Ingress3.Properties' opens the SSH port (22)"
+    "actualValue": "'Resources.IPv6Ingress3.Properties' opens the SSH port (22)",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "resources.name=storage.properties.networkAcls",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=storage.properties.networkAcls",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=storage.properties.networkAcls",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name=storage.properties.networkAcls",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=storage.properties.networkAcls",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name=storage.properties.networkAcls",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=storage.properties.networkAcls",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name=storage.properties.networkAcls",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name=positive5.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -117,7 +126,8 @@
     "searchKey": "resources.name=positive5.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name=positive6",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -141,7 +152,8 @@
     "searchKey": "resources.name=positive6",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -153,7 +165,8 @@
     "searchKey": "resources.name=positive7.properties.networkAcls",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
@@ -165,6 +178,7 @@
     "searchKey": "resources.name=positive7.properties.networkAcls",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute"
   }
 ]

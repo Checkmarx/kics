@@ -9,7 +9,8 @@
     "searchKey": "aws_instance.{{monitoring_positive1}}",
     "searchValue": "",
     "expectedValue": "'monitoring' should be defined and not null",
-    "actualValue": "'monitoring' is undefined or null"
+    "actualValue": "'monitoring' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_instance.{{monitoring_positive2}}.monitoring",
     "searchValue": "",
     "expectedValue": "monitoring_positive2.'monitoring' should be set to true",
-    "actualValue": "monitoring_positive2.'monitoring' is set to false"
+    "actualValue": "monitoring_positive2.'monitoring' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "module[ec2_instance]",
     "searchValue": "",
     "expectedValue": "'monitoring' should be defined and not null",
-    "actualValue": "'monitoring' is undefined or null"
+    "actualValue": "'monitoring' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "module[ec2_instance].monitoring",
     "searchValue": "",
     "expectedValue": "ec2_instance.'monitoring' should be set to true",
-    "actualValue": "ec2_instance.'monitoring' is set to false"
+    "actualValue": "ec2_instance.'monitoring' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "aws_instance.{{cdktf-test}}.monitoring",
     "searchValue": "",
     "expectedValue": "cdktf-test.'monitoring' should be set to true",
-    "actualValue": "cdktf-test.'monitoring' is set to false"
+    "actualValue": "cdktf-test.'monitoring' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

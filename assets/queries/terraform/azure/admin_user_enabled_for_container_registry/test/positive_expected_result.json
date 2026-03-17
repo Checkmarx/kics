@@ -9,6 +9,7 @@
     "searchKey": "azurerm_container_registry[positive2].admin_enabled",
     "searchValue": "",
     "expectedValue": "'admin_enabled' equal 'false'",
-    "actualValue": "'admin_enabled' equal 'true'"
+    "actualValue": "'admin_enabled' equal 'true'",
+    "issueType": "IncorrectValue"
   }
 ]

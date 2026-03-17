@@ -9,6 +9,7 @@
     "searchKey": "aws_lambda_permission[positive1].principal",
     "searchValue": "",
     "expectedValue": "aws_lambda_permission[positive1].principal shouldn't contain a wildcard",
-    "actualValue": "aws_lambda_permission[positive1].principal contains a wildcard"
+    "actualValue": "aws_lambda_permission[positive1].principal contains a wildcard",
+    "issueType": "IncorrectValue"
   }
 ]

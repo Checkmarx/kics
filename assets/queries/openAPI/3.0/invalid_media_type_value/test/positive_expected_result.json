@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.requestBody.content.multipart/form- data",
     "searchValue": "",
     "expectedValue": "The Media Type should be a valid value",
-    "actualValue": "The Media Type is an invalid value"
+    "actualValue": "The Media Type is an invalid value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Media Type Value (v3)",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.requestBody.content.multipart/form- data",
     "searchValue": "",
     "expectedValue": "The Media Type should be a valid value",
-    "actualValue": "The Media Type is an invalid value"
+    "actualValue": "The Media Type is an invalid value",
+    "issueType": "IncorrectValue"
   }
 ]

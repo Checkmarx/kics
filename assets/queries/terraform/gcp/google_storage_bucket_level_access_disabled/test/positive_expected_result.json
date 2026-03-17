@@ -9,7 +9,8 @@
     "searchKey": "google_storage_bucket[positive1].uniform_bucket_level_access",
     "searchValue": "",
     "expectedValue": "google_storage_bucket[positive1].uniform_bucket_level_access should be true",
-    "actualValue": "google_storage_bucket[positive1].uniform_bucket_level_access is false"
+    "actualValue": "google_storage_bucket[positive1].uniform_bucket_level_access is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Google Storage Bucket Level Access Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "google_storage_bucket[positive2]",
     "searchValue": "",
     "expectedValue": "google_storage_bucket[positive2].uniform_bucket_level_access should be defined and not null",
-    "actualValue": "google_storage_bucket[positive2].uniform_bucket_level_access is undefined or null"
+    "actualValue": "google_storage_bucket[positive2].uniform_bucket_level_access is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

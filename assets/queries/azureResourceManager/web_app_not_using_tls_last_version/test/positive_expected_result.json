@@ -9,7 +9,8 @@
     "searchKey": "resources.name=App.properties.siteConfig.minTlsVersion",
     "searchValue": "",
     "expectedValue": "'siteConfig.minTlsVersion' should be 1.2 or 1.3",
-    "actualValue": "'minTlsVersion' is not 1.2 or 1.3"
+    "actualValue": "'minTlsVersion' is not 1.2 or 1.3",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -21,7 +22,8 @@
     "searchKey": "properties.template.resources.name=App.properties.siteConfig.minTlsVersion",
     "searchValue": "",
     "expectedValue": "'siteConfig.minTlsVersion' should be 1.2 or 1.3",
-    "actualValue": "'minTlsVersion' is not 1.2 or 1.3"
+    "actualValue": "'minTlsVersion' is not 1.2 or 1.3",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=App.properties",
     "searchValue": "",
     "expectedValue": "'siteConfig.minTlsVersion' should be defined",
-    "actualValue": "'siteConfig.minTlsVersion' is undefined"
+    "actualValue": "'siteConfig.minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -45,7 +48,8 @@
     "searchKey": "properties.template.resources.name=App.properties",
     "searchValue": "",
     "expectedValue": "'siteConfig.minTlsVersion' should be defined",
-    "actualValue": "'siteConfig.minTlsVersion' is undefined"
+    "actualValue": "'siteConfig.minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=App.properties.siteConfig.minTlsVersion",
     "searchValue": "",
     "expectedValue": "'siteConfig.minTlsVersion' should be 1.2 or 1.3",
-    "actualValue": "'minTlsVersion' is not 1.2 or 1.3"
+    "actualValue": "'minTlsVersion' is not 1.2 or 1.3",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name=App.properties.siteConfig.minTlsVersion",
     "searchValue": "",
     "expectedValue": "'siteConfig.minTlsVersion' should be 1.2 or 1.3",
-    "actualValue": "'minTlsVersion' is not 1.2 or 1.3"
+    "actualValue": "'minTlsVersion' is not 1.2 or 1.3",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=App.properties.siteConfig",
     "searchValue": "",
     "expectedValue": "'minTlsVersion' should be defined",
-    "actualValue": "'minTlsVersion' is undefined"
+    "actualValue": "'minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name=App.properties.siteConfig",
     "searchValue": "",
     "expectedValue": "'minTlsVersion' should be defined",
-    "actualValue": "'minTlsVersion' is undefined"
+    "actualValue": "'minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -105,7 +113,8 @@
     "searchKey": "resources.resources.name=web.properties.minTlsVersion",
     "searchValue": "",
     "expectedValue": "'minTlsVersion' should be defined with the version '1.2' or higher",
-    "actualValue": "'minTlsVersion' is defined to '1.1'"
+    "actualValue": "'minTlsVersion' is defined to '1.1'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -117,7 +126,8 @@
     "searchKey": "resources.name=meuAppService.properties",
     "searchValue": "",
     "expectedValue": "'siteConfig.minTlsVersion' should be defined",
-    "actualValue": "'siteConfig.minTlsVersion' is undefined"
+    "actualValue": "'siteConfig.minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -129,7 +139,8 @@
     "searchKey": "resources.resources.name=web.properties",
     "searchValue": "",
     "expectedValue": "'minTlsVersion' should be defined with the version '1.2' or higher",
-    "actualValue": "'minTlsVersion' is not defined"
+    "actualValue": "'minTlsVersion' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -141,6 +152,7 @@
     "searchKey": "resources.name=meuAppService.properties",
     "searchValue": "",
     "expectedValue": "'siteConfig.minTlsVersion' should be defined",
-    "actualValue": "'siteConfig.minTlsVersion' is undefined"
+    "actualValue": "'siteConfig.minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

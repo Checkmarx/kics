@@ -9,7 +9,8 @@
     "searchKey": "Resources.CreateTestDBPolicy.Properties.Users",
     "searchValue": "",
     "expectedValue": "Resources.CreateTestDBPolicy is assigned to a set of users",
-    "actualValue": "Resources.CreateTestDBPolicy should be assigned to a set of groups"
+    "actualValue": "Resources.CreateTestDBPolicy should be assigned to a set of groups",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Managed Policy Applied to a User",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.CreateTestDBPolicy.Properties.Users",
     "searchValue": "",
     "expectedValue": "Resources.CreateTestDBPolicy is assigned to a set of users",
-    "actualValue": "Resources.CreateTestDBPolicy should be assigned to a set of groups"
+    "actualValue": "Resources.CreateTestDBPolicy should be assigned to a set of groups",
+    "issueType": "IncorrectValue"
   }
 ]

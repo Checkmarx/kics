@@ -9,6 +9,7 @@
     "searchKey": "databricks_cluster[positive].gcp_attributes.availability",
     "searchValue": "",
     "expectedValue": "'databricks_cluster[positive].gcp_attributes.availability' should not be equal to 'SPOT'",
-    "actualValue": "'databricks_cluster[positive].gcp_attributes.availability' is equal to 'SPOT'"
+    "actualValue": "'databricks_cluster[positive].gcp_attributes.availability' is equal to 'SPOT'",
+    "issueType": "IncorrectValue"
   }
 ]

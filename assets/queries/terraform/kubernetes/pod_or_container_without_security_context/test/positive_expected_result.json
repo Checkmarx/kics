@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[positive1].spec",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.security_context should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.security_context is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.security_context is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pod or Container Without Security Context",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[0].security_context should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[0].security_context is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].security_context is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pod or Container Without Security Context",
@@ -33,7 +35,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[1].security_context should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[1].security_context is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].security_context is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pod or Container Without Security Context",
@@ -45,7 +48,8 @@
     "searchKey": "kubernetes_pod[positive2].spec",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive2].spec.security_context should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.security_context is undefined"
+    "actualValue": "kubernetes_pod[positive2].spec.security_context is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pod or Container Without Security Context",
@@ -57,6 +61,7 @@
     "searchKey": "kubernetes_pod[positive2].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive2].spec.container.security_context should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.container.security_context is undefined"
+    "actualValue": "kubernetes_pod[positive2].spec.container.security_context is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

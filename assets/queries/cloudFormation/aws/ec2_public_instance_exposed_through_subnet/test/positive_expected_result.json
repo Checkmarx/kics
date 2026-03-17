@@ -9,7 +9,8 @@
     "searchKey": "Resources.mySubnet",
     "searchValue": "",
     "expectedValue": "Resources.mySubnet should be a private subnet",
-    "actualValue": "Resources.mySubnet has a route for unrestricted internet traffic"
+    "actualValue": "Resources.mySubnet has a route for unrestricted internet traffic",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Public Instance Exposed Through Subnet",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.mySubnet",
     "searchValue": "",
     "expectedValue": "Resources.mySubnet should be a private subnet",
-    "actualValue": "Resources.mySubnet has a route for unrestricted internet traffic"
+    "actualValue": "Resources.mySubnet has a route for unrestricted internet traffic",
+    "issueType": "IncorrectValue"
   }
 ]

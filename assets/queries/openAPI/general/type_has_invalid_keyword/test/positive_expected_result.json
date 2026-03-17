@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword pattern is not valid for type number"
+    "actualValue": "Keyword pattern is not valid for type number",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "components.schemas.MyObject.properties.phones.items.pattern",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword pattern is not valid for type number"
+    "actualValue": "Keyword pattern is not valid for type number",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.headers.X-Rate-Limit-Limit.minLength",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword minLength is not valid for type integer"
+    "actualValue": "Keyword minLength is not valid for type integer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "components.schemas.PointGenre.minimum",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword minimum is not valid for type string"
+    "actualValue": "Keyword minimum is not valid for type string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "components.schemas.PointGenre.maximum",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword maximum is not valid for type string"
+    "actualValue": "Keyword maximum is not valid for type string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword minLength is not valid for type integer"
+    "actualValue": "Keyword minLength is not valid for type integer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "components.schemas.MyObject.properties.id.minLength",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword minLength is not valid for type integer"
+    "actualValue": "Keyword minLength is not valid for type integer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword required is not valid for type string"
+    "actualValue": "Keyword required is not valid for type string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -105,7 +113,8 @@
     "searchKey": "components.schemas.MyObject.properties.name.required",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword required is not valid for type string"
+    "actualValue": "Keyword required is not valid for type string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -117,7 +126,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword pattern is not valid for type number"
+    "actualValue": "Keyword pattern is not valid for type number",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -129,7 +139,8 @@
     "searchKey": "components.schemas.MyObject.properties.phones.items.pattern",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword pattern is not valid for type number"
+    "actualValue": "Keyword pattern is not valid for type number",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -141,7 +152,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword minLength is not valid for type integer"
+    "actualValue": "Keyword minLength is not valid for type integer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -153,7 +165,8 @@
     "searchKey": "components.schemas.MyObject.properties.id.minLength",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword minLength is not valid for type integer"
+    "actualValue": "Keyword minLength is not valid for type integer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -165,7 +178,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword pattern is not valid for type number"
+    "actualValue": "Keyword pattern is not valid for type number",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v3)",
@@ -177,7 +191,8 @@
     "searchKey": "components.schemas.MyObject.properties.phones.items.pattern",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword pattern is not valid for type number"
+    "actualValue": "Keyword pattern is not valid for type number",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v2)",
@@ -189,7 +204,8 @@
     "searchKey": "paths.{{/}}.parameters.schema.properties.phones.items.pattern",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword pattern is not valid for type number"
+    "actualValue": "Keyword pattern is not valid for type number",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v2)",
@@ -201,7 +217,8 @@
     "searchKey": "paths.{{/}}.parameters.maximum",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword maximum is not valid for type string"
+    "actualValue": "Keyword maximum is not valid for type string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v2)",
@@ -213,7 +230,8 @@
     "searchKey": "paths.{{/}}.parameters.schema.properties.phones.items.pattern",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword pattern is not valid for type number"
+    "actualValue": "Keyword pattern is not valid for type number",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v2)",
@@ -225,7 +243,8 @@
     "searchKey": "paths.{{/}}.parameters.maximum",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword maximum is not valid for type string"
+    "actualValue": "Keyword maximum is not valid for type string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Type Has Invalid Keyword (v2)",
@@ -237,6 +256,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.headers.X-Rate-Limit-Limit.minLength",
     "searchValue": "",
     "expectedValue": "There shouldn't be any invalid keywords",
-    "actualValue": "Keyword minLength is not valid for type integer"
+    "actualValue": "Keyword minLength is not valid for type integer",
+    "issueType": "IncorrectValue"
   }
 ]

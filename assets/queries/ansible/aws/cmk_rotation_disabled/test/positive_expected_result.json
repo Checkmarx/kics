@@ -9,7 +9,8 @@
     "searchKey": "name={{Update IAM policy on an existing KMS key}}.{{community.aws.aws_kms}}",
     "searchValue": "",
     "expectedValue": "community.aws.aws_kms.enable_key_rotation should be set",
-    "actualValue": "community.aws.aws_kms.enable_key_rotation is undefined"
+    "actualValue": "community.aws.aws_kms.enable_key_rotation is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CMK Rotation Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Update IAM policy on an existing KMS key2}}.{{community.aws.aws_kms}}.enable_key_rotation",
     "searchValue": "",
     "expectedValue": "community.aws.aws_kms.enable_key_rotation should be set to true",
-    "actualValue": "community.aws.aws_kms.enable_key_rotation is set to false"
+    "actualValue": "community.aws.aws_kms.enable_key_rotation is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

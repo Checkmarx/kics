@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters type should be defined%!(EXTRA string=id)",
-    "actualValue": "paths.{{/}}.parameters type is not defined%!(EXTRA string=id)"
+    "actualValue": "paths.{{/}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/users/{id}}}.{{get}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "paths.{{/users/{id}}}.{{get}}.parameters type should be defined%!(EXTRA string=id)",
-    "actualValue": "paths.{{/users/{id}}}.{{get}}.parameters type is not defined%!(EXTRA string=id)"
+    "actualValue": "paths.{{/users/{id}}}.{{get}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters type should be defined%!(EXTRA string=id)",
-    "actualValue": "paths.{{/}}.parameters type is not defined%!(EXTRA string=id)"
+    "actualValue": "paths.{{/}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/users/{id}}}.{{get}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "paths.{{/users/{id}}}.{{get}}.parameters type should be defined%!(EXTRA string=id)",
-    "actualValue": "paths.{{/users/{id}}}.{{get}}.parameters type is not defined%!(EXTRA string=id)"
+    "actualValue": "paths.{{/users/{id}}}.{{get}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
@@ -57,7 +61,8 @@
     "searchKey": "openapi.components.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "openapi.components.parameters type should be defined%!(EXTRA string=id)",
-    "actualValue": "openapi.components.parameters type is not defined%!(EXTRA string=id)"
+    "actualValue": "openapi.components.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
@@ -69,6 +74,7 @@
     "searchKey": "openapi.components.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "openapi.components.parameters type should be defined%!(EXTRA string=id)",
-    "actualValue": "openapi.components.parameters type is not defined%!(EXTRA string=id)"
+    "actualValue": "openapi.components.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   }
 ]

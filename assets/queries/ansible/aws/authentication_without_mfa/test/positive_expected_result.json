@@ -9,7 +9,8 @@
     "searchKey": "name={{Assume an existing role}}.{{community.aws.sts_assume_role}}",
     "searchValue": "mfa_token",
     "expectedValue": "sts_assume_role.mfa_token should be set",
-    "actualValue": "sts_assume_role.mfa_token is undefined"
+    "actualValue": "sts_assume_role.mfa_token is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Authentication Without MFA",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Hello}}.{{sts_assume_role}}",
     "searchValue": "mfa_serial_number",
     "expectedValue": "sts_assume_role.mfa_serial_number should be set",
-    "actualValue": "sts_assume_role.mfa_serial_number is undefined"
+    "actualValue": "sts_assume_role.mfa_serial_number is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Authentication Without MFA",
@@ -33,6 +35,7 @@
     "searchKey": "name={{Hello}}.{{sts_assume_role}}",
     "searchValue": "mfa_token",
     "expectedValue": "sts_assume_role.mfa_token should be set",
-    "actualValue": "sts_assume_role.mfa_token is undefined"
+    "actualValue": "sts_assume_role.mfa_token is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

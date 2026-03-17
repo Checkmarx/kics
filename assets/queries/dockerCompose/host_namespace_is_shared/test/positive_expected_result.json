@@ -9,7 +9,8 @@
     "searchKey": "services.service_name_1.pid",
     "searchValue": "",
     "expectedValue": "There shouldn't be pid mode declared as host",
-    "actualValue": "There is a pid mode declared as host"
+    "actualValue": "There is a pid mode declared as host",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Host Namespace is Shared",
@@ -21,7 +22,8 @@
     "searchKey": "services.service_name_2.pid",
     "searchValue": "",
     "expectedValue": "There shouldn't be pid mode declared as host",
-    "actualValue": "There is a pid mode declared as host"
+    "actualValue": "There is a pid mode declared as host",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Host Namespace is Shared",
@@ -33,6 +35,7 @@
     "searchKey": "services.internal.pid",
     "searchValue": "",
     "expectedValue": "There shouldn't be pid mode declared as host",
-    "actualValue": "There is a pid mode declared as host"
+    "actualValue": "There is a pid mode declared as host",
+    "issueType": "IncorrectValue"
   }
 ]

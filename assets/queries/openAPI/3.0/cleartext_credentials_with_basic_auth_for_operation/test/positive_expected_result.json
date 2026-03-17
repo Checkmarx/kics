@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.security.{{regularSecurity}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}} operation should not allow cleartext credentials over unencrypted channel",
-    "actualValue": "paths.{{/}}.{{get}} operation allows cleartext credentials over unencrypted channel"
+    "actualValue": "paths.{{/}}.{{get}} operation allows cleartext credentials over unencrypted channel",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cleartext Credentials With Basic Authentication For Operation",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.{{get}}.security.{{regularSecurity}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}} operation should not allow cleartext credentials over unencrypted channel",
-    "actualValue": "paths.{{/}}.{{get}} operation allows cleartext credentials over unencrypted channel"
+    "actualValue": "paths.{{/}}.{{get}} operation allows cleartext credentials over unencrypted channel",
+    "issueType": "IncorrectValue"
   }
 ]

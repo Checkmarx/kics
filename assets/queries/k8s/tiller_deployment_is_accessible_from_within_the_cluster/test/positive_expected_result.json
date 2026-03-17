@@ -9,7 +9,8 @@
     "searchKey": "metadata.name=tiller-bad-args.spec.template.spec.containers.args",
     "searchValue": "",
     "expectedValue": "'spec.template.spec.containers[tiller-v2].args' sets the container to listen to localhost",
-    "actualValue": "'spec.template.spec.containers[tiller-v2].args' is not setting the container to listen to localhost"
+    "actualValue": "'spec.template.spec.containers[tiller-v2].args' is not setting the container to listen to localhost",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tiller Deployment Is Accessible From Within The Cluster",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name=tiller-deploy-no-args.spec.template.spec.containers",
     "searchValue": "",
     "expectedValue": "'spec.template.spec.containers[tiller-v2].args' should be set",
-    "actualValue": "'spec.template.spec.containers[tiller-v2].args' is undefined"
+    "actualValue": "'spec.template.spec.containers[tiller-v2].args' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

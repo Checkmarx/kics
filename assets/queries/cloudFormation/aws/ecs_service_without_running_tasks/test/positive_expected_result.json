@@ -9,7 +9,8 @@
     "searchKey": "Resources.service.Properties",
     "searchValue": "",
     "expectedValue": "Resources.service.Properties.DeploymentConfiguration should be defined and not null",
-    "actualValue": "Resources.service.Properties.DeploymentConfiguration is undefined or null"
+    "actualValue": "Resources.service.Properties.DeploymentConfiguration is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECS Service Without Running Tasks",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.service.Properties",
     "searchValue": "",
     "expectedValue": "Resources.service.Properties.DeploymentConfiguration should be defined and not null",
-    "actualValue": "Resources.service.Properties.DeploymentConfiguration is undefined or null"
+    "actualValue": "Resources.service.Properties.DeploymentConfiguration is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_instance[positive1].security_groups",
     "searchValue": "",
     "expectedValue": "aws_instance[positive1].security_groups should not be using default security group",
-    "actualValue": "aws_instance[positive1].security_groups is using at least one default security group"
+    "actualValue": "aws_instance[positive1].security_groups is using at least one default security group",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Using Default Security Group",
@@ -21,6 +22,7 @@
     "searchKey": "aws_instance[positive2].vpc_security_group_ids",
     "searchValue": "",
     "expectedValue": "aws_instance[positive2].vpc_security_group_ids should not be using default security group",
-    "actualValue": "aws_instance[positive2].vpc_security_group_ids is using at least one default security group"
+    "actualValue": "aws_instance[positive2].vpc_security_group_ids is using at least one default security group",
+    "issueType": "IncorrectValue"
   }
 ]

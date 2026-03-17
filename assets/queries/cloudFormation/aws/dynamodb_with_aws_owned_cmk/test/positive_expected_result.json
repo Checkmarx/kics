@@ -9,7 +9,8 @@
     "searchKey": "Resources.DynamoDBOnDemandTable2.properties;",
     "searchValue": "",
     "expectedValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled should be true",
-    "actualValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled is false"
+    "actualValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.DynamoDBOnDemandTable5.properties;",
     "searchValue": "",
     "expectedValue": "Resources.DynamoDBOnDemandTable5.properties.SSESpecification should be set",
-    "actualValue": "Resources.DynamoDBOnDemandTable5.properties.SSESpecification is undefined"
+    "actualValue": "Resources.DynamoDBOnDemandTable5.properties.SSESpecification is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.DynamoDBOnDemandTable4.properties;",
     "searchValue": "",
     "expectedValue": "Resources.DynamoDBOnDemandTable4.properties.SSESpecification.SSEEnabled should be set",
-    "actualValue": "Resources.DynamoDBOnDemandTable4.properties.SSESpecification.SSEEnabled is undefined"
+    "actualValue": "Resources.DynamoDBOnDemandTable4.properties.SSESpecification.SSEEnabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.DynamoDBOnDemandTable2.properties;",
     "searchValue": "",
     "expectedValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled should be true",
-    "actualValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled is false"
+    "actualValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.DynamoDBOnDemandTable4.properties;",
     "searchValue": "",
     "expectedValue": "Resources.DynamoDBOnDemandTable4.properties.SSESpecification.SSEEnabled should be set",
-    "actualValue": "Resources.DynamoDBOnDemandTable4.properties.SSESpecification.SSEEnabled is undefined"
+    "actualValue": "Resources.DynamoDBOnDemandTable4.properties.SSESpecification.SSEEnabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.DynamoDBOnDemandTable5.properties;",
     "searchValue": "",
     "expectedValue": "Resources.DynamoDBOnDemandTable5.properties.SSESpecification should be set",
-    "actualValue": "Resources.DynamoDBOnDemandTable5.properties.SSESpecification is undefined"
+    "actualValue": "Resources.DynamoDBOnDemandTable5.properties.SSESpecification is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DynamoDB With Aws Owned CMK",
@@ -81,6 +87,7 @@
     "searchKey": "Resources.DynamoDBOnDemandTable2.properties;",
     "searchValue": "",
     "expectedValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled should be true",
-    "actualValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled is false"
+    "actualValue": "Resources[DynamoDBOnDemandTable2].properties.SSESpecification.SSEEnabled is false",
+    "issueType": "IncorrectValue"
   }
 ]

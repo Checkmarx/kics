@@ -9,7 +9,8 @@
     "searchKey": "Resources.NotebookInstance.Properties.SubnetId",
     "searchValue": "",
     "expectedValue": "Resources.NotebookInstance.Properties.SubnetId should be defined",
-    "actualValue": "Resources.NotebookInstance.Properties.SubnetId is not defined"
+    "actualValue": "Resources.NotebookInstance.Properties.SubnetId is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SageMaker Notebook Not Placed In VPC",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.NotebookInstance.Properties.SubnetId",
     "searchValue": "",
     "expectedValue": "Resources.NotebookInstance.Properties.SubnetId should be defined",
-    "actualValue": "Resources.NotebookInstance.Properties.SubnetId is not defined"
+    "actualValue": "Resources.NotebookInstance.Properties.SubnetId is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

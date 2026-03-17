@@ -9,6 +9,7 @@
     "searchKey": "azurerm_storage_account[positive2].min_tls_version",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive2].min_tls_version' is 'TLS1_2'",
-    "actualValue": "'azurerm_storage_account[positive2].min_tls_version' is not 'TLS1_2'"
+    "actualValue": "'azurerm_storage_account[positive2].min_tls_version' is not 'TLS1_2'",
+    "issueType": "IncorrectValue"
   }
 ]

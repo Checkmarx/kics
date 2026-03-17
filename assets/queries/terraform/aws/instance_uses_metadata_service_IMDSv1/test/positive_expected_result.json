@@ -9,7 +9,8 @@
     "searchKey": "aws_instance[positive1_1].metadata_options.http_tokens",
     "searchValue": "",
     "expectedValue": "'aws_instance[positive1_1].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_instance[positive1_1].metadata_options.http_tokens' is not defined to 'required'"
+    "actualValue": "'aws_instance[positive1_1].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -21,7 +22,8 @@
     "searchKey": "aws_launch_configuration[positive1_2].metadata_options.http_tokens",
     "searchValue": "",
     "expectedValue": "'aws_launch_configuration[positive1_2].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_launch_configuration[positive1_2].metadata_options.http_tokens' is not defined to 'required'"
+    "actualValue": "'aws_launch_configuration[positive1_2].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -33,7 +35,8 @@
     "searchKey": "aws_launch_template[positive1_3].metadata_options.http_tokens",
     "searchValue": "",
     "expectedValue": "'aws_launch_template[positive1_3].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_launch_template[positive1_3].metadata_options.http_tokens' is not defined to 'required'"
+    "actualValue": "'aws_launch_template[positive1_3].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -45,7 +48,8 @@
     "searchKey": "module[positive10_instance].metadata_options",
     "searchValue": "",
     "expectedValue": "'module[positive10_instance].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'module[positive10_instance].metadata_options.http_tokens' is not defined"
+    "actualValue": "'module[positive10_instance].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -57,7 +61,8 @@
     "searchKey": "module[positive10_launch_config].metadata_options",
     "searchValue": "",
     "expectedValue": "'module[positive10_launch_config].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'module[positive10_launch_config].metadata_options.http_tokens' is not defined"
+    "actualValue": "'module[positive10_launch_config].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -69,7 +74,8 @@
     "searchKey": "aws_instance[positive2_1].metadata_options.http_tokens",
     "searchValue": "",
     "expectedValue": "'aws_instance[positive2_1].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_instance[positive2_1].metadata_options.http_tokens' is not defined to 'required'"
+    "actualValue": "'aws_instance[positive2_1].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -81,7 +87,8 @@
     "searchKey": "aws_launch_configuration[positive2_2].metadata_options.http_tokens",
     "searchValue": "",
     "expectedValue": "'aws_launch_configuration[positive2_2].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_launch_configuration[positive2_2].metadata_options.http_tokens' is not defined to 'required'"
+    "actualValue": "'aws_launch_configuration[positive2_2].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -93,7 +100,8 @@
     "searchKey": "aws_launch_template[positive2_3].metadata_options.http_tokens",
     "searchValue": "",
     "expectedValue": "'aws_launch_template[positive2_3].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_launch_template[positive2_3].metadata_options.http_tokens' is not defined to 'required'"
+    "actualValue": "'aws_launch_template[positive2_3].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -105,7 +113,8 @@
     "searchKey": "aws_instance[positive3_1].metadata_options",
     "searchValue": "",
     "expectedValue": "'aws_instance[positive3_1].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_instance[positive3_1].metadata_options.http_tokens' is not defined"
+    "actualValue": "'aws_instance[positive3_1].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -117,7 +126,8 @@
     "searchKey": "aws_launch_configuration[positive3_2].metadata_options",
     "searchValue": "",
     "expectedValue": "'aws_launch_configuration[positive3_2].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_launch_configuration[positive3_2].metadata_options.http_tokens' is not defined"
+    "actualValue": "'aws_launch_configuration[positive3_2].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -129,7 +139,8 @@
     "searchKey": "aws_launch_template[positive3_3].metadata_options",
     "searchValue": "",
     "expectedValue": "'aws_launch_template[positive3_3].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_launch_template[positive3_3].metadata_options.http_tokens' is not defined"
+    "actualValue": "'aws_launch_template[positive3_3].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -141,7 +152,8 @@
     "searchKey": "aws_instance[positive4_1]",
     "searchValue": "",
     "expectedValue": "'aws_instance[positive4_1].metadata_options' should be defined with 'http_tokens' field set to 'required'",
-    "actualValue": "'aws_instance[positive4_1].metadata_options' is not defined"
+    "actualValue": "'aws_instance[positive4_1].metadata_options' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -153,7 +165,8 @@
     "searchKey": "aws_launch_configuration[positive4_2]",
     "searchValue": "",
     "expectedValue": "'aws_launch_configuration[positive4_2].metadata_options' should be defined with 'http_tokens' field set to 'required'",
-    "actualValue": "'aws_launch_configuration[positive4_2].metadata_options' is not defined"
+    "actualValue": "'aws_launch_configuration[positive4_2].metadata_options' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -165,7 +178,8 @@
     "searchKey": "aws_launch_template[positive4_3]",
     "searchValue": "",
     "expectedValue": "'aws_launch_template[positive4_3].metadata_options' should be defined with 'http_tokens' field set to 'required'",
-    "actualValue": "'aws_launch_template[positive4_3].metadata_options' is not defined"
+    "actualValue": "'aws_launch_template[positive4_3].metadata_options' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -177,7 +191,8 @@
     "searchKey": "aws_instance[positive5_1].metadata_options",
     "searchValue": "",
     "expectedValue": "'aws_instance[positive5_1].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_instance[positive5_1].metadata_options.http_tokens' is not defined"
+    "actualValue": "'aws_instance[positive5_1].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -189,7 +204,8 @@
     "searchKey": "aws_launch_configuration[positive5_2].metadata_options",
     "searchValue": "",
     "expectedValue": "'aws_launch_configuration[positive5_2].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_launch_configuration[positive5_2].metadata_options.http_tokens' is not defined"
+    "actualValue": "'aws_launch_configuration[positive5_2].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -201,7 +217,8 @@
     "searchKey": "aws_launch_template[positive5_3].metadata_options",
     "searchValue": "",
     "expectedValue": "'aws_launch_template[positive5_3].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'aws_launch_template[positive5_3].metadata_options.http_tokens' is not defined"
+    "actualValue": "'aws_launch_template[positive5_3].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -213,7 +230,8 @@
     "searchKey": "module[positive6_instance].metadata_options.http_tokens",
     "searchValue": "",
     "expectedValue": "'module[positive6_instance].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'module[positive6_instance].metadata_options.http_tokens' is not defined to 'required'"
+    "actualValue": "'module[positive6_instance].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -225,7 +243,8 @@
     "searchKey": "module[positive6_launch_config].metadata_options.http_tokens",
     "searchValue": "",
     "expectedValue": "'module[positive6_launch_config].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'module[positive6_launch_config].metadata_options.http_tokens' is not defined to 'required'"
+    "actualValue": "'module[positive6_launch_config].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -237,7 +256,8 @@
     "searchKey": "module[positive7_instance].metadata_options.http_tokens",
     "searchValue": "",
     "expectedValue": "'module[positive7_instance].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'module[positive7_instance].metadata_options.http_tokens' is not defined to 'required'"
+    "actualValue": "'module[positive7_instance].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -249,7 +269,8 @@
     "searchKey": "module[positive7_launch_config].metadata_options.http_tokens",
     "searchValue": "",
     "expectedValue": "'module[positive7_launch_config].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'module[positive7_launch_config].metadata_options.http_tokens' is not defined to 'required'"
+    "actualValue": "'module[positive7_launch_config].metadata_options.http_tokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -261,7 +282,8 @@
     "searchKey": "module[positive8_instance].metadata_options",
     "searchValue": "",
     "expectedValue": "'module[positive8_instance].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'module[positive8_instance].metadata_options.http_tokens' is not defined"
+    "actualValue": "'module[positive8_instance].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -273,7 +295,8 @@
     "searchKey": "module[positive8_launch_config].metadata_options",
     "searchValue": "",
     "expectedValue": "'module[positive8_launch_config].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'module[positive8_launch_config].metadata_options.http_tokens' is not defined"
+    "actualValue": "'module[positive8_launch_config].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -285,7 +308,8 @@
     "searchKey": "module[positive9_instance]",
     "searchValue": "",
     "expectedValue": "'module[positive9_instance].metadata_options' should be defined with 'http_tokens' field set to 'required'",
-    "actualValue": "'module[positive9_instance].metadata_options' is not defined"
+    "actualValue": "'module[positive9_instance].metadata_options' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -297,6 +321,7 @@
     "searchKey": "module[positive9_launch_config]",
     "searchValue": "",
     "expectedValue": "'module[positive9_launch_config].metadata_options' should be defined with 'http_tokens' field set to 'required'",
-    "actualValue": "'module[positive9_launch_config].metadata_options' is not defined"
+    "actualValue": "'module[positive9_launch_config].metadata_options' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

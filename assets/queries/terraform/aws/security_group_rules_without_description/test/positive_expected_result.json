@@ -9,7 +9,8 @@
     "searchKey": "aws_security_group[positive1].ingress",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1].ingress.description should be defined and not null",
-    "actualValue": "aws_security_group[positive1].ingress.description is undefined or null"
+    "actualValue": "aws_security_group[positive1].ingress.description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -21,7 +22,8 @@
     "searchKey": "aws_security_group[positive1].egress",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1].egress.description should be defined and not null",
-    "actualValue": "aws_security_group[positive1].egress.description is undefined or null"
+    "actualValue": "aws_security_group[positive1].egress.description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -33,7 +35,8 @@
     "searchKey": "aws_security_group[positive2-1].ingress.0",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive2-1].ingress[0].description should be defined and not null",
-    "actualValue": "aws_security_group[positive2-1].ingress[0].description is undefined or null"
+    "actualValue": "aws_security_group[positive2-1].ingress[0].description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -45,7 +48,8 @@
     "searchKey": "aws_security_group[positive2-1].ingress.1",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive2-1].ingress[1].description should be defined and not null",
-    "actualValue": "aws_security_group[positive2-1].ingress[1].description is undefined or null"
+    "actualValue": "aws_security_group[positive2-1].ingress[1].description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -57,7 +61,8 @@
     "searchKey": "aws_security_group[positive2-2].egress.0",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive2-2].egress[0].description should be defined and not null",
-    "actualValue": "aws_security_group[positive2-2].egress[0].description is undefined or null"
+    "actualValue": "aws_security_group[positive2-2].egress[0].description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -69,7 +74,8 @@
     "searchKey": "aws_security_group[positive2-2].egress.1",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive2-2].egress[1].description should be defined and not null",
-    "actualValue": "aws_security_group[positive2-2].egress[1].description is undefined or null"
+    "actualValue": "aws_security_group[positive2-2].egress[1].description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -81,7 +87,8 @@
     "searchKey": "aws_security_group_rule[positive3-1]",
     "searchValue": "",
     "expectedValue": "aws_security_group_rule[positive3-1].description should be defined and not null",
-    "actualValue": "aws_security_group_rule[positive3-1].description is undefined or null"
+    "actualValue": "aws_security_group_rule[positive3-1].description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -93,7 +100,8 @@
     "searchKey": "aws_security_group_rule[positive3-2]",
     "searchValue": "",
     "expectedValue": "aws_security_group_rule[positive3-2].description should be defined and not null",
-    "actualValue": "aws_security_group_rule[positive3-2].description is undefined or null"
+    "actualValue": "aws_security_group_rule[positive3-2].description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -105,7 +113,8 @@
     "searchKey": "aws_vpc_security_group_ingress_rule[positive4-1]",
     "searchValue": "",
     "expectedValue": "aws_vpc_security_group_ingress_rule[positive4-1].description should be defined and not null",
-    "actualValue": "aws_vpc_security_group_ingress_rule[positive4-1].description is undefined or null"
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive4-1].description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -117,7 +126,8 @@
     "searchKey": "aws_vpc_security_group_egress_rule[positive4-2]",
     "searchValue": "",
     "expectedValue": "aws_vpc_security_group_egress_rule[positive4-2].description should be defined and not null",
-    "actualValue": "aws_vpc_security_group_egress_rule[positive4-2].description is undefined or null"
+    "actualValue": "aws_vpc_security_group_egress_rule[positive4-2].description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -129,7 +139,8 @@
     "searchKey": "module[positive5_ipv4_array].ingress_with_cidr_blocks.0",
     "searchValue": "",
     "expectedValue": "module[positive5_ipv4_array].ingress_with_cidr_blocks.0.description should be defined and not null",
-    "actualValue": "module[positive5_ipv4_array].ingress_with_cidr_blocks.0.description is undefined or null"
+    "actualValue": "module[positive5_ipv4_array].ingress_with_cidr_blocks.0.description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -141,7 +152,8 @@
     "searchKey": "module[positive5_ipv4_array].ingress_with_cidr_blocks.1",
     "searchValue": "",
     "expectedValue": "module[positive5_ipv4_array].ingress_with_cidr_blocks.1.description should be defined and not null",
-    "actualValue": "module[positive5_ipv4_array].ingress_with_cidr_blocks.1.description is undefined or null"
+    "actualValue": "module[positive5_ipv4_array].ingress_with_cidr_blocks.1.description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -153,7 +165,8 @@
     "searchKey": "module[positive5_ipv4_array].egress_with_cidr_blocks.0",
     "searchValue": "",
     "expectedValue": "module[positive5_ipv4_array].egress_with_cidr_blocks.0.description should be defined and not null",
-    "actualValue": "module[positive5_ipv4_array].egress_with_cidr_blocks.0.description is undefined or null"
+    "actualValue": "module[positive5_ipv4_array].egress_with_cidr_blocks.0.description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -165,7 +178,8 @@
     "searchKey": "module[positive5_ipv4_array].egress_with_cidr_blocks.1",
     "searchValue": "",
     "expectedValue": "module[positive5_ipv4_array].egress_with_cidr_blocks.1.description should be defined and not null",
-    "actualValue": "module[positive5_ipv4_array].egress_with_cidr_blocks.1.description is undefined or null"
+    "actualValue": "module[positive5_ipv4_array].egress_with_cidr_blocks.1.description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -177,7 +191,8 @@
     "searchKey": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.0",
     "searchValue": "",
     "expectedValue": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.0.description should be defined and not null",
-    "actualValue": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.0.description is undefined or null"
+    "actualValue": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.0.description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -189,7 +204,8 @@
     "searchKey": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.1",
     "searchValue": "",
     "expectedValue": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.1.description should be defined and not null",
-    "actualValue": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.1.description is undefined or null"
+    "actualValue": "module[positive5_ipv6_array].ingress_with_ipv6_cidr_blocks.1.description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -201,7 +217,8 @@
     "searchKey": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.0",
     "searchValue": "",
     "expectedValue": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.0.description should be defined and not null",
-    "actualValue": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.0.description is undefined or null"
+    "actualValue": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.0.description is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group Rule Without Description",
@@ -213,6 +230,7 @@
     "searchKey": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.1",
     "searchValue": "",
     "expectedValue": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.1.description should be defined and not null",
-    "actualValue": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.1.description is undefined or null"
+    "actualValue": "module[positive5_ipv6_array].egress_with_ipv6_cidr_blocks.1.description is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

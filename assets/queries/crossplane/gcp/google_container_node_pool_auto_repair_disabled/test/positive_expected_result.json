@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{cluster-np}}.spec.forProvider",
     "searchValue": "",
     "expectedValue": "management should be defined with autoRepair set to true",
-    "actualValue": "management is not defined"
+    "actualValue": "management is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Google Container Node Pool Auto Repair Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{cluster-np}}.spec.forProvider.management.autoRepair",
     "searchValue": "",
     "expectedValue": "autoRepair should be set to true",
-    "actualValue": "autoRepair is set to false"
+    "actualValue": "autoRepair is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

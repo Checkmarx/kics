@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{example-cluster-autogen-password}}.spec.forProvider",
     "searchValue": "",
     "expectedValue": "DBCluster.enableCloudwatchLogsExports should be defined",
-    "actualValue": "DBCluster.enableCloudwatchLogsExports is undefined"
+    "actualValue": "DBCluster.enableCloudwatchLogsExports is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{example-cluster-autogen-password}}.spec.forProvider.enableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "DBCluster.enableCloudwatchLogsExports should have all following values: audit, profiler",
-    "actualValue": "DBCluster.enableCloudwatchLogsExports has the following missing values: audit, profiler"
+    "actualValue": "DBCluster.enableCloudwatchLogsExports has the following missing values: audit, profiler",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{example-cluster-autogen-password}}.spec.forProvider.enableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "DBCluster.enableCloudwatchLogsExports should have all following values: audit, profiler",
-    "actualValue": "DBCluster.enableCloudwatchLogsExports has the following missing values: profiler"
+    "actualValue": "DBCluster.enableCloudwatchLogsExports has the following missing values: profiler",
+    "issueType": "IncorrectValue"
   }
 ]

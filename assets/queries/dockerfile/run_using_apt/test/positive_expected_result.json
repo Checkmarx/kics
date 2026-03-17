@@ -9,6 +9,7 @@
     "searchKey": "FROM={{busybox:1.0}}.{{RUN apt install curl}}",
     "searchValue": "",
     "expectedValue": "RUN instructions should not use the 'apt' program",
-    "actualValue": "RUN instruction is invoking the 'apt' program"
+    "actualValue": "RUN instruction is invoking the 'apt' program",
+    "issueType": "IncorrectValue"
   }
 ]

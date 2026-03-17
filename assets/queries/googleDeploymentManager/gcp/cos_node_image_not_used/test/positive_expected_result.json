@@ -9,6 +9,7 @@
     "searchKey": "resources.name={{nodePool}}.properties.config.imageType",
     "searchValue": "",
     "expectedValue": "'config.imageType' should start with 'cos'",
-    "actualValue": "'config.imageType' is ubuntu"
+    "actualValue": "'config.imageType' is ubuntu",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "resources.name=Princing.properties.pricingTier",
     "searchValue": "",
     "expectedValue": "'pricingTier' should be set to standard",
-    "actualValue": "'pricingTier' property value is set to Free"
+    "actualValue": "'pricingTier' property value is set to Free",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Standard Price Is Not Selected",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=Princing.properties.pricingTier",
     "searchValue": "",
     "expectedValue": "'pricingTier' should be set to standard",
-    "actualValue": "'pricingTier' property value is set to Free"
+    "actualValue": "'pricingTier' property value is set to Free",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Standard Price Is Not Selected",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=Princing.properties.pricingTier",
     "searchValue": "",
     "expectedValue": "'pricingTier' should be set to standard",
-    "actualValue": "'pricingTier' property value is set to Free"
+    "actualValue": "'pricingTier' property value is set to Free",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Standard Price Is Not Selected",
@@ -45,7 +48,8 @@
     "searchKey": "properties.template.resources.name=Princing.properties.pricingTier",
     "searchValue": "",
     "expectedValue": "'pricingTier' should be set to standard",
-    "actualValue": "'pricingTier' property value is set to Free"
+    "actualValue": "'pricingTier' property value is set to Free",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Standard Price Is Not Selected",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=VirtualMachines.properties.pricingTier",
     "searchValue": "",
     "expectedValue": "'pricingTier' should be set to standard",
-    "actualValue": "'pricingTier' parameter default value is set to Free"
+    "actualValue": "'pricingTier' parameter default value is set to Free",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Standard Price Is Not Selected",
@@ -69,6 +74,7 @@
     "searchKey": "resources.name=VirtualMachines.properties.pricingTier",
     "searchValue": "",
     "expectedValue": "'pricingTier' should be set to standard",
-    "actualValue": "'pricingTier' parameter default value is set to Free"
+    "actualValue": "'pricingTier' parameter default value is set to Free",
+    "issueType": "IncorrectValue"
   }
 ]

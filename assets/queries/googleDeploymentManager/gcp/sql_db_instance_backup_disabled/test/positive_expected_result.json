@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{sql-instance}}.properties.settings",
     "searchValue": "",
     "expectedValue": "'settings.backupConfiguration' should be defined and not null",
-    "actualValue": "'settings.backupConfiguration' is undefined or null"
+    "actualValue": "'settings.backupConfiguration' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{sql-instance}}.properties.settings.backupConfiguration",
     "searchValue": "",
     "expectedValue": "'settings.backupConfiguration.enabled' should be defined and not null",
-    "actualValue": "'settings.backupConfiguration.enabled' is undefined or null"
+    "actualValue": "'settings.backupConfiguration.enabled' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "resources.name={{sql-instance}}.properties.settings.backupConfiguration.enabled",
     "searchValue": "",
     "expectedValue": "'settings.backupConfiguration.enabled' should be true",
-    "actualValue": "'settings.backupConfiguration.enabled' is false"
+    "actualValue": "'settings.backupConfiguration.enabled' is false",
+    "issueType": "IncorrectValue"
   }
 ]

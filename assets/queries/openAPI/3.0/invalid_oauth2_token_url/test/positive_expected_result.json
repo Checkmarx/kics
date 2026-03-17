@@ -9,7 +9,8 @@
     "searchKey": "components.securitySchemes.oAuth2AuthCodePos1.flows.authorizationCode.tokenUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid OAuth2 Token URL (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "components.securitySchemes.oAuth2AuthCodePos2.flows.password.tokenUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid OAuth2 Token URL (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.securitySchemes.oAuth2AuthCodePos3.flows.clientCredentials.tokenUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid OAuth2 Token URL (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "components.securitySchemes.oAuth2AuthCodePos1.flows.authorizationCode.tokenUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid OAuth2 Token URL (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "components.securitySchemes.oAuth2AuthCodePos2.flows.password.tokenUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid OAuth2 Token URL (v3)",
@@ -69,6 +74,7 @@
     "searchKey": "components.securitySchemes.oAuth2AuthCodePos3.flows.clientCredentials.tokenUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   }
 ]

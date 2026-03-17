@@ -9,7 +9,8 @@
     "searchKey": "servers.url.http://staging.gigantic-server.com/v1",
     "searchValue": "",
     "expectedValue": "Global servers' URL should use HTTPS protocol",
-    "actualValue": "Global servers' URL are not using HTTPS protocol"
+    "actualValue": "Global servers' URL are not using HTTPS protocol",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Global Server Object Uses HTTP",
@@ -21,7 +22,8 @@
     "searchKey": "servers.url.http://staging.gigantic-server.com/v1",
     "searchValue": "",
     "expectedValue": "Global servers' URL should use HTTPS protocol",
-    "actualValue": "Global servers' URL are not using HTTPS protocol"
+    "actualValue": "Global servers' URL are not using HTTPS protocol",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Global Server Object Uses HTTP",
@@ -33,6 +35,7 @@
     "searchKey": "openapi",
     "searchValue": "",
     "expectedValue": "Global servers array should be defined",
-    "actualValue": "Global servers array is not defined"
+    "actualValue": "Global servers array is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

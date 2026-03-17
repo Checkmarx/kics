@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyUser.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Properties should contain Groups",
-    "actualValue": "'Resources.Properties' does not contain Groups"
+    "actualValue": "'Resources.Properties' does not contain Groups",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM User With No Group",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.emptyGroup.Properties.Groups",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.Groups' should contain groups",
-    "actualValue": "'Resources.Properties.Groups' is empty"
+    "actualValue": "'Resources.Properties.Groups' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM User With No Group",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyUser.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Properties should contain Groups",
-    "actualValue": "'Resources.Properties' does not contain Groups"
+    "actualValue": "'Resources.Properties' does not contain Groups",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM User With No Group",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.emptyGroup.Properties.Groups",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.Groups' should contain groups",
-    "actualValue": "'Resources.Properties.Groups' is empty"
+    "actualValue": "'Resources.Properties.Groups' is empty",
+    "issueType": "IncorrectValue"
   }
 ]

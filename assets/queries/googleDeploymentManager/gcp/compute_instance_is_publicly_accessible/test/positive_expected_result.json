@@ -9,6 +9,7 @@
     "searchKey": "resources.name={{instance}}.properties.networkInterfaces",
     "searchValue": "",
     "expectedValue": "'accessConfigs' should be undefined",
-    "actualValue": "'accessConfigs' is defined and not null"
+    "actualValue": "'accessConfigs' is defined and not null",
+    "issueType": "IncorrectValue"
   }
 ]

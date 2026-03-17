@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{lg-3}}.spec.forProvider.retentionInDays",
     "searchValue": "",
     "expectedValue": "retentionInDays should be set to a valid value",
-    "actualValue": "retentionInDays is set to a invalid value"
+    "actualValue": "retentionInDays is set to a invalid value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
@@ -21,7 +22,8 @@
     "searchKey": "spec.resources.base.metadata.name={{lg-4}}.spec.forProvider.retentionInDays",
     "searchValue": "",
     "expectedValue": "retentionInDays should be set to a valid value",
-    "actualValue": "retentionInDays is set to a invalid value"
+    "actualValue": "retentionInDays is set to a invalid value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{lg-5}}.spec.forProvider",
     "searchValue": "",
     "expectedValue": "retentionInDays should be set to a valid value",
-    "actualValue": "retentionInDays is undefined"
+    "actualValue": "retentionInDays is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
@@ -45,6 +48,7 @@
     "searchKey": "spec.resources.base.metadata.name={{lg-6}}.spec.forProvider",
     "searchValue": "",
     "expectedValue": "retentionInDays should be set to a valid value",
-    "actualValue": "retentionInDays is undefined"
+    "actualValue": "retentionInDays is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

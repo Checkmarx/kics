@@ -9,7 +9,8 @@
     "searchKey": "azurerm_postgresql_server[positive1].ssl_enforcement_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_server.positive1.ssl_enforcement_enabled' should equal 'true'",
-    "actualValue": "'azurerm_postgresql_server.positive1.ssl_enforcement_enabled' is equal 'false'"
+    "actualValue": "'azurerm_postgresql_server.positive1.ssl_enforcement_enabled' is equal 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSL Enforce Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_postgresql_server[positive2].ssl_enforcement_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_server.positive2.ssl_enforcement_enabled' should equal 'true'",
-    "actualValue": "'azurerm_postgresql_server.positive2.ssl_enforcement_enabled' is not defined"
+    "actualValue": "'azurerm_postgresql_server.positive2.ssl_enforcement_enabled' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

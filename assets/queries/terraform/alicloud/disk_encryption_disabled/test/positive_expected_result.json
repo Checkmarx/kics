@@ -9,7 +9,8 @@
     "searchKey": "alicloud_disk[disk_encryption1]",
     "searchValue": "",
     "expectedValue": "[disk_encryption1] has encryption enabled",
-    "actualValue": "[disk_encryption1] does not have encryption enabled"
+    "actualValue": "[disk_encryption1] does not have encryption enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_disk[disk_encryption2].encrypted",
     "searchValue": "",
     "expectedValue": "[disk_encryption2] has encryption set to true",
-    "actualValue": "[disk_encryption2] has encryption set to false"
+    "actualValue": "[disk_encryption2] has encryption set to false",
+    "issueType": "IncorrectValue"
   }
 ]

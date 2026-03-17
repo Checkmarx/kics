@@ -9,7 +9,8 @@
     "searchKey": "aws_elasticsearch_domain[example]",
     "searchValue": "",
     "expectedValue": "Elasticsearch Domain ensure IAM Authentication",
-    "actualValue": "Elasticsearch Domain does not ensure IAM Authentication"
+    "actualValue": "Elasticsearch Domain does not ensure IAM Authentication",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Elasticsearch Without IAM Authentication",
@@ -21,6 +22,7 @@
     "searchKey": "aws_elasticsearch_domain[example2]",
     "searchValue": "",
     "expectedValue": "Elasticsearch Domain ensure IAM Authentication",
-    "actualValue": "Elasticsearch Domain does not ensure IAM Authentication"
+    "actualValue": "Elasticsearch Domain does not ensure IAM Authentication",
+    "issueType": "IncorrectValue"
   }
 ]

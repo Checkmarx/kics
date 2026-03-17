@@ -9,6 +9,7 @@
     "searchKey": "azurerm_sql_server[positive1]",
     "searchValue": "",
     "expectedValue": "'azurerm_sql_server.positive1.extended_auditing_policy' should exist",
-    "actualValue": "'azurerm_sql_server.positive1.extended_auditing_policy' does not exist"
+    "actualValue": "'azurerm_sql_server.positive1.extended_auditing_policy' does not exist",
+    "issueType": "MissingAttribute"
   }
 ]

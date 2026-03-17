@@ -9,6 +9,7 @@
     "searchKey": "name={{Second SQS queue with policy}}.{{community.aws.sqs_queue}}.policy",
     "searchValue": "",
     "expectedValue": "sqs_queue.policy.Statement should not contain Action equal to '*'",
-    "actualValue": "sqs_queue.policy.Statement contains Action equal to '*'"
+    "actualValue": "sqs_queue.policy.Statement contains Action equal to '*'",
+    "issueType": "IncorrectValue"
   }
 ]

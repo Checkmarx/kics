@@ -9,7 +9,8 @@
     "searchKey": "Resources.MockMethod.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MockMethod.Properties.AuthorizationType is NONE and Resources.MockMethod.Properties.HttpMethod should be OPTIONS",
-    "actualValue": "Resources.MockMethod.Properties.AuthorizationType is NONE and Resources.MockMethod.Properties.HttpMethod is not OPTIONS"
+    "actualValue": "Resources.MockMethod.Properties.AuthorizationType is NONE and Resources.MockMethod.Properties.HttpMethod is not OPTIONS",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway With Open Access",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.MockMethod.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MockMethod.Properties.AuthorizationType is NONE and Resources.MockMethod.Properties.HttpMethod should be OPTIONS",
-    "actualValue": "Resources.MockMethod.Properties.AuthorizationType is NONE and Resources.MockMethod.Properties.HttpMethod is not OPTIONS"
+    "actualValue": "Resources.MockMethod.Properties.AuthorizationType is NONE and Resources.MockMethod.Properties.HttpMethod is not OPTIONS",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.InboundRule.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.InboundRule.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.InboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.InboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.OutboundRule.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.OutboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.OutboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.OutboundTests.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.OutboundTests.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.OutboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.OutboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.InboundTests.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.InboundTests.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.InboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.InboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.Match.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.Match.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.Match.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.Match.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.EqualMatch.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.EqualMatch.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.EqualMatch.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.EqualMatch.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.Match.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.Match.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.Match.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.Match.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.EqualMatch.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.EqualMatch.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.EqualMatch.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.EqualMatch.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.InboundRule.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.InboundRule.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.InboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.InboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.OutboundRule.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.OutboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.OutboundRule.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.OutboundTests.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.OutboundTests.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.OutboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.OutboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Overlapping Ports",
@@ -141,6 +152,7 @@
     "searchKey": "Resources.InboundTests.Properties.PortRange",
     "searchValue": "",
     "expectedValue": "'Resources.InboundTests.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
-    "actualValue": "'Resources.InboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+    "actualValue": "'Resources.InboundTests.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionType",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionType should be enabled with whitelist or blacklist",
-    "actualValue": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionTypeallows is configured with none. Therefore, Geo Restriction is not enabled and it should be"
+    "actualValue": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionTypeallows is configured with none. Therefore, Geo Restriction is not enabled and it should be",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Geo Restriction Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionType",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionType should be enabled with whitelist or blacklist",
-    "actualValue": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionTypeallows is configured with none. Therefore, Geo Restriction is not enabled and it should be"
+    "actualValue": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionTypeallows is configured with none. Therefore, Geo Restriction is not enabled and it should be",
+    "issueType": "IncorrectValue"
   }
 ]

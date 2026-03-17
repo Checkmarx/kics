@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-4}}.securityContext.privileged",
     "searchValue": "",
     "expectedValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-4}}.securityContext.privileged is unset or false",
-    "actualValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-4}}.securityContext.privileged is true"
+    "actualValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-4}}.securityContext.privileged is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Is Privileged",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{security-context-demo-5}}.spec.initContainers.name={{sec-ctx-4}}.securityContext.privileged",
     "searchValue": "",
     "expectedValue": "metadata.name={{security-context-demo-5}}.spec.initContainers.name={{sec-ctx-4}}.securityContext.privileged is unset or false",
-    "actualValue": "metadata.name={{security-context-demo-5}}.spec.initContainers.name={{sec-ctx-4}}.securityContext.privileged is true"
+    "actualValue": "metadata.name={{security-context-demo-5}}.spec.initContainers.name={{sec-ctx-4}}.securityContext.privileged is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Is Privileged",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged",
     "searchValue": "",
     "expectedValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged is unset or false",
-    "actualValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged is true"
+    "actualValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged is true",
+    "issueType": "IncorrectValue"
   }
 ]

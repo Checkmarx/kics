@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.Cat.allOf.huntingSkill",
     "searchValue": "",
     "expectedValue": "Cat.allOf.components.schemas.properties.huntingSkill should not contain 'enum' and schema keyword",
-    "actualValue": "Cat.allOf.components.schemas.properties.huntingSkill contains 'enum' and schema keyword 'minLength'"
+    "actualValue": "Cat.allOf.components.schemas.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Using Enum With Keyword (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "components.schemas.Cat.allOf.huntingSkill",
     "searchValue": "",
     "expectedValue": "Cat.allOf.components.schemas.properties.huntingSkill should not contain 'enum' and schema keyword",
-    "actualValue": "Cat.allOf.components.schemas.properties.huntingSkill contains 'enum' and schema keyword 'minLength'"
+    "actualValue": "Cat.allOf.components.schemas.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "definitions.Cat.allOf.huntingSkill",
     "searchValue": "",
     "expectedValue": "Cat.allOf.definitions.properties.huntingSkill should not contain 'enum' and schema keyword",
-    "actualValue": "Cat.allOf.definitions.properties.huntingSkill contains 'enum' and schema keyword 'minLength'"
+    "actualValue": "Cat.allOf.definitions.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
@@ -45,7 +48,8 @@
     "searchKey": "definitions.Cat.allOf.huntingSkill",
     "searchValue": "",
     "expectedValue": "Cat.allOf.definitions.properties.huntingSkill should not contain 'enum' and schema keyword",
-    "actualValue": "Cat.allOf.definitions.properties.huntingSkill contains 'enum' and schema keyword 'minLength'"
+    "actualValue": "Cat.allOf.definitions.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.huntingSkill",
     "searchValue": "",
     "expectedValue": "/.get.parameters.paths.schema.properties.huntingSkill should not contain 'enum' and schema keyword",
-    "actualValue": "/.get.parameters.paths.schema.properties.huntingSkill contains 'enum' and schema keyword 'minLength'"
+    "actualValue": "/.get.parameters.paths.schema.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.huntingSkill",
     "searchValue": "",
     "expectedValue": "/.get.parameters.paths.schema.properties.huntingSkill should not contain 'enum' and schema keyword",
-    "actualValue": "/.get.parameters.paths.schema.properties.huntingSkill contains 'enum' and schema keyword 'minLength'"
+    "actualValue": "/.get.parameters.paths.schema.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   }
 ]

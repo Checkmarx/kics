@@ -9,6 +9,7 @@
     "searchKey": "name={{Create S3 bucket}}.{{amazon.aws.s3_bucket}}.debug_botocore_endpoint_logs",
     "searchValue": "",
     "expectedValue": "s3_bucket.debug_botocore_endpoint_logs should be true",
-    "actualValue": "s3_bucket.debug_botocore_endpoint_logs is false"
+    "actualValue": "s3_bucket.debug_botocore_endpoint_logs is false",
+    "issueType": "IncorrectValue"
   }
 ]

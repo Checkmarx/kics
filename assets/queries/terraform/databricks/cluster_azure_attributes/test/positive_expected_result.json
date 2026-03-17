@@ -9,7 +9,8 @@
     "searchKey": "databricks_cluster[positive1].azure_attributes.availability",
     "searchValue": "",
     "expectedValue": "'databricks_cluster[positive1].azure_attributes.availability' should not be equal to 'SPOT'",
-    "actualValue": "'databricks_cluster[positive1].azure_attributes.availability' is equal to 'SPOT'"
+    "actualValue": "'databricks_cluster[positive1].azure_attributes.availability' is equal to 'SPOT'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Check Databricks Cluster Azure Attribute Best Practices",
@@ -21,7 +22,8 @@
     "searchKey": "databricks_cluster[positive2].azure_attributes.first_on_demand",
     "searchValue": "",
     "expectedValue": "'databricks_cluster[positive2].azure_attributes.first_on_demand' should not be equal to '0'",
-    "actualValue": "'databricks_cluster[positive2].azure_attributes.first_on_demand' is equal to '0'"
+    "actualValue": "'databricks_cluster[positive2].azure_attributes.first_on_demand' is equal to '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Check Databricks Cluster Azure Attribute Best Practices",
@@ -33,6 +35,7 @@
     "searchKey": "databricks_cluster[positive3].azure_attributes.first_on_demand",
     "searchValue": "",
     "expectedValue": "'databricks_cluster[positive3].azure_attributes.first_on_demand' should present",
-    "actualValue": "'databricks_cluster[positive3].azure_attributes.first_on_demand' is not present"
+    "actualValue": "'databricks_cluster[positive3].azure_attributes.first_on_demand' is not present",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.Notebook.Properties.DirectInternetAccess",
     "searchValue": "",
     "expectedValue": "Resources.Notebook.Properties.DirectInternetAccess is enabled",
-    "actualValue": "Resources.Notebook.Properties.DirectInternetAccess is disabled"
+    "actualValue": "Resources.Notebook.Properties.DirectInternetAccess is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SageMaker Enabling Internet Access",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.Notebook.Properties.DirectInternetAccess",
     "searchValue": "",
     "expectedValue": "Resources.Notebook.Properties.DirectInternetAccess is enabled",
-    "actualValue": "Resources.Notebook.Properties.DirectInternetAccess is disabled"
+    "actualValue": "Resources.Notebook.Properties.DirectInternetAccess is disabled",
+    "issueType": "IncorrectValue"
   }
 ]

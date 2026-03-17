@@ -9,7 +9,8 @@
     "searchKey": "Resources.PublicRoute1.Properties.DestinationCidrBlock",
     "searchValue": "",
     "expectedValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock should be different from the default value",
-    "actualValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock is 0.0.0.0/0"
+    "actualValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock is 0.0.0.0/0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RouterTable with Default Routing",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock",
     "searchValue": "",
     "expectedValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock should be different from the default value",
-    "actualValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock is ::/0"
+    "actualValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock is ::/0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RouterTable with Default Routing",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.PublicRoute3.Properties",
     "searchValue": "",
     "expectedValue": "Resources.PublicRoute3.Properties.NatGatewayId should be defined",
-    "actualValue": "Resources.PublicRoute3.Properties.NatGatewayId is undefined"
+    "actualValue": "Resources.PublicRoute3.Properties.NatGatewayId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RouterTable with Default Routing",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.PublicRoute1.Properties.DestinationCidrBlock",
     "searchValue": "",
     "expectedValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock should be different from the default value",
-    "actualValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock is 0.0.0.0/0"
+    "actualValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock is 0.0.0.0/0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RouterTable with Default Routing",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.PublicRoute3.Properties",
     "searchValue": "",
     "expectedValue": "Resources.PublicRoute3.Properties.NatGatewayId should be defined",
-    "actualValue": "Resources.PublicRoute3.Properties.NatGatewayId is undefined"
+    "actualValue": "Resources.PublicRoute3.Properties.NatGatewayId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RouterTable with Default Routing",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock",
     "searchValue": "",
     "expectedValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock should be different from the default value",
-    "actualValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock is ::/0"
+    "actualValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock is ::/0",
+    "issueType": "IncorrectValue"
   }
 ]

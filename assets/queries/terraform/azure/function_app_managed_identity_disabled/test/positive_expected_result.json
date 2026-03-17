@@ -9,7 +9,8 @@
     "searchKey": "azurerm_function_app[positive1]",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1].identity' should be defined and not null",
-    "actualValue": "'azurerm_function_app[positive1].identity' is undefined or null"
+    "actualValue": "'azurerm_function_app[positive1].identity' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Managed Identity Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_linux_function_app[positive2]",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2].identity' should be defined and not null",
-    "actualValue": "'azurerm_linux_function_app[positive2].identity' is undefined or null"
+    "actualValue": "'azurerm_linux_function_app[positive2].identity' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Managed Identity Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "azurerm_windows_function_app[positive3]",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3].identity' should be defined and not null",
-    "actualValue": "'azurerm_windows_function_app[positive3].identity' is undefined or null"
+    "actualValue": "'azurerm_windows_function_app[positive3].identity' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

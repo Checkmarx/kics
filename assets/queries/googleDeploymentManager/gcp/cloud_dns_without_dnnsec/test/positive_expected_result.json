@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{dns}}.properties",
     "searchValue": "",
     "expectedValue": "'dnssecConfig' should be defined and not null",
-    "actualValue": "'dnssecConfig' is undefined or null"
+    "actualValue": "'dnssecConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cloud DNS Without DNSSEC",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{dns2}}.properties.dnssecConfig",
     "searchValue": "",
     "expectedValue": "'state' should be defined and not null",
-    "actualValue": "'state' is undefined or null"
+    "actualValue": "'state' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cloud DNS Without DNSSEC",
@@ -33,6 +35,7 @@
     "searchKey": "resources.name={{dns3}}.properties.dnssecConfig.state",
     "searchValue": "",
     "expectedValue": "'state' should be set to 'on'",
-    "actualValue": "'state' is not set to 'on'"
+    "actualValue": "'state' is not set to 'on'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.NewVolume",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS EBS",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.NewVolume",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS EBS",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.NewVolume",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS EBS",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.NewVolume",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS EBS",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.NewVolume",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS EBS",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.NewVolume",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

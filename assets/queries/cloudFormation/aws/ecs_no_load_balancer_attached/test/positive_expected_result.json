@@ -9,7 +9,8 @@
     "searchKey": "Resources.ECSService.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.ECSService.Properties.LoadBalancers' should be defined",
-    "actualValue": "'Resources.ECSService.Properties.LoadBalancers' is not defined"
+    "actualValue": "'Resources.ECSService.Properties.LoadBalancers' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECS No Load Balancer Attached",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ECSService2.Properties.LoadBalancers",
     "searchValue": "",
     "expectedValue": "'Resources.ECSService2.Properties.LoadBalancers' should not be empty",
-    "actualValue": "'Resources.ECSService2.Properties.LoadBalancers' is empty"
+    "actualValue": "'Resources.ECSService2.Properties.LoadBalancers' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECS No Load Balancer Attached",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.ECSService.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.ECSService.Properties.LoadBalancers' should be defined",
-    "actualValue": "'Resources.ECSService.Properties.LoadBalancers' is not defined"
+    "actualValue": "'Resources.ECSService.Properties.LoadBalancers' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECS No Load Balancer Attached",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.ECSService2.Properties.LoadBalancers",
     "searchValue": "",
     "expectedValue": "'Resources.ECSService2.Properties.LoadBalancers' should not be empty",
-    "actualValue": "'Resources.ECSService2.Properties.LoadBalancers' is empty"
+    "actualValue": "'Resources.ECSService2.Properties.LoadBalancers' is empty",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{nginx-deployment}}.spec.selector.matchLabels",
     "searchValue": "",
     "expectedValue": "metadata.name=nginx-deployment is targeted by a PodDisruptionBudget",
-    "actualValue": "metadata.name=nginx-deployment is not targeted by a PodDisruptionBudget"
+    "actualValue": "metadata.name=nginx-deployment is not targeted by a PodDisruptionBudget",
+    "issueType": "MissingAttribute"
   }
 ]

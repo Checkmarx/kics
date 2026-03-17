@@ -9,7 +9,8 @@
     "searchKey": "Resources.Bucket2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Bucket2.Properties.WebsiteConfiguration' should not be defined",
-    "actualValue": "'Resources.Bucket2.Properties.WebsiteConfiguration' is defined"
+    "actualValue": "'Resources.Bucket2.Properties.WebsiteConfiguration' is defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Static Website Host Enabled",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.Bucket2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Bucket2.Properties.WebsiteConfiguration' should not be defined",
-    "actualValue": "'Resources.Bucket2.Properties.WebsiteConfiguration' is defined"
+    "actualValue": "'Resources.Bucket2.Properties.WebsiteConfiguration' is defined",
+    "issueType": "IncorrectValue"
   }
 ]

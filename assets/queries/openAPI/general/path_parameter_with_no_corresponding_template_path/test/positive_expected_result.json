@@ -9,7 +9,8 @@
     "searchKey": "paths./yada/foo.get.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
-    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'"
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Parameter With No Corresponding Template Path (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths./.get.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
-    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'"
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Parameter With No Corresponding Template Path (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "paths./people/foo.get.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
-    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'"
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Parameter With No Corresponding Template Path (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "paths./people/foo.get.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Path parameter 'id' should have an template path parameter with the same name and 'in' set to 'path'",
-    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'"
+    "actualValue": "Path parameter 'id' does not have an template path parameter with the same name and 'in' set to 'path'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{my-service}}.spec.type",
     "searchValue": "",
     "expectedValue": "spec.type should not be 'NodePort'",
-    "actualValue": "spec.type is 'NodePort'"
+    "actualValue": "spec.type is 'NodePort'",
+    "issueType": "IncorrectValue"
   }
 ]

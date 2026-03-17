@@ -9,7 +9,8 @@
     "searchKey": "alicloud_ram_account_password_policy[corporate].minimum_password_length",
     "searchValue": "",
     "expectedValue": "'minimum_password_length' should be defined and set to 14 or above",
-    "actualValue": "'minimum_password_length' is lower than 14"
+    "actualValue": "'minimum_password_length' is lower than 14",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Ram Account Password Policy Not Required Minimum Length",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_ram_account_password_policy[corporate]",
     "searchValue": "",
     "expectedValue": "'minimum_password_length' should be defined and set to 14 or above ",
-    "actualValue": "'minimum_password_length' is not defined"
+    "actualValue": "'minimum_password_length' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

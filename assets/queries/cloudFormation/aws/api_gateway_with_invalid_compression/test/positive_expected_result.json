@@ -9,7 +9,8 @@
     "searchKey": "Resources.RestApi3.Properties.MinimumCompressionSize",
     "searchValue": "",
     "expectedValue": "Resources.RestApi3.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
-    "actualValue": "Resources.RestApi3.Properties.MinimumCompressionSize is set to smaller than 0"
+    "actualValue": "Resources.RestApi3.Properties.MinimumCompressionSize is set to smaller than 0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.RestApi4.Properties.MinimumCompressionSize",
     "searchValue": "",
     "expectedValue": "Resources.RestApi4.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
-    "actualValue": "Resources.RestApi4.Properties.MinimumCompressionSize is set to greater than 10485759"
+    "actualValue": "Resources.RestApi4.Properties.MinimumCompressionSize is set to greater than 10485759",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.RestApi5.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RestApi5.Properties.MinimumCompressionSize should be defined",
-    "actualValue": "Resources.RestApi5.Properties.MinimumCompressionSize is not defined"
+    "actualValue": "Resources.RestApi5.Properties.MinimumCompressionSize is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.RestApi6.Properties.MinimumCompressionSize",
     "searchValue": "",
     "expectedValue": "Resources.RestApi6.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
-    "actualValue": "Resources.RestApi6.Properties.MinimumCompressionSize is set to smaller than 0"
+    "actualValue": "Resources.RestApi6.Properties.MinimumCompressionSize is set to smaller than 0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.RestApi7.Properties.MinimumCompressionSize",
     "searchValue": "",
     "expectedValue": "Resources.RestApi7.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
-    "actualValue": "Resources.RestApi7.Properties.MinimumCompressionSize is set to greater than 10485759"
+    "actualValue": "Resources.RestApi7.Properties.MinimumCompressionSize is set to greater than 10485759",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.RestApi8.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RestApi8.Properties.MinimumCompressionSize should be defined",
-    "actualValue": "Resources.RestApi8.Properties.MinimumCompressionSize is not defined"
+    "actualValue": "Resources.RestApi8.Properties.MinimumCompressionSize is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "defaults",
     "searchValue": "",
     "expectedValue": "no_log should be defined and set to 'true'",
-    "actualValue": "no_log is not defined"
+    "actualValue": "no_log is not defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Logging of Sensitive Data In Defaults",
@@ -21,6 +22,7 @@
     "searchKey": "defaults.no_log",
     "searchValue": "",
     "expectedValue": "no_log should be set to 'true'",
-    "actualValue": "no_log is set to 'false'"
+    "actualValue": "no_log is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

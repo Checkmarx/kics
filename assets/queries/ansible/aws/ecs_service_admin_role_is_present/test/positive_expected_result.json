@@ -9,6 +9,7 @@
     "searchKey": "name={{ECS Service}}.{{community.aws.ecs_service}}.role",
     "searchValue": "",
     "expectedValue": "ecs_service.role should not be an admin role",
-    "actualValue": "ecs_service.role is an admin role"
+    "actualValue": "ecs_service.role is an admin role",
+    "issueType": "IncorrectValue"
   }
 ]

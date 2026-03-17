@@ -9,7 +9,8 @@
     "searchKey": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https",
     "searchValue": "",
     "expectedValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https should be set to 'true'",
-    "actualValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https is set to 'false'"
+    "actualValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options",
     "searchValue": "",
     "expectedValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https should be defined and set to 'true'",
-    "actualValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https is not set"
+    "actualValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
@@ -33,6 +35,7 @@
     "searchKey": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}",
     "searchValue": "",
     "expectedValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https should be defined and set to 'true'",
-    "actualValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https is not set"
+    "actualValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https is not set",
+    "issueType": "MissingAttribute"
   }
 ]

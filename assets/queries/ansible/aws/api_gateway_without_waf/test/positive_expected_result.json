@@ -9,6 +9,7 @@
     "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition2}}.{{community.aws.aws_api_gateway}}",
     "searchValue": "",
     "expectedValue": "API Gateway Stage should be associated with a Web Application Firewall",
-    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall"
+    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall",
+    "issueType": "MissingAttribute"
   }
 ]

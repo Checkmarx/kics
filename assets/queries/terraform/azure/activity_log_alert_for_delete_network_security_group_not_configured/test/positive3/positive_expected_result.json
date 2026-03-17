@@ -9,7 +9,8 @@
     "searchKey": "azurerm_monitor_activity_log_alert[positive3_1].criteria",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete network security group' events should be defined",
-    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive3_1]' resource monitors 'delete network security group' events but is missing an 'action.action_group_id' field"
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive3_1]' resource monitors 'delete network security group' events but is missing an 'action.action_group_id' field",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Network Security Group Not Configured",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_monitor_activity_log_alert[positive3_2].criteria",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete network security group' events should be defined",
-    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive3_2]' resource monitors 'delete network security group' events but is missing an 'action.action_group_id' field"
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive3_2]' resource monitors 'delete network security group' events but is missing an 'action.action_group_id' field",
+    "issueType": "MissingAttribute"
   }
 ]

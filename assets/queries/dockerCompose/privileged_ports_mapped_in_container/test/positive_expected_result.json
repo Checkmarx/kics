@@ -9,7 +9,8 @@
     "searchKey": "services.dhcpd.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -21,7 +22,8 @@
     "searchKey": "services.dhcp_client.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -33,7 +35,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -45,7 +48,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -57,7 +61,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -69,7 +74,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -81,7 +87,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -93,7 +100,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -105,7 +113,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -117,7 +126,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -129,7 +139,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -141,7 +152,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privileged Ports Mapped In Container",
@@ -153,6 +165,7 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
-    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024)."
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue"
   }
 ]

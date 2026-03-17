@@ -9,7 +9,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[managed_cluster].log_agent.enabled",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[managed_cluster].log_agent.enabled should be set to 'true'",
-    "actualValue": "tencentcloud_kubernetes_cluster[managed_cluster].log_agent.enabled is not set to 'true'"
+    "actualValue": "tencentcloud_kubernetes_cluster[managed_cluster].log_agent.enabled is not set to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Log Agent Is Not Enabled",
@@ -21,6 +22,7 @@
     "searchKey": "tencentcloud_kubernetes_cluster[managed_cluster]",
     "searchValue": "",
     "expectedValue": "'log_agent' should be defined and not null",
-    "actualValue": "'log_agent' is undefined or null"
+    "actualValue": "'log_agent' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

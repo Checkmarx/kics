@@ -9,7 +9,8 @@
     "searchKey": "alicloud_oss_bucket[oss_bucket_lifecycle_enabled2].lifecycle_rule.enabled",
     "searchValue": "",
     "expectedValue": "'lifecycle_rule' should be set and enabled",
-    "actualValue": "'lifecycle_rule' is set but disabled"
+    "actualValue": "'lifecycle_rule' is set but disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OSS Bucket Lifecycle Rule Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_oss_bucket[oss_bucket_lifecycle_enabled3]",
     "searchValue": "",
     "expectedValue": "'lifecycle_rule' should be set and enabled",
-    "actualValue": "'lifecycle_rule' is not set"
+    "actualValue": "'lifecycle_rule' is not set",
+    "issueType": "MissingAttribute"
   }
 ]

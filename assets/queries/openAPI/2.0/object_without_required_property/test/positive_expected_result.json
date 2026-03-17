@@ -9,7 +9,8 @@
     "searchKey": "info.",
     "searchValue": "",
     "expectedValue": "info has all required fields",
-    "actualValue": "info is missing required fields"
+    "actualValue": "info is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "parameters.{{limitParam}}",
     "searchValue": "",
     "expectedValue": "Parameter object has 'type' defined",
-    "actualValue": "Parameter object does not have 'type' defined"
+    "actualValue": "Parameter object does not have 'type' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "info.",
     "searchValue": "",
     "expectedValue": "info has all required fields",
-    "actualValue": "info is missing required fields"
+    "actualValue": "info is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "parameters.{{limitParam}}",
     "searchValue": "",
     "expectedValue": "Parameter object has 'type' defined",
-    "actualValue": "Parameter object does not have 'type' defined"
+    "actualValue": "Parameter object does not have 'type' defined",
+    "issueType": "IncorrectValue"
   }
 ]

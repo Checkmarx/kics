@@ -9,7 +9,8 @@
     "searchKey": "name={{Create a log profile}}.{{azure_rm_monitorlogprofile}}.categories",
     "searchValue": "",
     "expectedValue": "azure_rm_monitorlogprofile.categories should have all categories, Write, Action and Delete",
-    "actualValue": "azure_rm_monitorlogprofile.categories does not have all categories, Write, Action and Delete"
+    "actualValue": "azure_rm_monitorlogprofile.categories does not have all categories, Write, Action and Delete",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Monitoring Log Profile Without All Activities",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create a log profile2}}.{{azure_rm_monitorlogprofile}}",
     "searchValue": "",
     "expectedValue": "azure_rm_monitorlogprofile.categories should be defined",
-    "actualValue": "azure_rm_monitorlogprofile.categories is undefined"
+    "actualValue": "azure_rm_monitorlogprofile.categories is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

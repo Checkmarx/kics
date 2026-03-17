@@ -9,7 +9,8 @@
     "searchKey": "Resources.ConfigRule",
     "searchValue": "",
     "expectedValue": "There should be a ConfigRule for encrypted volumes.",
-    "actualValue": "There isn't a ConfigRule for encrypted volumes."
+    "actualValue": "There isn't a ConfigRule for encrypted volumes.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Config Rule For Encrypted Volumes Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.ConfigRule",
     "searchValue": "",
     "expectedValue": "There should be a ConfigRule for encrypted volumes.",
-    "actualValue": "There isn't a ConfigRule for encrypted volumes."
+    "actualValue": "There isn't a ConfigRule for encrypted volumes.",
+    "issueType": "MissingAttribute"
   }
 ]

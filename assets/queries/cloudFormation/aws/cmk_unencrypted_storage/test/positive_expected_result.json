@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyDB.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyDB.Properties.StorageEncrypted should be defined",
-    "actualValue": "Resources.MyDB.Properties.StorageEncrypted is undefined"
+    "actualValue": "Resources.MyDB.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CMK Unencrypted Storage",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.RDSCluster1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster1.Properties.StorageEncrypted should be defined",
-    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined"
+    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CMK Unencrypted Storage",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.RDSCluster-2.Properties.StorageEncrypted",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster-2.Properties.StorageEncrypted should be true",
-    "actualValue": "Resources.RDSCluster-2.Properties.StorageEncrypted is false"
+    "actualValue": "Resources.RDSCluster-2.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CMK Unencrypted Storage",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyDB.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyDB.Properties.StorageEncrypted should be defined",
-    "actualValue": "Resources.MyDB.Properties.StorageEncrypted is undefined"
+    "actualValue": "Resources.MyDB.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CMK Unencrypted Storage",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.RDSCluster1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster1.Properties.StorageEncrypted should be defined",
-    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined"
+    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CMK Unencrypted Storage",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.RDSCluster-2.Properties.StorageEncrypted",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster-2.Properties.StorageEncrypted should be true",
-    "actualValue": "Resources.RDSCluster-2.Properties.StorageEncrypted is false"
+    "actualValue": "Resources.RDSCluster-2.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CMK Unencrypted Storage",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.myCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.myCluster.Properties.Encrypted should be defined",
-    "actualValue": "Resources.myCluster.Properties.Encrypted is undefined"
+    "actualValue": "Resources.myCluster.Properties.Encrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CMK Unencrypted Storage",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.myCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.myCluster.Properties.Encrypted should be defined",
-    "actualValue": "Resources.myCluster.Properties.Encrypted is undefined"
+    "actualValue": "Resources.myCluster.Properties.Encrypted is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

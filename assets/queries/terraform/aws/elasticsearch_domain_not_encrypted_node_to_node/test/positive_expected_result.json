@@ -9,7 +9,8 @@
     "searchKey": "aws_elasticsearch_domain[{{positive1}}]",
     "searchValue": "",
     "expectedValue": "The attribute 'node_to_node_encryption' should be set to true",
-    "actualValue": "The attribute 'node_to_node_encryption' is undefined"
+    "actualValue": "The attribute 'node_to_node_encryption' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -21,6 +22,7 @@
     "searchKey": "aws_elasticsearch_domain[{{positive1}}].node_to_node_encryption.enabled",
     "searchValue": "",
     "expectedValue": "The attribute 'node_to_node_encryption' should be set to true",
-    "actualValue": "The attribute 'node_to_node_encryption' is not set to true"
+    "actualValue": "The attribute 'node_to_node_encryption' is not set to true",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "name={{My Batch Job Definition}}.{{community.aws.aws_batch_job_definition}}.privileged",
     "searchValue": "",
     "expectedValue": "name={{My Batch Job Definition}}.{{community.aws.aws_batch_job_definition}}.privileged should be set to 'false' or not set",
-    "actualValue": "name={{My Batch Job Definition}}.{{community.aws.aws_batch_job_definition}}.privileged is 'true'"
+    "actualValue": "name={{My Batch Job Definition}}.{{community.aws.aws_batch_job_definition}}.privileged is 'true'",
+    "issueType": "IncorrectValue"
   }
 ]

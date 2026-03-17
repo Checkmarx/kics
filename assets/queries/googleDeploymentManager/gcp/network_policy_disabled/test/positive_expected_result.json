@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{cluster}}.properties",
     "searchValue": "addonsConfig",
     "expectedValue": "'addonsConfig' should be defined and not null",
-    "actualValue": "'addonsConfig' is undefined or null"
+    "actualValue": "'addonsConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{cluster}}.properties",
     "searchValue": "networkPolicy",
     "expectedValue": "'networkPolicy' should be defined and not null",
-    "actualValue": "'networkPolicy' is undefined or null"
+    "actualValue": "'networkPolicy' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{cluster}}.properties",
     "searchValue": "addonsConfig",
     "expectedValue": "'addonsConfig' should be defined and not null",
-    "actualValue": "'addonsConfig' is undefined or null"
+    "actualValue": "'addonsConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{cluster}}.properties.networkPolicy.enabled",
     "searchValue": "",
     "expectedValue": "'networkPolicy.enabled' should be true",
-    "actualValue": "'networkPolicy.enabled' is false"
+    "actualValue": "'networkPolicy.enabled' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{cluster}}.properties",
     "searchValue": "networkPolicy",
     "expectedValue": "'networkPolicy' should be defined and not null",
-    "actualValue": "'networkPolicy' is undefined or null"
+    "actualValue": "'networkPolicy' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "resources.name={{cluster}}.properties.addonsConfig.networkPolicyConfig.disabled",
     "searchValue": "",
     "expectedValue": "'addonsConfig.networkPolicyConfig.disabled' should be false",
-    "actualValue": "'addonsConfig.networkPolicyConfig.disabled' is true"
+    "actualValue": "'addonsConfig.networkPolicyConfig.disabled' is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{cluster}}.properties.networkPolicy.enabled",
     "searchValue": "",
     "expectedValue": "'networkPolicy.enabled' should be true",
-    "actualValue": "'networkPolicy.enabled' is false"
+    "actualValue": "'networkPolicy.enabled' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Policy Disabled",
@@ -93,6 +100,7 @@
     "searchKey": "resources.name={{cluster}}.properties.addonsConfig.networkPolicyConfig.disabled",
     "searchValue": "",
     "expectedValue": "'addonsConfig.networkPolicyConfig.disabled' should be false",
-    "actualValue": "'addonsConfig.networkPolicyConfig.disabled' is true"
+    "actualValue": "'addonsConfig.networkPolicyConfig.disabled' is true",
+    "issueType": "IncorrectValue"
   }
 ]

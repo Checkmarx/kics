@@ -9,7 +9,8 @@
     "searchKey": "aws_api_gateway_stage[positive1]",
     "searchValue": "",
     "expectedValue": "aws_api_gateway_stage[positive1] has a 'aws_api_gateway_usage_plan' resource associated. ",
-    "actualValue": "aws_api_gateway_stage[positive1] doesn't have a 'aws_api_gateway_usage_plan' resource associated."
+    "actualValue": "aws_api_gateway_stage[positive1] doesn't have a 'aws_api_gateway_usage_plan' resource associated.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
@@ -21,6 +22,7 @@
     "searchKey": "aws_api_gateway_stage[positive2]",
     "searchValue": "",
     "expectedValue": "aws_api_gateway_stage[positive2] has a 'aws_api_gateway_usage_plan' resource associated. ",
-    "actualValue": "aws_api_gateway_stage[positive2] doesn't have a 'aws_api_gateway_usage_plan' resource associated."
+    "actualValue": "aws_api_gateway_stage[positive2] doesn't have a 'aws_api_gateway_usage_plan' resource associated.",
+    "issueType": "IncorrectValue"
   }
 ]

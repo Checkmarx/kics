@@ -9,7 +9,8 @@
     "searchKey": "aws_iam_access_key[positive1]",
     "searchValue": "",
     "expectedValue": "'aws_iam_access_key[positive1].status' should be defined and set to 'Inactive'",
-    "actualValue": "'aws_iam_access_key[positive1].status' is undefined, that defaults to 'Active'"
+    "actualValue": "'aws_iam_access_key[positive1].status' is undefined, that defaults to 'Active'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Root Account Has Active Access Keys",
@@ -21,6 +22,7 @@
     "searchKey": "aws_iam_access_key[positive2].status",
     "searchValue": "",
     "expectedValue": "'aws_iam_access_key[positive2].status' should be defined and set to 'Inactive'",
-    "actualValue": "'aws_iam_access_key[positive2].status' is set to 'Active'"
+    "actualValue": "'aws_iam_access_key[positive2].status' is set to 'Active'",
+    "issueType": "IncorrectValue"
   }
 ]

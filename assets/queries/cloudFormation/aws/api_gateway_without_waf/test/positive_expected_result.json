@@ -9,7 +9,8 @@
     "searchKey": "Resources.Prod.Properties.StageName",
     "searchValue": "",
     "expectedValue": "API Gateway Stage should be associated with a Web Application Firewall",
-    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall"
+    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway without WAF",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.Prod.Properties.StageName",
     "searchValue": "",
     "expectedValue": "API Gateway Stage should be associated with a Web Application Firewall",
-    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall"
+    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall",
+    "issueType": "IncorrectValue"
   }
 ]

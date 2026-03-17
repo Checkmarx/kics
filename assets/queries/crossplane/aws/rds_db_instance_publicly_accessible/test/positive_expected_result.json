@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{sample-cluster3}}.spec.forProvider.publiclyAccessible",
     "searchValue": "",
     "expectedValue": "publiclyAccessible should be set to false",
-    "actualValue": "publiclyAccessible is set to true"
+    "actualValue": "publiclyAccessible is set to true",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{my-rds-instance}}.spec.forProvider.dbSubnetGroupName",
     "searchValue": "",
     "expectedValue": "dbSubnetGroupName' subnets not being part of a VPC that has an Internet gateway attached to it",
-    "actualValue": "dbSubnetGroupName' subnets are part of a VPC that has an Internet gateway attached to it"
+    "actualValue": "dbSubnetGroupName' subnets are part of a VPC that has an Internet gateway attached to it",
+    "issueType": "MissingAttribute"
   }
 ]

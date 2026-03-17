@@ -9,7 +9,8 @@
     "searchKey": "aws_eip[ok_eip]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
-    "actualValue": "EIP is missing domain field set to \"vpc\""
+    "actualValue": "EIP is missing domain field set to \"vpc\"",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AWS EIP not attached to any instance",
@@ -21,7 +22,8 @@
     "searchKey": "aws_eip[web_eip]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
-    "actualValue": "EIP is missing domain field set to \"vpc\""
+    "actualValue": "EIP is missing domain field set to \"vpc\"",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AWS EIP not attached to any instance",
@@ -33,7 +35,8 @@
     "searchKey": "aws_eip[nat_eip]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
-    "actualValue": "EIP is not attached"
+    "actualValue": "EIP is not attached",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AWS EIP not attached to any instance",
@@ -45,7 +48,8 @@
     "searchKey": "aws_eip[transfer_eip]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
-    "actualValue": "EIP is not attached"
+    "actualValue": "EIP is not attached",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AWS EIP not attached to any instance",
@@ -57,7 +61,8 @@
     "searchKey": "aws_eip[one]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
-    "actualValue": "EIP is not attached"
+    "actualValue": "EIP is not attached",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AWS EIP not attached to any instance",
@@ -69,7 +74,8 @@
     "searchKey": "aws_eip[ok_eip]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
-    "actualValue": "Vpc is not set to true"
+    "actualValue": "Vpc is not set to true",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AWS EIP not attached to any instance",
@@ -81,7 +87,8 @@
     "searchKey": "aws_eip[ok_eip]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
-    "actualValue": "Domain is not set to \"vpc\""
+    "actualValue": "Domain is not set to \"vpc\"",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AWS EIP not attached to any instance",
@@ -93,7 +100,8 @@
     "searchKey": "aws_eip[eip_example]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
-    "actualValue": "EIP is not attached"
+    "actualValue": "EIP is not attached",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AWS EIP not attached to any instance",
@@ -105,6 +113,7 @@
     "searchKey": "aws_eip[web_eip]",
     "searchValue": "",
     "expectedValue": "All EIPs should be attached",
-    "actualValue": "EIP is not attached"
+    "actualValue": "EIP is not attached",
+    "issueType": "MissingAttribute"
   }
 ]

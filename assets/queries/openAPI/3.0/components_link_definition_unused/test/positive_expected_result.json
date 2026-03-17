@@ -9,7 +9,8 @@
     "searchKey": "components.links.{{APIRepository}}",
     "searchValue": "",
     "expectedValue": "Link should be used as reference somewhere",
-    "actualValue": "Link is not used as reference"
+    "actualValue": "Link is not used as reference",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Components Link Definition Is Unused",
@@ -21,6 +22,7 @@
     "searchKey": "components.links.{{APIRepository}}",
     "searchValue": "",
     "expectedValue": "Link should be used as reference somewhere",
-    "actualValue": "Link is not used as reference"
+    "actualValue": "Link is not used as reference",
+    "issueType": "IncorrectValue"
   }
 ]

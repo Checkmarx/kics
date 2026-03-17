@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.parameters.desc",
     "searchValue": "",
     "expectedValue": "{\"type\": \"string\"} is a valid property for body parameter",
-    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter"
+    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Body Parameter With Wrong Property",
@@ -21,7 +22,8 @@
     "searchKey": "parameters.limitParam.desc",
     "searchValue": "",
     "expectedValue": "{\"type\": \"string\"} is a valid property for body parameter",
-    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter"
+    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Body Parameter With Wrong Property",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.parameters.desc",
     "searchValue": "",
     "expectedValue": "{\"type\": \"string\"} is a valid property for body parameter",
-    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter"
+    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Body Parameter With Wrong Property",
@@ -45,6 +48,7 @@
     "searchKey": "parameters.limitParam.desc",
     "searchValue": "",
     "expectedValue": "{\"type\": \"string\"} is a valid property for body parameter",
-    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter"
+    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter",
+    "issueType": "IncorrectValue"
   }
 ]

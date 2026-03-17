@@ -9,7 +9,8 @@
     "searchKey": "components.responses.ResponseExample.content.{{applicasdsadtion/json}}",
     "searchValue": "",
     "expectedValue": "components.responses.ResponseExample.content.{{applicasdsadtion/json}} is a known prefix",
-    "actualValue": "components.responses.ResponseExample.content.{{applicasdsadtion/json}} is an unknown prefix"
+    "actualValue": "components.responses.ResponseExample.content.{{applicasdsadtion/json}} is an unknown prefix",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Prefix (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{ddddd/json}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.200.content.{{ddddd/json}} is a known prefix",
-    "actualValue": "paths.{{/}}.get.responses.200.content.{{ddddd/json}} is an unknown prefix"
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{ddddd/json}} is an unknown prefix",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Prefix (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.responses.ResponseExample.content.{{sssssss/json}}",
     "searchValue": "",
     "expectedValue": "components.responses.ResponseExample.content.{{sssssss/json}} is a known prefix",
-    "actualValue": "components.responses.ResponseExample.content.{{sssssss/json}} is an unknown prefix"
+    "actualValue": "components.responses.ResponseExample.content.{{sssssss/json}} is an unknown prefix",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Prefix (v3)",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{applicatisdsdsdon/json}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.200.content.{{applicatisdsdsdon/json}} is a known prefix",
-    "actualValue": "paths.{{/}}.get.responses.200.content.{{applicatisdsdsdon/json}} is an unknown prefix"
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{applicatisdsdsdon/json}} is an unknown prefix",
+    "issueType": "IncorrectValue"
   }
 ]

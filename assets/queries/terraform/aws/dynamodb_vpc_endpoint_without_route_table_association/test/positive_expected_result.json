@@ -9,6 +9,7 @@
     "searchKey": "aws_vpc_endpoint[dynamodb-vpce-gw].vpc_id",
     "searchValue": "",
     "expectedValue": "Dynamodb VPC Endpoint should be associated with Route Table Association",
-    "actualValue": "Dynamodb VPC Endpoint is not associated with Route Table Association"
+    "actualValue": "Dynamodb VPC Endpoint is not associated with Route Table Association",
+    "issueType": "MissingAttribute"
   }
 ]

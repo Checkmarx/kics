@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.{{GeneralError}}.discriminator.propertyName",
     "searchValue": "",
     "expectedValue": "components.schemas.{{GeneralError}}.discriminator.propertyName should be set to string",
-    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not set to string"
+    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not set to string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Discriminator Property Not String (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.discriminator.propertyName",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) should be set to string",
-    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not set to string"
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not set to string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Discriminator Property Not String (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.schemas.{{GeneralError}}.discriminator.propertyName",
     "searchValue": "",
     "expectedValue": "components.schemas.{{GeneralError}}.discriminator.propertyName should be set to string",
-    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not set to string"
+    "actualValue": "components.schemas.{{GeneralError}}.discriminator.propertyName is not set to string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Discriminator Property Not String (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.discriminator.propertyName",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) should be set to string",
-    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not set to string"
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{application/json}}.{{discriminator.propertyName}}.%!s(MISSING) is not set to string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Discriminator Property Not String (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "definitions.{{GeneralError}}.discriminator",
     "searchValue": "",
     "expectedValue": "definitions.{{GeneralError}}.discriminator should be set to string",
-    "actualValue": "definitions.{{GeneralError}}.discriminator is not set to string"
+    "actualValue": "definitions.{{GeneralError}}.discriminator is not set to string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Discriminator Property Not String (v2)",
@@ -69,7 +74,8 @@
     "searchKey": "definitions.{{GeneralError}}.discriminator",
     "searchValue": "",
     "expectedValue": "definitions.{{GeneralError}}.discriminator should be set to string",
-    "actualValue": "definitions.{{GeneralError}}.discriminator is not set to string"
+    "actualValue": "definitions.{{GeneralError}}.discriminator is not set to string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Discriminator Property Not String (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.discriminator",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) should be set to string",
-    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not set to string"
+    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not set to string",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Discriminator Property Not String (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.discriminator",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) should be set to string",
-    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not set to string"
+    "actualValue": "paths.{{/}}.get.responses.200.{{discriminator}}.%!s(MISSING) is not set to string",
+    "issueType": "IncorrectValue"
   }
 ]

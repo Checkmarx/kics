@@ -9,6 +9,7 @@
     "searchKey": "metadata.name=web.spec.serviceName",
     "searchValue": "",
     "expectedValue": "metadata.name=web.spec.serviceName should refer to a Headless Service",
-    "actualValue": "metadata.name=web.spec.serviceName doesn't refers to a Headless Service"
+    "actualValue": "metadata.name=web.spec.serviceName doesn't refers to a Headless Service",
+    "issueType": "IncorrectValue"
   }
 ]

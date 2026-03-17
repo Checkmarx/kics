@@ -9,7 +9,8 @@
     "searchKey": "aws_db_security_group[positive1].ingress.cidr",
     "searchValue": "",
     "expectedValue": "'aws_db_security_group[positive1].ingress.cidr' should not be '0.0.0.0/0' or '::/0'",
-    "actualValue": "'aws_db_security_group[positive1].ingress.cidr' is '0.0.0.0/0'"
+    "actualValue": "'aws_db_security_group[positive1].ingress.cidr' is '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Has Public Interface",
@@ -21,6 +22,7 @@
     "searchKey": "aws_db_security_group[positive1].ingress.cidr",
     "searchValue": "",
     "expectedValue": "'aws_db_security_group[positive1].ingress[1].cidr' should not be '0.0.0.0/0' or '::/0'",
-    "actualValue": "'aws_db_security_group[positive1].ingress[1].cidr' is '0.0.0.0/0'"
+    "actualValue": "'aws_db_security_group[positive1].ingress[1].cidr' is '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   }
 ]

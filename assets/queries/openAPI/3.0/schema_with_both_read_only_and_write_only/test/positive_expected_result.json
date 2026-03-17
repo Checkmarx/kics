@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.{{GeneralError}}",
     "searchValue": "",
     "expectedValue": "components.schemas.{{GeneralError}} should not have both 'writeOnly' and 'readOnly' set to true",
-    "actualValue": "components.schemas.{{GeneralError}} has both 'writeOnly' and 'readOnly' set to true"
+    "actualValue": "components.schemas.{{GeneralError}} has both 'writeOnly' and 'readOnly' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema With Both ReadOnly And WriteOnly",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should not have both 'writeOnly' and 'readOnly' set to true",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema has both 'writeOnly' and 'readOnly' set to true"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema has both 'writeOnly' and 'readOnly' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema With Both ReadOnly And WriteOnly",
@@ -33,7 +35,8 @@
     "searchKey": "components.schemas.{{GeneralError}}",
     "searchValue": "",
     "expectedValue": "components.schemas.{{GeneralError}} should not have both 'writeOnly' and 'readOnly' set to true",
-    "actualValue": "components.schemas.{{GeneralError}} has both 'writeOnly' and 'readOnly' set to true"
+    "actualValue": "components.schemas.{{GeneralError}} has both 'writeOnly' and 'readOnly' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema With Both ReadOnly And WriteOnly",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should not have both 'writeOnly' and 'readOnly' set to true",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema has both 'writeOnly' and 'readOnly' set to true"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema has both 'writeOnly' and 'readOnly' set to true",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_pod[with_pod_affinity].spec.service_account_name",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[with_pod_affinity].spec.service_account_name should not be shared with other workloads",
-    "actualValue": "kubernetes_pod[with_pod_affinity].spec.service_account_name is shared with other workloads"
+    "actualValue": "kubernetes_pod[with_pod_affinity].spec.service_account_name is shared with other workloads",
+    "issueType": "IncorrectValue"
   }
 ]

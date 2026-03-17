@@ -9,6 +9,7 @@
     "searchKey": "name={{create a node pool}}.{{google.cloud.gcp_container_node_pool}}.config.image_type",
     "searchValue": "",
     "expectedValue": "gcp_container_node_pool.config.image_type should start with 'COS'",
-    "actualValue": "gcp_container_node_pool.config.image_type does not start with 'COS'"
+    "actualValue": "gcp_container_node_pool.config.image_type does not start with 'COS'",
+    "issueType": "IncorrectValue"
   }
 ]

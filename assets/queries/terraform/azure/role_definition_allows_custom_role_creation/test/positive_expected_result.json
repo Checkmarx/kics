@@ -9,7 +9,8 @@
     "searchKey": "azurerm_role_definition[example2].permissions.actions",
     "searchValue": "",
     "expectedValue": "azurerm_role_definition[example2].permissions.actions should not allow custom role creation",
-    "actualValue": "azurerm_role_definition[example2].permissions.actions allows custom role creation"
+    "actualValue": "azurerm_role_definition[example2].permissions.actions allows custom role creation",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Role Definition Allows Custom Role Creation",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_role_definition[example].permissions.actions",
     "searchValue": "",
     "expectedValue": "azurerm_role_definition[example].permissions.actions should not allow custom role creation",
-    "actualValue": "azurerm_role_definition[example].permissions.actions allows custom role creation"
+    "actualValue": "azurerm_role_definition[example].permissions.actions allows custom role creation",
+    "issueType": "IncorrectValue"
   }
 ]

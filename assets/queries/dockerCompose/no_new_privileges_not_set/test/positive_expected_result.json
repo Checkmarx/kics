@@ -9,7 +9,8 @@
     "searchKey": "services.service-service-service.security_opt",
     "searchValue": "",
     "expectedValue": "no-new-privileges should be set in security_opt.",
-    "actualValue": "no-new-privileges is not set in security_opt"
+    "actualValue": "no-new-privileges is not set in security_opt",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No New Privileges Not Set",
@@ -21,6 +22,7 @@
     "searchKey": "services.service-service-service.security_opt",
     "searchValue": "",
     "expectedValue": "no-new-privileges should be set in security_opt.",
-    "actualValue": "no-new-privileges is not set in security_opt"
+    "actualValue": "no-new-privileges is not set in security_opt",
+    "issueType": "MissingAttribute"
   }
 ]

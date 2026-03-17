@@ -9,7 +9,8 @@
     "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId should be defined",
-    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId is undefined"
+    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Without WAF",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId should be defined",
-    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId is undefined"
+    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Without WAF",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId",
     "searchValue": "",
     "expectedValue": "Resources..Properties.DistributionConfig.WebACLId should be properly defined",
-    "actualValue": "Resources..Properties.DistributionConfig.WebACLId contains invalid value"
+    "actualValue": "Resources..Properties.DistributionConfig.WebACLId contains invalid value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Without WAF",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig.WebACLId",
     "searchValue": "",
     "expectedValue": "Resources..Properties.DistributionConfig.WebACLId should be properly defined",
-    "actualValue": "Resources..Properties.DistributionConfig.WebACLId contains invalid value"
+    "actualValue": "Resources..Properties.DistributionConfig.WebACLId contains invalid value",
+    "issueType": "IncorrectValue"
   }
 ]

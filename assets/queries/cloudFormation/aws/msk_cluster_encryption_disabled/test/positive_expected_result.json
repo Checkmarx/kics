@@ -9,7 +9,8 @@
     "searchKey": "Resources.TestCluster5.Properties",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster5.Properties.EncryptionInfo should be defined",
-    "actualValue": "Resources.TestCluster5.Properties.EncryptionInfo is undefined"
+    "actualValue": "Resources.TestCluster5.Properties.EncryptionInfo is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.TestCluster6.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster6.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is 'TLS'",
-    "actualValue": "Resources.TestCluster6.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is not 'TLS'"
+    "actualValue": "Resources.TestCluster6.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is not 'TLS'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.TestCluster7.Properties.EncryptionInfo.EncryptionInTransit.InCluster",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster7.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'true'",
-    "actualValue": "Resources.TestCluster7.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'false'"
+    "actualValue": "Resources.TestCluster7.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.TestCluster8.Properties",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster8.Properties.EncryptionInfo should be defined",
-    "actualValue": "Resources.TestCluster8.Properties.EncryptionInfo is undefined"
+    "actualValue": "Resources.TestCluster8.Properties.EncryptionInfo is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.TestCluster9.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster9.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is 'TLS'",
-    "actualValue": "Resources.TestCluster9.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is not 'TLS'"
+    "actualValue": "Resources.TestCluster9.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker is not 'TLS'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.TestCluster10.Properties.EncryptionInfo.EncryptionInTransit.InCluster",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster10.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'true'",
-    "actualValue": "Resources.TestCluster10.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'false'"
+    "actualValue": "Resources.TestCluster10.Properties.EncryptionInfo.EncryptionInTransit.InCluster is 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.myDomainName.Properties.SecurityPolicy",
     "searchValue": "",
     "expectedValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2",
-    "actualValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2"
+    "actualValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Security Policy",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myDomainName1.Properties.SecurityPolicy",
     "searchValue": "",
     "expectedValue": "Resources.myDomainName1.Properties.SecurityPolicy should not be defined",
-    "actualValue": "Resources.myDomainName1.Properties.SecurityPolicy is defined"
+    "actualValue": "Resources.myDomainName1.Properties.SecurityPolicy is defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Without Security Policy",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myDomainName.Properties.SecurityPolicy",
     "searchValue": "",
     "expectedValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2",
-    "actualValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2"
+    "actualValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Security Policy",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.myDomainName1.Properties.SecurityPolicy",
     "searchValue": "",
     "expectedValue": "Resources.myDomainName1.Properties.SecurityPolicy should not be defined",
-    "actualValue": "Resources.myDomainName1.Properties.SecurityPolicy is defined"
+    "actualValue": "Resources.myDomainName1.Properties.SecurityPolicy is defined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.myStackWithParams.Properties",
     "searchValue": "",
     "expectedValue": "Resources.myStackWithParams.Properties.NotificationARNs should be set",
-    "actualValue": "Resources.myStackWithParams.Properties.NotificationARNs is undefined"
+    "actualValue": "Resources.myStackWithParams.Properties.NotificationARNs is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stack Notifications Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myStackWithParams.Properties",
     "searchValue": "",
     "expectedValue": "Resources.myStackWithParams.Properties.NotificationARNs should be set",
-    "actualValue": "Resources.myStackWithParams.Properties.NotificationARNs is undefined"
+    "actualValue": "Resources.myStackWithParams.Properties.NotificationARNs is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

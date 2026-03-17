@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get 'produces' should be defined",
-    "actualValue": "paths.{{/}}.get 'produces' is missing"
+    "actualValue": "paths.{{/}}.get 'produces' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Operation Object Without 'produces'",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get 'produces' should be defined",
-    "actualValue": "paths.{{/}}.get 'produces' is missing"
+    "actualValue": "paths.{{/}}.get 'produces' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

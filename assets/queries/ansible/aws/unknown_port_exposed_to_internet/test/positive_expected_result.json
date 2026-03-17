@@ -9,7 +9,8 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[0] port_range should not contain unknown ports and should not be exposed to the entire Internet",
-    "actualValue": "ec2_group.rules[0] port_range contains unknown ports and are exposed to the entire Internet"
+    "actualValue": "ec2_group.rules[0] port_range contains unknown ports and are exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -21,6 +22,7 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[1] port_range should not contain unknown ports and should not be exposed to the entire Internet",
-    "actualValue": "ec2_group.rules[1] port_range contains unknown ports and are exposed to the entire Internet"
+    "actualValue": "ec2_group.rules[1] port_range contains unknown ports and are exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   }
 ]

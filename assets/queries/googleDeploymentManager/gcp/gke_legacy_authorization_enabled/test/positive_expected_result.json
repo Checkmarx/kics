@@ -9,6 +9,7 @@
     "searchKey": "resources.name={{cluster}}.properties.legacyAbac.enabled",
     "searchValue": "",
     "expectedValue": "'legacyAbac.enabled' should be false",
-    "actualValue": "'legacyAbac.enabled' is true"
+    "actualValue": "'legacyAbac.enabled' is true",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "google_sql_database_instance[positive1].settings",
     "searchValue": "",
     "expectedValue": "'settings.ip_configuration' should be defined and not null",
-    "actualValue": "'settings.ip_configuration' is undefined or null"
+    "actualValue": "'settings.ip_configuration' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "google_sql_database_instance[positive2].settings.ip_configuration",
     "searchValue": "",
     "expectedValue": "'settings.ip_configuration.require_ssl' should be defined and not null",
-    "actualValue": "'settings.ip_configuration.require_ssl' is undefined or null"
+    "actualValue": "'settings.ip_configuration.require_ssl' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "google_sql_database_instance[positive3].settings.ip_configuration.require_ssl",
     "searchValue": "",
     "expectedValue": "'settings.ip_configuration.require_ssl' should be true",
-    "actualValue": "'settings.ip_configuration.require_ssl' is false"
+    "actualValue": "'settings.ip_configuration.require_ssl' is false",
+    "issueType": "IncorrectValue"
   }
 ]

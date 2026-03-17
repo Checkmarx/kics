@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.SecurityGroups",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.SecurityGroups' should not be using default security group",
-    "actualValue": "'Resources.MyEC2Instance.Properties.SecurityGroups' is using default security group"
+    "actualValue": "'Resources.MyEC2Instance.Properties.SecurityGroups' is using default security group",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Using Default Security Group",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.MyEC2Instance.Properties.SecurityGroups",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.SecurityGroups' should not be using default security group",
-    "actualValue": "'Resources.MyEC2Instance.Properties.SecurityGroups' is using default security group"
+    "actualValue": "'Resources.MyEC2Instance.Properties.SecurityGroups' is using default security group",
+    "issueType": "IncorrectValue"
   }
 ]

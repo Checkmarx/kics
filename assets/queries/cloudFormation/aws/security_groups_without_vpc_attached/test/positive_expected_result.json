@@ -9,7 +9,8 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref should be defined",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref is undefined"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Groups Without VPC Attached",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref should be defined",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref is undefined"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

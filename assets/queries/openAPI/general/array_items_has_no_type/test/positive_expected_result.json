@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.MyIntArray.items",
     "searchValue": "",
     "expectedValue": "components.schemas.MyIntArray.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "components.schemas.MyIntArray.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+    "actualValue": "components.schemas.MyIntArray.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "components.schemas.MyIntArray.items",
     "searchValue": "",
     "expectedValue": "components.schemas.MyIntArray.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "components.schemas.MyIntArray.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+    "actualValue": "components.schemas.MyIntArray.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.items",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.parameters.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.items",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.parameters.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
-    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined"
+    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

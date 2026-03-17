@@ -9,7 +9,8 @@
     "searchKey": "parameters.{{limitParam}}",
     "searchValue": "",
     "expectedValue": "parameter definition 'limitParam' is used",
-    "actualValue": "parameter definition 'limitParam' is not being used"
+    "actualValue": "parameter definition 'limitParam' is not being used",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Global Parameter Definition Not Being Used",
@@ -21,6 +22,7 @@
     "searchKey": "parameters.{{limitParam}}",
     "searchValue": "",
     "expectedValue": "parameter definition 'limitParam' is used",
-    "actualValue": "parameter definition 'limitParam' is not being used"
+    "actualValue": "parameter definition 'limitParam' is not being used",
+    "issueType": "MissingAttribute"
   }
 ]

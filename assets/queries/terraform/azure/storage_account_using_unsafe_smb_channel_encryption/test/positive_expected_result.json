@@ -9,7 +9,8 @@
     "searchKey": "azurerm_storage_account[positive1]",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive1].share_properties.smb.channel_encryption_type' should be defined and exclusively include 'AES-256-GCM'",
-    "actualValue": "'azurerm_storage_account[positive1].share_properties' is undefined or null"
+    "actualValue": "'azurerm_storage_account[positive1].share_properties' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_storage_account[positive2].share_properties",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive2].share_properties.smb.channel_encryption_type' should be defined and exclusively include 'AES-256-GCM'",
-    "actualValue": "'azurerm_storage_account[positive2].share_properties.smb' is undefined or null"
+    "actualValue": "'azurerm_storage_account[positive2].share_properties.smb' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_storage_account[positive3].share_properties.smb",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive3].share_properties.smb.channel_encryption_type' should be defined and exclusively include 'AES-256-GCM'",
-    "actualValue": "'azurerm_storage_account[positive3].share_properties.smb.channel_encryption_type' is undefined or null"
+    "actualValue": "'azurerm_storage_account[positive3].share_properties.smb.channel_encryption_type' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_storage_account[positive4].share_properties.smb.channel_encryption_type",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive4].share_properties.smb.channel_encryption_type' should be defined and exclusively include 'AES-256-GCM'",
-    "actualValue": "'azurerm_storage_account[positive4].share_properties.smb.channel_encryption_type' is empty or null"
+    "actualValue": "'azurerm_storage_account[positive4].share_properties.smb.channel_encryption_type' is empty or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_storage_account[positive5].share_properties.smb.channel_encryption_type",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive5].share_properties.smb.channel_encryption_type' should be defined and exclusively include 'AES-256-GCM'",
-    "actualValue": "'azurerm_storage_account[positive5].share_properties.smb.channel_encryption_type' does not include 'AES-256-GCM' and instead includes 2 weaker encryption standard(s)"
+    "actualValue": "'azurerm_storage_account[positive5].share_properties.smb.channel_encryption_type' does not include 'AES-256-GCM' and instead includes 2 weaker encryption standard(s)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Using Unsafe SMB Channel Encryption",
@@ -69,6 +74,7 @@
     "searchKey": "azurerm_storage_account[positive6].share_properties.smb.channel_encryption_type",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive6].share_properties.smb.channel_encryption_type' should be defined and exclusively include 'AES-256-GCM'",
-    "actualValue": "'azurerm_storage_account[positive6].share_properties.smb.channel_encryption_type' includes 'AES-256-GCM' but also includes 1 weaker encryption standard(s)"
+    "actualValue": "'azurerm_storage_account[positive6].share_properties.smb.channel_encryption_type' includes 'AES-256-GCM' but also includes 1 weaker encryption standard(s)",
+    "issueType": "MissingAttribute"
   }
 ]

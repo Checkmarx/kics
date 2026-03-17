@@ -9,7 +9,8 @@
     "searchKey": "google_project_iam_audit_config[positive1].service",
     "searchValue": "",
     "expectedValue": "'service' must be 'allServices'",
-    "actualValue": "'service' is 'some_specific_service'"
+    "actualValue": "'service' is 'some_specific_service'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Audit Not Properly Configured",
@@ -21,7 +22,8 @@
     "searchKey": "google_project_iam_audit_config[positive1].audit_log_config.exempted_members",
     "searchValue": "",
     "expectedValue": "'exempted_members' should be empty",
-    "actualValue": "'exempted_members' is not empty"
+    "actualValue": "'exempted_members' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Audit Not Properly Configured",
@@ -33,7 +35,8 @@
     "searchKey": "google_project_iam_audit_config[positive2].audit_log_config.log_type",
     "searchValue": "",
     "expectedValue": "'log_type' must be one of 'DATA_READ', 'DATA_WRITE', or 'ADMIN_READ'",
-    "actualValue": "'log_type' is INVALID_TYPE"
+    "actualValue": "'log_type' is INVALID_TYPE",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Audit Not Properly Configured",
@@ -45,6 +48,7 @@
     "searchKey": "google_project_iam_audit_config[positive2].audit_log_config.exempted_members",
     "searchValue": "",
     "expectedValue": "'exempted_members' should be empty",
-    "actualValue": "'exempted_members' is not empty"
+    "actualValue": "'exempted_members' is not empty",
+    "issueType": "IncorrectValue"
   }
 ]

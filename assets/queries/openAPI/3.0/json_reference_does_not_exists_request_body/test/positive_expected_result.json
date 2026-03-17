@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.requestBody.$ref",
     "searchValue": "",
     "expectedValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody should be declared on components.requestBodies",
-    "actualValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody is not declared on components.requestBodies"
+    "actualValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody is not declared on components.requestBodies",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Request Body JSON Reference Does Not Exist",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.requestBody.$ref",
     "searchValue": "",
     "expectedValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody should be declared on components.requestBodies",
-    "actualValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody is not declared on components.requestBodies"
+    "actualValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody is not declared on components.requestBodies",
+    "issueType": "MissingAttribute"
   }
 ]

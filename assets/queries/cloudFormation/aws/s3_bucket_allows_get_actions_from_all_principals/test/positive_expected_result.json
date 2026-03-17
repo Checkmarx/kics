@@ -9,7 +9,8 @@
     "searchKey": "Resources.SampleBucketPolicy3.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement should not allow a 'Get' action from all principals",
-    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows a 'Get' action from all principals"
+    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows a 'Get' action from all principals",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.SampleBucketPolicy4.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement should not allow a 'Get' action from all principals",
-    "actualValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement allows a 'Get' action from all principals"
+    "actualValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement allows a 'Get' action from all principals",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.SampleBucketPolicy5.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement should not allow a 'Get' action from all principals",
-    "actualValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement allows a 'Get' action from all principals"
+    "actualValue": "Resources.SampleBucketPolicy5.Properties.PolicyDocument.Statement allows a 'Get' action from all principals",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.SampleBucketPolicy6.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement should not allow a 'Get' action from all principals",
-    "actualValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement allows a 'Get' action from all principals"
+    "actualValue": "Resources.SampleBucketPolicy6.Properties.PolicyDocument.Statement allows a 'Get' action from all principals",
+    "issueType": "IncorrectValue"
   }
 ]

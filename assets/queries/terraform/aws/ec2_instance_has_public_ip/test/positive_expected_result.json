@@ -9,7 +9,8 @@
     "searchKey": "aws_instance.web2",
     "searchValue": "",
     "expectedValue": "'associate_public_ip_address' should be defined and not null",
-    "actualValue": "'associate_public_ip_address' is undefined or null"
+    "actualValue": "'associate_public_ip_address' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
@@ -21,7 +22,8 @@
     "searchKey": "aws_instance.web3.associate_public_ip_address",
     "searchValue": "",
     "expectedValue": "'associate_public_ip_address' should be set to false",
-    "actualValue": "'associate_public_ip_address' is true"
+    "actualValue": "'associate_public_ip_address' is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
@@ -33,7 +35,8 @@
     "searchKey": "module[ec2_instance]",
     "searchValue": "",
     "expectedValue": "'associate_public_ip_address' should be defined and not null",
-    "actualValue": "'associate_public_ip_address' is undefined or null"
+    "actualValue": "'associate_public_ip_address' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
@@ -45,6 +48,7 @@
     "searchKey": "module[ec2_instance].associate_public_ip_address",
     "searchValue": "",
     "expectedValue": "'associate_public_ip_address' should be set to false",
-    "actualValue": "'associate_public_ip_address' is true"
+    "actualValue": "'associate_public_ip_address' is true",
+    "issueType": "IncorrectValue"
   }
 ]

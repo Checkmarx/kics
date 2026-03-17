@@ -9,6 +9,7 @@
     "searchKey": "nifcloud_dns_record[positive]",
     "searchValue": "",
     "expectedValue": "Verified records should be removed from 'nifcloud_dns_record[positive]'.",
-    "actualValue": "'nifcloud_dns_record[positive]' has risk of DNS records being used by others."
+    "actualValue": "'nifcloud_dns_record[positive]' has risk of DNS records being used by others.",
+    "issueType": "IncorrectValue"
   }
 ]

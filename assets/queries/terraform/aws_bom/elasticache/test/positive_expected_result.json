@@ -9,7 +9,8 @@
     "searchKey": "aws_elasticache_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Elasticache",
@@ -21,7 +22,8 @@
     "searchKey": "aws_elasticache_cluster[positive2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Elasticache",
@@ -33,7 +35,8 @@
     "searchKey": "aws_elasticache_cluster[positive3]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Elasticache",
@@ -45,7 +48,8 @@
     "searchKey": "aws_elasticache_cluster[positive4]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Elasticache",
@@ -57,7 +61,8 @@
     "searchKey": "aws_elasticache_cluster[positive5]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Elasticache",
@@ -69,6 +74,7 @@
     "searchKey": "aws_elasticache_cluster[positive6]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

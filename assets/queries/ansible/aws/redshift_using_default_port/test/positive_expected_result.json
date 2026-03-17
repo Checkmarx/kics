@@ -9,6 +9,7 @@
     "searchKey": "name={{Redshift}}.{{community.aws.redshift}}.port",
     "searchValue": "",
     "expectedValue": "redshift.port should not be set to 5439",
-    "actualValue": "redshift.port is set to 5439"
+    "actualValue": "redshift.port is set to 5439",
+    "issueType": "IncorrectValue"
   }
 ]

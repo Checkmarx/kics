@@ -9,6 +9,7 @@
     "searchKey": "aws_iam_user[cosmic]",
     "searchValue": "",
     "expectedValue": "user cosmic should not be associated with a policy that has Action set to 'iam:PutRolePolicy' and Resource set to '*'",
-    "actualValue": "user cosmic is associated with a policy that has Action set to 'iam:PutRolePolicy' and Resource set to '*'"
+    "actualValue": "user cosmic is associated with a policy that has Action set to 'iam:PutRolePolicy' and Resource set to '*'",
+    "issueType": "IncorrectValue"
   }
 ]

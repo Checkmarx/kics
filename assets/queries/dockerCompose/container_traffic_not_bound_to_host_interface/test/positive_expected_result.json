@@ -9,7 +9,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute bound to a specific host interface.",
-    "actualValue": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface"
+    "actualValue": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Traffic Not Bound To Host Interface",
@@ -21,7 +22,8 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute bound to a specific host interface.",
-    "actualValue": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface"
+    "actualValue": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Traffic Not Bound To Host Interface",
@@ -33,6 +35,7 @@
     "searchKey": "services.webapp.ports",
     "searchValue": "",
     "expectedValue": "Docker compose file to have 'ports' attribute bound to a specific host interface.",
-    "actualValue": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface"
+    "actualValue": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface",
+    "issueType": "IncorrectValue"
   }
 ]

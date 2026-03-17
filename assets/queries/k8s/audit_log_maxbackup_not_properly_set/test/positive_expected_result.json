@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxbackup flag should be set to 10 or more files",
-    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files"
+    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Audit Log Maxbackup Not Properly Set",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxbackup flag should be defined and set to 10 or more files",
-    "actualValue": "--audit-log-maxbackup flag is not defined"
+    "actualValue": "--audit-log-maxbackup flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Audit Log Maxbackup Not Properly Set",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{dummy}}.spec.template.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxbackup flag should be set to 10 or more files",
-    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files"
+    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Audit Log Maxbackup Not Properly Set",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxbackup flag should be set to 10 or more files",
-    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files"
+    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Audit Log Maxbackup Not Properly Set",
@@ -57,7 +61,8 @@
     "searchKey": "metadata.name={{dummy-rev}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxbackup flag should be set to 10 or more files",
-    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files"
+    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Audit Log Maxbackup Not Properly Set",
@@ -69,6 +74,7 @@
     "searchKey": "metadata.name={{dummy-cs}}.spec.template.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxbackup flag should be set to 10 or more files",
-    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files"
+    "actualValue": "--audit-log-maxbackup flag is set to less than 10 files",
+    "issueType": "IncorrectValue"
   }
 ]

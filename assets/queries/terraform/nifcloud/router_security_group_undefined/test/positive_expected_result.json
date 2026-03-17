@@ -9,6 +9,7 @@
     "searchKey": "nifcloud_router[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_router[positive]' should include a security_group for security purposes",
-    "actualValue": "'nifcloud_router[positive]' does not have a security_group"
+    "actualValue": "'nifcloud_router[positive]' does not have a security_group",
+    "issueType": "MissingAttribute"
   }
 ]

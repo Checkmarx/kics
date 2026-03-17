@@ -9,7 +9,8 @@
     "searchKey": "Resources.FileSystemResource",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS EFS",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.FileSystemResource",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS EFS",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.FileSystemResource",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS EFS",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.FileSystemResource",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

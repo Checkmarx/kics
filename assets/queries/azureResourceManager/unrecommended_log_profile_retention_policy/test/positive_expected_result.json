@@ -9,7 +9,8 @@
     "searchKey": "resources.name=string.properties.retentionPolicy.days",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=string.properties.retentionPolicy.days",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=string.properties.retentionPolicy.enabled",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'enabled' property value set to true",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name=string.properties.retentionPolicy.days",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=string.properties.retentionPolicy.enabled",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'enabled' property value set to true",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -69,7 +74,8 @@
     "searchKey": "resources.name=string.properties.retentionPolicy.days",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=string.properties.retentionPolicy.days",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name=string.properties.retentionPolicy.days",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name=string.properties.retentionPolicy.enabled",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'enabled' property value set to true",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -117,7 +126,8 @@
     "searchKey": "resources.name=string.properties.retentionPolicy.days",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -129,7 +139,8 @@
     "searchKey": "properties.template.resources.name=string.properties.retentionPolicy.enabled",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'enabled' property value set to true",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'enabled' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrecommended Log Profile Retention Policy",
@@ -141,6 +152,7 @@
     "searchKey": "properties.template.resources.name=string.properties.retentionPolicy.days",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have 'days' property value set to 0 or higher than 365",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' doesn't have 'days' set to 0 or higher than 365",
+    "issueType": "IncorrectValue"
   }
 ]

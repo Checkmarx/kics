@@ -9,7 +9,8 @@
     "searchKey": "google_compute_project_metadata[positive1].metadata.enable-oslogin",
     "searchValue": "",
     "expectedValue": "google_compute_project_metadata[positive1].metadata['enable-oslogin'] should be true",
-    "actualValue": "google_compute_project_metadata[positive1].metadata['enable-oslogin'] is false"
+    "actualValue": "google_compute_project_metadata[positive1].metadata['enable-oslogin'] is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OSLogin Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "google_compute_project_metadata[positive2].metadata",
     "searchValue": "",
     "expectedValue": "google_compute_project_metadata[positive2].metadata['enable-oslogin'] should be true",
-    "actualValue": "google_compute_project_metadata[positive2].metadata['enable-oslogin'] is undefined"
+    "actualValue": "google_compute_project_metadata[positive2].metadata['enable-oslogin'] is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

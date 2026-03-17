@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/item}}.trace.responses",
     "searchValue": "",
     "expectedValue": "Trace should have the '200' successful code set",
-    "actualValue": "Trace does not have the '200' successful code set"
+    "actualValue": "Trace does not have the '200' successful code set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Trace Operation",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/item}}.trace.responses",
     "searchValue": "",
     "expectedValue": "Trace should have the '200' successful code set",
-    "actualValue": "Trace does not have the '200' successful code set"
+    "actualValue": "Trace does not have the '200' successful code set",
+    "issueType": "MissingAttribute"
   }
 ]

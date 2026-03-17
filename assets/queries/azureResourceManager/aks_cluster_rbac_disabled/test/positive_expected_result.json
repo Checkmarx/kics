@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{aksCluster1}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property defined",
-    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined"
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{aksCluster1}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property defined",
-    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined"
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{aksCluster1}}.properties.enableRBAC",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property value set to true",
-    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)"
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{aksCluster1}}.properties.enableRBAC",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property value set to true",
-    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)"
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{aksCluster1}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property defined",
-    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined"
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name={{aksCluster1}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property defined",
-    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined"
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{aksCluster1}}.properties.enableRBAC",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property value set to true",
-    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)"
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name={{aksCluster1}}.properties.enableRBAC",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' property value set to true",
-    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)"
+    "actualValue": "resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true%!(EXTRA string=property value)",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
     "searchValue": "Deployment--peer-key-file",
     "expectedValue": "--peer-key-file flag should be defined",
-    "actualValue": "--peer-key-file flag is not defined"
+    "actualValue": "--peer-key-file flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Etcd Peer TLS Certificate Files Not Properly Set",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{app-etcd-deployment2}}.spec.template.spec.containers.name={{database}}.command",
     "searchValue": "Deployment--peer-cert-file",
     "expectedValue": "--peer-cert-file flag should be defined",
-    "actualValue": "--peer-cert-file flag is not defined"
+    "actualValue": "--peer-cert-file flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Etcd Peer TLS Certificate Files Not Properly Set",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
     "searchValue": "Deployment--peer-cert-file",
     "expectedValue": "--peer-cert-file flag should be defined",
-    "actualValue": "--peer-cert-file flag is not defined"
+    "actualValue": "--peer-cert-file flag is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

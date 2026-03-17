@@ -9,7 +9,8 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress.IpProtocol",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].IpProtocol should not be set to '-1'",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].IpProtocol is set to '-1'"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].IpProtocol is set to '-1'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress With All Protocols",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.InboundRule.Properties.IpProtocol",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule.Properties.IpProtocol should not be set to '-1'",
-    "actualValue": "Resources.InboundRule.Properties.IpProtocol is set to '-1'"
+    "actualValue": "Resources.InboundRule.Properties.IpProtocol is set to '-1'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress With All Protocols",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress.IpProtocol",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].IpProtocol should not be set to '-1'",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].IpProtocol is set to '-1'"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].IpProtocol is set to '-1'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress With All Protocols",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.InboundRule.Properties.IpProtocol",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule.Properties.IpProtocol should not be set to '-1'",
-    "actualValue": "Resources.InboundRule.Properties.IpProtocol is set to '-1'"
+    "actualValue": "Resources.InboundRule.Properties.IpProtocol is set to '-1'",
+    "issueType": "IncorrectValue"
   }
 ]

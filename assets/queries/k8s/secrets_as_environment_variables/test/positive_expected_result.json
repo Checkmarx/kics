@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{secret-env-pod}}.spec.containers.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef",
     "searchValue": "Pod",
     "expectedValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef' should be undefined",
-    "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef' is defined"
+    "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_USERNAME}}.valueFrom.secretKeyRef' is defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Secrets As Environment Variables",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{secret-env-pod}}.spec.containers.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef",
     "searchValue": "Pod",
     "expectedValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' should be undefined",
-    "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' is defined"
+    "actualValue": "'spec.containers.name={{mycontainer}}.env.name={{SECRET_PASSWORD}}.valueFrom.secretKeyRef' is defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Secrets As Environment Variables",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{envfrom-secret}}.spec.containers.name={{envars-test-container}}.envFrom",
     "searchValue": "Pod",
     "expectedValue": "'spec.containers.name={{envars-test-container}}.envFrom.secretRef' should be undefined",
-    "actualValue": "'spec.containers.name={{envars-test-container}}.envFrom.secretRef' is defined"
+    "actualValue": "'spec.containers.name={{envars-test-container}}.envFrom.secretRef' is defined",
+    "issueType": "IncorrectValue"
   }
 ]

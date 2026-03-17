@@ -9,7 +9,8 @@
     "searchKey": "aws_elasticache_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "aws_elasticache_cluster.port should be defined and not null",
-    "actualValue": "aws_elasticache_cluster.port is undefined or null"
+    "actualValue": "aws_elasticache_cluster.port is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElastiCache Using Default Port",
@@ -21,7 +22,8 @@
     "searchKey": "aws_elasticache_cluster[positive2]",
     "searchValue": "",
     "expectedValue": "aws_elasticache_cluster.port should be defined and not null",
-    "actualValue": "aws_elasticache_cluster.port is undefined or null"
+    "actualValue": "aws_elasticache_cluster.port is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElastiCache Using Default Port",
@@ -33,7 +35,8 @@
     "searchKey": "aws_elasticache_cluster[positive3].port",
     "searchValue": "",
     "expectedValue": "'port' should not be set to 6379",
-    "actualValue": "'port' is set to 6379"
+    "actualValue": "'port' is set to 6379",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Using Default Port",
@@ -45,6 +48,7 @@
     "searchKey": "aws_elasticache_cluster[positive2].port",
     "searchValue": "",
     "expectedValue": "'port' should not be set to 11211",
-    "actualValue": "'port' is set to 11211"
+    "actualValue": "'port' is set to 11211",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "FROM={{busybox:1.0}}.{{RUN zypper install httpd && zypper clean}}",
     "searchValue": "",
     "expectedValue": "zypper usages should have the non-interactive switch activated",
-    "actualValue": "The command 'RUN zypper install httpd && zypper clean' does not have the non-interactive switch activated (-y | --no-confirm)"
+    "actualValue": "The command 'RUN zypper install httpd && zypper clean' does not have the non-interactive switch activated (-y | --no-confirm)",
+    "issueType": "IncorrectValue"
   }
 ]

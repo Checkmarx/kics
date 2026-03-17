@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--profiling flag should be set to false",
-    "actualValue": "--profiling flag is set to true"
+    "actualValue": "--profiling flag is set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Profiling Not Set To False",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo-1}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--profiling flag should be defined and set to false",
-    "actualValue": "--profiling flag is not defined"
+    "actualValue": "--profiling flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Profiling Not Set To False",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{kube-controller-manager-master-3}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--profiling flag should be set to false",
-    "actualValue": "--profiling flag is set to true"
+    "actualValue": "--profiling flag is set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Profiling Not Set To False",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{kube-controller-manager-master-4}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--profiling flag should be defined and set to false",
-    "actualValue": "--profiling flag is not defined"
+    "actualValue": "--profiling flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Profiling Not Set To False",
@@ -57,7 +61,8 @@
     "searchKey": "kind={{KubeSchedulerConfiguration}}",
     "searchValue": "",
     "expectedValue": "enableProfiling argument flag should be defined and set to false",
-    "actualValue": "enableProfiling argument is not defined"
+    "actualValue": "enableProfiling argument is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Profiling Not Set To False",
@@ -69,7 +74,8 @@
     "searchKey": "kind={{KubeSchedulerConfiguration}}.enableProfiling",
     "searchValue": "",
     "expectedValue": "enableProfiling argument flag should be set to false",
-    "actualValue": "enableProfiling argument is set to true"
+    "actualValue": "enableProfiling argument is set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Profiling Not Set To False",
@@ -81,6 +87,7 @@
     "searchKey": "metadata.name={{kube-scheduler-master-2}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--profiling flag should be set to false",
-    "actualValue": "--profiling flag is set to true"
+    "actualValue": "--profiling flag is set to true",
+    "issueType": "IncorrectValue"
   }
 ]

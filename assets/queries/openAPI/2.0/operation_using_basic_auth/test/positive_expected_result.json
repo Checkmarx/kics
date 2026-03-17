@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
     "searchValue": "",
     "expectedValue": "Operation Object should not be using basic authentication",
-    "actualValue": "Operation Object is using basic authentication"
+    "actualValue": "Operation Object is using basic authentication",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Operation Using Basic Auth",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
     "searchValue": "",
     "expectedValue": "Operation Object should not be using basic authentication",
-    "actualValue": "Operation Object is using basic authentication"
+    "actualValue": "Operation Object is using basic authentication",
+    "issueType": "IncorrectValue"
   }
 ]

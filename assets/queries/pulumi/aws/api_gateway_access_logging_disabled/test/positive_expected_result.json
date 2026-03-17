@@ -9,6 +9,7 @@
     "searchKey": "resources[example].properties",
     "searchValue": "",
     "expectedValue": "Attribute 'accessLogSettings' should be defined",
-    "actualValue": "Attribute 'accessLogSettings' is not defined"
+    "actualValue": "Attribute 'accessLogSettings' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

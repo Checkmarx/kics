@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--bind-address flag should not be set to 127.0.0.1",
-    "actualValue": "--bind-address flag is set to a 127.0.01"
+    "actualValue": "--bind-address flag is set to a 127.0.01",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Bind Address Not Properly Set",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--bind-address flag should not be set to 127.0.0.1",
-    "actualValue": "--bind-address flag is set to a 127.0.01"
+    "actualValue": "--bind-address flag is set to a 127.0.01",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Bind Address Not Properly Set",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{kube-scheduler}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--bind-address flag should not be set to 127.0.0.1",
-    "actualValue": "--bind-address flag is set to a 127.0.01"
+    "actualValue": "--bind-address flag is set to a 127.0.01",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Bind Address Not Properly Set",
@@ -45,6 +48,7 @@
     "searchKey": "metadata.name={{kube-scheduler}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--bind-address flag should not be set to 127.0.0.1",
-    "actualValue": "--bind-address flag is set to a 127.0.01"
+    "actualValue": "--bind-address flag is set to a 127.0.01",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "paths./.get.responses.200",
     "searchValue": "",
     "expectedValue": "paths./.get.responses.200.content should be defined",
-    "actualValue": "paths./.get.responses.200.content is undefined"
+    "actualValue": "paths./.get.responses.200.content is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "paths./.get.responses.200",
     "searchValue": "",
     "expectedValue": "paths./.get.responses.200.schema should be defined",
-    "actualValue": "paths./.get.responses.200.schema is undefined"
+    "actualValue": "paths./.get.responses.200.schema is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should be defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}.schema should be defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}.schema is undefined"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}.schema is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should be defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content should have at least one content-type defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content has no content-type defined"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content has no content-type defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "paths./.get.responses.200",
     "searchValue": "",
     "expectedValue": "paths./.get.responses.200.content should be defined",
-    "actualValue": "paths./.get.responses.200.content is undefined"
+    "actualValue": "paths./.get.responses.200.content is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should be defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}.schema should be defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}.schema is undefined"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}.schema is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
@@ -117,7 +126,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should be defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
@@ -129,7 +139,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content should have at least one content-type defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content has no content-type defined"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content has no content-type defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v2)",
@@ -141,6 +152,7 @@
     "searchKey": "paths./.get.responses.200",
     "searchValue": "",
     "expectedValue": "paths./.get.responses.200.schema should be defined",
-    "actualValue": "paths./.get.responses.200.schema is undefined"
+    "actualValue": "paths./.get.responses.200.schema is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

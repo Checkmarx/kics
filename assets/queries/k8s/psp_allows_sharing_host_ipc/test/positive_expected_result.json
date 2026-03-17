@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{example}}.spec.hostIPC",
     "searchValue": "",
     "expectedValue": "'spec.hostIPC' should be set to false or undefined",
-    "actualValue": "'spec.hostIPC' is true"
+    "actualValue": "'spec.hostIPC' is true",
+    "issueType": "IncorrectValue"
   }
 ]

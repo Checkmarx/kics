@@ -9,7 +9,8 @@
     "searchKey": "Resources.firstKey",
     "searchValue": "",
     "expectedValue": "'Resources.firstKey' is the only AccessKey of user 'myuser'",
-    "actualValue": "'Resources.firstKey' is not the only AccessKey of user 'myuser'"
+    "actualValue": "'Resources.firstKey' is not the only AccessKey of user 'myuser'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM User Has Too Many Access Keys",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.secondKey",
     "searchValue": "",
     "expectedValue": "'Resources.secondKey' is the only AccessKey of user 'myuser'",
-    "actualValue": "'Resources.secondKey' is not the only AccessKey of user 'myuser'"
+    "actualValue": "'Resources.secondKey' is not the only AccessKey of user 'myuser'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM User Has Too Many Access Keys",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.secondKey",
     "searchValue": "",
     "expectedValue": "'Resources.secondKey' is the only AccessKey of user 'myuser'",
-    "actualValue": "'Resources.secondKey' is not the only AccessKey of user 'myuser'"
+    "actualValue": "'Resources.secondKey' is not the only AccessKey of user 'myuser'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM User Has Too Many Access Keys",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.firstKey",
     "searchValue": "",
     "expectedValue": "'Resources.firstKey' is the only AccessKey of user 'myuser'",
-    "actualValue": "'Resources.firstKey' is not the only AccessKey of user 'myuser'"
+    "actualValue": "'Resources.firstKey' is not the only AccessKey of user 'myuser'",
+    "issueType": "IncorrectValue"
   }
 ]

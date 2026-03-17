@@ -9,7 +9,8 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules.cidr_ip.{{0.0.0.0/0}}",
     "searchValue": "",
     "expectedValue": "ec2_group.rules.cidr_ip should not contain the value '0.0.0.0/0'",
-    "actualValue": "ec2_group.rules.cidr_ip contains value '0.0.0.0/0'"
+    "actualValue": "ec2_group.rules.cidr_ip contains value '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
@@ -21,7 +22,8 @@
     "searchKey": "name={{example2 ec2 group}}.{{amazon.aws.ec2_group}}.rules_egress.cidr_ip={{0.0.0.0/0}}",
     "searchValue": "",
     "expectedValue": "ec2_group.rules_egress.cidr_ip should not contain the value '0.0.0.0/0'",
-    "actualValue": "ec2_group.rules_egress.cidr_ip contains value '0.0.0.0/0'"
+    "actualValue": "ec2_group.rules_egress.cidr_ip contains value '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
@@ -33,7 +35,8 @@
     "searchKey": "name={{example3 ec2 group}}.{{amazon.aws.ec2_group}}.rules.cidr_ipv6={{::/0}}",
     "searchValue": "",
     "expectedValue": "ec2_group.rules.cidr_ipv6 should not contain the value '::/0'",
-    "actualValue": "ec2_group.rules.cidr_ipv6 contains value '::/0'"
+    "actualValue": "ec2_group.rules.cidr_ipv6 contains value '::/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
@@ -45,7 +48,8 @@
     "searchKey": "name={{example4 ec2 group}}.{{amazon.aws.ec2_group}}.rules_egress.cidr_ipv6={{::/0}}",
     "searchValue": "",
     "expectedValue": "ec2_group.rules_egress.cidr_ipv6 should not contain the value '::/0'",
-    "actualValue": "ec2_group.rules_egress.cidr_ipv6 contains value '::/0'"
+    "actualValue": "ec2_group.rules_egress.cidr_ipv6 contains value '::/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
@@ -57,6 +61,7 @@
     "searchKey": "name={{example5 ec2 group}}.{{amazon.aws.ec2_group}}.rules_egress.cidr_ipv6.{{::/0}}",
     "searchValue": "",
     "expectedValue": "ec2_group.rules_egress.cidr_ipv6 should not contain the value '::/0'",
-    "actualValue": "ec2_group.rules_egress.cidr_ipv6 contains value '::/0'"
+    "actualValue": "ec2_group.rules_egress.cidr_ipv6 contains value '::/0'",
+    "issueType": "IncorrectValue"
   }
 ]

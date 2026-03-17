@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket_policy[positive1].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' should not be a 'List' action when 'policy.Statement.Principal' contains '*'",
-    "actualValue": "'policy.Statement.Action' is a 'List' action when 'policy.Statement.Principal' contains '*'"
+    "actualValue": "'policy.Statement.Action' is a 'List' action when 'policy.Statement.Principal' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows List Action From All Principals",
@@ -21,7 +22,8 @@
     "searchKey": "aws_s3_bucket_policy[positive2].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' should not be a 'List' action when 'policy.Statement.Principal' contains '*'",
-    "actualValue": "'policy.Statement.Action' is a 'List' action when 'policy.Statement.Principal' contains '*'"
+    "actualValue": "'policy.Statement.Action' is a 'List' action when 'policy.Statement.Principal' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows List Action From All Principals",
@@ -33,6 +35,7 @@
     "searchKey": "module[s3_bucket].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' should not be a 'List' action when 'policy.Statement.Principal' contains '*'",
-    "actualValue": "'policy.Statement.Action' is a 'List' action when 'policy.Statement.Principal' contains '*'"
+    "actualValue": "'policy.Statement.Action' is a 'List' action when 'policy.Statement.Principal' contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

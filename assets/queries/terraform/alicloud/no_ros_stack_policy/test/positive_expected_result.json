@@ -9,7 +9,8 @@
     "searchKey": "alicloud_ros_stack[pos]",
     "searchValue": "stack_policy",
     "expectedValue": "The stack should have the attribute 'stack_policy_body' or 'stack_policy_url' defined",
-    "actualValue": "The stack has neither 'stack_policy_body' nor 'stack_policy_url' defined"
+    "actualValue": "The stack has neither 'stack_policy_body' nor 'stack_policy_url' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No ROS Stack Policy",
@@ -21,7 +22,8 @@
     "searchKey": "alicloud_ros_stack[pos]",
     "searchValue": "stack_policy_during_update",
     "expectedValue": "The stack should have the attribute 'stack_policy_during_update_body' or 'stack_policy_during_update_url' defined",
-    "actualValue": "The stack has neither 'stack_policy_during_update_body' nor 'stack_policy_during_update_url' defined"
+    "actualValue": "The stack has neither 'stack_policy_during_update_body' nor 'stack_policy_during_update_url' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No ROS Stack Policy",
@@ -33,7 +35,8 @@
     "searchKey": "alicloud_ros_stack[pos2]",
     "searchValue": "stack_policy_during_update",
     "expectedValue": "The stack should have the attribute 'stack_policy_during_update_body' or 'stack_policy_during_update_url' defined",
-    "actualValue": "The stack has neither 'stack_policy_during_update_body' nor 'stack_policy_during_update_url' defined"
+    "actualValue": "The stack has neither 'stack_policy_during_update_body' nor 'stack_policy_during_update_url' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No ROS Stack Policy",
@@ -45,6 +48,7 @@
     "searchKey": "alicloud_ros_stack[pos3]",
     "searchValue": "stack_policy",
     "expectedValue": "The stack should have the attribute 'stack_policy_body' or 'stack_policy_url' defined",
-    "actualValue": "The stack has neither 'stack_policy_body' nor 'stack_policy_url' defined"
+    "actualValue": "The stack has neither 'stack_policy_body' nor 'stack_policy_url' defined",
+    "issueType": "MissingAttribute"
   }
 ]

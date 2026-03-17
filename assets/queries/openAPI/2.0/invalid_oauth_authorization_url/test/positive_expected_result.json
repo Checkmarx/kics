@@ -9,7 +9,8 @@
     "searchKey": "securityDefinitions.api_key.authorizationUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid OAuth2 Authorization URL (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "securityDefinitions.petstore_auth.authorizationUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid OAuth2 Authorization URL (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "securityDefinitions.api_key.authorizationUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid OAuth2 Authorization URL (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "securityDefinitions.petstore_auth.authorizationUrl",
     "searchValue": "",
     "expectedValue": "OAuth2 security schema flow tokenUrl must be set with a valid URL",
-    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL"
+    "actualValue": "OAuth2 security schema flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   }
 ]

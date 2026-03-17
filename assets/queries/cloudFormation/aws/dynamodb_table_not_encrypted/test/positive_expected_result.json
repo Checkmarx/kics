@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyDynamoDBTable.Properties.SSESpecification.SSEEnabled",
     "searchValue": "",
     "expectedValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled should be 'true'",
-    "actualValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled is 'false'"
+    "actualValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled is 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DynamoDB Table Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyDynamoDBTable.Properties.SSESpecification",
     "searchValue": "",
     "expectedValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled should be set and to 'true'",
-    "actualValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled is not set"
+    "actualValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DynamoDB Table Not Encrypted",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.OrdersTable.Properties.SSESpecification.SSEEnabled",
     "searchValue": "",
     "expectedValue": "Resources[OrdersTable].Properties.SSESpecification.SSEEnabled should be 'true'",
-    "actualValue": "Resources[OrdersTable].Properties.SSESpecification.SSEEnabled is 'false'"
+    "actualValue": "Resources[OrdersTable].Properties.SSESpecification.SSEEnabled is 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

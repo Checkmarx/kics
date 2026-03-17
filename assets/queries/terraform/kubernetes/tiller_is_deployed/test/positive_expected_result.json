@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[positive1].metadata",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].metadata should not refer any to a Tiller resource",
-    "actualValue": "kubernetes_pod[positive1].metadata refers to a Tiller resource"
+    "actualValue": "kubernetes_pod[positive1].metadata refers to a Tiller resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tiller (Helm v2) Is Deployed",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[0].image shouldn't have any Tiller containers",
-    "actualValue": "kubernetes_pod[positive1].spec.container[0].image contains a Tiller container"
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].image contains a Tiller container",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tiller (Helm v2) Is Deployed",
@@ -33,7 +35,8 @@
     "searchKey": "kubernetes_pod[positive2].spec.container.image",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive2].spec.container.image shouldn't have any Tiller containers",
-    "actualValue": "kubernetes_pod[positive2].spec.container.image contains a Tiller container"
+    "actualValue": "kubernetes_pod[positive2].spec.container.image contains a Tiller container",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tiller (Helm v2) Is Deployed",
@@ -45,7 +48,8 @@
     "searchKey": "kubernetes_deployment[example].spec.template.metadata",
     "searchValue": "",
     "expectedValue": "kubernetes_deployment[example].spec.template.metadata should not refer to any Tiller resource",
-    "actualValue": "kubernetes_deployment[example].spec.template.metadata does not refer to any Tiller resource"
+    "actualValue": "kubernetes_deployment[example].spec.template.metadata does not refer to any Tiller resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Tiller (Helm v2) Is Deployed",
@@ -57,6 +61,7 @@
     "searchKey": "kubernetes_deployment[example].spec.template.spec.container.image",
     "searchValue": "",
     "expectedValue": "kubernetes_deployment[example].spec.template.spec.container.image shouldn't have any Tiller containers",
-    "actualValue": "kubernetes_deployment[example].spec.template.spec.container.image contains a Tiller container"
+    "actualValue": "kubernetes_deployment[example].spec.template.spec.container.image contains a Tiller container",
+    "issueType": "IncorrectValue"
   }
 ]

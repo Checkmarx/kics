@@ -9,7 +9,8 @@
     "searchKey": "name={{Password policy for AWS account}}.{{community.aws.iam_password_policy}}.allow_pw_change",
     "searchValue": "",
     "expectedValue": "iam_password_policy should have the property 'allow_pw_change/allow_password_change' true",
-    "actualValue": "iam_password_policy has the property 'allow_pw_change/allow_password_change' undefined or false"
+    "actualValue": "iam_password_policy has the property 'allow_pw_change/allow_password_change' undefined or false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AWS Password Policy With Unchangeable Passwords",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Alias Password policy for AWS account}}.{{community.aws.iam_password_policy}}.allow_password_change",
     "searchValue": "",
     "expectedValue": "iam_password_policy should have the property 'allow_pw_change/allow_password_change' true",
-    "actualValue": "iam_password_policy has the property 'allow_pw_change/allow_password_change' undefined or false"
+    "actualValue": "iam_password_policy has the property 'allow_pw_change/allow_password_change' undefined or false",
+    "issueType": "IncorrectValue"
   }
 ]

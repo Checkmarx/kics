@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{private-image-test-1}}.spec.containers.name={{uses-private-image}}.image",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{private-image-test-1}}.spec.containers.name={{uses-private-image}}.image should specify the image with a digest",
-    "actualValue": "metadata.name={{private-image-test-1}}.spec.containers.name={{uses-private-image}}.image does not include an image digest"
+    "actualValue": "metadata.name={{private-image-test-1}}.spec.containers.name={{uses-private-image}}.image does not include an image digest",
+    "issueType": "IncorrectValue"
   }
 ]

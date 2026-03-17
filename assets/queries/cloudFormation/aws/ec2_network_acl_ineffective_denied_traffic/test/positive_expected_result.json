@@ -9,7 +9,8 @@
     "searchKey": "Resources.InboundRule.Properties.CidrBlock",
     "searchValue": "",
     "expectedValue": "Traffic denial should be effective (Action is 'Deny' when CidrBlock is '0.0.0.0/0')%!(EXTRA string=InboundRule)",
-    "actualValue": "Traffic denial is ineffective (Action is 'Deny' when CidrBlock is different from '0.0.0.0/0'%!(EXTRA string=InboundRule)"
+    "actualValue": "Traffic denial is ineffective (Action is 'Deny' when CidrBlock is different from '0.0.0.0/0'%!(EXTRA string=InboundRule)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Network ACL Ineffective Denied Traffic",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.InboundRule.Properties.CidrBlock",
     "searchValue": "",
     "expectedValue": "Traffic denial should be effective (Action is 'Deny' when CidrBlock is '0.0.0.0/0')%!(EXTRA string=InboundRule)",
-    "actualValue": "Traffic denial is ineffective (Action is 'Deny' when CidrBlock is different from '0.0.0.0/0'%!(EXTRA string=InboundRule)"
+    "actualValue": "Traffic denial is ineffective (Action is 'Deny' when CidrBlock is different from '0.0.0.0/0'%!(EXTRA string=InboundRule)",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{frontend}}.namespace",
     "searchValue": "Pod",
     "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
-    "actualValue": "'metadata.namespace' is set to default"
+    "actualValue": "'metadata.namespace' is set to default",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Using Unrecommended Namespace",
@@ -21,7 +22,8 @@
     "searchKey": "kind={{Pod}}.metadata.name={{frontend2}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.namespace should be defined and not null",
-    "actualValue": "metadata.namespace is undefined or null"
+    "actualValue": "metadata.namespace is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Using Unrecommended Namespace",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{mongo.db.collection.com}}.namespace",
     "searchValue": "Pod",
     "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
-    "actualValue": "'metadata.namespace' is set to kube-public"
+    "actualValue": "'metadata.namespace' is set to kube-public",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Using Unrecommended Namespace",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{mongo.db.collection.com}}.namespace",
     "searchValue": "Pod",
     "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
-    "actualValue": "'metadata.namespace' is set to kube-system"
+    "actualValue": "'metadata.namespace' is set to kube-system",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Using Unrecommended Namespace",
@@ -57,6 +61,7 @@
     "searchKey": "metadata.name={{dummy-config}}.namespace",
     "searchValue": "Configuration",
     "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
-    "actualValue": "'metadata.namespace' is set to default"
+    "actualValue": "'metadata.namespace' is set to default",
+    "issueType": "IncorrectValue"
   }
 ]

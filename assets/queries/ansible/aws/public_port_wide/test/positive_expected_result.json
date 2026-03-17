@@ -9,7 +9,8 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[0] shouldn't have public port wide",
-    "actualValue": "ec2_group.rules[0] has public port wide"
+    "actualValue": "ec2_group.rules[0] has public port wide",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Public Port Wide",
@@ -21,6 +22,7 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[1] shouldn't have public port wide",
-    "actualValue": "ec2_group.rules[1] has public port wide"
+    "actualValue": "ec2_group.rules[1] has public port wide",
+    "issueType": "IncorrectValue"
   }
 ]

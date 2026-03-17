@@ -9,7 +9,8 @@
     "searchKey": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules[0] should not allow all methods, all headers or several origins",
-    "actualValue": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules[0] allows all methods, all headers or several origins"
+    "actualValue": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules[0] allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket With Unsecured CORS Rule",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules[0] should not allow all methods, all headers or several origins",
-    "actualValue": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules[0] allows all methods, all headers or several origins"
+    "actualValue": "Resources.S3Bucket.Properties.CorsConfiguration.CorsRules[0] allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue"
   }
 ]

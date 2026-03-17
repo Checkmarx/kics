@@ -9,7 +9,8 @@
     "searchKey": "aws_ami_launch_permission[positive1].image_id",
     "searchValue": "",
     "expectedValue": "'aws_ami_launch_permission[positive1].image_id' should not be shared with multiple accounts",
-    "actualValue": "'aws_ami_launch_permission[positive1].image_id' is shared with multiple accounts"
+    "actualValue": "'aws_ami_launch_permission[positive1].image_id' is shared with multiple accounts",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AMI Shared With Multiple Accounts",
@@ -21,6 +22,7 @@
     "searchKey": "aws_ami_launch_permission[positive2].image_id",
     "searchValue": "",
     "expectedValue": "'aws_ami_launch_permission[positive2].image_id' should not be shared with multiple accounts",
-    "actualValue": "'aws_ami_launch_permission[positive2].image_id' is shared with multiple accounts"
+    "actualValue": "'aws_ami_launch_permission[positive2].image_id' is shared with multiple accounts",
+    "issueType": "IncorrectValue"
   }
 ]

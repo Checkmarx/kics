@@ -9,7 +9,8 @@
     "searchKey": "azurerm_app_service[positive1-1].https_only",
     "searchValue": "",
     "expectedValue": "'azurerm_app_service[positive1-1].https_only' should be set to true",
-    "actualValue": "'azurerm_app_service[positive1-1].https_only' is not set to true"
+    "actualValue": "'azurerm_app_service[positive1-1].https_only' is not set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_app_service[positive1-2]",
     "searchValue": "",
     "expectedValue": "'azurerm_app_service[positive1-2].https_only' should be defined and set to true",
-    "actualValue": "'azurerm_app_service[positive1-2].https_only' is undefined"
+    "actualValue": "'azurerm_app_service[positive1-2].https_only' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_linux_web_app[positive2-1].https_only",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_web_app[positive2-1].https_only' should be set to true",
-    "actualValue": "'azurerm_linux_web_app[positive2-1].https_only' is not set to true"
+    "actualValue": "'azurerm_linux_web_app[positive2-1].https_only' is not set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_linux_web_app[positive2-2]",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_web_app[positive2-2].https_only' should be defined and set to true",
-    "actualValue": "'azurerm_linux_web_app[positive2-2].https_only' is undefined"
+    "actualValue": "'azurerm_linux_web_app[positive2-2].https_only' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_windows_web_app[positive3-1].https_only",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_web_app[positive3-1].https_only' should be set to true",
-    "actualValue": "'azurerm_windows_web_app[positive3-1].https_only' is not set to true"
+    "actualValue": "'azurerm_windows_web_app[positive3-1].https_only' is not set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
@@ -69,6 +74,7 @@
     "searchKey": "azurerm_windows_web_app[positive3-2]",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_web_app[positive3-2].https_only' should be defined and set to true",
-    "actualValue": "'azurerm_windows_web_app[positive3-2].https_only' is undefined"
+    "actualValue": "'azurerm_windows_web_app[positive3-2].https_only' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

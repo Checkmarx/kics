@@ -9,7 +9,8 @@
     "searchKey": "google_compute_instance[appserver1]",
     "searchValue": "",
     "expectedValue": "Attribute 'shielded_instance_config' should be defined and not null",
-    "actualValue": "Attribute 'shielded_instance_config' is undefined or null"
+    "actualValue": "Attribute 'shielded_instance_config' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "google_compute_instance[appserver2].shielded_instance_config",
     "searchValue": "",
     "expectedValue": "Attribute 'shielded_instance_config.enable_integrity_monitoring' should be defined",
-    "actualValue": "Attribute 'shielded_instance_config.enable_integrity_monitoring' is undefined"
+    "actualValue": "Attribute 'shielded_instance_config.enable_integrity_monitoring' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "google_compute_instance[appserver3].shielded_instance_config",
     "searchValue": "",
     "expectedValue": "Attribute 'shielded_instance_config.enable_vtpm' should be defined",
-    "actualValue": "Attribute 'shielded_instance_config.enable_vtpm' is undefined"
+    "actualValue": "Attribute 'shielded_instance_config.enable_vtpm' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "google_compute_instance[appserver4].shielded_instance_config",
     "searchValue": "",
     "expectedValue": "Attribute 'shielded_instance_config.enable_secure_boot' should be defined",
-    "actualValue": "Attribute 'shielded_instance_config.enable_secure_boot' is undefined"
+    "actualValue": "Attribute 'shielded_instance_config.enable_secure_boot' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "google_compute_instance[appserver5].shielded_instance_config.enable_secure_boot",
     "searchValue": "",
     "expectedValue": "Attribute 'shielded_instance_config.enable_secure_boot' should be true",
-    "actualValue": "Attribute 'shielded_instance_config.enable_secure_boot' is false"
+    "actualValue": "Attribute 'shielded_instance_config.enable_secure_boot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "google_compute_instance[appserver6].shielded_instance_config.enable_vtpm",
     "searchValue": "",
     "expectedValue": "Attribute 'shielded_instance_config.enable_vtpm' should be true",
-    "actualValue": "Attribute 'shielded_instance_config.enable_vtpm' is false"
+    "actualValue": "Attribute 'shielded_instance_config.enable_vtpm' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -81,6 +87,7 @@
     "searchKey": "google_compute_instance[appserver7].shielded_instance_config.enable_integrity_monitoring",
     "searchValue": "",
     "expectedValue": "Attribute 'shielded_instance_config.enable_integrity_monitoring' should be true",
-    "actualValue": "Attribute 'shielded_instance_config.enable_integrity_monitoring' is false"
+    "actualValue": "Attribute 'shielded_instance_config.enable_integrity_monitoring' is false",
+    "issueType": "IncorrectValue"
   }
 ]

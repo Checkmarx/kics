@@ -9,7 +9,8 @@
     "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
-    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
-    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
-    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
-    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
-    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.RootRole.Properties.AssumeRolePolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument should require external ID or MFA",
-    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA"
+    "actualValue": "Resources.RootRole.Properties.AssumeRolePolicyDocument does not require external ID or MFA",
+    "issueType": "IncorrectValue"
   }
 ]

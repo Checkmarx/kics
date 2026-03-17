@@ -9,7 +9,8 @@
     "searchKey": "aws_iam_account_password_policy[positive1]",
     "searchValue": "",
     "expectedValue": "'minimum_password_length' should be set and no less than 14",
-    "actualValue": "'minimum_password_length' is undefined"
+    "actualValue": "'minimum_password_length' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM Password Without Minimum Length",
@@ -21,6 +22,7 @@
     "searchKey": "aws_iam_account_password_policy[positive2].minimum_password_length",
     "searchValue": "",
     "expectedValue": "'minimum_password_length' should be set and no less than 14",
-    "actualValue": "'minimum_password_length' is less than 14"
+    "actualValue": "'minimum_password_length' is less than 14",
+    "issueType": "IncorrectValue"
   }
 ]

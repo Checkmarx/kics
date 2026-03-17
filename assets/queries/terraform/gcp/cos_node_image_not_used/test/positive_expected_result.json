@@ -9,6 +9,7 @@
     "searchKey": "google_container_node_pool[positive2].node_config.image_type",
     "searchValue": "",
     "expectedValue": "'node_config.image_type' should start with 'COS'",
-    "actualValue": "'node_config.image_type' does not start with 'COS'"
+    "actualValue": "'node_config.image_type' does not start with 'COS'",
+    "issueType": "IncorrectValue"
   }
 ]

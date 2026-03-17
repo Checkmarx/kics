@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container.image",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container.image should not be empty or latest",
-    "actualValue": "kubernetes_pod[positive1].spec.container.image is empty or latest"
+    "actualValue": "kubernetes_pod[positive1].spec.container.image is empty or latest",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Image",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[positive2].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive2].spec.container.image should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.container.image is undefined"
+    "actualValue": "kubernetes_pod[positive2].spec.container.image is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Invalid Image",
@@ -33,6 +35,7 @@
     "searchKey": "kubernetes_pod[positive3].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive3].spec.container[0].image should not be empty or latest",
-    "actualValue": "kubernetes_pod[positive3].spec.container[0].image is empty or latest"
+    "actualValue": "kubernetes_pod[positive3].spec.container[0].image is empty or latest",
+    "issueType": "IncorrectValue"
   }
 ]

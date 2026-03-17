@@ -9,7 +9,8 @@
     "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
     "searchValue": "",
     "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 6379",
-    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 6379"
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 6379",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Using Default Port",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
     "searchValue": "",
     "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 11211",
-    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 11211"
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 11211",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Using Default Port",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
     "searchValue": "",
     "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 6379",
-    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 6379"
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 6379",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Using Default Port",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
     "searchValue": "",
     "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 11211",
-    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 11211"
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 11211",
+    "issueType": "IncorrectValue"
   }
 ]

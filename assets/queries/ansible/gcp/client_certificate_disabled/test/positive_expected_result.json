@@ -9,7 +9,8 @@
     "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_auth should be defined",
-    "actualValue": "gcp_container_cluster.master_auth is undefined"
+    "actualValue": "gcp_container_cluster.master_auth is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Client Certificate Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.master_auth",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_auth.client_certificate_config should be defined",
-    "actualValue": "gcp_container_cluster.master_auth.client_certificate_config is undefined"
+    "actualValue": "gcp_container_cluster.master_auth.client_certificate_config is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Client Certificate Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.master_auth.client_certificate_config.issue_client_certificate",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.master_auth.password should be true",
-    "actualValue": "gcp_container_cluster.master_auth.password is false"
+    "actualValue": "gcp_container_cluster.master_auth.password is false",
+    "issueType": "IncorrectValue"
   }
 ]

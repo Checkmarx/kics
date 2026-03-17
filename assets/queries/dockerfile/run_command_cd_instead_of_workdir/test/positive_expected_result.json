@@ -9,7 +9,8 @@
     "searchKey": "FROM={{nginx}}.RUN={{cd /../share/nginx/html}}",
     "searchValue": "",
     "expectedValue": "Using WORKDIR to change directory",
-    "actualValue": "RUN cd /../share/nginx/html'"
+    "actualValue": "RUN cd /../share/nginx/html'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
@@ -21,7 +22,8 @@
     "searchKey": "FROM={{nginx}}.RUN={{cd ../share/nginx/html}}",
     "searchValue": "",
     "expectedValue": "Using WORKDIR to change directory",
-    "actualValue": "RUN cd ../share/nginx/html'"
+    "actualValue": "RUN cd ../share/nginx/html'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
@@ -33,6 +35,7 @@
     "searchKey": "FROM={{nginx}}.RUN={{cd /usr/../share/nginx/html}}",
     "searchValue": "",
     "expectedValue": "Using WORKDIR to change directory",
-    "actualValue": "RUN cd /usr/../share/nginx/html'"
+    "actualValue": "RUN cd /usr/../share/nginx/html'",
+    "issueType": "IncorrectValue"
   }
 ]

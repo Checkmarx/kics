@@ -9,7 +9,8 @@
     "searchKey": "azurerm_function_app[positive1-1]",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-1].auth_settings' should be defined",
-    "actualValue": "'azurerm_function_app[positive1-1].auth_settings' is not defined"
+    "actualValue": "'azurerm_function_app[positive1-1].auth_settings' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "'azurerm_function_app[positive1-2].auth_settings.enabled'",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-2].auth_settings.enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_function_app[positive1-2].auth_settings.enabled' is defined to 'false'"
+    "actualValue": "'azurerm_function_app[positive1-2].auth_settings.enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_linux_function_app[positive2-1]",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-1].auth_settings' or 'azurerm_linux_function_app[positive2-1].auth_settings_v2' should be defined",
-    "actualValue": "'azurerm_linux_function_app[positive2-1].auth_settings' and 'azurerm_linux_function_app[positive2-1].auth_settings_v2' are not defined"
+    "actualValue": "'azurerm_linux_function_app[positive2-1].auth_settings' and 'azurerm_linux_function_app[positive2-1].auth_settings_v2' are not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "'azurerm_linux_function_app[positive2-2].auth_settings.enabled'",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-2].auth_settings.enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_linux_function_app[positive2-2].auth_settings.enabled' is defined to 'false'"
+    "actualValue": "'azurerm_linux_function_app[positive2-2].auth_settings.enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_linux_function_app[positive2-3].auth_settings_v2",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-3].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
-    "actualValue": "'azurerm_linux_function_app[positive2-3].auth_settings_v2.auth_enabled' is not defined"
+    "actualValue": "'azurerm_linux_function_app[positive2-3].auth_settings_v2.auth_enabled' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "azurerm_linux_function_app[positive2-4].auth_settings_v2.auth_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-4].auth_settings_v2.auth_enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_linux_function_app[positive2-4].auth_settings_v2.auth_enabled' is defined to 'false'"
+    "actualValue": "'azurerm_linux_function_app[positive2-4].auth_settings_v2.auth_enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "azurerm_linux_function_app[positive2-5].auth_settings_v2",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-5].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
-    "actualValue": "'azurerm_linux_function_app[positive2-5].auth_settings_v2.auth_enabled' is not defined"
+    "actualValue": "'azurerm_linux_function_app[positive2-5].auth_settings_v2.auth_enabled' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "azurerm_linux_function_app[positive2-6].auth_settings_v2.auth_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-6].auth_settings_v2.auth_enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_linux_function_app[positive2-6].auth_settings_v2.auth_enabled' is defined to 'false'"
+    "actualValue": "'azurerm_linux_function_app[positive2-6].auth_settings_v2.auth_enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "azurerm_windows_function_app[positive3-1]",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-1].auth_settings' or 'azurerm_windows_function_app[positive3-1].auth_settings_v2' should be defined",
-    "actualValue": "'azurerm_windows_function_app[positive3-1].auth_settings' and 'azurerm_windows_function_app[positive3-1].auth_settings_v2' are not defined"
+    "actualValue": "'azurerm_windows_function_app[positive3-1].auth_settings' and 'azurerm_windows_function_app[positive3-1].auth_settings_v2' are not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "'azurerm_windows_function_app[positive3-2].auth_settings.enabled'",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-2].auth_settings.enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_windows_function_app[positive3-2].auth_settings.enabled' is defined to 'false'"
+    "actualValue": "'azurerm_windows_function_app[positive3-2].auth_settings.enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "azurerm_windows_function_app[positive3-3].auth_settings_v2",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-3].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
-    "actualValue": "'azurerm_windows_function_app[positive3-3].auth_settings_v2.auth_enabled' is not defined"
+    "actualValue": "'azurerm_windows_function_app[positive3-3].auth_settings_v2.auth_enabled' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -141,7 +152,8 @@
     "searchKey": "azurerm_windows_function_app[positive3-4].auth_settings_v2.auth_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-4].auth_settings_v2.auth_enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_windows_function_app[positive3-4].auth_settings_v2.auth_enabled' is defined to 'false'"
+    "actualValue": "'azurerm_windows_function_app[positive3-4].auth_settings_v2.auth_enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -153,7 +165,8 @@
     "searchKey": "azurerm_windows_function_app[positive3-5].auth_settings_v2",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-5].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
-    "actualValue": "'azurerm_windows_function_app[positive3-5].auth_settings_v2.auth_enabled' is not defined"
+    "actualValue": "'azurerm_windows_function_app[positive3-5].auth_settings_v2.auth_enabled' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Authentication Disabled",
@@ -165,6 +178,7 @@
     "searchKey": "azurerm_windows_function_app[positive3-6].auth_settings_v2.auth_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-6].auth_settings_v2.auth_enabled' should be defined to 'true'",
-    "actualValue": "'azurerm_windows_function_app[positive3-6].auth_settings_v2.auth_enabled' is defined to 'false'"
+    "actualValue": "'azurerm_windows_function_app[positive3-6].auth_settings_v2.auth_enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

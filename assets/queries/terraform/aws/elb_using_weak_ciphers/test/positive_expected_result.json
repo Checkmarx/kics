@@ -9,7 +9,8 @@
     "searchKey": "aws_load_balancer_policy[positive4]",
     "searchValue": "",
     "expectedValue": "'aws_load_balancer_policy[positive4].policy_attribute[TLS_RSA_ARCFOUR_128_SHA1].name' should not be a weak cipher",
-    "actualValue": "'aws_load_balancer_policy[positive4].policy_attribute[TLS_RSA_ARCFOUR_128_SHA1].name' is a weak cipher"
+    "actualValue": "'aws_load_balancer_policy[positive4].policy_attribute[TLS_RSA_ARCFOUR_128_SHA1].name' is a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Using Weak Ciphers",
@@ -21,7 +22,8 @@
     "searchKey": "aws_load_balancer_policy[positive5].policy_attribute.name",
     "searchValue": "",
     "expectedValue": "'aws_load_balancer_policy[positive5].policy_attribute[DES-CBC3-SHA].name' should not be a weak cipher",
-    "actualValue": "'aws_load_balancer_policy[positive5].policy_attribute[DES-CBC3-SHA].name' is a weak cipher"
+    "actualValue": "'aws_load_balancer_policy[positive5].policy_attribute[DES-CBC3-SHA].name' is a weak cipher",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB Using Weak Ciphers",
@@ -33,6 +35,7 @@
     "searchKey": "aws_load_balancer_policy[positive6].policy_attribute.name",
     "searchValue": "",
     "expectedValue": "'aws_load_balancer_policy[positive6].policy_attribute[TLS_ECDHE_ECDSA_WITH_ARIA_256_GCM_SHA384].name' should not be a weak cipher",
-    "actualValue": "'aws_load_balancer_policy[positive6].policy_attribute[TLS_ECDHE_ECDSA_WITH_ARIA_256_GCM_SHA384].name' is a weak cipher"
+    "actualValue": "'aws_load_balancer_policy[positive6].policy_attribute[TLS_ECDHE_ECDSA_WITH_ARIA_256_GCM_SHA384].name' is a weak cipher",
+    "issueType": "IncorrectValue"
   }
 ]

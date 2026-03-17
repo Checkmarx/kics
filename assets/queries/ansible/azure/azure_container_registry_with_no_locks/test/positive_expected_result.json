@@ -9,7 +9,8 @@
     "searchKey": "name={{Create an azure container registry}}.{{azure_rm_containerregistry}}",
     "searchValue": "",
     "expectedValue": "'azure_rm_containerregistry' should be referenced by an existing lock",
-    "actualValue": "'azure_rm_containerregistry' is not referenced by an existing lock"
+    "actualValue": "'azure_rm_containerregistry' is not referenced by an existing lock",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Container Registry With No Locks",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Create an azure container registry2}}.{{azure.azcollection.azure_rm_containerregistry}}",
     "searchValue": "",
     "expectedValue": "'azure.azcollection.azure_rm_containerregistry' should be referenced by an existing lock",
-    "actualValue": "'azure.azcollection.azure_rm_containerregistry' is not referenced by an existing lock"
+    "actualValue": "'azure.azcollection.azure_rm_containerregistry' is not referenced by an existing lock",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Container Registry With No Locks",
@@ -33,6 +35,7 @@
     "searchKey": "name={{Create an azure container registryy1}}.{{azure.azcollection.azure_rm_containerregistry}}",
     "searchValue": "",
     "expectedValue": "'azure.azcollection.azure_rm_containerregistry' should be referenced by an existing lock",
-    "actualValue": "'azure.azcollection.azure_rm_containerregistry' is not referenced by an existing lock"
+    "actualValue": "'azure.azcollection.azure_rm_containerregistry' is not referenced by an existing lock",
+    "issueType": "IncorrectValue"
   }
 ]

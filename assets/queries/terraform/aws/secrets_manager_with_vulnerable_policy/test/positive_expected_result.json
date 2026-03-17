@@ -9,6 +9,7 @@
     "searchKey": "aws_secretsmanager_secret_policy[example].policy",
     "searchValue": "",
     "expectedValue": "aws_secretsmanager_secret_policy[example].policy should not have wildcard in 'Principal' and 'Action'",
-    "actualValue": "aws_secretsmanager_secret_policy[example].policy has wildcard in 'Principal' or 'Action'"
+    "actualValue": "aws_secretsmanager_secret_policy[example].policy has wildcard in 'Principal' or 'Action'",
+    "issueType": "IncorrectValue"
   }
 ]

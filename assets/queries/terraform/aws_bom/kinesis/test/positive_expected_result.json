@@ -9,7 +9,8 @@
     "searchKey": "aws_kinesis_stream[positive1]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Kinesis",
@@ -21,6 +22,7 @@
     "searchKey": "aws_kinesis_stream[positive2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

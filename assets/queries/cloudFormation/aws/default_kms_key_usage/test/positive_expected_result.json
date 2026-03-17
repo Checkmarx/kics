@@ -9,7 +9,8 @@
     "searchKey": "Resources.RDSCluster1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster1.Properties.KmsKeyId should be defined with AWS-Managed CMK",
-    "actualValue": "Resources.RDSCluster1.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.RDSCluster1.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default KMS Key Usage",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.RDSCluster1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster1.Properties.KmsKeyId should be defined with AWS-Managed CMK",
-    "actualValue": "Resources.RDSCluster1.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.RDSCluster1.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default KMS Key Usage",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.RDSCluster1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RDSCluster1.Properties.KmsKeyId should be defined with AWS-Managed CMK",
-    "actualValue": "Resources.RDSCluster1.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.RDSCluster1.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

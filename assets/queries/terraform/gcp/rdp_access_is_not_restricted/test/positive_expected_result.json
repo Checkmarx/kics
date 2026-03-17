@@ -9,7 +9,8 @@
     "searchKey": "google_compute_firewall[positive1].allow.ports",
     "searchValue": "",
     "expectedValue": "'google_compute_firewall[positive1].allow.ports' should not include RDP port 3389",
-    "actualValue": "'google_compute_firewall[positive1].allow.ports' includes RDP port 3389"
+    "actualValue": "'google_compute_firewall[positive1].allow.ports' includes RDP port 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDP Access Is Not Restricted",
@@ -21,7 +22,8 @@
     "searchKey": "google_compute_firewall[positive2].allow.ports",
     "searchValue": "",
     "expectedValue": "'google_compute_firewall[positive2].allow.ports' should not include RDP port 3389",
-    "actualValue": "'google_compute_firewall[positive2].allow.ports' includes RDP port 3389"
+    "actualValue": "'google_compute_firewall[positive2].allow.ports' includes RDP port 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDP Access Is Not Restricted",
@@ -33,6 +35,7 @@
     "searchKey": "google_compute_firewall[positive3].allow.ports",
     "searchValue": "",
     "expectedValue": "'google_compute_firewall[positive3].allow.ports' should not include RDP port 3389",
-    "actualValue": "'google_compute_firewall[positive3].allow.ports' includes RDP port 3389"
+    "actualValue": "'google_compute_firewall[positive3].allow.ports' includes RDP port 3389",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "aws_elasticsearch_domain_policy[main].access_policies",
     "searchValue": "",
     "expectedValue": "aws_elasticsearch_domain_policy[main].access_policies should not have wildcard in 'Action' and 'Principal'",
-    "actualValue": "aws_elasticsearch_domain_policy[main].access_policies has wildcard in 'Action' or 'Principal'"
+    "actualValue": "aws_elasticsearch_domain_policy[main].access_policies has wildcard in 'Action' or 'Principal'",
+    "issueType": "IncorrectValue"
   }
 ]

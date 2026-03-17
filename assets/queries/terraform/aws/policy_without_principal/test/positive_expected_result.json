@@ -9,6 +9,7 @@
     "searchKey": "aws_kms_key[secure_policy].policy",
     "searchValue": "",
     "expectedValue": "'Principal' should be defined",
-    "actualValue": "'Principal' is undefined"
+    "actualValue": "'Principal' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

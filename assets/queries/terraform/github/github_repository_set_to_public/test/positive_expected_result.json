@@ -9,7 +9,8 @@
     "searchKey": "github_repository[positive1]",
     "searchValue": "",
     "expectedValue": "Attribute 'private' or Attribute 'visibility' should be defined and not null",
-    "actualValue": "Attribute 'private' and Attribute 'visibility' are undefined or null"
+    "actualValue": "Attribute 'private' and Attribute 'visibility' are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GitHub Repository Set To Public",
@@ -21,7 +22,8 @@
     "searchKey": "github_repository[positive2].private",
     "searchValue": "",
     "expectedValue": "Attribute 'private' should be true",
-    "actualValue": "Attribute 'private' is false"
+    "actualValue": "Attribute 'private' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GitHub Repository Set To Public",
@@ -33,6 +35,7 @@
     "searchKey": "github_repository[positive3].visibility",
     "searchValue": "",
     "expectedValue": "Attribute 'visibility' should be 'private'",
-    "actualValue": "Attribute 'visibility' is 'public'"
+    "actualValue": "Attribute 'visibility' is 'public'",
+    "issueType": "IncorrectValue"
   }
 ]

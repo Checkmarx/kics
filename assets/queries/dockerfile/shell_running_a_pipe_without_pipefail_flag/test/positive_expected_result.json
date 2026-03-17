@@ -9,7 +9,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN zsh ./some_output | ./some_script}}",
     "searchValue": "zsh",
     "expectedValue": "'RUN zsh ./some_output | ./some_script' has pipefail option set for pipe command with shell zsh.",
-    "actualValue": "'RUN zsh ./some_output | ./some_script' does not have pipefail option set for pipe command with shell zsh."
+    "actualValue": "'RUN zsh ./some_output | ./some_script' does not have pipefail option set for pipe command with shell zsh.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shell Running A Pipe Without Pipefail Flag",
@@ -21,6 +22,7 @@
     "searchKey": "FROM={{node:12}}.{{RUN [ \"/bin/bash\", \"./some_output\", \"|\", \"./some_script\" ]}}",
     "searchValue": "/bin/bash",
     "expectedValue": "'RUN [ '/bin/bash', './some_output', '|', './some_script' ]' has pipefail option set for pipe command with shell /bin/bash.",
-    "actualValue": "'RUN [ '/bin/bash', './some_output', '|', './some_script' ]' does not have pipefail option set for pipe command with shell /bin/bash."
+    "actualValue": "'RUN [ '/bin/bash', './some_output', '|', './some_script' ]' does not have pipefail option set for pipe command with shell /bin/bash.",
+    "issueType": "MissingAttribute"
   }
 ]

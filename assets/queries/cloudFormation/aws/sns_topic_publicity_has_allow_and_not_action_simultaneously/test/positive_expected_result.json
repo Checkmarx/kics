@@ -9,7 +9,8 @@
     "searchKey": "Resources.mysnspolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and Action",
-    "actualValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and NotAction"
+    "actualValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and NotAction",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.mysnspolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and Action",
-    "actualValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and NotAction"
+    "actualValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and NotAction",
+    "issueType": "IncorrectValue"
   }
 ]

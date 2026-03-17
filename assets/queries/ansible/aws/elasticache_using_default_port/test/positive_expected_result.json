@@ -9,7 +9,8 @@
     "searchKey": "name={{Basic example}}.{{community.aws.elasticache}}.cache_port",
     "searchValue": "",
     "expectedValue": "'cache_port' should not be set to 11211",
-    "actualValue": "'cache_port' is set to 11211"
+    "actualValue": "'cache_port' is set to 11211",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Using Default Port",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Basic example2}}.{{community.aws.elasticache}}.cache_port",
     "searchValue": "",
     "expectedValue": "'cache_port' should not be set to 6379",
-    "actualValue": "'cache_port' is set to 6379"
+    "actualValue": "'cache_port' is set to 6379",
+    "issueType": "IncorrectValue"
   }
 ]

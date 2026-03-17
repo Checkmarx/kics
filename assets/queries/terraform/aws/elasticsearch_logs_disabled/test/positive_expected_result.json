@@ -9,7 +9,8 @@
     "searchKey": "aws_elasticsearch_domain[{{positive1}}].log_publishing_options.enabled",
     "searchValue": "",
     "expectedValue": "'log_publishing_options.enabled' should be true",
-    "actualValue": "'log_publishing_options.enabled' is false"
+    "actualValue": "'log_publishing_options.enabled' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Elasticsearch Log Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_elasticsearch_domain[{{positive2}}]",
     "searchValue": "",
     "expectedValue": "'log_publishing_options' should be defined and not null",
-    "actualValue": "'log_publishing_options' is undefined or null"
+    "actualValue": "'log_publishing_options' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

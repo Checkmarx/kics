@@ -9,7 +9,8 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].FromPort should equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].ToPort",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].FromPort is not equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].ToPort"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].FromPort is not equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].ToPort",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress With Port Range",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.InboundRule.Properties",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule.Properties.FromPort should equal to Resources.InboundRule.Properties.ToPort",
-    "actualValue": "Resources.InboundRule.Properties.FromPort is not equal to Resources.InboundRule.Properties.ToPort"
+    "actualValue": "Resources.InboundRule.Properties.FromPort is not equal to Resources.InboundRule.Properties.ToPort",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress With Port Range",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].FromPort should equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].ToPort",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].FromPort is not equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].ToPort"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].FromPort is not equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].ToPort",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress With Port Range",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.InboundRule.Properties",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule.Properties.FromPort should equal to Resources.InboundRule.Properties.ToPort",
-    "actualValue": "Resources.InboundRule.Properties.FromPort is not equal to Resources.InboundRule.Properties.ToPort"
+    "actualValue": "Resources.InboundRule.Properties.FromPort is not equal to Resources.InboundRule.Properties.ToPort",
+    "issueType": "IncorrectValue"
   }
 ]

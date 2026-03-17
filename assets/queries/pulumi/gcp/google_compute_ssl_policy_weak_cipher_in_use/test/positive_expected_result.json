@@ -9,7 +9,8 @@
     "searchKey": "resources[example].properties",
     "searchValue": "",
     "expectedValue": "SSLPolicy should have 'minTlsVersion' defined and set to 'TLS_1_2'",
-    "actualValue": "SSLPolicy 'minTlsVersion' attribute is not defined"
+    "actualValue": "SSLPolicy 'minTlsVersion' attribute is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Google Compute SSL Policy Weak Cipher In Use",
@@ -21,6 +22,7 @@
     "searchKey": "resources[example].properties.minTlsVersion",
     "searchValue": "",
     "expectedValue": "SSLPolicy should have 'minTlsVersion' set to 'TLS_1_2'",
-    "actualValue": "SSLPolicy 'minTlsVersion' attribute is set to TLS_1_1"
+    "actualValue": "SSLPolicy 'minTlsVersion' attribute is set to TLS_1_1",
+    "issueType": "IncorrectValue"
   }
 ]

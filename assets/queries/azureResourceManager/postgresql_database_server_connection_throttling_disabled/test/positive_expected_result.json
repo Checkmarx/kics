@@ -9,7 +9,8 @@
     "searchKey": "resources.resources.name=connection_throttling.properties.value",
     "searchValue": "",
     "expectedValue": "resource 'property value' should have an 'auditingsettings' servers1 resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.resources.name=connection_throttling.properties.value",
     "searchValue": "",
     "expectedValue": "resource 'property value' should have an 'auditingsettings' servers1 resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=servers1",
     "searchValue": "",
     "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name=servers1",
     "searchValue": "",
     "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=servers1",
     "searchValue": "",
     "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "resources.name=servers1",
     "searchValue": "",
     "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.resources.name=connection_throttling.properties.value",
     "searchValue": "",
     "expectedValue": "resource 'property value' should have an 'auditingsettings' servers1 resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.resources.name=connection_throttling.properties.value",
     "searchValue": "",
     "expectedValue": "resource 'property value' should have an 'auditingsettings' servers1 resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name=servers1",
     "searchValue": "",
     "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "properties.template.resources.name=servers1",
     "searchValue": "",
     "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name=servers1",
     "searchValue": "",
     "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
@@ -141,6 +152,7 @@
     "searchKey": "properties.template.resources.name=servers1",
     "searchValue": "",
     "expectedValue": "resource 'servers1' should have an 'auditingsettings' resource enabled",
-    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled"
+    "actualValue": "resource 'servers1' doesn't have an 'auditingsettings' resource enabled",
+    "issueType": "MissingAttribute"
   }
 ]

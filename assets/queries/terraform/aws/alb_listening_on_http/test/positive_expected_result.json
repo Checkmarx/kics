@@ -9,7 +9,8 @@
     "searchKey": "aws_lb_listener[listener5].default_action.redirect.protocol",
     "searchValue": "",
     "expectedValue": "'default_action.redirect.protocol' should be equal to 'HTTPS'",
-    "actualValue": "'default_action.redirect.protocol' is equal 'HTTP'"
+    "actualValue": "'default_action.redirect.protocol' is equal 'HTTP'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ALB Listening on HTTP",
@@ -21,6 +22,7 @@
     "searchKey": "aws_lb_listener[listener].default_action",
     "searchValue": "",
     "expectedValue": "'default_action.redirect.protocol' should be equal to 'HTTPS'",
-    "actualValue": "'default_action.redirect' is missing"
+    "actualValue": "'default_action.redirect' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

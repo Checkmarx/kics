@@ -9,6 +9,7 @@
     "searchKey": "name={{Create a VM with a custom image}}.{{azure_rm_virtualmachine}}",
     "searchValue": "",
     "expectedValue": "azure_rm_virtualmachine.network_interface_names should be defined",
-    "actualValue": "azure_rm_virtualmachine.network_interface_names is undefined"
+    "actualValue": "azure_rm_virtualmachine.network_interface_names is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

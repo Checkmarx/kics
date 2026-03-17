@@ -9,7 +9,8 @@
     "searchKey": "Resources.Positive1_security_group.Properties.SecurityGroupEgress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1_security_group.Properties.SecurityGroupEgress[0]' should not have IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0' simultaneously",
-    "actualValue": "'Resources.Positive1_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'."
+    "actualValue": "'Resources.Positive1_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Positive1_egress_ipv4.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1_egress_ipv4.Properties' should not have IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0' simultaneously",
-    "actualValue": "'Resources.Positive1_egress_ipv4.Properties' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'."
+    "actualValue": "'Resources.Positive1_egress_ipv4.Properties' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.Positive1_egress_ipv6.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1_egress_ipv6.Properties' should not have IpProtocol set to '-1' and CidrIpv6 set to '::/0' simultaneously",
-    "actualValue": "'Resources.Positive1_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'."
+    "actualValue": "'Resources.Positive1_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.Positive2_security_group.Properties.SecurityGroupEgress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive2_security_group.Properties.SecurityGroupEgress[0]' should not have IpProtocol set to '-1' and CidrIpv6 set to '::/0' simultaneously",
-    "actualValue": "'Resources.Positive2_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'."
+    "actualValue": "'Resources.Positive2_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.Positive2_egress_ipv6.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Positive2_egress_ipv6.Properties' should not have IpProtocol set to '-1' and CidrIpv6 set to '0:0:0:0:0:0:0:0/0' simultaneously",
-    "actualValue": "'Resources.Positive2_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '0:0:0:0:0:0:0:0/0'."
+    "actualValue": "'Resources.Positive2_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '0:0:0:0:0:0:0:0/0'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.Positive3_security_group.Properties.SecurityGroupEgress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive3_security_group.Properties.SecurityGroupEgress[0]' should not have IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0' simultaneously",
-    "actualValue": "'Resources.Positive3_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'."
+    "actualValue": "'Resources.Positive3_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.Positive3_egress_ipv4.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Positive3_egress_ipv4.Properties' should not have IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0' simultaneously",
-    "actualValue": "'Resources.Positive3_egress_ipv4.Properties' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'."
+    "actualValue": "'Resources.Positive3_egress_ipv4.Properties' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.Positive3_egress_ipv6.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Positive3_egress_ipv6.Properties' should not have IpProtocol set to '-1' and CidrIpv6 set to '::/0' simultaneously",
-    "actualValue": "'Resources.Positive3_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'."
+    "actualValue": "'Resources.Positive3_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.Positive4_security_group.Properties.SecurityGroupEgress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive4_security_group.Properties.SecurityGroupEgress[0]' should not have IpProtocol set to '-1' and CidrIpv6 set to '::/0' simultaneously",
-    "actualValue": "'Resources.Positive4_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'."
+    "actualValue": "'Resources.Positive4_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
@@ -117,6 +126,7 @@
     "searchKey": "Resources.Positive4_egress_ipv6.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Positive4_egress_ipv6.Properties' should not have IpProtocol set to '-1' and CidrIpv6 set to '0:0:0:0:0:0:0:0/0' simultaneously",
-    "actualValue": "'Resources.Positive4_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '0:0:0:0:0:0:0:0/0'."
+    "actualValue": "'Resources.Positive4_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '0:0:0:0:0:0:0:0/0'.",
+    "issueType": "IncorrectValue"
   }
 ]

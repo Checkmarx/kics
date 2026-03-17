@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket[positive1].cors_rule",
     "searchValue": "",
     "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
-    "actualValue": "'cors_rule' allows all methods, all headers or several origins"
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
@@ -21,7 +22,8 @@
     "searchKey": "aws_s3_bucket[positive2].cors_rule",
     "searchValue": "",
     "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
-    "actualValue": "'cors_rule' allows all methods, all headers or several origins"
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
@@ -33,7 +35,8 @@
     "searchKey": "module[s3_bucket].cors_rule",
     "searchValue": "",
     "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
-    "actualValue": "'cors_rule' allows all methods, all headers or several origins"
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
@@ -45,7 +48,8 @@
     "searchKey": "module[s3_bucket].cors_rule",
     "searchValue": "",
     "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
-    "actualValue": "'cors_rule' allows all methods, all headers or several origins"
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
@@ -57,6 +61,7 @@
     "searchKey": "aws_s3_bucket_cors_configuration[example].cors_rule",
     "searchValue": "",
     "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
-    "actualValue": "'cors_rule' allows all methods, all headers or several origins"
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue"
   }
 ]

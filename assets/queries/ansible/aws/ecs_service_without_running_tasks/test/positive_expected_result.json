@@ -9,6 +9,7 @@
     "searchKey": "name={{ECS Service}}.{{community.aws.ecs_service}}",
     "searchValue": "",
     "expectedValue": "community.aws.ecs_service.deployment_configuration should be defined",
-    "actualValue": "%!&(string=community.aws.ecs_service)s.deployment_configuration is undefined"
+    "actualValue": "%!&(string=community.aws.ecs_service)s.deployment_configuration is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

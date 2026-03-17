@@ -9,7 +9,8 @@
     "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' should be TLSv1.2_x",
-    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' is TLSv1.1_2016"
+    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' is TLSv1.1_2016",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.cloudfrontdistribution2.Properties.DistributionConfig",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution2.Properties.DistributionConfig.ViewerCertificate' should be defined",
-    "actualValue": "Resources.cloudfrontdistribution2.Properties.DistributionConfig.ViewerCertificate' is undefined"
+    "actualValue": "Resources.cloudfrontdistribution2.Properties.DistributionConfig.ViewerCertificate' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.cloudfrontdistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' should be TLSv1.2_x",
-    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' is TLSv1.1_2016"
+    "actualValue": "Resources.cloudfrontdistribution.Properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion' is TLSv1.1_2016",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.cloudfrontdistribution2.Properties.DistributionConfig",
     "searchValue": "",
     "expectedValue": "Resources.cloudfrontdistribution2.Properties.DistributionConfig.ViewerCertificate' should be defined",
-    "actualValue": "Resources.cloudfrontdistribution2.Properties.DistributionConfig.ViewerCertificate' is undefined"
+    "actualValue": "Resources.cloudfrontdistribution2.Properties.DistributionConfig.ViewerCertificate' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

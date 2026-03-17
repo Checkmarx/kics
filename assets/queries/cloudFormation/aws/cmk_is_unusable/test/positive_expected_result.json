@@ -9,7 +9,8 @@
     "searchKey": "Resources.myKey.Properties.Enabled",
     "searchValue": "",
     "expectedValue": "'Resources.myKey.Properties.Enabled' should be true",
-    "actualValue": "'Resources.myKey.Properties.Enabled' is false"
+    "actualValue": "'Resources.myKey.Properties.Enabled' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CMK Is Unusable",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myKey2.Properties.PendingWindowInDays",
     "searchValue": "",
     "expectedValue": "'Resources.myKey2.Properties.PendingWindowInDays' should be undefined",
-    "actualValue": "'Resources.myKey2.Properties.PendingWindowInDays' is defined"
+    "actualValue": "'Resources.myKey2.Properties.PendingWindowInDays' is defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CMK Is Unusable",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myKey.Properties.Enabled",
     "searchValue": "",
     "expectedValue": "'Resources.myKey.Properties.Enabled' should be true",
-    "actualValue": "'Resources.myKey.Properties.Enabled' is false"
+    "actualValue": "'Resources.myKey.Properties.Enabled' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CMK Is Unusable",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.myKey2.Properties.PendingWindowInDays",
     "searchValue": "",
     "expectedValue": "'Resources.myKey2.Properties.PendingWindowInDays' should be undefined",
-    "actualValue": "'Resources.myKey2.Properties.PendingWindowInDays' is defined"
+    "actualValue": "'Resources.myKey2.Properties.PendingWindowInDays' is defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CMK Is Unusable",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.myKey.Properties.Enabled",
     "searchValue": "",
     "expectedValue": "'Resources.myKey.Properties.Enabled' should be true",
-    "actualValue": "'Resources.myKey.Properties.Enabled' is false"
+    "actualValue": "'Resources.myKey.Properties.Enabled' is false",
+    "issueType": "IncorrectValue"
   }
 ]

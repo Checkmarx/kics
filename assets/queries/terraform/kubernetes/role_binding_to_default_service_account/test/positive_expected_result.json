@@ -9,6 +9,7 @@
     "searchKey": "resource.kubernetes_role_binding[example]",
     "searchValue": "",
     "expectedValue": "resource.kubernetes_role_binding[example].subject[1].name should not be default",
-    "actualValue": "resource.kubernetes_role_binding[example].subject[1].name is default"
+    "actualValue": "resource.kubernetes_role_binding[example].subject[1].name is default",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyBucket",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.JenkinsArtifacts03",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

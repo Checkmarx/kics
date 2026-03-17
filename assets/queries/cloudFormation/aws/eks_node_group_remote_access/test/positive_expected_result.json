@@ -9,7 +9,8 @@
     "searchKey": "Resources.EKSNodegroup.Properties.RemoteAccess",
     "searchValue": "",
     "expectedValue": "'Resources.EKSNodegroup.Properties.RemoteAccess.SourceSecurityGroups' should be defined and not null",
-    "actualValue": "'Resources.EKSNodegroup.Properties.RemoteAccess.Source SecurityGroups' is undefined or null"
+    "actualValue": "'Resources.EKSNodegroup.Properties.RemoteAccess.Source SecurityGroups' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EKS node group remote access",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.EKSNodegroup.Properties.RemoteAccess",
     "searchValue": "",
     "expectedValue": "'Resources.EKSNodegroup.Properties.RemoteAccess.SourceSecurityGroups' should be defined and not null",
-    "actualValue": "'Resources.EKSNodegroup.Properties.RemoteAccess.Source SecurityGroups' is undefined or null"
+    "actualValue": "'Resources.EKSNodegroup.Properties.RemoteAccess.Source SecurityGroups' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{create a bucket}}.{{google.cloud.gcp_storage_bucket}}",
     "searchValue": "",
     "expectedValue": "gcp_storage_bucket.versioning should be defined",
-    "actualValue": "gcp_storage_bucket.versioning is undefined"
+    "actualValue": "gcp_storage_bucket.versioning is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cloud Storage Bucket Versioning Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "name={{create a second bucket}}.{{google.cloud.gcp_storage_bucket}}.versioning.enabled",
     "searchValue": "",
     "expectedValue": "gcp_storage_bucket.versioning.enabled should be true",
-    "actualValue": "gcp_storage_bucket.versioning.enabled is false"
+    "actualValue": "gcp_storage_bucket.versioning.enabled is false",
+    "issueType": "IncorrectValue"
   }
 ]

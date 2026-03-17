@@ -9,6 +9,7 @@
     "searchKey": "FROM={{alpine:latest}}",
     "searchValue": "",
     "expectedValue": "FROM alpine:latest:'version' where version should not be 'latest'",
-    "actualValue": "FROM alpine:latest'"
+    "actualValue": "FROM alpine:latest'",
+    "issueType": "IncorrectValue"
   }
 ]

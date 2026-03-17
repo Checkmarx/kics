@@ -9,7 +9,8 @@
     "searchKey": "Resources.EFSFileSystem01.Properties.Encrypted",
     "searchValue": "",
     "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled",
-    "actualValue": "EFS resource 'EFSFileSystem01' has encryption set to false"
+    "actualValue": "EFS resource 'EFSFileSystem01' has encryption set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EFS Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.EFSFileSystem01.Properties.Encrypted",
     "searchValue": "",
     "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled",
-    "actualValue": "EFS resource 'EFSFileSystem01' has encryption set to false"
+    "actualValue": "EFS resource 'EFSFileSystem01' has encryption set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EFS Not Encrypted",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.EFSFileSystem01.Properties.Encrypted",
     "searchValue": "",
     "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled",
-    "actualValue": "EFS resource 'EFSFileSystem01' has encryption set to false"
+    "actualValue": "EFS resource 'EFSFileSystem01' has encryption set to false",
+    "issueType": "IncorrectValue"
   }
 ]

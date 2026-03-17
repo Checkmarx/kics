@@ -9,7 +9,8 @@
     "searchKey": "Resources.SampleSQSPolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal should not have wildcards when Effect=Allow and Action contains one of [SQS:AddPermission, SQS:CreateQueue, SQS:DeleteQueue, SQS:RemovePermission, SQS:TagQueue, SQS:UnTagQueue]",
-    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:CreateQueue"
+    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:CreateQueue",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS Policy With Public Access",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.SampleSQSPolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal should not have wildcards when Effect=Allow and Action contains one of [SQS:AddPermission, SQS:CreateQueue, SQS:DeleteQueue, SQS:RemovePermission, SQS:TagQueue, SQS:UnTagQueue]",
-    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:AddPermission"
+    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:AddPermission",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS Policy With Public Access",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.SampleSQSPolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal should not have wildcards when Effect=Allow and Action contains one of [SQS:AddPermission, SQS:CreateQueue, SQS:DeleteQueue, SQS:RemovePermission, SQS:TagQueue, SQS:UnTagQueue]",
-    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:CreateQueue"
+    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:CreateQueue",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS Policy With Public Access",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.SampleSQSPolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal should not have wildcards when Effect=Allow and Action contains one of [SQS:AddPermission, SQS:CreateQueue, SQS:DeleteQueue, SQS:RemovePermission, SQS:TagQueue, SQS:UnTagQueue]",
-    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:AddPermission"
+    "actualValue": "Resources.SampleSQSPolicy.Properties.PolicyDocument.Statement.Principal has wildcards, Effect is Allow and Action contains SQS:AddPermission",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_db_instance[positive1].port",
     "searchValue": "",
     "expectedValue": "aws_db_instance[positive1].port should not be set to 3306",
-    "actualValue": "aws_db_instance[positive1].port is set to 3306"
+    "actualValue": "aws_db_instance[positive1].port is set to 3306",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Using Default Port",
@@ -21,7 +22,8 @@
     "searchKey": "aws_db_instance[positive2].port",
     "searchValue": "",
     "expectedValue": "aws_db_instance[positive2].port should not be set to 5432",
-    "actualValue": "aws_db_instance[positive2].port is set to 5432"
+    "actualValue": "aws_db_instance[positive2].port is set to 5432",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Using Default Port",
@@ -33,7 +35,8 @@
     "searchKey": "aws_db_instance[positive3].port",
     "searchValue": "",
     "expectedValue": "aws_db_instance[positive3].port should not be set to 1521",
-    "actualValue": "aws_db_instance[positive3].port is set to 1521"
+    "actualValue": "aws_db_instance[positive3].port is set to 1521",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Using Default Port",
@@ -45,6 +48,7 @@
     "searchKey": "aws_db_instance[positive4].port",
     "searchValue": "",
     "expectedValue": "aws_db_instance[positive4].port should not be set to 1433",
-    "actualValue": "aws_db_instance[positive4].port is set to 1433"
+    "actualValue": "aws_db_instance[positive4].port is set to 1433",
+    "issueType": "IncorrectValue"
   }
 ]

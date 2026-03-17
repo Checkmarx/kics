@@ -9,6 +9,7 @@
     "searchKey": "name={{Update PostgreSQL Server setting}}.{{azure_rm_postgresqlconfiguration}}.value",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlconfiguration.value should equal to 'on'",
-    "actualValue": "azure_rm_postgresqlconfiguration.value is not equal to 'on'"
+    "actualValue": "azure_rm_postgresqlconfiguration.value is not equal to 'on'",
+    "issueType": "IncorrectValue"
   }
 ]

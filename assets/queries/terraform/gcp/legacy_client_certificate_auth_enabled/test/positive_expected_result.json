@@ -9,7 +9,8 @@
     "searchKey": "google_container_cluster[positive1].master_auth",
     "searchValue": "",
     "expectedValue": "If 'master_auth' is defined, subattribute 'client_certificate_config' should be defined",
-    "actualValue": "Attribute 'client_certificate_config' in 'master_auth' is undefined"
+    "actualValue": "Attribute 'client_certificate_config' in 'master_auth' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Legacy Client Certificate Auth Enabled",
@@ -21,6 +22,7 @@
     "searchKey": "google_container_cluster[positive2].master_auth.client_certificate_config.issue_client_certificate",
     "searchValue": "",
     "expectedValue": "Attribute 'issue_client_certificate' in 'client_certificate_config' should be false",
-    "actualValue": "Attribute 'issue_client_certificate' in 'client_certificate_config' is true"
+    "actualValue": "Attribute 'issue_client_certificate' in 'client_certificate_config' is true",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_instance[positive1]",
     "searchValue": "",
     "expectedValue": "aws_instance[positive1] should be using iam_instance_profile to assign a role with permissions",
-    "actualValue": "aws_instance[positive1].user_data is being used to configure AWS API keys"
+    "actualValue": "aws_instance[positive1].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -21,7 +22,8 @@
     "searchKey": "module[ec2_instance]",
     "searchValue": "",
     "expectedValue": "module[ec2_instance] should be using iam_instance_profile to assign a role with permissions",
-    "actualValue": "module[ec2_instance].user_data is being used to configure AWS API keys"
+    "actualValue": "module[ec2_instance].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -33,7 +35,8 @@
     "searchKey": "module[ec2_instance]",
     "searchValue": "",
     "expectedValue": "module[ec2_instance] should be using iam_instance_profile to assign a role with permissions",
-    "actualValue": "module[ec2_instance].user_data is being used to configure AWS API keys"
+    "actualValue": "module[ec2_instance].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -45,7 +48,8 @@
     "searchKey": "module[ec2_instance]",
     "searchValue": "",
     "expectedValue": "module[ec2_instance] should be using iam_instance_profile to assign a role with permissions",
-    "actualValue": "module[ec2_instance].user_data is being used to configure AWS API keys"
+    "actualValue": "module[ec2_instance].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -57,7 +61,8 @@
     "searchKey": "aws_instance[positive2]",
     "searchValue": "",
     "expectedValue": "aws_instance[positive2] should be using iam_instance_profile to assign a role with permissions",
-    "actualValue": "aws_instance[positive2].user_data is being used to configure AWS API keys"
+    "actualValue": "aws_instance[positive2].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -69,7 +74,8 @@
     "searchKey": "aws_instance[positive3]",
     "searchValue": "",
     "expectedValue": "aws_instance[positive3] should be using iam_instance_profile to assign a role with permissions",
-    "actualValue": "aws_instance[positive3].user_data is being used to configure AWS API keys"
+    "actualValue": "aws_instance[positive3].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -81,7 +87,8 @@
     "searchKey": "aws_instance[positive4]",
     "searchValue": "",
     "expectedValue": "aws_instance[positive4] should be using iam_instance_profile to assign a role with permissions",
-    "actualValue": "aws_instance[positive4].user_data is being used to configure AWS API keys"
+    "actualValue": "aws_instance[positive4].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -93,7 +100,8 @@
     "searchKey": "aws_instance[positive5]",
     "searchValue": "",
     "expectedValue": "aws_instance[positive5] should be using iam_instance_profile to assign a role with permissions",
-    "actualValue": "aws_instance[positive5].user_data is being used to configure AWS API keys"
+    "actualValue": "aws_instance[positive5].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -105,7 +113,8 @@
     "searchKey": "aws_instance[positive6]",
     "searchValue": "",
     "expectedValue": "aws_instance[positive6] should be using iam_instance_profile to assign a role with permissions",
-    "actualValue": "aws_instance[positive6].user_data is being used to configure AWS API keys"
+    "actualValue": "aws_instance[positive6].user_data is being used to configure AWS API keys",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -117,7 +126,8 @@
     "searchKey": "aws_instance[positive7].provisioner",
     "searchValue": "",
     "expectedValue": "aws_instance[positive7].provisioner.remote-exec should be used to configure AWS API keys",
-    "actualValue": "aws_instance[positive7] should be using iam_instance_profile to assign a role with permissions"
+    "actualValue": "aws_instance[positive7] should be using iam_instance_profile to assign a role with permissions",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -129,7 +139,8 @@
     "searchKey": "aws_instance[positive8].provisioner",
     "searchValue": "",
     "expectedValue": "aws_instance[positive8].provisioner.file should be used to configure AWS API keys",
-    "actualValue": "aws_instance[positive8] should be using iam_instance_profile to assign a role with permissions"
+    "actualValue": "aws_instance[positive8] should be using iam_instance_profile to assign a role with permissions",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Using API Keys",
@@ -141,6 +152,7 @@
     "searchKey": "aws_instance[positive9].provisioner",
     "searchValue": "",
     "expectedValue": "aws_instance[positive9].provisioner.remote-exec should be used to configure AWS API keys",
-    "actualValue": "aws_instance[positive9] should be using iam_instance_profile to assign a role with permissions"
+    "actualValue": "aws_instance[positive9] should be using iam_instance_profile to assign a role with permissions",
+    "issueType": "IncorrectValue"
   }
 ]

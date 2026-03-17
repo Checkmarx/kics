@@ -9,7 +9,8 @@
     "searchKey": "alicloud_db_instance[default]",
     "searchValue": "sql_collector_status",
     "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
-    "actualValue": "'sql_collector_status' is not defined"
+    "actualValue": "'sql_collector_status' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
@@ -21,7 +22,8 @@
     "searchKey": "alicloud_db_instance[default]",
     "searchValue": "sql_collector_config_value",
     "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
-    "actualValue": "'sql_collector_config_value' is not defined"
+    "actualValue": "'sql_collector_config_value' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
@@ -33,7 +35,8 @@
     "searchKey": "alicloud_db_instance[default]",
     "searchValue": "sql_collector_config_value",
     "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
-    "actualValue": "'sql_collector_config_value' is not defined"
+    "actualValue": "'sql_collector_config_value' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
@@ -45,7 +48,8 @@
     "searchKey": "alicloud_db_instance[default].sql_collector_status",
     "searchValue": "",
     "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
-    "actualValue": "'sql_collector_status' is set to 'Disabled'"
+    "actualValue": "'sql_collector_status' is set to 'Disabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
@@ -57,7 +61,8 @@
     "searchKey": "alicloud_db_instance[default]",
     "searchValue": "sql_collector_config_value",
     "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
-    "actualValue": "'sql_collector_config_value' is not defined"
+    "actualValue": "'sql_collector_config_value' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
@@ -69,6 +74,7 @@
     "searchKey": "alicloud_db_instance[default].sql_collector_config_value",
     "searchValue": "",
     "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
-    "actualValue": "'sql_collector_config_value' is set to 30"
+    "actualValue": "'sql_collector_config_value' is set to 30",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "google_compute_network[positive1]",
     "searchValue": "",
     "expectedValue": "'google_compute_network[positive1]' should not be using a firewall rule that allows access to port range",
-    "actualValue": "'google_compute_network[positive1]' is using a firewall rule that allows access to port range"
+    "actualValue": "'google_compute_network[positive1]' is using a firewall rule that allows access to port range",
+    "issueType": "IncorrectValue"
   }
 ]

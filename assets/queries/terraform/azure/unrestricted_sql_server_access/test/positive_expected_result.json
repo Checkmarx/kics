@@ -9,7 +9,8 @@
     "searchKey": "azurerm_sql_firewall_rule[positive3-legacy].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_sql_firewall_rule[positive3-legacy].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_sql_firewall_rule[positive3-legacy].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_sql_firewall_rule[positive3-legacy].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_sql_firewall_rule[positive4-legacy].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_sql_firewall_rule[positive4-legacy].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_sql_firewall_rule[positive4-legacy].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_sql_firewall_rule[positive4-legacy].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_sql_firewall_rule[positive5-legacy].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_sql_firewall_rule[positive5-legacy].start_ip_address' Firewall rules should not have both 'start_ip_address' and 'end_ip_address' set to '0.0.0.0'.",
-    "actualValue": "'azurerm_sql_firewall_rule[positive5-legacy].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'"
+    "actualValue": "'azurerm_sql_firewall_rule[positive5-legacy].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_mssql_firewall_rule[positive3].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_firewall_rule[positive3].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_mssql_firewall_rule[positive3].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_mssql_firewall_rule[positive3].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_mssql_firewall_rule[positive4].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_firewall_rule[positive4].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_mssql_firewall_rule[positive4].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_mssql_firewall_rule[positive4].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -69,7 +74,8 @@
     "searchKey": "azurerm_mssql_firewall_rule[positive5].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_mssql_firewall_rule[positive5].start_ip_address' Firewall rules should not have both 'start_ip_address' and 'end_ip_address' set to '0.0.0.0'.",
-    "actualValue": "'azurerm_mssql_firewall_rule[positive5].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'"
+    "actualValue": "'azurerm_mssql_firewall_rule[positive5].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -81,7 +87,8 @@
     "searchKey": "azurerm_mariadb_firewall_rule[mariadb_fw1].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_mariadb_firewall_rule[mariadb_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_mariadb_firewall_rule[mariadb_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_mariadb_firewall_rule[mariadb_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -93,7 +100,8 @@
     "searchKey": "azurerm_mariadb_firewall_rule[mariadb_fw2].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_mariadb_firewall_rule[mariadb_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_mariadb_firewall_rule[mariadb_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_mariadb_firewall_rule[mariadb_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -105,7 +113,8 @@
     "searchKey": "azurerm_mariadb_firewall_rule[mariadb_fw3].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_mariadb_firewall_rule[mariadb_fw3].start_ip_address' Firewall rules should not have both 'start_ip_address' and 'end_ip_address' set to '0.0.0.0'.",
-    "actualValue": "'azurerm_mariadb_firewall_rule[mariadb_fw3].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'"
+    "actualValue": "'azurerm_mariadb_firewall_rule[mariadb_fw3].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -117,7 +126,8 @@
     "searchKey": "azurerm_postgresql_firewall_rule[psql_fw1].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_firewall_rule[psql_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_postgresql_firewall_rule[psql_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_postgresql_firewall_rule[psql_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -129,7 +139,8 @@
     "searchKey": "azurerm_postgresql_firewall_rule[psql_fw2].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_firewall_rule[psql_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_postgresql_firewall_rule[psql_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_postgresql_firewall_rule[psql_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -141,7 +152,8 @@
     "searchKey": "azurerm_postgresql_firewall_rule[psql_fw3].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_firewall_rule[psql_fw3].start_ip_address' Firewall rules should not have both 'start_ip_address' and 'end_ip_address' set to '0.0.0.0'.",
-    "actualValue": "'azurerm_postgresql_firewall_rule[psql_fw3].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'"
+    "actualValue": "'azurerm_postgresql_firewall_rule[psql_fw3].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -153,7 +165,8 @@
     "searchKey": "azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw1].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -165,7 +178,8 @@
     "searchKey": "azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw2].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -177,7 +191,8 @@
     "searchKey": "azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw3].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw3].start_ip_address' Firewall rules should not have both 'start_ip_address' and 'end_ip_address' set to '0.0.0.0'.",
-    "actualValue": "'azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw3].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'"
+    "actualValue": "'azurerm_postgresql_flexible_server_firewall_rule[psqlflex_fw3].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -189,7 +204,8 @@
     "searchKey": "azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw1].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw1].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -201,7 +217,8 @@
     "searchKey": "azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw2].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
-    "actualValue": "'azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
+    "actualValue": "'azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw2].start_ip_address' The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted SQL Server Access",
@@ -213,6 +230,7 @@
     "searchKey": "azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw3].start_ip_address",
     "searchValue": "",
     "expectedValue": "'azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw3].start_ip_address' Firewall rules should not have both 'start_ip_address' and 'end_ip_address' set to '0.0.0.0'.",
-    "actualValue": "'azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw3].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'"
+    "actualValue": "'azurerm_mysql_flexible_server_firewall_rule[mysqlflex_fw3].start_ip_address' Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'",
+    "issueType": "IncorrectValue"
   }
 ]

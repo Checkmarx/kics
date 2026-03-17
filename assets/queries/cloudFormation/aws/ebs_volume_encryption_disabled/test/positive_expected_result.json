@@ -9,7 +9,8 @@
     "searchKey": "Resources.NewVolume.Properties.Encrypted",
     "searchValue": "",
     "expectedValue": "Resources.NewVolume.Properties.Encrypted should be true",
-    "actualValue": "Resources.NewVolume.Properties.Encrypted is false"
+    "actualValue": "Resources.NewVolume.Properties.Encrypted is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.NewVolume02.Properties",
     "searchValue": "",
     "expectedValue": "Resources.NewVolume02.Properties.Encrypted should be defined and not null",
-    "actualValue": "Resources.NewVolume02.Properties.Encrypted is undefined or null"
+    "actualValue": "Resources.NewVolume02.Properties.Encrypted is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.NewVolume.Properties.Encrypted",
     "searchValue": "",
     "expectedValue": "Resources.NewVolume.Properties.Encrypted should be true",
-    "actualValue": "Resources.NewVolume.Properties.Encrypted is false"
+    "actualValue": "Resources.NewVolume.Properties.Encrypted is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.NewVolume02.Properties",
     "searchValue": "",
     "expectedValue": "Resources.NewVolume02.Properties.Encrypted should be defined and not null",
-    "actualValue": "Resources.NewVolume02.Properties.Encrypted is undefined or null"
+    "actualValue": "Resources.NewVolume02.Properties.Encrypted is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.NewVolume.Properties.Encrypted",
     "searchValue": "",
     "expectedValue": "Resources.NewVolume.Properties.Encrypted should be true",
-    "actualValue": "Resources.NewVolume.Properties.Encrypted is false"
+    "actualValue": "Resources.NewVolume.Properties.Encrypted is false",
+    "issueType": "IncorrectValue"
   }
 ]

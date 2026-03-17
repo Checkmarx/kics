@@ -9,7 +9,8 @@
     "searchKey": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.headers.{{X-Rate-Limit-Limit}}.$ref",
     "searchValue": "",
     "expectedValue": "Response ref points to '#/components/headers'",
-    "actualValue": "Response ref does not point to '#/components/headers'"
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Object With Incorrect Ref",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.6xx.headers.{{X-Rate-Limit-Limit}}.$ref",
     "searchValue": "",
     "expectedValue": "Response ref points to '#/components/headers'",
-    "actualValue": "Response ref does not point to '#/components/headers'"
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Object With Incorrect Ref",
@@ -33,7 +35,8 @@
     "searchKey": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.headers.{{X-Rate-Limit-Limit}}.$ref",
     "searchValue": "",
     "expectedValue": "Response ref points to '#/components/headers'",
-    "actualValue": "Response ref does not point to '#/components/headers'"
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Object With Incorrect Ref",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.get.responses.6xx.headers.{{X-Rate-Limit-Limit}}.$ref",
     "searchValue": "",
     "expectedValue": "Response ref points to '#/components/headers'",
-    "actualValue": "Response ref does not point to '#/components/headers'"
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue"
   }
 ]

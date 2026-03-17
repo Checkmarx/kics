@@ -9,7 +9,8 @@
     "searchKey": "FROM={{node:alpine}}",
     "searchValue": "",
     "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
-    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Healthcheck Instruction Missing",
@@ -21,6 +22,7 @@
     "searchKey": "FROM={{alpine:latest  }}",
     "searchValue": "",
     "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
-    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",
+    "issueType": "MissingAttribute"
   }
 ]

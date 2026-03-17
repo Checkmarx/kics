@@ -9,7 +9,8 @@
     "searchKey": "azurerm_app_service[positive1_1]",
     "searchValue": "",
     "expectedValue": "'azurerm_app_service' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_app_service' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_app_service' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_windows_web_app[positive1_2]",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_web_app' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_windows_web_app' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_windows_web_app' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_linux_web_app[positive1_3]",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_web_app' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_linux_web_app' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_linux_web_app' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_batch_account[positive1_4]",
     "searchValue": "",
     "expectedValue": "'azurerm_batch_account' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_batch_account' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_batch_account' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_eventhub[positive1_5]",
     "searchValue": "",
     "expectedValue": "'azurerm_eventhub' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_eventhub' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_eventhub' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -69,7 +74,8 @@
     "searchKey": "azurerm_storage_account[positive1_6]",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_storage_account' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_storage_account' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -81,7 +87,8 @@
     "searchKey": "azurerm_iothub[positive1_7]",
     "searchValue": "",
     "expectedValue": "'azurerm_iothub' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_iothub' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_iothub' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -93,7 +100,8 @@
     "searchKey": "azurerm_search_service[positive1_8]",
     "searchValue": "",
     "expectedValue": "'azurerm_search_service' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_search_service' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_search_service' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -105,7 +113,8 @@
     "searchKey": "azurerm_servicebus_namespace[positive1_9]",
     "searchValue": "",
     "expectedValue": "'azurerm_servicebus_namespace' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_servicebus_namespace' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_servicebus_namespace' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -117,7 +126,8 @@
     "searchKey": "azurerm_stream_analytics_job[positive1_10]",
     "searchValue": "",
     "expectedValue": "'azurerm_stream_analytics_job' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_stream_analytics_job' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_stream_analytics_job' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -129,7 +139,8 @@
     "searchKey": "azurerm_application_gateway[positive1_11]",
     "searchValue": "",
     "expectedValue": "'azurerm_application_gateway' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_application_gateway' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_application_gateway' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -141,7 +152,8 @@
     "searchKey": "azurerm_logic_app_standard[positive1_12]",
     "searchValue": "",
     "expectedValue": "'azurerm_logic_app_standard' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_logic_app_standard' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_logic_app_standard' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -153,7 +165,8 @@
     "searchKey": "azurerm_data_lake_analytics_account[positive2_1]",
     "searchValue": "",
     "expectedValue": "'azurerm_data_lake_analytics_account' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_data_lake_analytics_account' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_data_lake_analytics_account' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Service Without Resource Logging",
@@ -165,6 +178,7 @@
     "searchKey": "azurerm_data_lake_store[positive2_2]",
     "searchValue": "",
     "expectedValue": "'azurerm_data_lake_store' should be associated with a 'azurerm_monitor_diagnostic_setting' resource",
-    "actualValue": "'azurerm_data_lake_store' is not associated with a 'azurerm_monitor_diagnostic_setting' resource"
+    "actualValue": "'azurerm_data_lake_store' is not associated with a 'azurerm_monitor_diagnostic_setting' resource",
+    "issueType": "MissingAttribute"
   }
 ]

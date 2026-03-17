@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "Client Certification should have a .pem or .crt file",
-    "actualValue": "Client Certification is not properly set"
+    "actualValue": "Client Certification is not properly set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Client Certificate Authentication Not Setup Properly",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "Client Certification should have a .pem or .crt file",
-    "actualValue": "Client Certification is not properly set"
+    "actualValue": "Client Certification is not properly set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Client Certificate Authentication Not Setup Properly",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "Client Certification should be set",
-    "actualValue": "Client Certification is not set"
+    "actualValue": "Client Certification is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Client Certificate Authentication Not Setup Properly",
@@ -45,7 +48,8 @@
     "searchKey": "kind={{KubeletConfiguration}}",
     "searchValue": "",
     "expectedValue": "Client Certification should have a .pem or .crt file",
-    "actualValue": "Client Certification is not properly set"
+    "actualValue": "Client Certification is not properly set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Client Certificate Authentication Not Setup Properly",
@@ -57,7 +61,8 @@
     "searchKey": "kind={{KubeletConfiguration}}",
     "searchValue": "",
     "expectedValue": "Client Certification should be set",
-    "actualValue": "Client Certification is not set"
+    "actualValue": "Client Certification is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Client Certificate Authentication Not Setup Properly",
@@ -69,6 +74,7 @@
     "searchKey": "kind={{KubeletConfiguration}}",
     "searchValue": "",
     "expectedValue": "Client Certification should be set",
-    "actualValue": "Client Certification is not set"
+    "actualValue": "Client Certification is not set",
+    "issueType": "MissingAttribute"
   }
 ]

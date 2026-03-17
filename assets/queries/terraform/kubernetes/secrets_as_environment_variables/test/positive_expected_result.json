@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[test].spec.container.env",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test].spec.container.env.value_from.secret_key_ref should be undefined",
-    "actualValue": "kubernetes_pod[test].spec.container.env.value_from.secret_key_ref is set"
+    "actualValue": "kubernetes_pod[test].spec.container.env.value_from.secret_key_ref is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Secrets As Environment Variables",
@@ -21,6 +22,7 @@
     "searchKey": "kubernetes_pod[test].spec.container.env_from",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test].spec.container.env_from.secret_ref should be undefined",
-    "actualValue": "kubernetes_pod[test].spec.container.env_from.secret_ref is set"
+    "actualValue": "kubernetes_pod[test].spec.container.env_from.secret_ref is set",
+    "issueType": "IncorrectValue"
   }
 ]

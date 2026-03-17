@@ -9,7 +9,8 @@
     "searchKey": "Resources.daxCluster.Properties.SSESpecification.SSEEnabled",
     "searchValue": "",
     "expectedValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' should be set to true.",
-    "actualValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' is set to false."
+    "actualValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' is set to false.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DAX Cluster Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.daxCluster.Properties.SSESpecification.SSEEnabled",
     "searchValue": "",
     "expectedValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' should be set to true.",
-    "actualValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' is set to false."
+    "actualValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' is set to false.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DAX Cluster Not Encrypted",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.daxCluster.Properties.SSESpecification",
     "searchValue": "",
     "expectedValue": "'Resources.daxCluster.Properties.SSESpecification' should have SSEEnabled declared and set to true.",
-    "actualValue": "'Resources.daxCluster.Properties.SSESpecification' does not declare SSEEnabled."
+    "actualValue": "'Resources.daxCluster.Properties.SSESpecification' does not declare SSEEnabled.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DAX Cluster Not Encrypted",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.daxCluster.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.daxCluster.Properties' should have SSESpecification declared.",
-    "actualValue": "'Resources.daxCluster.Properties' does not declare SSESpecification."
+    "actualValue": "'Resources.daxCluster.Properties' does not declare SSESpecification.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DAX Cluster Not Encrypted",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.daxCluster.Properties.SSESpecification.SSEEnabled",
     "searchValue": "",
     "expectedValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' should be set to true.",
-    "actualValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' is set to false."
+    "actualValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' is set to false.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DAX Cluster Not Encrypted",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.daxCluster.Properties.SSESpecification.SSEEnabled",
     "searchValue": "",
     "expectedValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' should be set to true.",
-    "actualValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' is set to false."
+    "actualValue": "'Resources.daxCluster.Properties.SSESpecification.SSEEnabled' is set to false.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DAX Cluster Not Encrypted",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.daxCluster.Properties.SSESpecification",
     "searchValue": "",
     "expectedValue": "'Resources.daxCluster.Properties.SSESpecification' should have SSEEnabled declared and set to true.",
-    "actualValue": "'Resources.daxCluster.Properties.SSESpecification' does not declare SSEEnabled."
+    "actualValue": "'Resources.daxCluster.Properties.SSESpecification' does not declare SSEEnabled.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DAX Cluster Not Encrypted",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.daxCluster.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.daxCluster.Properties' should have SSESpecification declared.",
-    "actualValue": "'Resources.daxCluster.Properties' does not declare SSESpecification."
+    "actualValue": "'Resources.daxCluster.Properties' does not declare SSESpecification.",
+    "issueType": "MissingAttribute"
   }
 ]

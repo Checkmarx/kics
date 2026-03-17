@@ -9,7 +9,8 @@
     "searchKey": "aws_alb[{{disabled_1}}]",
     "searchValue": "",
     "expectedValue": "aws_alb[{{disabled_1}}].drop_invalid_header_fields should be set to true",
-    "actualValue": "aws_alb[{{disabled_1}}].drop_invalid_header_fields is missing"
+    "actualValue": "aws_alb[{{disabled_1}}].drop_invalid_header_fields is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ALB Not Dropping Invalid Headers",
@@ -21,7 +22,8 @@
     "searchKey": "aws_alb[{{disabled_2}}].drop_invalid_header_fields",
     "searchValue": "",
     "expectedValue": "aws_alb[{{disabled_2}}].drop_invalid_header_fields should be set to true",
-    "actualValue": "aws_alb[{{disabled_2}}].drop_invalid_header_fields is set to false"
+    "actualValue": "aws_alb[{{disabled_2}}].drop_invalid_header_fields is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ALB Not Dropping Invalid Headers",
@@ -33,7 +35,8 @@
     "searchKey": "aws_lb[{{disabled_1}}]",
     "searchValue": "",
     "expectedValue": "aws_lb[{{disabled_1}}].drop_invalid_header_fields should be set to true",
-    "actualValue": "aws_lb[{{disabled_1}}].drop_invalid_header_fields is missing"
+    "actualValue": "aws_lb[{{disabled_1}}].drop_invalid_header_fields is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ALB Not Dropping Invalid Headers",
@@ -45,7 +48,8 @@
     "searchKey": "aws_lb[{{disabled_2}}].drop_invalid_header_fields",
     "searchValue": "",
     "expectedValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields should be set to true",
-    "actualValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields is set to false"
+    "actualValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ALB Not Dropping Invalid Headers",
@@ -57,7 +61,8 @@
     "searchKey": "aws_alb[{{disabled_1}}]",
     "searchValue": "",
     "expectedValue": "aws_alb[{{disabled_1}}].drop_invalid_header_fields should be set to true",
-    "actualValue": "aws_alb[{{disabled_1}}].drop_invalid_header_fields is missing"
+    "actualValue": "aws_alb[{{disabled_1}}].drop_invalid_header_fields is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ALB Not Dropping Invalid Headers",
@@ -69,7 +74,8 @@
     "searchKey": "aws_lb[{{disabled_2}}].drop_invalid_header_fields",
     "searchValue": "",
     "expectedValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields should be set to true",
-    "actualValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields is set to false"
+    "actualValue": "aws_lb[{{disabled_2}}].drop_invalid_header_fields is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ALB Not Dropping Invalid Headers",
@@ -81,7 +87,8 @@
     "searchKey": "module[alb].drop_invalid_header_fields",
     "searchValue": "",
     "expectedValue": "module[alb].drop_invalid_header_fields should be set to true",
-    "actualValue": "module[alb].drop_invalid_header_fields is set to false"
+    "actualValue": "module[alb].drop_invalid_header_fields is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ALB Not Dropping Invalid Headers",
@@ -93,7 +100,8 @@
     "searchKey": "module[alb]",
     "searchValue": "",
     "expectedValue": "module[alb].drop_invalid_header_fields should be set to true",
-    "actualValue": "module[alb].drop_invalid_header_fields is missing"
+    "actualValue": "module[alb].drop_invalid_header_fields is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ALB Not Dropping Invalid Headers",
@@ -105,6 +113,7 @@
     "searchKey": "module[alb]",
     "searchValue": "",
     "expectedValue": "module[alb].drop_invalid_header_fields should be set to true",
-    "actualValue": "module[alb].drop_invalid_header_fields is missing"
+    "actualValue": "module[alb].drop_invalid_header_fields is missing",
+    "issueType": "MissingAttribute"
   }
 ]

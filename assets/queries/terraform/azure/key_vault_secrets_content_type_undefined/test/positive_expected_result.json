@@ -9,6 +9,7 @@
     "searchKey": "azurerm_key_vault_secret[positive]",
     "searchValue": "",
     "expectedValue": "'azurerm_key_vault_secret[positive].content_type' should be defined and not null",
-    "actualValue": "'azurerm_key_vault_secret[positive].content_type' is undefined or null"
+    "actualValue": "'azurerm_key_vault_secret[positive].content_type' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

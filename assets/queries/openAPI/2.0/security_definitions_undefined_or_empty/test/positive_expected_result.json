@@ -9,7 +9,8 @@
     "searchKey": "swagger",
     "searchValue": "",
     "expectedValue": "'securityDefinitions' should be set and not empty",
-    "actualValue": "'securityDefinitions' is undefined or empty"
+    "actualValue": "'securityDefinitions' is undefined or empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Definitions Undefined or Empty",
@@ -21,7 +22,8 @@
     "searchKey": "swagger",
     "searchValue": "",
     "expectedValue": "'securityDefinitions' should be set and not empty",
-    "actualValue": "'securityDefinitions' is undefined or empty"
+    "actualValue": "'securityDefinitions' is undefined or empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Definitions Undefined or Empty",
@@ -33,7 +35,8 @@
     "searchKey": "swagger",
     "searchValue": "",
     "expectedValue": "'securityDefinitions' should be set and not empty",
-    "actualValue": "'securityDefinitions' is undefined or empty"
+    "actualValue": "'securityDefinitions' is undefined or empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Definitions Undefined or Empty",
@@ -45,6 +48,7 @@
     "searchKey": "swagger",
     "searchValue": "",
     "expectedValue": "'securityDefinitions' should be set and not empty",
-    "actualValue": "'securityDefinitions' is undefined or empty"
+    "actualValue": "'securityDefinitions' is undefined or empty",
+    "issueType": "MissingAttribute"
   }
 ]

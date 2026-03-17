@@ -9,7 +9,8 @@
     "searchKey": "defaults.become",
     "searchValue": "",
     "expectedValue": "'become' should be set to 'true'",
-    "actualValue": "'become' is set to 'false'"
+    "actualValue": "'become' is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privilege Escalation Using Become Plugin In Defaults",
@@ -21,6 +22,7 @@
     "searchKey": "defaults.become_user",
     "searchValue": "",
     "expectedValue": "'become' should be defined and set to 'true'",
-    "actualValue": "'become' is not defined"
+    "actualValue": "'become' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

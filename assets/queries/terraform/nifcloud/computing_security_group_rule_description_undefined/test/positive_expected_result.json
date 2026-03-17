@@ -9,6 +9,7 @@
     "searchKey": "nifcloud_security_group_rule[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_security_group_rule[positive]' should include a description for auditing purposes",
-    "actualValue": "'nifcloud_security_group_rule[positive]' does not have a description"
+    "actualValue": "'nifcloud_security_group_rule[positive]' does not have a description",
+    "issueType": "MissingAttribute"
   }
 ]

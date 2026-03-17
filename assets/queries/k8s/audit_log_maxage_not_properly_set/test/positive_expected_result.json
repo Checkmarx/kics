@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxage flag should be set to 30 or more days",
-    "actualValue": "--audit-log-maxage flag is set to less than 30 days"
+    "actualValue": "--audit-log-maxage flag is set to less than 30 days",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Audit Log Maxage Not Properly Set",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
-    "actualValue": "--audit-log-maxage flag is not defined"
+    "actualValue": "--audit-log-maxage flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Audit Log Maxage Not Properly Set",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{dummy}}.spec.template.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
-    "actualValue": "--audit-log-maxage flag is not defined"
+    "actualValue": "--audit-log-maxage flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Audit Log Maxage Not Properly Set",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
-    "actualValue": "--audit-log-maxage flag is not defined"
+    "actualValue": "--audit-log-maxage flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Audit Log Maxage Not Properly Set",
@@ -57,7 +61,8 @@
     "searchKey": "metadata.name={{dummy-rev}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
-    "actualValue": "--audit-log-maxage flag is not defined"
+    "actualValue": "--audit-log-maxage flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Audit Log Maxage Not Properly Set",
@@ -69,6 +74,7 @@
     "searchKey": "metadata.name={{dummy-cs}}.spec.template.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
-    "actualValue": "--audit-log-maxage flag is not defined"
+    "actualValue": "--audit-log-maxage flag is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "alicloud_api_gateway_api[apiGatewayApi].request_config.protocol",
     "searchValue": "",
     "expectedValue": "'protocol' value should be 'HTTPS'",
-    "actualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'"
+    "actualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway API Protocol Not HTTPS",
@@ -21,7 +22,8 @@
     "searchKey": "alicloud_api_gateway_api[apiGatewayApi].request_config.protocol",
     "searchValue": "",
     "expectedValue": "'protocol' value should be 'HTTPS'",
-    "actualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'"
+    "actualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway API Protocol Not HTTPS",
@@ -33,6 +35,7 @@
     "searchKey": "alicloud_api_gateway_api[apiGatewayApi].request_config.protocol",
     "searchValue": "",
     "expectedValue": "'protocol' value should be 'HTTPS'",
-    "actualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'"
+    "actualValue": "'protocol' value is 'HTTP' or 'HTTP,HTTPS'",
+    "issueType": "IncorrectValue"
   }
 ]

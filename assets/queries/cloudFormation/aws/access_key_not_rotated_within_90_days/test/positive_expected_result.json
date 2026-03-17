@@ -9,7 +9,8 @@
     "searchKey": "Resources.ConfigRule.Properties.InputParameters.maxAccessKeyAge",
     "searchValue": "",
     "expectedValue": "Resources.ConfigRule.InputParameters.maxAccessKeyAge should be less or equal to 90 (days)",
-    "actualValue": "Resources.ConfigRule.InputParameters.maxAccessKeyAge is more than 90 (days)."
+    "actualValue": "Resources.ConfigRule.InputParameters.maxAccessKeyAge is more than 90 (days).",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "High Access Key Rotation Period",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.ConfigRule.Properties.InputParameters.maxAccessKeyAge",
     "searchValue": "",
     "expectedValue": "Resources.ConfigRule.InputParameters.maxAccessKeyAge should be less or equal to 90 (days)",
-    "actualValue": "Resources.ConfigRule.InputParameters.maxAccessKeyAge is more than 90 (days)."
+    "actualValue": "Resources.ConfigRule.InputParameters.maxAccessKeyAge is more than 90 (days).",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_pod_security_policy[example].spec.allowed_proc_mount_types",
     "searchValue": "",
     "expectedValue": "allowed_proc_mount_types should contain the value Default",
-    "actualValue": "allowed_proc_mount_types contains the value Unmasked"
+    "actualValue": "allowed_proc_mount_types contains the value Unmasked",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "aws_iam_group[cosmic]",
     "searchValue": "",
     "expectedValue": "group cosmic shouldn't be associated with a policy that has Action set to 'lambda:UpdateFunctionCode' and Resource set to '*'",
-    "actualValue": "group cosmic is associated with a policy that has Action set to 'lambda:UpdateFunctionCode' and Resource set to '*'"
+    "actualValue": "group cosmic is associated with a policy that has Action set to 'lambda:UpdateFunctionCode' and Resource set to '*'",
+    "issueType": "IncorrectValue"
   }
 ]

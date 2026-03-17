@@ -9,7 +9,8 @@
     "searchKey": "Resources",
     "searchValue": "",
     "expectedValue": "'AWS::AccessAnalyzer::Analyzer' should be set",
-    "actualValue": "'AWS::AccessAnalyzer::Analyzer' is undefined"
+    "actualValue": "'AWS::AccessAnalyzer::Analyzer' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM Access Analyzer Not Enabled",
@@ -21,6 +22,7 @@
     "searchKey": "Resources",
     "searchValue": "",
     "expectedValue": "'AWS::AccessAnalyzer::Analyzer' should be set",
-    "actualValue": "'AWS::AccessAnalyzer::Analyzer' is undefined"
+    "actualValue": "'AWS::AccessAnalyzer::Analyzer' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

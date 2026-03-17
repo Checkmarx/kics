@@ -9,7 +9,8 @@
     "searchKey": "Resources.CodeBuildProject.Project.Properties",
     "searchValue": "",
     "expectedValue": "Resources.CodeBuildProject.Project.Properties.EncryptionKey' should be defined and not null",
-    "actualValue": "Resources.CodeBuildProject.Project.Properties.EncryptionKey' is undefined or null"
+    "actualValue": "Resources.CodeBuildProject.Project.Properties.EncryptionKey' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CodeBuild Not Encrypted",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.CodeBuildProject.Project.Properties",
     "searchValue": "",
     "expectedValue": "Resources.CodeBuildProject.Project.Properties.EncryptionKey' should be defined and not null",
-    "actualValue": "Resources.CodeBuildProject.Project.Properties.EncryptionKey' is undefined or null"
+    "actualValue": "Resources.CodeBuildProject.Project.Properties.EncryptionKey' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

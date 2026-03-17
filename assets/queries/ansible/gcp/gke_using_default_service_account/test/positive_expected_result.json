@@ -9,7 +9,8 @@
     "searchKey": "name={{create a cluster}}.{{google.cloud.gcp_container_cluster}}.node_config",
     "searchValue": "",
     "expectedValue": "'service_account' should not be default",
-    "actualValue": "'service_account' is missing"
+    "actualValue": "'service_account' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GKE Using Default Service Account",
@@ -21,6 +22,7 @@
     "searchKey": "name={{create a cluster}}.{{google.cloud.gcp_container_cluster}}.node_config.service_account",
     "searchValue": "",
     "expectedValue": "'service_account' should not be default",
-    "actualValue": "'service_account' is default"
+    "actualValue": "'service_account' is default",
+    "issueType": "IncorrectValue"
   }
 ]

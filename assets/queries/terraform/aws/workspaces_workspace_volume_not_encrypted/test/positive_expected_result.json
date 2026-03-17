@@ -9,7 +9,8 @@
     "searchKey": "aws_workspaces_workspace[{{example}}].workspace_properties.user_volume_size_gib",
     "searchValue": "",
     "expectedValue": "aws_workspaces_workspace.user_volume_encryption_enabled should be set to true",
-    "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is missing"
+    "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Workspaces Workspace Volume Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "aws_workspaces_workspace[{{example_2}}].workspace_properties.root_volume_size_gib",
     "searchValue": "",
     "expectedValue": "aws_workspaces_workspace.root_volume_encryption_enabled should be set to true",
-    "actualValue": "aws_workspaces_workspace.root_volume_encryption_enabled is missing"
+    "actualValue": "aws_workspaces_workspace.root_volume_encryption_enabled is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Workspaces Workspace Volume Not Encrypted",
@@ -33,7 +35,8 @@
     "searchKey": "aws_workspaces_workspace[{{example_3}}].workspace_properties.user_volume_size_gib",
     "searchValue": "",
     "expectedValue": "aws_workspaces_workspace.user_volume_encryption_enabled should be set to true",
-    "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is missing"
+    "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Workspaces Workspace Volume Not Encrypted",
@@ -45,7 +48,8 @@
     "searchKey": "aws_workspaces_workspace[{{example_3}}].workspace_properties.root_volume_size_gib",
     "searchValue": "",
     "expectedValue": "aws_workspaces_workspace.root_volume_encryption_enabled should be set to true",
-    "actualValue": "aws_workspaces_workspace.root_volume_encryption_enabled is missing"
+    "actualValue": "aws_workspaces_workspace.root_volume_encryption_enabled is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Workspaces Workspace Volume Not Encrypted",
@@ -57,7 +61,8 @@
     "searchKey": "aws_workspaces_workspace[{{example_4}}].root_volume_encryption_enabled",
     "searchValue": "",
     "expectedValue": "aws_workspaces_workspace.root_volume_encryption_enabled should be set to true",
-    "actualValue": "aws_workspaces_workspace.root_volume_encryption_enabled is set to false"
+    "actualValue": "aws_workspaces_workspace.root_volume_encryption_enabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workspaces Workspace Volume Not Encrypted",
@@ -69,6 +74,7 @@
     "searchKey": "aws_workspaces_workspace[{{example_4}}].user_volume_encryption_enabled",
     "searchValue": "",
     "expectedValue": "aws_workspaces_workspace.user_volume_encryption_enabled should be set to true",
-    "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is set to false"
+    "actualValue": "aws_workspaces_workspace.user_volume_encryption_enabled is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

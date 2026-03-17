@@ -9,7 +9,8 @@
     "searchKey": "azurerm_linux_function_app_slot[positive1].site_config.minimum_tls_version",
     "searchValue": "",
     "expectedValue": "'site_config.minimum_tls_version' should be defined to '1.2' or higher",
-    "actualValue": "'site_config.minimum_tls_version' is defined to '1.1'"
+    "actualValue": "'site_config.minimum_tls_version' is defined to '1.1'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Function App Deployment Slot Not Using Latest TLS Encryption Version",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_windows_function_app_slot[positive2].site_config.minimum_tls_version",
     "searchValue": "",
     "expectedValue": "'site_config.minimum_tls_version' should be defined to '1.2' or higher",
-    "actualValue": "'site_config.minimum_tls_version' is defined to '1.1'"
+    "actualValue": "'site_config.minimum_tls_version' is defined to '1.1'",
+    "issueType": "IncorrectValue"
   }
 ]

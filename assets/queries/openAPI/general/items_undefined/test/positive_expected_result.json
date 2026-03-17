@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.GeneralError",
     "searchValue": "",
     "expectedValue": "Array items property should be defined",
-    "actualValue": "Array items property is undefined"
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Items Undefined (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
     "searchValue": "",
     "expectedValue": "Array items property should be defined",
-    "actualValue": "Array items property is undefined"
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Items Undefined (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.schemas.GeneralError",
     "searchValue": "",
     "expectedValue": "Array items property should be defined",
-    "actualValue": "Array items property is undefined"
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Items Undefined (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
     "searchValue": "",
     "expectedValue": "Array items property should be defined",
-    "actualValue": "Array items property is undefined"
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Items Undefined (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/users}}.get.responses.200.schema",
     "searchValue": "",
     "expectedValue": "Array items property should be defined",
-    "actualValue": "Array items property is undefined"
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Items Undefined (v2)",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/users}}.get.responses.200.schema",
     "searchValue": "",
     "expectedValue": "Array items property should be defined",
-    "actualValue": "Array items property is undefined"
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

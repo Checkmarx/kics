@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers.{{Content-Type}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers should not contain 'Content-Type'",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers contains 'Content-Type'"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers contains 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Response Name Is Invalid (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers.{{Content-Type}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers should not contain 'Content-Type'",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers contains 'Content-Type'"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers contains 'Content-Type'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Response Name Is Invalid (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.$ref=#/responses/Success",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers should not contain 'Accept'",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers contains 'Accept'"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers contains 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Response Name Is Invalid (v2)",
@@ -45,7 +48,8 @@
     "searchKey": "responses.{{Success}}.headers.{{Accept}}",
     "searchValue": "",
     "expectedValue": "responses.{{Success}}.headers should not contain 'Accept'",
-    "actualValue": "responses.{{Success}}.headers contains 'Accept'"
+    "actualValue": "responses.{{Success}}.headers contains 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Response Name Is Invalid (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.$ref=#/responses/Success",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers should not contain 'Accept'",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers contains 'Accept'"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers contains 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Response Name Is Invalid (v2)",
@@ -69,6 +74,7 @@
     "searchKey": "responses.{{Success}}.headers.{{Accept}}",
     "searchValue": "",
     "expectedValue": "responses.{{Success}}.headers should not contain 'Accept'",
-    "actualValue": "responses.{{Success}}.headers contains 'Accept'"
+    "actualValue": "responses.{{Success}}.headers contains 'Accept'",
+    "issueType": "IncorrectValue"
   }
 ]

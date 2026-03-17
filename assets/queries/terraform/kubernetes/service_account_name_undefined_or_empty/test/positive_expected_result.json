@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[test1].spec",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test1].spec.service_account_name should be defined and not null",
-    "actualValue": "kubernetes_pod[test1].spec.service_account_name is undefined or null"
+    "actualValue": "kubernetes_pod[test1].spec.service_account_name is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Service Account Name Undefined Or Empty",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[test2].spec",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test2].spec.service_account_name should be defined and not null",
-    "actualValue": "kubernetes_pod[test2].spec.service_account_name is undefined or null"
+    "actualValue": "kubernetes_pod[test2].spec.service_account_name is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Service Account Name Undefined Or Empty",
@@ -33,6 +35,7 @@
     "searchKey": "kubernetes_pod[test3].spec.service_account_name",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test3].spec.service_account_name is correct",
-    "actualValue": "kubernetes_pod[test3].spec.service_account_name is null or empty"
+    "actualValue": "kubernetes_pod[test3].spec.service_account_name is null or empty",
+    "issueType": "IncorrectValue"
   }
 ]

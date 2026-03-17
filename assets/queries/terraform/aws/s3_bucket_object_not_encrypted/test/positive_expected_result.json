@@ -9,6 +9,7 @@
     "searchKey": "aws_s3_bucket_object[{{examplebucket_object}}]",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_object.server_side_encryption should be defined and not null",
-    "actualValue": "aws_s3_bucket_object.server_side_encryption is undefined or null"
+    "actualValue": "aws_s3_bucket_object.server_side_encryption is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

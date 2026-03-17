@@ -9,6 +9,7 @@
     "searchKey": "nifcloud_db_instance[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_db_instance[positive]' should not use publicly accessible set to true. You should limit all access to the minimum that is required for your application to function.",
-    "actualValue": "'nifcloud_db_instance[positive]' has publicly accessible set to true."
+    "actualValue": "'nifcloud_db_instance[positive]' has publicly accessible set to true.",
+    "issueType": "IncorrectValue"
   }
 ]

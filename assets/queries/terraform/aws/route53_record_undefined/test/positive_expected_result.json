@@ -9,6 +9,7 @@
     "searchKey": "aws_route53_record[example].records",
     "searchValue": "",
     "expectedValue": "aws_route53_record.records should be defined",
-    "actualValue": "aws_route53_record.records is undefined"
+    "actualValue": "aws_route53_record.records is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{example}}.spec.privileged",
     "searchValue": "",
     "expectedValue": "metadata.name={{example}}.spec.privileged should be set to false",
-    "actualValue": "metadata.name={{example}}.spec.privileged is true"
+    "actualValue": "metadata.name={{example}}.spec.privileged is true",
+    "issueType": "IncorrectValue"
   }
 ]

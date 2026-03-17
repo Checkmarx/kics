@@ -9,7 +9,8 @@
     "searchKey": "Resources.CFNKeys.Properties.UserName",
     "searchValue": "",
     "expectedValue": "'Resources.CFNKeys.Properties.UserName' should not be asssociated to root account.",
-    "actualValue": "'Resources.CFNKeys.Properties.UserName' is asssociated to root account."
+    "actualValue": "'Resources.CFNKeys.Properties.UserName' is asssociated to root account.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Root Account Has Active Access Keys",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.CFNKeys.Properties.UserName",
     "searchValue": "",
     "expectedValue": "'Resources.CFNKeys.Properties.UserName' should not be asssociated to root account.",
-    "actualValue": "'Resources.CFNKeys.Properties.UserName' is asssociated to root account."
+    "actualValue": "'Resources.CFNKeys.Properties.UserName' is asssociated to root account.",
+    "issueType": "IncorrectValue"
   }
 ]

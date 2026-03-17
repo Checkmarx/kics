@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{sample/databases/default}}.properties.disabledAlerts",
     "searchValue": "",
     "expectedValue": "'resources.name=sample/databases/default.disabledAlerts' should be empty",
-    "actualValue": "'resources.name=sample/databases/default.disabledAlerts' is not empty"
+    "actualValue": "'resources.name=sample/databases/default.disabledAlerts' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{sample/databases/default}}.properties.disabledAlerts",
     "searchValue": "",
     "expectedValue": "'resources.name=sample/databases/default.disabledAlerts' should be empty",
-    "actualValue": "'resources.name=sample/databases/default.disabledAlerts' is not empty"
+    "actualValue": "'resources.name=sample/databases/default.disabledAlerts' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{sample/databases/default}}.properties.disabledAlerts",
     "searchValue": "",
     "expectedValue": "'resources.name=sample/databases/default.disabledAlerts' should be empty",
-    "actualValue": "'resources.name=sample/databases/default.disabledAlerts' is not empty"
+    "actualValue": "'resources.name=sample/databases/default.disabledAlerts' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "properties.template.resources.name={{sample/databases/default}}.properties.disabledAlerts",
     "searchValue": "",
     "expectedValue": "'properties.template.resources.name=sample/databases/default.disabledAlerts' should be empty",
-    "actualValue": "'properties.template.resources.name=sample/databases/default.disabledAlerts' is not empty"
+    "actualValue": "'properties.template.resources.name=sample/databases/default.disabledAlerts' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{sample/databases/default}}.properties",
     "searchValue": "",
     "expectedValue": "'resources.name=sample/databases/default.state' should be enabled",
-    "actualValue": "'resources.name=sample/databases/default.state' is not enabled"
+    "actualValue": "'resources.name=sample/databases/default.state' is not enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "resources.name={{sample/databases/default}}.properties",
     "searchValue": "",
     "expectedValue": "'resources.name=sample/databases/default.state' should be enabled",
-    "actualValue": "'resources.name=sample/databases/default.state' is not enabled"
+    "actualValue": "'resources.name=sample/databases/default.state' is not enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{sample/databases/default}}.properties",
     "searchValue": "",
     "expectedValue": "'resources.name=sample/databases/default.state' should be enabled",
-    "actualValue": "'resources.name=sample/databases/default.state' is not enabled"
+    "actualValue": "'resources.name=sample/databases/default.state' is not enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name={{sample/databases/default}}.properties",
     "searchValue": "",
     "expectedValue": "'properties.template.resources.name=sample/databases/default.state' should be enabled",
-    "actualValue": "'properties.template.resources.name=sample/databases/default.state' is not enabled"
+    "actualValue": "'properties.template.resources.name=sample/databases/default.state' is not enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name={{sample/default}}",
     "searchValue": "",
     "expectedValue": "Security alert policy should be defined and enabled",
-    "actualValue": "Security alert policy is undefined"
+    "actualValue": "Security alert policy is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "properties.template.resources.name={{sample/default}}",
     "searchValue": "",
     "expectedValue": "Security alert policy should be defined and enabled",
-    "actualValue": "Security alert policy is undefined"
+    "actualValue": "Security alert policy is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name={{sampleServer/default}}.properties.disabledAlerts",
     "searchValue": "",
     "expectedValue": "'resources.name=sampleServer/default.disabledAlerts' should be empty",
-    "actualValue": "'resources.name=sampleServer/default.disabledAlerts' is not empty"
+    "actualValue": "'resources.name=sampleServer/default.disabledAlerts' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -141,7 +152,8 @@
     "searchKey": "resources.name={{sampleServer/default}}.properties.disabledAlerts",
     "searchValue": "",
     "expectedValue": "'resources.name=sampleServer/default.disabledAlerts' should be empty",
-    "actualValue": "'resources.name=sampleServer/default.disabledAlerts' is not empty"
+    "actualValue": "'resources.name=sampleServer/default.disabledAlerts' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -153,7 +165,8 @@
     "searchKey": "resources.name={{sampleServer/default}}.properties",
     "searchValue": "",
     "expectedValue": "'resources.name=sampleServer/default.state' should be enabled",
-    "actualValue": "'resources.name=sampleServer/default.state' is not enabled"
+    "actualValue": "'resources.name=sampleServer/default.state' is not enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -165,7 +178,8 @@
     "searchKey": "resources.name={{sampleServer/default}}.properties",
     "searchValue": "",
     "expectedValue": "'resources.name=sampleServer/default.state' should be enabled",
-    "actualValue": "'resources.name=sampleServer/default.state' is not enabled"
+    "actualValue": "'resources.name=sampleServer/default.state' is not enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -177,7 +191,8 @@
     "searchKey": "resources.name={{sample}}",
     "searchValue": "",
     "expectedValue": "Security alert policy should be defined and enabled",
-    "actualValue": "Security alert policy is undefined"
+    "actualValue": "Security alert policy is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database With Alerts Disabled",
@@ -189,6 +204,7 @@
     "searchKey": "resources.name={{sample}}",
     "searchValue": "",
     "expectedValue": "Security alert policy should be defined and enabled",
-    "actualValue": "Security alert policy is undefined"
+    "actualValue": "Security alert policy is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

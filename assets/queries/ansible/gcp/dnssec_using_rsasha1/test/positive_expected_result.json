@@ -9,6 +9,7 @@
     "searchKey": "name={{create a managed zone}}.{{google.cloud.gcp_dns_managed_zone}}.dnssec_config.defaultKeySpecs.algorithm",
     "searchValue": "",
     "expectedValue": "gcp_dns_managed_zone.dnssec_config.defaultKeySpecs.algorithm should not equal to 'rsasha1'",
-    "actualValue": "gcp_dns_managed_zone.dnssec_config.defaultKeySpecs.algorithm is equal to 'rsasha1'"
+    "actualValue": "gcp_dns_managed_zone.dnssec_config.defaultKeySpecs.algorithm is equal to 'rsasha1'",
+    "issueType": "IncorrectValue"
   }
 ]

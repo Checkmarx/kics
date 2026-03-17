@@ -9,7 +9,8 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[0] SSH' (Port:22) should not be public",
-    "actualValue": "ec2_group.rules[0] SSH' (Port:22) is public"
+    "actualValue": "ec2_group.rules[0] SSH' (Port:22) is public",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -21,7 +22,8 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[1] SSH' (Port:22) should not be public",
-    "actualValue": "ec2_group.rules[1] SSH' (Port:22) is public"
+    "actualValue": "ec2_group.rules[1] SSH' (Port:22) is public",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
@@ -33,6 +35,7 @@
     "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules[2] SSH' (Port:22) should not be public",
-    "actualValue": "ec2_group.rules[2] SSH' (Port:22) is public"
+    "actualValue": "ec2_group.rules[2] SSH' (Port:22) is public",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "security.petstore_auth",
     "searchValue": "",
     "expectedValue": "security scheme petstore_auth should specify scopes for type 'basic'",
-    "actualValue": "security scheme petstore_auth doesn't specify scopes for type 'basic'"
+    "actualValue": "security scheme petstore_auth doesn't specify scopes for type 'basic'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Non OAuth2 Security Requirement Defining OAuth2 Scopes",
@@ -21,6 +22,7 @@
     "searchKey": "security.petstore_auth",
     "searchValue": "",
     "expectedValue": "security scheme petstore_auth should specify scopes for type 'basic'",
-    "actualValue": "security scheme petstore_auth doesn't specify scopes for type 'basic'"
+    "actualValue": "security scheme petstore_auth doesn't specify scopes for type 'basic'",
+    "issueType": "IncorrectValue"
   }
 ]

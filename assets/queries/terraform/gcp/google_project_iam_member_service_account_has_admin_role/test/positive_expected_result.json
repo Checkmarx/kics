@@ -9,7 +9,8 @@
     "searchKey": "google_project_iam_member[positive1].role",
     "searchValue": "",
     "expectedValue": "google_project_iam_member[positive1].role should not be admin",
-    "actualValue": "google_project_iam_member[positive1].role is admin"
+    "actualValue": "google_project_iam_member[positive1].role is admin",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Google Project IAM Member Service Account Has Admin Role",
@@ -21,6 +22,7 @@
     "searchKey": "google_project_iam_member[positive2].role",
     "searchValue": "",
     "expectedValue": "google_project_iam_member[positive2].role should not be admin",
-    "actualValue": "google_project_iam_member[positive2].role is admin"
+    "actualValue": "google_project_iam_member[positive2].role is admin",
+    "issueType": "IncorrectValue"
   }
 ]

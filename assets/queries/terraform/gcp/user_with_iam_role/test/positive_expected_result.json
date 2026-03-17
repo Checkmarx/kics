@@ -9,7 +9,8 @@
     "searchKey": "google_iam_policy[positive].binding.role",
     "searchValue": "",
     "expectedValue": "google_iam_policy[positive].binding.role should not be set",
-    "actualValue": "google_iam_policy[positive].binding.role is set"
+    "actualValue": "google_iam_policy[positive].binding.role is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "User with IAM Role",
@@ -21,7 +22,8 @@
     "searchKey": "google_project_iam_binding[positive2].role",
     "searchValue": "",
     "expectedValue": "google_project_iam_binding[positive2].role should not be set",
-    "actualValue": "google_project_iam_binding[positive2].role is set"
+    "actualValue": "google_project_iam_binding[positive2].role is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "User with IAM Role",
@@ -33,6 +35,7 @@
     "searchKey": "google_project_iam_member[positive3].role",
     "searchValue": "",
     "expectedValue": "google_project_iam_member[positive3].role should not be set",
-    "actualValue": "google_project_iam_member[positive3].role is set"
+    "actualValue": "google_project_iam_member[positive3].role is set",
+    "issueType": "IncorrectValue"
   }
 ]

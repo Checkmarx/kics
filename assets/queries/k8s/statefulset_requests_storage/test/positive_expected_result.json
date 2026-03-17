@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{web}}.spec.volumeClaimTemplates.spec.resources.requests.storage=1Gi",
     "searchValue": "",
     "expectedValue": "metadata.name={{web}}.spec.volumeClaimTemplates.spec.resources.requests.storage should not be set",
-    "actualValue": "metadata.name={{web}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 1Gi"
+    "actualValue": "metadata.name={{web}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 1Gi",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "StatefulSet Requests Storage",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage=1Gi",
     "searchValue": "",
     "expectedValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage should not be set",
-    "actualValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 1Gi"
+    "actualValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 1Gi",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "StatefulSet Requests Storage",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage=2Gi",
     "searchValue": "",
     "expectedValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage should not be set",
-    "actualValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 2Gi"
+    "actualValue": "metadata.name={{web2}}.spec.volumeClaimTemplates.spec.resources.requests.storage is set to 2Gi",
+    "issueType": "IncorrectValue"
   }
 ]

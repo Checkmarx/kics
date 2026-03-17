@@ -9,6 +9,7 @@
     "searchKey": "name={{Create Cosmos DB Account - min}}.{{azure_rm_cosmosdbaccount}}.tags",
     "searchValue": "",
     "expectedValue": "azure_rm_cosmosdbaccount.tags should be defined",
-    "actualValue": "azure_rm_cosmosdbaccount.tags is undefined"
+    "actualValue": "azure_rm_cosmosdbaccount.tags is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

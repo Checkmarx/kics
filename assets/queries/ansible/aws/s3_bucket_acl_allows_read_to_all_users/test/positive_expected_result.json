@@ -9,7 +9,8 @@
     "searchKey": "name={{Create an empty bucket}}.{{amazon.aws.aws_s3}}.permission",
     "searchValue": "",
     "expectedValue": "aws_s3 should not have read access for all user groups",
-    "actualValue": "aws_s3 has read access for all user groups"
+    "actualValue": "aws_s3 has read access for all user groups",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to All Users",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create an empty bucket2}}.{{amazon.aws.aws_s3}}.permission",
     "searchValue": "",
     "expectedValue": "aws_s3 should not have read access for all user groups",
-    "actualValue": "aws_s3 has read access for all user groups"
+    "actualValue": "aws_s3 has read access for all user groups",
+    "issueType": "IncorrectValue"
   }
 ]

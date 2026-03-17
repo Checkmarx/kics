@@ -9,7 +9,8 @@
     "searchKey": "name={{create a distribution with an origin and logging}}.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version",
     "searchValue": "",
     "expectedValue": "name={{create a distribution with an origin and logging}}.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version' should be TLSv1.2_x",
-    "actualValue": "name={{create a distribution with an origin and logging}}.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version' is TLSv1"
+    "actualValue": "name={{create a distribution with an origin and logging}}.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version' is TLSv1",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create another distribution with an origin and logging}}.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version",
     "searchValue": "",
     "expectedValue": "name={{create another distribution with an origin and logging}}.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version' should be TLSv1.2_x",
-    "actualValue": "name={{create another distribution with an origin and logging}}.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version' is TLSv1.1_2016"
+    "actualValue": "name={{create another distribution with an origin and logging}}.{{community.aws.cloudfront_distribution}}.viewer_certificate.minimum_protocol_version' is TLSv1.1_2016",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
@@ -33,6 +35,7 @@
     "searchKey": "name={{create a third distribution}}.{{community.aws.cloudfront_distribution}}",
     "searchValue": "",
     "expectedValue": "cloudfront_distribution.viewer_certificate should be defined",
-    "actualValue": "cloudfront_distribution.viewer_certificate is undefined"
+    "actualValue": "cloudfront_distribution.viewer_certificate is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

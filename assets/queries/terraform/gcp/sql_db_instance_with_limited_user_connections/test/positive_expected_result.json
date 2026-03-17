@@ -9,7 +9,8 @@
     "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should be defined and set 'user connections' to '0'",
-    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'user connections' to '1001'"
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'user connections' to '1001'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - SQL DB Instance With Limited User Connections",
@@ -21,6 +22,7 @@
     "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should be defined and set 'user connections' to '0'",
-    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'user connections' to '1000'"
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'user connections' to '1000'",
+    "issueType": "IncorrectValue"
   }
 ]

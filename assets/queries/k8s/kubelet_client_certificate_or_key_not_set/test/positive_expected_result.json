@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "Pod--kubelet-client-certificate",
     "expectedValue": "--kubelet-client-certificate flag should be set",
-    "actualValue": "--kubelet-client-certificate flag is not set"
+    "actualValue": "--kubelet-client-certificate flag is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Kubelet Client Certificate Or Key Not Set",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "Pod--kubelet-client-key",
     "expectedValue": "--kubelet-client-key flag should be set",
-    "actualValue": "--kubelet-client-key flag is not set"
+    "actualValue": "--kubelet-client-key flag is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Kubelet Client Certificate Or Key Not Set",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "Pod--kubelet-client-key",
     "expectedValue": "--kubelet-client-key flag should be set",
-    "actualValue": "--kubelet-client-key flag is not set"
+    "actualValue": "--kubelet-client-key flag is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Kubelet Client Certificate Or Key Not Set",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{command-demo2}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "Pod--kubelet-client-certificate",
     "expectedValue": "--kubelet-client-certificate flag should be set",
-    "actualValue": "--kubelet-client-certificate flag is not set"
+    "actualValue": "--kubelet-client-certificate flag is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Kubelet Client Certificate Or Key Not Set",
@@ -57,6 +61,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "Pod--kubelet-client-certificate",
     "expectedValue": "--kubelet-client-certificate flag should be set",
-    "actualValue": "--kubelet-client-certificate flag is not set"
+    "actualValue": "--kubelet-client-certificate flag is not set",
+    "issueType": "MissingAttribute"
   }
 ]

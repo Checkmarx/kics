@@ -9,6 +9,7 @@
     "searchKey": "azurerm_frontdoor[positive].frontend_endpoint",
     "searchValue": "",
     "expectedValue": "'azurerm_frontdoor[positive].frontend_endpoint.web_application_firewall_policy_link_id' should be defined and not null",
-    "actualValue": "'azurerm_frontdoor[positive].frontend_endpoint.web_application_firewall_policy_link_id' is undefined or null"
+    "actualValue": "'azurerm_frontdoor[positive].frontend_endpoint.web_application_firewall_policy_link_id' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

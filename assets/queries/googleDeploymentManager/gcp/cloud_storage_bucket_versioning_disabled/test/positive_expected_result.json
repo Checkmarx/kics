@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{a-new-pubsub-topic}}.properties",
     "searchValue": "",
     "expectedValue": "'versioning' should be defined and not null",
-    "actualValue": "'versioning' is undefined or null"
+    "actualValue": "'versioning' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cloud Storage Bucket Versioning Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "resources.name={{a-new-pubsub-topic2}}.properties.versioning.enabled",
     "searchValue": "",
     "expectedValue": "'enabled' should be set to true",
-    "actualValue": "'enabled' is set to false"
+    "actualValue": "'enabled' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{One}}.{{ansible.builtin.template}}.src",
     "searchValue": "",
     "expectedValue": "ansible.builtin.template.src should not be a relative path",
-    "actualValue": "ansible.builtin.template.src is a relative path"
+    "actualValue": "ansible.builtin.template.src is a relative path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Insecure Relative Path Resolution",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Two}}.{{ansible.builtin.copy}}.src",
     "searchValue": "",
     "expectedValue": "ansible.builtin.copy.src should not be a relative path",
-    "actualValue": "ansible.builtin.copy.src is a relative path"
+    "actualValue": "ansible.builtin.copy.src is a relative path",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "azurerm_cosmosdb_account[positive1].ip_range_filter",
     "searchValue": "",
     "expectedValue": "'azurerm_cosmosdb_account[positive1].ip_range_filter' should be set",
-    "actualValue": "'azurerm_cosmosdb_account[positive1].ip_range_filter' is undefined"
+    "actualValue": "'azurerm_cosmosdb_account[positive1].ip_range_filter' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.stackset3.Properties.AutoDeployment.RetainStacksOnAccountRemoval",
     "searchValue": "",
     "expectedValue": "Resources.stackset3.Properties.AutoDeployment.RetainStacksOnAccountRemoval is true",
-    "actualValue": "Resources.stackset3.Properties.AutoDeployment.RetainStacksOnAccountRemoval is false"
+    "actualValue": "Resources.stackset3.Properties.AutoDeployment.RetainStacksOnAccountRemoval is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.stackset4.Properties.AutoDeployment",
     "searchValue": "",
     "expectedValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval should be set",
-    "actualValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined"
+    "actualValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.stackset5.Properties.AutoDeployment.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.stackset5.Properties.AutoDeployment.Enabled is true",
-    "actualValue": "Resources.stackset5.Properties.AutoDeployment.Enabled is false"
+    "actualValue": "Resources.stackset5.Properties.AutoDeployment.Enabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.stackset6.Properties.AutoDeployment",
     "searchValue": "",
     "expectedValue": "Resources.stackset6.Properties.AutoDeployment.Enabled should be set",
-    "actualValue": "Resources.stackset6.Properties.AutoDeployment.Enabled is undefined"
+    "actualValue": "Resources.stackset6.Properties.AutoDeployment.Enabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.stackset7.Properties",
     "searchValue": "",
     "expectedValue": "Resources.stackset7.Properties.AutoDeployment should be set",
-    "actualValue": "Resources.stackset7.Properties.AutoDeployment is undefined"
+    "actualValue": "Resources.stackset7.Properties.AutoDeployment is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.stackset8.Properties.AutoDeployment.RetainStacksOnAccountRemoval",
     "searchValue": "",
     "expectedValue": "Resources.stackset8.Properties.AutoDeployment.RetainStacksOnAccountRemoval is true",
-    "actualValue": "Resources.stackset8.Properties.AutoDeployment.RetainStacksOnAccountRemoval is false"
+    "actualValue": "Resources.stackset8.Properties.AutoDeployment.RetainStacksOnAccountRemoval is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.stackset9.Properties.AutoDeployment",
     "searchValue": "",
     "expectedValue": "Resources.stackset9.Properties.AutoDeployment.RetainStacksOnAccountRemoval should be set",
-    "actualValue": "Resources.stackset9.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined"
+    "actualValue": "Resources.stackset9.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.stackset10.Properties.AutoDeployment.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.stackset10.Properties.AutoDeployment.Enabled is true",
-    "actualValue": "Resources.stackset10.Properties.AutoDeployment.Enabled is false"
+    "actualValue": "Resources.stackset10.Properties.AutoDeployment.Enabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.stackset11.Properties.AutoDeployment",
     "searchValue": "",
     "expectedValue": "Resources.stackset11.Properties.AutoDeployment.Enabled should be set",
-    "actualValue": "Resources.stackset11.Properties.AutoDeployment.Enabled is undefined"
+    "actualValue": "Resources.stackset11.Properties.AutoDeployment.Enabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.stackset12.Properties",
     "searchValue": "",
     "expectedValue": "Resources.stackset12.Properties.AutoDeployment should be set",
-    "actualValue": "Resources.stackset12.Properties.AutoDeployment is undefined"
+    "actualValue": "Resources.stackset12.Properties.AutoDeployment is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.stackset3.Properties.AutoDeployment.RetainStacksOnAccountRemoval",
     "searchValue": "",
     "expectedValue": "Resources.stackset3.Properties.AutoDeployment.RetainStacksOnAccountRemoval is true",
-    "actualValue": "Resources.stackset3.Properties.AutoDeployment.RetainStacksOnAccountRemoval is false"
+    "actualValue": "Resources.stackset3.Properties.AutoDeployment.RetainStacksOnAccountRemoval is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.stackset4.Properties.AutoDeployment",
     "searchValue": "",
     "expectedValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval should be set",
-    "actualValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined"
+    "actualValue": "Resources.stackset4.Properties.AutoDeployment.RetainStacksOnAccountRemoval is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -153,7 +165,8 @@
     "searchKey": "Resources.stackset5.Properties.AutoDeployment.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.stackset5.Properties.AutoDeployment.Enabled is true",
-    "actualValue": "Resources.stackset5.Properties.AutoDeployment.Enabled is false"
+    "actualValue": "Resources.stackset5.Properties.AutoDeployment.Enabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -165,7 +178,8 @@
     "searchKey": "Resources.stackset6.Properties.AutoDeployment",
     "searchValue": "",
     "expectedValue": "Resources.stackset6.Properties.AutoDeployment.Enabled should be set",
-    "actualValue": "Resources.stackset6.Properties.AutoDeployment.Enabled is undefined"
+    "actualValue": "Resources.stackset6.Properties.AutoDeployment.Enabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stack Retention Disabled",
@@ -177,6 +191,7 @@
     "searchKey": "Resources.stackset7.Properties",
     "searchValue": "",
     "expectedValue": "Resources.stackset7.Properties.AutoDeployment should be set",
-    "actualValue": "Resources.stackset7.Properties.AutoDeployment is undefined"
+    "actualValue": "Resources.stackset7.Properties.AutoDeployment is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

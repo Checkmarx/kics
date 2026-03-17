@@ -9,6 +9,7 @@
     "searchKey": "aws_lambda_permission[all].action",
     "searchValue": "",
     "expectedValue": "aws_lambda_permission[all].action should not have wildcard",
-    "actualValue": "aws_lambda_permission[all].action has wildcard"
+    "actualValue": "aws_lambda_permission[all].action has wildcard",
+    "issueType": "IncorrectValue"
   }
 ]

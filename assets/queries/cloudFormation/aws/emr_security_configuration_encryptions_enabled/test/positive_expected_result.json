@@ -9,7 +9,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType must be defined",
-    "actualValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType is undefined"
+    "actualValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration04.Properties.SecurityConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration04.SecurityConfiguration.EncryptionConfiguration must be defined",
-    "actualValue": "Resources.EMRSecurityConfiguration04.SecurityConfiguration.EncryptionConfiguration is undefined"
+    "actualValue": "Resources.EMRSecurityConfiguration04.SecurityConfiguration.EncryptionConfiguration is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType must be defined",
-    "actualValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType is undefined"
+    "actualValue": "Resources.EMRSecurityConfiguration01.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EncryptionKeyProviderType is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration01.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -153,7 +165,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration03.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -165,7 +178,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration04.Properties.SecurityConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration04.SecurityConfiguration.EncryptionConfiguration must be defined",
-    "actualValue": "Resources.EMRSecurityConfiguration04.SecurityConfiguration.EncryptionConfiguration is undefined"
+    "actualValue": "Resources.EMRSecurityConfiguration04.SecurityConfiguration.EncryptionConfiguration is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -177,7 +191,8 @@
     "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EMR Security Configuration Encryption Disabled",
@@ -189,6 +204,7 @@
     "searchKey": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption",
     "searchValue": "",
     "expectedValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption should be true",
-    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false"
+    "actualValue": "Resources.EMRSecurityConfiguration.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption is false",
+    "issueType": "IncorrectValue"
   }
 ]

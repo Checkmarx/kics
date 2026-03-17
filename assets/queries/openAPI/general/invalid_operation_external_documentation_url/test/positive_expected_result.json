@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
-    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL"
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Operation External Documentation URL (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
-    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL"
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Operation External Documentation URL (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
-    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL"
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Operation External Documentation URL (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.{{get}}.externalDocs.url",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.externalDocs.url has a valid URL",
-    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL"
+    "actualValue": "paths.{{/}}.{{get}}.externalDocs.url has a invalid URL",
+    "issueType": "IncorrectValue"
   }
 ]

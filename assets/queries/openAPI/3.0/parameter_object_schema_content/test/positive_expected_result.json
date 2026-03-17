@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
-    "actualValue": "Parameter Object has both 'schema' and 'content' defined"
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object With Schema And Content",
@@ -21,7 +22,8 @@
     "searchKey": "paths./users/{id}.get.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
-    "actualValue": "Parameter Object has both 'schema' and 'content' defined"
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object With Schema And Content",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
-    "actualValue": "Parameter Object has both 'schema' and 'content' defined"
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object With Schema And Content",
@@ -45,7 +48,8 @@
     "searchKey": "paths./users/{id}.get.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
-    "actualValue": "Parameter Object has both 'schema' and 'content' defined"
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object With Schema And Content",
@@ -57,7 +61,8 @@
     "searchKey": "openapi.components.parameters.name={{limit}}",
     "searchValue": "",
     "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
-    "actualValue": "Parameter Object has both 'schema' and 'content' defined"
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object With Schema And Content",
@@ -69,6 +74,7 @@
     "searchKey": "openapi.components.parameters.name={{limit}}",
     "searchValue": "",
     "expectedValue": "Parameter Object shouldn't have both 'schema' and 'content' defined",
-    "actualValue": "Parameter Object has both 'schema' and 'content' defined"
+    "actualValue": "Parameter Object has both 'schema' and 'content' defined",
+    "issueType": "IncorrectValue"
   }
 ]

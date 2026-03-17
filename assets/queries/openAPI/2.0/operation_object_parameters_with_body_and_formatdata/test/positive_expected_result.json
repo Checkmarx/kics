@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.parameters",
     "searchValue": "",
     "expectedValue": "operation object parameters only use one of 'body' or 'formatData' locations",
-    "actualValue": "operation object parameters use both 'body' and 'formatData' locations"
+    "actualValue": "operation object parameters use both 'body' and 'formatData' locations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Operation Object Parameters With 'body' And 'formatData' locations",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.parameters",
     "searchValue": "",
     "expectedValue": "operation object parameters only use one of 'body' or 'formatData' locations",
-    "actualValue": "operation object parameters use both 'body' and 'formatData' locations"
+    "actualValue": "operation object parameters use both 'body' and 'formatData' locations",
+    "issueType": "IncorrectValue"
   }
 ]

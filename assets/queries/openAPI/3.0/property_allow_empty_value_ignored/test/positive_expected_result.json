@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
     "searchValue": "",
     "expectedValue": "Property 'allowEmptyValue' should not be ignored",
-    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
     "searchValue": "",
     "expectedValue": "Property 'allowEmptyValue' should not be ignored",
-    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
     "searchValue": "",
     "expectedValue": "Property 'allowEmptyValue' should not be ignored",
-    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
     "searchValue": "",
     "expectedValue": "Property 'allowEmptyValue' should not be ignored",
-    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
     "searchValue": "",
     "expectedValue": "Property 'allowEmptyValue' should not be ignored",
-    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
     "searchValue": "",
     "expectedValue": "Property 'allowEmptyValue' should not be ignored",
-    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})"
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{create instance}}.{{google.cloud.gcp_sql_instance}}.settings.databaseFlags",
     "searchValue": "",
     "expectedValue": "gcp_sql_instance.settings.databaseFlags should have 'log_checkpoints' flag set to 'on'",
-    "actualValue": "gcp_sql_instance.settings.databaseFlags has 'log_checkpoints' flag set to 'off'"
+    "actualValue": "gcp_sql_instance.settings.databaseFlags has 'log_checkpoints' flag set to 'off'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL log_checkpoints Flag Not Set To ON",
@@ -21,6 +22,7 @@
     "searchKey": "name={{create another instance}}.{{google.cloud.gcp_sql_instance}}",
     "searchValue": "",
     "expectedValue": "gcp_sql_instance.settings.databaseFlags should be defined",
-    "actualValue": "gcp_sql_instance.settings.databaseFlags is not defined"
+    "actualValue": "gcp_sql_instance.settings.databaseFlags is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

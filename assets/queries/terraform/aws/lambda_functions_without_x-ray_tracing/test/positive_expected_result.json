@@ -9,7 +9,8 @@
     "searchKey": "aws_lambda_function[test_lambda2].tracing_config.mode",
     "searchValue": "",
     "expectedValue": "aws_lambda_function[test_lambda2].tracing_config.mode should be set to 'Active'",
-    "actualValue": "aws_lambda_function[test_lambda2].tracing_config.mode is set to 'PassThrough'"
+    "actualValue": "aws_lambda_function[test_lambda2].tracing_config.mode is set to 'PassThrough'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
@@ -21,6 +22,7 @@
     "searchKey": "aws_lambda_function[test_lambda3]",
     "searchValue": "",
     "expectedValue": "aws_lambda_function[test_lambda3].tracing_config should be defined and not null",
-    "actualValue": "aws_lambda_function[test_lambda3].tracing_config is undefined or null"
+    "actualValue": "aws_lambda_function[test_lambda3].tracing_config is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

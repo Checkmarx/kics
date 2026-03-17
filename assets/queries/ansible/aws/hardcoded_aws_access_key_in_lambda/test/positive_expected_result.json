@@ -9,7 +9,8 @@
     "searchKey": "name={{looped creation}}.{{community.aws.lambda}}.aws_access_key",
     "searchValue": "",
     "expectedValue": "lambda.aws_access_key should not be in plaintext",
-    "actualValue": "lambda.aws_access_key is in plaintext"
+    "actualValue": "lambda.aws_access_key is in plaintext",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
@@ -21,6 +22,7 @@
     "searchKey": "name={{remove tags}}.{{community.aws.lambda}}.aws_access_key",
     "searchValue": "",
     "expectedValue": "lambda.aws_access_key should not be in plaintext",
-    "actualValue": "lambda.aws_access_key is in plaintext"
+    "actualValue": "lambda.aws_access_key is in plaintext",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{webSite}}.properties.clientCertEnabled",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{webSite}}.properties.clientCertEnabled",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{webSite}}.properties.clientCertEnabled",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name={{webSite}}.properties.clientCertEnabled",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name={{[parameters('siteName')]}}.properties.clientCertEnabled",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value or 'http20Enabled' field set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' or 'http20Enabled' set to true"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' or 'http20Enabled' set to true",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "resources.name={{[parameters('siteName')]}}.properties.clientCertEnabled",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property value or 'http20Enabled' field set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' or 'http20Enabled' set to true"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' or 'http20Enabled' set to true",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name={{[parameters('siteName')]}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with Client Certificate Auth Disabled",
@@ -141,6 +152,7 @@
     "searchKey": "resources.name={{[parameters('siteName')]}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined",
+    "issueType": "MissingAttribute"
   }
 ]

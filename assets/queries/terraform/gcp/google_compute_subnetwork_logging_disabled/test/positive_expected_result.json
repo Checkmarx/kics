@@ -9,6 +9,7 @@
     "searchKey": "google_compute_subnetwork[positive1]",
     "searchValue": "",
     "expectedValue": "'google_compute_subnetwork[positive1].log_config' should be defined and not null",
-    "actualValue": "'google_compute_subnetwork[positive1].log_config' is undefined or null"
+    "actualValue": "'google_compute_subnetwork[positive1].log_config' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

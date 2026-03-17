@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
-    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode"
+    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
-    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode"
+    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
-    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode"
+    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
-    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode"
+    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
@@ -57,7 +61,8 @@
     "searchKey": "kind={{KubeletConfiguration}}.authorization.mode",
     "searchValue": "",
     "expectedValue": "authorization.mode attribute should not be 'AlwaysAllow'",
-    "actualValue": "authorization.mode attribute is equal to 'AlwaysAllow'"
+    "actualValue": "authorization.mode attribute is equal to 'AlwaysAllow'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
@@ -69,6 +74,7 @@
     "searchKey": "kind={{KubeletConfiguration}}.authorization.mode",
     "searchValue": "",
     "expectedValue": "authorization.mode attribute should not be 'AlwaysAllow'",
-    "actualValue": "authorization.mode attribute is equal to 'AlwaysAllow'"
+    "actualValue": "authorization.mode attribute is equal to 'AlwaysAllow'",
+    "issueType": "IncorrectValue"
   }
 ]

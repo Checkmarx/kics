@@ -9,7 +9,8 @@
     "searchKey": "paths./.get.parameters",
     "searchValue": "",
     "expectedValue": "paths./.get.parameters.0.content has one entry",
-    "actualValue": "paths./.get.parameters.0.content has multiple entries"
+    "actualValue": "paths./.get.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
@@ -21,7 +22,8 @@
     "searchKey": "paths./user/{id}.parameters",
     "searchValue": "",
     "expectedValue": "paths./user/{id}.parameters.0.content has one entry",
-    "actualValue": "paths./user/{id}.parameters.0.content has multiple entries"
+    "actualValue": "paths./user/{id}.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
@@ -33,7 +35,8 @@
     "searchKey": "components.parameters",
     "searchValue": "",
     "expectedValue": "components.parameters.idParam.content has one entry",
-    "actualValue": "components.parameters.idParam.content has multiple entries"
+    "actualValue": "components.parameters.idParam.content has multiple entries",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
@@ -45,7 +48,8 @@
     "searchKey": "paths./.get.parameters",
     "searchValue": "",
     "expectedValue": "paths./.get.parameters.0.content has one entry",
-    "actualValue": "paths./.get.parameters.0.content has multiple entries"
+    "actualValue": "paths./.get.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
@@ -57,7 +61,8 @@
     "searchKey": "paths./user/{id}.parameters",
     "searchValue": "",
     "expectedValue": "paths./user/{id}.parameters.0.content has one entry",
-    "actualValue": "paths./user/{id}.parameters.0.content has multiple entries"
+    "actualValue": "paths./user/{id}.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
@@ -69,6 +74,7 @@
     "searchKey": "components.parameters",
     "searchValue": "",
     "expectedValue": "components.parameters.idParam.content has one entry",
-    "actualValue": "components.parameters.idParam.content has multiple entries"
+    "actualValue": "components.parameters.idParam.content has multiple entries",
+    "issueType": "IncorrectValue"
   }
 ]

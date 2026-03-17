@@ -9,7 +9,8 @@
     "searchKey": "name={{create a managed zone}}.{{google.cloud.gcp_dns_managed_zone}}",
     "searchValue": "",
     "expectedValue": "gcp_dns_managed_zone.dnssec_config should be defined",
-    "actualValue": "gcp_dns_managed_zone.dnssec_config is undefined"
+    "actualValue": "gcp_dns_managed_zone.dnssec_config is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cloud DNS Without DNSSEC",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a second managed zone}}.{{google.cloud.gcp_dns_managed_zone}}.dnssec_config",
     "searchValue": "",
     "expectedValue": "gcp_dns_managed_zone.dnssec_config.state should be defined",
-    "actualValue": "gcp_dns_managed_zone.dnssec_config.state is undefined"
+    "actualValue": "gcp_dns_managed_zone.dnssec_config.state is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cloud DNS Without DNSSEC",
@@ -33,6 +35,7 @@
     "searchKey": "name={{create a third managed zone}}.{{google.cloud.gcp_dns_managed_zone}}.dnssec_config.state",
     "searchValue": "",
     "expectedValue": "gcp_dns_managed_zone.dnssec_config.state should equal to 'on'",
-    "actualValue": "gcp_dns_managed_zone.dnssec_config.state is not equal to 'on'"
+    "actualValue": "gcp_dns_managed_zone.dnssec_config.state is not equal to 'on'",
+    "issueType": "IncorrectValue"
   }
 ]

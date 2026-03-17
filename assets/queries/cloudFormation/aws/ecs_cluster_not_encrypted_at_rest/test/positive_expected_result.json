@@ -9,7 +9,8 @@
     "searchKey": "Resources.taskdefinition.Properties.Volumes",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be enabled",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled"
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECS Cluster Not Encrypted At Rest",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.taskdefinition1",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition1 should be defined",
-    "actualValue": "Resources.taskdefinition1 is not defined."
+    "actualValue": "Resources.taskdefinition1 is not defined.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECS Cluster Not Encrypted At Rest",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.taskdefinition.Properties.Volumes",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be enabled",
-    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled"
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECS Cluster Not Encrypted At Rest",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.taskdefinition1",
     "searchValue": "",
     "expectedValue": "Resources.taskdefinition1 should be defined",
-    "actualValue": "Resources.taskdefinition1 is not defined."
+    "actualValue": "Resources.taskdefinition1 is not defined.",
+    "issueType": "MissingAttribute"
   }
 ]

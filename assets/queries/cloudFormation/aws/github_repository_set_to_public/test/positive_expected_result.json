@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyRepo3.Properties.IsPrivate",
     "searchValue": "",
     "expectedValue": "'Resources.MyRepo3.Properties.IsPrivate' should be set to true",
-    "actualValue": "'Resources.MyRepo3.Properties.IsPrivate' is not set to true"
+    "actualValue": "'Resources.MyRepo3.Properties.IsPrivate' is not set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GitHub Repository Set To Public",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyRepo4.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyRepo4.IsPrivate' should be set",
-    "actualValue": "'Resources.MyRepo4.IsPrivate' is undefined"
+    "actualValue": "'Resources.MyRepo4.IsPrivate' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GitHub Repository Set To Public",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyRepo5.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyRepo5.IsPrivate' should be set",
-    "actualValue": "'Resources.MyRepo5.IsPrivate' is undefined"
+    "actualValue": "'Resources.MyRepo5.IsPrivate' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GitHub Repository Set To Public",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyRepo6.Properties.IsPrivate",
     "searchValue": "",
     "expectedValue": "'Resources.MyRepo6.Properties.IsPrivate' should be set to true",
-    "actualValue": "'Resources.MyRepo6.Properties.IsPrivate' is not set to true"
+    "actualValue": "'Resources.MyRepo6.Properties.IsPrivate' is not set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GitHub Repository Set To Public",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.MyRepo3.Properties.IsPrivate",
     "searchValue": "",
     "expectedValue": "'Resources.MyRepo3.Properties.IsPrivate' should be set to true",
-    "actualValue": "'Resources.MyRepo3.Properties.IsPrivate' is not set to true"
+    "actualValue": "'Resources.MyRepo3.Properties.IsPrivate' is not set to true",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.private_cluster_config should be defined",
-    "actualValue": "gcp_container_cluster.private_cluster_config is undefined"
+    "actualValue": "gcp_container_cluster.private_cluster_config is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Private Cluster Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes should be defined",
-    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes is undefined"
+    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Private Cluster Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint should be defined",
-    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint is undefined"
+    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Private Cluster Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "name={{create a cluster4}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config.enable_private_endpoint",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint should be true",
-    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint is false"
+    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_endpoint is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Private Cluster Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "name={{create a cluster5}}.{{google.cloud.gcp_container_cluster}}.private_cluster_config.enable_private_nodes",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes should be true",
-    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes is false"
+    "actualValue": "gcp_container_cluster.private_cluster_config.enable_private_nodes is false",
+    "issueType": "IncorrectValue"
   }
 ]

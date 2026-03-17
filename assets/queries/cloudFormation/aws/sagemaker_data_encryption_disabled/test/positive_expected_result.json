@@ -9,7 +9,8 @@
     "searchKey": "Resources.BasicNotebookInstance.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' should be defined",
-    "actualValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' is not defined"
+    "actualValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SageMaker Data Encryption Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.BasicNotebookInstance3.Properties.KmsKeyId",
     "searchValue": "",
     "expectedValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' should not be empty",
-    "actualValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' is empty"
+    "actualValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SageMaker Data Encryption Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.BasicNotebookInstance3.Properties.KmsKeyId",
     "searchValue": "",
     "expectedValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' should not be empty",
-    "actualValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' is empty"
+    "actualValue": "'Resources.BasicNotebookInstance3.Properties.KmsKeyId' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SageMaker Data Encryption Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.BasicNotebookInstance.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' should be defined",
-    "actualValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' is not defined"
+    "actualValue": "'Resources.BasicNotebookInstance.Properties.KmsKeyId' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

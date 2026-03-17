@@ -9,6 +9,7 @@
     "searchKey": "azurerm_network_watcher_flow_log[positive1].enable",
     "searchValue": "",
     "expectedValue": "azurerm_network_watcher_flow_log.enabled should be true",
-    "actualValue": "azurerm_network_watcher_flow_log.enabled is false"
+    "actualValue": "azurerm_network_watcher_flow_log.enabled is false",
+    "issueType": "IncorrectValue"
   }
 ]

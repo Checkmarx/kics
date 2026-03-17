@@ -9,7 +9,8 @@
     "searchKey": "azurerm_databricks_workspace[example_1]",
     "searchValue": "",
     "expectedValue": "'azurerm_databricks_workspace[example_1].custom_parameters.virtual_network_id' should be defined and not empty",
-    "actualValue": "'azurerm_databricks_workspace[example_1].custom_parameters' is undefined or empty"
+    "actualValue": "'azurerm_databricks_workspace[example_1].custom_parameters' is undefined or empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Databricks Workspace Using Default Virtual Network",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_databricks_workspace[example_2].custom_parameters",
     "searchValue": "",
     "expectedValue": "'azurerm_databricks_workspace[example_2].custom_parameters.virtual_network_id' should be defined and not null",
-    "actualValue": "'azurerm_databricks_workspace[example_2].custom_parameters.virtual_network_id' is undefined or null"
+    "actualValue": "'azurerm_databricks_workspace[example_2].custom_parameters.virtual_network_id' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

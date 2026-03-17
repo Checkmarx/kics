@@ -9,6 +9,7 @@
     "searchKey": "FROM={{busybox:1.0}}.{{RUN zypper install}}",
     "searchValue": "",
     "expectedValue": "There should be a zypper clean after a zypper usage",
-    "actualValue": "The command 'zypper install' does not have a zypper clean after it"
+    "actualValue": "The command 'zypper install' does not have a zypper clean after it",
+    "issueType": "MissingAttribute"
   }
 ]

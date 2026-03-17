@@ -9,7 +9,8 @@
     "searchKey": "resource.aws_cloudfront_distribution[positive1].default_cache_behavior.viewer_protocol_policy",
     "searchValue": "",
     "expectedValue": "resource.aws_cloudfront_distribution[positive1].default_cache_behavior.viewer_protocol_policy should be 'https-only' or 'redirect-to-https'",
-    "actualValue": "resource.aws_cloudfront_distribution[positive1].default_cache_behavior.viewer_protocol_policy isn't 'https-only' or 'redirect-to-https'"
+    "actualValue": "resource.aws_cloudfront_distribution[positive1].default_cache_behavior.viewer_protocol_policy isn't 'https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
@@ -21,6 +22,7 @@
     "searchKey": "resource.aws_cloudfront_distribution[positive2].ordered_cache_behavior.{{/content/immutable/*}}.viewer_protocol_policy",
     "searchValue": "",
     "expectedValue": "resource.aws_cloudfront_distribution[positive2].ordered_cache_behavior.viewer_protocol_policy should be 'https-only' or 'redirect-to-https'",
-    "actualValue": "resource.aws_cloudfront_distribution[positive2].ordered_cache_behavior.viewer_protocol_policy isn't 'https-only' or 'redirect-to-https'"
+    "actualValue": "resource.aws_cloudfront_distribution[positive2].ordered_cache_behavior.viewer_protocol_policy isn't 'https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   }
 ]

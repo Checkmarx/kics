@@ -9,7 +9,8 @@
     "searchKey": "Resources.BasicBroker3.Properties.Logs",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker3.Properties.Logs.Audit should be set",
-    "actualValue": "Resources.BasicBroker3.Properties.Logs.Audit is undefined"
+    "actualValue": "Resources.BasicBroker3.Properties.Logs.Audit is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.BasicBroker4.Properties.Logs",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker4.Properties.Logs.General should be set",
-    "actualValue": "Resources.BasicBroker4.Properties.Logs.General is undefined"
+    "actualValue": "Resources.BasicBroker4.Properties.Logs.General is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.BasicBroker5.Properties.Logs.General",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker5.Properties.Logs.General is true",
-    "actualValue": "Resources.BasicBroker5.Properties.Logs.General is false"
+    "actualValue": "Resources.BasicBroker5.Properties.Logs.General is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.BasicBroker6.Properties.Logs.Audit",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker6.Properties.Logs.Audit is true",
-    "actualValue": "Resources.BasicBroker6.Properties.Logs.Audit is false"
+    "actualValue": "Resources.BasicBroker6.Properties.Logs.Audit is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.BasicBroker7.Properties",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker7.Properties.Logs should be set",
-    "actualValue": "Resources.BasicBroker7.Properties.Logs is undefined"
+    "actualValue": "Resources.BasicBroker7.Properties.Logs is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.BasicBroker8.Properties.Logs",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker8.Properties.Logs.Audit should be set",
-    "actualValue": "Resources.BasicBroker8.Properties.Logs.Audit is undefined"
+    "actualValue": "Resources.BasicBroker8.Properties.Logs.Audit is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.BasicBroker9.Properties.Logs",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker9.Properties.Logs.General should be set",
-    "actualValue": "Resources.BasicBroker9.Properties.Logs.General is undefined"
+    "actualValue": "Resources.BasicBroker9.Properties.Logs.General is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.BasicBroker10.Properties.Logs.General",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker10.Properties.Logs.General is true",
-    "actualValue": "Resources.BasicBroker10.Properties.Logs.General is false"
+    "actualValue": "Resources.BasicBroker10.Properties.Logs.General is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.BasicBroker11.Properties.Logs.Audit",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker11.Properties.Logs.Audit is true",
-    "actualValue": "Resources.BasicBroker11.Properties.Logs.Audit is false"
+    "actualValue": "Resources.BasicBroker11.Properties.Logs.Audit is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.BasicBroker12.Properties",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker12.Properties.Logs should be set",
-    "actualValue": "Resources.BasicBroker12.Properties.Logs is undefined"
+    "actualValue": "Resources.BasicBroker12.Properties.Logs is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.BasicBroker3.Properties.Logs",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker3.Properties.Logs.Audit should be set",
-    "actualValue": "Resources.BasicBroker3.Properties.Logs.Audit is undefined"
+    "actualValue": "Resources.BasicBroker3.Properties.Logs.Audit is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.BasicBroker4.Properties.Logs",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker4.Properties.Logs.General should be set",
-    "actualValue": "Resources.BasicBroker4.Properties.Logs.General is undefined"
+    "actualValue": "Resources.BasicBroker4.Properties.Logs.General is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -153,7 +165,8 @@
     "searchKey": "Resources.BasicBroker5.Properties.Logs.General",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker5.Properties.Logs.General is true",
-    "actualValue": "Resources.BasicBroker5.Properties.Logs.General is false"
+    "actualValue": "Resources.BasicBroker5.Properties.Logs.General is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -165,7 +178,8 @@
     "searchKey": "Resources.BasicBroker6.Properties.Logs.Audit",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker6.Properties.Logs.Audit is true",
-    "actualValue": "Resources.BasicBroker6.Properties.Logs.Audit is false"
+    "actualValue": "Resources.BasicBroker6.Properties.Logs.Audit is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -177,6 +191,7 @@
     "searchKey": "Resources.BasicBroker7.Properties",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker7.Properties.Logs should be set",
-    "actualValue": "Resources.BasicBroker7.Properties.Logs is undefined"
+    "actualValue": "Resources.BasicBroker7.Properties.Logs is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

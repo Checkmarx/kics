@@ -9,7 +9,8 @@
     "searchKey": "aws_sqs_queue[positive1].policy",
     "searchValue": "",
     "expectedValue": "resource.aws_sqs_queue[positive1].policy.Principal shouldn't get the queue publicly accessible",
-    "actualValue": "resource.aws_sqs_queue[positive1].policy.Principal does get the queue publicly accessible"
+    "actualValue": "resource.aws_sqs_queue[positive1].policy.Principal does get the queue publicly accessible",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS Queue Exposed",
@@ -21,6 +22,7 @@
     "searchKey": "module[user_queue]",
     "searchValue": "",
     "expectedValue": "'policy.Principal' shouldn't get the queue publicly accessible",
-    "actualValue": "'policy.Principal' does get the queue publicly accessible"
+    "actualValue": "'policy.Principal' does get the queue publicly accessible",
+    "issueType": "IncorrectValue"
   }
 ]

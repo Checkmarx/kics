@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should be set to false",
-    "actualValue": "'additionalProperties' is set true"
+    "actualValue": "'additionalProperties' is set true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Additional Properties Too Permissive",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.additionalProperties",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should be set to false",
-    "actualValue": "'additionalProperties' is set true"
+    "actualValue": "'additionalProperties' is set true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Additional Properties Too Permissive",
@@ -33,7 +35,8 @@
     "searchKey": "components.schemas.MyObject.oneOf",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should be set to false",
-    "actualValue": "'additionalProperties' is set true"
+    "actualValue": "'additionalProperties' is set true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Additional Properties Too Permissive",
@@ -45,7 +48,8 @@
     "searchKey": "components.schemas.MyObject.oneOf",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should be set to false",
-    "actualValue": "'additionalProperties' is set true"
+    "actualValue": "'additionalProperties' is set true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Additional Properties Too Permissive",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema",
     "searchValue": "",
     "expectedValue": "'additionalProperties' needs to be set and to false",
-    "actualValue": "'additionalProperties' is not set"
+    "actualValue": "'additionalProperties' is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Additional Properties Too Permissive",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema",
     "searchValue": "",
     "expectedValue": "'additionalProperties' needs to be set and to false",
-    "actualValue": "'additionalProperties' is not set"
+    "actualValue": "'additionalProperties' is not set",
+    "issueType": "MissingAttribute"
   }
 ]

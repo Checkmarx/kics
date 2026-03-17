@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_cron_job[demo].spec",
     "searchValue": "",
     "expectedValue": "kubernetes_cron_job[demo].spec.starting_deadline_seconds should be set",
-    "actualValue": "kubernetes_cron_job[demo].spec.starting_deadline_seconds is undefined"
+    "actualValue": "kubernetes_cron_job[demo].spec.starting_deadline_seconds is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

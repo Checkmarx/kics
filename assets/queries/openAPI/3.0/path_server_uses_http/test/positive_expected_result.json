@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.servers.url={{http://staging.gigantic-server.com/v1}}",
     "searchValue": "",
     "expectedValue": "Path Server Object url uses 'HTTPS' protocol",
-    "actualValue": "Path Server Object url uses 'HTTP' protocol"
+    "actualValue": "Path Server Object url uses 'HTTP' protocol",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Server Object Uses HTTP (v3)",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.{{get}}.servers.url={{http://api.gigantic-server.com/v1}}",
     "searchValue": "",
     "expectedValue": "Path Server Object url uses 'HTTPS' protocol",
-    "actualValue": "Path Server Object url uses 'HTTP' protocol"
+    "actualValue": "Path Server Object url uses 'HTTP' protocol",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url has an absolute URL",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not have an absolute URL"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not have an absolute URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server URL Not Absolute",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.servers.url=/development.gigantic-server.com/v1",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.servers.{{0}}.url has an absolute URL",
-    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not have an absolute URL"
+    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not have an absolute URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server URL Not Absolute",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url has an absolute URL",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not have an absolute URL"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not have an absolute URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server URL Not Absolute",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.{{get}}.servers.url=/development.gigantic-server.com/v1",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.servers.{{0}}.url has an absolute URL",
-    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not have an absolute URL"
+    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not have an absolute URL",
+    "issueType": "IncorrectValue"
   }
 ]

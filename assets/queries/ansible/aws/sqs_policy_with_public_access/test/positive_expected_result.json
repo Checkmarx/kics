@@ -9,7 +9,8 @@
     "searchKey": "name={{First SQS queue with policy}}.{{community.aws.sqs_queue}}.policy",
     "searchValue": "",
     "expectedValue": "sqs_queue.policy.Principal should not equal to '*'",
-    "actualValue": "sqs_queue.policy.Principal is equal to '*'"
+    "actualValue": "sqs_queue.policy.Principal is equal to '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS Policy With Public Access",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Second SQS queue with policy}}.{{community.aws.sqs_queue}}.policy",
     "searchValue": "",
     "expectedValue": "sqs_queue.policy.Principal should not equal to '*'",
-    "actualValue": "sqs_queue.policy.Principal is equal to '*'"
+    "actualValue": "sqs_queue.policy.Principal is equal to '*'",
+    "issueType": "IncorrectValue"
   }
 ]

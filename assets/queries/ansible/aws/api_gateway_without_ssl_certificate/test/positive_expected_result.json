@@ -9,7 +9,8 @@
     "searchKey": "name={{update API}}.{{aws_api_gateway}}.validate_certs",
     "searchValue": "",
     "expectedValue": "aws_api_gateway.validate_certs should be set to yes",
-    "actualValue": "aws_api_gateway.validate_certs is not set to yes"
+    "actualValue": "aws_api_gateway.validate_certs is not set to yes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without SSL Certificate",
@@ -21,7 +22,8 @@
     "searchKey": "name={{update API v1}}.{{aws_api_gateway}}",
     "searchValue": "",
     "expectedValue": "aws_api_gateway.validate_certs should be set",
-    "actualValue": "aws_api_gateway.validate_certs is undefined"
+    "actualValue": "aws_api_gateway.validate_certs is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Without SSL Certificate",
@@ -33,7 +35,8 @@
     "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition}}.{{community.aws.aws_api_gateway}}.validate_certs",
     "searchValue": "",
     "expectedValue": "aws_api_gateway.validate_certs should be set to yes",
-    "actualValue": "aws_api_gateway.validate_certs is not set to yes"
+    "actualValue": "aws_api_gateway.validate_certs is not set to yes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without SSL Certificate",
@@ -45,6 +48,7 @@
     "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition v1}}.{{community.aws.aws_api_gateway}}",
     "searchValue": "",
     "expectedValue": "aws_api_gateway.validate_certs should be set",
-    "actualValue": "aws_api_gateway.validate_certs is undefined"
+    "actualValue": "aws_api_gateway.validate_certs is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

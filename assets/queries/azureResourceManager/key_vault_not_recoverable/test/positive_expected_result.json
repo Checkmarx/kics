@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{keyVaultInstance}}.properties",
     "searchValue": "enablePurgeProtection",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{keyVaultInstance}}.properties",
     "searchValue": "enablePurgeProtection",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{keyVaultInstance}}.properties.enablePurgeProtection",
     "searchValue": "enablePurgeProtection",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' property value should have 'enablePurgeProtection' property set to true",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{keyVaultInstance}}.properties.enablePurgeProtection",
     "searchValue": "enablePurgeProtection",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' property value should have 'enablePurgeProtection' property set to true",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{keyVaultInstance}}.properties",
     "searchValue": "enablePurgeProtection",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name={{keyVaultInstance}}.properties",
     "searchValue": "enablePurgeProtection",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{keyVaultInstance}}.properties.enablePurgeProtection",
     "searchValue": "enablePurgeProtection",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' property value should have 'enablePurgeProtection' property set to true",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name={{keyVaultInstance}}.properties.enablePurgeProtection",
     "searchValue": "enablePurgeProtection",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' property value should have 'enablePurgeProtection' property set to true",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name={{[parameters('vaults_pgs_bot_prod_name')]}}.properties",
     "searchValue": "enablePurgeProtection",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -117,7 +126,8 @@
     "searchKey": "resources.name={{[parameters('vaults_pgs_bot_prod_name')]}}.properties",
     "searchValue": "enableSoftDelete",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enableSoftDelete' property defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enableSoftDelete' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enableSoftDelete' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name={{[parameters('vaults_pgs_bot_prod_name')]}}.properties",
     "searchValue": "enablePurgeProtection",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enablePurgeProtection' property defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enablePurgeProtection' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Key Vault Not Recoverable",
@@ -141,6 +152,7 @@
     "searchKey": "resources.name={{[parameters('vaults_pgs_bot_prod_name')]}}.properties",
     "searchValue": "enableSoftDelete",
     "expectedValue": "resource with type 'Microsoft.KeyVault/vaults' should have 'enableSoftDelete' property defined",
-    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enableSoftDelete' property defined"
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults' doesn't have 'enableSoftDelete' property defined",
+    "issueType": "MissingAttribute"
   }
 ]

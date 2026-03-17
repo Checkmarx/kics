@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{goproxy}}.spec.containers.name={{goproxy}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{goproxy}}.spec.containers.name={{goproxy}}.readinessProbe should be defined",
-    "actualValue": "metadata.name={{goproxy}}.spec.containers.name={{goproxy}}.readinessProbe is undefined"
+    "actualValue": "metadata.name={{goproxy}}.spec.containers.name={{goproxy}}.readinessProbe is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_db_instance[positive1].backup_retention_period",
     "searchValue": "",
     "expectedValue": "'backup_retention_period' should not equal '0'",
-    "actualValue": "'backup_retention_period' is equal '0'"
+    "actualValue": "'backup_retention_period' is equal '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS With Backup Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "module[db].backup_retention_period",
     "searchValue": "",
     "expectedValue": "'backup_retention_period' should not equal '0'",
-    "actualValue": "'backup_retention_period' is equal '0'"
+    "actualValue": "'backup_retention_period' is equal '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS With Backup Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "aws_db_instance[positive1]",
     "searchValue": "",
     "expectedValue": "'backup_retention_period' should be defined, and bigger than '0'",
-    "actualValue": "'backup_retention_period' is not defined"
+    "actualValue": "'backup_retention_period' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS With Backup Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "module[db]",
     "searchValue": "",
     "expectedValue": "'backup_retention_period' should be defined, and bigger than '0'",
-    "actualValue": "'backup_retention_period' is not defined"
+    "actualValue": "'backup_retention_period' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_pod_security_policy[example].spec.required_drop_capabilities",
     "searchValue": "",
     "expectedValue": "spec.required_drop_capabilities 'is ALL or NET_RAW'",
-    "actualValue": "spec.required_drop_capabilities 'is not ALL or NET_RAW'"
+    "actualValue": "spec.required_drop_capabilities 'is not ALL or NET_RAW'",
+    "issueType": "IncorrectValue"
   }
 ]

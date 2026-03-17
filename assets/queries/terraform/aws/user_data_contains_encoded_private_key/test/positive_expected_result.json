@@ -9,7 +9,8 @@
     "searchKey": "aws_launch_configuration[positive1].user_data_base64",
     "searchValue": "",
     "expectedValue": "aws_launch_configuration[positive1].user_data_base64 shouldn't contain RSA Private Key",
-    "actualValue": "aws_launch_configuration[positive1].user_data_base64 contains RSA Private Key"
+    "actualValue": "aws_launch_configuration[positive1].user_data_base64 contains RSA Private Key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "User Data Contains Encoded Private Key",
@@ -21,7 +22,8 @@
     "searchKey": "module[positive2].user_data_base64",
     "searchValue": "",
     "expectedValue": "'user_data_base64' shouldn't contain RSA Private Key",
-    "actualValue": "'user_data_base64' contains RSA Private Key"
+    "actualValue": "'user_data_base64' contains RSA Private Key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "User Data Contains Encoded Private Key",
@@ -33,6 +35,7 @@
     "searchKey": "module[positive3].user_data_base64",
     "searchValue": "",
     "expectedValue": "'user_data_base64' shouldn't contain RSA Private Key",
-    "actualValue": "'user_data_base64' contains RSA Private Key"
+    "actualValue": "'user_data_base64' contains RSA Private Key",
+    "issueType": "IncorrectValue"
   }
 ]

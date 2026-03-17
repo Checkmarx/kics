@@ -9,7 +9,8 @@
     "searchKey": "aws_cloudtrail[positive1]",
     "searchValue": "cloud_watch_logs_group_arn",
     "expectedValue": "aws_cloudtrail[positive1].cloud_watch_logs_group_arn should be defined and not null",
-    "actualValue": "aws_cloudtrail[positive1].cloud_watch_logs_group_arn is undefined or null"
+    "actualValue": "aws_cloudtrail[positive1].cloud_watch_logs_group_arn is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -21,6 +22,7 @@
     "searchKey": "aws_cloudtrail[positive1]",
     "searchValue": "cloud_watch_logs_role_arn",
     "expectedValue": "aws_cloudtrail[positive1].cloud_watch_logs_role_arn should be defined and not null",
-    "actualValue": "aws_cloudtrail[positive1].cloud_watch_logs_role_arn is undefined or null"
+    "actualValue": "aws_cloudtrail[positive1].cloud_watch_logs_role_arn is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "alicloud_nas_file_system[foopos].encrypt_type",
     "searchValue": "",
     "expectedValue": "alicloud_nas_file_system[foopos].encrypt_type' should not be 0",
-    "actualValue": "alicloud_nas_file_system[foopos].encrypt_type' is 0"
+    "actualValue": "alicloud_nas_file_system[foopos].encrypt_type' is 0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NAS File System Not Encrypted",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_nas_file_system[foopos2]",
     "searchValue": "",
     "expectedValue": "alicloud_nas_file_system[foopos2].encrypt_type' should be defined and the value different from 0 ",
-    "actualValue": "alicloud_nas_file_system[foopos2].encrypt_type' is undefined"
+    "actualValue": "alicloud_nas_file_system[foopos2].encrypt_type' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

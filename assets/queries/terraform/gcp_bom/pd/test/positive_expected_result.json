@@ -9,7 +9,8 @@
     "searchKey": "google_compute_disk[positive1]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP PD",
@@ -21,7 +22,8 @@
     "searchKey": "google_compute_disk[positive2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP PD",
@@ -33,7 +35,8 @@
     "searchKey": "google_compute_disk[positive3]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP PD",
@@ -45,7 +48,8 @@
     "searchKey": "google_compute_disk[positive4]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP PD",
@@ -57,7 +61,8 @@
     "searchKey": "google_compute_disk[negative1]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP PD",
@@ -69,6 +74,7 @@
     "searchKey": "google_compute_disk[negative2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

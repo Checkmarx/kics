@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{my-cluster}}.properties",
     "searchValue": "",
     "expectedValue": "'monitoringService' should be defined and not null",
-    "actualValue": "'monitoringService' is undefined or null"
+    "actualValue": "'monitoringService' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stackdriver Monitoring Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "resources.name={{my-cluster}}.properties.monitoringService",
     "searchValue": "",
     "expectedValue": "'monitoringService' to not be 'none'",
-    "actualValue": "'monitoringService' is 'none'"
+    "actualValue": "'monitoringService' is 'none'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "azurerm_sql_active_directory_administrator[positive3].login",
     "searchValue": "",
     "expectedValue": "'azurerm_sql_active_directory_administrator[positive3].login' should not be empty'",
-    "actualValue": "'azurerm_sql_active_directory_administrator[positive3].login' is empty"
+    "actualValue": "'azurerm_sql_active_directory_administrator[positive3].login' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Predictable Active Directory Account Name",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_sql_active_directory_administrator[positive4].login",
     "searchValue": "",
     "expectedValue": "'azurerm_sql_active_directory_administrator[positive4].login' should not be predictable'",
-    "actualValue": "'azurerm_sql_active_directory_administrator[positive4].login' is predictable"
+    "actualValue": "'azurerm_sql_active_directory_administrator[positive4].login' is predictable",
+    "issueType": "IncorrectValue"
   }
 ]

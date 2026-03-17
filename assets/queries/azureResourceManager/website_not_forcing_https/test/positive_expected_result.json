@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Not Forcing HTTPS",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Not Forcing HTTPS",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{webSite}}.properties.httpsOnly",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website Not Forcing HTTPS",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{webSite}}.properties.httpsOnly",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website Not Forcing HTTPS",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Not Forcing HTTPS",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Not Forcing HTTPS",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{webSite}}.properties.httpsOnly",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website Not Forcing HTTPS",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name={{webSite}}.properties.httpsOnly",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true",
+    "issueType": "IncorrectValue"
   }
 ]

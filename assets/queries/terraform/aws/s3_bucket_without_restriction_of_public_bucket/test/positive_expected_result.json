@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[restrict_public].restrict_public_buckets",
     "searchValue": "",
     "expectedValue": "'restrict_public_buckets' should equal 'true'",
-    "actualValue": "'restrict_public_buckets' is equal to 'false'"
+    "actualValue": "'restrict_public_buckets' is equal to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
@@ -21,6 +22,7 @@
     "searchKey": "aws_s3_bucket_public_access_block[restrict_public].restrict_public_buckets",
     "searchValue": "",
     "expectedValue": "'restrict_public_buckets' should equal 'true'",
-    "actualValue": "'restrict_public_buckets' is equal to 'false'"
+    "actualValue": "'restrict_public_buckets' is equal to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

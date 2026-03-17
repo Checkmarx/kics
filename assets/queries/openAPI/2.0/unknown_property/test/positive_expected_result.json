@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.parameters.descripption",
     "searchValue": "",
     "expectedValue": "The field 'descripption' is known in the parameters object",
-    "actualValue": "The field 'descripption' is unknown in the parameters object"
+    "actualValue": "The field 'descripption' is unknown in the parameters object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Property (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "definitions.ErrorModel.propppperties",
     "searchValue": "",
     "expectedValue": "The field 'propppperties' is known in the definitions object",
-    "actualValue": "The field 'propppperties' is unknown in the definitions object"
+    "actualValue": "The field 'propppperties' is unknown in the definitions object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Property (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "info.contact.nameee",
     "searchValue": "",
     "expectedValue": "The field 'nameee' is known in the contact object",
-    "actualValue": "The field 'nameee' is unknown in the contact object"
+    "actualValue": "The field 'nameee' is unknown in the contact object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Property (v2)",
@@ -45,7 +48,8 @@
     "searchKey": "taggs",
     "searchValue": "",
     "expectedValue": "The field 'taggs' is known in the openapi object",
-    "actualValue": "The field 'taggs' is unknown in the openapi object"
+    "actualValue": "The field 'taggs' is unknown in the openapi object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Property (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.parameters.descripption",
     "searchValue": "",
     "expectedValue": "The field 'descripption' is known in the parameters object",
-    "actualValue": "The field 'descripption' is unknown in the parameters object"
+    "actualValue": "The field 'descripption' is unknown in the parameters object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Property (v2)",
@@ -69,7 +74,8 @@
     "searchKey": "definitions.ErrorModel.propppperties",
     "searchValue": "",
     "expectedValue": "The field 'propppperties' is known in the definitions object",
-    "actualValue": "The field 'propppperties' is unknown in the definitions object"
+    "actualValue": "The field 'propppperties' is unknown in the definitions object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Property (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "info.contact.nameee",
     "searchValue": "",
     "expectedValue": "The field 'nameee' is known in the contact object",
-    "actualValue": "The field 'nameee' is unknown in the contact object"
+    "actualValue": "The field 'nameee' is unknown in the contact object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Property (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "taggs",
     "searchValue": "",
     "expectedValue": "The field 'taggs' is known in the openapi object",
-    "actualValue": "The field 'taggs' is unknown in the openapi object"
+    "actualValue": "The field 'taggs' is unknown in the openapi object",
+    "issueType": "IncorrectValue"
   }
 ]

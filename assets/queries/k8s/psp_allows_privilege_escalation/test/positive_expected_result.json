@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{privileged}}.spec.allowPrivilegeEscalation",
     "searchValue": "",
     "expectedValue": "Attribute 'allowPrivilegeEscalation' should be set to false",
-    "actualValue": "Attribute 'allowPrivilegeEscalation' is true"
+    "actualValue": "Attribute 'allowPrivilegeEscalation' is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PSP Allows Privilege Escalation",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{privileged2}}.spec",
     "searchValue": "",
     "expectedValue": "Attribute 'allowPrivilegeEscalation' should be set",
-    "actualValue": "Attribute 'allowPrivilegeEscalation' is undefined"
+    "actualValue": "Attribute 'allowPrivilegeEscalation' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

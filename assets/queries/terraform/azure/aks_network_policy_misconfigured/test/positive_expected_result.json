@@ -9,7 +9,8 @@
     "searchKey": "azurerm_kubernetes_cluster[positive1].network_profile",
     "searchValue": "",
     "expectedValue": "'azurerm_kubernetes_cluster[positive1].network_profile.network_policy' should be set to either 'azure' or 'calico'",
-    "actualValue": "'azurerm_kubernetes_cluster[positive1].network_profile.network_policy' is undefined"
+    "actualValue": "'azurerm_kubernetes_cluster[positive1].network_profile.network_policy' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Network Policy Misconfigured",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_kubernetes_cluster[positive2]",
     "searchValue": "",
     "expectedValue": "'azurerm_kubernetes_cluster[positive2].network_profile' should be set",
-    "actualValue": "'azurerm_kubernetes_cluster[positive2].network_profile' is undefined"
+    "actualValue": "'azurerm_kubernetes_cluster[positive2].network_profile' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Network Policy Misconfigured",
@@ -33,6 +35,7 @@
     "searchKey": "azurerm_kubernetes_cluster[positive3].network_profile.network_policy",
     "searchValue": "",
     "expectedValue": "'azurerm_kubernetes_cluster[positive3].network_profile.network_policy' should be either 'azure' or 'calico'",
-    "actualValue": "'azurerm_kubernetes_cluster[positive3].network_profile.network_policy' is roxanne"
+    "actualValue": "'azurerm_kubernetes_cluster[positive3].network_profile.network_policy' is roxanne",
+    "issueType": "IncorrectValue"
   }
 ]

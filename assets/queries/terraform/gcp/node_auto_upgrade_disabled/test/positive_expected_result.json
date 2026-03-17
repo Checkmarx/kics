@@ -9,7 +9,8 @@
     "searchKey": "google_container_node_pool[positive1]",
     "searchValue": "",
     "expectedValue": "google_container_node_pool.management should be defined and not null",
-    "actualValue": "google_container_node_pool.management is undefined or null"
+    "actualValue": "google_container_node_pool.management is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Node Auto Upgrade Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "google_container_node_pool[positive2].management",
     "searchValue": "",
     "expectedValue": "management.auto_upgrade should be defined and not null",
-    "actualValue": "management.auto_upgrade is undefined or null"
+    "actualValue": "management.auto_upgrade is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Node Auto Upgrade Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "google_container_node_pool[positive3].management.auto_upgrade",
     "searchValue": "",
     "expectedValue": "management.auto_upgrade should be true",
-    "actualValue": "management.auto_upgrade is false"
+    "actualValue": "management.auto_upgrade is false",
+    "issueType": "IncorrectValue"
   }
 ]

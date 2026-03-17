@@ -9,7 +9,8 @@
     "searchKey": "azurerm_monitor_activity_log_alert[positive2_1].criteria",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
-    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'create or update network security group' events but sets 1 filter(s): caller"
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'create or update network security group' events but sets 1 filter(s): caller",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_monitor_activity_log_alert[positive2_2].criteria",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
-    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'create or update network security group' events but sets 1 filter(s): level"
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'create or update network security group' events but sets 1 filter(s): level",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_monitor_activity_log_alert[positive2_3].criteria",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
-    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'create or update network security group' events but sets 1 filter(s): levels"
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'create or update network security group' events but sets 1 filter(s): levels",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_monitor_activity_log_alert[positive2_4].criteria",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
-    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'create or update network security group' events but sets 1 filter(s): status"
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'create or update network security group' events but sets 1 filter(s): status",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_monitor_activity_log_alert[positive2_5].criteria",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
-    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'create or update network security group' events but sets 1 filter(s): statuses"
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'create or update network security group' events but sets 1 filter(s): statuses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
@@ -69,7 +74,8 @@
     "searchKey": "azurerm_monitor_activity_log_alert[positive2_6].criteria",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
-    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'create or update network security group' events but sets 1 filter(s): sub_status"
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'create or update network security group' events but sets 1 filter(s): sub_status",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
@@ -81,6 +87,7 @@
     "searchKey": "azurerm_monitor_activity_log_alert[positive2_7].criteria",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
-    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'create or update network security group' events but sets 1 filter(s): sub_statuses"
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'create or update network security group' events but sets 1 filter(s): sub_statuses",
+    "issueType": "MissingAttribute"
   }
 ]

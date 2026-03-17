@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{pod2}}.spec.containers.name={{app}}.securityContext.allowPrivilegeEscalation",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{pod2}}.spec.containers.name={{app}}.securityContext.allowPrivilegeEscalation should be set to false",
-    "actualValue": "metadata.name={{pod2}}.spec.containers.name={{app}}.securityContext.allowPrivilegeEscalation is true"
+    "actualValue": "metadata.name={{pod2}}.spec.containers.name={{app}}.securityContext.allowPrivilegeEscalation is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Privilege Escalation Allowed",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{pod2}}.spec.containers.name={{log-aggregator}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{pod2}}.spec.containers.name={{log-aggregator}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
-    "actualValue": "metadata.name={{pod2}}.spec.containers.name={{log-aggregator}}.securityContext.allowPrivilegeEscalation is undefined"
+    "actualValue": "metadata.name={{pod2}}.spec.containers.name={{log-aggregator}}.securityContext.allowPrivilegeEscalation is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Privilege Escalation Allowed",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
-    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment}}.securityContext.allowPrivilegeEscalation is undefined"
+    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment}}.securityContext.allowPrivilegeEscalation is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Privilege Escalation Allowed",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
-    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}.securityContext.allowPrivilegeEscalation is undefined"
+    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}.securityContext.allowPrivilegeEscalation is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Privilege Escalation Allowed",
@@ -57,6 +61,7 @@
     "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
-    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}.securityContext.allowPrivilegeEscalation is undefined"
+    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}.securityContext.allowPrivilegeEscalation is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

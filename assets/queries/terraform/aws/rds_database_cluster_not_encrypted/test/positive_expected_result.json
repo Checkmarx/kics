@@ -9,7 +9,8 @@
     "searchKey": "aws_db_cluster_snapshot[positive1]",
     "searchValue": "",
     "expectedValue": "aws_db_cluster_snapshot.db_cluster_identifier' should be encrypted",
-    "actualValue": "aws_db_cluster_snapshot.db_cluster_identifier' is not encrypted"
+    "actualValue": "aws_db_cluster_snapshot.db_cluster_identifier' is not encrypted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Database Cluster not Encrypted",
@@ -21,6 +22,7 @@
     "searchKey": "aws_db_cluster_snapshot[positive2]",
     "searchValue": "",
     "expectedValue": "aws_db_cluster_snapshot.db_cluster_identifier' should be encrypted",
-    "actualValue": "aws_db_cluster_snapshot.db_cluster_identifier' is not encrypted"
+    "actualValue": "aws_db_cluster_snapshot.db_cluster_identifier' is not encrypted",
+    "issueType": "IncorrectValue"
   }
 ]

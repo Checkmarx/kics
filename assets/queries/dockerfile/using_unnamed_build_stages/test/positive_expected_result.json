@@ -9,6 +9,7 @@
     "searchKey": "FROM={{alpine:latest  }}.{{COPY --from=0 /go/src/github.com/foo/href-counter/app ./}}",
     "searchValue": "",
     "expectedValue": "COPY '--from' should reference a previously defined FROM alias",
-    "actualValue": "COPY '--from' does not reference a previously defined FROM alias"
+    "actualValue": "COPY '--from' does not reference a previously defined FROM alias",
+    "issueType": "IncorrectValue"
   }
 ]

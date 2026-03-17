@@ -9,7 +9,8 @@
     "searchKey": "azurerm_function_app[positive1-1]",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-1].site_config' should be defined and not null",
-    "actualValue": "'azurerm_function_app[positive1-1].site_config' is undefined or null"
+    "actualValue": "'azurerm_function_app[positive1-1].site_config' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_function_app[positive1-2].site_config",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-2].site_config.http2_enabled' should be defined and not null",
-    "actualValue": "'azurerm_function_app[positive1-2].site_config.http2_enabled' is undefined or null"
+    "actualValue": "'azurerm_function_app[positive1-2].site_config.http2_enabled' is undefined or null",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_function_app[positive1-3].site_config.http2_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-3].site_config.http2_enabled' should be set to true",
-    "actualValue": "'azurerm_function_app[positive1-3].site_config.http2_enabled' is set to false"
+    "actualValue": "'azurerm_function_app[positive1-3].site_config.http2_enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_linux_function_app[positive2-1]",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-1].site_config' should be defined and not null",
-    "actualValue": "'azurerm_linux_function_app[positive2-1].site_config' is undefined or null"
+    "actualValue": "'azurerm_linux_function_app[positive2-1].site_config' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_linux_function_app[positive2-2].site_config",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-2].site_config.http2_enabled' should be defined and not null",
-    "actualValue": "'azurerm_linux_function_app[positive2-2].site_config.http2_enabled' is undefined or null"
+    "actualValue": "'azurerm_linux_function_app[positive2-2].site_config.http2_enabled' is undefined or null",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "azurerm_linux_function_app[positive2-3].site_config.http2_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-3].site_config.http2_enabled' should be set to true",
-    "actualValue": "'azurerm_linux_function_app[positive2-3].site_config.http2_enabled' is set to false"
+    "actualValue": "'azurerm_linux_function_app[positive2-3].site_config.http2_enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "azurerm_windows_function_app[positive3-1]",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-1].site_config' should be defined and not null",
-    "actualValue": "'azurerm_windows_function_app[positive3-1].site_config' is undefined or null"
+    "actualValue": "'azurerm_windows_function_app[positive3-1].site_config' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "azurerm_windows_function_app[positive3-2].site_config",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-2].site_config.http2_enabled' should be defined and not null",
-    "actualValue": "'azurerm_windows_function_app[positive3-2].site_config.http2_enabled' is undefined or null"
+    "actualValue": "'azurerm_windows_function_app[positive3-2].site_config.http2_enabled' is undefined or null",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
@@ -105,6 +113,7 @@
     "searchKey": "azurerm_windows_function_app[positive3-3].site_config.http2_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-3].site_config.http2_enabled' should be set to true",
-    "actualValue": "'azurerm_windows_function_app[positive3-3].site_config.http2_enabled' is set to false"
+    "actualValue": "'azurerm_windows_function_app[positive3-3].site_config.http2_enabled' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

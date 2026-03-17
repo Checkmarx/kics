@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{example}}.spec.containers.name={{payment}}.securityContext.capabilities.drop",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{example}}.spec.containers.name={{payment}}.securityContext.capabilities.drop includes ALL or NET_RAW",
-    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment}}.securityContext.capabilities.drop does not include ALL or NET_RAW"
+    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment}}.securityContext.capabilities.drop does not include ALL or NET_RAW",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{example}}.spec.containers.name={{payment2}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{example}}.spec.containers.name={{payment2}}.securityContext.capabilities.drop should be defined",
-    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment2}}.securityContext.capabilities.drop is undefined"
+    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment2}}.securityContext.capabilities.drop is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{example}}.spec.containers.name={{payment4}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{example}}.spec.containers.name={{payment4}}.securityContext.capabilities.drop should be defined",
-    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment4}}.securityContext.capabilities.drop is undefined"
+    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment4}}.securityContext.capabilities.drop is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{example}}.spec.containers.name={{payment3}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{example}}.spec.containers.name={{payment3}}.securityContext.capabilities.drop should be defined",
-    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment3}}.securityContext.capabilities.drop is undefined"
+    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment3}}.securityContext.capabilities.drop is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
@@ -57,6 +61,7 @@
     "searchKey": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}",
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}.securityContext.capabilities.drop should be defined",
-    "actualValue": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}.securityContext.capabilities.drop is undefined"
+    "actualValue": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}.securityContext.capabilities.drop is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

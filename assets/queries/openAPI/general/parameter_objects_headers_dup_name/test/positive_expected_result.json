@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.parameters.name=id",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=id)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=id)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.parameters.name=ID",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=ID)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=ID)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.parameters.name=token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.parameters.name=id",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=id)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=id)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.parameters.name=ID",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=ID)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=ID)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.parameters.name=token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -105,7 +113,8 @@
     "searchKey": "components.parameters.token.name=token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -117,7 +126,8 @@
     "searchKey": "components.parameters.Token.name=Token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -129,7 +139,8 @@
     "searchKey": "components.parameters.token.name=token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
@@ -141,7 +152,8 @@
     "searchKey": "components.parameters.Token.name=Token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
@@ -153,7 +165,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
@@ -165,7 +178,8 @@
     "searchKey": "paths.{{/}}.parameters.name=token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
@@ -177,7 +191,8 @@
     "searchKey": "parameters.oneParam.name=Token2",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token2)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token2)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
@@ -189,7 +204,8 @@
     "searchKey": "parameters.anotherParam.name=token2",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token2)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token2)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
@@ -201,7 +217,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
@@ -213,7 +230,8 @@
     "searchKey": "paths.{{/}}.parameters.name=token",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
@@ -225,7 +243,8 @@
     "searchKey": "parameters.oneParam.name=Token2",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token2)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token2)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
@@ -237,6 +256,7 @@
     "searchKey": "parameters.anotherParam.name=token2",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token2)"
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token2)",
+    "issueType": "IncorrectValue"
   }
 ]

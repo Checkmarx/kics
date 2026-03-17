@@ -9,6 +9,7 @@
     "searchKey": "aws_cloudfront_distribution[positive1]",
     "searchValue": "",
     "expectedValue": "aws_cloudfront_distribution[positive1].logging_config should be defined",
-    "actualValue": "aws_cloudfront_distribution[positive1].logging_config is undefined"
+    "actualValue": "aws_cloudfront_distribution[positive1].logging_config is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

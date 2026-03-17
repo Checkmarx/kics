@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_pod_security_policy[example].spec.host_network",
     "searchValue": "",
     "expectedValue": "'spec.hostNetwork' should be set to false or undefined",
-    "actualValue": "'spec.hostNetwork' is true"
+    "actualValue": "'spec.hostNetwork' is true",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_iam_account_password_policy[positive1].password_reuse_prevention",
     "searchValue": "",
     "expectedValue": "'password_reuse_prevention' should be 24",
-    "actualValue": "'password_reuse_prevention' is lower than 24"
+    "actualValue": "'password_reuse_prevention' is lower than 24",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Password Without Reuse Prevention",
@@ -21,6 +22,7 @@
     "searchKey": "aws_iam_account_password_policy[positive2]",
     "searchValue": "",
     "expectedValue": "'password_reuse_prevention' should be set with value 24",
-    "actualValue": "'password_reuse_prevention' is undefined"
+    "actualValue": "'password_reuse_prevention' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

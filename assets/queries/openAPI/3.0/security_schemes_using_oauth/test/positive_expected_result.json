@@ -9,7 +9,8 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use oauth 1.0 security scheme",
-    "actualValue": "components.securitySchemes.{{petstore_auth}} uses oauth 1.0 security scheme"
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses oauth 1.0 security scheme",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Scheme Using Oauth 1.0",
@@ -21,6 +22,7 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use oauth 1.0 security scheme",
-    "actualValue": "components.securitySchemes.{{petstore_auth}} uses oauth 1.0 security scheme"
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses oauth 1.0 security scheme",
+    "issueType": "IncorrectValue"
   }
 ]

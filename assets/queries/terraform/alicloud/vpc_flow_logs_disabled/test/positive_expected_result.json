@@ -9,6 +9,7 @@
     "searchKey": "alicloud_vpc[main]",
     "searchValue": "",
     "expectedValue": "alicloud_vpc[main] is associated with an 'alicloud_vpc_flow_log'",
-    "actualValue": "alicloud_vpc[main] is not associated with an 'alicloud_vpc_flow_log'"
+    "actualValue": "alicloud_vpc[main] is not associated with an 'alicloud_vpc_flow_log'",
+    "issueType": "IncorrectValue"
   }
 ]

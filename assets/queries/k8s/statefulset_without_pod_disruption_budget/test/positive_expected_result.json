@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{web}}.spec.selector.matchLabels",
     "searchValue": "",
     "expectedValue": "metadata.name=web is targeted by a PodDisruptionBudget",
-    "actualValue": "metadata.name=web is not targeted by a PodDisruptionBudget"
+    "actualValue": "metadata.name=web is not targeted by a PodDisruptionBudget",
+    "issueType": "MissingAttribute"
   }
 ]

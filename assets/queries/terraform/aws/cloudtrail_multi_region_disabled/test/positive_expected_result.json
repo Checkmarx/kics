@@ -9,7 +9,8 @@
     "searchKey": "aws_cloudtrail[positive1]",
     "searchValue": "",
     "expectedValue": "aws_cloudtrail[positive1].is_multi_region_trail should be defined and not null",
-    "actualValue": "aws_cloudtrail[positive1].is_multi_region_trail is undefined or null"
+    "actualValue": "aws_cloudtrail[positive1].is_multi_region_trail is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_cloudtrail[positive2].is_multi_region_trail",
     "searchValue": "",
     "expectedValue": "aws_cloudtrail[positive2].is_multi_region_trail should be set to true",
-    "actualValue": "aws_cloudtrail[positive2].is_multi_region_trail is set to false"
+    "actualValue": "aws_cloudtrail[positive2].is_multi_region_trail is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "aws_cloudtrail[positive3].include_global_service_events",
     "searchValue": "",
     "expectedValue": "aws_cloudtrail[positive3].include_global_service_events should be undefined or set to true",
-    "actualValue": "aws_cloudtrail[positive3].include_global_service_events is set to false"
+    "actualValue": "aws_cloudtrail[positive3].include_global_service_events is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

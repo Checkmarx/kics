@@ -9,6 +9,7 @@
     "searchKey": "aws_cloudformation_stack[positive1]",
     "searchValue": "",
     "expectedValue": "Attribute 'policy_body' or Attribute 'policy_url' should be set",
-    "actualValue": "Both Attribute 'policy_body' and Attribute 'policy_url' are undefined"
+    "actualValue": "Both Attribute 'policy_body' and Attribute 'policy_url' are undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution.Properties.DistributionConfig should contain an 'Origins' object",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig does not contain an 'Origins' object configured"
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig does not contain an 'Origins' object configured",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CDN Configuration Is Missing",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.Enabled should be 'true'",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.Enabled is configured as 'false'"
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.Enabled is configured as 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CDN Configuration Is Missing",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution.Properties.DistributionConfig should contain an 'Origins' object",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig does not contain an 'Origins' object configured"
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig does not contain an 'Origins' object configured",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CDN Configuration Is Missing",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.myDistribution.Properties.DistributionConfig.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution.Properties.DistributionConfig.Enabled should be 'true'",
-    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.Enabled is configured as 'false'"
+    "actualValue": "Resources.myDistribution.Properties.DistributionConfig.Enabled is configured as 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

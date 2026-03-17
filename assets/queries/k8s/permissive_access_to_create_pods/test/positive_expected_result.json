@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{secret-reader}}.rules.verbs.create",
     "searchValue": "ClusterRole/create",
     "expectedValue": "metadata.name=secret-reader.rules.verbs should not contain the value 'create' when metadata.name=secret-reader.rules.resources contains the value 'pods'",
-    "actualValue": "metadata.name=secret-reader.rules.verbs contains the value 'create' and metadata.name=secret-reader.rules.resources contains the value 'pods'"
+    "actualValue": "metadata.name=secret-reader.rules.verbs contains the value 'create' and metadata.name=secret-reader.rules.resources contains the value 'pods'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Permissive Access to Create Pods",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{secret-reader2}}.rules.verbs.create",
     "searchValue": "Role/create",
     "expectedValue": "metadata.name=secret-reader2.rules.verbs should not contain the value 'create' when metadata.name=secret-reader2.rules.resources contains a wildcard value",
-    "actualValue": "metadata.name=secret-reader2.rules.verbs contains the value 'create' and metadata.name=secret-reader2.rules.resources contains a wildcard value"
+    "actualValue": "metadata.name=secret-reader2.rules.verbs contains the value 'create' and metadata.name=secret-reader2.rules.resources contains a wildcard value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Permissive Access to Create Pods",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{secret-reader3}}.rules.verbs.*",
     "searchValue": "ClusterRole/*",
     "expectedValue": "metadata.name=secret-reader3.rules.verbs should not contain a wildcard value when metadata.name=secret-reader3.rules.resources contains the value 'pods'",
-    "actualValue": "metadata.name=secret-reader3.rules.verbs contains a wildcard value and metadata.name=secret-reader3.rules.resources contains the value 'pods'"
+    "actualValue": "metadata.name=secret-reader3.rules.verbs contains a wildcard value and metadata.name=secret-reader3.rules.resources contains the value 'pods'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Permissive Access to Create Pods",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{secret-reader4}}.rules.verbs.*",
     "searchValue": "Role/*",
     "expectedValue": "metadata.name=secret-reader4.rules.verbs should not contain a wildcard value when metadata.name=secret-reader4.rules.resources contains a wildcard value",
-    "actualValue": "metadata.name=secret-reader4.rules.verbs contains a wildcard value and metadata.name=secret-reader4.rules.resources contains a wildcard value"
+    "actualValue": "metadata.name=secret-reader4.rules.verbs contains a wildcard value and metadata.name=secret-reader4.rules.resources contains a wildcard value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Permissive Access to Create Pods",
@@ -57,7 +61,8 @@
     "searchKey": "metadata.name={{secret-reader5}}.rules.verbs.c*e",
     "searchValue": "ClusterRole/*",
     "expectedValue": "metadata.name=secret-reader5.rules.verbs should not contain a wildcard value when metadata.name=secret-reader5.rules.resources contains the value 'pods'",
-    "actualValue": "metadata.name=secret-reader5.rules.verbs contains a wildcard value and metadata.name=secret-reader5.rules.resources contains the value 'pods'"
+    "actualValue": "metadata.name=secret-reader5.rules.verbs contains a wildcard value and metadata.name=secret-reader5.rules.resources contains the value 'pods'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Permissive Access to Create Pods",
@@ -69,7 +74,8 @@
     "searchKey": "metadata.name={{secret-reader6}}.rules.verbs.create",
     "searchValue": "ClusterRole/create",
     "expectedValue": "metadata.name=secret-reader6.rules.verbs should not contain the value 'create' when metadata.name=secret-reader6.rules.resources contains a wildcard value",
-    "actualValue": "metadata.name=secret-reader6.rules.verbs contains the value 'create' and metadata.name=secret-reader6.rules.resources contains a wildcard value"
+    "actualValue": "metadata.name=secret-reader6.rules.verbs contains the value 'create' and metadata.name=secret-reader6.rules.resources contains a wildcard value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Permissive Access to Create Pods",
@@ -81,6 +87,7 @@
     "searchKey": "metadata.name={{secret-reader}}.rules.verbs.create",
     "searchValue": "ClusterRole/create",
     "expectedValue": "metadata.name=secret-reader.rules.verbs should not contain the value 'create' when metadata.name=secret-reader.rules.resources contains a wildcard value",
-    "actualValue": "metadata.name=secret-reader.rules.verbs contains the value 'create' and metadata.name=secret-reader.rules.resources contains a wildcard value"
+    "actualValue": "metadata.name=secret-reader.rules.verbs contains the value 'create' and metadata.name=secret-reader.rules.resources contains a wildcard value",
+    "issueType": "IncorrectValue"
   }
 ]

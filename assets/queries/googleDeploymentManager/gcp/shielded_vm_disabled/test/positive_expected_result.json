@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{vm-template}}.properties",
     "searchValue": "",
     "expectedValue": "'shieldedInstanceConfig' should be defined and not null",
-    "actualValue": "'shieldedInstanceConfig' is undefined or null"
+    "actualValue": "'shieldedInstanceConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{vm-template2}}.properties.shieldedInstanceConfig",
     "searchValue": "enableIntegrityMonitoring",
     "expectedValue": "'enableIntegrityMonitoring' should be defined and not null",
-    "actualValue": "'enableIntegrityMonitoring' is undefined or null"
+    "actualValue": "'enableIntegrityMonitoring' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{vm-template2}}.properties.shieldedInstanceConfig",
     "searchValue": "enableVtpm",
     "expectedValue": "'enableVtpm' should be defined and not null",
-    "actualValue": "'enableVtpm' is undefined or null"
+    "actualValue": "'enableVtpm' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "resources.name={{vm-template2}}.properties.shieldedInstanceConfig.enableSecureBoot",
     "searchValue": "",
     "expectedValue": "'enableSecureBoot' should be set to true",
-    "actualValue": "'enableSecureBoot' is set to false"
+    "actualValue": "'enableSecureBoot' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

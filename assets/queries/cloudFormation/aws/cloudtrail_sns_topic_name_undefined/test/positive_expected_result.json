@@ -9,7 +9,8 @@
     "searchKey": "Resources.myTrail3.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail3.Properties.SnsTopicName' should be set",
-    "actualValue": "'Resources.myTrail3.Properties.SnsTopicName' is undefined"
+    "actualValue": "'Resources.myTrail3.Properties.SnsTopicName' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myTrail4.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail4.Properties.SnsTopicName' should be set",
-    "actualValue": "'Resources.myTrail4.Properties.SnsTopicName' is undefined"
+    "actualValue": "'Resources.myTrail4.Properties.SnsTopicName' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myTrail5.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail5.Properties.SnsTopicName' should be set",
-    "actualValue": "'Resources.myTrail5.Properties.SnsTopicName' is undefined"
+    "actualValue": "'Resources.myTrail5.Properties.SnsTopicName' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.myTrail6.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail6.Properties.SnsTopicName' should be set",
-    "actualValue": "'Resources.myTrail6.Properties.SnsTopicName' is undefined"
+    "actualValue": "'Resources.myTrail6.Properties.SnsTopicName' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

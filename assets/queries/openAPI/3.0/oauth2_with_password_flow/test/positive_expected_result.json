@@ -9,7 +9,8 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.password",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows do not contain an 'password' flow",
-    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows contain an 'password' flow"
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows contain an 'password' flow",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OAuth2 With Password Flow",
@@ -21,6 +22,7 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.password",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows do not contain an 'password' flow",
-    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows contain an 'password' flow"
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows contain an 'password' flow",
+    "issueType": "IncorrectValue"
   }
 ]

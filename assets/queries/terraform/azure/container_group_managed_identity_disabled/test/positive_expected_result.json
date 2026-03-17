@@ -9,6 +9,7 @@
     "searchKey": "azurerm_container_group[positive]",
     "searchValue": "",
     "expectedValue": "'type' field should have the values 'SystemAssigned' and 'UserAssigned' defined inside the 'identity' block",
-    "actualValue": "'identity' block is not defined"
+    "actualValue": "'identity' block is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

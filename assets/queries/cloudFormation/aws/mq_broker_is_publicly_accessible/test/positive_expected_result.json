@@ -9,7 +9,8 @@
     "searchKey": "Resources.BasicBroker.Properties.PubliclyAccessible",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker.Properties.PubliclyAccessible should be set to false or undefined",
-    "actualValue": "Resources.BasicBroker.Properties.PubliclyAccessible is true"
+    "actualValue": "Resources.BasicBroker.Properties.PubliclyAccessible is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MQ Broker Is Publicly Accessible",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.BasicBroker2.Properties.PubliclyAccessible",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker2.Properties.PubliclyAccessible should be set to false or undefined",
-    "actualValue": "Resources.BasicBroker2.Properties.PubliclyAccessible is true"
+    "actualValue": "Resources.BasicBroker2.Properties.PubliclyAccessible is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MQ Broker Is Publicly Accessible",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.BasicBroker.Properties.PubliclyAccessible",
     "searchValue": "",
     "expectedValue": "Resources.BasicBroker.Properties.PubliclyAccessible should be set to false or undefined",
-    "actualValue": "Resources.BasicBroker.Properties.PubliclyAccessible is true"
+    "actualValue": "Resources.BasicBroker.Properties.PubliclyAccessible is true",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
     "searchValue": "",
     "expectedValue": "'disablePasswordAuthentication' should be set to true",
-    "actualValue": "'disablePasswordAuthentication' property value is set to false"
+    "actualValue": "'disablePasswordAuthentication' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
     "searchValue": "",
     "expectedValue": "'disablePasswordAuthentication' should be set to true",
-    "actualValue": "'disablePasswordAuthentication' property value is set to false"
+    "actualValue": "'disablePasswordAuthentication' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=[variables('vmName')]",
     "searchValue": "",
     "expectedValue": "'disablePasswordAuthentication' should be set to true",
-    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined"
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name=[variables('vmName')]",
     "searchValue": "",
     "expectedValue": "'disablePasswordAuthentication' should be set to true",
-    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined"
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
     "searchValue": "",
     "expectedValue": "'disablePasswordAuthentication' should be set to true",
-    "actualValue": "'disablePasswordAuthentication' property value is set to false"
+    "actualValue": "'disablePasswordAuthentication' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
     "searchValue": "",
     "expectedValue": "'disablePasswordAuthentication' should be set to true",
-    "actualValue": "'disablePasswordAuthentication' property value is set to false"
+    "actualValue": "'disablePasswordAuthentication' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=[variables('vmName')]",
     "searchValue": "",
     "expectedValue": "'disablePasswordAuthentication' should be set to true",
-    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined"
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name=[variables('vmName')]",
     "searchValue": "",
     "expectedValue": "'disablePasswordAuthentication' should be set to true",
-    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined"
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

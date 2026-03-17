@@ -9,7 +9,8 @@
     "searchKey": "security",
     "searchValue": "",
     "expectedValue": "The array should not be empty",
-    "actualValue": "The array is empty"
+    "actualValue": "The array is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Empty Array",
@@ -21,6 +22,7 @@
     "searchKey": "security",
     "searchValue": "",
     "expectedValue": "The array should not be empty",
-    "actualValue": "The array is empty"
+    "actualValue": "The array is empty",
+    "issueType": "IncorrectValue"
   }
 ]

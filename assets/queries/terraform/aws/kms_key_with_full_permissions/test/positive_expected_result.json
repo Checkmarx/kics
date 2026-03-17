@@ -9,7 +9,8 @@
     "searchKey": "aws_kms_key[positive1].policy",
     "searchValue": "",
     "expectedValue": "aws_kms_key[positive1].policy should not have wildcard in 'Action' and 'Principal'",
-    "actualValue": "aws_kms_key[positive1].policy has wildcard in 'Action' or 'Principal'"
+    "actualValue": "aws_kms_key[positive1].policy has wildcard in 'Action' or 'Principal'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
@@ -21,7 +22,8 @@
     "searchKey": "aws_kms_key[positive1].policy",
     "searchValue": "",
     "expectedValue": "aws_kms_key[positive1].policy should not have wildcard in 'Action' and 'Principal'",
-    "actualValue": "aws_kms_key[positive1].policy has wildcard in 'Action' or 'Principal'"
+    "actualValue": "aws_kms_key[positive1].policy has wildcard in 'Action' or 'Principal'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
@@ -33,6 +35,7 @@
     "searchKey": "aws_kms_key[positive3]",
     "searchValue": "",
     "expectedValue": "aws_kms_key[positive3].policy should be defined and not null",
-    "actualValue": "aws_kms_key[positive3].policy is undefined or null"
+    "actualValue": "aws_kms_key[positive3].policy is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

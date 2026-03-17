@@ -9,7 +9,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail2].trail_region",
     "searchValue": "",
     "expectedValue": "'trail_region' should be set to All",
-    "actualValue": "'trail_region' is not set to All"
+    "actualValue": "'trail_region' is not set to All",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail3].event_rw",
     "searchValue": "",
     "expectedValue": "'event_rw' should be set to All",
-    "actualValue": "'event_rw' is not set to All"
+    "actualValue": "'event_rw' is not set to All",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail3].trail_region",
     "searchValue": "",
     "expectedValue": "'trail_region' should be set to All",
-    "actualValue": "'trail_region' is not set to All"
+    "actualValue": "'trail_region' is not set to All",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail4].event_rw",
     "searchValue": "",
     "expectedValue": "'event_rw' should be set to All",
-    "actualValue": "'event_rw' is not set to All"
+    "actualValue": "'event_rw' is not set to All",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail4].trail_region",
     "searchValue": "",
     "expectedValue": "'trail_region' should be set to All",
-    "actualValue": "'trail_region' is not set to All"
+    "actualValue": "'trail_region' is not set to All",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail5].trail_region",
     "searchValue": "",
     "expectedValue": "'trail_region' should be set to All",
-    "actualValue": "'trail_region' is not set to All"
+    "actualValue": "'trail_region' is not set to All",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail6].event_rw",
     "searchValue": "",
     "expectedValue": "'event_rw' should be set to All",
-    "actualValue": "'event_rw' is not set to All"
+    "actualValue": "'event_rw' is not set to All",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail6].trail_region",
     "searchValue": "",
     "expectedValue": "'trail_region' should be set to All",
-    "actualValue": "'trail_region' is not set to All"
+    "actualValue": "'trail_region' is not set to All",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail7].event_rw",
     "searchValue": "",
     "expectedValue": "'event_rw' should be set to All",
-    "actualValue": "'event_rw' is not set to All"
+    "actualValue": "'event_rw' is not set to All",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail7].trail_region",
     "searchValue": "",
     "expectedValue": "'trail_region' should be set to All",
-    "actualValue": "'trail_region' is not set to All"
+    "actualValue": "'trail_region' is not set to All",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail8]",
     "searchValue": "trail_region",
     "expectedValue": "'trail_region' should be set.",
-    "actualValue": "'trail_region' is not set."
+    "actualValue": "'trail_region' is not set.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -141,7 +152,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail9]",
     "searchValue": "event_rw",
     "expectedValue": "'event_rw' should be set.",
-    "actualValue": "'event_rw' is not set."
+    "actualValue": "'event_rw' is not set.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -153,7 +165,8 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail10]",
     "searchValue": "event_rw",
     "expectedValue": "'event_rw' should be set.",
-    "actualValue": "'event_rw' is not set."
+    "actualValue": "'event_rw' is not set.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Action Trail Logging For All Regions Disabled",
@@ -165,6 +178,7 @@
     "searchKey": "alicloud_actiontrail_trail[actiontrail10]",
     "searchValue": "oss_bucket_name",
     "expectedValue": "oss_bucket_name should be set.",
-    "actualValue": "oss_bucket_name is not set."
+    "actualValue": "oss_bucket_name is not set.",
+    "issueType": "MissingAttribute"
   }
 ]

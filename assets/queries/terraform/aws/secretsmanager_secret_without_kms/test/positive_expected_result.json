@@ -9,6 +9,7 @@
     "searchKey": "aws_secretsmanager_secret[{{example}}]",
     "searchValue": "",
     "expectedValue": "aws_secretsmanager_secret.kms_key_id should be defined and not null",
-    "actualValue": "aws_secretsmanager_secret.kms_key_id is undefined or null"
+    "actualValue": "aws_secretsmanager_secret.kms_key_id is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "google_compute_instance[positive1].metadata.block-project-ssh-keys",
     "searchValue": "",
     "expectedValue": "google_compute_instance[positive1].metadata.block-project-ssh-keys should be true",
-    "actualValue": "google_compute_instance[positive1].metadata.block-project-ssh-keys is false"
+    "actualValue": "google_compute_instance[positive1].metadata.block-project-ssh-keys is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
@@ -21,6 +22,7 @@
     "searchKey": "google_compute_instance[positive2]",
     "searchValue": "",
     "expectedValue": "google_compute_instance[positive2].metadata should be set",
-    "actualValue": "google_compute_instance[positive2].metadata is undefined"
+    "actualValue": "google_compute_instance[positive2].metadata is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

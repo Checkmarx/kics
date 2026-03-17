@@ -9,7 +9,8 @@
     "searchKey": "tencentcloud_clb_listener[listener].protocol",
     "searchValue": "",
     "expectedValue": "tencentcloud_clb_listener[listener].protocol[HTTP] should not be an insecure protocol",
-    "actualValue": "tencentcloud_clb_listener[listener].protocol[HTTP] is an insecure protocol"
+    "actualValue": "tencentcloud_clb_listener[listener].protocol[HTTP] is an insecure protocol",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CLB Listener Using Insecure Protocols",
@@ -21,7 +22,8 @@
     "searchKey": "tencentcloud_clb_listener[listener].protocol",
     "searchValue": "",
     "expectedValue": "tencentcloud_clb_listener[listener].protocol[TCP] should not be an insecure protocol",
-    "actualValue": "tencentcloud_clb_listener[listener].protocol[TCP] is an insecure protocol"
+    "actualValue": "tencentcloud_clb_listener[listener].protocol[TCP] is an insecure protocol",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CLB Listener Using Insecure Protocols",
@@ -33,6 +35,7 @@
     "searchKey": "tencentcloud_clb_listener[listener].protocol",
     "searchValue": "",
     "expectedValue": "tencentcloud_clb_listener[listener].protocol[UDP] should not be an insecure protocol",
-    "actualValue": "tencentcloud_clb_listener[listener].protocol[UDP] is an insecure protocol"
+    "actualValue": "tencentcloud_clb_listener[listener].protocol[UDP] is an insecure protocol",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{Install Ansible}}.{{ansible.builtin.yum}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Install Ansible-lint}}.{{ansible.builtin.pip}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -33,7 +35,8 @@
     "searchKey": "name={{Install some-package}}.{{ansible.builtin.package}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -45,7 +48,8 @@
     "searchKey": "name={{Install Ansible with update_only to false}}.{{ansible.builtin.yum}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -57,7 +61,8 @@
     "searchKey": "name={{Install nmap}}.{{community.general.zypper}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -69,7 +74,8 @@
     "searchKey": "name={{Install package without using cache}}.{{community.general.apk}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -81,7 +87,8 @@
     "searchKey": "name={{Install apache httpd}}.{{ansible.builtin.apt}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -93,7 +100,8 @@
     "searchKey": "name={{Update Gemfile in another directory}}.{{community.general.bundler}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -105,7 +113,8 @@
     "searchKey": "name={{Install a modularity appstream with defined profile}}.{{ansible.builtin.dnf}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -117,7 +126,8 @@
     "searchKey": "name={{Install rake}}.{{community.general.gem}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -129,7 +139,8 @@
     "searchKey": "name={{Install formula foo with 'brew' from cask}}.{{community.general.homebrew}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -141,7 +152,8 @@
     "searchKey": "name={{Install Green Balls plugin}}.{{community.general.jenkins_plugin}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -153,7 +165,8 @@
     "searchKey": "name={{Install packages based on package.json}}.{{community.general.npm}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -165,7 +178,8 @@
     "searchKey": "name={{Install nmap}}.{{community.general.openbsd_pkg}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -177,7 +191,8 @@
     "searchKey": "name={{Install ntpdate}}.{{ansible.builtin.package}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -189,7 +204,8 @@
     "searchKey": "name={{Install package bar from file}}.{{community.general.pacman}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -201,7 +217,8 @@
     "searchKey": "name={{Install finger daemon}}.{{community.general.pkg5}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -213,7 +230,8 @@
     "searchKey": "name={{Install several packages}}.{{community.general.pkgutil}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -225,7 +243,8 @@
     "searchKey": "name={{Install package foo}}.{{community.general.portage}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -237,7 +256,8 @@
     "searchKey": "name={{Make sure that it is the most updated package}}.{{community.general.slackpkg}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -249,7 +269,8 @@
     "searchKey": "name={{Make sure spell foo is installed}}.{{community.general.sorcery}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -261,7 +282,8 @@
     "searchKey": "name={{Install package unzip}}.{{community.general.swdepot}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -273,7 +295,8 @@
     "searchKey": "name={{Install multiple packages}}.{{win_chocolatey}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -285,7 +308,8 @@
     "searchKey": "name={{Install \"imagemin\" node.js package globally.}}.{{community.general.yarn}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -297,7 +321,8 @@
     "searchKey": "name={{Install a list of packages (suitable replacement for 2.11 loop deprecation warning)}}.{{ansible.builtin.yum}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version",
@@ -309,6 +334,7 @@
     "searchKey": "name={{Install local rpm file}}.{{community.general.zypper}}.state",
     "searchValue": "",
     "expectedValue": "State's task when installing a package should not be defined as 'latest' or should have set 'update_only' to 'true'",
-    "actualValue": "State's task is set to 'latest'"
+    "actualValue": "State's task is set to 'latest'",
+    "issueType": "IncorrectValue"
   }
 ]

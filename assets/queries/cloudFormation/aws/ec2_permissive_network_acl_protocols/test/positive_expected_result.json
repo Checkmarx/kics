@@ -9,7 +9,8 @@
     "searchKey": "Resources.OutboundRule.Properties.Protocol",
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule.Properties.Protocol' should be either 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)",
-    "actualValue": "'Resources.OutboundRule.Properties.Protocol' is configured with a protocol different than 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)"
+    "actualValue": "'Resources.OutboundRule.Properties.Protocol' is configured with a protocol different than 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Permissive Network ACL Protocols",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.OutboundRule.Properties.Protocol",
     "searchValue": "",
     "expectedValue": "'Resources.OutboundRule.Properties.Protocol' should be either 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)",
-    "actualValue": "'Resources.OutboundRule.Properties.Protocol' is configured with a protocol different than 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)"
+    "actualValue": "'Resources.OutboundRule.Properties.Protocol' is configured with a protocol different than 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)",
+    "issueType": "IncorrectValue"
   }
 ]

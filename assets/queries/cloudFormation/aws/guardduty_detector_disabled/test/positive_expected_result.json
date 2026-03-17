@@ -9,7 +9,8 @@
     "searchKey": "Resources.mydetector3.Properties.Enable",
     "searchValue": "",
     "expectedValue": "Resources.mydetector3.Properties.Enable should be set to true",
-    "actualValue": "Resources.mydetector3.Properties.Enable is set to false"
+    "actualValue": "Resources.mydetector3.Properties.Enable is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GuardDuty Detector Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.mydetector4.Properties.Enable",
     "searchValue": "",
     "expectedValue": "Resources.mydetector4.Properties.Enable should be set to true",
-    "actualValue": "Resources.mydetector4.Properties.Enable is set to false"
+    "actualValue": "Resources.mydetector4.Properties.Enable is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GuardDuty Detector Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.mydetector3.Properties.Enable",
     "searchValue": "",
     "expectedValue": "Resources.mydetector3.Properties.Enable should be set to true",
-    "actualValue": "Resources.mydetector3.Properties.Enable is set to false"
+    "actualValue": "Resources.mydetector3.Properties.Enable is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

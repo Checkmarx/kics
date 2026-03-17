@@ -9,7 +9,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is undefined"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should declare audit logs",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare audit logs"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare audit logs",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should be defined and not null",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is undefined"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should declare audit logs",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare audit logs"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare audit logs",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should be defined and not null",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should declare audit logs",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare audit logs"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare audit logs",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -153,7 +165,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is undefined"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -165,7 +178,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should be defined and not null",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -177,7 +191,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -189,7 +204,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is undefined"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -201,7 +217,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -213,7 +230,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should declare audit logs",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare audit logs"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions does not declare audit logs",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -225,7 +243,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions should be defined and not null",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Without Audit Logs",
@@ -237,6 +256,7 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled should be defined and set to 'true'",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.LogPublishingOptions.AUDIT_LOGS.Enabled is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

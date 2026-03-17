@@ -9,7 +9,8 @@
     "searchKey": "aws_route53_zone[no_query_log]",
     "searchValue": "",
     "expectedValue": "'aws_route53_query_log' should be set for respective 'aws_route53_zone'",
-    "actualValue": "'aws_route53_query_log' is undefined"
+    "actualValue": "'aws_route53_query_log' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudWatch Logging Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_route53_query_log[log_group_mismatch].cloudwatch_log_group_arn",
     "searchValue": "",
     "expectedValue": "'aws_route53_query_log' log group refers to the query log",
-    "actualValue": "'aws_route53_query_log' log group does not match with the log name"
+    "actualValue": "'aws_route53_query_log' log group does not match with the log name",
+    "issueType": "IncorrectValue"
   }
 ]

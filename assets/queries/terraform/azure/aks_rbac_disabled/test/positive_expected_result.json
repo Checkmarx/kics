@@ -9,7 +9,8 @@
     "searchKey": "azurerm_kubernetes_cluster[positive1].role_based_access_control_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_kubernetes_cluster[positive1].role_based_access_control_enabled' should be set to true",
-    "actualValue": "'azurerm_kubernetes_cluster[positive1].role_based_access_control_enabled' is not set to true"
+    "actualValue": "'azurerm_kubernetes_cluster[positive1].role_based_access_control_enabled' is not set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS RBAC Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_kubernetes_cluster[positive2].role_based_access_control.enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_kubernetes_cluster[positive2].role_based_access_control.enabled' should be set to true",
-    "actualValue": "'azurerm_kubernetes_cluster[positive2].role_based_access_control.enabled' is not set to true"
+    "actualValue": "'azurerm_kubernetes_cluster[positive2].role_based_access_control.enabled' is not set to true",
+    "issueType": "IncorrectValue"
   }
 ]

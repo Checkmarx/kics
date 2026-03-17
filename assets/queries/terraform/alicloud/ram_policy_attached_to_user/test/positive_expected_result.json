@@ -9,6 +9,7 @@
     "searchKey": "alicloud_ram_user_policy_attachment[attach]",
     "searchValue": "",
     "expectedValue": "alicloud_ram_user_policy_attachment[attach] should be undefined",
-    "actualValue": "alicloud_ram_user_policy_attachment[attach] is defined"
+    "actualValue": "alicloud_ram_user_policy_attachment[attach] is defined",
+    "issueType": "IncorrectValue"
   }
 ]

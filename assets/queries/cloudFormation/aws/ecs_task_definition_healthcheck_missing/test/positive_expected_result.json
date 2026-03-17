@@ -9,7 +9,8 @@
     "searchKey": "Resources.taskdefinition.Properties.ContainerDefinitions.1.Name.Ref=AppName",
     "searchValue": "",
     "expectedValue": "'Resources.taskdefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
-    "actualValue": "'Resources.taskdefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
+    "actualValue": "'Resources.taskdefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECS Task Definition HealthCheck Missing",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.taskdefinition.Properties.ContainerDefinitions.0.Name.Ref=AppName",
     "searchValue": "",
     "expectedValue": "'Resources.taskdefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
-    "actualValue": "'Resources.taskdefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
+    "actualValue": "'Resources.taskdefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property",
+    "issueType": "MissingAttribute"
   }
 ]

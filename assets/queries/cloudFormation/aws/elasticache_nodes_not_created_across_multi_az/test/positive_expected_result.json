@@ -9,7 +9,8 @@
     "searchKey": "Resources.myCacheCluster3.Properties.AZMode",
     "searchValue": "",
     "expectedValue": "Resources.myCacheCluster3.Properties.AZMode is 'cross-az'",
-    "actualValue": "Resources.myCacheCluster3.Properties.AZMode is 'single-az"
+    "actualValue": "Resources.myCacheCluster3.Properties.AZMode is 'single-az",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myCacheCluster4.Properties",
     "searchValue": "",
     "expectedValue": "Resources.myCacheCluster4.Properties.AZMode should be defined and is 'cross-az'",
-    "actualValue": "Resources.myCacheCluster4.Properties.AZMode is not defined, default value is 'single-az'"
+    "actualValue": "Resources.myCacheCluster4.Properties.AZMode is not defined, default value is 'single-az'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myCacheCluster5.Properties.AZMode",
     "searchValue": "",
     "expectedValue": "Resources.myCacheCluster5.Properties.AZMode is 'cross-az'",
-    "actualValue": "Resources.myCacheCluster5.Properties.AZMode is 'single-az"
+    "actualValue": "Resources.myCacheCluster5.Properties.AZMode is 'single-az",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.myCacheCluster6.Properties",
     "searchValue": "",
     "expectedValue": "Resources.myCacheCluster6.Properties.AZMode should be defined and is 'cross-az'",
-    "actualValue": "Resources.myCacheCluster6.Properties.AZMode is not defined, default value is 'single-az'"
+    "actualValue": "Resources.myCacheCluster6.Properties.AZMode is not defined, default value is 'single-az'",
+    "issueType": "MissingAttribute"
   }
 ]

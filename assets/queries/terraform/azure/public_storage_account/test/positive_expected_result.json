@@ -9,7 +9,8 @@
     "searchKey": "azurerm_storage_account[positive1].network_rules.ip_rules",
     "searchValue": "",
     "expectedValue": "'network_rules.ip_rules' should not contain 0.0.0.0/0",
-    "actualValue": "'network_rules.ip_rules' contains 0.0.0.0/0"
+    "actualValue": "'network_rules.ip_rules' contains 0.0.0.0/0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Public Storage Account",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_storage_account[positive2].network_rules",
     "searchValue": "",
     "expectedValue": "'network_rules.ip_rules' should be defined and not null",
-    "actualValue": "'network_rules.default_action' is 'Allow' and 'network_rules.ip_rules' is undefined or null"
+    "actualValue": "'network_rules.default_action' is 'Allow' and 'network_rules.ip_rules' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Public Storage Account",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_storage_account_network_rules[positive3].ip_rules",
     "searchValue": "",
     "expectedValue": "ip_rules[0] should not contain 0.0.0.0/0",
-    "actualValue": "ip_rules[0] contains 0.0.0.0/0"
+    "actualValue": "ip_rules[0] contains 0.0.0.0/0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Public Storage Account",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_storage_account_network_rules[positive4]",
     "searchValue": "",
     "expectedValue": "'ip_rules' should be defined and not null",
-    "actualValue": "'default_action' is set to 'Allow' and 'ip_rules' is undefined or null"
+    "actualValue": "'default_action' is set to 'Allow' and 'ip_rules' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Public Storage Account",
@@ -57,6 +61,7 @@
     "searchKey": "azurerm_storage_account[positive5].allow_blob_public_access",
     "searchValue": "",
     "expectedValue": "'allow_blob_public_access' should be set to false or undefined",
-    "actualValue": "'allow_blob_public_access' is set to true"
+    "actualValue": "'allow_blob_public_access' is set to true",
+    "issueType": "IncorrectValue"
   }
 ]

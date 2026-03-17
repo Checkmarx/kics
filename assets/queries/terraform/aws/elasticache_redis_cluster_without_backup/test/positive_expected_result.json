@@ -9,7 +9,8 @@
     "searchKey": "aws_elasticache_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "'snapshot_retention_limit' should be higher than 0",
-    "actualValue": "'snapshot_retention_limit' is undefined"
+    "actualValue": "'snapshot_retention_limit' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElastiCache Redis Cluster Without Backup",
@@ -21,6 +22,7 @@
     "searchKey": "aws_elasticache_cluster[positive2].snapshot_retention_limit",
     "searchValue": "",
     "expectedValue": "'snapshot_retention_limit' should be higher than 0",
-    "actualValue": "'snapshot_retention_limit' is 0"
+    "actualValue": "'snapshot_retention_limit' is 0",
+    "issueType": "IncorrectValue"
   }
 ]

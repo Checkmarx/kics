@@ -9,7 +9,8 @@
     "searchKey": "aws_eks_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "'encryption_config' should be defined and not null",
-    "actualValue": "'encryption_config' is undefined or null"
+    "actualValue": "'encryption_config' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EKS Cluster Encryption Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_eks_cluster[positive2].encryption_config.resources",
     "searchValue": "",
     "expectedValue": "'secrets' should be defined",
-    "actualValue": "'secrets' is undefined"
+    "actualValue": "'secrets' is undefined",
+    "issueType": "IncorrectValue"
   }
 ]

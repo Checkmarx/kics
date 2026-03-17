@@ -9,7 +9,8 @@
     "searchKey": "google_storage_bucket[bucket]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP SB",
@@ -21,7 +22,8 @@
     "searchKey": "google_storage_bucket[bucket2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP SB",
@@ -33,6 +35,7 @@
     "searchKey": "google_storage_bucket[bucket3]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{Create a role definition}}.{{azure_rm_roledefinition}}.permissions.actions",
     "searchValue": "",
     "expectedValue": "azure_rm_roledefinition.permissions[0].actions should not allow custom role creation",
-    "actualValue": "azure_rm_roledefinition.permissions[0].actions allows custom role creation"
+    "actualValue": "azure_rm_roledefinition.permissions[0].actions allows custom role creation",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Role Definition Allows Custom Role Creation",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create a role definition2}}.{{azure_rm_roledefinition}}.permissions.actions",
     "searchValue": "",
     "expectedValue": "azure_rm_roledefinition.permissions[0].actions should not allow custom role creation",
-    "actualValue": "azure_rm_roledefinition.permissions[0].actions allows custom role creation"
+    "actualValue": "azure_rm_roledefinition.permissions[0].actions allows custom role creation",
+    "issueType": "IncorrectValue"
   }
 ]

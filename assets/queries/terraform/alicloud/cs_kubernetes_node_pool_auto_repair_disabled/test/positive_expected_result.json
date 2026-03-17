@@ -9,7 +9,8 @@
     "searchKey": "alicloud_cs_kubernetes_node_pool[default2]",
     "searchValue": "",
     "expectedValue": "For the resource alicloud_cs_kubernetes_node_pool[default2] to have a 'management' block containing 'auto_repair' set to true.",
-    "actualValue": "The resource alicloud_cs_kubernetes_node_pool[default2] does not have a 'management' block."
+    "actualValue": "The resource alicloud_cs_kubernetes_node_pool[default2] does not have a 'management' block.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CS Kubernetes Node Pool Auto Repair Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "alicloud_cs_kubernetes_node_pool[default3].resource.management.auto_repair ",
     "searchValue": "",
     "expectedValue": "For the resource alicloud_cs_kubernetes_node_pool[default3] to have 'auto_repair' set to true.",
-    "actualValue": "The resource alicloud_cs_kubernetes_node_pool[default3] has 'auto_repair' set to false."
+    "actualValue": "The resource alicloud_cs_kubernetes_node_pool[default3] has 'auto_repair' set to false.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CS Kubernetes Node Pool Auto Repair Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "alicloud_cs_kubernetes_node_pool[default4].management",
     "searchValue": "",
     "expectedValue": "For the resource alicloud_cs_kubernetes_node_pool[default4] to have a 'management' block containing 'auto_repair' set to true.",
-    "actualValue": "The resource alicloud_cs_kubernetes_node_pool[default4] has a 'management' block but it doesn't contain 'auto_repair' "
+    "actualValue": "The resource alicloud_cs_kubernetes_node_pool[default4] has a 'management' block but it doesn't contain 'auto_repair' ",
+    "issueType": "MissingAttribute"
   }
 ]

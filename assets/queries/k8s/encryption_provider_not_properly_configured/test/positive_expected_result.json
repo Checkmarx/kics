@@ -9,6 +9,7 @@
     "searchKey": "kind={{EncryptionConfiguration}}.providers",
     "searchValue": "",
     "expectedValue": "aescbc, kms or secretbox provider should be defined",
-    "actualValue": "aescbc, kms or secretbox provider is not defined"
+    "actualValue": "aescbc, kms or secretbox provider is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

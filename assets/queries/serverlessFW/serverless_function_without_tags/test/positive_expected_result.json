@@ -9,6 +9,7 @@
     "searchKey": "functions.hello",
     "searchValue": "",
     "expectedValue": "'tags' should be defined inside the function",
-    "actualValue": "'tags' is not defined"
+    "actualValue": "'tags' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

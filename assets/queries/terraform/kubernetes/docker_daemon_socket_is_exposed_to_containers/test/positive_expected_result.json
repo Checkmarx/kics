@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[test].spec.volume",
     "searchValue": "",
     "expectedValue": "spec.volume[0].host_path.path should not be '/var/run/docker.sock'",
-    "actualValue": "spec.volume[0].host_path.path is '/var/run/docker.sock'"
+    "actualValue": "spec.volume[0].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[test].spec.volume",
     "searchValue": "",
     "expectedValue": "spec.volume[1].host_path.path should not be '/var/run/docker.sock'",
-    "actualValue": "spec.volume[1].host_path.path is '/var/run/docker.sock'"
+    "actualValue": "spec.volume[1].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
@@ -33,7 +35,8 @@
     "searchKey": "kubernetes_deployment[example].spec.template.spec.volume",
     "searchValue": "",
     "expectedValue": "spec.template.spec.volume[0].host_path.path should not be '/var/run/docker.sock'",
-    "actualValue": "spec.template.spec.volume[0].host_path.path is '/var/run/docker.sock'"
+    "actualValue": "spec.template.spec.volume[0].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
@@ -45,7 +48,8 @@
     "searchKey": "kubernetes_deployment[example].spec.template.spec.volume",
     "searchValue": "",
     "expectedValue": "spec.template.spec.volume[1].host_path.path should not be '/var/run/docker.sock'",
-    "actualValue": "spec.template.spec.volume[1].host_path.path is '/var/run/docker.sock'"
+    "actualValue": "spec.template.spec.volume[1].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
@@ -57,7 +61,8 @@
     "searchKey": "kubernetes_cron_job[demo2].spec.job_template.spec.template.spec.volume",
     "searchValue": "",
     "expectedValue": "spec.job_template.spec.template.spec.volume[0].host_path.path should not be '/var/run/docker.sock'",
-    "actualValue": "spec.job_template.spec.template.spec.volume[0].host_path.path is '/var/run/docker.sock'"
+    "actualValue": "spec.job_template.spec.template.spec.volume[0].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
@@ -69,6 +74,7 @@
     "searchKey": "kubernetes_cron_job[demo2].spec.job_template.spec.template.spec.volume",
     "searchValue": "",
     "expectedValue": "spec.job_template.spec.template.spec.volume[1].host_path.path should not be '/var/run/docker.sock'",
-    "actualValue": "spec.job_template.spec.template.spec.volume[1].host_path.path is '/var/run/docker.sock'"
+    "actualValue": "spec.job_template.spec.template.spec.volume[1].host_path.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue"
   }
 ]

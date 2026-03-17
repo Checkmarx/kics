@@ -9,7 +9,8 @@
     "searchKey": "Resources.myTrail3.Properties.IsLogging",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail3.Properties.IsLogging' should be true",
-    "actualValue": "'Resources.myTrail3.Properties.IsLogging' is false"
+    "actualValue": "'Resources.myTrail3.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Logging Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myTrail4.Properties.IsLogging",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail4.Properties.IsLogging' should be true",
-    "actualValue": "'Resources.myTrail4.Properties.IsLogging' is false"
+    "actualValue": "'Resources.myTrail4.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Logging Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myTrail5.Properties.IsLogging",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail5.Properties.IsLogging' should be true",
-    "actualValue": "'Resources.myTrail5.Properties.IsLogging' is false"
+    "actualValue": "'Resources.myTrail5.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Logging Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.myTrail6.Properties.IsLogging",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail6.Properties.IsLogging' should be true",
-    "actualValue": "'Resources.myTrail6.Properties.IsLogging' is false"
+    "actualValue": "'Resources.myTrail6.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Logging Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.myTrail.Properties.IsLogging",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail.Properties.IsLogging' should be true",
-    "actualValue": "'Resources.myTrail.Properties.IsLogging' is false"
+    "actualValue": "'Resources.myTrail.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Logging Disabled",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.myTrail5.Properties.IsLogging",
     "searchValue": "",
     "expectedValue": "'Resources.myTrail5.Properties.IsLogging' should be true",
-    "actualValue": "'Resources.myTrail5.Properties.IsLogging' is false"
+    "actualValue": "'Resources.myTrail5.Properties.IsLogging' is false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{testRoleVulnerable}}.rules",
     "searchValue": "Role",
     "expectedValue": "The metadata.name={{testRoleVulnerable}}.rules.verbs should not contain the following verbs: [[\"get\", \"watch\", \"list\"]]",
-    "actualValue": "The metadata.name={{testRoleVulnerable}}.rules.verbs contain the following verbs: [[\"get\", \"watch\", \"list\"]]"
+    "actualValue": "The metadata.name={{testRoleVulnerable}}.rules.verbs contain the following verbs: [[\"get\", \"watch\", \"list\"]]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ServiceAccount Allows Access Secrets",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{testRoleVulnerable2}}.rules",
     "searchValue": "Role",
     "expectedValue": "The metadata.name={{testRoleVulnerable2}}.rules.verbs should not contain the following verbs: [[\"*\"]]",
-    "actualValue": "The metadata.name={{testRoleVulnerable2}}.rules.verbs contain the following verbs: [[\"*\"]]"
+    "actualValue": "The metadata.name={{testRoleVulnerable2}}.rules.verbs contain the following verbs: [[\"*\"]]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ServiceAccount Allows Access Secrets",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{testClusterRoleVulnerable}}.rules",
     "searchValue": "ClusterRole",
     "expectedValue": "The metadata.name={{testClusterRoleVulnerable}}.rules.verbs should not contain the following verbs: [[\"update\", \"list\"]]",
-    "actualValue": "The metadata.name={{testClusterRoleVulnerable}}.rules.verbs contain the following verbs: [[\"update\", \"list\"]]"
+    "actualValue": "The metadata.name={{testClusterRoleVulnerable}}.rules.verbs contain the following verbs: [[\"update\", \"list\"]]",
+    "issueType": "IncorrectValue"
   }
 ]

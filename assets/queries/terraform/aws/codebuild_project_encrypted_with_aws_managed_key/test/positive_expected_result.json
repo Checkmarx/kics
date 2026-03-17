@@ -9,6 +9,7 @@
     "searchKey": "aws_codebuild_project[project-cloudrail-test].encryption_key",
     "searchValue": "",
     "expectedValue": "CodeBuild Project should not be encrypted with AWS managed key",
-    "actualValue": "CodeBuild Project is encrypted with AWS managed key"
+    "actualValue": "CodeBuild Project is encrypted with AWS managed key",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.PolicyDocument.Statement' shouldn't contain '*'",
-    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'"
+    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.PolicyDocument.Statement' shouldn't contain '*'",
-    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'"
+    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.PolicyDocument.Statement' shouldn't contain '*'",
-    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'"
+    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.PolicyDocument.Statement' shouldn't contain '*'",
-    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'"
+    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

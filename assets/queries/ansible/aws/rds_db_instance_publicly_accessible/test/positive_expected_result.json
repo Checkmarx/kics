@@ -9,7 +9,8 @@
     "searchKey": "name={{community - Create a DB instance using the default AWS KMS encryption key}}.{{community.aws.rds_instance}}.publicly_accessible",
     "searchValue": "",
     "expectedValue": "community.aws.rds_instance.publicly_accessible should be false",
-    "actualValue": "community.aws.rds_instance.publicly_accessible is true"
+    "actualValue": "community.aws.rds_instance.publicly_accessible is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
@@ -21,6 +22,7 @@
     "searchKey": "name={{community - Basic mysql provisioning example}}.{{community.aws.rds}}.publicly_accessible",
     "searchValue": "",
     "expectedValue": "community.aws.rds.publicly_accessible should be false",
-    "actualValue": "community.aws.rds.publicly_accessible is true"
+    "actualValue": "community.aws.rds.publicly_accessible is true",
+    "issueType": "IncorrectValue"
   }
 ]

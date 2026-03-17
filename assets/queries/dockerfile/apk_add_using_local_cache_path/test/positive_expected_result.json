@@ -9,7 +9,8 @@
     "searchKey": "FROM={{gliderlabs/alpine:3.3}}.{{RUN apk add --update-cache python}}",
     "searchValue": "",
     "expectedValue": "'RUN' should not contain 'apk add' command without '--no-cache' switch",
-    "actualValue": "'RUN' contains 'apk add' command without '--no-cache' switch"
+    "actualValue": "'RUN' contains 'apk add' command without '--no-cache' switch",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Apk Add Using Local Cache Path",
@@ -21,6 +22,7 @@
     "searchKey": "FROM={{gliderlabs/alpine:3.3}}.{{RUN apk add --update-cache python}}",
     "searchValue": "",
     "expectedValue": "'RUN' should not contain 'apk add' command without '--no-cache' switch",
-    "actualValue": "'RUN' contains 'apk add' command without '--no-cache' switch"
+    "actualValue": "'RUN' contains 'apk add' command without '--no-cache' switch",
+    "issueType": "IncorrectValue"
   }
 ]

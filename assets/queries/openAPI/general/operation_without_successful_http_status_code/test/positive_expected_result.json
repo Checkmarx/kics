@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined"
+    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Operation Without Successful HTTP Status Code (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined"
+    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Operation Without Successful HTTP Status Code (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined"
+    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Operation Without Successful HTTP Status Code (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.{{get}}.responses",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses has at least one successful HTTP status code defined",
-    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined"
+    "actualValue": "paths.{{/}}.{{get}}.responses does not have at least one successful HTTP status code defined",
+    "issueType": "MissingAttribute"
   }
 ]

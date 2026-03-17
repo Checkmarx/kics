@@ -9,7 +9,8 @@
     "searchKey": "paths./users/{id}",
     "searchValue": "",
     "expectedValue": "There shouldn't be ambiguous path",
-    "actualValue": "There is ambiguous path"
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Is Ambiguous (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths./users/{ids}",
     "searchValue": "",
     "expectedValue": "There shouldn't be ambiguous path",
-    "actualValue": "There is ambiguous path"
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Is Ambiguous (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths./users/{id}",
     "searchValue": "",
     "expectedValue": "There shouldn't be ambiguous path",
-    "actualValue": "There is ambiguous path"
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Is Ambiguous (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths./users/{ids}",
     "searchValue": "",
     "expectedValue": "There shouldn't be ambiguous path",
-    "actualValue": "There is ambiguous path"
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Is Ambiguous (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths./users/{id}",
     "searchValue": "",
     "expectedValue": "There shouldn't be ambiguous path",
-    "actualValue": "There is ambiguous path"
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Is Ambiguous (v2)",
@@ -69,7 +74,8 @@
     "searchKey": "paths./users/{ids}",
     "searchValue": "",
     "expectedValue": "There shouldn't be ambiguous path",
-    "actualValue": "There is ambiguous path"
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Is Ambiguous (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths./users/{id}",
     "searchValue": "",
     "expectedValue": "There shouldn't be ambiguous path",
-    "actualValue": "There is ambiguous path"
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Is Ambiguous (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "paths./users/{ids}",
     "searchValue": "",
     "expectedValue": "There shouldn't be ambiguous path",
-    "actualValue": "There is ambiguous path"
+    "actualValue": "There is ambiguous path",
+    "issueType": "IncorrectValue"
   }
 ]

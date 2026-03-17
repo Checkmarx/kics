@@ -9,6 +9,7 @@
     "searchKey": "google_container_cluster[positive].enable_kubernetes_alpha",
     "searchValue": "",
     "expectedValue": "'enable_kubernetes_alpha' should only be defined to 'false'",
-    "actualValue": "'enable_kubernetes_alpha' is defined to 'true'"
+    "actualValue": "'enable_kubernetes_alpha' is defined to 'true'",
+    "issueType": "IncorrectValue"
   }
 ]

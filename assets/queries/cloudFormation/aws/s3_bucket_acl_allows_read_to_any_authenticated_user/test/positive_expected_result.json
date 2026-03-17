@@ -9,7 +9,8 @@
     "searchKey": "Resources.JenkinsArtifacts01.Properties.AccessControl",
     "searchValue": "",
     "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
-    "actualValue": "S3 bucket named 'jenkins-artifacts' has ACL set to 'AuthenticatedRead'"
+    "actualValue": "S3 bucket named 'jenkins-artifacts' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.StaticPage01.Properties.AccessControl",
     "searchValue": "",
     "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
-    "actualValue": "S3 bucket named 'public-read-static-page01' has ACL set to 'AuthenticatedRead'"
+    "actualValue": "S3 bucket named 'public-read-static-page01' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.JenkinsArtifacts02.Properties.AccessControl",
     "searchValue": "",
     "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
-    "actualValue": "S3 bucket named 'jenkins-artifacts-block-public' has ACL set to 'AuthenticatedRead'"
+    "actualValue": "S3 bucket named 'jenkins-artifacts-block-public' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.S3BucketForWebsiteContent.Properties.AccessControl",
     "searchValue": "",
     "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
-    "actualValue": "S3 bucket named 'undefined' has ACL set to 'AuthenticatedRead'"
+    "actualValue": "S3 bucket named 'undefined' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.JenkinsArtifacts01.Properties.AccessControl",
     "searchValue": "",
     "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
-    "actualValue": "S3 bucket named 'jenkins-artifacts' has ACL set to 'AuthenticatedRead'"
+    "actualValue": "S3 bucket named 'jenkins-artifacts' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.StaticPage01.Properties.AccessControl",
     "searchValue": "",
     "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
-    "actualValue": "S3 bucket named 'public-read-static-page01' has ACL set to 'AuthenticatedRead'"
+    "actualValue": "S3 bucket named 'public-read-static-page01' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.JenkinsArtifacts02.Properties.AccessControl",
     "searchValue": "",
     "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
-    "actualValue": "S3 bucket named 'jenkins-artifacts-block-public' has ACL set to 'AuthenticatedRead'"
+    "actualValue": "S3 bucket named 'jenkins-artifacts-block-public' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.S3BucketForWebsiteContent.Properties.AccessControl",
     "searchValue": "",
     "expectedValue": "S3 bucket ACL shouldn't allow read operations from any authenticated user",
-    "actualValue": "S3 bucket named 'undefined' has ACL set to 'AuthenticatedRead'"
+    "actualValue": "S3 bucket named 'undefined' has ACL set to 'AuthenticatedRead'",
+    "issueType": "IncorrectValue"
   }
 ]

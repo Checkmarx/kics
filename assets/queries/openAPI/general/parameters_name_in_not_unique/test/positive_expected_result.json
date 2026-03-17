@@ -9,7 +9,8 @@
     "searchKey": "components.parameters.limitJSONParam.name",
     "searchValue": "",
     "expectedValue": "Parameter has unique 'name' and 'in' combinations",
-    "actualValue": "Parameter does not have unique 'name' and 'in' combinations"
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "components.parameters.otherJSONParam.name",
     "searchValue": "",
     "expectedValue": "Parameter has unique 'name' and 'in' combinations",
-    "actualValue": "Parameter does not have unique 'name' and 'in' combinations"
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.parameters.limitParam.name",
     "searchValue": "",
     "expectedValue": "Parameter has unique 'name' and 'in' combinations",
-    "actualValue": "Parameter does not have unique 'name' and 'in' combinations"
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "components.parameters.otherParam.name",
     "searchValue": "",
     "expectedValue": "Parameter has unique 'name' and 'in' combinations",
-    "actualValue": "Parameter does not have unique 'name' and 'in' combinations"
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.parameters.name",
     "searchValue": "",
     "expectedValue": "Parameter has unique 'name' and 'in' combinations",
-    "actualValue": "Parameter does not have unique 'name' and 'in' combinations"
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v2)",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/}}.get.parameters.name",
     "searchValue": "",
     "expectedValue": "Parameter has unique 'name' and 'in' combinations",
-    "actualValue": "Parameter does not have unique 'name' and 'in' combinations"
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "tencentcloud_clb_instance[internal_clb]",
     "searchValue": "",
     "expectedValue": "tencentcloud_clb_instance[internal_clb] should set 'log_set_id' and 'log_topic_id'",
-    "actualValue": "tencentcloud_clb_instance[internal_clb] not set 'log_set_id' and 'log_topic_id'"
+    "actualValue": "tencentcloud_clb_instance[internal_clb] not set 'log_set_id' and 'log_topic_id'",
+    "issueType": "MissingAttribute"
   }
 ]

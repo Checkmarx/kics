@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.hostPID",
     "searchValue": "",
     "expectedValue": "'spec.hostPID' should be set to false or undefined",
-    "actualValue": "'spec.hostPID' is true"
+    "actualValue": "'spec.hostPID' is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shared Host PID Namespace",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.hostPID",
     "searchValue": "",
     "expectedValue": "'spec.template.spec.hostPID' should be set to false or undefined",
-    "actualValue": "'spec.template.spec.hostPID' is true"
+    "actualValue": "'spec.template.spec.hostPID' is true",
+    "issueType": "IncorrectValue"
   }
 ]

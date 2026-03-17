@@ -9,7 +9,8 @@
     "searchKey": "google_container_cluster[positive1].logging_service",
     "searchValue": "",
     "expectedValue": "Attribute 'logging_service' should be undefined or 'logging.googleapis.com/kubernetes'",
-    "actualValue": "Attribute 'logging_service' is 'none'"
+    "actualValue": "Attribute 'logging_service' is 'none'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Stackdriver Logging Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "google_container_cluster[positive2].logging_service",
     "searchValue": "",
     "expectedValue": "Attribute 'logging_service' should be undefined or 'logging.googleapis.com/kubernetes'",
-    "actualValue": "Attribute 'logging_service' is 'logging.googleapis.com'"
+    "actualValue": "Attribute 'logging_service' is 'logging.googleapis.com'",
+    "issueType": "IncorrectValue"
   }
 ]

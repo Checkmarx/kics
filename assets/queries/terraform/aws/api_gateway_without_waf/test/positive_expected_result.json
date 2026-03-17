@@ -9,6 +9,7 @@
     "searchKey": "aws_api_gateway_stage[positive1]",
     "searchValue": "",
     "expectedValue": "API Gateway Stage should be associated with a Web Application Firewall",
-    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall"
+    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall",
+    "issueType": "IncorrectValue"
   }
 ]

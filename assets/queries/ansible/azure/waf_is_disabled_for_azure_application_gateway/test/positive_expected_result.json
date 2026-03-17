@@ -9,6 +9,7 @@
     "searchKey": "name={{Create instance of Application Gateway}}.{{azure_rm_appgateway}}.sku.tier",
     "searchValue": "",
     "expectedValue": "azure_rm_appgateway.sku.tier should be 'waf' or 'waf_v2'",
-    "actualValue": "azure_rm_appgateway.sku.tier is standard"
+    "actualValue": "azure_rm_appgateway.sku.tier is standard",
+    "issueType": "IncorrectValue"
   }
 ]

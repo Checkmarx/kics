@@ -9,6 +9,7 @@
     "searchKey": "aws_cloudwatch_log_destination_policy[test_destination_policy].access_policy",
     "searchValue": "",
     "expectedValue": "aws_cloudwatch_log_destination_policy[test_destination_policy].access_policy should not have wildcard in 'principals' and 'actions'",
-    "actualValue": "aws_cloudwatch_log_destination_policy[test_destination_policy].access_policy has wildcard in 'principals' or 'actions'"
+    "actualValue": "aws_cloudwatch_log_destination_policy[test_destination_policy].access_policy has wildcard in 'principals' or 'actions'",
+    "issueType": "IncorrectValue"
   }
 ]

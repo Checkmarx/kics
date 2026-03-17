@@ -9,6 +9,7 @@
     "searchKey": "name={{create a bucket}}.{{google.cloud.gcp_storage_bucket}}",
     "searchValue": "",
     "expectedValue": "gcp_storage_bucket.logging should be defined",
-    "actualValue": "gcp_storage_bucket.logging is undefined"
+    "actualValue": "gcp_storage_bucket.logging is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

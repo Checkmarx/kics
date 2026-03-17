@@ -9,7 +9,8 @@
     "searchKey": "Resources.myVPC_1",
     "searchValue": "",
     "expectedValue": "'Resources.myVPC_1' should be attached to resources",
-    "actualValue": "'Resources.myVPC_1' is not attached to resources"
+    "actualValue": "'Resources.myVPC_1' is not attached to resources",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "VPC Without Attached Subnet",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myVPC_1",
     "searchValue": "",
     "expectedValue": "'Resources.myVPC_1' should be attached to resources",
-    "actualValue": "'Resources.myVPC_1' is not attached to resources"
+    "actualValue": "'Resources.myVPC_1' is not attached to resources",
+    "issueType": "MissingAttribute"
   }
 ]

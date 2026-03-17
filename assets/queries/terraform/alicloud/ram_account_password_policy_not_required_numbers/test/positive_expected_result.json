@@ -9,6 +9,7 @@
     "searchKey": "alicloud_ram_account_password_policy[corporate].require_numbers",
     "searchValue": "",
     "expectedValue": "'require_numbers' should be defined and set to true",
-    "actualValue": "'require_numbers' is false"
+    "actualValue": "'require_numbers' is false",
+    "issueType": "IncorrectValue"
   }
 ]

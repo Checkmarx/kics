@@ -9,6 +9,7 @@
     "searchKey": "name={{no sns topic name}}.{{community.aws.cloudtrail}}",
     "searchValue": "",
     "expectedValue": "cloudtrail.kms_key_id should be set",
-    "actualValue": "cloudtrail.kms_key_id is undefined"
+    "actualValue": "cloudtrail.kms_key_id is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

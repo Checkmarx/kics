@@ -9,6 +9,7 @@
     "searchKey": "alicloud_oss_bucket[bucket-policy1].policy",
     "searchValue": "",
     "expectedValue": "alicloud_oss_bucket[bucket-policy1].policy to not accept delete action from all principals",
-    "actualValue": "alicloud_oss_bucket[bucket-policy1].policy accepts delete action from all principals"
+    "actualValue": "alicloud_oss_bucket[bucket-policy1].policy accepts delete action from all principals",
+    "issueType": "IncorrectValue"
   }
 ]

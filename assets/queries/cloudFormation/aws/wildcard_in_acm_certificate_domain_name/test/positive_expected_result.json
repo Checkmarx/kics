@@ -9,7 +9,8 @@
     "searchKey": "Resources.Certificate.Properties.DomainName",
     "searchValue": "",
     "expectedValue": "'Resources.Certificate.Properties.DomainName' should not contain '*'",
-    "actualValue": "'Resources.Certificate.Properties.DomainName' contains '*'"
+    "actualValue": "'Resources.Certificate.Properties.DomainName' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Wildcard In ACM Certificate Domain Name",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.Certificate.Properties.DomainName",
     "searchValue": "",
     "expectedValue": "'Resources.Certificate.Properties.DomainName' should not contain '*'",
-    "actualValue": "'Resources.Certificate.Properties.DomainName' contains '*'"
+    "actualValue": "'Resources.Certificate.Properties.DomainName' contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_neptune_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "'storage_encrypted' should be set with value true",
-    "actualValue": "'storage_encrypted' is undefined"
+    "actualValue": "'storage_encrypted' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_neptune_cluster[positive2].storage_encrypted",
     "searchValue": "",
     "expectedValue": "'storage_encrypted' should be true",
-    "actualValue": "'storage_encrypted' is false"
+    "actualValue": "'storage_encrypted' is false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{Create cross-account aggregator}}.{{community.aws.aws_config_aggregator}}.account_sources.all_aws_regions",
     "searchValue": "",
     "expectedValue": "'aws_config_aggregator.account_sources' should have all_aws_regions set to true",
-    "actualValue": "'aws_config_aggregator.account_sources' has all_aws_regions set to false"
+    "actualValue": "'aws_config_aggregator.account_sources' has all_aws_regions set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create cross-account aggregator2}}.{{community.aws.aws_config_aggregator}}.organization_source.all_aws_regions",
     "searchValue": "",
     "expectedValue": "'aws_config_aggregator.organization_source' should have all_aws_regions set to true",
-    "actualValue": "'aws_config_aggregator.organization_source' has all_aws_regions set to false"
+    "actualValue": "'aws_config_aggregator.organization_source' has all_aws_regions set to false",
+    "issueType": "IncorrectValue"
   }
 ]

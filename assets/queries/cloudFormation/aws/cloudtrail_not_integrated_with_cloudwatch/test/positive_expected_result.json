@@ -9,7 +9,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "CloudWatchLogsLogGroupArn",
     "expectedValue": "'Resources.myTrail.Properties.CloudWatchLogsLogGroupArn' should be declared",
-    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsLogGroupArn' is not declared"
+    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsLogGroupArn' is not declared",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "CloudWatchLogsRoleArn",
     "expectedValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' should be declared",
-    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' is not declared"
+    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' is not declared",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myTrail2.Properties",
     "searchValue": "CloudWatchLogsLogGroupArn",
     "expectedValue": "'Resources.myTrail2.Properties.CloudWatchLogsLogGroupArn' should be declared",
-    "actualValue": "'Resources.myTrail2.Properties.CloudWatchLogsLogGroupArn' is not declared"
+    "actualValue": "'Resources.myTrail2.Properties.CloudWatchLogsLogGroupArn' is not declared",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.myTrail3.Properties",
     "searchValue": "CloudWatchLogsRoleArn",
     "expectedValue": "'Resources.myTrail3.Properties.CloudWatchLogsRoleArn' should be declared",
-    "actualValue": "'Resources.myTrail3.Properties.CloudWatchLogsRoleArn' is not declared"
+    "actualValue": "'Resources.myTrail3.Properties.CloudWatchLogsRoleArn' is not declared",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "CloudWatchLogsLogGroupArn",
     "expectedValue": "'Resources.myTrail.Properties.CloudWatchLogsLogGroupArn' should be declared",
-    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsLogGroupArn' is not declared"
+    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsLogGroupArn' is not declared",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "CloudWatchLogsRoleArn",
     "expectedValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' should be declared",
-    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' is not declared"
+    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' is not declared",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "CloudWatchLogsLogGroupArn",
     "expectedValue": "'Resources.myTrail.Properties.CloudWatchLogsLogGroupArn' should be declared",
-    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsLogGroupArn' is not declared"
+    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsLogGroupArn' is not declared",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.myTrail.Properties",
     "searchValue": "CloudWatchLogsRoleArn",
     "expectedValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' should be declared",
-    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' is not declared"
+    "actualValue": "'Resources.myTrail.Properties.CloudWatchLogsRoleArn' is not declared",
+    "issueType": "MissingAttribute"
   }
 ]

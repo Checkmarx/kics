@@ -9,7 +9,8 @@
     "searchKey": "components.GeneralError.schema",
     "searchValue": "",
     "expectedValue": "Schema should have all required properties defined",
-    "actualValue": "Schema has required properties that are not defined"
+    "actualValue": "Schema has required properties that are not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Schema Has A Required Property Undefined (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
     "searchValue": "",
     "expectedValue": "Schema should have all required properties defined",
-    "actualValue": "Schema has required properties that are not defined"
+    "actualValue": "Schema has required properties that are not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Schema Has A Required Property Undefined (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.GeneralError.schema",
     "searchValue": "",
     "expectedValue": "Schema should have all required properties defined",
-    "actualValue": "Schema has required properties that are not defined"
+    "actualValue": "Schema has required properties that are not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Schema Has A Required Property Undefined (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
     "searchValue": "",
     "expectedValue": "Schema should have all required properties defined",
-    "actualValue": "Schema has required properties that are not defined"
+    "actualValue": "Schema has required properties that are not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Schema Has A Required Property Undefined (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema",
     "searchValue": "",
     "expectedValue": "Schema should have all required properties defined",
-    "actualValue": "Schema has required properties that are not defined"
+    "actualValue": "Schema has required properties that are not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Schema Has A Required Property Undefined (v2)",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema",
     "searchValue": "",
     "expectedValue": "Schema should have all required properties defined",
-    "actualValue": "Schema has required properties that are not defined"
+    "actualValue": "Schema has required properties that are not defined",
+    "issueType": "MissingAttribute"
   }
 ]

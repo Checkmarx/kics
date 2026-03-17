@@ -9,7 +9,8 @@
     "searchKey": "aws_db_instance[positive1].db_subnet_group_name",
     "searchValue": "",
     "expectedValue": "RDS should not be running in a public subnet",
-    "actualValue": "RDS is running in a public subnet"
+    "actualValue": "RDS is running in a public subnet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Associated with Public Subnet",
@@ -21,6 +22,7 @@
     "searchKey": "aws_db_instance[positive2].db_subnet_group_name",
     "searchValue": "",
     "expectedValue": "RDS should not be running in a public subnet",
-    "actualValue": "RDS is running in a public subnet"
+    "actualValue": "RDS is running in a public subnet",
+    "issueType": "IncorrectValue"
   }
 ]

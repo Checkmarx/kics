@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--insecure-bind-address flag should not be set",
-    "actualValue": "--insecure-bind-address flag is set"
+    "actualValue": "--insecure-bind-address flag is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Insecure Bind Address Set",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--insecure-bind-address flag should not be set",
-    "actualValue": "--insecure-bind-address flag is set"
+    "actualValue": "--insecure-bind-address flag is set",
+    "issueType": "IncorrectValue"
   }
 ]

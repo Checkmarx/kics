@@ -9,7 +9,8 @@
     "searchKey": "name={{create a crypto key}}.{{google.cloud.gcp_kms_crypto_key}}.rotation_period",
     "searchValue": "",
     "expectedValue": "gcp_kms_crypto_key.rotation_period should be less or equal to 7776000",
-    "actualValue": "gcp_kms_crypto_key.rotation_period exceeds 7776000"
+    "actualValue": "gcp_kms_crypto_key.rotation_period exceeds 7776000",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "High Google KMS Crypto Key Rotation Period",
@@ -21,6 +22,7 @@
     "searchKey": "name={{create a crypto key2}}.{{google.cloud.gcp_kms_crypto_key}}",
     "searchValue": "",
     "expectedValue": "gcp_kms_crypto_key.rotation_period should be defined with a value less or equal to 7776000",
-    "actualValue": "gcp_kms_crypto_key.rotation_period is undefined"
+    "actualValue": "gcp_kms_crypto_key.rotation_period is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

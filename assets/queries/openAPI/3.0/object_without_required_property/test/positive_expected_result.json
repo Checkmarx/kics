@@ -9,7 +9,8 @@
     "searchKey": "info",
     "searchValue": "",
     "expectedValue": "info has all required fields",
-    "actualValue": "info is missing required fields"
+    "actualValue": "info is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "info",
     "searchValue": "",
     "expectedValue": "info has all required fields",
-    "actualValue": "info is missing required fields"
+    "actualValue": "info is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get",
     "searchValue": "",
     "expectedValue": "get has all required fields",
-    "actualValue": "get is missing required fields"
+    "actualValue": "get is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.servers",
     "searchValue": "",
     "expectedValue": "servers has all required fields",
-    "actualValue": "servers is missing required fields"
+    "actualValue": "servers is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get",
     "searchValue": "",
     "expectedValue": "get has all required fields",
-    "actualValue": "get is missing required fields"
+    "actualValue": "get is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.servers",
     "searchValue": "",
     "expectedValue": "servers has all required fields",
-    "actualValue": "servers is missing required fields"
+    "actualValue": "servers is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.get.requestBody",
     "searchValue": "",
     "expectedValue": "requestBody has all required fields",
-    "actualValue": "requestBody is missing required fields"
+    "actualValue": "requestBody is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "components.requestBodies.MyObjectBody",
     "searchValue": "",
     "expectedValue": "requestBodies has all required fields",
-    "actualValue": "requestBodies is missing required fields"
+    "actualValue": "requestBodies is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -105,7 +113,8 @@
     "searchKey": "components.requestBodies.MyObjectBody_2",
     "searchValue": "",
     "expectedValue": "requestBodies has all required fields",
-    "actualValue": "requestBodies is missing required fields"
+    "actualValue": "requestBodies is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -117,7 +126,8 @@
     "searchKey": "paths.{{/}}.get.requestBody",
     "searchValue": "",
     "expectedValue": "requestBody has all required fields",
-    "actualValue": "requestBody is missing required fields"
+    "actualValue": "requestBody is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -129,7 +139,8 @@
     "searchKey": "components.requestBodies.MyObjectBody",
     "searchValue": "",
     "expectedValue": "requestBodies has all required fields",
-    "actualValue": "requestBodies is missing required fields"
+    "actualValue": "requestBodies is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -141,7 +152,8 @@
     "searchKey": "components.requestBodies.MyObjectBody_2",
     "searchValue": "",
     "expectedValue": "requestBodies has all required fields",
-    "actualValue": "requestBodies is missing required fields"
+    "actualValue": "requestBodies is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -153,7 +165,8 @@
     "searchKey": "paths.{{/}}.get.responses.200",
     "searchValue": "",
     "expectedValue": "responses has all required fields",
-    "actualValue": "responses is missing required fields"
+    "actualValue": "responses is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -165,7 +178,8 @@
     "searchKey": "paths.{{/}}.get.parameters",
     "searchValue": "",
     "expectedValue": "parameters has all required fields",
-    "actualValue": "parameters is missing required fields"
+    "actualValue": "parameters is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -177,7 +191,8 @@
     "searchKey": "components.parameters.IdParam",
     "searchValue": "",
     "expectedValue": "parameters has all required fields",
-    "actualValue": "parameters is missing required fields"
+    "actualValue": "parameters is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -189,7 +204,8 @@
     "searchKey": "paths.{{/}}.get.responses.200",
     "searchValue": "",
     "expectedValue": "responses has all required fields",
-    "actualValue": "responses is missing required fields"
+    "actualValue": "responses is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -201,7 +217,8 @@
     "searchKey": "paths.{{/}}.get.parameters",
     "searchValue": "",
     "expectedValue": "parameters has all required fields",
-    "actualValue": "parameters is missing required fields"
+    "actualValue": "parameters is missing required fields",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Without Required Property (v3)",
@@ -213,6 +230,7 @@
     "searchKey": "components.parameters.IdParam",
     "searchValue": "",
     "expectedValue": "parameters has all required fields",
-    "actualValue": "parameters is missing required fields"
+    "actualValue": "parameters is missing required fields",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.GeneralError.properties.code.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "components.schemas.GeneralError.properties.message.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "components.schemas.GeneralError.properties.code.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "components.schemas.GeneralError.properties.message.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -105,7 +113,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -117,7 +126,8 @@
     "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -129,7 +139,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -141,7 +152,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
@@ -153,7 +165,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
@@ -165,7 +178,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
@@ -177,7 +191,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
@@ -189,7 +204,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
@@ -201,7 +217,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
@@ -213,7 +230,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
@@ -225,7 +243,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -237,7 +256,8 @@
     "searchKey": "paths.{{/api/adjectives}}.get.parameters.schema.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
@@ -249,6 +269,7 @@
     "searchKey": "paths.{{/api/adjectives}}.get.parameters.schema.type",
     "searchValue": "",
     "expectedValue": "'maxLength' should be defined",
-    "actualValue": "'maxLength' is undefined"
+    "actualValue": "'maxLength' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

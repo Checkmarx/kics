@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_deployment[example].spec.template.spec",
     "searchValue": "",
     "expectedValue": "kubernetes_deployment[example].spec.template.spec.automount_service_account_token should be set",
-    "actualValue": "kubernetes_deployment[example].spec.template.spec.automount_service_account_token is undefined"
+    "actualValue": "kubernetes_deployment[example].spec.template.spec.automount_service_account_token is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Service Account Token Automount Not Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_daemonset[example2].spec.template.spec.automount_service_account_token",
     "searchValue": "",
     "expectedValue": "kubernetes_daemonset[example2].spec.template.spec.automount_service_account_token should be set to false",
-    "actualValue": "kubernetes_daemonset[example2].spec.template.spec.automount_service_account_token is set to true"
+    "actualValue": "kubernetes_daemonset[example2].spec.template.spec.automount_service_account_token is set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service Account Token Automount Not Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "kubernetes_cron_job[demo3].spec.job_template.spec.template.spec.automount_service_account_token",
     "searchValue": "",
     "expectedValue": "kubernetes_cron_job[demo3].spec.job_template.spec.template.spec.automount_service_account_token should be set to false",
-    "actualValue": "kubernetes_cron_job[demo3].spec.job_template.spec.template.spec.automount_service_account_token is set to true"
+    "actualValue": "kubernetes_cron_job[demo3].spec.job_template.spec.template.spec.automount_service_account_token is set to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service Account Token Automount Not Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "kubernetes_pod[test6].spec",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test6].spec.automount_service_account_token should be set",
-    "actualValue": "kubernetes_pod[test6].spec.automount_service_account_token is undefined"
+    "actualValue": "kubernetes_pod[test6].spec.automount_service_account_token is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

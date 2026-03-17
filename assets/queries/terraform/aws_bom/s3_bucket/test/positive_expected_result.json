@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket[positive1]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
@@ -21,7 +22,8 @@
     "searchKey": "aws_s3_bucket[positive10]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
@@ -33,7 +35,8 @@
     "searchKey": "aws_s3_bucket[positive2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
@@ -45,7 +48,8 @@
     "searchKey": "aws_s3_bucket[positive3]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
@@ -57,7 +61,8 @@
     "searchKey": "aws_s3_bucket[positive4]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
@@ -69,7 +74,8 @@
     "searchKey": "aws_s3_bucket[positive5]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
@@ -81,7 +87,8 @@
     "searchKey": "aws_s3_bucket[positive6]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
@@ -93,7 +100,8 @@
     "searchKey": "aws_s3_bucket[positive7]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
@@ -105,7 +113,8 @@
     "searchKey": "aws_s3_bucket[positive8]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
@@ -117,6 +126,7 @@
     "searchKey": "aws_s3_bucket[positive9]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

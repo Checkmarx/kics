@@ -9,7 +9,8 @@
     "searchKey": "aws_sns_topic_policy[positive2].policy",
     "searchValue": "",
     "expectedValue": "aws_sns_topic_policy[positive2].policy shouldn't have 'Effect: Allow' and 'NotAction' simultaneously",
-    "actualValue": "aws_sns_topic_policy[positive2].policy has 'Effect: Allow' and 'NotAction' simultaneously"
+    "actualValue": "aws_sns_topic_policy[positive2].policy has 'Effect: Allow' and 'NotAction' simultaneously",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
@@ -21,6 +22,7 @@
     "searchKey": "module[s3_bucket].policy",
     "searchValue": "",
     "expectedValue": "module[s3_bucket].policy shouldn't have 'Effect: Allow' and 'NotAction' simultaneously",
-    "actualValue": "module[s3_bucket].policy has 'Effect: Allow' and 'NotAction' simultaneously"
+    "actualValue": "module[s3_bucket].policy has 'Effect: Allow' and 'NotAction' simultaneously",
+    "issueType": "IncorrectValue"
   }
 ]

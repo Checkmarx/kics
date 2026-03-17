@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{rds3}}.spec.forProvider.storageEncrypted",
     "searchValue": "",
     "expectedValue": "storageEncrypted should be set to true",
-    "actualValue": "storageEncrypted is set to false"
+    "actualValue": "storageEncrypted is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Instance Storage Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "spec.resources.base.metadata.name={{rds4}}.spec.forProvider.storageEncrypted",
     "searchValue": "",
     "expectedValue": "storageEncrypted should be set to true",
-    "actualValue": "storageEncrypted is set to false"
+    "actualValue": "storageEncrypted is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Instance Storage Not Encrypted",
@@ -33,7 +35,8 @@
     "searchKey": ".metadata.name={{rds5}}.spec.forProvider",
     "searchValue": "",
     "expectedValue": "storageEncrypted should be defined and set to true",
-    "actualValue": "storageEncrypted is not defined"
+    "actualValue": "storageEncrypted is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DB Instance Storage Not Encrypted",
@@ -45,6 +48,7 @@
     "searchKey": "spec.resources.base..metadata.name={{rds6}}.spec.forProvider",
     "searchValue": "",
     "expectedValue": "storageEncrypted should be defined and set to true",
-    "actualValue": "storageEncrypted is not defined"
+    "actualValue": "storageEncrypted is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

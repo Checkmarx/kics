@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.{{MyObject2}}",
     "searchValue": "",
     "expectedValue": "Schema should be used as reference somewhere",
-    "actualValue": "Schema is not used as reference"
+    "actualValue": "Schema is not used as reference",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Components Schema Definition Is Unused",
@@ -21,6 +22,7 @@
     "searchKey": "components.schemas.{{MyObject2}}",
     "searchValue": "",
     "expectedValue": "Schema should be used as reference somewhere",
-    "actualValue": "Schema is not used as reference"
+    "actualValue": "Schema is not used as reference",
+    "issueType": "IncorrectValue"
   }
 ]

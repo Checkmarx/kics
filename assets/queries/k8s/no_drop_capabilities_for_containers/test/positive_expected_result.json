@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment}}.securityContext.capabilities",
     "searchValue": "Deployment",
     "expectedValue": "spec.containers[payment].securityContext.capabilities.drop should be defined",
-    "actualValue": "spec.containers[payment].securityContext.capabilities.drop is not defined"
+    "actualValue": "spec.containers[payment].securityContext.capabilities.drop is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment2}}.securityContext",
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment2}}.securityContext.capabilities should be set",
-    "actualValue": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment2}}.securityContext.capabilities is undefined"
+    "actualValue": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment2}}.securityContext.capabilities is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{nginx-deployment}}.spec.containers.name=payment3",
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{nginx-deployment}}.spec.containers.name=payment3.securityContext should be set",
-    "actualValue": "metadata.name={{nginx-deployment}}.spec.containers.name=payment3.securityContext is undefined"
+    "actualValue": "metadata.name={{nginx-deployment}}.spec.containers.name=payment3.securityContext is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

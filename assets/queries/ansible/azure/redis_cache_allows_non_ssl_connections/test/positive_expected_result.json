@@ -9,6 +9,7 @@
     "searchKey": "name={{Non SSl Allowed}}.{{azure_rm_rediscache}}.enable_non_ssl_port",
     "searchValue": "",
     "expectedValue": "azure_rm_rediscache.enable_non_ssl_port should be set to false or undefined",
-    "actualValue": "azure_rm_rediscache.enable_non_ssl_port is true"
+    "actualValue": "azure_rm_rediscache.enable_non_ssl_port is true",
+    "issueType": "IncorrectValue"
   }
 ]

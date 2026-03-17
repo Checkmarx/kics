@@ -9,7 +9,8 @@
     "searchKey": "[tower]",
     "searchValue": "",
     "expectedValue": "Ansible Tower IP should be private",
-    "actualValue": "Ansible Tower IP is public"
+    "actualValue": "Ansible Tower IP is public",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Ansible Tower Exposed To Internet",
@@ -21,6 +22,7 @@
     "searchKey": "all.children.tower.hosts",
     "searchValue": "",
     "expectedValue": "Ansible Tower IP should be private",
-    "actualValue": "Ansible Tower IP is public"
+    "actualValue": "Ansible Tower IP is public",
+    "issueType": "IncorrectValue"
   }
 ]

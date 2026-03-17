@@ -9,7 +9,8 @@
     "searchKey": "name={{create an account}}.{{azure.azcollection.azure_rm_storageaccount}}",
     "searchValue": "",
     "expectedValue": "azure_rm_storageaccount.public_network_access should be set to 'Disabled'",
-    "actualValue": "azure_rm_storageaccount.public_network_access is set to 'Enabled'"
+    "actualValue": "azure_rm_storageaccount.public_network_access is set to 'Enabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create an account}}.{{azure.azcollection.azure_rm_storageaccount}}",
     "searchValue": "",
     "expectedValue": "azure_rm_storageaccount.public_network_access should be set to 'Disabled'",
-    "actualValue": "azure_rm_storageaccount.public_network_access is not set (default is 'Enabled')"
+    "actualValue": "azure_rm_storageaccount.public_network_access is not set (default is 'Enabled')",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
@@ -33,6 +35,7 @@
     "searchKey": "name={{create an account}}.{{azure.azcollection.azure_rm_storageaccount}}",
     "searchValue": "",
     "expectedValue": "azure_rm_storageaccountnetworkAcls.network_acls.default_action should be set to 'Deny'",
-    "actualValue": "azure_rm_storageaccountnetworkAcls.network_acls.default_action is set to 'Allow'"
+    "actualValue": "azure_rm_storageaccountnetworkAcls.network_acls.default_action is set to 'Allow'",
+    "issueType": "IncorrectValue"
   }
 ]

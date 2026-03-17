@@ -9,6 +9,7 @@
     "searchKey": "name={{Create a Firewall rule for Azure Cache for Redis}}.{{azure_rm_rediscachefirewallrule}}.start_ip_address",
     "searchValue": "",
     "expectedValue": "azure_rm_rediscachefirewallrule ip range should be private",
-    "actualValue": "azure_rm_rediscachefirewallrule ip range is public"
+    "actualValue": "azure_rm_rediscachefirewallrule ip range is public",
+    "issueType": "IncorrectValue"
   }
 ]

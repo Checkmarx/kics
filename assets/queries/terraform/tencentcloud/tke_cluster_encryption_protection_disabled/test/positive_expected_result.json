@@ -9,6 +9,7 @@
     "searchKey": "tencentcloud_kubernetes_cluster[none_encryption_protection]",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[none_encryption_protection] should have 'tencentcloud_kubernetes_encryption_protection' enabled",
-    "actualValue": "tencentcloud_kubernetes_cluster[none_encryption_protection] does not have 'tencentcloud_kubernetes_encryption_protection' enabled or is undefined"
+    "actualValue": "tencentcloud_kubernetes_cluster[none_encryption_protection] does not have 'tencentcloud_kubernetes_encryption_protection' enabled or is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

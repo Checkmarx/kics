@@ -9,7 +9,8 @@
     "searchKey": "Resources.myASG.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myASG.Properties.LoadBalancerNames' should be defined",
-    "actualValue": "'Resources.myASG.Properties.LoadBalancerNames' is not defined"
+    "actualValue": "'Resources.myASG.Properties.LoadBalancerNames' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myASG2.Properties.LoadBalancerNames",
     "searchValue": "",
     "expectedValue": "'Resources.myASG2.Properties.LoadBalancerNames' should not be empty",
-    "actualValue": "'Resources.myASG2.Properties.LoadBalancerNames' is empty"
+    "actualValue": "'Resources.myASG2.Properties.LoadBalancerNames' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myASG3.Properties.LoadBalancerNames",
     "searchValue": "",
     "expectedValue": "'Resources.myASG3.Properties.LoadBalancerNames' should not be empty",
-    "actualValue": "'Resources.myASG3.Properties.LoadBalancerNames' is empty"
+    "actualValue": "'Resources.myASG3.Properties.LoadBalancerNames' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.myASG.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.myASG.Properties.LoadBalancerNames' should be defined",
-    "actualValue": "'Resources.myASG.Properties.LoadBalancerNames' is not defined"
+    "actualValue": "'Resources.myASG.Properties.LoadBalancerNames' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.myASG2.Properties.LoadBalancerNames",
     "searchValue": "",
     "expectedValue": "'Resources.myASG2.Properties.LoadBalancerNames' should not be empty",
-    "actualValue": "'Resources.myASG2.Properties.LoadBalancerNames' is empty"
+    "actualValue": "'Resources.myASG2.Properties.LoadBalancerNames' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.myASG3.Properties.LoadBalancerNames",
     "searchValue": "",
     "expectedValue": "'Resources.myASG3.Properties.LoadBalancerNames' should not be empty",
-    "actualValue": "'Resources.myASG3.Properties.LoadBalancerNames' is empty"
+    "actualValue": "'Resources.myASG3.Properties.LoadBalancerNames' is empty",
+    "issueType": "IncorrectValue"
   }
 ]

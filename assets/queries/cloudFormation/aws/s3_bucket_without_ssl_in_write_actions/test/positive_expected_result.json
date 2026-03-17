@@ -9,7 +9,8 @@
     "searchKey": "Resources.S3Bucket",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+    "actualValue": "Resources.S3Bucket bucket doesn't have a policy or has a policy that doesn't enforce SSL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.S3Bucket33",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket33 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket33 bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+    "actualValue": "Resources.S3Bucket33 bucket doesn't have a policy or has a policy that doesn't enforce SSL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.S3Bucket2",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket2 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket2 bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+    "actualValue": "Resources.S3Bucket2 bucket doesn't have a policy or has a policy that doesn't enforce SSL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.S3Bucket3",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket3 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket3 bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+    "actualValue": "Resources.S3Bucket3 bucket doesn't have a policy or has a policy that doesn't enforce SSL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.S3Bucket4",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket4 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket4 bucket doesn't have a policy"
+    "actualValue": "Resources.S3Bucket4 bucket doesn't have a policy",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.S3Bucket5",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket5 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket5 bucket doesn't have a policy"
+    "actualValue": "Resources.S3Bucket5 bucket doesn't have a policy",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.S3Bucket6",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket6 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket6 bucket doesn't have a policy"
+    "actualValue": "Resources.S3Bucket6 bucket doesn't have a policy",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.S3Bucket",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+    "actualValue": "Resources.S3Bucket bucket doesn't have a policy or has a policy that doesn't enforce SSL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.S3Bucket2",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket2 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket2 bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+    "actualValue": "Resources.S3Bucket2 bucket doesn't have a policy or has a policy that doesn't enforce SSL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.S3Bucket4",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket4 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket4 bucket doesn't have a policy"
+    "actualValue": "Resources.S3Bucket4 bucket doesn't have a policy",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.S3Bucket5",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket5 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket5 bucket doesn't have a policy"
+    "actualValue": "Resources.S3Bucket5 bucket doesn't have a policy",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.S3Bucket6",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket6 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket6 bucket doesn't have a policy"
+    "actualValue": "Resources.S3Bucket6 bucket doesn't have a policy",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
@@ -153,6 +165,7 @@
     "searchKey": "Resources.S3Bucket33",
     "searchValue": "",
     "expectedValue": "Resources.S3Bucket33 bucket has a policy that enforces SSL",
-    "actualValue": "Resources.S3Bucket33 bucket doesn't have a policy or has a policy that doesn't enforce SSL"
+    "actualValue": "Resources.S3Bucket33 bucket doesn't have a policy or has a policy that doesn't enforce SSL",
+    "issueType": "IncorrectValue"
   }
 ]

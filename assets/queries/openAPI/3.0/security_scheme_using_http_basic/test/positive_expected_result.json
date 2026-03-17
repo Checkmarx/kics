@@ -9,7 +9,8 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}.scheme",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use 'basic' authentication",
-    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'basic' authentication"
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'basic' authentication",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Scheme Using HTTP Basic",
@@ -21,6 +22,7 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}.scheme",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use 'basic' authentication",
-    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'basic' authentication"
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'basic' authentication",
+    "issueType": "IncorrectValue"
   }
 ]

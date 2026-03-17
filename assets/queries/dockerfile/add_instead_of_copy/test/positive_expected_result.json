@@ -9,6 +9,7 @@
     "searchKey": "FROM={{openjdk:10-jdk}}.{{ADD ${JAR_FILE} app.jar}}",
     "searchValue": "",
     "expectedValue": "'COPY' ${JAR_FILE}",
-    "actualValue": "'ADD' ${JAR_FILE}"
+    "actualValue": "'ADD' ${JAR_FILE}",
+    "issueType": "IncorrectValue"
   }
 ]

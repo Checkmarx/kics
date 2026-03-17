@@ -9,7 +9,8 @@
     "searchKey": "Resources.ApiGatewayApi.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.ApiGatewayApi.EndpointConfiguration' should be defined and not null",
-    "actualValue": "'Resources.ApiGatewayApi.EndpointConfiguration' is undefined or null"
+    "actualValue": "'Resources.ApiGatewayApi.EndpointConfiguration' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Serverless API Endpoint Config Not Private",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ApiGatewayApi2.Properties.EndpointConfiguration",
     "searchValue": "",
     "expectedValue": "'Resources.ApiGatewayApi2.EndpointConfiguration.Types' should be defined and not null",
-    "actualValue": "'Resources.ApiGatewayApi2.EndpointConfiguration.Types' is undefined or null"
+    "actualValue": "'Resources.ApiGatewayApi2.EndpointConfiguration.Types' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Serverless API Endpoint Config Not Private",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.ApiGatewayApi3.Properties.EndpointConfiguration.Types",
     "searchValue": "",
     "expectedValue": "'Resources.ApiGatewayApi3.EndpointConfiguration.Types' should contain 'PRIVATE'",
-    "actualValue": "'Resources.ApiGatewayApi3.EndpointConfiguration.Types' does not contain 'PRIVATE'"
+    "actualValue": "'Resources.ApiGatewayApi3.EndpointConfiguration.Types' does not contain 'PRIVATE'",
+    "issueType": "IncorrectValue"
   }
 ]

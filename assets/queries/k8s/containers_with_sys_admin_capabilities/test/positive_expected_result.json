@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{pod4}}.spec.containers.name={{app}}.securityContext.capabilities.add",
     "searchValue": "",
     "expectedValue": "spec.containers.name=app should not use CAP_SYS_ADMIN Linux capability",
-    "actualValue": "spec.containers.name=app uses CAP_SYS_ADMIN Linux capability"
+    "actualValue": "spec.containers.name=app uses CAP_SYS_ADMIN Linux capability",
+    "issueType": "IncorrectValue"
   }
 ]

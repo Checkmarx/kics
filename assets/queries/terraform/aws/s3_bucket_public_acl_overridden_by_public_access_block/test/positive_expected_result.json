@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket[public-bucket].acl",
     "searchValue": "",
     "expectedValue": "S3 Bucket public ACL to not be overridden by S3 bucket Public Access Block",
-    "actualValue": "S3 Bucket public ACL is overridden by S3 bucket Public Access Block"
+    "actualValue": "S3 Bucket public ACL is overridden by S3 bucket Public Access Block",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
@@ -21,7 +22,8 @@
     "searchKey": "module[s3_bucket].acl",
     "searchValue": "",
     "expectedValue": "S3 Bucket public ACL to not be overridden by public access block",
-    "actualValue": "S3 Bucket public ACL is overridden by public access block"
+    "actualValue": "S3 Bucket public ACL is overridden by public access block",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
@@ -33,6 +35,7 @@
     "searchKey": "aws_s3_bucket_acl[example_bucket_acl].acl",
     "searchValue": "",
     "expectedValue": "S3 Bucket public ACL to not be overridden by S3 bucket Public Access Block",
-    "actualValue": "S3 Bucket public ACL is overridden by S3 bucket Public Access Block"
+    "actualValue": "S3 Bucket public ACL is overridden by S3 bucket Public Access Block",
+    "issueType": "IncorrectValue"
   }
 ]

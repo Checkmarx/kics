@@ -9,7 +9,8 @@
     "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.ip_allocation_policy should be defined",
-    "actualValue": "gcp_container_cluster.ip_allocation_policy is undefined"
+    "actualValue": "gcp_container_cluster.ip_allocation_policy is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IP Aliasing Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases should be set to true",
-    "actualValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is undefined"
+    "actualValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IP Aliasing Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases should be true",
-    "actualValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is false"
+    "actualValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is false",
+    "issueType": "IncorrectValue"
   }
 ]

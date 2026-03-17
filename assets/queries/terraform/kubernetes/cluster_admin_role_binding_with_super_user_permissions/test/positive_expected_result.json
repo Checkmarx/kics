@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_cluster_role_binding[example2].role_ref.name",
     "searchValue": "",
     "expectedValue": "Resource name 'example2' isn't binding 'cluster-admin' role with superuser permissions",
-    "actualValue": "Resource name 'example2' is binding 'cluster-admin' role with superuser permissions"
+    "actualValue": "Resource name 'example2' is binding 'cluster-admin' role with superuser permissions",
+    "issueType": "IncorrectValue"
   }
 ]

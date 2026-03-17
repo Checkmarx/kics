@@ -9,7 +9,8 @@
     "searchKey": "Resources.ElasticacheCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticacheCluster.Properties.CacheSubnetGroupName should be defined and not null",
-    "actualValue": "Resources.ElasticacheCluster.Properties.CacheSubnetGroupName is undefined or null"
+    "actualValue": "Resources.ElasticacheCluster.Properties.CacheSubnetGroupName is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElastiCache Without VPC",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.ElasticacheCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticacheCluster.Properties.CacheSubnetGroupName should be defined and not null",
-    "actualValue": "Resources.ElasticacheCluster.Properties.CacheSubnetGroupName is undefined or null"
+    "actualValue": "Resources.ElasticacheCluster.Properties.CacheSubnetGroupName is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

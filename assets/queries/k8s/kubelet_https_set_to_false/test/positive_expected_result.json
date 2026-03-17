@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--kubelet-https flag should be set to true or not be defined",
-    "actualValue": "--kubelet-https flag is set to false"
+    "actualValue": "--kubelet-https flag is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

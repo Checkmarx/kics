@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
-    "actualValue": "Required properties with default defined"
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Required Property With Default Value (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "components.schemas.MyObject.properties.{{id}}.default",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
-    "actualValue": "Required properties with default defined"
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Required Property With Default Value (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.{{id}}.default",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
-    "actualValue": "Required properties with default defined"
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Required Property With Default Value (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
-    "actualValue": "Required properties with default defined"
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Required Property With Default Value (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "components.schemas.MyObject.properties.{{id}}.default",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
-    "actualValue": "Required properties with default defined"
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Required Property With Default Value (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.{{id}}.default",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
-    "actualValue": "Required properties with default defined"
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Required Property With Default Value (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.post.parameters.schema.properties.{{id}}.default",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
-    "actualValue": "Required properties with default defined"
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Required Property With Default Value (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "paths.{{/}}.post.parameters.schema.properties.{{id}}.default",
     "searchValue": "",
     "expectedValue": "Required properties should not have default defined",
-    "actualValue": "Required properties with default defined"
+    "actualValue": "Required properties with default defined",
+    "issueType": "IncorrectValue"
   }
 ]

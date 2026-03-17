@@ -9,6 +9,7 @@
     "searchKey": "aws_vpc[positive]",
     "searchValue": "",
     "expectedValue": "aws_vpc[positive] has an 'aws_networkfirewall_firewall' associated",
-    "actualValue": "aws_vpc[positive] does not have an 'aws_networkfirewall_firewall' associated"
+    "actualValue": "aws_vpc[positive] does not have an 'aws_networkfirewall_firewall' associated",
+    "issueType": "MissingAttribute"
   }
 ]

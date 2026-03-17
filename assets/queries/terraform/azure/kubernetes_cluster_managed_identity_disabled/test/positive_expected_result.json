@@ -9,6 +9,7 @@
     "searchKey": "azurerm_kubernetes_cluster[positive]",
     "searchValue": "",
     "expectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
-    "actualValue": "'identity' block is not defined"
+    "actualValue": "'identity' block is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

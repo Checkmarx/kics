@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{sample/server/default}}.properties.emailAccountAdmins",
     "searchValue": "",
     "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins property value should be set to true",
-    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false"
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Account Admins Not Notified By Email",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{sample/server/default}}.properties.emailAccountAdmins",
     "searchValue": "",
     "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins property value should be set to true",
-    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false"
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Account Admins Not Notified By Email",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{sample/server/default}}.properties",
     "searchValue": "",
     "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins should be set to true",
-    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing"
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Account Admins Not Notified By Email",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{sample/server/default}}.properties",
     "searchValue": "",
     "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins should be set to true",
-    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing"
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Account Admins Not Notified By Email",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{sample/server/default}}.properties.emailAccountAdmins",
     "searchValue": "",
     "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins property value should be set to true",
-    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false"
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Account Admins Not Notified By Email",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name={{sample/server/default}}.properties.emailAccountAdmins",
     "searchValue": "",
     "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins property value should be set to true",
-    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false"
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Account Admins Not Notified By Email",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{sample/server/default}}.properties",
     "searchValue": "",
     "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins should be set to true",
-    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing"
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Account Admins Not Notified By Email",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name={{sample/server/default}}.properties",
     "searchValue": "",
     "expectedValue": "securityAlertPolicies.properties.emailAccountAdmins should be set to true",
-    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing"
+    "actualValue": "securityAlertPolicies.properties.emailAccountAdmins is missing",
+    "issueType": "MissingAttribute"
   }
 ]

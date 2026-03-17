@@ -9,7 +9,8 @@
     "searchKey": "google_kms_crypto_key_iam_policy[positive1].policy_data",
     "searchValue": "",
     "expectedValue": "KMS crypto key should not be publicly accessible",
-    "actualValue": "KMS crypto key is publicly accessible"
+    "actualValue": "KMS crypto key is publicly accessible",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "KMS Crypto Key is Publicly Accessible",
@@ -21,6 +22,7 @@
     "searchKey": "google_kms_crypto_key_iam_policy[positive2].policy_data",
     "searchValue": "",
     "expectedValue": "KMS crypto key should not be publicly accessible",
-    "actualValue": "KMS crypto key is publicly accessible"
+    "actualValue": "KMS crypto key is publicly accessible",
+    "issueType": "IncorrectValue"
   }
 ]

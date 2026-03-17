@@ -9,6 +9,7 @@
     "searchKey": "databricks_obo_token[positive]",
     "searchValue": "",
     "expectedValue": "'databricks_obo_token[positive]' should not have indefinitely lifetime",
-    "actualValue": "'databricks_obo_token[positive]' have an indefinitely lifetime"
+    "actualValue": "'databricks_obo_token[positive]' have an indefinitely lifetime",
+    "issueType": "MissingAttribute"
   }
 ]

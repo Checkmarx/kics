@@ -9,7 +9,8 @@
     "searchKey": "tags.name=pets",
     "searchValue": "",
     "expectedValue": "tags[0].externalDocs.url has a valid URL",
-    "actualValue": "tags[0].externalDocs.url has an invalid URL"
+    "actualValue": "tags[0].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "tags.name=store",
     "searchValue": "",
     "expectedValue": "tags[1].externalDocs.url has a valid URL",
-    "actualValue": "tags[1].externalDocs.url has an invalid URL"
+    "actualValue": "tags[1].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "tags.name=pets",
     "searchValue": "",
     "expectedValue": "tags[0].externalDocs.url has a valid URL",
-    "actualValue": "tags[0].externalDocs.url has an invalid URL"
+    "actualValue": "tags[0].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "tags.name=store",
     "searchValue": "",
     "expectedValue": "tags[1].externalDocs.url has a valid URL",
-    "actualValue": "tags[1].externalDocs.url has an invalid URL"
+    "actualValue": "tags[1].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "tags.name=pets",
     "searchValue": "",
     "expectedValue": "tags[0].externalDocs.url has a valid URL",
-    "actualValue": "tags[0].externalDocs.url has an invalid URL"
+    "actualValue": "tags[0].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
@@ -69,7 +74,8 @@
     "searchKey": "tags.name=store",
     "searchValue": "",
     "expectedValue": "tags[1].externalDocs.url has a valid URL",
-    "actualValue": "tags[1].externalDocs.url has an invalid URL"
+    "actualValue": "tags[1].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "tags.name=pets",
     "searchValue": "",
     "expectedValue": "tags[0].externalDocs.url has a valid URL",
-    "actualValue": "tags[0].externalDocs.url has an invalid URL"
+    "actualValue": "tags[0].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "tags.name=store",
     "searchValue": "",
     "expectedValue": "tags[1].externalDocs.url has a valid URL",
-    "actualValue": "tags[1].externalDocs.url has an invalid URL"
+    "actualValue": "tags[1].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue"
   }
 ]

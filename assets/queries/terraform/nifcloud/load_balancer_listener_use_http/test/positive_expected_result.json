@@ -9,6 +9,7 @@
     "searchKey": "nifcloud_load_balancer_listener[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_load_balancer_listener[positive]' should switch to HTTPS to benefit from TLS security features.",
-    "actualValue": "'nifcloud_load_balancer_listener[positive]' using HTTP port."
+    "actualValue": "'nifcloud_load_balancer_listener[positive]' using HTTP port.",
+    "issueType": "IncorrectValue"
   }
 ]

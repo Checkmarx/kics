@@ -9,7 +9,8 @@
     "searchKey": "security.api_key",
     "searchValue": "",
     "expectedValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
-    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'"
+    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Requirement Object With Wrong Scopes",
@@ -21,7 +22,8 @@
     "searchKey": "security.api_key",
     "searchValue": "",
     "expectedValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
-    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'"
+    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Requirement Object With Wrong Scopes",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/pets}}.get.security.api_key",
     "searchValue": "",
     "expectedValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
-    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'"
+    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Requirement Object With Wrong Scopes",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/pets}}.get.security.api_key",
     "searchValue": "",
     "expectedValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
-    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'"
+    "actualValue": "'security.api_key' has no scopes defined for security scheme of type 'apiKey'",
+    "issueType": "IncorrectValue"
   }
 ]

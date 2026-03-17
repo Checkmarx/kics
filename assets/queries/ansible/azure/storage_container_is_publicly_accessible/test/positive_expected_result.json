@@ -9,7 +9,8 @@
     "searchKey": "name={{Create container foo and upload a file}}.{{azure_rm_storageblob}}.public_access",
     "searchValue": "",
     "expectedValue": "azure_rm_storageblob.public_access should not be set",
-    "actualValue": "azure_rm_storageblob.public_access is equal to 'blob' or 'container'"
+    "actualValue": "azure_rm_storageblob.public_access is equal to 'blob' or 'container'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Container Is Publicly Accessible",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create container foo2 and upload a file}}.{{azure_rm_storageblob}}.public_access",
     "searchValue": "",
     "expectedValue": "azure_rm_storageblob.public_access should not be set",
-    "actualValue": "azure_rm_storageblob.public_access is equal to 'blob' or 'container'"
+    "actualValue": "azure_rm_storageblob.public_access is equal to 'blob' or 'container'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "nifcloud_nas_instance[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_nas_instance[positive]' should use a private LAN to isolate the private side network from the shared network",
-    "actualValue": "'nifcloud_nas_instance[positive]' has common private network"
+    "actualValue": "'nifcloud_nas_instance[positive]' has common private network",
+    "issueType": "IncorrectValue"
   }
 ]

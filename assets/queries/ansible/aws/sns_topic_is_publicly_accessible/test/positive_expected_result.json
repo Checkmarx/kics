@@ -9,7 +9,8 @@
     "searchKey": "name={{Create alarm SNS topic community}}.{{community.aws.sns_topic}}.policy",
     "searchValue": "",
     "expectedValue": "sns_topic.policy.Statement shouldn't contain '*' for an AWS Principal",
-    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal"
+    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Create alarm SNS topic}}.{{sns_topic}}.policy",
     "searchValue": "",
     "expectedValue": "sns_topic.policy.Statement shouldn't contain '*' for an AWS Principal",
-    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal"
+    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
@@ -33,7 +35,8 @@
     "searchKey": "name={{Create alarm SNS topic community}}.{{community.aws.sns_topic}}.policy",
     "searchValue": "",
     "expectedValue": "sns_topic.policy.Statement shouldn't contain '*' for an AWS Principal",
-    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal"
+    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
@@ -45,6 +48,7 @@
     "searchKey": "name={{Create alarm SNS topic}}.{{sns_topic}}.policy",
     "searchValue": "",
     "expectedValue": "sns_topic.policy.Statement shouldn't contain '*' for an AWS Principal",
-    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal"
+    "actualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.Prod.Properties.MethodSettings",
     "searchValue": "",
     "expectedValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel should be defined and not null",
-    "actualValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel are undefined or null"
+    "actualValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyStage.Properties.MethodSettings",
     "searchValue": "",
     "expectedValue": "Resources.MyStage.Properties.MethodSettings.LoggingLevel should be defined and not null",
-    "actualValue": "Resources.MyStage.Properties.MethodSettings.LoggingLevel are undefined or null"
+    "actualValue": "Resources.MyStage.Properties.MethodSettings.LoggingLevel are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.Prod.Properties",
     "searchValue": "MethodSettings",
     "expectedValue": "Resources.Prod.Properties.MethodSettings should be defined and not null",
-    "actualValue": "Resources.Prod.Properties.MethodSettings are undefined or null"
+    "actualValue": "Resources.Prod.Properties.MethodSettings are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.Prod.Properties.MethodSettings",
     "searchValue": "",
     "expectedValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel should be defined and not null",
-    "actualValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel are undefined or null"
+    "actualValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MyStage.Properties.MethodSettings.LoggingLevel",
     "searchValue": "",
     "expectedValue": "Resources.MyStage.Properties.MethodSettings.LoggingLevel should not be set to OFF",
-    "actualValue": "Resources.MyStage.Properties.MethodSettings.LoggingLevel is OFF"
+    "actualValue": "Resources.MyStage.Properties.MethodSettings.LoggingLevel is OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.Prod.Properties",
     "searchValue": "DefaultRouteSettings",
     "expectedValue": "Resources.Prod.Properties.DefaultRouteSettings should be defined and not null",
-    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings are undefined or null"
+    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.Prod.Properties.DefaultRouteSettings",
     "searchValue": "",
     "expectedValue": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel should be defined and not null",
-    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel are undefined or null"
+    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.Prod.Properties.MethodSettings.LoggingLevel",
     "searchValue": "",
     "expectedValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel should not be set to OFF",
-    "actualValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel is OFF"
+    "actualValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel is OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel",
     "searchValue": "",
     "expectedValue": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel should not be set to OFF",
-    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel is OFF"
+    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel is OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.Prod.Properties",
     "searchValue": "AccessLogSetting",
     "expectedValue": "'AccessLogSetting' should be defined",
-    "actualValue": "'AccessLogSetting' is not defined"
+    "actualValue": "'AccessLogSetting' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.Prod.Properties",
     "searchValue": "AccessLogSettings",
     "expectedValue": "'AccessLogSettings' should be defined",
-    "actualValue": "'AccessLogSettings' is not defined"
+    "actualValue": "'AccessLogSettings' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.MyStage.Properties",
     "searchValue": "DefaultRouteSettings",
     "expectedValue": "Resources.MyStage.Properties.DefaultRouteSettings should be defined and not null",
-    "actualValue": "Resources.MyStage.Properties.DefaultRouteSettings are undefined or null"
+    "actualValue": "Resources.MyStage.Properties.DefaultRouteSettings are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -153,7 +165,8 @@
     "searchKey": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel",
     "searchValue": "",
     "expectedValue": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel should not be set to OFF",
-    "actualValue": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel is OFF"
+    "actualValue": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel is OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -165,7 +178,8 @@
     "searchKey": "Resources.MyStage.Properties.DefaultRouteSettings",
     "searchValue": "",
     "expectedValue": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel should be defined and not null",
-    "actualValue": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel are undefined or null"
+    "actualValue": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -177,7 +191,8 @@
     "searchKey": "Resources.MyStage.Properties",
     "searchValue": "AccessLogSettings",
     "expectedValue": "'AccessLogSettings' should be defined",
-    "actualValue": "'AccessLogSettings' is not defined"
+    "actualValue": "'AccessLogSettings' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -189,7 +204,8 @@
     "searchKey": "Resources.MyStage.Properties",
     "searchValue": "AccessLogSetting",
     "expectedValue": "'AccessLogSetting' should be defined",
-    "actualValue": "'AccessLogSetting' is not defined"
+    "actualValue": "'AccessLogSetting' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -201,7 +217,8 @@
     "searchKey": "Resources.MyStage.Properties",
     "searchValue": "MethodSettings",
     "expectedValue": "Resources.MyStage.Properties.MethodSettings should be defined and not null",
-    "actualValue": "Resources.MyStage.Properties.MethodSettings are undefined or null"
+    "actualValue": "Resources.MyStage.Properties.MethodSettings are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -213,7 +230,8 @@
     "searchKey": "Resources.Prod.Properties",
     "searchValue": "MethodSettings",
     "expectedValue": "Resources.Prod.Properties.MethodSettings should be defined and not null",
-    "actualValue": "Resources.Prod.Properties.MethodSettings are undefined or null"
+    "actualValue": "Resources.Prod.Properties.MethodSettings are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
@@ -225,6 +243,7 @@
     "searchKey": "Resources.Prod.Properties",
     "searchValue": "DefaultRouteSettings",
     "expectedValue": "Resources.Prod.Properties.DefaultRouteSettings should be defined and not null",
-    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings are undefined or null"
+    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings are undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_pod[test].metadata.labels",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test].metada.labels[app] has valid label",
-    "actualValue": "kubernetes_pod[test].metada.labels[app] has invalid label"
+    "actualValue": "kubernetes_pod[test].metada.labels[app] has invalid label",
+    "issueType": "IncorrectValue"
   }
 ]

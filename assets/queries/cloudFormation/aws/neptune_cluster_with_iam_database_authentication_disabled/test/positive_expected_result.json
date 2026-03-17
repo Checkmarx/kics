@@ -9,7 +9,8 @@
     "searchKey": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled",
     "searchValue": "",
     "expectedValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled should be set to true",
-    "actualValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled is set to false"
+    "actualValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled",
     "searchValue": "",
     "expectedValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled should be set to true",
-    "actualValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled is set to false"
+    "actualValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled",
     "searchValue": "",
     "expectedValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled should be set to true",
-    "actualValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled is set to false"
+    "actualValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled",
     "searchValue": "",
     "expectedValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled should be set to true",
-    "actualValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled is set to false"
+    "actualValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled",
     "searchValue": "",
     "expectedValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled should be set to true",
-    "actualValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled is set to false"
+    "actualValue": "Resources.NeptuneDBCluster.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled",
     "searchValue": "",
     "expectedValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled should be set to true",
-    "actualValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled is set to false"
+    "actualValue": "Resources.NeptuneDBCluster2.Properties.IamAuthEnabled is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

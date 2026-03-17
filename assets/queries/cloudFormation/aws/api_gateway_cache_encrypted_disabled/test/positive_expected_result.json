@@ -9,7 +9,8 @@
     "searchKey": "Resources.Deployment.Properties.StageDescription",
     "searchValue": "",
     "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be defined and not null",
-    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is undefined or null"
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Cache Encrypted Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Deployment.Properties.StageDescription",
     "searchValue": "",
     "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be defined and not null",
-    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is undefined or null"
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Cache Encrypted Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.Deployment.Properties.StageDescription.CacheDataEncrypted",
     "searchValue": "",
     "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be set to true",
-    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false"
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Cache Encrypted Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.Deployment.Properties.StageDescription.CacheDataEncrypted",
     "searchValue": "",
     "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be set to true",
-    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false"
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Cache Encrypted Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.Deployment.Properties.StageDescription.CacheDataEncrypted",
     "searchValue": "",
     "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be set to true",
-    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false"
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Cache Encrypted Disabled",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.Deployment.Properties.StageDescription.CacheDataEncrypted",
     "searchValue": "",
     "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be set to true",
-    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false"
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

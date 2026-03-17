@@ -9,7 +9,8 @@
     "searchKey": "name={{not preserve value}}.{{ansible.builtin.file}}",
     "searchValue": "",
     "expectedValue": "ansible.builtin.file does not allow setting 'preserve' value for 'mode' key",
-    "actualValue": "'Mode' key of ansible.builtin.file is set to 'preserve'"
+    "actualValue": "'Mode' key of ansible.builtin.file is set to 'preserve'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Risky File Permissions",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Permissions missing}}.{{file}}",
     "searchValue": "",
     "expectedValue": "All the permissions set in file about creating files/directories",
-    "actualValue": "There are some permissions missing in file and might create directory/file"
+    "actualValue": "There are some permissions missing in file and might create directory/file",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Risky File Permissions",
@@ -33,7 +35,8 @@
     "searchKey": "name={{Permissions missing 2x}}.{{ansible.builtin.file}}",
     "searchValue": "",
     "expectedValue": "All the permissions set in ansible.builtin.file about creating files/directories",
-    "actualValue": "There are some permissions missing in ansible.builtin.file and might create directory/file"
+    "actualValue": "There are some permissions missing in ansible.builtin.file and might create directory/file",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Risky File Permissions",
@@ -45,7 +48,8 @@
     "searchKey": "name={{Permissions missing 3x}}.{{file}}",
     "searchValue": "",
     "expectedValue": "All the permissions set in file about creating files/directories",
-    "actualValue": "There are some permissions missing in file and might create directory/file"
+    "actualValue": "There are some permissions missing in file and might create directory/file",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Risky File Permissions",
@@ -57,7 +61,8 @@
     "searchKey": "name={{create is true}}.{{ansible.builtin.lineinfile}}",
     "searchValue": "",
     "expectedValue": "ansible.builtin.lineinfile 'create' key should set to 'false' or 'mode' key should be defined",
-    "actualValue": "ansible.builtin.lineinfile 'create' key is set to 'true' and 'mode' key is not defined"
+    "actualValue": "ansible.builtin.lineinfile 'create' key is set to 'true' and 'mode' key is not defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Risky File Permissions",
@@ -69,7 +74,8 @@
     "searchKey": "name={{Permissions missing 4x}}.{{get_url}}",
     "searchValue": "",
     "expectedValue": "All the permissions set in get_url about creating files/directories",
-    "actualValue": "There are some permissions missing in get_url and might create directory/file"
+    "actualValue": "There are some permissions missing in get_url and might create directory/file",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Risky File Permissions",
@@ -81,7 +87,8 @@
     "searchKey": "name={{create is true 2x}}.{{ansible.builtin.lineinfile}}",
     "searchValue": "",
     "expectedValue": "ansible.builtin.lineinfile 'create' key should set to 'false' or 'mode' key should be defined",
-    "actualValue": "ansible.builtin.lineinfile 'create' key is set to 'true' and 'mode' key is not defined"
+    "actualValue": "ansible.builtin.lineinfile 'create' key is set to 'true' and 'mode' key is not defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Risky File Permissions",
@@ -93,7 +100,8 @@
     "searchKey": "name={{not preserve mode 2x}}.{{replace}}",
     "searchValue": "",
     "expectedValue": "replace does not allow setting 'preserve' value for 'mode' key",
-    "actualValue": "'Mode' key of replace is set to 'preserve'"
+    "actualValue": "'Mode' key of replace is set to 'preserve'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Risky File Permissions",
@@ -105,7 +113,8 @@
     "searchKey": "name={{Not Permissions}}.{{file}}",
     "searchValue": "",
     "expectedValue": "All the permissions set in file about creating files/directories",
-    "actualValue": "There are some permissions missing in file and might create directory/file"
+    "actualValue": "There are some permissions missing in file and might create directory/file",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Risky File Permissions",
@@ -117,6 +126,7 @@
     "searchKey": "name={{create_false}}.{{ansible.builtin.lineinfile}}",
     "searchValue": "",
     "expectedValue": "ansible.builtin.lineinfile does not allow setting 'preserve' value for 'mode' key",
-    "actualValue": "'Mode' key of ansible.builtin.lineinfile is set to 'preserve'"
+    "actualValue": "'Mode' key of ansible.builtin.lineinfile is set to 'preserve'",
+    "issueType": "IncorrectValue"
   }
 ]

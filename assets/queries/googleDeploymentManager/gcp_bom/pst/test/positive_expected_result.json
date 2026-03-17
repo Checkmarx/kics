@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{topic-1}}",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP PST",
@@ -21,6 +22,7 @@
     "searchKey": "resources.name={{topic-2}}",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

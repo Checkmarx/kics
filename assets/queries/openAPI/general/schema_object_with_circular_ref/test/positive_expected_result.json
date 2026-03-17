@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.ExtendedErrorModel.allOf.$ref=#/components/schemas/ExtendedErrorModel",
     "searchValue": "",
     "expectedValue": "components.schemas.ExtendedErrorModel.allOf should not reference own schema",
-    "actualValue": "components.schemas.ExtendedErrorModel.allOf reference own schema"
+    "actualValue": "components.schemas.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object With Circular Ref (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "definitions.ExtendedErrorModel.allOf.$ref=#/definitions/ExtendedErrorModel",
     "searchValue": "",
     "expectedValue": "definitions.ExtendedErrorModel.allOf should not reference own schema",
-    "actualValue": "definitions.ExtendedErrorModel.allOf reference own schema"
+    "actualValue": "definitions.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object With Circular Ref (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.schemas.ExtendedErrorModel.allOf.$ref=#/components/schemas/ExtendedErrorModel",
     "searchValue": "",
     "expectedValue": "components.schemas.ExtendedErrorModel.allOf should not reference own schema",
-    "actualValue": "components.schemas.ExtendedErrorModel.allOf reference own schema"
+    "actualValue": "components.schemas.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object With Circular Ref (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "definitions.ExtendedErrorModel.allOf.$ref=#/definitions/ExtendedErrorModel",
     "searchValue": "",
     "expectedValue": "definitions.ExtendedErrorModel.allOf should not reference own schema",
-    "actualValue": "definitions.ExtendedErrorModel.allOf reference own schema"
+    "actualValue": "definitions.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue"
   }
 ]

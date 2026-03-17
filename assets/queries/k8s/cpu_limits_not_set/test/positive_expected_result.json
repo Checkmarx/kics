@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{frontend}}.spec.containers.name={{app}}.resources.limits",
     "searchValue": "",
     "expectedValue": "spec.containers.name=app has CPU limits",
-    "actualValue": "spec.containers.name=app doesn't have CPU limits"
+    "actualValue": "spec.containers.name=app doesn't have CPU limits",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Limits Not Set",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{frontend}}.spec.containers.name={{log-aggregator}}.resources",
     "searchValue": "",
     "expectedValue": "spec.containers.name=log-aggregator has limits defined",
-    "actualValue": "spec.containers.name=log-aggregator doesn't have limits defined"
+    "actualValue": "spec.containers.name=log-aggregator doesn't have limits defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Limits Not Set",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{app}}.resources.limits",
     "searchValue": "",
     "expectedValue": "spec.template.spec.containers.name=app has CPU limits",
-    "actualValue": "spec.template.spec.containers.name=app doesn't have CPU limits"
+    "actualValue": "spec.template.spec.containers.name=app doesn't have CPU limits",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Limits Not Set",
@@ -45,6 +48,7 @@
     "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{log-aggregator}}.resources",
     "searchValue": "",
     "expectedValue": "spec.template.spec.containers.name=log-aggregator has limits defined",
-    "actualValue": "spec.template.spec.containers.name=log-aggregator doesn't have limits defined"
+    "actualValue": "spec.template.spec.containers.name=log-aggregator doesn't have limits defined",
+    "issueType": "MissingAttribute"
   }
 ]

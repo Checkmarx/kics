@@ -9,7 +9,8 @@
     "searchKey": "components.responses.{{200}}.links.{{address}}",
     "searchValue": "",
     "expectedValue": "components.responses.200.links.address has both 'operationId' and 'operationRef' defined",
-    "actualValue": "components.responses.200.links.address does not have both 'operationId' and 'operationRef' defined"
+    "actualValue": "components.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}",
     "searchValue": "",
     "expectedValue": "paths/.get.responses.200.links.address has both 'operationId' and 'operationRef' defined",
-    "actualValue": "paths./.get.responses.200.links.address does not have both 'operationId' and 'operationRef' defined"
+    "actualValue": "paths./.get.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
@@ -33,7 +35,8 @@
     "searchKey": "components.links.{{address}}",
     "searchValue": "",
     "expectedValue": "components.links.address has both 'operationId' and 'operationRef' defined",
-    "actualValue": "components.links.address does not have both 'operationId' and 'operationRef' defined"
+    "actualValue": "components.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
@@ -45,7 +48,8 @@
     "searchKey": "components.responses.{{200}}.links.{{address}}",
     "searchValue": "",
     "expectedValue": "components.responses.200.links.address has both 'operationId' and 'operationRef' defined",
-    "actualValue": "components.responses.200.links.address does not have both 'operationId' and 'operationRef' defined"
+    "actualValue": "components.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}",
     "searchValue": "",
     "expectedValue": "paths/.get.responses.200.links.address has both 'operationId' and 'operationRef' defined",
-    "actualValue": "paths./.get.responses.200.links.address does not have both 'operationId' and 'operationRef' defined"
+    "actualValue": "paths./.get.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
@@ -69,6 +74,7 @@
     "searchKey": "components.links.{{address}}",
     "searchValue": "",
     "expectedValue": "components.links.address has both 'operationId' and 'operationRef' defined",
-    "actualValue": "components.links.address does not have both 'operationId' and 'operationRef' defined"
+    "actualValue": "components.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   }
 ]

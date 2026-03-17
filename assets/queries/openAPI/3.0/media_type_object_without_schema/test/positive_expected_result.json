@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Media Type Object Without Schema",
@@ -21,7 +22,8 @@
     "searchKey": "components.requestBodies.NewItem.content[multipart/data]",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Media Type Object Without Schema",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Media Type Object Without Schema",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.requestBody.content[multipart/form-data]",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Media Type Object Without Schema",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.requestBody.content[text/plain]",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Media Type Object Without Schema",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Media Type Object Without Schema",
@@ -81,7 +87,8 @@
     "searchKey": "components.requestBodies.NewItem.content[multipart/form-data]",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Media Type Object Without Schema",
@@ -93,7 +100,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Media Type Object Without Schema",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/}}.get.requestBody.content[multipart/form-data]",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Media Type Object Without Schema",
@@ -117,6 +126,7 @@
     "searchKey": "paths.{{/}}.requestBody.content[text/plain]",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

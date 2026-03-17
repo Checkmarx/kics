@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.ErrorModel.code",
     "searchValue": "",
     "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "components.schemas.ErrorModel.allOf.code",
     "searchValue": "",
     "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.schemas.ErrorModel.additionalProperties.code",
     "searchValue": "",
     "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "components.schemas.ErrorModel.code",
     "searchValue": "",
     "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "components.schemas.ErrorModel.allOf.code",
     "searchValue": "",
     "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "components.schemas.ErrorModel.additionalProperties.code",
     "searchValue": "",
     "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.allOf.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.additionalProperties.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -117,7 +126,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -129,7 +139,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.allOf.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
@@ -141,7 +152,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.additionalProperties.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
@@ -153,7 +165,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
@@ -165,7 +178,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.allOf.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
@@ -177,7 +191,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.additionalProperties.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
@@ -189,7 +204,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
@@ -201,7 +217,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.allOf.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
@@ -213,6 +230,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.additionalProperties.message",
     "searchValue": "",
     "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
-    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'"
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   }
 ]

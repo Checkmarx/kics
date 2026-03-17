@@ -9,6 +9,7 @@
     "searchKey": "resources[example].properties",
     "searchValue": "",
     "expectedValue": "Attribute 'clientCertificateId' should be defined",
-    "actualValue": "Attribute 'clientCertificateId' is not defined"
+    "actualValue": "Attribute 'clientCertificateId' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

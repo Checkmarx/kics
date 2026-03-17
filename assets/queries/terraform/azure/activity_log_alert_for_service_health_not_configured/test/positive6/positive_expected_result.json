@@ -9,6 +9,7 @@
     "searchKey": "azurerm_subscription[positive6]",
     "searchValue": "",
     "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'ServiceHealth' events should be defined for each subscription",
-    "actualValue": "There is not a single 'azurerm_monitor_activity_log_alert' resource associated with the 'positive6' subscription"
+    "actualValue": "There is not a single 'azurerm_monitor_activity_log_alert' resource associated with the 'positive6' subscription",
+    "issueType": "MissingAttribute"
   }
 ]

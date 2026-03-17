@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--make-iptables-util-chains flag should be true",
-    "actualValue": "--make-iptables-util-chains= flag is false"
+    "actualValue": "--make-iptables-util-chains= flag is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Not Managing Ip Tables",
@@ -21,7 +22,8 @@
     "searchKey": "kind={{KubeletConfiguration}}.makeIPTablesUtilChains",
     "searchValue": "",
     "expectedValue": "makeIPTablesUtilChains should be true",
-    "actualValue": "makeIPTablesUtilChains is false"
+    "actualValue": "makeIPTablesUtilChains is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Not Managing Ip Tables",
@@ -33,6 +35,7 @@
     "searchKey": "kind={{KubeletConfiguration}}.makeIPTablesUtilChains",
     "searchValue": "",
     "expectedValue": "makeIPTablesUtilChains should be true",
-    "actualValue": "makeIPTablesUtilChains is false"
+    "actualValue": "makeIPTablesUtilChains is false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "openapi",
     "searchValue": "",
     "expectedValue": "A default security property should be defined",
-    "actualValue": "A default security property is not defined"
+    "actualValue": "A default security property is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Global Security Field Is Undefined (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "openapi",
     "searchValue": "",
     "expectedValue": "A default security property should be defined",
-    "actualValue": "A default security property is not defined"
+    "actualValue": "A default security property is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Global Security Field Is Undefined (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "swagger",
     "searchValue": "",
     "expectedValue": "A default security property should be defined",
-    "actualValue": "A default security property is not defined"
+    "actualValue": "A default security property is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Global Security Field Is Undefined (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "swagger",
     "searchValue": "",
     "expectedValue": "A default security property should be defined",
-    "actualValue": "A default security property is not defined"
+    "actualValue": "A default security property is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

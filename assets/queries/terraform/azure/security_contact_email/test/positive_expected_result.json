@@ -9,6 +9,7 @@
     "searchKey": "azurerm_security_center_contact[positive]",
     "searchValue": "",
     "expectedValue": "'azurerm_security_center_contact[positive].email' should be defined and not null",
-    "actualValue": "'azurerm_security_center_contact[positive].email' is undefined or null"
+    "actualValue": "'azurerm_security_center_contact[positive].email' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

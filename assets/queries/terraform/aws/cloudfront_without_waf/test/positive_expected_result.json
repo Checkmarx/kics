@@ -9,6 +9,7 @@
     "searchKey": "aws_cloudfront_distribution[positive1].web_acl_id",
     "searchValue": "",
     "expectedValue": "'web_acl_id'  should exist",
-    "actualValue": "'web_acl_id' is missing"
+    "actualValue": "'web_acl_id' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

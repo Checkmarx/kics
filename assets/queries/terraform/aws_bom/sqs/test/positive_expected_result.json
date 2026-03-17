@@ -9,7 +9,8 @@
     "searchKey": "aws_sqs_queue[positive1]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS SQS",
@@ -21,7 +22,8 @@
     "searchKey": "aws_sqs_queue[positive2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS SQS",
@@ -33,7 +35,8 @@
     "searchKey": "aws_sqs_queue[positive3]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS SQS",
@@ -45,7 +48,8 @@
     "searchKey": "aws_sqs_queue[positive4]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS SQS",
@@ -57,6 +61,7 @@
     "searchKey": "aws_sqs_queue[positive5]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_network_acl[positive1].ingress",
     "searchValue": "",
     "expectedValue": "aws_network_acl[positive1].ingress[0] 'SSH' (Port:22) should not be public",
-    "actualValue": "aws_network_acl[positive1].ingress[0] 'SSH' (Port:22) is public"
+    "actualValue": "aws_network_acl[positive1].ingress[0] 'SSH' (Port:22) is public",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
@@ -21,7 +22,8 @@
     "searchKey": "aws_network_acl_rule[postive2]",
     "searchValue": "",
     "expectedValue": "aws_network_acl[postive2] 'SSH' (TCP:22) should not be public",
-    "actualValue": "aws_network_acl[postive2] 'SSH' (TCP:22) is public"
+    "actualValue": "aws_network_acl[postive2] 'SSH' (TCP:22) is public",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
@@ -33,7 +35,8 @@
     "searchKey": "aws_network_acl[positive3].ingress",
     "searchValue": "",
     "expectedValue": "aws_network_acl[positive3].ingress 'SSH' (TCP:22) should not be public",
-    "actualValue": "aws_network_acl[positive3].ingress 'SSH' (TCP:22) is public"
+    "actualValue": "aws_network_acl[positive3].ingress 'SSH' (TCP:22) is public",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
@@ -45,6 +48,7 @@
     "searchKey": "module[vpc].default_network_acl_ingress",
     "searchValue": "",
     "expectedValue": "aws_network_acl[vpc].ingress[0] 'SSH' (Port:22) should not be public",
-    "actualValue": "aws_network_acl[vpc].ingress[0] 'SSH' (Port:22) is public"
+    "actualValue": "aws_network_acl[vpc].ingress[0] 'SSH' (Port:22) is public",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "resource.aws_eks_cluster.positiveExample",
     "searchValue": "",
     "expectedValue": "All names should be on snake case pattern",
-    "actualValue": "'positiveExample' is not in snake case"
+    "actualValue": "'positiveExample' is not in snake case",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Name Is Not Snake Case",
@@ -21,6 +22,7 @@
     "searchKey": "module.ACMPositive2",
     "searchValue": "",
     "expectedValue": "All names should be on snake case pattern",
-    "actualValue": "'ACMPositive2' is not in snake case"
+    "actualValue": "'ACMPositive2' is not in snake case",
+    "issueType": "IncorrectValue"
   }
 ]

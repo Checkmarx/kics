@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{exporter-prometheus-node-exporter}}.spec.template.spec.volumes.name={{proc}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'exporter-prometheus-node-exporter' of kind 'DaemonSet' should not mount a host sensitive OS directory '/proc' with hostPath",
-    "actualValue": "Workload name 'exporter-prometheus-node-exporter' of kind 'DaemonSet' is mounting a host sensitive OS directory '/proc' with hostPath"
+    "actualValue": "Workload name 'exporter-prometheus-node-exporter' of kind 'DaemonSet' is mounting a host sensitive OS directory '/proc' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{exporter-prometheus-node-exporter}}.spec.template.spec.volumes.name={{sys}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'exporter-prometheus-node-exporter' of kind 'DaemonSet' should not mount a host sensitive OS directory '/sys' with hostPath",
-    "actualValue": "Workload name 'exporter-prometheus-node-exporter' of kind 'DaemonSet' is mounting a host sensitive OS directory '/sys' with hostPath"
+    "actualValue": "Workload name 'exporter-prometheus-node-exporter' of kind 'DaemonSet' is mounting a host sensitive OS directory '/sys' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{fluentd-elasticsearch}}.spec.template.spec.volumes.name={{varlog}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'fluentd-elasticsearch' of kind 'DaemonSet' should not mount a host sensitive OS directory '/var/log' with hostPath",
-    "actualValue": "Workload name 'fluentd-elasticsearch' of kind 'DaemonSet' is mounting a host sensitive OS directory '/var/log' with hostPath"
+    "actualValue": "Workload name 'fluentd-elasticsearch' of kind 'DaemonSet' is mounting a host sensitive OS directory '/var/log' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{fluentd-elasticsearch}}.spec.template.spec.volumes.name={{varlibdockercontainers}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'fluentd-elasticsearch' of kind 'DaemonSet' should not mount a host sensitive OS directory '/var/lib/docker/containers' with hostPath",
-    "actualValue": "Workload name 'fluentd-elasticsearch' of kind 'DaemonSet' is mounting a host sensitive OS directory '/var/lib/docker/containers' with hostPath"
+    "actualValue": "Workload name 'fluentd-elasticsearch' of kind 'DaemonSet' is mounting a host sensitive OS directory '/var/lib/docker/containers' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -57,7 +61,8 @@
     "searchKey": "metadata.name={{nginx-deployment}}.spec.template.spec.volumes.name={{static-page-dir}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'nginx-deployment' of kind 'Deployment' should not mount a host sensitive OS directory '/var/local/static' with hostPath",
-    "actualValue": "Workload name 'nginx-deployment' of kind 'Deployment' is mounting a host sensitive OS directory '/var/local/static' with hostPath"
+    "actualValue": "Workload name 'nginx-deployment' of kind 'Deployment' is mounting a host sensitive OS directory '/var/local/static' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -69,7 +74,8 @@
     "searchKey": "metadata.name={{nginx-deployment-undefined-ns}}.spec.template.spec.volumes.name={{static-page-dir}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'nginx-deployment-undefined-ns' of kind 'Deployment' should not mount a host sensitive OS directory '/root/local/static' with hostPath",
-    "actualValue": "Workload name 'nginx-deployment-undefined-ns' of kind 'Deployment' is mounting a host sensitive OS directory '/root/local/static' with hostPath"
+    "actualValue": "Workload name 'nginx-deployment-undefined-ns' of kind 'Deployment' is mounting a host sensitive OS directory '/root/local/static' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -81,7 +87,8 @@
     "searchKey": "metadata.name={{redis-memcache}}.spec.volumes.name={{redis-storage}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'redis-memcache' of kind 'Pod' should not mount a host sensitive OS directory '/var/redis/data' with hostPath",
-    "actualValue": "Workload name 'redis-memcache' of kind 'Pod' is mounting a host sensitive OS directory '/var/redis/data' with hostPath"
+    "actualValue": "Workload name 'redis-memcache' of kind 'Pod' is mounting a host sensitive OS directory '/var/redis/data' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -93,7 +100,8 @@
     "searchKey": "metadata.name={{web-server-pod}}.spec.volumes.name={{nginx-host-config}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'web-server-pod' of kind 'Pod' should not mount a host sensitive OS directory '/etc/nginx' with hostPath",
-    "actualValue": "Workload name 'web-server-pod' of kind 'Pod' is mounting a host sensitive OS directory '/etc/nginx' with hostPath"
+    "actualValue": "Workload name 'web-server-pod' of kind 'Pod' is mounting a host sensitive OS directory '/etc/nginx' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -105,7 +113,8 @@
     "searchKey": "metadata.name={{malicious-pod}}.spec.volumes.name={{rootdir}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'malicious-pod' of kind 'Pod' should not mount a host sensitive OS directory '/' with hostPath",
-    "actualValue": "Workload name 'malicious-pod' of kind 'Pod' is mounting a host sensitive OS directory '/' with hostPath"
+    "actualValue": "Workload name 'malicious-pod' of kind 'Pod' is mounting a host sensitive OS directory '/' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -117,7 +126,8 @@
     "searchKey": "metadata.name={{dood}}.spec.volumes.name={{docker-sock}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'dood' of kind 'Pod' should not mount a host sensitive OS directory '/var/run' with hostPath",
-    "actualValue": "Workload name 'dood' of kind 'Pod' is mounting a host sensitive OS directory '/var/run' with hostPath"
+    "actualValue": "Workload name 'dood' of kind 'Pod' is mounting a host sensitive OS directory '/var/run' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -129,7 +139,8 @@
     "searchKey": "metadata.name={{pv-001}}.spec.hostPath.path",
     "searchValue": "",
     "expectedValue": "PersistentVolume name 'pv-001' of kind 'PersistentVolume' should not mount a host sensitive OS directory '/dev/tty1' with hostPath",
-    "actualValue": "PersistentVolume name 'pv-001' of kind 'PersistentVolume' is mounting a host sensitive OS directory '/dev/tty1' with hostPath"
+    "actualValue": "PersistentVolume name 'pv-001' of kind 'PersistentVolume' is mounting a host sensitive OS directory '/dev/tty1' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -141,7 +152,8 @@
     "searchKey": "metadata.name={{pv-002}}.spec.hostPath.path",
     "searchValue": "",
     "expectedValue": "PersistentVolume name 'pv-002' of kind 'PersistentVolume' should not mount a host sensitive OS directory '/boot' with hostPath",
-    "actualValue": "PersistentVolume name 'pv-002' of kind 'PersistentVolume' is mounting a host sensitive OS directory '/boot' with hostPath"
+    "actualValue": "PersistentVolume name 'pv-002' of kind 'PersistentVolume' is mounting a host sensitive OS directory '/boot' with hostPath",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
@@ -153,6 +165,7 @@
     "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.volumes.name={{rootdir}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "Workload name 'dummy-config' of kind 'Configuration' should not mount a host sensitive OS directory '/' with hostPath",
-    "actualValue": "Workload name 'dummy-config' of kind 'Configuration' is mounting a host sensitive OS directory '/' with hostPath"
+    "actualValue": "Workload name 'dummy-config' of kind 'Configuration' is mounting a host sensitive OS directory '/' with hostPath",
+    "issueType": "IncorrectValue"
   }
 ]

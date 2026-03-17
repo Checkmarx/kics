@@ -9,7 +9,8 @@
     "searchKey": "components.{{schemas}}.{{General Error}}",
     "searchValue": "",
     "expectedValue": "components.{{schemas}}.{{General Error}} is properly named",
-    "actualValue": "components.{{schemas}}.{{General Error}}is improperly named"
+    "actualValue": "components.{{schemas}}.{{General Error}}is improperly named",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Components Object Fixed Field Key Improperly Named",
@@ -21,6 +22,7 @@
     "searchKey": "components.{{schemas}}.{{General Error}}",
     "searchValue": "",
     "expectedValue": "components.{{schemas}}.{{General Error}} is properly named",
-    "actualValue": "components.{{schemas}}.{{General Error}}is improperly named"
+    "actualValue": "components.{{schemas}}.{{General Error}}is improperly named",
+    "issueType": "IncorrectValue"
   }
 ]

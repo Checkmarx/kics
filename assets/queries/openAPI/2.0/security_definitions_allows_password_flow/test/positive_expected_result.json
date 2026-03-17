@@ -9,7 +9,8 @@
     "searchKey": "securityDefinitions.{{oAuth2AuthCodeNeg2}}.flow",
     "searchValue": "",
     "expectedValue": "security definition should not allow 'password' flow in OAuth2 authentication",
-    "actualValue": "security definition allows 'password' flow in OAuth2 authentication"
+    "actualValue": "security definition allows 'password' flow in OAuth2 authentication",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Definitions Allows Password Flow",
@@ -21,6 +22,7 @@
     "searchKey": "securityDefinitions.{{oAuth2AuthCodeNeg2}}.flow",
     "searchValue": "",
     "expectedValue": "security definition should not allow 'password' flow in OAuth2 authentication",
-    "actualValue": "security definition allows 'password' flow in OAuth2 authentication"
+    "actualValue": "security definition allows 'password' flow in OAuth2 authentication",
+    "issueType": "IncorrectValue"
   }
 ]

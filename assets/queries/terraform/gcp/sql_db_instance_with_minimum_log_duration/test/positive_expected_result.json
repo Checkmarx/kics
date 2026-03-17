@@ -9,7 +9,8 @@
     "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'log_min_duration_statement' to '-1'",
-    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'log_min_duration_statement' to '2'"
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'log_min_duration_statement' to '2'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - SQL DB Instance With Minimum Log Duration",
@@ -21,6 +22,7 @@
     "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'log_min_duration_statement' to '-1'",
-    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'log_min_duration_statement' to '3'"
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'log_min_duration_statement' to '3'",
+    "issueType": "IncorrectValue"
   }
 ]

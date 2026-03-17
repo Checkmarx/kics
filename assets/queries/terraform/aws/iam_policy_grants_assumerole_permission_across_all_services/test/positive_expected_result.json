@@ -9,7 +9,8 @@
     "searchKey": "aws_iam_role[positive1].assume_role_policy",
     "searchValue": "",
     "expectedValue": "'assume_role_policy.Statement.Principal' shouldn't contain '*'",
-    "actualValue": "'assume_role_policy.Statement.Principal' contains '*'"
+    "actualValue": "'assume_role_policy.Statement.Principal' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
@@ -21,6 +22,7 @@
     "searchKey": "aws_iam_role[positive2].assume_role_policy",
     "searchValue": "",
     "expectedValue": "'assume_role_policy.Statement.Principal' shouldn't contain '*'",
-    "actualValue": "'assume_role_policy.Statement.Principal' contains '*'"
+    "actualValue": "'assume_role_policy.Statement.Principal' contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.ApiGatewayApi.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ApiGatewayApi.Properties.%!d(string=AccessLogSetting) should be defined and not null",
-    "actualValue": "Resources.ApiGatewayApi.Properties.%!d(string=AccessLogSetting) is undefined or null"
+    "actualValue": "Resources.ApiGatewayApi.Properties.%!d(string=AccessLogSetting) is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Serverless API Access Logging Setting Undefined",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.HttpApi.Properties",
     "searchValue": "",
     "expectedValue": "Resources.HttpApi.Properties.%!d(string=AccessLogSettings) should be defined and not null",
-    "actualValue": "Resources.HttpApi.Properties.%!d(string=AccessLogSettings) is undefined or null"
+    "actualValue": "Resources.HttpApi.Properties.%!d(string=AccessLogSettings) is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

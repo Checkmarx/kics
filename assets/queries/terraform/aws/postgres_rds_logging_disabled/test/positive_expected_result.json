@@ -9,7 +9,8 @@
     "searchKey": "aws_db_parameter_group.postgres_logging",
     "searchValue": "",
     "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
-    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are not set or both have the wrong value"
+    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are not set or both have the wrong value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Postgres RDS logging disabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_db_parameter_group.postgres_logging",
     "searchValue": "",
     "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
-    "actualValue": "aws_db_parameter_group's log_statement has the wrong value"
+    "actualValue": "aws_db_parameter_group's log_statement has the wrong value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Postgres RDS logging disabled",
@@ -33,7 +35,8 @@
     "searchKey": "aws_db_parameter_group.postgres_logging",
     "searchValue": "",
     "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
-    "actualValue": "aws_db_parameter_group's log_min_duration_statement has the wrong value"
+    "actualValue": "aws_db_parameter_group's log_min_duration_statement has the wrong value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Postgres RDS logging disabled",
@@ -45,7 +48,8 @@
     "searchKey": "aws_db_parameter_group.postgres_logging",
     "searchValue": "",
     "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
-    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined"
+    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Postgres RDS logging disabled",
@@ -57,7 +61,8 @@
     "searchKey": "aws_db_parameter_group.example",
     "searchValue": "",
     "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
-    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined"
+    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Postgres RDS logging disabled",
@@ -69,6 +74,7 @@
     "searchKey": "aws_db_parameter_group.example",
     "searchValue": "",
     "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
-    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined"
+    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "provider.tracing.apiGateway",
     "searchValue": "",
     "expectedValue": "tracing should have 'apiGateway' set to true",
-    "actualValue": "'apiGateway' is set to false"
+    "actualValue": "'apiGateway' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Serverless API X-Ray Tracing Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "provider.tracing",
     "searchValue": "",
     "expectedValue": "tracing should have 'apiGateway' defined and set to true",
-    "actualValue": "'apiGateway' is not defined within tracing"
+    "actualValue": "'apiGateway' is not defined within tracing",
+    "issueType": "MissingAttribute"
   }
 ]

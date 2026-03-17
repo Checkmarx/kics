@@ -9,7 +9,8 @@
     "searchKey": "Resources.myuser.Properties.Policies",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.Policies' should be undefined or empty",
-    "actualValue": "'Resources.Properties.Policies' is not empty"
+    "actualValue": "'Resources.Properties.Policies' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Group Inline Policies",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myuser.Properties.Policies",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.Policies' should be undefined or empty",
-    "actualValue": "'Resources.Properties.Policies' is not empty"
+    "actualValue": "'Resources.Properties.Policies' is not empty",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_kms_key[positive1]",
     "searchValue": "",
     "expectedValue": "aws_kms_key[positive1].deletion_window_in_days should be set and valid",
-    "actualValue": "aws_kms_key[positive1].deletion_window_in_days is undefined"
+    "actualValue": "aws_kms_key[positive1].deletion_window_in_days is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "KMS Key With No Deletion Window",
@@ -21,6 +22,7 @@
     "searchKey": "aws_kms_key[positive2].deletion_window_in_days",
     "searchValue": "",
     "expectedValue": "aws_kms_key[positive2].deletion_window_in_days should be set and valid",
-    "actualValue": "aws_kms_key[positive2].deletion_window_in_days is set but invalid"
+    "actualValue": "aws_kms_key[positive2].deletion_window_in_days is set but invalid",
+    "issueType": "IncorrectValue"
   }
 ]

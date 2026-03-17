@@ -9,7 +9,8 @@
     "searchKey": "databricks_cluster[positive1].aws_attributes.availability",
     "searchValue": "",
     "expectedValue": "'databricks_cluster[positive1].aws_attributes.availability' should not be equal to 'SPOT'",
-    "actualValue": "'databricks_cluster[positive1].aws_attributes.availability' is equal to 'SPOT'"
+    "actualValue": "'databricks_cluster[positive1].aws_attributes.availability' is equal to 'SPOT'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
@@ -21,7 +22,8 @@
     "searchKey": "databricks_cluster[positive2].aws_attributes.first_on_demand",
     "searchValue": "",
     "expectedValue": "'databricks_cluster[positive2].aws_attributes.first_on_demand' should not be equal to '0'",
-    "actualValue": "'databricks_cluster[positive2].aws_attributes.first_on_demand' is equal to '0'"
+    "actualValue": "'databricks_cluster[positive2].aws_attributes.first_on_demand' is equal to '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
@@ -33,7 +35,8 @@
     "searchKey": "databricks_cluster[positive3].aws_attributes.first_on_demand",
     "searchValue": "",
     "expectedValue": "'databricks_cluster[positive3].aws_attributes.first_on_demand' should present",
-    "actualValue": "'databricks_cluster[positive3].aws_attributes.first_on_demand' is not present"
+    "actualValue": "'databricks_cluster[positive3].aws_attributes.first_on_demand' is not present",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
@@ -45,6 +48,7 @@
     "searchKey": "databricks_cluster[positive4].aws_attributes.zone_id",
     "searchValue": "",
     "expectedValue": "'databricks_cluster[positive4].aws_attributes.zone_id' should be egal to 'auto'",
-    "actualValue": "'databricks_cluster[positive4].aws_attributes.zone_id' is not equal to 'auto'"
+    "actualValue": "'databricks_cluster[positive4].aws_attributes.zone_id' is not equal to 'auto'",
+    "issueType": "IncorrectValue"
   }
 ]

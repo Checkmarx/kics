@@ -9,6 +9,7 @@
     "searchKey": "name={{Lambda S3 notification positive}}.{{community.aws.lambda_policy}}.action",
     "searchValue": "",
     "expectedValue": "name={{Lambda S3 notification positive}}.{{community.aws.lambda_policy}}.action should be 'lambda:InvokeFunction'",
-    "actualValue": "name={{Lambda S3 notification positive}}.{{community.aws.lambda_policy}}.action is lambda:CreateFunction"
+    "actualValue": "name={{Lambda S3 notification positive}}.{{community.aws.lambda_policy}}.action is lambda:CreateFunction",
+    "issueType": "IncorrectValue"
   }
 ]

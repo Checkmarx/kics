@@ -9,7 +9,8 @@
     "searchKey": "Resources.myVPC",
     "searchValue": "",
     "expectedValue": "'Resources.myVPC' should not be attached with a number of gateways close to or out of limit (>3)",
-    "actualValue": "'Resources.myVPC' is attached with a number of gateways close to or out of limit (>3)"
+    "actualValue": "'Resources.myVPC' is attached with a number of gateways close to or out of limit (>3)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Attached With Too Many Gateways",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myVPC",
     "searchValue": "",
     "expectedValue": "'Resources.myVPC' should not be attached with a number of gateways close to or out of limit (>3)",
-    "actualValue": "'Resources.myVPC' is attached with a number of gateways close to or out of limit (>3)"
+    "actualValue": "'Resources.myVPC' is attached with a number of gateways close to or out of limit (>3)",
+    "issueType": "IncorrectValue"
   }
 ]

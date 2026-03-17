@@ -9,7 +9,8 @@
     "searchKey": "resources.name=['${variables('vmName')}-disk1'].properties.encryptionSettingsCollection.enabled",
     "searchValue": "",
     "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
-    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false"
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=[concat(variables('vmName'),'-disk1')].properties.encryptionSettingsCollection.enabled",
     "searchValue": "",
     "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
-    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false"
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=['${variables('vmName')}-disk1']",
     "searchValue": "",
     "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
-    "actualValue": "'encryptionSettingsCollection.enabled' is undefined"
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name=[concat(variables('vmName'),'-disk1')]",
     "searchValue": "",
     "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
-    "actualValue": "'encryptionSettingsCollection.enabled' is undefined"
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=['${variables('vmName')}-disk1'].properties.encryptionSettingsCollection.enabled",
     "searchValue": "",
     "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
-    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false"
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name=[concat(variables('vmName'),'-disk1')].properties.encryptionSettingsCollection.enabled",
     "searchValue": "",
     "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
-    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false"
+    "actualValue": "'encryptionSettingsCollection.enabled' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=['${variables('vmName')}-disk1']",
     "searchValue": "",
     "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
-    "actualValue": "'encryptionSettingsCollection.enabled' is undefined"
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Azure Managed Disk Without Encryption",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name=[concat(variables('vmName'),'-disk1')]",
     "searchValue": "",
     "expectedValue": "'encryptionSettingsCollection.enabled' should be set to true",
-    "actualValue": "'encryptionSettingsCollection.enabled' is undefined"
+    "actualValue": "'encryptionSettingsCollection.enabled' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser=2000",
     "searchValue": "Pod",
     "expectedValue": "1 metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
     "searchValue": "StatefulSet",
     "expectedValue": "3 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be defined",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is undefined"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
     "searchValue": "Deployment",
     "expectedValue": "3 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be defined",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is undefined"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser=333",
     "searchValue": "Pod",
     "expectedValue": "1 metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -57,7 +61,8 @@
     "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext.runAsUser=340",
     "searchValue": "Pod",
     "expectedValue": "1 metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -69,7 +74,8 @@
     "searchKey": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser=13",
     "searchValue": "Pod",
     "expectedValue": "1 metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -81,7 +87,8 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.securityContext.runAsUser=1200",
     "searchValue": "Deployment",
     "expectedValue": "2 metadata.name={{securitydemo}}.spec.template.spec.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -93,7 +100,8 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext",
     "searchValue": "Deployment",
     "expectedValue": "3 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser should be defined",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser is undefined"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -105,7 +113,8 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext",
     "searchValue": "Deployment",
     "expectedValue": "3 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser should be defined",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser is undefined"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -117,7 +126,8 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser=1234",
     "searchValue": "Deployment",
     "expectedValue": "1 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -129,7 +139,8 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser=5678",
     "searchValue": "Deployment",
     "expectedValue": "1 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -141,7 +152,8 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser=1234",
     "searchValue": "Deployment",
     "expectedValue": "1 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{frontend}}.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -153,7 +165,8 @@
     "searchKey": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}",
     "searchValue": "Deployment",
     "expectedValue": "3 metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser should be defined",
-    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser is undefined"
+    "actualValue": "metadata.name={{securitydemo}}.spec.template.spec.containers.name={{echoserver}}.securityContext.runAsUser is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -165,7 +178,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser=1",
     "searchValue": "StatefulSet",
     "expectedValue": "1 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -177,7 +191,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser=1",
     "searchValue": "Deployment",
     "expectedValue": "1 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -189,7 +204,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser=1000",
     "searchValue": "StatefulSet",
     "expectedValue": "2 metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running With Low UID",
@@ -201,6 +217,7 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser=1000",
     "searchValue": "Deployment",
     "expectedValue": "2 metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser should be set to a UID >= 10000",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is set to a low UID"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is set to a low UID",
+    "issueType": "IncorrectValue"
   }
 ]

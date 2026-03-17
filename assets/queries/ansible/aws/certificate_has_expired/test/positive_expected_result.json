@@ -9,6 +9,7 @@
     "searchKey": "name={{upload a self-signed certificate}}.community.aws.aws_acm.certificate",
     "searchValue": "",
     "expectedValue": "'community.aws.aws_acm.certificate' should not have expired",
-    "actualValue": "'community.aws.aws_acm.certificate' has expired"
+    "actualValue": "'community.aws.aws_acm.certificate' has expired",
+    "issueType": "IncorrectValue"
   }
 ]

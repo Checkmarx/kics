@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[test].spec.volume.host_path.path",
     "searchValue": "",
     "expectedValue": "Resource name 'terraform-example' in non kube-system namespace 'kube' should not have host_path '/var/log' mounted",
-    "actualValue": "Resource name 'terraform-example' in non kube-system namespace 'kube' has a host_path '/var/log' mounted"
+    "actualValue": "Resource name 'terraform-example' in non kube-system namespace 'kube' has a host_path '/var/log' mounted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[test2].spec.volume.host_path.path",
     "searchValue": "",
     "expectedValue": "Resource name 'terraform-example2' in non kube-system namespace 'default' should not have host_path '/var/log' mounted",
-    "actualValue": "Resource name 'terraform-example2' in non kube-system namespace 'default' has a host_path '/var/log' mounted"
+    "actualValue": "Resource name 'terraform-example2' in non kube-system namespace 'default' has a host_path '/var/log' mounted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
@@ -33,7 +35,8 @@
     "searchKey": "kubernetes_persistent_volume[test3].spec.volume.host_path.path",
     "searchValue": "",
     "expectedValue": "Resource name 'terraform-example3' in non kube-system namespace 'kube' should not have host_path '/var/log' mounted",
-    "actualValue": "Resource name 'terraform-example3' in non kube-system namespace 'kube' has a host_path '/var/log' mounted"
+    "actualValue": "Resource name 'terraform-example3' in non kube-system namespace 'kube' has a host_path '/var/log' mounted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Non Kube System Pod With Host Mount",
@@ -45,6 +48,7 @@
     "searchKey": "kubernetes_persistent_volume[test4].spec.volume.host_path.path",
     "searchValue": "",
     "expectedValue": "Resource name 'terraform-example4' in non kube-system namespace 'default' should not have host_path '/var/log' mounted",
-    "actualValue": "Resource name 'terraform-example4' in non kube-system namespace 'default' has a host_path '/var/log' mounted"
+    "actualValue": "Resource name 'terraform-example4' in non kube-system namespace 'default' has a host_path '/var/log' mounted",
+    "issueType": "IncorrectValue"
   }
 ]

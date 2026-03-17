@@ -9,7 +9,8 @@
     "searchKey": "alicloud_oss_bucket[bucket-securetransport1].policy",
     "searchValue": "",
     "expectedValue": "bucket-securetransport1[%!s(MISSING)].policy should not accept HTTP Requests",
-    "actualValue": "bucket-securetransport1[%!s(MISSING)].policy accepts HTTP Requests"
+    "actualValue": "bucket-securetransport1[%!s(MISSING)].policy accepts HTTP Requests",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OSS Buckets Secure Transport Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_oss_bucket[bucket-securetransport3].policy",
     "searchValue": "",
     "expectedValue": "bucket-securetransport3[%!s(MISSING)].policy should not accept HTTP Requests",
-    "actualValue": "bucket-securetransport3[%!s(MISSING)].policy accepts HTTP Requests"
+    "actualValue": "bucket-securetransport3[%!s(MISSING)].policy accepts HTTP Requests",
+    "issueType": "IncorrectValue"
   }
 ]

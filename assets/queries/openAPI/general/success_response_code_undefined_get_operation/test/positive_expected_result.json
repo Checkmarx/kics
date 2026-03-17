@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/item}}.get.responses",
     "searchValue": "",
     "expectedValue": "Get should have at least one successful code (200 or 202)",
-    "actualValue": "Get does not have any successful code"
+    "actualValue": "Get does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Get Operation (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/item}}.get.responses",
     "searchValue": "",
     "expectedValue": "Get should have at least one successful code (200 or 202)",
-    "actualValue": "Get does not have any successful code"
+    "actualValue": "Get does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Get Operation (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/item}}.get.responses",
     "searchValue": "",
     "expectedValue": "Get should have at least one successful code (200 or 202)",
-    "actualValue": "Get does not have any successful code"
+    "actualValue": "Get does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Get Operation (v3)",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/item}}.get.responses",
     "searchValue": "",
     "expectedValue": "Get should have at least one successful code (200 or 202)",
-    "actualValue": "Get does not have any successful code"
+    "actualValue": "Get does not have any successful code",
+    "issueType": "MissingAttribute"
   }
 ]

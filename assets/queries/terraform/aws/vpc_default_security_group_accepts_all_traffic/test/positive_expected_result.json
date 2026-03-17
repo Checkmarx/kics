@@ -9,7 +9,8 @@
     "searchKey": "aws_default_security_group[{{default}}].ingress",
     "searchValue": "",
     "expectedValue": "aws_default_security_group[{{default}}] should not have 'ingress' defined",
-    "actualValue": "aws_default_security_group[{{default}}] has 'ingress' defined"
+    "actualValue": "aws_default_security_group[{{default}}] has 'ingress' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
@@ -21,7 +22,8 @@
     "searchKey": "aws_default_security_group[{{default}}].egress",
     "searchValue": "",
     "expectedValue": "aws_default_security_group[{{default}}] should not have 'egress' defined",
-    "actualValue": "aws_default_security_group[{{default}}] has 'egress' defined"
+    "actualValue": "aws_default_security_group[{{default}}] has 'egress' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
@@ -33,7 +35,8 @@
     "searchKey": "aws_default_security_group[{{default3}}].ingress",
     "searchValue": "",
     "expectedValue": "aws_default_security_group[{{default3}}] should not have 'ingress' defined",
-    "actualValue": "aws_default_security_group[{{default3}}] has 'ingress' defined"
+    "actualValue": "aws_default_security_group[{{default3}}] has 'ingress' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
@@ -45,7 +48,8 @@
     "searchKey": "aws_default_security_group[{{default3}}].ingress.ipv6_cidr_blocks",
     "searchValue": "",
     "expectedValue": "'ingress' should be undefined",
-    "actualValue": "'ingress' accepts all traffic"
+    "actualValue": "'ingress' accepts all traffic",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
@@ -57,7 +61,8 @@
     "searchKey": "aws_default_security_group[{{default3}}].egress",
     "searchValue": "",
     "expectedValue": "aws_default_security_group[{{default3}}] should not have 'egress' defined",
-    "actualValue": "aws_default_security_group[{{default3}}] has 'egress' defined"
+    "actualValue": "aws_default_security_group[{{default3}}] has 'egress' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Default Security Group Accepts All Traffic",
@@ -69,6 +74,7 @@
     "searchKey": "aws_default_security_group[{{default3}}].egress.cidr_blocks",
     "searchValue": "",
     "expectedValue": "'egress' should be undefined",
-    "actualValue": "'egress' accepts all traffic"
+    "actualValue": "'egress' accepts all traffic",
+    "issueType": "IncorrectValue"
   }
 ]

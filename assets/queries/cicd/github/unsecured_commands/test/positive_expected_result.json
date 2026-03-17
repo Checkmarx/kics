@@ -9,7 +9,8 @@
     "searchKey": "env.actions_allow_unsecure_commands={{true}}",
     "searchValue": "",
     "expectedValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is not set as true.",
-    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true."
+    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unsecured Commands",
@@ -21,7 +22,8 @@
     "searchKey": "env.actions_allow_unsecure_commands={{true}}",
     "searchValue": "",
     "expectedValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is not set as true.",
-    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true."
+    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unsecured Commands",
@@ -33,6 +35,7 @@
     "searchKey": "env.actions_allow_unsecure_commands={{true}}",
     "searchValue": "",
     "expectedValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is not set as true.",
-    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true."
+    "actualValue": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true.",
+    "issueType": "IncorrectValue"
   }
 ]

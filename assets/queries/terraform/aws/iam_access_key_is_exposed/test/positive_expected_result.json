@@ -9,7 +9,8 @@
     "searchKey": "aws_iam_access_key[positive1].user",
     "searchValue": "",
     "expectedValue": "'aws_iam_access_key[positive1].user' should not be 'root' for an active access key",
-    "actualValue": "'aws_iam_access_key[positive1].user' is 'root' for an active access key"
+    "actualValue": "'aws_iam_access_key[positive1].user' is 'root' for an active access key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Access Key Is Exposed",
@@ -21,6 +22,7 @@
     "searchKey": "aws_iam_access_key[positive2].user",
     "searchValue": "",
     "expectedValue": "'aws_iam_access_key[positive2].user' should not be 'root' for an active access key",
-    "actualValue": "'aws_iam_access_key[positive2].user' is 'root' for an active access key"
+    "actualValue": "'aws_iam_access_key[positive2].user' is 'root' for an active access key",
+    "issueType": "IncorrectValue"
   }
 ]

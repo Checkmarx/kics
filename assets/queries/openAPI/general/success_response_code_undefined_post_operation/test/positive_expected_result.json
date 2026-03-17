@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/item}}.post.responses",
     "searchValue": "",
     "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
-    "actualValue": "Post does not have any successful code"
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Post Operation (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/item}}.post.responses",
     "searchValue": "",
     "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
-    "actualValue": "Post does not have any successful code"
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Post Operation (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/item}}.post.responses",
     "searchValue": "",
     "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
-    "actualValue": "Post does not have any successful code"
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Post Operation (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/item}}.post.responses",
     "searchValue": "",
     "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
-    "actualValue": "Post does not have any successful code"
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Post Operation (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/item}}.post.responses",
     "searchValue": "",
     "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
-    "actualValue": "Post does not have any successful code"
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Post Operation (v2)",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/item}}.post.responses",
     "searchValue": "",
     "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
-    "actualValue": "Post does not have any successful code"
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute"
   }
 ]

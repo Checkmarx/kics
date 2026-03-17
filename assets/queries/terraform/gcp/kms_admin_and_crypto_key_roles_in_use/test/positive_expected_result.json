@@ -9,6 +9,7 @@
     "searchKey": "google_project_iam_policy[positive1].policy_data",
     "searchValue": "",
     "expectedValue": "google_iam_policy[positive1].policy_data should not assign a KMS admin role and CryptoKey role to the same member",
-    "actualValue": "google_iam_policy[positive1].policy_data assigns a KMS admin role and CryptoKey role to the same member"
+    "actualValue": "google_iam_policy[positive1].policy_data assigns a KMS admin role and CryptoKey role to the same member",
+    "issueType": "IncorrectValue"
   }
 ]

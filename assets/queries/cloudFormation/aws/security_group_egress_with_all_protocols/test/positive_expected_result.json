@@ -9,7 +9,8 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress.IpProtocol",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].IpProtocol should not be set to '-1'",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].IpProtocol is set to '-1'"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].IpProtocol is set to '-1'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Egress With All Protocols",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.OutboundRule.Properties.IpProtocol",
     "searchValue": "",
     "expectedValue": "Resources.OutboundRule.Properties.IpProtocol should not be set to '-1'",
-    "actualValue": "Resources.OutboundRule.Properties.IpProtocol is set to '-1'"
+    "actualValue": "Resources.OutboundRule.Properties.IpProtocol is set to '-1'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Egress With All Protocols",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress.IpProtocol",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].IpProtocol should not be set to '-1'",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].IpProtocol is set to '-1'"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].IpProtocol is set to '-1'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Egress With All Protocols",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.OutboundRule.Properties.IpProtocol",
     "searchValue": "",
     "expectedValue": "Resources.OutboundRule.Properties.IpProtocol should not be set to '-1'",
-    "actualValue": "Resources.OutboundRule.Properties.IpProtocol is set to '-1'"
+    "actualValue": "Resources.OutboundRule.Properties.IpProtocol is set to '-1'",
+    "issueType": "IncorrectValue"
   }
 ]

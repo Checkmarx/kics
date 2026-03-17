@@ -9,7 +9,8 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}.scheme",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use 'negotiate' authentication",
-    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'negotiate' authentication"
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'negotiate' authentication",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Scheme Using HTTP Negotiate",
@@ -21,6 +22,7 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}.scheme",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use 'negotiate' authentication",
-    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'negotiate' authentication"
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses 'negotiate' authentication",
+    "issueType": "IncorrectValue"
   }
 ]

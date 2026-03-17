@@ -9,7 +9,8 @@
     "searchKey": "resource",
     "searchValue": "",
     "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } and be associated an aws_cloudwatch_metric_alarm",
-    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } or not associated with any aws_cloudwatch_metric_alarm"
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudWatch AWS Config Configuration Changes Alarm Missing",
@@ -21,7 +22,8 @@
     "searchKey": "resource",
     "searchValue": "",
     "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } and be associated an aws_cloudwatch_metric_alarm",
-    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } or not associated with any aws_cloudwatch_metric_alarm"
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudWatch AWS Config Configuration Changes Alarm Missing",
@@ -33,7 +35,8 @@
     "searchKey": "resource",
     "searchValue": "",
     "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } and be associated an aws_cloudwatch_metric_alarm",
-    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } or not associated with any aws_cloudwatch_metric_alarm"
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudWatch AWS Config Configuration Changes Alarm Missing",
@@ -45,6 +48,7 @@
     "searchKey": "resource",
     "searchValue": "",
     "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } and be associated an aws_cloudwatch_metric_alarm",
-    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } or not associated with any aws_cloudwatch_metric_alarm"
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_ecs_task_definition[{{service}}].volume.efs_volume_configuration.transit_encryption",
     "searchValue": "",
     "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
-    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'DISABLED'"
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'DISABLED'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
@@ -21,7 +22,8 @@
     "searchKey": "aws_ecs_task_definition[{{service_2}}].volume.efs_volume_configuration",
     "searchValue": "",
     "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value should be 'ENABLED'",
-    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption is missing"
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
@@ -33,6 +35,7 @@
     "searchKey": "aws_ecs_task_definition[{{service_2}}].volume",
     "searchValue": "",
     "expectedValue": "aws_ecs_task_definition.volume.efs_volume_configuration value should be defined",
-    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration is not set"
+    "actualValue": "aws_ecs_task_definition.volume.efs_volume_configuration is not set",
+    "issueType": "MissingAttribute"
   }
 ]

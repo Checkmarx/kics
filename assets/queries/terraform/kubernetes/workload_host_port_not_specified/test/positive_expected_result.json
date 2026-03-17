@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[test].spec.container.port",
     "searchValue": "",
     "expectedValue": "Attribute 'host_port' should be defined and not null",
-    "actualValue": "Attribute 'host_port' is undefined or null"
+    "actualValue": "Attribute 'host_port' is undefined or null",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Workload Host Port Not Specified",
@@ -21,6 +22,7 @@
     "searchKey": "kubernetes_deployment[example].spec.template.spec.container.port",
     "searchValue": "",
     "expectedValue": "Attribute 'host_port' should be defined and not null",
-    "actualValue": "Attribute 'host_port' is undefined or null"
+    "actualValue": "Attribute 'host_port' is undefined or null",
+    "issueType": "IncorrectValue"
   }
 ]

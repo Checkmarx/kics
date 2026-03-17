@@ -9,6 +9,7 @@
     "searchKey": "aws_cloudformation_stack[positive1]",
     "searchValue": "",
     "expectedValue": "Attribute 'notification_arns' should be set",
-    "actualValue": "Attribute 'notification_arns' is undefined"
+    "actualValue": "Attribute 'notification_arns' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

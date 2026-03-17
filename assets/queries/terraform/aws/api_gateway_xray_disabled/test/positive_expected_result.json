@@ -9,7 +9,8 @@
     "searchKey": "aws_api_gateway_stage[positive1].xray_tracing_enabled",
     "searchValue": "",
     "expectedValue": "'aws_api_gateway_stage[positive1].xray_tracing_enabled' should be true",
-    "actualValue": "'aws_api_gateway_stage[positive1].xray_tracing_enabled' is false"
+    "actualValue": "'aws_api_gateway_stage[positive1].xray_tracing_enabled' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_api_gateway_stage[positive2].xray_tracing_enabled",
     "searchValue": "",
     "expectedValue": "'aws_api_gateway_stage[positive2].xray_tracing_enabled' should be set",
-    "actualValue": "'aws_api_gateway_stage[positive2].xray_tracing_enabled' is undefined"
+    "actualValue": "'aws_api_gateway_stage[positive2].xray_tracing_enabled' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

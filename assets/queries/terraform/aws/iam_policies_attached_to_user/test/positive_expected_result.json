@@ -9,7 +9,8 @@
     "searchKey": "aws_iam_policy_attachment[{{positive1_3}}].users",
     "searchValue": "",
     "expectedValue": "'users' is redundant",
-    "actualValue": "'users' exists"
+    "actualValue": "'users' exists",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "IAM Policies Attached To User",
@@ -21,7 +22,8 @@
     "searchKey": "aws_iam_user_policy[{{positive2_3}}].user",
     "searchValue": "",
     "expectedValue": "'user' is redundant",
-    "actualValue": "'user' exists"
+    "actualValue": "'user' exists",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "IAM Policies Attached To User",
@@ -33,6 +35,7 @@
     "searchKey": "aws_iam_user_policy_attachment[{{test-attach}}].user",
     "searchValue": "",
     "expectedValue": "'user' is redundant",
-    "actualValue": "'user' exists"
+    "actualValue": "'user' exists",
+    "issueType": "RedundantAttribute"
   }
 ]

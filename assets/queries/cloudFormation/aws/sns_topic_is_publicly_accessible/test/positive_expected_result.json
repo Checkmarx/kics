@@ -9,7 +9,8 @@
     "searchKey": "Resources.snsPolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal",
-    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal"
+    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.snsPolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal",
-    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal"
+    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.mysnspolicy0.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.mysnspolicy0.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal",
-    "actualValue": "Resources.mysnspolicy0.Properties.PolicyDocument.Statement contains '*' in an AWS Principal"
+    "actualValue": "Resources.mysnspolicy0.Properties.PolicyDocument.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.snsPolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement shouldn't contain '*' for an AWS Principal",
-    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal"
+    "actualValue": "Resources.snsPolicy.Properties.PolicyDocument.Statement contains '*' in an AWS Principal",
+    "issueType": "IncorrectValue"
   }
 ]

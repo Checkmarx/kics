@@ -9,7 +9,8 @@
     "searchKey": "azurerm_recovery_services_vault[positive1]",
     "searchValue": "",
     "expectedValue": "'azurerm_recovery_services_vault[positive1].public_network_access_enabled' should be defined and set to false",
-    "actualValue": "'azurerm_recovery_services_vault[positive1].public_network_access_enabled' is undefined or null"
+    "actualValue": "'azurerm_recovery_services_vault[positive1].public_network_access_enabled' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Recovery Services Vault With Public Network Access",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_recovery_services_vault[positive2].public_network_access_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_recovery_services_vault[positive2].public_network_access_enabled' should be defined and set to false",
-    "actualValue": "'azurerm_recovery_services_vault[positive2].public_network_access_enabled' is set to true"
+    "actualValue": "'azurerm_recovery_services_vault[positive2].public_network_access_enabled' is set to true",
+    "issueType": "MissingAttribute"
   }
 ]

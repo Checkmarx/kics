@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket_policy[positive2].policy.Action",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_policy[positive2].policy.Action should not be a 'Get' action",
-    "actualValue": "aws_s3_bucket_policy[positive2].policy.Action is a 'Get' action"
+    "actualValue": "aws_s3_bucket_policy[positive2].policy.Action is a 'Get' action",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
@@ -21,7 +22,8 @@
     "searchKey": "aws_s3_bucket_policy[positive3].policy.Action",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_policy[positive3].policy.Action should not be a 'Get' action",
-    "actualValue": "aws_s3_bucket_policy[positive3].policy.Action is a 'Get' action"
+    "actualValue": "aws_s3_bucket_policy[positive3].policy.Action is a 'Get' action",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Get Action From All Principals",
@@ -33,6 +35,7 @@
     "searchKey": "module[s3_bucket].policy.Action",
     "searchValue": "",
     "expectedValue": "module[s3_bucket].policy.Action should not be a 'Get' action",
-    "actualValue": "module[s3_bucket].policy.Action is a 'Get' action"
+    "actualValue": "module[s3_bucket].policy.Action is a 'Get' action",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "azurerm_role_assignment[positive1].role_definition_name",
     "searchValue": "",
     "expectedValue": "'role_definition_name' field should not be defined to 'User Access Administrator'",
-    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'"
+    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_role_assignment[positive2].role_definition_id",
     "searchValue": "",
     "expectedValue": "'role_definition_id' field should not have an id associated with the 'User Access Administrator' role.",
-    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role."
+    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_role_assignment[positive3].role_definition_name",
     "searchValue": "",
     "expectedValue": "'role_definition_name' field should not be defined to 'User Access Administrator'",
-    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'"
+    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_role_assignment[positive4].role_definition_id",
     "searchValue": "",
     "expectedValue": "'role_definition_id' field should not have an id associated with the 'User Access Administrator' role.",
-    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role."
+    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_role_assignment[positive5].role_definition_name",
     "searchValue": "",
     "expectedValue": "'role_definition_name' field should not be defined to 'User Access Administrator'",
-    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'"
+    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
@@ -69,6 +74,7 @@
     "searchKey": "azurerm_role_assignment[positive6].role_definition_id",
     "searchValue": "",
     "expectedValue": "'role_definition_id' field should not have an id associated with the 'User Access Administrator' role.",
-    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role."
+    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role.",
+    "issueType": "IncorrectValue"
   }
 ]

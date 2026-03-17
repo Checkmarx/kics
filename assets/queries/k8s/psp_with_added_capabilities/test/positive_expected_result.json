@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{privileged}}.spec.allowedCapabilities",
     "searchValue": "",
     "expectedValue": "PodSecurityPolicy should not have allowed capabilities",
-    "actualValue": "PodSecurityPolicy has allowed capabilities"
+    "actualValue": "PodSecurityPolicy has allowed capabilities",
+    "issueType": "IncorrectValue"
   }
 ]

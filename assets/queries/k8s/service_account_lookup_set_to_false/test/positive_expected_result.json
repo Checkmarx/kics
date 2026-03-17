@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--service-account-lookup flag should be set to true",
-    "actualValue": "--service-account-lookup flag is set to false"
+    "actualValue": "--service-account-lookup flag is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

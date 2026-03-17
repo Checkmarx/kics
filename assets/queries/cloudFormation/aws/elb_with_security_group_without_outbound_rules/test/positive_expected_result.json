@@ -9,7 +9,8 @@
     "searchKey": "Resources.sgwithoutegress.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' should be defined",
-    "actualValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' is undefined"
+    "actualValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.sgwithoutegress.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' should be defined",
-    "actualValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' is undefined"
+    "actualValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.sgwithegress.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sgwithegress.Properties.SecurityGroupEgress' should be defined",
-    "actualValue": "'Resources.sgwithegress.Properties.SecurityGroupEgress' is undefined"
+    "actualValue": "'Resources.sgwithegress.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.sgwithegress.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sgwithegress.Properties.SecurityGroupEgress' should be defined",
-    "actualValue": "'Resources.sgwithegress.Properties.SecurityGroupEgress' is undefined"
+    "actualValue": "'Resources.sgwithegress.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MySG.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should be defined",
-    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined"
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.MySG.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should be defined",
-    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined"
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.MySG.Properties.SecurityGroupEgress",
     "searchValue": "",
     "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should not be empty",
-    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is empty"
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.MySG.Properties.SecurityGroupEgress",
     "searchValue": "",
     "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should not be empty",
-    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is empty"
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.MySGv2.Properties.SecurityGroupEgress",
     "searchValue": "",
     "expectedValue": "'Resources.MySGv2.Properties.SecurityGroupEgress' should not be empty",
-    "actualValue": "'Resources.MySGv2.Properties.SecurityGroupEgress' is empty"
+    "actualValue": "'Resources.MySGv2.Properties.SecurityGroupEgress' is empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.MySGv2.Properties.SecurityGroupEgress",
     "searchValue": "",
     "expectedValue": "'Resources.MySGv2.Properties.SecurityGroupEgress' should not be empty",
-    "actualValue": "'Resources.MySGv2.Properties.SecurityGroupEgress' is empty"
+    "actualValue": "'Resources.MySGv2.Properties.SecurityGroupEgress' is empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.MySG.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should be defined",
-    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined"
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
@@ -141,6 +152,7 @@
     "searchKey": "Resources.MySG.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should be defined",
-    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined"
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

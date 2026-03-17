@@ -9,6 +9,7 @@
     "searchKey": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols",
     "searchValue": "",
     "expectedValue": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols should be set to 'true'",
-    "actualValue": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols is configured as 'false'"
+    "actualValue": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols is configured as 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

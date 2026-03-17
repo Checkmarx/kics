@@ -9,7 +9,8 @@
     "searchKey": "name={{my_elb_application}}.{{community.aws.elb_application_lb}}.listeners.Protocol=HTTP",
     "searchValue": "",
     "expectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
-    "actualValue": "'aws_elb_application_lb' Protocol it's not 'HTTP'"
+    "actualValue": "'aws_elb_application_lb' Protocol it's not 'HTTP'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ALB Listening on HTTP",
@@ -21,6 +22,7 @@
     "searchKey": "name={{my_elb_application2}}.{{community.aws.elb_application_lb}}.listeners",
     "searchValue": "",
     "expectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
-    "actualValue": "'aws_elb_application_lb' Protocol is missing"
+    "actualValue": "'aws_elb_application_lb' Protocol is missing",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "name={{Lambda S3 event notification}}.{{lambda_policy}}.source_arn",
     "searchValue": "",
     "expectedValue": "lambda_policy.source_arn should not equal to '/*/*'",
-    "actualValue": "lambda_policy.source_arn is equal to '/*/*'"
+    "actualValue": "lambda_policy.source_arn is equal to '/*/*'",
+    "issueType": "IncorrectValue"
   }
 ]

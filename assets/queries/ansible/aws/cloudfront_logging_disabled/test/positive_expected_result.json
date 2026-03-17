@@ -9,7 +9,8 @@
     "searchKey": "name={{create a distribution with an origin, logging and default cache behavior}}.{{community.aws.cloudfront_distribution}}",
     "searchValue": "",
     "expectedValue": "cloudfront_distribution.logging should be defined",
-    "actualValue": "cloudfront_distribution.logging is undefined"
+    "actualValue": "cloudfront_distribution.logging is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Logging Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "name={{create a second distribution with an origin, logging and default cache behavior}}.{{community.aws.cloudfront_distribution}}.logging.enabled",
     "searchValue": "",
     "expectedValue": "cloudfront_distribution.logging.enabled should be true",
-    "actualValue": "cloudfront_distribution.logging.enabled is false"
+    "actualValue": "cloudfront_distribution.logging.enabled is false",
+    "issueType": "IncorrectValue"
   }
 ]

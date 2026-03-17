@@ -9,7 +9,8 @@
     "searchKey": "aws_sqs_queue_policy[test].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Principal.AWS' should not equal '*'",
-    "actualValue": "'policy.Statement.Principal.AWS' is equal '*'"
+    "actualValue": "'policy.Statement.Principal.AWS' is equal '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS Policy With Public Access",
@@ -21,7 +22,8 @@
     "searchKey": "aws_sqs_queue_policy[test_aws].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Principal.AWS' should not equal '*'",
-    "actualValue": "'policy.Statement.Principal.AWS' is equal '*'"
+    "actualValue": "'policy.Statement.Principal.AWS' is equal '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS Policy With Public Access",
@@ -33,6 +35,7 @@
     "searchKey": "aws_sqs_queue_policy[test_aws_array].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Principal.AWS' should not equal '*'",
-    "actualValue": "'policy.Statement.Principal.AWS' is equal '*'"
+    "actualValue": "'policy.Statement.Principal.AWS' is equal '*'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{foo}}.{{community.aws.efs}}.encrypt",
     "searchValue": "",
     "expectedValue": "efs.encrypt should be set to true",
-    "actualValue": "efs.encrypt is set to false"
+    "actualValue": "efs.encrypt is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EFS Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "name={{foo2}}.{{community.aws.efs}}.encrypt",
     "searchValue": "",
     "expectedValue": "efs.encrypt should be set to true",
-    "actualValue": "efs.encrypt is set to false"
+    "actualValue": "efs.encrypt is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EFS Not Encrypted",
@@ -33,6 +35,7 @@
     "searchKey": "name={{foo3}}.{{community.aws.efs}}",
     "searchValue": "",
     "expectedValue": "efs.encrypt should be set to true",
-    "actualValue": "efs.encrypt is undefined"
+    "actualValue": "efs.encrypt is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

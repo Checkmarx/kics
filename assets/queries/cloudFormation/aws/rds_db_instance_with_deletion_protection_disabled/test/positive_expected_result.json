@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyDBSmall.Properties.DeletionProtection",
     "searchValue": "",
     "expectedValue": "Resources.MyDBSmall.Properties.DeletionProtection should be set to true",
-    "actualValue": "Resources.MyDBSmall.Properties.DeletionProtection is set to false"
+    "actualValue": "Resources.MyDBSmall.Properties.DeletionProtection is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS DB Instance With Deletion Protection Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyDBSmall1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyDBSmall1.Properties.DeletionProtection should be defined",
-    "actualValue": "Resources.MyDBSmall1.Properties.DeletionProtection is undefined"
+    "actualValue": "Resources.MyDBSmall1.Properties.DeletionProtection is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS DB Instance With Deletion Protection Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyDBSmall.Properties.DeletionProtection",
     "searchValue": "",
     "expectedValue": "Resources.MyDBSmall.Properties.DeletionProtection should be set to true",
-    "actualValue": "Resources.MyDBSmall.Properties.DeletionProtection is set to false"
+    "actualValue": "Resources.MyDBSmall.Properties.DeletionProtection is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS DB Instance With Deletion Protection Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyDBSmall1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyDBSmall1.Properties.DeletionProtection should be defined",
-    "actualValue": "Resources.MyDBSmall1.Properties.DeletionProtection is undefined"
+    "actualValue": "Resources.MyDBSmall1.Properties.DeletionProtection is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS DB Instance With Deletion Protection Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.MyDBSmall.Properties.DeletionProtection",
     "searchValue": "",
     "expectedValue": "Resources.MyDBSmall.Properties.DeletionProtection should be set to true",
-    "actualValue": "Resources.MyDBSmall.Properties.DeletionProtection is set to false"
+    "actualValue": "Resources.MyDBSmall.Properties.DeletionProtection is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket[positive1].acl",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket[positive1].acl should be private",
-    "actualValue": "aws_s3_bucket[positive1].acl is authenticated-read"
+    "actualValue": "aws_s3_bucket[positive1].acl is authenticated-read",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
@@ -21,7 +22,8 @@
     "searchKey": "module[s3_bucket].acl",
     "searchValue": "",
     "expectedValue": "'acl' should be private",
-    "actualValue": "'acl' is authenticated-read"
+    "actualValue": "'acl' is authenticated-read",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
@@ -33,6 +35,7 @@
     "searchKey": "aws_s3_bucket_acl[example_bucket_acl].acl",
     "searchValue": "",
     "expectedValue": "aws_s3_bucket_acl[example_bucket_acl].acl should be private",
-    "actualValue": "aws_s3_bucket_acl[example_bucket_acl].acl is authenticated-read"
+    "actualValue": "aws_s3_bucket_acl[example_bucket_acl].acl is authenticated-read",
+    "issueType": "IncorrectValue"
   }
 ]

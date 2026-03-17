@@ -9,6 +9,7 @@
     "searchKey": "tencentcloud_mysql_instance[none_backup_policy]",
     "searchValue": "",
     "expectedValue": "tencentcloud_mysql_instance[none_backup_policy] should have 'tencentcloud_mysql_backup_policy'",
-    "actualValue": "tencentcloud_mysql_instance[none_backup_policy] does not have 'tencentcloud_mysql_backup_policy'"
+    "actualValue": "tencentcloud_mysql_instance[none_backup_policy] does not have 'tencentcloud_mysql_backup_policy'",
+    "issueType": "MissingAttribute"
   }
 ]

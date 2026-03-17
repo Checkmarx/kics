@@ -9,6 +9,7 @@
     "searchKey": "resources[storageAccount].properties.enableHttpsTrafficOnly",
     "searchValue": "",
     "expectedValue": "Storage Account should have attribute 'enableHttpsTrafficOnly' set to true",
-    "actualValue": "Storage Account has attribute 'enableHttpsTrafficOnly' set to false"
+    "actualValue": "Storage Account has attribute 'enableHttpsTrafficOnly' set to false",
+    "issueType": "IncorrectValue"
   }
 ]

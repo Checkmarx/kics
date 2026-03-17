@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{sql-instance}}.properties.settings",
     "searchValue": "",
     "expectedValue": "'settings.ipConfiguration' should be defined and not null",
-    "actualValue": "'settings.ipConfiguration' is undefined or null"
+    "actualValue": "'settings.ipConfiguration' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{sql-instance}}.properties.settings.ipConfiguration",
     "searchValue": "",
     "expectedValue": "'settings.ipConfiguration.requireSsl' should be defined and not null",
-    "actualValue": "'settings.ipConfiguration.requireSsl' is undefined or null"
+    "actualValue": "'settings.ipConfiguration.requireSsl' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "resources.name={{sql-instance}}.properties.settings.ipConfiguration.requireSsl",
     "searchValue": "",
     "expectedValue": "'settings.ipConfiguration.requireSsl' should be true",
-    "actualValue": "'settings.ipConfiguration.requireSsl' is false"
+    "actualValue": "'settings.ipConfiguration.requireSsl' is false",
+    "issueType": "IncorrectValue"
   }
 ]

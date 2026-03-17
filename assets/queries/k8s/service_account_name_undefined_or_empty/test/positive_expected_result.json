@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{nginx.container}}.spec",
     "searchValue": "",
     "expectedValue": "metadata.name=nginx.container.spec.serviceAccountName should be defined",
-    "actualValue": "metadata.name=nginx.container.spec.serviceAccountName is undefined"
+    "actualValue": "metadata.name=nginx.container.spec.serviceAccountName is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Service Account Name Undefined Or Empty",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{nginx2.container.group}}.spec",
     "searchValue": "",
     "expectedValue": "metadata.name=nginx2.container.group.spec.serviceAccountName should be defined",
-    "actualValue": "metadata.name=nginx2.container.group.spec.serviceAccountName is undefined"
+    "actualValue": "metadata.name=nginx2.container.group.spec.serviceAccountName is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Service Account Name Undefined Or Empty",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{nginx3}}.spec.serviceAccountName",
     "searchValue": "",
     "expectedValue": "metadata.name=nginx3.spec.serviceAccountName should not be empty",
-    "actualValue": "metadata.name=nginx3.spec.serviceAccountName is empty"
+    "actualValue": "metadata.name=nginx3.spec.serviceAccountName is empty",
+    "issueType": "IncorrectValue"
   }
 ]

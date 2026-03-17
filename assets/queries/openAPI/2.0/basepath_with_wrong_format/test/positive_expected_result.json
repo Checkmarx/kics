@@ -9,7 +9,8 @@
     "searchKey": "basePath={{api/incorrect}}",
     "searchValue": "",
     "expectedValue": "'basePath' value matches the pattern '^/'",
-    "actualValue": "'basePath' value doesn't match the pattern '^/'"
+    "actualValue": "'basePath' value doesn't match the pattern '^/'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "BasePath With Wrong Format",
@@ -21,6 +22,7 @@
     "searchKey": "basePath={{api/incorrect}}",
     "searchValue": "",
     "expectedValue": "'basePath' value matches the pattern '^/'",
-    "actualValue": "'basePath' value doesn't match the pattern '^/'"
+    "actualValue": "'basePath' value doesn't match the pattern '^/'",
+    "issueType": "IncorrectValue"
   }
 ]

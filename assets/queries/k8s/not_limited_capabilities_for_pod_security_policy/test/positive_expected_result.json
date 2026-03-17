@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{restricted}}.spec",
     "searchValue": "",
     "expectedValue": "metadata.name={{restricted}}.spec.requiredDropCapabilities should be defined",
-    "actualValue": "metadata.name={{restricted}}.spec.requiredDropCapabilities is undefined"
+    "actualValue": "metadata.name={{restricted}}.spec.requiredDropCapabilities is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

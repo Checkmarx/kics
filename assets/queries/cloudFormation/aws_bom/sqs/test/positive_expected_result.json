@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyQueue",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS SQS",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.MyQueue",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

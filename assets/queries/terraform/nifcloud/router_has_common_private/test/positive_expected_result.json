@@ -9,7 +9,8 @@
     "searchKey": "nifcloud_router[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_router[positive]' should use a private LAN to isolate the private side network from the shared network.",
-    "actualValue": "'nifcloud_router[positive]' has common private network."
+    "actualValue": "'nifcloud_router[positive]' has common private network.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Nifcloud Router Has Common Private Network",
@@ -21,6 +22,7 @@
     "searchKey": "nifcloud_router[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_router[positive]' should use a private LAN to isolate the private side network from the shared network.",
-    "actualValue": "'nifcloud_router[positive]' has common private network."
+    "actualValue": "'nifcloud_router[positive]' has common private network.",
+    "issueType": "IncorrectValue"
   }
 ]

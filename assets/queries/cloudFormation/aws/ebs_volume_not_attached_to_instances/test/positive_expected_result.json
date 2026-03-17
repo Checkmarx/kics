@@ -9,7 +9,8 @@
     "searchKey": "Resources.NewVolume",
     "searchValue": "",
     "expectedValue": "'Resources.NewVolume' should be attached to instances",
-    "actualValue": "'Resources.NewVolume' is not attached to instances"
+    "actualValue": "'Resources.NewVolume' is not attached to instances",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EBS Volume Not Attached To Instances",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.NewVolume",
     "searchValue": "",
     "expectedValue": "'Resources.NewVolume' should be attached to instances",
-    "actualValue": "'Resources.NewVolume' is not attached to instances"
+    "actualValue": "'Resources.NewVolume' is not attached to instances",
+    "issueType": "MissingAttribute"
   }
 ]

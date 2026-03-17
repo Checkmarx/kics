@@ -9,7 +9,8 @@
     "searchKey": "aws_security_group[positive1-1].ingress",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-1].ingress ports are known",
-    "actualValue": "aws_security_group[positive1-1].ingress ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_security_group[positive1-1].ingress ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -21,7 +22,8 @@
     "searchKey": "aws_security_group[positive1-2].ingress[1]",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-2].ingress[1] ports are known",
-    "actualValue": "aws_security_group[positive1-2].ingress[1] ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_security_group[positive1-2].ingress[1] ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -33,7 +35,8 @@
     "searchKey": "aws_security_group[positive1-3].ingress",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-3].ingress ports are known",
-    "actualValue": "aws_security_group[positive1-3].ingress ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_security_group[positive1-3].ingress ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -45,7 +48,8 @@
     "searchKey": "aws_security_group[positive1-4].ingress[1]",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-4].ingress[1] ports are known",
-    "actualValue": "aws_security_group[positive1-4].ingress[1] ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_security_group[positive1-4].ingress[1] ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -57,7 +61,8 @@
     "searchKey": "aws_security_group[positive1-5].ingress",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-5].ingress ports are known",
-    "actualValue": "aws_security_group[positive1-5].ingress ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_security_group[positive1-5].ingress ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -69,7 +74,8 @@
     "searchKey": "aws_security_group[positive1-6].ingress",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-6].ingress ports are known",
-    "actualValue": "aws_security_group[positive1-6].ingress ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_security_group[positive1-6].ingress ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -81,7 +87,8 @@
     "searchKey": "aws_security_group[positive1-7].ingress",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-7].ingress ports are known",
-    "actualValue": "aws_security_group[positive1-7].ingress ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_security_group[positive1-7].ingress ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -93,7 +100,8 @@
     "searchKey": "aws_vpc_security_group_ingress_rule[positive2-1]",
     "searchValue": "",
     "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-1] ports are known",
-    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-1] ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-1] ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -105,7 +113,8 @@
     "searchKey": "aws_vpc_security_group_ingress_rule[positive2-2]",
     "searchValue": "",
     "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-2] ports are known",
-    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-2] ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-2] ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -117,7 +126,8 @@
     "searchKey": "aws_security_group_rule[positive3-1]",
     "searchValue": "",
     "expectedValue": "aws_security_group_rule[positive3-1] ports are known",
-    "actualValue": "aws_security_group_rule[positive3-1] ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_security_group_rule[positive3-1] ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -129,7 +139,8 @@
     "searchKey": "aws_security_group_rule[positive3-2]",
     "searchValue": "",
     "expectedValue": "aws_security_group_rule[positive3-2] ports are known",
-    "actualValue": "aws_security_group_rule[positive3-2] ports are unknown and exposed to the entire Internet"
+    "actualValue": "aws_security_group_rule[positive3-2] ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -141,7 +152,8 @@
     "searchKey": "module[vote_service_sg_ipv4].ingress_with_cidr_blocks.0",
     "searchValue": "",
     "expectedValue": "module[vote_service_sg_ipv4].ingress_with_cidr_blocks.0 ports are known",
-    "actualValue": "module[vote_service_sg_ipv4].ingress_with_cidr_blocks.0 ports are unknown and exposed to the entire Internet"
+    "actualValue": "module[vote_service_sg_ipv4].ingress_with_cidr_blocks.0 ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -153,7 +165,8 @@
     "searchKey": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0",
     "searchValue": "",
     "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 ports are known",
-    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 ports are unknown and exposed to the entire Internet"
+    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -165,7 +178,8 @@
     "searchKey": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2",
     "searchValue": "",
     "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 ports are known",
-    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 ports are unknown and exposed to the entire Internet"
+    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -177,7 +191,8 @@
     "searchKey": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0",
     "searchValue": "",
     "expectedValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 ports are known",
-    "actualValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 ports are unknown and exposed to the entire Internet"
+    "actualValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -189,7 +204,8 @@
     "searchKey": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.0",
     "searchValue": "",
     "expectedValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.0 ports are known",
-    "actualValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.0 ports are unknown and exposed to the entire Internet"
+    "actualValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.0 ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -201,6 +217,7 @@
     "searchKey": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2",
     "searchValue": "",
     "expectedValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 ports are known",
-    "actualValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 ports are unknown and exposed to the entire Internet"
+    "actualValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 ports are unknown and exposed to the entire Internet",
+    "issueType": "IncorrectValue"
   }
 ]

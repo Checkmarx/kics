@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{ec2-rule2}}.spec.forProvider.ingress.ipRanges.cidrIp={{0.0.0.0/0}}",
     "searchValue": "",
     "expectedValue": "ingress rule should not contain '0.0.0.0/0'",
-    "actualValue": "ingress rule contains '0.0.0.0/0'"
+    "actualValue": "ingress rule contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DB Security Group Has Public Interface",
@@ -21,6 +22,7 @@
     "searchKey": "spec.resources.base.metadata.name={{ec2-rule5}}.spec.forProvider.ingress.ipRanges.cidrIp={{0.0.0.0/0}}",
     "searchValue": "",
     "expectedValue": "ingress rule should not contain '0.0.0.0/0'",
-    "actualValue": "ingress rule contains '0.0.0.0/0'"
+    "actualValue": "ingress rule contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   }
 ]

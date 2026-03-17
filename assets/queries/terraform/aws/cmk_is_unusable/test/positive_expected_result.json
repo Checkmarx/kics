@@ -9,6 +9,7 @@
     "searchKey": "aws_kms_key[a].is_enabled",
     "searchValue": "",
     "expectedValue": "aws_kms_key[a].is_enabled should be set to true",
-    "actualValue": "aws_kms_key[a].is_enabled is set to false"
+    "actualValue": "aws_kms_key[a].is_enabled is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "github_organization_webhook[positive1].configuration.insecure_ssl",
     "searchValue": "",
     "expectedValue": "github_organization_webhook[positive1].configuration.insecure_ssl should be set to false",
-    "actualValue": "github_organization_webhook[positive1].configuration.insecure_ssl is true"
+    "actualValue": "github_organization_webhook[positive1].configuration.insecure_ssl is true",
+    "issueType": "IncorrectValue"
   }
 ]

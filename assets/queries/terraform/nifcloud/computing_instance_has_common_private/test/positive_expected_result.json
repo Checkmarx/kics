@@ -9,7 +9,8 @@
     "searchKey": "nifcloud_instance[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_instance[positive]' should use a private LAN to isolate the private side network from the shared network",
-    "actualValue": "'nifcloud_instance[positive]' has common private network"
+    "actualValue": "'nifcloud_instance[positive]' has common private network",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Nifcloud Computing Has Common Private Network",
@@ -21,6 +22,7 @@
     "searchKey": "nifcloud_instance[positive]",
     "searchValue": "",
     "expectedValue": "'nifcloud_instance[positive]' should use a private LAN to isolate the private side network from the shared network",
-    "actualValue": "'nifcloud_instance[positive]' has common private network"
+    "actualValue": "'nifcloud_instance[positive]' has common private network",
+    "issueType": "IncorrectValue"
   }
 ]

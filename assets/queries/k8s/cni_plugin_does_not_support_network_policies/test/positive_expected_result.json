@@ -9,7 +9,8 @@
     "searchKey": "plugins",
     "searchValue": "",
     "expectedValue": "Plugins should not contain a plugin that does not support Network Policies",
-    "actualValue": "Plugins contains a plugin that does not support Network Policies"
+    "actualValue": "Plugins contains a plugin that does not support Network Policies",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CNI Plugin Does Not Support Network Policies",
@@ -21,6 +22,7 @@
     "searchKey": "data.cni-conf.json",
     "searchValue": "",
     "expectedValue": "Plugins should not contain a plugin that does not support Network Policies",
-    "actualValue": "Plugins contains a plugin that does not support Network Policies"
+    "actualValue": "Plugins contains a plugin that does not support Network Policies",
+    "issueType": "IncorrectValue"
   }
 ]

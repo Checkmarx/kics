@@ -9,7 +9,8 @@
     "searchKey": "name={{Create IAM Managed Policy}}.{{community.aws.iam_managed_policy}}.policy",
     "searchValue": "",
     "expectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
-    "actualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'"
+    "actualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Role Allows All Principals To Assume",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create2 IAM Managed Policy}}.{{community.aws.iam_managed_policy}}.policy",
     "searchValue": "",
     "expectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain ':root",
-    "actualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'"
+    "actualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains ':root'",
+    "issueType": "IncorrectValue"
   }
 ]

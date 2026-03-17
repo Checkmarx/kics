@@ -9,6 +9,7 @@
     "searchKey": "aws_ebs_encryption_by_default[positive1].enabled",
     "searchValue": "",
     "expectedValue": "'aws_ebs_encryption_by_default.encrypted' should be true",
-    "actualValue": "'aws_ebs_encryption_by_default.encrypted' is false"
+    "actualValue": "'aws_ebs_encryption_by_default.encrypted' is false",
+    "issueType": "IncorrectValue"
   }
 ]

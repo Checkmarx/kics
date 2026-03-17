@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.parameters",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object Without Schema",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/user/}}.parameters",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object Without Schema",
@@ -33,7 +35,8 @@
     "searchKey": "components.parameters",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object Without Schema",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.parameters",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object Without Schema",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/user/}}.parameters",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object Without Schema",
@@ -69,6 +74,7 @@
     "searchKey": "components.parameters",
     "searchValue": "",
     "expectedValue": "The attribute 'schema' should be set",
-    "actualValue": "The attribute 'schema' is undefined"
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "tencentcloud_instance[cvm_postpaid].vpc_id",
     "searchValue": "",
     "expectedValue": "tencentcloud_instance[cvm_postpaid].vpc_id should not contain 'default'",
-    "actualValue": "tencentcloud_instance[cvm_postpaid].vpc_id contains 'default'"
+    "actualValue": "tencentcloud_instance[cvm_postpaid].vpc_id contains 'default'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CVM Instance Using Default VPC",
@@ -21,6 +22,7 @@
     "searchKey": "tencentcloud_instance[cvm_postpaid].subnet_id",
     "searchValue": "",
     "expectedValue": "tencentcloud_instance[cvm_postpaid].subnet_id should not be associated with a default Subnet",
-    "actualValue": "tencentcloud_instance[cvm_postpaid].subnet_id is associated with a default Subnet"
+    "actualValue": "tencentcloud_instance[cvm_postpaid].subnet_id is associated with a default Subnet",
+    "issueType": "IncorrectValue"
   }
 ]

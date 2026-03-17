@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{firewall}}.properties.allowed[%!d(string=22)].ports=%!s(MISSING)",
     "searchValue": "",
     "expectedValue": "'allowed[0].ports' to not include SSH port 22",
-    "actualValue": "'allowed[0].ports' includes SSH port 22"
+    "actualValue": "'allowed[0].ports' includes SSH port 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Access Is Not Restricted",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{firewall}}.properties.allowed[%!d(string=21-3390)].ports=%!s(MISSING)",
     "searchValue": "",
     "expectedValue": "'allowed[0].ports' to not include SSH port 22",
-    "actualValue": "'allowed[0].ports' includes SSH port 22"
+    "actualValue": "'allowed[0].ports' includes SSH port 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Access Is Not Restricted",
@@ -33,6 +35,7 @@
     "searchKey": "resources.name={{firewall}}.properties.allowed[%!d(string=0-65535)].ports=%!s(MISSING)",
     "searchValue": "",
     "expectedValue": "'allowed[0].ports' to not include SSH port 22",
-    "actualValue": "'allowed[0].ports' includes SSH port 22"
+    "actualValue": "'allowed[0].ports' includes SSH port 22",
+    "issueType": "IncorrectValue"
   }
 ]

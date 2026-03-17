@@ -9,7 +9,8 @@
     "searchKey": "azurerm_sql_firewall_rule[positive1]",
     "searchValue": "",
     "expectedValue": "azurerm_sql_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
-    "actualValue": "azurerm_sql_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
+    "actualValue": "azurerm_sql_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQLServer Ingress From Any IP",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_mssql_firewall_rule[positive1]",
     "searchValue": "",
     "expectedValue": "azurerm_mssql_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
-    "actualValue": "azurerm_mssql_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
+    "actualValue": "azurerm_mssql_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQLServer Ingress From Any IP",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_mariadb_firewall_rule[example]",
     "searchValue": "",
     "expectedValue": "azurerm_mariadb_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
-    "actualValue": "azurerm_mariadb_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
+    "actualValue": "azurerm_mariadb_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQLServer Ingress From Any IP",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_postgresql_firewall_rule[example]",
     "searchValue": "",
     "expectedValue": "azurerm_postgresql_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
-    "actualValue": "azurerm_postgresql_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
+    "actualValue": "azurerm_postgresql_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQLServer Ingress From Any IP",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_postgresql_flexible_server_firewall_rule[example]",
     "searchValue": "",
     "expectedValue": "azurerm_postgresql_flexible_server_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
-    "actualValue": "azurerm_postgresql_flexible_server_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
+    "actualValue": "azurerm_postgresql_flexible_server_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQLServer Ingress From Any IP",
@@ -69,6 +74,7 @@
     "searchKey": "azurerm_mysql_flexible_server_firewall_rule[example]",
     "searchValue": "",
     "expectedValue": "azurerm_mysql_flexible_server_firewall_rule.start_ip_address different from 0.0.0.0 and end_ip_address different from 0.0.0.0 or 255.255.255.255",
-    "actualValue": "azurerm_mysql_flexible_server_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255"
+    "actualValue": "azurerm_mysql_flexible_server_firewall_rule.start_ip_address equal to 0.0.0.0 and end_ip_address equal to 0.0.0.0 or 255.255.255.255",
+    "issueType": "IncorrectValue"
   }
 ]

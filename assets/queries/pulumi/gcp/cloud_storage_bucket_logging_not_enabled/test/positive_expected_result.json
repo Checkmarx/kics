@@ -9,6 +9,7 @@
     "searchKey": "resources[example].properties",
     "searchValue": "",
     "expectedValue": "Storage Bucket should have attribute 'logging' defined",
-    "actualValue": "Storage Bucket attribute 'logging' is not defined"
+    "actualValue": "Storage Bucket attribute 'logging' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

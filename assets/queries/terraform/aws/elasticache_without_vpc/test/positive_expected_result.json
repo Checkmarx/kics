@@ -9,6 +9,7 @@
     "searchKey": "aws_elasticache_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "'aws_elasticache_cluster[positive1].subnet_group_name' should be defined and not null'",
-    "actualValue": "'aws_elasticache_cluster[positive1].subnet_group_name' is undefined or null"
+    "actualValue": "'aws_elasticache_cluster[positive1].subnet_group_name' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

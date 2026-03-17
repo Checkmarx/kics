@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyRepository3.Properties.RepositoryPolicyText",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository3.Properties.RepositoryPolicyText.Statement.Principal shouldn't contain '*'",
-    "actualValue": "Resources.MyRepository3.Properties.RepositoryPolicyText.Statement.Principal contains '*'"
+    "actualValue": "Resources.MyRepository3.Properties.RepositoryPolicyText.Statement.Principal contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Repository Is Publicly Accessible",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.MyRepository4.Properties.RepositoryPolicyText",
     "searchValue": "",
     "expectedValue": "Resources.MyRepository4.Properties.RepositoryPolicyText.Statement.Principal shouldn't contain '*'",
-    "actualValue": "Resources.MyRepository4.Properties.RepositoryPolicyText.Statement.Principal contains '*'"
+    "actualValue": "Resources.MyRepository4.Properties.RepositoryPolicyText.Statement.Principal contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

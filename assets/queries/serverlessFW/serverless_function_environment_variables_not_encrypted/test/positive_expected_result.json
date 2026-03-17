@@ -9,7 +9,8 @@
     "searchKey": "provider",
     "searchValue": "",
     "expectedValue": "'kmsKeyArn' should be defined inside the provider",
-    "actualValue": "'kmsKeyArn' is not defined"
+    "actualValue": "'kmsKeyArn' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Serverless Function Environment Variables Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "functions.hello",
     "searchValue": "",
     "expectedValue": "'kmsKeyArn' should be defined inside the function",
-    "actualValue": "'kmsKeyArn' is not defined"
+    "actualValue": "'kmsKeyArn' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Serverless Function Environment Variables Not Encrypted",
@@ -33,6 +35,7 @@
     "searchKey": "provider",
     "searchValue": "",
     "expectedValue": "'kmsKeyArn' should be defined inside the provider",
-    "actualValue": "'kmsKeyArn' is not defined"
+    "actualValue": "'kmsKeyArn' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

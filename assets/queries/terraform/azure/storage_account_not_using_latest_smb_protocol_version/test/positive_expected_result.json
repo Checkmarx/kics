@@ -9,7 +9,8 @@
     "searchKey": "azurerm_storage_account[positive1]",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive1].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
-    "actualValue": "'azurerm_storage_account[positive1].share_properties' is undefined or null"
+    "actualValue": "'azurerm_storage_account[positive1].share_properties' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_storage_account[positive2].share_properties",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive2].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
-    "actualValue": "'azurerm_storage_account[positive2].share_properties.smb' is undefined or null"
+    "actualValue": "'azurerm_storage_account[positive2].share_properties.smb' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_storage_account[positive3].share_properties.smb",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive3].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
-    "actualValue": "'azurerm_storage_account[positive3].share_properties.smb.versions' is undefined or null"
+    "actualValue": "'azurerm_storage_account[positive3].share_properties.smb.versions' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_storage_account[positive4].share_properties.smb.versions",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive4].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
-    "actualValue": "'azurerm_storage_account[positive4].share_properties.smb.versions' is empty or null"
+    "actualValue": "'azurerm_storage_account[positive4].share_properties.smb.versions' is empty or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_storage_account[positive5].share_properties.smb.versions",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive5].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
-    "actualValue": "'azurerm_storage_account[positive5].share_properties.smb.versions' does not include 'SMB3.1.1' and instead includes 2 outdated version(s)"
+    "actualValue": "'azurerm_storage_account[positive5].share_properties.smb.versions' does not include 'SMB3.1.1' and instead includes 2 outdated version(s)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
@@ -69,6 +74,7 @@
     "searchKey": "azurerm_storage_account[positive6].share_properties.smb.versions",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive6].share_properties.smb.versions' should be defined and exclusively include 'SMB3.1.1'",
-    "actualValue": "'azurerm_storage_account[positive6].share_properties.smb.versions' includes 'SMB3.1.1' but also includes 1 outdated version(s)"
+    "actualValue": "'azurerm_storage_account[positive6].share_properties.smb.versions' includes 'SMB3.1.1' but also includes 1 outdated version(s)",
+    "issueType": "MissingAttribute"
   }
 ]

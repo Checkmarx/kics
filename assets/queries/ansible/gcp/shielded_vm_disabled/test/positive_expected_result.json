@@ -9,7 +9,8 @@
     "searchKey": "name={{create a instance1}}.{{google.cloud.gcp_compute_instance}}",
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.shielded_instance_config should be defined",
-    "actualValue": "gcp_compute_instance.shielded_instance_config is undefined"
+    "actualValue": "gcp_compute_instance.shielded_instance_config is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a instance2}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config",
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring should be defined",
-    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring is undefined"
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "name={{create a instance3}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config",
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot should be defined",
-    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot is undefined"
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "name={{create a instance4}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config",
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm should be defined",
-    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm is undefined"
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "name={{create a instance5}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_integrity_monitoring",
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring should be true",
-    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring is false"
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "name={{create a instance6}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_secure_boot",
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot should be true",
-    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot is false"
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shielded VM Disabled",
@@ -81,6 +87,7 @@
     "searchKey": "name={{create a instance7}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_vtpm",
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm should be true",
-    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm is false"
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm is false",
+    "issueType": "IncorrectValue"
   }
 ]

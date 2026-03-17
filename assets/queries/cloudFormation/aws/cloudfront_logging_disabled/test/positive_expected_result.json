@@ -9,7 +9,8 @@
     "searchKey": "Resources.myDistribution1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging should be defined",
-    "actualValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging is undefined"
+    "actualValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Logging Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket should have the domain '.s3.amazonaws.com'",
-    "actualValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket does not have the correct domain"
+    "actualValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket does not have the correct domain",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Logging Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myDistribution1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging should be defined",
-    "actualValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging is undefined"
+    "actualValue": "Resources.myDistribution1.Properties.DistributionConfig.Logging is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Logging Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket",
     "searchValue": "",
     "expectedValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket should have the domain '.s3.amazonaws.com'",
-    "actualValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket does not have the correct domain"
+    "actualValue": "Resources.myDistribution2.Properties.DistributionConfig.Logging.Bucket does not have the correct domain",
+    "issueType": "IncorrectValue"
   }
 ]

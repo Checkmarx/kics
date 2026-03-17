@@ -9,7 +9,8 @@
     "searchKey": "aws_sns_topic[user_updates].kms_master_key_id",
     "searchValue": "",
     "expectedValue": "SNS Topic should not be encrypted with AWS managed key",
-    "actualValue": "SNS Topic is encrypted with AWS managed key"
+    "actualValue": "SNS Topic is encrypted with AWS managed key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic Encrypted With AWS Managed Key",
@@ -21,6 +22,7 @@
     "searchKey": "aws_sns_topic[test].kms_master_key_id",
     "searchValue": "",
     "expectedValue": "SNS Topic should not be encrypted with AWS managed key",
-    "actualValue": "SNS Topic is encrypted with AWS managed key"
+    "actualValue": "SNS Topic is encrypted with AWS managed key",
+    "issueType": "IncorrectValue"
   }
 ]

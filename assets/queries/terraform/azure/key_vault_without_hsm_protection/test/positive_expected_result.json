@@ -9,7 +9,8 @@
     "searchKey": "azurerm_key_vault_key[positive1].key_type",
     "searchValue": "",
     "expectedValue": "'azurerm_key_vault_key[positive1].key_type' should be set to an HSM-backed type ('RSA-HSM' or 'EC-HSM')",
-    "actualValue": "'azurerm_key_vault_key[positive1].key_type' is set to 'RSA'"
+    "actualValue": "'azurerm_key_vault_key[positive1].key_type' is set to 'RSA'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Key Vault Without HSM Protection",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_key_vault_key[positive2].key_type",
     "searchValue": "",
     "expectedValue": "'azurerm_key_vault_key[positive2].key_type' should be set to an HSM-backed type ('RSA-HSM' or 'EC-HSM')",
-    "actualValue": "'azurerm_key_vault_key[positive2].key_type' is set to 'EC'"
+    "actualValue": "'azurerm_key_vault_key[positive2].key_type' is set to 'EC'",
+    "issueType": "IncorrectValue"
   }
 ]

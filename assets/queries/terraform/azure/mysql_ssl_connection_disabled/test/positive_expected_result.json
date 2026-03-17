@@ -9,6 +9,7 @@
     "searchKey": "azurerm_mysql_server[positive1].ssl_enforcement_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_mysql_server.positive1.ssl_enforcement_enabled' should equal 'true'",
-    "actualValue": "'azurerm_mysql_server.positive1.ssl_enforcement_enabled' is equal 'false'"
+    "actualValue": "'azurerm_mysql_server.positive1.ssl_enforcement_enabled' is equal 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

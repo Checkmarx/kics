@@ -9,7 +9,8 @@
     "searchKey": "Resources.HostedZone",
     "searchValue": "",
     "expectedValue": "Resources.HostedZone has RecordSet",
-    "actualValue": "Resources.HostedZone doesn't have RecordSet"
+    "actualValue": "Resources.HostedZone doesn't have RecordSet",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Route53 Record Undefined",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.HostedZone",
     "searchValue": "",
     "expectedValue": "Resources.HostedZone has RecordSet",
-    "actualValue": "Resources.HostedZone doesn't have RecordSet"
+    "actualValue": "Resources.HostedZone doesn't have RecordSet",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.primer.Properties.TracingConfig.Mode",
     "searchValue": "",
     "expectedValue": "TracingConfig.Mode should be set to 'Active'",
-    "actualValue": "TracingConfig.Mode is set to 'PassThrough'"
+    "actualValue": "TracingConfig.Mode is set to 'PassThrough'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Function.Properties",
     "searchValue": "",
     "expectedValue": "Property 'TracingConfig' should be defined",
-    "actualValue": "Property 'TracingConfig' is undefined"
+    "actualValue": "Property 'TracingConfig' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.primer.Properties.TracingConfig.Mode",
     "searchValue": "",
     "expectedValue": "TracingConfig.Mode should be set to 'Active'",
-    "actualValue": "TracingConfig.Mode is set to 'PassThrough'"
+    "actualValue": "TracingConfig.Mode is set to 'PassThrough'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.Function.Properties",
     "searchValue": "",
     "expectedValue": "Property 'TracingConfig' should be defined",
-    "actualValue": "Property 'TracingConfig' is undefined"
+    "actualValue": "Property 'TracingConfig' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

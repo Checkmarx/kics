@@ -9,7 +9,8 @@
     "searchKey": "aws_api_gateway_method_settings[positive1].settings.metrics_enabled",
     "searchValue": "",
     "expectedValue": "aws_api_gateway_method_settings[positive1].settings.metrics_enabled should be true",
-    "actualValue": "aws_api_gateway_method_settings[positive1].settings.metrics_enabled is false"
+    "actualValue": "aws_api_gateway_method_settings[positive1].settings.metrics_enabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudWatch Metrics Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_api_gateway_method_settings[positive2].settings",
     "searchValue": "",
     "expectedValue": "aws_api_gateway_method_settings[positive2].settings.metrics_enabled should be defined and not null",
-    "actualValue": "aws_api_gateway_method_settings[positive2].settings.metrics_enabled is undefined or null"
+    "actualValue": "aws_api_gateway_method_settings[positive2].settings.metrics_enabled is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

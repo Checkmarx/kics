@@ -9,6 +9,7 @@
     "searchKey": "provider.logs.restApi.accessLogging",
     "searchValue": "",
     "expectedValue": "provider.logs.restApi should have 'accessLogging' set to true",
-    "actualValue": "provider.logs.restApi has 'accessLogging' set to false"
+    "actualValue": "provider.logs.restApi has 'accessLogging' set to false",
+    "issueType": "IncorrectValue"
   }
 ]

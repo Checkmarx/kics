@@ -9,7 +9,8 @@
     "searchKey": "resources.exampleDomain.properties",
     "searchValue": "",
     "expectedValue": "Attribute 'logPublishingOptions' should be defined",
-    "actualValue": "Attribute 'logPublishingOptions' is not defined"
+    "actualValue": "Attribute 'logPublishingOptions' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch Logs Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.exampleDomain.properties.logPublishingOptions[0].logType",
     "searchValue": "",
     "expectedValue": "Attribute 'enabled' should be defined and set to 'true'",
-    "actualValue": "Attribute 'enabled' is not defined"
+    "actualValue": "Attribute 'enabled' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch Logs Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "resources.exampleDomain.properties.logPublishingOptions[0].logType",
     "searchValue": "",
     "expectedValue": "Attribute 'enabled' should be set to 'true'",
-    "actualValue": "Attribute 'enabled' is set to 'false'"
+    "actualValue": "Attribute 'enabled' is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

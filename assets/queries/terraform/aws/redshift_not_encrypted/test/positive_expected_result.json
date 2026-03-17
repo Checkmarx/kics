@@ -9,7 +9,8 @@
     "searchKey": "aws_redshift_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "aws_redshift_cluster.encrypted should be defined and not null",
-    "actualValue": "aws_redshift_cluster.encrypted is undefined or null"
+    "actualValue": "aws_redshift_cluster.encrypted is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Not Encrypted",
@@ -21,6 +22,7 @@
     "searchKey": "aws_redshift_cluster[positive2].encrypted",
     "searchValue": "",
     "expectedValue": "aws_redshift_cluster.encrypted should be set to false",
-    "actualValue": "aws_redshift_cluster.encrypted is true"
+    "actualValue": "aws_redshift_cluster.encrypted is true",
+    "issueType": "IncorrectValue"
   }
 ]

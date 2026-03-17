@@ -9,6 +9,7 @@
     "searchKey": "aws_msk_cluster[positive1].broker_node_group_info.connectivity_info.public_access.type",
     "searchValue": "",
     "expectedValue": "aws_msk_cluster[positive1].broker_node_group_info.connectivity_info.public_access.type should be set to 'DISABLED' or undefined",
-    "actualValue": "aws_msk_cluster[positive1].broker_node_group_info.connectivity_info.public_access.type is set to 'SERVICE_PROVIDED_EIPS'"
+    "actualValue": "aws_msk_cluster[positive1].broker_node_group_info.connectivity_info.public_access.type is set to 'SERVICE_PROVIDED_EIPS'",
+    "issueType": "IncorrectValue"
   }
 ]

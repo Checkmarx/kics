@@ -9,6 +9,7 @@
     "searchKey": "aws_sagemaker_endpoint_configuration[positive]",
     "searchValue": "",
     "expectedValue": "aws_sagemaker_endpoint_configuration[positive] should be defined and not null",
-    "actualValue": "aws_sagemaker_endpoint_configuration[positive] is undefined or null"
+    "actualValue": "aws_sagemaker_endpoint_configuration[positive] is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

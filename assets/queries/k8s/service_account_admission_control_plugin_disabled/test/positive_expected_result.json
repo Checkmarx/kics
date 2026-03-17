@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--disable-admission-plugins flag should not contain 'ServiceAccount' plugin",
-    "actualValue": "--disable-admission-plugins flag contains 'ServiceAccount' plugin"
+    "actualValue": "--disable-admission-plugins flag contains 'ServiceAccount' plugin",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service Account Admission Control Plugin Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--disable-admission-plugins flag should not contain 'ServiceAccount' plugin",
-    "actualValue": "--disable-admission-plugins flag contains 'ServiceAccount' plugin"
+    "actualValue": "--disable-admission-plugins flag contains 'ServiceAccount' plugin",
+    "issueType": "IncorrectValue"
   }
 ]

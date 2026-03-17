@@ -9,7 +9,8 @@
     "searchKey": "name={{bar}}.no_log",
     "searchValue": "",
     "expectedValue": "'no_log' should be set to 'true' in order to not expose sensitive data",
-    "actualValue": "'no_log' is set to false"
+    "actualValue": "'no_log' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Logging of Sensitive Data",
@@ -21,6 +22,7 @@
     "searchKey": "name={{bar}}",
     "searchValue": "",
     "expectedValue": "'no_log' should be defined and set to 'true' in order to not expose sensitive data",
-    "actualValue": "'no_log' is not defined"
+    "actualValue": "'no_log' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

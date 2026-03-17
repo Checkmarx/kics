@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{php-apache-1}}.spec.replicas",
     "searchValue": "",
     "expectedValue": "metadata.name={{php-apache-1}}.spec.replicas should be undefined",
-    "actualValue": "metadata.name={{php-apache-1}}.spec.replicas is defined"
+    "actualValue": "metadata.name={{php-apache-1}}.spec.replicas is defined",
+    "issueType": "IncorrectValue"
   }
 ]

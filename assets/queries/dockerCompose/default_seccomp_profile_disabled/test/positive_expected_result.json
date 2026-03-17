@@ -9,7 +9,8 @@
     "searchKey": "services.demo.security_opt",
     "searchValue": "",
     "expectedValue": "Seccomp default profile to not be disabled.",
-    "actualValue": "Seccomp default profile is disabled."
+    "actualValue": "Seccomp default profile is disabled.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Seccomp Profile Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "services.example.security_opt",
     "searchValue": "",
     "expectedValue": "Seccomp default profile to not be disabled.",
-    "actualValue": "Seccomp default profile is disabled."
+    "actualValue": "Seccomp default profile is disabled.",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_ssoadmin_permission_set[example3].session_duration",
     "searchValue": "",
     "expectedValue": "session_duration should not be higher than 1 hour",
-    "actualValue": "session_duration is higher than 1 hour"
+    "actualValue": "session_duration is higher than 1 hour",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSO Permission With Inadequate User Session Duration",
@@ -21,6 +22,7 @@
     "searchKey": "aws_ssoadmin_permission_set[example4].session_duration",
     "searchValue": "",
     "expectedValue": "session_duration should not be higher than 1 hour",
-    "actualValue": "session_duration is higher than 1 hour"
+    "actualValue": "session_duration is higher than 1 hour",
+    "issueType": "IncorrectValue"
   }
 ]

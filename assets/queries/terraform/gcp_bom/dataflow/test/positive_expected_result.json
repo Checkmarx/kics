@@ -9,7 +9,8 @@
     "searchKey": "google_dataflow_job[pubsub_stream]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP Dataflow",
@@ -21,6 +22,7 @@
     "searchKey": "google_dataflow_job[pubsub_stream2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

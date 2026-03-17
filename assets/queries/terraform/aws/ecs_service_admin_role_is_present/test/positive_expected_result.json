@@ -9,6 +9,7 @@
     "searchKey": "aws_ecs_service[positive1].iam_role",
     "searchValue": "",
     "expectedValue": "'aws_ecs_service[positive1].iam_role' should not equal to 'admin'",
-    "actualValue": "'aws_ecs_service[positive1].iam_role' is equal to 'admin'"
+    "actualValue": "'aws_ecs_service[positive1].iam_role' is equal to 'admin'",
+    "issueType": "IncorrectValue"
   }
 ]

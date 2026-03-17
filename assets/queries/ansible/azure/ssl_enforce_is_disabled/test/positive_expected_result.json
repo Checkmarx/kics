@@ -9,7 +9,8 @@
     "searchKey": "name={{Create (or update) PostgreSQL Server}}.{{azure.azcollection.azure_rm_postgresqlserver}}",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlserver should have enforce_ssl set to true",
-    "actualValue": "azure_rm_postgresqlserver does not have enforce_ssl (defaults to false)"
+    "actualValue": "azure_rm_postgresqlserver does not have enforce_ssl (defaults to false)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SSL Enforce Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create (or update) PostgreSQL Server2}}.{{azure.azcollection.azure_rm_postgresqlserver}}.enforce_ssl",
     "searchValue": "",
     "expectedValue": "azure_rm_postgresqlserver should have enforce_ssl set to true",
-    "actualValue": "azure_rm_postgresqlserver does has enforce_ssl set to false"
+    "actualValue": "azure_rm_postgresqlserver does has enforce_ssl set to false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{configmap-modifier}}.rules",
     "searchValue": "",
     "expectedValue": "metadata.name={{configmap-modifier}}.rules[0].apiGroups should list the minimal set of needed objects or actions",
-    "actualValue": "metadata.name={{configmap-modifier}}.rules[0].apiGroups uses wildcards to specify objects or actions"
+    "actualValue": "metadata.name={{configmap-modifier}}.rules[0].apiGroups uses wildcards to specify objects or actions",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RBAC Wildcard In Rule",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{configmap-modifier}}.rules",
     "searchValue": "",
     "expectedValue": "metadata.name={{configmap-modifier}}.rules[0].verbs should list the minimal set of needed objects or actions",
-    "actualValue": "metadata.name={{configmap-modifier}}.rules[0].verbs uses wildcards to specify objects or actions"
+    "actualValue": "metadata.name={{configmap-modifier}}.rules[0].verbs uses wildcards to specify objects or actions",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RBAC Wildcard In Rule",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{configmap-modifier1}}.rules",
     "searchValue": "",
     "expectedValue": "metadata.name={{configmap-modifier1}}.rules[0].apiGroups should list the minimal set of needed objects or actions",
-    "actualValue": "metadata.name={{configmap-modifier1}}.rules[0].apiGroups uses wildcards to specify objects or actions"
+    "actualValue": "metadata.name={{configmap-modifier1}}.rules[0].apiGroups uses wildcards to specify objects or actions",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RBAC Wildcard In Rule",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{configmap-modifier1}}.rules",
     "searchValue": "",
     "expectedValue": "metadata.name={{configmap-modifier1}}.rules[0].resources should list the minimal set of needed objects or actions",
-    "actualValue": "metadata.name={{configmap-modifier1}}.rules[0].resources uses wildcards to specify objects or actions"
+    "actualValue": "metadata.name={{configmap-modifier1}}.rules[0].resources uses wildcards to specify objects or actions",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RBAC Wildcard In Rule",
@@ -57,7 +61,8 @@
     "searchKey": "metadata.name={{configmap-modifier1}}.rules",
     "searchValue": "",
     "expectedValue": "metadata.name={{configmap-modifier1}}.rules[0].verbs should list the minimal set of needed objects or actions",
-    "actualValue": "metadata.name={{configmap-modifier1}}.rules[0].verbs uses wildcards to specify objects or actions"
+    "actualValue": "metadata.name={{configmap-modifier1}}.rules[0].verbs uses wildcards to specify objects or actions",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RBAC Wildcard In Rule",
@@ -69,7 +74,8 @@
     "searchKey": "metadata.name={{configmap-modifier2}}.rules",
     "searchValue": "",
     "expectedValue": "metadata.name={{configmap-modifier2}}.rules[0].apiGroups should list the minimal set of needed objects or actions",
-    "actualValue": "metadata.name={{configmap-modifier2}}.rules[0].apiGroups uses wildcards to specify objects or actions"
+    "actualValue": "metadata.name={{configmap-modifier2}}.rules[0].apiGroups uses wildcards to specify objects or actions",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RBAC Wildcard In Rule",
@@ -81,6 +87,7 @@
     "searchKey": "metadata.name={{configmap-modifier2}}.rules",
     "searchValue": "",
     "expectedValue": "metadata.name={{configmap-modifier2}}.rules[0].resources should list the minimal set of needed objects or actions",
-    "actualValue": "metadata.name={{configmap-modifier2}}.rules[0].resources uses wildcards to specify objects or actions"
+    "actualValue": "metadata.name={{configmap-modifier2}}.rules[0].resources uses wildcards to specify objects or actions",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "resources.name={{db-instance}}.properties.settings.databaseFlags[0]",
     "searchValue": "",
     "expectedValue": "'settings.databaseFlags[0]' should be 'off'",
-    "actualValue": "'settings.databaseFlags[0]' is equal to 'on'"
+    "actualValue": "'settings.databaseFlags[0]' is equal to 'on'",
+    "issueType": "IncorrectValue"
   }
 ]

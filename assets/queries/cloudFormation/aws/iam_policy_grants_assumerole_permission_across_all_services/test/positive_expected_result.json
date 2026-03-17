@@ -9,7 +9,8 @@
     "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'Resources.mypolicy.Properties.PolicyDocument.Statement' with AssumeRole action should not grant access in all services ('*')",
-    "actualValue": "'Resources.mypolicy.Properties.PolicyDocument.Statement' with AssumeRole action is granting access in all services ('*')"
+    "actualValue": "'Resources.mypolicy.Properties.PolicyDocument.Statement' with AssumeRole action is granting access in all services ('*')",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
     "searchValue": "",
     "expectedValue": "'Resources.mypolicy.Properties.PolicyDocument.Statement' with AssumeRole action should not grant access in all services ('*')",
-    "actualValue": "'Resources.mypolicy.Properties.PolicyDocument.Statement' with AssumeRole action is granting access in all services ('*')"
+    "actualValue": "'Resources.mypolicy.Properties.PolicyDocument.Statement' with AssumeRole action is granting access in all services ('*')",
+    "issueType": "IncorrectValue"
   }
 ]

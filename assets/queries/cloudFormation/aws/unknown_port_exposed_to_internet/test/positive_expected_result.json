@@ -9,7 +9,8 @@
     "searchKey": "Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet"
+    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet"
+    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.IPv4Ingress1.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv4Ingress1.Properties' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.IPv4Ingress1.Properties' opens unknown ports to the Internet"
+    "actualValue": "'Resources.IPv4Ingress1.Properties' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.IPv4Ingress2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv4Ingress2.Properties' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.IPv4Ingress2.Properties' opens unknown ports to the Internet"
+    "actualValue": "'Resources.IPv4Ingress2.Properties' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet"
+    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet"
+    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.IPv6Ingress1.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress1.Properties' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.IPv6Ingress1.Properties' opens unknown ports to the Internet"
+    "actualValue": "'Resources.IPv6Ingress1.Properties' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.IPv6Ingress2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress2.Properties' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.IPv6Ingress2.Properties' opens unknown ports to the Internet"
+    "actualValue": "'Resources.IPv6Ingress2.Properties' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet"
+    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet"
+    "actualValue": "'Resources.Positive1IPv4.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.IPv4Ingress1.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv4Ingress1.Properties' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.IPv4Ingress1.Properties' opens unknown ports to the Internet"
+    "actualValue": "'Resources.IPv4Ingress1.Properties' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.IPv4Ingress2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv4Ingress2.Properties' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.IPv4Ingress2.Properties' opens unknown ports to the Internet"
+    "actualValue": "'Resources.IPv4Ingress2.Properties' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -153,7 +165,8 @@
     "searchKey": "Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet"
+    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[0]' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -165,7 +178,8 @@
     "searchKey": "Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]",
     "searchValue": "",
     "expectedValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet"
+    "actualValue": "'Resources.Positive1IPv6.Properties.SecurityGroupIngress[1]' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -177,7 +191,8 @@
     "searchKey": "Resources.IPv6Ingress1.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress1.Properties' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.IPv6Ingress1.Properties' opens unknown ports to the Internet"
+    "actualValue": "'Resources.IPv6Ingress1.Properties' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Port Exposed To Internet",
@@ -189,6 +204,7 @@
     "searchKey": "Resources.IPv6Ingress2.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.IPv6Ingress2.Properties' should not open unknown ports to the Internet",
-    "actualValue": "'Resources.IPv6Ingress2.Properties' opens unknown ports to the Internet"
+    "actualValue": "'Resources.IPv6Ingress2.Properties' opens unknown ports to the Internet",
+    "issueType": "IncorrectValue"
   }
 ]

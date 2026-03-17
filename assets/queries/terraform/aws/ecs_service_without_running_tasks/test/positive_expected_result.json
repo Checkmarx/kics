@@ -9,6 +9,7 @@
     "searchKey": "aws_ecs_service[positive1]",
     "searchValue": "",
     "expectedValue": "'aws_ecs_service[positive1]' has at least 1 task running",
-    "actualValue": "'aws_ecs_service[positive1]' must have at least 1 task running"
+    "actualValue": "'aws_ecs_service[positive1]' must have at least 1 task running",
+    "issueType": "IncorrectValue"
   }
 ]

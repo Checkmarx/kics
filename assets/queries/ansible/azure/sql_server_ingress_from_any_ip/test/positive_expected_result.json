@@ -9,6 +9,7 @@
     "searchKey": "name={{Create (or update) Firewall Rule}}.{{azure.azcollection.azure_rm_sqlfirewallrule}}.end_ip_address",
     "searchValue": "",
     "expectedValue": "azure_rm_sqlfirewallrule should allow all IPs",
-    "actualValue": "azure_rm_sqlfirewallrule should not allow all IPs (range from start_ip_address to end_ip_address)"
+    "actualValue": "azure_rm_sqlfirewallrule should not allow all IPs (range from start_ip_address to end_ip_address)",
+    "issueType": "IncorrectValue"
   }
 ]

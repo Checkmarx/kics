@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Accept",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
-    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'"
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Accept",
     "searchValue": "",
     "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Accept should not be 'Accept'",
-    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Accept is 'Accept'"
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Accept",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
-    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'"
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Accept",
     "searchValue": "",
     "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Accept should not be 'Accept'",
-    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Accept is 'Accept'"
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Accept",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
-    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'"
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Accept",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
-    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'"
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Accept",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
-    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'"
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v2)",
@@ -93,7 +100,8 @@
     "searchKey": "parameters.limitParam.name=Accept",
     "searchValue": "",
     "expectedValue": "parameters.limitParam.name=Accept should not be 'Accept'",
-    "actualValue": "parameters.limitParam.name=Accept is 'Accept'"
+    "actualValue": "parameters.limitParam.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v2)",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/}}.parameters.name=Accept",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
-    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'"
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v2)",
@@ -117,6 +126,7 @@
     "searchKey": "parameters.limitParam.name=Accept",
     "searchValue": "",
     "expectedValue": "parameters.limitParam.name=Accept should not be 'Accept'",
-    "actualValue": "parameters.limitParam.name=Accept is 'Accept'"
+    "actualValue": "parameters.limitParam.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue"
   }
 ]

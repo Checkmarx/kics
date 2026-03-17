@@ -9,7 +9,8 @@
     "searchKey": "alicloud_db_instance[default].ssl_action",
     "searchValue": "",
     "expectedValue": "'ssl_action' value should be 'Open'",
-    "actualValue": "'ssl_action' value is 'Close'"
+    "actualValue": "'ssl_action' value is 'Close'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Instance SSL Action Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_db_instance[default]",
     "searchValue": "",
     "expectedValue": "'ssl_action' value should be 'Open'",
-    "actualValue": "'ssl_action' is not defined"
+    "actualValue": "'ssl_action' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

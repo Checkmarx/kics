@@ -9,7 +9,8 @@
     "searchKey": "responses.Success.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema ref points to '#/definitions'",
-    "actualValue": "Schema ref doesn't point to '#/definitions'"
+    "actualValue": "Schema ref doesn't point to '#/definitions'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Incorrect Ref (v2)",
@@ -21,6 +22,7 @@
     "searchKey": "responses.Success.schema.$ref",
     "searchValue": "",
     "expectedValue": "Schema ref points to '#/definitions'",
-    "actualValue": "Schema ref doesn't point to '#/definitions'"
+    "actualValue": "Schema ref doesn't point to '#/definitions'",
+    "issueType": "IncorrectValue"
   }
 ]

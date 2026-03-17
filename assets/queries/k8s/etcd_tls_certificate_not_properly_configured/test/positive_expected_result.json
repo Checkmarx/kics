@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "Pod--etcd-certfile",
     "expectedValue": "--etcd-certfile flag should be defined",
-    "actualValue": "--etcd-certfile flag is not defined"
+    "actualValue": "--etcd-certfile flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Etcd TLS Certificate Not Properly Configured",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{command-demo2}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "Pod--etcd-keyfile",
     "expectedValue": "--etcd-keyfile flag should be defined",
-    "actualValue": "--etcd-keyfile flag is not defined"
+    "actualValue": "--etcd-keyfile flag is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Etcd TLS Certificate Not Properly Configured",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "Pod--etcd-keyfile",
     "expectedValue": "--etcd-keyfile flag should be defined",
-    "actualValue": "--etcd-keyfile flag is not defined"
+    "actualValue": "--etcd-keyfile flag is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

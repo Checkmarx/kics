@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.callbacks.{{myEvent}}.$ref",
     "searchValue": "",
     "expectedValue": "Callback ref points to '#/components/callbacks'",
-    "actualValue": "Callback ref does not point to '#/components/callbacks'"
+    "actualValue": "Callback ref does not point to '#/components/callbacks'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Callback Object With Incorrect Ref",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.callbacks.{{myEvent}}.$ref",
     "searchValue": "",
     "expectedValue": "Callback ref points to '#/components/callbacks'",
-    "actualValue": "Callback ref does not point to '#/components/callbacks'"
+    "actualValue": "Callback ref does not point to '#/components/callbacks'",
+    "issueType": "IncorrectValue"
   }
 ]

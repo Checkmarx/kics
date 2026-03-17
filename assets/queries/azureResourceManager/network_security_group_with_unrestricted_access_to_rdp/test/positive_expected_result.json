@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{security group}}.properties.securityRules",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' should restrict access to RDP",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{security group}}.properties.securityRules",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' should restrict access to RDP",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -33,7 +35,8 @@
     "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' should restrict access to RDP",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -45,7 +48,8 @@
     "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' should restrict access to RDP",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -57,7 +61,8 @@
     "searchKey": "resources.type={{securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'securityRules' should restrict access to RDP",
-    "actualValue": "resource with type 'securityRules' does not restrict access to RDP"
+    "actualValue": "resource with type 'securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -69,7 +74,8 @@
     "searchKey": "resources.type={{securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'securityRules' should restrict access to RDP",
-    "actualValue": "resource with type 'securityRules' does not restrict access to RDP"
+    "actualValue": "resource with type 'securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{security group}}.properties.securityRules",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' should restrict access to RDP",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name={{security group}}.properties.securityRules",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' should restrict access to RDP",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -105,7 +113,8 @@
     "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' should restrict access to RDP",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -117,7 +126,8 @@
     "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' should restrict access to RDP",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -129,7 +139,8 @@
     "searchKey": "resources.type={{securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'securityRules' should restrict access to RDP",
-    "actualValue": "resource with type 'securityRules' does not restrict access to RDP"
+    "actualValue": "resource with type 'securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
@@ -141,6 +152,7 @@
     "searchKey": "resources.type={{securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'securityRules' should restrict access to RDP",
-    "actualValue": "resource with type 'securityRules' does not restrict access to RDP"
+    "actualValue": "resource with type 'securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue"
   }
 ]

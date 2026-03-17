@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "number is float or double formats",
-    "actualValue": "number is int32 format"
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "integer is int32 or int64 formats",
-    "actualValue": "integer is double format"
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.parameters.schema.items.properties.myObject.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "integer is int32 or int64 formats",
-    "actualValue": "integer is double format"
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.parameters.schema.items.properties.myObject.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "number is float or double formats",
-    "actualValue": "number is int32 format"
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.parameters.schema.items.properties.length.format=float",
     "searchValue": "",
     "expectedValue": "integer is int32 or int64 formats",
-    "actualValue": "integer is float format"
+    "actualValue": "integer is float format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "components.schemas.MyObject.properties.id.format=double",
     "searchValue": "",
     "expectedValue": "integer is int32 or int64 formats",
-    "actualValue": "integer is double format"
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "components.schemas.MyObject.properties.percentage.format=int32",
     "searchValue": "",
     "expectedValue": "number is float or double formats",
-    "actualValue": "number is int32 format"
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "integer is int32 or int64 formats",
-    "actualValue": "integer is double format"
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "number is float or double formats",
-    "actualValue": "number is int32 format"
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -117,7 +126,8 @@
     "searchKey": "paths.{{/}}.parameters.schema.items.properties.myObject.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "number is float or double formats",
-    "actualValue": "number is int32 format"
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -129,7 +139,8 @@
     "searchKey": "paths.{{/}}.parameters.schema.items.properties.myObject.$ref=#/components/schemas/MyObject",
     "searchValue": "",
     "expectedValue": "integer is int32 or int64 formats",
-    "actualValue": "integer is double format"
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -141,7 +152,8 @@
     "searchKey": "paths.{{/}}.parameters.schema.items.properties.length.format=float",
     "searchValue": "",
     "expectedValue": "integer is int32 or int64 formats",
-    "actualValue": "integer is float format"
+    "actualValue": "integer is float format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -153,7 +165,8 @@
     "searchKey": "components.schemas.MyObject.properties.id.format=double",
     "searchValue": "",
     "expectedValue": "integer is int32 or int64 formats",
-    "actualValue": "integer is double format"
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
@@ -165,7 +178,8 @@
     "searchKey": "components.schemas.MyObject.properties.percentage.format=int32",
     "searchValue": "",
     "expectedValue": "number is float or double formats",
-    "actualValue": "number is int32 format"
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v2)",
@@ -177,7 +191,8 @@
     "searchKey": "paths.{{/}}.parameters.schema.items.properties.percentage.format=int32",
     "searchValue": "",
     "expectedValue": "number is float or double formats",
-    "actualValue": "number is int32 format"
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v2)",
@@ -189,6 +204,7 @@
     "searchKey": "paths.{{/}}.parameters.schema.items.properties.percentage.format=int32",
     "searchValue": "",
     "expectedValue": "number is float or double formats",
-    "actualValue": "number is int32 format"
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   }
 ]

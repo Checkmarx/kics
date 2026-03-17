@@ -9,6 +9,7 @@
     "searchKey": "alicloud_slb_tls_cipher_policy[positive].tls_versions",
     "searchValue": "",
     "expectedValue": "alicloud_slb_tls_cipher_policy[positive].tls_versions to use secure TLS versions",
-    "actualValue": "alicloud_slb_tls_cipher_policy[positive].tls_versions uses insecure TLS versions"
+    "actualValue": "alicloud_slb_tls_cipher_policy[positive].tls_versions uses insecure TLS versions",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{example}}.{{amazon.aws.ec2}}",
     "searchValue": "",
     "expectedValue": "ec2 to have ebs_optimized set to true.",
-    "actualValue": "ec2 doesn't have ebs_optimized set to true."
+    "actualValue": "ec2 doesn't have ebs_optimized set to true.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -21,7 +22,8 @@
     "searchKey": "name={{example2}}.{{amazon.aws.ec2}}.ebs_optimized",
     "searchValue": "",
     "expectedValue": "ec2 to have ebs_optimized set to true.",
-    "actualValue": "ec2 ebs_optimized is set to false."
+    "actualValue": "ec2 ebs_optimized is set to false.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Not EBS Optimized",
@@ -33,6 +35,7 @@
     "searchKey": "name={{example3}}.{{amazon.aws.ec2}}",
     "searchValue": "",
     "expectedValue": "ec2 to have ebs_optimized set to true.",
-    "actualValue": "ec2 doesn't have ebs_optimized set to true."
+    "actualValue": "ec2 doesn't have ebs_optimized set to true.",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "azurerm_function_app[positive1-1]",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-1].client_cert_mode' should be defined and not null",
-    "actualValue": "'azurerm_function_app[positive1-1].client_cert_mode' is undefined or null"
+    "actualValue": "'azurerm_function_app[positive1-1].client_cert_mode' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Client Certificates Unrequired",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_function_app[positive1-2].client_cert_mode",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-2].client_cert_mode' should be set to 'Required'",
-    "actualValue": "'azurerm_function_app[positive1-2].client_cert_mode' is not set to 'Required'"
+    "actualValue": "'azurerm_function_app[positive1-2].client_cert_mode' is not set to 'Required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App Client Certificates Unrequired",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_linux_function_app[positive2-1]",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-1].client_certificate_mode' should be defined and not null",
-    "actualValue": "'azurerm_linux_function_app[positive2-1].client_certificate_mode' is undefined or null"
+    "actualValue": "'azurerm_linux_function_app[positive2-1].client_certificate_mode' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Client Certificates Unrequired",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_linux_function_app[positive2-2].client_certificate_mode",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2-2].client_certificate_mode' should be set to 'Required'",
-    "actualValue": "'azurerm_linux_function_app[positive2-2].client_certificate_mode' is not set to 'Required'"
+    "actualValue": "'azurerm_linux_function_app[positive2-2].client_certificate_mode' is not set to 'Required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App Client Certificates Unrequired",
@@ -57,7 +61,8 @@
     "searchKey": "azurerm_windows_function_app[positive3-1]",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-1].client_certificate_mode' should be defined and not null",
-    "actualValue": "'azurerm_windows_function_app[positive3-1].client_certificate_mode' is undefined or null"
+    "actualValue": "'azurerm_windows_function_app[positive3-1].client_certificate_mode' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Client Certificates Unrequired",
@@ -69,6 +74,7 @@
     "searchKey": "azurerm_windows_function_app[positive3-2].client_certificate_mode",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3-2].client_certificate_mode' should be set to 'Required'",
-    "actualValue": "'azurerm_windows_function_app[positive3-2].client_certificate_mode' is not set to 'Required'"
+    "actualValue": "'azurerm_windows_function_app[positive3-2].client_certificate_mode' is not set to 'Required'",
+    "issueType": "IncorrectValue"
   }
 ]

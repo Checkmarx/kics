@@ -9,7 +9,8 @@
     "searchKey": "google_dns_policy[example-policy]",
     "searchValue": "",
     "expectedValue": "'google_dns_policy[example-policy].enable_logging' should be defined and set to true",
-    "actualValue": "'google_dns_policy[example-policy].enable_logging' is undefined or null"
+    "actualValue": "'google_dns_policy[example-policy].enable_logging' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Google DNS Policy Logging Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "google_dns_policy[example-policy-2].enable_logging",
     "searchValue": "",
     "expectedValue": "'google_dns_policy[example-policy-2].enable_logging' should be defined and set to true",
-    "actualValue": "'google_dns_policy[example-policy-2].enable_logging' is set to false"
+    "actualValue": "'google_dns_policy[example-policy-2].enable_logging' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

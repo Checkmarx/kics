@@ -9,6 +9,7 @@
     "searchKey": "name={{Lambda S3 event notification}}.{{community.aws.lambda_policy}}.principal",
     "searchValue": "",
     "expectedValue": "name={{Lambda S3 event notification}}.{{community.aws.lambda_policy}}.principal shouldn't contain a wildcard",
-    "actualValue": "name={{Lambda S3 event notification}}.{{community.aws.lambda_policy}}.principal contains a wildcard"
+    "actualValue": "name={{Lambda S3 event notification}}.{{community.aws.lambda_policy}}.principal contains a wildcard",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{test-pd}}.spec.volumes.name={{test-volume}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "metadata.name={{test-pd}}.spec.volumes.name={{test-volume}}.hostPath.path should not be '/var/run/docker.sock'",
-    "actualValue": "metadata.name={{test-pd}}.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'"
+    "actualValue": "metadata.name={{test-pd}}.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{node-manager}}.spec.template.spec.volumes.name={{test-volume}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "metadata.name={{node-manager}}.spec.template.spec.volumes.name={{test-volume}}.hostPath.path should not be '/var/run/docker.sock'",
-    "actualValue": "metadata.name={{node-manager}}.spec.template.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'"
+    "actualValue": "metadata.name={{node-manager}}.spec.template.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
@@ -33,6 +35,7 @@
     "searchKey": "metadata.name={{hello}}.spec.jobTemplate.spec.template.spec.volumes.name={{test-volume}}.hostPath.path",
     "searchValue": "",
     "expectedValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.spec.volumes.name={{test-volume}}.hostPath.path should not be '/var/run/docker.sock'",
-    "actualValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'"
+    "actualValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue"
   }
 ]

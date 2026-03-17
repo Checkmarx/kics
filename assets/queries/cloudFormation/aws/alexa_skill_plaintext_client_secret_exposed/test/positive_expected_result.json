@@ -9,7 +9,8 @@
     "searchKey": "Resources.MySkill.Properties.AuthenticationConfiguration.ClientSecret",
     "searchValue": "",
     "expectedValue": "'Resources.MySkill.Properties.ClientSecret' should start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'",
-    "actualValue": "'Resources.MySkill.Properties.ClientSecret' does not start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'"
+    "actualValue": "'Resources.MySkill.Properties.ClientSecret' does not start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Alexa Skill Plaintext Client Secret Exposed",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.MySkill.Properties.AuthenticationConfiguration.ClientSecret",
     "searchValue": "",
     "expectedValue": "'Resources.MySkill.Properties.ClientSecret' should start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'",
-    "actualValue": "'Resources.MySkill.Properties.ClientSecret' does not start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'"
+    "actualValue": "'Resources.MySkill.Properties.ClientSecret' does not start with '{{resolve:secretsmanager:' or '{{resolve:ssm-secure:'",
+    "issueType": "IncorrectValue"
   }
 ]

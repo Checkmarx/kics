@@ -9,7 +9,8 @@
     "searchKey": "google_sql_database_instance[positive_1]",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should be defined and set '3625' to 'on'",
-    "actualValue": "'google_sql_database_instance[positive_1].settings' is undefined or null"
+    "actualValue": "'google_sql_database_instance[positive_1].settings' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - SQL DB Instance With Exposed Trace Logs",
@@ -21,7 +22,8 @@
     "searchKey": "google_sql_database_instance[positive_2].settings",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should be defined and set '3625' to 'on'",
-    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' is undefined or null"
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - SQL DB Instance With Exposed Trace Logs",
@@ -33,7 +35,8 @@
     "searchKey": "google_sql_database_instance[positive_3].settings.database_flags",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_3].settings.database_flags' should be defined and set '3625' to 'on'",
-    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' does not set '3625'"
+    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' does not set '3625'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - SQL DB Instance With Exposed Trace Logs",
@@ -45,7 +48,8 @@
     "searchKey": "google_sql_database_instance[positive_4].settings.database_flags[1].name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_4].settings.database_flags' should be defined and set '3625' to 'on'",
-    "actualValue": "'google_sql_database_instance[positive_4].settings.database_flags' sets '3625' to 'off'"
+    "actualValue": "'google_sql_database_instance[positive_4].settings.database_flags' sets '3625' to 'off'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - SQL DB Instance With Exposed Trace Logs",
@@ -57,6 +61,7 @@
     "searchKey": "google_sql_database_instance[positive_5].settings.database_flags.name",
     "searchValue": "",
     "expectedValue": "'google_sql_database_instance[positive_5].settings.database_flags' should be defined and set '3625' to 'on'",
-    "actualValue": "'google_sql_database_instance[positive_5].settings.database_flags' sets '3625' to 'off'"
+    "actualValue": "'google_sql_database_instance[positive_5].settings.database_flags' sets '3625' to 'off'",
+    "issueType": "IncorrectValue"
   }
 ]

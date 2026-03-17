@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_service[example].spec.type",
     "searchValue": "",
     "expectedValue": "kubernetes_service[example].spec.type should not be 'NodePort'",
-    "actualValue": "kubernetes_service[example].spec.type is 'NodePort'"
+    "actualValue": "kubernetes_service[example].spec.type is 'NodePort'",
+    "issueType": "IncorrectValue"
   }
 ]

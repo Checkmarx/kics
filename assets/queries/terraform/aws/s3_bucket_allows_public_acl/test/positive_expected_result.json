@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[positive2].block_public_acls",
     "searchValue": "",
     "expectedValue": "'block_public_acls' should equal 'true'",
-    "actualValue": "'block_public_acls' is equal 'false'"
+    "actualValue": "'block_public_acls' is equal 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Public ACL",
@@ -21,7 +22,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[positive3]",
     "searchValue": "",
     "expectedValue": "'block_public_acls' should equal 'true'",
-    "actualValue": "'block_public_acls' is missing"
+    "actualValue": "'block_public_acls' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Allows Public ACL",
@@ -33,7 +35,8 @@
     "searchKey": "module[s3_bucket].block_public_acls",
     "searchValue": "",
     "expectedValue": "'block_public_acls' should equal 'true'",
-    "actualValue": "'block_public_acls' is equal 'false'"
+    "actualValue": "'block_public_acls' is equal 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Public ACL",
@@ -45,6 +48,7 @@
     "searchKey": "module[s3_bucket]",
     "searchValue": "",
     "expectedValue": "'block_public_acls' should equal 'true'",
-    "actualValue": "'block_public_acls' is missing"
+    "actualValue": "'block_public_acls' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

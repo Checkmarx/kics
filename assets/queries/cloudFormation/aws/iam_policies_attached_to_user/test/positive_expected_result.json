@@ -9,7 +9,8 @@
     "searchKey": "Resources.myuser.Properties.ManagedPoliciesArns",
     "searchValue": "",
     "expectedValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is undefined or empty",
-    "actualValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is not empty"
+    "actualValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies Attached To User",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.myuser.Properties.Policies",
     "searchValue": "",
     "expectedValue": "'Resources.myuser.Properties.Policies' should be undefined or empty",
-    "actualValue": "'Resources.myuser.Properties.Policies' is not empty"
+    "actualValue": "'Resources.myuser.Properties.Policies' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies Attached To User",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.myuser.Properties.ManagedPoliciesArns",
     "searchValue": "",
     "expectedValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is undefined or empty",
-    "actualValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is not empty"
+    "actualValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies Attached To User",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.myuser.Properties.Policies",
     "searchValue": "",
     "expectedValue": "'Resources.myuser.Properties.Policies' should be undefined or empty",
-    "actualValue": "'Resources.myuser.Properties.Policies' is not empty"
+    "actualValue": "'Resources.myuser.Properties.Policies' is not empty",
+    "issueType": "IncorrectValue"
   }
 ]

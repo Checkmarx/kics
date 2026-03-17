@@ -9,6 +9,7 @@
     "searchKey": "azurerm_kubernetes_cluster[positive1].addon_profile.kube_dashboard.enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_kubernetes_cluster[positive1].addon_profile.kube_dashboard.enabled' should be set to false or undefined",
-    "actualValue": "'azurerm_kubernetes_cluster[positive1].addon_profile.kube_dashboard.enabled' is true"
+    "actualValue": "'azurerm_kubernetes_cluster[positive1].addon_profile.kube_dashboard.enabled' is true",
+    "issueType": "IncorrectValue"
   }
 ]

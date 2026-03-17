@@ -9,6 +9,7 @@
     "searchKey": "name={{example ec2 group}}.{{ec2_group}}.rules.cidr_ip",
     "searchValue": "",
     "expectedValue": "'ec2_group.rules.cidr_ip' should not be 0.0.0.0/0",
-    "actualValue": "'ec2_group.rules.cidr_ip' is 0.0.0.0/0"
+    "actualValue": "'ec2_group.rules.cidr_ip' is 0.0.0.0/0",
+    "issueType": "IncorrectValue"
   }
 ]

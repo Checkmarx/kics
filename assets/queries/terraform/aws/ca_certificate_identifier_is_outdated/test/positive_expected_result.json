@@ -9,7 +9,8 @@
     "searchKey": "aws_db_instance[positive1].ca_cert_identifier",
     "searchValue": "",
     "expectedValue": "'aws_db_instance.ca_cert_identifier' should be one provided by Amazon RDS.",
-    "actualValue": "'aws_db_instance.ca_cert_identifier' is 'rds-ca-2015'"
+    "actualValue": "'aws_db_instance.ca_cert_identifier' is 'rds-ca-2015'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CA Certificate Identifier Is Outdated",
@@ -21,6 +22,7 @@
     "searchKey": "module[db].ca_cert_identifier",
     "searchValue": "",
     "expectedValue": "'ca_cert_identifier' should be one provided by Amazon RDS.",
-    "actualValue": "'ca_cert_identifier' is 'rds-ca-2015'"
+    "actualValue": "'ca_cert_identifier' is 'rds-ca-2015'",
+    "issueType": "IncorrectValue"
   }
 ]

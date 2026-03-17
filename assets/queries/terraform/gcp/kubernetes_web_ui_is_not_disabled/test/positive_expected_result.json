@@ -9,7 +9,8 @@
     "searchKey": "google_container_cluster[positive1].addons_config.kubernetes_dashboard.disabled",
     "searchValue": "",
     "expectedValue": "'kuberneters_dashboard' should not be enabled inside the 'addons_config block'",
-    "actualValue": "'kuberneters_dashboard' is enabled inside the 'addons_config block'"
+    "actualValue": "'kuberneters_dashboard' is enabled inside the 'addons_config block'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "google_container_cluster[positive2]",
     "searchValue": "",
     "expectedValue": "'kubernetes_dashboard' should be defined and disabled inside the 'addons_config_version' block for GKE versions below 1.10",
-    "actualValue": "'addons_config' block is not defined with the 'kubernetes_dashboard' disabled"
+    "actualValue": "'addons_config' block is not defined with the 'kubernetes_dashboard' disabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "google_container_cluster[positive3].addons_config",
     "searchValue": "",
     "expectedValue": "'kubernetes_dashboard' should be defined and disabled inside the 'addons_config_version' block for GKE versions below 1.10",
-    "actualValue": "'kubernetes_dashboard' is not defined inside the 'addons_config_version' block"
+    "actualValue": "'kubernetes_dashboard' is not defined inside the 'addons_config_version' block",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "google_container_cluster[positive4].addons_config.kubernetes_dashboard.disabled",
     "searchValue": "",
     "expectedValue": "'kuberneters_dashboard' should not be enabled inside the 'addons_config block'",
-    "actualValue": "'kuberneters_dashboard' is enabled inside the 'addons_config block'"
+    "actualValue": "'kuberneters_dashboard' is enabled inside the 'addons_config block'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "google_container_cluster[positive5].addons_config.kubernetes_dashboard.disabled",
     "searchValue": "",
     "expectedValue": "'kuberneters_dashboard' should not be enabled inside the 'addons_config block'",
-    "actualValue": "'kuberneters_dashboard' is enabled inside the 'addons_config block'"
+    "actualValue": "'kuberneters_dashboard' is enabled inside the 'addons_config block'",
+    "issueType": "IncorrectValue"
   }
 ]

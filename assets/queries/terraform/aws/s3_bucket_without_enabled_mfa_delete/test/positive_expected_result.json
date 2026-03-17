@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket[positive1].versioning",
     "searchValue": "mfa_delete",
     "expectedValue": "'mfa_delete' should be set to true",
-    "actualValue": "'mfa_delete' is undefined or null"
+    "actualValue": "'mfa_delete' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
@@ -21,7 +22,8 @@
     "searchKey": "aws_s3_bucket[positive2].versioning.mfa_delete",
     "searchValue": "",
     "expectedValue": "'mfa_delete' should be set to true",
-    "actualValue": "'mfa_delete' is set to false"
+    "actualValue": "'mfa_delete' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
@@ -33,7 +35,8 @@
     "searchKey": "aws_s3_bucket[positive3].versioning",
     "searchValue": "mfa_delete",
     "expectedValue": "'mfa_delete' should be set to true",
-    "actualValue": "'mfa_delete' is undefined or null"
+    "actualValue": "'mfa_delete' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
@@ -45,7 +48,8 @@
     "searchKey": "aws_s3_bucket[positive3].versioning.enabled",
     "searchValue": "",
     "expectedValue": "'enabled' should be set to true",
-    "actualValue": "'enabled' is set to false"
+    "actualValue": "'enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
@@ -57,7 +61,8 @@
     "searchKey": "module[s3_bucket].versioning",
     "searchValue": "mfa_delete",
     "expectedValue": "'mfa_delete' should be set to true",
-    "actualValue": "'mfa_delete' is undefined or null"
+    "actualValue": "'mfa_delete' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
@@ -69,7 +74,8 @@
     "searchKey": "module[s3_bucket].versioning.mfa_delete",
     "searchValue": "",
     "expectedValue": "'mfa_delete' should be set to true",
-    "actualValue": "'mfa_delete' is set to false"
+    "actualValue": "'mfa_delete' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
@@ -81,7 +87,8 @@
     "searchKey": "module[s3_bucket].versioning",
     "searchValue": "mfa_delete",
     "expectedValue": "'mfa_delete' should be set to true",
-    "actualValue": "'mfa_delete' is undefined or null"
+    "actualValue": "'mfa_delete' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
@@ -93,7 +100,8 @@
     "searchKey": "module[s3_bucket].versioning.enabled",
     "searchValue": "",
     "expectedValue": "'enabled' should be set to true",
-    "actualValue": "'enabled' is set to false"
+    "actualValue": "'enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
@@ -105,7 +113,8 @@
     "searchKey": "aws_s3_bucket_versioning[example2].versioning_configuration.mfa_delete",
     "searchValue": "",
     "expectedValue": "'versioning_configuration.mfa_delete' should be set to 'Enabled'",
-    "actualValue": "'versioning_configuration.mfa_delete' is set to 'Disabled'"
+    "actualValue": "'versioning_configuration.mfa_delete' is set to 'Disabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
@@ -117,6 +126,7 @@
     "searchKey": "aws_s3_bucket_versioning[example].versioning_configuration.status",
     "searchValue": "",
     "expectedValue": "'versioning_configuration.status' should be set to 'Enabled'",
-    "actualValue": "'versioning_configuration.status' is set to 'Disabled'"
+    "actualValue": "'versioning_configuration.status' is set to 'Disabled'",
+    "issueType": "IncorrectValue"
   }
 ]

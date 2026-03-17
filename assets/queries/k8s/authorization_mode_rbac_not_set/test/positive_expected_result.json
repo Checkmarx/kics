@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--authorization-mode flag should contain 'RBAC' mode",
-    "actualValue": "--authorization-mode flag does not contain 'RBAC' mode"
+    "actualValue": "--authorization-mode flag does not contain 'RBAC' mode",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Authorization Mode RBAC Not Set",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--authorization-mode flag should contain 'RBAC' mode",
-    "actualValue": "--authorization-mode flag does not contain 'RBAC' mode"
+    "actualValue": "--authorization-mode flag does not contain 'RBAC' mode",
+    "issueType": "MissingAttribute"
   }
 ]

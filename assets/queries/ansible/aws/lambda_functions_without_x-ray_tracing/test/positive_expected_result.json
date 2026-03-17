@@ -9,7 +9,8 @@
     "searchKey": "name={{looped creation}}.{{community.aws.lambda}}",
     "searchValue": "",
     "expectedValue": "lambda.tracing_mode should be set",
-    "actualValue": "lambda.tracing_mode is undefined"
+    "actualValue": "lambda.tracing_mode is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
@@ -21,6 +22,7 @@
     "searchKey": "name={{looped creation V2}}.{{community.aws.lambda}}.tracing_mode",
     "searchValue": "",
     "expectedValue": "lambda.tracing_mode should be set to 'Active'",
-    "actualValue": "lambda.tracing_mode is not set to 'Active'"
+    "actualValue": "lambda.tracing_mode is not set to 'Active'",
+    "issueType": "IncorrectValue"
   }
 ]

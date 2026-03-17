@@ -9,7 +9,8 @@
     "searchKey": "azurerm_storage_account[positive1]",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive1].share_properties.retention_policy' should be defined and not null",
-    "actualValue": "'azurerm_storage_account[positive1].share_properties' is undefined or null"
+    "actualValue": "'azurerm_storage_account[positive1].share_properties' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - File Share Without Soft Delete",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_storage_account[positive2].share_properties",
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive2].share_properties.retention_policy' should be defined and not null",
-    "actualValue": "'azurerm_storage_account[positive2].share_properties.retention_policy' is undefined or null"
+    "actualValue": "'azurerm_storage_account[positive2].share_properties.retention_policy' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

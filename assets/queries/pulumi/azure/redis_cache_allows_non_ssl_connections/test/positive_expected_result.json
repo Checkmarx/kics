@@ -9,6 +9,7 @@
     "searchKey": "resources[redis].properties.enableNonSslPort",
     "searchValue": "",
     "expectedValue": "Redis Cache should have attribute 'enableNonSslPort' set to false",
-    "actualValue": "Redis Cache has attribute 'enableNonSslPort' set to true"
+    "actualValue": "Redis Cache has attribute 'enableNonSslPort' set to true",
+    "issueType": "IncorrectValue"
   }
 ]

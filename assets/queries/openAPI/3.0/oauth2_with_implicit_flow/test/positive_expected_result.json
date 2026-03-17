@@ -9,7 +9,8 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.implicit",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows should not use 'implicit' flow",
-    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows is using 'implicit' flow"
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows is using 'implicit' flow",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OAuth2 With Implicit Flow",
@@ -21,7 +22,8 @@
     "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.implicit",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows should not use 'implicit' flow",
-    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows is using 'implicit' flow"
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows is using 'implicit' flow",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OAuth2 With Implicit Flow",
@@ -33,7 +35,8 @@
     "searchKey": "components.securitySchemes.{{oAuth2AuthCode}}.flows.implicit",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows should not use 'implicit' flow",
-    "actualValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows is using 'implicit' flow"
+    "actualValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows is using 'implicit' flow",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OAuth2 With Implicit Flow",
@@ -45,7 +48,8 @@
     "searchKey": "components.securitySchemes.{{oAuth2AuthCode}}.flows.implicit",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows should not use 'implicit' flow",
-    "actualValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows is using 'implicit' flow"
+    "actualValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows is using 'implicit' flow",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OAuth2 With Implicit Flow",
@@ -57,6 +61,7 @@
     "searchKey": "components.securitySchemes.{{oAuth2AuthCode2}}.flows.implicit",
     "searchValue": "",
     "expectedValue": "components.securitySchemes.{{oAuth2AuthCode2}}.flows should not use 'implicit' flow",
-    "actualValue": "components.securitySchemes.{{oAuth2AuthCode2}}.flows is using 'implicit' flow"
+    "actualValue": "components.securitySchemes.{{oAuth2AuthCode2}}.flows is using 'implicit' flow",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "components.requestBodies.{{MyObjectBody}}",
     "searchValue": "",
     "expectedValue": "Request body should be used as reference somewhere",
-    "actualValue": "Request body is not used as reference"
+    "actualValue": "Request body is not used as reference",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Components Request Body Definition Is Unused",
@@ -21,6 +22,7 @@
     "searchKey": "components.requestBodies.{{MyObjectBody}}",
     "searchValue": "",
     "expectedValue": "Request body should be used as reference somewhere",
-    "actualValue": "Request body is not used as reference"
+    "actualValue": "Request body is not used as reference",
+    "issueType": "IncorrectValue"
   }
 ]

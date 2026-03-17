@@ -9,6 +9,7 @@
     "searchKey": "defaults.allow_unsafe_lookups",
     "searchValue": "",
     "expectedValue": "allow_unsafe_lookups should be set to 'False'",
-    "actualValue": "allow_unsafe_lookups is set to 'True'"
+    "actualValue": "allow_unsafe_lookups is set to 'True'",
+    "issueType": "IncorrectValue"
   }
 ]

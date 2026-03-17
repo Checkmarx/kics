@@ -9,7 +9,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN apt-get install python=2.7}}",
     "searchValue": "",
     "expectedValue": "{{RUN apt-get install python=2.7}} should avoid manual input",
-    "actualValue": "{{RUN apt-get install python=2.7}} doesn't avoid manual input"
+    "actualValue": "{{RUN apt-get install python=2.7}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -21,7 +22,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN apt-get install apt-utils}}",
     "searchValue": "",
     "expectedValue": "{{RUN apt-get install apt-utils}} should avoid manual input",
-    "actualValue": "{{RUN apt-get install apt-utils}} doesn't avoid manual input"
+    "actualValue": "{{RUN apt-get install apt-utils}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -33,7 +35,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}}",
     "searchValue": "",
     "expectedValue": "{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}} should avoid manual input",
-    "actualValue": "{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}} doesn't avoid manual input"
+    "actualValue": "{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -45,7 +48,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN sudo apt-get install python=2.7}}",
     "searchValue": "",
     "expectedValue": "{{RUN sudo apt-get install python=2.7}} should avoid manual input",
-    "actualValue": "{{RUN sudo apt-get install python=2.7}} doesn't avoid manual input"
+    "actualValue": "{{RUN sudo apt-get install python=2.7}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -57,7 +61,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN sudo apt-get install apt-utils}}",
     "searchValue": "",
     "expectedValue": "{{RUN sudo apt-get install apt-utils}} should avoid manual input",
-    "actualValue": "{{RUN sudo apt-get install apt-utils}} doesn't avoid manual input"
+    "actualValue": "{{RUN sudo apt-get install apt-utils}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -69,7 +74,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN [\"sudo\", \"apt-get\", \"install\", \"apt-utils\"]}}",
     "searchValue": "",
     "expectedValue": "{{RUN [\"sudo\", \"apt-get\", \"install\", \"apt-utils\"]}} should avoid manual input",
-    "actualValue": "{{RUN [\"sudo\", \"apt-get\", \"install\", \"apt-utils\"]}} doesn't avoid manual input"
+    "actualValue": "{{RUN [\"sudo\", \"apt-get\", \"install\", \"apt-utils\"]}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -81,7 +87,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN DUMMY=test apt-get install python=2.7}}",
     "searchValue": "",
     "expectedValue": "{{RUN DUMMY=test apt-get install python=2.7}} should avoid manual input",
-    "actualValue": "{{RUN DUMMY=test apt-get install python=2.7}} doesn't avoid manual input"
+    "actualValue": "{{RUN DUMMY=test apt-get install python=2.7}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -93,7 +100,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN [\"sudo\", \"apt-get\", \"-q\" ,\"install\", \"apt-utils\"]}}",
     "searchValue": "",
     "expectedValue": "{{RUN [\"sudo\", \"apt-get\", \"-q\" ,\"install\", \"apt-utils\"]}} should avoid manual input",
-    "actualValue": "{{RUN [\"sudo\", \"apt-get\", \"-q\" ,\"install\", \"apt-utils\"]}} doesn't avoid manual input"
+    "actualValue": "{{RUN [\"sudo\", \"apt-get\", \"-q\" ,\"install\", \"apt-utils\"]}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -105,7 +113,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN sudo apt-get -q install apt-utils}}",
     "searchValue": "",
     "expectedValue": "{{RUN sudo apt-get -q install apt-utils}} should avoid manual input",
-    "actualValue": "{{RUN sudo apt-get -q install apt-utils}} doesn't avoid manual input"
+    "actualValue": "{{RUN sudo apt-get -q install apt-utils}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -117,7 +126,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN [\"sudo\", \"apt-get\", \"--quiet\", \"install\", \"apt-utils\"] }}",
     "searchValue": "",
     "expectedValue": "{{RUN [\"sudo\", \"apt-get\", \"--quiet\", \"install\", \"apt-utils\"] }} should avoid manual input",
-    "actualValue": "{{RUN [\"sudo\", \"apt-get\", \"--quiet\", \"install\", \"apt-utils\"] }} doesn't avoid manual input"
+    "actualValue": "{{RUN [\"sudo\", \"apt-get\", \"--quiet\", \"install\", \"apt-utils\"] }} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -129,7 +139,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN sudo apt-get --quiet install apt-utils}}",
     "searchValue": "",
     "expectedValue": "{{RUN sudo apt-get --quiet install apt-utils}} should avoid manual input",
-    "actualValue": "{{RUN sudo apt-get --quiet install apt-utils}} doesn't avoid manual input"
+    "actualValue": "{{RUN sudo apt-get --quiet install apt-utils}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -141,7 +152,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN sudo apt-get --quiet install sl}}",
     "searchValue": "",
     "expectedValue": "{{RUN sudo apt-get --quiet install sl}} should avoid manual input",
-    "actualValue": "{{RUN sudo apt-get --quiet install sl}} doesn't avoid manual input"
+    "actualValue": "{{RUN sudo apt-get --quiet install sl}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -153,7 +165,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN [\"apt-get\", \"--quiet\" ,\"install\", \"apt-utils\"] }}",
     "searchValue": "",
     "expectedValue": "{{RUN [\"apt-get\", \"--quiet\" ,\"install\", \"apt-utils\"] }} should avoid manual input",
-    "actualValue": "{{RUN [\"apt-get\", \"--quiet\" ,\"install\", \"apt-utils\"] }} doesn't avoid manual input"
+    "actualValue": "{{RUN [\"apt-get\", \"--quiet\" ,\"install\", \"apt-utils\"] }} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -165,7 +178,8 @@
     "searchKey": "FROM={{node:12}}.{{RUN sudo apt-get -q install sl}}",
     "searchValue": "",
     "expectedValue": "{{RUN sudo apt-get -q install sl}} should avoid manual input",
-    "actualValue": "{{RUN sudo apt-get -q install sl}} doesn't avoid manual input"
+    "actualValue": "{{RUN sudo apt-get -q install sl}} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "APT-GET Missing Flags To Avoid Manual Input",
@@ -177,6 +191,7 @@
     "searchKey": "FROM={{node:12}}.{{RUN [\"apt-get\", \"-q\", \"install\", \"apt-utils\"] }}",
     "searchValue": "",
     "expectedValue": "{{RUN [\"apt-get\", \"-q\", \"install\", \"apt-utils\"] }} should avoid manual input",
-    "actualValue": "{{RUN [\"apt-get\", \"-q\", \"install\", \"apt-utils\"] }} doesn't avoid manual input"
+    "actualValue": "{{RUN [\"apt-get\", \"-q\", \"install\", \"apt-utils\"] }} doesn't avoid manual input",
+    "issueType": "IncorrectValue"
   }
 ]

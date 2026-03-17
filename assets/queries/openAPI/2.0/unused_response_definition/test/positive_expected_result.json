@@ -9,7 +9,8 @@
     "searchKey": "responses.{{IllegalInput}}",
     "searchValue": "",
     "expectedValue": "responses definition 'IllegalInput' is used",
-    "actualValue": "responses definition 'IllegalInput' is not being used"
+    "actualValue": "responses definition 'IllegalInput' is not being used",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Global Responses Definition Not Being Used",
@@ -21,7 +22,8 @@
     "searchKey": "responses.{{GeneralError}}",
     "searchValue": "",
     "expectedValue": "responses definition 'GeneralError' is used",
-    "actualValue": "responses definition 'GeneralError' is not being used"
+    "actualValue": "responses definition 'GeneralError' is not being used",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Global Responses Definition Not Being Used",
@@ -33,7 +35,8 @@
     "searchKey": "responses.{{IllegalInput}}",
     "searchValue": "",
     "expectedValue": "responses definition 'IllegalInput' is used",
-    "actualValue": "responses definition 'IllegalInput' is not being used"
+    "actualValue": "responses definition 'IllegalInput' is not being used",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Global Responses Definition Not Being Used",
@@ -45,6 +48,7 @@
     "searchKey": "responses.{{GeneralError}}",
     "searchValue": "",
     "expectedValue": "responses definition 'GeneralError' is used",
-    "actualValue": "responses definition 'GeneralError' is not being used"
+    "actualValue": "responses definition 'GeneralError' is not being used",
+    "issueType": "MissingAttribute"
   }
 ]

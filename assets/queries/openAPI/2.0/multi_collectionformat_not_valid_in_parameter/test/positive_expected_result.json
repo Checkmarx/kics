@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.parameters.name=limit2.in",
     "searchValue": "",
     "expectedValue": "'in' field should be 'query' or 'formData'",
-    "actualValue": "'in' field is path"
+    "actualValue": "'in' field is path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
@@ -21,7 +22,8 @@
     "searchKey": "parameters.name=limit.in",
     "searchValue": "",
     "expectedValue": "'in' field should be 'query' or 'formData'",
-    "actualValue": "'in' field is path"
+    "actualValue": "'in' field is path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.parameters.name=limit2.in",
     "searchValue": "",
     "expectedValue": "'in' field should be 'query' or 'formData'",
-    "actualValue": "'in' field is path"
+    "actualValue": "'in' field is path",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
@@ -45,6 +48,7 @@
     "searchKey": "parameters.name=limit.in",
     "searchValue": "",
     "expectedValue": "'in' field should be 'query' or 'formData'",
-    "actualValue": "'in' field is path"
+    "actualValue": "'in' field is path",
+    "issueType": "IncorrectValue"
   }
 ]

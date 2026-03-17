@@ -9,7 +9,8 @@
     "searchKey": "alicloud_db_instance[default].parameters[2].value",
     "searchValue": "",
     "expectedValue": "'log_duration' parameter value should be 'ON'",
-    "actualValue": "'log_duration' parameter value is 'OFF'"
+    "actualValue": "'log_duration' parameter value is 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Instance Log Duration Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "alicloud_db_instance[default].parameters",
     "searchValue": "",
     "expectedValue": "'log_duration' parameter should be defined and value should be 'ON'",
-    "actualValue": "'log_duration' parameter is not defined"
+    "actualValue": "'log_duration' parameter is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Instance Log Duration Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "alicloud_db_instance[default]]",
     "searchValue": "",
     "expectedValue": "'log_duration' parameter should be defined and value should be 'ON' in parameters array",
-    "actualValue": "'log_duration' parameter is not defined in parameters array"
+    "actualValue": "'log_duration' parameter is not defined in parameters array",
+    "issueType": "MissingAttribute"
   }
 ]

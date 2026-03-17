@@ -9,7 +9,8 @@
     "searchKey": "Resources.ReplicationGroup.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled should be defined",
-    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined"
+    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElastiCache With Disabled Transit Encryption",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled",
     "searchValue": "",
     "expectedValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled should be true",
-    "actualValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled is false"
+    "actualValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache With Disabled Transit Encryption",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.ReplicationGroup.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled should be defined",
-    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined"
+    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElastiCache With Disabled Transit Encryption",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled",
     "searchValue": "",
     "expectedValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled should be true",
-    "actualValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled is false"
+    "actualValue": "Resources.MyReplicationGroup.Properties.TransitEncryptionEnabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache With Disabled Transit Encryption",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.ReplicationGroup.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled should be defined",
-    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined"
+    "actualValue": "Resources.ReplicationGroup.Properties.TransitEncryptionEnabled is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

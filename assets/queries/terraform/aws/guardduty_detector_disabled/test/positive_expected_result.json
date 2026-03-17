@@ -9,6 +9,7 @@
     "searchKey": "aws_guardduty_detector[positive1].enable",
     "searchValue": "",
     "expectedValue": "GuardDuty Detector should be Enabled",
-    "actualValue": "GuardDuty Detector is not Enabled"
+    "actualValue": "GuardDuty Detector is not Enabled",
+    "issueType": "IncorrectValue"
   }
 ]

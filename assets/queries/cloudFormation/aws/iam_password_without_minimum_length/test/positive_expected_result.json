@@ -9,7 +9,8 @@
     "searchKey": "Resources.myuser.Properties.LoginProfile.Password",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.LoginProfile.Password' has a minimum length of 14",
-    "actualValue": "'Resources.Properties.LoginProfile.Password' doesn't have a minimum length of 14"
+    "actualValue": "'Resources.Properties.LoginProfile.Password' doesn't have a minimum length of 14",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Password Without Minimum Length",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myuser.Properties.LoginProfile.Password",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.LoginProfile.Password' has a minimum length of 14",
-    "actualValue": "'Resources.Properties.LoginProfile.Password' doesn't have a minimum length of 14"
+    "actualValue": "'Resources.Properties.LoginProfile.Password' doesn't have a minimum length of 14",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.myuser.Properties.LoginProfile.Password",
     "searchValue": "",
     "expectedValue": "'Resources.myuser.Properties.LoginProfile.Password' should be a ref to a secretsmanager value",
-    "actualValue": "'Resources.myuser.Properties.LoginProfile.Password' is a string literal"
+    "actualValue": "'Resources.myuser.Properties.LoginProfile.Password' is a string literal",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM User LoginProfile Password Is In Plaintext",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myuser.Properties.LoginProfile.Password",
     "searchValue": "",
     "expectedValue": "'Resources.myuser.Properties.LoginProfile.Password' should be a ref to a secretsmanager value",
-    "actualValue": "'Resources.myuser.Properties.LoginProfile.Password' is a string literal"
+    "actualValue": "'Resources.myuser.Properties.LoginProfile.Password' is a string literal",
+    "issueType": "IncorrectValue"
   }
 ]

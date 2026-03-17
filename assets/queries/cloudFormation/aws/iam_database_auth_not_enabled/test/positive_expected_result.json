@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication should be true",
-    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is false"
+    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication should be true",
-    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is false"
+    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyDBSmall.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication should be defined",
-    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is not defined"
+    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyDBSmall.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication should be defined",
-    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is not defined"
+    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication should be true",
-    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is false"
+    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is false",
+    "issueType": "IncorrectValue"
   }
 ]

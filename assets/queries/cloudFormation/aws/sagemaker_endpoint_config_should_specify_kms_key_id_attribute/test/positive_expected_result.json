@@ -9,7 +9,8 @@
     "searchKey": "Resources.EndpointConfig.Properties",
     "searchValue": "",
     "expectedValue": "Resources.EndpointConfig.Properties.KmsKeyId should be defined",
-    "actualValue": "Resources.EndpointConfig.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.EndpointConfig.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SageMaker EndPoint Config Should Specify KmsKeyId Attribute",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.EndpointConfig.Properties",
     "searchValue": "",
     "expectedValue": "Resources.EndpointConfig.Properties.KmsKeyId should be defined",
-    "actualValue": "Resources.EndpointConfig.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.EndpointConfig.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

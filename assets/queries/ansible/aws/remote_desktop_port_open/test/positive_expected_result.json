@@ -9,7 +9,8 @@
     "searchKey": "name={{example ec2 group1}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules shouldn't open the remote desktop port (3389)",
-    "actualValue": "ec2_group.rules opens the remote desktop port (3389)"
+    "actualValue": "ec2_group.rules opens the remote desktop port (3389)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
@@ -21,7 +22,8 @@
     "searchKey": "name={{example ec2 group2}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules shouldn't open the remote desktop port (3389)",
-    "actualValue": "ec2_group.rules opens the remote desktop port (3389)"
+    "actualValue": "ec2_group.rules opens the remote desktop port (3389)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
@@ -33,7 +35,8 @@
     "searchKey": "name={{example ec2 group3}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules shouldn't open the remote desktop port (3389)",
-    "actualValue": "ec2_group.rules opens the remote desktop port (3389)"
+    "actualValue": "ec2_group.rules opens the remote desktop port (3389)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
@@ -45,7 +48,8 @@
     "searchKey": "name={{example ec2 group4}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules shouldn't open the remote desktop port (3389)",
-    "actualValue": "ec2_group.rules opens the remote desktop port (3389)"
+    "actualValue": "ec2_group.rules opens the remote desktop port (3389)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
@@ -57,7 +61,8 @@
     "searchKey": "name={{example ec2 group5}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules shouldn't open the remote desktop port (3389)",
-    "actualValue": "ec2_group.rules opens the remote desktop port (3389)"
+    "actualValue": "ec2_group.rules opens the remote desktop port (3389)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
@@ -69,7 +74,8 @@
     "searchKey": "name={{example ec2 group6}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules shouldn't open the remote desktop port (3389)",
-    "actualValue": "ec2_group.rules opens the remote desktop port (3389)"
+    "actualValue": "ec2_group.rules opens the remote desktop port (3389)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
@@ -81,6 +87,7 @@
     "searchKey": "name={{example ec2 group7}}.{{amazon.aws.ec2_group}}.rules",
     "searchValue": "",
     "expectedValue": "ec2_group.rules shouldn't open the remote desktop port (3389)",
-    "actualValue": "ec2_group.rules opens the remote desktop port (3389)"
+    "actualValue": "ec2_group.rules opens the remote desktop port (3389)",
+    "issueType": "IncorrectValue"
   }
 ]

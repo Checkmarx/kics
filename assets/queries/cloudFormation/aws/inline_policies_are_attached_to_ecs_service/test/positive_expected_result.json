@@ -9,7 +9,8 @@
     "searchKey": "Resources.InlinePolicy.Properties.Role",
     "searchValue": "",
     "expectedValue": "'Resources.InlinePolicy.Properties.Role' should not refer an inline IAM Policy",
-    "actualValue": "'Resources.InlinePolicy.Properties.Role' refers to inline IAM Policy 'IAMPolicy'"
+    "actualValue": "'Resources.InlinePolicy.Properties.Role' refers to inline IAM Policy 'IAMPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Inline Policies Are Attached To ECS Service",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.InlinePolicy.Properties.Role",
     "searchValue": "",
     "expectedValue": "'Resources.InlinePolicy.Properties.Role' should not refer an inline IAM Policy",
-    "actualValue": "'Resources.InlinePolicy.Properties.Role' refers to inline IAM Policy 'IAMPolicy'"
+    "actualValue": "'Resources.InlinePolicy.Properties.Role' refers to inline IAM Policy 'IAMPolicy'",
+    "issueType": "IncorrectValue"
   }
 ]

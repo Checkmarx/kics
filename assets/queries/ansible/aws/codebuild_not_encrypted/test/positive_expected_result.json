@@ -9,6 +9,7 @@
     "searchKey": "name={{My project}}.{{community.aws.aws_codebuild}}",
     "searchValue": "",
     "expectedValue": "aws_codebuild.encryption_key should be set",
-    "actualValue": "aws_codebuild.encryption_key is undefined"
+    "actualValue": "aws_codebuild.encryption_key is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

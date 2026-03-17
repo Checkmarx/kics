@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.{{200}}.$ref",
     "searchValue": "",
     "expectedValue": "Response ref points to '#/responses'",
-    "actualValue": "Response ref doesn't point to '#/responses'"
+    "actualValue": "Response ref doesn't point to '#/responses'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Response Object With Incorrect Ref (v2)",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.responses.{{200}}.$ref",
     "searchValue": "",
     "expectedValue": "Response ref points to '#/responses'",
-    "actualValue": "Response ref doesn't point to '#/responses'"
+    "actualValue": "Response ref doesn't point to '#/responses'",
+    "issueType": "IncorrectValue"
   }
 ]

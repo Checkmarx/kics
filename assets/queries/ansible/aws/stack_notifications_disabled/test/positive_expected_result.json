@@ -9,6 +9,7 @@
     "searchKey": "name={{create a stack, pass in the template via an URL}}.{{amazon.aws.cloudformation}}",
     "searchValue": "",
     "expectedValue": "cloudformation.notification_arns should be set",
-    "actualValue": "cloudformation.notification_arns is undefined"
+    "actualValue": "cloudformation.notification_arns is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition}}.{{community.aws.aws_api_gateway}}.swagger_dict",
     "searchValue": "",
     "expectedValue": "'community.aws.aws_api_gateway.swagger_dict' should have an authorizer set",
-    "actualValue": "'community.aws.aws_api_gateway.swagger_dict' does not have a authorizer set"
+    "actualValue": "'community.aws.aws_api_gateway.swagger_dict' does not have a authorizer set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition2}}.{{aws_api_gateway}}",
     "searchValue": "",
     "expectedValue": "'aws_api_gateway' should have swagger_file, swagger_text or swagger_dict set",
-    "actualValue": "'aws_api_gateway' does not have swagger_file, swagger_text or swagger_dict set"
+    "actualValue": "'aws_api_gateway' does not have swagger_file, swagger_text or swagger_dict set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
@@ -33,7 +35,8 @@
     "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API 222}}.{{aws_api_gateway}}.swagger_file",
     "searchValue": "",
     "expectedValue": "'aws_api_gateway.swagger_file' should have an authorizer set",
-    "actualValue": "'aws_api_gateway.swagger_file' does not have a authorizer set"
+    "actualValue": "'aws_api_gateway.swagger_file' does not have a authorizer set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
@@ -45,6 +48,7 @@
     "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API 222}}.{{aws_api_gateway}}.swagger_text",
     "searchValue": "",
     "expectedValue": "'aws_api_gateway.swagger_text' should have an authorizer set",
-    "actualValue": "'aws_api_gateway.swagger_text' does not have a authorizer set"
+    "actualValue": "'aws_api_gateway.swagger_text' does not have a authorizer set",
+    "issueType": "IncorrectValue"
   }
 ]

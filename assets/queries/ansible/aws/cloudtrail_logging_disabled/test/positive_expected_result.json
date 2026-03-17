@@ -9,6 +9,7 @@
     "searchKey": "name={{example}}.{{community.aws.cloudtrail}}.enable_logging",
     "searchValue": "",
     "expectedValue": "cloudtrail.enable_logging should be true",
-    "actualValue": "cloudtrail.enable_logging is false"
+    "actualValue": "cloudtrail.enable_logging is false",
+    "issueType": "IncorrectValue"
   }
 ]

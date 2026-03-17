@@ -9,7 +9,8 @@
     "searchKey": "alicloud_ram_security_preference[example1]",
     "searchValue": "",
     "expectedValue": "'enforce_mfa_for_login' should be defined and set to true",
-    "actualValue": "'enforce_mfa_for_login' is not defined"
+    "actualValue": "'enforce_mfa_for_login' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RAM Security Preference Not Enforce MFA Login",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_ram_security_preference[example2]",
     "searchValue": "",
     "expectedValue": "'enforce_mfa_for_login' should be set to true",
-    "actualValue": "'enforce_mfa_for_login' is set to 'false'"
+    "actualValue": "'enforce_mfa_for_login' is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

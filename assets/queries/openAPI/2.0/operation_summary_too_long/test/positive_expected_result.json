@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.summary",
     "searchValue": "",
     "expectedValue": "Operation summary should not be less than 120 characters",
-    "actualValue": "Operation summary is less than 120 characters"
+    "actualValue": "Operation summary is less than 120 characters",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Operation Summary Too Long",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.{{get}}.summary",
     "searchValue": "",
     "expectedValue": "Operation summary should not be less than 120 characters",
-    "actualValue": "Operation summary is less than 120 characters"
+    "actualValue": "Operation summary is less than 120 characters",
+    "issueType": "IncorrectValue"
   }
 ]

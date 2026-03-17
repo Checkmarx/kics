@@ -9,6 +9,7 @@
     "searchKey": "azurerm_security_center_contact[positive1].alert_notifications",
     "searchValue": "",
     "expectedValue": "'azurerm_security_center_contact.positive1.alert_notifications' should be true",
-    "actualValue": "'azurerm_security_center_contact.positive1.alert_notifications' is false"
+    "actualValue": "'azurerm_security_center_contact.positive1.alert_notifications' is false",
+    "issueType": "IncorrectValue"
   }
 ]

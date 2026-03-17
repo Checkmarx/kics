@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.{{User}}.externalDocs.url",
     "searchValue": "",
     "expectedValue": "Schema External Documentation URL should be a valid URL",
-    "actualValue": "Schema External Documentation URL is not a valid URL"
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.externalDocs.url",
     "searchValue": "",
     "expectedValue": "Schema External Documentation URL should be a valid URL",
-    "actualValue": "Schema External Documentation URL is not a valid URL"
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.schemas.{{User}}.externalDocs.url",
     "searchValue": "",
     "expectedValue": "Schema External Documentation URL should be a valid URL",
-    "actualValue": "Schema External Documentation URL is not a valid URL"
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.externalDocs.url",
     "searchValue": "",
     "expectedValue": "Schema External Documentation URL should be a valid URL",
-    "actualValue": "Schema External Documentation URL is not a valid URL"
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.externalDocs.url",
     "searchValue": "",
     "expectedValue": "Schema External Documentation URL should be a valid URL",
-    "actualValue": "Schema External Documentation URL is not a valid URL"
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v2)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.externalDocs.url",
     "searchValue": "",
     "expectedValue": "Schema External Documentation URL should be a valid URL",
-    "actualValue": "Schema External Documentation URL is not a valid URL"
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "definitions.{{User}}.externalDocs.url",
     "searchValue": "",
     "expectedValue": "Schema External Documentation URL should be a valid URL",
-    "actualValue": "Schema External Documentation URL is not a valid URL"
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Schema External Documentation URL (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "definitions.{{User}}.externalDocs.url",
     "searchValue": "",
     "expectedValue": "Schema External Documentation URL should be a valid URL",
-    "actualValue": "Schema External Documentation URL is not a valid URL"
+    "actualValue": "Schema External Documentation URL is not a valid URL",
+    "issueType": "IncorrectValue"
   }
 ]

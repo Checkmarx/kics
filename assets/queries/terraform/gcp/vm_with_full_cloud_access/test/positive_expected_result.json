@@ -9,6 +9,7 @@
     "searchKey": "google_compute_instance[positive1].service_account.scopes",
     "searchValue": "",
     "expectedValue": "'service_account.scopes' should not contain 'cloud-platform'",
-    "actualValue": "'service_account.scopes' contains 'cloud-platform'"
+    "actualValue": "'service_account.scopes' contains 'cloud-platform'",
+    "issueType": "IncorrectValue"
   }
 ]

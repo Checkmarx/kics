@@ -9,7 +9,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned should be equal to 'false'",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned is equal to 'true'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned is equal to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -21,7 +22,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned should equal 'false'",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned is equal 'true'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned is equal 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -33,7 +35,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out should equal '0' or undefined",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out is not equal '0'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out is not equal '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -45,7 +48,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out should equal '0' or undefined",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out is defined and not equal to '0'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out is defined and not equal to '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -57,7 +61,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned should be equal to 'false'",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned is equal 'true'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned is equal 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -69,7 +74,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned should be equal to 'false'",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned is equal 'true'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned is equal 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -81,7 +87,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned should equal 'false'",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned is equal 'true'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned is equal 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -93,7 +100,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned should equal 'false'",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned is equal 'true'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned is equal 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -105,7 +113,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out should equal '0' or null",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out is not equal '0'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out is not equal '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -117,7 +126,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out should equal '0' or null",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out is not equal '0'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out is not equal '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -129,7 +139,8 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out should be equal to '0' or null",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out is defined and not equal to '0'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out is defined and not equal to '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "TKE Cluster Has Public Access",
@@ -141,6 +152,7 @@
     "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out",
     "searchValue": "",
     "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out should be equal to '0' or null",
-    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out is defined and not equal to '0'"
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out is defined and not equal to '0'",
+    "issueType": "IncorrectValue"
   }
 ]

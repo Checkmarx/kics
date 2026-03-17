@@ -9,6 +9,7 @@
     "searchKey": "google_bigquery_dataset[positive1].access.special_group",
     "searchValue": "",
     "expectedValue": "'access.special_group' should not equal to 'allAuthenticatedUsers'",
-    "actualValue": "'access.special_group' is equal to 'allAuthenticatedUsers'"
+    "actualValue": "'access.special_group' is equal to 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   }
 ]

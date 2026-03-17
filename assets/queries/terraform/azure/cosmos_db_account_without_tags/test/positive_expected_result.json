@@ -9,6 +9,7 @@
     "searchKey": "azurerm_cosmosdb_account[positive1]",
     "searchValue": "",
     "expectedValue": "azurerm_cosmosdb_account[positive1].tags should be defined'",
-    "actualValue": "azurerm_cosmosdb_account[positive1].tags is undefined'"
+    "actualValue": "azurerm_cosmosdb_account[positive1].tags is undefined'",
+    "issueType": "MissingAttribute"
   }
 ]

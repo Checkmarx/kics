@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{storage-bucket}}.properties",
     "searchValue": "acl",
     "expectedValue": "'acl' should be defined",
-    "actualValue": "'acl' is undefined or null"
+    "actualValue": "'acl' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{storage-bucket}}.properties",
     "searchValue": "defaultObjectAcl",
     "expectedValue": "'defaultObjectAcl' should be defined",
-    "actualValue": "'defaultObjectAcl' is undefined or null"
+    "actualValue": "'defaultObjectAcl' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{storage-bucket}}.properties",
     "searchValue": "acl",
     "expectedValue": "'acl' should be defined",
-    "actualValue": "'acl' is undefined or null"
+    "actualValue": "'acl' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{storage-bucket}}.properties.defaultObjectAcl[0].entity",
     "searchValue": "",
     "expectedValue": "properties.defaultObjectAcl[0].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'",
-    "actualValue": "properties.defaultObjectAcl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'"
+    "actualValue": "properties.defaultObjectAcl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{storage-bucket}}.properties.acl[0].entity",
     "searchValue": "",
     "expectedValue": "properties.acl[0].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'",
-    "actualValue": "properties.acl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'"
+    "actualValue": "properties.acl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
@@ -69,6 +74,7 @@
     "searchKey": "resources.name={{storage-bucket}}.properties.defaultObjectAcl[0].entity",
     "searchValue": "",
     "expectedValue": "properties.defaultObjectAcl[0].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'",
-    "actualValue": "properties.defaultObjectAcl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'"
+    "actualValue": "properties.defaultObjectAcl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   }
 ]

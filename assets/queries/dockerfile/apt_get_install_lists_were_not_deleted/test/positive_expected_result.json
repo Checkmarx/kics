@@ -9,7 +9,8 @@
     "searchKey": "FROM={{busybox1}}.RUN={{apt-get update && apt-get install --no-install-recommends -y python}}",
     "searchValue": "",
     "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
-    "actualValue": "After using apt-get install, the apt-get lists were not deleted"
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
@@ -21,7 +22,8 @@
     "searchKey": "FROM={{busybox2}}.RUN={{apt-get install python}}",
     "searchValue": "",
     "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
-    "actualValue": "After using apt-get install, the apt-get lists were not deleted"
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
@@ -33,7 +35,8 @@
     "searchKey": "FROM={{busybox3}}.RUN={{apt-get update && apt-get install --no-install-recommends -y python}}",
     "searchValue": "",
     "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
-    "actualValue": "After using apt-get install, the apt-get lists were not deleted"
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
@@ -45,7 +48,8 @@
     "searchKey": "FROM={{busybox4}}.RUN={{apt-get update && apt-get install --no-install-recommends -y python}}",
     "searchValue": "",
     "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
-    "actualValue": "After using apt-get install, the apt-get lists were not deleted"
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
@@ -57,6 +61,7 @@
     "searchKey": "FROM={{busybox5}}.RUN={{set -eux; \tapt-get update; \tapt-get install -y --no-install-recommends package=0.0.0}}",
     "searchValue": "",
     "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
-    "actualValue": "After using apt-get install, the apt-get lists were not deleted"
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue"
   }
 ]

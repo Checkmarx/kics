@@ -9,7 +9,8 @@
     "searchKey": "aws_mq_broker[positive1]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS MQ",
@@ -21,6 +22,7 @@
     "searchKey": "aws_mq_broker[positive2]",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

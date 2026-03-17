@@ -9,7 +9,8 @@
     "searchKey": "aws_eip[positive1]",
     "searchValue": "",
     "expectedValue": "aws_eip has shield advanced associated",
-    "actualValue": "aws_eip does not have shield advanced associated"
+    "actualValue": "aws_eip does not have shield advanced associated",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shield Advanced Not In Use",
@@ -21,6 +22,7 @@
     "searchKey": "aws_route53_zone[positive2]",
     "searchValue": "",
     "expectedValue": "aws_route53_zone has shield advanced associated",
-    "actualValue": "aws_route53_zone does not have shield advanced associated"
+    "actualValue": "aws_route53_zone does not have shield advanced associated",
+    "issueType": "MissingAttribute"
   }
 ]

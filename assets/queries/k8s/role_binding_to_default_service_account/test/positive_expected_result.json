@@ -9,6 +9,7 @@
     "searchKey": "subjects.name=default",
     "searchValue": "",
     "expectedValue": "subjects.kind=ServiceAccount.name should not be default",
-    "actualValue": "subjects.kind=ServiceAccount.name is default"
+    "actualValue": "subjects.kind=ServiceAccount.name is default",
+    "issueType": "IncorrectValue"
   }
 ]

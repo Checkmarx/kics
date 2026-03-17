@@ -9,7 +9,8 @@
     "searchKey": "name={{Create a subnet1}}.{{azure_rm_subnet}}",
     "searchValue": "",
     "expectedValue": "azure_rm_subnet.security_group should be defined and not null",
-    "actualValue": "azure_rm_subnet.security_group is undefined or null"
+    "actualValue": "azure_rm_subnet.security_group is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group is Not Configured",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Create a subnet2}}.{{azure_rm_subnet}}",
     "searchValue": "",
     "expectedValue": "azure_rm_subnet.security_group should be defined and not null",
-    "actualValue": "azure_rm_subnet.security_group is undefined or null"
+    "actualValue": "azure_rm_subnet.security_group is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group is Not Configured",
@@ -33,7 +35,8 @@
     "searchKey": "name={{Create a subnet3}}.{{azure_rm_subnet}}",
     "searchValue": "",
     "expectedValue": "azure_rm_subnet.security_group should be defined and not null",
-    "actualValue": "azure_rm_subnet.security_group is undefined or null"
+    "actualValue": "azure_rm_subnet.security_group is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Group is Not Configured",
@@ -45,7 +48,8 @@
     "searchKey": "name={{Create a subnet4}}.{{azure_rm_subnet}}.security_group",
     "searchValue": "",
     "expectedValue": "azure_rm_subnet.security_group should not be empty",
-    "actualValue": "azure_rm_subnet.security_group is empty"
+    "actualValue": "azure_rm_subnet.security_group is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group is Not Configured",
@@ -57,6 +61,7 @@
     "searchKey": "name={{Create a subnet5}}.{{azure_rm_subnet}}.security_group_name",
     "searchValue": "",
     "expectedValue": "azure_rm_subnet.security_group_name should not be empty",
-    "actualValue": "azure_rm_subnet.security_group_name is empty"
+    "actualValue": "azure_rm_subnet.security_group_name is empty",
+    "issueType": "IncorrectValue"
   }
 ]

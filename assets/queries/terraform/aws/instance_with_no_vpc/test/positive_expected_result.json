@@ -9,7 +9,8 @@
     "searchKey": "aws_instance[positive1]",
     "searchValue": "",
     "expectedValue": "Attribute 'vpc_security_group_ids' should be defined and not null",
-    "actualValue": "Attribute 'vpc_security_group_ids' is undefined or null"
+    "actualValue": "Attribute 'vpc_security_group_ids' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance With No VPC",
@@ -21,6 +22,7 @@
     "searchKey": "module[ec2_instance]",
     "searchValue": "",
     "expectedValue": "Attribute 'vpc_security_group_ids' should be defined and not null",
-    "actualValue": "Attribute 'vpc_security_group_ids' is undefined or null"
+    "actualValue": "Attribute 'vpc_security_group_ids' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

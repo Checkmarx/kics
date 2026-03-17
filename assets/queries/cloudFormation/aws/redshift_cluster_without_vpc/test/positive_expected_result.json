@@ -9,7 +9,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
-    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds or ClusterSubnetGroupName"
+    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds or ClusterSubnetGroupName",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
-    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields have invalid references"
+    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields have invalid references",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties.VpcSecurityGroupIds",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
-    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds field has an invalid reference"
+    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds field has an invalid reference",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties.ClusterSubnetGroupName",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
-    "actualValue": "Resources.RedshiftCluster.Properties ClusterSubnetGroupName field has an invalid reference"
+    "actualValue": "Resources.RedshiftCluster.Properties ClusterSubnetGroupName field has an invalid reference",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
-    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds"
+    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
-    "actualValue": "Resources.RedshiftCluster.Properties does not define ClusterSubnetGroupName"
+    "actualValue": "Resources.RedshiftCluster.Properties does not define ClusterSubnetGroupName",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
-    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields have invalid references"
+    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields have invalid references",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties.VpcSecurityGroupIds",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
-    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds field has an invalid reference"
+    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds field has an invalid reference",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties.ClusterSubnetGroupName",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
-    "actualValue": "Resources.RedshiftCluster.Properties ClusterSubnetGroupName field has an invalid reference"
+    "actualValue": "Resources.RedshiftCluster.Properties ClusterSubnetGroupName field has an invalid reference",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
-    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds or ClusterSubnetGroupName"
+    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds or ClusterSubnetGroupName",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
-    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds"
+    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
@@ -141,6 +152,7 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
-    "actualValue": "Resources.RedshiftCluster.Properties does not define ClusterSubnetGroupName"
+    "actualValue": "Resources.RedshiftCluster.Properties does not define ClusterSubnetGroupName",
+    "issueType": "MissingAttribute"
   }
 ]

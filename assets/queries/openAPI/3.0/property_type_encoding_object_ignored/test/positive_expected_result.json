@@ -9,7 +9,8 @@
     "searchKey": "components.requestBodies.{{NewItem}}.content.{{multipart/data}}",
     "searchValue": "",
     "expectedValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'style' is set",
-    "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set"
+    "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'style' of Encoding Object Ignored",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'style' is set",
-    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set"
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'style' of Encoding Object Ignored",
@@ -33,7 +35,8 @@
     "searchKey": "components.requestBodies.{{NewItem}}.content.{{multipart/data}}",
     "searchValue": "",
     "expectedValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'style' is set",
-    "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set"
+    "actualValue": "components.requestBodies.{{NewItem}}.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'style' of Encoding Object Ignored",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}} should be 'application/x-www-form-urlencoded' when 'style' is set",
-    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set"
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{multipart/data}} is not 'application/x-www-form-urlencoded' when 'style' is set",
+    "issueType": "IncorrectValue"
   }
 ]

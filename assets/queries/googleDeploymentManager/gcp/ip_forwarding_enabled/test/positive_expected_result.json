@@ -9,6 +9,7 @@
     "searchKey": "resources.name={{vm-template}}.properties.canIpForward",
     "searchValue": "",
     "expectedValue": "'canIpForward' should not be set to true",
-    "actualValue": "'canIpForward' is set to true"
+    "actualValue": "'canIpForward' is set to true",
+    "issueType": "IncorrectValue"
   }
 ]

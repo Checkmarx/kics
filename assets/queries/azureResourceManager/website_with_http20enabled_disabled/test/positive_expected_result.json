@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'siteConfig' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'siteConfig' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property value set to true in siteConfig",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property value set to true in siteConfig",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{webSite}}.properties.siteConfig",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property defined in siteConfig",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "resources.name={{webSite}}.properties.siteConfig",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property defined in siteConfig",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'siteConfig' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name={{webSite}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'siteConfig' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property value set to true in siteConfig",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property value set to true in siteConfig",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name={{webSite}}.properties.siteConfig",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property defined in siteConfig",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
@@ -141,6 +152,7 @@
     "searchKey": "properties.template.resources.name={{webSite}}.properties.siteConfig",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property defined in siteConfig",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig",
+    "issueType": "MissingAttribute"
   }
 ]

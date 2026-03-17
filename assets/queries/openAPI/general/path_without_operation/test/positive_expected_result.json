@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}} has at least one operation object defined",
-    "actualValue": "paths.{{/}} does not have at least one operation object defined"
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Without Operation (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}} has at least one operation object defined",
-    "actualValue": "paths.{{/}} does not have at least one operation object defined"
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Without Operation (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}} has at least one operation object defined",
-    "actualValue": "paths.{{/}} does not have at least one operation object defined"
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Without Operation (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}} has at least one operation object defined",
-    "actualValue": "paths.{{/}} does not have at least one operation object defined"
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute"
   }
 ]

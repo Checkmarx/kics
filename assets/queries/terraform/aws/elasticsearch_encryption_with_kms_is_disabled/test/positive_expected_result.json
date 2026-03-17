@@ -9,6 +9,7 @@
     "searchKey": "aws_elasticsearch_domain[positive1].encrypt_at_rest",
     "searchValue": "",
     "expectedValue": "'aws_elasticsearch_domain[positive1].encrypt_at_rest.kms_key_id' should be set with encryption at rest",
-    "actualValue": "'aws_elasticsearch_domain[positive1].encrypt_at_rest.kms_key_id' is undefined"
+    "actualValue": "'aws_elasticsearch_domain[positive1].encrypt_at_rest.kms_key_id' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

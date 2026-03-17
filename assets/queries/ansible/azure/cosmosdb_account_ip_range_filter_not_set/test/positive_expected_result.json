@@ -9,6 +9,7 @@
     "searchKey": "name={{Create Cosmos DB Account - max}}.{{azure_rm_cosmosdbaccount}}",
     "searchValue": "",
     "expectedValue": "'azurerm_cosmosdb_account.ip_range_filter' should be defined",
-    "actualValue": "'azurerm_cosmosdb_account.ip_range_filter' is undefined"
+    "actualValue": "'azurerm_cosmosdb_account.ip_range_filter' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

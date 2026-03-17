@@ -9,7 +9,8 @@
     "searchKey": "Resources.CFNUser.Properties.Policies.0.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [*]"
+    "actualValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [*]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' contains [s3:GetObject, ssm:GetParameter, s3:*]"
+    "actualValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' contains [s3:GetObject, ssm:GetParameter, s3:*]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' contains [s3:*]"
+    "actualValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' contains [s3:*]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [secretsmanager:GetSecretValue]"
+    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [secretsmanager:GetSecretValue]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.RootGroup.Properties.Policies.0.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [ssm:GetParameter]"
+    "actualValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [ssm:GetParameter]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [ssm:GetParameters]"
+    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [ssm:GetParameters]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.RootRole.Properties.Policies.0.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [ssm:GetParametersByPath]"
+    "actualValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [ssm:GetParametersByPath]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' contains [s3:*]"
+    "actualValue": "'Resources.CreateTestDBPolicy.Properties.PolicyDocument.Statement[0].Action' contains [s3:*]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.CFNUser.Properties.Policies.0.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [*]"
+    "actualValue": "'Resources.CFNUser.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [*]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.RootGroup.Properties.Policies.0.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [s3:GetObject]"
+    "actualValue": "'Resources.RootGroup.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [s3:GetObject]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.MyPolicy.Properties.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [secretsmanager:GetSecretValue]"
+    "actualValue": "'Resources.MyPolicy.Properties.PolicyDocument.Statement[0].Action' contains [secretsmanager:GetSecretValue]",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM policy allows for data exfiltration",
@@ -141,6 +152,7 @@
     "searchKey": "Resources.RootRole.Properties.Policies.0.PolicyDocument.Statement.0.Action",
     "searchValue": "",
     "expectedValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' shouldn't contain ilegal actions",
-    "actualValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [s3:GetObject, ssm:GetParameter, s3:*]"
+    "actualValue": "'Resources.RootRole.Properties.Policies[0].PolicyDocument.Statement[0].Action' contains [s3:GetObject, ssm:GetParameter, s3:*]",
+    "issueType": "IncorrectValue"
   }
 ]

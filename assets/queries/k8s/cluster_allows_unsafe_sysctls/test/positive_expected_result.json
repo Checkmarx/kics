@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{net.core.somaxconn}}",
     "searchValue": "",
     "expectedValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{net.core.somaxconn}} should not be used",
-    "actualValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{net.core.somaxconn}} is an unsafe sysctl"
+    "actualValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{net.core.somaxconn}} is an unsafe sysctl",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cluster Allows Unsafe Sysctls",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}}",
     "searchValue": "",
     "expectedValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}} should not be used",
-    "actualValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}} is an unsafe sysctl"
+    "actualValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}} is an unsafe sysctl",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cluster Allows Unsafe Sysctls",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{sysctl-psp}}.spec.allowedUnsafeSysctls",
     "searchValue": "",
     "expectedValue": "metadata.name={{sysctl-psp}}.spec.allowedUnsafeSysctls should be undefined",
-    "actualValue": "metadata.name={{sysctl-psp}}.spec.allowedUnsafeSysctls is defined"
+    "actualValue": "metadata.name={{sysctl-psp}}.spec.allowedUnsafeSysctls is defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cluster Allows Unsafe Sysctls",
@@ -45,6 +48,7 @@
     "searchKey": "metadata.name={{test-app}}.spec.template.spec.securityContext.sysctls.name={{kernel.sem}}",
     "searchValue": "",
     "expectedValue": "metadata.name={{test-app}}.spec.template.spec.securityContext.sysctls.name={{kernel.sem}} should not be used",
-    "actualValue": "metadata.name={{test-app}}.spec.template.spec.securityContext.sysctls.name={{kernel.sem}} is an unsafe sysctl"
+    "actualValue": "metadata.name={{test-app}}.spec.template.spec.securityContext.sysctls.name={{kernel.sem}} is an unsafe sysctl",
+    "issueType": "IncorrectValue"
   }
 ]

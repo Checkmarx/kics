@@ -9,7 +9,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties.KmsKeyId should be set",
-    "actualValue": "Resources.RedshiftCluster.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.RedshiftCluster.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Cluster Without KMS CMK",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties.KmsKeyId should be set",
-    "actualValue": "Resources.RedshiftCluster.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.RedshiftCluster.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

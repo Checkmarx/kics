@@ -9,6 +9,7 @@
     "searchKey": "name={{create a network2}}.{{google.cloud.gcp_compute_network}}",
     "searchValue": "",
     "expectedValue": "'google.cloud.gcp_compute_network' should not be using a default firewall rule",
-    "actualValue": "'google.cloud.gcp_compute_network' is using a default firewall rule"
+    "actualValue": "'google.cloud.gcp_compute_network' is using a default firewall rule",
+    "issueType": "IncorrectValue"
   }
 ]

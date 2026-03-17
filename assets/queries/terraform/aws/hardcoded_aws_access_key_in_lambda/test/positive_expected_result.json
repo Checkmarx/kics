@@ -9,7 +9,8 @@
     "searchKey": "aws_lambda_function[positive2].environment.variables.foo",
     "searchValue": "",
     "expectedValue": "'environment.variables' shouldn't contain AWS Access Key",
-    "actualValue": "'environment.variables' contains AWS Access Key"
+    "actualValue": "'environment.variables' contains AWS Access Key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Hardcoded AWS Access Key In Lambda",
@@ -21,6 +22,7 @@
     "searchKey": "aws_lambda_function[positive3].environment.variables.foo",
     "searchValue": "",
     "expectedValue": "'environment.variables' shouldn't contain AWS Access Key",
-    "actualValue": "'environment.variables' contains AWS Access Key"
+    "actualValue": "'environment.variables' contains AWS Access Key",
+    "issueType": "IncorrectValue"
   }
 ]

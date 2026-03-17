@@ -9,7 +9,8 @@
     "searchKey": "Resources.SecretsManagerSecret.Properties",
     "searchValue": "",
     "expectedValue": "Resources.SecretsManagerSecret.Properties.KmsKeyId should be defined",
-    "actualValue": "Resources.SecretsManagerSecret.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.SecretsManagerSecret.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Secrets Manager Should Specify KmsKeyId",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.SecretsManagerSecret.Properties",
     "searchValue": "",
     "expectedValue": "Resources.SecretsManagerSecret.Properties.KmsKeyId should be defined",
-    "actualValue": "Resources.SecretsManagerSecret.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.SecretsManagerSecret.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "azurerm_virtual_network[positive1]",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_network[positive1].ddos_protection_plan' should be defined and not null",
-    "actualValue": "'azurerm_virtual_network[positive1].ddos_protection_plan' is undefined or null"
+    "actualValue": "'azurerm_virtual_network[positive1].ddos_protection_plan' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Virtual Network with DDoS Protection Plan disabled",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_virtual_network[positive1].ddos_protection_plan.enable",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_network[positive1].ddos_protection_plan.enable' should be set to true",
-    "actualValue": "'azurerm_virtual_network[positive1].ddos_protection_plan.enable' is set to false"
+    "actualValue": "'azurerm_virtual_network[positive1].ddos_protection_plan.enable' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

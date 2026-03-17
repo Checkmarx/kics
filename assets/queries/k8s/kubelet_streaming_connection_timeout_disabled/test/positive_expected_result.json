@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
     "searchValue": "",
     "expectedValue": "--streaming-connection-idle-timeout flag not should be 0",
-    "actualValue": "--streaming-connection-idle-timeout flag is 0"
+    "actualValue": "--streaming-connection-idle-timeout flag is 0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Streaming Connection Timeout Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "kind={{KubeletConfiguration}}.streamingConnectionIdleTimeout",
     "searchValue": "",
     "expectedValue": "streamingConnectionIdleTimeout not should be 0s",
-    "actualValue": "streamingConnectionIdleTimeout is 0s"
+    "actualValue": "streamingConnectionIdleTimeout is 0s",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kubelet Streaming Connection Timeout Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "kind={{KubeletConfiguration}}.streamingConnectionIdleTimeout",
     "searchValue": "",
     "expectedValue": "streamingConnectionIdleTimeout not should be 0s",
-    "actualValue": "streamingConnectionIdleTimeout is 0s"
+    "actualValue": "streamingConnectionIdleTimeout is 0s",
+    "issueType": "IncorrectValue"
   }
 ]

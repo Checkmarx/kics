@@ -9,7 +9,8 @@
     "searchKey": "aws_cloudwatch_log_group[positive1]",
     "searchValue": "",
     "expectedValue": "Attribute 'retention_in_days' should be set and valid",
-    "actualValue": "Attribute 'retention_in_days' is undefined"
+    "actualValue": "Attribute 'retention_in_days' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
@@ -21,6 +22,7 @@
     "searchKey": "aws_cloudwatch_log_group[positive2].retention_in_days",
     "searchValue": "",
     "expectedValue": "Attribute 'retention_in_days' should be set and valid",
-    "actualValue": "Attribute 'retention_in_days' is set but invalid"
+    "actualValue": "Attribute 'retention_in_days' is set but invalid",
+    "issueType": "IncorrectValue"
   }
 ]

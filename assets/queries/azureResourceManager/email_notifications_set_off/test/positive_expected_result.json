@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{security contact}}.properties.alertNotifications.state",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' property value should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'Off'"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'Off'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{security contact}}.properties.alertNotifications.state",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' property value should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'Off'"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'Off'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "properties.template.resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{security contact}}.properties.notificationsByRole.state",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' property value should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'Off'"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'Off'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name={{security contact}}.properties.notificationsByRole.state",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' property value should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'Off'"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'Off'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{security contact}}.properties.notificationsByRole",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole.state' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole.state' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name={{security contact}}.properties.notificationsByRole",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole.state' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole.state' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name={{security contact}}.properties.alertNotifications",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications.state' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications.state' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -141,7 +152,8 @@
     "searchKey": "resources.name={{security contact}}.properties.alertNotifications",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications.state' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications.state' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -153,7 +165,8 @@
     "searchKey": "resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -165,7 +178,8 @@
     "searchKey": "resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -177,7 +191,8 @@
     "searchKey": "resources.name={{security contact}}.properties.notificationsByRole.state",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' property value should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'Off'"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'Off'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -189,7 +204,8 @@
     "searchKey": "resources.name={{security contact}}.properties.notificationsByRole.state",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' property value should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'Off'"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'Off'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -201,7 +217,8 @@
     "searchKey": "resources.name={{security contact}}.properties.notificationsByRole",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole.state' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole.state' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -213,7 +230,8 @@
     "searchKey": "resources.name={{security contact}}.properties.notificationsByRole",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'notificationsByRole.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole.state' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'notificationsByRole.state' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -225,7 +243,8 @@
     "searchKey": "resources.name={{security contact}}.properties.alertNotifications.state",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' property value should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'Off'"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'Off'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -237,7 +256,8 @@
     "searchKey": "properties.template.resources.name={{security contact}}.properties.alertNotifications.state",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' property value should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'Off'"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'Off'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -249,7 +269,8 @@
     "searchKey": "resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -261,7 +282,8 @@
     "searchKey": "properties.template.resources.name={{security contact}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -273,7 +295,8 @@
     "searchKey": "resources.name={{security contact}}.properties.alertNotifications",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications.state' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications.state' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Email Notifications Disabled",
@@ -285,6 +308,7 @@
     "searchKey": "properties.template.resources.name={{security contact}}.properties.alertNotifications",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Security/securityContacts' should have 'alertNotifications.state' property set to 'On'",
-    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications.state' property defined"
+    "actualValue": "resource with type 'Microsoft.Security/securityContacts' doesn't have 'alertNotifications.state' property defined",
+    "issueType": "MissingAttribute"
   }
 ]

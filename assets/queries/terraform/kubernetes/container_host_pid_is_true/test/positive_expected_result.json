@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_pod[positive1].spec.host_pid",
     "searchValue": "",
     "expectedValue": "Attribute 'host_pid' should be undefined or false",
-    "actualValue": "Attribute 'host_pid' is true"
+    "actualValue": "Attribute 'host_pid' is true",
+    "issueType": "IncorrectValue"
   }
 ]

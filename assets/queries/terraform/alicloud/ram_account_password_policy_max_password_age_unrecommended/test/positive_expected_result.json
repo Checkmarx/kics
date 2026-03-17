@@ -9,7 +9,8 @@
     "searchKey": "alicloud_ram_account_password_policy[corporate]",
     "searchValue": "",
     "expectedValue": "'max_password_age' should be higher than 0 and lower than 91",
-    "actualValue": "'max_password_age' is not defined"
+    "actualValue": "'max_password_age' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Ram Account Password Policy Max Password Age Unrecommended",
@@ -21,7 +22,8 @@
     "searchKey": "alicloud_ram_account_password_policy[corporate].max_password_age",
     "searchValue": "",
     "expectedValue": "'max_password_age' should be higher than 0 and lower than 91",
-    "actualValue": "'max_password_age' is higher than 90"
+    "actualValue": "'max_password_age' is higher than 90",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Ram Account Password Policy Max Password Age Unrecommended",
@@ -33,6 +35,7 @@
     "searchKey": "alicloud_ram_account_password_policy[corporate].max_password_age",
     "searchValue": "",
     "expectedValue": "'max_password_age' should be higher than 0 and lower than 91",
-    "actualValue": "'max_password_age' is equal to 0"
+    "actualValue": "'max_password_age' is equal to 0",
+    "issueType": "IncorrectValue"
   }
 ]

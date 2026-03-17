@@ -9,6 +9,7 @@
     "searchKey": "name={{Create IAM Managed Policy}}.{{community.aws.iam_managed_policy}}.policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should no be equal to '*'",
-    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'"
+    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   }
 ]

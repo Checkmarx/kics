@@ -9,7 +9,8 @@
     "searchKey": "aws_flow_log[example]",
     "searchValue": "",
     "expectedValue": "aws_flow_log[example].vpc_id should be defined and not null",
-    "actualValue": "aws_flow_log[example].vpc_id is undefined or null"
+    "actualValue": "aws_flow_log[example].vpc_id is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "VPC FlowLogs Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_vpc[main]",
     "searchValue": "",
     "expectedValue": "aws_vpc[main] should be the same as Flow Logs VPC id",
-    "actualValue": "aws_vpc[main] is not the same as Flow Logs VPC id"
+    "actualValue": "aws_vpc[main] is not the same as Flow Logs VPC id",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC FlowLogs Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "vpc.enable_flow_log",
     "searchValue": "",
     "expectedValue": "vpc.enable_flow_log should be set to true",
-    "actualValue": "vpc.enable_flow_log is set to false"
+    "actualValue": "vpc.enable_flow_log is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC FlowLogs Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "vpc",
     "searchValue": "",
     "expectedValue": "vpc.enable_flow_log should be set to true",
-    "actualValue": "vpc.enable_flow_log is undefined"
+    "actualValue": "vpc.enable_flow_log is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

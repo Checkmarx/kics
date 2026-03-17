@@ -9,7 +9,8 @@
     "searchKey": "resources[example].properties",
     "searchValue": "",
     "expectedValue": "Attribute 'monitoring' should be defined and set to true",
-    "actualValue": "Attribute 'monitoring' is not defined"
+    "actualValue": "Attribute 'monitoring' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "resources[example].properties.monitoring",
     "searchValue": "",
     "expectedValue": "Attribute 'monitoring' should be set to true",
-    "actualValue": "Attribute 'monitoring' is set to false"
+    "actualValue": "Attribute 'monitoring' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

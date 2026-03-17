@@ -9,6 +9,7 @@
     "searchKey": "aws_eks_cluster[positive1]",
     "searchValue": "",
     "expectedValue": "'enabled_cluster_log_types' should be defined and not null",
-    "actualValue": "'enabled_cluster_log_types' is undefined or null"
+    "actualValue": "'enabled_cluster_log_types' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.NewVolume.Properties",
     "searchValue": "",
     "expectedValue": "Resources.NewVolume.Properties.KmsKeyId should be defined",
-    "actualValue": "Resources.NewVolume.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.NewVolume.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EBS Volume Without KmsKeyId",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.NewVolume.Properties",
     "searchValue": "",
     "expectedValue": "Resources.NewVolume.Properties.KmsKeyId should be defined",
-    "actualValue": "Resources.NewVolume.Properties.KmsKeyId is undefined"
+    "actualValue": "Resources.NewVolume.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

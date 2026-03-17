@@ -9,6 +9,7 @@
     "searchKey": "resources.name={{cluster}}.properties",
     "searchValue": "",
     "expectedValue": "'resourceLabels' should be defined and not null",
-    "actualValue": "'resourceLabels' is undefined or null"
+    "actualValue": "'resourceLabels' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

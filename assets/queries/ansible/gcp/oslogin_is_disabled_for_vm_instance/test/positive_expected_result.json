@@ -9,6 +9,7 @@
     "searchKey": "name={{oslogin-disabled}}.{{google.cloud.gcp_compute_instance}}.metadata.enable-oslogin",
     "searchValue": "",
     "expectedValue": "gcp_compute_instance.metadata.enable-oslogin should be true",
-    "actualValue": "gcp_compute_instance.metadata.enable-oslogin is false"
+    "actualValue": "gcp_compute_instance.metadata.enable-oslogin is false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.DevWebSocket",
     "searchValue": "",
     "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
-    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer"
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.DevWebSocket5",
     "searchValue": "",
     "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
-    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer"
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyRestApi6",
     "searchValue": "",
     "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
-    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer"
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyRestApi7",
     "searchValue": "",
     "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
-    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer"
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.DevWebSocket8",
     "searchValue": "",
     "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
-    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer"
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.DevWebSocket9",
     "searchValue": "",
     "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
-    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer"
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.MyRestApi10",
     "searchValue": "",
     "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
-    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer"
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.MyRestApi11",
     "searchValue": "",
     "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
-    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer"
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue"
   }
 ]

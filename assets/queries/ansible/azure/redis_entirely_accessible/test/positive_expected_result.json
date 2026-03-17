@@ -9,6 +9,7 @@
     "searchKey": "name={{Create a Firewall rule for Azure Cache for Redis}}.{{azure_rm_rediscachefirewallrule}}.start_ip_address",
     "searchValue": "",
     "expectedValue": "azure_rm_rediscachefirewallrule start_ip and end_ip should not equal to '0.0.0.0'",
-    "actualValue": "azure_rm_rediscachefirewallrule start_ip and end_ip are equal to '0.0.0.0'"
+    "actualValue": "azure_rm_rediscachefirewallrule start_ip and end_ip are equal to '0.0.0.0'",
+    "issueType": "IncorrectValue"
   }
 ]

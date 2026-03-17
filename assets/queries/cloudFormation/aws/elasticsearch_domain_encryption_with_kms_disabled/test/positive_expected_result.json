@@ -9,7 +9,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.KmsKeyId should be set",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.KmsKeyId is undefined"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Encryption With KMS Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.KmsKeyId should be set",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.KmsKeyId is undefined"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.KmsKeyId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Encryption With KMS Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions should be defined and not null",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is undefined or null"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Encryption With KMS Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions should be defined and not null",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is undefined or null"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

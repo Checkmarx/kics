@@ -9,7 +9,8 @@
     "searchKey": "FROM={{python:2.7}}",
     "searchValue": "",
     "expectedValue": "The 'Dockerfile' should contain the 'USER' instruction",
-    "actualValue": "The 'Dockerfile' does not contain any 'USER' instruction"
+    "actualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Missing User Instruction",
@@ -21,6 +22,7 @@
     "searchKey": "FROM={{alpine:latest  }}",
     "searchValue": "",
     "expectedValue": "The 'Dockerfile' should contain the 'USER' instruction",
-    "actualValue": "The 'Dockerfile' does not contain any 'USER' instruction"
+    "actualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
+    "issueType": "MissingAttribute"
   }
 ]

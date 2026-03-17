@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyDynamoDBTable.Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled",
     "searchValue": "",
     "expectedValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be set to 'true'",
-    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is set to 'false'"
+    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyDynamoDBTable.Properties",
     "searchValue": "",
     "expectedValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be defined and set to 'true'",
-    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification is not defined"
+    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.DynamoDBOnDemandTable1.Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled",
     "searchValue": "",
     "expectedValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be set to 'true'",
-    "actualValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is set to 'false'"
+    "actualValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.DynamoDBOnDemandTable1.Properties",
     "searchValue": "",
     "expectedValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be defined and set to 'true'",
-    "actualValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification is not defined"
+    "actualValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MyDynamoDBTable.Properties.PointInTimeRecoverySpecification",
     "searchValue": "",
     "expectedValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be defined and set to 'true'",
-    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is not defined"
+    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.DynamoDBOnDemandTable1.Properties.PointInTimeRecoverySpecification",
     "searchValue": "",
     "expectedValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be defined and set to 'true'",
-    "actualValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is not defined"
+    "actualValue": "Resources[DynamoDBOnDemandTable1].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DynamoDB Table Point In Time Recovery Disabled",
@@ -81,6 +87,7 @@
     "searchKey": "Resources.MyDynamoDBTable.Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled",
     "searchValue": "",
     "expectedValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be set to 'true'",
-    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is set to 'false'"
+    "actualValue": "Resources[MyDynamoDBTable].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

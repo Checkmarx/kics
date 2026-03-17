@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.produces.image/ png",
     "searchValue": "",
     "expectedValue": "The Media Type should be a valid value",
-    "actualValue": "The Media Type is a invalid value"
+    "actualValue": "The Media Type is a invalid value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Media Type Value (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.consumes.application/ x-www-form-urlencoded",
     "searchValue": "",
     "expectedValue": "The Media Type should be a valid value",
-    "actualValue": "The Media Type is a invalid value"
+    "actualValue": "The Media Type is a invalid value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Media Type Value (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.produces.image/ png",
     "searchValue": "",
     "expectedValue": "The Media Type should be a valid value",
-    "actualValue": "The Media Type is a invalid value"
+    "actualValue": "The Media Type is a invalid value",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Media Type Value (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.get.consumes.application/ x-www-form-urlencoded",
     "searchValue": "",
     "expectedValue": "The Media Type should be a valid value",
-    "actualValue": "The Media Type is a invalid value"
+    "actualValue": "The Media Type is a invalid value",
+    "issueType": "IncorrectValue"
   }
 ]

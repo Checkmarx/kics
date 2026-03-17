@@ -9,6 +9,7 @@
     "searchKey": "spec.metrics",
     "searchValue": "",
     "expectedValue": "spec.metrics[0] is a valid object ",
-    "actualValue": "spec.metrics[0] is an invalid object "
+    "actualValue": "spec.metrics[0] is an invalid object ",
+    "issueType": "IncorrectValue"
   }
 ]

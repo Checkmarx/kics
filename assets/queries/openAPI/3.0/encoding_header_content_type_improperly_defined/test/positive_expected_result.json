@@ -9,7 +9,8 @@
     "searchKey": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}}",
     "searchValue": "",
     "expectedValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} should not define 'Content-Type' in the 'headers' field",
-    "actualValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field"
+    "actualValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Encoding Header 'Content-Type' Improperly Defined",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} should not define 'Content-Type' in the 'headers' field",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Encoding Header 'Content-Type' Improperly Defined",
@@ -33,7 +35,8 @@
     "searchKey": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}}",
     "searchValue": "",
     "expectedValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} should not define 'Content-Type' in the 'headers' field",
-    "actualValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field"
+    "actualValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Encoding Header 'Content-Type' Improperly Defined",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} should not define 'Content-Type' in the 'headers' field",
-    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field"
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{test-network-policy}}.spec.podSelector.matchLabels.app",
     "searchValue": "",
     "expectedValue": "'spec.podSelector.matchLabels.app' is targeting at least a pod",
-    "actualValue": "'spec.podSelector.matchLabels.app' is not targeting any pod"
+    "actualValue": "'spec.podSelector.matchLabels.app' is not targeting any pod",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod_security_policy[example].spec.allowed_unsafe_sysctls",
     "searchValue": "",
     "expectedValue": "kubernetes_pod_security_policy[example].spec.allowed_unsafe_sysctls should be undefined",
-    "actualValue": "kubernetes_pod_security_policy[example].spec.allowed_unsafe_sysctls is set"
+    "actualValue": "kubernetes_pod_security_policy[example].spec.allowed_unsafe_sysctls is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cluster Allows Unsafe Sysctls",
@@ -21,6 +22,7 @@
     "searchKey": "kubernetes_pod[test].spec.security_context.sysctl",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test].spec.security_context.sysctl[%!s(int=0)].name should not have an unsafe sysctl",
-    "actualValue": "kubernetes_pod[test].spec.security_context.sysctl[%!s(int=0)].name has an unsafe sysctl"
+    "actualValue": "kubernetes_pod[test].spec.security_context.sysctl[%!s(int=0)].name has an unsafe sysctl",
+    "issueType": "IncorrectValue"
   }
 ]

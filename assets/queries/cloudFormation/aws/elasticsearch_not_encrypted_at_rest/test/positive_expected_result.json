@@ -9,7 +9,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions should be enabled",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is disabled"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.ElasticsearchDomain1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain1.Properties.EncryptionAtRestOptions should be defined and not null",
-    "actualValue": "Resources.ElasticsearchDomain1.Properties.EncryptionAtRestOptions is undefined or null"
+    "actualValue": "Resources.ElasticsearchDomain1.Properties.EncryptionAtRestOptions is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions should be enabled",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is disabled"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is disabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.ElasticsearchDomain1.Properties",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain1.Properties.EncryptionAtRestOptions should be defined and not null",
-    "actualValue": "Resources.ElasticsearchDomain1.Properties.EncryptionAtRestOptions is undefined or null"
+    "actualValue": "Resources.ElasticsearchDomain1.Properties.EncryptionAtRestOptions is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.Enabled",
     "searchValue": "",
     "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions should be enabled",
-    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is disabled"
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is disabled",
+    "issueType": "IncorrectValue"
   }
 ]

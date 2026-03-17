@@ -9,7 +9,8 @@
     "searchKey": "aws_sqs_queue_policy[positive2].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' should not equal '*'",
-    "actualValue": "'policy.Statement.Action' is equal '*'"
+    "actualValue": "'policy.Statement.Action' is equal '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS Policy Allows All Actions",
@@ -21,6 +22,7 @@
     "searchKey": "module[s3_bucket].policy",
     "searchValue": "",
     "expectedValue": "'policy.Statement.Action' should not equal '*'",
-    "actualValue": "'policy.Statement.Action' is equal '*'"
+    "actualValue": "'policy.Statement.Action' is equal '*'",
+    "issueType": "IncorrectValue"
   }
 ]

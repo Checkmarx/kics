@@ -9,7 +9,8 @@
     "searchKey": "name={{create a bucket1}}.{{google.cloud.gcp_storage_bucket}}.default_object_acl.entity",
     "searchValue": "",
     "expectedValue": "gcp_storage_bucket.default_object_acl.entity should not be 'allUsers' or 'allAuthenticatedUsers'",
-    "actualValue": "gcp_storage_bucket.default_object_acl.entity is 'allUsers' or 'allAuthenticatedUsers'"
+    "actualValue": "gcp_storage_bucket.default_object_acl.entity is 'allUsers' or 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a bucket2}}.{{google.cloud.gcp_storage_bucket}}.acl.entity",
     "searchValue": "",
     "expectedValue": "gcp_storage_bucket.acl.entity should not be 'allUsers' or 'allAuthenticatedUsers'",
-    "actualValue": "gcp_storage_bucket.acl.entity is 'allUsers' or 'allAuthenticatedUsers'"
+    "actualValue": "gcp_storage_bucket.acl.entity is 'allUsers' or 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
@@ -33,6 +35,7 @@
     "searchKey": "name={{create a bucket3}}.{{google.cloud.gcp_storage_bucket}}",
     "searchValue": "",
     "expectedValue": "gcp_storage_bucket.default_object_acl should be defined",
-    "actualValue": "gcp_storage_bucket.default_object_acl is undefined"
+    "actualValue": "gcp_storage_bucket.default_object_acl is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "name={{community - create minimal aurora instance in default VPC and default subnet group}}.{{community.aws.rds_instance}}.auto_minor_version_upgrade",
     "searchValue": "",
     "expectedValue": "rds_instance.auto_minor_version_upgrade should be true",
-    "actualValue": "rds_instance.auto_minor_version_upgrade is false"
+    "actualValue": "rds_instance.auto_minor_version_upgrade is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "name={{community - Create a DB instance using the default AWS KMS encryption key}}.{{community.aws.rds_instance}}",
     "searchValue": "",
     "expectedValue": "rds_instance.auto_minor_version_upgrade should be set",
-    "actualValue": "rds_instance.auto_minor_version_upgrade is undefined"
+    "actualValue": "rds_instance.auto_minor_version_upgrade is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

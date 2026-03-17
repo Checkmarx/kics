@@ -9,6 +9,7 @@
     "searchKey": "azurerm_storage_container[positive1].container_access_type",
     "searchValue": "",
     "expectedValue": "'container_access_type' should equal to 'private'",
-    "actualValue": "'container_access_type' is not equal to 'private'"
+    "actualValue": "'container_access_type' is not equal to 'private'",
+    "issueType": "IncorrectValue"
   }
 ]

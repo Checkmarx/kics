@@ -9,7 +9,8 @@
     "searchKey": "aws_ssm_document[positive1].content",
     "searchValue": "",
     "expectedValue": "'inputs' should be defined and not null",
-    "actualValue": "'inputs' is undefined or null"
+    "actualValue": "'inputs' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SSM Session Transit Encryption Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_ssm_document[positive2].content",
     "searchValue": "",
     "expectedValue": "'inputs.kmsKeyId' should be defined and not null",
-    "actualValue": "'inputs.kmsKeyId' is undefined or null"
+    "actualValue": "'inputs.kmsKeyId' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

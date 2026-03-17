@@ -9,7 +9,8 @@
     "searchKey": "name={{create ad sp}}.{{azure_ad_serviceprincipal}}.ad_user",
     "searchValue": "",
     "expectedValue": "azure_ad_serviceprincipal.ad_user should not be predictable",
-    "actualValue": "azure_ad_serviceprincipal.ad_user is predictable"
+    "actualValue": "azure_ad_serviceprincipal.ad_user is predictable",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Predictable Active Directory Account Name",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create ad sp2}}.{{azure_ad_serviceprincipal}}.ad_user",
     "searchValue": "",
     "expectedValue": "azure_ad_serviceprincipal.ad_user should be neither empty nor null",
-    "actualValue": "azure_ad_serviceprincipal.ad_user is empty or null"
+    "actualValue": "azure_ad_serviceprincipal.ad_user is empty or null",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Predictable Active Directory Account Name",
@@ -33,6 +35,7 @@
     "searchKey": "name={{create ad sp3}}.{{azure_ad_serviceprincipal}}.ad_user",
     "searchValue": "",
     "expectedValue": "azure_ad_serviceprincipal.ad_user should be neither empty nor null",
-    "actualValue": "azure_ad_serviceprincipal.ad_user is empty or null"
+    "actualValue": "azure_ad_serviceprincipal.ad_user is empty or null",
+    "issueType": "IncorrectValue"
   }
 ]

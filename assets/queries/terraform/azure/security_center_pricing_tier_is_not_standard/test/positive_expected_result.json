@@ -9,6 +9,7 @@
     "searchKey": "azurerm_security_center_subscription_pricing[positive1].tier",
     "searchValue": "",
     "expectedValue": "'azurerm_security_center_subscription_pricing.positive1.tier' is 'Standard'",
-    "actualValue": "'azurerm_security_center_subscription_pricing.positive1.tier' is 'Free'"
+    "actualValue": "'azurerm_security_center_subscription_pricing.positive1.tier' is 'Free'",
+    "issueType": "IncorrectValue"
   }
 ]

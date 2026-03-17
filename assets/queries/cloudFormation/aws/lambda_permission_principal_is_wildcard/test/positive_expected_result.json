@@ -9,7 +9,8 @@
     "searchKey": "Resources.s3Permission.Properties.Principal",
     "searchValue": "",
     "expectedValue": "Resources.s3Permission.Properties.Principal should not be wildcard",
-    "actualValue": "Resources.s3Permission.Properties.Principal is wildcard"
+    "actualValue": "Resources.s3Permission.Properties.Principal is wildcard",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda Permission Principal Is Wildcard",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.s3Permission.Properties.Principal",
     "searchValue": "",
     "expectedValue": "Resources.s3Permission.Properties.Principal should not be wildcard",
-    "actualValue": "Resources.s3Permission.Properties.Principal is wildcard"
+    "actualValue": "Resources.s3Permission.Properties.Principal is wildcard",
+    "issueType": "IncorrectValue"
   }
 ]

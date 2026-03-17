@@ -9,7 +9,8 @@
     "searchKey": "Resources.taskdefinition.Properties.NetworkMode",
     "searchValue": "",
     "expectedValue": "'Resources.taskdefinition.Properties.NetworkMode' should be 'awsvpc'",
-    "actualValue": "'Resources.taskdefinition.Properties.NetworkMode' is 'none'"
+    "actualValue": "'Resources.taskdefinition.Properties.NetworkMode' is 'none'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECS Task Definition Network Mode Not Recommended",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.taskdefinition.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.taskdefinition.Properties.NetworkMode' should be set and should be 'awsvpc'",
-    "actualValue": "'Resources.taskdefinition.Properties.NetworkMode' is undefined and defaults to 'bridge'"
+    "actualValue": "'Resources.taskdefinition.Properties.NetworkMode' is undefined and defaults to 'bridge'",
+    "issueType": "MissingAttribute"
   }
 ]

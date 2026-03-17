@@ -9,6 +9,7 @@
     "searchKey": "google_project_iam_binding[positive1].members.user:jane@gmail.com",
     "searchValue": "",
     "expectedValue": "'members' cannot contain Gmail account addresses",
-    "actualValue": "'members' has email address: user:jane@gmail.com"
+    "actualValue": "'members' has email address: user:jane@gmail.com",
+    "issueType": "IncorrectValue"
   }
 ]

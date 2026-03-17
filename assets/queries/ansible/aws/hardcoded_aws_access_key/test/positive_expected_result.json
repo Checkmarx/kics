@@ -9,6 +9,7 @@
     "searchKey": "name={{start an instance with a cpu_options}}.{{community.aws.ec2_instance}}.user_data",
     "searchValue": "",
     "expectedValue": "'ec2_instance.user_data' shouldn't contain access key",
-    "actualValue": "'ec2_instance.user_data' contains access key"
+    "actualValue": "'ec2_instance.user_data' contains access key",
+    "issueType": "IncorrectValue"
   }
 ]

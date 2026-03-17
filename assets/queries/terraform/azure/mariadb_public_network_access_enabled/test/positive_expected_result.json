@@ -9,7 +9,8 @@
     "searchKey": "azurerm_mariadb_server[positive].public_network_access_enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_mariadb_server[positive].public_network_access_enabled.enabled' should be set to false",
-    "actualValue": "'azurerm_mariadb_server[positive].public_network_access_enabled.enabled' is not set to false"
+    "actualValue": "'azurerm_mariadb_server[positive].public_network_access_enabled.enabled' is not set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MariaDB Server Public Network Access Enabled",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_mariadb_server[positive2]",
     "searchValue": "",
     "expectedValue": "'azurerm_mariadb_server[positive2].public_network_access_enabled' should be defined and not null",
-    "actualValue": "'azurerm_mariadb_server[positive2].public_network_access_enabled' is undefined or null"
+    "actualValue": "'azurerm_mariadb_server[positive2].public_network_access_enabled' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

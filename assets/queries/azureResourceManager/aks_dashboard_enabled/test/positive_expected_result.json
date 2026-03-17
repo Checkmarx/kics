@@ -9,7 +9,8 @@
     "searchKey": "resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
     "searchValue": "",
     "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false"
+    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Dashboard Is Enabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
     "searchValue": "",
     "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false"
+    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Dashboard Is Enabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
     "searchValue": "",
     "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false"
+    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Dashboard Is Enabled",
@@ -45,6 +48,7 @@
     "searchKey": "properties.template.resources.name=aksCluster1.properties.addonProfiles.kubeDashboard.enabled",
     "searchValue": "",
     "expectedValue": "'addonProfiles.kubeDashboard.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false"
+    "actualValue": "'addonProfiles.kubeDashboard.enabled' property value is false",
+    "issueType": "IncorrectValue"
   }
 ]

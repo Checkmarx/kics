@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{bucketSample}}.spec",
     "searchValue": "",
     "expectedValue": "Bucket logging should be defined",
-    "actualValue": "Bucket logging is not defined"
+    "actualValue": "Bucket logging is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

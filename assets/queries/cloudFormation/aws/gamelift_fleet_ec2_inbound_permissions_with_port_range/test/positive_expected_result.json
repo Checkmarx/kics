@@ -9,7 +9,8 @@
     "searchKey": "Resources.FleetResource1.Properties.EC2InboundPermissions",
     "searchValue": "",
     "expectedValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[0].FromPort is equal to Resources.FleetResource1.Properties.EC2InboundPermissions[0].ToPort",
-    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[0].ToPort"
+    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[0].ToPort",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.FleetResource1.Properties.EC2InboundPermissions",
     "searchValue": "",
     "expectedValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[1].FromPort is equal to Resources.FleetResource1.Properties.EC2InboundPermissions[1].ToPort",
-    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[1].ToPort"
+    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[1].ToPort",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.FleetResource3.Properties.EC2InboundPermissions",
     "searchValue": "",
     "expectedValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[0].FromPort is equal to Resources.FleetResource3.Properties.EC2InboundPermissions[0].ToPort",
-    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[0].ToPort"
+    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[0].ToPort",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.FleetResource3.Properties.EC2InboundPermissions",
     "searchValue": "",
     "expectedValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[1].FromPort is equal to Resources.FleetResource3.Properties.EC2InboundPermissions[1].ToPort",
-    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[1].ToPort"
+    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[1].ToPort",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.FleetResource1.Properties.EC2InboundPermissions",
     "searchValue": "",
     "expectedValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[0].FromPort is equal to Resources.FleetResource1.Properties.EC2InboundPermissions[0].ToPort",
-    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[0].ToPort"
+    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[0].ToPort",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.FleetResource1.Properties.EC2InboundPermissions",
     "searchValue": "",
     "expectedValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[1].FromPort is equal to Resources.FleetResource1.Properties.EC2InboundPermissions[1].ToPort",
-    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[1].ToPort"
+    "actualValue": "Resources.FleetResource1.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource1.Properties.EC2InboundPermissions[1].ToPort",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.FleetResource3.Properties.EC2InboundPermissions",
     "searchValue": "",
     "expectedValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[0].FromPort is equal to Resources.FleetResource3.Properties.EC2InboundPermissions[0].ToPort",
-    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[0].ToPort"
+    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[0].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[0].ToPort",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GameLift Fleet EC2 InboundPermissions With Port Range",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.FleetResource3.Properties.EC2InboundPermissions",
     "searchValue": "",
     "expectedValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[1].FromPort is equal to Resources.FleetResource3.Properties.EC2InboundPermissions[1].ToPort",
-    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[1].ToPort"
+    "actualValue": "Resources.FleetResource3.Properties.EC2InboundPermissions[1].FromPort is not equal to Resources.FleetResource3.Properties.EC2InboundPermissions[1].ToPort",
+    "issueType": "IncorrectValue"
   }
 ]

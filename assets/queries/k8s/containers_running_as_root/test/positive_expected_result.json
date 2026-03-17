@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{security-context-demo-3}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{security-context-demo-3}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo-3}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo-3}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -45,7 +48,8 @@
     "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -57,7 +61,8 @@
     "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext.runAsUser",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -69,7 +74,8 @@
     "searchKey": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -81,7 +87,8 @@
     "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Running As Root",
@@ -93,7 +100,8 @@
     "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -105,7 +113,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser",
     "searchValue": "StatefulSet",
     "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -117,7 +126,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser",
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -129,7 +139,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser",
     "searchValue": "StatefulSet",
     "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -141,7 +152,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser",
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Container Running As Root",
@@ -153,7 +165,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
     "searchValue": "StatefulSet",
     "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Running As Root",
@@ -165,6 +178,7 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false"
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "MissingAttribute"
   }
 ]

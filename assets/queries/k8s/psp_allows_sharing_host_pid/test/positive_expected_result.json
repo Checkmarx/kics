@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{example}}.spec.hostPID",
     "searchValue": "",
     "expectedValue": "'spec.hostPID' should be set to false or undefined",
-    "actualValue": "'spec.hostPID' is true"
+    "actualValue": "'spec.hostPID' is true",
+    "issueType": "IncorrectValue"
   }
 ]

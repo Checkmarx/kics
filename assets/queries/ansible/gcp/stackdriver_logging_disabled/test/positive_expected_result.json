@@ -9,7 +9,8 @@
     "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.logging_service should be defined",
-    "actualValue": "gcp_container_cluster.logging_service is undefined"
+    "actualValue": "gcp_container_cluster.logging_service is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stackdriver Logging Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.logging_service",
     "searchValue": "",
     "expectedValue": "gcp_container_cluster.logging_service should not be 'none'",
-    "actualValue": "gcp_container_cluster.logging_service is 'none'"
+    "actualValue": "gcp_container_cluster.logging_service is 'none'",
+    "issueType": "IncorrectValue"
   }
 ]

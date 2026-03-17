@@ -9,7 +9,8 @@
     "searchKey": "FROM={{golang:1.12.0-stretch}}.{{RUN top}}",
     "searchValue": "",
     "expectedValue": "There should be no dangerous commands or utilities executed",
-    "actualValue": "Run instruction is executing the top command"
+    "actualValue": "Run instruction is executing the top command",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Run Utilities And POSIX Commands",
@@ -21,6 +22,7 @@
     "searchKey": "FROM={{golang:1.12.0-stretch}}.{{RUN [\"ps\", \"-d\"]}}",
     "searchValue": "",
     "expectedValue": "There should be no dangerous commands or utilities executed",
-    "actualValue": "Run instruction is executing the ps command"
+    "actualValue": "Run instruction is executing the ps command",
+    "issueType": "IncorrectValue"
   }
 ]

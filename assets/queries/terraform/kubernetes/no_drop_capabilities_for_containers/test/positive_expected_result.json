@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[test10].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test10].spec.container[0].security_context.capabilities.drop should be set",
-    "actualValue": "kubernetes_pod[test10].spec.container[0].security_context.capabilities.drop is undefined"
+    "actualValue": "kubernetes_pod[test10].spec.container[0].security_context.capabilities.drop is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[test10].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test10].spec.container[1].security_context.capabilities.drop should be set",
-    "actualValue": "kubernetes_pod[test10].spec.container[1].security_context.capabilities.drop is undefined"
+    "actualValue": "kubernetes_pod[test10].spec.container[1].security_context.capabilities.drop is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
@@ -33,7 +35,8 @@
     "searchKey": "kubernetes_pod[test11].spec.container.security_context.capabilities",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test11].spec.container.security_context.capabilities.drop should be set",
-    "actualValue": "kubernetes_pod[test11].spec.container.security_context.capabilities.drop is undefined"
+    "actualValue": "kubernetes_pod[test11].spec.container.security_context.capabilities.drop is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
@@ -45,7 +48,8 @@
     "searchKey": "kubernetes_pod[test20].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test20].spec.container[0].security_context.capabilities should be set",
-    "actualValue": "kubernetes_pod[test20].spec.container[0].security_context.capabilities is undefined"
+    "actualValue": "kubernetes_pod[test20].spec.container[0].security_context.capabilities is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
@@ -57,7 +61,8 @@
     "searchKey": "kubernetes_pod[test20].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test20].spec.container[1].security_context.capabilities should be set",
-    "actualValue": "kubernetes_pod[test20].spec.container[1].security_context.capabilities is undefined"
+    "actualValue": "kubernetes_pod[test20].spec.container[1].security_context.capabilities is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
@@ -69,7 +74,8 @@
     "searchKey": "kubernetes_pod[test21].spec.container.security_context",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test21].spec.container.security_context.capabilities should be set",
-    "actualValue": "kubernetes_pod[test21].spec.container.security_context.capabilities is undefined"
+    "actualValue": "kubernetes_pod[test21].spec.container.security_context.capabilities is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
@@ -81,7 +87,8 @@
     "searchKey": "kubernetes_pod[test30].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test30].spec.container[0].security_context should be set",
-    "actualValue": "kubernetes_pod[test30].spec.container[0].security_context is undefined"
+    "actualValue": "kubernetes_pod[test30].spec.container[0].security_context is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
@@ -93,7 +100,8 @@
     "searchKey": "kubernetes_pod[test30].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test30].spec.container[1].security_context should be set",
-    "actualValue": "kubernetes_pod[test30].spec.container[1].security_context is undefined"
+    "actualValue": "kubernetes_pod[test30].spec.container[1].security_context is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
@@ -105,6 +113,7 @@
     "searchKey": "kubernetes_pod[test31].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[test31].spec.container.security_context should be set",
-    "actualValue": "kubernetes_pod[test31].spec.container.security_context is undefined"
+    "actualValue": "kubernetes_pod[test31].spec.container.security_context is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

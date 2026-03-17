@@ -9,7 +9,8 @@
     "searchKey": "name={{create a subnetwork}}.{{google.cloud.gcp_compute_subnetwork}}",
     "searchValue": "",
     "expectedValue": "google.cloud.gcp_compute_subnetwork.private_ip_google_access should be defined and not null",
-    "actualValue": "google.cloud.gcp_compute_subnetwork.private_ip_google_access is undefined or null"
+    "actualValue": "google.cloud.gcp_compute_subnetwork.private_ip_google_access is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Google Compute Subnetwork with Private Google Access Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "name={{create a subnetwork2}}.{{google.cloud.gcp_compute_subnetwork}}.private_ip_google_access",
     "searchValue": "",
     "expectedValue": "google.cloud.gcp_compute_subnetwork.private_ip_google_access should be set to yes",
-    "actualValue": "google.cloud.gcp_compute_subnetwork.private_ip_google_access is set to no"
+    "actualValue": "google.cloud.gcp_compute_subnetwork.private_ip_google_access is set to no",
+    "issueType": "IncorrectValue"
   }
 ]

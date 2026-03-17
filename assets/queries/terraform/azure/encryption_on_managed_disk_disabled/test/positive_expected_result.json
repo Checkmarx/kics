@@ -9,7 +9,8 @@
     "searchKey": "azurerm_managed_disk[positive1].encryption_settings.enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_managed_disk[positive1].encryption_settings.enabled' should be set to true",
-    "actualValue": "'azurerm_managed_disk[positive1].encryption_settings.enabled' is set to false"
+    "actualValue": "'azurerm_managed_disk[positive1].encryption_settings.enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Encryption On Managed Disk Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_managed_disk[positive2]",
     "searchValue": "",
     "expectedValue": "'azurerm_managed_disk[positive2].encryption_settings' should be defined and not null",
-    "actualValue": "'azurerm_managed_disk[positive2].encryption_settings' is undefined or null"
+    "actualValue": "'azurerm_managed_disk[positive2].encryption_settings' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Encryption On Managed Disk Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_managed_disk[positive3].encryption_settings",
     "searchValue": "",
     "expectedValue": "'azurerm_managed_disk[positive3].encryption_settings' should be defined and not null",
-    "actualValue": "'azurerm_managed_disk[positive3].encryption_settings' is set to '{}"
+    "actualValue": "'azurerm_managed_disk[positive3].encryption_settings' is set to '{}",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Encryption On Managed Disk Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "azurerm_managed_disk[positive4].encryption_settings",
     "searchValue": "",
     "expectedValue": "'azurerm_managed_disk[positive4].encryption_settings' should be defined and not null",
-    "actualValue": "'azurerm_managed_disk[positive4].encryption_settings' is set to '[]"
+    "actualValue": "'azurerm_managed_disk[positive4].encryption_settings' is set to '[]",
+    "issueType": "IncorrectValue"
   }
 ]

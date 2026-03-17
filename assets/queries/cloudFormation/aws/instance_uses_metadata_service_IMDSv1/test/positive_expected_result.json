@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions' should  be defined with 'HttpTokens' field set to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions' is not defined"
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData",
     "searchValue": "",
     "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions' should  be defined with 'HttpTokens' field set to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions' is not defined"
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.MetadataOptions",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined"
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions",
     "searchValue": "",
     "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined"
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions' should  be defined with 'HttpTokens' field set to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions' is not defined"
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData",
     "searchValue": "",
     "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions' should  be defined with 'HttpTokens' field set to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions' is not defined"
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined to 'required'"
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens",
     "searchValue": "",
     "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined to 'required'"
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined to 'required'"
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens",
     "searchValue": "",
     "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined to 'required'"
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined to 'required'"
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens",
     "searchValue": "",
     "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined to 'required'"
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -153,7 +165,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined to 'required'"
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -165,7 +178,8 @@
     "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens",
     "searchValue": "",
     "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined to 'required'"
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined to 'required'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -177,7 +191,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.MetadataOptions",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined"
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -189,7 +204,8 @@
     "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions",
     "searchValue": "",
     "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined"
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -201,7 +217,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.MetadataOptions",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined"
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -213,7 +230,8 @@
     "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions",
     "searchValue": "",
     "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined"
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -225,7 +243,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.MetadataOptions",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined"
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -237,6 +256,7 @@
     "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions",
     "searchValue": "",
     "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined"
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

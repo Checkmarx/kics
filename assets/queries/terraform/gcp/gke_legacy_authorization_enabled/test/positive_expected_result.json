@@ -9,6 +9,7 @@
     "searchKey": "google_container_cluster[positive1].enable_legacy_abac",
     "searchValue": "",
     "expectedValue": "Attribute 'enable_legacy_abac' should be set to false",
-    "actualValue": "Attribute 'enable_legacy_abac' is true"
+    "actualValue": "Attribute 'enable_legacy_abac' is true",
+    "issueType": "IncorrectValue"
   }
 ]

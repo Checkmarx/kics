@@ -9,7 +9,8 @@
     "searchKey": "security.{{oAuth2AuthCodeNeg2}}",
     "searchValue": "",
     "expectedValue": "scope error:api should be defined on 'securityShemes'",
-    "actualValue": "scope error:api is not defined on 'securityShemes'"
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Undefined Scope 'securityScheme' On Global 'security' Field",
@@ -21,7 +22,8 @@
     "searchKey": "security",
     "searchValue": "",
     "expectedValue": "scope error:api should be defined on 'securityShemes'",
-    "actualValue": "scope error:api is not defined on 'securityShemes'"
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Undefined Scope 'securityScheme' On Global 'security' Field",
@@ -33,7 +35,8 @@
     "searchKey": "security.{{oAuth2AuthCodeNeg2}}",
     "searchValue": "",
     "expectedValue": "scope error:api should be defined on 'securityShemes'",
-    "actualValue": "scope error:api is not defined on 'securityShemes'"
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Undefined Scope 'securityScheme' On Global 'security' Field",
@@ -45,6 +48,7 @@
     "searchKey": "security",
     "searchValue": "",
     "expectedValue": "scope error:api should be defined on 'securityShemes'",
-    "actualValue": "scope error:api is not defined on 'securityShemes'"
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue"
   }
 ]

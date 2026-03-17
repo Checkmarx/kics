@@ -9,7 +9,8 @@
     "searchKey": "azurerm_app_service_slot[positive1]",
     "searchValue": "",
     "expectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
-    "actualValue": "'identity' block is not defined"
+    "actualValue": "'identity' block is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - App Service Slot Managed Identity Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_linux_web_app_slot[positive2]",
     "searchValue": "",
     "expectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
-    "actualValue": "'identity' block is not defined"
+    "actualValue": "'identity' block is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - App Service Slot Managed Identity Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "azurerm_windows_web_app_slot[positive3]",
     "searchValue": "",
     "expectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
-    "actualValue": "'identity' block is not defined"
+    "actualValue": "'identity' block is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

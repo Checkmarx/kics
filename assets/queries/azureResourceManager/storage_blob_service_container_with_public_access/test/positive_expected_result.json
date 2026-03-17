@@ -9,7 +9,8 @@
     "searchKey": "resources.name=blob/container/example.properties.publicAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Container'"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Container'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=blob/container/example.properties.publicAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Container'"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Container'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=[parameters('storageAccountName')].resources.name=default.resources.name=container.properties.publicAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
-    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'"
+    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name=[concat(parameters('storageAccountName'), '/default')].resources.name=container.properties.publicAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
-    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'"
+    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=['${parameters('storageAccountName')}/default/${parameters('containerName')}'].properties.publicAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Blob'"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
@@ -69,7 +74,8 @@
     "searchKey": "resources.name=[parameters('storageAccountName')].resources.name=[concat('default/', parameters('containerName'))].properties.publicAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
-    "actualValue": "resource with type 'blobServices/containers' has 'publicAccess' property set to 'Blob'"
+    "actualValue": "resource with type 'blobServices/containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
@@ -81,7 +87,8 @@
     "searchKey": "properties.template.resources.name=blob/container/example.properties.publicAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
-    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Container'"
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts/blobServices/containers' has 'publicAccess' property set to 'Container'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name=[concat(parameters('storageAccountName'), '/default')].resources.name=container.properties.publicAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
-    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'"
+    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
@@ -105,7 +113,8 @@
     "searchKey": "properties.template.resources.name=[parameters('storageAccountName')].resources.name=[concat('default/', parameters('containerName'))].properties.publicAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'blobServices/containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
-    "actualValue": "resource with type 'blobServices/containers' has 'publicAccess' property set to 'Blob'"
+    "actualValue": "resource with type 'blobServices/containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Blob Service Container With Public Access",
@@ -117,6 +126,7 @@
     "searchKey": "resources.name=[parameters('storageAccountName')].resources.name=[concat(parameters('storageAccountName'), '/default')].resources.name=container.properties.publicAccess",
     "searchValue": "",
     "expectedValue": "resource with type 'containers' shouldn't have 'publicAccess' property value set to 'Container' or 'Blob'",
-    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'"
+    "actualValue": "resource with type 'containers' has 'publicAccess' property set to 'Blob'",
+    "issueType": "IncorrectValue"
   }
 ]

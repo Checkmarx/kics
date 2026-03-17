@@ -9,7 +9,8 @@
     "searchKey": "aws_vpc_endpoint[sqs-vpc-endpoint].vpc_id",
     "searchValue": "",
     "expectedValue": "'enable_dns_support' should be set to true or undefined",
-    "actualValue": "'enable_dns_support' is set to false"
+    "actualValue": "'enable_dns_support' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS VPC Endpoint Without DNS Resolution",
@@ -21,6 +22,7 @@
     "searchKey": "module[vpc].enable_dns_support",
     "searchValue": "",
     "expectedValue": "'enable_dns_support' should be set to true or undefined",
-    "actualValue": "'enable_dns_support' is set to false"
+    "actualValue": "'enable_dns_support' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

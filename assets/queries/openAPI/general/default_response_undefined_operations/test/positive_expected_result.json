@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/item}}.{{patch}}.responses",
     "searchValue": "",
     "expectedValue": "Default field should be defined on responses",
-    "actualValue": "Default field is not defined on responses"
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/item}}.{{delete}}.responses",
     "searchValue": "",
     "expectedValue": "Default field should be defined on responses",
-    "actualValue": "Default field is not defined on responses"
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/item}}.{{patch}}.responses",
     "searchValue": "",
     "expectedValue": "Default field should be defined on responses",
-    "actualValue": "Default field is not defined on responses"
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/item}}.{{patch}}.responses",
     "searchValue": "",
     "expectedValue": "Default field should be defined on responses",
-    "actualValue": "Default field is not defined on responses"
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/item}}.{{delete}}.responses",
     "searchValue": "",
     "expectedValue": "Default field should be defined on responses",
-    "actualValue": "Default field is not defined on responses"
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/item}}.{{patch}}.responses",
     "searchValue": "",
     "expectedValue": "Default field should be defined on responses",
-    "actualValue": "Default field is not defined on responses"
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/item}}.{{delete}}.responses",
     "searchValue": "",
     "expectedValue": "Default field should be defined on responses",
-    "actualValue": "Default field is not defined on responses"
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
@@ -93,7 +100,8 @@
     "searchKey": "paths.{{/item}}.{{patch}}.responses",
     "searchValue": "",
     "expectedValue": "Default field should be defined on responses",
-    "actualValue": "Default field is not defined on responses"
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/item}}.{{delete}}.responses",
     "searchValue": "",
     "expectedValue": "Default field should be defined on responses",
-    "actualValue": "Default field is not defined on responses"
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
@@ -117,6 +126,7 @@
     "searchKey": "paths.{{/item}}.{{patch}}.responses",
     "searchValue": "",
     "expectedValue": "Default field should be defined on responses",
-    "actualValue": "Default field is not defined on responses"
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   }
 ]

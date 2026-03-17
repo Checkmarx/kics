@@ -9,6 +9,7 @@
     "searchKey": "resources[default].properties.publiclyAccessible",
     "searchValue": "",
     "expectedValue": "'resources.default.properties.publiclyAccessible' should be set to 'false'",
-    "actualValue": "'resources.default.properties.publiclyAccessible' is set to 'true'"
+    "actualValue": "'resources.default.properties.publiclyAccessible' is set to 'true'",
+    "issueType": "IncorrectValue"
   }
 ]

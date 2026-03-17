@@ -9,7 +9,8 @@
     "searchKey": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type should be set to 'DISABLED' or undefined",
-    "actualValue": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type is set to 'SERVICE_PROVIDED_EIPS'"
+    "actualValue": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type is set to 'SERVICE_PROVIDED_EIPS'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Broker Is Publicly Accessible",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type",
     "searchValue": "",
     "expectedValue": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type should be set to 'DISABLED' or undefined",
-    "actualValue": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type is set to 'SERVICE_PROVIDED_EIPS'"
+    "actualValue": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type is set to 'SERVICE_PROVIDED_EIPS'",
+    "issueType": "IncorrectValue"
   }
 ]

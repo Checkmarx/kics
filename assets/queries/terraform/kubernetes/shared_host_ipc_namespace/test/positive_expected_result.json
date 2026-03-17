@@ -9,6 +9,7 @@
     "searchKey": "kubernetes_pod[positive1].spec.host_ipc",
     "searchValue": "",
     "expectedValue": "Attribute 'host_ipc' should be undefined or false",
-    "actualValue": "Attribute 'host_ipc' is true"
+    "actualValue": "Attribute 'host_ipc' is true",
+    "issueType": "IncorrectValue"
   }
 ]

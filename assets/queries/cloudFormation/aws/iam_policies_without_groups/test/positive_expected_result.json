@@ -9,7 +9,8 @@
     "searchKey": "Resources.myuser.Properties.Policies.Users",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.Policies.Users should be replaced by Groups",
-    "actualValue": "'Resources.Properties.Policies.Users' is not the correct definition."
+    "actualValue": "'Resources.Properties.Policies.Users' is not the correct definition.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies Without Groups",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myuser.Properties.Policies.Users",
     "searchValue": "",
     "expectedValue": "'Resources.Properties.Policies.Users should be replaced by Groups",
-    "actualValue": "'Resources.Properties.Policies.Users' is not the correct definition."
+    "actualValue": "'Resources.Properties.Policies.Users' is not the correct definition.",
+    "issueType": "IncorrectValue"
   }
 ]

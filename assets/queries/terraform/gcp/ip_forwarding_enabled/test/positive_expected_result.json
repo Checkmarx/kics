@@ -9,6 +9,7 @@
     "searchKey": "google_compute_instance[appserver].can_ip_forward",
     "searchValue": "",
     "expectedValue": "Attribute 'can_ip_forward' should be set to false or Attribute 'can_ip_forward' should be undefined",
-    "actualValue": "Attribute 'can_ip_forward' is true"
+    "actualValue": "Attribute 'can_ip_forward' is true",
+    "issueType": "IncorrectValue"
   }
 ]

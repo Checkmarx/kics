@@ -9,7 +9,8 @@
     "searchKey": "host",
     "searchValue": "",
     "expectedValue": "Host should be a valid name or IP",
-    "actualValue": "kics.io/test is not valid IP or name"
+    "actualValue": "kics.io/test is not valid IP or name",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Host With Invalid Pattern",
@@ -21,6 +22,7 @@
     "searchKey": "host",
     "searchValue": "",
     "expectedValue": "Host should be a valid name or IP",
-    "actualValue": "kics.io/test is not valid IP or name"
+    "actualValue": "kics.io/test is not valid IP or name",
+    "issueType": "IncorrectValue"
   }
 ]

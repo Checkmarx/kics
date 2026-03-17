@@ -9,6 +9,7 @@
     "searchKey": "name={{foo}}.{{community.aws.efs}}",
     "searchValue": "",
     "expectedValue": "efs.kms_key_id should be set",
-    "actualValue": "efs.kms_key_id is undefined"
+    "actualValue": "efs.kms_key_id is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

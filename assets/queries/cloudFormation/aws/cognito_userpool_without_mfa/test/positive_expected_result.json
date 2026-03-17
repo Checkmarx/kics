@@ -9,7 +9,8 @@
     "searchKey": "Resources.UserPool2.Properties.MfaConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.UserPool2.Properties.MfaConfiguration should be set to ON or OPTIONAL",
-    "actualValue": "Resources.UserPool2.Properties.MfaConfiguration is set to OFF"
+    "actualValue": "Resources.UserPool2.Properties.MfaConfiguration is set to OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cognito UserPool Without MFA",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.UserPool4.Properties",
     "searchValue": "",
     "expectedValue": "Resources.UserPool4.Properties.MfaConfiguration should be set",
-    "actualValue": "Resources.UserPool4.Properties.MfaConfiguration is undefined"
+    "actualValue": "Resources.UserPool4.Properties.MfaConfiguration is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cognito UserPool Without MFA",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.UserPool2.Properties.MfaConfiguration",
     "searchValue": "",
     "expectedValue": "Resources.UserPool2.Properties.MfaConfiguration should be set to ON or OPTIONAL",
-    "actualValue": "Resources.UserPool2.Properties.MfaConfiguration is set to OFF"
+    "actualValue": "Resources.UserPool2.Properties.MfaConfiguration is set to OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cognito UserPool Without MFA",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.UserPool4.Properties",
     "searchValue": "",
     "expectedValue": "Resources.UserPool4.Properties.MfaConfiguration should be set",
-    "actualValue": "Resources.UserPool4.Properties.MfaConfiguration is undefined"
+    "actualValue": "Resources.UserPool4.Properties.MfaConfiguration is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

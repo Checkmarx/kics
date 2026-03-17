@@ -9,7 +9,8 @@
     "searchKey": "security",
     "searchValue": "",
     "expectedValue": "A default security schema should be defined",
-    "actualValue": "A default security schema is not defined"
+    "actualValue": "A default security schema is not defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Global Security Field Has An Empty Array (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "security",
     "searchValue": "",
     "expectedValue": "A default security schema should be defined",
-    "actualValue": "A default security schema is not defined"
+    "actualValue": "A default security schema is not defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Global Security Field Has An Empty Array (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "security",
     "searchValue": "",
     "expectedValue": "A default security schema should be defined",
-    "actualValue": "A default security schema is not defined"
+    "actualValue": "A default security schema is not defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Global Security Field Has An Empty Array (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "security",
     "searchValue": "",
     "expectedValue": "A default security schema should be defined",
-    "actualValue": "A default security schema is not defined"
+    "actualValue": "A default security schema is not defined",
+    "issueType": "IncorrectValue"
   }
 ]

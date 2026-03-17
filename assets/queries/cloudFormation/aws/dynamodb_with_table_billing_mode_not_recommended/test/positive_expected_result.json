@@ -9,7 +9,8 @@
     "searchKey": "Resources.myDynamoDBTable.Properties.BillingMode",
     "searchValue": "",
     "expectedValue": "Resources.myDynamoDBTable.Properties.BillingMode should not be 'PROVISIONED' or 'PAY_PER_REQUEST'",
-    "actualValue": "Resources.myDynamoDBTable.Properties.BillingMode is 'PROVISIONED' or 'PAY_PER_REQUEST'"
+    "actualValue": "Resources.myDynamoDBTable.Properties.BillingMode is 'PROVISIONED' or 'PAY_PER_REQUEST'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DynamoDB With Not Recommended Table Billing Mode",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myDynamoDBTable.Properties.BillingMode",
     "searchValue": "",
     "expectedValue": "Resources.myDynamoDBTable.Properties.BillingMode should not be 'PROVISIONED' or 'PAY_PER_REQUEST'",
-    "actualValue": "Resources.myDynamoDBTable.Properties.BillingMode is 'PROVISIONED' or 'PAY_PER_REQUEST'"
+    "actualValue": "Resources.myDynamoDBTable.Properties.BillingMode is 'PROVISIONED' or 'PAY_PER_REQUEST'",
+    "issueType": "IncorrectValue"
   }
 ]

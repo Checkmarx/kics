@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{security group}}.properties.securityRules",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' restricts access to SSH",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{security group}}.properties.securityRules",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' restricts access to SSH",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -33,7 +35,8 @@
     "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' restricts access to SSH",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -45,7 +48,8 @@
     "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' restricts access to SSH",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -57,7 +61,8 @@
     "searchKey": "resources.type={{securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'securityRules' restricts access to SSH",
-    "actualValue": "resource with type 'securityRules' does not restrict access to SSH"
+    "actualValue": "resource with type 'securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -69,7 +74,8 @@
     "searchKey": "resources.type={{securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'securityRules' restricts access to SSH",
-    "actualValue": "resource with type 'securityRules' does not restrict access to SSH"
+    "actualValue": "resource with type 'securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{security group}}.properties.securityRules",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' restricts access to SSH",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name={{security group}}.properties.securityRules",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' restricts access to SSH",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -105,7 +113,8 @@
     "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' restricts access to SSH",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -117,7 +126,8 @@
     "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' restricts access to SSH",
-    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH"
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -129,7 +139,8 @@
     "searchKey": "resources.type={{securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'securityRules' restricts access to SSH",
-    "actualValue": "resource with type 'securityRules' does not restrict access to SSH"
+    "actualValue": "resource with type 'securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -141,7 +152,8 @@
     "searchKey": "resources.type={{securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'securityRules' restricts access to SSH",
-    "actualValue": "resource with type 'securityRules' does not restrict access to SSH"
+    "actualValue": "resource with type 'securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
@@ -153,6 +165,7 @@
     "searchKey": "resources.type={{securityRules}}.properties",
     "searchValue": "",
     "expectedValue": "resource with type 'securityRules' restricts access to SSH",
-    "actualValue": "resource with type 'securityRules' does not restrict access to SSH"
+    "actualValue": "resource with type 'securityRules' does not restrict access to SSH",
+    "issueType": "IncorrectValue"
   }
 ]

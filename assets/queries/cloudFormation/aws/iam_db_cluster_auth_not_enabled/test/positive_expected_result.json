@@ -9,7 +9,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.sample.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.sample.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.sample.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.sample.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -141,7 +152,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -153,7 +165,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -165,7 +178,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -177,7 +191,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -189,7 +204,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -201,7 +217,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -213,7 +230,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -225,7 +243,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -237,7 +256,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -249,7 +269,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -261,7 +282,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -273,7 +295,8 @@
     "searchKey": "Resources.sample.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -285,7 +308,8 @@
     "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -297,7 +321,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -309,7 +334,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -321,7 +347,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -333,7 +360,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -345,7 +373,8 @@
     "searchKey": "Resources.sample.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -357,7 +386,8 @@
     "searchKey": "Resources.sample.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -369,7 +399,8 @@
     "searchKey": "Resources.sample.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -381,7 +412,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -393,7 +425,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -405,7 +438,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -417,7 +451,8 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
@@ -429,6 +464,7 @@
     "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
     "searchValue": "",
     "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
-    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false"
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "uses={{thollander/actions-comment-pull-request@v2}}",
     "searchValue": "",
     "expectedValue": "Action pinned to a full length commit SHA.",
-    "actualValue": "Action is not pinned to a full length commit SHA."
+    "actualValue": "Action is not pinned to a full length commit SHA.",
+    "issueType": "IncorrectValue"
   }
 ]

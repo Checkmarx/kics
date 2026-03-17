@@ -9,6 +9,7 @@
     "searchKey": "alicloud_alb_listener[positive].listener_protocol",
     "searchValue": "",
     "expectedValue": "'alicloud_alb_listener[positive].listener_protocol' should not be 'HTTP'",
-    "actualValue": "'alicloud_alb_listener[positive].listener_protocol' is 'HTTP'"
+    "actualValue": "'alicloud_alb_listener[positive].listener_protocol' is 'HTTP'",
+    "issueType": "IncorrectValue"
   }
 ]

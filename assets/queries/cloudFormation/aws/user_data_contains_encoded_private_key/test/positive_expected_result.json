@@ -9,7 +9,8 @@
     "searchKey": "Resources.myLaunchConfig3.Properties.UserData",
     "searchValue": "",
     "expectedValue": "'Resources.myLaunchConfig3.Properties.UserData' shouldn't contain RSA Private Key",
-    "actualValue": "'Resources.myLaunchConfig3.Properties.UserData' contains RSA Private Key"
+    "actualValue": "'Resources.myLaunchConfig3.Properties.UserData' contains RSA Private Key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "User Data Contains Encoded Private Key",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.myLaunchConfig4.Properties.UserData",
     "searchValue": "",
     "expectedValue": "'Resources.myLaunchConfig4.Properties.UserData' shouldn't contain RSA Private Key",
-    "actualValue": "'Resources.myLaunchConfig4.Properties.UserData' contains RSA Private Key"
+    "actualValue": "'Resources.myLaunchConfig4.Properties.UserData' contains RSA Private Key",
+    "issueType": "IncorrectValue"
   }
 ]

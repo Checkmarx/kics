@@ -9,7 +9,8 @@
     "searchKey": "metadata.name=positive1-pod",
     "searchValue": "",
     "expectedValue": "Pod positive1-pod should have ingress and egress rules in matching NetworkPolicy",
-    "actualValue": "Pod positive1-pod has no ingress or egress rules in matching NetworkPolicy"
+    "actualValue": "Pod positive1-pod has no ingress or egress rules in matching NetworkPolicy",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pod Misconfigured Network Policy",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name=positive2-pod",
     "searchValue": "",
     "expectedValue": "Pod positive2-pod should have ingress and egress rules in matching NetworkPolicy",
-    "actualValue": "Pod positive2-pod has no ingress or egress rules in matching NetworkPolicy"
+    "actualValue": "Pod positive2-pod has no ingress or egress rules in matching NetworkPolicy",
+    "issueType": "MissingAttribute"
   }
 ]

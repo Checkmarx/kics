@@ -9,7 +9,8 @@
     "searchKey": "aws_config_configuration_aggregator[positive1].account_aggregation_source",
     "searchValue": "",
     "expectedValue": "'aws_config_configuration_aggregator[positive1].account_aggregation_source.all_regions' should be set to true",
-    "actualValue": "'aws_config_configuration_aggregator[positive1].account_aggregation_source.all_regions' is undefined"
+    "actualValue": "'aws_config_configuration_aggregator[positive1].account_aggregation_source.all_regions' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Configuration Aggregator to All Regions Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "aws_config_configuration_aggregator[positive2].organization_aggregation_source.all_regions",
     "searchValue": "",
     "expectedValue": "'aws_config_configuration_aggregator[positive2].organization_aggregation_source.all_regions' should be set to true",
-    "actualValue": "'aws_config_configuration_aggregator[positive2].organization_aggregation_source.all_regions' is set to false"
+    "actualValue": "'aws_config_configuration_aggregator[positive2].organization_aggregation_source.all_regions' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

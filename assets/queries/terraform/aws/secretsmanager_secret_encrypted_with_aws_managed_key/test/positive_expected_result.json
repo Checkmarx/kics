@@ -9,7 +9,8 @@
     "searchKey": "aws_secretsmanager_secret[test2].kms_key_id",
     "searchValue": "",
     "expectedValue": "Secrets Manager secret should not be encrypted with AWS managed key",
-    "actualValue": "Secrets Manager secret is encrypted with AWS managed key"
+    "actualValue": "Secrets Manager secret is encrypted with AWS managed key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Secretsmanager Secret Encrypted With AWS Managed Key",
@@ -21,6 +22,7 @@
     "searchKey": "aws_secretsmanager_secret[test].kms_key_id",
     "searchValue": "",
     "expectedValue": "Secrets Manager secret should not be encrypted with AWS managed key",
-    "actualValue": "Secrets Manager secret is encrypted with AWS managed key"
+    "actualValue": "Secrets Manager secret is encrypted with AWS managed key",
+    "issueType": "IncorrectValue"
   }
 ]

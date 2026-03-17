@@ -9,7 +9,8 @@
     "searchKey": "module[ec2_instance].user_data",
     "searchValue": "",
     "expectedValue": "'user_data' shouldn't contain hardcoded access key",
-    "actualValue": "'user_data' contains hardcoded access key"
+    "actualValue": "'user_data' contains hardcoded access key",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Hardcoded AWS Access Key",
@@ -21,6 +22,7 @@
     "searchKey": "aws_instance[positive1].user_data",
     "searchValue": "",
     "expectedValue": "'user_data' shouldn't contain hardcoded access key",
-    "actualValue": "'user_data' contains hardcoded access key"
+    "actualValue": "'user_data' contains hardcoded access key",
+    "issueType": "IncorrectValue"
   }
 ]

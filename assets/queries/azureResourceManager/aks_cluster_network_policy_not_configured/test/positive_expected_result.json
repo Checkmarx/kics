@@ -9,7 +9,8 @@
     "searchKey": "resources.name=aksCluster1",
     "searchValue": "",
     "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
-    "actualValue": "'networkProfile.networkPolicy' is undefined"
+    "actualValue": "'networkProfile.networkPolicy' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=aksCluster1",
     "searchValue": "",
     "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
-    "actualValue": "'networkProfile.networkPolicy' is undefined"
+    "actualValue": "'networkProfile.networkPolicy' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=aksCluster1.properties.networkProfile.networkPolicy",
     "searchValue": "",
     "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
-    "actualValue": "'networkProfile.networkPolicy' is empty"
+    "actualValue": "'networkProfile.networkPolicy' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name=aksCluster1.properties.networkProfile.networkPolicy",
     "searchValue": "",
     "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
-    "actualValue": "'networkProfile.networkPolicy' is empty"
+    "actualValue": "'networkProfile.networkPolicy' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=aksCluster1",
     "searchValue": "",
     "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
-    "actualValue": "'networkProfile.networkPolicy' is undefined"
+    "actualValue": "'networkProfile.networkPolicy' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name=aksCluster1",
     "searchValue": "",
     "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
-    "actualValue": "'networkProfile.networkPolicy' is undefined"
+    "actualValue": "'networkProfile.networkPolicy' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=aksCluster1.properties.networkProfile.networkPolicy",
     "searchValue": "",
     "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
-    "actualValue": "'networkProfile.networkPolicy' is empty"
+    "actualValue": "'networkProfile.networkPolicy' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name=aksCluster1.properties.networkProfile.networkPolicy",
     "searchValue": "",
     "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
-    "actualValue": "'networkProfile.networkPolicy' is empty"
+    "actualValue": "'networkProfile.networkPolicy' is empty",
+    "issueType": "IncorrectValue"
   }
 ]

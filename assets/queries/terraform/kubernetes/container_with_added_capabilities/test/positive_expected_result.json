@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[0].security_context.capabilities.add should be undefined",
-    "actualValue": "kubernetes_pod[positive1].spec.container[0].security_context.capabilities.add is set"
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].security_context.capabilities.add is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Containers With Added Capabilities",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[1].security_context.capabilities.add should be undefined",
-    "actualValue": "kubernetes_pod[positive1].spec.container[1].security_context.capabilities.add is set"
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].security_context.capabilities.add is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Containers With Added Capabilities",
@@ -33,6 +35,7 @@
     "searchKey": "kubernetes_pod[positive2].spec.container.security_context.capabilities.add",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive2].spec.container.security_context.capabilities.add should be undefined",
-    "actualValue": "kkubernetes_pod[positive2].spec.container.security_context.capabilities.add is set"
+    "actualValue": "kkubernetes_pod[positive2].spec.container.security_context.capabilities.add is set",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_mq_broker[positive1]",
     "searchValue": "",
     "expectedValue": "'logs' should be set and enabling general AND audit logging",
-    "actualValue": "'logs' is undefined"
+    "actualValue": "'logs' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_mq_broker[positive2].logs",
     "searchValue": "",
     "expectedValue": "'general' and 'audit' logging should be set to true",
-    "actualValue": "'general' and/or 'audit' is undefined"
+    "actualValue": "'general' and/or 'audit' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "aws_mq_broker[positive3].logs.general",
     "searchValue": "",
     "expectedValue": "'general' and 'audit' logging should be set to true",
-    "actualValue": "'general' is set to false"
+    "actualValue": "'general' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

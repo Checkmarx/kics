@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.GeneralError.properties.message.type",
     "searchValue": "",
     "expectedValue": "Array schema has 'maxItems' set",
-    "actualValue": "Array schema has 'maxItems' undefined"
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "Array schema has 'maxItems' set",
-    "actualValue": "Array schema has 'maxItems' undefined"
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "components.schemas.GeneralError.properties.message.type",
     "searchValue": "",
     "expectedValue": "Array schema has 'maxItems' set",
-    "actualValue": "Array schema has 'maxItems' undefined"
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "Array schema has 'maxItems' set",
-    "actualValue": "Array schema has 'maxItems' undefined"
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.parameters.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "Array schema has 'maxItems' set",
-    "actualValue": "Array schema has 'maxItems' undefined"
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v2)",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/}}.parameters.schema.properties.message.type",
     "searchValue": "",
     "expectedValue": "Array schema has 'maxItems' set",
-    "actualValue": "Array schema has 'maxItems' undefined"
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   }
 ]

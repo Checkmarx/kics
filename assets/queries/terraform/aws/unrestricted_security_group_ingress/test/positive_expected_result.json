@@ -9,7 +9,8 @@
     "searchKey": "aws_security_group[positive1-ipv4].ingress.cidr_blocks",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-ipv4].ingress.cidr_blocks should not contain '0.0.0.0/0'",
-    "actualValue": "aws_security_group[positive1-ipv4].ingress.cidr_blocks contains '0.0.0.0/0'"
+    "actualValue": "aws_security_group[positive1-ipv4].ingress.cidr_blocks contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -21,7 +22,8 @@
     "searchKey": "aws_security_group[positive1-ipv6].ingress.ipv6_cidr_blocks",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-ipv6].ingress.ipv6_cidr_blocks should not contain '::/0'",
-    "actualValue": "aws_security_group[positive1-ipv6].ingress.ipv6_cidr_blocks contains '::/0'"
+    "actualValue": "aws_security_group[positive1-ipv6].ingress.ipv6_cidr_blocks contains '::/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -33,7 +35,8 @@
     "searchKey": "aws_security_group[positive1-ipv4_array].ingress[1].cidr_blocks",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-ipv4_array].ingress[1].cidr_blocks should not contain '0.0.0.0/0'",
-    "actualValue": "aws_security_group[positive1-ipv4_array].ingress[1].cidr_blocks contains '0.0.0.0/0'"
+    "actualValue": "aws_security_group[positive1-ipv4_array].ingress[1].cidr_blocks contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -45,7 +48,8 @@
     "searchKey": "aws_security_group[positive1-ipv6_array].ingress[1].ipv6_cidr_blocks",
     "searchValue": "",
     "expectedValue": "aws_security_group[positive1-ipv6_array].ingress[1].ipv6_cidr_blocks should not contain '::/0'",
-    "actualValue": "aws_security_group[positive1-ipv6_array].ingress[1].ipv6_cidr_blocks contains '::/0'"
+    "actualValue": "aws_security_group[positive1-ipv6_array].ingress[1].ipv6_cidr_blocks contains '::/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -57,7 +61,8 @@
     "searchKey": "aws_vpc_security_group_ingress_rule[positive2-ipv4].cidr_ipv4",
     "searchValue": "",
     "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-ipv4].cidr_ipv4 should not be equal to '0.0.0.0/0'",
-    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-ipv4].cidr_ipv4 is equal to '0.0.0.0/0'"
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-ipv4].cidr_ipv4 is equal to '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -69,7 +74,8 @@
     "searchKey": "aws_vpc_security_group_ingress_rule[positive2-ipv6_1].cidr_ipv6",
     "searchValue": "",
     "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-ipv6_1].cidr_ipv6 should not be equal to '::/0'",
-    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-ipv6_1].cidr_ipv6 is equal to '::/0'"
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-ipv6_1].cidr_ipv6 is equal to '::/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -81,7 +87,8 @@
     "searchKey": "aws_vpc_security_group_ingress_rule[positive2-ipv6_2].cidr_ipv6",
     "searchValue": "",
     "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-ipv6_2].cidr_ipv6 should not be equal to '0000:0000:0000:0000:0000:0000:0000:0000/0'",
-    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-ipv6_2].cidr_ipv6 is equal to '0000:0000:0000:0000:0000:0000:0000:0000/0'"
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-ipv6_2].cidr_ipv6 is equal to '0000:0000:0000:0000:0000:0000:0000:0000/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -93,7 +100,8 @@
     "searchKey": "aws_security_group_rule[positive3-ipv4].cidr_blocks",
     "searchValue": "",
     "expectedValue": "aws_security_group_rule[positive3-ipv4].cidr_blocks' should not contain '0.0.0.0/0'",
-    "actualValue": "aws_security_group_rule[positive3-ipv4].cidr_blocks' contains '0.0.0.0/0'"
+    "actualValue": "aws_security_group_rule[positive3-ipv4].cidr_blocks' contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -105,7 +113,8 @@
     "searchKey": "aws_security_group_rule[positive3-ipv6_1].ipv6_cidr_blocks",
     "searchValue": "",
     "expectedValue": "aws_security_group_rule[positive3-ipv6_1].ipv6_cidr_blocks should not contain '::/0'",
-    "actualValue": "aws_security_group_rule[positive3-ipv6_1].ipv6_cidr_blocks contains '::/0'"
+    "actualValue": "aws_security_group_rule[positive3-ipv6_1].ipv6_cidr_blocks contains '::/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -117,7 +126,8 @@
     "searchKey": "aws_security_group_rule[positive3-ipv6_2].ipv6_cidr_blocks",
     "searchValue": "",
     "expectedValue": "aws_security_group_rule[positive3-ipv6_2].ipv6_cidr_blocks should not contain '0:0:0:0:0:0:0:0/0'",
-    "actualValue": "aws_security_group_rule[positive3-ipv6_2].ipv6_cidr_blocks contains '0:0:0:0:0:0:0:0/0'"
+    "actualValue": "aws_security_group_rule[positive3-ipv6_2].ipv6_cidr_blocks contains '0:0:0:0:0:0:0:0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -129,7 +139,8 @@
     "searchKey": "module[positive4-ipv4].ingress_cidr_blocks",
     "searchValue": "",
     "expectedValue": "module[positive4-ipv4].ingress_cidr_blocks should not contain '0.0.0.0/0'",
-    "actualValue": "module[positive4-ipv4].ingress_cidr_blocks contains '0.0.0.0/0'"
+    "actualValue": "module[positive4-ipv4].ingress_cidr_blocks contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -141,7 +152,8 @@
     "searchKey": "module[positive4-ipv4_array].ingress_cidr_blocks",
     "searchValue": "",
     "expectedValue": "module[positive4-ipv4_array].ingress_cidr_blocks should not contain '0.0.0.0/0'",
-    "actualValue": "module[positive4-ipv4_array].ingress_cidr_blocks contains '0.0.0.0/0'"
+    "actualValue": "module[positive4-ipv4_array].ingress_cidr_blocks contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -153,7 +165,8 @@
     "searchKey": "module[positive4-ipv6].ingress_ipv6_cidr_blocks",
     "searchValue": "",
     "expectedValue": "module[positive4-ipv6].ingress_ipv6_cidr_blocks should not contain '::/0'",
-    "actualValue": "module[positive4-ipv6].ingress_ipv6_cidr_blocks contains '::/0'"
+    "actualValue": "module[positive4-ipv6].ingress_ipv6_cidr_blocks contains '::/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -165,7 +178,8 @@
     "searchKey": "module[positive4-ipv6_array].ingress_ipv6_cidr_blocks",
     "searchValue": "",
     "expectedValue": "module[positive4-ipv6_array].ingress_ipv6_cidr_blocks should not contain '::/0'",
-    "actualValue": "module[positive4-ipv6_array].ingress_ipv6_cidr_blocks contains '::/0'"
+    "actualValue": "module[positive4-ipv6_array].ingress_ipv6_cidr_blocks contains '::/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -177,7 +191,8 @@
     "searchKey": "module[positive4-whole_ingresses].ingress_with_cidr_blocks[0].cidr_blocks",
     "searchValue": "",
     "expectedValue": "module[positive4-whole_ingresses].ingress_with_cidr_blocks[0].cidr_blocks should not contain '0.0.0.0/0'",
-    "actualValue": "module[positive4-whole_ingresses].ingress_with_cidr_blocks[0].cidr_blocks contains '0.0.0.0/0'"
+    "actualValue": "module[positive4-whole_ingresses].ingress_with_cidr_blocks[0].cidr_blocks contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -189,7 +204,8 @@
     "searchKey": "module[positive4-whole_ingresses].ingress_with_cidr_blocks[2].cidr_blocks",
     "searchValue": "",
     "expectedValue": "module[positive4-whole_ingresses].ingress_with_cidr_blocks[2].cidr_blocks should not contain '0.0.0.0/0'",
-    "actualValue": "module[positive4-whole_ingresses].ingress_with_cidr_blocks[2].cidr_blocks contains '0.0.0.0/0'"
+    "actualValue": "module[positive4-whole_ingresses].ingress_with_cidr_blocks[2].cidr_blocks contains '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -201,7 +217,8 @@
     "searchKey": "module[positive4-whole_ingresses].ingress_with_ipv6_cidr_blocks[0].ipv6_cidr_blocks",
     "searchValue": "",
     "expectedValue": "module[positive4-whole_ingresses].ingress_with_ipv6_cidr_blocks[0].ipv6_cidr_blocks should not contain '::/0'",
-    "actualValue": "module[positive4-whole_ingresses].ingress_with_ipv6_cidr_blocks[0].ipv6_cidr_blocks contains '::/0'"
+    "actualValue": "module[positive4-whole_ingresses].ingress_with_ipv6_cidr_blocks[0].ipv6_cidr_blocks contains '::/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
@@ -213,6 +230,7 @@
     "searchKey": "module[positive4-whole_ingresses].ingress_with_ipv6_cidr_blocks[2].ipv6_cidr_blocks",
     "searchValue": "",
     "expectedValue": "module[positive4-whole_ingresses].ingress_with_ipv6_cidr_blocks[2].ipv6_cidr_blocks should not contain '::/0'",
-    "actualValue": "module[positive4-whole_ingresses].ingress_with_ipv6_cidr_blocks[2].ipv6_cidr_blocks contains '::/0'"
+    "actualValue": "module[positive4-whole_ingresses].ingress_with_ipv6_cidr_blocks[2].ipv6_cidr_blocks contains '::/0'",
+    "issueType": "IncorrectValue"
   }
 ]

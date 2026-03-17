@@ -9,7 +9,8 @@
     "searchKey": "aws_api_gateway_rest_api[positive1]",
     "searchValue": "",
     "expectedValue": "Attribute 'minimum_compression_size' should be set and have a value greater than -1 and smaller than 10485760",
-    "actualValue": "Attribute 'minimum_compression_size' is undefined"
+    "actualValue": "Attribute 'minimum_compression_size' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
@@ -21,7 +22,8 @@
     "searchKey": "aws_api_gateway_rest_api[positive2].minimum_compression_size",
     "searchValue": "",
     "expectedValue": "Attribute 'minimum_compression_size' should be greater than -1 and smaller than 10485760",
-    "actualValue": "Attribute 'minimum_compression_size' is -1"
+    "actualValue": "Attribute 'minimum_compression_size' is -1",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway With Invalid Compression",
@@ -33,6 +35,7 @@
     "searchKey": "aws_api_gateway_rest_api[positive3].minimum_compression_size",
     "searchValue": "",
     "expectedValue": "Attribute 'minimum_compression_size' should be greater than -1 and smaller than 10485760",
-    "actualValue": "Attribute 'minimum_compression_size' is 10485760"
+    "actualValue": "Attribute 'minimum_compression_size' is 10485760",
+    "issueType": "IncorrectValue"
   }
 ]

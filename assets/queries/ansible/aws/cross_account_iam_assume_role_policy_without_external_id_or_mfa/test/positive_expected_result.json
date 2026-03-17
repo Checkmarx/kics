@@ -9,7 +9,8 @@
     "searchKey": "name={{Create a role with description and tags}}.{{community.aws.iam_role}}.assume_role_policy_document",
     "searchValue": "",
     "expectedValue": "assume_role_policy_document should not contain ':root",
-    "actualValue": "assume_role_policy_document contains ':root'"
+    "actualValue": "assume_role_policy_document contains ':root'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Create a role with description and tags2}}.{{community.aws.iam_role}}.assume_role_policy_document",
     "searchValue": "",
     "expectedValue": "assume_role_policy_document should not contain ':root",
-    "actualValue": "assume_role_policy_document contains ':root'"
+    "actualValue": "assume_role_policy_document contains ':root'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
@@ -33,6 +35,7 @@
     "searchKey": "name={{Create a role with description and tags3}}.{{community.aws.iam_role}}.assume_role_policy_document",
     "searchValue": "",
     "expectedValue": "assume_role_policy_document should not contain ':root",
-    "actualValue": "assume_role_policy_document contains ':root'"
+    "actualValue": "assume_role_policy_document contains ':root'",
+    "issueType": "IncorrectValue"
   }
 ]

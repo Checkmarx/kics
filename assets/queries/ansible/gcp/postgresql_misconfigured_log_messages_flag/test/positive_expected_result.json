@@ -9,6 +9,7 @@
     "searchKey": "name={{sql_instance}}.{{google.cloud.gcp_sql_instance}}.settings.database_flags.log_min_messages",
     "searchValue": "",
     "expectedValue": "gcp_sql_instance.settings.database_flags should set 'log_min_messages' to a valid value",
-    "actualValue": "gcp_sql_instance.settings.database_flags doesn't set 'log_min_messages' to a valid value"
+    "actualValue": "gcp_sql_instance.settings.database_flags doesn't set 'log_min_messages' to a valid value",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "functions.hello.tracing",
     "searchValue": "",
     "expectedValue": "'tracing' should be set to Active",
-    "actualValue": "'tracing' is not set to Active"
+    "actualValue": "'tracing' is not set to Active",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Serverless Function Without X-Ray Tracing",
@@ -21,6 +22,7 @@
     "searchKey": "functions.hello",
     "searchValue": "",
     "expectedValue": "'tracing' should be defined and set to Active",
-    "actualValue": "'tracing' is not defined"
+    "actualValue": "'tracing' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

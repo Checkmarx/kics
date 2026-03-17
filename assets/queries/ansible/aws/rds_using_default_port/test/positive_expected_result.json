@@ -9,7 +9,8 @@
     "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group}}.{{community.aws.rds_instance}}.port",
     "searchValue": "",
     "expectedValue": "'port' should not be set to 3306",
-    "actualValue": "'port' is set to 3306"
+    "actualValue": "'port' is set to 3306",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Using Default Port",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group2}}.{{community.aws.rds_instance}}.port",
     "searchValue": "",
     "expectedValue": "'port' should not be set to 5432",
-    "actualValue": "'port' is set to 5432"
+    "actualValue": "'port' is set to 5432",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Using Default Port",
@@ -33,7 +35,8 @@
     "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group2}}.{{community.aws.rds_instance}}.port",
     "searchValue": "",
     "expectedValue": "'port' should not be set to 1521",
-    "actualValue": "'port' is set to 1521"
+    "actualValue": "'port' is set to 1521",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Using Default Port",
@@ -45,6 +48,7 @@
     "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group2}}.{{community.aws.rds_instance}}.port",
     "searchValue": "",
     "expectedValue": "'port' should not be set to 1433",
-    "actualValue": "'port' is set to 1433"
+    "actualValue": "'port' is set to 1433",
+    "issueType": "IncorrectValue"
   }
 ]

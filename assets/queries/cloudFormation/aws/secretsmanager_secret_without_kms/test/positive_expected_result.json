@@ -9,7 +9,8 @@
     "searchKey": "Resources.MySecret.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MySecret.Properties.KmsKeyId' should be defined and not null",
-    "actualValue": "'Resources.MySecret.Properties.KmsKeyId' is undefined or null"
+    "actualValue": "'Resources.MySecret.Properties.KmsKeyId' is undefined or null",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Secretsmanager Secret Without KMS",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MySecret.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MySecret.Properties.KmsKeyId' should be defined and not null",
-    "actualValue": "'Resources.MySecret.Properties.KmsKeyId' is undefined or null"
+    "actualValue": "'Resources.MySecret.Properties.KmsKeyId' is undefined or null",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Secretsmanager Secret Without KMS",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MySecretB.Properties.KmsKeyId",
     "searchValue": "",
     "expectedValue": "'Resources.MySecretB.Properties.KmsKeyId' should be defined and not null",
-    "actualValue": "'Resources.MySecretB.Properties.KmsKeyId' is undefined or null"
+    "actualValue": "'Resources.MySecretB.Properties.KmsKeyId' is undefined or null",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Secretsmanager Secret Without KMS",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.MySecretB.Properties.KmsKeyId",
     "searchValue": "",
     "expectedValue": "'Resources.MySecretB.Properties.KmsKeyId' should be defined and not null",
-    "actualValue": "'Resources.MySecretB.Properties.KmsKeyId' is undefined or null"
+    "actualValue": "'Resources.MySecretB.Properties.KmsKeyId' is undefined or null",
+    "issueType": "IncorrectValue"
   }
 ]

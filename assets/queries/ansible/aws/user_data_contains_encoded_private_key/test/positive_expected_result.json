@@ -9,6 +9,7 @@
     "searchKey": "name={{note that encrypted volumes are only supported in >= Ansible 2.4}}.{{community.aws.ec2_lc}}.user_data",
     "searchValue": "",
     "expectedValue": "ec2_lc.user_data should not contain RSA Private Key",
-    "actualValue": "ec2_lc.user_data contains RSA Private Key"
+    "actualValue": "ec2_lc.user_data contains RSA Private Key",
+    "issueType": "IncorrectValue"
   }
 ]

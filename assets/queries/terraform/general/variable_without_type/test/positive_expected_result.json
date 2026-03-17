@@ -9,7 +9,8 @@
     "searchKey": "variable.{{cluster_name}}",
     "searchValue": "",
     "expectedValue": "'type' should be defined and not null",
-    "actualValue": "'type' is undefined or null"
+    "actualValue": "'type' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Variable Without Type",
@@ -21,7 +22,8 @@
     "searchKey": "variable.{{cluster_name}}.type",
     "searchValue": "",
     "expectedValue": "'type' should not be empty",
-    "actualValue": "'type' is empty"
+    "actualValue": "'type' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Variable Without Type",
@@ -33,6 +35,7 @@
     "searchKey": "variable.{{cluster_name}}.type",
     "searchValue": "",
     "expectedValue": "'type' should not be empty",
-    "actualValue": "'type' is empty"
+    "actualValue": "'type' is empty",
+    "issueType": "IncorrectValue"
   }
 ]

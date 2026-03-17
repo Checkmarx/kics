@@ -9,6 +9,7 @@
     "searchKey": "aws_eks_node_group[positive].remote_access",
     "searchValue": "",
     "expectedValue": "'aws_eks_node_group[positive].remote_access.source_security_groups_ids' should be defined and not null",
-    "actualValue": "'aws_eks_node_group[positive].remote_access.source_security_groups_ids' is undefined or null"
+    "actualValue": "'aws_eks_node_group[positive].remote_access.source_security_groups_ids' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

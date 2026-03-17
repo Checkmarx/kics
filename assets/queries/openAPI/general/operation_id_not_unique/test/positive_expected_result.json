@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.operationId",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
-    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique"
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OperationId Not Unique (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{post}}.operationId",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
-    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique"
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OperationId Not Unique (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.operationId",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
-    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique"
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OperationId Not Unique (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.{{post}}.operationId",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
-    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique"
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OperationId Not Unique (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.{{get}}.operationId",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
-    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique"
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OperationId Not Unique (v2)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.{{post}}.operationId",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
-    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique"
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OperationId Not Unique (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.{{get}}.operationId",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.operationId is unique",
-    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique"
+    "actualValue": "paths.{{/}}.{{get}}.operationId is not unique",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OperationId Not Unique (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "paths.{{/}}.{{post}}.operationId",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{post}}.operationId is unique",
-    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique"
+    "actualValue": "paths.{{/}}.{{post}}.operationId is not unique",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "provider.iam.role.statements[0]",
     "searchValue": "",
     "expectedValue": "Statement should not give admin privileges",
-    "actualValue": "Statement gives admin privileges"
+    "actualValue": "Statement gives admin privileges",
+    "issueType": "IncorrectValue"
   }
 ]

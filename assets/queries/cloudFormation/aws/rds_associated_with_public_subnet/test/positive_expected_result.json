@@ -9,7 +9,8 @@
     "searchKey": "Resources.Positive1.Properties.DBSubnetGroupName",
     "searchValue": "",
     "expectedValue": "RDS should not be running in a public subnet",
-    "actualValue": "RDS is running in a public subnet"
+    "actualValue": "RDS is running in a public subnet",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Associated with Public Subnet",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.Positive1.Properties.DBSubnetGroupName",
     "searchValue": "",
     "expectedValue": "RDS should not be running in a public subnet",
-    "actualValue": "RDS is running in a public subnet"
+    "actualValue": "RDS is running in a public subnet",
+    "issueType": "IncorrectValue"
   }
 ]

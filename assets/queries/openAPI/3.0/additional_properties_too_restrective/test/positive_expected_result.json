@@ -9,7 +9,8 @@
     "searchKey": "components.schemas.MyObject.oneOf",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should not be false",
-    "actualValue": "'additionalProperties' is false"
+    "actualValue": "'additionalProperties' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Additional Properties Too Restrictive",
@@ -21,7 +22,8 @@
     "searchKey": "components.schemas.MyObject.oneOf",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should not be false",
-    "actualValue": "'additionalProperties' is false"
+    "actualValue": "'additionalProperties' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Additional Properties Too Restrictive",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.allOf",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should not be false",
-    "actualValue": "'additionalProperties' is false"
+    "actualValue": "'additionalProperties' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Additional Properties Too Restrictive",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.schema.allOf",
     "searchValue": "",
     "expectedValue": "'additionalProperties' should not be false",
-    "actualValue": "'additionalProperties' is false"
+    "actualValue": "'additionalProperties' is false",
+    "issueType": "IncorrectValue"
   }
 ]

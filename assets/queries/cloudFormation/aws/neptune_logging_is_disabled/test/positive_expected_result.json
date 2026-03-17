@@ -9,7 +9,8 @@
     "searchKey": "Resources.Prod.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Prod.Properties' should have 'EnableCloudwatchLogsExports' enabled ",
-    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' is undefined"
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' should include 'audit'",
-    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'"
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' should include 'audit'",
-    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'"
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' should include 'audit'",
-    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'"
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.Prod.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Prod.Properties' should have 'EnableCloudwatchLogsExports' enabled ",
-    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' is undefined"
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "'Resources.Prod.Properties' should have 'EnableCloudwatchLogsExports' enabled ",
-    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' is set to null"
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' is set to null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' should include 'audit'",
-    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'"
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Neptune Logging Is Disabled",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.Prod.Properties.EnableCloudwatchLogsExports",
     "searchValue": "",
     "expectedValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' should include 'audit'",
-    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'"
+    "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' does not include 'audit'",
+    "issueType": "MissingAttribute"
   }
 ]

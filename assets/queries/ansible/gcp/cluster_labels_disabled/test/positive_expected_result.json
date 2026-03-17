@@ -9,7 +9,8 @@
     "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
     "searchValue": "",
     "expectedValue": "google.cloud.gcp_container_cluster should be defined and not null",
-    "actualValue": "google.cloud.gcp_container_cluster is undefined and null"
+    "actualValue": "google.cloud.gcp_container_cluster is undefined and null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cluster Labels Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}",
     "searchValue": "",
     "expectedValue": "google.cloud.gcp_container_cluster should be defined and not null",
-    "actualValue": "google.cloud.gcp_container_cluster is undefined and null"
+    "actualValue": "google.cloud.gcp_container_cluster is undefined and null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cluster Labels Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.resource_labels",
     "searchValue": "",
     "expectedValue": "google.cloud.gcp_container_cluster should not be empty",
-    "actualValue": "google.cloud.gcp_container_cluster is empty"
+    "actualValue": "google.cloud.gcp_container_cluster is empty",
+    "issueType": "IncorrectValue"
   }
 ]

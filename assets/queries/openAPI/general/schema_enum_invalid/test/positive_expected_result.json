@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.201.content.{{text/html}}.schema.enum",
     "searchValue": "",
     "expectedValue": "The field 'enum' should be consistent with the schema's type",
-    "actualValue": "The field 'enum' is not consistent with the schema's type"
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Enum Invalid (v3)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.responses.201.content.{{text/html}}.schema.enum",
     "searchValue": "",
     "expectedValue": "The field 'enum' should be consistent with the schema's type",
-    "actualValue": "The field 'enum' is not consistent with the schema's type"
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Enum Invalid (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.responses.201.content.{{text/html}}.schema.enum",
     "searchValue": "",
     "expectedValue": "The field 'enum' should be consistent with the schema's type",
-    "actualValue": "The field 'enum' is not consistent with the schema's type"
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Enum Invalid (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.get.responses.201.content.{{text/html}}.schema.enum",
     "searchValue": "",
     "expectedValue": "The field 'enum' should be consistent with the schema's type",
-    "actualValue": "The field 'enum' is not consistent with the schema's type"
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Enum Invalid (v2)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/definitions/User",
     "searchValue": "",
     "expectedValue": "The field 'enum' should be consistent with the schema's type",
-    "actualValue": "The field 'enum' is not consistent with the schema's type"
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Enum Invalid (v2)",
@@ -69,7 +74,8 @@
     "searchKey": "definitions.User.properties.name.enum",
     "searchValue": "",
     "expectedValue": "The field 'enum' should be consistent with the schema's type",
-    "actualValue": "The field 'enum' is not consistent with the schema's type"
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Enum Invalid (v2)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.$ref=#/definitions/User",
     "searchValue": "",
     "expectedValue": "The field 'enum' should be consistent with the schema's type",
-    "actualValue": "The field 'enum' is not consistent with the schema's type"
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Enum Invalid (v2)",
@@ -93,6 +100,7 @@
     "searchKey": "definitions.User.properties.name.enum",
     "searchValue": "",
     "expectedValue": "The field 'enum' should be consistent with the schema's type",
-    "actualValue": "The field 'enum' is not consistent with the schema's type"
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue"
   }
 ]

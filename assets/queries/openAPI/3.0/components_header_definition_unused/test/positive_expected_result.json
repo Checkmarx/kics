@@ -9,7 +9,8 @@
     "searchKey": "components.headers.{{xPages}}",
     "searchValue": "",
     "expectedValue": "Header should be used as reference somewhere",
-    "actualValue": "Header is not used as reference"
+    "actualValue": "Header is not used as reference",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Components Header Definition Is Unused",
@@ -21,6 +22,7 @@
     "searchKey": "components.headers.{{xPages}}",
     "searchValue": "",
     "expectedValue": "Header should be used as reference somewhere",
-    "actualValue": "Header is not used as reference"
+    "actualValue": "Header is not used as reference",
+    "issueType": "IncorrectValue"
   }
 ]

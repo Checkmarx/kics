@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{restricted}}.spec.requiredDropCapabilities",
     "searchValue": "",
     "expectedValue": "spec.requiredDropCapabilities 'is ALL or NET_RAW'",
-    "actualValue": "spec.requiredDropCapabilities 'is not ALL or NET_RAW'"
+    "actualValue": "spec.requiredDropCapabilities 'is not ALL or NET_RAW'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "NET_RAW Capabilities Disabled for PSP",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{restricted2}}.spec.requiredDropCapabilities",
     "searchValue": "",
     "expectedValue": "spec.requiredDropCapabilities 'is ALL or NET_RAW'",
-    "actualValue": "spec.requiredDropCapabilities 'is not ALL or NET_RAW'"
+    "actualValue": "spec.requiredDropCapabilities 'is not ALL or NET_RAW'",
+    "issueType": "IncorrectValue"
   }
 ]

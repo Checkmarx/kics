@@ -9,7 +9,8 @@
     "searchKey": "provider",
     "searchValue": "",
     "expectedValue": "endpointType should be defined and set to PRIVATE",
-    "actualValue": "endpointType is not defined"
+    "actualValue": "endpointType is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Serverless API Endpoint Config Not Private",
@@ -21,6 +22,7 @@
     "searchKey": "provider.endpointType",
     "searchValue": "",
     "expectedValue": "endpointType should be set to PRIVATE",
-    "actualValue": "endpointType is not set to PRIVATE"
+    "actualValue": "endpointType is not set to PRIVATE",
+    "issueType": "IncorrectValue"
   }
 ]

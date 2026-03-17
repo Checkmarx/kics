@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.callbacks.myEvent.$ref",
     "searchValue": "",
     "expectedValue": "inProgress from #/components/callbacks/inProgress should be declared on components.callbacks",
-    "actualValue": "inProgress from #/components/callbacks/inProgress is not declared on components.callbacks"
+    "actualValue": "inProgress from #/components/callbacks/inProgress is not declared on components.callbacks",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Callback JSON Reference Does Not Exist",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.callbacks.myEvent.$ref",
     "searchValue": "",
     "expectedValue": "inProgress from #/components/callbacks/inProgress should be declared on components.callbacks",
-    "actualValue": "inProgress from #/components/callbacks/inProgress is not declared on components.callbacks"
+    "actualValue": "inProgress from #/components/callbacks/inProgress is not declared on components.callbacks",
+    "issueType": "MissingAttribute"
   }
 ]

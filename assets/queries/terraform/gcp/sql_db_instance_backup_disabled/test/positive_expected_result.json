@@ -9,7 +9,8 @@
     "searchKey": "google_sql_database_instance[positive1].settings",
     "searchValue": "",
     "expectedValue": "settings.backup_configuration should be defined and not null",
-    "actualValue": "settings.backup_configuration is undefined or null"
+    "actualValue": "settings.backup_configuration is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "google_sql_database_instance[positive2].settings.backup_configuration",
     "searchValue": "",
     "expectedValue": "settings.backup_configuration.enabled should be defined and not null",
-    "actualValue": "settings.backup_configuration.enabled is undefined or null"
+    "actualValue": "settings.backup_configuration.enabled is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "google_sql_database_instance[positive3].settings.backup_configuration.enabled",
     "searchValue": "",
     "expectedValue": "settings.backup_configuration.enabled should be true",
-    "actualValue": "settings.backup_configuration.enabled is false"
+    "actualValue": "settings.backup_configuration.enabled is false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "tencentcloud_security_group_rule_set[base].ingress",
     "searchValue": "",
     "expectedValue": "tencentcloud_security_group_rule_set[base] ingress should not be set to accept all traffic",
-    "actualValue": "tencentcloud_security_group_rule_set[base] ingress is set to accept all traffic"
+    "actualValue": "tencentcloud_security_group_rule_set[base] ingress is set to accept all traffic",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Rule Set Accepts All Traffic",
@@ -21,7 +22,8 @@
     "searchKey": "tencentcloud_security_group_rule_set[base].ingress",
     "searchValue": "",
     "expectedValue": "tencentcloud_security_group_rule_set[base] ingress should not be set to accept all traffic",
-    "actualValue": "tencentcloud_security_group_rule_set[base] ingress accept all traffic"
+    "actualValue": "tencentcloud_security_group_rule_set[base] ingress accept all traffic",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Rule Set Accepts All Traffic",
@@ -33,7 +35,8 @@
     "searchKey": "tencentcloud_security_group_rule_set[base].ingress",
     "searchValue": "",
     "expectedValue": "tencentcloud_security_group_rule_set[base] ingress should not set accept all traffic",
-    "actualValue": "tencentcloud_security_group_rule_set[base] ingress accept all traffic"
+    "actualValue": "tencentcloud_security_group_rule_set[base] ingress accept all traffic",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Rule Set Accepts All Traffic",
@@ -45,6 +48,7 @@
     "searchKey": "tencentcloud_security_group_rule_set[base].ingress",
     "searchValue": "",
     "expectedValue": "tencentcloud_security_group_rule_set[base] ingress should not be set to accept all traffic",
-    "actualValue": "tencentcloud_security_group_rule_set[base] ingress is set to accept all traffic"
+    "actualValue": "tencentcloud_security_group_rule_set[base] ingress is set to accept all traffic",
+    "issueType": "IncorrectValue"
   }
 ]

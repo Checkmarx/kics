@@ -9,6 +9,7 @@
     "searchKey": "Resources.Function.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.Function.Properties.Tags' should be defined and not null",
-    "actualValue": "'Resources.Function.Properties.Tags' is undefined or null"
+    "actualValue": "'Resources.Function.Properties.Tags' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

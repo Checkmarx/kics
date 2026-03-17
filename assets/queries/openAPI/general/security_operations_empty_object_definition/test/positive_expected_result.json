@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field should not be empty object",
-    "actualValue": "Security operation field is an empty object"
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field should not be empty object",
-    "actualValue": "Security operation field is an empty object"
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{patch}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field array should not have an empty object",
-    "actualValue": "Security operation field array has an empty object"
+    "actualValue": "Security operation field array has an empty object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
@@ -45,7 +48,8 @@
     "searchKey": "paths.{{/}}.{{patch}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field array should not have an empty object",
-    "actualValue": "Security operation field array has an empty object"
+    "actualValue": "Security operation field array has an empty object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/apis}}.{{get}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field should not be empty object",
-    "actualValue": "Security operation field is an empty object"
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
@@ -69,7 +74,8 @@
     "searchKey": "paths.{{/}}.{{get}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field should not be empty object",
-    "actualValue": "Security operation field is an empty object"
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.{{patch}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field array should not have an empty object",
-    "actualValue": "Security operation field array has an empty object"
+    "actualValue": "Security operation field array has an empty object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
@@ -93,7 +100,8 @@
     "searchKey": "paths.{{/}}.{{patch}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field array should not have an empty object",
-    "actualValue": "Security operation field array has an empty object"
+    "actualValue": "Security operation field array has an empty object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/apis}}.{{get}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field should not be empty object",
-    "actualValue": "Security operation field is an empty object"
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v2)",
@@ -117,6 +126,7 @@
     "searchKey": "paths.{{/}}.{{get}}.security",
     "searchValue": "",
     "expectedValue": "Security operation field should not be empty object",
-    "actualValue": "Security operation field is an empty object"
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue"
   }
 ]

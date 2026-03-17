@@ -9,7 +9,8 @@
     "searchKey": "Resources.MySNSTopic.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MySNSTopic.Properties.KmsMasterKeyId should be defined",
-    "actualValue": "Resources.MySNSTopic.Properties.KmsMasterKeyId is undefined"
+    "actualValue": "Resources.MySNSTopic.Properties.KmsMasterKeyId is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SNS Topic Without KmsMasterKeyId",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.MySNSTopic.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MySNSTopic.Properties.KmsMasterKeyId should be defined",
-    "actualValue": "Resources.MySNSTopic.Properties.KmsMasterKeyId is undefined"
+    "actualValue": "Resources.MySNSTopic.Properties.KmsMasterKeyId is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

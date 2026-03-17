@@ -9,6 +9,7 @@
     "searchKey": "google_storage_bucket[positive1]",
     "searchValue": "",
     "expectedValue": "'google_storage_bucket.logging' should be set",
-    "actualValue": "'google_storage_bucket.logging' is undefined"
+    "actualValue": "'google_storage_bucket.logging' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "aws_kinesis_stream[positive1]",
     "searchValue": "",
     "expectedValue": "aws_kinesis_stream[positive1].encryption_type should be set",
-    "actualValue": "aws_kinesis_stream[positive1].encryption_type is undefined"
+    "actualValue": "aws_kinesis_stream[positive1].encryption_type is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Kinesis Not Encrypted With KMS",
@@ -21,7 +22,8 @@
     "searchKey": "aws_kinesis_stream[positive2].encryption_type",
     "searchValue": "",
     "expectedValue": "aws_kinesis_stream[positive2].encryption_type should be set and not NONE",
-    "actualValue": "aws_kinesis_stream[positive2].encryption_type is set but NONE"
+    "actualValue": "aws_kinesis_stream[positive2].encryption_type is set but NONE",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kinesis Not Encrypted With KMS",
@@ -33,6 +35,7 @@
     "searchKey": "aws_kinesis_stream[positive3]",
     "searchValue": "",
     "expectedValue": "aws_kinesis_stream[positive3].kms_key_id should be set",
-    "actualValue": "aws_kinesis_stream[positive3].kms_key_id is undefined"
+    "actualValue": "aws_kinesis_stream[positive3].kms_key_id is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

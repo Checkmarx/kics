@@ -9,7 +9,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
     "searchValue": "",
     "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false"
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -21,7 +22,8 @@
     "searchKey": "aws_s3_account_public_access_block[allow_public_acc]",
     "searchValue": "",
     "expectedValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is not defined (defaults to false)"
+    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is not defined (defaults to false)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -33,7 +35,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
     "searchValue": "",
     "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false"
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -45,7 +48,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[allow_public]",
     "searchValue": "",
     "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)"
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -57,7 +61,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[allow_public]",
     "searchValue": "",
     "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)"
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -69,7 +74,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
     "searchValue": "",
     "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false"
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -81,7 +87,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[allow_public]",
     "searchValue": "",
     "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)"
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -93,7 +100,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
     "searchValue": "",
     "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false"
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -105,7 +113,8 @@
     "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
     "searchValue": "",
     "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false"
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
@@ -117,6 +126,7 @@
     "searchKey": "aws_s3_account_public_access_block[allow_public_acc].block_public_policy",
     "searchValue": "",
     "expectedValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is defined to false"
+    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue"
   }
 ]

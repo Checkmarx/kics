@@ -9,6 +9,7 @@
     "searchKey": "resources[%!s(int=0)].properties.domainEndpointOptions.enforceHTTPS",
     "searchValue": "",
     "expectedValue": "resources[%!s(int=0)].properties.domainEndpointOptions.enforceHTTPS should be set to 'true'",
-    "actualValue": "resources[%!s(int=0)].properties.domainEndpointOptions.enforceHTTPS is set to 'false'"
+    "actualValue": "resources[%!s(int=0)].properties.domainEndpointOptions.enforceHTTPS is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

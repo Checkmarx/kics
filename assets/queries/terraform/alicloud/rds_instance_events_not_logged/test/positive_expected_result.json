@@ -9,7 +9,8 @@
     "searchKey": "alicloud_log_audit[example].variable_map.rds_enabled",
     "searchValue": "",
     "expectedValue": "'rds_enabled' parameter value should be 'true'",
-    "actualValue": "'rds_enabled' parameter value is 'false'"
+    "actualValue": "'rds_enabled' parameter value is 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Instance Events Not Logged",
@@ -21,6 +22,7 @@
     "searchKey": "alicloud_log_audit[example].variable_map",
     "searchValue": "",
     "expectedValue": "'rds_enabled' parameter value should be 'true'",
-    "actualValue": "'rds_enabled' parameter is not defined"
+    "actualValue": "'rds_enabled' parameter is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "become_user={{bar}}",
     "searchValue": "",
     "expectedValue": "'become' should be defined and set to 'true' in order to perform an action with bar",
-    "actualValue": "'become' is not defined"
+    "actualValue": "'become' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Privilege Escalation Using Become Plugin",
@@ -21,7 +22,8 @@
     "searchKey": "become",
     "searchValue": "",
     "expectedValue": "'become' should be defined and set to 'true' in order to perform an action with root",
-    "actualValue": "'become' is set to 'false'"
+    "actualValue": "'become' is set to 'false'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Privilege Escalation Using Become Plugin",
@@ -33,7 +35,8 @@
     "searchKey": "name={{Sample become_user}}.become_user={{foo}}",
     "searchValue": "",
     "expectedValue": "'become' should be defined and set to 'true' in order to perform an action with foo",
-    "actualValue": "'become' is not defined"
+    "actualValue": "'become' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Privilege Escalation Using Become Plugin",
@@ -45,7 +48,8 @@
     "searchKey": "name={{Sample become_user}}.become_user={{postgres}}.become",
     "searchValue": "",
     "expectedValue": "'become' should be to 'true' in order to perform an action with postgres",
-    "actualValue": "'become' is set to 'false'"
+    "actualValue": "'become' is set to 'false'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Privilege Escalation Using Become Plugin",
@@ -57,7 +61,8 @@
     "searchKey": "name={{become_user with become task as false}}.become_user={{mongodb}}.become",
     "searchValue": "",
     "expectedValue": "'become' should be to 'true' in order to perform an action with mongodb",
-    "actualValue": "'become' is set to 'false'"
+    "actualValue": "'become' is set to 'false'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Privilege Escalation Using Become Plugin",
@@ -69,6 +74,7 @@
     "searchKey": "name={{become_user without become}}.become_user={{mysql}}",
     "searchValue": "",
     "expectedValue": "'become' should be defined and set to 'true' in order to perform an action with mysql",
-    "actualValue": "'become' is not defined"
+    "actualValue": "'become' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "resources.resources.name={{AllowAllWindowsAzureIps}}.properties.endIpAddress",
     "searchValue": "",
     "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
-    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'"
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
@@ -21,7 +22,8 @@
     "searchKey": "resources.resources.name={{AllowAllWindowsAzureIps}}.properties.endIpAddress",
     "searchValue": "",
     "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
-    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'"
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{sample/firewall}}.properties.endIpAddress",
     "searchValue": "",
     "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
-    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'"
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{sample/firewall}}.properties.endIpAddress",
     "searchValue": "",
     "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
-    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'"
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
@@ -57,7 +61,8 @@
     "searchKey": "resources.resources.name={{AllowAllWindowsAzureIps}}.properties.endIpAddress",
     "searchValue": "",
     "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
-    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'"
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.resources.name={{AllowAllWindowsAzureIps}}.properties.endIpAddress",
     "searchValue": "",
     "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
-    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'"
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{sample/firewall}}.properties.endIpAddress",
     "searchValue": "",
     "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
-    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'"
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name={{sample/firewall}}.properties.endIpAddress",
     "searchValue": "",
     "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
-    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'"
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.service.Properties.Role",
     "searchValue": "",
     "expectedValue": "Resources.service.Properties.Role should not be an admin role",
-    "actualValue": "Resources.service.Properties.Role is an admin role"
+    "actualValue": "Resources.service.Properties.Role is an admin role",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECS Service Admin Role Is Present",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.service.Properties.Role",
     "searchValue": "",
     "expectedValue": "Resources.service.Properties.Role should not be an admin role",
-    "actualValue": "Resources.service.Properties.Role is an admin role"
+    "actualValue": "Resources.service.Properties.Role is an admin role",
+    "issueType": "IncorrectValue"
   }
 ]

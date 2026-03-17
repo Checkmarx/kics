@@ -9,7 +9,8 @@
     "searchKey": "alicloud_ram_user_policy_attachment[attach].policy_name",
     "searchValue": "",
     "expectedValue": "alicloud_ram_policy[policy4] should not give admin access to any user, group or role",
-    "actualValue": "alicloud_ram_policy[policy4] is attached to a user, group or role and gives admin access"
+    "actualValue": "alicloud_ram_policy[policy4] is attached to a user, group or role and gives admin access",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Ram Policy Admin Access Not Attached to Users Groups Roles",
@@ -21,7 +22,8 @@
     "searchKey": "alicloud_ram_group_policy_attachment[attach].policy_name",
     "searchValue": "",
     "expectedValue": "alicloud_ram_policy[policy5] should not give admin access to any user, group or role",
-    "actualValue": "alicloud_ram_policy[policy5] is attached to a user, group or role and gives admin access"
+    "actualValue": "alicloud_ram_policy[policy5] is attached to a user, group or role and gives admin access",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Ram Policy Admin Access Not Attached to Users Groups Roles",
@@ -33,6 +35,7 @@
     "searchKey": "alicloud_ram_role_policy_attachment[attach].policy_name",
     "searchValue": "",
     "expectedValue": "alicloud_ram_policy[policy6] should not give admin access to any user, group or role",
-    "actualValue": "alicloud_ram_policy[policy6] is attached to a user, group or role and gives admin access"
+    "actualValue": "alicloud_ram_policy[policy6] is attached to a user, group or role and gives admin access",
+    "issueType": "IncorrectValue"
   }
 ]

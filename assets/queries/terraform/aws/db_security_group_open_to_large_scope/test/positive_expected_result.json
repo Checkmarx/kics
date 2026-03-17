@@ -9,6 +9,7 @@
     "searchKey": "aws_db_security_group[positive1].ingress.cidr",
     "searchValue": "",
     "expectedValue": "'aws_db_security_group.ingress.cidr' > 24",
-    "actualValue": "'aws_db_security_group.ingress.cidr' <= 24"
+    "actualValue": "'aws_db_security_group.ingress.cidr' <= 24",
+    "issueType": "IncorrectValue"
   }
 ]

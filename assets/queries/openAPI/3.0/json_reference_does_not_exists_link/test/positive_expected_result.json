@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.responses.200.links.$ref",
     "searchValue": "",
     "expectedValue": "APIWrongRepository from #/components/links/APIWrongRepository should be declared on components.links",
-    "actualValue": "APIWrongRepository from #/components/links/APIWrongRepository is not declared on components.links"
+    "actualValue": "APIWrongRepository from #/components/links/APIWrongRepository is not declared on components.links",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Link JSON Reference Does Not Exist",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.get.responses.200.links.$ref",
     "searchValue": "",
     "expectedValue": "APIWrongRepository from #/components/links/APIWrongRepository should be declared on components.links",
-    "actualValue": "APIWrongRepository from #/components/links/APIWrongRepository is not declared on components.links"
+    "actualValue": "APIWrongRepository from #/components/links/APIWrongRepository is not declared on components.links",
+    "issueType": "MissingAttribute"
   }
 ]

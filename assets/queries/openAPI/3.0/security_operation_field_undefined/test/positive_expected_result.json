@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.petstore_auth",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.security[0].petstore_auth should be defined in '#/components/securitySchemes'",
-    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'"
+    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Operation Field Undefined",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.{{get}}.petstore_auth",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.security[0].petstore_auth should be defined in '#/components/securitySchemes'",
-    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'"
+    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Operation Field Undefined",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.{{get}}.petstore_auth",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.security[0].petstore_auth should be defined in '#/components/securitySchemes'",
-    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'"
+    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Operation Field Undefined",
@@ -45,6 +48,7 @@
     "searchKey": "paths.{{/}}.{{get}}.petstore_auth",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.{{get}}.security[0].petstore_auth should be defined in '#/components/securitySchemes'",
-    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'"
+    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute"
   }
 ]

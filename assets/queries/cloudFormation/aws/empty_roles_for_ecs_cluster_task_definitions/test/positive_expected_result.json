@@ -9,7 +9,8 @@
     "searchKey": "Resources.NoTaskDefinition.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' should be set",
-    "actualValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' is undefined"
+    "actualValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.InvalidTaskDefinition.Properties.TaskDefinition",
     "searchValue": "",
     "expectedValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' refers to a valid TaskDefinition",
-    "actualValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' does not refers to a valid TaskDefinition"
+    "actualValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' does not refers to a valid TaskDefinition",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.TaskNoRole.Properties.TaskDefinition",
     "searchValue": "",
     "expectedValue": "'Resources.TaskNoRole.Properties.TaskDefinition' refers to a TaskDefinition with Role",
-    "actualValue": "'Resources.TaskNoRole.Properties.TaskDefinition' does not refer to a TaskDefinition with Role"
+    "actualValue": "'Resources.TaskNoRole.Properties.TaskDefinition' does not refer to a TaskDefinition with Role",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.InvalidTaskDefinition.Properties.TaskDefinition",
     "searchValue": "",
     "expectedValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' refers to a valid TaskDefinition",
-    "actualValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' does not refers to a valid TaskDefinition"
+    "actualValue": "'Resources.InvalidTaskDefinition.Properties.Taskdefinition' does not refers to a valid TaskDefinition",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.TaskNoRole.Properties.TaskDefinition",
     "searchValue": "",
     "expectedValue": "'Resources.TaskNoRole.Properties.TaskDefinition' refers to a TaskDefinition with Role",
-    "actualValue": "'Resources.TaskNoRole.Properties.TaskDefinition' does not refer to a TaskDefinition with Role"
+    "actualValue": "'Resources.TaskNoRole.Properties.TaskDefinition' does not refer to a TaskDefinition with Role",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Empty Roles For ECS Cluster Task Definitions",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.NoTaskDefinition.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' should be set",
-    "actualValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' is undefined"
+    "actualValue": "'Resources.NoTaskDefinition.Properties.TaskDefinition' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

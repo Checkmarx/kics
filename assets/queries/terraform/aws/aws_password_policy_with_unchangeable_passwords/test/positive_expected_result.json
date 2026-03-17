@@ -9,6 +9,7 @@
     "searchKey": "aws_iam_account_password_policy[positive2].allow_users_to_change_password",
     "searchValue": "",
     "expectedValue": "'allow_users_to_change_password' should equal 'true'",
-    "actualValue": "'allow_users_to_change_password' is equal 'false'"
+    "actualValue": "'allow_users_to_change_password' is equal 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

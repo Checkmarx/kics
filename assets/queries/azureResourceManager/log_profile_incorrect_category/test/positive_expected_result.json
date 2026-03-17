@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{string}}.properties.categories",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have categories[%!d(string=property value)] %!s(int=0) set to 'Write', 'Delete' or 'Action'",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Log Profile Incorrect Category",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{string}}.properties.categories",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have categories[%!d(string=property value)] %!s(int=0) set to 'Write', 'Delete' or 'Action'",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Log Profile Incorrect Category",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{string}}.properties.categories",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have categories[%!d(string=property value)] %!s(int=0) set to 'Write', 'Delete' or 'Action'",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Log Profile Incorrect Category",
@@ -45,6 +48,7 @@
     "searchKey": "properties.template.resources.name={{string}}.properties.categories",
     "searchValue": "",
     "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have categories[%!d(string=property value)] %!s(int=0) set to 'Write', 'Delete' or 'Action'",
-    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'"
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'",
+    "issueType": "IncorrectValue"
   }
 ]

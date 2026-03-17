@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyQueue.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyQueue.Properties.KmsMasterKeyId should be set or SqsManagedSseEnabled set to true",
-    "actualValue": "Resources.MyQueue.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled"
+    "actualValue": "Resources.MyQueue.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQS With SSE Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyQueue2.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyQueue2.Properties.KmsMasterKeyId should be set or SqsManagedSseEnabled set to true",
-    "actualValue": "Resources.MyQueue2.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled"
+    "actualValue": "Resources.MyQueue2.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQS With SSE Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyQueue.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyQueue.Properties.KmsMasterKeyId should be set or SqsManagedSseEnabled set to true",
-    "actualValue": "Resources.MyQueue.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled"
+    "actualValue": "Resources.MyQueue.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQS With SSE Disabled",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.MyQueue2.Properties",
     "searchValue": "",
     "expectedValue": "Resources.MyQueue2.Properties.KmsMasterKeyId should be set or SqsManagedSseEnabled set to true",
-    "actualValue": "Resources.MyQueue2.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled"
+    "actualValue": "Resources.MyQueue2.Properties.KmsMasterKeyId is undefined and SqsManagedSseEnabled not enabled",
+    "issueType": "MissingAttribute"
   }
 ]

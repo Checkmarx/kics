@@ -9,7 +9,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -21,7 +22,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -33,7 +35,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -45,7 +48,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -57,7 +61,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -69,7 +74,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -81,7 +87,8 @@
     "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_threshold.filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_monitoring_alert_policy' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -93,7 +100,8 @@
     "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_matched_log.filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_monitoring_alert_policy' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -105,7 +113,8 @@
     "searchKey": "google_monitoring_alert_policy[audit_config_alert]",
     "searchValue": "",
     "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture project ownership assignment and changes",
-    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures project ownership assignment and changes but does not define a proper 'notification_channels'"
+    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures project ownership assignment and changes but does not define a proper 'notification_channels'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -117,7 +126,8 @@
     "searchKey": "google_monitoring_alert_policy[audit_config_alert]",
     "searchValue": "",
     "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture project ownership assignment and changes",
-    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures project ownership assignment and changes but does not define a proper 'notification_channels'"
+    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures project ownership assignment and changes but does not define a proper 'notification_channels'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -129,7 +139,8 @@
     "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_threshold.filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_monitoring_alert_policy' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -141,7 +152,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -153,7 +165,8 @@
     "searchKey": "google_logging_metric[positive8].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Project Ownership Assignment And Changes",
@@ -165,6 +178,7 @@
     "searchKey": "google_logging_metric[positive9].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture project ownership assignment and changes",
-    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes"
+    "actualValue": "No 'google_logging_metric' resource captures project ownership assignment and changes",
+    "issueType": "IncorrectValue"
   }
 ]

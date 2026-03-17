@@ -9,7 +9,8 @@
     "searchKey": "name={{sql_instance}}.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration.authorized_networks.name={{google dns server}}.value",
     "searchValue": "",
     "expectedValue": "gcp_sql_instance.settings.ip_configuration.authorized_networks.name={{google dns server}}.value address should be trusted",
-    "actualValue": "gcp_sql_instance.settings.ip_configuration.authorized_networks.name={{google dns server}}.value address is not restricted: '0.0.0.0'"
+    "actualValue": "gcp_sql_instance.settings.ip_configuration.authorized_networks.name={{google dns server}}.value address is not restricted: '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL DB Instance Publicly Accessible",
@@ -21,7 +22,8 @@
     "searchKey": "name={{sql_instance2}}.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration.ipv4_enabled",
     "searchValue": "",
     "expectedValue": "gcp_sql_instance.settings.ip_configuration.ipv4_enabled should be disabled when there are no authorized networks",
-    "actualValue": "gcp_sql_instance.settings.ip_configuration.ipv4_enabled is enabled when there are no authorized networks"
+    "actualValue": "gcp_sql_instance.settings.ip_configuration.ipv4_enabled is enabled when there are no authorized networks",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL DB Instance Publicly Accessible",
@@ -33,6 +35,7 @@
     "searchKey": "name={{sql_instance3}}.{{google.cloud.gcp_sql_instance}}.settings",
     "searchValue": "",
     "expectedValue": "gcp_sql_instance.settings.ip_configuration should be defined and allow only trusted networks",
-    "actualValue": "gcp_sql_instance.settings.ip_configuration is undefined"
+    "actualValue": "gcp_sql_instance.settings.ip_configuration is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "tencentcloud_instance[cvm_postpaid].disable_monitor_service",
     "searchValue": "",
     "expectedValue": "[cvm_postpaid] 'disable_monitor_service' should be set to false",
-    "actualValue": "[cvm_postpaid] 'disable_monitor_service' is true"
+    "actualValue": "[cvm_postpaid] 'disable_monitor_service' is true",
+    "issueType": "IncorrectValue"
   }
 ]

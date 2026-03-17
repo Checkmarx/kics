@@ -9,7 +9,8 @@
     "searchKey": "definitions.{{Tag}}",
     "searchValue": "",
     "expectedValue": "responses definition 'Tag' is used",
-    "actualValue": "responses definition 'Tag' is not being used"
+    "actualValue": "responses definition 'Tag' is not being used",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Global Schema Definition Not Being Used",
@@ -21,6 +22,7 @@
     "searchKey": "definitions.{{Tag}}",
     "searchValue": "",
     "expectedValue": "responses definition 'Tag' is used",
-    "actualValue": "responses definition 'Tag' is not being used"
+    "actualValue": "responses definition 'Tag' is not being used",
+    "issueType": "MissingAttribute"
   }
 ]

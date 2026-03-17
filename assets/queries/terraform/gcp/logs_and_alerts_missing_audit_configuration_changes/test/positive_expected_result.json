@@ -9,7 +9,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
-    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes"
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
@@ -21,7 +22,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
-    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes"
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
@@ -33,7 +35,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
-    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes"
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
@@ -45,7 +48,8 @@
     "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_threshold.filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
-    "actualValue": "No 'google_monitoring_alert_policy' resource captures all audit configuration changes"
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
@@ -57,7 +61,8 @@
     "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_matched_log.filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
-    "actualValue": "No 'google_monitoring_alert_policy' resource captures all audit configuration changes"
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
@@ -69,7 +74,8 @@
     "searchKey": "google_monitoring_alert_policy[audit_config_alert]",
     "searchValue": "",
     "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
-    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures all audit configuration changes but does not define a proper 'notification_channels'"
+    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures all audit configuration changes but does not define a proper 'notification_channels'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
@@ -81,7 +87,8 @@
     "searchKey": "google_monitoring_alert_policy[audit_config_alert]",
     "searchValue": "",
     "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
-    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures all audit configuration changes but does not define a proper 'notification_channels'"
+    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures all audit configuration changes but does not define a proper 'notification_channels'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
@@ -93,7 +100,8 @@
     "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_threshold.filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
-    "actualValue": "No 'google_monitoring_alert_policy' resource captures all audit configuration changes"
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
@@ -105,7 +113,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
-    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes"
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
@@ -117,7 +126,8 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
-    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes"
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
@@ -129,6 +139,7 @@
     "searchKey": "google_logging_metric[audit_config_change].filter",
     "searchValue": "",
     "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
-    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes"
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   }
 ]

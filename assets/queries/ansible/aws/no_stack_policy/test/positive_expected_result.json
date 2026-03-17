@@ -9,6 +9,7 @@
     "searchKey": "name={{create a stack, pass in the template via an URL}}.{{amazon.aws.cloudformation}}",
     "searchValue": "",
     "expectedValue": "cloudformation.stack_policy should be set",
-    "actualValue": "cloudformation.stack_policy is undefined"
+    "actualValue": "cloudformation.stack_policy is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

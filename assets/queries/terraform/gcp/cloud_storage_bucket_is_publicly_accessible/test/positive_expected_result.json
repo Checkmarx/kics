@@ -9,7 +9,8 @@
     "searchKey": "google_storage_bucket_iam_member[positive1].member",
     "searchValue": "",
     "expectedValue": "'member' not equal to 'allUsers' nor 'allAuthenticatedUsers'",
-    "actualValue": "'member' equal to 'allUsers'"
+    "actualValue": "'member' equal to 'allUsers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cloud Storage Bucket Is Publicly Accessible",
@@ -21,6 +22,7 @@
     "searchKey": "google_storage_bucket_iam_member[positive2].members",
     "searchValue": "",
     "expectedValue": "None of the 'members' equal to 'allUsers' nor 'allAuthenticatedUsers'",
-    "actualValue": "One of the 'members' equal to 'allUsers' or 'allAuthenticatedUsers'"
+    "actualValue": "One of the 'members' equal to 'allUsers' or 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "FROM={{node:carbon2}}.COPY={{package.json}}",
     "searchValue": "",
     "expectedValue": "When COPY command has more than two arguments, the last one should end with a slash",
-    "actualValue": "COPY command has more than two arguments and the last one does not end with a slash"
+    "actualValue": "COPY command has more than two arguments and the last one does not end with a slash",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "metadata.name={{allow-exec}}.rules",
     "searchValue": "",
     "expectedValue": "metadata.name={{allow-exec}}.rules[0].resources should not include the 'pods/exec' resource",
-    "actualValue": "metadata.name={{allow-exec}}.rules[0].resources includes the 'pods/exec' resource"
+    "actualValue": "metadata.name={{allow-exec}}.rules[0].resources includes the 'pods/exec' resource",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "FROM={{build}}",
     "searchValue": "",
     "expectedValue": "Different FROM commands don't have the same alias defined",
-    "actualValue": "Different FROM commands with with the same alias 'build' defined"
+    "actualValue": "Different FROM commands with with the same alias 'build' defined",
+    "issueType": "IncorrectValue"
   }
 ]

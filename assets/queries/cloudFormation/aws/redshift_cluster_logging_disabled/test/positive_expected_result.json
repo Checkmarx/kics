@@ -9,7 +9,8 @@
     "searchKey": "Resources.RedshiftCluster3.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster3.Properties.LoggingProperties should be set",
-    "actualValue": "Resources.RedshiftCluster3.Properties.LoggingProperties is undefined"
+    "actualValue": "Resources.RedshiftCluster3.Properties.LoggingProperties is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Cluster Logging Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "Resources.RedshiftCluster4.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster4.Properties.LoggingProperties should be set",
-    "actualValue": "Resources.RedshiftCluster4.Properties.LoggingProperties is undefined"
+    "actualValue": "Resources.RedshiftCluster4.Properties.LoggingProperties is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "azurerm_redis_cache[positive1].enable_non_ssl_port",
     "searchValue": "",
     "expectedValue": "'azurerm_redis_cache[positive1].enable_non_ssl_port' should be set to false or undefined (false as default)",
-    "actualValue": "'azurerm_redis_cache[positive1].enable_non_ssl_port' is true"
+    "actualValue": "'azurerm_redis_cache[positive1].enable_non_ssl_port' is true",
+    "issueType": "IncorrectValue"
   }
 ]

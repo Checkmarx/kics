@@ -9,7 +9,8 @@
     "searchKey": "services.auth",
     "searchValue": "",
     "expectedValue": "Pids_limit should be defined.",
-    "actualValue": "Pids_limit is not defined."
+    "actualValue": "Pids_limit is not defined.",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pids Limit Not Set",
@@ -21,6 +22,7 @@
     "searchKey": "services.auth.pids_limit",
     "searchValue": "",
     "expectedValue": "Pids_limit should be limited.",
-    "actualValue": "Pids_limit is not limited."
+    "actualValue": "Pids_limit is not limited.",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties.Encrypted should be set",
-    "actualValue": "Resources.RedshiftCluster.Properties.Encrypted is undefined"
+    "actualValue": "Resources.RedshiftCluster.Properties.Encrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Not Encrypted",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.RedshiftCluster2.Properties.Encrypted",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster2.Properties.Encrypted should be set to true",
-    "actualValue": "Resources.RedshiftCluster2.Properties.Encryped is set to false"
+    "actualValue": "Resources.RedshiftCluster2.Properties.Encryped is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Not Encrypted",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties.Encrypted should be set",
-    "actualValue": "Resources.RedshiftCluster.Properties.Encrypted is undefined"
+    "actualValue": "Resources.RedshiftCluster.Properties.Encrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Not Encrypted",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.RedshiftCluster2.Properties.Encrypted",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster2.Properties.Encrypted should be set to true",
-    "actualValue": "Resources.RedshiftCluster2.Properties.Encryped is set to false"
+    "actualValue": "Resources.RedshiftCluster2.Properties.Encryped is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Not Encrypted",
@@ -57,6 +61,7 @@
     "searchKey": "Resources.RedshiftCluster.Properties",
     "searchValue": "",
     "expectedValue": "Resources.RedshiftCluster.Properties.Encrypted should be set",
-    "actualValue": "Resources.RedshiftCluster.Properties.Encrypted is undefined"
+    "actualValue": "Resources.RedshiftCluster.Properties.Encrypted is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

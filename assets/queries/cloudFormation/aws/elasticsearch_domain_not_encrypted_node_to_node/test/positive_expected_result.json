@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyOpenSearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions",
     "searchValue": "",
     "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions",
     "searchValue": "",
     "expectedValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MyOpenSearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled",
     "searchValue": "",
     "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled",
     "searchValue": "",
     "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -93,7 +100,8 @@
     "searchKey": "Resources.MyElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -105,7 +113,8 @@
     "searchKey": "Resources.MyElasticsearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -117,7 +126,8 @@
     "searchKey": "Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled",
     "searchValue": "",
     "expectedValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
-    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
+    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -129,7 +139,8 @@
     "searchKey": "Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled",
     "searchValue": "",
     "expectedValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' should be defined to true",
-    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true"
+    "actualValue": "'Resources.MyElasticsearchDomain.Properties.NodeToNodeEncryptionOptions.Enabled' is not defined to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
@@ -141,6 +152,7 @@
     "searchKey": "Resources.MyOpenSearchDomain.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' should be defined",
-    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined"
+    "actualValue": "'Resources.MyOpenSearchDomain.Properties.NodeToNodeEncryptionOptions' is null or not defined",
+    "issueType": "MissingAttribute"
   }
 ]

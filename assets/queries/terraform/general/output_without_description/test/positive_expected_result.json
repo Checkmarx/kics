@@ -9,7 +9,8 @@
     "searchKey": "output.{{cluster_name}}",
     "searchValue": "",
     "expectedValue": "'description' should be defined and not null",
-    "actualValue": "'description' is undefined or null"
+    "actualValue": "'description' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Output Without Description",
@@ -21,7 +22,8 @@
     "searchKey": "output.{{cluster_name}}.description",
     "searchValue": "",
     "expectedValue": "'description' should not be empty",
-    "actualValue": "'description' is empty"
+    "actualValue": "'description' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Output Without Description",
@@ -33,6 +35,7 @@
     "searchKey": "output.{{cluster_name}}.description",
     "searchValue": "",
     "expectedValue": "'description' should not be empty",
-    "actualValue": "'description' is empty"
+    "actualValue": "'description' is empty",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{security-context-demo}}.spec.hostIPC",
     "searchValue": "",
     "expectedValue": "'spec.hostIPC' should be set to false or undefined",
-    "actualValue": "'spec.hostIPC' is true"
+    "actualValue": "'spec.hostIPC' is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shared Host IPC Namespace",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.hostIPC",
     "searchValue": "",
     "expectedValue": "'spec.template.spec.hostIPC' should be set to false or undefined",
-    "actualValue": "'spec.template.spec.hostIPC' is true"
+    "actualValue": "'spec.template.spec.hostIPC' is true",
+    "issueType": "IncorrectValue"
   }
 ]

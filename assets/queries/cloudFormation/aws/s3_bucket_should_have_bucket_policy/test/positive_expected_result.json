@@ -9,7 +9,8 @@
     "searchKey": "Resources.S3Bucket3",
     "searchValue": "",
     "expectedValue": "'Resources.S3Bucket3.Properties.BucketName' or 'Resources.[S3Bucket3]' should be associated with an 'AWS::S3::BucketPolicy'",
-    "actualValue": "'Resources.S3Bucket3.Properties.BucketName' or 'Resources.[S3Bucket3]' is not associated with an 'AWS::S3::BucketPolicy'"
+    "actualValue": "'Resources.S3Bucket3.Properties.BucketName' or 'Resources.[S3Bucket3]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.S3Bucket",
     "searchValue": "",
     "expectedValue": "'Resources.S3Bucket.Properties.BucketName' or 'Resources.[S3Bucket]' should be associated with an 'AWS::S3::BucketPolicy'",
-    "actualValue": "'Resources.S3Bucket.Properties.BucketName' or 'Resources.[S3Bucket]' is not associated with an 'AWS::S3::BucketPolicy'"
+    "actualValue": "'Resources.S3Bucket.Properties.BucketName' or 'Resources.[S3Bucket]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.S3Bucket7",
     "searchValue": "",
     "expectedValue": "'Resources.S3Bucket7.Properties.BucketName' or 'Resources.[S3Bucket7]' should be associated with an 'AWS::S3::BucketPolicy'",
-    "actualValue": "'Resources.S3Bucket7.Properties.BucketName' or 'Resources.[S3Bucket7]' is not associated with an 'AWS::S3::BucketPolicy'"
+    "actualValue": "'Resources.S3Bucket7.Properties.BucketName' or 'Resources.[S3Bucket7]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.S3Bucket3",
     "searchValue": "",
     "expectedValue": "'Resources.S3Bucket3.Properties.BucketName' or 'Resources.[S3Bucket3]' should be associated with an 'AWS::S3::BucketPolicy'",
-    "actualValue": "'Resources.S3Bucket3.Properties.BucketName' or 'Resources.[S3Bucket3]' is not associated with an 'AWS::S3::BucketPolicy'"
+    "actualValue": "'Resources.S3Bucket3.Properties.BucketName' or 'Resources.[S3Bucket3]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.S3Bucket",
     "searchValue": "",
     "expectedValue": "'Resources.S3Bucket.Properties.BucketName' or 'Resources.[S3Bucket]' should be associated with an 'AWS::S3::BucketPolicy'",
-    "actualValue": "'Resources.S3Bucket.Properties.BucketName' or 'Resources.[S3Bucket]' is not associated with an 'AWS::S3::BucketPolicy'"
+    "actualValue": "'Resources.S3Bucket.Properties.BucketName' or 'Resources.[S3Bucket]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.S3Bucket7",
     "searchValue": "",
     "expectedValue": "'Resources.S3Bucket7.Properties.BucketName' or 'Resources.[S3Bucket7]' should be associated with an 'AWS::S3::BucketPolicy'",
-    "actualValue": "'Resources.S3Bucket7.Properties.BucketName' or 'Resources.[S3Bucket7]' is not associated with an 'AWS::S3::BucketPolicy'"
+    "actualValue": "'Resources.S3Bucket7.Properties.BucketName' or 'Resources.[S3Bucket7]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.MyS3Bucket2",
     "searchValue": "",
     "expectedValue": "'Resources.MyS3Bucket2.Properties.BucketName' or 'Resources.[MyS3Bucket2]' should be associated with an 'AWS::S3::BucketPolicy'",
-    "actualValue": "'Resources.MyS3Bucket2.Properties.BucketName' or 'Resources.[MyS3Bucket2]' is not associated with an 'AWS::S3::BucketPolicy'"
+    "actualValue": "'Resources.MyS3Bucket2.Properties.BucketName' or 'Resources.[MyS3Bucket2]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.MyS3Bucket2",
     "searchValue": "",
     "expectedValue": "'Resources.MyS3Bucket2.Properties.BucketName' or 'Resources.[MyS3Bucket2]' should be associated with an 'AWS::S3::BucketPolicy'",
-    "actualValue": "'Resources.MyS3Bucket2.Properties.BucketName' or 'Resources.[MyS3Bucket2]' is not associated with an 'AWS::S3::BucketPolicy'"
+    "actualValue": "'Resources.MyS3Bucket2.Properties.BucketName' or 'Resources.[MyS3Bucket2]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   }
 ]

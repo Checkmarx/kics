@@ -9,7 +9,8 @@
     "searchKey": "name={{Group1}}.{{iam_group}}",
     "searchValue": "",
     "expectedValue": "iam_group.users should be defined and not null",
-    "actualValue": "iam_group.users is undefined or null"
+    "actualValue": "iam_group.users is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM Group Without Users",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Group2}}.{{iam_group}}",
     "searchValue": "",
     "expectedValue": "iam_group.users should be defined and not null",
-    "actualValue": "iam_group.users is undefined or null"
+    "actualValue": "iam_group.users is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

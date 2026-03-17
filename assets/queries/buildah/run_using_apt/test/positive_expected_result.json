@@ -9,6 +9,7 @@
     "searchKey": "from[{{fedora}}].{{buildah run ${c} apt install python3-setuptools -y}}",
     "searchValue": "",
     "expectedValue": "RUN instructions should not use the 'apt' program",
-    "actualValue": "RUN instruction is invoking the 'apt' program"
+    "actualValue": "RUN instruction is invoking the 'apt' program",
+    "issueType": "IncorrectValue"
   }
 ]

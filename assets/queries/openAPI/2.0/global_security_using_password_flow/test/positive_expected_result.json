@@ -9,7 +9,8 @@
     "searchKey": "security.{{oAuth2AuthCodeNeg2}}",
     "searchValue": "",
     "expectedValue": "'security' should not be using 'password' flow in OAuth2 authentication",
-    "actualValue": "'security' is using 'password' flow in OAuth2 authentication"
+    "actualValue": "'security' is using 'password' flow in OAuth2 authentication",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Global Security Using Password Flow",
@@ -21,6 +22,7 @@
     "searchKey": "security.{{oAuth2AuthCodeNeg2}}",
     "searchValue": "",
     "expectedValue": "'security' should not be using 'password' flow in OAuth2 authentication",
-    "actualValue": "'security' is using 'password' flow in OAuth2 authentication"
+    "actualValue": "'security' is using 'password' flow in OAuth2 authentication",
+    "issueType": "IncorrectValue"
   }
 ]

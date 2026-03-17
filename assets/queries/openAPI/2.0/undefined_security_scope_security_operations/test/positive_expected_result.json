@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.{{get}}.security",
     "searchValue": "",
     "expectedValue": "scope error:api should be defined on 'securityDefinitions'",
-    "actualValue": "scope error:api is not defined on 'securityDefinitions'"
+    "actualValue": "scope error:api is not defined on 'securityDefinitions'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Undefined Scope 'securityDefinition' On 'security' Field On Operations",
@@ -21,6 +22,7 @@
     "searchKey": "paths.{{/}}.{{get}}.security",
     "searchValue": "",
     "expectedValue": "scope error:api should be defined on 'securityDefinitions'",
-    "actualValue": "scope error:api is not defined on 'securityDefinitions'"
+    "actualValue": "scope error:api is not defined on 'securityDefinitions'",
+    "issueType": "IncorrectValue"
   }
 ]

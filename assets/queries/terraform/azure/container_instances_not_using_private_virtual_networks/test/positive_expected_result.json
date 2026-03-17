@@ -9,7 +9,8 @@
     "searchKey": "azurerm_container_group[positive1]",
     "searchValue": "",
     "expectedValue": "'ip_address_type' should be set to 'Private'",
-    "actualValue": "'ip_address_type' is not defined"
+    "actualValue": "'ip_address_type' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_container_group[positive2].ip_address_type",
     "searchValue": "",
     "expectedValue": "'ip_address_type' should be set to 'Private'",
-    "actualValue": "'ip_address_type' is defined to 'Public'"
+    "actualValue": "'ip_address_type' is defined to 'Public'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
@@ -33,6 +35,7 @@
     "searchKey": "azurerm_container_group[positive3].ip_address_type",
     "searchValue": "",
     "expectedValue": "'ip_address_type' should be set to 'Private'",
-    "actualValue": "'ip_address_type' is defined to 'None'"
+    "actualValue": "'ip_address_type' is defined to 'None'",
+    "issueType": "IncorrectValue"
   }
 ]

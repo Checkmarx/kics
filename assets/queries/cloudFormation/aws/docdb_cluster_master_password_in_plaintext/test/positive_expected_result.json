@@ -9,7 +9,8 @@
     "searchKey": "Resources.NewAmpApp.Properties.MasterUserPassword",
     "searchValue": "",
     "expectedValue": "Resources.NewAmpApp.Properties.MasterUserPassword must not be in plain text string",
-    "actualValue": "Resources.NewAmpApp.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced"
+    "actualValue": "Resources.NewAmpApp.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
@@ -21,7 +22,8 @@
     "searchKey": "Parameters.ParentMasterPassword.Default",
     "searchValue": "",
     "expectedValue": "Parameters.ParentMasterPassword.Default should be defined",
-    "actualValue": "Parameters.ParentMasterPassword.Default shouldn't be defined"
+    "actualValue": "Parameters.ParentMasterPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.NewAmpApp03.Properties.MasterUserPassword",
     "searchValue": "",
     "expectedValue": "Resources.NewAmpApp03.Properties.MasterUserPassword must not be in plain text string",
-    "actualValue": "Resources.NewAmpApp03.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced"
+    "actualValue": "Resources.NewAmpApp03.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.NewAmpApp.Properties.MasterUserPassword",
     "searchValue": "",
     "expectedValue": "Resources.NewAmpApp.Properties.MasterUserPassword must not be in plain text string",
-    "actualValue": "Resources.NewAmpApp.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced"
+    "actualValue": "Resources.NewAmpApp.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
@@ -57,7 +61,8 @@
     "searchKey": "Parameters.ParentMasterPassword.Default",
     "searchValue": "",
     "expectedValue": "Parameters.ParentMasterPassword.Default should be defined",
-    "actualValue": "Parameters.ParentMasterPassword.Default shouldn't be defined"
+    "actualValue": "Parameters.ParentMasterPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
@@ -69,6 +74,7 @@
     "searchKey": "Resources.NewAmpApp03.Properties.MasterUserPassword",
     "searchValue": "",
     "expectedValue": "Resources.NewAmpApp03.Properties.MasterUserPassword must not be in plain text string",
-    "actualValue": "Resources.NewAmpApp03.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced"
+    "actualValue": "Resources.NewAmpApp03.Properties.MasterUserPassword must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   }
 ]

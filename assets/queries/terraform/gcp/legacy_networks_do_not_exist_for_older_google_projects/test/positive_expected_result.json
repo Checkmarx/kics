@@ -9,7 +9,8 @@
     "searchKey": "google_compute_network[vpc_network_network].auto_create_subnetworks",
     "searchValue": "",
     "expectedValue": "'auto_create_subnetworks' should be defined to false",
-    "actualValue": "'auto_create_subnetworks' is defined to true"
+    "actualValue": "'auto_create_subnetworks' is defined to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
@@ -21,7 +22,8 @@
     "searchKey": "google_compute_network[legacy_network].auto_create_subnetworks",
     "searchValue": "",
     "expectedValue": "'auto_create_subnetworks' should be defined to false",
-    "actualValue": "'auto_create_subnetworks' is defined to true"
+    "actualValue": "'auto_create_subnetworks' is defined to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
@@ -33,7 +35,8 @@
     "searchKey": "google_compute_network[legacy_network].auto_create_subnetworks",
     "searchValue": "",
     "expectedValue": "'auto_create_subnetworks' should be defined to false",
-    "actualValue": "'auto_create_subnetworks' is defined to true"
+    "actualValue": "'auto_create_subnetworks' is defined to true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
@@ -45,7 +48,8 @@
     "searchKey": "google_compute_network[vpc_network_network]",
     "searchValue": "",
     "expectedValue": "'auto_create_subnetworks' should be defined to false",
-    "actualValue": "'auto_create_subnetworks' is not defined"
+    "actualValue": "'auto_create_subnetworks' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
@@ -57,7 +61,8 @@
     "searchKey": "google_compute_network[legacy_network]",
     "searchValue": "",
     "expectedValue": "'auto_create_subnetworks' should be defined to false",
-    "actualValue": "'auto_create_subnetworks' is not defined"
+    "actualValue": "'auto_create_subnetworks' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Legacy Networks Do Not Exist For Older Google Projects",
@@ -69,6 +74,7 @@
     "searchKey": "google_compute_network[legacy_network]",
     "searchValue": "",
     "expectedValue": "'auto_create_subnetworks' should be defined to false",
-    "actualValue": "'auto_create_subnetworks' is not defined"
+    "actualValue": "'auto_create_subnetworks' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

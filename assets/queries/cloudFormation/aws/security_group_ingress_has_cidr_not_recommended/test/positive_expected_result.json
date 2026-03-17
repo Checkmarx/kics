@@ -9,7 +9,8 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress.CidrIp",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp should not be /32",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp is /32"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp is /32",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress Has CIDR Not Recommended",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.InboundRule.Properties.CidrIpv6",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule.Properties.CidrIpv6 should not be /128",
-    "actualValue": "Resources.InboundRule.Properties.CidrIpv6 is /128"
+    "actualValue": "Resources.InboundRule.Properties.CidrIpv6 is /128",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress Has CIDR Not Recommended",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.InboundRule.Properties.CidrIpv6",
     "searchValue": "",
     "expectedValue": "Resources.InboundRule.Properties.CidrIpv6 should not be /128",
-    "actualValue": "Resources.InboundRule.Properties.CidrIpv6 is /128"
+    "actualValue": "Resources.InboundRule.Properties.CidrIpv6 is /128",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Ingress Has CIDR Not Recommended",
@@ -45,6 +48,7 @@
     "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress.CidrIp",
     "searchValue": "",
     "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp should not be /32",
-    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp is /32"
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp is /32",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "databricks_cluster[positive1].autoscale",
     "searchValue": "max_workers",
     "expectedValue": "'databricks_cluster[positive1].autoscale.max_workers' should not be empty",
-    "actualValue": "'databricks_cluster[positive1].autoscale.max_workers' is not setup'"
+    "actualValue": "'databricks_cluster[positive1].autoscale.max_workers' is not setup'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Databricks Autoscale Badly Setup",
@@ -21,6 +22,7 @@
     "searchKey": "databricks_cluster[positive2].autoscale",
     "searchValue": "min_workers",
     "expectedValue": "'databricks_cluster[positive2].autoscale.min_workers' should not be empty",
-    "actualValue": "'databricks_cluster[positive2].autoscale.min_workers' is not setup'"
+    "actualValue": "'databricks_cluster[positive2].autoscale.min_workers' is not setup'",
+    "issueType": "MissingAttribute"
   }
 ]

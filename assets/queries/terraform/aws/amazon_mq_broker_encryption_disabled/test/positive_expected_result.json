@@ -9,6 +9,7 @@
     "searchKey": "resource.aws_mq_broker[positive1]",
     "searchValue": "",
     "expectedValue": "resource.aws_mq_broker[positive1].encryption_options should be defined",
-    "actualValue": "resource.aws_mq_broker[positive1].encryption_options is not defined"
+    "actualValue": "resource.aws_mq_broker[positive1].encryption_options is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

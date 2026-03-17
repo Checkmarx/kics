@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive1].spec.container[0].resources should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Resources Limits Undefined",
@@ -21,7 +22,8 @@
     "searchKey": "kubernetes_pod[positive1].spec.container",
     "searchValue": "limits",
     "expectedValue": "kubernetes_pod[positive1].spec.container[1].resources.limits should be set",
-    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.limits is undefined"
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.limits is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Resources Limits Undefined",
@@ -33,7 +35,8 @@
     "searchKey": "kubernetes_pod[positive2].spec.container.resources",
     "searchValue": "requests",
     "expectedValue": "kubernetes_pod[positive2].spec.container.resources.requests should be set",
-    "actualValue": "kubernetes_pod[positive2].spec.container.resources.requests is undefined"
+    "actualValue": "kubernetes_pod[positive2].spec.container.resources.requests is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Resources Limits Undefined",
@@ -45,7 +48,8 @@
     "searchKey": "kubernetes_pod[positive3].spec.container.resources",
     "searchValue": "limits",
     "expectedValue": "kubernetes_pod[positive3].spec.container.resources.limits should be set",
-    "actualValue": "kubernetes_pod[positive3].spec.container.resources.limits is undefined"
+    "actualValue": "kubernetes_pod[positive3].spec.container.resources.limits is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Container Resources Limits Undefined",
@@ -57,6 +61,7 @@
     "searchKey": "kubernetes_pod[positive4].spec.container",
     "searchValue": "",
     "expectedValue": "kubernetes_pod[positive4].spec.container.resources should be set",
-    "actualValue": "kubernetes_pod[positive4].spec.container.resources is undefined"
+    "actualValue": "kubernetes_pod[positive4].spec.container.resources is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

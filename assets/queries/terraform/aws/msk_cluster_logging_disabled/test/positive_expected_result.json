@@ -9,7 +9,8 @@
     "searchKey": "aws_msk_cluster[positive1].logging_info.broker_logs.cloudwatch_logs.enabled",
     "searchValue": "",
     "expectedValue": "'rule.logging_info.broker_logs.enabled' should be 'true' in every entry",
-    "actualValue": "msk_cluster[positive1].logging_info.broker_logs.cloudwatch_logs.enabled is false"
+    "actualValue": "msk_cluster[positive1].logging_info.broker_logs.cloudwatch_logs.enabled is false",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "aws_msk_cluster[positive1].logging_info.broker_logs.firehose",
     "searchValue": "",
     "expectedValue": "'rule.logging_info.broker_logs.enabled' should be 'true' in every entry",
-    "actualValue": "msk_cluster[positive1].logging_info.broker_logs.firehose.enabled is missing"
+    "actualValue": "msk_cluster[positive1].logging_info.broker_logs.firehose.enabled is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "aws_msk_cluster[positive2]",
     "searchValue": "",
     "expectedValue": "'rule.logging_info' should exist",
-    "actualValue": "'rule.logging_info' does not exist"
+    "actualValue": "'rule.logging_info' does not exist",
+    "issueType": "MissingAttribute"
   }
 ]

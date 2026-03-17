@@ -9,7 +9,8 @@
     "searchKey": "aws_elasticsearch_domain[positive1]",
     "searchValue": "",
     "expectedValue": "'encrypt_at_rest' should be set and enabled",
-    "actualValue": "'encrypt_at_rest' is undefined"
+    "actualValue": "'encrypt_at_rest' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
@@ -21,6 +22,7 @@
     "searchKey": "aws_elasticsearch_domain[positive2].encrypt_at_rest.enabled",
     "searchValue": "",
     "expectedValue": "'encrypt_at_rest.enabled' should be true",
-    "actualValue": "'encrypt_at_rest.enabled' is false"
+    "actualValue": "'encrypt_at_rest.enabled' is false",
+    "issueType": "IncorrectValue"
   }
 ]

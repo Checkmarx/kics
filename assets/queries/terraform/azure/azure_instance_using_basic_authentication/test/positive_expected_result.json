@@ -9,7 +9,8 @@
     "searchKey": "azurerm_virtual_machine[positive1].os_profile_linux_config.disable_password_authentication",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_machine[positive1].os_profile_linux_config.disable_password_authentication' should be set to 'true'",
-    "actualValue": "'azurerm_virtual_machine[positive1].os_profile_linux_config.disable_password_authentication' is set to 'false'"
+    "actualValue": "'azurerm_virtual_machine[positive1].os_profile_linux_config.disable_password_authentication' is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_linux_virtual_machine[positive2].disable_password_authentication",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_virtual_machine[positive2].disable_password_authentication' should be set to 'true'",
-    "actualValue": "'azurerm_linux_virtual_machine[positive2].disable_password_authentication' is set to 'false'"
+    "actualValue": "'azurerm_linux_virtual_machine[positive2].disable_password_authentication' is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_linux_virtual_machine_scale_set[positive3].disable_password_authentication",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive3].disable_password_authentication' should be set to 'true'",
-    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive3].disable_password_authentication' is set to 'false'"
+    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive3].disable_password_authentication' is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
@@ -45,6 +48,7 @@
     "searchKey": "azurerm_virtual_machine_scale_set[positive4].os_profile_linux_config.disable_password_authentication",
     "searchValue": "",
     "expectedValue": "'azurerm_virtual_machine_scale_set[positive4].os_profile_linux_config.disable_password_authentication' should be set to 'true'",
-    "actualValue": "'azurerm_virtual_machine_scale_set[positive4].os_profile_linux_config.disable_password_authentication' is set to 'false'"
+    "actualValue": "'azurerm_virtual_machine_scale_set[positive4].os_profile_linux_config.disable_password_authentication' is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

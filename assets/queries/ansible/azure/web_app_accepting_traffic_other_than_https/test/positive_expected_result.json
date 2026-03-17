@@ -9,7 +9,8 @@
     "searchKey": "name={{Create a windows web app with non-exist app service plan}}.{{azure_rm_webapp}}.https_only",
     "searchValue": "",
     "expectedValue": "azure_rm_webapp.https_only should be set to true or 'yes'",
-    "actualValue": "azure_rm_webapp.https_only value is 'false'"
+    "actualValue": "azure_rm_webapp.https_only value is 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create another windows web app}}.{{azure_rm_webapp}}",
     "searchValue": "",
     "expectedValue": "azure_rm_webapp.https_only should be defined",
-    "actualValue": "azure_rm_webapp.https_only is undefined"
+    "actualValue": "azure_rm_webapp.https_only is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

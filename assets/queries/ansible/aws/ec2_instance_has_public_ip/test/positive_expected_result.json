@@ -9,7 +9,8 @@
     "searchKey": "name={{example}}.{{amazon.aws.ec2}}.assign_public_ip",
     "searchValue": "",
     "expectedValue": "ec2.assign_public_ip should be set to false, 'no' or undefined",
-    "actualValue": "ec2.assign_public_ip is 'yes'"
+    "actualValue": "ec2.assign_public_ip is 'yes'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
@@ -21,7 +22,8 @@
     "searchKey": "name={{Create an ec2 launch template}}.{{community.aws.ec2_launch_template}}.network_interfaces.associate_public_ip_address",
     "searchValue": "",
     "expectedValue": "ec2_launch_template.network_interfaces.associate_public_ip_address should be set to false, 'no' or undefined",
-    "actualValue": "ec2_launch_template.network_interfaces.associate_public_ip_address is 'true'"
+    "actualValue": "ec2_launch_template.network_interfaces.associate_public_ip_address is 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
@@ -33,6 +35,7 @@
     "searchKey": "name={{start an instance with a public IP address}}.{{community.aws.ec2_instance}}.network.assign_public_ip",
     "searchValue": "",
     "expectedValue": "ec2_instance.network.assign_public_ip should be set to false, 'no' or undefined",
-    "actualValue": "ec2_instance.network.assign_public_ip is 'true'"
+    "actualValue": "ec2_instance.network.assign_public_ip is 'true'",
+    "issueType": "IncorrectValue"
   }
 ]

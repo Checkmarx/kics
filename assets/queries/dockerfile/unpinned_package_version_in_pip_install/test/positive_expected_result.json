@@ -9,7 +9,8 @@
     "searchKey": "FROM={{alpine:3.9}}.{{RUN pip install --user pip}}",
     "searchValue": "",
     "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
-    "actualValue": "RUN instruction pip install --user pip does not use package pinning form"
+    "actualValue": "RUN instruction pip install --user pip does not use package pinning form",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
@@ -21,7 +22,8 @@
     "searchKey": "FROM={{alpine:3.9}}.{{RUN [\"pip\", \"install\", \"connexion\"]}}",
     "searchValue": "",
     "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
-    "actualValue": "RUN instruction connexion does not use package pinning form"
+    "actualValue": "RUN instruction connexion does not use package pinning form",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
@@ -33,7 +35,8 @@
     "searchKey": "FROM={{alpine:3.7}}.{{RUN pip install connexion}}",
     "searchValue": "",
     "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
-    "actualValue": "RUN instruction pip install connexion does not use package pinning form"
+    "actualValue": "RUN instruction pip install connexion does not use package pinning form",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
@@ -45,6 +48,7 @@
     "searchKey": "FROM={{alpine:3.7}}.{{RUN pip3 install requests}}",
     "searchValue": "",
     "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
-    "actualValue": "RUN instruction pip3 install requests does not use package pinning form"
+    "actualValue": "RUN instruction pip3 install requests does not use package pinning form",
+    "issueType": "IncorrectValue"
   }
 ]

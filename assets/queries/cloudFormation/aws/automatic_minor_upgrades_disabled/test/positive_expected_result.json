@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyDB.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
-    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined"
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
-    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false"
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "Resources.MyDB.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
-    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined"
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
-    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false"
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "Resources.MyDB.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
-    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined"
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
-    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false"
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "Resources.MyDB.Properties",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' should be defined",
-    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined"
+    "actualValue": "'Resources.MyDB.Properties.AutoMinorVersionUpgrade' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
@@ -93,6 +100,7 @@
     "searchKey": "Resources.MyDB2.Properties.AutoMinorVersionUpgrade",
     "searchValue": "",
     "expectedValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' should be true",
-    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false"
+    "actualValue": "'Resources.MyDB2.Properties.AutoMinorVersionUpgrade' is false",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,6 +9,7 @@
     "searchKey": "name={{Create a simple s3 bucket with a policy}}.{{amazon.aws.s3_bucket}}.policy",
     "searchValue": "",
     "expectedValue": "s3_bucket.policy.Statement shouldn't make the bucket accessible to all AWS Accounts",
-    "actualValue": "s3_bucket.policy.Statement does make the bucket accessible to all AWS Accounts"
+    "actualValue": "s3_bucket.policy.Statement does make the bucket accessible to all AWS Accounts",
+    "issueType": "IncorrectValue"
   }
 ]

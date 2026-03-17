@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{webSitePositive2}}",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{webSitePositive2}}",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{webSitePositive3}}.identity",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{webSitePositive3}}.identity",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name={{webSitePositive3}}.identity",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "resources.name={{webSitePositive3}}.identity",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name={{webSitePositive2}}",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -93,7 +100,8 @@
     "searchKey": "properties.template.resources.name={{webSitePositive2}}",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -105,7 +113,8 @@
     "searchKey": "resources.name={{webSitePositive3}}.identity",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -117,7 +126,8 @@
     "searchKey": "properties.template.resources.name={{webSitePositive3}}.identity",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -129,7 +139,8 @@
     "searchKey": "resources.name={{webSitePositive3}}.identity",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -141,7 +152,8 @@
     "searchKey": "properties.template.resources.name={{webSitePositive3}}.identity",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -153,7 +165,8 @@
     "searchKey": "resources.name={{webSitePositive7}}.identity",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
@@ -165,6 +178,7 @@
     "searchKey": "resources.name={{webSitePositive7}}.identity",
     "searchValue": "",
     "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
-    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'"
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue"
   }
 ]

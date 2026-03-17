@@ -9,7 +9,8 @@
     "searchKey": "resources.name=aksCluster1.properties.addonProfiles.omsagent.enabled",
     "searchValue": "",
     "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false"
+    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name=aksCluster1.properties.addonProfiles.omsagent.enabled",
     "searchValue": "",
     "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false"
+    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name=aksCluster1",
     "searchValue": "",
     "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.omsagent.enabled' is undefined"
+    "actualValue": "'addonProfiles.omsagent.enabled' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name=aksCluster1",
     "searchValue": "",
     "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.omsagent.enabled' is undefined"
+    "actualValue": "'addonProfiles.omsagent.enabled' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "resources.name=aksCluster1.properties.addonProfiles.omsagent.enabled",
     "searchValue": "",
     "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false"
+    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
@@ -69,7 +74,8 @@
     "searchKey": "properties.template.resources.name=aksCluster1.properties.addonProfiles.omsagent.enabled",
     "searchValue": "",
     "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false"
+    "actualValue": "'addonProfiles.omsagent.enabled' property value is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
@@ -81,7 +87,8 @@
     "searchKey": "resources.name=aksCluster1",
     "searchValue": "",
     "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.omsagent.enabled' is undefined"
+    "actualValue": "'addonProfiles.omsagent.enabled' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Logging To Azure Monitoring Is Disabled",
@@ -93,6 +100,7 @@
     "searchKey": "properties.template.resources.name=aksCluster1",
     "searchValue": "",
     "expectedValue": "'addonProfiles.omsagent.enabled' should be defined and false",
-    "actualValue": "'addonProfiles.omsagent.enabled' is undefined"
+    "actualValue": "'addonProfiles.omsagent.enabled' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging.enabled",
     "searchValue": "",
     "expectedValue": "CloudFront logging enabled attribute should be set to true",
-    "actualValue": "CloudFront logging enabled attribute is set to false"
+    "actualValue": "CloudFront logging enabled attribute is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Logging Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging.enabled",
     "searchValue": "",
     "expectedValue": "CloudFront logging enabled attribute should be set to true",
-    "actualValue": "CloudFront logging enabled attribute is set to false"
+    "actualValue": "CloudFront logging enabled attribute is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Logging Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
     "searchValue": "",
     "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
-    "actualValue": "CloudFront logging is not defined"
+    "actualValue": "CloudFront logging is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Logging Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
     "searchValue": "",
     "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
-    "actualValue": "CloudFront logging is not defined"
+    "actualValue": "CloudFront logging is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Logging Disabled",
@@ -57,7 +61,8 @@
     "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging",
     "searchValue": "",
     "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
-    "actualValue": "CloudFront enable is not defined"
+    "actualValue": "CloudFront enable is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Logging Disabled",
@@ -69,6 +74,7 @@
     "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging",
     "searchValue": "",
     "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
-    "actualValue": "CloudFront enable is not defined"
+    "actualValue": "CloudFront enable is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

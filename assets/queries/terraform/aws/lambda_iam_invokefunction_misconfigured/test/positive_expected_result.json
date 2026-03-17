@@ -9,7 +9,8 @@
     "searchKey": "aws_iam_policy[positive1policy].policy",
     "searchValue": "",
     "expectedValue": "[positive1policy].policy should be misconfigured",
-    "actualValue": "[positive1policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+    "actualValue": "[positive1policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda IAM InvokeFunction Misconfigured",
@@ -21,7 +22,8 @@
     "searchKey": "aws_iam_policy[positive2policy].policy",
     "searchValue": "",
     "expectedValue": "[positive2policy].policy should be misconfigured",
-    "actualValue": "[positive2policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+    "actualValue": "[positive2policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda IAM InvokeFunction Misconfigured",
@@ -33,7 +35,8 @@
     "searchKey": "aws_iam_policy[positive3policy].policy",
     "searchValue": "",
     "expectedValue": "[positive3policy].policy should be misconfigured",
-    "actualValue": "[positive3policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+    "actualValue": "[positive3policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda IAM InvokeFunction Misconfigured",
@@ -45,7 +48,8 @@
     "searchKey": "aws_iam_policy[positive4policy].policy",
     "searchValue": "",
     "expectedValue": "[positive4policy].policy should be misconfigured",
-    "actualValue": "[positive4policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+    "actualValue": "[positive4policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda IAM InvokeFunction Misconfigured",
@@ -57,7 +61,8 @@
     "searchKey": "aws_iam_policy[positive5policy].policy",
     "searchValue": "",
     "expectedValue": "[positive5policy].policy should be misconfigured",
-    "actualValue": "[positive5policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+    "actualValue": "[positive5policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Lambda IAM InvokeFunction Misconfigured",
@@ -69,6 +74,7 @@
     "searchKey": "aws_iam_policy[positive6policy].policy",
     "searchValue": "",
     "expectedValue": "[positive6policy].policy should be misconfigured",
-    "actualValue": "[positive6policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name"
+    "actualValue": "[positive6policy].policy allows access to function (unqualified ARN) and its sub-resources, add another statement with \":*\" to function name",
+    "issueType": "IncorrectValue"
   }
 ]

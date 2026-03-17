@@ -9,7 +9,8 @@
     "searchKey": "name={{Create an account with kind of FileStorage}}.{{azure_rm_storageaccount}}.minimum_tls_version",
     "searchValue": "",
     "expectedValue": "azure_rm_storageaccount should be using the latest version of TLS encryption",
-    "actualValue": "azure_rm_storageaccount is using version TLS1_0 of TLS encryption"
+    "actualValue": "azure_rm_storageaccount is using version TLS1_0 of TLS encryption",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Storage Account Not Using Latest TLS Encryption Version",
@@ -21,6 +22,7 @@
     "searchKey": "name={{Create a second account with kind of FileStorage}}.{{azure_rm_storageaccount}}",
     "searchValue": "",
     "expectedValue": "azure_rm_storageaccount.minimum_tls_version should be defined",
-    "actualValue": "azure_rm_storageaccount.minimum_tls_version is undefined"
+    "actualValue": "azure_rm_storageaccount.minimum_tls_version is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

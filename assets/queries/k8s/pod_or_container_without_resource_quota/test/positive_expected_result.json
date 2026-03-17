@@ -9,7 +9,8 @@
     "searchKey": "metadata.name={{pod1}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{pod1}} has a 'ResourceQuota' policy associated",
-    "actualValue": "metadata.name={{pod1}} does not have a 'ResourceQuota' policy associated"
+    "actualValue": "metadata.name={{pod1}} does not have a 'ResourceQuota' policy associated",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pod or Container Without ResourceQuota",
@@ -21,7 +22,8 @@
     "searchKey": "metadata.name={{pod2}}",
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{pod2}} has a 'ResourceQuota' policy associated",
-    "actualValue": "metadata.name={{pod2}} does not have a 'ResourceQuota' policy associated"
+    "actualValue": "metadata.name={{pod2}} does not have a 'ResourceQuota' policy associated",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pod or Container Without ResourceQuota",
@@ -33,7 +35,8 @@
     "searchKey": "metadata.name={{fluentd-elasticsearch}}",
     "searchValue": "DaemonSet",
     "expectedValue": "metadata.name={{fluentd-elasticsearch}} has a 'ResourceQuota' policy associated",
-    "actualValue": "metadata.name={{fluentd-elasticsearch}} does not have a 'ResourceQuota' policy associated"
+    "actualValue": "metadata.name={{fluentd-elasticsearch}} does not have a 'ResourceQuota' policy associated",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Pod or Container Without ResourceQuota",
@@ -45,6 +48,7 @@
     "searchKey": "metadata.name={{webcontent}}",
     "searchValue": "PersistentVolumeClaim",
     "expectedValue": "metadata.name={{webcontent}} has a 'ResourceQuota' policy associated",
-    "actualValue": "metadata.name={{webcontent}} does not have a 'ResourceQuota' policy associated"
+    "actualValue": "metadata.name={{webcontent}} does not have a 'ResourceQuota' policy associated",
+    "issueType": "MissingAttribute"
   }
 ]

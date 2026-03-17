@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.properties.name",
     "searchValue": "",
     "expectedValue": "'name' property is unique throughout the whole API",
-    "actualValue": "'name' property is not unique throughout the whole API"
+    "actualValue": "'name' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -21,7 +22,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.properties.address",
     "searchValue": "",
     "expectedValue": "'address' property is unique throughout the whole API",
-    "actualValue": "'address' property is not unique throughout the whole API"
+    "actualValue": "'address' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.properties.age",
     "searchValue": "",
     "expectedValue": "'age' property is unique throughout the whole API",
-    "actualValue": "'age' property is not unique throughout the whole API"
+    "actualValue": "'age' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -45,7 +48,8 @@
     "searchKey": "parameters.limitParam.properties.name",
     "searchValue": "",
     "expectedValue": "'name' property is unique throughout the whole API",
-    "actualValue": "'name' property is not unique throughout the whole API"
+    "actualValue": "'name' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -57,7 +61,8 @@
     "searchKey": "parameters.limitParam.properties.address",
     "searchValue": "",
     "expectedValue": "'address' property is unique throughout the whole API",
-    "actualValue": "'address' property is not unique throughout the whole API"
+    "actualValue": "'address' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -69,7 +74,8 @@
     "searchKey": "parameters.limitParam.properties.age",
     "searchValue": "",
     "expectedValue": "'age' property is unique throughout the whole API",
-    "actualValue": "'age' property is not unique throughout the whole API"
+    "actualValue": "'age' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -81,7 +87,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.properties.name",
     "searchValue": "",
     "expectedValue": "'name' property is unique throughout the whole API",
-    "actualValue": "'name' property is not unique throughout the whole API"
+    "actualValue": "'name' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -93,7 +100,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.properties.address",
     "searchValue": "",
     "expectedValue": "'address' property is unique throughout the whole API",
-    "actualValue": "'address' property is not unique throughout the whole API"
+    "actualValue": "'address' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -105,7 +113,8 @@
     "searchKey": "paths.{{/}}.get.parameters.schema.properties.age",
     "searchValue": "",
     "expectedValue": "'age' property is unique throughout the whole API",
-    "actualValue": "'age' property is not unique throughout the whole API"
+    "actualValue": "'age' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -117,7 +126,8 @@
     "searchKey": "parameters.limitParam.properties.name",
     "searchValue": "",
     "expectedValue": "'name' property is unique throughout the whole API",
-    "actualValue": "'name' property is not unique throughout the whole API"
+    "actualValue": "'name' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -129,7 +139,8 @@
     "searchKey": "parameters.limitParam.properties.address",
     "searchValue": "",
     "expectedValue": "'address' property is unique throughout the whole API",
-    "actualValue": "'address' property is not unique throughout the whole API"
+    "actualValue": "'address' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property Not Unique",
@@ -141,6 +152,7 @@
     "searchKey": "parameters.limitParam.properties.age",
     "searchValue": "",
     "expectedValue": "'age' property is unique throughout the whole API",
-    "actualValue": "'age' property is not unique throughout the whole API"
+    "actualValue": "'age' property is not unique throughout the whole API",
+    "issueType": "IncorrectValue"
   }
 ]

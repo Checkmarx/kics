@@ -9,7 +9,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.Monitoring",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.Monitoring' should be set to 'true'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is set to 'false'"
+    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "Resources.MyEC2Instance.Properties.Monitoring",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.Monitoring' should be set and to 'true'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is not set"
+    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
@@ -33,6 +35,7 @@
     "searchKey": "Resources.MyEC2Instance.Properties.Monitoring",
     "searchValue": "",
     "expectedValue": "'Resources.MyEC2Instance.Properties.Monitoring' should be set to 'true'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is set to 'false'"
+    "actualValue": "'Resources.MyEC2Instance.Properties.Monitoring' is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

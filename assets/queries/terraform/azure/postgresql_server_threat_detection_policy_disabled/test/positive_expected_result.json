@@ -9,7 +9,8 @@
     "searchKey": "azurerm_postgresql_server[positive1].threat_detection_policy.enabled",
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_server[positive1].threat_detection_policy.enabled' should be set to true",
-    "actualValue": "'azurerm_postgresql_server[positive1].threat_detection_policy.enabled' is set to false"
+    "actualValue": "'azurerm_postgresql_server[positive1].threat_detection_policy.enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Threat Detection Policy Disabled",
@@ -21,6 +22,7 @@
     "searchKey": "azurerm_postgresql_server[positive2]",
     "searchValue": "",
     "expectedValue": "'azurerm_postgresql_server[positive2].threat_detection_policy' is a defined object",
-    "actualValue": "'azurerm_postgresql_server[positive2].threat_detection_policy' is undefined or null"
+    "actualValue": "'azurerm_postgresql_server[positive2].threat_detection_policy' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

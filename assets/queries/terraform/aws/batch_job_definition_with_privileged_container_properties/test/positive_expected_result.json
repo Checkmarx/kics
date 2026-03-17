@@ -9,6 +9,7 @@
     "searchKey": "aws_batch_job_definition[positive1].container_properties.privileged",
     "searchValue": "",
     "expectedValue": "aws_batch_job_definition[positive1].container_properties.privileged should be 'false' or not set",
-    "actualValue": "aws_batch_job_definition[positive1].container_properties.privileged is 'true'"
+    "actualValue": "aws_batch_job_definition[positive1].container_properties.privileged is 'true'",
+    "issueType": "IncorrectValue"
   }
 ]

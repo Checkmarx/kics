@@ -9,7 +9,8 @@
     "searchKey": "resources.name={{sample-input}}",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP SB",
@@ -21,7 +22,8 @@
     "searchKey": "resources.name={{sample-input2}}",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP SB",
@@ -33,7 +35,8 @@
     "searchKey": "resources.name={{sample-input3}}",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP SB",
@@ -45,7 +48,8 @@
     "searchKey": "resources.name={{sample-input4}}",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - GCP SB",
@@ -57,6 +61,7 @@
     "searchKey": "resources.name={{sample-input5}}",
     "searchValue": "",
     "expectedValue": "",
-    "actualValue": ""
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

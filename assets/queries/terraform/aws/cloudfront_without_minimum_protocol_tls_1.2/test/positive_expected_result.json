@@ -9,7 +9,8 @@
     "searchKey": "resource.aws_cloudfront_distribution[positive1]",
     "searchValue": "",
     "expectedValue": "resource.aws_cloudfront_distribution[positive1].viewer_certificate' should be defined and not null",
-    "actualValue": "resource.aws_cloudfront_distribution[positive1].viewer_certificate' is undefined or null"
+    "actualValue": "resource.aws_cloudfront_distribution[positive1].viewer_certificate' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
@@ -21,7 +22,8 @@
     "searchKey": "resource.aws_cloudfront_distribution[positive2].viewer_certificate.minimum_protocol_version",
     "searchValue": "",
     "expectedValue": "resource.aws_cloudfront_distribution[positive2].viewer_certificate.minimum_protocol_version' should be TLSv1.2_x",
-    "actualValue": "resource.aws_cloudfront_distribution[positive2].viewer_certificate.minimum_protocol_version' is TLSv1_2016"
+    "actualValue": "resource.aws_cloudfront_distribution[positive2].viewer_certificate.minimum_protocol_version' is TLSv1_2016",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
@@ -33,7 +35,8 @@
     "searchKey": "resource.aws_cloudfront_distribution[positive3].viewer_certificate.cloudfront_default_certificate",
     "searchValue": "",
     "expectedValue": "resource.aws_cloudfront_distribution[positive3].viewer_certificate.cloudfront_default_certificate' should be 'false'",
-    "actualValue": "resource.aws_cloudfront_distribution[positive3].viewer_certificate.cloudfront_default_certificate' is 'true'"
+    "actualValue": "resource.aws_cloudfront_distribution[positive3].viewer_certificate.cloudfront_default_certificate' is 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
@@ -45,6 +48,7 @@
     "searchKey": "resource.aws_cloudfront_distribution[positive4].viewer_certificate",
     "searchValue": "",
     "expectedValue": "resource.aws_cloudfront_distribution[positive4].viewer_certificate.minimum_protocol_version' should be defined and not null",
-    "actualValue": "resource.aws_cloudfront_distribution[positive4].viewer_certificate.minimum_protocol_version' is undefined or null"
+    "actualValue": "resource.aws_cloudfront_distribution[positive4].viewer_certificate.minimum_protocol_version' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

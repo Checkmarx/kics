@@ -9,7 +9,8 @@
     "searchKey": "azurerm_function_app[positive1-1].site_config.ftps_state",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-1].site_config.ftps_state' should not be set to 'AllAllowed'",
-    "actualValue": "'azurerm_function_app[positive1-1].site_config.ftps_state' is set to 'AllAllowed'"
+    "actualValue": "'azurerm_function_app[positive1-1].site_config.ftps_state' is set to 'AllAllowed'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App FTPS Enforce Disabled",
@@ -21,7 +22,8 @@
     "searchKey": "azurerm_function_app[positive1-2].site_config'",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-2].site_config.ftps_state' should be defined and not null",
-    "actualValue": "'azurerm_function_app[positive1-2].site_config.ftps_state' is undefined or null"
+    "actualValue": "'azurerm_function_app[positive1-2].site_config.ftps_state' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App FTPS Enforce Disabled",
@@ -33,7 +35,8 @@
     "searchKey": "azurerm_function_app[positive1-3]'",
     "searchValue": "",
     "expectedValue": "'azurerm_function_app[positive1-3].site_config.ftps_state' should be defined and not null",
-    "actualValue": "'azurerm_function_app[positive1-3].site_config.ftps_state' is undefined or null"
+    "actualValue": "'azurerm_function_app[positive1-3].site_config.ftps_state' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App FTPS Enforce Disabled",
@@ -45,7 +48,8 @@
     "searchKey": "azurerm_linux_function_app[positive2].site_config.ftps_state",
     "searchValue": "",
     "expectedValue": "'azurerm_linux_function_app[positive2].site_config.ftps_state' should not be set to 'AllAllowed'",
-    "actualValue": "'azurerm_linux_function_app[positive2].site_config.ftps_state' is set to 'AllAllowed'"
+    "actualValue": "'azurerm_linux_function_app[positive2].site_config.ftps_state' is set to 'AllAllowed'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Function App FTPS Enforce Disabled",
@@ -57,6 +61,7 @@
     "searchKey": "azurerm_windows_function_app[positive3].site_config.ftps_state",
     "searchValue": "",
     "expectedValue": "'azurerm_windows_function_app[positive3].site_config.ftps_state' should not be set to 'AllAllowed'",
-    "actualValue": "'azurerm_windows_function_app[positive3].site_config.ftps_state' is set to 'AllAllowed'"
+    "actualValue": "'azurerm_windows_function_app[positive3].site_config.ftps_state' is set to 'AllAllowed'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -9,7 +9,8 @@
     "searchKey": "kubernetes_pod[busybox].spec.container.image_pull_policy",
     "searchValue": "",
     "expectedValue": "Attribute 'image_pull_policy' should be defined as 'Always'",
-    "actualValue": "Attribute 'image_pull_policy' is incorrect"
+    "actualValue": "Attribute 'image_pull_policy' is incorrect",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Image Pull Policy Of The Container Is Not Set To Always",
@@ -21,6 +22,7 @@
     "searchKey": "kubernetes_deployment[example].spec.template.spec.container.image_pull_policy",
     "searchValue": "",
     "expectedValue": "Attribute 'image_pull_policy' should be defined as 'Always'",
-    "actualValue": "Attribute 'image_pull_policy' is incorrect"
+    "actualValue": "Attribute 'image_pull_policy' is incorrect",
+    "issueType": "IncorrectValue"
   }
 ]

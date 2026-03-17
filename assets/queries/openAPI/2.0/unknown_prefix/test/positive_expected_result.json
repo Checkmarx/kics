@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.get.produces",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.produces has only known prefixes",
-    "actualValue": "aplication/json on 'paths.{{/}}.get.produces' is an unknown prefix"
+    "actualValue": "aplication/json on 'paths.{{/}}.get.produces' is an unknown prefix",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Prefix (v2)",
@@ -21,7 +22,8 @@
     "searchKey": "produces",
     "searchValue": "",
     "expectedValue": "produces has only known prefixes",
-    "actualValue": "aplication/json on 'produces' is an unknown prefix"
+    "actualValue": "aplication/json on 'produces' is an unknown prefix",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Prefix (v2)",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.get.produces",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.get.produces has only known prefixes",
-    "actualValue": "aplication/json on 'paths.{{/}}.get.produces' is an unknown prefix"
+    "actualValue": "aplication/json on 'paths.{{/}}.get.produces' is an unknown prefix",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Prefix (v2)",
@@ -45,6 +48,7 @@
     "searchKey": "produces",
     "searchValue": "",
     "expectedValue": "produces has only known prefixes",
-    "actualValue": "aplication/json on 'produces' is an unknown prefix"
+    "actualValue": "aplication/json on 'produces' is an unknown prefix",
+    "issueType": "IncorrectValue"
   }
 ]

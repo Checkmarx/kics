@@ -9,6 +9,7 @@
     "searchKey": "aws_config_config_rule",
     "searchValue": "",
     "expectedValue": "There should be a 'aws_config_config_rule' resource with source id: 'ENCRYPTED_VOLUMES'",
-    "actualValue": "No 'aws_config_config_rule' resource has source id: 'ENCRYPTED_VOLUMES'"
+    "actualValue": "No 'aws_config_config_rule' resource has source id: 'ENCRYPTED_VOLUMES'",
+    "issueType": "MissingAttribute"
   }
 ]

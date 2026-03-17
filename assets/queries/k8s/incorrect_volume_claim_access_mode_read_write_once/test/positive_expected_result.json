@@ -9,7 +9,8 @@
     "searchKey": "metadata.name=web.spec.volumeClaimTemplates",
     "searchValue": "",
     "expectedValue": "metadata.name=web.spec.volumeClaimTemplates has only one template with a 'ReadWriteOnce'",
-    "actualValue": "metadata.name=web.spec.volumeClaimTemplates has multiple templates with 'ReadWriteOnce'"
+    "actualValue": "metadata.name=web.spec.volumeClaimTemplates has multiple templates with 'ReadWriteOnce'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Incorrect Volume Claim Access Mode ReadWriteOnce",
@@ -21,6 +22,7 @@
     "searchKey": "metadata.name=web2.spec.volumeClaimTemplates",
     "searchValue": "",
     "expectedValue": "metadata.name=web2.spec.volumeClaimTemplates has one template with a 'ReadWriteOnce'",
-    "actualValue": "metadata.name=web2.spec.volumeClaimTemplates does not have a template with a 'ReadWriteOnce'"
+    "actualValue": "metadata.name=web2.spec.volumeClaimTemplates does not have a template with a 'ReadWriteOnce'",
+    "issueType": "MissingAttribute"
   }
 ]

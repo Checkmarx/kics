@@ -9,7 +9,8 @@
     "searchKey": "FROM={{fedora:latest}}.{{RUN dnf -y update && dnf -y install httpd && dnf clean all}}",
     "searchValue": "",
     "expectedValue": "Package version should be specified when using 'dnf install'",
-    "actualValue": "Package version should be pinned when running ´dnf install´"
+    "actualValue": "Package version should be pinned when running ´dnf install´",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Missing Version Specification In dnf install",
@@ -21,6 +22,7 @@
     "searchKey": "FROM={{fedora:latest}}.{{RUN [\"dnf\", \"install\", \"httpd\"]}}",
     "searchValue": "",
     "expectedValue": "Package version should be specified when using 'dnf install'",
-    "actualValue": "Package version should be pinned when running ´dnf install´"
+    "actualValue": "Package version should be pinned when running ´dnf install´",
+    "issueType": "IncorrectValue"
   }
 ]

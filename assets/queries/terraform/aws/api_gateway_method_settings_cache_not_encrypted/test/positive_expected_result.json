@@ -9,7 +9,8 @@
     "searchKey": "aws_api_gateway_method_settings[{{path_specific}}].settings.cache_data_encrypted",
     "searchValue": "",
     "expectedValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted should be set to true",
-    "actualValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted is set to false"
+    "actualValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Method Settings Cache Not Encrypted",
@@ -21,6 +22,7 @@
     "searchKey": "aws_api_gateway_method_settings[{{path_specific_2}}].settings",
     "searchValue": "",
     "expectedValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted should be set to true",
-    "actualValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted is missing"
+    "actualValue": "aws_api_gateway_method_settings.settings.cache_data_encrypted is missing",
+    "issueType": "MissingAttribute"
   }
 ]

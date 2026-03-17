@@ -9,6 +9,7 @@
     "searchKey": "aws_ecs_task_definition[positive1].network_mode",
     "searchValue": "",
     "expectedValue": "'network_mode' should equal to 'awsvpc'",
-    "actualValue": "'network_mode' is equal to 'none'"
+    "actualValue": "'network_mode' is equal to 'none'",
+    "issueType": "IncorrectValue"
   }
 ]

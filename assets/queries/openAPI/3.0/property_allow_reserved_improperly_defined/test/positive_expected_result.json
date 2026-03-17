@@ -9,7 +9,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
-    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
@@ -21,7 +22,8 @@
     "searchKey": "paths./users/{id}.get.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "paths./users/{id}.get.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
-    "actualValue": "paths./users/{id}.get.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
+    "actualValue": "paths./users/{id}.get.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
@@ -33,7 +35,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
-    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
@@ -45,7 +48,8 @@
     "searchKey": "paths./users/{id}.get.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "paths./users/{id}.get.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
-    "actualValue": "paths./users/{id}.get.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
+    "actualValue": "paths./users/{id}.get.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
@@ -57,7 +61,8 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
-    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Property 'allowReserved' Improperly Defined",
@@ -69,6 +74,7 @@
     "searchKey": "paths.{{/}}.parameters.name={{id}}",
     "searchValue": "",
     "expectedValue": "paths.{{/}}.parameters.name={{id}} should have 'in' set to 'query' when 'allowReserved' is set",
-    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set"
+    "actualValue": "paths.{{/}}.parameters.name={{id}} does not have 'in' set to 'query' when 'allowReserved' is set",
+    "issueType": "IncorrectValue"
   }
 ]
