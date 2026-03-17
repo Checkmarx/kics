@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-"""
-Validates searchLine in modified KICS queries.
-
-For each changed query that defines searchLine in query.rego:
-1. Runs a KICS scan against the query's test files
-2. Validates that every result's search_line equals its line
-3. Validates that no result has search_line == -1
-
-Queries that don't define searchLine are skipped (PASS).
-"""
 
 import json
 import os

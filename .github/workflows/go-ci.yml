@@ -122,9 +122,7 @@ jobs:
           KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_PR_NUMBER: ${{ github.event.number }}
         working-directory: .github/scripts/validate-search-line/
-        run: |
-          pip3 install -r requirements.txt
-          python3 validate-search-line.py
+        run: python3 validate-search-line.py
 
   security-scan:
     name: security-scan
