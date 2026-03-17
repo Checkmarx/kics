@@ -4,10 +4,13 @@ WORKDIR /build
 
 ENV PATH=$PATH:/usr/local/go/bin
 
-ADD https://golang.org/dl/go1.25.7.linux-amd64.tar.gz .
-RUN yum install git gcc -y \
-  && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.25.7.linux-amd64.tar.gz \
-  && rm -f go1.25.7.linux-amd64.tar.gz
+ARG BUILDPLATFORM=linux/amd64
+RUN ARCH=$(echo ${BUILDPLATFORM} | cut -d'/' -f2) \
+  && yum install git gcc wget -y \
+  && rm -rf /usr/local/go \
+  && wget -q https://golang.org/dl/go1.25.7.linux-${ARCH}.tar.gz \
+  && tar -C /usr/local -xzf go1.25.7.linux-${ARCH}.tar.gz \
+  && rm -f go1.25.7.linux-${ARCH}.tar.gz
 
 ENV GOPRIVATE=github.com/Checkmarx/*
 ARG VERSION="development"
