@@ -257,22 +257,18 @@ rUn echo "hello"
 	docUpper, _, err := p.Parse("Dockerfile", []byte(upper))
 	require.NoError(t, err)
 	require.Len(t, docUpper, 1)
-	require.Contains(t, docUpper[0]["command"], "alpine:3.18")
 	cmdsUpper := docUpper[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
 
 	docLower, _, err := p.Parse("Dockerfile", []byte(lower))
 	require.NoError(t, err)
 	require.Len(t, docLower, 1)
-	require.Contains(t, docLower[0]["command"], "alpine:3.18")
 	cmdsLower := docLower[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
+	require.Len(t, cmdsUpper, len(cmdsLower))
 
 	docMixed, _, err := p.Parse("Dockerfile", []byte(mixed))
 	require.NoError(t, err)
 	require.Len(t, docMixed, 1)
-	require.Contains(t, docMixed[0]["command"], "alpine:3.18")
 	cmdsMixed := docMixed[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
-
-	require.Len(t, cmdsUpper, len(cmdsLower))
 	require.Len(t, cmdsUpper, len(cmdsMixed))
 
 	for i := range cmdsUpper {
