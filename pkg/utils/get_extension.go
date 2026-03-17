@@ -35,9 +35,6 @@ func GetExtension(path string) (string, error) {
 			return extDockerfile, nil
 		}
 	case "":
-		if strings.HasSuffix(filepath.Clean(path), "gitignore") {
-			return "", nil
-		}
 		if filepath.Base(path) == "tfvars" {
 			return ".tfvars", nil
 		}
