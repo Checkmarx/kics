@@ -1,0 +1,25 @@
+Resources:
+  taskdefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        -
+          Name: "container1"
+          Image: "amazonlinux:2"
+          MountPoints:
+            -
+              SourceVolume: "docker-vol-1"
+              ContainerPath: "/mount/docker1"
+            -
+              SourceVolume: "docker-vol-2"
+              ContainerPath: "/mount/docker2"
+      Volumes:
+        -
+          Name: "docker-vol-1"
+          Host:
+            SourcePath: "/var/lib/docker/vfs/dir1/"
+        -
+          Name: "docker-vol-2"
+          Host:
+            SourcePath: "/var/lib/docker/vfs/dir2/"
+
