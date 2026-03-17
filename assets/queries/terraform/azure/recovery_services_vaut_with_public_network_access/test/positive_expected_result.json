@@ -23,6 +23,6 @@
     "searchValue": "",
     "expectedValue": "'azurerm_recovery_services_vault[positive2].public_network_access_enabled' should be defined and set to false",
     "actualValue": "'azurerm_recovery_services_vault[positive2].public_network_access_enabled' is set to true",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   }
 ]

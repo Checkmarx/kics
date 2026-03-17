@@ -10,7 +10,7 @@
     "searchValue": "",
     "expectedValue": "'Resources.MySecret.Properties.KmsKeyId' should be defined and not null",
     "actualValue": "'Resources.MySecret.Properties.KmsKeyId' is undefined or null",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Secretsmanager Secret Without KMS",
@@ -23,7 +23,7 @@
     "searchValue": "",
     "expectedValue": "'Resources.MySecret.Properties.KmsKeyId' should be defined and not null",
     "actualValue": "'Resources.MySecret.Properties.KmsKeyId' is undefined or null",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Secretsmanager Secret Without KMS",

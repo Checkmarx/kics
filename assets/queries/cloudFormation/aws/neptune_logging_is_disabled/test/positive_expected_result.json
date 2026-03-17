@@ -75,7 +75,7 @@
     "searchValue": "",
     "expectedValue": "'Resources.Prod.Properties' should have 'EnableCloudwatchLogsExports' enabled ",
     "actualValue": "'Resources.Prod.Properties.EnableCloudwatchLogsExports' is set to null",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Neptune Logging Is Disabled",

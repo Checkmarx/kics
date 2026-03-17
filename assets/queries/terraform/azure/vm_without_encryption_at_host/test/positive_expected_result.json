@@ -23,7 +23,7 @@
     "searchValue": "",
     "expectedValue": "'azurerm_linux_virtual_machine[positive1_2].encryption_at_host_enabled' should be defined and set to 'true'",
     "actualValue": "'azurerm_linux_virtual_machine[positive1_2].encryption_at_host_enabled' is set to 'false'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - VM Without Encryption At Host",
@@ -49,7 +49,7 @@
     "searchValue": "",
     "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive2_2].encryption_at_host_enabled' should be defined and set to 'true'",
     "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive2_2].encryption_at_host_enabled' is set to 'false'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - VM Without Encryption At Host",
@@ -75,7 +75,7 @@
     "searchValue": "",
     "expectedValue": "'azurerm_windows_virtual_machine[positive3_2].encryption_at_host_enabled' should be defined and set to 'true'",
     "actualValue": "'azurerm_windows_virtual_machine[positive3_2].encryption_at_host_enabled' is set to 'false'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - VM Without Encryption At Host",
@@ -101,6 +101,6 @@
     "searchValue": "",
     "expectedValue": "'azurerm_windows_virtual_machine_scale_set[positive4_2].encryption_at_host_enabled' should be defined and set to 'true'",
     "actualValue": "'azurerm_windows_virtual_machine_scale_set[positive4_2].encryption_at_host_enabled' is set to 'false'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   }
 ]

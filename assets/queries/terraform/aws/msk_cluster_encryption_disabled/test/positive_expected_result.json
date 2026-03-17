@@ -23,7 +23,7 @@
     "searchValue": "",
     "expectedValue": "Should have 'rule.encryption_info' and, if 'rule.encryption_info.encryption_in_transit' is assigned, 'in_cluster' should be 'true' and 'client_broker' should be TLS",
     "actualValue": "'rule.encryption_info' is unassigned or property 'in_cluster' is 'false' or property 'client_broker' is not 'TLS'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
@@ -36,7 +36,7 @@
     "searchValue": "",
     "expectedValue": "Should have 'rule.encryption_info' and, if 'rule.encryption_info.encryption_in_transit' is assigned, 'in_cluster' should be 'true' and 'client_broker' should be TLS",
     "actualValue": "'rule.encryption_info' is unassigned or property 'in_cluster' is 'false' or property 'client_broker' is not 'TLS'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
@@ -49,6 +49,6 @@
     "searchValue": "",
     "expectedValue": "Should have 'rule.encryption_info' and, if 'rule.encryption_info.encryption_in_transit' is assigned, 'in_cluster' should be 'true' and 'client_broker' should be TLS",
     "actualValue": "'rule.encryption_info' is unassigned or property 'in_cluster' is 'false' or property 'client_broker' is not 'TLS'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   }
 ]

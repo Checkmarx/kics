@@ -62,7 +62,7 @@
     "searchValue": "",
     "expectedValue": "'azurerm_monitor_diagnostic_setting[positive2_2].log' objects should enable logging for all 4 main categories",
     "actualValue": "'azurerm_monitor_diagnostic_setting[positive2_2].log' objects do not enable logging for 4 of the main categories: 'Administrative', 'Alert', 'Policy', 'Security'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
@@ -88,6 +88,6 @@
     "searchValue": "",
     "expectedValue": "'azurerm_monitor_diagnostic_setting[positive2_4].log' objects should enable logging for all 4 main categories",
     "actualValue": "'azurerm_monitor_diagnostic_setting[positive2_4].log' objects do not enable logging for 1 of the main categories: 'Administrative'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   }
 ]

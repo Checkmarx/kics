@@ -10,7 +10,7 @@
     "searchValue": "",
     "expectedValue": "'securityDefinitions' should be set and not empty",
     "actualValue": "'securityDefinitions' is undefined or empty",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Definitions Undefined or Empty",
@@ -23,7 +23,7 @@
     "searchValue": "",
     "expectedValue": "'securityDefinitions' should be set and not empty",
     "actualValue": "'securityDefinitions' is undefined or empty",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Definitions Undefined or Empty",

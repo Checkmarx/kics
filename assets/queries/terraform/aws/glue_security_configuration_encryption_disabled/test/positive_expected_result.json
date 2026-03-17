@@ -23,7 +23,7 @@
     "searchValue": "",
     "expectedValue": "'job_bookmarks_encryption_mode' should be set to 'CSE-KMS'",
     "actualValue": "'job_bookmarks_encryption_mode' is not set to 'CSE-KMS'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Glue Security Configuration Encryption Disabled",

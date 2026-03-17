@@ -10,7 +10,7 @@
     "searchValue": "Pod",
     "expectedValue": "metadata.name={{private-image-test-always}}.spec.containers.name={{uses-private-image}}.imagePullPolicy should be set to 'Always'",
     "actualValue": "metadata.name={{private-image-test-always}}.spec.containers.name={{uses-private-image}}.imagePullPolicy relies on mutable images in cache",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Image Pull Policy Of The Container Is Not Set To Always",
@@ -23,7 +23,7 @@
     "searchValue": "Deployment",
     "expectedValue": "metadata.name={{deployment-with-image-pull-policy}}.spec.template.spec.containers.name={{nginx}}.imagePullPolicy should be set to 'Always'",
     "actualValue": "metadata.name={{deployment-with-image-pull-policy}}.spec.template.spec.containers.name={{nginx}}.imagePullPolicy relies on mutable images in cache",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Image Pull Policy Of The Container Is Not Set To Always",

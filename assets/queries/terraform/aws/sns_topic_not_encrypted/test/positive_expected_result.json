@@ -10,7 +10,7 @@
     "searchValue": "",
     "expectedValue": "SNS Topic should be encrypted",
     "actualValue": "SNS Topic is not encrypted",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic Not Encrypted",

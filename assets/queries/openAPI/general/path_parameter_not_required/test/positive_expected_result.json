@@ -10,7 +10,7 @@
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
     "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
@@ -23,7 +23,7 @@
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
     "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
@@ -62,7 +62,7 @@
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
     "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",
@@ -88,7 +88,7 @@
     "searchValue": "",
     "expectedValue": "Path parameter should have the field 'required' set to 'true' for location 'path'",
     "actualValue": "Path parameter does not have the field 'required' set to 'true' for location 'path'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Path Parameter Not Required (v3)",

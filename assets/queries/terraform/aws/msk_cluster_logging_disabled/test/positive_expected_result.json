@@ -10,7 +10,7 @@
     "searchValue": "",
     "expectedValue": "'rule.logging_info.broker_logs.enabled' should be 'true' in every entry",
     "actualValue": "msk_cluster[positive1].logging_info.broker_logs.cloudwatch_logs.enabled is false",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Logging Disabled",

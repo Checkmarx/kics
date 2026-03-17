@@ -23,6 +23,6 @@
     "searchValue": "",
     "expectedValue": "'azurerm_recovery_services_vault[positive2].immutability' should be set and enabled",
     "actualValue": "'azurerm_recovery_services_vault[positive2].immutability' is set to 'Disabled'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   }
 ]

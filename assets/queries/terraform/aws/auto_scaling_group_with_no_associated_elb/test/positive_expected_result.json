@@ -49,7 +49,7 @@
     "searchValue": "",
     "expectedValue": "'load_balancers' should be set and not empty",
     "actualValue": "'load_balancers' is undefined",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Auto Scaling Group With No Associated ELB",

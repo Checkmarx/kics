@@ -23,7 +23,7 @@
     "searchValue": "python",
     "expectedValue": "Package 'python' has version defined",
     "actualValue": "Package 'python' does not have version defined",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",
@@ -127,7 +127,7 @@
     "searchValue": "python",
     "expectedValue": "Package 'python' has version defined",
     "actualValue": "Package 'python' does not have version defined",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Apt Get Install Pin Version Not Defined",

@@ -10,7 +10,7 @@
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[example_pos1]' should be associated with an 'azurerm_management_lock' where lock_level is set to 'CanNotDelete'",
     "actualValue": "'azurerm_storage_account[example_pos1]' is not associated with an 'azurerm_management_lock'",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Without Delete Lock",
@@ -23,7 +23,7 @@
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[example_pos2]' should be associated with an 'azurerm_management_lock' where lock_level is set to 'CanNotDelete'",
     "actualValue": "'azurerm_storage_account[example_pos2]' is not associated with an 'azurerm_management_lock'",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Without Delete Lock",
@@ -49,7 +49,7 @@
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[example_pos4]' should be associated with an 'azurerm_management_lock' where lock_level is set to 'CanNotDelete'",
     "actualValue": "'azurerm_storage_account[example_pos4]' is not associated with an 'azurerm_management_lock'",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Storage Account Without Delete Lock",
@@ -62,6 +62,6 @@
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[example_pos5]' should be associated with an 'azurerm_management_lock' where lock_level is set to 'CanNotDelete'",
     "actualValue": "'azurerm_storage_account[example_pos5]' is not associated with an 'azurerm_management_lock'",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   }
 ]

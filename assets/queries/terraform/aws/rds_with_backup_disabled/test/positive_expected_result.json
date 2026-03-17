@@ -49,6 +49,6 @@
     "searchValue": "",
     "expectedValue": "'backup_retention_period' should be defined, and bigger than '0'",
     "actualValue": "'backup_retention_period' is not defined",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   }
 ]

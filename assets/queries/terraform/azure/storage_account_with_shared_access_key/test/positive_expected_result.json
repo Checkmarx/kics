@@ -23,6 +23,6 @@
     "searchValue": "",
     "expectedValue": "'azurerm_storage_account[positive2].shared_access_key_enabled' should be defined and set to false",
     "actualValue": "'azurerm_storage_account[positive2].shared_access_key_enabled' is set to 'true'",
-    "issueType": "MissingAttribute"
+    "issueType": "IncorrectValue"
   }
 ]

@@ -62,7 +62,7 @@
     "searchValue": "",
     "expectedValue": "'amazon.aws.ec2_instance.metadata_options' should be defined with 'http_tokens' field set to 'required'",
     "actualValue": "'amazon.aws.ec2_instance.metadata_options' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -75,7 +75,7 @@
     "searchValue": "",
     "expectedValue": "'community.aws.autoscaling_launch_config.metadata_options' should be defined with 'http_tokens' field set to 'required'",
     "actualValue": "'community.aws.autoscaling_launch_config.metadata_options' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -88,7 +88,7 @@
     "searchValue": "",
     "expectedValue": "'community.aws.ec2_instance.metadata_options' should be defined with 'http_tokens' field set to 'required'",
     "actualValue": "'community.aws.ec2_instance.metadata_options' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -101,7 +101,7 @@
     "searchValue": "",
     "expectedValue": "'community.aws.ec2_lc.metadata_options' should be defined with 'http_tokens' field set to 'required'",
     "actualValue": "'community.aws.ec2_lc.metadata_options' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -166,7 +166,7 @@
     "searchValue": "",
     "expectedValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
     "actualValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -179,7 +179,7 @@
     "searchValue": "",
     "expectedValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' should be defined to 'required'",
     "actualValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -192,7 +192,7 @@
     "searchValue": "",
     "expectedValue": "'community.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
     "actualValue": "'community.aws.ec2_instance.metadata_options.http_tokens' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -205,7 +205,7 @@
     "searchValue": "",
     "expectedValue": "'community.aws.ec2_lc.metadata_options.http_tokens' should be defined to 'required'",
     "actualValue": "'community.aws.ec2_lc.metadata_options.http_tokens' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -218,7 +218,7 @@
     "searchValue": "",
     "expectedValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
     "actualValue": "'amazon.aws.ec2_instance.metadata_options.http_tokens' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -231,7 +231,7 @@
     "searchValue": "",
     "expectedValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' should be defined to 'required'",
     "actualValue": "'community.aws.autoscaling_launch_config.metadata_options.http_tokens' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -244,7 +244,7 @@
     "searchValue": "",
     "expectedValue": "'community.aws.ec2_instance.metadata_options.http_tokens' should be defined to 'required'",
     "actualValue": "'community.aws.ec2_instance.metadata_options.http_tokens' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
@@ -257,6 +257,6 @@
     "searchValue": "",
     "expectedValue": "'community.aws.ec2_lc.metadata_options.http_tokens' should be defined to 'required'",
     "actualValue": "'community.aws.ec2_lc.metadata_options.http_tokens' is not defined",
-    "issueType": "IncorrectValue"
+    "issueType": "MissingAttribute"
   }
 ]
