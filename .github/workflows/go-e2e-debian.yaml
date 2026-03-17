@@ -16,14 +16,10 @@ jobs:
             platform: linux/amd64
             dockerfile: docker/Dockerfile.debian
             tag_suffix: debian-amd64
-          - os: ubuntu-latest
-            platform: linux/amd64
-            dockerfile: Dockerfile
-            tag_suffix: default-amd64
           - os: ubuntu-24.04-arm
             platform: linux/arm64
-            dockerfile: Dockerfile
-            tag_suffix: default-arm64
+            dockerfile: docker/Dockerfile.debian
+            tag_suffix: debian-arm64
     runs-on: ${{ matrix.config.os }}
     steps:
       - name: Cancel Previous Runs
