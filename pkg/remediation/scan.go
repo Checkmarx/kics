@@ -95,7 +95,7 @@ func getPayload(filePath string, content []byte, openAPIResolveReferences bool, 
 	var err error
 
 	switch ext {
-	case ".dockerfile", "gitignore", ".ubi8", ".debian":
+	case ".dockerfile", ".ubi8", ".debian":
 		p, err = parser.NewBuilder().Add(&dockerParser.Parser{}).Build([]string{""}, []string{""})
 
 	case terraformExtension:
