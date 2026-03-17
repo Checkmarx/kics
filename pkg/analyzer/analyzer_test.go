@@ -151,7 +151,6 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude: []string{
 				filepath.FromSlash("../../test/fixtures/gitignore/positive.dockerfile"),
 				filepath.FromSlash("../../test/fixtures/gitignore/secrets.tf"),
-				filepath.FromSlash("../../test/fixtures/gitignore/gitignore"),
 			},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
@@ -167,7 +166,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/gitignore"),
 			},
 			wantTypes:            []string{"dockerfile", "kubernetes", "terraform"},
-			wantExclude:          []string{filepath.FromSlash("../../test/fixtures/gitignore/gitignore")},
+			wantExclude:          []string{},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              42,
