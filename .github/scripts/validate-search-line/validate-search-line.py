@@ -104,40 +104,19 @@ def validate_scan_results(query_dir):
 
     data = json.loads(results_file.read_text())
 
-    # Flatten results from all queries, attaching query_name to each file entry
+    # Flatten results from all queries
     all_results = []
     for query in data.get("queries", []):
-        query_name = query.get("query_name", "")
         for entry in query.get("files", []):
             all_results.append({
                 "file_name": entry.get("file_name", ""),
                 "line": entry.get("line", 0),
-                "search_key": entry.get("search_key", ""),
-                "search_value": entry.get("search_value", ""),
-                "resource_type": entry.get("resource_type", ""),
-                "resource_name": entry.get("resource_name", ""),
-                "query_name": query_name,
-                "expected_value": entry.get("expected_value", ""),
-                "actual_value": entry.get("actual_value", ""),
                 "search_line": entry.get("search_line", 0),
             })
 
     if not all_results:
         print("  [OK] No results to validate")
         return True
-
-    # Sort by the specified fields
-    all_results.sort(key=lambda r: (
-        r["file_name"],
-        r["line"],
-        r["search_key"],
-        r["search_value"],
-        r["resource_type"],
-        r["resource_name"],
-        r["query_name"],
-        r["expected_value"],
-        r["actual_value"],
-    ))
 
     # Validate each result
     valid = True
