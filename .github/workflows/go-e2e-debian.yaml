@@ -78,6 +78,7 @@ jobs:
           build-args: |
             VERSION=development
             COMMIT=${{ github.sha }}
+            BUILDPLATFORM=${{ matrix.config.platform }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
