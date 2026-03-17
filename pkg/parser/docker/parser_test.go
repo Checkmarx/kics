@@ -240,7 +240,11 @@ func TestParser_GetResolvedFiles(t *testing.T) {
 // in a case-insensitive manner
 func TestParser_Parse_CaseInsensitive(t *testing.T) {
 	p := &Parser{}
-
+	// baseline sample
+	upper := `
+FROM alpine:3.18
+RUN echo "hello"
+`
 	lower := `
 from alpine:3.18
 run echo "hello"
@@ -250,22 +254,31 @@ fRoM alpine:3.18
 rUn echo "hello"
 `
 
-	docUpper, _, err := p.Parse("Dockerfile", []byte(lower))
+	docUpper, _, err := p.Parse("Dockerfile", []byte(upper))
 	require.NoError(t, err)
 	require.Len(t, docUpper, 1)
 	require.Contains(t, docUpper[0]["command"], "alpine:3.18")
+	cmdsUpper := docUpper[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
+
+	docLower, _, err := p.Parse("Dockerfile", []byte(lower))
+	require.NoError(t, err)
+	require.Len(t, docLower, 1)
+	require.Contains(t, docLower[0]["command"], "alpine:3.18")
+	cmdsLower := docLower[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
 
 	docMixed, _, err := p.Parse("Dockerfile", []byte(mixed))
 	require.NoError(t, err)
 	require.Len(t, docMixed, 1)
 	require.Contains(t, docMixed[0]["command"], "alpine:3.18")
-
-	cmdsUpper := docUpper[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
 	cmdsMixed := docMixed[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
 
+	require.Len(t, cmdsUpper, len(cmdsLower))
 	require.Len(t, cmdsUpper, len(cmdsMixed))
+
 	for i := range cmdsUpper {
 		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Cmd"], cmdsMixed[i].(map[string]interface{})["Cmd"])
 		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Value"], cmdsMixed[i].(map[string]interface{})["Value"])
+		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Cmd"], cmdsLower[i].(map[string]interface{})["Cmd"])
+		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Value"], cmdsLower[i].(map[string]interface{})["Value"])
 	}
 }
