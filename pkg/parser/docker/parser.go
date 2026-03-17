@@ -59,9 +59,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	for _, child := range parsed.AST.Children {
 		child.Value = strings.ToLower(child.Value)
 		if child.Value == "from" {
-			if strings.HasPrefix(strings.ToUpper(child.Original), "FROM ") {
-				fromValue = child.Original[5:]
-			}
+			fromValue = child.Original[5:]
 		}
 
 		if ignoreStruct.getIgnoreComments(child) {

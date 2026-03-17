@@ -16,6 +16,7 @@ import (
 func GetExtension(path string) (string, error) {
 	extDockerfile := ".dockerfile"
 	fileInfo, err := os.Stat(path)
+
 	if err != nil {
 		return "", fmt.Errorf("file %s not found", path)
 	}
@@ -36,7 +37,7 @@ func GetExtension(path string) (string, error) {
 		}
 	case "":
 		if strings.HasSuffix(filepath.Clean(path), "gitignore") {
-			return "gitignore", nil
+			return "", nil
 		}
 		if filepath.Base(path) == "tfvars" {
 			return ".tfvars", nil
@@ -88,15 +89,11 @@ func readPossibleDockerFile(path string) bool {
 	scanner := bufio.NewScanner(file)
 	// Read lines from the file
 	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(strings.ToLower(scanner.Text()), "arg") || scanner.Text() == "" {
+		line := strings.TrimSpace(scanner.Text())
+		if line == "" || line[0] == '#' || strings.HasPrefix(strings.ToLower(line), "arg") {
 			continue
-		} else {
-			if strings.HasPrefix(strings.ToLower(scanner.Text()), "from ") {
-				return true
-			} else {
-				return false
-			}
 		}
+		return strings.HasPrefix(strings.ToLower(line), "from ")
 	}
 	return false
 }

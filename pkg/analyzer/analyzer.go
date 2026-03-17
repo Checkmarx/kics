@@ -112,7 +112,6 @@ var (
 		".conf":       true,
 		".ini":        true,
 		".bicep":      true,
-		"gitignore":   true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
@@ -434,8 +433,6 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
 		switch ext {
-		case "gitignore":
-			unwanted <- a.filePath
 		// Dockerfile
 		case ".dockerfile":
 			if a.isAvailableType(dockerfile) {
