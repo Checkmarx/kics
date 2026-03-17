@@ -468,7 +468,7 @@
     "actualValue": "Hardcoded secret key appears in source"
   },
   {
-    "queryName": "Passwords And Secrets - CloudFormation Secret Template",
+    "queryName": "Passwords And Secrets - Twilio API Key",
     "severity": "HIGH",
     "line": 4,
     "filename": "positive31.yaml",
@@ -588,7 +588,7 @@
     "actualValue": "Hardcoded secret key appears in source"
   },
   {
-    "queryName": "Passwords And Secrets - AWS Access Key",
+    "queryName": "Passwords And Secrets - AWS Context-specific credential",
     "severity": "HIGH",
     "line": 14,
     "filename": "positive40.tf",
@@ -600,7 +600,7 @@
     "actualValue": "Hardcoded secret key appears in source"
   },
   {
-    "queryName": "Passwords And Secrets - AWS Access Key",
+    "queryName": "Passwords And Secrets - AWS Certificate",
     "severity": "HIGH",
     "line": 15,
     "filename": "positive40.tf",
