@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
 		"keyActualValue": "'identity' block is not defined",
-		"searchLine": common_lib.build_search_line(["testeTeste"], []),
+		"searchLine": common_lib.build_search_line(["resource", resource_types[idx_type], name], []),
         "remediationType": "addition",
         "remediation": "identity {\n\t\ttype = \"SystemAssigned, UserAssigned\"\n\t}",
     }

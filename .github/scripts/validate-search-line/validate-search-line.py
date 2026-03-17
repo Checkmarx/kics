@@ -47,14 +47,9 @@ def has_search_line_defined(query_dir):
     return "searchLine" in rego_file.read_text()
 
 
-def get_query_id(query_dir):
-    """Read query ID from metadata.json."""
-    return json.loads((query_dir / "metadata.json").read_text())["id"]
-
-
 def run_kics_scan(query_dir):
     """Run KICS scan for a single query and return True if it completed successfully."""
-    query_id = get_query_id(query_dir)
+    query_id = json.loads((query_dir / "metadata.json").read_text())["id"]
 
     results_dir = query_dir / "results"
     results_dir.mkdir(exist_ok=True)
@@ -165,8 +160,6 @@ def validate_scan_results(query_dir):
 
 def validate_query(query_dir):
     """Validate a single query directory."""
-    rel_dir = query_dir.relative_to(REPO_ROOT)
-    print(f"--- Validating: {rel_dir}")
 
     if not has_search_line_defined(query_dir):
         print("  [SKIP] searchLine not defined in query.rego - PASS")
@@ -181,21 +174,16 @@ def validate_query(query_dir):
 
 
 def main():
-    print("Starting searchLine validation...\n")
-
     query_dirs = get_changed_queries()
 
     if not query_dirs:
-        print("No query.rego files in CHANGED_QUERIES - nothing to validate")
+        print("No query.rego were changes - nothing to validate")
         sys.exit(0)
-
-    print(f"Found {len(query_dirs)} modified queries to validate:\n")
 
     all_valid = True
     for qd in query_dirs:
         if not validate_query(qd):
             all_valid = False
-        print()
 
     if all_valid:
         print("All searchLine validations passed!")

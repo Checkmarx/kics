@@ -2,7 +2,7 @@
   {
     "queryName": "Beta - App Service Slot Managed Identity Disabled",
     "severity": "MEDIUM",
-    "line": 1,
+    "line": 2,
     "fileName": "positive1.tf",
     "resourceType": "azurerm_app_service_slot",
     "resourceName": "${random_id.server.hex}",
@@ -14,7 +14,7 @@
   {
     "queryName": "Beta - App Service Slot Managed Identity Disabled",
     "severity": "MEDIUM",
-    "line": 1,
+    "line": 2,
     "fileName": "positive2.tf",
     "resourceType": "azurerm_linux_web_app_slot",
     "resourceName": "example-slot",
@@ -26,7 +26,7 @@
   {
     "queryName": "Beta - App Service Slot Managed Identity Disabled",
     "severity": "MEDIUM",
-    "line": 1,
+    "line": 2,
     "fileName": "positive3.tf",
     "resourceType": "azurerm_windows_web_app_slot",
     "resourceName": "example-slot",
