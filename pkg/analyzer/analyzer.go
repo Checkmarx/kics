@@ -840,7 +840,8 @@ func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
 	fullPath string, trimmedPath string, ignoreFiles []string) []string {
 	exceededFileSize := a.MaxFileSize >= 0 && float64(fileSize)/float64(sizeMb) > float64(a.MaxFileSize)
 
-	if (strings.HasSuffix(filepath.Clean(fullPath), "gitignore") || hasGitIgnoreFile && gitIgnore.MatchesPath(trimmedPath)) || isDeadSymlink(fullPath) || exceededFileSize {
+	if (strings.HasSuffix(filepath.Clean(fullPath), "gitignore") || hasGitIgnoreFile && gitIgnore.MatchesPath(trimmedPath)) ||
+		isDeadSymlink(fullPath) || exceededFileSize {
 		ignoreFiles = append(ignoreFiles, fullPath)
 		a.Exc = append(a.Exc, fullPath)
 
