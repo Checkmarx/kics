@@ -1,7 +1,7 @@
 similarityIDChangeList:
     - queryId: 1b6799eb-4a7a-4b04-9001-8cceb9999326
       queryName: API Gateway Access Logging Disabled
-      observations: Changed some cases to be IncorrectValue instead of MissingAttribute
+      observations: "Changed some cases to be IncorrectValue instead of MissingAttribute"
       change: 5
     - queryId: 1bc367f6-901d-4870-ad0c-71d79762ef52
       queryName: CDN Configuration Is Missing
@@ -67,3 +67,7 @@ similarityIDChangeList:
       queryName: SNS Topic is Publicly Accessible
       observations: "Query did not properly handle arrays of 2+ elements, flagging multiple times in the same line is inevitable so searchValue was added"
       change: 3
+    - queryId: 4d46ff3b-7160-41d1-a310-71d6d370b08f
+      queryName: EFS Volume With Disabled Transit Encryption
+      observations: "Changed search line to account with multiple Volume cases"
+      change: 1
