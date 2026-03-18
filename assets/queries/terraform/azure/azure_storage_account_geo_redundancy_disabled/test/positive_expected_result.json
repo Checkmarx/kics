@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Storage Account Geo-Redundancy Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.tf"
+  }
+]

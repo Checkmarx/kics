@@ -1,0 +1,13 @@
+{
+  "id": "54c5b041-1902-4e19-b414-5473f1b349d2",
+  "queryName": "LogDNA Archiving Is Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that every IBM LogDNA instance has archiving configured through an 'ibm_logdna_archive' resource. Archiving is critical for long-term log retention, compliance, and forensic analysis.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/logdna_archive",
+  "platform": "Terraform",
+  "descriptionID": "54c5b041",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-223",
+  "riskScore": 5.0
+}

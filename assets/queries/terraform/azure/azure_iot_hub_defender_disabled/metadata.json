@@ -1,0 +1,13 @@
+{
+  "id": "13be738b-78fb-4d0f-a5ed-13e0f36fd385",
+  "queryName": "Azure IoT Hub Defender Disabled",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Ensures that Microsoft Defender for IoT is enabled for Azure IoT Hubs. Defender for IoT provides threat detection and security posture management for IoT environments.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/iot_security_solution",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-693",
+  "descriptionID": "13be738b",
+  "riskScore": 5.0
+}

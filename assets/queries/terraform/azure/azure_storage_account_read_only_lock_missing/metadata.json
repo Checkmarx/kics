@@ -1,0 +1,13 @@
+{
+  "id": "3a716202-a630-4f23-b8ba-2dcbc40e2fa7",
+  "queryName": "Storage Account ReadOnly Lock Missing",
+  "severity": "LOW",
+  "category": "Resource Management",
+  "descriptionText": "Ensures that Azure Storage Accounts have a Resource Manager lock with 'ReadOnly' level applied. This prevents accidental modification or deletion of the storage account configuration.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-400",
+  "descriptionID": "3a716202",
+  "riskScore": 2.0
+}

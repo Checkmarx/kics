@@ -1,0 +1,13 @@
+{
+  "id": "fe65cd89-28ea-4301-9c50-6dee30553557",
+  "queryName": "MySQL Audit Log Events Connection (Manual)",
+  "severity": "INFO",
+  "category": "Observability",
+  "descriptionText": "Ensures that the 'audit_log_events' server parameter includes 'CONNECTION' for Azure MySQL Database Servers. This ensures that successful and failed connection attempts are logged.",
+  "descriptionUrl": "https://learn.microsoft.com/en-us/azure/mysql/single-server/concepts-audit-logs",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-778",
+  "descriptionID": "fe65cd89",
+  "riskScore": 0.0
+}

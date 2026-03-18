@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Storage Account Infrastructure Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Storage Account Infrastructure Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive2.tf"
+  }
+]

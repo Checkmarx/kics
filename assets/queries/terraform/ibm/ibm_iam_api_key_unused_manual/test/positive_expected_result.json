@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "IBM Cloud API Keys Unused for 180 Days (Manual)",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "IBM Cloud API Keys Unused for 180 Days (Manual)",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]

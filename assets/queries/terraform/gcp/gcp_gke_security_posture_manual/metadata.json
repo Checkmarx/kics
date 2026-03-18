@@ -1,0 +1,13 @@
+{
+  "id": "0d688e9b-79a1-4adb-8893-4cae93442ffd",
+  "queryName": "GKE Security Posture Disabled (Manual)",
+  "severity": "INFO",
+  "category": "Observability",
+  "descriptionText": "GKE Security Posture Dashboard provides visibility into the security status of the cluster. It is not explicitly enabled. Verify if the cluster version supports 'security_posture_config' with mode 'BASIC' or 'ENTERPRISE'.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#security_posture_config",
+  "platform": "Terraform",
+  "descriptionID": "0d688e9b",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-1038",
+  "riskScore": 0.0
+}

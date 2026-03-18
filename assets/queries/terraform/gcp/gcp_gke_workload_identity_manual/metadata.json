@@ -1,0 +1,13 @@
+{
+  "id": "edea054b-6ed2-4be2-bad2-459891848678",
+  "queryName": "GKE Workload Identity & Dedicated SA (Manual)",
+  "severity": "INFO",
+  "category": "Access Control",
+  "descriptionText": "Ensures that GKE clusters have Workload Identity enabled. If enabled, manual verification is required to ensure that workloads use dedicated Google Service Accounts (1:1 mapping) rather than shared ones.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#workload_identity_config",
+  "platform": "Terraform",
+  "descriptionID": "edea054b",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-284",
+  "riskScore": 0.0
+}

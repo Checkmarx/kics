@@ -1,0 +1,13 @@
+{
+  "id": "72eb3dd8-6892-47d1-9965-a5682de9f4e7",
+  "queryName": "App Service HTTP Logs Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that HTTP logs are enabled for Azure App Services. HTTP logs provide records of HTTP requests to the web app, which are crucial for security monitoring and debugging.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_web_app#http_logs",
+  "platform": "Terraform",
+  "descriptionID": "72eb3dd8",
+  "cloudProvider": "azure",
+  "cwe": "CWE-778",
+  "riskScore": 5.0
+}

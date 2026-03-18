@@ -1,0 +1,13 @@
+{
+  "id": "cb72ae80-1b5a-407e-9f5b-86ddd64df644",
+  "queryName": "OCI Storage Resources Without CMK",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Storage resources (Object Storage, Block Volumes, Boot Volumes, File Storage) are using default Oracle-managed encryption keys. To satisfy strict compliance requirements, they should be encrypted with a Customer Managed Key (CMK) by defining the 'kms_key_id' attribute.",
+  "descriptionUrl": "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
+  "platform": "Terraform",
+  "descriptionID": "cb72ae80",
+  "cloudProvider": "oci",
+  "cwe": "CWE-312",
+  "riskScore": 3.0
+}

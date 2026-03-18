@@ -1,0 +1,13 @@
+{
+  "id": "601ca2bb-20a9-4113-83b3-866a3d1a2a67",
+  "queryName": "IBM Cloudant Encryption with CMK (Manual)",
+  "severity": "INFO",
+  "category": "Encryption",
+  "descriptionText": "The IBM Cloudant instance (provisioned via 'ibm_resource_instance') does not appear to have Customer Managed Encryption configured. To enable CMK/BYOK, the 'parameters' block must contain the Key Protect root key CRN (usually 'key_protect_key'). Manual verification is required.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_instance",
+  "platform": "Terraform",
+  "descriptionID": "601ca2bb",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-312",
+  "riskScore": 0.0
+}

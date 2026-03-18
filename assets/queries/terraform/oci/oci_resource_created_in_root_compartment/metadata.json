@@ -1,0 +1,13 @@
+{
+  "id": "eb205044-d89b-40ac-9846-2e5993e091ab",
+  "queryName": "Resource Created In Root Compartment",
+  "severity": "HIGH",
+  "category": "Best Practices",
+  "descriptionText": "Ensures that resources are not created directly in the root compartment (tenancy). Following the principle of least privilege and separation of concerns, resources should be organized into dedicated child compartments.",
+  "descriptionUrl": "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/iam-security-structure.htm",
+  "platform": "Terraform",
+  "descriptionID": "eb205044",
+  "cloudProvider": "oci",
+  "cwe": "CWE-284",
+  "riskScore": 6.0
+}

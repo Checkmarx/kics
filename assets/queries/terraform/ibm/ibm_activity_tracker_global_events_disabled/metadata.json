@@ -1,0 +1,13 @@
+{
+  "id": "479bbdfd-342a-4121-8844-7387eea26d96",
+  "queryName": "Activity Tracker for Global Events Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that an IBM Cloud Activity Tracker instance is provisioned to capture IAM and other global account events. For compliance and security, at least one instance must be configured in a region that supports receiving global events.",
+  "descriptionUrl": "https://cloud.ibm.com/docs/activity-tracker?topic=activity-tracker-global-events",
+  "platform": "Terraform",
+  "descriptionID": "479bbdfd",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-778",
+  "riskScore": 3.0
+}

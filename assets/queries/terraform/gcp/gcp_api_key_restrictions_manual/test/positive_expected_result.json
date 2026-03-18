@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Google API Key Restrictions (Manual)",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Google API Key Restrictions (Manual)",
+    "severity": "INFO",
+    "line": 5,
+    "fileName": "positive2.tf"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "id": "3b101ad5-3602-4a9e-b6ca-16b7b31b153c",
+  "queryName": "Elastic SAN Volume Group CMK Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensures that Azure Elastic SAN Volume Groups are encrypted using Customer-Managed Keys (CMK). Using CMK provides control over key lifecycle and access policies, unlike the default platform-managed keys.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/elastic_san_volume_group#encryption_type",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-326",
+  "descriptionID": "3b101ad5",
+  "riskScore": 5.0
+}

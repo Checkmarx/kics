@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Azure Managed Lustre Not Encrypted with CMK",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

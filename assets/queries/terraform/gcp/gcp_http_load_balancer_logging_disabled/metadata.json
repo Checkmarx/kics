@@ -1,0 +1,13 @@
+{
+  "id": "0ef3f3f1-0592-475b-b073-81ac1ac869e2",
+  "queryName": "GCP HTTP(S) Load Balancer Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that logging is enabled for Google Compute Backend Services used in HTTP(S) Load Balancers. Access logs are essential for monitoring traffic patterns, latency, and identifying potential security threats.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_backend_service#log_config",
+  "platform": "Terraform",
+  "descriptionID": "0ef3f3f1",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-778",
+  "riskScore": 5.0
+}

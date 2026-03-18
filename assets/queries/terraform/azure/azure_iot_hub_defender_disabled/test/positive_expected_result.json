@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Azure IoT Hub Defender Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "id": "0a077b15-dc77-4490-810b-4e34f1b55500",
+  "queryName": "Event Rule for Identity Provider Changes is Missing",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on changes to Identity Providers. Monitoring these changes is critical for detecting potentially malicious activity, such as the addition of an unauthorized external identity provider.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/events_rule",
+  "platform": "Terraform",
+  "descriptionID": "0a077b15",
+  "cloudProvider": "oci",
+  "cwe": "CWE-778",
+  "riskScore": 3.0
+}

@@ -1,0 +1,13 @@
+{
+  "id": "a151d9a0-d626-447f-beab-11d53aeb0f2b",
+  "queryName": "Event Rule for IAM Policy Changes is Missing",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on changes to IAM policies. Auditing the creation, modification, and deletion of IAM policies is a critical security measure to detect unauthorized changes to permissions within the tenancy.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/events_rule",
+  "platform": "Terraform",
+  "descriptionID": "a151d9a0",
+  "cloudProvider": "oci",
+  "cwe": "CWE-778",
+  "riskScore": 4.0
+}

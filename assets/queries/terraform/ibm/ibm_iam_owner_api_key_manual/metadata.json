@@ -1,0 +1,13 @@
+{
+  "id": "dae483b9-d462-49d1-993c-4d398cad281e",
+  "queryName": "IBM Owner Account API Key (Manual)",
+  "severity": "INFO",
+  "category": "Access Control",
+  "descriptionText": "The account owner should not have an associated API Key. Using owner credentials implies unlimited privileges and poses a catastrophic risk if compromised. Verify that this API Key does not belong to the Account Owner.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/iam_api_key",
+  "platform": "Terraform",
+  "descriptionID": "dae483b9",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-269",
+  "riskScore": 0.0
+}

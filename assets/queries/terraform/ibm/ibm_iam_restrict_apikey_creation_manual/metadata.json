@@ -1,0 +1,13 @@
+{
+  "id": "30640fc8-88be-4053-882c-55fd0febaf3f",
+  "queryName": "Restrict API Key & Service ID Creation (Manual)",
+  "severity": "INFO",
+  "category": "Access Control",
+  "descriptionText": "CIS controls recommend restricting the creation of API Keys and Service IDs to privileged users only. Review IAM policies to ensure 'Editor' or 'Administrator' roles (or custom roles with creation actions) are not granted broadly.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/iam_user_policy",
+  "platform": "Terraform",
+  "descriptionID": "30640fc8",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-276",
+  "riskScore": 0.0
+}

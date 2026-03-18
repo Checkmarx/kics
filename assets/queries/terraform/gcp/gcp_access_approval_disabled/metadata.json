@@ -1,0 +1,13 @@
+{
+  "id": "d7df9989-f87a-45cb-80ea-d4d20e3d4530",
+  "queryName": "GCP Access Approval Disabled",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Ensures that Access Approval is enabled for the GCP Project. Access Approval allows you to approve or deny access to your data by Google support and engineering personnel.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/access_approval_project_settings",
+  "platform": "Terraform",
+  "descriptionID": "d7df9989",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-284",
+  "riskScore": 5.0
+}

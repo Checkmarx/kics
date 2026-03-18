@@ -1,0 +1,13 @@
+{
+  "id": "96b464dc-a778-4b99-8634-c9eb9bdecf89",
+  "queryName": "Compute Instance Legacy Metadata Enabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Ensures that OCI Compute Instances have legacy metadata service endpoints (IMDSv1) disabled. Enforcing the use of IMDSv2 is a security best practice to mitigate Server-Side Request Forgery (SSRF) vulnerabilities.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance#are_legacy_imds_endpoints_disabled",
+  "platform": "Terraform",
+  "descriptionID": "96b464dc",
+  "cloudProvider": "oci",
+  "cwe": "CWE-918",
+  "riskScore": 3.0
+}

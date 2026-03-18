@@ -1,0 +1,13 @@
+{
+  "id": "1e0c94f5-6178-4601-b33e-a86d8aa20bd6",
+  "queryName": "IBM CIS WAF Not Enabled (Manual)",
+  "severity": "INFO",
+  "category": "Networking and Firewall",
+  "descriptionText": "The Web Application Firewall (WAF) is not explicitly set to 'on' in the IBM Cloud Internet Services (CIS) domain settings. WAF is a critical compensatory control for protecting web workloads. Manual verification is required to ensure WAF is enabled and rules are properly tuned.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cis_domain_settings",
+  "platform": "Terraform",
+  "descriptionID": "1e0c94f5",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-1021",
+  "riskScore": 0.0
+}

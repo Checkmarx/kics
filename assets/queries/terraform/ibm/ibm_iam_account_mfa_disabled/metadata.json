@@ -1,0 +1,13 @@
+{
+  "id": "ebaef99e-4add-440e-8270-caeb718e7c93",
+  "queryName": "Account Level MFA Is Not Enforced",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Enforces Multi-Factor Authentication (MFA) at the account level. Requiring MFA is a fundamental security practice to prevent unauthorized access resulting from compromised credentials.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/iam_account_settings#mfa",
+  "platform": "Terraform",
+  "descriptionID": "ebaef99e",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-308",
+  "riskScore": 9.0
+}

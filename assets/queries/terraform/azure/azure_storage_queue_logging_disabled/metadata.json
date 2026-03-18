@@ -1,0 +1,13 @@
+{
+  "id": "cddbdd74-3736-4aec-ba57-43b4db315bc2",
+  "queryName": "Storage Queue Service Logging Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "Ensures that Storage Logging is enabled for the Queue service for 'Read', 'Write', and 'Delete' requests. This provides an audit trail of operations performed on the queues.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#logging",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-778",
+  "descriptionID": "cddbdd74",
+  "riskScore": 2.0
+}

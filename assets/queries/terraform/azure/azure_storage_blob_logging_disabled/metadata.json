@@ -1,0 +1,13 @@
+{
+  "id": "11fa88c0-2064-48ee-8431-953c7d961c71",
+  "queryName": "Storage Blob Service Logging Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "Ensures that Storage Logging is enabled for the Blob service for 'Read', 'Write', and 'Delete' requests. This provides an audit trail of operations performed on blobs and containers.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#logging",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-778",
+  "descriptionID": "11fa88c0",
+  "riskScore": 2.0
+}

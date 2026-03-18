@@ -1,0 +1,13 @@
+{
+  "id": "7b3ba800-c190-4b65-ae4d-fa1e5f7bc75e",
+  "queryName": "Google API Key Restrictions (Manual)",
+  "severity": "INFO",
+  "category": "Access Control",
+  "descriptionText": "Ensures that Google Cloud API Keys are restricted. If restrictions are present, they must be manually verified to ensure they list the correct IPs, websites, or apps.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/apikeys_key",
+  "platform": "Terraform",
+  "descriptionID": "7b3ba800",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-284",
+  "riskScore": 0.0
+}

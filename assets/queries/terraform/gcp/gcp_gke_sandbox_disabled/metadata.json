@@ -1,0 +1,13 @@
+{
+  "id": "6c8a93a9-c0c5-4314-8ee6-3bcb3a0dbd70",
+  "queryName": "GKE Sandbox (gVisor) Disabled",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "GKE Sandbox (gVisor) provides an extra layer of defense for untrusted workloads. It is not enabled on this Node Pool. Consider enabling it if this pool runs untrusted code (e.g., SaaS user scripts).",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#sandbox_type",
+  "platform": "Terraform",
+  "descriptionID": "6c8a93a9",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-1038",
+  "riskScore": 3.0
+}

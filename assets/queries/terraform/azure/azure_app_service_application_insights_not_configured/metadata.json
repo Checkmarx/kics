@@ -1,0 +1,13 @@
+{
+  "id": "721c26ff-776f-4d7a-b151-45447712343b",
+  "queryName": "App Service Application Insights Not Configured",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that Azure App Services and Function Apps are linked to Application Insights for performance monitoring and error tracking.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_web_app#app_settings",
+  "platform": "Terraform",
+  "descriptionID": "721c26ff",
+  "cloudProvider": "azure",
+  "cwe": "CWE-778",
+  "riskScore": 5.0
+}

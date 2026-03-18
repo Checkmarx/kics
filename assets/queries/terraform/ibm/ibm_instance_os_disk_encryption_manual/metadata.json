@@ -1,0 +1,13 @@
+{
+  "id": "86f1560c-74cb-48a3-ad5a-7da25cab4d03",
+  "queryName": "IBM Instance OS Disk Encryption (Manual)",
+  "severity": "INFO",
+  "category": "Encryption",
+  "descriptionText": "The Virtual Server Instance boot volume (OS Disk) relies on default provider-managed encryption. It is not configured with 'boot_volume.encryption', which is required for Customer Managed Keys (CMK), BYOK, or KYOK.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/is_instance",
+  "platform": "Terraform",
+  "descriptionID": "86f1560c",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-312",
+  "riskScore": 0.0
+}

@@ -1,0 +1,13 @@
+{
+  "id": "b9f8511b-bd48-4e9d-8439-94e49e671490",
+  "queryName": "Microsoft Defender EASM Enabled (Manual)",
+  "severity": "INFO",
+  "category": "Observability",
+  "descriptionText": "Ensures that Microsoft Defender External Attack Surface Monitoring (EASM) is enabled. Since EASM cannot be fully configured or verified via standard Terraform resources yet, this rule serves as a manual reminder to verify the service in the Azure Portal.",
+  "descriptionUrl": "https://azure.microsoft.com/en-us/products/defender-easm/",
+  "platform": "Terraform",
+  "descriptionID": "b9f8511b",
+  "cloudProvider": "azure",
+  "cwe": "CWE-778",
+  "riskScore": 0.0
+}

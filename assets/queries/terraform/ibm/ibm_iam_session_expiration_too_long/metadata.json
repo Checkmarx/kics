@@ -1,0 +1,13 @@
+{
+  "id": "3d6db2d6-fa2d-41df-a783-d3dee76f717f",
+  "queryName": "IBM Account Session Expiration Too Long",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Ensures that the IBM Cloud account session expiration is configured to a secure limit (e.g., 3600 seconds / 1 hour). Long session timeouts increase the risk of session hijacking.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/iam_account_settings",
+  "platform": "Terraform",
+  "descriptionID": "3d6db2d6",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-613",
+  "riskScore": 5.0
+}
