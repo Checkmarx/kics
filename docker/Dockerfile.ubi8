@@ -1,11 +1,10 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} registry.access.redhat.com/ubi8:latest AS build_env
+FROM --platform=${TARGETARCH:-linux/amd64} registry.access.redhat.com/ubi8:latest AS build_env
 
 WORKDIR /build
 
 ENV PATH=$PATH:/usr/local/go/bin
 
-ARG BUILDPLATFORM=linux/amd64
-RUN ARCH=$(echo ${BUILDPLATFORM} | cut -d'/' -f2) \
+RUN ARCH=$(echo ${TARGETARCH} | cut -d'/' -f2) \
   && yum install git gcc wget -y \
   && rm -rf /usr/local/go \
   && wget -q https://golang.org/dl/go1.25.7.linux-${ARCH}.tar.gz \
