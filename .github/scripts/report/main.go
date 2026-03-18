@@ -61,6 +61,22 @@ type TestFail struct {
 	Output string `json:"Output"`
 }
 
+const (
+	prefixActualPayload = "actualPayload"
+	prefixExpectedPayload = "expectedPayload"
+	prefixFail = "--- FAIL:"
+	prefixQueries = `"queries": [`
+	extraElementsListA = "extra elements in list A:"
+	extraElementsListB = "extra elements in list B:"
+	prefixTest = "Test:"
+	suffixExpectedQueries = "Expected Queries content: 'fixtures/{"
+	suffixActualQueries = "doesn't match the Actual Queries content: 'output/{"
+	prefixTypeInterface = "([]interface {})"
+	prefixTypeVulnerableFile = "(model.VulnerableFile) {"
+	expectedNumberOflines = "Expected file number of lines:"
+	actualNumberOfLines = "Actual file number of lines:"
+)
+
 func FindTest(tests []TestsData, testName string) (*TestsData, bool) {
 	for i := range tests {
 		if tests[i].TestLog.Test == testName {
@@ -96,26 +112,26 @@ func extractPayloadDiffLines(failLog []string) ExpectedActual {
 
 	for _, line := range failLog {
 		trimmed := strings.TrimSpace(line)
-		if strings.HasPrefix(trimmed, "actualPayload") {
+		if strings.HasPrefix(trimmed, prefixActualPayload) {
 			state = stateMessagesActual
-		} else if strings.HasPrefix(trimmed, "expectedPayload") {
+		} else if strings.HasPrefix(trimmed, prefixExpectedPayload) {
 			state = stateMessagesExpected
-		} else if strings.HasPrefix(trimmed, "--- FAIL:") {
+		} else if strings.HasPrefix(trimmed, prefixFail) {
 			state = stateFailLog
-		} else if strings.HasPrefix(trimmed, `"queries": [`) {
+		} else if strings.HasPrefix(trimmed, prefixQueries) {
 			state = stateNone
 		}
 
 		switch state {
 		case stateMessagesActual:
-			if !strings.HasPrefix(trimmed, "actualPayload") {
+			if !strings.HasPrefix(trimmed, prefixActualPayload) {
 				messages.ActualContent = append(messages.ActualContent, CodeLineStatus{
 					Line: line,
 					Status: false,
 				})
 			}
 		case stateMessagesExpected:
-			if !strings.HasPrefix(trimmed, "expectedPayload") {
+			if !strings.HasPrefix(trimmed, prefixExpectedPayload) {
 				messages.ExpectedContent = append(messages.ExpectedContent, CodeLineStatus{
 					Line: line,
 					Status: false,
@@ -135,10 +151,12 @@ func extractPayloadDiffLines(failLog []string) ExpectedActual {
 	}
 }
 
+func isExtraElementsContentLine(trimmed string) bool {
+	return !strings.HasPrefix(trimmed, prefixTypeInterface) && !strings.HasPrefix(trimmed, prefixTypeVulnerableFile)
+}
+
 func extractExpectedActualLines(failLog []string) ExpectedActual {
 	var extraElements ActualExpectedWithStatus
-	//var extraExpected []string // extra elements in list A
-	//var extraActual []string
 	var testInfo []string
 	var messages ActualExpectedWithStatus
 	var failOutput []string
@@ -158,21 +176,21 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 		trimmed := strings.TrimSpace(line)
 		
 		switch trimmed {
-		case "extra elements in list A:":
+		case extraElementsListA:
 			state = stateExtraA
 			continue
-		case "extra elements in list B:":
+		case extraElementsListB:
 			state = stateExtraB
 			continue
 		}
 
-		if strings.HasPrefix(trimmed, "Test:") {
+		if strings.HasPrefix(trimmed, prefixTest) {
 			state = stateTestInfo
-		} else if strings.HasSuffix(trimmed, "Expected Queries content: 'fixtures/{") {
+		} else if strings.HasSuffix(trimmed, suffixExpectedQueries) {
 			state = stateMessagesExpected
-		} else if strings.HasSuffix(trimmed, "doesn't match the Actual Queries content: 'output/{") {
+		} else if strings.HasSuffix(trimmed, suffixActualQueries) {
 			state = stateMessagesActual
-		} else if strings.HasPrefix(trimmed, "--- FAIL:") {
+		} else if strings.HasPrefix(trimmed, prefixFail) {
 			state = stateFailLog
 		}
 
@@ -183,32 +201,32 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 
 		switch state {
 		case stateExtraA:
-			if !strings.HasPrefix(trimmed, "([]interface {})") && !strings.HasPrefix(trimmed, "(model.VulnerableFile) {") {
-				cleaned_extraElement_line := cleanOutput(line)
+			if isExtraElementsContentLine(trimmed) {
+				cleanedLine := cleanOutput(line)
 				extraElements.ExpectedContent = append(extraElements.ExpectedContent, CodeLineStatus{
-					Line: cleaned_extraElement_line,
+					Line: cleanedLine,
 					Status: false,
 				})
 			}
 		case stateExtraB:
-			if !strings.HasPrefix(trimmed, "([]interface {})") && !strings.HasPrefix(trimmed, "(model.VulnerableFile) {") {
-				cleaned_extraElement_line := cleanOutput(line)
+			if isExtraElementsContentLine(trimmed) {
+				cleanedLine := cleanOutput(line)
 				extraElements.ActualContent = append(extraElements.ActualContent, CodeLineStatus{
-					Line: cleaned_extraElement_line,
+					Line: cleanedLine,
 					Status: false,
 				})
 			}
 		case stateTestInfo:
 			testInfo = append(testInfo, line)
 		case stateMessagesActual:
-			if !strings.HasSuffix(trimmed, "doesn't match the Actual Queries content: 'output/{") {
+			if !strings.HasSuffix(trimmed, suffixActualQueries) {
 				messages.ActualContent = append(messages.ActualContent, CodeLineStatus{
 					Line: line,
 					Status: false,
 				})
 			}
 		case stateMessagesExpected:
-			if !strings.HasSuffix(trimmed, "Expected Queries content: 'fixtures/{") {
+			if !strings.HasSuffix(trimmed, suffixExpectedQueries) {
 				messages.ExpectedContent = append(messages.ExpectedContent, CodeLineStatus{
 					Line: line, 
 					Status: false,
@@ -235,10 +253,10 @@ func isDifferentNumberOfLines(failLog []string) bool {
 		if trimmedEntry == "" {
 			continue
 		}
-		if strings.Contains(trimmedEntry, "Expected file number of lines:") {
+		if strings.Contains(trimmedEntry, expectedNumberOflines) {
 			hasExpectedFileNumberLines = true
 		}
-		if strings.Contains(failLogEntry, "Actual file number of lines:") {
+		if strings.Contains(failLogEntry, actualNumberOfLines) {
 			hasActualFileNumberLines = true
 		}
 		if hasExpectedFileNumberLines && hasActualFileNumberLines {
@@ -252,10 +270,10 @@ func isExpectedVsActual(failLog []string) bool {
 	var hasExtraA, hasExtraB bool
 	for _, failLogEntry := range failLog {
 		trimmedEntry := strings.TrimSpace(failLogEntry)
-		if trimmedEntry == "extra elements in list A:" {
+		if trimmedEntry == extraElementsListA {
 			hasExtraA = true
 		}
-		if trimmedEntry == "extra elements in list B:" {
+		if trimmedEntry == extraElementsListB {
 			hasExtraB = true
 		}
 		if hasExtraA && hasExtraB {
@@ -282,8 +300,7 @@ func compareMessageContent(expectedActual *ExpectedActual) {
 	}
 
 	for i := range maxLen {
-		// if one of the sides does not have a line in this position, the one that exists 
-		// is tagged as the different one
+		// if one side has no line at this index, the line is marked as different
 		if i >= expectedLen || i >= actualLen {
 			if i < expectedLen {
 				expectedActual.Messages.ExpectedContent[i].Status = true
