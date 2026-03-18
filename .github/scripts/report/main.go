@@ -293,7 +293,6 @@ func compareMessageContent(expectedActual *ExpectedActual) {
     if actualLen > maxLen {
         maxLen = actualLen
     }
-
 	maxLenExtraElements := expectedLenExtraElements
 	if actualLenExtraElements > maxLenExtraElements {
 		maxLenExtraElements = actualLenExtraElements
@@ -310,7 +309,9 @@ func compareMessageContent(expectedActual *ExpectedActual) {
 			}
 			continue
 		}
-		if expectedActual.Messages.ExpectedContent[i].Line != expectedActual.Messages.ActualContent[i].Line {
+		expectedContentLine := strings.TrimSpace(expectedActual.Messages.ExpectedContent[i].Line)
+		actualContentLine := strings.TrimSpace(expectedActual.Messages.ActualContent[i].Line)
+		if expectedContentLine != actualContentLine {
 			expectedActual.Messages.ExpectedContent[i].Status = true
 			expectedActual.Messages.ActualContent[i].Status = true
 		}
@@ -321,12 +322,14 @@ func compareMessageContent(expectedActual *ExpectedActual) {
 			if j < expectedLenExtraElements {
 				expectedActual.ExtraElements.ExpectedContent[j].Status = true
 			}
-			if j > actualLenExtraElements {
+			if j < actualLenExtraElements {
 				expectedActual.ExtraElements.ActualContent[j].Status = true
 			}
 			continue
 		}
-		if expectedActual.ExtraElements.ExpectedContent[j].Line != expectedActual.ExtraElements.ActualContent[j].Line {
+		expectedContentLine := strings.TrimSpace(expectedActual.ExtraElements.ExpectedContent[j].Line)
+		actualContentLine := strings.TrimSpace(expectedActual.ExtraElements.ActualContent[j].Line)
+		if expectedContentLine != actualContentLine {
 			expectedActual.ExtraElements.ExpectedContent[j].Status = true
 			expectedActual.ExtraElements.ActualContent[j].Status = true
 		}
