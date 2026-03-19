@@ -1,0 +1,13 @@
+{
+  "id": "a5dfa109-1f7d-4077-8d10-41247bfcf922",
+  "queryName": "Event Rule for Security List Changes is Missing",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on changes to Security Lists. Auditing changes to these network ACLs is critical for detecting unauthorized modifications that could expose services to unintended traffic.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/events_rule",
+  "platform": "Terraform",
+  "descriptionID": "a5dfa109",
+  "cloudProvider": "oci",
+  "cwe": "CWE-778",
+  "riskScore": 3.0
+}

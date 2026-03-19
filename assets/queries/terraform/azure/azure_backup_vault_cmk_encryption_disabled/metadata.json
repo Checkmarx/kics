@@ -1,0 +1,13 @@
+{
+  "id": "bf4474a7-7495-4292-af22-a97c1cc95d2b",
+  "queryName": "Backup Vault CMK Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensures that Azure Backup Vaults (Data Protection) are encrypted using Customer-Managed Keys (CMK) stored in Azure Key Vault, instead of platform-managed keys.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/data_protection_backup_vault_customer_managed_key",
+  "platform": "Terraform",
+  "descriptionID": "bf4474a7",
+  "cloudProvider": "azure",
+  "cwe": "CWE-326",
+  "riskScore": 5.0
+}

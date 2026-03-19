@@ -1,0 +1,13 @@
+{
+  "id": "56cd75da-f919-4350-8b32-1d0e4313e965",
+  "queryName": "IBM Block Storage Encryption (CMK/BYOK/KYOK) Manual",
+  "severity": "INFO",
+  "category": "Encryption",
+  "descriptionText": "The Block Storage volume uses default provider-managed encryption. It is not configured with 'encryption_key', which is required for Customer Managed Keys (CMK), Bring Your Own Key (BYOK), or Keep Your Own Key (KYOK). Manual verification of the key source is required.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/is_volume",
+  "platform": "Terraform",
+  "descriptionID": "56cd75da",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-312",
+  "riskScore": 0.0
+}

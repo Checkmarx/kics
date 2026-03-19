@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Storage Immutability Policy Not Locked",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Storage Immutability Policy Not Locked",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.tf"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "id": "51bac252-399d-49d0-bfa5-0bd52194fed9",
+  "queryName": "IKS Cluster Monitoring Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that every IBM Cloud Kubernetes Service (IKS) cluster has an associated monitoring service configuration. Monitoring is essential for observing cluster health, performance, and resource utilization.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/ob_monitoring_config",
+  "platform": "Terraform",
+  "descriptionID": "51bac252",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-778",
+  "riskScore": 5.0
+}

@@ -1,0 +1,13 @@
+{
+  "id": "61d76d70-0021-45c7-855d-c8c5c3116877",
+  "queryName": "IBM Account IP Restrictions (Manual)",
+  "severity": "INFO",
+  "category": "Networking and Firewall",
+  "descriptionText": "The account global settings do not enforce IP address restrictions. The 'allowed_ip_addresses' attribute should be configured to restrict login access (including the account owner) to trusted networks only.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/iam_account_settings",
+  "platform": "Terraform",
+  "descriptionID": "61d76d70",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-284",
+  "riskScore": 0.0
+}

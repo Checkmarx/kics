@@ -1,0 +1,13 @@
+{
+  "id": "4c294256-f477-41d5-8c7f-f31c9e48092e",
+  "queryName": "Default Tags Not Defined",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Ensures that a default tagging policy is defined using the 'oci_identity_tag_default' resource. Default tags are crucial for governance as they ensure all resources within a compartment are automatically tagged for cost tracking, automation, and access control.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_tag_default",
+  "platform": "Terraform",
+  "descriptionID": "4c294256",
+  "cloudProvider": "oci",
+  "cwe": "CWE-16",
+  "riskScore": 1.0
+}

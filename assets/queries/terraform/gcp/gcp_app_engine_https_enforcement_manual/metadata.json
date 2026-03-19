@@ -1,0 +1,13 @@
+{
+  "id": "52b7bc15-032e-4dd7-b9c3-6dc9698aa131",
+  "queryName": "App Engine HTTPS Enforcement (Manual)",
+  "severity": "INFO",
+  "category": "Encryption",
+  "descriptionText": "Ensures that Google App Engine applications enforce HTTPS connections. This is typically configured in 'app.yaml' using 'secure: always' or in Terraform via the 'handlers' block with 'security_level'. Manual verification is often required.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/app_engine_standard_app_version#security_level",
+  "platform": "Terraform",
+  "descriptionID": "52b7bc15",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-319",
+  "riskScore": 0.0
+}

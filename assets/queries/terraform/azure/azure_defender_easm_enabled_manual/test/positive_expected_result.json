@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Microsoft Defender EASM Enabled (Manual)",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

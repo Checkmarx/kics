@@ -1,0 +1,13 @@
+{
+  "id": "8cd7b5db-800b-4c93-949b-bc215d63f7c3",
+  "queryName": "OCI Storage Admin with Delete Privileges (Manual)",
+  "severity": "INFO",
+  "category": "Identity and Access Management",
+  "descriptionText": "Storage service-level admins should ideally not have 'DELETE' permissions to prevent accidental or malicious data loss. The verb 'manage' includes DELETE permissions by default. Verify if a condition 'where request.permission != DELETE' is applied or if the 'manage' verb is necessary.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy",
+  "platform": "Terraform",
+  "descriptionID": "8cd7b5db",
+  "cloudProvider": "oci",
+  "cwe": "CWE-269",
+  "riskScore": 0.0
+}

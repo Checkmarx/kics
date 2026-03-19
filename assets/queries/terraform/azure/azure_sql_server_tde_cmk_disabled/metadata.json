@@ -1,0 +1,13 @@
+{
+  "id": "745e82b3-edf5-4606-a5c2-25d8453e7de6",
+  "queryName": "SQL Server TDE Not Encrypted with CMK",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensures that Azure SQL Server Transparent Data Encryption (TDE) is configured with a Customer-Managed Key (CMK) stored in Azure Key Vault, rather than the default Service-Managed Key.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server_transparent_data_encryption",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-326",
+  "descriptionID": "745e82b3",
+  "riskScore": 5.0
+}

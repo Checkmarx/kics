@@ -1,0 +1,13 @@
+{
+  "id": "92440d0d-889c-49c5-a0e6-13c5f326b872",
+  "queryName": "IBM Container Registry VA Alerts Missing (Automated)",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that notifications are enabled for the Vulnerability Advisor (VA) in IBM Cloud Container Registry. The resource 'ibm_container_va_notification' allows configuring alerts (email, webhook) for new vulnerabilities found in container images.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/container_va_notification",
+  "platform": "Terraform",
+  "descriptionID": "92440d0d",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-778",
+  "riskScore": 3.0
+}

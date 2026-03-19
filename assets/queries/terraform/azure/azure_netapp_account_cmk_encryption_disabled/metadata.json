@@ -1,0 +1,13 @@
+{
+  "id": "8bed44b5-bcd6-42f4-b7b6-f59fd4edc94a",
+  "queryName": "NetApp Account CMK Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensures that Azure NetApp Files accounts are configured to use Customer-Managed Keys (CMK) for encryption, instead of the default platform-managed keys.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/netapp_account_encryption",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-326",
+  "descriptionID": "8bed44b5",
+  "riskScore": 5.0
+}

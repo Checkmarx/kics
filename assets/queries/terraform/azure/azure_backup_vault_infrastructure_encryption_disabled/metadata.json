@@ -1,0 +1,13 @@
+{
+  "id": "f7bf03d5-ae0e-4b36-aab3-f8d2346a8843",
+  "queryName": "Backup Vault Infrastructure Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensures that 'Infrastructure Encryption' is enabled for Azure Backup Vaults. This provides a second layer of encryption (double encryption) for data at rest.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/data_protection_backup_vault#infrastructure_encryption_enabled",
+  "platform": "Terraform",
+  "descriptionID": "f7bf03d5",
+  "cloudProvider": "azure",
+  "cwe": "CWE-312",
+  "riskScore": 5.0
+}

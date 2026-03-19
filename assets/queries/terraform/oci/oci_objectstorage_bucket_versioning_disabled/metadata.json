@@ -1,0 +1,13 @@
+{
+  "id": "72b1c53c-619e-4e0a-937a-9af24cae69df",
+  "queryName": "Object Storage Bucket Versioning Disabled",
+  "severity": "MEDIUM",
+  "category": "Data Security",
+  "descriptionText": "Ensures that OCI Object Storage buckets have versioning enabled. Versioning protects against accidental deletion or overwriting of objects by keeping a history of all object versions.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/objectstorage_bucket#versioning",
+  "platform": "Terraform",
+  "descriptionID": "72b1c53c",
+  "cloudProvider": "oci",
+  "cwe": "CWE-668",
+  "riskScore": 3.0
+}

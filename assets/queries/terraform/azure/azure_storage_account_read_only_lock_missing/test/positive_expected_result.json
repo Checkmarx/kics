@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Storage Account ReadOnly Lock Missing",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Storage Account ReadOnly Lock Missing",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive2.tf"
+  }
+]

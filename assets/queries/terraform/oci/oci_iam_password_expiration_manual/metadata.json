@@ -1,0 +1,13 @@
+{
+  "id": "7f47496b-8cdc-4476-9161-6c58038ef920",
+  "queryName": "OCI IAM Password Expiration (365 days)",
+  "severity": "INFO",
+  "category": "Identity and Access Management",
+  "descriptionText": "CIS Benchmark recommends that passwords expire within 365 days. Verify 'password_expires_after' is set to 365 or less in 'oci_identity_domains_password_policy'. Legacy policies require manual verification.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_domains_password_policy",
+  "platform": "Terraform",
+  "descriptionID": "7f47496b",
+  "cloudProvider": "oci",
+  "cwe": "CWE-261",
+  "riskScore": 0.0
+}

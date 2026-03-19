@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Elastic SAN Public Network Access Enabled",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

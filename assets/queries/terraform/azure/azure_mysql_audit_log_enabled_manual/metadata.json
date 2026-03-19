@@ -1,0 +1,13 @@
+{
+  "id": "8d8ac482-16c2-4eb7-bfab-e2d94d035498",
+  "queryName": "MySQL Audit Log Enabled (Manual)",
+  "severity": "INFO",
+  "category": "Observability",
+  "descriptionText": "Ensures that the 'audit_log_enabled' server parameter is set to 'ON' for Azure MySQL Database Servers. Since this parameter is often managed via runtime configurations or separate resources, manual verification is required.",
+  "descriptionUrl": "https://learn.microsoft.com/en-us/azure/mysql/single-server/concepts-audit-logs",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-778",
+  "descriptionID": "8d8ac482",
+  "riskScore": 0.0
+}

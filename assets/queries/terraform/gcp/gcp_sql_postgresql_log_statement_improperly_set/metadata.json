@@ -1,0 +1,13 @@
+{
+  "id": "ede2d9e4-d3a6-4751-a89b-561bc9bacbe4",
+  "queryName": "Cloud SQL PostgreSQL log_statement Improperly Set",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that the 'log_statement' database flag for Cloud SQL PostgreSQL instances is set to 'ddl', 'mod', or 'all'. The default value is 'none', which disables statement logging and hinders auditing capability.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance",
+  "platform": "Terraform",
+  "descriptionID": "ede2d9e4",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-778",
+  "riskScore": 5.0
+}

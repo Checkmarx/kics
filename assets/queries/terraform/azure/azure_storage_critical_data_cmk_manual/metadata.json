@@ -1,0 +1,13 @@
+{
+  "id": "20fcb3ef-4524-4d45-baa9-60b0eb229beb",
+  "queryName": "Critical Data Storage CMK (Manual)",
+  "severity": "INFO",
+  "category": "Encryption",
+  "descriptionText": "Identifies Storage Accounts using default Platform-Managed Keys. If these accounts store business-critical or sensitive data, they must be encrypted using Customer-Managed Keys (CMK). Manual verification of data sensitivity is required.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#customer_managed_key",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-312",
+  "descriptionID": "20fcb3ef",
+  "riskScore": 0.0
+}

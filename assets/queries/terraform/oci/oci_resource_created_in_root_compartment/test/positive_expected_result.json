@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Resource Created In Root Compartment",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Resource Created In Root Compartment",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive2.tf"
+  }
+]

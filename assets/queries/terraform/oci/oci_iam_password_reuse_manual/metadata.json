@@ -1,0 +1,13 @@
+{
+  "id": "fc42ff43-3c72-41d1-b5fb-3beebd4efe15",
+  "queryName": "OCI IAM Password Reuse Prevention (Manual)",
+  "severity": "INFO",
+  "category": "Identity and Access Management",
+  "descriptionText": "CIS Benchmark recommends preventing password reuse for at least the last 24 passwords. Check 'num_passwords_in_history' in 'oci_identity_domains_password_policy'. For legacy 'oci_identity_authentication_policy', this requires manual console verification.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_domains_password_policy",
+  "platform": "Terraform",
+  "descriptionID": "fc42ff43",
+  "cloudProvider": "oci",
+  "cwe": "CWE-261",
+  "riskScore": 0.0
+}

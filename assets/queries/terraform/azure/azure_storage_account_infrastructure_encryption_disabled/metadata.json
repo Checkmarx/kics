@@ -1,0 +1,13 @@
+{
+  "id": "d02793e5-b3b5-4cfa-b379-7a81d5bfe170",
+  "queryName": "Storage Account Infrastructure Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensures that 'Infrastructure Encryption' is enabled for Azure Storage Accounts. This provides a second layer of encryption (double encryption) for data at rest, protecting against the compromise of any single encryption algorithm or key.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#infrastructure_encryption_enabled",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-312",
+  "descriptionID": "d02793e5",
+  "riskScore": 5.0
+}

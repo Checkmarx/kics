@@ -1,0 +1,13 @@
+{
+  "id": "1f24d72d-c8be-403f-92b8-84ed910fe96e",
+  "queryName": "Compute Instance Secure Boot Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Ensures that OCI Compute Instances have Secure Boot enabled. Secure Boot is a feature of UEFI firmware that helps prevent unauthorized boot loaders and operating systems from loading during the startup process, protecting against rootkits and boot-level malware.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance#is_secure_boot_enabled",
+  "platform": "Terraform",
+  "descriptionID": "1f24d72d",
+  "cloudProvider": "oci",
+  "cwe": "CWE-427",
+  "riskScore": 3.0
+}

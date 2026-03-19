@@ -1,0 +1,13 @@
+{
+  "id": "30d3bb83-f6aa-4302-a647-c404f12f8b8a",
+  "queryName": "VCN Subnet Without Flow Log",
+  "severity": "HIGH",
+  "category": "Observability",
+  "descriptionText": "VCN Subnet should have flow logging enabled to monitor traffic, as per CIS v3.0.0 recommendation 4.13.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_subnet",
+  "platform": "Terraform",
+  "descriptionID": "30d3bb83",
+  "cloudProvider": "oci",
+  "cwe": "778",
+  "riskScore": 6.0
+}

@@ -1,0 +1,13 @@
+{
+  "id": "e55a0224-47b8-41a8-8cc1-8c8581e13a8d",
+  "queryName": "IKS Cluster Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that every IBM Cloud Kubernetes Service (IKS) cluster has an associated logging service configuration. Centralized logging is essential for troubleshooting applications, monitoring cluster activity, and performing security analysis.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/ob_logging_config",
+  "platform": "Terraform",
+  "descriptionID": "e55a0224",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-778",
+  "riskScore": 5.0
+}

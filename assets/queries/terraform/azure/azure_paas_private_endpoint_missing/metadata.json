@@ -1,0 +1,13 @@
+{
+  "id": "dda11a20-c7c2-43f8-bd52-a4c029ad15e4",
+  "queryName": "Ensure Private Endpoints Are Used Where Possible",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Ensures that key Azure PaaS services (Cosmos DB, Storage, SQL, KeyVault, ACR, etc.) are accessed via Private Endpoints. While static analysis cannot resolve IDs across different state files, this rule validates local resource linkages.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_endpoint",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-200",
+  "descriptionID": "dda11a20",
+  "riskScore": 5.0
+}

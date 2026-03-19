@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Elastic SAN Volume Group CMK Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "Elastic SAN Volume Group CMK Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf"
+  }
+]

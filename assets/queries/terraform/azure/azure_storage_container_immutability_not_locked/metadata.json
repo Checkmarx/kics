@@ -1,0 +1,13 @@
+{
+  "id": "9b959753-3a9b-41e7-82b2-28bef91e6b53",
+  "queryName": "Storage Immutability Policy Not Locked",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Ensures that the Immutability Policy for Azure Storage Containers is set to 'Locked'. An unlocked policy can be removed or modified, failing to provide true WORM (Write Once, Read Many) compliance for business-critical data.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container_immutability_policy#locked",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-284",
+  "descriptionID": "9b959753",
+  "riskScore": 5.0
+}

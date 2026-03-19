@@ -1,0 +1,13 @@
+{
+  "id": "b29ff836-5b2e-4089-a40c-086426ef3980",
+  "queryName": "GKE Service Account IAM Review (Manual)",
+  "severity": "INFO",
+  "category": "Supply-Chain",
+  "descriptionText": "A custom Service Account is configured for GKE nodes. Manual verification is required to ensure this account has Read-Only access to Container Registries (e.g., 'roles/storage.objectViewer') and not Write access.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam_member",
+  "platform": "Terraform",
+  "descriptionID": "b29ff836",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-276",
+  "riskScore": 0.0
+}

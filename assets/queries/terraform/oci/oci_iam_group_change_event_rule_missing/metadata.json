@@ -1,0 +1,13 @@
+{
+  "id": "3f6ba6dd-fa6d-45b4-8b27-120b7ebb4d0f",
+  "queryName": "Event Rule for IAM Group Changes is Missing",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on changes to IAM groups. Auditing the creation, modification, and deletion of user groups is a critical security measure to detect unauthorized privilege escalation or tampering with access controls.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/events_rule",
+  "platform": "Terraform",
+  "descriptionID": "3f6ba6dd",
+  "cloudProvider": "oci",
+  "cwe": "CWE-778",
+  "riskScore": 3.0
+}

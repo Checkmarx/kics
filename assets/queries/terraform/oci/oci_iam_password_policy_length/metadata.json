@@ -1,0 +1,13 @@
+{
+  "id": "ef7a0923-a4e6-4aec-921b-1b4e45463fb6",
+  "queryName": "OCI IAM Password Minimum Length",
+  "severity": "MEDIUM",
+  "category": "Identity and Access Management",
+  "descriptionText": "The IAM password policy allows passwords shorter than 14 characters. According to CIS Benchmarks, the 'minimum_password_length' in 'oci_identity_authentication_policy' should be set to 14 or greater.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_authentication_policy",
+  "platform": "Terraform",
+  "descriptionID": "ef7a0923",
+  "cloudProvider": "oci",
+  "cwe": "CWE-521",
+  "riskScore": 3.0
+}

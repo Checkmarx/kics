@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "OCI Storage Resources Without CMK",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "OCI Storage Resources Without CMK",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.tf"
+  }
+]
