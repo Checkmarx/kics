@@ -1,10 +1,10 @@
 package testcases
 
 // E2E-CLI-106 - KICS  scan
-// should perform the scan successfully detecting all valid dockerfile files and return result 50
+// should perform the scan successfully detect all valid dockerfile documents and return result 50
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a valid scan with all dockerfile files parsed [E2E-CLI-106]",
+		Name: "should perform a valid scan with all dockerfile documents parsed [E2E-CLI-106]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
