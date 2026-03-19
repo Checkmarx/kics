@@ -437,10 +437,10 @@
             "EndLine": 8,
             "Flags": [],
             "JSON": false,
-            "Original": "COPY . .",
+            "Original": "COPY .. .",
             "SubCmd": "",
             "Value": [
-              ".",
+              "..",
               "."
             ],
             "_kics_line": 8
@@ -1008,10 +1008,10 @@
             "EndLine": 8,
             "Flags": [],
             "JSON": false,
-            "Original": "copy . .",
+            "Original": "copy .. .",
             "SubCmd": "",
             "Value": [
-              ".",
+              "..",
               "."
             ],
             "_kics_line": 8
@@ -1075,10 +1075,10 @@
             "EndLine": 8,
             "Flags": [],
             "JSON": false,
-            "Original": "copy . .",
+            "Original": "copy .. .",
             "SubCmd": "",
             "Value": [
-              ".",
+              "..",
               "."
             ],
             "_kics_line": 8
