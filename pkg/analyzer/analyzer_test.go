@@ -556,6 +556,23 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			excludeGitIgnore:     false,
 			MaxFileSize:          -1,
 		},
+		{
+			name: "analyze_test_non_utf8_is_set_as_unwanted",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/mix_utf8_and_non_utf"),
+			},
+			wantTypes: []string{"ansible"},
+			wantExclude: []string{
+				filepath.FromSlash("../../test/fixtures/mix_utf8_and_non_utf/non_utf.json"),
+			},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              57,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
 	}
 
 	for _, tt := range tests {

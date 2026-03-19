@@ -503,6 +503,7 @@ func (a *analyzerInfo) checkContent(
 	content, err := utils.ReadFileToUTF8(a.filePath)
 	if err != nil {
 		log.Warn().Msgf("failed to analyze file: %s", err)
+		unwanted <- a.filePath
 		return
 	}
 
