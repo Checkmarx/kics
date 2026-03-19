@@ -106,4 +106,7 @@ type bicepVisitor interface {
 
 	// Visit a parse tree produced by bicepParser#identifier.
 	VisitIdentifier(ctx *IdentifierContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#comment.
+	VisitComment(ctx *CommentContext) interface{}
 }
