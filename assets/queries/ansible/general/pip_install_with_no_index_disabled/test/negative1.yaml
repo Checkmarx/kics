@@ -1,0 +1,7 @@
+- name: Install Python packages from private index with hashes
+  hosts: all
+  tasks:
+    - name: Install package from private PyPI with hash verification
+      ansible.builtin.pip:
+        name: my-private-package==1.0.0
+        extra_args: "--extra-index-url https://pypi.company.com/simple/ --require-hashes"

@@ -1,0 +1,9 @@
+- name: Fetch data with SSL verification disabled
+  hosts: localhost
+  tasks:
+    - name: Make HTTP request without certificate validation
+      ansible.builtin.uri:
+        url: "https://api.example.com/data"
+        method: GET
+        validate_certs: false
+      register: response

@@ -1,0 +1,9 @@
+- name: Install packages allowing unauthenticated
+  hosts: all
+  become: true
+  tasks:
+    - name: Install package without authentication check
+      ansible.builtin.apt:
+        name: curl
+        state: present
+        allow_unauthenticated: true
