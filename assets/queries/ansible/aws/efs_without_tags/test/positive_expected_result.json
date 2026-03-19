@@ -2,6 +2,14 @@
   {
     "queryName": "EFS Without Tags",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.efs",
+    "resourceName": "EFS provisioning without tags",
+    "searchKey": "name={{EFS provisioning without tags}}.{{community.aws.efs}}",
+    "searchValue": "",
+    "expectedValue": "name={{EFS provisioning without tags}}.{{community.aws.efs}}.tags should be set",
+    "actualValue": "name={{EFS provisioning without tags}}.{{community.aws.efs}}.tags is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

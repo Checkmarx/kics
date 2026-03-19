@@ -2,6 +2,14 @@
   {
     "queryName": "RBAC Roles with Attach Permission",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "Role",
+    "resourceName": "allow-attach",
+    "searchKey": "metadata.name={{allow-attach}}.rules",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{allow-attach}}.rules[0].resources should not include the 'pods/attach' resource",
+    "actualValue": "metadata.name={{allow-attach}}.rules[0].resources includes the 'pods/attach' resource",
+    "issueType": "IncorrectValue"
   }
 ]

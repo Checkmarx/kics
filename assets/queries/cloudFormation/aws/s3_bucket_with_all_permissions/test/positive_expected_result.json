@@ -3,12 +3,26 @@
     "queryName": "S3 Bucket With All Permissions",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy3",
+    "searchKey": "Resources.SampleBucketPolicy3.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement should not allow all actions from all principals",
+    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows all actions from all principals",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket With All Permissions",
     "severity": "CRITICAL",
     "line": 9,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy4",
+    "searchKey": "Resources.SampleBucketPolicy4.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement should not allow all actions from all principals",
+    "actualValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement allows all actions from all principals",
+    "issueType": "IncorrectValue"
   }
 ]

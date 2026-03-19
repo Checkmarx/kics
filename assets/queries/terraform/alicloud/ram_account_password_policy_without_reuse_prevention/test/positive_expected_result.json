@@ -3,12 +3,26 @@
     "queryName": "RAM Account Password Policy without Reuse Prevention",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_ram_account_password_policy",
+    "resourceName": "corporate",
+    "searchKey": "alicloud_ram_account_password_policy[corporate]",
+    "searchValue": "",
+    "expectedValue": "'password_reuse_prevention' should be defined and equal or lower than 24",
+    "actualValue": "'password_reuse_prevention' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
-      "queryName": "RAM Account Password Policy without Reuse Prevention",
-      "severity": "MEDIUM",
-      "line": 9,
-      "fileName": "positive2.tf"
-    }
+    "queryName": "RAM Account Password Policy without Reuse Prevention",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_ram_account_password_policy",
+    "resourceName": "corporate",
+    "searchKey": "alicloud_ram_account_password_policy[corporate].password_reuse_prevention",
+    "searchValue": "",
+    "expectedValue": "'password_reuse_prevention' should be equal or less 24",
+    "actualValue": "'password_reuse_prevention' is higher than 24",
+    "issueType": "IncorrectValue"
+  }
 ]

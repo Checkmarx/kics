@@ -3,12 +3,26 @@
     "queryName": "Operation Object Without 'produces'",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get 'produces' should be defined",
+    "actualValue": "paths.{{/}}.get 'produces' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Operation Object Without 'produces'",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get 'produces' should be defined",
+    "actualValue": "paths.{{/}}.get 'produces' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

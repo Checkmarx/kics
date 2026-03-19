@@ -3,60 +3,130 @@
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 2,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_sns_topic",
+    "resourceName": "positive1",
+    "searchKey": "aws_sns_topic[positive1].policy",
+    "searchValue": "0",
+    "expectedValue": "'Statement[0].Principal.AWS' shouldn't contain '*'",
+    "actualValue": "'Statement[0].Principal.AWS' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "topic_policy",
+    "searchValue": "0",
+    "expectedValue": "'Statement[0].Principal.AWS' shouldn't contain '*'",
+    "actualValue": "'Statement[0].Principal.AWS' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 12,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[sns_topic_with_policy_statements_valid].topic_policy_statements[0].principals",
+    "searchValue": "",
+    "expectedValue": "'topic_policy_statements[0].principals[0].identifiers' shouldn't contain '*' for an AWS Principal",
+    "actualValue": "'topic_policy_statements[0].principals[0].identifiers' contains '*' for an AWS Principal",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 12,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[sns_topic_with_policy_statements_not_limited_access].topic_policy_statements[0].principals",
+    "searchValue": "",
+    "expectedValue": "'topic_policy_statements[0].principals[0].identifiers' shouldn't contain '*' for an AWS Principal",
+    "actualValue": "'topic_policy_statements[0].principals[0].identifiers' contains '*' for an AWS Principal",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 2,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "aws_sns_topic",
+    "resourceName": "positive1",
+    "searchKey": "aws_sns_topic[positive1].policy",
+    "searchValue": "0",
+    "expectedValue": "'Statement[0].Principal.AWS' shouldn't contain '*'",
+    "actualValue": "'Statement[0].Principal.AWS' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 2,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "aws_sns_topic",
+    "resourceName": "positive1",
+    "searchKey": "aws_sns_topic[positive1].policy",
+    "searchValue": "2",
+    "expectedValue": "'Statement[2].Principal.AWS' shouldn't contain '*'",
+    "actualValue": "'Statement[2].Principal.AWS' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "topic_policy",
+    "searchValue": "0",
+    "expectedValue": "'Statement[0].Principal.AWS' shouldn't contain '*'",
+    "actualValue": "'Statement[0].Principal.AWS' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "topic_policy",
+    "searchValue": "2",
+    "expectedValue": "'Statement[2].Principal.AWS' shouldn't contain '*'",
+    "actualValue": "'Statement[2].Principal.AWS' contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 12,
-    "fileName": "positive7.tf"
+    "filename": "positive7.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[sns_topic_with_policy_statements_valid].topic_policy_statements[0].principals",
+    "searchValue": "",
+    "expectedValue": "'topic_policy_statements[0].principals[0].identifiers' shouldn't contain '*' for an AWS Principal",
+    "actualValue": "'topic_policy_statements[0].principals[0].identifiers' contains '*' for an AWS Principal",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 34,
-    "fileName": "positive7.tf"
+    "filename": "positive7.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[sns_topic_with_policy_statements_valid].topic_policy_statements[2].principals",
+    "searchValue": "",
+    "expectedValue": "'topic_policy_statements[2].principals[0].identifiers' shouldn't contain '*' for an AWS Principal",
+    "actualValue": "'topic_policy_statements[2].principals[0].identifiers' contains '*' for an AWS Principal",
+    "issueType": "IncorrectValue"
   }
 ]

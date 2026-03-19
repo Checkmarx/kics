@@ -3,12 +3,26 @@
     "queryName": "Security Scheme Using Oauth 1.0",
     "severity": "LOW",
     "line": 55,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use oauth 1.0 security scheme",
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses oauth 1.0 security scheme",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Scheme Using Oauth 1.0",
     "severity": "LOW",
     "line": 31,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}} should not use oauth 1.0 security scheme",
+    "actualValue": "components.securitySchemes.{{petstore_auth}} uses oauth 1.0 security scheme",
+    "issueType": "IncorrectValue"
   }
 ]

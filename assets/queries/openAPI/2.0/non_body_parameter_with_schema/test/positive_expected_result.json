@@ -3,24 +3,52 @@
     "queryName": "Non Body Parameter Without Schema",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Non Body Parameter Without Schema",
-    "severity": "INFO",
-    "line": 13,
-    "filename": "positive2.yaml"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=limit2.schema",
+    "searchValue": "",
+    "expectedValue": "'schema' should not be set",
+    "actualValue": "'schema' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Non Body Parameter Without Schema",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit.schema",
+    "searchValue": "",
+    "expectedValue": "'schema' should not be set",
+    "actualValue": "'schema' is set",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Non Body Parameter Without Schema",
+    "severity": "INFO",
+    "line": 13,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=limit2.schema",
+    "searchValue": "",
+    "expectedValue": "'schema' should not be set",
+    "actualValue": "'schema' is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Non Body Parameter Without Schema",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit.schema",
+    "searchValue": "",
+    "expectedValue": "'schema' should not be set",
+    "actualValue": "'schema' is set",
+    "issueType": "IncorrectValue"
   }
 ]

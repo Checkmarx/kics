@@ -3,6 +3,13 @@
     "queryName": "MSK Broker Is Publicly Accessible",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "example",
+    "searchKey": "aws_msk_cluster[positive1].broker_node_group_info.connectivity_info.public_access.type",
+    "searchValue": "",
+    "expectedValue": "aws_msk_cluster[positive1].broker_node_group_info.connectivity_info.public_access.type should be set to 'DISABLED' or undefined",
+    "actualValue": "aws_msk_cluster[positive1].broker_node_group_info.connectivity_info.public_access.type is set to 'SERVICE_PROVIDED_EIPS'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -3,18 +3,39 @@
     "queryName": "API Gateway Deployment Without Access Log Setting",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_api_gateway_deployment",
+    "resourceName": "examplee",
+    "searchKey": "aws_api_gateway_deployment[examplee]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_deployment[examplee] has a 'aws_api_gateway_stage' resource associated with 'access_log_settings' set",
+    "actualValue": "aws_api_gateway_deployment[examplee] doesn't have a 'aws_api_gateway_stage' resource associated with 'access_log_settings' set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Deployment Without Access Log Setting",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_api_gateway_deployment",
+    "resourceName": "example3",
+    "searchKey": "aws_api_gateway_deployment[example3]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_deployment[example3] has a 'aws_api_gateway_stage' resource associated with 'access_log_settings' set",
+    "actualValue": "aws_api_gateway_deployment[example3] doesn't have a 'aws_api_gateway_stage' resource associated with 'access_log_settings' set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Deployment Without Access Log Setting",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_api_gateway_deployment",
+    "resourceName": "example4",
+    "searchKey": "aws_api_gateway_deployment[example4]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_deployment[example4].stage_description should be set",
+    "actualValue": "aws_api_gateway_deployment[example4].stage_description is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

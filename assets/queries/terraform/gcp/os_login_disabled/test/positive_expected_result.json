@@ -2,11 +2,27 @@
   {
     "queryName": "OSLogin Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_project_metadata",
+    "resourceName": "positive1",
+    "searchKey": "google_compute_project_metadata[positive1].metadata.enable-oslogin",
+    "searchValue": "",
+    "expectedValue": "google_compute_project_metadata[positive1].metadata['enable-oslogin'] should be true",
+    "actualValue": "google_compute_project_metadata[positive1].metadata['enable-oslogin'] is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OSLogin Disabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_project_metadata",
+    "resourceName": "positive2",
+    "searchKey": "google_compute_project_metadata[positive2].metadata",
+    "searchValue": "",
+    "expectedValue": "google_compute_project_metadata[positive2].metadata['enable-oslogin'] should be true",
+    "actualValue": "google_compute_project_metadata[positive2].metadata['enable-oslogin'] is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

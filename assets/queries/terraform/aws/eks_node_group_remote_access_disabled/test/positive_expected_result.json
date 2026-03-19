@@ -3,6 +3,13 @@
     "queryName": "EKS node group remote access disabled",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_eks_node_group",
+    "resourceName": "positive",
+    "searchKey": "aws_eks_node_group[positive].remote_access",
+    "searchValue": "",
+    "expectedValue": "'aws_eks_node_group[positive].remote_access.source_security_groups_ids' should be defined and not null",
+    "actualValue": "'aws_eks_node_group[positive].remote_access.source_security_groups_ids' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

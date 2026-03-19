@@ -2,6 +2,14 @@
   {
     "queryName": "WORKDIR Path Not Absolute",
     "severity": "LOW",
-    "line": 5
+    "line": 5,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.WORKDIR={{workdir}}",
+    "searchValue": "",
+    "expectedValue": "'WORKDIR' Command has absolute path",
+    "actualValue": "'WORKDIR' Command doesn't have absolute path",
+    "issueType": "IncorrectValue"
   }
 ]

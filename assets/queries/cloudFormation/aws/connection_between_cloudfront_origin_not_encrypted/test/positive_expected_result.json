@@ -1,26 +1,54 @@
 [
   {
-    "line": 13,
-    "fileName": "positive1.yaml",
     "queryName": "Connection Between CloudFront Origin Not Encrypted",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_1",
+    "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Connection Between CloudFront Origin Not Encrypted",
     "severity": "MEDIUM",
     "line": 30,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_2",
+    "searchKey": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Connection Between CloudFront Origin Not Encrypted",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_1",
+    "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   },
   {
+    "queryName": "Connection Between CloudFront Origin Not Encrypted",
     "severity": "MEDIUM",
     "line": 56,
-    "fileName": "positive2.json",
-    "queryName": "Connection Between CloudFront Origin Not Encrypted"
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_2",
+    "searchKey": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   }
 ]

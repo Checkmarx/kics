@@ -2,6 +2,14 @@
   {
     "queryName": "RBAC Roles with Impersonate Permission",
     "severity": "MEDIUM",
-    "line": 9
+    "line": 9,
+    "filename": "positive.yaml",
+    "resourceType": "ClusterRole",
+    "resourceName": "impersonator-role",
+    "searchKey": "metadata.name={{impersonator-role}}.rules",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{impersonator-role}}.rules[0].verbs should not include the 'impersonate' verb",
+    "actualValue": "metadata.name={{impersonator-role}}.rules[0].verbs includes the 'impersonate' verb",
+    "issueType": "IncorrectValue"
   }
 ]

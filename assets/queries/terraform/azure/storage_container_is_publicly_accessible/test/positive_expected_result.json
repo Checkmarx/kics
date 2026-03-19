@@ -2,6 +2,14 @@
   {
     "queryName": "Storage Container Is Publicly Accessible",
     "severity": "HIGH",
-    "line": 4
+    "line": 4,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_storage_container",
+    "resourceName": "vhds",
+    "searchKey": "azurerm_storage_container[positive1].container_access_type",
+    "searchValue": "",
+    "expectedValue": "'container_access_type' should equal to 'private'",
+    "actualValue": "'container_access_type' is not equal to 'private'",
+    "issueType": "IncorrectValue"
   }
 ]

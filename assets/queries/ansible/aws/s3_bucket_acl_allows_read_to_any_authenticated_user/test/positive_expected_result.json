@@ -2,6 +2,14 @@
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.aws_s3",
+    "resourceName": "Create an empty bucket2",
+    "searchKey": "name={{Create an empty bucket2}}.{{amazon.aws.aws_s3}}.permission",
+    "searchValue": "",
+    "expectedValue": "aws_s3 should not have read access for all authenticated users",
+    "actualValue": "aws_s3 has read access for all authenticated users",
+    "issueType": "IncorrectValue"
   }
 ]

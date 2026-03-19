@@ -3,48 +3,104 @@
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 58,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 74,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 27,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 34,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 45,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Numeric Schema Without Minimum (v3)",
     "severity": "LOW",
     "line": 22,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Numeric Schema Without Minimum (v2)",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Numeric Schema Without Minimum (v2)",
     "severity": "LOW",
     "line": 20,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'minimum' defined",
+    "actualValue": "Numeric schema does not have 'minimum' defined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -2,6 +2,14 @@
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 8
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "private-image-test-1",
+    "searchKey": "metadata.name={{private-image-test-1}}.spec.containers.name={{uses-private-image}}.image",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{private-image-test-1}}.spec.containers.name={{uses-private-image}}.image should specify the image with a digest",
+    "actualValue": "metadata.name={{private-image-test-1}}.spec.containers.name={{uses-private-image}}.image does not include an image digest",
+    "issueType": "IncorrectValue"
   }
 ]

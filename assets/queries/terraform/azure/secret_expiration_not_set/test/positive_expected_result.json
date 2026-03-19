@@ -2,6 +2,14 @@
   {
     "queryName": "Secret Expiration Not Set",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_key_vault_secret",
+    "resourceName": "secret-sauce",
+    "searchKey": "azurerm_key_vault_secret[positive1]",
+    "searchValue": "",
+    "expectedValue": "'expiration_date' should exist",
+    "actualValue": "'expiration_date' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

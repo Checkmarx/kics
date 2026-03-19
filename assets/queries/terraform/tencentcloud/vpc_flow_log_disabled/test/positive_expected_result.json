@@ -3,6 +3,13 @@
     "queryName": "VPC Flow Logs Disabled",
     "severity": "LOW",
     "line": 97,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "tencentcloud_vpc_flow_log_config",
+    "resourceName": "config",
+    "searchKey": "tencentcloud_vpc_flow_log_config[config].enable",
+    "searchValue": "",
+    "expectedValue": "[config] should have enable set to true",
+    "actualValue": "[config] has enable set to false",
+    "issueType": "IncorrectValue"
   }
 ]

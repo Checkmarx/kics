@@ -2,11 +2,27 @@
   {
     "queryName": "Instance With No VPC",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ec2_instance",
+    "resourceName": "Start an instance and have it begin a Tower callback on boot",
+    "searchKey": "name={{Start an instance and have it begin a Tower callback on boot}}.{{community.aws.ec2_instance}}",
+    "searchValue": "",
+    "expectedValue": "community.aws.ec2_instance.vpc_subnet_id should be set",
+    "actualValue": "community.aws.ec2_instance.vpc_subnet_id is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Instance With No VPC",
     "severity": "LOW",
-    "line": 18
+    "line": 18,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2",
+    "resourceName": "Start an instance and have it begin a Tower callback on boot v2",
+    "searchKey": "name={{Start an instance and have it begin a Tower callback on boot v2}}.{{amazon.aws.ec2}}",
+    "searchValue": "",
+    "expectedValue": "amazon.aws.ec2.vpc_subnet_id should be set",
+    "actualValue": "amazon.aws.ec2.vpc_subnet_id is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

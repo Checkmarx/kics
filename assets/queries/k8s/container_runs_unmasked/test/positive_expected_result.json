@@ -2,6 +2,14 @@
   {
     "queryName": "Container Runs Unmasked",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "restricted",
+    "searchKey": "metadata.name={{restricted}}.spec.allowedProcMountTypes",
+    "searchValue": "",
+    "expectedValue": "AllowedProcMountTypes should contain the value Default",
+    "actualValue": "AllowedProcMountTypes contains the value Unmasked",
+    "issueType": "IncorrectValue"
   }
 ]

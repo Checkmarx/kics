@@ -1,8 +1,15 @@
 [
-	{
-		"queryName": "Image Policy Webhook Admission Control Plugin Not Set",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Image Policy Webhook Admission Control Plugin Not Set",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--enable-admission-plugins flag should contain 'ImagePolicyWebhook' plugin",
+    "actualValue": "--enable-admission-plugins flag does not contain 'ImagePolicyWebhook' plugin",
+    "issueType": "MissingAttribute"
+  }
 ]

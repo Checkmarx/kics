@@ -1,26 +1,54 @@
 [
-	{
-		"queryName": "DB Instance Storage Not Encrypted",
-		"severity": "HIGH",
-		"line": 11,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "DB Instance Storage Not Encrypted",
-		"severity": "HIGH",
-		"line": 14,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "DB Instance Storage Not Encrypted",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive2.tf"
-	},
-	{
-		"queryName": "DB Instance Storage Not Encrypted",
-		"severity": "HIGH",
-		"line": 11,
-		"fileName": "positive3.tf"
-	}
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].storage_encrypted",
+    "searchValue": "",
+    "expectedValue": "'storage_encrypted' should be set to true",
+    "actualValue": "'storage_encrypted' is set to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 14,
+    "filename": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive2]",
+    "searchValue": "",
+    "expectedValue": "'storage_encrypted' should be set to true",
+    "actualValue": "'storage_encrypted' is undefined or null",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db]",
+    "searchValue": "",
+    "expectedValue": "'storage_encrypted' should be set to true",
+    "actualValue": "'storage_encrypted' is undefined or null",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db].storage_encrypted",
+    "searchValue": "",
+    "expectedValue": "'storage_encrypted' should be set to true",
+    "actualValue": "'storage_encrypted' is set to false",
+    "issueType": "IncorrectValue"
+  }
 ]

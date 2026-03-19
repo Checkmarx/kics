@@ -2,16 +2,40 @@
   {
     "queryName": "Cluster Labels Disabled",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "google.cloud.gcp_container_cluster should be defined and not null",
+    "actualValue": "google.cloud.gcp_container_cluster is undefined and null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cluster Labels Disabled",
     "severity": "LOW",
-    "line": 17
+    "line": 17,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster2",
+    "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "google.cloud.gcp_container_cluster should be defined and not null",
+    "actualValue": "google.cloud.gcp_container_cluster is undefined and null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Cluster Labels Disabled",
     "severity": "LOW",
-    "line": 47
+    "line": 47,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster3",
+    "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.resource_labels",
+    "searchValue": "",
+    "expectedValue": "google.cloud.gcp_container_cluster should not be empty",
+    "actualValue": "google.cloud.gcp_container_cluster is empty",
+    "issueType": "IncorrectValue"
   }
 ]

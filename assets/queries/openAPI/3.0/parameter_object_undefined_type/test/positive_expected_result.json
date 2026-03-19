@@ -3,36 +3,78 @@
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "paths.{{/}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 55,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.{{get}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.{{get}}.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "paths.{{/users/{id}}}.{{get}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "paths.{{/}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 40,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.{{get}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.{{get}}.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "paths.{{/users/{id}}}.{{get}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi.components.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "openapi.components.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "openapi.components.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi.components.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "openapi.components.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "openapi.components.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute"
   }
 ]

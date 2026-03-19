@@ -2,11 +2,27 @@
   {
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
-    "line": 11
+    "line": 11,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.elb_application_lb",
+    "resourceName": "my_elb_application",
+    "searchKey": "name={{my_elb_application}}.{{community.aws.elb_application_lb}}.listeners.Protocol=HTTP",
+    "searchValue": "",
+    "expectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
+    "actualValue": "'aws_elb_application_lb' Protocol it's not 'HTTP'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ALB Listening on HTTP",
     "severity": "MEDIUM",
-    "line": 29
+    "line": 29,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.elb_application_lb",
+    "resourceName": "my_elb_application2",
+    "searchKey": "name={{my_elb_application2}}.{{community.aws.elb_application_lb}}.listeners",
+    "searchValue": "",
+    "expectedValue": "'aws_elb_application_lb' Protocol should be 'HTTP'",
+    "actualValue": "'aws_elb_application_lb' Protocol is missing",
+    "issueType": "MissingAttribute"
   }
 ]

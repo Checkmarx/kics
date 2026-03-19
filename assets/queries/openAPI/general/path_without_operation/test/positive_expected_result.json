@@ -3,24 +3,52 @@
     "queryName": "Path Without Operation (v3)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}} has at least one operation object defined",
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Without Operation (v3)",
     "severity": "INFO",
     "line": 6,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}} has at least one operation object defined",
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Without Operation (v2)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}} has at least one operation object defined",
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Path Without Operation (v2)",
     "severity": "INFO",
     "line": 6,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}} has at least one operation object defined",
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute"
   }
 ]

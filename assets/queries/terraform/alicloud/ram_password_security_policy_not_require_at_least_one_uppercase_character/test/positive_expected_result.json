@@ -3,6 +3,13 @@
     "queryName": "RAM Account Password Policy Not Require at Least one Uppercase Character",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_ram_account_password_policy",
+    "resourceName": "corporate",
+    "searchKey": "alicloud_ram_account_password_policy[corporate].require_uppercase_characters",
+    "searchValue": "",
+    "expectedValue": "'require_uppercase_characters' should be defined and set to true",
+    "actualValue": "'require_uppercase_characters' is false",
+    "issueType": "IncorrectValue"
   }
 ]

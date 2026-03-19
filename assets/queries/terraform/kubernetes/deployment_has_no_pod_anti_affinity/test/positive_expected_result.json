@@ -3,24 +3,52 @@
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
     "line": 25,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example].spec.template.spec",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example].spec.template.spec.affinity should be set",
+    "actualValue": "kubernetes_deployment[example].spec.template.spec.affinity is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
     "line": 26,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example2].spec.template.spec.affinity",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example2].spec.template.spec.affinity.pod_anti_affinity should be set",
+    "actualValue": "kubernetes_deployment[example2].spec.template.spec.affinity.pod_anti_affinity is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
     "line": 28,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example3].spec.template.spec.affinity",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example3].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.topology_key should be set to 'kubernetes.io/hostname'",
+    "actualValue": "kubernetes_deployment[example3].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.topology_key is invalid or undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Deployment Has No PodAntiAffinity",
     "severity": "LOW",
     "line": 33,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "kubernetes_deployment",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_deployment[example4].spec.template.spec.affinity",
+    "searchValue": "",
+    "expectedValue": "kubernetes_deployment[example4].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_labels match any label on template metadata",
+    "actualValue": "kubernetes_deployment[example4].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_labels don't match any label on template metadata",
+    "issueType": "IncorrectValue"
   }
 ]

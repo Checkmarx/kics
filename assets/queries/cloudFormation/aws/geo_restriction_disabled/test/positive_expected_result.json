@@ -1,14 +1,28 @@
 [
   {
+    "queryName": "Geo Restriction Disabled",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive1.yaml",
-    "queryName": "Geo Restriction Disabled"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution",
+    "searchKey": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionType",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionType should be enabled with whitelist or blacklist",
+    "actualValue": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionTypeallows is configured with none. Therefore, Geo Restriction is not enabled and it should be",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Geo Restriction Disabled",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "myDistribution",
+    "searchKey": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionType",
+    "searchValue": "",
+    "expectedValue": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionType should be enabled with whitelist or blacklist",
+    "actualValue": "Resources.myDistribution.Properties.Restrictions.GeoRestriction.RestrictionTypeallows is configured with none. Therefore, Geo Restriction is not enabled and it should be",
+    "issueType": "IncorrectValue"
   }
 ]

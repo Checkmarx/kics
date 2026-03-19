@@ -3,18 +3,39 @@
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "example-cluster-autogen-password",
+    "searchKey": "metadata.name={{example-cluster-autogen-password}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "DBCluster.enableCloudwatchLogsExports should be defined",
+    "actualValue": "DBCluster.enableCloudwatchLogsExports is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "example-cluster-autogen-password",
+    "searchKey": "metadata.name={{example-cluster-autogen-password}}.spec.forProvider.enableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "DBCluster.enableCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "DBCluster.enableCloudwatchLogsExports has the following missing values: audit, profiler",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "example-cluster-autogen-password",
+    "searchKey": "metadata.name={{example-cluster-autogen-password}}.spec.forProvider.enableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "DBCluster.enableCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "DBCluster.enableCloudwatchLogsExports has the following missing values: profiler",
+    "issueType": "IncorrectValue"
   }
 ]

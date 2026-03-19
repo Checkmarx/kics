@@ -3,18 +3,39 @@
     "queryName": "Serverless API Cache Cluster Disabled",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi",
+    "searchKey": "Resources.ApiGatewayApi.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi.Properties.CacheClusterEnabled should be defined and not null",
+    "actualValue": "Resources.ApiGatewayApi.Properties.CacheClusterEnabled is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Serverless API Cache Cluster Disabled",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi2",
+    "searchKey": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled should be set to true",
+    "actualValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Serverless API Cache Cluster Disabled",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi2",
+    "searchKey": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled should be set to true",
+    "actualValue": "Resources.ApiGatewayApi2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

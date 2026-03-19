@@ -2,6 +2,14 @@
   {
     "queryName": "Missing Cluster Log Types",
     "severity": "MEDIUM",
-    "line": 9
+    "line": 9,
+    "filename": "positive.tf",
+    "resourceType": "aws_eks_cluster",
+    "resourceName": "example",
+    "searchKey": "aws_eks_cluster[positive1].enabled_cluster_log_types",
+    "searchValue": "",
+    "expectedValue": "'enabled_cluster_log_types' has all log types",
+    "actualValue": "'enabled_cluster_log_types' has missing log types",
+    "issueType": "IncorrectValue"
   }
 ]

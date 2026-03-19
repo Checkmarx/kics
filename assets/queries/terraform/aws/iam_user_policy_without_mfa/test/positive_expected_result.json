@@ -2,6 +2,14 @@
   {
     "queryName": "IAM User Policy Without MFA",
     "severity": "LOW",
-    "line": 18
+    "line": 18,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "test",
+    "searchKey": "aws_iam_user_policy[positive3].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Principal.AWS' should contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' should be set to true",
+    "actualValue": "'policy.Statement.Principal.AWS' doesn't contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

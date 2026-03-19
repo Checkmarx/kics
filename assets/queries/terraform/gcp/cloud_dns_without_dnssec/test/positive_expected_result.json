@@ -1,7 +1,15 @@
 [
-	{
-		"queryName": "Cloud DNS Without DNSSEC",
-		"severity": "MEDIUM",
-		"line": 10
-	}
+  {
+    "queryName": "Cloud DNS Without DNSSEC",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive.tf",
+    "resourceType": "google_dns_managed_zone",
+    "resourceName": "foobar",
+    "searchKey": "google_dns_managed_zone[positive1].dnssec_config.state",
+    "searchValue": "",
+    "expectedValue": "'dnssec_config.state' should equal to 'on'",
+    "actualValue": "'dnssec_config.state' is not equal to 'on'",
+    "issueType": "IncorrectValue"
+  }
 ]

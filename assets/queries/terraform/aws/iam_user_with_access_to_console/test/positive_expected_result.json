@@ -3,6 +3,13 @@
     "queryName": "IAM User With Access To Console",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "example_login",
+    "searchKey": "aws_iam_user.example.name",
+    "searchValue": "",
+    "expectedValue": "aws_iam_user.example.name shouldn't have aws_iam_user_login_profile",
+    "actualValue": "aws_iam_user.example.name has aws_iam_user_login_profile",
+    "issueType": "IncorrectValue"
   }
 ]

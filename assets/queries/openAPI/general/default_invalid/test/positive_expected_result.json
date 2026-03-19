@@ -3,60 +3,130 @@
     "queryName": "Default Invalid (v3)",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Default Invalid (v3)",
-    "severity": "INFO",
-    "line": 22,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Default Invalid (v3)",
-    "severity": "INFO",
-    "line": 18,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Default Invalid (v3)",
-    "severity": "INFO",
-    "line": 18,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "Default Invalid (v3)",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive5.yaml"
-  },
-  {
-    "queryName": "Default Invalid (v3)",
-    "severity": "INFO",
-    "line": 20,
-    "filename": "positive6.yaml"
-  },
-  {
-    "queryName": "Default Invalid (v3)",
-    "severity": "INFO",
-    "line": 27,
-    "filename": "positive7.yaml"
-  },
-  {
-    "queryName": "Default Invalid (v3)",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive8.yaml"
-  },
-  {
-    "queryName": "Default Invalid (v2)",
-    "severity": "INFO",
-    "line": 16,
-    "filename": "positive9.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Default Invalid (v2)",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive10.yaml"
+    "filename": "positive10.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Default Invalid (v3)",
+    "severity": "INFO",
+    "line": 22,
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Default Invalid (v3)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Default Invalid (v3)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Default Invalid (v3)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Default Invalid (v3)",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Default Invalid (v3)",
+    "severity": "INFO",
+    "line": 27,
+    "filename": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Default Invalid (v3)",
+    "severity": "INFO",
+    "line": 19,
+    "filename": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Default Invalid (v2)",
+    "severity": "INFO",
+    "line": 16,
+    "filename": "positive9.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue"
   }
 ]

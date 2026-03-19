@@ -3,30 +3,65 @@
     "queryName": "RDS Multi-AZ Deployment Disabled",
     "severity": "MEDIUM",
     "line": 128,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "",
+    "searchKey": "Resources.MasterDB.Properties.MultiAZ",
+    "searchValue": "",
+    "expectedValue": "The RDS DBInstance 'MasterDB' should have Multi-Availability Zone enabled",
+    "actualValue": "The RDS DBInstance 'MasterDB' has MultiAZ value set to false",
+    "issueType": "IncorrectValue"
   },
   {
-    "line": 148,
-    "fileName": "positive1.yaml",
     "queryName": "RDS Multi-AZ Deployment Disabled",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 148,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "Read Replica Database",
+    "searchKey": "Resources.ReplicaDB.Properties",
+    "searchValue": "",
+    "expectedValue": "The RDS DBInstance 'ReplicaDB' should have Multi-Availability Zone enabled",
+    "actualValue": "The RDS DBInstance 'ReplicaDB' MultiAZ property is undefined and by default disabled",
+    "issueType": "MissingAttribute"
   },
   {
+    "queryName": "RDS Multi-AZ Deployment Disabled",
     "severity": "MEDIUM",
     "line": 89,
-    "fileName": "positive2.json",
-    "queryName": "RDS Multi-AZ Deployment Disabled"
+    "filename": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "",
+    "searchKey": "Resources.MasterDB.Properties.MultiAZ",
+    "searchValue": "",
+    "expectedValue": "The RDS DBInstance 'MasterDB' should have Multi-Availability Zone enabled",
+    "actualValue": "The RDS DBInstance 'MasterDB' has MultiAZ value set to false",
+    "issueType": "IncorrectValue"
   },
   {
-    "line": 124,
-    "fileName": "positive2.json",
     "queryName": "RDS Multi-AZ Deployment Disabled",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 124,
+    "filename": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "Read Replica Database",
+    "searchKey": "Resources.ReplicaDB.Properties",
+    "searchValue": "",
+    "expectedValue": "The RDS DBInstance 'ReplicaDB' should have Multi-Availability Zone enabled",
+    "actualValue": "The RDS DBInstance 'ReplicaDB' MultiAZ property is undefined and by default disabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Multi-AZ Deployment Disabled",
     "severity": "MEDIUM",
     "line": 128,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "",
+    "searchKey": "Resources.MasterDB.Properties.MultiAZ",
+    "searchValue": "",
+    "expectedValue": "The RDS DBInstance 'MasterDB' should have Multi-Availability Zone enabled",
+    "actualValue": "The RDS DBInstance 'MasterDB' has MultiAZ value set to false",
+    "issueType": "IncorrectValue"
   }
 ]

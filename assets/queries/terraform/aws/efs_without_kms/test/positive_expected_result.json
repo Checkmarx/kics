@@ -2,6 +2,14 @@
   {
     "queryName": "EFS Without KMS",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_efs_file_system",
+    "resourceName": "MyProduct",
+    "searchKey": "aws_efs_file_system[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_efs_file_system[positive1].kms_key_id' should be defined'",
+    "actualValue": "aws_efs_file_system[positive1].kms_key_id' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

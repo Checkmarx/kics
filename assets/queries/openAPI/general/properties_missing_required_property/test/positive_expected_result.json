@@ -3,36 +3,78 @@
     "queryName": "Properties Missing Required Property (v3)",
     "severity": "INFO",
     "line": 56,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name should be defined",
+    "actualValue": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Properties Missing Required Property (v3)",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name should be defined",
+    "actualValue": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Properties Missing Required Property (v3)",
     "severity": "INFO",
     "line": 54,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.schema.properties.code.required.name should be defined",
+    "actualValue": "paths.{{/}}.parameters.schema.properties.code.required.name is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Properties Missing Required Property (v3)",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.schema.properties.code.required.name should be defined",
+    "actualValue": "paths.{{/}}.parameters.schema.properties.code.required.name is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Properties Missing Required Property (v2)",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.MyObject.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "definitions.MyObject.properties.code.required.name should be defined",
+    "actualValue": "definitions.MyObject.properties.code.required.name is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Properties Missing Required Property (v2)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.MyObject.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "definitions.MyObject.properties.code.required.name should be defined",
+    "actualValue": "definitions.MyObject.properties.code.required.name is missing",
+    "issueType": "MissingAttribute"
   }
 ]

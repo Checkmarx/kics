@@ -3,24 +3,52 @@
     "queryName": "API Gateway X-Ray Disabled",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos3.Properties.TracingEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos3.Properties.TracingEnabled should be true",
+    "actualValue": "Resources.ProdPos3.Properties.TracingEnabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos4.Properties.TracingEnabled should be defined",
+    "actualValue": "Resources.ProdPos4.Properties.TracingEnabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos1.Properties.TracingEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos1.Properties.TracingEnabled should be true",
+    "actualValue": "Resources.ProdPos1.Properties.TracingEnabled is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos2.Properties.TracingEnabled should be defined",
+    "actualValue": "Resources.ProdPos2.Properties.TracingEnabled is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

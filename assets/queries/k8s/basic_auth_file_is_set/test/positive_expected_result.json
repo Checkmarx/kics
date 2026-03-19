@@ -3,12 +3,26 @@
     "queryName": "Basic Auth File Is Set",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--basic-auth-file flag should not be set",
+    "actualValue": "--basic-auth-file flag is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Basic Auth File Is Set",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--basic-auth-file flag should not be set",
+    "actualValue": "--basic-auth-file flag is set",
+    "issueType": "IncorrectValue"
   }
 ]

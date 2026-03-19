@@ -3,6 +3,13 @@
     "queryName": "Network Interfaces IP Forwarding Enabled",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_interface",
+    "resourceName": "example-nic",
+    "searchKey": "azurerm_network_interface[positive].enable_ip_forwarding",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_interface[positive].enable_ip_forwarding' should be set to false or undefined",
+    "actualValue": "'azurerm_network_interface[positive].enable_ip_forwarding' is set to true",
+    "issueType": "IncorrectValue"
   }
 ]

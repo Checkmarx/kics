@@ -2,6 +2,14 @@
   {
     "queryName": "StatefulSet Without Service Name",
     "severity": "LOW",
-    "line": 49
+    "line": 49,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_stateful_set",
+    "resourceName": "prometheus",
+    "searchKey": "kubernetes_stateful_set[prometheus].spec.service_name",
+    "searchValue": "",
+    "expectedValue": "kubernetes_stateful_set[prometheus].spec.service_name should refer to a Headless Service",
+    "actualValue": "kubernetes_stateful_set[prometheus].spec.service_name does not refer to a Headless Service",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -2,21 +2,53 @@
   {
     "queryName": "RBAC Roles with Read Secrets Permissions",
     "severity": "MEDIUM",
-    "line": 9
+    "line": 9,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_role",
+    "resourceName": "terraform-example1",
+    "searchKey": "kubernetes_role[example1].rule",
+    "searchValue": "",
+    "expectedValue": "Rules don't give access to 'secrets' resources",
+    "actualValue": "Some rule is giving access to 'secrets' resources",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RBAC Roles with Read Secrets Permissions",
     "severity": "MEDIUM",
-    "line": 27
+    "line": 27,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_cluster_role",
+    "resourceName": "terraform-example2",
+    "searchKey": "kubernetes_cluster_role[example2].rule",
+    "searchValue": "",
+    "expectedValue": "Rules don't give access to 'secrets' resources",
+    "actualValue": "Some rule is giving access to 'secrets' resources",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RBAC Roles with Read Secrets Permissions",
     "severity": "MEDIUM",
-    "line": 48
+    "line": 48,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_role",
+    "resourceName": "terraform-example3",
+    "searchKey": "kubernetes_role[example3].rule",
+    "searchValue": "",
+    "expectedValue": "Rules don't give access to 'secrets' resources",
+    "actualValue": "Some rule is giving access to 'secrets' resources",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RBAC Roles with Read Secrets Permissions",
     "severity": "MEDIUM",
-    "line": 62
+    "line": 62,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_cluster_role",
+    "resourceName": "terraform-example4",
+    "searchKey": "kubernetes_cluster_role[example4].rule",
+    "searchValue": "",
+    "expectedValue": "Rules don't give access to 'secrets' resources",
+    "actualValue": "Some rule is giving access to 'secrets' resources",
+    "issueType": "IncorrectValue"
   }
 ]

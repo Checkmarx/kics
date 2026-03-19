@@ -3,6 +3,13 @@
     "queryName": "Ecs Data Disk Kms Key Id Undefined",
     "severity": "HIGH",
     "line": 2,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_disk",
+    "resourceName": "New-disk",
+    "searchKey": "alicloud_disk[ecs_disk]",
+    "searchValue": "",
+    "expectedValue": "[ecs_disk] has kms key id defined",
+    "actualValue": "[ecs_disk] does not have kms key id defined",
+    "issueType": "MissingAttribute"
   }
 ]

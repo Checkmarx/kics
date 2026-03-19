@@ -3,12 +3,26 @@
     "queryName": "ECS Service Admin Role Is Present",
     "severity": "HIGH",
     "line": 87,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "ServiceName",
+    "searchKey": "Resources.service.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Resources.service.Properties.Role should not be an admin role",
+    "actualValue": "Resources.service.Properties.Role is an admin role",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECS Service Admin Role Is Present",
     "severity": "HIGH",
     "line": 66,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "ServiceName",
+    "searchKey": "Resources.service.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Resources.service.Properties.Role should not be an admin role",
+    "actualValue": "Resources.service.Properties.Role is an admin role",
+    "issueType": "IncorrectValue"
   }
 ]

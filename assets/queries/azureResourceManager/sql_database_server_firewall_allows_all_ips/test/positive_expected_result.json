@@ -2,49 +2,105 @@
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
     "severity": "CRITICAL",
+    "line": 18,
+    "filename": "positive1.bicep",
+    "resourceType": "firewallRules",
+    "resourceName": "AllowAllWindowsAzureIps",
+    "searchKey": "resources.resources.name={{AllowAllWindowsAzureIps}}.properties.endIpAddress",
+    "searchValue": "",
+    "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "CRITICAL",
     "line": 31,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "firewallRules",
+    "resourceName": "AllowAllWindowsAzureIps",
+    "searchKey": "resources.resources.name={{AllowAllWindowsAzureIps}}.properties.endIpAddress",
+    "searchValue": "",
+    "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "CRITICAL",
+    "line": 4,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Sql/servers/firewallRules",
+    "resourceName": "sample/firewall",
+    "searchKey": "resources.name={{sample/firewall}}.properties.endIpAddress",
+    "searchValue": "",
+    "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
     "severity": "CRITICAL",
     "line": 14,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Sql/servers/firewallRules",
+    "resourceName": "sample/firewall",
+    "searchKey": "resources.name={{sample/firewall}}.properties.endIpAddress",
+    "searchValue": "",
+    "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "CRITICAL",
+    "line": 18,
+    "filename": "positive3.bicep",
+    "resourceType": "firewallRules",
+    "resourceName": "AllowAllWindowsAzureIps",
+    "searchKey": "resources.resources.name={{AllowAllWindowsAzureIps}}.properties.endIpAddress",
+    "searchValue": "",
+    "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
     "severity": "CRITICAL",
     "line": 33,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "firewallRules",
+    "resourceName": "AllowAllWindowsAzureIps",
+    "searchKey": "properties.template.resources.resources.name={{AllowAllWindowsAzureIps}}.properties.endIpAddress",
+    "searchValue": "",
+    "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0'",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "CRITICAL",
+    "line": 4,
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.Sql/servers/firewallRules",
+    "resourceName": "sample/firewall",
+    "searchKey": "resources.name={{sample/firewall}}.properties.endIpAddress",
+    "searchValue": "",
+    "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Database Server Firewall Allows All IPS",
     "severity": "CRITICAL",
     "line": 16,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "SQL Database Server Firewall Allows All IPS",
-    "severity": "CRITICAL",
-    "line": 18,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "SQL Database Server Firewall Allows All IPS",
-    "severity": "CRITICAL",
-    "line": 4,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "SQL Database Server Firewall Allows All IPS",
-    "severity": "CRITICAL",
-    "line": 18,
-    "filename": "positive3.bicep"
-  },
-  {
-    "queryName": "SQL Database Server Firewall Allows All IPS",
-    "severity": "CRITICAL",
-    "line": 4,
-    "filename": "positive4.bicep"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Sql/servers/firewallRules",
+    "resourceName": "sample/firewall",
+    "searchKey": "properties.template.resources.name={{sample/firewall}}.properties.endIpAddress",
+    "searchValue": "",
+    "expectedValue": "endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0'",
+    "actualValue": "endIpAddress is '255.255.255.255' and startIpAddress is '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   }
 ]

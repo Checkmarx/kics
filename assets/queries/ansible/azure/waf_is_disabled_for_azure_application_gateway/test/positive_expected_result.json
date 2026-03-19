@@ -2,6 +2,14 @@
   {
     "queryName": "WAF Is Disabled For Azure Application Gateway",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_appgateway",
+    "resourceName": "Create instance of Application Gateway",
+    "searchKey": "name={{Create instance of Application Gateway}}.{{azure_rm_appgateway}}.sku.tier",
+    "searchValue": "",
+    "expectedValue": "azure_rm_appgateway.sku.tier should be 'waf' or 'waf_v2'",
+    "actualValue": "azure_rm_appgateway.sku.tier is standard",
+    "issueType": "IncorrectValue"
   }
 ]

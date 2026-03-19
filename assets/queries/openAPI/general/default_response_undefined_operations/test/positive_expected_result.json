@@ -3,60 +3,130 @@
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{delete}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 21,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{delete}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v3)",
     "severity": "LOW",
     "line": 16,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{delete}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
     "severity": "LOW",
     "line": 21,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{delete}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Default Response Undefined On Operations (v2)",
     "severity": "LOW",
     "line": 16,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.{{patch}}.responses",
+    "searchValue": "",
+    "expectedValue": "Default field should be defined on responses",
+    "actualValue": "Default field is not defined on responses",
+    "issueType": "MissingAttribute"
   }
 ]

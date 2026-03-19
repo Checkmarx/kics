@@ -1,38 +1,80 @@
 [
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 8,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive2.tf"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 11,
-		"fileName": "positive3.tf"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive4.tf"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 9,
-		"fileName": "positive5.tf"
-	},
-	{
-		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive6.tf"
-	}
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive1.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "example",
+    "searchKey": "aws_rds_cluster[example].copy_tags_to_snapshot",
+    "searchValue": "",
+    "expectedValue": "'aws_rds_cluster[example].copy_tags_to_snapshot' should be set to true",
+    "actualValue": "'aws_rds_cluster[example].copy_tags_to_snapshot' is set to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "example",
+    "searchKey": "aws_rds_cluster[example]",
+    "searchValue": "",
+    "expectedValue": "'aws_rds_cluster[example].copy_tags_to_snapshot' should be defined to true",
+    "actualValue": "'aws_rds_cluster[example].copy_tags_to_snapshot' is not defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 11,
+    "filename": "positive3.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "example",
+    "searchKey": "aws_db_instance[example].copy_tags_to_snapshot",
+    "searchValue": "",
+    "expectedValue": "'aws_db_instance[example].copy_tags_to_snapshot' should be set to true",
+    "actualValue": "'aws_db_instance[example].copy_tags_to_snapshot' is set to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive4.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "example",
+    "searchKey": "aws_db_instance[example]",
+    "searchValue": "",
+    "expectedValue": "'aws_db_instance[example].copy_tags_to_snapshot' should be defined to true",
+    "actualValue": "'aws_db_instance[example].copy_tags_to_snapshot' is not defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 9,
+    "filename": "positive5.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[rds_cluster].copy_tags_to_snapshot",
+    "searchValue": "",
+    "expectedValue": "'module[rds_cluster].copy_tags_to_snapshot' should be set to true",
+    "actualValue": "'module[rds_cluster].copy_tags_to_snapshot' is set to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive6.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[rds_cluster]",
+    "searchValue": "",
+    "expectedValue": "'module[rds_cluster].copy_tags_to_snapshot' should be defined to true",
+    "actualValue": "'module[rds_cluster].copy_tags_to_snapshot' is not defined",
+    "issueType": "MissingAttribute"
+  }
 ]

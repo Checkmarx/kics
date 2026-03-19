@@ -3,24 +3,52 @@
     "queryName": "No ROS Stack Policy",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "alicloud_ros_stack",
+    "resourceName": "tf-testaccstack",
+    "searchKey": "alicloud_ros_stack[pos]",
+    "searchValue": "stack_policy",
+    "expectedValue": "The stack should have the attribute 'stack_policy_body' or 'stack_policy_url' defined",
+    "actualValue": "The stack has neither 'stack_policy_body' nor 'stack_policy_url' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No ROS Stack Policy",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "alicloud_ros_stack",
+    "resourceName": "tf-testaccstack",
+    "searchKey": "alicloud_ros_stack[pos]",
+    "searchValue": "stack_policy_during_update",
+    "expectedValue": "The stack should have the attribute 'stack_policy_during_update_body' or 'stack_policy_during_update_url' defined",
+    "actualValue": "The stack has neither 'stack_policy_during_update_body' nor 'stack_policy_during_update_url' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No ROS Stack Policy",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_ros_stack",
+    "resourceName": "tf-testaccstack",
+    "searchKey": "alicloud_ros_stack[pos2]",
+    "searchValue": "stack_policy_during_update",
+    "expectedValue": "The stack should have the attribute 'stack_policy_during_update_body' or 'stack_policy_during_update_url' defined",
+    "actualValue": "The stack has neither 'stack_policy_during_update_body' nor 'stack_policy_during_update_url' defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "No ROS Stack Policy",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "alicloud_ros_stack",
+    "resourceName": "tf-testaccstack",
+    "searchKey": "alicloud_ros_stack[pos3]",
+    "searchValue": "stack_policy",
+    "expectedValue": "The stack should have the attribute 'stack_policy_body' or 'stack_policy_url' defined",
+    "actualValue": "The stack has neither 'stack_policy_body' nor 'stack_policy_url' defined",
+    "issueType": "MissingAttribute"
   }
 ]

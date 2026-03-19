@@ -3,24 +3,52 @@
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "MyDocDBCluster",
+    "searchKey": "Resources.MyDocDBCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should be defined",
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "MyDocDBCluster",
+    "searchKey": "Resources.MyDocDBCluster.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: audit, profiler",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "MyDocDBCluster",
+    "searchKey": "Resources.MyDocDBCluster.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: audit",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::DocDB::DBCluster",
+    "resourceName": "MyDocDBCluster",
+    "searchKey": "Resources.MyDocDBCluster.Properties.EnableCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "AWS::DocDB::DBCluster.Properties.EnableCloudwatchLogsExports haven't got the following values: profiler",
+    "issueType": "IncorrectValue"
   }
 ]

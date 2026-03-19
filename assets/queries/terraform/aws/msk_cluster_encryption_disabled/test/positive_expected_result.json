@@ -2,21 +2,53 @@
   {
     "queryName": "MSK Cluster Encryption Disabled",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "example",
+    "searchKey": "msk_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "Should have 'rule.encryption_info' and, if 'rule.encryption_info.encryption_in_transit' is assigned, 'in_cluster' should be 'true' and 'client_broker' should be TLS",
+    "actualValue": "'rule.encryption_info' is unassigned or property 'in_cluster' is 'false' or property 'client_broker' is not 'TLS'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
     "severity": "HIGH",
-    "line": 14
+    "line": 14,
+    "filename": "positive.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "example",
+    "searchKey": "msk_cluster[positive2].encryption_info.encryption_in_transit.client_broker",
+    "searchValue": "",
+    "expectedValue": "Should have 'rule.encryption_info' and, if 'rule.encryption_info.encryption_in_transit' is assigned, 'in_cluster' should be 'true' and 'client_broker' should be TLS",
+    "actualValue": "'rule.encryption_info' is unassigned or property 'in_cluster' is 'false' or property 'client_broker' is not 'TLS'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
     "severity": "HIGH",
-    "line": 26
+    "line": 26,
+    "filename": "positive.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "example",
+    "searchKey": "msk_cluster[positive3].encryption_info.encryption_in_transit.in_cluster",
+    "searchValue": "",
+    "expectedValue": "Should have 'rule.encryption_info' and, if 'rule.encryption_info.encryption_in_transit' is assigned, 'in_cluster' should be 'true' and 'client_broker' should be TLS",
+    "actualValue": "'rule.encryption_info' is unassigned or property 'in_cluster' is 'false' or property 'client_broker' is not 'TLS'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Cluster Encryption Disabled",
     "severity": "HIGH",
-    "line": 37
+    "line": 37,
+    "filename": "positive.tf",
+    "resourceType": "aws_msk_cluster",
+    "resourceName": "example",
+    "searchKey": "msk_cluster[positive4].encryption_info.encryption_in_transit.in_cluster and msk_cluster[positive4].encryption_infoencryption_in_transit.client_broker",
+    "searchValue": "",
+    "expectedValue": "Should have 'rule.encryption_info' and, if 'rule.encryption_info.encryption_in_transit' is assigned, 'in_cluster' should be 'true' and 'client_broker' should be TLS",
+    "actualValue": "'rule.encryption_info' is unassigned or property 'in_cluster' is 'false' or property 'client_broker' is not 'TLS'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -1,14 +1,28 @@
 [
   {
-    "line": 9,
-    "fileName": "positive1.yaml",
     "queryName": "Lambda Permission Principal Is Wildcard",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Lambda::Permission",
+    "resourceName": "s3Permission",
+    "searchKey": "Resources.s3Permission.Properties.Principal",
+    "searchValue": "",
+    "expectedValue": "Resources.s3Permission.Properties.Principal should not be wildcard",
+    "actualValue": "Resources.s3Permission.Properties.Principal is wildcard",
+    "issueType": "IncorrectValue"
   },
   {
+    "queryName": "Lambda Permission Principal Is Wildcard",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive2.json",
-    "queryName": "Lambda Permission Principal Is Wildcard"
+    "filename": "positive2.json",
+    "resourceType": "AWS::Lambda::Permission",
+    "resourceName": "s3Permission",
+    "searchKey": "Resources.s3Permission.Properties.Principal",
+    "searchValue": "",
+    "expectedValue": "Resources.s3Permission.Properties.Principal should not be wildcard",
+    "actualValue": "Resources.s3Permission.Properties.Principal is wildcard",
+    "issueType": "IncorrectValue"
   }
 ]

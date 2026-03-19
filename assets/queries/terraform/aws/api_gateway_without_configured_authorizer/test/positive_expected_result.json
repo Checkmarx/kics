@@ -3,6 +3,13 @@
     "queryName": "API Gateway Without Configured Authorizer",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_api_gateway_rest_api",
+    "resourceName": "auth-demo",
+    "searchKey": "aws_api_gateway_rest_api[demo2]",
+    "searchValue": "",
+    "expectedValue": "API Gateway REST API should be associated with an API Gateway Authorizer",
+    "actualValue": "API Gateway REST API is not associated with an API Gateway Authorizer",
+    "issueType": "IncorrectValue"
   }
 ]

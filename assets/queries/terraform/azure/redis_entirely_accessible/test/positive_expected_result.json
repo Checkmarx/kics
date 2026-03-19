@@ -2,6 +2,14 @@
   {
     "queryName": "Redis Entirely Accessible",
     "severity": "CRITICAL",
-    "line": 22
+    "line": 22,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_redis_firewall_rule",
+    "resourceName": "someIPrange",
+    "searchKey": "azurerm_redis_firewall_rule[positive2].start_ip",
+    "searchValue": "",
+    "expectedValue": "'azurerm_redis_firewall_rule[positive2]' start_ip and end_ip should not equal to '0.0.0.0'",
+    "actualValue": "'azurerm_redis_firewall_rule[positive2]' start_ip and end_ip are equal to '0.0.0.0'",
+    "issueType": "IncorrectValue"
   }
 ]

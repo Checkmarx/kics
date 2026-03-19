@@ -3,114 +3,247 @@
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
-    "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
-    "severity": "MEDIUM",
-    "line": 21,
-    "fileName": "positive3.json"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.MethodSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel should be defined and not null",
+    "actualValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive5.json"
-  },
-  {
-    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
-    "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive7.json"
+    "filename": "positive10.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.MyStage.Properties.MethodSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.MyStage.Properties.MethodSettings.LoggingLevel should be defined and not null",
+    "actualValue": "Resources.MyStage.Properties.MethodSettings.LoggingLevel are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive8.yaml"
-  },
-  {
-    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
-    "severity": "MEDIUM",
-    "line": 4,
-    "fileName": "positive9.yaml"
-  },
-  {
-    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
-    "severity": "MEDIUM",
-    "line": 19,
-    "fileName": "positive10.json"
-  },
-  {
-    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
-    "severity": "MEDIUM",
-    "line": 4,
-    "fileName": "positive11.yaml"
+    "filename": "positive11.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties",
+    "searchValue": "MethodSettings",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings should be defined and not null",
+    "actualValue": "Resources.Prod.Properties.MethodSettings are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive11.yaml"
+    "filename": "positive11.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.MethodSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel should be defined and not null",
+    "actualValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive12.json"
+    "filename": "positive12.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.MyStage.Properties.MethodSettings.LoggingLevel",
+    "searchValue": "",
+    "expectedValue": "Resources.MyStage.Properties.MethodSettings.LoggingLevel should not be set to OFF",
+    "actualValue": "Resources.MyStage.Properties.MethodSettings.LoggingLevel is OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive13.yaml"
+    "filename": "positive13.yaml",
+    "resourceType": "AWS::ApiGatewayV2::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties",
+    "searchValue": "DefaultRouteSettings",
+    "expectedValue": "Resources.Prod.Properties.DefaultRouteSettings should be defined and not null",
+    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive13.yaml"
+    "filename": "positive13.yaml",
+    "resourceType": "AWS::ApiGatewayV2::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.DefaultRouteSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel should be defined and not null",
+    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive14.yaml"
+    "filename": "positive14.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.MethodSettings.LoggingLevel",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel should not be set to OFF",
+    "actualValue": "Resources.Prod.Properties.MethodSettings.LoggingLevel is OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive15.yaml"
+    "filename": "positive15.yaml",
+    "resourceType": "AWS::ApiGatewayV2::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel should not be set to OFF",
+    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings.LoggingLevel is OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive16.yaml"
+    "filename": "positive16.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties",
+    "searchValue": "AccessLogSetting",
+    "expectedValue": "'AccessLogSetting' should be defined",
+    "actualValue": "'AccessLogSetting' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive17.yaml"
+    "filename": "positive17.yaml",
+    "resourceType": "AWS::ApiGatewayV2::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties",
+    "searchValue": "AccessLogSettings",
+    "expectedValue": "'AccessLogSettings' should be defined",
+    "actualValue": "'AccessLogSettings' is not defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ApiGatewayV2::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.MyStage.Properties",
+    "searchValue": "DefaultRouteSettings",
+    "expectedValue": "Resources.MyStage.Properties.DefaultRouteSettings should be defined and not null",
+    "actualValue": "Resources.MyStage.Properties.DefaultRouteSettings are undefined or null",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive3.json",
+    "resourceType": "AWS::ApiGatewayV2::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel",
+    "searchValue": "",
+    "expectedValue": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel should not be set to OFF",
+    "actualValue": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel is OFF",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 19,
+    "filename": "positive4.json",
+    "resourceType": "AWS::ApiGatewayV2::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.MyStage.Properties.DefaultRouteSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel should be defined and not null",
+    "actualValue": "Resources.MyStage.Properties.DefaultRouteSettings.LoggingLevel are undefined or null",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive5.json",
+    "resourceType": "AWS::ApiGatewayV2::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.MyStage.Properties",
+    "searchValue": "AccessLogSettings",
+    "expectedValue": "'AccessLogSettings' should be defined",
+    "actualValue": "'AccessLogSettings' is not defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive6.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.MyStage.Properties",
+    "searchValue": "AccessLogSetting",
+    "expectedValue": "'AccessLogSetting' should be defined",
+    "actualValue": "'AccessLogSetting' is not defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive7.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.MyStage.Properties",
+    "searchValue": "MethodSettings",
+    "expectedValue": "Resources.MyStage.Properties.MethodSettings should be defined and not null",
+    "actualValue": "Resources.MyStage.Properties.MethodSettings are undefined or null",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive8.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties",
+    "searchValue": "MethodSettings",
+    "expectedValue": "Resources.Prod.Properties.MethodSettings should be defined and not null",
+    "actualValue": "Resources.Prod.Properties.MethodSettings are undefined or null",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive9.yaml",
+    "resourceType": "AWS::ApiGatewayV2::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties",
+    "searchValue": "DefaultRouteSettings",
+    "expectedValue": "Resources.Prod.Properties.DefaultRouteSettings should be defined and not null",
+    "actualValue": "Resources.Prod.Properties.DefaultRouteSettings are undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

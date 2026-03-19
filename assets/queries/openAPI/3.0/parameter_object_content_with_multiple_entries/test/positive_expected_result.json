@@ -3,36 +3,78 @@
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./.get.parameters",
+    "searchValue": "",
+    "expectedValue": "paths./.get.parameters.0.content has one entry",
+    "actualValue": "paths./.get.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 78,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./user/{id}.parameters",
+    "searchValue": "",
+    "expectedValue": "paths./user/{id}.parameters.0.content has one entry",
+    "actualValue": "paths./user/{id}.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 44,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters",
+    "searchValue": "",
+    "expectedValue": "components.parameters.idParam.content has one entry",
+    "actualValue": "components.parameters.idParam.content has multiple entries",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./.get.parameters",
+    "searchValue": "",
+    "expectedValue": "paths./.get.parameters.0.content has one entry",
+    "actualValue": "paths./.get.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 48,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./user/{id}.parameters",
+    "searchValue": "",
+    "expectedValue": "paths./user/{id}.parameters.0.content has one entry",
+    "actualValue": "paths./user/{id}.parameters.0.content has multiple entries",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Object Content With Multiple Entries",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters",
+    "searchValue": "",
+    "expectedValue": "components.parameters.idParam.content has one entry",
+    "actualValue": "components.parameters.idParam.content has multiple entries",
+    "issueType": "IncorrectValue"
   }
 ]

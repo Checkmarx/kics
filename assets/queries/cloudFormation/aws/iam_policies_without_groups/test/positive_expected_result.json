@@ -1,14 +1,28 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "IAM Policies Without Groups",
     "severity": "LOW",
-    "line": 25
+    "line": 25,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.Policies.Users",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.Policies.Users should be replaced by Groups",
+    "actualValue": "'Resources.Properties.Policies.Users' is not the correct definition.",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policies Without Groups",
     "severity": "LOW",
     "line": 38,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.Policies.Users",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.Policies.Users should be replaced by Groups",
+    "actualValue": "'Resources.Properties.Policies.Users' is not the correct definition.",
+    "issueType": "IncorrectValue"
   }
 ]

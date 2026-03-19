@@ -2,31 +2,79 @@
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting",
+    "searchKey": "name={{Update PostgreSQL Server setting}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting2",
+    "searchKey": "name={{Update PostgreSQL Server setting2}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
     "severity": "MEDIUM",
-    "line": 19
+    "line": 19,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting3",
+    "searchKey": "name={{Update PostgreSQL Server setting3}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
     "severity": "MEDIUM",
-    "line": 25
+    "line": 25,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting4",
+    "searchKey": "name={{Update PostgreSQL Server setting4}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting5",
+    "searchKey": "name={{Update PostgreSQL Server setting5}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
     "severity": "MEDIUM",
-    "line": 37
+    "line": 37,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting6",
+    "searchKey": "name={{Update PostgreSQL Server setting6}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'connection_throttling'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue"
   }
 ]

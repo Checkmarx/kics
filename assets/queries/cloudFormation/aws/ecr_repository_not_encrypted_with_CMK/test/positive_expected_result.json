@@ -3,60 +3,130 @@
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration should be defined and not null",
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration is undefined or null",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "ECR Repository Not Encrypted With CMK",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive10.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "ecrepo",
+    "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute"
   },
-   {
+  {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "ecrepo",
+    "searchKey": "Resources.ecrepo.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration should be defined and not null",
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive7.yaml"
+    "filename": "positive7.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "ecrepo",
+    "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType",
+    "searchValue": "",
+    "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive8.yaml"
+    "filename": "positive8.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "ecrepo",
+    "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType",
+    "searchValue": "",
+    "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive9.yaml"
-  },
-  {
-    "queryName": "ECR Repository Not Encrypted With CMK",
-    "severity": "LOW",
-    "line": 8,
-    "fileName": "positive10.yaml"
+    "filename": "positive9.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "ecrepo",
+    "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

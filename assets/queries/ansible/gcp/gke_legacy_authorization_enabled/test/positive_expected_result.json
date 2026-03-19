@@ -2,6 +2,14 @@
   {
     "queryName": "GKE Legacy Authorization Enabled",
     "severity": "HIGH",
-    "line": 18
+    "line": 18,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster",
+    "searchKey": "name={{create a cluster}}.{{google.cloud.gcp_container_cluster}}.legacy_abac.enabled",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.legacy_abac.enabled should be set to false",
+    "actualValue": "gcp_container_cluster.legacy_abac.enabled is true",
+    "issueType": "IncorrectValue"
   }
 ]

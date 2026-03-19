@@ -3,12 +3,26 @@
     "queryName": "Example JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.objectExample.$ref",
+    "searchValue": "",
+    "expectedValue": "wrongExample from #/components/examples/wrongExample should be declared on components.examples",
+    "actualValue": "wrongExample from #/components/examples/wrongExample is not declared on components.examples",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Example JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.examples.objectExample.$ref",
+    "searchValue": "",
+    "expectedValue": "wrongExample from #/components/examples/wrongExample should be declared on components.examples",
+    "actualValue": "wrongExample from #/components/examples/wrongExample is not declared on components.examples",
+    "issueType": "MissingAttribute"
   }
 ]

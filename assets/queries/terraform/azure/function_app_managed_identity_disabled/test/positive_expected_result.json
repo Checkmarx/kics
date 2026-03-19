@@ -2,16 +2,40 @@
   {
     "queryName": "Function App Managed Identity Disabled",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_function_app[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_function_app[positive1].identity' should be defined and not null",
+    "actualValue": "'azurerm_function_app[positive1].identity' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Managed Identity Disabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_linux_function_app[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2].identity' should be defined and not null",
+    "actualValue": "'azurerm_linux_function_app[positive2].identity' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Function App Managed Identity Disabled",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_windows_function_app[positive3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3].identity' should be defined and not null",
+    "actualValue": "'azurerm_windows_function_app[positive3].identity' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

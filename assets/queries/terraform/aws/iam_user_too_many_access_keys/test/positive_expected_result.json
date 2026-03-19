@@ -2,11 +2,27 @@
   {
     "queryName": "IAM User Has Too Many Access Keys",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_access_key",
+    "resourceName": "positive1",
+    "searchKey": "aws_iam_access_key[positive1].user",
+    "searchValue": "",
+    "expectedValue": "One Access Key associated with the same IAM User",
+    "actualValue": "More than one Access Key associated with the same IAM User",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM User Has Too Many Access Keys",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_access_key",
+    "resourceName": "positive2",
+    "searchKey": "aws_iam_access_key[positive2].user",
+    "searchValue": "",
+    "expectedValue": "One Access Key associated with the same IAM User",
+    "actualValue": "More than one Access Key associated with the same IAM User",
+    "issueType": "IncorrectValue"
   }
 ]

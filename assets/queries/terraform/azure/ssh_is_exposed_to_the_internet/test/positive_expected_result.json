@@ -2,101 +2,261 @@
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive1].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive1.destination_port_range' cannot be 22",
+    "actualValue": "'azurerm_network_security_rule.positive1.destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 22
+    "line": 22,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive2].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive2.destination_port_range' cannot be 22",
+    "actualValue": "'azurerm_network_security_rule.positive2.destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 36,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive3].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive3.destination_port_range' cannot be 22",
+    "actualValue": "'azurerm_network_security_rule.positive3.destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 50
+    "line": 50,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive4].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive4.destination_port_range' cannot be 22",
+    "actualValue": "'azurerm_network_security_rule.positive4.destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 64
+    "line": 64,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive5].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive5.destination_port_range' cannot be 22",
+    "actualValue": "'azurerm_network_security_rule.positive5.destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 78
+    "line": 78,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive6].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive6.destination_port_range' cannot be 22",
+    "actualValue": "'azurerm_network_security_rule.positive6.destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 92
+    "line": 92,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive7].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive7.destination_port_range' cannot be 22",
+    "actualValue": "'azurerm_network_security_rule.positive7.destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 106
+    "line": 106,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive8].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive8.destination_port_range' cannot be 22",
+    "actualValue": "'azurerm_network_security_rule.positive8.destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 120
+    "line": 120,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive9].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive9.destination_port_range' cannot be 22",
+    "actualValue": "'azurerm_network_security_rule.positive9.destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive10.destination_port_range' cannot be 22",
+    "actualValue": "'azurerm_network_security_rule.positive10.destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 153
+    "line": 153,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive11",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive11}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 22",
+    "actualValue": "'destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 165
+    "line": 165,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive12",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive12}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 22",
+    "actualValue": "'destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 177
+    "line": 177,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive13",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive13}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 22",
+    "actualValue": "'destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 189
+    "line": 189,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive14",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive14}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 22",
+    "actualValue": "'destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 201
+    "line": 201,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive15",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive15}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 22",
+    "actualValue": "'destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 213
+    "line": 213,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive16",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive16}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 22",
+    "actualValue": "'destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 225
+    "line": 225,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive17",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive17}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 22",
+    "actualValue": "'destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 237
+    "line": 237,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive18",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive18}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 22",
+    "actualValue": "'destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 249
+    "line": 249,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive19",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive19}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 22",
+    "actualValue": "'destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 261
+    "line": 261,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive20",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive20}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 22",
+    "actualValue": "'destination_port_range' might be 22",
+    "issueType": "IncorrectValue"
   }
 ]

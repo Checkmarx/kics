@@ -3,12 +3,26 @@
     "queryName": "VPC Without Network Firewall",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::VPC",
+    "resourceName": "myVPC11",
+    "searchKey": "Resources.myVPC11",
+    "searchValue": "",
+    "expectedValue": "'Resources.myVPC11' should be associated with a AWS Network Firewall",
+    "actualValue": "'Resources.myVPC11' is not associated with a AWS Network Firewall",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "VPC Without Network Firewall",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::VPC",
+    "resourceName": "myVPC11",
+    "searchKey": "Resources.myVPC11",
+    "searchValue": "",
+    "expectedValue": "'Resources.myVPC11' should be associated with a AWS Network Firewall",
+    "actualValue": "'Resources.myVPC11' is not associated with a AWS Network Firewall",
+    "issueType": "MissingAttribute"
   }
 ]

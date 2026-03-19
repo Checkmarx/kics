@@ -3,36 +3,78 @@
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster",
+    "searchKey": "Resources.RDSCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster.Properties.StorageEncrypted should be set to true",
+    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster1",
+    "searchKey": "Resources.RDSCluster1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster1.Properties.StorageEncrypted should be defined",
+    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster",
+    "searchKey": "Resources.RDSCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster.Properties.StorageEncrypted should be set to true",
+    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 59,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster1",
+    "searchKey": "Resources.RDSCluster1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster1.Properties.StorageEncrypted should be defined",
+    "actualValue": "Resources.RDSCluster1.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "NoEncryption",
+    "searchKey": "Resources.NoEncryption.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.NoEncryption.Properties.StorageEncrypted should be defined",
+    "actualValue": "Resources.NoEncryption.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Storage Encryption Disabled",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "RDSCluster",
+    "searchKey": "Resources.RDSCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.RDSCluster.Properties.StorageEncrypted should be set to true",
+    "actualValue": "Resources.RDSCluster.Properties.StorageEncrypted is false",
+    "issueType": "IncorrectValue"
   }
 ]

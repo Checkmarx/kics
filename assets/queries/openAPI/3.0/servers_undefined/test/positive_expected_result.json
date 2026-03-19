@@ -3,24 +3,52 @@
     "queryName": "Servers Array Undefined",
     "severity": "INFO",
     "line": 2,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "Servers array has at least one server defined",
+    "actualValue": "Servers array does not have at least one server defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Servers Array Undefined",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "servers",
+    "searchValue": "",
+    "expectedValue": "Servers array has at least one server defined",
+    "actualValue": "Servers array is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Servers Array Undefined",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "Servers array has at least one server defined",
+    "actualValue": "Servers array does not have at least one server defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Servers Array Undefined",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "servers",
+    "searchValue": "",
+    "expectedValue": "Servers array has at least one server defined",
+    "actualValue": "Servers array is empty",
+    "issueType": "IncorrectValue"
   }
 ]

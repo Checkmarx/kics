@@ -3,12 +3,26 @@
     "queryName": "DOCDB Cluster Not Encrypted",
     "severity": "HIGH",
     "line": 1,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "docdb",
+    "searchKey": "aws_docdb_cluster[{{docdb}}]",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.storage_encrypted should be set to true",
+    "actualValue": "aws_docdb_cluster.storage_encrypted is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DOCDB Cluster Not Encrypted",
     "severity": "HIGH",
     "line": 19,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "docdb_2",
+    "searchKey": "aws_docdb_cluster[{{docdb_2}}].storage_encrypted",
+    "searchValue": "",
+    "expectedValue": "aws_docdb_cluster.storage_encrypted should be set to true",
+    "actualValue": "aws_docdb_cluster.storage_encrypted is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

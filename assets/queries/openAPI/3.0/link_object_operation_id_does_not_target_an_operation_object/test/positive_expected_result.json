@@ -3,36 +3,78 @@
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 71,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{200}}.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "components.responses.200.links.address.operationId points to an operationId of an operation object",
+    "actualValue": "components.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/test}}.{{get}}.responses.{{200}}.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths/test.get.responses.200.links.address.operationId points to an operationId of an operation object",
+    "actualValue": "paths./test.get.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 68,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "components.links.{{address}}.operationId points to an operationId of an operation object",
+    "actualValue": "components.links.{{address}}.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 51,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{200}}.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "components.responses.200.links.address.operationId points to an operationId of an operation object",
+    "actualValue": "components.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/test}}.{{get}}.responses.{{200}}.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "paths/test.get.responses.200.links.address.operationId points to an operationId of an operation object",
+    "actualValue": "paths./test.get.responses.200.links.address.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object OperationId Does Not Target Operation Object",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.links.{{address}}.operationId",
+    "searchValue": "",
+    "expectedValue": "components.links.{{address}}.operationId points to an operationId of an operation object",
+    "actualValue": "components.links.{{address}}.operationId does not point to an operationId of an operation object",
+    "issueType": "IncorrectValue"
   }
 ]

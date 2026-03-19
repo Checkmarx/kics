@@ -2,6 +2,14 @@
   {
     "queryName": "GuardDuty Detector Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "filename": "positive.tf",
+    "resourceType": "aws_guardduty_detector",
+    "resourceName": "positive1",
+    "searchKey": "aws_guardduty_detector[positive1].enable",
+    "searchValue": "",
+    "expectedValue": "GuardDuty Detector should be Enabled",
+    "actualValue": "GuardDuty Detector is not Enabled",
+    "issueType": "IncorrectValue"
   }
 ]

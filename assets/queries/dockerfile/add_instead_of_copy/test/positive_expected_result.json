@@ -2,6 +2,14 @@
   {
     "queryName": "Add Instead of Copy",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{openjdk:10-jdk}}.{{ADD ${JAR_FILE} app.jar}}",
+    "searchValue": "",
+    "expectedValue": "'COPY' ${JAR_FILE}",
+    "actualValue": "'ADD' ${JAR_FILE}",
+    "issueType": "IncorrectValue"
   }
 ]

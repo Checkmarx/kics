@@ -2,221 +2,573 @@
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 13
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo1",
+    "searchKey": "name={{foo1}}.{{azure_rm_securitygroup}}.rules.name={{example1}}.destination_port_range",
+    "searchValue": "UDP,61621",
+    "expectedValue": "Cassandra OpsCenter (UDP:61621) should not be allowed",
+    "actualValue": "Cassandra OpsCenter (UDP:61621) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 27
+    "line": 27,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo2",
+    "searchKey": "name={{foo2}}.{{azure_rm_securitygroup}}.rules.name={{example2}}.destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 27
+    "line": 27,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo2",
+    "searchKey": "name={{foo2}}.{{azure_rm_securitygroup}}.rules.name={{example2}}.destination_port_range",
+    "searchValue": "TCP,25",
+    "expectedValue": "SMTP (TCP:25) should not be allowed",
+    "actualValue": "SMTP (TCP:25) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 41
+    "line": 41,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo3",
+    "searchKey": "name={{foo3}}.{{azure_rm_securitygroup}}.rules.name={{example3}}.destination_port_range",
+    "searchValue": "TCP,21",
+    "expectedValue": "FTP (TCP:21) should not be allowed",
+    "actualValue": "FTP (TCP:21) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 41
+    "line": 41,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo3",
+    "searchKey": "name={{foo3}}.{{azure_rm_securitygroup}}.rules.name={{example3}}.destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 41
+    "line": 41,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo3",
+    "searchKey": "name={{foo3}}.{{azure_rm_securitygroup}}.rules.name={{example3}}.destination_port_range",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 41
+    "line": 41,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo3",
+    "searchKey": "name={{foo3}}.{{azure_rm_securitygroup}}.rules.name={{example3}}.destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 41
+    "line": 41,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo3",
+    "searchKey": "name={{foo3}}.{{azure_rm_securitygroup}}.rules.name={{example3}}.destination_port_range",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 41
+    "line": 41,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo3",
+    "searchKey": "name={{foo3}}.{{azure_rm_securitygroup}}.rules.name={{example3}}.destination_port_range",
+    "searchValue": "UDP,21",
+    "expectedValue": "FTP (UDP:21) should not be allowed",
+    "actualValue": "FTP (UDP:21) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 55
+    "line": 55,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo4",
+    "searchKey": "name={{foo4}}.{{azure_rm_securitygroup}}.rules.name={{example4}}.destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 55
+    "line": 55,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo4",
+    "searchKey": "name={{foo4}}.{{azure_rm_securitygroup}}.rules.name={{example4}}.destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 69
+    "line": 69,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo5",
+    "searchKey": "name={{foo5}}.{{azure_rm_securitygroup}}.rules.name={{example5}}.destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 85
+    "line": 85,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo6",
+    "searchKey": "name={{foo6}}.{{azure_rm_securitygroup}}.rules.name={{example6}}.destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 99
+    "line": 99,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo7",
+    "searchKey": "name={{foo7}}.{{azure_rm_securitygroup}}.rules.name={{example7}}.destination_port_range",
+    "searchValue": "UDP,25",
+    "expectedValue": "SMTP (UDP:25) should not be allowed",
+    "actualValue": "SMTP (UDP:25) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 99
+    "line": 99,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo7",
+    "searchKey": "name={{foo7}}.{{azure_rm_securitygroup}}.rules.name={{example7}}.destination_port_range",
+    "searchValue": "UDP,53",
+    "expectedValue": "DNS (UDP:53) should not be allowed",
+    "actualValue": "DNS (UDP:53) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 99
+    "line": 99,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo7",
+    "searchKey": "name={{foo7}}.{{azure_rm_securitygroup}}.rules.name={{example7}}.destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 99
+    "line": 99,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo7",
+    "searchKey": "name={{foo7}}.{{azure_rm_securitygroup}}.rules.name={{example7}}.destination_port_range",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 113
+    "line": 113,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo8",
+    "searchKey": "name={{foo8}}.{{azure_rm_securitygroup}}.rules.name={{example8}}.destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 130
+    "line": 130,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example9}}.destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 130
+    "line": 130,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example9}}.destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,22",
+    "expectedValue": "SSH (UDP:22) should not be allowed",
+    "actualValue": "SSH (UDP:22) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,21",
+    "expectedValue": "FTP (UDP:21) should not be allowed",
+    "actualValue": "FTP (UDP:21) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,80",
+    "expectedValue": "HTTP (TCP:80) should not be allowed",
+    "actualValue": "HTTP (TCP:80) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,22",
+    "expectedValue": "SSH (TCP:22) should not be allowed",
+    "actualValue": "SSH (TCP:22) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,25",
+    "expectedValue": "SMTP (TCP:25) should not be allowed",
+    "actualValue": "SMTP (TCP:25) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,23",
+    "expectedValue": "Telnet (TCP:23) should not be allowed",
+    "actualValue": "Telnet (TCP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,53",
+    "expectedValue": "DNS (TCP:53) should not be allowed",
+    "actualValue": "DNS (TCP:53) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,21",
+    "expectedValue": "FTP (TCP:21) should not be allowed",
+    "actualValue": "FTP (TCP:21) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,138",
+    "expectedValue": "NetBIOS Datagram Service (TCP:138) should not be allowed",
+    "actualValue": "NetBIOS Datagram Service (TCP:138) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,138",
+    "expectedValue": "NetBIOS Datagram Service (UDP:138) should not be allowed",
+    "actualValue": "NetBIOS Datagram Service (UDP:138) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,25",
+    "expectedValue": "SMTP (UDP:25) should not be allowed",
+    "actualValue": "SMTP (UDP:25) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,53",
+    "expectedValue": "DNS (UDP:53) should not be allowed",
+    "actualValue": "DNS (UDP:53) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,137",
+    "expectedValue": "NetBIOS Name Service (TCP:137) should not be allowed",
+    "actualValue": "NetBIOS Name Service (TCP:137) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,110",
+    "expectedValue": "POP3 (TCP:110) should not be allowed",
+    "actualValue": "POP3 (TCP:110) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,110",
+    "expectedValue": "POP3 (UDP:110) should not be allowed",
+    "actualValue": "POP3 (UDP:110) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,23",
+    "expectedValue": "Telnet (UDP:23) should not be allowed",
+    "actualValue": "Telnet (UDP:23) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,20",
+    "expectedValue": "FTP (TCP:20) should not be allowed",
+    "actualValue": "FTP (TCP:20) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,20",
+    "expectedValue": "FTP (UDP:20) should not be allowed",
+    "actualValue": "FTP (UDP:20) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,80",
+    "expectedValue": "HTTP (UDP:80) should not be allowed",
+    "actualValue": "HTTP (UDP:80) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,135",
+    "expectedValue": "MSSQL Debugger (UDP:135) should not be allowed",
+    "actualValue": "MSSQL Debugger (UDP:135) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,137",
+    "expectedValue": "NetBIOS Name Service (UDP:137) should not be allowed",
+    "actualValue": "NetBIOS Name Service (UDP:137) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,139",
+    "expectedValue": "NetBIOS Session Service (TCP:139) should not be allowed",
+    "actualValue": "NetBIOS Session Service (TCP:139) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "TCP,135",
+    "expectedValue": "MSSQL Debugger (TCP:135) should not be allowed",
+    "actualValue": "MSSQL Debugger (TCP:135) is allowed",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 142
+    "line": 142,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_securitygroup",
+    "resourceName": "foo9",
+    "searchKey": "name={{foo9}}.{{azure_rm_securitygroup}}.rules.name={{example10}}.destination_port_range",
+    "searchValue": "UDP,139",
+    "expectedValue": "NetBIOS Session Service (UDP:139) should not be allowed",
+    "actualValue": "NetBIOS Session Service (UDP:139) is allowed",
+    "issueType": "IncorrectValue"
   }
 ]

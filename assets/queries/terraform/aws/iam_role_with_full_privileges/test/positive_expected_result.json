@@ -2,11 +2,27 @@
   {
     "queryName": "IAM Role With Full Privileges",
     "severity": "HIGH",
-    "line": 4
+    "line": 4,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "test_role",
+    "searchKey": "aws_iam_role[positive1].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "assume_role_policy.Statement.Action should not equal to, nor contain '*'",
+    "actualValue": "assume_role_policy.Statement.Action is equal to or contains '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Role With Full Privileges",
     "severity": "HIGH",
-    "line": 29
+    "line": 29,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "test_role2",
+    "searchKey": "aws_iam_role[positive2].assume_role_policy",
+    "searchValue": "",
+    "expectedValue": "assume_role_policy.Statement.Action should not equal to, nor contain '*'",
+    "actualValue": "assume_role_policy.Statement.Action is equal to or contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

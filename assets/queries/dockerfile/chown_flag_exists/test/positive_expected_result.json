@@ -2,6 +2,14 @@
   {
     "queryName": "Chown Flag Exists",
     "severity": "LOW",
-    "line": 4
+    "line": 4,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3.7}}.{{COPY --chown=patrick:patrick app /app}}",
+    "searchValue": "",
+    "expectedValue": "The 'Dockerfile' shouldn´t contain the 'chown' flag",
+    "actualValue": "The 'Dockerfile' contains the 'chown' flag",
+    "issueType": "IncorrectValue"
   }
 ]

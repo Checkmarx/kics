@@ -3,6 +3,13 @@
     "queryName": "Ram Account Password Policy Not Required Numbers",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_ram_account_password_policy",
+    "resourceName": "corporate",
+    "searchKey": "alicloud_ram_account_password_policy[corporate].require_numbers",
+    "searchValue": "",
+    "expectedValue": "'require_numbers' should be defined and set to true",
+    "actualValue": "'require_numbers' is false",
+    "issueType": "IncorrectValue"
   }
 ]

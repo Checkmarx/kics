@@ -1,38 +1,80 @@
 [
   {
+    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive1.yaml",
-    "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod should have UsagePlan defined",
+    "actualValue": "Resources.Prod doesn't have UsagePlan defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod1",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Prod1 resource",
+    "actualValue": "Resources.Prod1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Prod1 resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod2",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Prod2 resource",
+    "actualValue": "Resources.Prod2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Prod2 resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod should have UsagePlan defined",
+    "actualValue": "Resources.Prod doesn't have UsagePlan defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod1",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Prod1 resource",
+    "actualValue": "Resources.Prod1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Prod1 resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Stage Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod2",
+    "searchValue": "",
+    "expectedValue": "Resources.Prod2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Prod2 resource",
+    "actualValue": "Resources.Prod2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Prod2 resource",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -2,6 +2,14 @@
   {
     "queryName": "Dashboard Is Enabled",
     "severity": "LOW",
-    "line": 23
+    "line": 23,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive1].addon_profile.kube_dashboard.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive1].addon_profile.kube_dashboard.enabled' should be set to false or undefined",
+    "actualValue": "'azurerm_kubernetes_cluster[positive1].addon_profile.kube_dashboard.enabled' is true",
+    "issueType": "IncorrectValue"
   }
 ]

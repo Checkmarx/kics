@@ -3,12 +3,26 @@
     "queryName": "KMS Allows Wildcard Principal",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties.KeyPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.myKey.Properties.KeyPolicy.Statement should not be '*'",
+    "actualValue": "Resources.myKey.Properties.KeyPolicy.Statement is '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "KMS Allows Wildcard Principal",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties.KeyPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.myKey.Properties.KeyPolicy.Statement should not be '*'",
+    "actualValue": "Resources.myKey.Properties.KeyPolicy.Statement is '*'",
+    "issueType": "IncorrectValue"
   }
 ]

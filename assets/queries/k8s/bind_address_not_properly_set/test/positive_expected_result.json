@@ -3,24 +3,52 @@
     "queryName": "Bind Address Not Properly Set",
     "severity": "INFO",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--bind-address flag should not be set to 127.0.0.1",
+    "actualValue": "--bind-address flag is set to a 127.0.01",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Bind Address Not Properly Set",
     "severity": "INFO",
     "line": 11,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--bind-address flag should not be set to 127.0.0.1",
+    "actualValue": "--bind-address flag is set to a 127.0.01",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Bind Address Not Properly Set",
     "severity": "INFO",
     "line": 20,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "kube-scheduler",
+    "searchKey": "metadata.name={{kube-scheduler}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--bind-address flag should not be set to 127.0.0.1",
+    "actualValue": "--bind-address flag is set to a 127.0.01",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Bind Address Not Properly Set",
     "severity": "INFO",
     "line": 20,
-    "fileName": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "kube-scheduler",
+    "searchKey": "metadata.name={{kube-scheduler}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--bind-address flag should not be set to 127.0.0.1",
+    "actualValue": "--bind-address flag is set to a 127.0.01",
+    "issueType": "IncorrectValue"
   }
 ]

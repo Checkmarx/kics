@@ -3,90 +3,195 @@
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive1.bicep"
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sqlServer1",
+    "searchKey": "resources.name=sqlServer1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive1.bicep"
+    "filename": "positive1.bicep",
+    "resourceType": "databases",
+    "resourceName": "sqlDatabase1",
+    "searchKey": "resources.resources.name=sqlDatabase1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlDatabase1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive2.bicep"
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sqlServer1",
+    "searchKey": "resources.name=sqlServer1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive2.bicep"
+    "filename": "positive2.bicep",
+    "resourceType": "databases",
+    "resourceName": "sqlDatabase1",
+    "searchKey": "resources.resources.name=sqlDatabase1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlDatabase1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive3.bicep"
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sqlServer1",
+    "searchKey": "resources.name=sqlServer1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sqlServer1",
+    "searchKey": "resources.name=sqlServer1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Sql/servers/databases",
+    "resourceName": "sqlServer1/sqlDatabase1",
+    "searchKey": "resources.name=sqlServer1/sqlDatabase1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1/sqlDatabase1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1/sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sqlServer1",
+    "searchKey": "resources.name=sqlServer1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "databases",
+    "resourceName": "sqlDatabase1",
+    "searchKey": "resources.resources.name=sqlDatabase1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlDatabase1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sqlServer1",
+    "searchKey": "resources.name=sqlServer1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "Microsoft.Sql/servers/databases",
+    "resourceName": "sqlServer1/sqlDatabase1",
+    "searchKey": "resources.name=sqlServer1/sqlDatabase1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1/sqlDatabase1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1/sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive7.json"
+    "filename": "positive7.json",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sqlServer1",
+    "searchKey": "resources.name=sqlServer1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive7.json"
+    "filename": "positive7.json",
+    "resourceType": "databases",
+    "resourceName": "sqlDatabase1",
+    "searchKey": "resources.resources.name=sqlDatabase1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlDatabase1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlDatabase1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive8.json"
+    "filename": "positive8.json",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sqlServer1",
+    "searchKey": "resources.name=sqlServer1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive9.json"
+    "filename": "positive9.json",
+    "resourceType": "Microsoft.Sql/servers",
+    "resourceName": "sqlServer1",
+    "searchKey": "resources.name=sqlServer1",
+    "searchValue": "",
+    "expectedValue": "resource 'sqlServer1' should have an enabled 'auditingsettings' resource",
+    "actualValue": "resource 'sqlServer1' is missing an enabled 'auditingsettings' resource",
+    "issueType": "IncorrectValue"
   }
 ]

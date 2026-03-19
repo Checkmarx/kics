@@ -2,6 +2,14 @@
   {
     "queryName": "EBS Default Encryption Disabled",
     "severity": "HIGH",
-    "line": 2
+    "line": 2,
+    "filename": "positive.tf",
+    "resourceType": "aws_ebs_encryption_by_default",
+    "resourceName": "positive1",
+    "searchKey": "aws_ebs_encryption_by_default[positive1].enabled",
+    "searchValue": "",
+    "expectedValue": "'aws_ebs_encryption_by_default.encrypted' should be true",
+    "actualValue": "'aws_ebs_encryption_by_default.encrypted' is false",
+    "issueType": "IncorrectValue"
   }
 ]

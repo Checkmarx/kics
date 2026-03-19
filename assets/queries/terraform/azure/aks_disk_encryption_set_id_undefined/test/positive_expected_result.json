@@ -3,6 +3,13 @@
     "queryName": "AKS Disk Encryption Set ID Undefined",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive].disk_encryption_set_id' should be defined and not null",
+    "actualValue": "'azurerm_kubernetes_cluster[positive].disk_encryption_set_id' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

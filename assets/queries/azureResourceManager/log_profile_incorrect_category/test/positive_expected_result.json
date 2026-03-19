@@ -2,25 +2,53 @@
   {
     "queryName": "Log Profile Incorrect Category",
     "severity": "LOW",
+    "line": 9,
+    "filename": "positive1.bicep",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name={{string}}.properties.categories",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have categories[%!d(string=property value)] %!s(int=0) set to 'Write', 'Delete' or 'Action'",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Log Profile Incorrect Category",
+    "severity": "LOW",
     "line": 22,
-    "fileName": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name={{string}}.properties.categories",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have categories[%!d(string=property value)] %!s(int=0) set to 'Write', 'Delete' or 'Action'",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Log Profile Incorrect Category",
+    "severity": "LOW",
+    "line": 9,
+    "filename": "positive2.bicep",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "resources.name={{string}}.properties.categories",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have categories[%!d(string=property value)] %!s(int=0) set to 'Write', 'Delete' or 'Action'",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Log Profile Incorrect Category",
     "severity": "LOW",
     "line": 24,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "Log Profile Incorrect Category",
-    "severity": "LOW",
-    "line": 9,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Log Profile Incorrect Category",
-    "severity": "LOW",
-    "line": 9,
-    "fileName": "positive2.bicep"
+    "filename": "positive2.json",
+    "resourceType": "microsoft.insights/logprofiles",
+    "resourceName": "string",
+    "searchKey": "properties.template.resources.name={{string}}.properties.categories",
+    "searchValue": "",
+    "expectedValue": "resource with type 'microsoft.insights/logprofiles' should have categories[%!d(string=property value)] %!s(int=0) set to 'Write', 'Delete' or 'Action'",
+    "actualValue": "resource with type 'microsoft.insights/logprofiles' has categories[0] set to 'Writ'",
+    "issueType": "IncorrectValue"
   }
 ]

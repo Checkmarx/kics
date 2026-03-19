@@ -3,6 +3,13 @@
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_managed_policy",
+    "resourceName": "Create IAM Managed Policy",
+    "searchKey": "name={{Create IAM Managed Policy}}.{{community.aws.iam_managed_policy}}.policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should no be equal to '*'",
+    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   }
 ]

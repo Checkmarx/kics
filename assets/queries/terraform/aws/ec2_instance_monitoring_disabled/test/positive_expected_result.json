@@ -3,30 +3,65 @@
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.{{monitoring_positive1}}",
+    "searchValue": "",
+    "expectedValue": "'monitoring' should be defined and not null",
+    "actualValue": "'monitoring' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.{{monitoring_positive2}}.monitoring",
+    "searchValue": "",
+    "expectedValue": "monitoring_positive2.'monitoring' should be set to true",
+    "actualValue": "monitoring_positive2.'monitoring' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance]",
+    "searchValue": "",
+    "expectedValue": "'monitoring' should be defined and not null",
+    "actualValue": "'monitoring' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance].monitoring",
+    "searchValue": "",
+    "expectedValue": "ec2_instance.'monitoring' should be set to true",
+    "actualValue": "ec2_instance.'monitoring' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "aws_instance",
+    "resourceName": "cdktf-test",
+    "searchKey": "aws_instance.{{cdktf-test}}.monitoring",
+    "searchValue": "",
+    "expectedValue": "cdktf-test.'monitoring' should be set to true",
+    "actualValue": "cdktf-test.'monitoring' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

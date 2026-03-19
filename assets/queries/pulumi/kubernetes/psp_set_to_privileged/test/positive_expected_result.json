@@ -3,6 +3,13 @@
     "queryName": "PSP Set To Privileged",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "kubernetes:policy/v1beta1:PodSecurityPolicy",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties.spec.privileged",
+    "searchValue": "",
+    "expectedValue": "PSP should have 'privileged' set to false or not defined",
+    "actualValue": "PSP has 'privileged' set to true",
+    "issueType": "IncorrectValue"
   }
 ]

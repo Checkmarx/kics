@@ -3,6 +3,13 @@
     "queryName": "Glue With Vulnerable Policy",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_glue_resource_policy",
+    "resourceName": "example",
+    "searchKey": "aws_glue_resource_policy[example].policy",
+    "searchValue": "",
+    "expectedValue": "aws_glue_resource_policy[example].policy should not have wildcard in 'principals' and 'actions'",
+    "actualValue": "aws_glue_resource_policy[example].policy has wildcard in 'principals' or 'actions'",
+    "issueType": "IncorrectValue"
   }
 ]

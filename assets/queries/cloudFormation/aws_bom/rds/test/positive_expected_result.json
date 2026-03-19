@@ -3,54 +3,117 @@
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample1",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceRefSample2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample3",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceRefSample3",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample4",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample5",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample6",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive7.yaml"
+    "filename": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample5",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

@@ -3,18 +3,39 @@
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive1].acl",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket[positive1].acl should be private",
+    "actualValue": "aws_s3_bucket[positive1].acl is authenticated-read",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].acl",
+    "searchValue": "",
+    "expectedValue": "'acl' should be private",
+    "actualValue": "'acl' is authenticated-read",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
     "severity": "HIGH",
     "line": 20,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_s3_bucket_acl",
+    "resourceName": "example_bucket_acl",
+    "searchKey": "aws_s3_bucket_acl[example_bucket_acl].acl",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_acl[example_bucket_acl].acl should be private",
+    "actualValue": "aws_s3_bucket_acl[example_bucket_acl].acl is authenticated-read",
+    "issueType": "IncorrectValue"
   }
 ]

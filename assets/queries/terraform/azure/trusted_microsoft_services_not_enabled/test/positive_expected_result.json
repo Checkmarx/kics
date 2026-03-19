@@ -2,11 +2,27 @@
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_storage_account_network_rules",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_storage_account_network_rules[positive1].bypass",
+    "searchValue": "",
+    "expectedValue": "'bypass' should contain 'AzureServices'",
+    "actualValue": "'bypass' does not contain 'AzureServices'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 21
+    "line": 21,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "storageaccountname",
+    "searchKey": "azurerm_storage_account[positive2].network_rules.bypass",
+    "searchValue": "",
+    "expectedValue": "'network_rules.bypass' should contain 'AzureServices'",
+    "actualValue": "'network_rules.bypass' does not contain 'AzureServices'",
+    "issueType": "IncorrectValue"
   }
 ]

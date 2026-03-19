@@ -1,26 +1,54 @@
 [
-	{
-		"queryName": "Pod or Container Without LimitRange",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Pod or Container Without LimitRange",
-		"severity": "LOW",
-		"line": 4,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Pod or Container Without LimitRange",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Pod or Container Without LimitRange",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive4.yaml"
-	}
+  {
+    "queryName": "Pod or Container Without LimitRange",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "frontend1",
+    "searchKey": "metadata.name={{frontend1}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{frontend1}} has a 'LimitRange' policy associated",
+    "actualValue": "metadata.name={{frontend1}} does not have a 'LimitRange' policy associated",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Pod or Container Without LimitRange",
+    "severity": "LOW",
+    "line": 4,
+    "filename": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "frontend2",
+    "searchKey": "metadata.name={{frontend2}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{frontend2}} has a 'LimitRange' policy associated",
+    "actualValue": "metadata.name={{frontend2}} does not have a 'LimitRange' policy associated",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Pod or Container Without LimitRange",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive3.yaml",
+    "resourceType": "DaemonSet",
+    "resourceName": "fluentd-elasticsearch",
+    "searchKey": "metadata.name={{fluentd-elasticsearch}}",
+    "searchValue": "DaemonSet",
+    "expectedValue": "metadata.name={{fluentd-elasticsearch}} has a 'LimitRange' policy associated",
+    "actualValue": "metadata.name={{fluentd-elasticsearch}} does not have a 'LimitRange' policy associated",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Pod or Container Without LimitRange",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive4.yaml",
+    "resourceType": "PersistentVolumeClaim",
+    "resourceName": "webcontent",
+    "searchKey": "metadata.name={{webcontent}}",
+    "searchValue": "PersistentVolumeClaim",
+    "expectedValue": "metadata.name={{webcontent}} has a 'LimitRange' policy associated",
+    "actualValue": "metadata.name={{webcontent}} does not have a 'LimitRange' policy associated",
+    "issueType": "MissingAttribute"
+  }
 ]

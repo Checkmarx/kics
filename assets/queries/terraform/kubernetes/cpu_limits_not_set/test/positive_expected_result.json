@@ -2,31 +2,79 @@
   {
     "queryName": "CPU Limits Not Set",
     "severity": "LOW",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].resources should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Limits Not Set",
     "severity": "LOW",
-    "line": 41
+    "line": 41,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.limits is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Limits Not Set",
     "severity": "LOW",
-    "line": 80
+    "line": 80,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[2].resources.limits.cpu should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[2].resources.limits.cpu is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Limits Not Set",
     "severity": "LOW",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.resources should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.resources is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Limits Not Set",
     "severity": "LOW",
-    "line": 192
+    "line": 192,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container.resources",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container.resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container.resources.limits is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Limits Not Set",
     "severity": "LOW",
-    "line": 249
+    "line": 249,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container.resources.limits",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.resources.limits.cpu should be set",
+    "actualValue": "kubernetes_pod[positive4].spec.container.resources.limits.cpu is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

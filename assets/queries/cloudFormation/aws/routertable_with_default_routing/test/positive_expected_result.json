@@ -1,38 +1,80 @@
 [
   {
-    "severity": "LOW",
-    "line": 54,
-    "fileName": "positive1.yaml",
-    "queryName": "RouterTable with Default Routing"
-  },
-  {
     "queryName": "RouterTable with Default Routing",
     "severity": "LOW",
-    "line": 66,
-    "fileName": "positive1.yaml"
+    "line": 54,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute1",
+    "searchKey": "Resources.PublicRoute1.Properties.DestinationCidrBlock",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock should be different from the default value",
+    "actualValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock is 0.0.0.0/0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RouterTable with Default Routing",
     "severity": "LOW",
     "line": 61,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute2",
+    "searchKey": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock should be different from the default value",
+    "actualValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock is ::/0",
+    "issueType": "IncorrectValue"
   },
   {
+    "queryName": "RouterTable with Default Routing",
+    "severity": "LOW",
+    "line": 66,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute3",
+    "searchKey": "Resources.PublicRoute3.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute3.Properties.NatGatewayId should be defined",
+    "actualValue": "Resources.PublicRoute3.Properties.NatGatewayId is undefined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "RouterTable with Default Routing",
     "severity": "LOW",
     "line": 37,
-    "fileName": "positive2.json",
-    "queryName": "RouterTable with Default Routing"
-  },
-  {
-    "line": 108,
-    "fileName": "positive2.json",
-    "queryName": "RouterTable with Default Routing",
-    "severity": "LOW"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute1",
+    "searchKey": "Resources.PublicRoute1.Properties.DestinationCidrBlock",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock should be different from the default value",
+    "actualValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock is 0.0.0.0/0",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RouterTable with Default Routing",
     "severity": "LOW",
     "line": 43,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute3",
+    "searchKey": "Resources.PublicRoute3.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute3.Properties.NatGatewayId should be defined",
+    "actualValue": "Resources.PublicRoute3.Properties.NatGatewayId is undefined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "RouterTable with Default Routing",
+    "severity": "LOW",
+    "line": 108,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute2",
+    "searchKey": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock should be different from the default value",
+    "actualValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock is ::/0",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -3,12 +3,26 @@
     "queryName": "MSK Broker Is Publicly Accessible",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type should be set to 'DISABLED' or undefined",
+    "actualValue": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type is set to 'SERVICE_PROVIDED_EIPS'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MSK Broker Is Publicly Accessible",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::MSK::Cluster",
+    "resourceName": "ClusterWithRequiredProperties",
+    "searchKey": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type",
+    "searchValue": "",
+    "expectedValue": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type should be set to 'DISABLED' or undefined",
+    "actualValue": "Resources.TestCluster.Properties.BrokerNodeGroupInfo.ConnectivityInfo.PublicAccess.Type is set to 'SERVICE_PROVIDED_EIPS'",
+    "issueType": "IncorrectValue"
   }
 ]

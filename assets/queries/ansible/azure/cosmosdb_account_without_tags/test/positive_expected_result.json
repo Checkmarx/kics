@@ -2,6 +2,14 @@
   {
     "queryName": "Cosmos DB Account Without Tags",
     "severity": "LOW",
-    "line": 3
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_cosmosdbaccount",
+    "resourceName": "Create Cosmos DB Account - min",
+    "searchKey": "name={{Create Cosmos DB Account - min}}.{{azure_rm_cosmosdbaccount}}.tags",
+    "searchValue": "",
+    "expectedValue": "azure_rm_cosmosdbaccount.tags should be defined",
+    "actualValue": "azure_rm_cosmosdbaccount.tags is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

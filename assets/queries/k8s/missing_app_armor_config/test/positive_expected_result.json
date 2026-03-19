@@ -1,22 +1,54 @@
 [
-	{
-		"queryName": "Missing AppArmor Profile",
-		"severity": "LOW",
-		"line": 5
-	},
-	{
-		"queryName": "Missing AppArmor Profile",
-		"severity": "LOW",
-		"line": 5
-	},
-	{
-		"queryName": "Missing AppArmor Profile",
-		"severity": "LOW",
-		"line": 5
-	},
-	{
-		"queryName": "Missing AppArmor Profile",
-		"severity": "LOW",
-		"line": 36
-	}
+  {
+    "queryName": "Missing AppArmor Profile",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "hello-apparmor-1",
+    "searchKey": "metadata.name={{hello-apparmor-1}}",
+    "searchValue": "Podcontainer.apparmor.security.beta.kubernetes.io/hello1",
+    "expectedValue": "metadata.name={{hello-apparmor-1}}.annotations[container.apparmor.security.beta.kubernetes.io/hello1] should be set to 'runtime/default' or 'localhost'",
+    "actualValue": "metadata.name={{hello-apparmor-1}}.annotations[container.apparmor.security.beta.kubernetes.io/hello1] does not specify a valid AppArmor profile",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Missing AppArmor Profile",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "hello-apparmor-1",
+    "searchKey": "metadata.name={{hello-apparmor-1}}",
+    "searchValue": "Podcontainer.apparmor.security.beta.kubernetes.io/hello2",
+    "expectedValue": "metadata.name={{hello-apparmor-1}}.annotations[container.apparmor.security.beta.kubernetes.io/hello2] should be set to 'runtime/default' or 'localhost'",
+    "actualValue": "metadata.name={{hello-apparmor-1}}.annotations[container.apparmor.security.beta.kubernetes.io/hello2] does not specify a valid AppArmor profile",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Missing AppArmor Profile",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "hello-apparmor-1",
+    "searchKey": "metadata.name={{hello-apparmor-1}}.annotations",
+    "searchValue": "Podcontainers2",
+    "expectedValue": "metadata.name={{hello-apparmor-1}}.annotations should specify an AppArmor profile for container {{hello3}}",
+    "actualValue": "metadata.name={{hello-apparmor-1}}.annotations does not specify an AppArmor profile for container {{hello3}}",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Missing AppArmor Profile",
+    "severity": "LOW",
+    "line": 36,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "ubuntu-test1",
+    "searchKey": "metadata.name={{ubuntu-test1}}.spec.template.metadata",
+    "searchValue": "Deploymentcontainer.apparmor.security.beta.kubernetes.io/ubuntu-1-container",
+    "expectedValue": "metadata.name={{ubuntu-test1}}.spec.template.metadata.annotations[container.apparmor.security.beta.kubernetes.io/ubuntu-1-container] should be set to 'runtime/default' or 'localhost'",
+    "actualValue": "metadata.name={{ubuntu-test1}}.spec.template.metadata.annotations[container.apparmor.security.beta.kubernetes.io/ubuntu-1-container] does not specify a valid AppArmor profile",
+    "issueType": "IncorrectValue"
+  }
 ]

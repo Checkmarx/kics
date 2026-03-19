@@ -3,12 +3,26 @@
     "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::SNS::TopicPolicy",
+    "resourceName": "mysnspolicy",
+    "searchKey": "Resources.mysnspolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and Action",
+    "actualValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and NotAction",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::SNS::TopicPolicy",
+    "resourceName": "mysnspolicy",
+    "searchKey": "Resources.mysnspolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and Action",
+    "actualValue": "Resources.mysnspolicy.Properties.PolicyDocument.Statement has Effect 'Allow' and NotAction",
+    "issueType": "IncorrectValue"
   }
 ]

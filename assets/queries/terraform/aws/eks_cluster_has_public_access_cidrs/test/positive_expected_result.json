@@ -2,11 +2,27 @@
   {
     "queryName": "EKS Cluster Has Public Access CIDRs",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "aws_eks_cluster",
+    "resourceName": "example",
+    "searchKey": "aws_eks_cluster[positive1].vpc_config.public_access_cidrs",
+    "searchValue": "",
+    "expectedValue": "One of 'vpc_config.public_access_cidrs' not equal '0.0.0.0/0'",
+    "actualValue": "One of 'vpc_config.public_access_cidrs' is equal '0.0.0.0/0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "EKS Cluster Has Public Access CIDRs",
     "severity": "MEDIUM",
-    "line": 30
+    "line": 30,
+    "filename": "positive.tf",
+    "resourceType": "aws_eks_cluster",
+    "resourceName": "without_example",
+    "searchKey": "aws_eks_cluster[positive2].vpc_config.public_access_cidrs",
+    "searchValue": "",
+    "expectedValue": "'vpc_config.public_access_cidrs' should exist",
+    "actualValue": "'vpc_config.public_access_cidrs' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

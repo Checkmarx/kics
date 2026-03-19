@@ -1,7 +1,15 @@
 [
-	{
-		"queryName": "Container Host Pid Is True",
-		"severity": "MEDIUM",
-		"line": 8
-	}
+  {
+    "queryName": "Container Host Pid Is True",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.host_pid",
+    "searchValue": "",
+    "expectedValue": "Attribute 'host_pid' should be undefined or false",
+    "actualValue": "Attribute 'host_pid' is true",
+    "issueType": "IncorrectValue"
+  }
 ]

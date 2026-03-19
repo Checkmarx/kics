@@ -3,6 +3,13 @@
     "queryName": "SSO Policy with full privileges",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_ssoadmin_permission_set_inline_policy",
+    "resourceName": "pos1",
+    "searchKey": "aws_ssoadmin_permission_set_inline_policy[pos1].inline_policy",
+    "searchValue": "",
+    "expectedValue": "inline_policy.Statement.Action should not equal to, nor contain '*'",
+    "actualValue": "inline_policy.Statement.Action is equal to or contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

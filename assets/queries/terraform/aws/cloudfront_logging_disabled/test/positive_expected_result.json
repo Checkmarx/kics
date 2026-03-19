@@ -2,6 +2,14 @@
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive1",
+    "searchKey": "aws_cloudfront_distribution[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_cloudfront_distribution[positive1].logging_config should be defined",
+    "actualValue": "aws_cloudfront_distribution[positive1].logging_config is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

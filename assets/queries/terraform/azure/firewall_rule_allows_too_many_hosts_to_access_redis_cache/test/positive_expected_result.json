@@ -2,6 +2,14 @@
   {
     "queryName": "Firewall Rule Allows Too Many Hosts To Access Redis Cache",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_redis_firewall_rule",
+    "resourceName": "someIPrange",
+    "searchKey": "azurerm_redis_firewall_rule[positive1].start_ip",
+    "searchValue": "",
+    "expectedValue": "'azurerm_redis_firewall_rule[positive1].start_ip' and 'end_ip' should allow no more than 255 hosts",
+    "actualValue": "'azurerm_redis_firewall_rule[positive1].start_ip' and 'end_ip' allow %!s(int=33554432) hosts",
+    "issueType": "IncorrectValue"
   }
 ]

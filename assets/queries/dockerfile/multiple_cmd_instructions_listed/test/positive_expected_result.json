@@ -3,6 +3,13 @@
     "queryName": "Multiple CMD Instructions Listed",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive.dockerfile"
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest  }}.{{CMD [\"./app\"] }}",
+    "searchValue": "",
+    "expectedValue": "There should be only one CMD instruction",
+    "actualValue": "There are 2 CMD instructions",
+    "issueType": "RedundantAttribute"
   }
 ]

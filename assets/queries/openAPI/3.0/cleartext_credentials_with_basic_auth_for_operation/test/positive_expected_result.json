@@ -3,12 +3,26 @@
     "queryName": "Cleartext Credentials With Basic Authentication For Operation",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security.{{regularSecurity}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}} operation should not allow cleartext credentials over unencrypted channel",
+    "actualValue": "paths.{{/}}.{{get}} operation allows cleartext credentials over unencrypted channel",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cleartext Credentials With Basic Authentication For Operation",
     "severity": "MEDIUM",
     "line": 19,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security.{{regularSecurity}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}} operation should not allow cleartext credentials over unencrypted channel",
+    "actualValue": "paths.{{/}}.{{get}} operation allows cleartext credentials over unencrypted channel",
+    "issueType": "IncorrectValue"
   }
 ]

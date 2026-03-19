@@ -3,6 +3,13 @@
     "queryName": "Liveness Probe Is Not Defined",
     "severity": "INFO",
     "line": 9,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "liveness-exec",
+    "searchKey": "metadata.name={{liveness-exec}}.spec.containers.name={{liveness}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{liveness-exec}}.spec.containers.name={{liveness}}.livenessProbe should be defined",
+    "actualValue": "metadata.name={{liveness-exec}}.spec.containers.name={{liveness}}.livenessProbe is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

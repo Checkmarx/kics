@@ -3,6 +3,13 @@
     "queryName": "Beta - Storage Account Without CMK",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "storageaccountname",
+    "searchKey": "azurerm_storage_account[positive1_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive1_1] must be associated with a 'azurerm_storage_account_customer_managed_key' resource and the block 'customer_managed_key' should be set",
+    "actualValue": "'azurerm_storage_account[positive1_1] is not associated with a 'azurerm_storage_account_customer_managed_key' resource and the 'customer_managed_key' block is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

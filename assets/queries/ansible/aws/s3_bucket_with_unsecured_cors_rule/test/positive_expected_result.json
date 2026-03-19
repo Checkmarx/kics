@@ -3,12 +3,26 @@
     "queryName": "S3 Bucket with Unsecured CORS Rule",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "community.aws.aws_s3_cors",
+    "resourceName": "Create s3 bucket2",
+    "searchKey": "name={{Create s3 bucket2}}.{{community.aws.aws_s3_cors}}.rules",
+    "searchValue": "",
+    "expectedValue": "community.aws.aws_s3_cors[0] should not allow all methods, all headers or several origins",
+    "actualValue": "community.aws.aws_s3_cors[0] allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "aws_s3_cors",
+    "resourceName": "Create s3 bucket4",
+    "searchKey": "name={{Create s3 bucket4}}.{{aws_s3_cors}}.rules",
+    "searchValue": "",
+    "expectedValue": "aws_s3_cors[0] should not allow all methods, all headers or several origins",
+    "actualValue": "aws_s3_cors[0] allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue"
   }
 ]

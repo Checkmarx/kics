@@ -281,16 +281,37 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 }
 
 func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bool {
-	if vulnerabilitySlice[i].FileName != "" {
-		compareFile := strings.Compare(filepath.Base(vulnerabilitySlice[i].FileName), filepath.Base(vulnerabilitySlice[j].FileName))
-		if compareFile == 0 {
-			return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
-		} else if compareFile < 0 {
-			return true
+	a := vulnerabilitySlice[i]
+	b := vulnerabilitySlice[j]
+
+	if a.FileName != "" {
+		compareFile := strings.Compare(filepath.Base(a.FileName), filepath.Base(b.FileName))
+		if compareFile != 0 {
+			return compareFile < 0
 		}
-		return false
 	}
-	return vulnerabilitySlice[i].Line < vulnerabilitySlice[j].Line
+	if a.Line != b.Line {
+		return a.Line < b.Line
+	}
+	if cmp := strings.Compare(a.SearchKey, b.SearchKey); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.SearchValue, b.SearchValue); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.ResourceType, b.ResourceType); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.ResourceName, b.ResourceName); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.QueryName, b.QueryName); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.KeyExpectedValue, b.KeyExpectedValue); cmp != 0 {
+		return cmp < 0
+	}
+	return strings.Compare(a.KeyActualValue, b.KeyActualValue) < 0
 }
 
 func validateQueryResultFields(tb testing.TB, vulnerabilities []model.Vulnerability) {
@@ -375,11 +396,18 @@ func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnera
 		require.Equal(tb, expectedItem.Line, actualItem.Line, "Incorrect detected line for query %s \n%v\n---\n%v",
 			dir, filterFileNameAndLine(expected), filterFileNameAndLine(actual))
 		require.Equal(tb, expectedItem.Severity, actualItem.Severity, "Invalid severity for query %s", dir)
-		require.Equal(tb, expectedItem.QueryName, actualItem.QueryName, "Invalid query name for query %s :: %s", dir, actualItem.FileName)
+		require.Equal(tb, expectedItem.QueryName, actualItem.QueryName, "Invalid query name for query %s :: Actual: %s | Expected: %s", dir, actualItem.FileName)
 		if expectedItem.Value != nil {
 			require.NotNil(tb, actualItem.Value)
 			require.Equal(tb, *expectedItem.Value, *actualItem.Value)
 		}
+		require.Equal(tb, expectedItem.ResourceType, actualItem.ResourceType, "Invalid resource type for query %s\n	Expected: %s\n	Actual: %s", dir, expectedItem.ResourceType, actualItem.ResourceType)
+		require.Equal(tb, expectedItem.ResourceName, actualItem.ResourceName, "Invalid resource name for query %s\n	Expected: %s\n	Actual: %s", dir, expectedItem.ResourceName, actualItem.ResourceName)
+		require.Equal(tb, expectedItem.SearchKey, actualItem.SearchKey, "Invalid searchKey for query %s\n Expected: %s\n Actual: %s", dir, expectedItem.SearchKey, actualItem.SearchKey)
+		require.Equal(tb, expectedItem.SearchValue, actualItem.SearchValue, "Invalid searchValue for query %s\n Expected: %s\n Actual: %s", dir, expectedItem.SearchValue, actualItem.SearchValue)
+		require.Equal(tb, expectedItem.KeyExpectedValue, actualItem.KeyExpectedValue, "Invalid expected value for query: %s\n Expected: %s\n Actual: %s", dir, expectedItem.KeyExpectedValue, actualItem.KeyExpectedValue)
+		require.Equal(tb, expectedItem.KeyActualValue, actualItem.KeyActualValue, "Invalid actual value for query: %s\n Expected: %s\n Actual: %s", dir, expectedItem.KeyActualValue, actualItem.KeyActualValue)
+		require.Equal(tb, expectedItem.IssueType, actualItem.IssueType, "Invalid issue type for query %s\n Expected[%s]%s: %s\n Actual[%s]: %s\n Ex\n", dir, expectedItem.FileName, expectedItem.IssueType, actualItem.FileName, actualItem.IssueType)
 	}
 }
 

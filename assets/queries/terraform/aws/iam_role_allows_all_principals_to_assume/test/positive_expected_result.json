@@ -2,6 +2,14 @@
   {
     "queryName": "IAM Role Allows All Principals To Assume",
     "severity": "MEDIUM",
-    "line": 37
+    "line": 37,
+    "filename": "positive.tf",
+    "resourceType": "aws_iam_role",
+    "resourceName": "${var.name_tag_prefix}-openshift-instance-forward-logs",
+    "searchKey": "aws_iam_role[positive2].assume_role_policy.Principal.AWS",
+    "searchValue": "",
+    "expectedValue": "'assume_role_policy.Statement.Principal.AWS' should not contain ':root'",
+    "actualValue": "'assume_role_policy.Statement.Principal.AWS' contains ':root'",
+    "issueType": "IncorrectValue"
   }
 ]

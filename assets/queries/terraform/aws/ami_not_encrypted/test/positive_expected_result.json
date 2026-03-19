@@ -2,19 +2,40 @@
   {
     "queryName": "AMI Not Encrypted",
     "severity": "MEDIUM",
-    "line": 29,
-    "fileName": "positive.tf"
+    "line": 7,
+    "filename": "positive.tf",
+    "resourceType": "aws_ami",
+    "resourceName": "terraform-example",
+    "searchKey": "aws_ami[positive1].ebs_block_device",
+    "searchValue": "",
+    "expectedValue": "One of 'rule.ebs_block_device.encrypted' should be 'true'",
+    "actualValue": "'rule.ebs_block_device' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AMI Not Encrypted",
     "severity": "MEDIUM",
     "line": 25,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_ami",
+    "resourceName": "terraform-example",
+    "searchKey": "aws_ami[positive2].ebs_block_device.encrypted",
+    "searchValue": "",
+    "expectedValue": "One of 'rule.ebs_block_device.encrypted' should be 'true'",
+    "actualValue": "One of 'rule.ebs_block_device.encrypted' is not 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AMI Not Encrypted",
     "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive.tf"
+    "line": 29,
+    "filename": "positive.tf",
+    "resourceType": "aws_ami",
+    "resourceName": "terraform-example",
+    "searchKey": "aws_ami[positive3]",
+    "searchValue": "",
+    "expectedValue": "One of 'rule.ebs_block_device.encrypted' should be 'true'",
+    "actualValue": "One of 'rule.ebs_block_device' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -3,18 +3,39 @@
     "queryName": "Missing App Armor Config",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "kubernetes:core/v1:Pod",
+    "resourceName": "pod",
+    "searchKey": "resources[pod].properties.metadata",
+    "searchValue": "",
+    "expectedValue": "Pod should have annotation 'container.apparmor.security.beta.kubernetes.io' defined",
+    "actualValue": "Pod does not have annotations defined in metadata",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Missing App Armor Config",
     "severity": "MEDIUM",
     "line": 25,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "kubernetes:core/v1:Pod",
+    "resourceName": "pod",
+    "searchKey": "resources[pod].properties.metadata",
+    "searchValue": "",
+    "expectedValue": "Pod should have annotation 'container.apparmor.security.beta.kubernetes.io' defined",
+    "actualValue": "Pod does not have annotations defined in metadata",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Missing App Armor Config",
     "severity": "MEDIUM",
     "line": 42,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "kubernetes:core/v1:Pod",
+    "resourceName": "pod",
+    "searchKey": "resources[pod].properties.metadata.annotations",
+    "searchValue": "",
+    "expectedValue": "Pod should have annotation 'container.apparmor.security.beta.kubernetes.io' defined",
+    "actualValue": "Pod does not have annotation 'container.apparmor.security.beta.kubernetes.io' defined",
+    "issueType": "MissingAttribute"
   }
 ]

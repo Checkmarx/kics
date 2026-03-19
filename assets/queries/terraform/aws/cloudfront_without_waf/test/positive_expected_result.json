@@ -2,6 +2,14 @@
   {
     "queryName": "CloudFront Without WAF",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive1",
+    "searchKey": "aws_cloudfront_distribution[positive1].web_acl_id",
+    "searchValue": "",
+    "expectedValue": "'web_acl_id'  should exist",
+    "actualValue": "'web_acl_id' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -2,6 +2,14 @@
   {
     "queryName": "RBAC Roles with Port-Forwarding Permission",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "Role",
+    "resourceName": "allow-port-forward",
+    "searchKey": "metadata.name={{allow-port-forward}}.rules",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{allow-port-forward}}.rules[0].resources should not include the 'pods/portforward' resource",
+    "actualValue": "metadata.name={{allow-port-forward}}.rules[0].resources includes the 'pods/portforward' resource",
+    "issueType": "IncorrectValue"
   }
 ]

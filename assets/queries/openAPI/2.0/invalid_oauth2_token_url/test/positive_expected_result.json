@@ -3,12 +3,26 @@
     "queryName": "Invalid OAuth2 Token URL (v2)",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.oAuth2AuthCodeNeg3.tokenUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security definition flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security definition flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid OAuth2 Token URL (v2)",
     "severity": "MEDIUM",
     "line": 30,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "securityDefinitions.oAuth2AuthCodeNeg3.tokenUrl",
+    "searchValue": "",
+    "expectedValue": "OAuth2 security definition flow tokenUrl must be set with a valid URL",
+    "actualValue": "OAuth2 security definition flow tokenUrl has an invalid URL",
+    "issueType": "IncorrectValue"
   }
 ]

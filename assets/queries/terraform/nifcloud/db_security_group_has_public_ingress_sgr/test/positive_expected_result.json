@@ -1,8 +1,15 @@
 [
-	{
-		"queryName": "Nifcloud RDB Has Public DB Ingress Security Group Rule",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud RDB Has Public DB Ingress Security Group Rule",
+    "severity": "HIGH",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "nifcloud_db_security_group",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_db_security_group[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_db_security_group[positive]' set a more restrictive cidr range",
+    "actualValue": "'nifcloud_db_security_group[positive]' allows traffic from /0",
+    "issueType": "IncorrectValue"
+  }
 ]

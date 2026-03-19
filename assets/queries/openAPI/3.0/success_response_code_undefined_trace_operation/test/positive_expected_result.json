@@ -3,12 +3,26 @@
     "queryName": "Success Response Code Undefined for Trace Operation",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.trace.responses",
+    "searchValue": "",
+    "expectedValue": "Trace should have the '200' successful code set",
+    "actualValue": "Trace does not have the '200' successful code set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Trace Operation",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.trace.responses",
+    "searchValue": "",
+    "expectedValue": "Trace should have the '200' successful code set",
+    "actualValue": "Trace does not have the '200' successful code set",
+    "issueType": "MissingAttribute"
   }
 ]

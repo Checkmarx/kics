@@ -2,16 +2,40 @@
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 5
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "google_storage_bucket_iam_binding",
+    "resourceName": "positive1",
+    "searchKey": "google_storage_bucket_iam_binding[positive1].members",
+    "searchValue": "",
+    "expectedValue": "'google_storage_bucket_iam_binding[positive1].members' should not be null",
+    "actualValue": "'google_storage_bucket_iam_binding[positive1].members' is null",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 11
+    "line": 11,
+    "filename": "positive.tf",
+    "resourceType": "google_storage_bucket_iam_binding",
+    "resourceName": "positive2",
+    "searchKey": "google_storage_bucket_iam_binding[positive2].members",
+    "searchValue": "",
+    "expectedValue": "'google_storage_bucket_iam_binding[positive2].members' should not have 'allUsers'",
+    "actualValue": "'google_storage_bucket_iam_binding[positive2].members' has 'allUsers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 17
+    "line": 17,
+    "filename": "positive.tf",
+    "resourceType": "google_storage_bucket_iam_binding",
+    "resourceName": "positive3",
+    "searchKey": "google_storage_bucket_iam_binding[positive3].members",
+    "searchValue": "",
+    "expectedValue": "'google_storage_bucket_iam_binding[positive3].members' should not have 'allAuthenticatedUsers'",
+    "actualValue": "'google_storage_bucket_iam_binding[positive3].members' has 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue"
   }
 ]

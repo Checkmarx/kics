@@ -3,24 +3,52 @@
     "queryName": "Invalid Contact URL (v3)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.url",
+    "searchValue": "",
+    "expectedValue": "info.contact.url has a valid URL",
+    "actualValue": "info.contact.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Contact URL (v3)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.url",
+    "searchValue": "",
+    "expectedValue": "info.contact.url has a valid URL",
+    "actualValue": "info.contact.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Contact URL (v2)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.url",
+    "searchValue": "",
+    "expectedValue": "info.contact.url has a valid URL",
+    "actualValue": "info.contact.url has an invalid URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Contact URL (v2)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.url",
+    "searchValue": "",
+    "expectedValue": "info.contact.url has a valid URL",
+    "actualValue": "info.contact.url has an invalid URL",
+    "issueType": "IncorrectValue"
   }
 ]

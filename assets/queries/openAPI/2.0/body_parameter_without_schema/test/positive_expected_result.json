@@ -3,24 +3,52 @@
     "queryName": "Body Parameter Without Schema",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Body Parameter Without Schema",
-    "severity": "INFO",
-    "line": 14,
-    "filename": "positive2.yaml"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=limit2",
+    "searchValue": "",
+    "expectedValue": "'schema' should be set",
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Body Parameter Without Schema",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit",
+    "searchValue": "",
+    "expectedValue": "'schema' should be set",
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Body Parameter Without Schema",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=limit2",
+    "searchValue": "",
+    "expectedValue": "'schema' should be set",
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Body Parameter Without Schema",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit",
+    "searchValue": "",
+    "expectedValue": "'schema' should be set",
+    "actualValue": "'schema' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

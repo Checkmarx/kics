@@ -3,6 +3,13 @@
     "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.iam_managed_policy",
+    "resourceName": "Create IAM Managed Policy",
+    "searchKey": "name={{Create IAM Managed Policy}}.{{community.aws.iam_managed_policy}}.policy",
+    "searchValue": "",
+    "expectedValue": "iam_managed_policy.policy.Statement.Principal.AWS should not contain '*'",
+    "actualValue": "iam_managed_policy.policy.Statement.Principal.AWS contains '*'",
+    "issueType": "IncorrectValue"
   }
 ]

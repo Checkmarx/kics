@@ -3,18 +3,39 @@
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "community.aws.iam_role",
+    "resourceName": "Create a role with description and tags",
+    "searchKey": "name={{Create a role with description and tags}}.{{community.aws.iam_role}}.assume_role_policy_document",
+    "searchValue": "",
+    "expectedValue": "assume_role_policy_document should not contain ':root",
+    "actualValue": "assume_role_policy_document contains ':root'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "community.aws.iam_role",
+    "resourceName": "Create a role with description and tags2",
+    "searchKey": "name={{Create a role with description and tags2}}.{{community.aws.iam_role}}.assume_role_policy_document",
+    "searchValue": "",
+    "expectedValue": "assume_role_policy_document should not contain ':root",
+    "actualValue": "assume_role_policy_document contains ':root'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "community.aws.iam_role",
+    "resourceName": "Create a role with description and tags3",
+    "searchKey": "name={{Create a role with description and tags3}}.{{community.aws.iam_role}}.assume_role_policy_document",
+    "searchValue": "",
+    "expectedValue": "assume_role_policy_document should not contain ':root",
+    "actualValue": "assume_role_policy_document contains ':root'",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -2,6 +2,14 @@
   {
     "queryName": "Cloud Storage Bucket Logging Not Enabled",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "google_storage_bucket",
+    "resourceName": "auto-expiring-bucket",
+    "searchKey": "google_storage_bucket[positive1]",
+    "searchValue": "",
+    "expectedValue": "'google_storage_bucket.logging' should be set",
+    "actualValue": "'google_storage_bucket.logging' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

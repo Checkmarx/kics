@@ -1,7 +1,15 @@
 [
-	{
-		"queryName": "Service Type is NodePort",
-		"severity": "LOW",
-		"line": 6
-	}
+  {
+    "queryName": "Service Type is NodePort",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive.yaml",
+    "resourceType": "Service",
+    "resourceName": "my-service",
+    "searchKey": "metadata.name={{my-service}}.spec.type",
+    "searchValue": "",
+    "expectedValue": "spec.type should not be 'NodePort'",
+    "actualValue": "spec.type is 'NodePort'",
+    "issueType": "IncorrectValue"
+  }
 ]

@@ -3,24 +3,52 @@
     "queryName": "Unknown Prefix (v3)",
     "severity": "INFO",
     "line": 53,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{applicasdsadtion/json}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.ResponseExample.content.{{applicasdsadtion/json}} is a known prefix",
+    "actualValue": "components.responses.ResponseExample.content.{{applicasdsadtion/json}} is an unknown prefix",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Prefix (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{ddddd/json}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{ddddd/json}} is a known prefix",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{ddddd/json}} is an unknown prefix",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Prefix (v3)",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{sssssss/json}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.ResponseExample.content.{{sssssss/json}} is a known prefix",
+    "actualValue": "components.responses.ResponseExample.content.{{sssssss/json}} is an unknown prefix",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Unknown Prefix (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{applicatisdsdsdon/json}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{applicatisdsdsdon/json}} is a known prefix",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{applicatisdsdsdon/json}} is an unknown prefix",
+    "issueType": "IncorrectValue"
   }
 ]

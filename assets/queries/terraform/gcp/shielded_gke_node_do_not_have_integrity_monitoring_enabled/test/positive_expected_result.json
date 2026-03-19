@@ -3,12 +3,26 @@
     "queryName": "Beta - Shielded GKE Node Do Not Have Integrity Monitoring Enabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1].node_config.shielded_instance_config.enable_integrity_monitoring",
+    "searchValue": "",
+    "expectedValue": "'node_config.shielded_instance_config.enable_integrity_monitoring' should be defined to 'true'",
+    "actualValue": "'node_config.shielded_instance_config.enable_integrity_monitoring' is not defined to 'true'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Shielded GKE Node Do Not Have Integrity Monitoring Enabled",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "google_container_node_pool",
+    "resourceName": "my-node-pool",
+    "searchKey": "google_container_node_pool[positive2].node_config.shielded_instance_config.enable_integrity_monitoring",
+    "searchValue": "",
+    "expectedValue": "'node_config.shielded_instance_config.enable_integrity_monitoring' should be defined to 'true'",
+    "actualValue": "'node_config.shielded_instance_config.enable_integrity_monitoring' is not defined to 'true'",
+    "issueType": "IncorrectValue"
   }
 ]

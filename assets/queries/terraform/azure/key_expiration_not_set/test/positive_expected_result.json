@@ -2,6 +2,14 @@
   {
     "queryName": "Key Expiration Not Set",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_key_vault_key",
+    "resourceName": "generated-certificate",
+    "searchKey": "azurerm_key_vault_key[positive1]",
+    "searchValue": "",
+    "expectedValue": "'expiration_date' should exist",
+    "actualValue": "'expiration_date' is missing",
+    "issueType": "MissingAttribute"
   }
 ]

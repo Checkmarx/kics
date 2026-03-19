@@ -3,36 +3,78 @@
     "queryName": "Missing Flag From Dnf Install",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive.dockerfile"
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:27}}.RUN={{set -uex &&     dnf config-manager --set-enabled docker-ce-test &&     dnf install docker-ce &&     dnf clean all}}",
+    "searchValue": "dnf install docker-ce",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{dnf install docker-ce}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Missing Flag From Dnf Install",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive.dockerfile"
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:28}}.RUN={{dnf in docker-ce}}",
+    "searchValue": "dnf in docker-ce",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{dnf in docker-ce}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Missing Flag From Dnf Install",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive2.dockerfile"
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:27}}.RUN={{set -uex;     dnf config-manager --set-enabled docker-ce-test;     dnf install docker-ce;     dnf clean all}}",
+    "searchValue": "set -uex;     dnf config-manager --set-enabled docker-ce-test;     dnf install docker-ce;     dnf clean all",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{set -uex;     dnf config-manager --set-enabled docker-ce-test;     dnf install docker-ce;     dnf clean all}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Missing Flag From Dnf Install",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive2.dockerfile"
+    "filename": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:28}}.RUN={{dnf in docker-ce}}",
+    "searchValue": "dnf in docker-ce",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{dnf in docker-ce}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Missing Flag From Dnf Install",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive3.dockerfile"
+    "filename": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:27}}.RUN={{microdnf install     openssl-libs-1:1.1.1k-6.el8_5.x86_64     zlib-1.2.11-18.el8_5.x86_64  && microdnf clean all}}",
+    "searchValue": "microdnf install     openssl-libs-1:1.1.1k-6.el8_5.x86_64     zlib-1.2.11-18.el8_5.x86_64",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{microdnf install     openssl-libs-1:1.1.1k-6.el8_5.x86_64     zlib-1.2.11-18.el8_5.x86_64}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Missing Flag From Dnf Install",
     "severity": "LOW",
     "line": 21,
-    "fileName": "positive4.dockerfile"
+    "filename": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{${BASE_CONTAINER_REGISTRY:-mcr.microsoft.com}/azure-cli AS installer}}.RUN={{tdnf install     jq     tar     libicu     python3-requests     python3-yaml}}",
+    "searchValue": "tdnf install     jq     tar     libicu     python3-requests     python3-yaml",
+    "expectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
+    "actualValue": "Command `RUN={{tdnf install     jq     tar     libicu     python3-requests     python3-yaml}}` doesn't have the `-y` or `--assumeyes` switch set",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -1,7 +1,15 @@
 [
   {
-    "line": 5,
     "queryName": "Lambda Permission Principal Is Wildcard",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "aws_lambda_permission",
+    "resourceName": "positive1",
+    "searchKey": "aws_lambda_permission[positive1].principal",
+    "searchValue": "",
+    "expectedValue": "aws_lambda_permission[positive1].principal shouldn't contain a wildcard",
+    "actualValue": "aws_lambda_permission[positive1].principal contains a wildcard",
+    "issueType": "IncorrectValue"
   }
 ]

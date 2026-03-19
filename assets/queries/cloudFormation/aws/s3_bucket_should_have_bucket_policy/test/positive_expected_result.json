@@ -3,48 +3,104 @@
     "queryName": "S3 Bucket Should Have Bucket Policy",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "docexamplebucket1",
+    "searchKey": "Resources.S3Bucket3",
+    "searchValue": "",
+    "expectedValue": "'Resources.S3Bucket3.Properties.BucketName' or 'Resources.[S3Bucket3]' should be associated with an 'AWS::S3::BucketPolicy'",
+    "actualValue": "'Resources.S3Bucket3.Properties.BucketName' or 'Resources.[S3Bucket3]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
     "severity": "LOW",
     "line": 31,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket",
+    "searchKey": "Resources.S3Bucket",
+    "searchValue": "",
+    "expectedValue": "'Resources.S3Bucket.Properties.BucketName' or 'Resources.[S3Bucket]' should be associated with an 'AWS::S3::BucketPolicy'",
+    "actualValue": "'Resources.S3Bucket.Properties.BucketName' or 'Resources.[S3Bucket]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
     "severity": "LOW",
     "line": 56,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "docexamplebucket5",
+    "searchKey": "Resources.S3Bucket7",
+    "searchValue": "",
+    "expectedValue": "'Resources.S3Bucket7.Properties.BucketName' or 'Resources.[S3Bucket7]' should be associated with an 'AWS::S3::BucketPolicy'",
+    "actualValue": "'Resources.S3Bucket7.Properties.BucketName' or 'Resources.[S3Bucket7]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
     "severity": "LOW",
     "line": 42,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "docexamplebucket1",
+    "searchKey": "Resources.S3Bucket3",
+    "searchValue": "",
+    "expectedValue": "'Resources.S3Bucket3.Properties.BucketName' or 'Resources.[S3Bucket3]' should be associated with an 'AWS::S3::BucketPolicy'",
+    "actualValue": "'Resources.S3Bucket3.Properties.BucketName' or 'Resources.[S3Bucket3]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
     "severity": "LOW",
     "line": 88,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3Bucket",
+    "searchKey": "Resources.S3Bucket",
+    "searchValue": "",
+    "expectedValue": "'Resources.S3Bucket.Properties.BucketName' or 'Resources.[S3Bucket]' should be associated with an 'AWS::S3::BucketPolicy'",
+    "actualValue": "'Resources.S3Bucket.Properties.BucketName' or 'Resources.[S3Bucket]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
     "severity": "LOW",
     "line": 130,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "docexamplebucket5",
+    "searchKey": "Resources.S3Bucket7",
+    "searchValue": "",
+    "expectedValue": "'Resources.S3Bucket7.Properties.BucketName' or 'Resources.[S3Bucket7]' should be associated with an 'AWS::S3::BucketPolicy'",
+    "actualValue": "'Resources.S3Bucket7.Properties.BucketName' or 'Resources.[S3Bucket7]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "MyS3Bucket2",
+    "searchKey": "Resources.MyS3Bucket2",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyS3Bucket2.Properties.BucketName' or 'Resources.[MyS3Bucket2]' should be associated with an 'AWS::S3::BucketPolicy'",
+    "actualValue": "'Resources.MyS3Bucket2.Properties.BucketName' or 'Resources.[MyS3Bucket2]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "MyS3Bucket2",
+    "searchKey": "Resources.MyS3Bucket2",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyS3Bucket2.Properties.BucketName' or 'Resources.[MyS3Bucket2]' should be associated with an 'AWS::S3::BucketPolicy'",
+    "actualValue": "'Resources.MyS3Bucket2.Properties.BucketName' or 'Resources.[MyS3Bucket2]' is not associated with an 'AWS::S3::BucketPolicy'",
+    "issueType": "IncorrectValue"
   }
 ]

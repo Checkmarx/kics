@@ -3,12 +3,26 @@
     "queryName": "RefreshToken Is Exposed",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Alexa::ASK::Skill",
+    "resourceName": "MySkill",
+    "searchKey": "Resources.MySkill.Properties.AuthenticationConfiguration.RefreshToken",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySkill.Properties.RefreshToken' starts with '{{resolve:secretsmanager:' or starts with '{{resolve:ssm-secure:'",
+    "actualValue": "'Resources.MySkill.Properties.RefreshToken' does not start with '{{resolve:secretsmanager:' or with '{{resolve:ssm-secure:'",
+    "issueType": "IncorrectValue"
   },
   {
-    "fileName": "positive2.json",
     "queryName": "RefreshToken Is Exposed",
     "severity": "HIGH",
-    "line": 26
+    "line": 26,
+    "filename": "positive2.json",
+    "resourceType": "Alexa::ASK::Skill",
+    "resourceName": "MySkill",
+    "searchKey": "Resources.MySkill.Properties.AuthenticationConfiguration.RefreshToken",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySkill.Properties.RefreshToken' starts with '{{resolve:secretsmanager:' or starts with '{{resolve:ssm-secure:'",
+    "actualValue": "'Resources.MySkill.Properties.RefreshToken' does not start with '{{resolve:secretsmanager:' or with '{{resolve:ssm-secure:'",
+    "issueType": "IncorrectValue"
   }
 ]

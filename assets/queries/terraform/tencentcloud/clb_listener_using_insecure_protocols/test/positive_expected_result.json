@@ -3,18 +3,39 @@
     "queryName": "CLB Listener Using Insecure Protocols",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "tencentcloud_clb_listener",
+    "resourceName": "listener",
+    "searchKey": "tencentcloud_clb_listener[listener].protocol",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_clb_listener[listener].protocol[HTTP] should not be an insecure protocol",
+    "actualValue": "tencentcloud_clb_listener[listener].protocol[HTTP] is an insecure protocol",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CLB Listener Using Insecure Protocols",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "tencentcloud_clb_listener",
+    "resourceName": "listener",
+    "searchKey": "tencentcloud_clb_listener[listener].protocol",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_clb_listener[listener].protocol[TCP] should not be an insecure protocol",
+    "actualValue": "tencentcloud_clb_listener[listener].protocol[TCP] is an insecure protocol",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CLB Listener Using Insecure Protocols",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "tencentcloud_clb_listener",
+    "resourceName": "listener",
+    "searchKey": "tencentcloud_clb_listener[listener].protocol",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_clb_listener[listener].protocol[UDP] should not be an insecure protocol",
+    "actualValue": "tencentcloud_clb_listener[listener].protocol[UDP] is an insecure protocol",
+    "issueType": "IncorrectValue"
   }
 ]

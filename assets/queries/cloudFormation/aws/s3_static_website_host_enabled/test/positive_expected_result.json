@@ -3,12 +3,26 @@
     "queryName": "S3 Static Website Host Enabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket2",
+    "searchKey": "Resources.Bucket2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Bucket2.Properties.WebsiteConfiguration' should not be defined",
+    "actualValue": "'Resources.Bucket2.Properties.WebsiteConfiguration' is defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "S3 Static Website Host Enabled",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket2",
+    "searchKey": "Resources.Bucket2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Bucket2.Properties.WebsiteConfiguration' should not be defined",
+    "actualValue": "'Resources.Bucket2.Properties.WebsiteConfiguration' is defined",
+    "issueType": "IncorrectValue"
   }
 ]

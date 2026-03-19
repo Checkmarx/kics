@@ -3,72 +3,156 @@
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.sgwithoutegress.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' should be defined",
+    "actualValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.sgwithoutegress.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' should be defined",
+    "actualValue": "'Resources.sgwithoutegress.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.sgwithegress.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sgwithegress.Properties.SecurityGroupEgress' should be defined",
+    "actualValue": "'Resources.sgwithegress.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.sgwithegress.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sgwithegress.Properties.SecurityGroupEgress' should be defined",
+    "actualValue": "'Resources.sgwithegress.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyClassicLB",
+    "searchKey": "Resources.MySG.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should be defined",
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyClassicLB",
+    "searchKey": "Resources.MySG.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should be defined",
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive7.yaml"
+    "filename": "positive7.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyClassicLB",
+    "searchKey": "Resources.MySG.Properties.SecurityGroupEgress",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should not be empty",
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive8.json"
+    "filename": "positive8.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyClassicLB",
+    "searchKey": "Resources.MySG.Properties.SecurityGroupEgress",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should not be empty",
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive9.yaml"
+    "filename": "positive9.yaml",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "MyALB",
+    "searchKey": "Resources.MySGv2.Properties.SecurityGroupEgress",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySGv2.Properties.SecurityGroupEgress' should not be empty",
+    "actualValue": "'Resources.MySGv2.Properties.SecurityGroupEgress' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive10.json"
+    "filename": "positive10.json",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "MyALB",
+    "searchKey": "Resources.MySGv2.Properties.SecurityGroupEgress",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySGv2.Properties.SecurityGroupEgress' should not be empty",
+    "actualValue": "'Resources.MySGv2.Properties.SecurityGroupEgress' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive11.yaml"
+    "filename": "positive11.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyClassicLB",
+    "searchKey": "Resources.MySG.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should be defined",
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ELB With Security Group Without Outbound Rules",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive12.json"
+    "filename": "positive12.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyClassicLB",
+    "searchKey": "Resources.MySG.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MySG.Properties.SecurityGroupEgress' should be defined",
+    "actualValue": "'Resources.MySG.Properties.SecurityGroupEgress' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

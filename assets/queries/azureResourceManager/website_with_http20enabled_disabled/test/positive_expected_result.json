@@ -2,73 +2,157 @@
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
     "severity": "LOW",
+    "line": 5,
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'siteConfig' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Website with 'Http20Enabled' Disabled",
+    "severity": "LOW",
     "line": 15,
-    "fileName": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'siteConfig' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Website with 'Http20Enabled' Disabled",
+    "severity": "LOW",
+    "line": 9,
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property value set to true in siteConfig",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property value set to true in siteConfig",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Website with 'Http20Enabled' Disabled",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties.siteConfig",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property defined in siteConfig",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties.siteConfig",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property defined in siteConfig",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Website with 'Http20Enabled' Disabled",
+    "severity": "LOW",
+    "line": 5,
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'siteConfig' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "properties.template.resources.name={{webSite}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'siteConfig' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'siteConfig' property defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Website with 'Http20Enabled' Disabled",
+    "severity": "LOW",
+    "line": 9,
+    "filename": "positive5.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property value set to true in siteConfig",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
     "severity": "LOW",
     "line": 21,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property value set to true in siteConfig",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Website with 'Http20Enabled' Disabled",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive6.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "resources.name={{webSite}}.properties.siteConfig",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property defined in siteConfig",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Website with 'Http20Enabled' Disabled",
     "severity": "LOW",
     "line": 20,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "Website with 'Http20Enabled' Disabled",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Website with 'Http20Enabled' Disabled",
-    "severity": "LOW",
-    "line": 9,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Website with 'Http20Enabled' Disabled",
-    "severity": "LOW",
-    "line": 8,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Website with 'Http20Enabled' Disabled",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "Website with 'Http20Enabled' Disabled",
-    "severity": "LOW",
-    "line": 9,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "Website with 'Http20Enabled' Disabled",
-    "severity": "LOW",
-    "line": 8,
-    "fileName": "positive6.bicep"
+    "filename": "positive6.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSite",
+    "searchKey": "properties.template.resources.name={{webSite}}.properties.siteConfig",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property defined in siteConfig",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig",
+    "issueType": "MissingAttribute"
   }
 ]

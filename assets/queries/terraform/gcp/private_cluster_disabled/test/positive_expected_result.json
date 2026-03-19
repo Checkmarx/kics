@@ -2,36 +2,92 @@
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'private_cluster_config' should be defined and not null",
+    "actualValue": "Attribute 'private_cluster_config' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive2].private_cluster_config",
+    "searchValue": "",
+    "expectedValue": "Attribute 'private_cluster_config.enable_private_endpoint' should be defined and Attribute 'private_cluster_config.enable_private_nodes' should be defined",
+    "actualValue": "Attribute 'private_cluster_config.enable_private_endpoint' is undefined or Attribute 'private_cluster_config.enable_private_nodes' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 30
+    "line": 30,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive3].private_cluster_config",
+    "searchValue": "",
+    "expectedValue": "Attribute 'private_cluster_config.enable_private_endpoint' should be defined and Attribute 'private_cluster_config.enable_private_nodes' should be defined",
+    "actualValue": "Attribute 'private_cluster_config.enable_private_endpoint' is undefined or Attribute 'private_cluster_config.enable_private_nodes' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 44
+    "line": 44,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive4].private_cluster_config",
+    "searchValue": "",
+    "expectedValue": "Attribute 'private_cluster_config.enable_private_endpoint' should be defined and Attribute 'private_cluster_config.enable_private_nodes' should be defined",
+    "actualValue": "Attribute 'private_cluster_config.enable_private_endpoint' is undefined or Attribute 'private_cluster_config.enable_private_nodes' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 58
+    "line": 58,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive5].private_cluster_config",
+    "searchValue": "",
+    "expectedValue": "Attribute 'private_cluster_config.enable_private_endpoint' should be true and Attribute 'private_cluster_config.enable_private_nodes' should be true",
+    "actualValue": "Attribute 'private_cluster_config.enable_private_endpoint' is false or Attribute 'private_cluster_config.enable_private_nodes' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 73
+    "line": 73,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive6].private_cluster_config",
+    "searchValue": "",
+    "expectedValue": "Attribute 'private_cluster_config.enable_private_endpoint' should be true and Attribute 'private_cluster_config.enable_private_nodes' should be true",
+    "actualValue": "Attribute 'private_cluster_config.enable_private_endpoint' is false or Attribute 'private_cluster_config.enable_private_nodes' is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Private Cluster Disabled",
     "severity": "MEDIUM",
-    "line": 88
+    "line": 88,
+    "filename": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive7].private_cluster_config",
+    "searchValue": "",
+    "expectedValue": "Attribute 'private_cluster_config.enable_private_endpoint' should be true and Attribute 'private_cluster_config.enable_private_nodes' should be true",
+    "actualValue": "Attribute 'private_cluster_config.enable_private_endpoint' is false or Attribute 'private_cluster_config.enable_private_nodes' is false",
+    "issueType": "IncorrectValue"
   }
 ]

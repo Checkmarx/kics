@@ -3,18 +3,39 @@
     "queryName": "DynamoDB Table Not Encrypted",
     "severity": "HIGH",
     "line": 18,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "my-table",
+    "searchKey": "Resources.MyDynamoDBTable.Properties.SSESpecification.SSEEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled should be 'true'",
+    "actualValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled is 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "DynamoDB Table Not Encrypted",
     "severity": "HIGH",
     "line": 17,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "my-table",
+    "searchKey": "Resources.MyDynamoDBTable.Properties.SSESpecification",
+    "searchValue": "",
+    "expectedValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled should be set and to 'true'",
+    "actualValue": "Resources[MyDynamoDBTable].Properties.SSESpecification.SSEEnabled is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "DynamoDB Table Not Encrypted",
     "severity": "HIGH",
     "line": 8,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::DynamoDB::Table",
+    "resourceName": "AuthorsTable_prod",
+    "searchKey": "Resources.OrdersTable.Properties.SSESpecification.SSEEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources[OrdersTable].Properties.SSESpecification.SSEEnabled should be 'true'",
+    "actualValue": "Resources[OrdersTable].Properties.SSESpecification.SSEEnabled is 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

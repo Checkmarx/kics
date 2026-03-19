@@ -2,11 +2,27 @@
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_redshift_cluster[positive1]",
+    "searchValue": "cluster_subnet_group_name",
+    "expectedValue": "aws_redshift_cluster[positive1].cluster_subnet_group_name should be set",
+    "actualValue": "aws_redshift_cluster[positive1].cluster_subnet_group_name is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_redshift_cluster[positive1]",
+    "searchValue": "vpc_security_group_ids",
+    "expectedValue": "aws_redshift_cluster[positive1].vpc_security_group_ids should be set",
+    "actualValue": "aws_redshift_cluster[positive1].vpc_security_group_ids is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

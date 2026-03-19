@@ -3,6 +3,13 @@
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "CRITICAL",
     "line": 6,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.s3_bucket",
+    "resourceName": "Bucket",
+    "searchKey": "name={{Bucket}}.{{amazon.aws.s3_bucket}}.policy",
+    "searchValue": "",
+    "expectedValue": "s3_bucket[mys3bucket] should not allow Delete Action From All Principals",
+    "actualValue": "s3_bucket[mys3bucket] allows Delete Action From All Principals",
+    "issueType": "IncorrectValue"
   }
 ]

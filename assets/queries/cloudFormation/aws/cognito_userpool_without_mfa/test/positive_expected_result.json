@@ -2,25 +2,53 @@
   {
     "queryName": "Cognito UserPool Without MFA",
     "severity": "LOW",
-    "line": 14,
-    "fileName": "positive1.yaml"
+    "line": 8,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Cognito::UserPool",
+    "resourceName": "${AuthName}-user-pool",
+    "searchKey": "Resources.UserPool2.Properties.MfaConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.UserPool2.Properties.MfaConfiguration should be set to ON or OPTIONAL",
+    "actualValue": "Resources.UserPool2.Properties.MfaConfiguration is set to OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cognito UserPool Without MFA",
     "severity": "LOW",
-    "line": 8,
-    "fileName": "positive1.yaml"
+    "line": 14,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Cognito::UserPool",
+    "resourceName": "${AuthName}-user-pool",
+    "searchKey": "Resources.UserPool4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.UserPool4.Properties.MfaConfiguration should be set",
+    "actualValue": "Resources.UserPool4.Properties.MfaConfiguration is undefined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Cognito UserPool Without MFA",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive2.json",
+    "resourceType": "AWS::Cognito::UserPool",
+    "resourceName": "${AuthName}-user-pool",
+    "searchKey": "Resources.UserPool2.Properties.MfaConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.UserPool2.Properties.MfaConfiguration should be set to ON or OPTIONAL",
+    "actualValue": "Resources.UserPool2.Properties.MfaConfiguration is set to OFF",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cognito UserPool Without MFA",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive2.json"
-  },
-  {
-    "severity": "LOW",
-    "line": 10,
-    "fileName": "positive2.json",
-    "queryName": "Cognito UserPool Without MFA"
+    "filename": "positive2.json",
+    "resourceType": "AWS::Cognito::UserPool",
+    "resourceName": "${AuthName}-user-pool",
+    "searchKey": "Resources.UserPool4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.UserPool4.Properties.MfaConfiguration should be set",
+    "actualValue": "Resources.UserPool4.Properties.MfaConfiguration is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

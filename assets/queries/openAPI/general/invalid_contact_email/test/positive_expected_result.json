@@ -3,24 +3,52 @@
     "queryName": "Invalid Contact Email (v3)",
     "severity": "INFO",
     "line": 9,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.email",
+    "searchValue": "",
+    "expectedValue": "info.contact.email has a valid email",
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Contact Email (v3)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.email",
+    "searchValue": "",
+    "expectedValue": "info.contact.email has a valid email",
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Contact Email (v2)",
     "severity": "INFO",
     "line": 9,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.email",
+    "searchValue": "",
+    "expectedValue": "info.contact.email has a valid email",
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Contact Email (v2)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.contact.email",
+    "searchValue": "",
+    "expectedValue": "info.contact.email has a valid email",
+    "actualValue": "info.contact.email has an invalid email",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -2,21 +2,53 @@
   {
     "queryName": "Small MSSQL Server Audit Retention",
     "severity": "LOW",
-    "line": 7
+    "line": 7,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_sql_database",
+    "resourceName": "myexamplesqldatabase",
+    "searchKey": "azurerm_sql_database[positive1].extended_auditing_policy",
+    "searchValue": "",
+    "expectedValue": "extended_auditing_policy.retention_in_days should be defined and bigger than 90",
+    "actualValue": "extended_auditing_policy.retention_in_days is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Small MSSQL Server Audit Retention",
     "severity": "LOW",
-    "line": 28
+    "line": 28,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_sql_database",
+    "resourceName": "myexamplesqldatabase",
+    "searchKey": "azurerm_sql_database[positive2].extended_auditing_policy.retention_in_days",
+    "searchValue": "",
+    "expectedValue": "'positive2.extended_auditing_policy.retention_in_days' should be bigger than 90",
+    "actualValue": "'extended_auditing_policy.retention_in_days' is 90",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Small MSSQL Server Audit Retention",
     "severity": "LOW",
-    "line": 46
+    "line": 46,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_sql_database",
+    "resourceName": "myexamplesqldatabase",
+    "searchKey": "azurerm_sql_database[positive3].extended_auditing_policy.retention_in_days",
+    "searchValue": "",
+    "expectedValue": "'positive3.extended_auditing_policy.retention_in_days' should be bigger than 90",
+    "actualValue": "'extended_auditing_policy.retention_in_days' is 0",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Small MSSQL Server Audit Retention",
     "severity": "LOW",
-    "line": 66
+    "line": 66,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_sql_server",
+    "resourceName": "sqlserver",
+    "searchKey": "azurerm_sql_server[positive4].extended_auditing_policy.retention_in_days",
+    "searchValue": "",
+    "expectedValue": "'positive4.extended_auditing_policy.retention_in_days' should be bigger than 90",
+    "actualValue": "'extended_auditing_policy.retention_in_days' is 20",
+    "issueType": "MissingAttribute"
   }
 ]

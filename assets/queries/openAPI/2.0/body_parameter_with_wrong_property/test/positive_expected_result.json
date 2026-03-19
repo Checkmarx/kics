@@ -3,24 +3,52 @@
     "queryName": "Body Parameter With Wrong Property",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Body Parameter With Wrong Property",
-    "severity": "INFO",
-    "line": 30,
-    "filename": "positive2.yaml"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.desc",
+    "searchValue": "",
+    "expectedValue": "{\"type\": \"string\"} is a valid property for body parameter",
+    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Body Parameter With Wrong Property",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.desc",
+    "searchValue": "",
+    "expectedValue": "{\"type\": \"string\"} is a valid property for body parameter",
+    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Body Parameter With Wrong Property",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.desc",
+    "searchValue": "",
+    "expectedValue": "{\"type\": \"string\"} is a valid property for body parameter",
+    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Body Parameter With Wrong Property",
+    "severity": "INFO",
+    "line": 30,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.desc",
+    "searchValue": "",
+    "expectedValue": "{\"type\": \"string\"} is a valid property for body parameter",
+    "actualValue": "{\"type\": \"string\"} is not a valid property for body parameter",
+    "issueType": "IncorrectValue"
   }
 ]

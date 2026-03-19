@@ -3,24 +3,52 @@
     "queryName": "AKS Uses Azure Policies Add-On Disabled",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_kubernetes_cluster[positive1].addon_profile.azure_policy.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive1].addon_profile.azure_policy.enabled' should be set to true",
+    "actualValue": "'azurerm_kubernetes_cluster[positive1].addon_profile.azure_policy.enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Uses Azure Policies Add-On Disabled",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive2].azure_policy_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive2].azure_policy_enabled' should be set to true",
+    "actualValue": "'azurerm_kubernetes_cluster[positive2].azure_policy_enabled' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AKS Uses Azure Policies Add-On Disabled",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_kubernetes_cluster[positive3].addon_profile",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive3].addon_profile.azure_policy' should be defined and set to true",
+    "actualValue": "'azurerm_kubernetes_cluster[positive3].addon_profile.azure_policy' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "AKS Uses Azure Policies Add-On Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive4]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive4]' should use Azure Policies",
+    "actualValue": "'azurerm_kubernetes_cluster[positive4]' does not use Azure Policies",
+    "issueType": "MissingAttribute"
   }
 ]

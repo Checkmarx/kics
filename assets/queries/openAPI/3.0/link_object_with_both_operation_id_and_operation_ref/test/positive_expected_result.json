@@ -3,36 +3,78 @@
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 70,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{200}}.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.200.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "components.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "paths/.get.responses.200.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "paths./.get.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 67,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "components.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "components.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 50,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{200}}.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.200.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "components.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "paths/.get.responses.200.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "paths./.get.responses.200.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Link Object With Both 'operationId' And 'operationRef'",
     "severity": "INFO",
     "line": 42,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.links.{{address}}",
+    "searchValue": "",
+    "expectedValue": "components.links.address has both 'operationId' and 'operationRef' defined",
+    "actualValue": "components.links.address does not have both 'operationId' and 'operationRef' defined",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -3,12 +3,26 @@
     "queryName": "CloudWatch AWS Organizations Changes Missing Alarm",
     "severity": "INFO",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventSource = \"organizations.amazonaws.com\") && (($.eventName = AcceptHandshake) || ($.eventName = AttachPolicy) || ($.eventName = CreateAccount) || ($.eventName = PutBucketLifecycle) || ($.eventName = CreateOrganizationalUnit) || ($.eventName = CreatePolicy) || ($.eventName = DeclineHandshake) || ($.eventName = DeleteOrganization) || ($.eventName = DeleteOrganizationalUnit) || ($.eventName = DeletePolicy) || ($.eventName = DetachPolicy) || ($.eventName = DisablePolicyType) || ($.eventName = EnablePolicyType) || ($.eventName = InviteAccountToOrganization) || ($.eventName = LeaveOrganization) || ($.eventName = MoveAccount) || ($.eventName = RemoveAccountFromOrganization) || ($.eventName = UpdatePolicy) || ($.eventName = UpdateOrganizationalUni)) } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = \"organizations.amazonaws.com\") && (($.eventName = AcceptHandshake) || ($.eventName = AttachPolicy) || ($.eventName = CreateAccount) || ($.eventName = PutBucketLifecycle) || ($.eventName = CreateOrganizationalUnit) || ($.eventName = CreatePolicy) || ($.eventName = DeclineHandshake) || ($.eventName = DeleteOrganization) || ($.eventName = DeleteOrganizationalUnit) || ($.eventName = DeletePolicy) || ($.eventName = DetachPolicy) || ($.eventName = DisablePolicyType) || ($.eventName = EnablePolicyType) || ($.eventName = InviteAccountToOrganization) || ($.eventName = LeaveOrganization) || ($.eventName = MoveAccount) || ($.eventName = RemoveAccountFromOrganization) || ($.eventName = UpdatePolicy) || ($.eventName = UpdateOrganizationalUni)) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudWatch AWS Organizations Changes Missing Alarm",
     "severity": "INFO",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "unknown",
+    "searchKey": "resource",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventSource = \"organizations.amazonaws.com\") && (($.eventName = AcceptHandshake) || ($.eventName = AttachPolicy) || ($.eventName = CreateAccount) || ($.eventName = PutBucketLifecycle) || ($.eventName = CreateOrganizationalUnit) || ($.eventName = CreatePolicy) || ($.eventName = DeclineHandshake) || ($.eventName = DeleteOrganization) || ($.eventName = DeleteOrganizationalUnit) || ($.eventName = DeletePolicy) || ($.eventName = DetachPolicy) || ($.eventName = DisablePolicyType) || ($.eventName = EnablePolicyType) || ($.eventName = InviteAccountToOrganization) || ($.eventName = LeaveOrganization) || ($.eventName = MoveAccount) || ($.eventName = RemoveAccountFromOrganization) || ($.eventName = UpdatePolicy) || ($.eventName = UpdateOrganizationalUni)) } and be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not filtering pattern { ($.eventSource = \"organizations.amazonaws.com\") && (($.eventName = AcceptHandshake) || ($.eventName = AttachPolicy) || ($.eventName = CreateAccount) || ($.eventName = PutBucketLifecycle) || ($.eventName = CreateOrganizationalUnit) || ($.eventName = CreatePolicy) || ($.eventName = DeclineHandshake) || ($.eventName = DeleteOrganization) || ($.eventName = DeleteOrganizationalUnit) || ($.eventName = DeletePolicy) || ($.eventName = DetachPolicy) || ($.eventName = DisablePolicyType) || ($.eventName = EnablePolicyType) || ($.eventName = InviteAccountToOrganization) || ($.eventName = LeaveOrganization) || ($.eventName = MoveAccount) || ($.eventName = RemoveAccountFromOrganization) || ($.eventName = UpdatePolicy) || ($.eventName = UpdateOrganizationalUni)) } or not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute"
   }
 ]

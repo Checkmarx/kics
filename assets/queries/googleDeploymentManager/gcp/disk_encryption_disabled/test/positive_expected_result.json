@@ -3,36 +3,78 @@
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "Disk Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Disk Encryption Disabled",
-    "severity": "MEDIUM",
-    "line": 16,
-    "filename": "positive3.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template",
+    "searchKey": "resources.name={{vm-template}}.properties.disks",
+    "searchValue": "",
+    "expectedValue": "'diskEncryptionKey' should be defined and not null",
+    "actualValue": "'diskEncryptionKey' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "compute.v1.disk",
+    "resourceName": "disk-3-data",
+    "searchKey": "resources.name={{disk-3-data}}.properties.disks",
+    "searchValue": "",
+    "expectedValue": "'diskEncryptionKey' should be defined and not null",
+    "actualValue": "'diskEncryptionKey' is undefined or null",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive2.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template2",
+    "searchKey": "resources.name={{vm-template2}}.properties.disks.diskEncryptionKey",
+    "searchValue": "",
+    "expectedValue": "'disk_encryption_key.rawKey' or 'disk_encryption_key.kmsKeyName' should be defined and not null",
+    "actualValue": "'disk_encryption_key.rawKey' and 'disk_encryption_key.kmsKeyName' are undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "compute.v1.disk",
+    "resourceName": "disk-4-data",
+    "searchKey": "resources.name={{disk-4-data}}.properties.diskEncryptionKey",
+    "searchValue": "",
+    "expectedValue": "'disk_encryption_key.rawKey' or 'disk_encryption_key.kmsKeyName' should be defined and not null",
+    "actualValue": "'disk_encryption_key.rawKey' and 'disk_encryption_key.kmsKeyName' are undefined or null",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive3.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template3",
+    "searchKey": "resources.name={{vm-template3}}.properties.disks.diskEncryptionKey.rawKey",
+    "searchValue": "",
+    "expectedValue": "'diskEncryptionKey.rawKey' should not be empty",
+    "actualValue": "'diskEncryptionKey.rawKey' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Disk Encryption Disabled",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "compute.v1.disk",
+    "resourceName": "disk-5-data",
+    "searchKey": "resources.name={{disk-5-data}}.properties.diskEncryptionKey.rawKey",
+    "searchValue": "",
+    "expectedValue": "'diskEncryptionKey.rawKey' should not be empty",
+    "actualValue": "'diskEncryptionKey.rawKey' is empty",
+    "issueType": "IncorrectValue"
   }
 ]

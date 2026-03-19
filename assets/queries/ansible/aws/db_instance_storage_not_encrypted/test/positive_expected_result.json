@@ -1,17 +1,41 @@
 [
-	{
-		"queryName": "DB Instance Storage Not Encrypted",
-		"severity": "HIGH",
-		"line": 7
-	},
-	{
-		"queryName": "DB Instance Storage Not Encrypted",
-		"severity": "HIGH",
-		"line": 17
-	},
-	{
-		"queryName": "DB Instance Storage Not Encrypted",
-		"severity": "HIGH",
-		"line": 23
-	}
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "foo",
+    "searchKey": "name={{foo}}.{{community.aws.rds_instance}}.storage_encrypted",
+    "searchValue": "",
+    "expectedValue": "rds_instance.storage_encrypted should be set to true",
+    "actualValue": "rds_instance.storage_encrypted is set to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 17,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "foo2",
+    "searchKey": "name={{foo2}}.{{community.aws.rds_instance}}.storage_encrypted",
+    "searchValue": "",
+    "expectedValue": "rds_instance.storage_encrypted should be set to true",
+    "actualValue": "rds_instance.storage_encrypted is set to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 23,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "foo3",
+    "searchKey": "name={{foo3}}.{{community.aws.rds_instance}}",
+    "searchValue": "",
+    "expectedValue": "rds_instance.storage_encrypted should be set to true",
+    "actualValue": "rds_instance.storage_encrypted is undefined",
+    "issueType": "MissingAttribute"
+  }
 ]

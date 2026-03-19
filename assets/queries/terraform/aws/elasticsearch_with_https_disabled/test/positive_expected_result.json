@@ -3,6 +3,13 @@
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_elasticsearch_domain",
+    "resourceName": "my-elasticsearch-domain",
+    "searchKey": "aws_elasticsearch_domain[{{example}}]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'enforce_https' should be set to 'true'",
+    "actualValue": "The attribute 'enforce_https' is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

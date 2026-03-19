@@ -3,12 +3,26 @@
     "queryName": "SQS Policy Allows All Actions",
     "severity": "HIGH",
     "line": 8,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_sqs_queue_policy",
+    "resourceName": "positive2",
+    "searchKey": "aws_sqs_queue_policy[positive2].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' should not equal '*'",
+    "actualValue": "'policy.Statement.Action' is equal '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQS Policy Allows All Actions",
     "severity": "HIGH",
     "line": 12,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' should not equal '*'",
+    "actualValue": "'policy.Statement.Action' is equal '*'",
+    "issueType": "IncorrectValue"
   }
 ]
