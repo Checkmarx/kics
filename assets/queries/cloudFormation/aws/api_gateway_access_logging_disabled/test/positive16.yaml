@@ -8,4 +8,4 @@ Resources:
       DeploymentId: !Ref TestDeployment
       DocumentationVersion: ""
       MethodSettings:
-        LoggingLevel: "ON"
+        - LoggingLevel: "INFO"
