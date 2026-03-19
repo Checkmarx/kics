@@ -1,0 +1,13 @@
+{
+  "id": "419bb431-bf37-4e5d-bda6-af3750e808e4",
+  "queryName": "Event Rule for VCN Changes is Missing",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on changes to Virtual Cloud Networks (VCNs). Auditing the creation, modification, and deletion of VCNs is important for detecting unauthorized network changes that could impact security posture.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/events_rule",
+  "platform": "Terraform",
+  "descriptionID": "419bb431",
+  "cloudProvider": "oci",
+  "cwe": "CWE-778",
+  "riskScore": 3.0
+}

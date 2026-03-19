@@ -1,0 +1,13 @@
+{
+  "id": "e3ade454-28a1-4a0c-9905-b73e82a648c0",
+  "queryName": "Event Rule for Network Gateway Changes is Missing",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on changes to all types of Network Gateways (Internet, NAT, Service, DRG, etc.). Auditing gateway changes is crucial for detecting unauthorized modifications to network ingress/egress points.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/events_rule",
+  "platform": "Terraform",
+  "descriptionID": "e3ade454",
+  "cloudProvider": "oci",
+  "cwe": "CWE-778",
+  "riskScore": 3.0
+}

@@ -1,0 +1,13 @@
+{
+  "id": "8097afd6-ef1a-4a58-b5f8-5d1b70ab4818",
+  "queryName": "Google API Key API Targets Missing",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Ensures that Google Cloud API Keys are restricted to specific APIs. By default, an API key can be used to access any API enabled in the project, which increases the blast radius if the key is compromised.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/apikeys_key#api_targets",
+  "platform": "Terraform",
+  "descriptionID": "8097afd6",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-284",
+  "riskScore": 5.0
+}

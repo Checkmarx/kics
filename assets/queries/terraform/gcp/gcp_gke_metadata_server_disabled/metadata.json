@@ -1,0 +1,13 @@
+{
+  "id": "e858428b-7650-4a62-a7d4-5b0d4c9afdd6",
+  "queryName": "GKE Metadata Server Disabled",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Ensures that the GKE Metadata Server is enabled by setting 'workload_metadata_config.mode' to 'GKE_METADATA'. This prevents pods from accessing the sensitive Compute Engine metadata server and node credentials.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool#mode",
+  "platform": "Terraform",
+  "descriptionID": "e858428b",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-284",
+  "riskScore": 9.0
+}

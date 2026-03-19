@@ -1,0 +1,13 @@
+{
+  "id": "ccefc589-0310-45a4-a2b6-d558e629e019",
+  "queryName": "GCP Compute Logging Service Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that the 'google-logging-enabled' metadata flag is set to 'true' for Google Compute Engine instances. This flag configures the instance to send logs to Cloud Logging.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#metadata",
+  "platform": "Terraform",
+  "descriptionID": "ccefc589",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-778",
+  "riskScore": 5.0
+}

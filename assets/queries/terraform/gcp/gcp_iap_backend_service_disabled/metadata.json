@@ -1,0 +1,13 @@
+{
+  "id": "3f1222a9-0161-4fe8-b188-ccabaf7a0ba5",
+  "queryName": "IAP Disabled on Backend Service",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Ensures that Identity-Aware Proxy (IAP) is enabled for Google Compute Backend Services. IAP verifies user identity and context before allowing access to applications.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_backend_service#iap",
+  "platform": "Terraform",
+  "descriptionID": "3f1222a9",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-284",
+  "riskScore": 5.0
+}

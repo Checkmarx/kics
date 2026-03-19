@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "IBM Account IP Restrictions (Manual)",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "IBM Account IP Restrictions (Manual)",
+    "severity": "INFO",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]

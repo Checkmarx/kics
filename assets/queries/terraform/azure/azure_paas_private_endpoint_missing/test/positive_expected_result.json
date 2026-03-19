@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Ensure Private Endpoints Are Used Where Possible",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Ensure Private Endpoints Are Used Where Possible",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  }
+]

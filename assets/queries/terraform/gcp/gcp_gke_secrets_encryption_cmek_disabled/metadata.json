@@ -1,0 +1,13 @@
+{
+  "id": "83d1c89f-e07c-4748-9d96-51a78c49637c",
+  "queryName": "GKE Secrets Not Encrypted with CMEK",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Ensures that GKE clusters have Application-Layer Secrets Encryption enabled using a Cloud KMS key. This protects sensitive data in etcd with a customer-managed encryption key.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#database_encryption",
+  "platform": "Terraform",
+  "descriptionID": "83d1c89f",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-312",
+  "riskScore": 9.0
+}

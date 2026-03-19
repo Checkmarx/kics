@@ -1,0 +1,13 @@
+{
+  "id": "a3e941c5-7708-40d1-943b-7093446ef5e6",
+  "queryName": "Azure Bastion Host Missing",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Ensures that an Azure Bastion Host is present when Virtual Networks are defined. Azure Bastion provides secure and seamless RDP/SSH connectivity to your virtual machines directly from the Azure portal over SSL.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/bastion_host",
+  "platform": "Terraform",
+  "descriptionID": "a3e941c5",
+  "cloudProvider": "azure",
+  "cwe": "CWE-284",
+  "riskScore": 5.0
+}

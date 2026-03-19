@@ -1,0 +1,13 @@
+{
+  "id": "8ef3f681-6ef1-4bbd-94bb-f9fe6d0626da",
+  "queryName": "GKE Default Service Account Used",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Ensures that GKE clusters do not use the default Compute Engine Service Account. The default account has the 'Editor' role, granting nodes excessive write permissions to the project.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#service_account",
+  "platform": "Terraform",
+  "descriptionID": "8ef3f681",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-276",
+  "riskScore": 9.0
+}

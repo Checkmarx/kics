@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Restrict API Key & Service ID Creation (Manual)",
+    "severity": "INFO",
+    "line": 3,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Restrict API Key & Service ID Creation (Manual)",
+    "severity": "INFO",
+    "line": 3,
+    "fileName": "positive2.tf"
+  }
+]

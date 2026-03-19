@@ -1,0 +1,13 @@
+{
+  "id": "8f65bf01-e9e9-4dd6-82b1-67051c2f073d",
+  "queryName": "IBM COS Bucket Encryption (CMK/BYOK/KYOK) Manual",
+  "severity": "INFO",
+  "category": "Encryption",
+  "descriptionText": "The Cloud Object Storage bucket relies on default provider-managed encryption. It is not configured with 'key_protect', which is required for Customer Managed Keys (CMK), Bring Your Own Key (BYOK), or Keep Your Own Key (KYOK). Manual verification is required to determine the specific encryption requirement.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cos_bucket",
+  "platform": "Terraform",
+  "descriptionID": "8f65bf01",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-312",
+  "riskScore": 0.0
+}

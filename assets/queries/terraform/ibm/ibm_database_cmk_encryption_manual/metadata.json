@@ -1,0 +1,13 @@
+{
+  "id": "c973475c-4797-42b1-8cee-4038c050283e",
+  "queryName": "IBM Cloud Database Without CMK (Manual)",
+  "severity": "INFO",
+  "category": "Encryption",
+  "descriptionText": "The IBM Cloud Database instance is not configured with a Customer Managed Key (CMK). It relies on default provider-managed encryption. Verify if the data sensitivity requires Bring Your Own Key (BYOK) or Keep Your Own Key (KYOK) via the 'key_protect_key' argument.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database",
+  "platform": "Terraform",
+  "descriptionID": "c973475c",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-312",
+  "riskScore": 0.0
+}

@@ -1,0 +1,13 @@
+{
+  "id": "b3af1ce8-5711-4304-b1db-17b658629df2",
+  "queryName": "Event Rule for Route Table Changes is Missing",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on changes to Route Tables. Auditing changes to route tables is critical for detecting unauthorized network path modifications that could lead to traffic interception or service disruption.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/events_rule",
+  "platform": "Terraform",
+  "descriptionID": "b3af1ce8",
+  "cloudProvider": "oci",
+  "cwe": "CWE-778",
+  "riskScore": 3.0
+}

@@ -1,0 +1,13 @@
+{
+  "id": "80d98d7b-2f12-4a8c-8cc9-fd17ca19c569",
+  "queryName": "Cloud SQL PostgreSQL log_error_verbosity is Verbose",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that the 'log_error_verbosity' flag for Cloud SQL PostgreSQL instances is set to 'default' or 'terse'. Setting it to 'verbose' generates excessive logs containing internal source code details, which can be a security risk.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance",
+  "platform": "Terraform",
+  "descriptionID": "80d98d7b",
+  "cloudProvider": "gcp",
+  "cwe": "CWE-532",
+  "riskScore": 5.0
+}

@@ -1,0 +1,13 @@
+{
+  "id": "3ce366ab-e97d-4040-aa67-5a08dad595fb",
+  "queryName": "Event Rule for Cloud Guard Problems is Missing",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that an OCI event rule is configured to create notifications for problems detected by Cloud Guard. Without a notification rule, critical security findings from Cloud Guard may go unnoticed, delaying response to potential threats.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/events_rule",
+  "platform": "Terraform",
+  "descriptionID": "3ce366ab",
+  "cloudProvider": "oci",
+  "cwe": "CWE-778",
+  "riskScore": 3.0
+}

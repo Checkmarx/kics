@@ -1,0 +1,13 @@
+{
+  "id": "5ecf7b51-8c4b-4911-9d59-1f7f6b9a2143",
+  "queryName": "Object Storage Bucket Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensures that OCI Object Storage buckets have object event emission enabled, which is crucial for write-level logging and security auditing.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/objectstorage_bucket#object_events_enabled",
+  "platform": "Terraform",
+  "descriptionID": "5ecf7b51",
+  "cloudProvider": "oci",
+  "cwe": "CWE-223",
+  "riskScore": 3.0
+}

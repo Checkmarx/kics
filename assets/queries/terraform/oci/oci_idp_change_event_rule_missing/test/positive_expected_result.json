@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Event Rule for Identity Provider Changes is Missing",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Event Rule for Identity Provider Changes is Missing",
+    "severity": "MEDIUM",
+    "line": 23,
+    "fileName": "positive2.tf"
+  }
+]

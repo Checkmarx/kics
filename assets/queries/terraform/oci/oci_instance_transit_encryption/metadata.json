@@ -1,0 +1,13 @@
+{
+  "id": "c29ef8f7-33bc-4788-9085-3a561c91f7d1",
+  "queryName": "OCI Instance In-Transit Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Compute instances should have in-transit encryption enabled for data moving between the instance and block storage. This is configured via 'is_pv_encryption_in_transit_enabled' in the 'launch_options' block.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance#is_pv_encryption_in_transit_enabled",
+  "platform": "Terraform",
+  "descriptionID": "c29ef8f7",
+  "cloudProvider": "oci",
+  "cwe": "CWE-311",
+  "riskScore": 3.0
+}

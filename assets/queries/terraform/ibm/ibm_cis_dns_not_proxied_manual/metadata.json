@@ -1,0 +1,13 @@
+{
+  "id": "124e18ee-0b42-474d-8623-185f108fa545",
+  "queryName": "IBM CIS DNS Record Not Proxied (Manual)",
+  "severity": "INFO",
+  "category": "Availability",
+  "descriptionText": "The DNS record in IBM Cloud Internet Services (CIS) is not proxied. DDoS protection, WAF, and CDN features are only active when 'proxied' is set to 'true'. Verify if this record points to a web workload that requires DDoS mitigation.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cis_dns_record",
+  "platform": "Terraform",
+  "descriptionID": "124e18ee",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-770",
+  "riskScore": 0.0
+}

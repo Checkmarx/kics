@@ -1,0 +1,13 @@
+{
+  "id": "a5107e68-028f-4b4d-9fc0-f23e3b73e448",
+  "queryName": "LogDNA View Without Alert",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "Ensures that every IBM LogDNA custom view ('ibm_logdna_view') has at least one associated alert ('ibm_logdna_alert'). Views are created to filter critical events, and without an alert, notifications for these events will not be sent.",
+  "descriptionUrl": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/logdna_alert",
+  "platform": "Terraform",
+  "descriptionID": "a5107e68",
+  "cloudProvider": "ibm",
+  "cwe": "CWE-778",
+  "riskScore": 1.0
+}

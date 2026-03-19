@@ -1,0 +1,13 @@
+{
+  "id": "ca1ffce5-e2f9-4d8a-978e-719d1ed7c7fa",
+  "queryName": "Key Vault Key Rotation Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensures that cryptographic keys in Azure Key Vault have an automatic rotation policy configured. Regular key rotation reduces the risk of compromised keys being used for extended periods.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key#rotation_policy",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-320",
+  "descriptionID": "ca1ffce5",
+  "riskScore": 5.0
+}

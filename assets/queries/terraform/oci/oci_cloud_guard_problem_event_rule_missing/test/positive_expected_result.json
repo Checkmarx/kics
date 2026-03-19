@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Event Rule for Cloud Guard Problems is Missing",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Event Rule for Cloud Guard Problems is Missing",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Event Rule for Cloud Guard Problems is Missing",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  }
+]

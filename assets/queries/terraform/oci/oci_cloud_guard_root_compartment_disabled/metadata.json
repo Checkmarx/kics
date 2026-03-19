@@ -1,0 +1,13 @@
+{
+  "id": "3e784705-b3c6-4197-9a04-0b751b1a83d8",
+  "queryName": "Cloud Guard Not Enabled at Root Compartment",
+  "severity": "HIGH",
+  "category": "Security Services",
+  "descriptionText": "Ensures that OCI Cloud Guard is enabled at the tenancy's root compartment. Cloud Guard is a cloud-native security posture management service that helps monitor, identify, and maintain a strong security posture on Oracle Cloud.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/cloud_guard_configuration",
+  "platform": "Terraform",
+  "descriptionID": "3e784705",
+  "cloudProvider": "oci",
+  "cwe": "CWE-16",
+  "riskScore": 6.0
+}

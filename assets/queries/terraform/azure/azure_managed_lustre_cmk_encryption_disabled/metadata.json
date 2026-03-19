@@ -1,0 +1,13 @@
+{
+  "id": "7fc653e2-af91-4379-9219-5095caba0ff6",
+  "queryName": "Azure Managed Lustre Not Encrypted with CMK",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensures that Azure Managed Lustre file systems are encrypted using a Customer-Managed Key (CMK). By default, data is encrypted with platform-managed keys, but CMK provides full control over key rotation and access policies.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/managed_lustre_file_system#key_encryption_key",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "CWE-326",
+  "descriptionID": "7fc653e2",
+  "riskScore": 5.0
+}
