@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Redis Cache Publicly Accessible",
+        "severity": "HIGH",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

@@ -1,0 +1,14 @@
+{
+  "id": "32d4621f-f5c5-4630-a0a1-3f850b1030e4",
+  "queryName": "Beta - Key Vault Key Expiry Not Set",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Azure Key Vault cryptographic keys should have an expiration date set to enforce key rotation and reduce the risk associated with long-lived keys. Keys without expiry remain valid indefinitely.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key#expiration_date",
+  "platform": "Terraform",
+  "descriptionID": "d6e7f8a9",
+  "cloudProvider": "azure",
+  "cwe": "324",
+  "riskScore": "5.0",
+  "experimental": "true"
+}

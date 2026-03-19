@@ -1,0 +1,14 @@
+{
+  "id": "8bdaa22b-84f0-4547-9842-dd4d636fa0c9",
+  "queryName": "Beta - Key Vault Secret Expiry Not Set",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Azure Key Vault secrets should have an expiration date set to enforce regular rotation of credentials and API keys, limiting the window of exposure if a secret is compromised.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret#expiration_date",
+  "platform": "Terraform",
+  "descriptionID": "e7f8a9b0",
+  "cloudProvider": "azure",
+  "cwe": "324",
+  "riskScore": "5.0",
+  "experimental": "true"
+}

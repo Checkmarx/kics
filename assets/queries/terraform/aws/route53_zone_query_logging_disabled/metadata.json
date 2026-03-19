@@ -1,0 +1,14 @@
+{
+  "id": "339cb652-abbf-485c-b18e-2ff865c26fc0",
+  "queryName": "Beta - Route53 Zone Query Logging Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "Amazon Route 53 hosted zones should have query logging enabled to track DNS queries for security analysis, troubleshooting, and compliance with audit requirements.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_query_log",
+  "platform": "Terraform",
+  "descriptionID": "a7b8c9d0",
+  "cloudProvider": "aws",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - GKE Node Pool Auto-Upgrade Disabled",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]
