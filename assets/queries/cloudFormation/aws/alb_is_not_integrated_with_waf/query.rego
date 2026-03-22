@@ -26,14 +26,28 @@ internal_alb(resource) {
 	scheme == "internal"
 }
 
+waf_association_types := {"AWS::WAFRegional::WebACLAssociation", "AWS::WAFv2::WebACLAssociation"}
+
 associated_waf(target_alb) {
 	resource := input.document[_].Resources[_]
-	resource.Type == "AWS::WAFRegional::WebACLAssociation"
+	waf_association_types[resource.Type]
 	resource.Properties.ResourceArn.Ref == target_alb
 }
 
 associated_waf(target_alb) {
 	resource := input.document[_].Resources[_]
-	resource.Type == "AWS::WAFRegional::WebACLAssociation"
+	waf_association_types[resource.Type]
 	resource.Properties.ResourceArn == target_alb
+}
+
+associated_waf(target_alb) {
+	resource := input.document[_].Resources[_]
+	waf_association_types[resource.Type]
+	resource.Properties.ResourceArn["Fn::GetAtt"][0] == target_alb
+}
+
+associated_waf(target_alb) {
+	resource := input.document[_].Resources[_]
+	waf_association_types[resource.Type]
+	startswith(resource.Properties.ResourceArn, sprintf("%s.", [target_alb]))
 }
