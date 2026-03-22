@@ -8,7 +8,7 @@ Resources:
       Role: arn:aws:iam::123456789012:role/lambda-role
       Environment:
         Variables:
-          foo: "1234567890123456789012345678901234567890$"
+          AWS_ACCESS_KEY_ID: "AKIAIOSFODNN7EXAMPLE"
           databaseName: lambdadb
           databaseUser: admin
       Code:
