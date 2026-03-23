@@ -154,6 +154,7 @@ type analyzerInfo struct {
 	fallbackMinifiedFileLOC int
 }
 
+// fileExtInfo contains file path and detected extension
 type fileExtInfo struct {
 	path string
 	ext  string
@@ -352,12 +353,12 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				return err
 			}
 
-			fileInfo, errFile := os.Stat(path)
+			fileData, errFile := os.Stat(path)
 			if errFile != nil {
 				return nil
 			}
 
-			if fileInfo.IsDir() {
+			if fileData.IsDir() {
 				return nil
 			}
 
