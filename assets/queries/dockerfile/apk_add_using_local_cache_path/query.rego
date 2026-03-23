@@ -10,9 +10,11 @@ CxPolicy[result] {
 	runCommands := dockerLib.getCommands(command.Value[0])
 	containsApkAddWithoutNoCache(runCommands)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, command.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, command.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'RUN' should not contain 'apk add' command without '--no-cache' switch",
 		"keyActualValue": "'RUN' contains 'apk add' command without '--no-cache' switch",

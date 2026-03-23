@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.dockerfile as dockerLib
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
@@ -8,11 +9,13 @@ CxPolicy[result] {
 	contains(resource.Flags[j], "--platform")
 	contains(resource.Cmd, "from")
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("FROM={{%s}}.{{%s}} should not use the '--platform' flag", [name, resource.Original]),
-		"keyActualValue": sprintf("FROM={{%s}}.{{%s}} is using the '--platform' flag", [name, resource.Original]),
+		"keyExpectedValue": sprintf("%s={{%s}}.{{%s}} should not use the '--platform' flag", [from_command, name, resource.Original]),
+		"keyActualValue": sprintf("%s={{%s}}.{{%s}} is using the '--platform' flag", [from_command, name, resource.Original]),
 	}
 }

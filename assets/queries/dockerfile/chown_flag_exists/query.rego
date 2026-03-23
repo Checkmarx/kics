@@ -1,13 +1,16 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name]
 
 	contains(resource[j].Flags[f], "--chown")
 
+	from_command := dockerLib.get_original_from_command(resource)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource[j].Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource[j].Original]),
 		"category": "Best Practices",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The 'Dockerfile' shouldn´t contain the 'chown' flag",

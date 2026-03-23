@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	# Check if there is a command that runs install before update
 	resource := input.document[i].command[name][_]
@@ -20,9 +22,11 @@ CxPolicy[result] {
 
 	not checkFollowedBy(update, install)
     
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
+		"searchKey": sprintf("%s={{%s}}.RUN={{%s}}", [from_command, name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Instruction 'RUN %s %s' should be followed by 'RUN %s %s' in the same 'RUN' statement", [packageManager, pkg_installer[packageManager], packageManager, pkg_updater[packageManager]]),
 		"keyActualValue": sprintf("Instruction 'RUN %s %s' isn't followed by 'RUN %s %s in the same 'RUN' statement", [packageManager, pkg_installer[packageManager], packageManager, pkg_updater[packageManager]]),
@@ -60,7 +64,7 @@ CxPolicy[result] {
     
     result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, nextResource.Value[0]]),
+		"searchKey": sprintf("%s={{%s}}.RUN={{%s}}", [from_command, name, nextResource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Instruction 'RUN %s %s' should be combined with 'RUN %s %s' in the same 'RUN' statement", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),
 		"keyActualValue": sprintf("Instruction 'RUN %s %s' isn't combined with 'RUN %s %s in the same 'RUN' statement", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),

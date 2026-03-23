@@ -9,9 +9,11 @@ CxPolicy[result] {
 	resource.Cmd == "cmd"
 	resource.JSON == false
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("{{%s}} should be in the JSON Notation", [resource.Original]),
 		"keyActualValue": sprintf("{{%s}} isn't in JSON Notation", [resource.Original]),
@@ -25,9 +27,11 @@ CxPolicy[result] {
 	resource.Cmd == "entrypoint"
 	resource.JSON == false
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("{{%s}} should be in the JSON Notation", [resource.Original]),
         "keyActualValue": sprintf("{{%s}} isn't in JSON Notation", [resource.Original]),

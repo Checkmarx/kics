@@ -14,9 +14,11 @@ CxPolicy[result] {
 
 	not hasYesFlag(c)
 
+	stage := input.document[i].command[name]
+	from_command := docker_lib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
+		"searchKey": sprintf("%s={{%s}}.RUN={{%s}}", [from_command, name, resource.Value[0]]),
 		"searchValue": trim_space(c),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][com]
 	resource.Cmd == "from"
@@ -14,9 +16,10 @@ CxPolicy[result] {
 	idx_2 := getIndex(aliasResource.Value)
 	aliasResource.Value[idx_2] == nameAlias
 
+	from_command := dockerLib.get_original_from_command(input.document[i].command[name2])
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}", [aliasResource.Value[idx_2]]),
+		"searchKey": sprintf("%s={{%s}}", [from_command, aliasResource.Value[idx_2]]),
 		"issueType": "IncorrectValue", 
 		"keyExpectedValue": "Different FROM commands don't have the same alias defined",
 		"keyActualValue": sprintf("Different FROM commands with with the same alias '%s' defined", [aliasResource.Value[idx_2]]),

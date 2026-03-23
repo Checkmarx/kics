@@ -1,7 +1,14 @@
 [
-  {
-    "queryName": "Chown Flag Exists",
-    "severity": "LOW",
-    "line": 4
-  }
+	{
+		"queryName": "Chown Flag Exists",
+		"severity": "LOW",
+		"line": 4,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Chown Flag Exists",
+		"severity": "LOW",
+		"line": 4,
+		"fileName": "positive2.dockerfile"
+	}
 ]

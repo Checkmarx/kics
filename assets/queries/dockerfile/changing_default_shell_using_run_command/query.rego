@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.dockerfile as dockerLib
 
 shell_possibilities := {
 	"/bin/bash",
@@ -28,10 +29,12 @@ CxPolicy[result] {
 	command_possibilities := {"mv", "chsh", "usermod", "ln"}
 	command == command_possibilities[cp]
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
     	"debug": sprintf("%s", [value[v]]),
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("{{%s}} should use the SHELL command to change the default shell", [resource.Original]),
 		"keyActualValue": sprintf("{{%s}} uses the RUN command to change the default shell", [resource.Original]),
@@ -46,9 +49,11 @@ CxPolicy[result] {
 	command := run_values[0]
 	contains(command, "powershell")
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("{{%s}} should use the SHELL command to change the default shell", [resource.Original]),
 		"keyActualValue": sprintf("{{%s}} uses the RUN command to change the default shell", [resource.Original]),

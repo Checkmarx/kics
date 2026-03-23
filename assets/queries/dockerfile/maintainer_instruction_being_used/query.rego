@@ -1,12 +1,16 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "maintainer"
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.MAINTAINER={{%s}}", [name, resource.Value[0]]),
+		"searchKey": sprintf("%s={{%s}}.MAINTAINER={{%s}}", [from_command, name, resource.Value[0]]),
 		"issueType": "IncorrectValue", 
 		"keyExpectedValue": sprintf("Maintainer instruction being used in Label 'LABEL maintainer=%s'", [resource.Value[0]]),
 		"keyActualValue": sprintf("Maintainer instruction not being used in Label 'MAINTAINER %s'", [resource.Value[0]]),

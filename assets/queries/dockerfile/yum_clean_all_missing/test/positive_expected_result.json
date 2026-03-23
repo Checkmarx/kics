@@ -1,8 +1,14 @@
 [
-  {
-    "queryName": "Yum Clean All Missing",
-    "severity": "LOW",
-    "line": 12,
-    "fileName": "positive.dockerfile"
-  }
+	{
+		"queryName": "Yum Clean All Missing",
+		"severity": "LOW",
+		"line": 12,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Yum Clean All Missing",
+		"severity": "LOW",
+		"line": 12,
+		"fileName": "positive2.dockerfile"
+	}
 ]

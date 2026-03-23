@@ -14,9 +14,10 @@ CxPolicy[result] {
 	commandHasZypperUsage(command)
 	not commandHasNonInteractiveSwitch(command)
 
+	from_command := dockerLib.get_original_from_command(commands[img])
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [img, commands[img][c].Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, img, commands[img][c].Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "zypper usages should have the non-interactive switch activated",
 		"keyActualValue": sprintf("The command '%s' does not have the non-interactive switch activated (-y | --no-confirm)", [commands[img][c].Original]),

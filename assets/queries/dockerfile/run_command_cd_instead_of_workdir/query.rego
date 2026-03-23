@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.dockerfile as dockerLib
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
@@ -10,9 +12,11 @@ CxPolicy[result] {
     not is_full_path(path)
     
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
+		"searchKey": sprintf("%s={{%s}}.RUN={{%s}}", [from_command, name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Using WORKDIR to change directory",
 		"keyActualValue": sprintf("RUN %s'", [resource.Value[0]]),

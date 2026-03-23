@@ -13,9 +13,11 @@ CxPolicy[result] {
 	not containsDnfClean(input.document[i].command[name], resource._kics_line)
 	not containsCleanAfterInstall(command)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
+		"searchKey": sprintf("%s={{%s}}.RUN={{%s}}", [from_command, name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "After installing a package with dnf, command 'dnf clean all' should run.",
 		"keyActualValue": "Command `dnf clean all` is not being run after installing packages.",

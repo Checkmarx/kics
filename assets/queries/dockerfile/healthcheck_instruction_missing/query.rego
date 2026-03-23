@@ -8,9 +8,10 @@ CxPolicy[result] {
 
 	not contains(resource, "healthcheck")
 
+	from_command := dockerLib.get_original_from_command(resource)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}", [name]),
+		"searchKey": sprintf("%s={{%s}}", [from_command, name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
 		"keyActualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",

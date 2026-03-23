@@ -19,9 +19,11 @@ CxPolicy[result] {
 	some j
 	analyzePackages(j, packages[j], packages, length)
 
+	stage := input.document[i].command[name]
+	from_command := docker_lib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"searchValue": packages[j],
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The package version should always be specified when using yum install",
@@ -43,9 +45,11 @@ CxPolicy[result] {
 	regex.match("^[a-zA-Z]", resource.Value[j]) == true
 	not docker_lib.withVersion(resource.Value[j])
 
+	stage := input.document[i].command[name]
+	from_command := docker_lib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"searchValue": resource.Value[j],
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The package version should always be specified when using yum install",

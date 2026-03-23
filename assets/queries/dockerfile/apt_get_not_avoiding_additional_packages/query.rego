@@ -15,9 +15,11 @@ CxPolicy[result] {
 	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", commandsSplit[j]) == true
 	not avoidAdditionalPackages(commandsSplit[j])
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' uses '--no-install-recommends' flag to avoid installing additional packages", [resource.Original]),
 		"keyActualValue": sprintf("'%s' does not use '--no-install-recommends' flag to avoid installing additional packages", [resource.Original]),
@@ -37,9 +39,11 @@ CxPolicy[result] {
 
 	not avoidAdditionalPackages(commands)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' uses '--no-install-recommends' flag to avoid installing additional packages", [resource.Original]),
 		"keyActualValue": sprintf("'%s' does not use '--no-install-recommends' flag to avoid installing additional packages", [resource.Original]),

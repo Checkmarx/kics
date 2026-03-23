@@ -11,9 +11,10 @@ CxPolicy[result] {
 	count(curl) > 0
 	count(wget) > 0
 
+	from_command := dockerLib.get_original_from_command(resource)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, curl[0]]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, curl[0]]),
 		"issueType": "RedundantAttribute",
 		"keyExpectedValue": "Exclusively using 'wget' or 'curl'",
 		"keyActualValue": "Using both 'wget' and 'curl'",

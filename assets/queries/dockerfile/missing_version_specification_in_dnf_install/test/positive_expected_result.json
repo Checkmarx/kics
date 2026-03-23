@@ -1,12 +1,20 @@
 [
-  {
-    "queryName": "Missing Version Specification In dnf install",
-    "severity": "MEDIUM",
-    "line": 2
-  },
-  {
-    "queryName": "Missing Version Specification In dnf install",
-    "severity": "MEDIUM",
-    "line": 3
-  }
+	{
+		"queryName": "Missing Version Specification In dnf install",
+		"severity": "MEDIUM",
+		"line": 2,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Missing Version Specification In dnf install",
+		"severity": "MEDIUM",
+		"line": 3,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Missing Version Specification In dnf install",
+		"severity": "MEDIUM",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	}
 ]

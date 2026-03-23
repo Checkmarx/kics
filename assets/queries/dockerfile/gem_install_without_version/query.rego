@@ -18,9 +18,11 @@ CxPolicy[result] {
 	some j
 	analyzePackages(j, packages[j], packages, length)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s is 'gem install <gem>:<version>'", [resource.Original]),
 		"keyActualValue": sprintf("%s is 'gem install <gem>', you should use 'gem install <gem>:<version>", [resource.Original]),
@@ -40,9 +42,11 @@ CxPolicy[result] {
 	regex.match("^[a-zA-Z]", resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s is 'gem install <gem>:<version>'", [resource.Original]),
 		"keyActualValue": sprintf("%s is 'gem install <gem>', you should use 'gem install <gem>:<version>", [resource.Original]),

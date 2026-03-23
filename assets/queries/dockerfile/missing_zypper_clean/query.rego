@@ -14,9 +14,10 @@ CxPolicy[result] {
 	commandHasZypperUsage(command)
 
 	not hasCleanAfterInstall(commands[img], c, j)
+	from_command := dockerLib.get_original_from_command(commands[img])
 	result := {
 		"documentId": document.id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [img, commands[img][c].Original]),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, img, commands[img][c].Original]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "There should be a zypper clean after a zypper usage",
 		"keyActualValue": sprintf("The command '%s' does not have a zypper clean after it", [commands[img][c].Value[j]]),

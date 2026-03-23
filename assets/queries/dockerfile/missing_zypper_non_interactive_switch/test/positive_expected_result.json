@@ -2,6 +2,13 @@
 	{
 		"queryName": "Missing Zypper Non-interactive Switch",
 		"severity": "MEDIUM",
-		"line": 2
+		"line": 2,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Missing Zypper Non-interactive Switch",
+		"severity": "MEDIUM",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
 	}
 ]

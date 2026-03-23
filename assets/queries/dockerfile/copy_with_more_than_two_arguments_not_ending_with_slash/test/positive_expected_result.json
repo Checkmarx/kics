@@ -1,8 +1,14 @@
 [
-  {
-    "queryName": "Copy With More Than Two Arguments Not Ending With Slash",
-    "severity": "LOW",
-    "fileName": "positive.dockerfile",
-    "line": 2
-  }
+	{
+		"queryName": "Copy With More Than Two Arguments Not Ending With Slash",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Copy With More Than Two Arguments Not Ending With Slash",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	}
 ]
