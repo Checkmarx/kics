@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # CASO 1: No hay restricciones definidas.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_apikeys_key.%s", [name]),
+        "resourceType": "google_apikeys_key",
+        "resourceName": tf_lib.get_resource_name(key, name),
+        "searchKey": sprintf("google_apikeys_key[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'google_apikeys_key.%s' should have a 'restrictions' block defined", [name]),
         "keyActualValue": sprintf("'google_apikeys_key.%s' is missing the 'restrictions' block", [name]),
@@ -25,7 +29,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_apikeys_key.%s.restrictions", [name]),
+        "resourceType": "google_apikeys_key",
+        "resourceName": tf_lib.get_resource_name(key, name),
+        "searchKey": sprintf("google_apikeys_key[%s].restrictions", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "Restrictions should be verified against allowed IPs/Referrers",
         "keyActualValue": "Restrictions are present. Manual verification required.",

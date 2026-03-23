@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: El bloque 'customer_managed_key' no existe.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_storage_account.%s", [name]),
+        "resourceType": "azurerm_storage_account",
+        "resourceName": tf_lib.get_resource_name(sa, name),
+        "searchKey": sprintf("azurerm_storage_account[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'azurerm_storage_account.%s' should use CMK if hosting critical data (Manual Verification)", [name]),
         "keyActualValue": sprintf("'azurerm_storage_account.%s' is using Platform-Managed Keys", [name]),
@@ -26,7 +30,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_storage_account.%s.customer_managed_key", [name]),
+        "resourceType": "azurerm_storage_account",
+        "resourceName": tf_lib.get_resource_name(sa, name),
+        "searchKey": sprintf("azurerm_storage_account[%s].customer_managed_key", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "If 'customer_managed_key' block is defined, it should include 'key_vault_key_id' for CMK encryption",
         "keyActualValue": "'key_vault_key_id' is not defined within the 'customer_managed_key' block",

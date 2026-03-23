@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 targets := {"azurerm_linux_web_app", "azurerm_windows_web_app"}
 
 # REGLA 1: El bloque 'logs' no existe en el App Service.
@@ -12,7 +14,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.%s.%s", [resource_type, name]),
+        "resourceType": resource_type,
+        "resourceName": tf_lib.get_resource_name(app, name),
+        "searchKey": sprintf("%s[%s]", [resource_type, name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'%s.%s' should have a 'logs' block defined", [resource_type, name]),
         "keyActualValue": sprintf("'%s.%s' is missing the 'logs' block", [resource_type, name]),
@@ -30,7 +34,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.%s.%s.logs", [resource_type, name]),
+        "resourceType": resource_type,
+        "resourceName": tf_lib.get_resource_name(app, name),
+        "searchKey": sprintf("%s[%s].logs", [resource_type, name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'%s.%s.logs' should have 'http_logs' configured", [resource_type, name]),
         "keyActualValue": sprintf("'%s.%s.logs' is missing 'http_logs'", [resource_type, name]),

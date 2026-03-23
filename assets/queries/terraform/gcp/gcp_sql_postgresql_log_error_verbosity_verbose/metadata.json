@@ -9,5 +9,5 @@
   "descriptionID": "80d98d7b",
   "cloudProvider": "gcp",
   "cwe": "CWE-532",
-  "riskScore": 5.0
+  "riskScore": "5.0"
 }

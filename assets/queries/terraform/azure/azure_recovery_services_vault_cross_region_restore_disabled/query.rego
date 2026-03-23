@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: Atributo 'cross_region_restore_enabled' ausente.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_recovery_services_vault.%s", [name]),
+        "resourceType": "azurerm_recovery_services_vault",
+        "resourceName": tf_lib.get_resource_name(vault, name),
+        "searchKey": sprintf("azurerm_recovery_services_vault[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'azurerm_recovery_services_vault.%s' should have 'cross_region_restore_enabled' set to true", [name]),
         "keyActualValue": sprintf("'azurerm_recovery_services_vault.%s' is missing 'cross_region_restore_enabled'", [name]),
@@ -25,7 +29,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_recovery_services_vault.%s.cross_region_restore_enabled", [name]),
+        "resourceType": "azurerm_recovery_services_vault",
+        "resourceName": tf_lib.get_resource_name(vault, name),
+        "searchKey": sprintf("azurerm_recovery_services_vault[%s].cross_region_restore_enabled", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'cross_region_restore_enabled' should be set to true",
         "keyActualValue": "'cross_region_restore_enabled' is set to false",

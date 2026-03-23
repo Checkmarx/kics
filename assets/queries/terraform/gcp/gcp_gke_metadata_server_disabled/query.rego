@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: 'workload_metadata_config' ausente en google_container_cluster
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_container_cluster.%s.node_config", [name]),
+        "resourceType": "google_container_cluster",
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("google_container_cluster[%s].node_config", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'workload_metadata_config' should be defined with mode 'GKE_METADATA'",
         "keyActualValue": "'workload_metadata_config' is missing",
@@ -25,7 +29,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_container_node_pool.%s.node_config", [name]),
+        "resourceType": "google_container_node_pool",
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("google_container_node_pool[%s].node_config", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'workload_metadata_config' should be defined with mode 'GKE_METADATA'",
         "keyActualValue": "'workload_metadata_config' is missing",
@@ -41,7 +47,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_container_cluster.%s.node_config.workload_metadata_config.mode", [name]),
+        "resourceType": "google_container_cluster",
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("google_container_cluster[%s].node_config.workload_metadata_config.mode", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'mode' should be set to 'GKE_METADATA'",
         "keyActualValue": sprintf("'mode' is set to '%s'", [resource.node_config.workload_metadata_config.mode]),
@@ -57,7 +65,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_container_node_pool.%s.node_config.workload_metadata_config.mode", [name]),
+        "resourceType": "google_container_node_pool",
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("google_container_node_pool[%s].node_config.workload_metadata_config.mode", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'mode' should be set to 'GKE_METADATA'",
         "keyActualValue": sprintf("'mode' is set to '%s'", [resource.node_config.workload_metadata_config.mode]),

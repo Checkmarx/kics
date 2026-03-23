@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: El tipo de cifrado no es CMK o no está definido.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_elastic_san_volume_group.%s", [name]),
+        "resourceType": "azurerm_elastic_san_volume_group",
+        "resourceName": tf_lib.get_resource_name(vg, name),
+        "searchKey": sprintf("azurerm_elastic_san_volume_group[%s]", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'encryption_type' should be set to 'EncryptionAtRestWithCustomerManagedKey'",
         "keyActualValue": sprintf("'encryption_type' is set to '%v'", [object.get(vg, "encryption_type", "PlatformKey (Default)")]),
@@ -30,7 +34,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_elastic_san_volume_group.%s", [name]),
+        "resourceType": "azurerm_elastic_san_volume_group",
+        "resourceName": tf_lib.get_resource_name(vg, name),
+        "searchKey": sprintf("azurerm_elastic_san_volume_group[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'azurerm_elastic_san_volume_group.%s' should have both 'encryption' and 'identity' blocks for CMK", [name]),
         "keyActualValue": sprintf("'azurerm_elastic_san_volume_group.%s' is missing the following block(s): %s", [name, concat(", ", missing)]),

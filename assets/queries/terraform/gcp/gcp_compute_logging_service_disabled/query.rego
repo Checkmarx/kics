@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: El bloque 'metadata' no existe.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_compute_instance.%s", [name]),
+        "resourceType": "google_compute_instance",
+        "resourceName": tf_lib.get_resource_name(instance, name),
+        "searchKey": sprintf("google_compute_instance[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'metadata' block should be defined and contain 'google-logging-enabled'",
         "keyActualValue": "'metadata' block is missing",
@@ -26,7 +30,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_compute_instance.%s.metadata", [name]),
+        "resourceType": "google_compute_instance",
+        "resourceName": tf_lib.get_resource_name(instance, name),
+        "searchKey": sprintf("google_compute_instance[%s].metadata", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'google-logging-enabled' should be defined within metadata",
         "keyActualValue": "'google-logging-enabled' is missing in metadata",
@@ -43,7 +49,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_compute_instance.%s.metadata.google-logging-enabled", [name]),
+        "resourceType": "google_compute_instance",
+        "resourceName": tf_lib.get_resource_name(instance, name),
+        "searchKey": sprintf("google_compute_instance[%s].metadata.google-logging-enabled", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'google-logging-enabled' should be set to 'true'",
         "keyActualValue": "'google-logging-enabled' is set to 'false'",

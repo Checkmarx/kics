@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: El bloque 'iap' está ausente en google_compute_backend_service.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_compute_backend_service.%s", [name]),
+        "resourceType": "google_compute_backend_service",
+        "resourceName": tf_lib.get_resource_name(bs, name),
+        "searchKey": sprintf("google_compute_backend_service[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'google_compute_backend_service.%s' should have an 'iap' block defined", [name]),
         "keyActualValue": sprintf("'google_compute_backend_service.%s' is missing the 'iap' block", [name]),
@@ -26,7 +30,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_compute_backend_service.%s.iap", [name]),
+        "resourceType": "google_compute_backend_service",
+        "resourceName": tf_lib.get_resource_name(bs, name),
+        "searchKey": sprintf("google_compute_backend_service[%s].iap", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'oauth2_client_id' should be defined within the 'iap' block",
         "keyActualValue": "'oauth2_client_id' is missing",
@@ -43,7 +49,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_compute_backend_service.%s.iap", [name]),
+        "resourceType": "google_compute_backend_service",
+        "resourceName": tf_lib.get_resource_name(bs, name),
+        "searchKey": sprintf("google_compute_backend_service[%s].iap", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'oauth2_client_secret' should be defined within the 'iap' block",
         "keyActualValue": "'oauth2_client_secret' is missing",

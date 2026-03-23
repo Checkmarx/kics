@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 is_logging_valid(logging) {
     logging.read == true
     logging.write == true
@@ -10,13 +12,15 @@ is_logging_valid(logging) {
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]
-    
+
     sa.queue_properties
     not sa.queue_properties.logging
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_storage_account.%s.queue_properties", [name]),
+        "resourceType": "azurerm_storage_account",
+        "resourceName": tf_lib.get_resource_name(sa, name),
+        "searchKey": sprintf("azurerm_storage_account[%s].queue_properties", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "queue_properties.logging should be defined with read, write, and delete enabled",
         "keyActualValue": "queue_properties.logging is missing",
@@ -27,13 +31,15 @@ CxPolicy[result] {
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]
-    
+
     logging := sa.queue_properties.logging
     not is_logging_valid(logging)
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_storage_account.%s.queue_properties.logging", [name]),
+        "resourceType": "azurerm_storage_account",
+        "resourceName": tf_lib.get_resource_name(sa, name),
+        "searchKey": sprintf("azurerm_storage_account[%s].queue_properties.logging", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "logging should have read, write, and delete set to true",
         "keyActualValue": "logging has one or more required actions (read, write, delete) disabled",
@@ -49,7 +55,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_storage_account_queue_properties.%s", [name]),
+        "resourceType": "azurerm_storage_account_queue_properties",
+        "resourceName": tf_lib.get_resource_name(props, name),
+        "searchKey": sprintf("azurerm_storage_account_queue_properties[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "logging block should be defined in queue properties",
         "keyActualValue": "logging block is missing",
@@ -66,7 +74,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_storage_account_queue_properties.%s.logging", [name]),
+        "resourceType": "azurerm_storage_account_queue_properties",
+        "resourceName": tf_lib.get_resource_name(props, name),
+        "searchKey": sprintf("azurerm_storage_account_queue_properties[%s].logging", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "logging should have read, write, and delete set to true",
         "keyActualValue": "logging is missing one or more required actions",

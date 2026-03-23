@@ -9,5 +9,5 @@
   "cloudProvider": "azure",
   "cwe": "CWE-284",
   "descriptionID": "9b959753",
-  "riskScore": 5.0
+  "riskScore": "5.0"
 }

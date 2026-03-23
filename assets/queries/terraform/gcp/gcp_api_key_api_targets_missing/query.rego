@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # CASO 1: No existe el bloque 'restrictions'.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_apikeys_key.%s", [name]),
+        "resourceType": "google_apikeys_key",
+        "resourceName": tf_lib.get_resource_name(key, name),
+        "searchKey": sprintf("google_apikeys_key[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'google_apikeys_key.%s' should have 'restrictions.api_targets' defined", [name]),
         "keyActualValue": sprintf("'google_apikeys_key.%s' is missing the 'restrictions' block", [name]),
@@ -26,7 +30,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_apikeys_key.%s.restrictions", [name]),
+        "resourceType": "google_apikeys_key",
+        "resourceName": tf_lib.get_resource_name(key, name),
+        "searchKey": sprintf("google_apikeys_key[%s].restrictions", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "restrictions.api_targets should be defined",
         "keyActualValue": "restrictions.api_targets is missing",

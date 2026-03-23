@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 targets := {
     "azurerm_cosmosdb_account",
     "azurerm_storage_account",
@@ -21,7 +23,7 @@ targets := {
 # REGLA MAESTRA: Verifica si los recursos de la lista targets tienen un Private Endpoint vinculado.
 CxPolicy[result] {
     doc := input.document[i]
-    
+
     resource_type := targets[t]
     resource_instances := doc.resource[resource_type]
     resource_instance := resource_instances[name]
@@ -38,7 +40,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.%s.%s", [resource_type, name]),
+        "resourceType": resource_type,
+        "resourceName": tf_lib.get_resource_name(resource_instance, name),
+        "searchKey": sprintf("%s[%s]", [resource_type, name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'%s.%s' should be linked to an 'azurerm_private_endpoint'", [resource_type, name]),
         "keyActualValue": sprintf("'%s.%s' is not linked to any 'azurerm_private_endpoint' in this file", [resource_type, name]),

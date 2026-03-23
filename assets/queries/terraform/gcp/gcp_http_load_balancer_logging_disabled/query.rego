@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: Bloque 'log_config' ausente.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_compute_backend_service.%s", [name]),
+        "resourceType": "google_compute_backend_service",
+        "resourceName": tf_lib.get_resource_name(bs, name),
+        "searchKey": sprintf("google_compute_backend_service[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "log_config should be defined with enable set to true",
         "keyActualValue": "log_config is missing",
@@ -25,7 +29,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_compute_backend_service.%s.log_config.enable", [name]),
+        "resourceType": "google_compute_backend_service",
+        "resourceName": tf_lib.get_resource_name(bs, name),
+        "searchKey": sprintf("google_compute_backend_service[%s].log_config.enable", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "log_config.enable should be set to true",
         "keyActualValue": "log_config.enable is set to false",

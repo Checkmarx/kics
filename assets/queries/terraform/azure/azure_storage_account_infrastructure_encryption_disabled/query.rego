@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: Atributo 'infrastructure_encryption_enabled' ausente.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_storage_account.%s", [name]),
+        "resourceType": "azurerm_storage_account",
+        "resourceName": tf_lib.get_resource_name(sa, name),
+        "searchKey": sprintf("azurerm_storage_account[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'azurerm_storage_account.%s' should have 'infrastructure_encryption_enabled' set to true", [name]),
         "keyActualValue": sprintf("'azurerm_storage_account.%s' is missing 'infrastructure_encryption_enabled'", [name]),
@@ -25,7 +29,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_storage_account.%s.infrastructure_encryption_enabled", [name]),
+        "resourceType": "azurerm_storage_account",
+        "resourceName": tf_lib.get_resource_name(sa, name),
+        "searchKey": sprintf("azurerm_storage_account[%s].infrastructure_encryption_enabled", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'infrastructure_encryption_enabled' should be set to true",
         "keyActualValue": "'infrastructure_encryption_enabled' is set to false",

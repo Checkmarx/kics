@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: Azure Service Plan usando SKU Basic (B), Free (F) o Consumption (Y1).
 CxPolicy[result] {
     doc := input.document[i]
@@ -10,7 +12,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_service_plan.%s.sku_name", [name]),
+        "resourceType": "azurerm_service_plan",
+        "resourceName": tf_lib.get_resource_name(plan, name),
+        "searchKey": sprintf("azurerm_service_plan[%s].sku_name", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("'%s.sku_name' should be Standard (S), Premium (P) or Isolated (I) for production", [name]),
         "keyActualValue": sprintf("'%s.sku_name' is set to '%s' (Basic/Free/Consumption)", [name, plan.sku_name]),
@@ -26,7 +30,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_api_management.%s.sku_name", [name]),
+        "resourceType": "azurerm_api_management",
+        "resourceName": tf_lib.get_resource_name(apim, name),
+        "searchKey": sprintf("azurerm_api_management[%s].sku_name", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("'%s.sku_name' should be Standard or Premium for production features", [name]),
         "keyActualValue": sprintf("'%s.sku_name' is set to '%s'", [name, apim.sku_name]),

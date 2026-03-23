@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: IoT Hub sin solución de seguridad (azurerm_iot_security_solution) asociada.
 CxPolicy[result] {
     doc := input.document[i]
@@ -17,7 +19,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.azurerm_iothub.%s", [hub_name]),
+        "resourceType": "azurerm_iothub",
+        "resourceName": tf_lib.get_resource_name(iot_hub, hub_name),
+        "searchKey": sprintf("azurerm_iothub[%s]", [hub_name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'azurerm_iothub.%s' should be included in 'iothub_ids' of an 'azurerm_iot_security_solution'", [hub_name]),
         "keyActualValue": sprintf("'azurerm_iothub.%s' is not associated with any 'azurerm_iot_security_solution'", [hub_name]),

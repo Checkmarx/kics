@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: Bloque 'security_posture_config' ausente.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_container_cluster.%s", [name]),
+        "resourceType": "google_container_cluster",
+        "resourceName": tf_lib.get_resource_name(cluster, name),
+        "searchKey": sprintf("google_container_cluster[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'security_posture_config' block should be defined with mode 'BASIC' or 'ENTERPRISE'",
         "keyActualValue": "'security_posture_config' block is missing",
@@ -25,7 +29,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_container_cluster.%s.security_posture_config.mode", [name]),
+        "resourceType": "google_container_cluster",
+        "resourceName": tf_lib.get_resource_name(cluster, name),
+        "searchKey": sprintf("google_container_cluster[%s].security_posture_config.mode", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'mode' should be set to 'BASIC' or 'ENTERPRISE'",
         "keyActualValue": "'mode' is set to 'DISABLED'",

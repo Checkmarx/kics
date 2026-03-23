@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 ensure_array(x) = x { is_array(x) }
 ensure_array(x) = [x] { not is_array(x) }
 
@@ -9,7 +11,7 @@ CxPolicy[result] {
     app := doc.resource.google_app_engine_standard_app_version[name]
 
     app.handlers
-    
+
     handlers_list := ensure_array(app.handlers)
     handler := handlers_list[_]
 
@@ -18,7 +20,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_app_engine_standard_app_version.%s.handlers", [name]),
+        "resourceType": "google_app_engine_standard_app_version",
+        "resourceName": tf_lib.get_resource_name(app, name),
+        "searchKey": sprintf("google_app_engine_standard_app_version[%s].handlers", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'handlers.security_level' should be set to 'SECURE_ALWAYS'",
         "keyActualValue": sprintf("'handlers.security_level' is set to '%s'", [sec_level]),
@@ -34,7 +38,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_app_engine_standard_app_version.%s", [name]),
+        "resourceType": "google_app_engine_standard_app_version",
+        "resourceName": tf_lib.get_resource_name(app, name),
+        "searchKey": sprintf("google_app_engine_standard_app_version[%s]", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "If handlers are not defined in Terraform, verify 'app.yaml' contains 'secure: always'",
         "keyActualValue": "Terraform does not define handlers. Manual verification of 'app.yaml' required.",

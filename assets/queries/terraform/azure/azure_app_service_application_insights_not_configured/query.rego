@@ -1,9 +1,11 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 targets := {
-    "azurerm_linux_web_app", 
-    "azurerm_windows_web_app", 
-    "azurerm_linux_function_app", 
+    "azurerm_linux_web_app",
+    "azurerm_windows_web_app",
+    "azurerm_linux_function_app",
     "azurerm_windows_function_app"
 }
 
@@ -17,7 +19,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.%s.%s", [resource_type, name]),
+        "resourceType": resource_type,
+        "resourceName": tf_lib.get_resource_name(app, name),
+        "searchKey": sprintf("%s[%s]", [resource_type, name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'%s.%s' should have 'app_settings' defined", [resource_type, name]),
         "keyActualValue": sprintf("'%s.%s' is missing 'app_settings'", [resource_type, name]),
@@ -36,7 +40,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.%s.%s.app_settings", [resource_type, name]),
+        "resourceType": resource_type,
+        "resourceName": tf_lib.get_resource_name(app, name),
+        "searchKey": sprintf("%s[%s].app_settings", [resource_type, name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'app_settings' should contain 'APPLICATIONINSIGHTS_CONNECTION_STRING'",
         "keyActualValue": "'app_settings' does not contain Application Insights configuration",

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 # REGLA 1: Bloque 'sandbox_config' ausente en google_container_cluster.
 CxPolicy[result] {
     doc := input.document[i]
@@ -9,7 +11,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_container_cluster.%s.node_config", [name]),
+        "resourceType": "google_container_cluster",
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("google_container_cluster[%s].node_config", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'sandbox_config' should be defined with sandbox_type 'gvisor'",
         "keyActualValue": "'sandbox_config' is missing",
@@ -25,7 +29,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_container_node_pool.%s.node_config", [name]),
+        "resourceType": "google_container_node_pool",
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("google_container_node_pool[%s].node_config", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'sandbox_config' should be defined with sandbox_type 'gvisor'",
         "keyActualValue": "'sandbox_config' is missing",
@@ -41,7 +47,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_container_cluster.%s.node_config.sandbox_config.sandbox_type", [name]),
+        "resourceType": "google_container_cluster",
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("google_container_cluster[%s].node_config.sandbox_config.sandbox_type", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'sandbox_type' should be 'gvisor'",
         "keyActualValue": sprintf("'sandbox_type' is set to '%s'", [resource.node_config.sandbox_config.sandbox_type]),
@@ -57,7 +65,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_container_node_pool.%s.node_config.sandbox_config.sandbox_type", [name]),
+        "resourceType": "google_container_node_pool",
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("google_container_node_pool[%s].node_config.sandbox_config.sandbox_type", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'sandbox_type' should be 'gvisor'",
         "keyActualValue": sprintf("'sandbox_type' is set to '%s'", [resource.node_config.sandbox_config.sandbox_type]),
