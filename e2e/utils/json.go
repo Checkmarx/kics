@@ -2,7 +2,9 @@ package utils
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
+
 	"os"
 	"path/filepath"
 	"reflect"
@@ -132,8 +134,10 @@ func FileCheck(t *testing.T, actualPayloadName, expectPayloadName, location stri
 	require.NoError(t, err, "[output/%s] Reading a fixture should not yield an error", actualPayloadName)
 
 	require.Equal(t, len(expectPayload), len(actualPayload),
-		"[fixtures/%s] Expected file number of lines: %d\n[output/%s] Actual file number of lines: %d\n",
-		expectPayloadName, len(expectPayload), actualPayloadName, len(actualPayload))
+		"[fixtures/%s] Expected file number of lines: %d\n[output/%s] Actual file number of lines: %d\n"+
+			"expectedPayload:\n%v\nactualPayload:\n%v\n",
+		expectPayloadName, len(expectPayload), actualPayloadName, len(actualPayload),
+		formatPayload(expectPayload), formatPayload(actualPayload))
 	setFields(t, expectPayload, actualPayload, expectPayloadName, actualPayloadName, location)
 }
 
@@ -149,6 +153,45 @@ func CheckLine(t *testing.T, expec, want string, line int) {
 		require.Equal(t, expec, want,
 			"Expected Output line:\n%s\n\nKICS Output line:\n%s\n\nLine Number: %d", want, expec, line)
 	}
+}
+
+func formatPayload(payload []string) string {
+	var sb strings.Builder
+	for _, line := range payload {
+		sb.WriteString(line)
+		sb.WriteString("\n")
+	}
+	return sb.String()
+}
+
+func formatVulnFiles(files []map[string]interface{}) string {
+	var sb strings.Builder
+	for _, f := range files {
+		b, err := json.MarshalIndent(f, "", " ")
+		if err != nil {
+			sb.WriteString(fmt.Sprintf("error formatting file: %v\n", err))
+			continue
+		}
+		sb.WriteString(string(b))
+		sb.WriteString("\n")
+	}
+	return sb.String()
+}
+
+func toComparableFiles(queries []model.QueryResult) []map[string]interface{} {
+	result := []map[string]interface{}{}
+	for i := range queries {
+		for j := range queries[i].Files {
+			b, _ := json.Marshal(queries[i].Files[j])
+			m := map[string]interface{}{}
+			if err := json.Unmarshal(b, &m); err != nil {
+				continue
+			}
+			m["queryName"] = queries[i].QueryName
+			result = append(result, m)
+		}
+	}
+	return result
 }
 
 //nolint:funlen
@@ -240,21 +283,16 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			expectFileName, actualFileName)
 
 		// compare the results
-		expectToCompare := []model.VulnerableFile{}
-		for i := range expectI.Queries {
-			expectToCompare = append(expectToCompare, expectI.Queries[i].Files...)
-		}
-		actualToCompare := []model.VulnerableFile{}
-		for i := range actualI.Queries {
-			actualToCompare = append(actualToCompare, actualI.Queries[i].Files...)
-		}
+		expectToCompare := toComparableFiles(expectI.Queries)
+		actualToCompare := toComparableFiles(actualI.Queries)
+
 		require.ElementsMatch(t, expectToCompare, actualToCompare,
-			"Expected Queries content: 'fixtures/%s' doesn't match the Actual Queries content: 'output/%s'.",
-			expectToCompare, actualToCompare)
+			"Expected Queries content: 'fixtures/%s' doesn't match the Actual Queries content: 'output/%s",
+			formatVulnFiles(expectToCompare), formatVulnFiles(actualToCompare))
 
 		// compare severity counters
 		compare := reflect.DeepEqual(expectI.SeverityCounters, actualI.SeverityCounters)
-		require.True(t, compare, "Expected Severity Counters content: 'fixtures/%s' doesn't match the Actual Severity Counters content: 'output/%s'.", //nolint:lll
+		require.True(t, compare, "Expected Severity Counters content: 'fixtures/%s' doesn't match the Actual Severity Counters content: 'output/%s", //nolint:lll
 			expectI.SeverityCounters, actualI.SeverityCounters)
 	}
 }
