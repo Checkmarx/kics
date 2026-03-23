@@ -1,65 +1,65 @@
-# Regla KICS: Storage Immutability Policy Not Locked
+# KICS Rule: Storage Immutability Policy Not Locked
 
-## Descripción General
+## General Description
 
-Esta regla verifica que las políticas de inmutabilidad (`azurerm_storage_container_immutability_policy`) aplicadas a los contenedores de Azure Storage estén configuradas en estado **Bloqueado** (`locked = true`).
+This rule verifies that immutability policies (`azurerm_storage_container_immutability_policy`) applied to Azure Storage containers are configured in the **Locked** state (`locked = true`).
 
-Las políticas de inmutabilidad permiten que los datos se almacenen en un formato **WORM** (Write Once, Read Many). En el contexto de control de acceso y protección de datos, existen dos estados críticos:
-* **Unlocked (Mutable):** La política protege los datos contra borrado o modificación, pero la política en sí puede ser eliminada o modificada por usuarios con altos privilegios. Es un estado transitorio y no garantiza la inalterabilidad a largo plazo.
-* **Locked (Inmutable):** Una vez bloqueada, la política se vuelve irreversible; no puede ser eliminada y el periodo de retención solo puede aumentarse. Este estado es un control de integridad estricto que garantiza que ni siquiera un administrador pueda eliminar los datos antes de tiempo.
+Immutability policies allow data to be stored in a **WORM** (Write Once, Read Many) format. In the context of access control and data protection, there are two critical states:
+* **Unlocked (Mutable):** The policy protects data against deletion or modification, but the policy itself can be deleted or modified by users with high privileges. It is a transient state and does not guarantee long-term immutability.
+* **Locked (Immutable):** Once locked, the policy becomes irreversible; it cannot be deleted and the retention period can only be increased. This state is a strict integrity control that ensures that not even an administrator can delete data ahead of time.
 
-## Lógica de la Regla
+## Rule Logic
 
-La regla audita los recursos `azurerm_storage_container_immutability_policy` evaluando dos condiciones de control:
-1.  **Omisión del Atributo:** Si no se define el atributo `locked`, Azure asume por defecto el estado "Unlocked", permitiendo que la protección sea removida.
-2.  **Valor Incorrecto:** Si el atributo `locked` se establece explícitamente en `false`.
+The rule audits `azurerm_storage_container_immutability_policy` resources by evaluating two control conditions:
+1.  **Attribute Omission:** If the `locked` attribute is not defined, Azure assumes the "Unlocked" state by default, allowing the protection to be removed.
+2.  **Incorrect Value:** If the `locked` attribute is explicitly set to `false`.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Atributo de Bloqueo Ausente
+### Case 1: Missing Lock Attribute
 
-* **Descripción:** Se define una política de retención pero no se especifica si debe estar bloqueada. Por defecto, Azure la crea en estado "Unlocked".
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** A retention policy is defined but it is not specified whether it should be locked. By default, Azure creates it in the "Unlocked" state.
+* **Problematic Terraform Code Example:**
     ```terraform
     resource "azurerm_storage_container_immutability_policy" "fail_missing" {
       storage_container_resource_manager_id = azurerm_storage_container.example.id
       retention_period_in_days              = 365
-      # Falta locked = true
+      # Missing locked = true
     }
     ```
-* **Ubicación de la Alerta:** Sobre el recurso raíz `azurerm_storage_container_immutability_policy`.
+* **Alert Location:** On the root `azurerm_storage_container_immutability_policy` resource.
 
 ---
 
-### Caso 2: Política Mutable (Unlocked)
+### Case 2: Mutable Policy (Unlocked)
 
-* **Descripción:** El atributo `locked` se establece explícitamente en `false`, lo que permite que la política de inmutabilidad sea eliminable por usuarios autorizados.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The `locked` attribute is explicitly set to `false`, which allows the immutability policy to be deleted by authorized users.
+* **Problematic Terraform Code Example:**
     ```terraform
     resource "azurerm_storage_container_immutability_policy" "fail_explicit" {
       storage_container_resource_manager_id = azurerm_storage_container.example.id
       retention_period_in_days              = 730
-      locked                                = false # <-- PROBLEMA DETECTADO
+      locked                                = false # <-- DETECTED ISSUE
     }
     ```
-* **Ubicación de la Alerta:** Atributo `locked`.
+* **Alert Location:** `locked` attribute.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_storage_container_immutability_policy`
 
-## Solución
+## Solution
 
-Establezca el atributo `locked` en `true` para asegurar que el control de integridad de los datos sea permanente y cumpla con los requisitos WORM.
+Set the `locked` attribute to `true` to ensure that the data integrity control is permanent and meets WORM requirements.
 
 > [!WARNING]
-> **Advertencia Crítica:** Una vez que una política se bloquea en Azure, **no puede eliminarse**. Solo podrá borrar el contenedor una vez que el periodo de retención de todos los objetos haya expirado. Valide cuidadosamente los días de retención antes de aplicar este cambio en producción.
+> **Critical Warning:** Once a policy is locked in Azure, **it cannot be deleted**. You will only be able to delete the container once the retention period of all objects has expired. Carefully validate the retention days before applying this change in production.
 
 ```terraform
 resource "azurerm_storage_container_immutability_policy" "secure_policy" {
   storage_container_resource_manager_id = azurerm_storage_container.example.id
   retention_period_in_days              = 365
-  
-  # SOLUCIÓN: Bloqueo de política habilitado para integridad WORM
+
+  # SOLUTION: Policy lock enabled for WORM integrity
   locked                                = true
 }

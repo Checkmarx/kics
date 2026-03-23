@@ -1,28 +1,28 @@
-# Regla KICS: Key Vault Key Rotation Disabled
+# KICS Rule: Key Vault Key Rotation Disabled
 
-## Descripción General
+## General Description
 
-Esta regla de KICS verifica que las claves criptográficas almacenadas en Azure Key Vault (`azurerm_key_vault_key`) tengan configurada una política de rotación automática.
+This KICS rule verifies that cryptographic keys stored in Azure Key Vault (`azurerm_key_vault_key`) have an automatic rotation policy configured.
 
-La rotación automática de claves es una práctica de seguridad esencial que limita la cantidad de datos cifrados con una sola versión de clave y reduce significativamente el impacto en caso de que una clave se vea comprometida. Configurar una política de rotación asegura que las claves se renueven de forma proactiva sin intervención manual, garantizando la continuidad operativa y el cumplimiento de estándares de seguridad como PCI-DSS o HIPAA.
+Automatic key rotation is an essential security practice that limits the amount of data encrypted with a single key version and significantly reduces the impact if a key is compromised. Configuring a rotation policy ensures that keys are proactively renewed without manual intervention, guaranteeing operational continuity and compliance with security standards such as PCI-DSS or HIPAA.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política analiza el recurso `azurerm_key_vault_key` realizando los siguientes pasos:
-1.  **Identificación de Claves:** Selecciona todos los recursos de tipo `azurerm_key_vault_key`.
-2.  **Verificación de Política:** Comprueba la existencia del bloque de configuración `rotation_policy`.
-3.  **Generación de Alerta:** Si el bloque está ausente, se considera que la clave no tiene una estrategia de rotación definida y se genera un hallazgo.
+The policy analyzes the `azurerm_key_vault_key` resource by performing the following steps:
+1.  **Key Identification:** Selects all resources of type `azurerm_key_vault_key`.
+2.  **Policy Verification:** Checks for the existence of the `rotation_policy` configuration block.
+3.  **Alert Generation:** If the block is absent, the key is considered to have no defined rotation strategy and a finding is generated.
 
-## Caso de Fallo Detectado
+## Detected Failure Case
 
-A continuación se describe el escenario que esta política detectará.
+The following describes the scenario this policy will detect.
 
 ---
 
-### Caso Único: Clave sin política de rotación
+### Single Case: Key without Rotation Policy
 
-* **Descripción:** Se define una clave criptográfica en Key Vault pero se omite el bloque `rotation_policy`, dejando la responsabilidad de la rotación a procesos manuales o permitiendo que la clave permanezca indefinidamente.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** A cryptographic key is defined in Key Vault but the `rotation_policy` block is omitted, leaving the rotation responsibility to manual processes or allowing the key to remain indefinitely.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_key_vault_key" "fail_key" {
       name         = "example-key"
@@ -30,19 +30,19 @@ A continuación se describe el escenario que esta política detectará.
       key_type     = "RSA"
       key_size     = 2048
       key_opts     = ["decrypt", "encrypt", "sign", "verify"]
-      
-      # El recurso carece de la configuración rotation_policy
+
+      # The resource lacks the rotation_policy configuration
     }
     ```
-* **Ubicación de la Alerta:** Sobre el recurso raíz `azurerm_key_vault_key`.
+* **Alert Location:** On the root `azurerm_key_vault_key` resource.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_key_vault_key`
 
-## Solución
+## Solution
 
-Para solucionar este riesgo, añada el bloque `rotation_policy` definiendo el tiempo de expiración y las reglas de rotación automática deseadas.
+To fix this risk, add the `rotation_policy` block defining the expiry time and the desired automatic rotation rules.
 
 ```terraform
 resource "azurerm_key_vault_key" "secure_key" {
@@ -52,7 +52,7 @@ resource "azurerm_key_vault_key" "secure_key" {
   key_size     = 2048
   key_opts     = ["decrypt", "encrypt", "sign", "verify"]
 
-  # SOLUCIÓN: Definir política de rotación automática
+  # SOLUTION: Define automatic rotation policy
   rotation_policy {
     expire_after         = "P90D"
     notify_before_expiry = "P29D"

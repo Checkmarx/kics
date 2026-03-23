@@ -1,34 +1,34 @@
-# Regla KICS: Backup Vault CMK Encryption Disabled
+# KICS Rule: Backup Vault CMK Encryption Disabled
 
-## Descripción General
+## General Description
 
-Esta regla verifica que los almacenes de copias de seguridad de Azure (**Backup Vaults** del servicio Data Protection) estén cifrados utilizando **Customer-Managed Keys (CMK)**.
+This rule verifies that Azure backup vaults (**Backup Vaults** from the Data Protection service) are encrypted using **Customer-Managed Keys (CMK)**.
 
-El uso de claves gestionadas por el cliente proporciona un control total sobre el ciclo de vida de las claves (creación, rotación y revocación) y es un requisito común en entornos con altas exigencias de seguridad y cumplimiento. En Terraform, esto se configura mediante un recurso separado (`azurerm_data_protection_backup_vault_customer_managed_key`) que vincula el Vault con la clave almacenada en un Key Vault.
+Using customer-managed keys provides full control over the key lifecycle (creation, rotation, and revocation) and is a common requirement in environments with high security and compliance demands. In Terraform, this is configured through a separate resource (`azurerm_data_protection_backup_vault_customer_managed_key`) that links the Vault to the key stored in a Key Vault.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política realiza un análisis de relaciones entre recursos:
-1.  Identifica todos los recursos `azurerm_data_protection_backup_vault`.
-2.  Busca si existe un recurso `azurerm_data_protection_backup_vault_customer_managed_key` cuya propiedad `data_protection_backup_vault_id` apunte al Vault analizado.
-3.  Verifica que dicho recurso de asociación tenga definido el atributo `key_vault_key_id`.
-4.  Si no existe esta vinculación, se genera una alerta indicando que el Vault usa claves gestionadas por la plataforma (configuración por defecto).
+The policy performs a relationship analysis between resources:
+1.  Identifies all `azurerm_data_protection_backup_vault` resources.
+2.  Searches for an `azurerm_data_protection_backup_vault_customer_managed_key` resource whose `data_protection_backup_vault_id` property points to the analyzed Vault.
+3.  Verifies that this association resource has the `key_vault_key_id` attribute defined.
+4.  If this linkage does not exist, an alert is generated indicating that the Vault uses platform-managed keys (default configuration).
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Backup Vault sin CMK
+### Case 1: Backup Vault Without CMK
 
-* **Descripción:** Se define el Backup Vault pero no se encuentra el recurso de asociación de la clave de cifrado gestionada por el cliente.
-* **Ubicación de la Alerta:** Sobre el recurso `azurerm_data_protection_backup_vault`.
+* **Description:** The Backup Vault is defined but the customer-managed encryption key association resource is not found.
+* **Alert Location:** On the `azurerm_data_protection_backup_vault` resource.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_data_protection_backup_vault`
 * `azurerm_data_protection_backup_vault_customer_managed_key`
 
-## Solución
+## Solution
 
-Define el recurso de asociación `azurerm_data_protection_backup_vault_customer_managed_key` y vincúlalo al Vault y a la Key correspondiente.
+Define the `azurerm_data_protection_backup_vault_customer_managed_key` association resource and link it to the Vault and the corresponding Key.
 
 ```terraform
 resource "azurerm_data_protection_backup_vault_customer_managed_key" "example" {

@@ -1,52 +1,52 @@
-# Regla KICS: Google API Key Restrictions (Manual)
+# KICS Rule: Google API Key Restrictions (Manual)
 
-## Descripción General
+## Overview
 
-Esta regla informativa (INFO) audita la seguridad perimetral de las **Google API Keys** (`google_apikeys_key`).
+This informational (INFO) rule audits the perimeter security of **Google API Keys** (`google_apikeys_key`).
 
-A diferencia de las identidades de IAM, las API Keys no se autentican mediante un usuario, sino que se validan por su simple posesión. Por ello, es imperativo restringir su uso a direcciones IP, dominios web o aplicaciones móviles específicas. 
+Unlike IAM identities, API Keys are not authenticated by a user; they are validated by simple possession. Therefore, it is imperative to restrict their use to specific IP addresses, web domains, or mobile applications.
 
-Esta regla garantiza que se aplique el principio de defensa en profundidad. Dado que una herramienta de análisis estático no puede determinar si una dirección IP o un dominio configurado es legítimo o excesivamente permisivo, la regla alerta tanto ante la ausencia de restricciones como ante su presencia, forzando una revisión manual de la lista de permitidos.
+This rule ensures that the defense-in-depth principle is applied. Since a static analysis tool cannot determine whether a configured IP address or domain is legitimate or overly permissive, the rule alerts both on the absence of restrictions and on their presence, forcing a manual review of the allowlist.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política evalúa el recurso en dos etapas:
-1.  **Validación de Presencia:** Si falta el bloque `restrictions`, la clave se marca como vulnerable (acceso público).
-2.  **Validación Manual:** Si el bloque `restrictions` existe, se genera una alerta informativa para que el auditor confirme que los valores (IPs, referrers, etc.) coinciden con los activos corporativos autorizados.
+The policy evaluates the resource in two stages:
+1.  **Presence Validation:** If the `restrictions` block is missing, the key is flagged as vulnerable (public access).
+2.  **Manual Validation:** If the `restrictions` block exists, an informational alert is generated so the auditor can confirm that the values (IPs, referrers, etc.) match the authorized corporate assets.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-A continuación se describen los escenarios que esta política detectará.
+The following scenarios will be detected by this policy.
 
 ---
 
-### Caso 1: Sin Restricciones (Vulnerable)
-* **Descripción:** La clave de API carece de restricciones de cliente, permitiendo que cualquier persona con la clave pueda realizar llamadas desde cualquier lugar de Internet.
-* **Ubicación de la Alerta:** Bloque del recurso `google_apikeys_key`.
+### Case 1: No Restrictions (Vulnerable)
+* **Description:** The API key lacks client restrictions, allowing anyone with the key to make calls from anywhere on the Internet.
+* **Alert Location:** `google_apikeys_key` resource block.
 
-### Caso 2: Revisión de Restricciones (Manual Check)
-* **Descripción:** La clave tiene restricciones configuradas. El auditor debe verificar que los valores definidos no sean genéricos o incorrectos.
-* **Ubicación de la Alerta:** Atributo `restrictions`.
+### Case 2: Restrictions Review (Manual Check)
+* **Description:** The key has restrictions configured. The auditor must verify that the defined values are not generic or incorrect.
+* **Alert Location:** `restrictions` attribute.
 
-## Recurso Involucrado
+## Resource Involved
 
 * `google_apikeys_key`
 
-## Solución
+## Solution
 
-Implemente siempre el bloque `restrictions` utilizando el tipo de restricción que mejor se adapte al uso de la clave (Browser, Server, Android o iOS).
+Always implement the `restrictions` block using the restriction type that best suits the key's use case (Browser, Server, Android, or iOS).
 
 ```terraform
 resource "google_apikeys_key" "secure_api_key" {
   name = "frontend-maps-key"
 
   restrictions {
-    # Ejemplo: Clave restringida a un dominio específico
+    # Example: Key restricted to a specific domain
     browser_key_restrictions {
       allowed_referrers = ["[https://app.example.com/](https://app.example.com/)*"]
     }
 
-    # Recomendado: Combinar con restricción de API (API Targets)
+    # Recommended: Combine with API restriction (API Targets)
     api_targets {
       service = "maps-backend.googleapis.com"
     }

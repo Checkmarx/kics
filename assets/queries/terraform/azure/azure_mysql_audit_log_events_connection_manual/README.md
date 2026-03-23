@@ -1,59 +1,59 @@
-# Regla KICS: MySQL Audit Log Events Connection (Manual)
+# KICS Rule: MySQL Audit Log Events Connection (Manual)
 
-## Descripción General
+## General Description
 
-Esta regla de KICS actúa como un control manual para verificar que el parámetro de servidor `audit_log_events` incluya el valor `CONNECTION` en los servidores de **Azure Database for MySQL**.
+This KICS rule acts as a manual control to verify that the server parameter `audit_log_events` includes the value `CONNECTION` in **Azure Database for MySQL** servers.
 
-El registro de los eventos de tipo `CONNECTION` es una pieza fundamental de la estrategia de seguridad y cumplimiento. Permite a los administradores y auditores rastrear quién accede a la base de datos, detectar ataques de fuerza bruta (intentos fallidos) y auditar sesiones sospechosas. Sin esta configuración, se pierde visibilidad sobre el acceso inicial a los recursos de datos, dificultando la respuesta ante incidentes.
+Logging `CONNECTION` type events is a fundamental piece of the security and compliance strategy. It allows administrators and auditors to track who accesses the database, detect brute force attacks (failed attempts), and audit suspicious sessions. Without this configuration, visibility into initial access to data resources is lost, making incident response more difficult.
 
-## Lógica de la Regla
+## Rule Logic
 
-Debido a que el análisis estático no siempre puede garantizar la verificación de una cadena de texto dentro de un recurso de configuración independiente (`azurerm_mysql_configuration`), esta regla aplica un enfoque preventivo:
-1.  **Identificación de Recursos:** Detecta todas las instancias de `azurerm_mssql_server` y `azurerm_mysql_flexible_server`.
-2.  **Recordatorio de Seguridad:** Genera una alerta informativa para que el auditor verifique específicamente que el evento de conexión esté siendo capturado.
+Because static analysis cannot always guarantee verification of a text string within an independent configuration resource (`azurerm_mysql_configuration`), this rule applies a preventive approach:
+1.  **Resource Identification:** Detects all instances of `azurerm_mssql_server` and `azurerm_mysql_flexible_server`.
+2.  **Security Reminder:** Generates an informational alert for the auditor to specifically verify that connection events are being captured.
 
-## Caso de Fallo Detectado
+## Detected Failure Case
 
-A continuación se describe el escenario que esta política detectará.
+The following describes the scenario this policy will detect.
 
 ---
 
-### Caso Único: Verificación Manual Requerida
+### Single Case: Manual Verification Required
 
-* **Descripción:** Se detecta un servidor MySQL aprovisionado. KICS emite una alerta para asegurar que los tipos de eventos auditados incluyan las conexiones, ya que esta configuración puede estar delegada a otros recursos o al portal.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** A provisioned MySQL server is detected. KICS issues an alert to ensure that the audited event types include connections, since this configuration may be delegated to other resources or the portal.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_mssql_server" "example_audit_check" {
       name                = "mysql-server-connection-check"
       resource_group_name = azurerm_resource_group.example.name
       location            = azurerm_resource_group.example.location
-      # El contenido de audit_log_events no es verificable aquí.
+      # The content of audit_log_events is not verifiable here.
     }
     ```
-* **Ubicación de la Alerta:** Sobre el recurso del servidor MySQL detectado.
+* **Alert Location:** On the detected MySQL server resource.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_mssql_server`
 * `azurerm_mysql_flexible_server`
 
-## Solución
+## Solution
 
-### Opción A: Verificación Manual (Portal de Azure)
-1. Navegue al servidor MySQL en el Portal de Azure.
-2. Vaya a la sección **Parámetros del servidor**.
-3. Localice el parámetro `audit_log_events`.
-4. Asegúrese de que entre los valores seleccionados se incluya `CONNECTION`.
+### Option A: Manual Verification (Azure Portal)
+1. Navigate to the MySQL server in the Azure Portal.
+2. Go to the **Server parameters** section.
+3. Locate the `audit_log_events` parameter.
+4. Ensure that `CONNECTION` is included among the selected values.
 
-### Opción B: Configuración mediante Terraform
-Asegúrese de incluir explícitamente el valor en el recurso de configuración:
+### Option B: Configuration via Terraform
+Make sure to explicitly include the value in the configuration resource:
 
 ```terraform
 resource "azurerm_mysql_configuration" "audit_events" {
   name                = "audit_log_events"
   resource_group_name = azurerm_resource_group.example.name
   server_name         = azurerm_mssql_server.example.name
-  
-  # SOLUCIÓN: Incluir CONNECTION en la lista de eventos
-  value               = "CONNECTION,QUERY,DDL" 
+
+  # SOLUTION: Include CONNECTION in the list of events
+  value               = "CONNECTION,QUERY,DDL"
 }

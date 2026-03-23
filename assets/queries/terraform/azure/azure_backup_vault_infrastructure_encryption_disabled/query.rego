@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Falta el bloque 'identity', necesario para gestionar cifrado avanzado.
+# RULE 1: The 'identity' block is missing, which is required to manage advanced encryption.
 CxPolicy[result] {
     doc := input.document[i]
     vault := doc.resource.azurerm_data_protection_backup_vault[name]

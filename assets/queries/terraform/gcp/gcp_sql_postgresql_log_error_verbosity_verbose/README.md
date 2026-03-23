@@ -1,32 +1,32 @@
-# Regla KICS: Cloud SQL PostgreSQL log_error_verbosity is Verbose
+# KICS Rule: Cloud SQL PostgreSQL log_error_verbosity is Verbose
 
-## Descripción General
+## Overview
 
-Esta regla verifica la configuración del flag de base de datos `log_error_verbosity` en instancias de **Google Cloud SQL (PostgreSQL)**.
+This rule verifies the configuration of the `log_error_verbosity` database flag in **Google Cloud SQL (PostgreSQL)** instances.
 
-Este parámetro controla la cantidad de detalles que se escriben en el registro de errores del servidor. El nivel `verbose` incluye información interna como código fuente y números de línea, lo cual no es recomendado para entornos de producción por motivos de seguridad y rendimiento.
+This parameter controls the amount of detail written to the server error log. The `verbose` level includes internal information such as source code and line numbers, which is not recommended for production environments for security and performance reasons.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política inspecciona el recurso `google_sql_database_instance`:
-1.  Verifica si la versión de la base de datos contiene "POSTGRES".
-2.  Normaliza el bloque `settings.database_flags` para procesar correctamente tanto configuraciones con un único flag como con múltiples.
-3.  Si encuentra un flag llamado `log_error_verbosity` con el valor `verbose`, genera una alerta.
+The policy inspects the `google_sql_database_instance` resource:
+1.  Verifies if the database version contains "POSTGRES".
+2.  Normalizes the `settings.database_flags` block to correctly process configurations with both single and multiple flags.
+3.  If it finds a flag named `log_error_verbosity` with the value `verbose`, it generates an alert.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Verbosity Insegura
+### Case 1: Insecure Verbosity
 
-* **Descripción:** El flag está explícitamente configurado como `verbose`.
-* **Ubicación de la Alerta:** Bloque `database_flags`.
+* **Description:** The flag is explicitly configured as `verbose`.
+* **Alert Location:** `database_flags` block.
 
-## Recurso Involucrado
+## Resource Involved
 
 * `google_sql_database_instance`
 
-## Solución
+## Solution
 
-Establece el valor en `default`, `terse` o elimina el flag.
+Set the value to `default`, `terse`, or remove the flag.
 
 ```terraform
 resource "google_sql_database_instance" "secure" {

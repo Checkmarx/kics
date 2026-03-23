@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: 'workload_metadata_config' ausente en google_container_cluster
+# RULE 1: 'workload_metadata_config' missing in google_container_cluster
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.google_container_cluster[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: 'workload_metadata_config' ausente en google_container_node_pool
+# RULE 2: 'workload_metadata_config' missing in google_container_node_pool
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.google_container_node_pool[name]
@@ -38,7 +38,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: Modo incorrecto en google_container_cluster
+# RULE 3: Incorrect mode in google_container_cluster
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.google_container_cluster[name]
@@ -56,7 +56,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 4: Modo incorrecto en google_container_node_pool
+# RULE 4: Incorrect mode in google_container_node_pool
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.google_container_node_pool[name]

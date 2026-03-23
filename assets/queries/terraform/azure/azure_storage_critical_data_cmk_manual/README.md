@@ -1,47 +1,47 @@
-# Regla KICS: Critical Data Storage CMK (Manual)
+# KICS Rule: Critical Data Storage CMK (Manual)
 
-## Descripción General
+## General Description
 
-Esta regla identifica cuentas de almacenamiento de Azure (`azurerm_storage_account`) que utilizan cifrado gestionado por Microsoft (**Platform-Managed Keys**). 
+This rule identifies Azure storage accounts (`azurerm_storage_account`) that use Microsoft-managed encryption (**Platform-Managed Keys**).
 
-El cifrado en reposo es automático en Azure, pero el uso de claves gestionadas por la plataforma no siempre es suficiente para cumplir con normativas de soberanía de datos o requisitos de seguridad de datos críticos. Esta regla actúa como un control de **auditoría manual**: identifica recursos sin **Customer-Managed Keys (CMK)** para que el equipo de seguridad valide si los datos contenidos (financieros, PII, secretos industriales) requieren que la organización posea y gestione las claves de cifrado en su propio Key Vault.
+Encryption at rest is automatic in Azure, but using platform-managed keys is not always sufficient to comply with data sovereignty regulations or critical data security requirements. This rule acts as a **manual audit** control: it identifies resources without **Customer-Managed Keys (CMK)** so that the security team can validate whether the contained data (financial, PII, trade secrets) requires the organization to own and manage the encryption keys in their own Key Vault.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el recurso `azurerm_storage_account` evaluando dos escenarios:
-1.  **Ausencia de Configuración CMK:** Si el bloque `customer_managed_key` no está presente, la cuenta utiliza las claves por defecto de Azure.
-2.  **Configuración Incompleta:** Si el bloque `customer_managed_key` existe pero no define el atributo `key_vault_key_id`, el cifrado CMK no se está aplicando efectivamente.
+The policy audits the `azurerm_storage_account` resource by evaluating two scenarios:
+1.  **Missing CMK Configuration:** If the `customer_managed_key` block is not present, the account uses Azure's default keys.
+2.  **Incomplete Configuration:** If the `customer_managed_key` block exists but does not define the `key_vault_key_id` attribute, CMK encryption is not being effectively applied.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Revisión de Sensibilidad de Datos Requerida (Cifrado Default)
+### Case 1: Data Sensitivity Review Required (Default Encryption)
 
-* **Descripción:** La cuenta utiliza el cifrado base de Azure. Se requiere validación manual para determinar si la criticidad de los datos exige el paso a CMK.
-* **Ubicación de la Alerta:** Recurso `azurerm_storage_account`.
+* **Description:** The account uses Azure's base encryption. Manual validation is required to determine whether data criticality warrants a move to CMK.
+* **Alert Location:** `azurerm_storage_account` resource.
 
-### Caso 2: Bloque CMK sin Clave Asociada
+### Case 2: CMK Block Without Associated Key
 
-* **Descripción:** Se ha declarado el bloque de claves gestionadas por el cliente pero se ha omitido el identificador de la clave criptográfica.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The customer-managed key block has been declared but the cryptographic key identifier has been omitted.
+* **Problematic Terraform Code Example:**
     ```terraform
     resource "azurerm_storage_account" "fail_incomplete" {
       name = "stincomplete"
       # ...
       customer_managed_key {
         user_assigned_identity_id = azurerm_user_assigned_identity.example.id
-        # key_vault_key_id es opcional en el esquema pero necesario para CMK
+        # key_vault_key_id is optional in the schema but required for CMK
       }
     }
     ```
-* **Ubicación de la Alerta:** Bloque `customer_managed_key`.
+* **Alert Location:** `customer_managed_key` block.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_storage_account`
 
-## Solución
+## Solution
 
-Si tras la revisión manual se confirma que los datos son críticos, implemente CMK vinculando una clave de Azure Key Vault.
+If the manual review confirms that the data is critical, implement CMK by linking an Azure Key Vault key.
 
 ```terraform
 resource "azurerm_storage_account" "secure_critical" {
@@ -56,7 +56,7 @@ resource "azurerm_storage_account" "secure_critical" {
   }
 
   customer_managed_key {
-    # SOLUCIÓN: Definir explícitamente la clave de Key Vault
+    # SOLUTION: Explicitly define the Key Vault key
     key_vault_key_id = azurerm_key_vault_key.example.id
   }
 }

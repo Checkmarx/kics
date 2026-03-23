@@ -1,40 +1,40 @@
-# Regla KICS: Cloud SQL PostgreSQL log_statement Improperly Set
+# KICS Rule: Cloud SQL PostgreSQL log_statement Improperly Set
 
-## Descripción General
+## Overview
 
-Esta regla verifica la configuración del flag `log_statement` en instancias de **Google Cloud SQL (PostgreSQL)**.
+This rule verifies the configuration of the `log_statement` flag in **Google Cloud SQL (PostgreSQL)** instances.
 
-Este parámetro controla qué sentencias SQL se registran en los logs del servidor:
-* **`none`:** No registra ninguna sentencia (Default).
-* **`ddl`:** Registra sentencias de definición de datos (CREATE, ALTER, DROP). Recomendado por CIS Benchmark como línea base.
-* **`mod`:** Registra DDL y sentencias de modificación de datos (INSERT, UPDATE, DELETE).
-* **`all`:** Registra todas las sentencias.
+This parameter controls which SQL statements are logged in the server logs:
+* **`none`:** Does not log any statements (Default).
+* **`ddl`:** Logs data definition statements (CREATE, ALTER, DROP). Recommended by CIS Benchmark as a baseline.
+* **`mod`:** Logs DDL and data modification statements (INSERT, UPDATE, DELETE).
+* **`all`:** Logs all statements.
 
-Para cumplir con normativas de auditoría y seguridad, se debe configurar al menos en `ddl` para rastrear cambios estructurales en la base de datos que podrían comprometer la integridad de la misma.
+To comply with audit and security regulations, it must be configured to at least `ddl` to track structural changes in the database that could compromise its integrity.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política evalúa el recurso `google_sql_database_instance` (PostgreSQL):
-1.  **Flag Ausente:** Si `log_statement` no se encuentra dentro de la lista de flags configurados, falla (ya que el valor por defecto de PostgreSQL es insuficiente para auditoría).
-2.  **Flag Incorrecto:** Si `log_statement` está presente pero su valor es explícitamente `none`, falla.
+The policy evaluates the `google_sql_database_instance` resource (PostgreSQL):
+1.  **Missing Flag:** If `log_statement` is not found within the list of configured flags, it fails (since PostgreSQL's default value is insufficient for auditing).
+2.  **Incorrect Flag:** If `log_statement` is present but its value is explicitly `none`, it fails.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Configuración Ausente
-* **Descripción:** No se ha definido el flag, por lo que la base de datos no está auditando sentencias críticas.
-* **Ubicación de la Alerta:** Bloque `database_flags`.
+### Case 1: Missing Configuration
+* **Description:** The flag has not been defined, so the database is not auditing critical statements.
+* **Alert Location:** `database_flags` block.
 
-### Caso 2: Auditoría Deshabilitada Explícitamente
-* **Descripción:** El flag está configurado con el valor `none`, desactivando el registro de sentencias.
-* **Ubicación de la Alerta:** Bloque `database_flags`.
+### Case 2: Auditing Explicitly Disabled
+* **Description:** The flag is configured with the value `none`, disabling statement logging.
+* **Alert Location:** `database_flags` block.
 
-## Recurso Involucrado
+## Resource Involved
 
 * `google_sql_database_instance`
 
-## Solución
+## Solution
 
-Establezca el valor del flag `log_statement` en `ddl` (mínimo recomendado para auditoría), `mod` o `all`.
+Set the value of the `log_statement` flag to `ddl` (minimum recommended for auditing), `mod`, or `all`.
 
 ```terraform
 resource "google_sql_database_instance" "secure" {

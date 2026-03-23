@@ -1,36 +1,36 @@
-# Regla KICS: GCP HTTP(S) Load Balancer Logging Disabled
+# KICS Rule: GCP HTTP(S) Load Balancer Logging Disabled
 
-## Descripción General
+## Overview
 
-Esta regla de severidad **MEDIA** verifica que el registro de acceso (Logging) esté habilitado en los recursos `google_compute_backend_service` de Google Cloud.
+This **MEDIUM** severity rule verifies that access logging (Logging) is enabled in `google_compute_backend_service` resources in Google Cloud.
 
-Los Backend Services gestionan el tráfico que el balanceador de carga HTTP(S) distribuye hacia los grupos de instancias o buckets. Habilitar los logs de Cloud Armor y del balanceador permite capturar metadatos críticos de cada transacción HTTP: dirección IP de origen, protocolos, latencias de respuesta, y códigos de estado (2xx, 4xx, 5xx). Sin estos registros, la capacidad de respuesta ante incidentes de seguridad (como ataques DoS o inyecciones) y la depuración de errores de infraestructura se ven seriamente limitadas.
+Backend Services manage the traffic that the HTTP(S) load balancer distributes to instance groups or buckets. Enabling Cloud Armor and load balancer logs allows capturing critical metadata for each HTTP transaction: source IP address, protocols, response latencies, and status codes (2xx, 4xx, 5xx). Without these logs, incident response capability for security events (such as DoS attacks or injections) and debugging of infrastructure errors are severely limited.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el recurso `google_compute_backend_service` bajo dos criterios:
-1.  **Omisión:** Detecta si el bloque `log_config` no ha sido definido.
-2.  **Desactivación:** Detecta si el atributo `enable` dentro de `log_config` tiene el valor booleano `false`.
+The policy audits the `google_compute_backend_service` resource under two criteria:
+1.  **Omission:** Detects if the `log_config` block has not been defined.
+2.  **Disabling:** Detects if the `enable` attribute within `log_config` has the boolean value `false`.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
 ---
 
-### Caso 1: Configuración de Logging Ausente
-* **Descripción:** El servicio de backend se crea sin parámetros de registro, lo que deshabilita la telemetría de tráfico por defecto.
-* **Ubicación de la Alerta:** Nivel de recurso `google_compute_backend_service`.
+### Case 1: Missing Logging Configuration
+* **Description:** The backend service is created without logging parameters, which disables traffic telemetry by default.
+* **Alert Location:** `google_compute_backend_service` resource level.
 
-### Caso 2: Logging Deshabilitado Explícitamente
-* **Descripción:** Se define el bloque de configuración pero se apaga el servicio de logs.
-* **Ubicación de la Alerta:** Atributo `enable` dentro de `log_config`.
+### Case 2: Logging Explicitly Disabled
+* **Description:** The configuration block is defined but the log service is turned off.
+* **Alert Location:** `enable` attribute within `log_config`.
 
-## Recurso Involucrado
+## Resource Involved
 
 * `google_compute_backend_service`
 
-## Solución
+## Solution
 
-Añada el bloque `log_config` con el parámetro `enable = true`. Se recomienda un `sample_rate` de `1.0` para producción.
+Add the `log_config` block with the `enable = true` parameter. A `sample_rate` of `1.0` is recommended for production.
 
 ```terraform
 resource "google_compute_backend_service" "compliant_service" {
@@ -39,7 +39,7 @@ resource "google_compute_backend_service" "compliant_service" {
   port_name   = "http"
   timeout_sec = 10
 
-  # Solución técnica
+  # Technical solution
   log_config {
     enable      = true
     sample_rate = 1.0

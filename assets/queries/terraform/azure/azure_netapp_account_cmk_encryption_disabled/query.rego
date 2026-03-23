@@ -19,7 +19,7 @@ has_inline_encryption(account) {
     account.encryption.key_source == "Microsoft.KeyVault"
 }
 
-# REGLA 1: La cuenta NetApp utiliza Platform-Managed Keys (falta configuración CMK).
+# RULE 1: The NetApp account uses Platform-Managed Keys (CMK configuration is missing).
 CxPolicy[result] {
     doc := input.document[i]
     account := doc.resource.azurerm_netapp_account[name]

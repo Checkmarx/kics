@@ -1,37 +1,37 @@
-# Regla KICS: GKE Default Service Account Used
+# KICS Rule: GKE Default Service Account Used
 
-## Descripción General
+## Overview
 
-Esta regla de severidad **ALTA** verifica que los clústeres y pools de nodos de **Google Kubernetes Engine (GKE)** no utilicen la cuenta de servicio predeterminada de Compute Engine.
+This **HIGH** severity rule verifies that **Google Kubernetes Engine (GKE)** clusters and node pools do not use the default Compute Engine service account.
 
-Por defecto, si no se especifica el atributo `service_account`, GKE utiliza la cuenta de servicio predeterminada del proyecto (`PROJECT_NUMBER-compute@developer.gserviceaccount.com`). Esta cuenta posee automáticamente el rol de **Editor**, lo que otorga a los nodos (y potencialmente a los Pods) permisos extensos para modificar recursos en GCP, como buckets de almacenamiento, redes VPC y otras instancias. Utilizar una cuenta de servicio dedicada con privilegios mínimos reduce drásticamente el "blast radius" en caso de un compromiso de seguridad en el clúster.
+By default, if the `service_account` attribute is not specified, GKE uses the project's default service account (`PROJECT_NUMBER-compute@developer.gserviceaccount.com`). This account automatically has the **Editor** role, which grants nodes (and potentially Pods) extensive permissions to modify resources in GCP, such as storage buckets, VPC networks, and other instances. Using a dedicated service account with minimal privileges drastically reduces the "blast radius" in the event of a security compromise in the cluster.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita los recursos `google_container_cluster` y `google_container_node_pool` bajo los siguientes criterios:
-1.  **Falta de Atributo:** Identifica si el bloque `node_config` carece de la clave `service_account`.
-2.  **Identificación de Riesgo:** La alerta se dispara al detectar que el clúster delegará su identidad a la cuenta de servicio más privilegiada del proyecto por defecto.
+The policy audits the `google_container_cluster` and `google_container_node_pool` resources under the following criteria:
+1.  **Missing Attribute:** Identifies if the `node_config` block lacks the `service_account` key.
+2.  **Risk Identification:** The alert is triggered upon detecting that the cluster will delegate its identity to the project's most privileged service account by default.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
 ---
 
-### Caso 1: Uso Implícito en el Clúster
-* **Descripción:** Se define un clúster de GKE sin especificar una identidad para los nodos.
-* **Ubicación de la Alerta:** Atributo `node_config` del recurso `google_container_cluster`.
+### Case 1: Implicit Use in Cluster
+* **Description:** A GKE cluster is defined without specifying an identity for the nodes.
+* **Alert Location:** `node_config` attribute of the `google_container_cluster` resource.
 
-### Caso 2: Uso Implícito en el Node Pool
-* **Descripción:** Se crea un pool de nodos adicional que hereda la cuenta de servicio por defecto.
-* **Ubicación de la Alerta:** Atributo `node_config` del recurso `google_container_node_pool`.
+### Case 2: Implicit Use in Node Pool
+* **Description:** An additional node pool is created that inherits the default service account.
+* **Alert Location:** `node_config` attribute of the `google_container_node_pool` resource.
 
-## Recurso Involucrado
+## Resources Involved
 
 * `google_container_cluster`
 * `google_container_node_pool`
 
-## Solución
+## Solution
 
-Cree una Service Account personalizada con los permisos mínimos necesarios (ej. roles de logging, monitoring y acceso a registry) y asígnela explícitamente.
+Create a custom Service Account with the minimum necessary permissions (e.g., logging, monitoring, and registry access roles) and assign it explicitly.
 
 ```terraform
 resource "google_service_account" "gke_nodes_sa" {
@@ -44,7 +44,7 @@ resource "google_container_cluster" "secure_cluster" {
   location = "us-central1"
 
   node_config {
-    # Solución: Identidad dedicada
+    # Solution: Dedicated identity
     service_account = google_service_account.gke_nodes_sa.email
     oauth_scopes    = ["[https://www.googleapis.com/auth/cloud-platform](https://www.googleapis.com/auth/cloud-platform)"]
   }

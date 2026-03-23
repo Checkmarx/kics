@@ -4,7 +4,7 @@ import data.generic.terraform as tf_lib
 
 geo_redundant_types := {"GRS", "RAGRS", "GZRS", "RAGZRS"}
 
-# REGLA 1: El tipo de replicación no es Geo-Redundante (ej. es LRS o ZRS).
+# RULE 1: The replication type is not Geo-Redundant (e.g., it is LRS or ZRS).
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]

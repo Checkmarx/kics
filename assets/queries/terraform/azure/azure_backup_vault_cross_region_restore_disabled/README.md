@@ -1,38 +1,38 @@
-# Regla KICS: Backup Vault Cross Region Restore Disabled
+# KICS Rule: Backup Vault Cross Region Restore Disabled
 
-## Descripción General
+## General Description
 
-Esta regla verifica que la funcionalidad de **Restauración entre Regiones** (`cross_region_restore_enabled`) esté habilitada en los recursos `azurerm_data_protection_backup_vault`.
+This rule verifies that the **Cross Region Restore** functionality (`cross_region_restore_enabled`) is enabled on `azurerm_data_protection_backup_vault` resources.
 
-Cross Region Restore (CRR) permite restaurar los datos de copia de seguridad en una región secundaria de Azure emparejada (Azure Paired Region). Esto es fundamental para garantizar la continuidad del negocio y la recuperación de datos en caso de que la región principal sufra una interrupción total o un desastre geográfico.
+Cross Region Restore (CRR) allows backup data to be restored in a secondary paired Azure region (Azure Paired Region). This is essential to ensure business continuity and data recovery in the event that the primary region suffers a total outage or geographic disaster.
 
-**Nota:** Para utilizar CRR de manera efectiva, el almacén requiere que la redundancia esté configurada como `GeoRedundant`.
+**Note:** To use CRR effectively, the vault requires redundancy to be configured as `GeoRedundant`.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política evalúa el recurso `azurerm_data_protection_backup_vault` bajo dos escenarios:
-1.  **Atributo Ausente:** Si no se define explícitamente `cross_region_restore_enabled`, se genera una alerta sobre el recurso (ya que el valor por defecto en la plataforma suele ser false).
-2.  **Deshabilitado Explícitamente:** Si el atributo se establece como `false`, la alerta apunta directamente a la línea de la configuración incorrecta.
+The policy evaluates the `azurerm_data_protection_backup_vault` resource under two scenarios:
+1.  **Missing Attribute:** If `cross_region_restore_enabled` is not explicitly defined, an alert is generated on the resource (since the default value on the platform is usually false).
+2.  **Explicitly Disabled:** If the attribute is set to `false`, the alert points directly to the line of the incorrect configuration.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
 ---
 
-### Caso 1: Configuración Ausente
-* **Descripción:** Se define el Backup Vault sin especificar la política de restauración entre regiones, dejando los datos vulnerables a fallos regionales.
-* **Ubicación de la Alerta:** Nivel de recurso `azurerm_data_protection_backup_vault`.
+### Case 1: Missing Configuration
+* **Description:** The Backup Vault is defined without specifying the cross-region restore policy, leaving data vulnerable to regional failures.
+* **Alert Location:** Resource level `azurerm_data_protection_backup_vault`.
 
-### Caso 2: CRR Deshabilitado
-* **Descripción:** El atributo `cross_region_restore_enabled` está configurado explícitamente como `false`.
-* **Ubicación de la Alerta:** Línea `cross_region_restore_enabled`.
+### Case 2: CRR Disabled
+* **Description:** The `cross_region_restore_enabled` attribute is explicitly configured as `false`.
+* **Alert Location:** Line `cross_region_restore_enabled`.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_data_protection_backup_vault`
 
-## Solución
+## Solution
 
-Establezca el atributo `cross_region_restore_enabled` en `true`. Es altamente recomendable verificar que el tipo de redundancia (`redundancy`) esté configurado como `GeoRedundant`.
+Set the `cross_region_restore_enabled` attribute to `true`. It is highly recommended to verify that the redundancy type (`redundancy`) is configured as `GeoRedundant`.
 
 ```terraform
 resource "azurerm_data_protection_backup_vault" "example_secure" {
@@ -42,6 +42,6 @@ resource "azurerm_data_protection_backup_vault" "example_secure" {
   datastore_type               = "VaultStore"
   redundancy                   = "GeoRedundant"
 
-  # Solución técnica
+  # Technical solution
   cross_region_restore_enabled = true
 }

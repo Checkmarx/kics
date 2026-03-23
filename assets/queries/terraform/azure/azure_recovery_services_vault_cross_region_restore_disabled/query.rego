@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Atributo 'cross_region_restore_enabled' ausente.
+# RULE 1: The 'cross_region_restore_enabled' attribute is missing.
 CxPolicy[result] {
     doc := input.document[i]
     vault := doc.resource.azurerm_recovery_services_vault[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Atributo 'cross_region_restore_enabled' establecido en false.
+# RULE 2: The 'cross_region_restore_enabled' attribute is set to false.
 CxPolicy[result] {
     doc := input.document[i]
     vault := doc.resource.azurerm_recovery_services_vault[name]

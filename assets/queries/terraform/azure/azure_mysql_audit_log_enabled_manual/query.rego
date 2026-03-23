@@ -4,7 +4,7 @@ import data.generic.terraform as tf_lib
 
 targets := {"azurerm_mssql_server", "azurerm_mysql_flexible_server"}
 
-# REGLA MANUAL: Detecta servidores MySQL para solicitar verificación de logs de auditoría.
+# MANUAL RULE: Detects MySQL servers to request verification of audit logs.
 CxPolicy[result] {
     doc := input.document[i]
 

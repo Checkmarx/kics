@@ -1,63 +1,63 @@
-# Regla KICS: NetApp Account CMK Encryption Disabled
+# KICS Rule: NetApp Account CMK Encryption Disabled
 
-## Descripción General
+## General Description
 
-Esta regla de KICS verifica que las cuentas de **Azure NetApp Files** estén configuradas para utilizar claves gestionadas por el cliente (**Customer-Managed Keys - CMK**) para el cifrado de datos en reposo.
+This KICS rule verifies that **Azure NetApp Files** accounts are configured to use **Customer-Managed Keys (CMK)** for data encryption at rest.
 
-Por defecto, Azure NetApp Files cifra los datos utilizando claves gestionadas por la plataforma Microsoft. Sin embargo, para cumplir con requisitos de cumplimiento normativo y soberanía de datos, se recomienda el uso de CMK. Esto permite a las organizaciones tener el control total sobre el ciclo de vida de las claves, incluyendo la rotación y la revocación de acceso, asegurando que los volúmenes de almacenamiento de alto rendimiento estén protegidos por claves bajo el control directo del cliente en Azure Key Vault.
+By default, Azure NetApp Files encrypts data using Microsoft platform-managed keys. However, to meet regulatory compliance and data sovereignty requirements, the use of CMK is recommended. This allows organizations to have full control over the key lifecycle, including rotation and access revocation, ensuring that high-performance storage volumes are protected by keys under the direct control of the customer in Azure Key Vault.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política analiza la configuración de Terraform buscando dos métodos válidos de implementación de CMK:
-1.  **Configuración Inline:** Verifica si el recurso `azurerm_netapp_account` tiene un bloque `encryption` donde el atributo `key_source` sea explícitamente `Microsoft.KeyVault`.
-2.  **Recurso Independiente:** Verifica si existe un recurso `azurerm_netapp_account_encryption` vinculado al ID de la cuenta NetApp analizada.
+The policy analyzes the Terraform configuration looking for two valid CMK implementation methods:
+1.  **Inline Configuration:** Checks whether the `azurerm_netapp_account` resource has an `encryption` block where the `key_source` attribute is explicitly `Microsoft.KeyVault`.
+2.  **Standalone Resource:** Checks whether an `azurerm_netapp_account_encryption` resource exists linked to the analyzed NetApp account's ID.
 
-Si no se detecta ninguno de estos dos métodos, se genera una alerta indicando que la cuenta está operando con el cifrado predeterminado de la plataforma.
+If neither of these two methods is detected, an alert is generated indicating that the account is operating with the platform's default encryption.
 
-## Caso de Fallo Detectado
+## Detected Failure Case
 
-A continuación se describe el escenario que esta política detectará.
+The following describes the scenario this policy will detect.
 
 ---
 
-### Caso Único: Configuración de Cifrado por Defecto (Platform Keys)
+### Single Case: Default Encryption Configuration (Platform Keys)
 
-* **Descripción:** Se define la cuenta de NetApp sin habilitar el uso de Key Vault para el cifrado, dejando los datos protegidos únicamente por las claves de Microsoft.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The NetApp account is defined without enabling Key Vault for encryption, leaving the data protected only by Microsoft keys.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_netapp_account" "fail" {
       name                = "insecure-netapp-account"
       resource_group_name = azurerm_resource_group.example.name
       location            = azurerm_resource_group.example.location
-      
-      # Falta la configuración de CMK (inline o recurso separado)
+
+      # Missing CMK configuration (inline or separate resource)
     }
     ```
-* **Ubicación de la Alerta:** Sobre el recurso raíz `azurerm_netapp_account`.
+* **Alert Location:** On the root `azurerm_netapp_account` resource.
 
-## Recursos Involucrados
+## Involved Resources
 
 * `azurerm_netapp_account`
 * `azurerm_netapp_account_encryption`
 
-## Solución
+## Solution
 
-Para solucionar este riesgo, asigne una identidad gestionada a la cuenta y utilice el recurso `azurerm_netapp_account_encryption` para vincular la clave del Key Vault.
+To fix this risk, assign a managed identity to the account and use the `azurerm_netapp_account_encryption` resource to link the Key Vault key.
 
 ```terraform
 resource "azurerm_netapp_account" "secure" {
   name                = "secure-netapp-account"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
-  
-  # 1. Asignar identidad
+
+  # 1. Assign identity
   identity {
     type = "UserAssigned"
     identity_ids = [azurerm_user_assigned_identity.example.id]
   }
 }
 
-# 2. Configurar el cifrado CMK mediante el recurso dedicado
+# 2. Configure CMK encryption via the dedicated resource
 resource "azurerm_netapp_account_encryption" "secure_encryption" {
   netapp_account_id         = azurerm_netapp_account.secure.id
   user_assigned_identity_id = azurerm_user_assigned_identity.example.id

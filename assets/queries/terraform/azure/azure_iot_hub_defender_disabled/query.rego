@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: IoT Hub sin solución de seguridad (azurerm_iot_security_solution) asociada.
+# RULE 1: IoT Hub without an associated security solution (azurerm_iot_security_solution).
 CxPolicy[result] {
     doc := input.document[i]
     iot_hub := doc.resource.azurerm_iothub[hub_name]

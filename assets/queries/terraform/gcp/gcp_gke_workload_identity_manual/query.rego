@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Workload Identity no habilitado (Missing Attribute).
+# RULE 1: Workload Identity not enabled (Missing Attribute).
 CxPolicy[result] {
     doc := input.document[i]
     cluster := doc.resource.google_container_cluster[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Workload Identity habilitado (Verificación Manual de Bindings).
+# RULE 2: Workload Identity enabled (Manual Binding Verification).
 CxPolicy[result] {
     doc := input.document[i]
     cluster := doc.resource.google_container_cluster[name]

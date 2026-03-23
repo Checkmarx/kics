@@ -16,7 +16,7 @@ check_id(current, target) {
     current == sprintf("${%s}", [target])
 }
 
-# REGLA 1: SQL Server sin configuración de TDE explícita o sin CMK.
+# RULE 1: SQL Server without explicit TDE configuration or without CMK.
 CxPolicy[result] {
     doc := input.document[i]
     server := doc.resource.azurerm_mssql_server[name]

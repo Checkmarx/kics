@@ -1,72 +1,72 @@
-# Regla KICS: Azure IoT Hub Defender Disabled
+# KICS Rule: Azure IoT Hub Defender Disabled
 
-## Descripción General
+## General Description
 
-Esta regla de KICS verifica que los recursos **Azure IoT Hub** (`azurerm_iothub`) estén protegidos por **Microsoft Defender for IoT**.
+This KICS rule verifies that **Azure IoT Hub** resources (`azurerm_iothub`) are protected by **Microsoft Defender for IoT**.
 
-Microsoft Defender for IoT proporciona una capa esencial de seguridad para entornos de Internet de las cosas, ofreciendo detección de amenazas en tiempo real y gestión de la postura de seguridad. La falta de esta protección deja a los dispositivos IoT y a la infraestructura central del Hub vulnerables ante ataques dirigidos, movimientos laterales y exfiltración de datos. En Terraform, esta protección se habilita vinculando el IoT Hub con un recurso del tipo `azurerm_iot_security_solution`.
+Microsoft Defender for IoT provides an essential layer of security for Internet of Things environments, offering real-time threat detection and security posture management. The lack of this protection leaves IoT devices and the Hub's central infrastructure vulnerable to targeted attacks, lateral movement, and data exfiltration. In Terraform, this protection is enabled by linking the IoT Hub with a resource of type `azurerm_iot_security_solution`.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política analiza la configuración de Terraform realizando los siguientes pasos:
-1.  **Identificación de Hubs:** Selecciona todos los recursos de tipo `azurerm_iothub`.
-2.  **Verificación de Soluciones:** Busca recursos `azurerm_iot_security_solution` en el documento.
-3.  **Validación de Vinculación:** Comprueba si el identificador del Hub está presente en la lista `iothub_ids` de alguna solución de seguridad definida, contemplando formatos directos o interpolados.
-4.  **Generación de Alerta:** Si un Hub no está referenciado en ninguna solución, se genera un hallazgo de seguridad.
+The policy analyzes the Terraform configuration by performing the following steps:
+1.  **Hub Identification:** Selects all resources of type `azurerm_iothub`.
+2.  **Solution Verification:** Looks for `azurerm_iot_security_solution` resources in the document.
+3.  **Link Validation:** Checks whether the Hub's identifier is present in the `iothub_ids` list of any defined security solution, considering direct or interpolated formats.
+4.  **Alert Generation:** If a Hub is not referenced in any solution, a security finding is generated.
 
-## Caso de Fallo Detectado
+## Detected Failure Case
 
-A continuación se describe el escenario que esta política detectará.
+The following describes the scenario this policy will detect.
 
 ---
 
-### Caso Único: IoT Hub sin Defender asociado
+### Single Case: IoT Hub without Associated Defender
 
-* **Descripción:** Se define un recurso `azurerm_iothub` pero no se encuentra ningún recurso `azurerm_iot_security_solution` que lo incluya en su lista de IDs protegidos.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** An `azurerm_iothub` resource is defined but no `azurerm_iot_security_solution` resource is found that includes it in its list of protected IDs.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_iothub" "fail_hub" {
       name                = "insecure-iothub"
       resource_group_name = azurerm_resource_group.example.name
       location            = azurerm_resource_group.example.location
-      
+
       sku {
         name     = "S1"
         capacity = "1"
       }
     }
 
-    # No existe azurerm_iot_security_solution que referencie a fail_hub
+    # No azurerm_iot_security_solution exists that references fail_hub
     ```
-* **Ubicación de la Alerta:** Sobre el recurso raíz `azurerm_iothub`.
+* **Alert Location:** On the root `azurerm_iothub` resource.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_iothub`
 * `azurerm_iot_security_solution`
 
-## Solución
+## Solution
 
-Para solucionar este riesgo, asegúrese de definir un recurso `azurerm_iot_security_solution` e incluir el ID del IoT Hub en el atributo `iothub_ids`.
+To fix this risk, make sure to define an `azurerm_iot_security_solution` resource and include the IoT Hub ID in the `iothub_ids` attribute.
 
 ```terraform
 resource "azurerm_iothub" "example" {
   name                = "secure-iothub"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
-  
+
   sku {
     name     = "S1"
     capacity = "1"
   }
 }
 
-# SOLUCIÓN: Definir la solución de seguridad y vincular el Hub
+# SOLUTION: Define the security solution and link the Hub
 resource "azurerm_iot_security_solution" "example" {
   name                = "iot-security-solution"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   display_name        = "Iot Security Solution"
-  
+
   iothub_ids          = [azurerm_iothub.example.id]
 }

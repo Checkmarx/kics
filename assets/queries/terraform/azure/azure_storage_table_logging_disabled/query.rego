@@ -14,7 +14,7 @@ is_target_linked(target, sa_name) {
     contains(target, "tableServices/default")
 }
 
-# CASO 1: La cuenta de almacenamiento no tiene ningún Diagnostic Setting para Tablas.
+# CASE 1: The storage account has no Diagnostic Setting for Tables.
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]
@@ -37,7 +37,7 @@ diag_exists_for_sa(doc, sa_name) {
     is_target_linked(diag.target_resource_id, sa_name)
 }
 
-# CASO 2: El Diagnostic Setting existe pero no tiene ningún bloque 'enabled_log'.
+# CASE 2: The Diagnostic Setting exists but has no 'enabled_log' blocks.
 CxPolicy[result] {
     doc := input.document[i]
     diag := doc.resource.azurerm_monitor_diagnostic_setting[diag_name]
@@ -56,7 +56,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 3: El Diagnostic Setting tiene bloques 'enabled_log' pero el conjunto está incompleto.
+# CASE 3: The Diagnostic Setting has 'enabled_log' blocks but the set is incomplete.
 CxPolicy[result] {
     doc := input.document[i]
     diag := doc.resource.azurerm_monitor_diagnostic_setting[diag_name]

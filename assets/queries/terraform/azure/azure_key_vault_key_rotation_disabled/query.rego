@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: La clave del Key Vault no tiene política de rotación configurada.
+# RULE 1: The Key Vault key does not have a rotation policy configured.
 CxPolicy[result] {
     doc := input.document[i]
     key := doc.resource.azurerm_key_vault_key[name]

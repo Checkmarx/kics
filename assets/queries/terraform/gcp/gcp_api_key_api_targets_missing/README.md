@@ -1,52 +1,52 @@
-# Regla KICS: Google API Key API Targets Missing
+# KICS Rule: Google API Key API Targets Missing
 
-## Descripción General
+## Overview
 
-Esta regla de severidad **MEDIA** audita la configuración de las **Google API Keys** (`google_apikeys_key`) para asegurar que el acceso esté limitado exclusivamente a los servicios necesarios.
+This **MEDIUM** severity rule audits the configuration of **Google API Keys** (`google_apikeys_key`) to ensure access is limited exclusively to the necessary services.
 
-Cuando se genera una API Key en Google Cloud, por defecto tiene capacidad para invocar **cualquier API habilitada** en el proyecto. Esto representa un riesgo significativo de seguridad y costos; si una clave se ve comprometida (por ejemplo, al ser expuesta accidentalmente en el código fuente de una aplicación móvil o web), un atacante podría utilizarla para consumir servicios sensibles o de alto coste (como la API de Google Maps o modelos de IA) que no forman parte del propósito original de la aplicación. 
+When an API Key is generated in Google Cloud, it is capable by default of invoking **any enabled API** in the project. This represents a significant security and cost risk; if a key is compromised (for example, by being accidentally exposed in a mobile or web application's source code), an attacker could use it to consume sensitive or high-cost services (such as the Google Maps API or AI models) that are not part of the application's original purpose.
 
-La mejor práctica de seguridad consiste en aplicar restricciones de "API Targets" para que la clave solo funcione con los servicios específicos para los que fue creada.
+The security best practice is to apply "API Targets" restrictions so that the key only works with the specific services for which it was created.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política evalúa dos escenarios de fallo en el código Terraform:
-1.  **Ausencia de Restricciones:** El recurso no define ningún bloque `restrictions`, dejando la clave totalmente desprotegida.
-2.  **Falta de Alcance de API:** El recurso define restricciones (como IPs o referrers), pero omite el bloque `api_targets`, permitiendo que esos orígenes autorizados consuman cualquier API del proyecto.
+The policy evaluates two failure scenarios in Terraform code:
+1.  **Absence of Restrictions:** The resource does not define any `restrictions` block, leaving the key completely unprotected.
+2.  **Missing API Scope:** The resource defines restrictions (such as IPs or referrers), but omits the `api_targets` block, allowing those authorized origins to consume any API in the project.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-A continuación se describen los escenarios que esta política detectará.
+The following scenarios will be detected by this policy.
 
 ---
 
-### Caso 1: Restricciones Ausentes
-* **Descripción:** La clave de API se define sin ningún tipo de control perimetral o de servicio.
-* **Ubicación de la Alerta:** Bloque del recurso `google_apikeys_key`.
+### Case 1: Missing Restrictions
+* **Description:** The API key is defined without any perimeter or service controls.
+* **Alert Location:** `google_apikeys_key` resource block.
 
-### Caso 2: API Targets no Definidos
-* **Descripción:** Se aplican restricciones de cliente, pero se mantiene el acceso ilimitado a todos los servicios de Google habilitados en el proyecto.
-* **Ubicación de la Alerta:** Atributo `restrictions`.
+### Case 2: API Targets Not Defined
+* **Description:** Client restrictions are applied, but unlimited access to all Google services enabled in the project is maintained.
+* **Alert Location:** `restrictions` attribute.
 
-## Recurso Involucrado
+## Resource Involved
 
 * `google_apikeys_key`
 
-## Solución
+## Solution
 
-Añada el bloque `api_targets` dentro de la sección `restrictions` especificando los servicios necesarios.
+Add the `api_targets` block inside the `restrictions` section specifying the required services.
 
 ```terraform
 resource "google_apikeys_key" "secure_key" {
   name = "production-maps-key"
 
   restrictions {
-    # Restricción de origen (ejemplo para navegador)
+    # Origin restriction (example for browser)
     browser_key_restrictions {
-      allowed_referrers = ["[https://app.tu-empresa.com/](https://app.tu-empresa.com/)*"]
+      allowed_referrers = ["[https://app.your-company.com/](https://app.your-company.com/)*"]
     }
 
-    # Restricción de servicios (Solución)
+    # Service restriction (Solution)
     api_targets {
       service = "maps-backend.googleapis.com"
     }

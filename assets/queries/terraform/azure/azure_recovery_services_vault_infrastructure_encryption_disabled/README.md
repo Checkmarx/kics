@@ -1,44 +1,44 @@
-# Regla KICS: Recovery Services Vault Infrastructure Encryption Disabled
+# KICS Rule: Recovery Services Vault Infrastructure Encryption Disabled
 
-## Descripción General
+## General Description
 
-Esta regla de KICS verifica que el **Cifrado de Infraestructura** (`infrastructure_encryption_enabled`) esté habilitado en los almacenes de **Recovery Services Vault**.
+This KICS rule verifies that **Infrastructure Encryption** (`infrastructure_encryption_enabled`) is enabled in **Recovery Services Vault** vaults.
 
-El cifrado de infraestructura proporciona una capa adicional de protección mediante el uso de un segundo algoritmo de cifrado (**Double Encryption**). Mientras que todos los datos en Azure ya están cifrados en reposo, habilitar esta opción asegura que los datos se cifren dos veces utilizando dos algoritmos independientes. Esta configuración es fundamental para organizaciones con requisitos de cumplimiento altamente estrictos que buscan mitigar riesgos ante posibles vulnerabilidades en un único estándar criptográfico.
+Infrastructure encryption provides an additional layer of protection through the use of a second encryption algorithm (**Double Encryption**). While all data in Azure is already encrypted at rest, enabling this option ensures that data is encrypted twice using two independent algorithms. This configuration is essential for organizations with highly strict compliance requirements seeking to mitigate risks against potential vulnerabilities in a single cryptographic standard.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política analiza el recurso `azurerm_recovery_services_vault` validando dos aspectos técnicos:
-1.  **Bloque de Cifrado:** Verifica la existencia del bloque `encryption`. Si no existe, se asume que no hay doble cifrado.
-2.  **Cifrado de Infraestructura:** Verifica que el atributo `infrastructure_encryption_enabled` esté explícitamente establecido en `true`.
+The policy analyzes the `azurerm_recovery_services_vault` resource by validating two technical aspects:
+1.  **Encryption Block:** Verifies the existence of the `encryption` block. If it does not exist, it is assumed that there is no double encryption.
+2.  **Infrastructure Encryption:** Verifies that the `infrastructure_encryption_enabled` attribute is explicitly set to `true`.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-A continuación se describen los escenarios que esta política detectará.
+The following describes the scenarios that this policy will detect.
 
 ---
 
-### Caso 1: Bloque de Cifrado Ausente
+### Case 1: Missing Encryption Block
 
-* **Descripción:** El almacén no tiene definido el bloque `encryption`, por lo que utiliza únicamente el cifrado predeterminado de Azure sin capas adicionales.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The vault does not have the `encryption` block defined, so it uses only Azure's default encryption without additional layers.
+* **Problematic Terraform Code Example:**
     ```terraform
     resource "azurerm_recovery_services_vault" "fail_missing" {
       name                = "insecure-vault"
       resource_group_name = "rg-prod"
       location            = "West Europe"
       sku                 = "Standard"
-      # Falta bloque encryption {}
+      # Missing encryption {} block
     }
     ```
-* **Ubicación de la Alerta:** Sobre el recurso raíz `azurerm_recovery_services_vault`.
+* **Alert Location:** On the root `azurerm_recovery_services_vault` resource.
 
 ---
 
-### Caso 2: Cifrado de Infraestructura Deshabilitado
+### Case 2: Infrastructure Encryption Disabled
 
-* **Descripción:** El bloque `encryption` existe pero el atributo `infrastructure_encryption_enabled` no está configurado o se encuentra en `false`.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The `encryption` block exists but the `infrastructure_encryption_enabled` attribute is not configured or is set to `false`.
+* **Problematic Terraform Code Example:**
     ```terraform
     resource "azurerm_recovery_services_vault" "fail_disabled" {
       name = "vault-vulnerable"
@@ -50,15 +50,15 @@ A continuación se describen los escenarios que esta política detectará.
       }
     }
     ```
-* **Ubicación de la Alerta:** Atributo `infrastructure_encryption_enabled`.
+* **Alert Location:** `infrastructure_encryption_enabled` attribute.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_recovery_services_vault`
 
-## Solución
+## Solution
 
-Para mitigar este riesgo, asegúrese de declarar el bloque `encryption` estableciendo `infrastructure_encryption_enabled` en `true`.
+To mitigate this risk, ensure you declare the `encryption` block setting `infrastructure_encryption_enabled` to `true`.
 
 ```terraform
 resource "azurerm_recovery_services_vault" "secure_vault" {

@@ -1,51 +1,51 @@
-# Regla KICS: Elastic SAN Public Network Access Enabled
+# KICS Rule: Elastic SAN Public Network Access Enabled
 
-## Descripción General
+## General Description
 
-Esta regla de KICS verifica que los grupos de volúmenes de Azure Elastic SAN (`azurerm_elastic_san_volume_group`) tengan restringido el acceso desde redes públicas.
+This KICS rule verifies that Azure Elastic SAN volume groups (`azurerm_elastic_san_volume_group`) have public network access restricted.
 
-En la arquitectura de Azure Elastic SAN, la seguridad y el aislamiento de red no se gestionan en el recurso raíz de la SAN, sino a nivel de **Volume Group**. Para garantizar que los volúmenes de datos no sean accesibles desde Internet, es imprescindible definir el bloque `network_rule`. La sola presencia de este bloque activa una política de denegación implícita para cualquier tráfico que no provenga de las subredes autorizadas, asegurando que la infraestructura solo sea accesible a través de la red privada.
+In the Azure Elastic SAN architecture, network security and isolation are not managed at the root SAN resource level, but at the **Volume Group** level. To ensure that data volumes are not accessible from the Internet, it is essential to define the `network_rule` block. The mere presence of this block activates an implicit deny policy for any traffic that does not originate from authorized subnets, ensuring that the infrastructure is only accessible through the private network.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el recurso `azurerm_elastic_san_volume_group` analizando la siguiente condición:
-1.  **Existencia del Bloque de Red:** Se verifica la presencia del bloque `network_rule`. Si este bloque no está definido, el grupo de volúmenes carece de restricciones perimetrales, permitiendo potencialmente el acceso público.
+The policy audits the `azurerm_elastic_san_volume_group` resource by analyzing the following condition:
+1.  **Network Block Existence:** The presence of the `network_rule` block is verified. If this block is not defined, the volume group lacks perimeter restrictions, potentially allowing public access.
 
-## Caso de Fallo Detectado
+## Detected Failure Case
 
-A continuación se describe el escenario que esta política detectará.
+The following describes the scenario this policy will detect.
 
 ---
 
-### Caso Único: Configuración de Red Ausente
+### Single Case: Missing Network Configuration
 
-* **Descripción:** El grupo de volúmenes se define sin el bloque `network_rule`, lo que significa que no se están aplicando reglas de filtrado de IP o de red virtual para proteger los datos.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The volume group is defined without the `network_rule` block, meaning no IP filtering or virtual network rules are being applied to protect the data.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_elastic_san_volume_group" "example_insecure" {
       name           = "insecure-vg"
       elastic_san_id = azurerm_elastic_san.example.id
-      
-      # El recurso carece del bloque network_rule, 
-      # quedando expuesto a redes públicas.
+
+      # The resource lacks the network_rule block,
+      # leaving it exposed to public networks.
     }
     ```
-* **Ubicación de la Alerta:** Sobre el recurso raíz `azurerm_elastic_san_volume_group`.
+* **Alert Location:** On the root `azurerm_elastic_san_volume_group` resource.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_elastic_san_volume_group`
 
-## Solución
+## Solution
 
-Para solucionar este riesgo de seguridad, defina el bloque `network_rule` vinculándolo a una subred autorizada mediante el atributo `subnet_id`.
+To fix this security risk, define the `network_rule` block linking it to an authorized subnet via the `subnet_id` attribute.
 
 ```terraform
 resource "azurerm_elastic_san_volume_group" "secure_vg" {
   name           = "secure-volume-group"
   elastic_san_id = azurerm_elastic_san.example.id
-  
-  # SOLUCIÓN: Definir reglas de red para denegar el acceso público
+
+  # SOLUTION: Define network rules to deny public access
   network_rule {
     subnet_id = azurerm_subnet.example.id
   }

@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# CASO 1: Falta el bloque 'blob_properties' completo.
+# CASE 1: The complete 'blob_properties' block is missing.
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: Existe 'blob_properties' pero falta el atributo 'versioning_enabled'.
+# CASE 2: 'blob_properties' exists but the 'versioning_enabled' attribute is missing.
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]
@@ -40,7 +40,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 3: 'versioning_enabled' existe pero está explícitamente a false.
+# CASE 3: 'versioning_enabled' exists but is explicitly set to false.
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]

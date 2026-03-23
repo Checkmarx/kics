@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Atributo 'infrastructure_encryption_enabled' ausente.
+# RULE 1: The 'infrastructure_encryption_enabled' attribute is missing.
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Atributo 'infrastructure_encryption_enabled' establecido en false.
+# RULE 2: The 'infrastructure_encryption_enabled' attribute is set to false.
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]

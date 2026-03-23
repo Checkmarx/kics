@@ -1,60 +1,60 @@
-# Regla KICS: Elastic SAN Volume Group CMK Encryption Disabled
+# KICS Rule: Elastic SAN Volume Group CMK Encryption Disabled
 
-## Descripción General
+## General Description
 
-Esta regla de KICS verifica que los grupos de volúmenes de Azure Elastic SAN (`azurerm_elastic_san_volume_group`) estén configurados para utilizar claves gestionadas por el cliente (Customer-Managed Keys - CMK) para el cifrado de datos en reposo.
+This KICS rule verifies that Azure Elastic SAN volume groups (`azurerm_elastic_san_volume_group`) are configured to use Customer-Managed Keys (CMK) for data encryption at rest.
 
-El uso de CMK sobre las claves gestionadas por la plataforma por defecto es una práctica de seguridad crítica. Proporciona a las organizaciones un control total sobre el ciclo de vida de las claves criptográficas, incluyendo políticas de acceso, rotación y revocación. Esto es esencial para cumplir con requisitos regulatorios y garantizar que el acceso a los datos almacenados en la SAN esté protegido por claves bajo el control directo del cliente.
+Using CMK over default platform-managed keys is a critical security practice. It provides organizations with full control over the lifecycle of cryptographic keys, including access policies, rotation, and revocation. This is essential for meeting regulatory requirements and ensuring that data stored in the SAN is protected by keys under the direct control of the customer.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política analiza el recurso `azurerm_elastic_san_volume_group` validando dos pilares fundamentales:
-1.  **Configuración del Tipo:** El atributo `encryption_type` debe estar establecido inequívocamente como `EncryptionAtRestWithCustomerManagedKey`.
-2.  **Infraestructura de Soporte:** Si se selecciona CMK, el recurso debe incluir obligatoriamente los bloques `encryption` (que vincula la clave) e `identity` (que permite el acceso a la misma).
+The policy analyzes the `azurerm_elastic_san_volume_group` resource by validating two fundamental pillars:
+1.  **Type Configuration:** The `encryption_type` attribute must be unambiguously set to `EncryptionAtRestWithCustomerManagedKey`.
+2.  **Supporting Infrastructure:** If CMK is selected, the resource must mandatorily include both the `encryption` block (which links the key) and the `identity` block (which grants access to it).
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-A continuación se describen los escenarios que esta política detectará.
+The following describes the scenarios this policy will detect.
 
 ---
-### Caso 1: Cifrado CMK no Configurado (Uso de Claves de Plataforma)
+### Case 1: CMK Encryption Not Configured (Platform Key Usage)
 
-* **Descripción:** El recurso carece del atributo de cifrado CMK o utiliza el valor por defecto gestionado por la plataforma.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The resource lacks the CMK encryption attribute or uses the default platform-managed value.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_elastic_san_volume_group" "fail_platform" {
       name           = "example-vg"
       elastic_san_id = azurerm_elastic_san.example.id
     }
     ```
-* **Ubicación de la Alerta:** Recurso raíz `azurerm_elastic_san_volume_group`.
+* **Alert Location:** Root `azurerm_elastic_san_volume_group` resource.
 
 ---
-### Caso 2: CMK Seleccionado con Bloques Técnicos Ausentes
+### Case 2: CMK Selected with Missing Technical Blocks
 
-* **Descripción:** Se ha activado el tipo de cifrado CMK, pero falta uno o ambos bloques (`encryption` / `identity`) necesarios para que el cifrado sea operativo.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The CMK encryption type has been activated, but one or both required blocks (`encryption` / `identity`) needed for the encryption to be operational are missing.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_elastic_san_volume_group" "fail_missing_blocks" {
       encryption_type = "EncryptionAtRestWithCustomerManagedKey"
-      # Falta bloque encryption o bloque identity
+      # Missing encryption block or identity block
     }
     ```
-* **Ubicación de la Alerta:** Recurso raíz `azurerm_elastic_san_volume_group`.
+* **Alert Location:** Root `azurerm_elastic_san_volume_group` resource.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_elastic_san_volume_group`
 
-## Solución
+## Solution
 
-Para solucionar el problema, asegúrese de declarar el tipo de cifrado CMK e incluir los bloques técnicos requeridos con sus parámetros obligatorios.
+To fix the issue, make sure to declare the CMK encryption type and include the required technical blocks with their mandatory parameters.
 
 ```terraform
 resource "azurerm_elastic_san_volume_group" "secure_vg" {
   name           = "secure-volume-group"
   elastic_san_id = azurerm_elastic_san.example.id
-  
+
   encryption_type = "EncryptionAtRestWithCustomerManagedKey"
 
   encryption {

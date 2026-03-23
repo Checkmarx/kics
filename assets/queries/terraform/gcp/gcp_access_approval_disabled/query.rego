@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# CASO 1: Proyecto sin configuración de Access Approval.
+# CASE 1: Project without Access Approval configuration.
 CxPolicy[result] {
     doc := input.document[i]
     project := doc.resource.google_project[name]
@@ -25,7 +25,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: Access Approval configurado pero sin servicios inscritos.
+# CASE 2: Access Approval configured but without enrolled services.
 CxPolicy[result] {
     doc := input.document[i]
     settings := doc.resource.google_access_approval_project_settings[name]

@@ -1,61 +1,61 @@
-# Regla KICS: Production Workload using Basic or Consumption SKU
+# KICS Rule: Production Workload using Basic or Consumption SKU
 
-## Descripción General
+## General Description
 
-Esta regla identifica recursos de Azure configurados con niveles de precios (SKUs) de tipo **Basic**, **Free** o **Consumption**.
+This rule identifies Azure resources configured with **Basic**, **Free**, or **Consumption** pricing tiers (SKUs).
 
-Aunque estos niveles son ideales para entornos de desarrollo, aprendizaje o pruebas de concepto (PoC), carecen de características fundamentales necesarias para entornos de producción. El uso de estos SKUs en producción compromete la fiabilidad del servicio debido a la ausencia de Acuerdos de Nivel de Servicio (SLA) garantizados, falta de soporte para integración con redes virtuales (VNet), ausencia de slots de implementación y latencias imprevistas ("cold starts") en modelos de consumo serverless.
+Although these tiers are ideal for development, learning, or proof-of-concept (PoC) environments, they lack fundamental features required for production environments. Using these SKUs in production compromises service reliability due to the absence of guaranteed Service Level Agreements (SLAs), lack of support for virtual network (VNet) integration, absence of deployment slots, and unexpected latencies ("cold starts") in serverless consumption models.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita los siguientes recursos en la configuración de Terraform:
-1.  **Service Plans (`azurerm_service_plan`):** Alerta si el atributo `sku_name` se establece en niveles no productivos como B1-B3, F1, FREE o Y1.
-2.  **API Management (`azurerm_api_management`):** Alerta si el atributo `sku_name` coincide con patrones de tipo "Basic" o "Consumption".
+The policy audits the following resources in the Terraform configuration:
+1.  **Service Plans (`azurerm_service_plan`):** Alerts if the `sku_name` attribute is set to non-production tiers such as B1-B3, F1, FREE, or Y1.
+2.  **API Management (`azurerm_api_management`):** Alerts if the `sku_name` attribute matches patterns of type "Basic" or "Consumption".
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-A continuación se describen los escenarios que esta política detectará.
+The following describes the scenarios this policy will detect.
 
 ---
 
-### Caso 1: Service Plan en Nivel No-Productivo
+### Case 1: Service Plan at Non-Production Tier
 
-* **Descripción:** Se detecta un plan de App Service configurado en nivel Basic o Free, lo cual limita la disponibilidad y las capacidades de red del servicio.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** An App Service plan is detected configured at Basic or Free tier, which limits the availability and network capabilities of the service.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_service_plan" "fail_plan" {
       name                = "example-basic-plan"
       resource_group_name = "rg-production"
       location            = "West Europe"
       os_type             = "Linux"
-      sku_name            = "B1" # <-- FALLO: Nivel Basic
+      sku_name            = "B1" # <-- FAILURE: Basic Tier
     }
     ```
-* **Ubicación de la Alerta:** Atributo `sku_name`.
+* **Alert Location:** `sku_name` attribute.
 
 ---
 
-### Caso 2: API Management en Modo Consumo
+### Case 2: API Management in Consumption Mode
 
-* **Descripción:** Se detecta una instancia de APIM en nivel Consumption (Serverless), lo que puede afectar al rendimiento y carece de aislamiento de red.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** An APIM instance is detected at the Consumption (Serverless) tier, which may affect performance and lacks network isolation.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_api_management" "fail_apim" {
       name                = "example-apim"
-      sku_name            = "Consumption_0" # <-- FALLO: Nivel Consumption
-      # ... resto de la configuración ...
+      sku_name            = "Consumption_0" # <-- FAILURE: Consumption Tier
+      # ... rest of configuration ...
     }
     ```
-* **Ubicación de la Alerta:** Atributo `sku_name`.
+* **Alert Location:** `sku_name` attribute.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_service_plan`
 * `azurerm_api_management`
 
-## Solución
+## Solution
 
-Actualice el SKU del recurso a un nivel orientado a producción, como **Standard (S)** o **Premium (P)**, para garantizar el SLA y las funciones de red necesarias.
+Update the resource SKU to a production-oriented tier, such as **Standard (S)** or **Premium (P)**, to guarantee the SLA and the necessary network features.
 
 ```terraform
 resource "azurerm_service_plan" "secure_production" {
@@ -64,6 +64,6 @@ resource "azurerm_service_plan" "secure_production" {
   location            = "West Europe"
   os_type             = "Linux"
 
-  # SOLUCIÓN: Usar un nivel Standard o superior
+  # SOLUTION: Use a Standard tier or higher
   sku_name            = "S1"
 }

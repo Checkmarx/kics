@@ -1,52 +1,52 @@
-# Regla KICS: GKE Workload Identity & Dedicated SA (Manual)
+# KICS Rule: GKE Workload Identity & Dedicated SA (Manual)
 
-## Descripción General
+## Overview
 
-Esta regla informativa (**INFO**) de **Access Control** audita la configuración de identidad para las cargas de trabajo que se ejecutan en **Google Kubernetes Engine (GKE)**.
+This informational (**INFO**) **Access Control** rule audits the identity configuration for workloads running in **Google Kubernetes Engine (GKE)**.
 
-La mejor práctica de seguridad para que las aplicaciones de GKE accedan a los servicios de Google Cloud (como Cloud Storage o BigQuery) es utilizar **Workload Identity**. Esta funcionalidad elimina la necesidad de descargar y gestionar claves JSON de cuentas de servicio, vinculando de forma segura una Kubernetes Service Account (KSA) con una Google Service Account (GSA). 
+The security best practice for GKE applications to access Google Cloud services (such as Cloud Storage or BigQuery) is to use **Workload Identity**. This functionality eliminates the need to download and manage JSON service account keys by securely binding a Kubernetes Service Account (KSA) with a Google Service Account (GSA).
 
-Sin embargo, habilitar la función es solo la mitad del trabajo. Una configuración segura requiere un mapeo **1:1**; si múltiples aplicaciones comparten la misma identidad de Google, un compromiso en una de ellas otorgaría acceso lateral a los recursos de las demás.
+However, enabling the feature is only half the work. A secure configuration requires a **1:1** mapping; if multiple applications share the same Google identity, a compromise in one of them would grant lateral access to the resources of the others.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el recurso `google_container_cluster` en dos fases:
-1.  **Validación de Función:** Detecta si `workload_identity_config` está ausente, lo que obliga a los Pods a usar la identidad del nodo (riesgo alto).
-2.  **Auditoría de Gobernanza:** Si la función está activa, alerta al auditor para que verifique manualmente en el código que cada microservicio tiene su propia vinculación dedicada.
+The policy audits the `google_container_cluster` resource in two phases:
+1.  **Feature Validation:** Detects if `workload_identity_config` is absent, which forces Pods to use the node identity (high risk).
+2.  **Governance Audit:** If the feature is active, it alerts the auditor to manually verify in the code that each microservice has its own dedicated binding.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
 ---
 
-### Caso 1: Workload Identity Deshabilitado
-* **Descripción:** El clúster carece de la infraestructura necesaria para identidades granulares.
-* **Ubicación de la Alerta:** Nivel de recurso `google_container_cluster`.
+### Case 1: Workload Identity Disabled
+* **Description:** The cluster lacks the infrastructure necessary for granular identities.
+* **Alert Location:** `google_container_cluster` resource level.
 
-### Caso 2: Revisión de Mapeo de Identidades
-* **Descripción:** La funcionalidad está activa, pero se requiere confirmar que no se están utilizando cuentas de servicio compartidas entre distintos microservicios.
-* **Ubicación de la Alerta:** Bloque `workload_identity_config`.
+### Case 2: Identity Mapping Review
+* **Description:** The functionality is active, but it must be confirmed that service accounts are not being shared between different microservices.
+* **Alert Location:** `workload_identity_config` block.
 
-## Recurso Involucrado
+## Resource Involved
 
 * `google_container_cluster`
 
-## Solución
+## Solution
 
-1.  Habilite Workload Identity en su recurso de clúster.
-2.  Implemente vinculaciones granulares utilizando el rol `roles/iam.workloadIdentityUser`.
+1.  Enable Workload Identity in your cluster resource.
+2.  Implement granular bindings using the `roles/iam.workloadIdentityUser` role.
 
 ```terraform
 resource "google_container_cluster" "compliant_cluster" {
   name     = "secure-cluster"
   location = "us-central1"
 
-  # Habilitar la función
+  # Enable the feature
   workload_identity_config {
     workload_pool = "${var.project_id}.svc.id.goog"
   }
 }
 
-# Ejemplo de vinculación manual a verificar (Mapeo 1:1)
+# Example of manual binding to verify (1:1 Mapping)
 resource "google_service_account_iam_member" "dedicated_binding" {
   service_account_id = google_service_account.app_specific_sa.name
   role               = "roles/iam.workloadIdentityUser"

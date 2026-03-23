@@ -8,7 +8,7 @@ has_cmk_configured(doc, vault_id) {
     cmk.key_vault_key_id
 }
 
-# REGLA 1: El Backup Vault no tiene cifrado CMK configurado a través del recurso de asociación.
+# RULE 1: The Backup Vault does not have CMK encryption configured through the association resource.
 CxPolicy[result] {
     doc := input.document[i]
     vault := doc.resource.azurerm_data_protection_backup_vault[name]

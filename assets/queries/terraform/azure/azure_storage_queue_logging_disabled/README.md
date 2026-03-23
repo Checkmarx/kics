@@ -1,46 +1,46 @@
-# Regla KICS: Storage Queue Service Logging Disabled
+# KICS Rule: Storage Queue Service Logging Disabled
 
-## Descripción General
+## General Description
 
-Esta regla verifica que el **Logging de Almacenamiento** (Storage Analytics Logging) esté habilitado para el servicio de **Colas (Queue Service)** en las cuentas de almacenamiento de Azure.
+This rule verifies that **Storage Logging** (Storage Analytics Logging) is enabled for the **Queue Service** in Azure storage accounts.
 
-El registro de auditoría es un componente fundamental de la observabilidad. Permite rastrear la actividad detallada en el plano de datos, capturando quién y cuándo interactuó con los mensajes de la cola. La política valida que se registren las siguientes operaciones:
-* **Read (Lectura):** Operaciones como la visualización o extracción de mensajes.
-* **Write (Escritura):** Operaciones de inserción o actualización de mensajes.
-* **Delete (Borrado):** Operaciones de eliminación de mensajes o vaciado de colas.
+Audit logging is a fundamental component of observability. It allows detailed activity in the data plane to be tracked, capturing who and when interacted with queue messages. The policy validates that the following operations are recorded:
+* **Read:** Operations such as viewing or extracting messages.
+* **Write:** Message insertion or update operations.
+* **Delete:** Message deletion or queue purge operations.
 
-Sin esta configuración, las organizaciones pierden la trazabilidad necesaria para investigar comportamientos anómalos o fugas de información a través del servicio de mensajería.
+Without this configuration, organizations lose the traceability needed to investigate anomalous behavior or information leaks through the messaging service.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita tanto la configuración embebida en la cuenta de almacenamiento como el recurso específico de propiedades:
-1.  **Identificación de Atributos:** Busca la presencia de `queue_properties` en el recurso principal o instancias del recurso independiente.
-2.  **Validación de Auditoría:** Asegura la existencia del bloque `logging`.
-3.  **Verificación de Acciones:** Comprueba que `read`, `write` y `delete` estén configurados explícitamente como `true`.
+The policy audits both the configuration embedded in the storage account and the specific properties resource:
+1.  **Attribute Identification:** Looks for the presence of `queue_properties` in the main resource or instances of the standalone resource.
+2.  **Audit Validation:** Ensures the existence of the `logging` block.
+3.  **Action Verification:** Checks that `read`, `write`, and `delete` are explicitly configured as `true`.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-A continuación se describen los escenarios que esta política detectará.
-
----
-
-### Caso 1: Logging Embebido Ausente
-
-* **Descripción:** Se definen propiedades de cola en la cuenta de almacenamiento pero no se incluye la configuración de registro.
-* **Ubicación de la Alerta:** Bloque `queue_properties` del recurso `azurerm_storage_account`.
+The following describes the scenarios that this policy will detect.
 
 ---
 
-### Caso 2: Configuración Embebida Incorrecta
+### Case 1: Missing Embedded Logging
 
-* **Descripción:** El bloque de registro existe en la cuenta de almacenamiento pero alguna de las acciones críticas está desactivada.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** Queue properties are defined in the storage account but the logging configuration is not included.
+* **Alert Location:** `queue_properties` block of the `azurerm_storage_account` resource.
+
+---
+
+### Case 2: Incorrect Embedded Configuration
+
+* **Description:** The logging block exists in the storage account but one of the critical actions is disabled.
+* **Problematic Terraform Code Example:**
     ```terraform
     resource "azurerm_storage_account" "fail_logging" {
       # ...
       queue_properties {
         logging {
-          read  = false # <-- PROBLEMA
+          read  = false # <-- ISSUE
           write = true
           delete = true
           version = "1.0"
@@ -48,30 +48,30 @@ A continuación se describen los escenarios que esta política detectará.
       }
     }
     ```
-* **Ubicación de la Alerta:** Atributo `logging` del recurso `azurerm_storage_account`.
+* **Alert Location:** `logging` attribute of the `azurerm_storage_account` resource.
 
 ---
 
-### Caso 3: Recurso Standalone sin Logging
+### Case 3: Standalone Resource Without Logging
 
-* **Descripción:** Se utiliza el recurso `azurerm_storage_account_queue_properties` pero se omite completamente el bloque de registro.
-* **Ubicación de la Alerta:** Recurso `azurerm_storage_account_queue_properties`.
+* **Description:** The `azurerm_storage_account_queue_properties` resource is used but the logging block is completely omitted.
+* **Alert Location:** `azurerm_storage_account_queue_properties` resource.
 
 ---
 
-### Caso 4: Recurso Standalone con Configuración Incorrecta
+### Case 4: Standalone Resource With Incorrect Configuration
 
-* **Descripción:** El recurso independiente de propiedades tiene el bloque de registro, pero con acciones deshabilitadas.
-* **Ubicación de la Alerta:** Atributo `logging` del recurso `azurerm_storage_account_queue_properties`.
+* **Description:** The standalone properties resource has the logging block, but with disabled actions.
+* **Alert Location:** `logging` attribute of the `azurerm_storage_account_queue_properties` resource.
 
-## Recursos Involucrados
+## Involved Resources
 
 * `azurerm_storage_account`
 * `azurerm_storage_account_queue_properties`
 
-## Solución
+## Solution
 
-Habilite el registro para todas las operaciones (`read`, `write`, `delete`) dentro de la configuración del servicio de colas.
+Enable logging for all operations (`read`, `write`, `delete`) within the queue service configuration.
 
 ```terraform
 resource "azurerm_storage_account" "secure_queue" {

@@ -1,28 +1,28 @@
-# Regla KICS: Storage Account Blob Versioning Disabled
+# KICS Rule: Storage Account Blob Versioning Disabled
 
-## Descripción General
+## General Description
 
-Esta regla verifica que la característica de **Versioning** (control de versiones) esté habilitada en los recursos `azurerm_storage_account`.
+This rule verifies that the **Versioning** feature (version control) is enabled on `azurerm_storage_account` resources.
 
-El control de versiones de Blobs permite mantener automáticamente versiones anteriores de un objeto cuando este se modifica o elimina. Es una capa de protección fundamental para escenarios de recuperación de datos ante errores humanos, sobreescrituras accidentales o ataques de ransomware, permitiendo restaurar un estado anterior del archivo sin necesidad de recurrir a copias de seguridad externas complejas.
+Blob versioning allows automatically maintaining previous versions of an object when it is modified or deleted. It is a fundamental protection layer for data recovery scenarios involving human errors, accidental overwrites, or ransomware attacks, allowing restoration of a previous state of the file without needing to resort to complex external backups.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política evalúa la configuración en tres niveles de granularidad:
-1.  **Bloque Ausente:** Si el recurso no tiene definido el bloque `blob_properties`.
-2.  **Atributo Ausente:** Si existe el bloque pero no se define el parámetro `versioning_enabled`.
-3.  **Valor Incorrecto:** Si `versioning_enabled` se ha configurado explícitamente como `false`.
+The policy evaluates the configuration at three levels of granularity:
+1.  **Missing Block:** If the resource does not have the `blob_properties` block defined.
+2.  **Missing Attribute:** If the block exists but the `versioning_enabled` parameter is not defined.
+3.  **Incorrect Value:** If `versioning_enabled` has been explicitly configured as `false`.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-A continuación se describen los escenarios que esta política detectará.
+The following describes the scenarios that this policy will detect.
 
 ---
 
-### Caso 1: Configuración de Bloque Ausente
+### Case 1: Missing Block Configuration
 
-* **Descripción:** El recurso no define el bloque `blob_properties`. Por defecto, Azure deshabilita el versionado si no se especifica.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The resource does not define the `blob_properties` block. By default, Azure disables versioning if not specified.
+* **Problematic Terraform Code Example:**
     ```terraform
     resource "azurerm_storage_account" "fail_1" {
       name                     = "storage-insecure-1"
@@ -30,36 +30,36 @@ A continuación se describen los escenarios que esta política detectará.
       location                 = "West Europe"
       account_tier             = "Standard"
       account_replication_type = "LRS"
-      
-      # El bloque blob_properties es inexistente
+
+      # The blob_properties block is missing
     }
     ```
-* **Ubicación de la Alerta:** Sobre el recurso raíz `azurerm_storage_account`.
+* **Alert Location:** On the root `azurerm_storage_account` resource.
 
 ---
 
-### Caso 2: Versionado Deshabilitado Explícitamente
+### Case 2: Versioning Explicitly Disabled
 
-* **Descripción:** Se ha incluido el bloque de propiedades pero el versionado está apagado, lo que impide la recuperación de archivos modificados.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The properties block is included but versioning is turned off, which prevents recovery of modified files.
+* **Problematic Terraform Code Example:**
     ```terraform
     resource "azurerm_storage_account" "fail_2" {
       name                = "storage-insecure-2"
       # ...
       blob_properties {
-        versioning_enabled = false  # <-- PROBLEMA: Deshabilitado.
+        versioning_enabled = false  # <-- ISSUE: Disabled.
       }
     }
     ```
-* **Ubicación de la Alerta:** Línea `versioning_enabled = false`.
+* **Alert Location:** Line `versioning_enabled = false`.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_storage_account`
 
-## Solución
+## Solution
 
-Para solucionar este riesgo, asegúrese de incluir el bloque `blob_properties` con el atributo `versioning_enabled` establecido en `true`.
+To resolve this risk, ensure you include the `blob_properties` block with the `versioning_enabled` attribute set to `true`.
 
 ```terraform
 resource "azurerm_storage_account" "secure_storage" {
@@ -69,7 +69,7 @@ resource "azurerm_storage_account" "secure_storage" {
   account_tier             = "Standard"
   account_replication_type = "GRS"
 
-  # SOLUCIÓN: Habilitar el control de versiones de blobs
+  # SOLUTION: Enable blob versioning
   blob_properties {
     versioning_enabled = true
   }

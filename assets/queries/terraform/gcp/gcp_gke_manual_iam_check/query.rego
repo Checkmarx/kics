@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Detección de SA personalizada en google_container_cluster.
+# RULE 1: Detection of custom SA in google_container_cluster.
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.google_container_cluster[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Detección de SA personalizada en google_container_node_pool.
+# RULE 2: Detection of custom SA in google_container_node_pool.
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.google_container_node_pool[name]

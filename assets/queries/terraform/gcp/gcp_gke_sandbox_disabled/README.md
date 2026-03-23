@@ -1,41 +1,41 @@
-# Regla KICS: GKE Sandbox (gVisor) Disabled
+# KICS Rule: GKE Sandbox (gVisor) Disabled
 
-## Descripción General
+## Overview
 
-Esta regla de severidad **BAJA** verifica si los pools de nodos de GKE tienen habilitado **GKE Sandbox (gVisor)** para un aislamiento reforzado.
+This **LOW** severity rule verifies whether GKE node pools have **GKE Sandbox (gVisor)** enabled for enhanced isolation.
 
-GKE Sandbox utiliza **gVisor**, un kernel de espacio de usuario que proporciona una barrera de seguridad adicional entre las aplicaciones y el kernel del host. Al interceptar y filtrar las llamadas al sistema, gVisor mitiga el riesgo de ataques de escape de contenedor, donde un proceso malicioso intenta comprometer el nodo subyacente. Aunque gVisor introduce un ligero overhead de rendimiento, es una **Configuración Insegura** omitirlo en entornos que ejecutan código no confiable o aplicaciones multi-tenant.
+GKE Sandbox uses **gVisor**, a user-space kernel that provides an additional security barrier between applications and the host kernel. By intercepting and filtering system calls, gVisor mitigates the risk of container escape attacks, where a malicious process attempts to compromise the underlying node. Although gVisor introduces a slight performance overhead, omitting it in environments that run untrusted code or multi-tenant applications is an **Insecure Configuration**.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita los recursos `google_container_cluster` y `google_container_node_pool`:
-1.  **Omisión del Bloque:** Detecta si `sandbox_config` no está presente en el `node_config`.
-2.  **Tipo Incorrecto:** Verifica que el `sandbox_type` sea explícitamente `"gvisor"`.
+The policy audits the `google_container_cluster` and `google_container_node_pool` resources:
+1.  **Block Omission:** Detects if `sandbox_config` is not present in `node_config`.
+2.  **Incorrect Type:** Verifies that `sandbox_type` is explicitly `"gvisor"`.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
 ---
 
-### Caso 1: Sandbox no configurado en Clúster
-* **Descripción:** Los nodos predeterminados del clúster no utilizan el aislamiento de gVisor.
-* **Ubicación de la Alerta:** Atributo `node_config`.
+### Case 1: Sandbox Not Configured in Cluster
+* **Description:** The cluster's default nodes do not use gVisor isolation.
+* **Alert Location:** `node_config` attribute.
 
-### Caso 2: Sandbox no configurado en Node Pool
-* **Descripción:** Se ha creado un pool de nodos adicional que carece de protección de Sandbox.
-* **Ubicación de la Alerta:** Atributo `node_config`.
+### Case 2: Sandbox Not Configured in Node Pool
+* **Description:** An additional node pool has been created that lacks Sandbox protection.
+* **Alert Location:** `node_config` attribute.
 
-### Caso 3: Tipo de Sandbox Inseguro
-* **Descripción:** Se define el bloque pero se utiliza un valor distinto a `gvisor`, lo que desactiva la protección buscada.
-* **Ubicación de la Alerta:** Atributo `sandbox_type`.
+### Case 3: Insecure Sandbox Type
+* **Description:** The block is defined but a value other than `gvisor` is used, disabling the intended protection.
+* **Alert Location:** `sandbox_type` attribute.
 
-## Recurso Involucrado
+## Resources Involved
 
 * `google_container_cluster`
 * `google_container_node_pool`
 
-## Solución
+## Solution
 
-Habilite gVisor asegurándose de usar el tipo de imagen compatible `COS_CONTAINERD`.
+Enable gVisor ensuring the compatible `COS_CONTAINERD` image type is used.
 
 ```terraform
 resource "google_container_node_pool" "secure_pool" {
@@ -44,7 +44,7 @@ resource "google_container_node_pool" "secure_pool" {
 
   node_config {
     image_type = "COS_CONTAINERD"
-    
+
     sandbox_config {
       sandbox_type = "gvisor"
     }

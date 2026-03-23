@@ -1,43 +1,43 @@
-# Regla KICS: GKE Security Posture Disabled (Manual)
+# KICS Rule: GKE Security Posture Disabled (Manual)
 
-## Descripción General
+## Overview
 
-Esta regla informativa (**INFO**) de **Observabilidad** verifica si el **Security Posture Dashboard** de GKE está activo en la configuración del clúster.
+This informational (**INFO**) **Observability** rule verifies whether the GKE **Security Posture Dashboard** is active in the cluster configuration.
 
-El panel de postura de seguridad es una herramienta nativa de Google Cloud que escanea automáticamente las cargas de trabajo de Kubernetes en busca de errores de configuración comunes y vulnerabilidades conocidas en las imágenes de los contenedores. Proporciona recomendaciones accionables para mejorar la seguridad sin añadir complejidad operativa. Dado que la disponibilidad de esta función puede variar según el canal de versiones de GKE y el tipo de licencia (Standard vs Autopilot), esta regla alerta sobre su ausencia para permitir una verificación manual de compatibilidad.
+The security posture dashboard is a native Google Cloud tool that automatically scans Kubernetes workloads for common misconfigurations and known vulnerabilities in container images. It provides actionable recommendations to improve security without adding operational complexity. Since the availability of this feature may vary depending on the GKE version channel and license type (Standard vs Autopilot), this rule alerts on its absence to allow a manual compatibility check.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el recurso `google_container_cluster` identificando dos escenarios:
-1.  **Omisión:** El bloque `security_posture_config` no está presente en el código Terraform.
-2.  **Desactivación:** El bloque existe pero el parámetro `mode` se ha establecido explícitamente como `DISABLED`.
+The policy audits the `google_container_cluster` resource identifying two scenarios:
+1.  **Omission:** The `security_posture_config` block is not present in the Terraform code.
+2.  **Disabling:** The block exists but the `mode` parameter has been explicitly set to `DISABLED`.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
 ---
 
-### Caso 1: Configuración de Postura Ausente
-* **Descripción:** El clúster no ha habilitado el panel de control de seguridad. Se recomienda verificar si la versión de GKE permite su activación.
-* **Ubicación de la Alerta:** Nivel de recurso `google_container_cluster`.
+### Case 1: Missing Posture Configuration
+* **Description:** The cluster has not enabled the security control dashboard. It is recommended to verify whether the GKE version allows its activation.
+* **Alert Location:** `google_container_cluster` resource level.
 
-### Caso 2: Modo de Postura Deshabilitado
-* **Descripción:** Se ha configurado la postura de seguridad pero se ha desactivado mediante el valor `DISABLED`.
-* **Ubicación de la Alerta:** Atributo `mode` dentro de `security_posture_config`.
+### Case 2: Posture Mode Disabled
+* **Description:** The security posture has been configured but disabled using the `DISABLED` value.
+* **Alert Location:** `mode` attribute within `security_posture_config`.
 
-## Recurso Involucrado
+## Resource Involved
 
 * `google_container_cluster`
 
-## Solución
+## Solution
 
-Habilite la postura de seguridad configurando el modo en `BASIC` o `ENTERPRISE`.
+Enable the security posture by setting the mode to `BASIC` or `ENTERPRISE`.
 
 ```terraform
 resource "google_container_cluster" "compliant_cluster" {
   name     = "monitored-cluster"
   location = "us-central1"
 
-  # Solución recomendada para observabilidad de seguridad
+  # Recommended solution for security observability
   security_posture_config {
     mode               = "BASIC"
     vulnerability_mode = "VULNERABILITY_BASIC"

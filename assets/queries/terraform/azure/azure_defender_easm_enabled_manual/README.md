@@ -1,36 +1,36 @@
-# Regla KICS: Microsoft Defender EASM Enabled (Manual)
+# KICS Rule: Microsoft Defender EASM Enabled (Manual)
 
-## Descripción General
+## General Description
 
-Esta regla funciona como un **recordatorio de cumplimiento manual**. Su objetivo es asegurar que se haya habilitado **Microsoft Defender External Attack Surface Monitoring (EASM)** para monitorear la exposición de los activos de Azure a Internet.
+This rule acts as a **manual compliance reminder**. Its objective is to ensure that **Microsoft Defender External Attack Surface Monitoring (EASM)** has been enabled to monitor the exposure of Azure assets to the Internet.
 
-EASM realiza un descubrimiento continuo de tus activos digitales (direcciones IP, dominios, certificados SSL, etc.) para identificar vulnerabilidades y riesgos en la "sombra" (Shadow IT). Dado que el proveedor actual de Terraform para Azure no cuenta con recursos nativos para gestionar este servicio, la verificación debe realizarse directamente en la plataforma.
+EASM continuously discovers your digital assets (IP addresses, domains, SSL certificates, etc.) to identify vulnerabilities and risks in the "shadow" (Shadow IT). Since the current Terraform provider for Azure does not have native resources to manage this service, verification must be performed directly on the platform.
 
-## Lógica de la Regla
+## Rule Logic
 
-Debido a las limitaciones del análisis estático para este servicio específico:
-1.  La regla identifica la presencia de recursos `azurerm_resource_group`.
-2.  Genera una alerta de severidad **INFO** por cada grupo detectado.
-3.  Actúa como un check-list para que el equipo de seguridad valide el estado del servicio en el Portal de Azure.
+Due to the limitations of static analysis for this specific service:
+1.  The rule identifies the presence of `azurerm_resource_group` resources.
+2.  It generates an **INFO** severity alert for each detected group.
+3.  It acts as a checklist for the security team to validate the service status in the Azure Portal.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Verificación Manual Requerida
+### Case 1: Manual Verification Required
 
-* **Descripción:** Se ha detectado infraestructura desplegada, pero el estado de protección de EASM no es visible para KICS.
-* **Ubicación de la Alerta:** Sobre el recurso `azurerm_resource_group`.
+* **Description:** Deployed infrastructure has been detected, but the EASM protection status is not visible to KICS.
+* **Alert Location:** On the `azurerm_resource_group` resource.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_resource_group`
 
-## Solución
+## Solution
 
-Esta alerta no se resuelve mediante cambios en el código HCL estándar. 
+This alert is not resolved through changes in standard HCL code.
 
-**Pasos de remediación manual:**
-1.  Acceda al [Portal de Azure](https://portal.azure.com).
-2.  En el buscador superior, escriba **"Microsoft Defender EASM"**.
-3.  Verifique si existe un recurso EASM configurado y realizando escaneos activos.
-4.  Si no existe, considere su creación para mejorar la postura de seguridad externa.
-5.  Documente la verificación para cerrar el hallazgo en el reporte de KICS.
+**Manual remediation steps:**
+1.  Access the [Azure Portal](https://portal.azure.com).
+2.  In the top search bar, type **"Microsoft Defender EASM"**.
+3.  Verify whether an EASM resource is configured and performing active scans.
+4.  If it does not exist, consider creating it to improve the external security posture.
+5.  Document the verification to close the finding in the KICS report.

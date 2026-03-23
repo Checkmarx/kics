@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Existe una VNet, pero no existe ningún recurso azurerm_bastion_host en el documento.
+# RULE 1: A VNet exists, but no azurerm_bastion_host resource exists in the document.
 CxPolicy[result] {
     doc := input.document[i]
 

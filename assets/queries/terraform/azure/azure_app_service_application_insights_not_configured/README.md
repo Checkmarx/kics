@@ -1,40 +1,40 @@
-# Regla KICS: App Service Application Insights Not Configured
+# KICS Rule: App Service Application Insights Not Configured
 
-## Descripción General
+## General Description
 
-Esta regla verifica que los servicios de Azure App Service y Function Apps tengan configurada la integración con **Application Insights**.
+This rule verifies that Azure App Service and Function Apps have **Application Insights** integration configured.
 
-Application Insights es una característica de Azure Monitor que proporciona gestión del rendimiento de aplicaciones (APM) y seguimiento de errores en tiempo real. Para vincular un App Service con Application Insights en Terraform, se debe definir `APPLICATIONINSIGHTS_CONNECTION_STRING` (recomendado) o `APPINSIGHTS_INSTRUMENTATIONKEY` dentro del bloque `app_settings`.
+Application Insights is an Azure Monitor feature that provides application performance management (APM) and real-time error tracking. To link an App Service with Application Insights in Terraform, `APPLICATIONINSIGHTS_CONNECTION_STRING` (recommended) or `APPINSIGHTS_INSTRUMENTATIONKEY` must be defined within the `app_settings` block.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política itera sobre los recursos `azurerm_linux_web_app`, `azurerm_windows_web_app`, `azurerm_linux_function_app` y `azurerm_windows_function_app`.
-Verifica la configuración en dos niveles:
-1.  **Ausencia de app_settings:** Si el bloque no está definido.
-2.  **Configuración incompleta:** Si el bloque existe pero no contiene las claves de conexión.
+The policy iterates over `azurerm_linux_web_app`, `azurerm_windows_web_app`, `azurerm_linux_function_app`, and `azurerm_windows_function_app` resources.
+It checks the configuration at two levels:
+1.  **Absence of app_settings:** If the block is not defined.
+2.  **Incomplete configuration:** If the block exists but does not contain the connection keys.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Falta Configuración en app_settings
+### Case 1: Missing app_settings Configuration
 
-* **Descripción:** El recurso no tiene el bloque `app_settings` definido.
-* **Ubicación de la Alerta:** Nivel de recurso principal.
+* **Description:** The resource does not have the `app_settings` block defined.
+* **Alert Location:** Main resource level.
 
-### Caso 2: Claves de App Insights ausentes
+### Case 2: App Insights Keys Missing
 
-* **Descripción:** El bloque `app_settings` existe pero no contiene `APPLICATIONINSIGHTS_CONNECTION_STRING` ni `APPINSIGHTS_INSTRUMENTATIONKEY`.
-* **Ubicación de la Alerta:** Atributo `app_settings`.
+* **Description:** The `app_settings` block exists but does not contain `APPLICATIONINSIGHTS_CONNECTION_STRING` or `APPINSIGHTS_INSTRUMENTATIONKEY`.
+* **Alert Location:** `app_settings` attribute.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_linux_web_app`
 * `azurerm_windows_web_app`
 * `azurerm_linux_function_app`
 * `azurerm_windows_function_app`
 
-## Solución
+## Solution
 
-Defina `APPLICATIONINSIGHTS_CONNECTION_STRING` dentro de los `app_settings`.
+Define `APPLICATIONINSIGHTS_CONNECTION_STRING` within `app_settings`.
 
 ```terraform
 resource "azurerm_linux_web_app" "example" {

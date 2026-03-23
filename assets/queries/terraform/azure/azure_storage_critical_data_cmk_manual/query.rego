@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: El bloque 'customer_managed_key' no existe.
+# RULE 1: The 'customer_managed_key' block does not exist.
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El bloque existe pero el atributo 'key_vault_key_id' no está definido.
+# RULE 2: The block exists but the 'key_vault_key_id' attribute is not defined.
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]

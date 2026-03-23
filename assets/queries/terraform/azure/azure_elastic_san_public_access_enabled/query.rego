@@ -2,8 +2,8 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: El bloque 'network_rule' no está definido.
-# En azurerm_elastic_san_volume_group, la ausencia del bloque permite el acceso público.
+# RULE 1: The 'network_rule' block is not defined.
+# In azurerm_elastic_san_volume_group, the absence of the block allows public access.
 CxPolicy[result] {
     doc := input.document[i]
     vg := doc.resource.azurerm_elastic_san_volume_group[name]

@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Bloque 'database_encryption' ausente.
+# RULE 1: 'database_encryption' block missing.
 CxPolicy[result] {
     doc := input.document[i]
     cluster := doc.resource.google_container_cluster[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Estado de cifrado incorrecto (DECRYPTED).
+# RULE 2: Incorrect encryption state (DECRYPTED).
 CxPolicy[result] {
     doc := input.document[i]
     cluster := doc.resource.google_container_cluster[name]
@@ -38,7 +38,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: Estado ENCRYPTED pero falta el nombre de la clave (key_name).
+# RULE 3: State is ENCRYPTED but key name (key_name) is missing.
 CxPolicy[result] {
     doc := input.document[i]
     cluster := doc.resource.google_container_cluster[name]

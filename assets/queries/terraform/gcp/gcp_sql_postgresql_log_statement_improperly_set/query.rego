@@ -10,7 +10,7 @@ has_log_statement(flags_list) {
     flag.name == "log_statement"
 }
 
-# REGLA 1: El flag 'log_statement' no está definido (Ausente).
+# RULE 1: The 'log_statement' flag is not defined (Missing).
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.google_sql_database_instance[name]
@@ -31,7 +31,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El flag 'log_statement' existe pero está en 'none'.
+# RULE 2: The 'log_statement' flag exists but is set to 'none'.
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.google_sql_database_instance[name]

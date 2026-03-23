@@ -1,29 +1,29 @@
-# Regla KICS: SQL Server TDE Not Encrypted with CMK
+# KICS Rule: SQL Server TDE Not Encrypted with CMK
 
-## Descripción General
+## General Description
 
-Esta regla de KICS asegura que la característica **Transparent Data Encryption (TDE)** de Azure SQL Server esté configurada para utilizar una **clave gestionada por el cliente (Customer-Managed Key - CMK)** almacenada en Azure Key Vault.
+This KICS rule ensures that the **Transparent Data Encryption (TDE)** feature of Azure SQL Server is configured to use a **Customer-Managed Key (CMK)** stored in Azure Key Vault.
 
-Por defecto, Azure SQL cifra los datos en reposo utilizando una clave gestionada por el servicio (Microsoft). Aunque este método proporciona seguridad base, el uso de CMK ofrece un nivel de control superior indispensable para cumplir con normativas estrictas de seguridad corporativa. Con CMK, la organización asume el control total sobre el ciclo de vida de las claves, permitiendo la rotación, revocación de acceso y auditoría de uso de forma soberana a través de Azure Key Vault.
+By default, Azure SQL encrypts data at rest using a service-managed key (Microsoft). Although this method provides baseline security, using CMK offers a superior level of control that is indispensable for meeting strict corporate security regulations. With CMK, the organization assumes full control over the key lifecycle, allowing rotation, access revocation, and usage auditing in a sovereign manner through Azure Key Vault.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita la configuración de Terraform siguiendo estos criterios:
-1.  **Identificación:** Localiza todos los recursos de tipo `azurerm_mssql_server`.
-2.  **Vinculación:** Busca si existe un recurso independiente del tipo `azurerm_mssql_server_transparent_data_encryption` vinculado al servidor mediante el atributo `server_id`.
-3.  **Validación de Clave:** Verifica que dicho recurso tenga definido explícitamente el atributo `key_vault_key_id`.
-4.  **Alerta:** Si no se encuentra el recurso de cifrado o si falta la referencia a la clave de Key Vault, se genera un hallazgo.
+The policy audits the Terraform configuration following these criteria:
+1.  **Identification:** Locates all resources of type `azurerm_mssql_server`.
+2.  **Linking:** Checks whether an independent resource of type `azurerm_mssql_server_transparent_data_encryption` exists linked to the server via the `server_id` attribute.
+3.  **Key Validation:** Verifies that said resource has the `key_vault_key_id` attribute explicitly defined.
+4.  **Alert:** If the encryption resource is not found or if the Key Vault key reference is missing, a finding is generated.
 
-## Caso de Fallo Detectado
+## Detected Failure Case
 
-A continuación se describe el escenario que esta política detectará.
+The following describes the scenario this policy will detect.
 
 ---
 
-### Caso Único: Uso de Clave Gestionada por el Servicio (Default)
+### Single Case: Use of Service-Managed Key (Default)
 
-* **Descripción:** Se define el servidor SQL pero no se añade el recurso adicional necesario para habilitar el cifrado TDE mediante llaves del cliente, manteniendo el cifrado por defecto de Azure.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The SQL server is defined but the additional resource required to enable TDE encryption using customer keys is not added, maintaining Azure's default encryption.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_mssql_server" "fail_server" {
       name                         = "insecure-sql-server"
@@ -33,24 +33,24 @@ A continuación se describe el escenario que esta política detectará.
       administrator_login          = "sqladmin"
       administrator_password       = "P@ssword123!"
 
-      # Falta el recurso azurerm_mssql_server_transparent_data_encryption
+      # Missing azurerm_mssql_server_transparent_data_encryption resource
     }
     ```
-* **Ubicación de la Alerta:** Sobre el recurso raíz `azurerm_mssql_server`.
+* **Alert Location:** On the root `azurerm_mssql_server` resource.
 
-## Recursos Involucrados
+## Involved Resources
 
 * `azurerm_mssql_server`
 * `azurerm_mssql_server_transparent_data_encryption`
 
-## Solución
+## Solution
 
-Para mitigar este riesgo, cree un recurso `azurerm_mssql_server_transparent_data_encryption`, vincúlelo al servidor SQL y proporcione la URI de la clave de Azure Key Vault.
+To mitigate this risk, create an `azurerm_mssql_server_transparent_data_encryption` resource, link it to the SQL server, and provide the Azure Key Vault key URI.
 
 ```terraform
 resource "azurerm_mssql_server_transparent_data_encryption" "secure_tde" {
   server_id        = azurerm_mssql_server.example.id
-  
-  # SOLUCIÓN: Usar una clave gestionada por el cliente
+
+  # SOLUTION: Use a customer-managed key
   key_vault_key_id = azurerm_key_vault_key.example.id
 }

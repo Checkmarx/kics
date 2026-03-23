@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Configuración Ausente.
+# RULE 1: Missing Configuration.
 CxPolicy[result] {
     doc := input.document[i]
     vault := doc.resource.azurerm_data_protection_backup_vault[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Configuración Incorrecta (Deshabilitado explícitamente).
+# RULE 2: Incorrect Configuration (Explicitly disabled).
 CxPolicy[result] {
     doc := input.document[i]
     vault := doc.resource.azurerm_data_protection_backup_vault[name]

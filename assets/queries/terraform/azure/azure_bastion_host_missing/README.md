@@ -1,33 +1,33 @@
-# Regla KICS: Azure Bastion Host Missing
+# KICS Rule: Azure Bastion Host Missing
 
-## Descripción General
+## General Description
 
-Esta regla verifica que, si se están desplegando redes virtuales (`azurerm_virtual_network`), exista al menos un recurso **Azure Bastion Host** (`azurerm_bastion_host`) definido en la configuración.
+This rule verifies that, if virtual networks (`azurerm_virtual_network`) are being deployed, at least one **Azure Bastion Host** resource (`azurerm_bastion_host`) is defined in the configuration.
 
-Azure Bastion es un servicio PaaS que se aprovisiona dentro de una red virtual. Proporciona conectividad RDP y SSH segura directamente desde el portal de Azure a través de SSL. Esto elimina la necesidad de exponer puertos administrativos (22, 3389) a Internet o gestionar complejas VPNs y Jumpboxes para tareas de mantenimiento, reduciendo drásticamente la superficie de ataque.
+Azure Bastion is a PaaS service provisioned within a virtual network. It provides secure RDP and SSH connectivity directly from the Azure portal over SSL. This eliminates the need to expose administrative ports (22, 3389) to the Internet or manage complex VPNs and Jumpboxes for maintenance tasks, drastically reducing the attack surface.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política realiza un análisis de presencia de recursos a nivel de documento:
-1.  Verifica si existe algún recurso `azurerm_virtual_network`.
-2.  Si existen redes, busca si hay algún recurso `azurerm_bastion_host` definido en el mismo archivo/contexto.
-3.  Si existen redes pero no se encuentra ningún Bastion Host, se genera una alerta sobre la red virtual.
+The policy performs a resource presence analysis at the document level:
+1.  Checks whether any `azurerm_virtual_network` resource exists.
+2.  If networks exist, looks for any `azurerm_bastion_host` resource defined in the same file/context.
+3.  If networks exist but no Bastion Host is found, an alert is generated on the virtual network.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: VNet sin Bastion Host
+### Case 1: VNet without Bastion Host
 
-* **Descripción:** Se define infraestructura de red, pero no se incluye el servicio de Bastion, lo que sugiere que el acceso administrativo podría estar realizándose de forma insegura mediante IPs públicas directas o puertos abiertos en los grupos de seguridad (NSG).
-* **Ubicación de la Alerta:** Sobre el recurso `azurerm_virtual_network`.
+* **Description:** Network infrastructure is defined, but the Bastion service is not included, suggesting that administrative access may be performed insecurely via direct public IPs or open ports in security groups (NSG).
+* **Alert Location:** On the `azurerm_virtual_network` resource.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_virtual_network`
 * `azurerm_bastion_host`
 
-## Solución
+## Solution
 
-Para solucionar el problema, define un recurso `azurerm_bastion_host` y asegúrate de crear la subred obligatoria llamada `AzureBastionSubnet`.
+To fix the issue, define an `azurerm_bastion_host` resource and make sure to create the mandatory subnet named `AzureBastionSubnet`.
 
 ```terraform
 resource "azurerm_subnet" "example_bastion" {

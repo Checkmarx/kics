@@ -5,7 +5,7 @@ import data.generic.terraform as tf_lib
 ensure_array(x) = x { is_array(x) }
 ensure_array(x) = [x] { not is_array(x) }
 
-# CASO 1: Configuración Insegura en los handlers definidos.
+# CASE 1: Insecure configuration in the defined handlers.
 CxPolicy[result] {
     doc := input.document[i]
     app := doc.resource.google_app_engine_standard_app_version[name]
@@ -29,7 +29,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: Configuración Ausente en Terraform (Requiere revisión de app.yaml).
+# CASE 2: Configuration Missing in Terraform (Requires review of app.yaml).
 CxPolicy[result] {
     doc := input.document[i]
     app := doc.resource.google_app_engine_standard_app_version[name]

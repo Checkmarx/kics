@@ -1,50 +1,50 @@
-# Regla KICS: GCP Access Approval Disabled
+# KICS Rule: GCP Access Approval Disabled
 
-## Descripción General
+## Overview
 
-Esta regla de severidad **MEDIA** audita el cumplimiento del control de acceso de terceros en **Google Cloud (GCP)** para los recursos `google_project`.
+This **MEDIUM** severity rule audits compliance with third-party access control in **Google Cloud (GCP)** for `google_project` resources.
 
-**Access Approval** es un control de seguridad avanzado que permite a las organizaciones establecer un paso de aprobación explícito antes de que el personal de Google (Ingeniería o Soporte) pueda acceder a los datos de sus clientes. Mientras que Google cifra los datos por defecto y restringe el acceso mediante políticas internas, Access Approval otorga al cliente la soberanía final: cualquier intento de acceso genera una solicitud por correo electrónico o mediante Cloud Pub/Sub que el cliente debe aprobar manualmente. 
+**Access Approval** is an advanced security control that allows organizations to establish an explicit approval step before Google personnel (Engineering or Support) can access customer data. While Google encrypts data by default and restricts access through internal policies, Access Approval grants the customer final sovereignty: any access attempt generates a request via email or Cloud Pub/Sub that the customer must manually approve.
 
-Sin esta configuración, se asume que el personal de Google puede acceder a los recursos para fines de soporte técnico bajo los términos estándar del contrato, lo que puede no ser suficiente para empresas bajo regulaciones estrictas.
+Without this configuration, it is assumed that Google personnel can access resources for technical support purposes under the standard contract terms, which may not be sufficient for companies subject to strict regulations.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política realiza dos validaciones en el código Terraform:
-1.  **Existencia de la Configuración:** Detecta si un `google_project` carece de un recurso `google_access_approval_project_settings` que lo gestione.
-2.  **Inscripción de Servicios:** Verifica que, de existir la configuración, esta incluya al menos un bloque `enrolled_services`. Un recurso de configuración sin servicios inscritos no protege activamente ningún producto de GCP.
+The policy performs two validations in Terraform code:
+1.  **Configuration Existence:** Detects if a `google_project` lacks a `google_access_approval_project_settings` resource managing it.
+2.  **Service Enrollment:** Verifies that, if the configuration exists, it includes at least one `enrolled_services` block. A configuration resource without enrolled services does not actively protect any GCP product.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-A continuación se describen los escenarios que esta política detectará.
+The following scenarios will be detected by this policy.
 
 ---
 
-### Caso 1: Proyecto sin Access Approval
-* **Descripción:** Se provisiona un proyecto en GCP pero no se implementa el flujo de aprobación de acceso de Google.
-* **Ubicación de la Alerta:** Bloque del recurso `google_project`.
+### Case 1: Project Without Access Approval
+* **Description:** A project is provisioned in GCP but the Google access approval workflow is not implemented.
+* **Alert Location:** `google_project` resource block.
 
-### Caso 2: Configuración de Servicios Ausente
-* **Descripción:** Se define el recurso de configuración de Access Approval pero se deja vacío el bloque de servicios protegidos.
-* **Ubicación de la Alerta:** Recurso `google_access_approval_project_settings`.
+### Case 2: Missing Service Configuration
+* **Description:** The Access Approval configuration resource is defined but the protected services block is left empty.
+* **Alert Location:** `google_access_approval_project_settings` resource.
 
-## Recursos Involucrados
+## Resources Involved
 
 * `google_project`
 * `google_access_approval_project_settings`
 
-## Solución
+## Solution
 
-Defina el recurso de configuración y asegúrese de inscribir los servicios deseados (o `all` para una cobertura total).
+Define the configuration resource and ensure the desired services are enrolled (or `all` for full coverage).
 
 ```terraform
 resource "google_access_approval_project_settings" "compliant_settings" {
   project_id = google_project.my_secure_project.project_id
 
   enrolled_services {
-    cloud_product = "all" # Protege todos los productos compatibles
+    cloud_product = "all" # Protects all compatible products
     enrollment_level = "BLOCK_ALL"
   }
-  
-  notification_emails = ["security-team@tu-empresa.com"]
+
+  notification_emails = ["security-team@your-company.com"]
 }

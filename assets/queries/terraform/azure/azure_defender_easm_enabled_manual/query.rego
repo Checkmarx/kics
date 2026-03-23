@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Genera un aviso manual por cada Resource Group encontrado.
+# RULE 1: Generates a manual notice for each Resource Group found.
 CxPolicy[result] {
     doc := input.document[i]
     rg := doc.resource.azurerm_resource_group[name]

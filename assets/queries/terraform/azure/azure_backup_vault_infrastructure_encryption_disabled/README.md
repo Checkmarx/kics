@@ -1,31 +1,31 @@
-# Regla KICS: Backup Vault Infrastructure Encryption Disabled
+# KICS Rule: Backup Vault Infrastructure Encryption Disabled
 
-## Descripción General
+## General Description
 
-Esta regla verifica la preparación para el cifrado avanzado en los almacenes de respaldo de Azure (**Data Protection Backup Vaults**). 
+This rule verifies readiness for advanced encryption in Azure backup vaults (**Data Protection Backup Vaults**).
 
-Para que un Backup Vault pueda soportar capas de cifrado adicionales o gestionadas por el cliente (CMK), es obligatorio que el recurso tenga una identidad asignada (`identity`). Sin una identidad, el almacén solo puede utilizar el cifrado predeterminado de la plataforma.
+For a Backup Vault to support additional or customer-managed (CMK) encryption layers, the resource must have an assigned identity (`identity`). Without an identity, the vault can only use the platform's default encryption.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el recurso `azurerm_data_protection_backup_vault`:
-1.  Verifica la existencia del bloque `identity`.
-2.  Si el bloque está ausente, se considera que el recurso no está preparado para configuraciones de cifrado de infraestructura o gestionado por el cliente.
+The policy audits the `azurerm_data_protection_backup_vault` resource:
+1.  Verifies the existence of the `identity` block.
+2.  If the block is absent, the resource is considered not ready for infrastructure or customer-managed encryption configurations.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Identidad no configurada
+### Case 1: Identity Not Configured
 
-* **Descripción:** El Backup Vault no tiene una identidad (SystemAssigned o UserAssigned), lo que impide la vinculación con claves de cifrado externas.
-* **Ubicación de la Alerta:** Nivel de recurso `azurerm_data_protection_backup_vault`.
+* **Description:** The Backup Vault does not have an identity (SystemAssigned or UserAssigned), which prevents linking to external encryption keys.
+* **Alert Location:** Resource level `azurerm_data_protection_backup_vault`.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_data_protection_backup_vault`
 
-## Solución
+## Solution
 
-Añada un bloque `identity` al recurso.
+Add an `identity` block to the resource.
 
 ```terraform
 resource "azurerm_data_protection_backup_vault" "example" {
@@ -35,7 +35,7 @@ resource "azurerm_data_protection_backup_vault" "example" {
   datastore_type      = "VaultStore"
   redundancy          = "LocallyRedundant"
 
-  # Solución técnica para habilitar capacidades de cifrado
+  # Technical solution to enable encryption capabilities
   identity {
     type = "SystemAssigned"
   }

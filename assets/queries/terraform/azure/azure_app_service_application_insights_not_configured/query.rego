@@ -9,7 +9,7 @@ targets := {
     "azurerm_windows_function_app"
 }
 
-# REGLA 1: El bloque 'app_settings' no existe en absoluto.
+# RULE 1: The 'app_settings' block does not exist at all.
 CxPolicy[result] {
     doc := input.document[i]
     resource_type := targets[t]
@@ -28,7 +28,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El bloque 'app_settings' existe pero no tiene ninguna clave de App Insights.
+# RULE 2: The 'app_settings' block exists but does not have any App Insights key.
 CxPolicy[result] {
     doc := input.document[i]
     resource_type := targets[t]

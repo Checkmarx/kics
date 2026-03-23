@@ -1,48 +1,48 @@
-# Regla KICS: GKE Secrets Not Encrypted with CMEK
+# KICS Rule: GKE Secrets Not Encrypted with CMEK
 
-## Descripción General
+## Overview
 
-Esta regla de severidad **ALTA** verifica que los clústeres de GKE tengan habilitado el cifrado de secretos en la capa de aplicación mediante una clave de **Cloud KMS** gestionada por el cliente (**CMEK**).
+This **HIGH** severity rule verifies that GKE clusters have application-layer secret encryption enabled using a customer-managed **Cloud KMS** key (**CMEK**).
 
-Por defecto, GKE cifra los datos en reposo a nivel de disco, pero los secretos de Kubernetes almacenados en la base de datos `etcd` requieren una capa de protección adicional. Al habilitar esta función, GKE utiliza una clave de cifrado de sobres (envelope encryption) donde una Clave de Cifrado de Datos (DEK) cifra el secreto, y dicha DEK es cifrada por una Clave de Cifrado de Claves (KEK) alojada en Cloud KMS. Esto permite que el cliente tenga soberanía absoluta sobre sus secretos, pudiendo revocar el acceso a los mismos instantáneamente inhabilitando la clave en KMS.
+By default, GKE encrypts data at rest at the disk level, but Kubernetes secrets stored in the `etcd` database require an additional layer of protection. By enabling this feature, GKE uses envelope encryption where a Data Encryption Key (DEK) encrypts the secret, and that DEK is encrypted by a Key Encryption Key (KEK) hosted in Cloud KMS. This allows the customer to have absolute sovereignty over their secrets, being able to revoke access to them instantly by disabling the key in KMS.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el recurso `google_container_cluster` evaluando tres fallos de seguridad:
-1.  **Omisión:** No se define el bloque `database_encryption`.
-2.  **Desactivación:** El estado de cifrado se establece explícitamente en `DECRYPTED`.
-3.  **Configuración Incompleta:** Se activa el cifrado pero no se proporciona el identificador de la clave (`key_name`).
+The policy audits the `google_container_cluster` resource by evaluating three security failures:
+1.  **Omission:** The `database_encryption` block is not defined.
+2.  **Disabling:** The encryption state is explicitly set to `DECRYPTED`.
+3.  **Incomplete Configuration:** Encryption is activated but the key identifier (`key_name`) is not provided.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
 ---
 
-### Caso 1: Configuración de Cifrado Ausente
-* **Descripción:** El clúster se aprovisiona sin la capa de protección para secretos en etcd.
-* **Ubicación de la Alerta:** Bloque del recurso `google_container_cluster`.
+### Case 1: Missing Encryption Configuration
+* **Description:** The cluster is provisioned without the protection layer for secrets in etcd.
+* **Alert Location:** `google_container_cluster` resource block.
 
-### Caso 2: Cifrado Deshabilitado
-* **Descripción:** Se configura el bloque pero el estado se marca como no cifrado.
-* **Ubicación de la Alerta:** Atributo `state` dentro de `database_encryption`.
+### Case 2: Encryption Disabled
+* **Description:** The block is configured but the state is marked as unencrypted.
+* **Alert Location:** `state` attribute within `database_encryption`.
 
-### Caso 3: Clave KMS Faltante
-* **Descripción:** Se intenta cifrar pero no se referencia ninguna clave válida de Cloud KMS.
-* **Ubicación de la Alerta:** Atributo `key_name` dentro de `database_encryption`.
+### Case 3: Missing KMS Key
+* **Description:** Encryption is attempted but no valid Cloud KMS key is referenced.
+* **Alert Location:** `key_name` attribute within `database_encryption`.
 
-## Recurso Involucrado
+## Resource Involved
 
 * `google_container_cluster`
 
-## Solución
+## Solution
 
-Configure el bloque `database_encryption` con el estado `ENCRYPTED` y asigne el recurso de clave correspondiente.
+Configure the `database_encryption` block with the `ENCRYPTED` state and assign the corresponding key resource.
 
 ```terraform
 resource "google_container_cluster" "secure_cluster" {
   name     = "production-cluster"
   location = "us-central1"
 
-  # Solución técnica
+  # Technical solution
   database_encryption {
     state    = "ENCRYPTED"
     key_name = "projects/my-project/locations/global/keyRings/my-ring/cryptoKeys/my-key"

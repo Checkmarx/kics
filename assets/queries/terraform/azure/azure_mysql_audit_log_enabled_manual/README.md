@@ -1,56 +1,56 @@
-# Regla KICS: MySQL Audit Log Enabled (Manual)
+# KICS Rule: MySQL Audit Log Enabled (Manual)
 
-## Descripción General
+## General Description
 
-Esta regla de KICS actúa como un control manual para asegurar que el parámetro de servidor `audit_log_enabled` esté configurado en `ON` en las instancias de **Azure Database for MySQL**.
+This KICS rule acts as a manual control to ensure that the server parameter `audit_log_enabled` is set to `ON` in **Azure Database for MySQL** instances.
 
-Los registros de auditoría son fundamentales para la observabilidad y la seguridad de la base de datos. Permiten rastrear eventos específicos, como intentos de conexión, ejecución de consultas DDL y cambios en privilegios de usuario. Debido a que en Azure MySQL estos parámetros pueden gestionarse de forma externa al recurso del servidor (ya sea por el portal o mediante recursos de configuración independientes), se requiere una validación manual para confirmar el cumplimiento.
+Audit logs are essential for database observability and security. They allow tracking of specific events, such as connection attempts, DDL query execution, and user privilege changes. Because in Azure MySQL these parameters can be managed externally to the server resource (either through the portal or via independent configuration resources), manual validation is required to confirm compliance.
 
-## Lógica de la Regla
+## Rule Logic
 
-Dado que la configuración de auditoría no reside obligatoriamente dentro del bloque principal del servidor MySQL en Terraform, el análisis estático se centra en:
-1.  **Identificación de Recursos:** La regla localiza todos los recursos de tipo `azurerm_mssql_server` y `azurerm_mysql_flexible_server`.
-2.  **Recordatorio de Auditoría:** Genera un hallazgo de severidad informativa para alertar al administrador de la necesidad de verificar el estado del parámetro `audit_log_enabled`.
+Since the audit configuration does not necessarily reside within the main MySQL server block in Terraform, the static analysis focuses on:
+1.  **Resource Identification:** The rule locates all resources of type `azurerm_mssql_server` and `azurerm_mysql_flexible_server`.
+2.  **Audit Reminder:** Generates an informational severity finding to alert the administrator of the need to verify the status of the `audit_log_enabled` parameter.
 
-## Caso de Fallo Detectado
+## Detected Failure Case
 
-A continuación se describe el escenario que esta política detectará.
+The following describes the scenario this policy will detect.
 
 ---
 
-### Caso Único: Verificación Manual Requerida
+### Single Case: Manual Verification Required
 
-* **Descripción:** Se detecta la presencia de un servidor MySQL. Dado que el estado de la auditoría no siempre es verificable estáticamente desde el recurso del servidor, se solicita revisión manual.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The presence of a MySQL server is detected. Since the audit status is not always statically verifiable from the server resource, a manual review is requested.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_mssql_server" "example_insecure" {
       name                = "mysql-server-audit-check"
       resource_group_name = azurerm_resource_group.example.name
       location            = azurerm_resource_group.example.location
-      # El estado de audit_log_enabled no es visible aquí.
+      # The status of audit_log_enabled is not visible here.
     }
     ```
-* **Ubicación de la Alerta:** Sobre el recurso del servidor MySQL detectado.
+* **Alert Location:** On the detected MySQL server resource.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_mssql_server`
 * `azurerm_mysql_flexible_server`
 
-## Solución
+## Solution
 
-Existen dos métodos para asegurar que la auditoría esté habilitada:
+There are two methods to ensure that auditing is enabled:
 
-### Opción A: Verificación Manual (Portal de Azure)
-1. Navegue a su servidor MySQL en el Portal de Azure.
-2. Acceda a la sección **Parámetros del servidor**.
-3. Busque el parámetro `audit_log_enabled` y confirme que su valor sea `ON`.
+### Option A: Manual Verification (Azure Portal)
+1. Navigate to your MySQL server in the Azure Portal.
+2. Go to the **Server parameters** section.
+3. Search for the `audit_log_enabled` parameter and confirm its value is `ON`.
 
-### Opción B: Configuración como Código (Recomendado)
-Utilice el recurso `azurerm_mysql_configuration` (para servidores Single Server) o `azurerm_mysql_flexible_server_configuration` (para Flexible Server) para forzar el parámetro:
+### Option B: Configuration as Code (Recommended)
+Use the `azurerm_mysql_configuration` resource (for Single Server) or `azurerm_mysql_flexible_server_configuration` (for Flexible Server) to enforce the parameter:
 
 ```terraform
-# Ejemplo para MySQL Single Server
+# Example for MySQL Single Server
 resource "azurerm_mysql_configuration" "audit_log" {
   name                = "audit_log_enabled"
   resource_group_name = azurerm_resource_group.example.name

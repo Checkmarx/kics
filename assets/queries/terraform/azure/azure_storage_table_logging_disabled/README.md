@@ -1,44 +1,44 @@
-# Regla KICS: Storage Table Service Logging Disabled
+# KICS Rule: Storage Table Service Logging Disabled
 
-## Descripción General
+## General Description
 
-Esta regla verifica que el registro de diagnóstico (**Diagnostic Settings**) esté habilitado y configurado íntegramente para el servicio de **Tablas (Table Service)** en las cuentas de almacenamiento de Azure.
+This rule verifies that diagnostic logging (**Diagnostic Settings**) is enabled and fully configured for the **Table Service** in Azure storage accounts.
 
-La auditoría de las tablas NoSQL de Azure Storage permite capturar telemetría sobre quién accede y modifica los datos almacenados. La política asegura que se capturen las tres categorías de operaciones esenciales para una trazabilidad completa:
-* **StorageRead:** Auditoría de consultas de entidades y lectura de metadatos de tablas.
-* **StorageWrite:** Auditoría de inserciones, actualizaciones y "upserts" de datos.
-* **StorageDelete:** Auditoría de eliminaciones de entidades o de la estructura de la tabla.
+Auditing Azure Storage NoSQL tables allows capturing telemetry on who accesses and modifies stored data. The policy ensures that the three essential operation categories are captured for complete traceability:
+* **StorageRead:** Audit of entity queries and table metadata reads.
+* **StorageWrite:** Audit of data insertions, updates, and upserts.
+* **StorageDelete:** Audit of entity deletions or table structure deletions.
 
-Sin estos registros activos, las organizaciones carecen de la telemetría necesaria para identificar accesos no autorizados a datos sensibles o investigar errores en la manipulación de registros NoSQL.
+Without these active logs, organizations lack the telemetry needed to identify unauthorized access to sensitive data or investigate errors in NoSQL record manipulation.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el código Terraform evaluando tres niveles de cumplimiento:
-1.  **Existencia de Recurso:** Verifica que cada `azurerm_storage_account` tenga un recurso `azurerm_monitor_diagnostic_setting` vinculado a su endpoint de tablas (`/tableServices/default`).
-2.  **Presencia de Logs:** Alerta si el recurso de diagnóstico existe pero el bloque `enabled_log` está ausente.
-3.  **Integridad de Categorías:** Analiza que las categorías `StorageRead`, `StorageWrite` y `StorageDelete` estén presentes simultáneamente. Si el conjunto está incompleto, la alerta apunta directamente al bloque `enabled_log`.
+The policy audits the Terraform code by evaluating three compliance levels:
+1.  **Resource Existence:** Verifies that each `azurerm_storage_account` has an `azurerm_monitor_diagnostic_setting` resource linked to its table endpoint (`/tableServices/default`).
+2.  **Log Presence:** Alerts if the diagnostic resource exists but the `enabled_log` block is absent.
+3.  **Category Integrity:** Analyzes that the `StorageRead`, `StorageWrite`, and `StorageDelete` categories are all present simultaneously. If the set is incomplete, the alert points directly to the `enabled_log` block.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Servicio de Tablas sin Diagnostic Settings
-* **Descripción:** La cuenta de almacenamiento no tiene configurado ningún destino de registro para tablas.
-* **Ubicación:** `azurerm_storage_account`.
+### Case 1: Table Service Without Diagnostic Settings
+* **Description:** The storage account has no logging destination configured for tables.
+* **Location:** `azurerm_storage_account`.
 
-### Caso 2: Diagnostic Setting sin bloques de Log
-* **Descripción:** El recurso de diagnóstico existe pero la configuración de registros está vacía.
-* **Ubicación:** `azurerm_monitor_diagnostic_setting`.
+### Case 2: Diagnostic Setting Without Log Blocks
+* **Description:** The diagnostic resource exists but the log configuration is empty.
+* **Location:** `azurerm_monitor_diagnostic_setting`.
 
-### Caso 3: Auditoría de Tablas Incompleta
-* **Descripción:** Faltan una o más categorías críticas en la configuración de logs.
-* **Ubicación:** Bloque `enabled_log` dentro de `azurerm_monitor_diagnostic_setting`.
+### Case 3: Incomplete Table Audit
+* **Description:** One or more critical categories are missing from the log configuration.
+* **Location:** `enabled_log` block within `azurerm_monitor_diagnostic_setting`.
 
-## Recursos Involucrados
+## Involved Resources
 * `azurerm_storage_account`
 * `azurerm_monitor_diagnostic_setting`
 
-## Solución
+## Solution
 
-Configure un Diagnostic Setting completo para el servicio de tablas.
+Configure a complete Diagnostic Setting for the table service.
 
 ```terraform
 resource "azurerm_monitor_diagnostic_setting" "secure_table_logging" {

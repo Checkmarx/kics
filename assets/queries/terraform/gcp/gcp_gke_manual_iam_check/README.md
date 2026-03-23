@@ -1,38 +1,38 @@
-# Regla KICS: GKE Service Account IAM Review (Manual)
+# KICS Rule: GKE Service Account IAM Review (Manual)
 
-## Descripción General
+## Overview
 
-Esta regla informativa (INFO) de **Supply Chain** audita las identidades utilizadas por los nodos de **Google Kubernetes Engine (GKE)** cuando se han configurado cuentas de servicio personalizadas.
+This informational (INFO) **Supply Chain** rule audits the identities used by **Google Kubernetes Engine (GKE)** nodes when custom service accounts have been configured.
 
-El uso de cuentas de servicio personalizadas es el primer paso hacia el principio de menor privilegio. Sin embargo, si a esta cuenta se le asignan roles con permisos de escritura (como `roles/artifactregistry.writer` o `roles/storage.objectAdmin`), un atacante que comprometa un nodo podría modificar o reemplazar las imágenes de contenedor en el registro. Esto permitiría ataques de persistencia o escalada de privilegios en otros clústeres que consuman esas mismas imágenes.
+Using custom service accounts is the first step toward the principle of least privilege. However, if this account is assigned roles with write permissions (such as `roles/artifactregistry.writer` or `roles/storage.objectAdmin`), an attacker who compromises a node could modify or replace container images in the registry. This would enable persistence or privilege escalation attacks in other clusters that consume those same images.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política identifica los recursos `google_container_cluster` y `google_container_node_pool` que definen explícitamente una `service_account`. Al ser una verificación manual, genera una alerta informativa sobre la línea de la cuenta de servicio para que el auditor valide en el proyecto de GCP que los roles asociados son exclusivamente de **Lectura**.
+The policy identifies `google_container_cluster` and `google_container_node_pool` resources that explicitly define a `service_account`. As a manual check, it generates an informational alert on the service account line so the auditor can validate in the GCP project that the associated roles are exclusively **Read-Only**.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
 ---
 
-### Caso 1: Revisión de SA en Clúster
-* **Descripción:** Se ha definido una identidad personalizada para el clúster. Se debe verificar que no tenga permisos de "Push" al registro de imágenes.
-* **Ubicación de la Alerta:** Atributo `service_account` en `google_container_cluster`.
+### Case 1: SA Review in Cluster
+* **Description:** A custom identity has been defined for the cluster. It must be verified that it does not have "Push" permissions to the image registry.
+* **Alert Location:** `service_account` attribute in `google_container_cluster`.
 
-### Caso 2: Revisión de SA en Node Pool
-* **Descripción:** Un pool de nodos específico utiliza una identidad propia que requiere auditoría de roles IAM.
-* **Ubicación de la Alerta:** Atributo `service_account` en `google_container_node_pool`.
+### Case 2: SA Review in Node Pool
+* **Description:** A specific node pool uses its own identity that requires IAM role auditing.
+* **Alert Location:** `service_account` attribute in `google_container_node_pool`.
 
-## Recurso Involucrado
+## Resources Involved
 
 * `google_container_cluster`
 * `google_container_node_pool`
 
-## Solución
+## Solution
 
-Asegúrese de que la Service Account asignada solo posea roles de lectura para el registro de imágenes utilizado.
+Ensure that the assigned Service Account only has read roles for the image registry used.
 
-**Roles Recomendados:**
-* `roles/artifactregistry.reader` (para Artifact Registry)
-* `roles/storage.objectViewer` (para Container Registry/GCR)
+**Recommended Roles:**
+* `roles/artifactregistry.reader` (for Artifact Registry)
+* `roles/storage.objectViewer` (for Container Registry/GCR)
 * `roles/logging.logWriter`
 * `roles/monitoring.metricWriter`

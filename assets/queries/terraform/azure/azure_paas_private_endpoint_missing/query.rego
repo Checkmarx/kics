@@ -20,7 +20,7 @@ targets := {
     "azurerm_search_service"
 }
 
-# REGLA MAESTRA: Verifica si los recursos de la lista targets tienen un Private Endpoint vinculado.
+# MASTER RULE: Checks whether resources in the targets list have a linked Private Endpoint.
 CxPolicy[result] {
     doc := input.document[i]
 

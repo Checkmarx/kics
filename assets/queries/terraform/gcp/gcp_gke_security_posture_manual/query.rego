@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Bloque 'security_posture_config' ausente.
+# RULE 1: 'security_posture_config' block missing.
 CxPolicy[result] {
     doc := input.document[i]
     cluster := doc.resource.google_container_cluster[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Bloque presente, pero 'mode' es 'DISABLED'.
+# RULE 2: Block present, but 'mode' is 'DISABLED'.
 CxPolicy[result] {
     doc := input.document[i]
     cluster := doc.resource.google_container_cluster[name]

@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: El tipo de cifrado no es CMK o no está definido.
+# RULE 1: The encryption type is not CMK or is not defined.
 CxPolicy[result] {
     doc := input.document[i]
     vg := doc.resource.azurerm_elastic_san_volume_group[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Si el tipo es CMK, debe existir tanto el bloque 'encryption' como el bloque 'identity'.
+# RULE 2: If the type is CMK, both the 'encryption' block and the 'identity' block must exist.
 CxPolicy[result] {
     doc := input.document[i]
     vg := doc.resource.azurerm_elastic_san_volume_group[name]

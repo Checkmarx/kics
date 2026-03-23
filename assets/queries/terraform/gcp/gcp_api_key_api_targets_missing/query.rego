@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# CASO 1: No existe el bloque 'restrictions'.
+# CASE 1: The 'restrictions' block does not exist.
 CxPolicy[result] {
     doc := input.document[i]
     key := doc.resource.google_apikeys_key[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: Existe 'restrictions', pero falta 'api_targets'.
+# CASE 2: 'restrictions' exists, but 'api_targets' is missing.
 CxPolicy[result] {
     doc := input.document[i]
     key := doc.resource.google_apikeys_key[name]

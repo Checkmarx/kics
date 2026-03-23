@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: El atributo 'locked' no está definido (Default es false/unlocked).
+# RULE 1: The 'locked' attribute is not defined (Default is false/unlocked).
 CxPolicy[result] {
     doc := input.document[i]
     policy := doc.resource.azurerm_storage_container_immutability_policy[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El atributo 'locked' está explícitamente a false.
+# RULE 2: The 'locked' attribute is explicitly set to false.
 CxPolicy[result] {
     doc := input.document[i]
     policy := doc.resource.azurerm_storage_container_immutability_policy[name]

@@ -1,49 +1,49 @@
-# Regla KICS: Storage Account ReadOnly Lock Missing
+# KICS Rule: Storage Account ReadOnly Lock Missing
 
-## Descripción General
+## General Description
 
-Esta regla de KICS verifica que las cuentas de almacenamiento de Azure (`azurerm_storage_account`) tengan aplicado un **bloqueo de recursos** (`azurerm_management_lock`) configurado específicamente en el nivel **`ReadOnly`**.
+This KICS rule verifies that Azure storage accounts (`azurerm_storage_account`) have a **resource lock** (`azurerm_management_lock`) applied, specifically configured at the **`ReadOnly`** level.
 
-Los bloqueos de Azure Resource Manager (ARM) proporcionan una capa de seguridad adicional que trasciende los permisos de RBAC. Aplicar un bloqueo de tipo `ReadOnly` a una cuenta de almacenamiento garantiza que la configuración del recurso (como las reglas de firewall, los niveles de acceso o la configuración de replicación) no pueda ser modificada ni el recurso eliminado accidentalmente, incluso por administradores. Es una práctica esencial para activos de datos críticos en entornos de producción.
+Azure Resource Manager (ARM) locks provide an additional security layer that transcends RBAC permissions. Applying a `ReadOnly` type lock to a storage account ensures that the resource configuration (such as firewall rules, access tiers, or replication settings) cannot be modified or the resource accidentally deleted, even by administrators. It is an essential practice for critical data assets in production environments.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política realiza un análisis cruzado entre los recursos de la cuenta de almacenamiento y los bloqueos definidos:
-1.  **Identificación:** Localiza todas las instancias de `azurerm_storage_account`.
-2.  **Vinculación:** Busca recursos `azurerm_management_lock` cuyo atributo `scope` referencie al ID del Storage Account.
-3.  **Validación de Nivel:** Verifica que el atributo `lock_level` sea estrictamente `"ReadOnly"`.
-4.  **Generación de Hallazgo:** Si el recurso no tiene ningún bloqueo o si los bloqueos existentes tienen un nivel inferior (como `CanNotDelete`), se genera una alerta.
+The policy performs a cross-analysis between storage account resources and defined locks:
+1.  **Identification:** Locates all instances of `azurerm_storage_account`.
+2.  **Linking:** Searches for `azurerm_management_lock` resources whose `scope` attribute references the Storage Account ID.
+3.  **Level Validation:** Verifies that the `lock_level` attribute is strictly `"ReadOnly"`.
+4.  **Finding Generation:** If the resource has no lock, or if existing locks have a lower level (such as `CanNotDelete`), an alert is generated.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Storage Account sin Bloqueo
+### Case 1: Storage Account Without a Lock
 
-* **Descripción:** La cuenta de almacenamiento se ha desplegado sin ninguna restricción de gestión, permitiendo modificaciones accidentales.
-* **Ubicación de la Alerta:** Sobre el recurso raíz `azurerm_storage_account`.
+* **Description:** The storage account has been deployed without any management restriction, allowing accidental modifications.
+* **Alert Location:** On the root `azurerm_storage_account` resource.
 
 ---
 
-### Caso 2: Bloqueo con Nivel Incorrecto
+### Case 2: Lock With Incorrect Level
 
-* **Descripción:** Existe un bloqueo asociado al recurso, pero su nivel es `"CanNotDelete"`, lo cual permite modificaciones en la configuración que la regla busca restringir mediante `"ReadOnly"`.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** A lock associated with the resource exists, but its level is `"CanNotDelete"`, which allows modifications to the configuration that this rule seeks to restrict via `"ReadOnly"`.
+* **Problematic Terraform Code Example:**
     ```terraform
     resource "azurerm_management_lock" "fail_lock" {
       name       = "prevent-deletion"
       scope      = azurerm_storage_account.example.id
-      lock_level = "CanNotDelete" # <-- FALLO: Se requiere 'ReadOnly'
+      lock_level = "CanNotDelete" # <-- FAILURE: 'ReadOnly' is required
     }
     ```
-* **Ubicación de la Alerta:** Atributo `lock_level` del recurso de bloqueo.
+* **Alert Location:** `lock_level` attribute of the lock resource.
 
-## Recursos Involucrados
+## Involved Resources
 
 * `azurerm_storage_account`
 * `azurerm_management_lock`
 
-## Solución
+## Solution
 
-Añada un recurso `azurerm_management_lock` apuntando al ID de la cuenta de almacenamiento con el nivel `ReadOnly`.
+Add an `azurerm_management_lock` resource pointing to the storage account ID with the `ReadOnly` level.
 
 ```terraform
 resource "azurerm_storage_account" "secure_sa" {
@@ -54,10 +54,10 @@ resource "azurerm_storage_account" "secure_sa" {
   account_replication_type = "GRS"
 }
 
-# SOLUCIÓN: Aplicar bloqueo ReadOnly
+# SOLUTION: Apply ReadOnly lock
 resource "azurerm_management_lock" "sa_readonly_lock" {
   name       = "critical-storage-lock"
   scope      = azurerm_storage_account.secure_sa.id
   lock_level = "ReadOnly"
-  notes      = "Bloqueo de seguridad para cumplimiento de política de gobernanza"
+  notes      = "Security lock for governance policy compliance"
 }

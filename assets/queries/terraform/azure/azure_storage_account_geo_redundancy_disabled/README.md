@@ -1,47 +1,47 @@
-# Regla KICS: Storage Account Geo-Redundancy Disabled
+# KICS Rule: Storage Account Geo-Redundancy Disabled
 
-## Descripción General
+## General Description
 
-Esta regla de KICS verifica que las cuentas de almacenamiento de Azure (`azurerm_storage_account`) estén configuradas con **Redundancia Geográfica**.
+This KICS rule verifies that Azure storage accounts (`azurerm_storage_account`) are configured with **Geo-Redundancy**.
 
-La redundancia geográfica es una estrategia de continuidad del negocio fundamental. Al habilitarla, Azure copia los datos de forma asíncrona en una región secundaria situada a cientos de kilómetros de la región principal. Esto garantiza que, ante un desastre regional catastrófico (fallos masivos de red, desastres naturales o cortes de energía en toda una región), los datos permanezcan duraderos y disponibles para su recuperación, minimizando el RPO (objetivo de punto de recuperación) y el RTO (objetivo de tiempo de recuperación).
+Geo-redundancy is a fundamental business continuity strategy. By enabling it, Azure asynchronously copies data to a secondary region located hundreds of kilometers from the primary region. This ensures that, in the event of a catastrophic regional disaster (massive network failures, natural disasters, or region-wide power outages), data remains durable and available for recovery, minimizing RPO (Recovery Point Objective) and RTO (Recovery Time Objective).
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el atributo `account_replication_type` del recurso `azurerm_storage_account`:
-1.  **Validación de Tipo:** Comprueba si el valor configurado pertenece al grupo de alta disponibilidad regional: `GRS`, `RAGRS`, `GZRS` o `RAGZRS`.
-2.  **Detección de Riesgo:** Si el valor es `LRS` (Localmente redundante) o `ZRS` (Redundancia de zona), se genera una alerta, ya que estos niveles solo protegen contra fallos de hardware dentro de un centro de datos o zona, pero no contra la pérdida de una región completa.
+The policy audits the `account_replication_type` attribute of the `azurerm_storage_account` resource:
+1.  **Type Validation:** Checks whether the configured value belongs to the high regional availability group: `GRS`, `RAGRS`, `GZRS`, or `RAGZRS`.
+2.  **Risk Detection:** If the value is `LRS` (Locally Redundant) or `ZRS` (Zone Redundant), an alert is generated, as these levels only protect against hardware failures within a datacenter or zone, but not against the loss of an entire region.
 
-## Caso de Fallo Detectado
+## Detected Failure Case
 
-A continuación se describe el escenario que esta política detectará.
+The following describes the scenario that this policy will detect.
 
 ---
 
-### Caso Único: Replicación Local o Zonal (LRS/ZRS)
+### Single Case: Local or Zonal Replication (LRS/ZRS)
 
-* **Descripción:** La cuenta de almacenamiento utiliza un esquema de replicación que no se extiende fuera de la región principal, dejando los datos vulnerables ante desastres regionales.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The storage account uses a replication scheme that does not extend beyond the primary region, leaving data vulnerable to regional disasters.
+* **Problematic Terraform Code Example:**
     ```terraform
     resource "azurerm_storage_account" "fail_storage" {
       name                     = "insecurestorage"
       resource_group_name      = azurerm_resource_group.example.name
       location                 = azurerm_resource_group.example.location
       account_tier             = "Standard"
-      
-      # FALLO: Replicación limitada a la región local
+
+      # FAILURE: Replication limited to the local region
       account_replication_type = "LRS"
     }
     ```
-* **Ubicación de la Alerta:** Atributo `account_replication_type`.
+* **Alert Location:** `account_replication_type` attribute.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_storage_account`
 
-## Solución
+## Solution
 
-Para mitigar este riesgo en entornos de producción, cambie el tipo de replicación a uno que soporte redundancia geográfica, como **GRS**.
+To mitigate this risk in production environments, change the replication type to one that supports geo-redundancy, such as **GRS**.
 
 ```terraform
 resource "azurerm_storage_account" "secure_storage" {
@@ -49,7 +49,7 @@ resource "azurerm_storage_account" "secure_storage" {
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
   account_tier             = "Standard"
-  
-  # SOLUCIÓN: Habilitar redundancia geográfica
+
+  # SOLUTION: Enable geo-redundancy
   account_replication_type = "GRS"
 }

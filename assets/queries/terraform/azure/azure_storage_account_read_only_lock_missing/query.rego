@@ -16,7 +16,7 @@ check_lock_scope(current, target) {
     current == sprintf("${%s}", [target])
 }
 
-# CASO 1: Storage Account totalmente desprotegido (sin bloqueos asociados)
+# CASE 1: Storage Account completely unprotected (no associated locks)
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[sa_name]
@@ -39,7 +39,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: Storage Account con bloqueo incorrecto (nivel distinto a ReadOnly)
+# CASE 2: Storage Account with incorrect lock (level other than ReadOnly)
 CxPolicy[result] {
     doc := input.document[i]
     lock := doc.resource.azurerm_management_lock[lock_name]

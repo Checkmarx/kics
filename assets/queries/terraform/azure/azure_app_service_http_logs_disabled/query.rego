@@ -4,7 +4,7 @@ import data.generic.terraform as tf_lib
 
 targets := {"azurerm_linux_web_app", "azurerm_windows_web_app"}
 
-# REGLA 1: El bloque 'logs' no existe en el App Service.
+# RULE 1: The 'logs' block does not exist in the App Service.
 CxPolicy[result] {
     doc := input.document[i]
     resource_type := targets[t]
@@ -23,7 +23,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El bloque 'logs' existe pero no tiene 'http_logs' configurado.
+# RULE 2: The 'logs' block exists but does not have 'http_logs' configured.
 CxPolicy[result] {
     doc := input.document[i]
     resource_type := targets[t]

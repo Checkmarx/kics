@@ -1,26 +1,26 @@
-# Regla KICS: Azure Managed Lustre Not Encrypted with CMK
+# KICS Rule: Azure Managed Lustre Not Encrypted with CMK
 
-## Descripción General
+## General Description
 
-Esta regla de KICS verifica que los sistemas de archivos **Azure Managed Lustre** (`azurerm_managed_lustre_file_system`) estén configurados para utilizar claves gestionadas por el cliente (**Customer-Managed Keys - CMK**) para el cifrado de datos en reposo.
+This KICS rule verifies that **Azure Managed Lustre** file systems (`azurerm_managed_lustre_file_system`) are configured to use **Customer-Managed Keys (CMK)** for data encryption at rest.
 
-Por defecto, Azure cifra los datos en Lustre utilizando claves gestionadas por la plataforma. Para cumplir con requisitos de soberanía de datos y gobernanza, se recomienda el uso de CMK mediante el bloque `encryption_key`. Esto otorga a las organizaciones control total sobre el ciclo de vida de la clave, permitiendo la rotación y revocación selectiva del acceso a los datos de alto rendimiento almacenados en el sistema de archivos.
+By default, Azure encrypts data in Lustre using platform-managed keys. To meet data sovereignty and governance requirements, the use of CMK via the `encryption_key` block is recommended. This gives organizations full control over the key lifecycle, allowing rotation and selective revocation of access to the high-performance data stored in the file system.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política analiza el recurso `azurerm_managed_lustre_file_system` validando la siguiente condición:
-1.  **Presencia del Bloque de Cifrado:** Se verifica la existencia del bloque `encryption_key`. Si este bloque no está definido, el sistema de archivos utiliza por defecto el cifrado gestionado por Azure.
+The policy analyzes the `azurerm_managed_lustre_file_system` resource by validating the following condition:
+1.  **Encryption Block Presence:** The existence of the `encryption_key` block is verified. If this block is not defined, the file system defaults to Azure-managed encryption.
 
-## Caso de Fallo Detectado
+## Detected Failure Case
 
-A continuación se describe el escenario que esta política detectará.
+The following describes the scenario this policy will detect.
 
 ---
 
-### Caso Único: Uso de Claves Gestionadas por la Plataforma (Bloque Ausente)
+### Single Case: Use of Platform-Managed Keys (Block Absent)
 
-* **Descripción:** El sistema de archivos Lustre se define sin el bloque de configuración de cifrado por cliente, lo que delega la protección de los datos a las claves por defecto de la plataforma.
-* **Ejemplo de Código Terraform Problemático:**
+* **Description:** The Lustre file system is defined without the customer encryption configuration block, delegating data protection to the platform's default keys.
+* **Example of Problematic Terraform Code:**
     ```terraform
     resource "azurerm_managed_lustre_file_system" "example_insecure" {
       name                   = "insecure-lustre"
@@ -29,19 +29,19 @@ A continuación se describe el escenario que esta política detectará.
       sku_name               = "AMLFS-Durable-Premium-250"
       subnet_id              = azurerm_subnet.example.id
       storage_capacity_in_tb = 48
-      
-      # El recurso carece del bloque encryption_key
+
+      # The resource lacks the encryption_key block
     }
     ```
-* **Ubicación de la Alerta:** Sobre el recurso raíz `azurerm_managed_lustre_file_system`.
+* **Alert Location:** On the root `azurerm_managed_lustre_file_system` resource.
 
-## Recurso Involucrado
+## Involved Resource
 
 * `azurerm_managed_lustre_file_system`
 
-## Solución
+## Solution
 
-Para solucionar este riesgo, defina el bloque `encryption_key` proporcionando la URL de la clave y el ID del Key Vault de origen.
+To fix this risk, define the `encryption_key` block providing the key URL and the source Key Vault ID.
 
 ```terraform
 resource "azurerm_managed_lustre_file_system" "secure_lustre" {
@@ -52,7 +52,7 @@ resource "azurerm_managed_lustre_file_system" "secure_lustre" {
   subnet_id              = azurerm_subnet.example.id
   storage_capacity_in_tb = 48
 
-  # SOLUCIÓN: Configurar cifrado con CMK
+  # SOLUTION: Configure encryption with CMK
   encryption_key {
     key_url         = azurerm_key_vault_key.example.id
     source_vault_id = azurerm_key_vault.example.id

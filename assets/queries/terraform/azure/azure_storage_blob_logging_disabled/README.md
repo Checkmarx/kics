@@ -1,38 +1,38 @@
-# Regla KICS: Storage Blob Service Logging Disabled
+# KICS Rule: Storage Blob Service Logging Disabled
 
-## Descripción General
+## General Description
 
-Esta regla verifica que el registro de diagnóstico (**Diagnostic Settings**) esté habilitado y configurado íntegramente para el servicio de **Blobs** en las cuentas de almacenamiento de Azure.
+This rule verifies that diagnostic logging (**Diagnostic Settings**) is enabled and fully configured for the **Blob** service in Azure storage accounts.
 
-Para garantizar una auditoría completa del plano de datos, es imperativo registrar las tres operaciones fundamentales que permiten rastrear el ciclo de vida de los objetos:
-* **StorageRead:** Auditoría de lectura de datos de blobs y metadatos de contenedores.
-* **StorageWrite:** Auditoría de subidas, creaciones y modificaciones de blobs.
-* **StorageDelete:** Auditoría de eliminaciones de objetos y contenedores.
+To ensure complete data plane auditing, it is imperative to log the three fundamental operations that allow tracking the lifecycle of objects:
+* **StorageRead:** Audit of blob data reads and container metadata.
+* **StorageWrite:** Audit of blob uploads, creations, and modifications.
+* **StorageDelete:** Audit of object and container deletions.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el código Terraform evaluando tres niveles de cumplimiento:
-1.  **Existencia de Recurso:** Verifica que cada `azurerm_storage_account` tenga un recurso `azurerm_monitor_diagnostic_setting` vinculado a su endpoint de blobs (`/blobServices/default`).
-2.  **Presencia de Logs:** Alerta si el recurso de diagnóstico existe pero no contiene definiciones de registros (`enabled_log`).
-3.  **Integridad de Categorías:** Analiza que las categorías `StorageRead`, `StorageWrite` y `StorageDelete` estén presentes. Si el conjunto está incompleto, la alerta apunta directamente al bloque `enabled_log`.
+The policy audits the Terraform code by evaluating three compliance levels:
+1.  **Resource Existence:** Verifies that each `azurerm_storage_account` has an `azurerm_monitor_diagnostic_setting` resource linked to its blob endpoint (`/blobServices/default`).
+2.  **Log Presence:** Alerts if the diagnostic resource exists but contains no log definitions (`enabled_log`).
+3.  **Category Integrity:** Analyzes that the `StorageRead`, `StorageWrite`, and `StorageDelete` categories are all present. If the set is incomplete, the alert points directly to the `enabled_log` block.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-### Caso 1: Servicio de Blobs sin Diagnostic Settings
-* **Ubicación:** `azurerm_storage_account`.
+### Case 1: Blob Service Without Diagnostic Settings
+* **Location:** `azurerm_storage_account`.
 
-### Caso 2: Diagnostic Setting sin bloques de Log
-* **Ubicación:** `azurerm_monitor_diagnostic_setting`.
+### Case 2: Diagnostic Setting Without Log Blocks
+* **Location:** `azurerm_monitor_diagnostic_setting`.
 
-### Caso 3: Auditoría de Blobs Incompleta
-* **Descripción:** El bloque de registros no contiene el set completo de categorías (Read, Write y Delete).
-* **Ubicación:** Bloque `enabled_log` dentro de `azurerm_monitor_diagnostic_setting`.
+### Case 3: Incomplete Blob Audit
+* **Description:** The log block does not contain the complete set of categories (Read, Write, and Delete).
+* **Location:** `enabled_log` block within `azurerm_monitor_diagnostic_setting`.
 
-## Recursos Involucrados
+## Involved Resources
 * `azurerm_storage_account`
 * `azurerm_monitor_diagnostic_setting`
 
-## Solución
+## Solution
 
 ```terraform
 resource "azurerm_monitor_diagnostic_setting" "secure_blob_logging" {

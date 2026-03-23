@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: El bloque 'encryption_key' no está definido.
+# RULE 1: The 'encryption_key' block is not defined.
 CxPolicy[result] {
     doc := input.document[i]
     lustre := doc.resource.azurerm_managed_lustre_file_system[name]

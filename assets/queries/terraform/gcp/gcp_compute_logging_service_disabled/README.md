@@ -1,41 +1,41 @@
-# Regla KICS: GCP Compute Logging Service Disabled
+# KICS Rule: GCP Compute Logging Service Disabled
 
-## Descripción General
+## Overview
 
-Esta regla de **Observabilidad** verifica que las instancias de **Google Compute Engine** (`google_compute_instance`) tengan habilitado el envío de registros al servicio de **Cloud Logging** mediante el metadato `google-logging-enabled`.
+This **Observability** rule verifies that **Google Compute Engine** instances (`google_compute_instance`) have logging to the **Cloud Logging** service enabled via the `google-logging-enabled` metadata key.
 
-La visibilidad es un componente crítico de la seguridad. El agente de Google Cloud (Ops Agent) utiliza este flag para determinar si debe transmitir logs del sistema operativo y de aplicaciones a la consola centralizada de Google Cloud. Sin estos registros, la detección de intrusiones, el análisis forense y la resolución de errores operativos se vuelven tareas inviables.
+Visibility is a critical security component. The Google Cloud agent (Ops Agent) uses this flag to determine whether to transmit operating system and application logs to the centralized Google Cloud console. Without these logs, intrusion detection, forensic analysis, and resolution of operational errors become impractical tasks.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política audita el recurso evaluando tres estados posibles de fallo para maximizar la precisión del reporte:
-1.  **Bloque Ausente:** Si falta todo el bloque `metadata`.
-2.  **Clave Ausente:** Si el bloque `metadata` existe pero no define la clave requerida.
-3.  **Valor Incorrecto:** Si la clave existe pero se ha establecido explícitamente como `"false"`.
+The policy audits the resource by evaluating three possible failure states to maximize reporting accuracy:
+1.  **Missing Block:** If the entire `metadata` block is absent.
+2.  **Missing Key:** If the `metadata` block exists but does not define the required key.
+3.  **Incorrect Value:** If the key exists but has been explicitly set to `"false"`.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
 ---
 
-### Caso 1: Configuración de Metadatos Ausente
-* **Descripción:** La instancia no define ningún metadato, omitiendo por tanto el servicio de logging.
-* **Ubicación de la Alerta:** Nivel de recurso `google_compute_instance`.
+### Case 1: Missing Metadata Configuration
+* **Description:** The instance does not define any metadata, therefore omitting the logging service.
+* **Alert Location:** `google_compute_instance` resource level.
 
-### Caso 2: Flag de Logging Faltante
-* **Descripción:** Se usan metadatos pero se omite específicamente `google-logging-enabled`.
-* **Ubicación de la Alerta:** Atributo `metadata`.
+### Case 2: Missing Logging Flag
+* **Description:** Metadata is used but `google-logging-enabled` is specifically omitted.
+* **Alert Location:** `metadata` attribute.
 
-### Caso 3: Logging Deshabilitado
-* **Descripción:** Se ha configurado el valor `"false"`, bloqueando activamente la ingesta de logs.
-* **Ubicación de la Alerta:** Atributo `google-logging-enabled`.
+### Case 3: Logging Disabled
+* **Description:** The value `"false"` has been configured, actively blocking log ingestion.
+* **Alert Location:** `google-logging-enabled` attribute.
 
-## Recurso Involucrado
+## Resource Involved
 
 * `google_compute_instance`
 
-## Solución
+## Solution
 
-Asegúrese de establecer el metadato en `"true"` para habilitar el servicio.
+Ensure the metadata is set to `"true"` to enable the service.
 
 ```terraform
 resource "google_compute_instance" "secure_vm" {

@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Azure Service Plan usando SKU Basic (B), Free (F) o Consumption (Y1).
+# RULE 1: Azure Service Plan using Basic (B), Free (F), or Consumption (Y1) SKU.
 CxPolicy[result] {
     doc := input.document[i]
     plan := doc.resource.azurerm_service_plan[name]
@@ -21,7 +21,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Azure API Management usando SKU Basic o Consumption.
+# RULE 2: Azure API Management using Basic or Consumption SKU.
 CxPolicy[result] {
     doc := input.document[i]
     apim := doc.resource.azurerm_api_management[name]

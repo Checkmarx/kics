@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: El bloque de encriptación no está definido.
+# RULE 1: The encryption block is not defined.
 CxPolicy[result] {
     doc := input.document[i]
     vault := doc.resource.azurerm_recovery_services_vault[name]

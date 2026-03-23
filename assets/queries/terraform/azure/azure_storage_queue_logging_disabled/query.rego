@@ -8,7 +8,7 @@ is_logging_valid(logging) {
     logging.delete == true
 }
 
-# CASO 1: Bloque 'logging' ausente en 'queue_properties' de azurerm_storage_account.
+# CASE 1: 'logging' block missing in 'queue_properties' of azurerm_storage_account.
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]
@@ -27,7 +27,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: Configuración de 'logging' incorrecta en azurerm_storage_account.
+# CASE 2: Incorrect 'logging' configuration in azurerm_storage_account.
 CxPolicy[result] {
     doc := input.document[i]
     sa := doc.resource.azurerm_storage_account[name]
@@ -46,7 +46,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 3: Bloque 'logging' ausente en el recurso azurerm_storage_account_queue_properties.
+# CASE 3: 'logging' block missing in the azurerm_storage_account_queue_properties resource.
 CxPolicy[result] {
     doc := input.document[i]
     props := doc.resource.azurerm_storage_account_queue_properties[name]
@@ -64,7 +64,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 4: Configuración de 'logging' incorrecta en azurerm_storage_account_queue_properties.
+# CASE 4: Incorrect 'logging' configuration in azurerm_storage_account_queue_properties.
 CxPolicy[result] {
     doc := input.document[i]
     props := doc.resource.azurerm_storage_account_queue_properties[name]

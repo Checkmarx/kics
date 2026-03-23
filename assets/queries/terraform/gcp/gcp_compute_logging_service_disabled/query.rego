@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.terraform as tf_lib
 
-# REGLA 1: El bloque 'metadata' no existe.
+# RULE 1: The 'metadata' block does not exist.
 CxPolicy[result] {
     doc := input.document[i]
     instance := doc.resource.google_compute_instance[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El bloque 'metadata' existe pero le falta la clave 'google-logging-enabled'.
+# RULE 2: The 'metadata' block exists but is missing the 'google-logging-enabled' key.
 CxPolicy[result] {
     doc := input.document[i]
     instance := doc.resource.google_compute_instance[name]
@@ -39,7 +39,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: La clave existe pero su valor es 'false'.
+# RULE 3: The key exists but its value is 'false'.
 CxPolicy[result] {
     doc := input.document[i]
     instance := doc.resource.google_compute_instance[name]

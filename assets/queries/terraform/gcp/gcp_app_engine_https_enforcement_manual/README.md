@@ -1,44 +1,44 @@
-# Regla KICS: App Engine HTTPS Enforcement (Manual)
+# KICS Rule: App Engine HTTPS Enforcement (Manual)
 
-## Descripción General
+## Overview
 
-Esta regla de auditoría verifica que las aplicaciones desplegadas en **Google App Engine** (Standard Environment) fuercen el uso exclusivo de conexiones cifradas mediante **HTTPS**.
+This audit rule verifies that applications deployed on **Google App Engine** (Standard Environment) enforce the exclusive use of encrypted connections via **HTTPS**.
 
-Servir contenido a través de HTTP sin cifrar expone los datos confidenciales de los usuarios y las credenciales de sesión a intercepciones. Para mitigar este riesgo, App Engine permite configurar una redirección automática de HTTP a HTTPS. 
+Serving content over unencrypted HTTP exposes users' confidential data and session credentials to interception. To mitigate this risk, App Engine allows configuring an automatic HTTP to HTTPS redirect.
 
-Dado que App Engine suele utilizar un archivo de configuración externo (`app.yaml`) para definir el comportamiento de red, esta regla actúa como un control de gobierno que alerta si la política no está explícitamente definida en la infraestructura como código (Terraform) o si requiere una inspección manual de los artefactos de despliegue.
+Since App Engine typically uses an external configuration file (`app.yaml`) to define network behavior, this rule acts as a governance control that alerts if the policy is not explicitly defined in the infrastructure as code (Terraform) or if it requires manual inspection of deployment artifacts.
 
-## Lógica de la Regla
+## Rule Logic
 
-La política evalúa el recurso `google_app_engine_standard_app_version` bajo dos escenarios:
-1.  **Configuración en Terraform:** Si el bloque `handlers` está presente, se asegura de que el atributo `security_level` esté configurado como `SECURE_ALWAYS`. Cualquier otro valor (como `SECURE_OPTIONAL`) disparará una alerta.
-2.  **Configuración Externa:** Si no se definen `handlers` en Terraform, la regla genera una alerta informativa (**INFO**) indicando que el cumplimiento depende de la configuración dentro del archivo `app.yaml` de la aplicación.
+The policy evaluates the `google_app_engine_standard_app_version` resource under two scenarios:
+1.  **Terraform Configuration:** If the `handlers` block is present, it ensures that the `security_level` attribute is configured as `SECURE_ALWAYS`. Any other value (such as `SECURE_OPTIONAL`) will trigger an alert.
+2.  **External Configuration:** If no `handlers` are defined in Terraform, the rule generates an informational alert (**INFO**) indicating that compliance depends on the configuration within the application's `app.yaml` file.
 
-## Casos de Fallo Detectados
+## Detected Failure Cases
 
-A continuación se describen los escenarios que esta política detectará.
+The following scenarios will be detected by this policy.
 
 ---
 
-### Caso 1: Nivel de Seguridad Inadecuado en Terraform
-* **Descripción:** Los manejadores de URL permiten tráfico HTTP o no fuerzan la redirección segura.
-* **Ubicación de la Alerta:** Atributo `handlers` dentro del recurso App Engine.
+### Case 1: Insecure Security Level in Terraform
+* **Description:** URL handlers allow HTTP traffic or do not enforce secure redirection.
+* **Alert Location:** `handlers` attribute within the App Engine resource.
 
-### Caso 2: Verificación Manual de Archivos de Configuración
-* **Descripción:** Terraform no gestiona la lógica de rutas. Se requiere validar el código fuente.
-* **Acción Requerida:** Confirmar que en `app.yaml` todos los handlers críticos contengan:
+### Case 2: Manual Verification of Configuration Files
+* **Description:** Terraform does not manage routing logic. The source code must be validated.
+* **Required Action:** Confirm that in `app.yaml` all critical handlers contain:
     ```yaml
     secure: always
     ```
-* **Ubicación de la Alerta:** Nivel de recurso `google_app_engine_standard_app_version`.
+* **Alert Location:** `google_app_engine_standard_app_version` resource level.
 
-## Recurso Involucrado
+## Resource Involved
 
 * `google_app_engine_standard_app_version`
 
-## Solución
+## Solution
 
-Para forzar HTTPS desde Terraform, configure el `security_level` en cada handler:
+To enforce HTTPS from Terraform, configure `security_level` in each handler:
 
 ```terraform
 resource "google_app_engine_standard_app_version" "secure_app" {
@@ -51,7 +51,7 @@ resource "google_app_engine_standard_app_version" "secure_app" {
     script {
       script_path = "auto"
     }
-    # Solución técnica
-    security_level = "SECURE_ALWAYS" 
+    # Technical solution
+    security_level = "SECURE_ALWAYS"
   }
 }
