@@ -354,12 +354,10 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			fileInfo, errFile := os.Stat(path)
 			if errFile != nil {
-				errFile = fmt.Errorf("file %s not found", path)
 				return nil
 			}
 
 			if fileInfo.IsDir() {
-				errFile = fmt.Errorf("the path %s is a directory", path)
 				return nil
 			}
 
