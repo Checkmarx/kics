@@ -2,7 +2,7 @@
     {
         "queryName": "Beta - Cloud SQL PostgreSQL log_lock_waits Not Enabled",
         "severity": "MEDIUM",
-        "line": 1,
+        "line": 8,
         "filename": "positive1.tf"
     }
 ]

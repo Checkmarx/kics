@@ -2,7 +2,7 @@
     {
         "queryName": "Beta - Container Registry Admin Account Enabled",
         "severity": "HIGH",
-        "line": 1,
+        "line": 6,
         "filename": "positive1.tf"
     }
 ]

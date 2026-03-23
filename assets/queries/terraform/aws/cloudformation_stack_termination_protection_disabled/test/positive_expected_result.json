@@ -2,7 +2,7 @@
     {
         "queryName": "Beta - CloudFormation Stack Termination Protection Disabled",
         "severity": "MEDIUM",
-        "line": 1,
+        "line": 4,
         "filename": "positive1.tf"
     }
 ]

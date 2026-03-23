@@ -23,6 +23,12 @@ CxPolicy[result] {
 }
 
 has_flag_enabled(flags, flag_name) {
+    is_object(flags)
+    flags.name == flag_name
+    flags.value == "on"
+}
+
+has_flag_enabled(flags, flag_name) {
     flag := flags[_]
     flag.name == flag_name
     flag.value == "on"
