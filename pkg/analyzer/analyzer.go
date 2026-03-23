@@ -150,7 +150,13 @@ type analyzerInfo struct {
 	typesFlag               []string
 	excludeTypesFlag        []string
 	filePath                string
+	fileExt                 string
 	fallbackMinifiedFileLOC int
+}
+
+type fileExtInfo struct {
+	path string
+	ext  string
 }
 
 // fileTypeInfo contains file path, detected platform type, and LOC count
@@ -326,7 +332,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		FileStats:   make(map[string]model.FileStatistics),
 	}
 
-	var files []string
+	var files []fileExtInfo
 	var wg sync.WaitGroup
 	// results is the channel shared by the workers that contains the types found
 	results := make(chan string)
@@ -346,19 +352,31 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				return err
 			}
 
+			fileInfo, errFile := os.Stat(path)
+			if errFile != nil {
+				errFile = fmt.Errorf("file %s not found", path)
+				return nil
+			}
+
+			if fileInfo.IsDir() {
+				errFile = fmt.Errorf("the path %s is a directory", path)
+				return nil
+			}
+
+			trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
+			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
+
 			ext, errExt := utils.GetExtension(path)
 			if errExt == nil {
-				trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
-				ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
-
 				if isConfigFile(path, defaultConfigFiles) {
 					projectConfigFiles = append(projectConfigFiles, path)
 					a.Exc = append(a.Exc, path)
 				}
 
 				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
-					files = append(files, path)
+					files = append(files, fileExtInfo{path, ext})
 				}
+
 			}
 			return nil
 		}); err != nil {
@@ -378,7 +396,8 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		a := &analyzerInfo{
 			typesFlag:               a.Types,
 			excludeTypesFlag:        a.ExcludeTypes,
-			filePath:                file,
+			filePath:                file.path,
+			fileExt:                 file.ext,
 			fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
 		}
 		go a.worker(results, unwanted, locCount, fileInfo, &wg)
@@ -427,53 +446,49 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 		wg.Done()
 	}()
 
-	ext, errExt := utils.GetExtension(a.filePath)
+	linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
-	if errExt == nil {
-		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
-
-		switch ext {
-		// Dockerfile
-		case ".dockerfile":
-			if a.isAvailableType(dockerfile) {
-				results <- dockerfile
-				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
-			}
-		// Terraform
-		case ".tf", "tfvars":
-			if a.isAvailableType(terraform) {
-				results <- terraform
-				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: terraform, locCount: linesCount}
-			}
-		// Bicep
-		case ".bicep":
-			if a.isAvailableType(bicep) {
-				results <- arm
-				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: arm, locCount: linesCount}
-			}
-		// GRPC
-		case ".proto":
-			if a.isAvailableType(grpc) {
-				results <- grpc
-				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: grpc, locCount: linesCount}
-			}
-		// It could be Ansible Config or Ansible Inventory
-		case ".cfg", ".conf", ".ini":
-			if a.isAvailableType(ansible) {
-				results <- ansible
-				locCount <- linesCount
-				fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: ansible, locCount: linesCount}
-			}
-		/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
-		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
-		We also have FHIR's case which will be ignored since it's not a platform file.*/
-		case yaml, yml, json, sh:
-			a.checkContent(results, unwanted, locCount, fileInfo, linesCount, ext)
+	switch a.fileExt {
+	// Dockerfile
+	case ".dockerfile":
+		if a.isAvailableType(dockerfile) {
+			results <- dockerfile
+			locCount <- linesCount
+			fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: dockerfile, locCount: linesCount}
 		}
+	// Terraform
+	case ".tf", "tfvars":
+		if a.isAvailableType(terraform) {
+			results <- terraform
+			locCount <- linesCount
+			fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: terraform, locCount: linesCount}
+		}
+	// Bicep
+	case ".bicep":
+		if a.isAvailableType(bicep) {
+			results <- arm
+			locCount <- linesCount
+			fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: arm, locCount: linesCount}
+		}
+	// GRPC
+	case ".proto":
+		if a.isAvailableType(grpc) {
+			results <- grpc
+			locCount <- linesCount
+			fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: grpc, locCount: linesCount}
+		}
+	// It could be Ansible Config or Ansible Inventory
+	case ".cfg", ".conf", ".ini":
+		if a.isAvailableType(ansible) {
+			results <- ansible
+			locCount <- linesCount
+			fileInfo <- fileTypeInfo{filePath: a.filePath, fileType: ansible, locCount: linesCount}
+		}
+	/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
+	Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
+	We also have FHIR's case which will be ignored since it's not a platform file.*/
+	case yaml, yml, json, sh:
+		a.checkContent(results, unwanted, locCount, fileInfo, linesCount, a.fileExt)
 	}
 }
 
