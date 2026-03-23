@@ -374,7 +374,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
 					files = append(files, fileExtInfo{path, ext})
 				}
-
 			}
 			return nil
 		}); err != nil {
