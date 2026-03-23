@@ -2,25 +2,12 @@
 	{
 		"queryName": "Same Alias In Different Froms",
 		"severity": "LOW",
-		"line": 4,
-		"fileName": "positive.dockerfile"
-	},
-	{
-		"queryName": "Same Alias In Different Froms",
-		"severity": "LOW",
-		"line": 7,
-		"fileName": "positive.dockerfile"
+		"line": 4
 	},
 	{
 		"queryName": "Same Alias In Different Froms",
 		"severity": "LOW",
 		"line": 4,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Same Alias In Different Froms",
-		"severity": "LOW",
-		"line": 7,
 		"fileName": "positive2.dockerfile"
 	}
 ]

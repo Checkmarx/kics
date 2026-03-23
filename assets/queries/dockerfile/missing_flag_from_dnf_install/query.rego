@@ -1,13 +1,13 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.dockerfile as dockerLib
+import data.generic.dockerfile as docker_lib
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][cmd]
 	resource.Cmd == "run"
 	values := resource.Value[0]
-	commands = dockerLib.getCommands(values)
+	commands = docker_lib.getCommands(values)
 
 	some k
 	c := hasInstallCommandWithoutFlag(commands[k])
@@ -15,11 +15,10 @@ CxPolicy[result] {
 	not hasYesFlag(c)
 
 	stage := input.document[i].command[name]
-	from_command := dockerLib.get_original_from_command(stage)
-	run_command := substring(resource.Original, 0, 3)
+	from_command := docker_lib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, resource.Value[0]]), from_command.LineHint),
+		"searchKey": sprintf("%s={{%s}}.RUN={{%s}}", [from_command, name, resource.Value[0]]),
 		"searchValue": trim_space(c),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",

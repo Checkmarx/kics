@@ -27,7 +27,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, runCmd.Original]), from_command.LineHint),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, runCmd.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' uses npm install with a pinned version", [runCmd.Original]),
 		"keyActualValue": sprintf("'%s' does not uses npm install with a pinned version", [runCmd.Original]),

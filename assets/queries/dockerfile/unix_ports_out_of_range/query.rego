@@ -12,7 +12,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, command.Original]), from_command.LineHint),
+		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, command.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'EXPOSE' should not contain ports out of range [0, 65535]",
 		"keyActualValue": "'EXPOSE' contains ports out of range [0, 65535]",

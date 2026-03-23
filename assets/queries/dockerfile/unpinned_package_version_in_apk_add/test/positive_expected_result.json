@@ -33,7 +33,7 @@
 		"queryName": "Unpinned Package Version in Apk Add",
 		"severity": "MEDIUM",
 		"line": 2,
-		"fileName": "positive2.dockerfile"
+		"fileName": "positive.dockerfile"
 	},
 	{
 		"queryName": "Unpinned Package Version in Apk Add",
