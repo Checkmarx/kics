@@ -2,7 +2,6 @@ package utils
 
 import (
 	"bufio"
-	"bytes"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -10,7 +9,6 @@ import (
 
 	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/rs/zerolog/log"
-	"golang.org/x/tools/godoc/util"
 )
 
 const (
@@ -42,11 +40,7 @@ func GetExtension(path string) (string, error) {
 		if filepath.Base(path) == "tfvars" {
 			return ".tfvars", nil
 		}
-		isText, err := isTextFile(path)
-		if err != nil {
-			return "", err
-		}
-		if isText && readPossibleDockerFile(path) {
+		if readPossibleDockerFile(path) {
 			return extDockerfile, nil
 		}
 	}
@@ -91,35 +85,8 @@ func readPossibleDockerFile(path string) bool {
 		if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(strings.ToLower(scanner.Text()), "arg") || scanner.Text() == "" {
 			continue
 		} else {
-			if strings.HasPrefix(strings.ToLower(scanner.Text()), "from ") {
-				return true
-			}
-			return false
+			return strings.HasPrefix(strings.ToLower(scanner.Text()), "from ")
 		}
 	}
 	return false
-}
-
-func isTextFile(path string) (bool, error) {
-	info, err := os.Stat(path)
-	if err != nil {
-		log.Error().Msgf("failed to get file info: %s", err)
-		return false, err
-	}
-
-	if info.IsDir() {
-		return false, nil
-	}
-
-	content, err := os.ReadFile(filepath.Clean(path))
-	if err != nil {
-		log.Error().Msgf("failed to analyze file: %s", err)
-		return false, err
-	}
-
-	content = bytes.ReplaceAll(content, []byte("\r"), []byte(""))
-
-	isText := util.IsText(content)
-
-	return isText, nil
 }
