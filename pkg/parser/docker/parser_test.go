@@ -17,7 +17,7 @@ func TestParser_GetKind(t *testing.T) {
 // TestParser_SupportedExtensions tests the functions [SupportedExtensions()] and all the methods called by them
 func TestParser_SupportedExtensions(t *testing.T) {
 	p := &Parser{}
-	require.Equal(t, []string{"Dockerfile", ".dockerfile", ".ubi8", ".debian", "possibleDockerfile"}, p.SupportedExtensions())
+	require.Equal(t, []string{".dockerfile", ".ubi8", ".debian"}, p.SupportedExtensions())
 }
 
 // TestParser_SupportedExtensions tests the functions [SupportedTypes()] and all the methods called by them
@@ -233,5 +233,48 @@ func TestParser_GetResolvedFiles(t *testing.T) {
 				t.Errorf("GetResolvedFiles() = %v, want %v", got, tt.want)
 			}
 		})
+	}
+}
+
+// TestParser_Parse_CaseInsensitive tests that the parser handles Dockerfile commands
+// in a case-insensitive manner
+func TestParser_Parse_CaseInsensitive(t *testing.T) {
+	p := &Parser{}
+	// baseline sample
+	upper := `
+FROM alpine:3.18
+RUN echo "hello"
+`
+	lower := `
+from alpine:3.18
+run echo "hello"
+`
+	mixed := `
+fRoM alpine:3.18
+rUn echo "hello"
+`
+
+	docUpper, _, err := p.Parse("Dockerfile", []byte(upper))
+	require.NoError(t, err)
+	require.Len(t, docUpper, 1)
+	cmdsUpper := docUpper[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
+
+	docLower, _, err := p.Parse("Dockerfile", []byte(lower))
+	require.NoError(t, err)
+	require.Len(t, docLower, 1)
+	cmdsLower := docLower[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
+	require.Len(t, cmdsUpper, len(cmdsLower))
+
+	docMixed, _, err := p.Parse("Dockerfile", []byte(mixed))
+	require.NoError(t, err)
+	require.Len(t, docMixed, 1)
+	cmdsMixed := docMixed[0]["command"].(map[string]interface{})["alpine:3.18"].([]interface{})
+	require.Len(t, cmdsUpper, len(cmdsMixed))
+
+	for i := range cmdsUpper {
+		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Cmd"], cmdsMixed[i].(map[string]interface{})["Cmd"])
+		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Value"], cmdsMixed[i].(map[string]interface{})["Value"])
+		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Cmd"], cmdsLower[i].(map[string]interface{})["Cmd"])
+		require.Equal(t, cmdsUpper[i].(map[string]interface{})["Value"], cmdsLower[i].(map[string]interface{})["Value"])
 	}
 }

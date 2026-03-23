@@ -8,15 +8,17 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/rs/zerolog/log"
 	"golang.org/x/tools/godoc/util"
 )
 
+const (
+	extDockerfile = ".dockerfile"
+)
+
 // GetExtension gets the extension of a file path
 func GetExtension(path string) (string, error) {
-	targets := []string{"Dockerfile", "tfvars"}
-
-	// Get file information
 	fileInfo, err := os.Stat(path)
 	if err != nil {
 		return "", fmt.Errorf("file %s not found", path)
@@ -26,35 +28,53 @@ func GetExtension(path string) (string, error) {
 		return "", fmt.Errorf("the path %s is a directory", path)
 	}
 
-	ext := filepath.Ext(path)
-	if ext == "" {
-		base := filepath.Base(path)
-
-		if Contains(base, targets) {
-			ext = base
-		} else {
-			isText, err := isTextFile(path)
-
-			if err != nil {
-				return "", err
-			}
-
-			if isText {
-				if readPossibleDockerFile(path) {
-					ext = "possibleDockerfile"
-				}
-			}
-		}
+	if ext, ok := isDockerfileExtension(path); ok {
+		return ext, nil
 	}
 
+	ext := filepath.Ext(path)
+	switch ext {
+	case ".ubi8", ".debian":
+		if readPossibleDockerFile(path) {
+			return extDockerfile, nil
+		}
+	case "":
+		if filepath.Base(path) == "tfvars" {
+			return ".tfvars", nil
+		}
+		isText, err := isTextFile(path)
+		if err != nil {
+			return "", err
+		}
+		if isText && readPossibleDockerFile(path) {
+			return extDockerfile, nil
+		}
+	}
 	return ext, nil
+}
+
+func isDockerfileExtension(path string) (string, bool) {
+	base := filepath.Base(path)
+
+	lower := strings.ToLower(base)
+	if lower == constants.AvailablePlatforms["Dockerfile"] || strings.HasPrefix(lower, "dockerfile.") {
+		return extDockerfile, true
+	}
+
+	if strings.EqualFold(filepath.Ext(path), extDockerfile) {
+		return extDockerfile, true
+	}
+
+	dir := strings.ToLower(filepath.Base(filepath.Dir(path)))
+	if (dir == "docker" || dir == constants.AvailablePlatforms["Dockerfile"] || dir == "dockerfiles") && readPossibleDockerFile(path) {
+		return extDockerfile, true
+	}
+
+	return "", false
 }
 
 func readPossibleDockerFile(path string) bool {
 	path = filepath.Clean(path)
-	if strings.HasSuffix(path, "gitignore") {
-		return true
-	}
 	file, err := os.Open(path)
 	if err != nil {
 		return false
@@ -68,11 +88,12 @@ func readPossibleDockerFile(path string) bool {
 	scanner := bufio.NewScanner(file)
 	// Read lines from the file
 	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), "FROM") {
-			return true
-		} else if strings.HasPrefix(scanner.Text(), "#") {
+		if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(strings.ToLower(scanner.Text()), "arg") || scanner.Text() == "" {
 			continue
 		} else {
+			if strings.HasPrefix(strings.ToLower(scanner.Text()), "from ") {
+				return true
+			}
 			return false
 		}
 	}
