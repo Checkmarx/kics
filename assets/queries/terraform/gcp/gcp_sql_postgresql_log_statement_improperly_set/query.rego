@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.terraform as tf_lib
+
 ensure_array(x) = x { is_array(x) }
 ensure_array(x) = [x] { is_object(x) }
 
@@ -20,7 +22,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_sql_database_instance.%s.settings.database_flags", [name]),
+        "resourceType": "google_sql_database_instance",
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'database_flags' should include 'log_statement' set to 'ddl', 'mod', or 'all'",
         "keyActualValue": "'log_statement' flag is missing (defaults to 'none')",
@@ -41,7 +45,9 @@ CxPolicy[result] {
 
     result := {
         "documentId": doc.id,
-        "searchKey": sprintf("resource.google_sql_database_instance.%s.settings.database_flags", [name]),
+        "resourceType": "google_sql_database_instance",
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags", [name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'log_statement' should be set to 'ddl', 'mod', or 'all'",
         "keyActualValue": "'log_statement' is set to 'none'",
