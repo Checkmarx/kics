@@ -70,3 +70,8 @@ check_multi_stage(imageName, images) {
     sortedIndex := sort(unsortedIndex)
     imageName == sortedIndex[minus(count(sortedIndex), 1)].Name
 } 
+
+get_original_from_command(commands) = from_command {
+	commands[i].Cmd == "from"
+	from_command := substring(commands[i].Original, 0, 4)
+}
