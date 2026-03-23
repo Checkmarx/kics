@@ -2,7 +2,7 @@
     {
         "queryName": "Beta - API Gateway V2 CORS Wildcard Origin Allowed",
         "severity": "HIGH",
-        "line": 1,
+        "line": 6,
         "filename": "positive1.tf"
     }
 ]

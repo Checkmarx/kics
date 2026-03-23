@@ -5,8 +5,7 @@ import data.generic.terraform as terra_lib
 
 CxPolicy[result] {
     resource := input.document[i].resource.aws_route53_zone[name]
-    zone_id := resource.zone_id
-    not any_query_log_for_zone(zone_id)
+    not any_query_log_exists
 
     result := {
         "documentId": input.document[i].id,
@@ -20,6 +19,6 @@ CxPolicy[result] {
     }
 }
 
-any_query_log_for_zone(zone_id) {
+any_query_log_exists {
     _ := input.document[_].resource.aws_route53_query_log[_]
 }

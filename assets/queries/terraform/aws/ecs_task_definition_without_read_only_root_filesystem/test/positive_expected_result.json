@@ -2,7 +2,7 @@
     {
         "queryName": "Beta - ECS Task Definition Without Read-Only Root Filesystem",
         "severity": "HIGH",
-        "line": 1,
+        "line": 3,
         "filename": "positive1.tf"
     }
 ]
