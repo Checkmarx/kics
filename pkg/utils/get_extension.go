@@ -8,13 +8,17 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/rs/zerolog/log"
 	"golang.org/x/tools/godoc/util"
 )
 
+const (
+	extDockerfile = ".dockerfile"
+)
+
 // GetExtension gets the extension of a file path
 func GetExtension(path string) (string, error) {
-	extDockerfile := ".dockerfile"
 	fileInfo, err := os.Stat(path)
 	if err != nil {
 		return "", fmt.Errorf("file %s not found", path)
@@ -24,7 +28,7 @@ func GetExtension(path string) (string, error) {
 		return "", fmt.Errorf("the path %s is a directory", path)
 	}
 
-	if ext, ok := isDockerfileExtension(path, extDockerfile); ok {
+	if ext, ok := isDockerfileExtension(path); ok {
 		return ext, nil
 	}
 
@@ -49,12 +53,11 @@ func GetExtension(path string) (string, error) {
 	return ext, nil
 }
 
-func isDockerfileExtension(path, extDockerfile string) (string, bool) {
+func isDockerfileExtension(path string) (string, bool) {
 	base := filepath.Base(path)
-	d := "dockerfile"
 
 	lower := strings.ToLower(base)
-	if lower == d || strings.HasPrefix(lower, "dockerfile.") {
+	if lower == constants.AvailablePlatforms["Dockerfile"] || strings.HasPrefix(lower, "dockerfile.") {
 		return extDockerfile, true
 	}
 
@@ -63,7 +66,7 @@ func isDockerfileExtension(path, extDockerfile string) (string, bool) {
 	}
 
 	dir := strings.ToLower(filepath.Base(filepath.Dir(path)))
-	if (dir == "docker" || dir == d || dir == "dockerfiles") && readPossibleDockerFile(path) {
+	if (dir == "docker" || dir == constants.AvailablePlatforms["Dockerfile"] || dir == "dockerfiles") && readPossibleDockerFile(path) {
 		return extDockerfile, true
 	}
 
@@ -90,9 +93,8 @@ func readPossibleDockerFile(path string) bool {
 		} else {
 			if strings.HasPrefix(strings.ToLower(scanner.Text()), "from ") {
 				return true
-			} else {
-				return false
 			}
+			return false
 		}
 	}
 	return false
