@@ -112,17 +112,14 @@ jobs:
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: '3.13'
-      - name: Set up Go
-        if: steps.filter.outputs.queries == 'true'
-        run: make build
       - name: Validate searchLine in modified queries
         if: steps.filter.outputs.queries == 'true'
         env:
           CHANGED_QUERIES: ${{ steps.filter.outputs.queries_files }}
           KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_PR_NUMBER: ${{ github.event.number }}
-        working-directory: .github/scripts/validate-search-line/
-        run: python3 validate-search-line.py
+        working-directory: .github/scripts/validate_search_line/
+        run: python3 validate_search_line.py
 
   security-scan:
     name: security-scan

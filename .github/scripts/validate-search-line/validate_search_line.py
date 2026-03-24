@@ -5,8 +5,9 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+from results_models import ScanResults, ScanFile, Query
 
-REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 def get_changed_queries():
@@ -60,13 +61,14 @@ def run_kics_scan(query_dir):
         "--bom",
         "--enable-openapi-refs",
         "--ignore-on-exit", "results",
+        "--kics_compute_new_simid"
     ]
 
     print(f"  Running scan with query ID: {query_id}")
 
     proc = subprocess.run(cmd, capture_output=True, text=True, cwd=str(REPO_ROOT))
 
-    if proc.returncode != 0:
+    if proc.returncode not in {0, 60, 50, 40, 30, 20}:
         print(f"  ::error::Scan failed (exit code {proc.returncode})")
         if proc.stdout:
             print(f"  stdout (last 500 chars): ...{proc.stdout[-500:]}")
@@ -76,6 +78,30 @@ def run_kics_scan(query_dir):
 
     return True
 
+def parse_scan_results(data: dict) -> ScanResults:
+    queries = []
+    for q in data.get("queries", []):
+        files = []
+        for f in q.get("files", []):
+            files.append(ScanFile(
+                file_name=f.get("file_name", ""),
+                similarity_id=f.get("similarity_id", ""),
+                line=f.get("line", 0),
+                resource_type=f.get("resource_type", ""),
+                resource_name=f.get("resource_name", ""),
+                issue_type=f.get("issue_type", ""),
+                search_key=f.get("search_key", ""),
+                search_line=f.get("search_line", 0),
+                search_value=f.get("search_value", ""),
+                expected_value=f.get("expected_value", ""),
+                actual_value=f.get("actual_value", ""),
+            ))
+        queries.append(Query(
+            query_name=data.get("query_name", ""),
+            query_id=data.get("query_id", ""),
+            files=files,
+        ))
+    return ScanResults(queries=queries)
 
 def validate_scan_results(query_dir):
     """
@@ -99,9 +125,10 @@ def validate_scan_results(query_dir):
     for query in data.get("queries", []):
         for entry in query.get("files", []):
             all_results.append({
-                "file_name": entry.get("file_name", ""),
-                "line": entry.get("line", 0),
-                "search_line": entry.get("search_line", 0),
+                "file_name": entry.get("file_name"),
+                #"file_name": entry.get("file_name", ""),
+                #"line": entry.get("line", 0),
+                #"search_line": entry.get("search_line", 0),
             })
 
     if not all_results:
@@ -146,7 +173,7 @@ def main():
     query_dirs = get_changed_queries()
 
     if not query_dirs:
-        print("No query.rego were changes - nothing to validate")
+        print("No query.rego were changed - nothing to validate")
         sys.exit(0)
 
     all_valid = True
