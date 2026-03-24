@@ -17,7 +17,5 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'aws_transfer_server[%s].endpoint_type' should be 'VPC'", [name]),
 		"keyActualValue": sprintf("'aws_transfer_server[%s].endpoint_type' is '%s'", [name, endpoint]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_transfer_server", name, "endpoint_type"], []),
-		"remediation": "endpoint_type = \"VPC\"",
-		"remediationType": "replacement",
 	}
 }

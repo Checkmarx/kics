@@ -16,7 +16,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'aws_lambda_function_url[%s].authorization_type' should not be 'NONE'", [name]),
 		"keyActualValue": sprintf("'aws_lambda_function_url[%s].authorization_type' is 'NONE', allowing unauthenticated invocations", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_lambda_function_url", name, "authorization_type"], []),
-		"remediation": "authorization_type = \"AWS_IAM\"",
+		"remediation": json.marshal({
+			"before": "NONE",
+			"after": "AWS_IAM",
+		}),
 		"remediationType": "replacement",
 	}
 }

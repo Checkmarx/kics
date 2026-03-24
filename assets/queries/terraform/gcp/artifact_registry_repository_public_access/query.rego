@@ -18,7 +18,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'google_artifact_registry_repository_iam_member[%s].member' should not be 'allUsers' or 'allAuthenticatedUsers'", [name]),
 		"keyActualValue": sprintf("'google_artifact_registry_repository_iam_member[%s].member' is '%s'", [name, resource.member]),
 		"searchLine": common_lib.build_search_line(["resource", "google_artifact_registry_repository_iam_member", name, "member"], []),
-		"remediation": "Replace public member with a specific service account or group identity",
+		"remediation": json.marshal({
+			"before": resource.member,
+			"after": "serviceAccount:example@project.iam.gserviceaccount.com",
+		}),
 		"remediationType": "replacement",
 	}
 }
@@ -37,7 +40,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'google_artifact_registry_repository_iam_binding[%s].members' should not include public identities", [name]),
 		"keyActualValue": sprintf("'google_artifact_registry_repository_iam_binding[%s].members' contains '%s'", [name, member]),
 		"searchLine": common_lib.build_search_line(["resource", "google_artifact_registry_repository_iam_binding", name, "members"], []),
-		"remediation": "Remove public identities from members",
-		"remediationType": "removal",
+		"remediation": json.marshal({
+			"before": member,
+			"after": "serviceAccount:example@project.iam.gserviceaccount.com",
+		}),
+		"remediationType": "replacement",
 	}
 }
