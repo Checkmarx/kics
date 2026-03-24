@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'enable_deletion_protection' should be defined and set to true",
 		"keyActualValue": "'enable_deletion_protection' is undefined or null",
-		"searchLine": common_lib.build_search_line(["resource", loadBalancer, name], []),
+		"searchLine": "-1",
 		"remediation": "enable_deletion_protection = true",
 		"remediationType": "addition",
 	}
