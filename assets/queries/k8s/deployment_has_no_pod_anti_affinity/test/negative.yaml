@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: web-server
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: web-store
-  replicas: 3
   template:
     metadata:
       labels:
@@ -21,7 +21,7 @@ spec:
                 operator: In
                 values:
                 - web-store
-            topologyKey: "kubernetes.io/hostname"
+            topologyKey: kubernetes.io/hostname
       containers:
-      - name: web-app
-        image: nginx:1.16-alpine
+      - image: nginx:1.16-alpine
+        name: web-app
