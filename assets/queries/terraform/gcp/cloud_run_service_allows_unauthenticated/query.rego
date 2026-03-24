@@ -16,8 +16,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'google_cloud_run_service_iam_member[%s].member' should not be 'allUsers'", [name]),
 		"keyActualValue": sprintf("'google_cloud_run_service_iam_member[%s].member' is 'allUsers', allowing unauthenticated access", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_cloud_run_service_iam_member", name, "member"], []),
-		"remediation": "Remove 'allUsers' member and use specific service accounts or authenticated identities",
-		"remediationType": "removal",
+		"remediation": json.marshal({
+			"before": "allUsers",
+			"after": "serviceAccount:example@project.iam.gserviceaccount.com",
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -34,7 +37,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'google_cloud_run_service_iam_binding[%s].members' should not contain 'allUsers'", [name]),
 		"keyActualValue": sprintf("'google_cloud_run_service_iam_binding[%s].members' contains 'allUsers', allowing unauthenticated access", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_cloud_run_service_iam_binding", name, "members"], []),
-		"remediation": "Remove 'allUsers' from members and use specific authenticated identities",
-		"remediationType": "removal",
+		"remediation": json.marshal({
+			"before": "allUsers",
+			"after": "serviceAccount:example@project.iam.gserviceaccount.com",
+		}),
+		"remediationType": "replacement",
 	}
 }
