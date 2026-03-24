@@ -35,7 +35,9 @@ CxPolicy[result] {
     dockerLib.arrayContains(resource.Value, {"apt-get", "install"})
 
     not avoidManualInputInList(resource.Value)
-    
+	
+    stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),

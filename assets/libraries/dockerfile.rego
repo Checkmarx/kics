@@ -75,3 +75,4 @@ get_original_from_command(commands) = from_command {
 	commands[i].Cmd == "from"
 	from_command := substring(commands[i].Original, 0, 4)
 }
+
