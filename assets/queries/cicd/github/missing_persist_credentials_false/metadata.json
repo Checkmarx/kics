@@ -1,9 +1,9 @@
 {
-  "id": "c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f",
+  "id": "c9d0e1f2-a3b4-4c5d-9e7f-8a9b0c1d2e3f",
   "queryName": "Beta - Missing persist-credentials False in Privileged Checkout",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "A pull_request_target workflow uses actions/checkout without setting 'persist-credentials: false'. By default, actions/checkout writes the GITHUB_TOKEN (or deploy key) to the repository's .git/config so that subsequent git operations work automatically. In a pull_request_target context — which runs with the target repository's secrets and permissions — any script executed after the checkout can read these credentials from .git/config and use them to exfiltrate secrets or make authenticated API calls. Setting persist-credentials: false removes the token from .git/config immediately after checkout, following the principle of least exposure.",
+  "descriptionText": "A pull_request_target workflow uses actions/checkout without 'persist-credentials: false'. By default, actions/checkout writes the GITHUB_TOKEN to the repository's .git/config. In a pull_request_target context — which runs with the target repository's secrets — any script executed after checkout can read these credentials and use them to exfiltrate secrets or make authenticated API calls. Setting persist-credentials: false removes the token from .git/config immediately after checkout.",
   "descriptionUrl": "https://github.com/actions/checkout#usage",
   "platform": "CICD",
   "descriptionID": "e7f8a9b0",
