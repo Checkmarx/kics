@@ -16,6 +16,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'access[%d].specialGroup' should not equal to 'allAuthenticatedUsers'", [j]),
 		"keyActualValue": sprintf("'access[%d].specialGroup' is equal to 'allAuthenticatedUsers'", [j]),
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "access", j, "specialGroup"], []),
+		"searchLine": "potato",
 	}
 }
