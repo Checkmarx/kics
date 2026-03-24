@@ -8,7 +8,7 @@ types := {"azurerm_function_app", "azurerm_linux_function_app", "azurerm_windows
 CxPolicy[result] { # for legacy "azurerm_function_app" -- ftps_state defaults to "AllAllowed"
 	function := input.document[i].resource.azurerm_function_app[name]
 
-	results := get_path(function,name)
+	results := get_path(function, name)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -24,10 +24,10 @@ CxPolicy[result] { # for legacy "azurerm_function_app" -- ftps_state defaults to
 	}
 }
 
-get_path(function,name) = results {
+get_path(function, name) = results {
 	not common_lib.valid_key(function, "site_config")
 	results := {
-		"searchKey": sprintf("azurerm_function_app[%s]'", [name]),
+		"searchKey": sprintf("azurerm_function_app.%s'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name], []),
 		"remediation": null,
 		"remediationType": null,

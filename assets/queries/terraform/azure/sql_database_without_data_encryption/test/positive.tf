@@ -1,6 +1,6 @@
-resource "azurerm_mssql_database" "example" {
-  name           = "example-db"
-  server_id      = azurerm_mssql_server.example.id
+resource "azurerm_mssql_database" "positive" {
+  name           = "positive-db"
+  server_id      = azurerm_mssql_server.positive.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
   max_size_gb    = 4
