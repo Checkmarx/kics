@@ -3,6 +3,36 @@
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.yaml"
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 23,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 43,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 54,
+    "fileName": "positive2.yaml"
   }
 ]

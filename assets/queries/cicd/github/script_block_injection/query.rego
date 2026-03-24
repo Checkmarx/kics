@@ -27,7 +27,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("script={{%s}}", [script]),
+		"searchKey": sprintf("jobs.%s.steps.script", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
@@ -55,7 +55,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("script={{%s}}", [script]),
+		"searchKey": sprintf("jobs.%s.steps.script", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
@@ -84,7 +84,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("script={{%s}}", [script]),
+		"searchKey": sprintf("jobs.%s.steps.script", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
@@ -112,7 +112,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("script={{%s}}", [script]),
+		"searchKey": sprintf("jobs.%s.steps.script", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
@@ -141,7 +141,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("script={{%s}}", [script]),
+		"searchKey": sprintf("jobs.%s.steps.script", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
@@ -173,7 +173,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("script={{%s}}", [script]),
+		"searchKey": sprintf("jobs.%s.steps.script", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
@@ -201,7 +201,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("script={{%s}}", [script]),
+		"searchKey": sprintf("jobs.%s.steps.script", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
