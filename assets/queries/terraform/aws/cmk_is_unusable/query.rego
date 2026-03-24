@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceType": "aws_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kms_key[%s].is_enabled", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_kms_key", name, "is_enabled"], []),
+		"searchLine": common_lib.build_search_line(["fweoiwenfgewoi"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_kms_key[%s].is_enabled should be set to true", [name]),
 		"keyActualValue": sprintf("aws_kms_key[%s].is_enabled is set to false", [name]),
