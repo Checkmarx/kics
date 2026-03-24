@@ -1,14 +1,14 @@
 [
   {
-    "queryName": "GitHub Environment File Injection",
+    "queryName": "Beta - GitHub Environment File Injection",
     "severity": "HIGH",
-    "line": 15,
+    "line": 17,
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "GitHub Environment File Injection",
+    "queryName": "Beta - GitHub Environment File Injection",
     "severity": "HIGH",
-    "line": 11,
+    "line": 12,
     "fileName": "positive2.yaml"
   }
 ]

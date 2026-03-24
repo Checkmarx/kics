@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Self-hosted Runner Used in Pull Request Workflow",
+    "queryName": "Beta - Self-hosted Runner Used in Pull Request Workflow",
     "severity": "HIGH",
     "line": 9,
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "Self-hosted Runner Used in Pull Request Workflow",
+    "queryName": "Beta - Self-hosted Runner Used in Pull Request Workflow",
     "severity": "HIGH",
     "line": 9,
     "fileName": "positive2.yaml"

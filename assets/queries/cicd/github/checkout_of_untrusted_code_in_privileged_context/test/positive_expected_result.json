@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Checkout Of Untrusted Code In Privileged Context",
+    "queryName": "Beta - Checkout Of Untrusted Code In Privileged Context",
     "severity": "HIGH",
     "line": 42,
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "Checkout Of Untrusted Code In Privileged Context",
+    "queryName": "Beta - Checkout Of Untrusted Code In Privileged Context",
     "severity": "HIGH",
     "line": 35,
     "fileName": "positive2.yaml"
