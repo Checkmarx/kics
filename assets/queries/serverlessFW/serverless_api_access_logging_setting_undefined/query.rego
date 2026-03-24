@@ -18,6 +18,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "provider.logs.restApi should have 'accessLogging' set to true",
 		"keyActualValue": "provider.logs.restApi has 'accessLogging' set to false",
-		"searchLine": common_lib.build_search_line(["provider", "logs", "restApi", "accessLogging"], []),
+		"searchLine": common_lib.build_search_line(["potato"], []),
 	}
 }
