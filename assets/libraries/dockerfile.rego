@@ -82,3 +82,4 @@ get_original_from_command(commands) = from_command {
 add_line_hint(raw_search_key, lineHint) = searchKey {
 	searchKey := sprintf("%s^%d", [raw_search_key, lineHint])
 }
+

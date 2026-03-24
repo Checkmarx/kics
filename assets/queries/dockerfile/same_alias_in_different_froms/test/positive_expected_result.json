@@ -2,7 +2,8 @@
 	{
 		"queryName": "Same Alias In Different Froms",
 		"severity": "LOW",
-		"line": 4
+		"line": 4,
+		"fileName": "positive.dockerfile"
 	},
 	{
 		"queryName": "Same Alias In Different Froms",
