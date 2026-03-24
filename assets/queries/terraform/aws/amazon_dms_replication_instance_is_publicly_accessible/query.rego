@@ -6,6 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource
 	aws_dms_replication_instance := resource.aws_dms_replication_instance[name]
+	common_lib.valid_key(aws_dms_replication_instance, publicly_accessible)
 	aws_dms_replication_instance.publicly_accessible == true
 
 	result := {
