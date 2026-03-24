@@ -1,0 +1,56 @@
+--- # support for multiple azure_rm_virtualmachines (tasks set)
+- hosts: localhost
+  tasks:
+    - name: no ssh_password_enabled, linux_config defined but disable_password_authentication undefined
+      azure_rm_virtualmachine:
+        resource_group: myResourceGroup
+        name: positive2_1
+        vm_size: Standard_DS1_v2
+        admin_username: adminUser
+        admin_password: Password123!
+        os_type: Linux
+        linux_config: {}
+
+    - name: no ssh_password_enabled, disable_password_authentication set to false
+      azure_rm_virtualmachine:
+        resource_group: myResourceGroup
+        name: positive2_2
+        vm_size: Standard_DS1_v2
+        admin_username: adminUser
+        admin_password: Password123!
+        os_type: Linux
+        linux_config:
+          disable_password_authentication: false
+
+    - name: ssh_password_enabled true, no linux_config
+      azure_rm_virtualmachine:
+        resource_group: myResourceGroup
+        name: positive2_3
+        vm_size: Standard_DS1_v2
+        admin_username: adminUser
+        admin_password: Password123!
+        os_type: Linux
+        ssh_password_enabled: true
+
+    - name: ssh_password_enabled true, linux_config defined but disable_password_authentication undefined
+      azure_rm_virtualmachine:
+        resource_group: myResourceGroup
+        name: positive2_4
+        vm_size: Standard_DS1_v2
+        admin_username: adminUser
+        admin_password: Password123!
+        os_type: Linux
+        ssh_password_enabled: true
+        linux_config: {}
+
+    - name: ssh_password_enabled set to true and disable_password_authentication set to false
+      azure_rm_virtualmachine:
+        resource_group: myResourceGroup
+        name: positive2_5
+        vm_size: Standard_DS1_v2
+        admin_username: adminUser
+        admin_password: Password123!
+        os_type: Linux
+        ssh_password_enabled: true
+        linux_config:
+          disable_password_authentication: false

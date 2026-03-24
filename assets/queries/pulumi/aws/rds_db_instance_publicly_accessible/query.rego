@@ -11,7 +11,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
 		"resourceName": name,
-		"searchKey": sprintf("resources[%s].properties.publiclyAccessible", [name]),
+		"searchKey": sprintf("resources.%s.properties.publiclyAccessible", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'resources.%s.properties.publiclyAccessible' should be set to 'false'", [name]),
 		"keyActualValue": sprintf("'resources.%s.properties.publiclyAccessible' is set to 'true'", [name]),
