@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Secrets Inherit Used in External Reusable Workflow",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Secrets Inherit Used in External Reusable Workflow",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive2.yaml"
+  }
+]

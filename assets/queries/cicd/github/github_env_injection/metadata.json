@@ -1,0 +1,15 @@
+{
+  "id": "b5c6d7e8-f9a0-4b1c-2d3e-4f5a6b7c8d9e",
+  "queryName": "Beta - GitHub Environment File Injection",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "A run block writes user-controlled GitHub context variables directly to the $GITHUB_ENV or $GITHUB_PATH special files. Writing to $GITHUB_ENV sets environment variables for all subsequent steps in the job; writing to $GITHUB_PATH prepends entries to the system PATH. Because these files affect the execution environment of subsequent steps, an attacker who controls the written value (e.g. via a crafted PR branch name, issue title, or comment body) can inject arbitrary environment variables or hijack command resolution — potentially achieving remote code execution in downstream steps. This is distinct from direct run-block injection: the current step may look harmless (just an echo), but the effect on later steps is the attack surface.",
+  "descriptionUrl": "https://securitylab.github.com/research/github-actions-untrusted-input/",
+  "platform": "CICD",
+  "descriptionID": "c9d0e1f2",
+  "cloudProvider": "common",
+  "cwe": "74",
+  "oldSeverity": "HIGH",
+  "riskScore": "8.5",
+  "experimental": "true"
+}
