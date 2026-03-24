@@ -1,0 +1,17 @@
+# Safe: uses read-all (not write-all). Grants read access across all scopes,
+# which is the safe "everything read-only" default.
+
+name: Audit
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+
+permissions: read-all
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/security-audit.sh

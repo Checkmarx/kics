@@ -1,0 +1,24 @@
+# Safe: workflow_dispatch trigger requires explicit invocation via the GitHub UI
+# or API by an authenticated user with write access. No comment-body command
+# is used, so this pattern is outside the scope of this query.
+
+name: Deploy On Dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        type: choice
+        options: [staging, production]
+        required: true
+
+jobs:
+  deploy:
+    if: contains(github.event.inputs.environment, 'staging')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy
+        run: ./scripts/deploy.sh ${{ github.event.inputs.environment }}

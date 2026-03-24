@@ -1,0 +1,15 @@
+{
+  "id": "d3a8b4c1-f2e7-4a9b-8c5d-1e6f0a2b3c4d",
+  "queryName": "Beta - Checkout Of Untrusted Code In Privileged Context",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "A workflow triggered by pull_request_target runs with the target repository's secrets and write permissions, because it always executes in the context of the base branch. If such a workflow checks out the PR contributor's code (e.g. using github.event.pull_request.head.sha or github.head_ref) and then executes it, an attacker can submit a malicious PR to run arbitrary code with elevated privileges. This is known as a 'pwn request'. The fix is to check out only the trusted base branch ref (e.g. github.event.pull_request.base.sha) in the privileged job, and perform any operations on untrusted code in a separate unprivileged workflow triggered by pull_request.",
+  "descriptionUrl": "https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/",
+  "platform": "CICD",
+  "descriptionID": "b1c2d3e4",
+  "cloudProvider": "common",
+  "cwe": "829",
+  "oldSeverity": "HIGH",
+  "riskScore": "9.0",
+  "experimental": "true"
+}
