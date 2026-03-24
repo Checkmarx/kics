@@ -1,0 +1,425 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KICS Scan Result</title><style>*{margin:0;padding:0;outline:0;box-sizing:border-box}body{font-family:sans-serif}.container{display:flex;align-items:center;flex-direction:column;margin:5px;border:1px solid #bebebe}.report-header-footer{display:grid;align-items:center;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #bebebe;width:100%;padding:15px 21px;background-color:#503e9e;height:50px;font-weight:700;font-size:14px;color:#fff;cursor:default;user-select:none}.report-header-footer>a{color:inherit;text-decoration:inherit;text-align:right}.report-header-footer>.title{font-size:18px}.report-header-footer>.title>span{color:#000}.report-header-footer>.timestamp{font-weight:400;font-style:italic;opacity:.5;text-align:center}.separator{border-top:1px solid #979797;opacity:.5;width:95%;margin:22px 0}.hide{display:none}summary{cursor:pointer;user-select:none;font-size:18px;font-weight:700}summary.sub-summary{font-size:15px;font-weight:700;margin:5px 0}summary.expected-actual{font-size:14px;font-weight:580}.testBlock{width:95vw;display:flex;flex-direction:column;gap:10px}.test-status{font-weight:700}.test-status.fail{color:#d60000}.test-status.pass{color:#248e01}.test-status.all{color:blue}.counters{display:flex;flex-direction:row;margin:22px 0;gap:15px}.counter-btn{display:flex;flex-direction:column;align-items:center;border:1px solid rgba(0,0,0,.1);padding:10px;border-radius:5px;cursor:pointer;min-width:100px;gap:5px;-webkit-box-shadow:0 0 10px 0 rgb(0 0 0/.1);box-shadow:0 0 10px rgb(0 0 0/.1)}.counter-btn.selected{border-color:#c000ff}.counter-count{font-style:italic;color:gray}.code.diff{background-color:rgba(255,0,0,.2);border-radius:4px}.results{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;margin-top:22px}.code-box{display:flex;flex-direction:column;background-color:#503e9e10;gap:5px}.code-box.side-by-side{display:flex;flex-direction:row;align-items:flex-start;gap:10px;background-color:initial;margin-bottom:10px;margin-top:10px}.code-box.first{width:50%;float:none;height:auto;align-self:auto}.code-box.second{width:50%;float:none;height:auto;align-self:auto}.code-box.test-info{background-color:#fff;margin-bottom:5px}.code.pre{white-space:pre-wrap}.container_expected_actual{width:auto;background-color:#fff;margin:auto;display:flex;float:none}</style><script>function filter(a){const b=document.querySelectorAll("[data-type='testInfo']");b.forEach(b=>a!=="all"&&a!==b.getAttribute("data-name")?b.classList.add("hide"):b.classList.remove("hide"));const c=document.querySelectorAll(".counters > .counter-btn"),d=document.getElementsByClassName(`counter test-status ${a}`)[0];c.forEach(b=>{a&&d===b.getElementsByClassName('counter test-status')[0]?b.classList.add("selected"):b.classList.remove("selected")})}</script></head><body><div class="container"><div class="report-header-footer"><span class="title">KICS <span>E2E REPORT</span></span><span class="timestamp">03/23/2026 13:11</span><a href="https://www.kics.io/" rel="noopener" target="_blank">KICS.IO</a></div><div class="results"><h2>E2E Tests Result: <span class="test-status fail">fail<span></h2><h3>Time Elapsed: 1273.29s</h3><h4>Kics Docker Image:</h4></div><hr class="separator"><h4>Filters</h4><div class="counters"><div class="counter-btn" onclick="filter('pass')"><span class="counter test-status pass">PASSED</span>
+<span class="counter-count">161</span></div><div class="counter-btn" onclick="filter('fail')"><span class="counter test-status fail">FAILED</span>
+<span class="counter-count">1</span></div><div class="counter-btn selected" onclick="filter('all')"><span class="counter test-status all">ALL</span>
+<span class="counter-count">162</span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> _should_exclude_provided_paths_[E2E-CLI-027]_0</span>
+<span><b>Elapsed:</b> 225.26s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> _should_generate_and_save_a_log_file_with_log_level_[E2E-CLI-039]_0</span>
+<span><b>Elapsed:</b> 122.69s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> _should_perform_a_scan_and_create_a_result_and_payload_file_[E2E-CLI-033]_0</span>
+<span><b>Elapsed:</b> 322.69s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> scan_should_generate_equivalent_payloads_for_OpenAPI_YAML_and_JSON_files_with_circular_references_[E2E-CLI-099]_0</span>
+<span><b>Elapsed:</b> 93.53s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> scan_should_generate_equivalent_payloads_for_OpenAPI_YAML_and_JSON_files_with_circular_references_[E2E-CLI-099]_1</span>
+<span><b>Elapsed:</b> 93.25s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_check_if_output_path_is_invalid_[E2E-CLI-082]_0</span>
+<span><b>Elapsed:</b> 1.51s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_check_if_output_path_is_valid_[E2E-CLI-081]_0</span>
+<span><b>Elapsed:</b> 25.33s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_create_a_payload_file_[E2E-CLI-005]_0</span>
+<span><b>Elapsed:</b> 105.12s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_disable_colored_output_in_the_CLI_[E2E-CLI-015]_0</span>
+<span><b>Elapsed:</b> 16.82s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_CPU_usage_in_the_CLI_[E2E-CLI-022]_0</span>
+<span><b>Elapsed:</b> 14.57s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_an_error_message_about_unknown_argument_[E2E-CLI-010]_0</span>
+<span><b>Elapsed:</b> 1.5s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_an_error_of_invalid_flag_combination_[E2E-CLI-004]_0</span>
+<span><b>Elapsed:</b> 0.79s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_an_error_of_invalid_flag_combination_[E2E-CLI-004]_1</span>
+<span><b>Elapsed:</b> 0.72s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_an_error_regarding_missing_--results_flag_[E2E-CLI-060]_0</span>
+<span><b>Elapsed:</b> 2.22s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_an_error_regarding_missing_-p_flag_[E2E-CLI-003]_0</span>
+<span><b>Elapsed:</b> 1.12s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_line_references_in_the_payload_file_[E2E-CLI-047]_0</span>
+<span><b>Elapsed:</b> 321.71s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_memory_usage_in_the_CLI_[E2E-CLI-023]_0</span>
+<span><b>Elapsed:</b> 19.25s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_minimal-ui_[E2E-CLI-012]_0</span>
+<span><b>Elapsed:</b> 14.23s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_the_kics_help_text_[E2E-CLI-001]_0</span>
+<span><b>Elapsed:</b> 0.2s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_the_kics_remediate_help_text_[E2E-CLI-059]_0</span>
+<span><b>Elapsed:</b> 1.6s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_the_kics_scan_help_text_[E2E-CLI-002]_0</span>
+<span><b>Elapsed:</b> 0.63s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_the_kics_version_[E2E-CLI-024]_0</span>
+<span><b>Elapsed:</b> 1.57s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_display_verbose_information_in_the_CLI_[E2E-CLI-017]_0</span>
+<span><b>Elapsed:</b> 14.54s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_download_and_scan_the_provided_git_path_[E2E-CLI-041]_0</span>
+<span><b>Elapsed:</b> 94.22s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_download_and_scan_the_provided_http_path/file_[E2E-CLI-042]_0</span>
+<span><b>Elapsed:</b> 10.87s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_exclude_provided_categories_[E2E-CLI-018]_0</span>
+<span><b>Elapsed:</b> 121.7s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_exclude_provided_queries_[E2E-CLI-020]_0</span>
+<span><b>Elapsed:</b> 14.01s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_exclude_provided_similarity_ID_results_[E2E-CLI-035]_0</span>
+<span><b>Elapsed:</b> 18.02s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_exclude_provided_similarity_ID_results_[E2E-CLI-035]_1</span>
+<span><b>Elapsed:</b> 1.26s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_exclude_queries_by_given_severities_[E2E-CLI-044]_0</span>
+<span><b>Elapsed:</b> 94.56s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_exclude_queries_by_given_severities_[E2E-CLI-044]_1</span>
+<span><b>Elapsed:</b> 15.88s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_exclude_queries_by_given_severities_[E2E-CLI-044]_2</span>
+<span><b>Elapsed:</b> 1.65s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_exclude_queries_by_given_severities_[E2E-CLI-044]_3</span>
+<span><b>Elapsed:</b> 32.7s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_execute_only_queries_of_specific_cloud_provider_[E2E-CLI-043]_0</span>
+<span><b>Elapsed:</b> 1.11s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_execute_only_queries_of_specific_cloud_provider_[E2E-CLI-043]_1</span>
+<span><b>Elapsed:</b> 0.89s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_execute_only_queries_of_specific_cloud_provider_[E2E-CLI-043]_2</span>
+<span><b>Elapsed:</b> 122.92s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_export_the_result_files_to_provided_path_[E2E-CLI-030]_0</span>
+<span><b>Elapsed:</b> 19.88s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_export_the_results_based_on_different_formats_[E2E-CLI-031]_0</span>
+<span><b>Elapsed:</b> 145.1s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_export_the_results_based_on_different_formats_[E2E-CLI-031]_1</span>
+<span><b>Elapsed:</b> 9.16s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_export_the_results_based_on_report_formats_[E2E-CLI-040]_0</span>
+<span><b>Elapsed:</b> 125s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_export_the_results_based_on_the_formats_provided_by_this_flag,_with_critical_severity_[E2E-CLI-090]_0</span>
+<span><b>Elapsed:</b> 8.52s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_fail-on_provided_values_[E2E-CLI-025]_0</span>
+<span><b>Elapsed:</b> 17.37s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_fail-on_provided_values_[E2E-CLI-025]_1</span>
+<span><b>Elapsed:</b> 21.08s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_fetch_descriptions_from_environment_[E2E-CLI-046]_0</span>
+<span><b>Elapsed:</b> 18.86s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_generate_a_valid_ID_[E2E-CLI-006]_0</span>
+<span><b>Elapsed:</b> 0.91s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_generate_and_save_a_log_file_[E2E-CLI-038]_0</span>
+<span><b>Elapsed:</b> 117.71s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_hide_all_output_text_in_CLI_[E2E-CLI-008]_0</span>
+<span><b>Elapsed:</b> 75.09s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_hide_the_progress_bar_in_the_CLI_[E2E-CLI-009]_0</span>
+<span><b>Elapsed:</b> 14.38s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_ignore_files/code-blocks/code-lines_during_the_scan_[E2E-CLI-053]_0</span>
+<span><b>Elapsed:</b> 308.11s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_ignore_files/code-blocks/code-lines_during_the_scan_[E2E-CLI-053]_1</span>
+<span><b>Elapsed:</b> 315.66s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_ignore_files/code-blocks/code-lines_during_the_scan_[E2E-CLI-053]_2</span>
+<span><b>Elapsed:</b> 20.17s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_ignore_files/code-blocks/code-lines_during_the_scan_[E2E-CLI-053]_3</span>
+<span><b>Elapsed:</b> 61.92s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_ignore_files/code-blocks/code-lines_during_the_scan_[E2E-CLI-053]_4</span>
+<span><b>Elapsed:</b> 375.26s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_ignore_on_exit_provided_flags_[E2E-CLI-026]_0</span>
+<span><b>Elapsed:</b> 0.55s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_ignore_on_exit_provided_flags_[E2E-CLI-026]_1</span>
+<span><b>Elapsed:</b> 1.88s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_ignore_on_exit_provided_flags_[E2E-CLI-026]_2</span>
+<span><b>Elapsed:</b> 113.78s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_ignore_on_exit_provided_flags_[E2E-CLI-026]_3</span>
+<span><b>Elapsed:</b> 130.93s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_include_bill_of_materials_in_results_output_[E2E-CLI-050]_0</span>
+<span><b>Elapsed:</b> 325.92s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_include_bill_of_materials_in_results_output_[E2E-CLI-050]_1</span>
+<span><b>Elapsed:</b> 1.34s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_list_all_supported_platforms_[E2E-CLI-013]_0</span>
+<span><b>Elapsed:</b> 0.8s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_a_config_file_[E2E-CLI-029]_0</span>
+<span><b>Elapsed:</b> 134.19s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_a_config_file_[E2E-CLI-029]_1</span>
+<span><b>Elapsed:</b> 4.52s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_a_config_file_[E2E-CLI-029]_2</span>
+<span><b>Elapsed:</b> 1.02s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_and_execute_queries_from_a_custom_path_[E2E-CLI-051]_0</span>
+<span><b>Elapsed:</b> 5.22s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_and_execute_queries_from_a_custom_path_[E2E-CLI-051]_1</span>
+<span><b>Elapsed:</b> 5.88s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_and_execute_queries_from_a_custom_path_[E2E-CLI-051]_2</span>
+<span><b>Elapsed:</b> 5.22s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_and_execute_queries_from_a_custom_path_[E2E-CLI-051]_3</span>
+<span><b>Elapsed:</b> 2.14s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_and_execute_queries_from_multiple_paths_[E2E-CLI-054]_0</span>
+<span><b>Elapsed:</b> 8.16s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_custom_secrets_rules_from_provided_path_[E2E-CLI-048]_0</span>
+<span><b>Elapsed:</b> 324.73s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_custom_secrets_rules_from_provided_path_[E2E-CLI-048]_1</span>
+<span><b>Elapsed:</b> 321.29s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_custom_secrets_rules_from_provided_path_[E2E-CLI-048]_2</span>
+<span><b>Elapsed:</b> 325.99s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_custom_secrets_rules_from_provided_path_[E2E-CLI-048]_3</span>
+<span><b>Elapsed:</b> 7.44s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_custom_secrets_rules_from_provided_path_[E2E-CLI-048]_4</span>
+<span><b>Elapsed:</b> 10.21s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_custom_secrets_rules_from_provided_path_[E2E-CLI-048]_5</span>
+<span><b>Elapsed:</b> 7.17s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_descriptions_from_a_custom_server_[E2E-CLI-052]_0</span>
+<span><b>Elapsed:</b> 12.76s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_descriptions_from_a_custom_server_[E2E-CLI-052]_1</span>
+<span><b>Elapsed:</b> 310.5s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_libraries_from_the_provided_path_[E2E-CLI-049]_0</span>
+<span><b>Elapsed:</b> 10.55s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_libraries_from_the_provided_path_[E2E-CLI-049]_1</span>
+<span><b>Elapsed:</b> 125.89s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_load_libraries_from_the_provided_path_[E2E-CLI-049]_2</span>
+<span><b>Elapsed:</b> 2.77s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_modify_log_format_messages_in_the_CLI_[E2E-CLI-028]_0</span>
+<span><b>Elapsed:</b> 23.86s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_modify_the_default_preview-lines_value_[E2E-CLI-014]_0</span>
+<span><b>Elapsed:</b> 13.89s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_not_display_messages_in_the_CLI_[E2E-CLI-034]_0</span>
+<span><b>Elapsed:</b> 18.63s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_not_execute_secret_queries_[E2E-CLI-045]_0</span>
+<span><b>Elapsed:</b> 10.21s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_not_execute_secret_queries_[E2E-CLI-045]_1</span>
+<span><b>Elapsed:</b> 19.9s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_not_execute_secret_queries_[E2E-CLI-045]_2</span>
+<span><b>Elapsed:</b> 16.3s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan,_present_two_results,_without_the_same_similarity_id_[E2E-CLI-077]_0</span>
+<span><b>Elapsed:</b> 9.38s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_and_finish_successfully_[E2E-CLI-086]_0</span>
+<span><b>Elapsed:</b> 333.14s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_and_finish_successfully_[E2E-CLI-087]_0</span>
+<span><b>Elapsed:</b> 333.77s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_and_finish_successfully_[E2E-CLI-088]_0</span>
+<span><b>Elapsed:</b> 348.53s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_and_not_ignore_the_entire_project_[E2E-CLI-092]_0</span>
+<span><b>Elapsed:</b> 131.87s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_and_return_three_different_similarity_ids_on_the_results_[E2E-CLI-078]_0</span>
+<span><b>Elapsed:</b> 8.19s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_and_return_zero_results_ignoring_the_block_[E2E-CLI-084]_0</span>
+<span><b>Elapsed:</b> 13.02s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_and_return_zero_results_ignoring_the_file_[E2E-CLI-083]_0</span>
+<span><b>Elapsed:</b> 9.49s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_and_return_zero_results_ignoring_the_query_[E2E-CLI-085]_0</span>
+<span><b>Elapsed:</b> 11.74s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_including_only_specific_queries_[E2E-CLI-036]_0</span>
+<span><b>Elapsed:</b> 17.26s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_including_only_specific_queries_[E2E-CLI-036]_1</span>
+<span><b>Elapsed:</b> 12.92s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_including_only_specific_queries_[E2E-CLI-036]_2</span>
+<span><b>Elapsed:</b> 12.63s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_including_only_specific_queries_[E2E-CLI-036]_3</span>
+<span><b>Elapsed:</b> 1.32s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_including_only_specific_queries_[E2E-CLI-036]_4</span>
+<span><b>Elapsed:</b> 11.92s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_including_only_specific_queries_[E2E-CLI-036]_5</span>
+<span><b>Elapsed:</b> 12.05s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_including_only_specific_queries_[E2E-CLI-036]_6</span>
+<span><b>Elapsed:</b> 9.43s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_including_only_specific_queries_[E2E-CLI-036]_7</span>
+<span><b>Elapsed:</b> 0.9s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_including_only_specific_queries_[E2E-CLI-036]_8</span>
+<span><b>Elapsed:</b> 0.87s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_on_bicep_file_with_existing_resources_and_return_exit_code_0_[E2E-CLI-103]_0</span>
+<span><b>Elapsed:</b> 21.66s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_on_bicep_files_and_create_a_result_and_payload_file_[E2E-CLI-091]_0</span>
+<span><b>Elapsed:</b> 25.89s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_on_zip_file_with_UTF-16_files_and_return_exit_code_40_[E2E-CLI-102]_0</span>
+<span><b>Elapsed:</b> 338.59s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_saving_the_reports_in_sarif_format,_showing_no_cwe_field_on_results_[E2E-CLI-080]_0</span>
+<span><b>Elapsed:</b> 2.32s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_saving_the_reports_in_sarif_format,_showing_the_cwe_on_results_[E2E-CLI-079]_0</span>
+<span><b>Elapsed:</b> 3.55s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_successfully_giving_results_with_critical_severity_and_return_exit_code_60_[E2E-CLI-089]_0</span>
+<span><b>Elapsed:</b> 2.71s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_successfully_giving_results_with_similarity_ids_unique,_showing_the_old_similarity_id_[E2E-CLI-096]_0</span>
+<span><b>Elapsed:</b> 3.55s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_successfully_giving_results_with_similarity_ids_unique_without_showing_the_old_similarity_id_[E2E-CLI-097]_0</span>
+<span><b>Elapsed:</b> 7.53s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scan_without_detecting_anything_since_no_files_are_scanned_because_of_max_file_size_[E2E-CLI-076]_0</span>
+<span><b>Elapsed:</b> 2.2s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scans_successfully_giving_results_with_old_severity_and_return_exit_code_according_to_old_severity_[E2E-CLI-093_1]_0</span>
+<span><b>Elapsed:</b> 0.97s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scans_successfully_giving_results_with_old_severity_and_return_exit_code_according_to_old_severity_[E2E-CLI-093_2]_0</span>
+<span><b>Elapsed:</b> 1.79s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scans_successfully_giving_results_with_old_severity_and_return_exit_code_according_to_old_severity_[E2E-CLI-093_3]_0</span>
+<span><b>Elapsed:</b> 2.19s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scans_successfully_giving_results_with_old_severity_and_return_exit_code_according_to_old_severity_[E2E-CLI-093_4]_0</span>
+<span><b>Elapsed:</b> 1.58s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_scans_successfully_giving_results_with_old_severity_and_return_exit_code_according_to_old_severity_[E2E-CLI-093_5]_0</span>
+<span><b>Elapsed:</b> 0.88s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_simple_scan_[E2E-CLI-007]_0</span>
+<span><b>Elapsed:</b> 71.47s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_analyze_[E2E-CLI-066]_0</span>
+<span><b>Elapsed:</b> 2.28s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_[E2E-CLI-065]_0</span>
+<span><b>Elapsed:</b> 6.3s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_and_detect_ansible_[E2E-CLI-075]_0</span>
+<span><b>Elapsed:</b> 10.12s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_get_the_variables_using_a_variables_path_as_a_comment_[E2E-CLI-062]_0</span>
+<span><b>Elapsed:</b> 345.95s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_get_the_variables_using_a_variables_path_as_a_flag_[E2E-CLI-063]_0</span>
+<span><b>Elapsed:</b> 342.68s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_ignore_the_experimental_queries_[E2E-CLI-069]_0</span>
+<span><b>Elapsed:</b> 11.41s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_not_ignore_the_experimental_queries_[E2E-CLI-070]_0</span>
+<span><b>Elapsed:</b> 5.93s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_not_resolve_references_[E2E-CLI-071]_0</span>
+<span><b>Elapsed:</b> 8.19s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_not_resolve_references_[E2E-CLI-073]_0</span>
+<span><b>Elapsed:</b> 7.25s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_not_resolve_references_[E2E-CLI-094]_0</span>
+<span><b>Elapsed:</b> 3.13s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="fail"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_recover_from_a_corrupted_dockerfile_[E2E-CLI-068]_0</span>
+<span><b>Elapsed:</b> 23.58s</span>
+<span><b>Status:</b> <span class="test-status fail">fail</span></span>
+<details><summary>View Details</summary><div class="code-box test-info"><span>Test: Test_E2E_CLI/should_perform_a_valid_scan_and_recover_from_a_corrupted_dockerfile_[E2E-CLI-068]_0</span></div><div class="code-box test-info"><span>--- FAIL: Test_E2E_CLI/should_perform_a_valid_scan_and_recover_from_a_corrupted_dockerfile_[E2E-CLI-068]_0 (23.58s)</span></div><details><summary class="sub-summary">View extra elements</summary><div class="code-box side-by-side"><div class="code-box first"><summary class="summary expected-actual">Expected in fixtures:</summary>
+<span class="code">{</span>
+<span class="code">"actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",</span>
+<span class="code">"expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",</span>
+<span class="code">"file_name": "",</span>
+<span class="code">"issue_type": "MissingAttribute",</span>
+<span class="code diff">"line": 5,</span>
+<span class="code">"queryName": "Healthcheck Instruction Missing",</span>
+<span class="code">"search_key": "FROM={{alpine:latest}}",</span>
+<span class="code">"search_line": -1,</span>
+<span class="code">"search_value": "",</span>
+<span class="code">"similarity_id": "ec1a1e998229f963313752def87ce5027e89997cfb4180c9b356414566f5a029"</span>
+<span class="code">}</span>
+<span class="code">}</span></div><div class="code-box second"><summary class="summary expected-actual">Actual output</summary>
+<span class="code">{</span>
+<span class="code">"actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",</span>
+<span class="code">"expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",</span>
+<span class="code">"file_name": "",</span>
+<span class="code">"issue_type": "MissingAttribute",</span>
+<span class="code diff">"line": 1,</span>
+<span class="code">"queryName": "Healthcheck Instruction Missing",</span>
+<span class="code">"search_key": "FROM={{alpine:latest}}",</span>
+<span class="code">"search_line": -1,</span>
+<span class="code">"search_value": "",</span>
+<span class="code">"similarity_id": "ec1a1e998229f963313752def87ce5027e89997cfb4180c9b356414566f5a029"</span>
+<span class="code">}</span>
+<span class="code">}</span></div></div></details><details><summary class="sub-summary">Show full Actual and Expected</summary><div class="code-box side-by-side"><div class="code-box first"><summary class="summary expected-actual">Expected in fixtures:</summary>
+<span class="code">"actual_value": "The 'Dockerfile' does not contain any 'USER' instruction",</span>
+<span class="code">"expected_value": "The 'Dockerfile' should contain the 'USER' instruction",</span>
+<span class="code">"file_name": "",</span>
+<span class="code">"issue_type": "MissingAttribute",</span>
+<span class="code">"line": 1,</span>
+<span class="code">"queryName": "Missing User Instruction",</span>
+<span class="code">"search_key": "FROM={{alpine:latest}}",</span>
+<span class="code">"search_line": -1,</span>
+<span class="code">"search_value": "",</span>
+<span class="code">"similarity_id": "821b0a105dd9ebb6b14489251615d94813a578feb68624113a52ba9c1668ecb7"</span>
+<span class="code">}</span>
+<span class="code">{</span>
+<span class="code">"actual_value": "FROM alpine:latest'",</span>
+<span class="code">"expected_value": "FROM alpine:latest:'version' where version should not be 'latest'",</span>
+<span class="code">"file_name": "",</span>
+<span class="code">"issue_type": "IncorrectValue",</span>
+<span class="code">"line": 1,</span>
+<span class="code">"queryName": "Image Version Using 'latest'",</span>
+<span class="code">"search_key": "FROM={{alpine:latest}}",</span>
+<span class="code">"search_line": -1,</span>
+<span class="code">"search_value": "",</span>
+<span class="code">"similarity_id": "a32938ae4d056569e5cfda73594f6cb276d4f9ee14a848fb6b642b14defee892"</span>
+<span class="code">}</span>
+<span class="code">{</span>
+<span class="code">"actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",</span>
+<span class="code">"expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",</span>
+<span class="code">"file_name": "",</span>
+<span class="code">"issue_type": "MissingAttribute",</span>
+<span class="code diff">"line": 5,</span>
+<span class="code">"queryName": "Healthcheck Instruction Missing",</span>
+<span class="code">"search_key": "FROM={{alpine:latest}}",</span>
+<span class="code">"search_line": -1,</span>
+<span class="code">"search_value": "",</span>
+<span class="code">"similarity_id": "ec1a1e998229f963313752def87ce5027e89997cfb4180c9b356414566f5a029"</span>
+<span class="code">}</span></div><div class="code-box first"><summary class="summary expected-actual">Actual output:</summary>
+<span class="code">"actual_value": "The 'Dockerfile' does not contain any 'USER' instruction",</span>
+<span class="code">"expected_value": "The 'Dockerfile' should contain the 'USER' instruction",</span>
+<span class="code">"file_name": "",</span>
+<span class="code">"issue_type": "MissingAttribute",</span>
+<span class="code">"line": 1,</span>
+<span class="code">"queryName": "Missing User Instruction",</span>
+<span class="code">"search_key": "FROM={{alpine:latest}}",</span>
+<span class="code">"search_line": -1,</span>
+<span class="code">"search_value": "",</span>
+<span class="code">"similarity_id": "821b0a105dd9ebb6b14489251615d94813a578feb68624113a52ba9c1668ecb7"</span>
+<span class="code">}</span>
+<span class="code">{</span>
+<span class="code">"actual_value": "FROM alpine:latest'",</span>
+<span class="code">"expected_value": "FROM alpine:latest:'version' where version should not be 'latest'",</span>
+<span class="code">"file_name": "",</span>
+<span class="code">"issue_type": "IncorrectValue",</span>
+<span class="code">"line": 1,</span>
+<span class="code">"queryName": "Image Version Using 'latest'",</span>
+<span class="code">"search_key": "FROM={{alpine:latest}}",</span>
+<span class="code">"search_line": -1,</span>
+<span class="code">"search_value": "",</span>
+<span class="code">"similarity_id": "a32938ae4d056569e5cfda73594f6cb276d4f9ee14a848fb6b642b14defee892"</span>
+<span class="code">}</span>
+<span class="code">{</span>
+<span class="code">"actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",</span>
+<span class="code">"expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",</span>
+<span class="code">"file_name": "",</span>
+<span class="code">"issue_type": "MissingAttribute",</span>
+<span class="code diff">"line": 1,</span>
+<span class="code">"queryName": "Healthcheck Instruction Missing",</span>
+<span class="code">"search_key": "FROM={{alpine:latest}}",</span>
+<span class="code">"search_line": -1,</span>
+<span class="code">"search_value": "",</span>
+<span class="code">"similarity_id": "ec1a1e998229f963313752def87ce5027e89997cfb4180c9b356414566f5a029"</span>
+<span class="code">}</span></div></div></details></details></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_resolve_references_[E2E-CLI-072]_0</span>
+<span><b>Elapsed:</b> 8.68s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_resolve_references_[E2E-CLI-074]_0</span>
+<span><b>Elapsed:</b> 19.11s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_resolve_references_[E2E-CLI-095]_0</span>
+<span><b>Elapsed:</b> 3.67s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_and_return_one_HIGH_result_[E2E-CLI-098]_0</span>
+<span><b>Elapsed:</b> 3.99s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_but_ignore_broken_symlinks_and_symlinks_that_create_endless_loops_[E2E-CLI-067]_0</span>
+<span><b>Elapsed:</b> 4.7s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_while_evaluating_the_terraform_functions_with_unknown_type_[E2E-CLI-071]_0</span>
+<span><b>Elapsed:</b> 356.01s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_with_--exclude-type_flag_[E2E-CLI-061]_0</span>
+<span><b>Elapsed:</b> 27.23s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_with_-t_flag_[E2E-CLI-011]_0</span>
+<span><b>Elapsed:</b> 16.38s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_perform_a_valid_scan_with_json/yaml_file_with_##_in_non_ref_[E2E-CLI-064]_0</span>
+<span><b>Elapsed:</b> 160.31s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_remediate_all_remediation_found_[E2E-CLI-057]_0</span>
+<span><b>Elapsed:</b> 41.88s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_remediate_the_recommendations_pointed_in_include-ids_flag_[E2E-CLI-058]_0</span>
+<span><b>Elapsed:</b> 18.38s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_remove_empty_files_from_helm_install_render_[E2E-CLI-104]_0</span>
+<span><b>Elapsed:</b> 6.11s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_resolve_openapi_files_and_return_results_in_different_files_[E2E-CLI-055]_0</span>
+<span><b>Elapsed:</b> 104.85s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_run_a_scan_in_multiple_paths_[E2E-CLI-019]_0</span>
+<span><b>Elapsed:</b> 116.9s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_run_only_provided_queries_and_exclude_provided_results_[E2E-CLI-037]_0</span>
+<span><b>Elapsed:</b> 8.05s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_run_only_provided_queries_and_exclude_provided_results_[E2E-CLI-037]_1</span>
+<span><b>Elapsed:</b> 13.3s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_scan_a_folder_with_FHIR_files_and_skip_them_successfully_[E2E-CLI-100]_0</span>
+<span><b>Elapsed:</b> 4.66s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_scan_a_folder_with_azure-pipelines-vscode_files_and_skip_them_successfully_[E2E-CLI-100]_0</span>
+<span><b>Elapsed:</b> 10.82s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_scan_a_folder_with_blacklisted_files,_with_flag_--exclude-type,_and_skip_them_successfully_[E2E-CLI-100]_0</span>
+<span><b>Elapsed:</b> 15.9s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_scan_a_folder_with_blacklisted_files,_with_flag_--type,_and_skip_them_successfully_[E2E-CLI-100]_0</span>
+<span><b>Elapsed:</b> 2.47s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_set_the_results_output_name_[E2E-CLI-032]_0</span>
+<span><b>Elapsed:</b> 144.37s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_throw_error_messages_for_kics'_flags_[E2E-CLI-016]_0</span>
+<span><b>Elapsed:</b> 0.57s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_throw_error_messages_for_kics'_flags_[E2E-CLI-016]_1</span>
+<span><b>Elapsed:</b> 1.1s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_throw_error_messages_for_kics'_flags_[E2E-CLI-016]_2</span>
+<span><b>Elapsed:</b> 0.9s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_throw_error_messages_for_kics'_flags_[E2E-CLI-016]_3</span>
+<span><b>Elapsed:</b> 0.88s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_timeout_queries_when_reaching_the_timeout_limit_[E2E-CLI-056]_0</span>
+<span><b>Elapsed:</b> 17.5s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_timeout_queries_when_reaching_the_timeout_limit_[E2E-CLI-056]_1</span>
+<span><b>Elapsed:</b> 21.53s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_timeout_queries_when_reaching_the_timeout_limit_[E2E-CLI-056]_2</span>
+<span><b>Elapsed:</b> 3.34s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_validate_the_kics_result_status_code_[E2E-CLI-021]_0</span>
+<span><b>Elapsed:</b> 118.32s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> should_validate_the_kics_result_status_code_[E2E-CLI-021]_1</span>
+<span><b>Elapsed:</b> 7s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> test_bicep_scan_fail_with_list_of_platform_types_to_exclude_from_scan_[E2E-CLI-101]_0</span>
+<span><b>Elapsed:</b> 1.49s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> test_bicep_scan_fail_with_list_of_platform_types_to_scan,_long_version_[E2E-CLI-101]_0</span>
+<span><b>Elapsed:</b> 1.4s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div><div data-type="testInfo" data-name="pass"><hr class="separator"><div class="testBlock"><span><b>Test:</b> test_bicep_scan_fail_with_list_of_platform_types_to_scan,_short_version_[E2E-CLI-101]_0</span>
+<span><b>Elapsed:</b> 1.44s</span>
+<span><b>Status:</b> <span class="test-status pass">pass</span></span></div></div></div></body></html>
