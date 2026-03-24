@@ -68,7 +68,7 @@ CxPolicy[result] {
 	run_command := substring(resource.Original, 0, 3)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}.%s={{%s}}", [from_command, name, run_command, resource.Value[0]]),
+		"searchKey": sprintf("%s={{%s}}.%s={{%s}}", [from_command, name, run_command, nextResource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Instruction 'RUN %s %s' should be combined with 'RUN %s %s' in the same 'RUN' statement", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),
 		"keyActualValue": sprintf("Instruction 'RUN %s %s' isn't combined with 'RUN %s %s in the same 'RUN' statement", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),
