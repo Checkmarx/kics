@@ -3,7 +3,7 @@
   "queryName": "Beta - Self-hosted Runner Used in Pull Request Workflow",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "A workflow triggered by pull_request or pull_request_target events uses a self-hosted runner. Fork pull requests can trigger these events, causing untrusted code from a contributor's fork to run directly on the self-hosted machine. Unlike GitHub-hosted runners, which are ephemeral and isolated, self-hosted runners are persistent and may have access to internal networks, stored credentials, deployment keys, and other sensitive infrastructure. An attacker can exfiltrate secrets, install backdoors, or pivot to internal systems. Self-hosted runners should only be used with workflow triggers that cannot be initiated by untrusted external contributors.",
+  "descriptionText": "A workflow triggered by pull_request or pull_request_target uses a self-hosted runner. Fork PRs can trigger these events, causing untrusted code to run on the persistent self-hosted machine. Unlike GitHub-hosted runners, self-hosted runners may have access to internal networks, stored credentials, and deployment keys. An attacker can exfiltrate secrets or pivot to internal systems. Use GitHub-hosted runners for any job that may process untrusted fork contributions.",
   "descriptionUrl": "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#hardening-for-self-hosted-runners",
   "platform": "CICD",
   "descriptionID": "a1b2c3d4",

@@ -1,9 +1,9 @@
 {
-  "id": "e3f4a5b6-c7d8-4e9f-0a1b-2c3d4e5f6a7b",
+  "id": "e3f4a5b6-c7d8-4e9f-8a1b-2c3d4e5f6a7b",
   "queryName": "Beta - Secrets Inherit Used in External Reusable Workflow",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "A workflow calls an external reusable workflow (outside the current repository) with 'secrets: inherit', which passes ALL repository secrets to the called workflow. If the external workflow is compromised, malicious, or modified by an attacker (e.g. via a supply-chain attack on the referenced tag or branch), it gains access to every secret stored in the repository — including deployment keys, API tokens, and cloud credentials. Secrets should be passed explicitly and minimally: only provide the exact secrets the reusable workflow actually requires.",
+  "descriptionText": "A workflow calls an external reusable workflow with 'secrets: inherit', passing ALL repository secrets to the called workflow. If the external repository is compromised (e.g. via supply-chain attack on the referenced tag), it gains access to every secret — including deployment keys, API tokens, and cloud credentials. Secrets should be passed explicitly: provide only the exact secrets the reusable workflow actually requires.",
   "descriptionUrl": "https://docs.github.com/en/actions/using-workflows/reusing-workflows#passing-secrets-to-called-workflows",
   "platform": "CICD",
   "descriptionID": "e5f6a7b8",
