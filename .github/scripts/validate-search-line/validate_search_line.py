@@ -99,6 +99,11 @@ def validate_scan_results(query_dir):
     for query in scan_results.queries:
         all_results.extend(query.files)
 
+    for _, k in enumerate(all_results):
+        print(f"k.search.line: {k.search.line}")
+        print(f"k.line: {k.line}")
+        print(f"k.file_name: {k.file_name}")
+
     if not all_results:
         print("  [OK] No results to validate")
         return True
@@ -110,9 +115,6 @@ def validate_scan_results(query_dir):
         ln = f.line
         fn = f.file_name
 
-        print(f"sn: {sl}")
-        print(f"ln: {ln}")
-        print(f"fn: {fn}")
         if sl == -1:
             print(f"  ::error::Result [{idx}] {fn}: search_line is -1")
             valid = False
