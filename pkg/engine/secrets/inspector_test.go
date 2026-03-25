@@ -260,6 +260,28 @@ var OriginalData7 = `# kics-scan disable=baee238e-1921-4801-9c3f-79ae1d7b2cbc
 	register: result
 `
 
+var OriginalData8 = `
+  syntax = "proto3";
+
+  package com.example.security_test.v1;
+
+  import "google/protobuf/wrappers.proto";
+  import "google/protobuf/timestamp.proto";
+
+  message OAuthProviderConfig {
+    google.protobuf.StringValue client_id = 1;
+    google.protobuf.StringValue client_secret = 2;
+    google.protobuf.StringValue access_token = 3;
+    google.protobuf.StringValue refresh_token = 4;
+    google.protobuf.StringValue token_endpoint = 5;
+    google.protobuf.StringValue authorization_code = 6;
+    google.protobuf.StringValue id_token = 7;
+    google.protobuf.StringValue bearer_token = 8;
+    google.protobuf.UInt32Value token_expiry_seconds = 9;
+    google.protobuf.StringValue pkce_code_verifier = 10;
+  }
+`
+
 var testInspectInput = []struct {
 	name     string
 	files    model.FileMetadatas
@@ -413,6 +435,21 @@ var testInspectInput = []struct {
 				LinesOriginalData: utils.SplitLines(OriginalData7),
 				Kind:              "ANS",
 				FilePath:          "assets/queries/common/passwords_and_secrets/test/positive28.yaml",
+			},
+		},
+		wantVuln: []model.Vulnerability{},
+		wantErr:  false,
+	},
+	{
+		name: "invalid_file_kind",
+		files: model.FileMetadatas{
+			{
+				ID:                "a6fbadc6-da29-4340-8d56-aa26a8852526",
+				Document:          model.Document{},
+				OriginalData:      OriginalData8,
+				LinesOriginalData: utils.SplitLines(OriginalData8),
+				Kind:              "PROTO",
+				FilePath:          "assets/queries/common/passwords_and_secrets/test/negative60.proto",
 			},
 		},
 		wantVuln: []model.Vulnerability{},
