@@ -99,8 +99,9 @@ def validate_scan_results(query_dir):
     for query in scan_results.queries:
         all_results.extend(query.files)
 
+    print("Before debug for cycle")
     for _, k in enumerate(all_results):
-        print(f"k.search.line: {k.search.line}")
+        print(f"k.search_line: {k.search_line}")
         print(f"k.line: {k.line}")
         print(f"k.file_name: {k.file_name}")
 
@@ -111,8 +112,8 @@ def validate_scan_results(query_dir):
     # Validate each result
     valid = True
     for idx, f in enumerate(all_results):
-        sl = f.search_line
-        ln = f.line
+        sl = int(f.search_line)
+        ln = int(f.line)
         fn = f.file_name
 
         if sl == -1:
