@@ -110,6 +110,9 @@ def validate_scan_results(query_dir):
         ln = f.line
         fn = f.file_name
 
+        print(f"sn: {sl}")
+        print(f"ln: {ln}")
+        print(f"fn: {fn}")
         if sl == -1:
             print(f"  ::error::Result [{idx}] {fn}: search_line is -1")
             valid = False
