@@ -93,6 +93,7 @@ def validate_scan_results(query_dir):
 
     print("[DEBUG] Before json.loads")
     data = json.loads(results_file.read_text())
+    print(f"[DEBUG] data:\n{json.dumps(data, indent=2)}")
     scan_results = ScanResults(queries=data.get("queries", []))
     print(f"[DEBUG] After ScanResults init and scan_results.queries has len: {len(scan_results.queries)}")
 
