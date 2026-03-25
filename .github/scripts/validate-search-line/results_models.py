@@ -1,25 +1,31 @@
-from dataclasses import dataclass, field
+from pymarshal.json import type_assert_list
 
-@dataclass
+
 class ScanFile:
-    file_name: str = ""
-    similarity_id: str = ""
-    line: int = 0
-    resource_type: str = ""
-    resource_name: str = ""
-    issue_type: str = ""
-    search_key: str = ""
-    search_line: int = 0
-    search_value: str = ""
-    expected_value: str = ""
-    actual_value: str = ""
-    
-@dataclass
-class Query:
-    query_name: str = ""
-    query_id: str = ""
-    files: list[ScanFile] = field(default_factory=list)
+    def __init__(self, file_name="", similarity_id="", line=0,
+                 resource_type="", resource_name="", issue_type="",
+                 search_key="", search_line=0, search_value="",
+                 expected_value="", actual_value=""):
+        self.file_name = file_name
+        self.similarity_id = similarity_id
+        self.line = line
+        self.resource_type = resource_type
+        self.resource_name = resource_name
+        self.issue_type = issue_type
+        self.search_key = search_key
+        self.search_line = search_line
+        self.search_value = search_value
+        self.expected_value = expected_value
+        self.actual_value = actual_value
 
-@dataclass
+
+class Query:
+    def __init__(self, query_name="", query_id="", files=None):
+        self.query_name = query_name
+        self.query_id = query_id
+        self.files = type_assert_list(files, ScanFile)
+
+
 class ScanResults:
-    queries: list[Query] = field(default_factory=list)
+    def __init__(self, queries=None):
+        self.queries = type_assert_list(queries, Query)
