@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 from results_models import ScanResults, ScanFile, Query
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
+REPO_ROOT = Path(__file__).resolve().parents.parents.parents
 
 
 def get_changed_queries():
