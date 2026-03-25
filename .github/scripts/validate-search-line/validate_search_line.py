@@ -95,7 +95,7 @@ def validate_scan_results(query_dir):
     print("[DEBUG] Before json.loads")
     data = json.loads(results_file.read_text())
     scan_results = unmarshal_json(data, ScanResults)
-    print(f"[DEBUG] After unmarshal_json and scan_results has len: {len(scan_results)}")
+    print(f"[DEBUG] After unmarshal_json and scan_results.queries has len: {len(scan_results.queries)}")
 
     # Flatten results from all queries
     all_results = []
