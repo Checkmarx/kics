@@ -4,7 +4,7 @@ from pymarshal.json import unmarshal_json
 class ScanFile:
     def __init__(self, file_name="", similarity_id="", line=0,
                  resource_type="", resource_name="", issue_type="",
-                 search_key="", search_line=0, search_value="",
+                 search_key="", search_line="", search_value="",
                  expected_value="", actual_value=""):
         self.file_name = file_name
         self.similarity_id = similarity_id
