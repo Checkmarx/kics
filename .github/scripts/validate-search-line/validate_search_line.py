@@ -121,8 +121,7 @@ def validate_scan_results(query_dir):
     # Flatten results from all queries
     all_results = []
     for query in scan_results.queries:
-        for f in query.files:
-            all_results.append((query.query_name, f))
+        all_results.extend(query.files)
 
     if not all_results:
         print("  [OK] No results to validate")
@@ -130,7 +129,7 @@ def validate_scan_results(query_dir):
 
     # Validate each result
     valid = True
-    for idx, (_, f) in enumerate(all_results):
+    for idx, f in enumerate(all_results):
         sl = f.search_line
         ln = f.line
         fn = f.file_name
