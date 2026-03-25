@@ -8,12 +8,12 @@ class ScanFile:
                  expected_value="", actual_value=""):
         self.file_name = file_name
         self.similarity_id = similarity_id
-        self.line = line
+        self.line = int(line)
         self.resource_type = resource_type
         self.resource_name = resource_name
         self.issue_type = issue_type
         self.search_key = search_key
-        self.search_line = search_line
+        self.search_line = int(search_line)
         self.search_value = search_value
         self.expected_value = expected_value
         self.actual_value = actual_value
