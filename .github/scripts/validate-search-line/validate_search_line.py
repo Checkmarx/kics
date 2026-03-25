@@ -131,7 +131,7 @@ def validate_scan_results(query_dir):
     # Validate each result
     valid = True
     for idx, (_, f) in enumerate(all_results):
-        sl = f.searchLine
+        sl = f.search_line
         ln = f.line
         fn = f.file_name
 
