@@ -7,8 +7,7 @@ import sys
 from pathlib import Path
 from results_models import ScanResults, ScanFile, Query
 
-REPO_ROOT = Path(__file__).resolve().parents.parents.parents
-
+REPO_ROOT = Path(__file__).resolve().parents[3]
 
 def get_changed_queries():
     """Parse CHANGED_QUERIES env var (JSON array from dorny/paths-filter) to get query directories."""
