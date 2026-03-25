@@ -5,7 +5,7 @@ import os
 import subprocess
 import sys
 from pathlib import Path
-from pymarshal.json import unmarshal_dict
+from pymarshal.json import unmarshal_json
 from results_models import ScanResults
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -94,8 +94,8 @@ def validate_scan_results(query_dir):
 
     print("[DEBUG] Before json.loads")
     data = json.loads(results_file.read_text())
-    scan_results = unmarshal_dict(data, ScanResults)
-    print("[DEBUG] After unmarshal_dict")
+    scan_results = unmarshal_json(data, ScanResults)
+    print("[DEBUG] After unmarshal_json")
 
     # Flatten results from all queries
     all_results = []
