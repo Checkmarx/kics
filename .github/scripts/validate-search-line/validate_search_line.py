@@ -112,10 +112,11 @@ def validate_scan_results(query_dir):
     if not all_results:
         print("  [OK] No results to validate")
         return True
-
+    print("[DEBUG] exists")
     # Validate each result
     valid = True
     for idx, f in enumerate(all_results):
+        print("[DEBUG] inside for cycle that prints de errors")
         sl = int(f.search_line)
         ln = int(f.line)
         fn = f.file_name
