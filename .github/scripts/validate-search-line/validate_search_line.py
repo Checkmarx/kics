@@ -84,6 +84,7 @@ def validate_scan_results(query_dir):
     - Fail if any search_line != line
     - Fail if any search_line == -1
     """
+    print("[DEBUG] entrei no validate scan results")
     results_file = query_dir / "results" / "all_results.json"
     rel_dir = query_dir.relative_to(REPO_ROOT)
 
