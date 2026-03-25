@@ -118,7 +118,7 @@ jobs:
           CHANGED_QUERIES: ${{ steps.filter.outputs.queries_files }}
           KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_PR_NUMBER: ${{ github.event.number }}
-        working-directory: .github/scripts/validate_search_line/
+        working-directory: .github/scripts/validate-search-line/
         run: python3 validate_search_line.py
 
   security-scan:
