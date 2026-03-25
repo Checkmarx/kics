@@ -96,8 +96,8 @@ def parse_scan_results(data: dict) -> ScanResults:
                 actual_value=f.get("actual_value", ""),
             ))
         queries.append(Query(
-            query_name=data.get("query_name", ""),
-            query_id=data.get("query_id", ""),
+            query_name=q.get("query_name", ""),
+            query_id=q.get("query_id", ""),
             files=files,
         ))
     return ScanResults(queries=queries)
@@ -105,8 +105,6 @@ def parse_scan_results(data: dict) -> ScanResults:
 def validate_scan_results(query_dir):
     """
     Validate scan results:
-    - Sort results by: file_name, line, search_key, search_value, resource_type,
-      resource_name, query_name, expected_value, actual_value
     - Fail if any search_line != line
     - Fail if any search_line == -1
     """
@@ -132,10 +130,10 @@ def validate_scan_results(query_dir):
 
     # Validate each result
     valid = True
-    for idx, r in enumerate(all_results):
-        sl = r["search_line"]
-        ln = r["line"]
-        fn = r["file_name"]
+    for idx, (_, f) in enumerate(all_results):
+        sl = f.searchLine
+        ln = f.line
+        fn = f.file_name
 
         if sl == -1:
             print(f"  ::error::Result [{idx}] {fn}: search_line is -1")
