@@ -1,4 +1,4 @@
-from pymarshal.json import type_assert, unmarshal_json
+from pymarshal.json import unmarshal_json
 
 
 class ScanFile:
