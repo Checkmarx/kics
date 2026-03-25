@@ -6,7 +6,6 @@ class ScanFile:
                  resource_type="", resource_name="", issue_type="",
                  search_key="", search_line=0, search_value="",
                  expected_value="", actual_value=""):
-        print("Init ScanFile Object")
         self.file_name = file_name
         self.similarity_id = similarity_id
         self.line = int(line)

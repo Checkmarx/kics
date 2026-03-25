@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'deploy.resources' should be defined",
 		"keyActualValue":  "'deploy.resources' is not defined",
-		"searchLine": common_lib.build_search_line(["bananas"], []),
+		"searchLine": "-1",
 	}
 }
 
