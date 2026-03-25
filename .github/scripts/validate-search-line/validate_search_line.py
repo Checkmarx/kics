@@ -5,7 +5,6 @@ import os
 import subprocess
 import sys
 from pathlib import Path
-from pymarshal.json import unmarshal_json
 from results_models import ScanResults
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
