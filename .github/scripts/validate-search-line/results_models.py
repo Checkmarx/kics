@@ -1,4 +1,4 @@
-from pymarshal.json import type_assert_list
+from pymarshal.json import type_assert, unmarshal_json
 
 
 class ScanFile:
@@ -23,9 +23,9 @@ class Query:
     def __init__(self, query_name="", query_id="", files=None):
         self.query_name = query_name
         self.query_id = query_id
-        self.files = type_assert_list(files, ScanFile)
+        self.files = [unmarshal_json(f, ScanFile) for f in (files or [])]
 
 
 class ScanResults:
     def __init__(self, queries=None):
-        self.queries = type_assert_list(queries, Query)
+        self.queries = [unmarshal_json(q, Query) for q in (queries or [])]
