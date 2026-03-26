@@ -40,10 +40,6 @@
         {
           "description": "Allow password retrieved from ARM parameters",
           "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?\\s*,\\s*parameters\\(['\"]([a-zA-Z][a-zA-Z0-9_-]*)['\"]['\"]?\\)"
-        },
-        {
-          "description": "Avoiding Proto File fields",
-          "regex": "(?i)password\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
@@ -283,10 +279,6 @@
         {
           "description": "Avoid Docker Compose secrets paths",
           "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?/run/secrets/\\w+['\"]?"
-        },
-        {
-          "description": "Avoiding Proto File fields",
-          "regex": "(?i)private[_]?key\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
         }
       ]
     },
@@ -358,10 +350,6 @@
         {
           "description": "Avoiding Run After Triggers (if written in conformity with best practices)",
           "regex": "(?i)['\"](HTTP|Parse_JSON|Try|Catch)_-_(Get_)?OAuth_Token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
-        },
-        {
-          "description": "Avoiding Proto File fields",
-          "regex": "(?i)token(_)?(key)?\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
         }
       ],
       "specialMask": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*"
@@ -385,10 +373,6 @@
         {
           "description": "Avoiding CLoudformation KeyName",
           "regex": "['\"]?EncryptionKey['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]+)['\"]?"
-        },
-        {
-          "description": "Avoiding Proto File fields",
-          "regex": "(?i)encryption[_]?key\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
         }
       ],
       "specialMask": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*"
