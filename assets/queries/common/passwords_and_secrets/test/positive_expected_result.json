@@ -478,5 +478,23 @@
     "severity": "HIGH",
     "line": 6,
     "fileName": "positive56.json"
+  },
+  {
+    "queryName": "Passwords And Secrets - Encryption Key",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive57.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Encryption Key",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive57.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Encryption Key",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive57.yaml"
   }
 ]

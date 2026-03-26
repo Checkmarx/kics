@@ -1,0 +1,8 @@
+# Samples for "Encryption Key" query
+- hosts: all
+  remote_user: root
+  vars:
+    encryption_key: aes256_my_super_secret_key_value
+    encryption_key: Ab3f8G2kL9mN4pQ7
+    encryptionkey: 0123456789abcdef
+

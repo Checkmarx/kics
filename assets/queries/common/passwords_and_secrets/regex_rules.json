@@ -321,7 +321,7 @@
         },
         {
           "description": "Avoiding TF resource access",
-          "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+          "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*(([a-zA-Z_]+(\\[([a-zA-Z_]+\\.[a-zA-Z_]+.*|\\d+)\\])?\\.[a-zA-Z_]+(\\[([a-zA-Z_]+\\.[a-zA-Z_]+.*|\\d+)\\])?)\\s*([\\[\\.\\)\\]\\}\\$]|(:\\s*null))|null)"
         },
         {
           "description": "Avoiding TF creation token",
@@ -372,11 +372,11 @@
     {
       "id": "9fb1cd65-7a07-4531-9bcf-47589d0f82d6",
       "name": "Encryption Key",
-      "regex": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
+      "regex": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*['\"]?[A-Za-z0-9/~^_!@&%()=?*+-]+['\"]?",
       "allowRules": [
         {
           "description": "Avoiding TF resource access",
-          "regex": "(?i)['\"]?encryption[_]?key['\"]?\\s*=\\s*([a-zA-z_]+(.))?[a-zA-z_]+(.)[a-zA-z_]+(.)[a-zA-z_]+"
+          "regex": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*(([a-zA-Z_]+(\\[([a-zA-Z_]+\\.[a-zA-Z_]+.*|\\d+)\\])?\\.[a-zA-Z_]+(\\[([a-zA-Z_]+\\.[a-zA-Z_]+.*|\\d+)\\])?)\\s*([\\[\\.\\)\\]\\}\\$]|(:\\s*null))|null)"
         },
         {
           "description": "Avoiding CLoudformation KeyName",
