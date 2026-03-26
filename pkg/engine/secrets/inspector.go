@@ -660,16 +660,13 @@ func ignoreLine(lineNumber int, linesIgnore []int) bool {
 	return false
 }
 
-// cleanFiles keeps one file per filePath and filters .proto files
+// cleanFiles keeps one file per filePath
 func cleanFiles(files model.FileMetadatas) model.FileMetadatas {
 	keys := make(map[string]bool)
 
 	cleanFiles := model.FileMetadatas{}
 
 	for i := range files {
-		if files[i].Kind == model.KindPROTO {
-			continue
-		}
 		filePath := files[i].FilePath
 		if _, value := keys[filePath]; !value {
 			keys[filePath] = true

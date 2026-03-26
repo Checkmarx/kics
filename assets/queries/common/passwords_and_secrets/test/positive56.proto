@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// This sample should not flag the message defined only the exposed secrets in comments :
+// "password" = "test_sample"
+// "secret_key" : minimum_ten_characters
+// "unsafe_token" : "is_this_safe"
+// Note - This is as valid proto file that generates output with "protoc" command as of version "libprotoc 34.0"
+
+package com.example.security_test.v1;
+
+import "google/protobuf/wrappers.proto";
+
+message InocentMessage {
+  google.protobuf.StringValue safe_value = 1;
+  double not_a_password = 2;
+  float not_a_token = 3;
+  string not_an_encryption_key = 4;
+}
