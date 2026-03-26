@@ -268,12 +268,6 @@
       "id": "7f370dd5-eea3-4e5f-8354-3cb2506f9f13",
       "name": "Generic Access Key",
       "regex": "(?i)^\\s*['\"]?access[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9\/~^_!@&%()=?*+-]+)['\"]?",
-      "allowRules": [
-        {
-          "description": "Avoiding Proto File fields",
-          "regex": "(?i)access[_]?key\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
-        }
-      ],
       "specialMask": "(?i)['\"]?access[_]?key['\"]?\\s*[:=]\\s*"
     },
     {
