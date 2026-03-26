@@ -462,7 +462,7 @@
     "fileName": "positive55.json"
   },
   {
-    "queryName": "Passwords And Secrets - Generic Secret",
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 4,
     "fileName": "positive56.json"
@@ -474,7 +474,7 @@
     "fileName": "positive56.json"
   },
   {
-    "queryName": "Passwords And Secrets - Generic Secret",
+    "queryName": "Passwords And Secrets - Generic Token",
     "severity": "HIGH",
     "line": 6,
     "fileName": "positive56.json"
