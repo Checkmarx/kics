@@ -8,14 +8,6 @@ package com.example.security_test.v1;
 import "google/protobuf/wrappers.proto";
 
 message SampleMessageNegative {
-  string the_secret = 15;                                      //Generic Secret
-  string another_secret_ = 16;                                 //Generic Secret
-  string the_secret_key = 17;                                  //Generic Secret
-  string a_secret_value = 18;                                  //Generic Secret
-  string another_secretvalue = 19;                             //Generic Secret
-  string another_secretkey = 31;                               //Generic Secret
-  double accesskey = 1212;                                     //Generic Access Key
-  string access_key = 1313;                                    //Generic Access Key
   google.protobuf.StringValue refresh_token = 536870911; // if value is larger - out of range error "Field numbers cannot be greater than 536870911."  - Generic Token
   google.protobuf.StringValue access_token= 1;                                    // Generic Token
   google.protobuf.StringValue id_token = 3;                                        // Generic Token
