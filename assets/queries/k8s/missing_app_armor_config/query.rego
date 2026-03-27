@@ -62,7 +62,8 @@ CxPolicy[result] {
 	annotations := object.get(metadataInfo.metadata, "annotations", {})
 	expectedKey := sprintf("container.apparmor.security.beta.kubernetes.io/%s", [container])
 
-	not isValidAppArmorProfile(annotations[expectedKey])
+	ek := annotations[expectedKey]
+	not isValidAppArmorProfile(ek)
 	not hasValidAppArmorProfileNewSyntax(document, x, c)
 
 	annotationsPath := trim_left(sprintf("%s.annotations", [metadataInfo.path]), ".")
@@ -157,20 +158,24 @@ get_apparmor_messages(searchPath, metadataName, container, issueType, expectedKe
 # build search path for apparmor profile
 get_apparmor_search_path(specInfo, typeKey, containerIndex, annotationsPath) = path {
 	container := specInfo.spec[typeKey][containerIndex]
-	common_lib.valid_key(container, "securityContext")
-	common_lib.valid_key(object.get(container, "securityContext", {}), "appArmorProfile")
-	path := sprintf("%s.%s.%d.securityContext.appArmorProfile", [specInfo.path, typeKey, containerIndex])
+	containerInfo := common_lib.get_nested_values_info(container, ["securityContext", "appArmorProfile"])
+	containerInfo.valid == true
+	path := sprintf("%s.%s.%d.%s", [specInfo.path, typeKey, containerIndex, containerInfo.searchKey])
 } else = path {
 	container := specInfo.spec[typeKey][containerIndex]
+	containerInfo := common_lib.get_nested_values_info(container, ["securityContext", "appArmorProfile"])
+	containerInfo.valid == false
 	common_lib.valid_key(container, "securityContext")
-	path := sprintf("%s.%s.%d.securityContext", [specInfo.path, typeKey, containerIndex])
+	path := sprintf("%s.%s.%d.%s", [specInfo.path, typeKey, containerIndex, containerInfo.searchKey])
 } else = path {
-	common_lib.valid_key(specInfo.spec, "securityContext")
-	common_lib.valid_key(object.get(specInfo.spec, "securityContext", {}), "appArmorProfile")
-	path := sprintf("%s.securityContext.appArmorProfile", [specInfo.path])
+	specNested := common_lib.get_nested_values_info(specInfo.spec, ["securityContext", "appArmorProfile"])
+	specNested.valid == true
+	path := sprintf("%s.%s", [specInfo.path, specNested.searchKey])
 } else = path {
+	specNested := common_lib.get_nested_values_info(specInfo.spec, ["securityContext", "appArmorProfile"])
+	specNested.valid == false
 	common_lib.valid_key(specInfo.spec, "securityContext")
-	path := sprintf("%s.securityContext", [specInfo.path])
+	path := sprintf("%s.%s", [specInfo.path, specNested.searchKey])
 } else = path {
 	path := annotationsPath
 }
@@ -180,8 +185,5 @@ build_search_line_for_apparmor(path) = searchLine {
 	path == "annotations"
 	searchLine := common_lib.build_search_line(["metadata", "annotations"], [])
 } else = searchLine {
-	contains(path, "securityContext")
-	searchLine := common_lib.build_search_line(split(path, "."), [])
-} else = searchLine {
-	searchLine := common_lib.build_search_line(split(path, "."), [])
+  	searchLine := common_lib.build_search_line(split(path, "."), [])
 }
