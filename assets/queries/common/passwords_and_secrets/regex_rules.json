@@ -364,7 +364,7 @@
 
     },
     {
-      "id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
+      "id": "0ec60fb3-5b78-4da0-bea0-b854fd9bf8b9",
       "name": "CloudFormation Secret Template",
       "regex": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*['\"]?{([\\\":A-Za-z0-9/~^_!@&%()=?*+-]{10,})}",
       "specialMask": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*"
