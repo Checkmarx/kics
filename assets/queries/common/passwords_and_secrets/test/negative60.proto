@@ -9,7 +9,7 @@ import "google/protobuf/wrappers.proto";
 
 message SampleMessageNegative {
   google.protobuf.StringValue refresh_token = 536870911; // if value is larger - out of range error "Field numbers cannot be greater than 536870911."  - Generic Token
-  google.protobuf.StringValue access_token= 1;                                    // Generic Token
+  google.protobuf.StringValue access_token= 111111111;                             // Generic Token
   google.protobuf.StringValue id_token = 3;                                        // Generic Token
   google.protobuf.StringValue    bearer_toaken = 4;;;                              // Generic Token
   google.protobuf.StringValue api_token = 7   ;                                    // Generic Token
