@@ -1,0 +1,37 @@
+- name: my_elb_application
+  community.aws.elb_application_lb:
+    name: myelb
+    security_groups:
+      - sg-12345678
+      - my-sec-group
+    subnets:
+      - subnet-012345678
+      - subnet-abcdef000
+    listeners:
+      - Protocol: HTTP
+        Port: 80
+        SslPolicy: ELBSecurityPolicy-2015-05
+        Certificates:
+          - CertificateArn: arn:aws:iam::12345678987:server-certificate/test.domain.com
+        DefaultActions:
+          - Type: forward
+            TargetGroupName: targetname
+    state: present
+- name: my_elb_application2
+  community.aws.elb_application_lb:
+    name: myelb2
+    security_groups:
+      - sg-12345678
+      - my-sec-group
+    subnets:
+      - subnet-012345678
+      - subnet-abcdef000
+    listeners:
+      Port: 80
+      SslPolicy: ELBSecurityPolicy-2015-05
+      Certificates:
+        - CertificateArn: arn:aws:iam::12345678987:server-certificate/test.domain.com
+      DefaultActions:
+        - Type: forward
+          TargetGroupName: targetname
+    state: present

@@ -1,0 +1,85 @@
+- name: create a cluster1
+  google.cloud.gcp_container_cluster:
+    name: my-cluster1
+    initial_node_count: 2
+    master_auth:
+      username: cluster_admin
+      password: my-secret-password
+    node_config:
+      machine_type: n1-standard-4
+      disk_size_gb: 500
+    location: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+- name: create a cluster2
+  google.cloud.gcp_container_cluster:
+    name: my-cluster2
+    initial_node_count: 2
+    master_auth:
+      username: cluster_admin
+      password: my-secret-password
+    node_config:
+      machine_type: n1-standard-4
+      disk_size_gb: 500
+    location: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    private_cluster_config:
+      enable_private_endpoint: yes
+- name: create a cluster3
+  google.cloud.gcp_container_cluster:
+    name: my-cluster3
+    initial_node_count: 2
+    master_auth:
+      username: cluster_admin
+      password: my-secret-password
+    node_config:
+      machine_type: n1-standard-4
+      disk_size_gb: 500
+    location: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    private_cluster_config:
+      enable_private_nodes: yes
+- name: create a cluster4
+  google.cloud.gcp_container_cluster:
+    name: my-cluster4
+    initial_node_count: 2
+    master_auth:
+      username: cluster_admin
+      password: my-secret-password
+    node_config:
+      machine_type: n1-standard-4
+      disk_size_gb: 500
+    location: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    private_cluster_config:
+      enable_private_endpoint: no
+      enable_private_nodes: yes
+- name: create a cluster5
+  google.cloud.gcp_container_cluster:
+    name: my-cluster5
+    initial_node_count: 2
+    master_auth:
+      username: cluster_admin
+      password: my-secret-password
+    node_config:
+      machine_type: n1-standard-4
+      disk_size_gb: 500
+    location: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
+    private_cluster_config:
+      enable_private_endpoint: yes
+      enable_private_nodes: no
