@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "IAM Role Without Permission Boundary",
+    "severity": "MEDIUM",
+    "line": 2
+  }
+]
