@@ -22,4 +22,5 @@ class Query:
 
 class ScanResults:
     def __init__(self, data):
+        self.queries_failed_to_execute = int(data.get("queries_failed_to_execute", 0))
         self.queries = [Query(q) for q in data.get("queries", [])]

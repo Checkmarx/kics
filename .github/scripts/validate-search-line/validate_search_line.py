@@ -93,6 +93,10 @@ def validate_scan_results(query_dir):
     data = json.loads(results_file.read_text())
     scan_results = ScanResults(data)
 
+    if scan_results.queries_failed_to_execute > 0:
+        print(f"  ::error file={rel_dir}::{scan_results.queries_failed_to_execute} query(ies) failed to execute (possible panic/error during scan)")
+        return False
+
     # Flatten results from all queries
     all_results = []
     for query in scan_results.queries:
