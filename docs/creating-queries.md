@@ -297,6 +297,100 @@ If the **query.rego** file implements more than one query, the **metadata.json**
 }
 ```
 
+Filling positive_expected_result.json:
+
+The `positive_expected_result.json` file is a JSON array where each entry represents a single expected finding from a positive test file. Each entry supports the following fields:
+
+- `queryName` the name of the query as defined in `metadata.json`
+- `severity` the severity level of the finding (`CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, or `INFO`)
+- `line` the line number in the positive test file where the vulnerability is detected
+- `fileName` the name of the positive test file (e.g., `positive1.tf`, `positive.yaml`)
+- `resourceType` the type of the resource flagged by the finding (e.g., `aws_cloudtrail`, `community.aws.elb_application_lb`)
+- `resourceName` the name or label of the specific resource instance
+- `searchKey` the search key path used by KICS to locate the vulnerability in the original document
+- `searchValue` an additional value used to distinguish findings when multiple results point to the same line
+- `expectedValue` a description of the expected (secure) value
+- `actualValue` a description of the actual (insecure) value detected
+- `issueType` the type of issue: `IncorrectValue`, `MissingAttribute`, or `RedundantAttribute`
+- `similarityID` a hash that uniquely identifies the finding, used for deduplication and tracking
+- `search_line` the search line path used by KICS for line detection; set to `-1` when not applicable
+
+Example:
+
+```json
+[
+  {
+    "queryName": "Authentication Without MFA",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.sts_assume_role",
+    "resourceName": "Assume an existing role",
+    "searchKey": "name={{Assume an existing role}}.{{community.aws.sts_assume_role}}",
+    "searchValue": "mfa_token",
+    "expectedValue": "sts_assume_role.mfa_token should be set",
+    "actualValue": "sts_assume_role.mfa_token is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0863129177e5f7d0f0fc55d63426f810f58f35c1270b64f4b57fbd1d8a3639cc",
+    "search_line": 2
+  },
+  {
+    "queryName": "Authentication Without MFA",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "sts_assume_role",
+    "resourceName": "Hello",
+    "searchKey": "name={{Hello}}.{{sts_assume_role}}",
+    "searchValue": "mfa_serial_number",
+    "expectedValue": "sts_assume_role.mfa_serial_number should be set",
+    "actualValue": "sts_assume_role.mfa_serial_number is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "89628f77eee62d856d5523656cdcbc1be1bfca9a1aaed79ffa9871979c947202",
+    "search_line": 9
+  }
+]
+```
+
+Instead of filling this file manually, you can use the helper script provided at `.github/scripts/generate-positive-expected-results/generate_positive_expected_result.py`. The script runs a KICS scan against each positive test file, collects the findings, and produces a correctly formatted `positive_expected_result.json`.
+
+**Important:** The script must be run from the **script's own directory** (`.github/scripts/generate-positive-expected-results/`), since it resolves the repository root and all other paths relative to its own location. It also requires **Go** to be installed and available in your `PATH`.
+
+The script supports two modes of operation:
+
+**Single query mode** — requires both `--queryID` and `--queryPath`:
+
+```bash
+cd .github/scripts/generate-positive-expected-results/
+python generate_positive_expected_result.py \
+  --queryID <query-uuid> \
+  --queryPath <relative-path-to-query>
+```
+
+For example:
+
+```bash
+cd .github/scripts/generate-positive-expected-results/
+python generate_positive_expected_result.py \
+  --queryID "8173d5eb-96b5-4aa6-a71b-ecfa153c123d" \
+  --queryPath "assets/queries/terraform/aws/cloudtrail_multi_region_disabled"
+```
+
+**All queries mode** — scans every query under `assets/queries/`:
+
+```bash
+cd .github/scripts/generate-positive-expected-results/
+python generate_positive_expected_result.py --run-all
+```
+
+| Flag | Required | Description |
+|---|---|---|
+| `--queryID` | Yes (unless `--run-all`) | The UUID of the query to scan, found in the query's `metadata.json` under the `id` field. |
+| `--queryPath` | Yes (unless `--run-all`) | The relative path (from the repository root) to the query directory containing `query.rego` and `metadata.json`. |
+| `--run-all` | No | Iterates over all queries under `assets/queries/`, reading each `metadata.json` to obtain the query ID automatically. Mutually exclusive with `--queryID`. |
+
+The script discovers positive test files in the query's `test/` directory, runs a KICS scan for each one, collects and merges the findings, sorts them by file name, line number, issue type, search key, and similarity ID, and writes the result to `test/positive_expected_result.json`.
+
 Filling query.rego:
 
 - `documentId` id of the sample where the vulnerability occurs
