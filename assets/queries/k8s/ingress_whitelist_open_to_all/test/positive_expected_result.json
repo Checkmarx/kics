@@ -1,0 +1,17 @@
+[
+  {
+    "queryName": "Ingress Whitelist Open To All IPs",
+    "severity": "HIGH",
+    "line": 6
+  },
+  {
+    "queryName": "Ingress Whitelist Open To All IPs",
+    "severity": "HIGH",
+    "line": 25
+  },
+  {
+    "queryName": "Ingress Whitelist Open To All IPs",
+    "severity": "HIGH",
+    "line": 44
+  }
+]
