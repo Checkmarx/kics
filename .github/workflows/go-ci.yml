@@ -120,7 +120,6 @@ jobs:
           KICS_PR_NUMBER: ${{ github.event.number }}
         working-directory: .github/scripts/validate-search-line/
         run: python3 validate_search_line.py
-
   security-scan:
     name: security-scan
     runs-on: ubuntu-latest
