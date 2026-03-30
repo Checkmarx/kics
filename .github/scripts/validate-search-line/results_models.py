@@ -1,31 +1,25 @@
-from pymarshal.json import type_assert, type_assert_iter
-
-
 class ScanFile:
-    def __init__(self, file_name, similarity_id, line,
-                 resource_type, resource_name, issue_type,
-                 search_key, search_line, search_value,
-                 expected_value, actual_value):
-        self.file_name = type_assert(file_name, str)
-        self.similarity_id = type_assert(similarity_id, str)
-        self.line = type_assert(line, int)
-        self.resource_type = type_assert(resource_type, str)
-        self.resource_name = type_assert(resource_name, str)
-        self.issue_type = type_assert(issue_type, str)
-        self.search_key = type_assert(search_key, str)
-        self.search_line = type_assert(search_line, int)
-        self.search_value = type_assert(search_value, str)
-        self.expected_value = type_assert(expected_value, str)
-        self.actual_value = type_assert(actual_value, str)
+    def __init__(self, data):
+        self.file_name = data.get("file_name", "")
+        self.similarity_id = data.get("similarity_id", "")
+        self.line = int(data.get("line", 0))
+        self.resource_type = data.get("resource_type", "")
+        self.resource_name = data.get("resource_name", "")
+        self.issue_type = data.get("issue_type", "")
+        self.search_key = data.get("search_key", "")
+        self.search_line = int(data.get("search_line", 0))
+        self.search_value = data.get("search_value", "")
+        self.expected_value = data.get("expected_value", "")
+        self.actual_value = data.get("actual_value", "")
 
 
 class Query:
-    def __init__(self, query_name="", query_id="", files=None):
-        self.query_name = type_assert(query_name, str)
-        self.query_id = type_assert(query_id, str)
-        self.files = type_assert_iter(files, ScanFile)
+    def __init__(self, data):
+        self.query_name = data.get("query_name", "")
+        self.query_id = data.get("query_id", "")
+        self.files = [ScanFile(f) for f in data.get("files", [])]
 
 
 class ScanResults:
-    def __init__(self, queries=None):
-        self.queries = type_assert_iter(queries, Query)
+    def __init__(self, data):
+        self.queries = [Query(q) for q in data.get("queries", [])]
