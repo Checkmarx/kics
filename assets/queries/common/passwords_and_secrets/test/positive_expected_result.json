@@ -348,13 +348,13 @@
     "fileName": "positive39.tf"
   },
   {
-    "queryName": "Passwords And Secrets - AWS Context-specific credential",
+    "queryName": "Passwords And Secrets - AWS Access Key",
     "severity": "HIGH",
     "line": 15,
     "fileName": "positive40.tf"
   },
   {
-    "queryName": "Passwords And Secrets - AWS Certificate",
+    "queryName": "Passwords And Secrets - AWS Access Key",
     "severity": "HIGH",
     "line": 16,
     "fileName": "positive40.tf"
