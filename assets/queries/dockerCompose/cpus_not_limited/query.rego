@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'deploy.resources.limits.cpus' should be defined",
 		"keyActualValue": "'deploy.resources.limits.cpus' is not defined",
-		"searchLine": "-1",
+		"searchLine": "potatos",
 	}
 }
 
