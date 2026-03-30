@@ -10,7 +10,7 @@ FIELD_ORDER = [
     "expectedValue", "actualValue", "issueType", "similarityID", "search_line",
 ]
 
-KICS_RESULT_CODES = {0, 20, 30, 40, 50, 60}
+KICS_RESULT_CODES = {0, 1, 20, 30, 40, 50, 60}
 
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT   = os.path.normpath(os.path.join(SCRIPT_DIR, "../../.."))
