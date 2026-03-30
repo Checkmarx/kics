@@ -1,3 +1,4 @@
+// "Generic Secret"   - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - 'Allow secrets retrieved from Bicep getSecret built in function'  allow-rule-test
 import { common, tagsObject, deployName, removeSpace } from '../../../CommonValues.bicep'
 
 @description('Nome do sistema')
@@ -20,6 +21,6 @@ module consumerModule '../SecretConsumer/Resource.bicep' = {
     systemName: systemName
     resourceName: resourceName
     tags: tags
-    apiClientSecret: kvTest.getSecret('secret-sample') 
+    apiClientSecret: kvTest.getSecret('secret-sample')  // positive1
   }
 }

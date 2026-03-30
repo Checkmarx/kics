@@ -1,4 +1,4 @@
-#k8s test
+# Generic Negative Test - no secrets (k8s)
 apiVersion: v1
 kind: Pod
 metadata:

@@ -1,0 +1,54 @@
+// "Generic Token"       - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Proto File fields"   allow-rule-test - #1
+// "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 - "Avoiding Proto File fields"   allow rule test - #2
+// "Encryption Key"      - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding Proto File fields"   allow-rule-test - #3
+// "Generic Password"    - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Proto File fields"   allow rule test - #4
+syntax = "proto3";
+
+// Contains "secret", "key", "password" and "token" keywords - would flag if not for allow rules
+// Note - This is as valid proto file that generates output with "protoc" command as of version "libprotoc 34.0"
+
+package com.example.security_test.v1;
+
+import "google/protobuf/wrappers.proto";
+
+message SampleMessageNegative {
+  google.protobuf.StringValue refresh_token = 536870911; // if value is larger - out of range error "Field numbers cannot be greater than 536870911."  - Generic Token #1
+  google.protobuf.StringValue sonar_token = 39;google.protobuf.StringValue codecov_token = 40;// trailing comment test - Generic Token #1
+  google.protobuf.StringValue access_token= 111111111;                             // Generic Token #1
+  google.protobuf.StringValue id_token = 3;                                        // Generic Token #1
+  google.protobuf.StringValue    bearer_toaken = 4;;;                              // Generic Token #1
+  google.protobuf.StringValue api_token = 7   ;                                    // Generic Token #1
+  google.protobuf.StringValue token = 8;                                           // Generic Token #1
+  google.protobuf.StringValue aws_session_token = 9;                               // Generic Token #1
+  google.protobuf.StringValue sas_token = 12;                                      // Generic Token #1
+  google.protobuf.StringValue auth_token = 13;                                     // Generic Token #1
+  google.protobuf.StringValue bot_token = 14;                                      // Generic Token #1
+  google.protobuf.StringValue callback_token = 32;                                 // Generic Token #1
+  google.protobuf.StringValue k8s_service_account_token = 33;                      // Generic Token #1
+  google.protobuf.StringValue registry_token = 34;                                 // Generic Token #1
+  google.protobuf.StringValue deploy_token = 35;                                   // Generic Token #1
+  google.protobuf.StringValue ci_token = 36;                                       // Generic Token #1
+  google.protobuf.StringValue npm_token = 37;                                      // Generic Token #1
+  google.protobuf.StringValue pypi_token = 38;                                     // Generic Token #1
+  google.protobuf.StringValue app_installation_token = 20;                         // Generic Token #1
+  google.protobuf.StringValue twilio_auth_token = 21;                              // Generic Token #1
+  google.protobuf.StringValue twilio_auth_token_key =   121;                       // Generic Token #1
+  google.protobuf.StringValue test_token_ = 122  ;                                 // Generic Token #1
+  google.protobuf.StringValue jwt_private_key = 25;                                // Generic Private Key #2
+  google.protobuf.StringValue ssh_private_key = 26;                                // Generic Private Key #2
+  google.protobuf.StringValue tls_private_key = 27;                                // Generic Private Key #2
+  google.protobuf.StringValue ca_private_key = 28    ;                             // Generic Private Key #2
+  google.protobuf.StringValue cosign_private_key = 41;                             // Generic Private Key #2
+  google.protobuf.StringValue service_account_private_key = 30;                    // Generic Private Key #2
+  google.protobuf.StringValue app_private_key = 19;                                // Generic Private Key #2
+  google.protobuf.StringValue gcp_private_key = 10;                                // Generic Private Key #2
+  google.protobuf.StringValue private_key = 5;                                     // Generic Private Key #2
+  google.protobuf.StringValue sp_private_key = 6;                                  // Generic Private Key #2
+  google.protobuf.StringValue encryption_key = 22;                                 // Encryption Key #3
+  google.protobuf.StringValue data_encryption_key= 23   ;                          // Encryption Key #3
+  google.protobuf.StringValue key_encryption_key=24;                               // Encryption Key #3
+  google.protobuf.StringValue registry_password =    10421;                        // Generic Password #4
+  google.protobuf.StringValue artifactory_password   = 10731  ;                    // Generic Password #4
+  google.protobuf.StringValue nexus_password = 10853;                              // Generic Password #4
+  string password =          64114;                                                // Generic Password #4
+}

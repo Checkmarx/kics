@@ -1,9 +1,9 @@
-#cloud formation test
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "!Ref is a cloudFormation reference"  allow-rule-test
 Resources:
   RDSCluster:
     Type: "AWS::RDS::DBCluster"
     Properties:
-      MasterUserPassword: !Ref PasswordMaster
+      MasterUserPassword: !Ref PasswordMaster  # negative1
       DBClusterIdentifier: my-serverless-cluster
       Engine: aurora
       EngineVersion: 5.6.10a

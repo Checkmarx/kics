@@ -1,8 +1,9 @@
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc  positive-test
 Resources:
   ElastiCacheReplicationGroup:
     Type: AWS::ElastiCache::ReplicationGroup
     Properties:
-      AuthToken: '{{resolve:secretsmanager:/elasticache/replicationgroup/authtoken:SecretString:password}}'
+      AuthToken: '{{resolve:secretsmanager:/elasticache/replicationgroup/authtoken:SecretString:password}}' # positive1
       CacheNodeType: cache.m5.large
       CacheSubnetGroupName: subnet-foobar
       Engine: redis

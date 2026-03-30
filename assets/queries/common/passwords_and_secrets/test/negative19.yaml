@@ -1,3 +1,4 @@
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "!Ref is a cloudFormation reference"  allow-rule-test
 Parameters:
   PinpointAPNSVoipChannelTokenKey:
     Type: String
@@ -5,7 +6,7 @@ Resources:
   ElastiCacheReplicationGroup:
     Type: AWS::ElastiCache::ReplicationGroup
     Properties:
-      AuthToken: !Ref PinpointAPNSVoipChannelTokenKey
+      AuthToken: !Ref PinpointAPNSVoipChannelTokenKey # negative1
       CacheNodeType: cache.m5.large
       CacheSubnetGroupName: subnet-foobar
       Engine: redis
@@ -22,5 +23,5 @@ Resources:
   PinpointAPNSChannel:
     Type: AWS::Pinpoint::APNSChannel
     Properties:
-      TokenKey: !Ref PinpointAPNSVoipChannelTokenKey
+      TokenKey: !Ref PinpointAPNSVoipChannelTokenKey # negative2
       ApplicationId: !Ref PinpointApp

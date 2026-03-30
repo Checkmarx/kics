@@ -1,10 +1,11 @@
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding array access"  allow-rule-test (line 10)
 Resources:
   MytFunction:
     Type: AWS::Lambda::Function
     Properties:
       FunctionName: !Sub '${AWS::StackName}-CdnViewerRequest'
       Code:
-        ZipFile: !Sub |
+        ZipFile: !Sub | # negative1:
           function msg(userPass) {
             return {"username": userPass[1], "password": userPass[2]}
           }

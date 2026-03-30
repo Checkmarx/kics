@@ -1,19 +1,21 @@
+# "CloudFormation Secret Template" - 0ec60fb3-5b78-4da0-bea0-b854fd9bf8b9                                         positive-test   - #1
+# Global allow rule                - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "!Ref is a cloudFormation reference"  allow-rule-test - #2
 Resources:
-     NewAmpApp2:
-        Type: AWS::DocDB::DBCluster
-        Properties:
-          MasterUserPassword: !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}'
-          Port: 27017
-          PreferredBackupWindow: "07:34-08:04"
-          PreferredMaintenanceWindow: "sat:04:51-sat:05:21"
-          SnapshotIdentifier: "sample-cluster-snapshot-id"
-          StorageEncrypted: true
      MyAmpAppSecretManagerRotater:
         Type: AWS::SecretsManager::Secret
         Properties:
           Description: 'This is my amp app instance secret'
           GenerateSecretString:
-            SecretStringTemplate: '{"username":"admin"}'
+            SecretStringTemplate: '{"username":"admin"}'  #1
             GenerateStringKey: 'password'
             PasswordLength: 16
             ExcludeCharacters: '"@/\'
+     NewAmpApp2:
+        Type: AWS::DocDB::DBCluster
+        Properties:
+          MasterUserPassword: !Sub '{{resolve:secretsmanager:${MyAmpAppSecretManagerRotater}::password}}' #2
+          Port: 27017
+          PreferredBackupWindow: "07:34-08:04"
+          PreferredMaintenanceWindow: "sat:04:51-sat:05:21"
+          SnapshotIdentifier: "sample-cluster-snapshot-id"
+          StorageEncrypted: true

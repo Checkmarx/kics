@@ -1,5 +1,7 @@
+# "PayPal Braintree Access Token" - 4919b847-e3da-402a-acf8-6cea8e529993                                             positive-test
+# "Generic Token"                 - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding PayPal Braintree Access Token"  allow-rule-test
 - hosts: all
   remote_user: root
   vars:
-    paypal_access_token: access_token$production$1s2d3f4g5h6j7k8k$1b2b3c4a3a1b2b3c4a3a1b2b3c4a3a1b
+    paypal_access_token: access_token$production$1s2d3f4g5h6j7k8k$1b2b3c4a3a1b2b3c4a3a1b2b3c4a3a1b  # positive1
 

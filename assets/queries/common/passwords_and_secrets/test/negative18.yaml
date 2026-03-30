@@ -1,3 +1,4 @@
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "!Ref is a cloudFormation reference"  allow-rule-test - #2
 Parameters:
   PrivateKey1:
     Type: String
@@ -9,4 +10,4 @@ Resources:
   PinpointAPNSChannel:
     Type: AWS::Pinpoint::APNSChannel
     Properties:
-      PrivateKey: !GetAtt PrivateKey1
+      PrivateKey: !GetAtt PrivateKey1 # negative1

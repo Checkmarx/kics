@@ -1,0 +1,22 @@
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding result_token Var"  allow-rule-test
+Resources:
+  ConfigEvaluatorFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Runtime: python3.12
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          import boto3
+          config = boto3.client('config')
+          def handler(event, context):
+              result_token = event['resultToken']
+              config.put_evaluations(
+                  Evaluations=[{
+                      'ComplianceResourceType': event['configRuleArn'],
+                      'ComplianceResourceId': event['resourceId'],
+                      'ComplianceType': 'COMPLIANT',
+                      'OrderingTimestamp': event['notificationCreationTime']
+                  }],
+                  ResultToken=result_token
+              )

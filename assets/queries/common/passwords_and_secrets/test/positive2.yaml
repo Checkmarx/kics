@@ -1,9 +1,9 @@
-#cloud formation test
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (cloudformation)
 Resources:
   RDSCluster1:
     Type: "AWS::RDS::DBCluster"
     Properties:
-      MasterUserPassword: root
+      MasterUserPassword: root  # positive1
       DBClusterIdentifier: my-serverless-cluster
       Engine: aurora
       EngineVersion: 5.6.10a

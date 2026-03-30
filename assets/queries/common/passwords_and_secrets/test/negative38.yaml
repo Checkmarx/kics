@@ -1,3 +1,4 @@
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99  - "Avoiding Secrets Manager arn"  allow-rule-test
 Type: AWS::Glue::Connection
 Resources:
   Properties:
@@ -9,18 +10,18 @@ Resources:
               - ""
               - - "mongodb://{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test  # positive1
           USERNAME:
             Fn::Join:
               - ""
               - - "{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:username::}}
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:username::}}       # positive2
           PASSWORD:
             Fn::Join:
               - ""
               - - "{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:password::}}
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:password::}}        # positive3
           JDBC_ENFORCE_SSL: true
       ConnectionType: MONGODB

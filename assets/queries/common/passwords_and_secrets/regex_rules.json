@@ -3,7 +3,7 @@
     {
       "id": "487f4be7-3fd9-4506-a07a-eae252180c08",
       "name": "Generic Password",
-      "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-. ]{4,})['\"]?",
+      "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+\\-,. ]{4,})['\"]?",
       "allowRules": [
         {
           "description": "Avoiding TF resource access",
@@ -15,19 +15,15 @@
         },
         {
           "description": "Avoiding Terraform 'optional' statement",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\((string|number|sensitive\\(string\\)|map\\(string\\)|set\\(string\\)|any)\\)$"
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\((string|number|sensitive\\(string\\)|map\\(string\\)|set\\(string\\)|any)\\)"
         },
         {
           "description": "Avoiding Terraform 'try' statement",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*try\\([^\"']+,[^\"']+\\)$"
-        },
-        {
-          "description": "Avoiding CF AllowUsersToChangePassword",
-          "regex": "['\"]?AllowUsersToChangePassword['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*try\\([^\"']+,[^\"']+\\)"
         },
         {
           "description": "Avoiding Ansible playbook update_password",
-          "regex": "['\"]?update_password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
+          "regex": "['\"]?update_password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+\\-,.]{4,})['\"]?"
         },
         {
           "description": "Allow placeholders",
@@ -39,7 +35,7 @@
         },
         {
           "description": "Allow password retrieved from ARM parameters",
-          "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?\\s*,\\s*parameters\\(['\"]([a-zA-Z][a-zA-Z0-9_-]*)['\"]['\"]?\\)"
+          "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?\\s*,\\s*parameters\\(['\"]([a-zA-Z][a-zA-Z0-9_\\-]*)['\"]['\"]?\\)"
         },
         {
           "description": "Avoiding Proto File fields",
@@ -51,10 +47,10 @@
     {
       "id": "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
       "name": "Generic Secret",
-      "regex": "(?i)['\"]?secret[_]?(key|value)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9/~^_!@#&%(){};=?*+-<>,:;[\\]%$]{10,})['\"]?",
+      "regex": "(?i)['\"]?secret[_]?(key|value)?['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@#&%(){};=?*+\\-.<>,:;[\\]%$]{10,})['\"]?",
       "entropies": [
         {
-          "group": 3,
+          "group": 2,
           "min": 2.8,
           "max": 8
         }
@@ -62,7 +58,7 @@
       "allowRules": [
         {
           "description": "Avoiding Square OAuth Secret",
-          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?(sq0csp-[0-9A-Za-z\\-_]{43})['\"]?"
+          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*[:=]\\s*['\"]?(sq0csp-[0-9A-Za-z\\-_]{43})['\"]?"
         },
         {
           "description": "Avoiding TF resource access",
@@ -70,26 +66,26 @@
         },
         {
           "description": "Avoiding Secrets Manager arn",
-          "regex": ":secretsmanager:[a-z0-9-*?]+:[0-9*?]+:(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+          "regex": ":secretsmanager:[a-z0-9-*?]+:[0-9*?]+:(?i)['\"]?secret[_]?(key)?['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+\\-]+)['\"]?"
         },
         {
           "description": "Avoiding CloudFormation Parameters Descriptions",
-          "regex": "['\"]?Description['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*${}+-.'\"]+)['\"]?"
+          "regex": "(?i)['\"]?Description['\"]?\\s*[:=]\\s*['\"]?.*['\"]?"
         },
         {
-          "description": "Avoiding Secrets from Azure Key Vault",
-          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?[${]+[A-Za-z0-9/~^_!@&%()=?*+-]+}?"
+          "description": "Avoiding Secrets from Variable Interpolation",
+          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*[:=]\\s*['\"]?[${]+[A-Za-z0-9/~^_!@&%()=?*+\\-]+}?"
         },
         {
           "description": "Allow secret retrieved from ARM parameters",
-          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*[:=]\\s*['\"]?\\[\\s*parameters\\(['\"][a-zA-Z][a-zA-Z0-9_-]*['\"]\\s*\\)\\s*\\]"
+          "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*[:=]\\s*['\"]?\\[\\s*parameters\\(['\"][a-zA-Z][a-zA-Z0-9_\\-]*['\"]\\s*\\)\\s*\\]"
         },
         {
           "description": "Allow secrets retrieved from Bicep getSecret built in function",
-          "regex": "(?i)['\"]?secret[_]?(key|value)?['\"]?\\s*(:|=)\\s*[a-zA-Z]*\\.getSecret\\(\\s*[\"']([A-Za-z0-9/~^_!@#&%(){};=?*+-<>,:;[\\]%$]+)[\"']\\)"
+          "regex": "(?i)['\"]?secret[_]?(key|value)?['\"]?\\s*[:=]\\s*[a-zA-Z]*\\.getSecret\\(\\s*[\"']([A-Za-z0-9/~^_!@#&%(){};=?*+\\-<>,:;[\\]%$]+)[\"']\\)"
         }
       ],
-      "specialMask": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*"
+      "specialMask": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*[:=]\\s*"
     },
     {
       "id": "51b5b840-cd0c-4556-98a7-fe5f4def80cf",
@@ -267,13 +263,13 @@
     {
       "id": "7f370dd5-eea3-4e5f-8354-3cb2506f9f13",
       "name": "Generic Access Key",
-      "regex": "(?i)^\\s*['\"]?access[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9\/~^_!@&%()=?*+-]+)['\"]?",
+      "regex": "(?i)^\\s*['\"]?access[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9\/~^_!@&%()=?*+\\-]+)['\"]?",
       "specialMask": "(?i)['\"]?access[_]?key['\"]?\\s*[:=]\\s*"
     },
     {
       "id": "2f665079-c383-4b33-896e-88268c1fa258",
       "name": "Generic Private Key",
-      "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
+      "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+\\-]+)['\"]?",
       "specialMask": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*",
       "allowRules": [
         {
@@ -293,7 +289,7 @@
     {
       "id": "baee238e-1921-4801-9c3f-79ae1d7b2cbc",
       "name": "Generic Token",
-      "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
+      "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+\\-]+)['\"]?",
       "allowRules": [
         {
           "description": "Avoiding Amazon MWS Auth Token",
@@ -325,15 +321,15 @@
         },
         {
           "description": "Avoiding TF creation token",
-          "regex": "(?i)['\"]?creation_token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+          "regex": "(?i)['\"]?creation_token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+\\-]+)['\"]?"
         },
         {
           "description": "Avoiding CLoudformation ServiceToken",
-          "regex": "['\"]?ServiceToken['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]+)['\"]?"
+          "regex": "['\"]?ServiceToken['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+\\-,.]+)['\"]?"
         },
         {
           "description": "Avoiding LifecycleActionToken Var",
-          "regex": "(?i)['\"]?LifecycleActionToken['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+          "regex": "(?i)['\"]?LifecycleActionToken['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+\\-]+)['\"]?"
         },
         {
           "description": "Avoiding Github id-token Default Values",
@@ -341,11 +337,11 @@
         },
         {
           "description": "Avoiding result_token Var",
-          "regex": "(?i)['\"]?result(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+          "regex": "(?i)['\"]?result(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+\\-]+)['\"]?"
         },
         {
           "description": "Avoiding next_token Var",
-          "regex": "(?i)['\"]?next(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+          "regex": "(?i)['\"]?next(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+\\-]+)['\"]?"
         },
         {
           "description": "Avoiding references to module outputs in Bicep",
@@ -366,13 +362,13 @@
     {
       "id": "0ec60fb3-5b78-4da0-bea0-b854fd9bf8b9",
       "name": "CloudFormation Secret Template",
-      "regex": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*['\"]?{([\\\":A-Za-z0-9/~^_!@&%()=?*+-]{10,})}",
+      "regex": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*['\"]?{([\\\":A-Za-z0-9/~^_!@&%()=?*+\\-]{10,})}",
       "specialMask": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*"
     },
     {
       "id": "9fb1cd65-7a07-4531-9bcf-47589d0f82d6",
       "name": "Encryption Key",
-      "regex": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*['\"]?[A-Za-z0-9/~^_!@&%()=?*+-]+['\"]?",
+      "regex": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*['\"]?[[A-Za-z0-9/~^_!@&%()=?*+\\-]+['\"]?",
       "allowRules": [
         {
           "description": "Avoiding TF resource access",
@@ -380,7 +376,7 @@
         },
         {
           "description": "Avoiding CLoudformation KeyName",
-          "regex": "['\"]?EncryptionKey['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]+)['\"]?"
+          "regex": "['\"]?EncryptionKey['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+\\-,.]+)['\"]?"
         },
         {
           "description": "Avoiding Proto File fields",
@@ -406,7 +402,7 @@
     {
       "id": "f05f238a-2ef0-4c39-9a36-951de1ba6dc9",
       "name": "Dockerfile ENV hardcoded password with omitted equals",
-      "regex": "(?i)ENV\\s+[A-Za-z0-9/~^_!@&%()=?*+-.]*password[A-Za-z0-9/~^_!@&%()=?*+-.]*\\s+['\"]?([A-Za-z0-9/~^_!@&%()=?*+-. ]{4,})['\"]?"
+      "regex": "(?i)ENV\\s+[A-Za-z0-9/~^_!@&%()=?*+\\-,.]*password[A-Za-z0-9/~^_!@&%()=?*+\\-,.]*\\s+['\"]?([A-Za-z0-9/~^_!@&%()=?*+\\-,. ]{4,})['\"]?"
     }
   ],
   "allowRules": [
@@ -423,10 +419,6 @@
       "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*:\\s+(!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|!Not|Fn::Transform(:)?)\\s+\\.*"
     },
     {
-      "description": "Avoiding CF resolve",
-      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?({{resolve:)['\"]?"
-    },
-    {
       "description": "Avoiding Boolean's",
       "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?(true|false)['\"]?"
     },
@@ -436,7 +428,7 @@
     },
     {
       "description": "Avoiding array access",
-      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,}\\[([0-9]|['\"][a-zA-Z0-9]+['\"])\\])['\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+\\-,.]{4,}\\[([0-9]|['\"][a-zA-Z0-9]+['\"])\\])['\"]?"
     },
     {
       "description": "Avoiding TF file function",

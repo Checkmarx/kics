@@ -1,0 +1,17 @@
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding ansible-vault encrypted variables"  allow-rule-test
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template using dynamic references
+
+Resources:
+  MyRDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      db_password: !vault |       # negative1
+        $ANSIBLE_VAULT;1.1;AES256
+        3436396162306336
+      api_token: !vault |         # negative2
+        $ANSIBLE_VAULT;1.1;AES256
+        7172737475767778
+      secret_key: !vault |        # is not caught by current "Generic Secret" - future proffing test
+        $ANSIBLE_VAULT;1.1;AES256
+        6162636465666768

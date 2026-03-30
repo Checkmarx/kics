@@ -1,4 +1,6 @@
-# Sample for 'Encryption Key' - avoiding TF resource access rule
+# "Encryption Key"  - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding TF resource access"  allow-rule-test - #1
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables"        allow-rule-test - #2
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding array access"        allow-rule-test - #3
 terraform {
   required_providers {
     aws = {
@@ -18,26 +20,6 @@ variable "encryption_key" {
   sensitive   = true
 }
 
-variable "environment" {
-  description = "Deployment environment"
-  type        = string
-  default     = "production"
-}
-
-variable "enabled" {
-  description = "Whether to enable resources"
-  type        = bool
-  default     = true
-}
-
-variable "clients" {
-  description = "Client configurations"
-  type = object({
-    storage = map(object({
-      enabled = bool
-    }))
-  })
-}
 
 resource "aws_kms_key" "client_encryption_key" {
   for_each = { for k, v in var.clients.storage : k => v if var.enabled }
@@ -58,21 +40,21 @@ module "storage" {
   for_each = { for k, v in var.clients.storage : k => v if var.enabled }
   source   = "./modules/storage"
 
-  encryption_key = aws_kms_key.client_encryption_key[each.key].arn
+  encryption_key = aws_kms_key.client_encryption_key[each.key].arn  #1
 }
 
 module "storage_2" {
   for_each = { for k, v in var.clients.storage : k => v if var.enabled }
   source   = "./modules/storage"
 
-  encryption_key = aws_kms_key[each.key].client_encryption_key.arn
+  encryption_key = aws_kms_key[each.key].client_encryption_key.arn  #1
 }
 
 module "storage_3" {
   for_each = { for k, v in var.clients.storage : k => v if var.enabled }
   source   = "./modules/storage"
 
-  encryption_key = aws_kms_key["index"].client_encryption_key.arn
+  encryption_key = aws_kms_key["index"].client_encryption_key.arn   #3
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "bucket_enc" {
@@ -82,7 +64,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "bucket_enc" {
   rule {
     apply_server_side_encryption_by_default {
       sse_algorithm     = "aws:kms"
-      encryption_key = [for k in aws_kms_key.client_encryption_key : k.arn]
+      kms_master_key_id = [for k in aws_kms_key.client_encryption_key : k.arn]  #1
     }
   }
 }
@@ -90,25 +72,19 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "bucket_enc" {
 module "optional_encryption" {
   source = "./modules/storage"
 
-  encryption_key = null
+  encryption_key = null #1
 }
 
 module "database" {
   source = "./modules/database"
 
-  encryption_key = var.encryption_key
-}
-
-module "encryption" {
-  source = "./modules/encryption"
-
-  environment = var.environment
+  encryption_key = var.encryption_key #2
 }
 
 module "app" {
   source = "./modules/app"
 
-  encryption_key = module.encryption.key_output.value
+  encryption_key = module.encryption.key_output.value #1
 }
 
 data "aws_kms_key" "existing" {
@@ -118,7 +94,7 @@ data "aws_kms_key" "existing" {
 module "legacy" {
   source = "./modules/legacy"
 
-  encryption_key = data.aws_kms_key.existing.arn
+  encryption_key = data.aws_kms_key.existing.arn  #1
 }
 
 locals {
@@ -130,5 +106,5 @@ locals {
 module "monitoring" {
   source = "./modules/monitoring"
 
-  encryption_key = local.encryption_config.key_arn
+  encryption_key = local.encryption_config.key_arn  #1
 }
