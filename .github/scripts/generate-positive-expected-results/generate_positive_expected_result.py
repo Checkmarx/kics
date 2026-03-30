@@ -3,13 +3,14 @@ import json
 import os
 import subprocess
 import sys
-import time
 
 FIELD_ORDER = [
     "queryName", "severity", "line", "fileName",
     "resourceType", "resourceName", "searchKey", "searchValue",
     "expectedValue", "actualValue", "issueType", "similarityID", "search_line",
 ]
+
+KICS_RESULT_CODES = {0, 20, 30, 40, 50, 60}
 
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT   = os.path.normpath(os.path.join(SCRIPT_DIR, "../../.."))
@@ -40,8 +41,7 @@ def build_command(query_id: str, scan_path: str, payload_path: str, output_path:
         "--experimental-queries",
         "--bom",
         "--enable-openapi-refs",
-        "--kics_compute_new_simid"        
-        #"--ignore-on-exit", "results"
+        "--kics_compute_new_simid"
     ]
 
 
@@ -53,11 +53,10 @@ def run_scan(query_id: str, scan_path: str, payload_path: str, output_path: str,
     print("-" * 60)
 
     try:
-        result = subprocess.run(command, cwd=REPO_ROOT, check=True)
+        result = subprocess.run(command, cwd=REPO_ROOT)
+        if result.returncode not in KICS_RESULT_CODES:
+            print(f"\n[ERROR] Scan failed with return code {result.returncode}.", file=sys.stderr)
         return result.returncode
-    except subprocess.CalledProcessError as e:
-        print(f"\n[ERROR] Scan failed with return code {e.returncode}.", file=sys.stderr)
-        return e.returncode
     except FileNotFoundError:
         print("\n[ERROR] 'go' not found. Make sure Go is installed and in your PATH.", file=sys.stderr)
         return 1
@@ -93,21 +92,21 @@ def find_positive_tests(query_path: str) -> list[tuple[str, str]]:
                     continue
                 positives.append((label, file_path))
         else:
-            # File: positiveX.<ext>
+            # File: positive.<ext> or positiveX.<ext>
             suffix = entry[len("positive"):].split(".")[0]
-            if not suffix.isdigit():
-                continue
+            if suffix and not suffix.isdigit():
+                continue  # skip positive_expected_result.json etc.
             positives.append((f"positive{suffix}", full_path))
 
     positives.sort(key=lambda x: x[0])
     return positives
 
 
-def run_query_scans(query_id: str, query_path: str) -> list[tuple[str, str, int]]:
+def run_query_scans(query_id: str, query_path: str) -> tuple[list[tuple[str, str, int]], bool]:
     positives = find_positive_tests(query_path)
     if not positives:
         print(f"[WARN] No positive tests found in {query_path}/test, skipping.", file=sys.stderr)
-        return []
+        return [], False
 
     payloads_dir = os.path.join(query_path, "payloads")
     os.makedirs(payloads_dir, exist_ok=True)
@@ -121,21 +120,22 @@ def run_query_scans(query_id: str, query_path: str) -> list[tuple[str, str, int]
         output_name  = f"{label}.json"
         print(f"\n  -> {label}: {os.path.relpath(scan_path, REPO_ROOT)}")
         rc = run_scan(query_id, scan_path, payload_path, output_path, output_name)
-        if rc != 0:
+        if rc not in KICS_RESULT_CODES:
             failed.append((scan_path, payload_path, rc))
 
-    collect_and_write_expected_results(query_path)
-    return failed
+    written = collect_and_write_expected_results(query_path)
+    return failed, written
 
 
-def collect_and_write_expected_results(query_path: str) -> None:
+def collect_and_write_expected_results(query_path: str) -> bool:
     """
     Read all positive*.json result files from results/, extract findings,
-    sort by (fileName, line), and write test/positive_expected_result.json.
+    sort by (fileName, line, issueType, searchKey, similarityID), and write
+    test/positive_expected_result.json. Returns True if the file was written.
     """
     results_dir = os.path.join(query_path, "results")
     if not os.path.isdir(results_dir):
-        return
+        return False
 
     entries = []
     for filename in sorted(os.listdir(results_dir)):
@@ -144,7 +144,8 @@ def collect_and_write_expected_results(query_path: str) -> None:
         with open(os.path.join(results_dir, filename), encoding="utf-8") as f:
             data = json.load(f)
 
-        for query in data.get("queries", []):
+        all_findings = data.get("queries", []) + data.get("bill_of_materials", [])
+        for query in all_findings:
             query_name = query.get("query_name", "")
             severity   = query.get("severity", "")
             for file_entry in query.get("files", []):
@@ -165,6 +166,9 @@ def collect_and_write_expected_results(query_path: str) -> None:
                 }
                 entries.append({k: entry[k] for k in FIELD_ORDER})
 
+    if not entries:
+        return False
+
     entries.sort(key=lambda x: (
         x["fileName"], x["line"], x["issueType"], x["searchKey"], x["similarityID"]
     ))
@@ -175,6 +179,7 @@ def collect_and_write_expected_results(query_path: str) -> None:
         f.write("\n")
 
     print(f"  -> Written {len(entries)} entries to {os.path.relpath(out_path, REPO_ROOT)}")
+    return True
 
 
 def iter_queries():
@@ -196,30 +201,35 @@ def main():
     args = parse_args()
 
     if args.run_all:
-        all_failed = []
+        all_failed    = []
+        written_count = 0
         queries = list(iter_queries())
-        print(f"Found {len(queries)} queries. Starting scans...\n")
-        time.sleep(5) # mudar para menos, isto é só para efeitos de debug
-        for query_id, query_path in queries:
-            print(f"\n=== {os.path.relpath(query_path, REPO_ROOT)} ({query_id}) ===")
-            failed = run_query_scans(query_id, query_path)
+        total   = len(queries)
+        width   = len(str(total))
+        print(f"Found {total} queries. Starting scans...\n")
+        for idx, (query_id, query_path) in enumerate(queries, start=1):
+            print(f"\n[{idx:{width}d}/{total}] {os.path.relpath(query_path, REPO_ROOT)}")
+            failed, written = run_query_scans(query_id, query_path)
             all_failed.extend(failed)
+            if written:
+                written_count += 1
 
         print("\n" + "=" * 60)
+        print(f"[SUMMARY] {written_count}/{total} positive_expected_result.json written")
         if all_failed:
-            print(f"[SUMMARY] {len(all_failed)} scan(s) failed:")
+            print(f"          {len(all_failed)} scan(s) failed:")
             for scan_path, payload_path, rc in all_failed:
                 print(f"  - {os.path.relpath(scan_path, REPO_ROOT)} → exit {rc}")
             sys.exit(1)
         else:
-            print(f"[SUMMARY] All scans completed successfully.")
+            print("          All scans completed successfully.")
             sys.exit(0)
     else:
         if not args.queryPath:
             print("[ERROR] --queryPath is required when not using --run-all.", file=sys.stderr)
             sys.exit(1)
         query_path = os.path.normpath(os.path.join(REPO_ROOT, args.queryPath))
-        failed = run_query_scans(args.queryID, query_path)
+        failed, _ = run_query_scans(args.queryID, query_path)
         sys.exit(1 if failed else 0)
 
 
