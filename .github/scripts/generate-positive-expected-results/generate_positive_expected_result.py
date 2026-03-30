@@ -40,7 +40,8 @@ def build_command(query_id: str, scan_path: str, payload_path: str, output_path:
         "--experimental-queries",
         "--bom",
         "--enable-openapi-refs",
-        "--ignore-on-exit", "results"
+        "--kics_compute_new_simid"        
+        #"--ignore-on-exit", "results"
     ]
 
 
