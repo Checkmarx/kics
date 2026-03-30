@@ -69,7 +69,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'deploy.resources.limits' should be defined",
 		"keyActualValue": "'deploy.resources.limits' is not defined",
-		"searchLine": common_lib.build_search_line(["services", name, "deploy", "resources"], []),
+		"searchLine": common_lib.build_search_line(["potatos"], []),
     }
 }
 
