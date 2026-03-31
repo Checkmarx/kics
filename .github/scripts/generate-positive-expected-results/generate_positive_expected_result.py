@@ -157,6 +157,7 @@ def collect_and_write_expected_results(query_path: str) -> bool:
         with open(os.path.join(results_dir, filename), encoding="utf-8") as f:
             data = json.load(f)
 
+        all_findings = data.get("queries", []) + data.get("bill_of_materials", [])
         for query in all_findings:
             query_name = query.get("query_name", "")
             severity   = query.get("severity", "")
