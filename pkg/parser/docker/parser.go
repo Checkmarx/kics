@@ -133,7 +133,7 @@ func (p *Parser) GetKind() model.FileKind {
 
 // SupportedExtensions returns Dockerfile extensions
 func (p *Parser) SupportedExtensions() []string {
-	return []string{".dockerfile"}
+	return []string{".dockerfile", ".ubi8", ".debian"}
 }
 
 // SupportedTypes returns types supported by this parser, which are dockerfile
