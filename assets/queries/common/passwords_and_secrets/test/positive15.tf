@@ -1,5 +1,5 @@
-# "AWS Access Key" - 76c0bcde-903d-456e-ac13-e58c34987852  positive-test
-# "AWS Secret Key" - 83ab47ff-381d-48cd-bac5-fb32222f54af  positive-test
+# "AWS Access Key" - 76c0bcde-903d-456e-ac13-e58c34987852  positive-test (line 16)
+# "AWS Secret Key" - 83ab47ff-381d-48cd-bac5-fb32222f54af  positive-test (line 17)
 resource "aws_instance" "web_host" {
   # ec2 have plain text secrets in user data
   ami           = var.ami

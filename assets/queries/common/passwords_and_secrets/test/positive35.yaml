@@ -1,5 +1,5 @@
-# "Google OAuth Access Token" - 41a1ca8d-f466-4084-a8c9-50f8b22200d5                                         positive-test
-# "Generic Token"             - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Google OAuth Access Token"  allow-rule-test
+# "Google OAuth Access Token" - 41a1ca8d-f466-4084-a8c9-50f8b22200d5                                         positive-test   - #1
+# "Generic Token"             - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Google OAuth Access Token"  allow-rule-test - #2
 apiVersion: v1
 kind: Config
 users:
@@ -12,7 +12,7 @@ users:
   user:
     auth-provider:
       config:
-        access-token: ya29.Radftwefewuifdebkw2_23232427t42wdbjsvdjavdajvdadkd # positive1
+        access-token: ya29.Radftwefewuifdebkw2_23232427t42wdbjsvdjavdajvdadkd #1 & #2
         cmd-args: config config-helper --format=json
         cmd-path: /Users/dave/google-cloud-sdk/bin/gcloud
         expiry: 2021-10-28T15:12:03.000Z

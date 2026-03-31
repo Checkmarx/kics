@@ -10,13 +10,13 @@ Resources:
               - ""
               - - "mongodb://{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:*:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test  # positive1
+                - :secretsmanager:*:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test  # negative1
           USERNAME:
             Fn::Join:
               - ""
               - - "{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:*:secret:/test/resources/docdb-test:SecretString:username::}}           # positive2
+                - :secretsmanager:eu-west-1:*:secret:/test/resources/docdb-test:SecretString:username::}}           # negative2
           PASSWORD:
             Fn::Join:
               - ""

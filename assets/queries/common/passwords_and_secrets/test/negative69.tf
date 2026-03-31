@@ -1,4 +1,4 @@
-# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding next_token Var"  allow-rule-test
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding next_token Var"  allow-rule-test (line 21)
 resource "aws_lambda_function" "list_resources" {
   function_name = "list-all-resources"
   runtime       = "python3.12"

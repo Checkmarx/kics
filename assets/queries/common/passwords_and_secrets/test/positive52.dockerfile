@@ -2,6 +2,7 @@
 FROM baseImage
 
 ENV ARTEMIS_USER=artemis
+# positive1:
 ENV ARTEMIS_PASSWORD=artemis
 
 RUN apk add --no-cache git \

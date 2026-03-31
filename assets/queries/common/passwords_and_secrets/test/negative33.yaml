@@ -1,6 +1,5 @@
 # "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding TF resource access" allow-rule-test - #1 (line 10)
 # Global allow rule  - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding Boolean's"          allow-rule-test - #2 (line 11)
-# Done through "Avoiding TF resource access" and "Avoiding Boolean's" allow rules
 Resources:
   LambdaFunctionV2:
     Type: 'AWS::Lambda::Function'

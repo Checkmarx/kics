@@ -1,5 +1,5 @@
 {
-  "metadata": "'Generic Secret' - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - 'Allow secret retrieved from ARM parameters'  allow-rule-test",
+  "metadata": "'Generic Secret' - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - 'Allow secret retrieved from ARM parameters'  allow-rule-test (line 11)",
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {

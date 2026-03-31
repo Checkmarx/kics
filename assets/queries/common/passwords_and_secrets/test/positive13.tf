@@ -1,4 +1,4 @@
-# "Asymmetric private key" - 51b5b840-cd0c-4556-98a7-fe5f4def80cf  positive-test
+# "Asymmetric private key" - 51b5b840-cd0c-4556-98a7-fe5f4def80cf  positive-test (line 5)
 resource "aws_transfer_ssh_key" "example" {
 	server_id = aws_transfer_server.example.id
 	user_name = aws_transfer_user.example.user_name

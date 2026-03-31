@@ -11,7 +11,7 @@ variables:
 jobs:
   job_build:
     stage: build
-    script: #2:
+    script:                                 #2:
       - if [[ -z "${GIT_PRIVATE_KEY:-}" ]]; then
           echo "Missing GIT_PRIVATE_KEY variable!"
           exit 1

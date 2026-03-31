@@ -11,7 +11,7 @@ users:
   user:
     auth-provider:
       config:
-        access-token: '{.credential.oauth_access_token_}'
+        access-token: '{.credential.oauth_access_token_}' # negative1
         cmd-args: config config-helper --format=json
         cmd-path: /Users/dave/google-cloud-sdk/bin/gcloud
         expiry: 2021-10-28T15:12:03.000Z

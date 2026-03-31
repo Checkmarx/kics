@@ -1,7 +1,7 @@
-# "Twilio API Key"  - e0f01838-b1c2-4669-b84b-981949ebe5ed                              positive-test
-# "Generic API Key" - 74736dd1-dd11-4139-beb6-41cd43a50317 - "Avoiding Twilio API Key"  allow-rule-test
+# "Twilio API Key"  - e0f01838-b1c2-4669-b84b-981949ebe5ed                              positive-test   - #1
+# "Generic API Key" - 74736dd1-dd11-4139-beb6-41cd43a50317 - "Avoiding Twilio API Key"  allow-rule-test - #2
 - hosts: all
   remote_user: root
   vars:
-    twilio_api_key: SKa7CF7acdcaf92Be4CCC52F4a2923BBB3  # positive1
+    twilio_api_key: SKa7CF7acdcaf92Be4CCC52F4a2923BBB3  #1 & #2
 

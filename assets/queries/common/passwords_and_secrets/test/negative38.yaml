@@ -10,18 +10,18 @@ Resources:
               - ""
               - - "mongodb://{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test  # positive1
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test  # negative1
           USERNAME:
             Fn::Join:
               - ""
               - - "{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:username::}}       # positive2
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:username::}}       # negative2
           PASSWORD:
             Fn::Join:
               - ""
               - - "{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:password::}}        # positive3
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:password::}}        # negative3
           JDBC_ENFORCE_SSL: true
       ConnectionType: MONGODB

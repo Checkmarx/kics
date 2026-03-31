@@ -21,6 +21,6 @@ module consumerModule '../SecretConsumer/Resource.bicep' = {
     systemName: systemName
     resourceName: resourceName
     tags: tags
-    apiClientSecret: kvTest.getSecret('secret-sample')  // positive1
+    apiClientSecret: kvTest.getSecret('secret-sample')  // negative1
   }
 }

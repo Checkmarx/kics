@@ -1,4 +1,4 @@
-# "Putty User Key File Content" - a007a85e-a2a7-4a81-803a-7a2ca0c65abb  positive-test
+# "Putty User Key File Content" - a007a85e-a2a7-4a81-803a-7a2ca0c65abb  positive-test (line 6)
 resource "aws_transfer_ssh_key" "example2" {
 	server_id = aws_transfer_server.example.id
 	user_name = aws_transfer_user.example.user_name
