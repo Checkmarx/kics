@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -11,6 +12,12 @@ FIELD_ORDER = [
 ]
 
 KICS_RESULT_CODES = {0, 1, 20, 30, 40, 50, 60}
+
+
+def _natural_sort_key(s: str):
+    """'positive2.tf' → ['positive', 2, '.tf'] so numeric parts sort numerically."""
+    return [int(c) if c.isdigit() else c for c in re.split(r'(\d+)', s)]
+
 
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT   = os.path.normpath(os.path.join(SCRIPT_DIR, "../../.."))
@@ -67,9 +74,13 @@ def find_positive_tests(query_path: str) -> list[tuple[str, str]]:
     Return a sorted list of (label, scan_path) for each positive test in test/.
 
     Handles two layouts:
-      - File:      test/positiveX.<ext>  → label='positiveX',   scan_path=the file
+      - File:      test/positiveX.<ext>  → label='positiveX_<ext>',  scan_path=the file
       - Directory: test/positiveX/       → for each positiveX_Y.<ext> inside,
-                                           label='positiveX_Y', scan_path=the file
+                                           label='positiveX_Y_<ext>', scan_path=the file
+
+    The extension is always included in the label so that files with the same
+    base name but different extensions (e.g. positive1.json / positive1.yaml)
+    produce distinct payloads and result files.
     """
     test_dir = os.path.join(query_path, "test")
     if not os.path.isdir(test_dir):
@@ -86,19 +97,21 @@ def find_positive_tests(query_path: str) -> list[tuple[str, str]]:
                 file_path = os.path.join(full_path, file)
                 if not os.path.isfile(file_path):
                     continue
-                label = os.path.splitext(file)[0]           # e.g. 'positive2_1'
-                after = label[len("positive"):]
-                if not after or not after[0].isdigit():     # skip positive_expected_result etc.
+                base_label = os.path.splitext(file)[0]      # e.g. 'positive2_1'
+                after = base_label[len("positive"):]
+                if not after or not after[0].isdigit():      # skip positive_expected_result etc.
                     continue
-                positives.append((label, file_path))
+                ext = os.path.splitext(file)[1].lstrip(".")  # e.g. 'json', 'yaml', 'tf'
+                positives.append((f"{base_label}_{ext}", file_path))
         else:
             # File: positive.<ext> or positiveX.<ext>
             suffix = entry[len("positive"):].split(".")[0]
             if suffix and not suffix.isdigit():
                 continue  # skip positive_expected_result.json etc.
-            positives.append((f"positive{suffix}", full_path))
+            ext = os.path.splitext(entry)[1].lstrip(".")     # e.g. 'json', 'yaml', 'tf'
+            positives.append((f"positive{suffix}_{ext}", full_path))
 
-    positives.sort(key=lambda x: x[0])
+    positives.sort(key=lambda x: _natural_sort_key(x[0]))
     return positives
 
 
@@ -144,7 +157,6 @@ def collect_and_write_expected_results(query_path: str) -> bool:
         with open(os.path.join(results_dir, filename), encoding="utf-8") as f:
             data = json.load(f)
 
-        all_findings = data.get("queries", []) + data.get("bill_of_materials", [])
         for query in all_findings:
             query_name = query.get("query_name", "")
             severity   = query.get("severity", "")
@@ -170,7 +182,7 @@ def collect_and_write_expected_results(query_path: str) -> bool:
         return False
 
     entries.sort(key=lambda x: (
-        x["fileName"], x["line"], x["issueType"], x["searchKey"], x["similarityID"]
+        _natural_sort_key(x["fileName"]), x["line"], x["issueType"], x["searchKey"], x["similarityID"]
     ))
 
     out_path = os.path.join(query_path, "test", "positive_expected_result.json")
