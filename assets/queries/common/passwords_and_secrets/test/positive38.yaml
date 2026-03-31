@@ -1,5 +1,5 @@
-# "CloudFormation Secret Template" - 0ec60fb3-5b78-4da0-bea0-b854fd9bf8b9                                         positive-test   - #1
-# Global allow rule                - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "!Ref is a cloudFormation reference"  allow-rule-test - #2
+# "CloudFormation Secret Template" - 0ec60fb3-5b78-4da0-bea0-b854fd9bf8b9                                                  positive-test   - #1
+# Global allow rule                - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding CloudFormation intrinsic functions"  allow-rule-test - #2
 Resources:
      MyAmpAppSecretManagerRotater:
         Type: AWS::SecretsManager::Secret

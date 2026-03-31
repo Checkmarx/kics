@@ -1,5 +1,5 @@
-# "Google OAuth Access Token" - 41a1ca8d-f466-4084-a8c9-50f8b22200d5                                   positive-test
-# "Generic Token"             - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Square Access Token"  allow-rule-test
+# "Google OAuth Access Token" - 41a1ca8d-f466-4084-a8c9-50f8b22200d5                                         positive-test
+# "Generic Token"             - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Google OAuth Access Token"  allow-rule-test
 apiVersion: v1
 kind: Config
 users:
