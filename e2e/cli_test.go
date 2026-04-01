@@ -50,7 +50,6 @@ func Test_E2E_CLI(t *testing.T) {
 					useMock = true
 				}
 
-				// fmt.Printf("Going to RunCommand with the first argument tt.Args.Args[%v] defined to : %v\n", arg, tt.Args.Args[arg])
 				out, err := utils.RunCommand(tt.Args.Args[arg], useDocker, useMock, kicsDockerImage)
 
 				// Check command Error
