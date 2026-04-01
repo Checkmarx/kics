@@ -1,4 +1,4 @@
-# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding CLoudformation ServiceToken"  allow-rule-test
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding CloudFormation ServiceToken"  allow-rule-test
 ---
 AWSTemplateFormatVersion: "2010-09-09"
 Description: >

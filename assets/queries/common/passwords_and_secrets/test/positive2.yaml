@@ -1,4 +1,4 @@
-# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (cloudformation)
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test (CloudFormation)
 Resources:
   RDSCluster1:
     Type: "AWS::RDS::DBCluster"
