@@ -294,5 +294,39 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		compare := reflect.DeepEqual(expectI.SeverityCounters, actualI.SeverityCounters)
 		require.True(t, compare, "Expected Severity Counters content: 'fixtures/%s' doesn't match the Actual Severity Counters content: 'output/%s", //nolint:lll
 			expectI.SeverityCounters, actualI.SeverityCounters)
+	case "result_analyze":
+		expectResult := model.AnalyzedPaths{}
+		actualResult := model.AnalyzedPaths{}
+
+		errE := json.Unmarshal([]byte(strings.Join(expect, "\n")), &expectResult)
+		require.NoError(t, errE,
+			"[fixtures/%s] Expected Result - Unmarshaling JSON file should not yield an error", expectFileName)
+
+		errW := json.Unmarshal([]byte(strings.Join(actual, "\n")), &actualResult)
+		require.NoError(t, errW,
+			"[output/%s] Actual Result - Unmarshaling JSON file should not yield an error", actualFileName)
+
+		sort.Strings(expectResult.Types)
+		sort.Strings(actualResult.Types)
+		require.Equal(t, expectResult.Types, actualResult.Types,
+			"Expected Types: %v\nActual Types: %v",
+			expectResult.Types, actualResult.Types)
+
+		// Adapt paths if running locally (dev)
+		if GetKICSDockerImageName() == "" {
+			for i, excPath := range expectResult.Exc {
+				expectResult.Exc[i] = strings.TrimPrefix(excPath, "e2e/")
+			}
+		}
+
+		sort.Strings(expectResult.Exc)
+		sort.Strings(actualResult.Exc)
+		require.Equal(t, expectResult.Exc, actualResult.Exc,
+			"Expected Exc: %v\nActual Exc: %v",
+			expectResult.Exc, actualResult.Exc)
+
+		require.Equal(t, expectResult.ExpectedLOC, actualResult.ExpectedLOC,
+			"Expected LOC: %d\nActual LOC: %d",
+			expectResult.ExpectedLOC, actualResult.ExpectedLOC)
 	}
 }
