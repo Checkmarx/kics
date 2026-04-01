@@ -305,7 +305,7 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		errW := json.Unmarshal([]byte(strings.Join(actual, "\n")), &actualResult)
 		require.NoError(t, errW,
 			"[output/%s] Actual Result - Unmarshaling JSON file should not yield an error", actualFileName)
-			
+
 		// Adapt paths if running locally (dev)
 		if GetKICSDockerImageName() == "" {
 			for i, excPath := range expectResult.Exc {
