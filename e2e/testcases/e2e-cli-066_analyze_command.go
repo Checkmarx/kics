@@ -13,7 +13,7 @@ func init() { //nolint
 					"--analyze-results", "/path/e2e/output/E2E_CLI_066_ANALYZE_RESULTS.json"},
 				[]string{"analyze",
 					"--analyze-path", "/path/e2e/fixtures/samples/positive.yaml",
-					"--analyze-results", "/path/e2e/output/E2E_CLI_066_ANALYZE_RESULTS_2.json"},	
+					"--analyze-results", "/path/e2e/output/E2E_CLI_066_ANALYZE_RESULTS_2.json"},
 			},
 			ExpectedAnalyzerResults: []ResultsValidation{
 				{
