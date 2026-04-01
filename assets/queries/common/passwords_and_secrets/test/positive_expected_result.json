@@ -458,7 +458,7 @@
   {
     "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
-    "line": 5,
+    "line": 6,
     "fileName": "positive52.dockerfile"
   },
   {
