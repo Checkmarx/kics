@@ -22,7 +22,7 @@ var (
 )
 
 const (
-	perms = 0750
+	perms = 0640
 )
 
 // NewAnalyzeCmd creates a new instance of the analyze Command
