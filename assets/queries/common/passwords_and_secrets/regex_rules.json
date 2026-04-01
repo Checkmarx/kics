@@ -70,7 +70,7 @@
         },
         {
           "description": "Avoiding CloudFormation Parameters Descriptions",
-          "regex": "(?i)['\"]?Description['\"]?\\s*[:=]\\s*['\"]?.*['\"]?"
+          "regex": "['\"]?Description['\"]?\\s*[:=]\\s*['\"]?.*['\"]?"
         },
         {
           "description": "Avoiding Secrets from Variable Interpolation",
