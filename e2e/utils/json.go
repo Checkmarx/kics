@@ -309,12 +309,12 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		// Adapt paths if running locally (dev)
 		if GetKICSDockerImageName() == "" {
 			for i, excPath := range expectResult.Exc {
-				expectResult.Exc[i] = strings.TrimPrefix(excPath, "e2e/")
+				expectResult.Exc[i] = KicsDevPathAdapter(excPath)
 			}
 			for platform, stats := range expectResult.FileStats {
 				adaptedFilesByDir := make(map[string]int)
 				for dir, count := range stats.FilesByDir {
-					adaptedFilesByDir[strings.TrimPrefix(dir, "e2e/")] = count
+					adaptedFilesByDir[KicsDevPathAdapter(dir)] = count
 				}
 				stats.FilesByDir = adaptedFilesByDir
 				expectResult.FileStats[platform] = stats
