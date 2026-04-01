@@ -1,0 +1,13 @@
+{
+  "id": "7c1e5f3a-2b9d-4e6c-a8f0-1d3c7b5e9a2f",
+  "queryName": "IAM Role OIDC Trust Wildcard Sub Condition",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "An AWS IAM role that uses 'sts:AssumeRoleWithWebIdentity' should not allow a wildcard in the 'sub' (subject) claim condition. Using StringLike with a value where the repository or project segment is a wildcard (e.g. 'repo:*' or 'project_path:*:...') allows any repository or project on the OIDC provider to assume the role.",
+  "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html",
+  "platform": "Terraform",
+  "descriptionID": "7c1e5f3a",
+  "cloudProvider": "aws",
+  "cwe": "284",
+  "riskScore": "8.5"
+}
