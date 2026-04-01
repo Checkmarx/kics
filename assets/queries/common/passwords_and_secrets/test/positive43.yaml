@@ -1,9 +1,11 @@
-# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc  positive-test
+# "Generic Token"   - baee238e-1921-4801-9c3f-79ae1d7b2cbc                         positive-test   - #1
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding CF resolve" allow-rule-test - #2
 Resources:
   ElastiCacheReplicationGroup:
     Type: AWS::ElastiCache::ReplicationGroup
     Properties:
-      AuthToken: '{{resolve:secretsmanager:/elasticache/replicationgroup/authtoken:SecretString:password}}' # positive1
+      First_AuthToken: 'exposed_token' #1
+      Second_AuthToken: '{{resolve:secretsmanager:/elasticache/replicationgroup/authtoken:SecretString:password}}' #2
       CacheNodeType: cache.m5.large
       CacheSubnetGroupName: subnet-foobar
       Engine: redis
