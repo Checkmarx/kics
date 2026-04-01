@@ -338,7 +338,7 @@
   {
     "queryName": "Passwords And Secrets - CloudFormation Secret Template",
     "severity": "HIGH",
-    "line": 7,
+    "line": 18,
     "fileName": "positive38.yaml"
   },
   {
@@ -374,7 +374,7 @@
   {
     "queryName": "Passwords And Secrets - Generic Token",
     "severity": "HIGH",
-    "line": 6,
+    "line": 7,
     "fileName": "positive43.yaml"
   },
   {
