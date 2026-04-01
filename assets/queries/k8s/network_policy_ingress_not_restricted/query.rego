@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.spec.ingress[%d]", [metadata.name, j]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.ingress", [metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("NetworkPolicy '%s' ingress rule [%d] should define a 'from' block to restrict source IPs", [metadata.name, j]),
 		"keyActualValue": sprintf("NetworkPolicy '%s' ingress rule [%d] has no 'from' block, allowing traffic from all sources", [metadata.name, j]),
