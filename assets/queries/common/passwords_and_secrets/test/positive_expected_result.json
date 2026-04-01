@@ -338,7 +338,7 @@
   {
     "queryName": "Passwords And Secrets - CloudFormation Secret Template",
     "severity": "HIGH",
-    "line": 9,
+    "line": 7,
     "fileName": "positive38.yaml"
   },
   {

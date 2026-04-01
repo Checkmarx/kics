@@ -293,27 +293,27 @@
       "allowRules": [
         {
           "description": "Avoiding Amazon MWS Auth Token",
-          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[=:]\\s*['\"]?amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}['\"]?"
+          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[:=]\\s*['\"]?amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}['\"]?"
         },
         {
           "description": "Avoiding Slack Token",
-          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[=:]\\s*['\"]?xox[pboa]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32}['\"]?"
+          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[:=]\\s*['\"]?xox[pboa]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32}['\"]?"
         },
         {
           "description": "Avoiding Square Access Token",
-          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[=:]\\s*['\"]?sq0atp-[0-9A-Za-z\\-_]{22}['\"]?"
+          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[:=]\\s*['\"]?sq0atp-[0-9A-Za-z\\-_]{22}['\"]?"
         },
         {
           "description": "Avoiding Google OAuth Access Token",
-          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[=:]\\s*['\"]?ya29\\.[0-9A-Za-z\\-_]+['\"]?"
+          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[:=]\\s*['\"]?ya29\\.[0-9A-Za-z\\-_]+['\"]?"
         },
         {
           "description": "Avoiding PayPal Braintree Access Token",
-          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[=:]\\s*['\"]?access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}['\"]?"
+          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[:=]\\s*['\"]?access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}['\"]?"
         },
         {
           "description": "Avoiding Facebook Access Token",
-          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[=:]\\s*['\"]?EAACEdEose0cBA[0-9A-Za-z]+['\"]?"
+          "regex": "(?i)['\"]?token_?(key)?['\"]?\\s*[:=]\\s*['\"]?EAACEdEose0cBA[0-9A-Za-z]+['\"]?"
         },
         {
           "description": "Avoiding TF resource access",
@@ -415,16 +415,20 @@
       "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*:\\s+(!Ref|!GetAtt|!Sub|!FindInMap|!If|!GetAZs|!ImportValue|!Join|!Select|!Split|!Not|Fn::Transform:?)\\s+.*"
     },
     {
+      "description": "Avoiding CF resolve",
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[:=]\\s*['\"]?{{resolve:[^'\"]*['\"]?"
+    },
+    {
       "description": "Avoiding Boolean's",
-      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?(true|false)['\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[:=]\\s*['\"]?(true|false)['\"]?"
     },
     {
       "description": "Avoiding arn",
-      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?arn:['\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[:=]\\s*['\"]?arn:['\"]?"
     },
     {
       "description": "Avoiding array access",
-      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?[A-Za-z0-9/~^_!@&%()=?*+\\-,.]{4,}\\[([0-9]+|['\"][a-zA-Z0-9]+['\"])]['\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[:=]\\s*['\"]?[A-Za-z0-9/~^_!@&%()=?*+\\-,.]{4,}\\[([0-9]+|['\"][a-zA-Z0-9]+['\"])]['\"]?"
     },
     {
       "description": "Avoiding TF file function",
@@ -432,11 +436,11 @@
     },
     {
       "description": "Avoiding ansible-vault encrypted variables",
-      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?!vault \\|['\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[:=]\\s*['\"]?!vault \\|['\"]?"
     },
     {
       "description": "Avoiding sha-hashed mysql native passwords",
-      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?\\*[0-9A-F]{40}['\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[:=]\\s*['\"]?\\*[0-9A-F]{40}['\"]?"
     }
   ]
 }
