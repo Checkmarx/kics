@@ -1318,3 +1318,22 @@ func TestFilterOutDuplicatedHelmVulnerabilities(t *testing.T) {
 		})
 	}
 }
+
+// TestCheckQueryComment tests the checkQueryComment helper function.
+func TestCheckQueryComment(t *testing.T) {
+	qil := model.QueryIgnoreLines{
+		"abc-uuid": []int{10, 11, 12},
+		"def-uuid": []int{20},
+	}
+	// Should suppress
+	assert.True(t, checkQueryComment(10, "abc-uuid", qil))
+	assert.True(t, checkQueryComment(11, "abc-uuid", qil))
+	assert.True(t, checkQueryComment(12, "abc-uuid", qil))
+	assert.True(t, checkQueryComment(20, "def-uuid", qil))
+	// Should NOT suppress (wrong query)
+	assert.False(t, checkQueryComment(10, "def-uuid", qil))
+	// Should NOT suppress (wrong line)
+	assert.False(t, checkQueryComment(99, "abc-uuid", qil))
+	// Should NOT suppress (nil map)
+	assert.False(t, checkQueryComment(10, "abc-uuid", nil))
+}

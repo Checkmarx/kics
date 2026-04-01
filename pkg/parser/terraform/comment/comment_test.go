@@ -123,7 +123,7 @@ func TestComment_ParseComments(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := ParseComments(tt.content, tt.filename)
+			got, _, err := ParseComments(tt.content, tt.filename)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("ParseComments() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -177,7 +177,7 @@ func TestComment_GetIgnoreLines(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ignore, err := ParseComments(tt.content, tt.filename)
+			ignore, _, err := ParseComments(tt.content, tt.filename)
 			require.NoError(t, err)
 			file, diagnostics := hclsyntax.ParseConfig(tt.content, tt.filename, hcl.Pos{Byte: 0, Line: 1, Column: 1})
 			require.False(t, diagnostics.HasErrors())

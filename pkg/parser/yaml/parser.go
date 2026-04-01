@@ -196,6 +196,11 @@ func emptyDocument() *model.Document {
 	return &model.Document{}
 }
 
+// GetQueryIgnoreLines returns the per-query suppressed lines collected during the last Parse call.
+func (p *Parser) GetQueryIgnoreLines() model.QueryIgnoreLines {
+	return model.NewIgnore.GetQueryLines()
+}
+
 // GetResolvedFiles returns resolved files
 func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
 	return p.resolvedFiles

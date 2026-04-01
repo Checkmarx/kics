@@ -748,7 +748,7 @@ func Test_value(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			res := tt.input.value()
+			res, _ := tt.input.value()
 			assert.Equal(t, string(res), tt.want)
 		})
 	}

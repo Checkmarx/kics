@@ -13,6 +13,7 @@ import (
 
 // Parser is a Dockerfile parser
 type Parser struct {
+	queryIgnoreLines model.QueryIgnoreLines
 }
 
 // Resource Separates the list of commands by file
@@ -122,8 +123,14 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	documents = append(documents, *doc)
 
 	ignoreLines := ignoreStruct.getIgnoreLines()
+	p.queryIgnoreLines = ignoreStruct.getQueryIgnoreLines()
 
 	return documents, ignoreLines, nil
+}
+
+// GetQueryIgnoreLines returns the per-query suppressed lines from the last Parse call.
+func (p *Parser) GetQueryIgnoreLines() model.QueryIgnoreLines {
+	return p.queryIgnoreLines
 }
 
 // GetKind returns the kind of the parser

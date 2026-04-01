@@ -10,7 +10,6 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
 	"github.com/Checkmarx/kics/v2/test"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
@@ -102,7 +101,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			args: args{
 				ctx: nil,
 				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
+					".dockerfile": struct{}{},
 				},
 				sink:         mockSink,
 				resolverSink: mockErrResolverSink,
@@ -118,7 +117,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			args: args{
 				ctx: nil,
 				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
+					".dockerfile": struct{}{},
 				},
 				sink:         mockErrSink,
 				resolverSink: mockErrResolverSink,
@@ -134,7 +133,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			args: args{
 				ctx: nil,
 				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
+					".dockerfile": struct{}{},
 				},
 				sink:         mockSink,
 				resolverSink: mockResolverSink,
@@ -150,7 +149,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			args: args{
 				ctx: nil,
 				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
+					".dockerfile": struct{}{},
 				},
 				sink:         mockSink,
 				resolverSink: mockResolverSink,
@@ -182,7 +181,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				ctx:       nil,
 				queryName: "template",
 				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
+					".dockerfile": struct{}{},
 				},
 				sink:         mockSink,
 				resolverSink: mockErrResolverSink,
@@ -198,7 +197,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 			args: args{
 				ctx: nil,
 				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
+					".dockerfile": struct{}{},
 				},
 				sink:         mockSink,
 				resolverSink: mockResolverSink,
@@ -312,7 +311,7 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			args: args{
 				info: infoFile,
 				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
+					".dockerfile": struct{}{},
 				},
 				path: filepath.FromSlash("assets/queries"),
 			},
@@ -364,7 +363,7 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			args: args{
 				info: infoFile,
 				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
+					".dockerfile": struct{}{},
 				},
 				path: filepath.FromSlash("assets/queries"),
 			},

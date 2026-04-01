@@ -1,0 +1,11 @@
+on:
+  pull_request_target:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # kics-scan ignore-block=d3a8b4c1-f2e7-4a9b-8c5d-1e6f0a2b3c4d
+      - uses: actions/checkout@v3
+        with:
+      # kics-scan ignore-line=d3a8b4c1-f2e7-4a9b-8c5d-1e6f0a2b3c4d
+          ref: ${{ github.event.pull_request.head.sha }}

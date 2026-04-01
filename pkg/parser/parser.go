@@ -22,6 +22,12 @@ type kindParser interface {
 	GetResolvedFiles() map[string]model.ResolvedFile
 }
 
+// queryIgnoreLinesProvider is an optional interface that parsers can implement
+// to provide per-query suppressed line information.
+type queryIgnoreLinesProvider interface {
+	GetQueryIgnoreLines() model.QueryIgnoreLines
+}
+
 // Builder is a representation of parsers that will be construct
 type Builder struct {
 	parsers []kindParser
@@ -76,13 +82,14 @@ type Parser struct {
 
 // ParsedDocument is a struct containing data retrieved from parsing
 type ParsedDocument struct {
-	Docs          []model.Document
-	Kind          model.FileKind
-	Content       string
-	IgnoreLines   []int
-	CountLines    int
-	ResolvedFiles map[string]model.ResolvedFile
-	IsMinified    bool
+	Docs             []model.Document
+	Kind             model.FileKind
+	Content          string
+	IgnoreLines      []int
+	QueryIgnoreLines model.QueryIgnoreLines
+	CountLines       int
+	ResolvedFiles    map[string]model.ResolvedFile
+	IsMinified       bool
 }
 
 // CommentsCommands gets commands on comments in the file beginning, before the code starts
@@ -146,7 +153,7 @@ func (c *Parser) Parse(
 			cont = string(fileContent)
 		}
 
-		return ParsedDocument{
+		pd := ParsedDocument{
 			Docs:          obj,
 			Kind:          c.parsers.GetKind(),
 			Content:       cont,
@@ -154,7 +161,11 @@ func (c *Parser) Parse(
 			CountLines:    bytes.Count(resolved, []byte{'\n'}) + 1,
 			ResolvedFiles: c.parsers.GetResolvedFiles(),
 			IsMinified:    isMinified,
-		}, nil
+		}
+		if qp, ok := c.parsers.(queryIgnoreLinesProvider); ok {
+			pd.QueryIgnoreLines = qp.GetQueryIgnoreLines()
+		}
+		return pd, nil
 	}
 	return ParsedDocument{
 		Docs:        nil,

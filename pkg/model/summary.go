@@ -25,7 +25,7 @@ type VulnerableFile struct {
 	SimilarityID     string      `json:"similarity_id"`
 	OldSimilarityID  string      `json:"old_similarity_id,omitempty"`
 	Line             int         `json:"line"`
-	VulnLines        *[]CodeLine `json:"-"`
+	VulnLines        *[]CodeLine `json:"vuln_lines"`
 	ResourceType     string      `json:"resource_type,omitempty"`
 	ResourceName     string      `json:"resource_name,omitempty"`
 	IssueType        IssueType   `json:"issue_type"`

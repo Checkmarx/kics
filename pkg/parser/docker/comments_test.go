@@ -4,6 +4,7 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
 	"github.com/stretchr/testify/require"
 )
@@ -17,8 +18,9 @@ func Test_newIgnore(t *testing.T) {
 		{
 			name: "new ignore",
 			want: &ignore{
-				from:  make(map[string]bool),
-				lines: make([]int, 0),
+				from:       make(map[string]bool),
+				lines:      make([]int, 0),
+				queryLines: make(model.QueryIgnoreLines),
 			},
 		},
 	}

@@ -57,6 +57,29 @@ func GetIgnoreLines(file *FileMetadata) []int {
 	return ignoreLines
 }
 
+// GetQueryIgnoreLines returns a map of query UUID to suppressed lines for the given YAML file.
+func GetQueryIgnoreLines(file *FileMetadata) QueryIgnoreLines {
+	if !utils.Contains(filepath.Ext(file.FilePath), []string{".yml", ".yaml"}) {
+		return file.QueryLinesIgnore
+	}
+
+	NewIgnore.Reset()
+	var node yaml.Node
+
+	if err := yaml.Unmarshal([]byte(file.OriginalData), &node); err != nil {
+		log.Info().Msgf("failed to unmarshal file: %s", err)
+		return file.QueryLinesIgnore
+	}
+
+	if node.Kind == 1 && len(node.Content) == 1 {
+		visited := make(map[*yaml.Node]interface{})
+		_ = unmarshalWithVisited(node.Content[0], visited)
+		return NewIgnore.GetQueryLines()
+	}
+
+	return file.QueryLinesIgnore
+}
+
 /*
 	YAML Node TYPES
 

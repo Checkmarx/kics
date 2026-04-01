@@ -15,6 +15,8 @@ type comment string
 type Ignore struct {
 	// Lines is the lines to ignore
 	Lines []int
+	// QueryLines maps a query UUID to the set of line numbers suppressed for that query
+	QueryLines QueryIgnoreLines
 }
 
 var (
@@ -30,14 +32,37 @@ func (i *Ignore) build(lines []int) {
 	i.Lines = append(i.Lines, lines...)
 }
 
+// buildQuery appends lines to QueryLines[queryID]
+func (i *Ignore) buildQuery(queryID string, lines []int) {
+	defer memoryMu.Unlock()
+	memoryMu.Lock()
+	if i.QueryLines == nil {
+		i.QueryLines = make(QueryIgnoreLines)
+	}
+	i.QueryLines[queryID] = append(i.QueryLines[queryID], lines...)
+}
+
 // GetLines returns the lines to ignore
 func (i *Ignore) GetLines() []int {
 	return RemoveDuplicates(i.Lines)
 }
 
+// GetQueryLines returns the per-query lines to ignore
+func (i *Ignore) GetQueryLines() QueryIgnoreLines {
+	if i.QueryLines == nil {
+		return QueryIgnoreLines{}
+	}
+	result := make(QueryIgnoreLines, len(i.QueryLines))
+	for k, v := range i.QueryLines {
+		result[k] = RemoveDuplicates(v)
+	}
+	return result
+}
+
 // Reset resets the ignore struct
 func (i *Ignore) Reset() {
 	i.Lines = make([]int, 0)
+	i.QueryLines = make(QueryIgnoreLines)
 }
 
 // ignoreCommentsYAML sets the lines to ignore for a yaml file
@@ -66,11 +91,22 @@ func ignoreCommentsYAML(node *yaml.Node) {
 // processCommentYAML returns the lines to ignore
 func processCommentYAML(comment *comment, position int, content *yaml.Node, kind yaml.Kind, isFooter bool) (linesIgnore []int) {
 	linesIgnore = make([]int, 0)
-	switch com := (*comment).value(); com {
+	com, queryID := (*comment).value()
+	switch com {
 	case IgnoreLine:
 		linesIgnore = append(linesIgnore, processLine(kind, content, position)...)
 	case IgnoreBlock:
 		linesIgnore = append(linesIgnore, processBlock(kind, content.Content, position)...)
+	case IgnoreLineQuery:
+		if queryID != "" {
+			lines := processLine(kind, content, position)
+			NewIgnore.buildQuery(queryID, lines)
+		}
+	case IgnoreBlockQuery:
+		if queryID != "" {
+			lines := processBlock(kind, content.Content, position)
+			NewIgnore.buildQuery(queryID, lines)
+		}
 	default:
 		linesIgnore = append(linesIgnore, processRegularLine(string(*comment), content, position, isFooter)...)
 	}
@@ -193,8 +229,8 @@ func getNodeLastLine(node *yaml.Node) (lastLine int) {
 	return
 }
 
-// value returns the value of the comment
-func (c *comment) value() (value CommentCommand) {
+// value returns the value of the comment and, for query-specific commands, the query UUID.
+func (c *comment) value() (value CommentCommand, queryID string) {
 	comment := strings.ToLower(string(*c))
 	if isHelm(comment) {
 		res := KICSGetContentCommentRgxp.FindString(comment)
@@ -207,10 +243,10 @@ func (c *comment) value() (value CommentCommand) {
 		comment = KICSCommentRgxp.ReplaceAllString(comment, "")
 		comment = strings.Trim(comment, "\n")
 		commands := strings.Split(strings.Trim(comment, "\r"), " ")
-		value = ProcessCommands(commands)
+		value, queryID = ProcessCommands(commands)
 		return
 	}
-	return CommentCommand(comment)
+	return CommentCommand(comment), ""
 }
 
 func isHelm(comment string) bool {
