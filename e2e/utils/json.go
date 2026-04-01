@@ -305,28 +305,66 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		errW := json.Unmarshal([]byte(strings.Join(actual, "\n")), &actualResult)
 		require.NoError(t, errW,
 			"[output/%s] Actual Result - Unmarshaling JSON file should not yield an error", actualFileName)
+			
+		// Adapt paths if running locally (dev)
+		if GetKICSDockerImageName() == "" {
+			for i, excPath := range expectResult.Exc {
+				expectResult.Exc[i] = strings.TrimPrefix(excPath, "e2e/")
+			}
+			for platform, stats := range expectResult.FileStats {
+				adaptedFilesByDir := make(map[string]int)
+				for dir, count := range stats.FilesByDir {
+					adaptedFilesByDir[strings.TrimPrefix(dir, "e2e/")] = count
+				}
+				stats.FilesByDir = adaptedFilesByDir
+				expectResult.FileStats[platform] = stats
+			}
+		}
 
+		// Compare Types
 		sort.Strings(expectResult.Types)
 		sort.Strings(actualResult.Types)
 		require.Equal(t, expectResult.Types, actualResult.Types,
 			"Expected Types: %v\nActual Types: %v",
 			expectResult.Types, actualResult.Types)
 
-		// Adapt paths if running locally (dev)
-		if GetKICSDockerImageName() == "" {
-			for i, excPath := range expectResult.Exc {
-				expectResult.Exc[i] = strings.TrimPrefix(excPath, "e2e/")
-			}
-		}
-
+		// Compare Exc
 		sort.Strings(expectResult.Exc)
 		sort.Strings(actualResult.Exc)
 		require.Equal(t, expectResult.Exc, actualResult.Exc,
 			"Expected Exc: %v\nActual Exc: %v",
 			expectResult.Exc, actualResult.Exc)
 
+		// Compare ExpectedLOC
 		require.Equal(t, expectResult.ExpectedLOC, actualResult.ExpectedLOC,
 			"Expected LOC: %d\nActual LOC: %d",
 			expectResult.ExpectedLOC, actualResult.ExpectedLOC)
+
+		// Compare FileStats
+		require.Equal(t, len(expectResult.FileStats), len(actualResult.FileStats),
+			"Expected FileStats platform count: %d\nActual FileStats platform count: %d",
+			len(expectResult.FileStats), len(actualResult.FileStats))
+
+		for platform, expectStats := range expectResult.FileStats {
+			actualStats, exists := actualResult.FileStats[platform]
+			require.True(t, exists,
+				"Platform '%s' not found in actual FileStats", platform)
+
+			require.Equal(t, expectStats.FileCount, actualStats.FileCount,
+				"Platform '%s' - Expected FileCount: %d\nActual FileCount: %d",
+				platform, expectStats.FileCount, actualStats.FileCount)
+
+			require.Equal(t, expectStats.DirectoryCount, actualStats.DirectoryCount,
+				"Platform '%s' - Expected DirectoryCount: %d\nActual DirectoryCount: %d",
+				platform, expectStats.DirectoryCount, actualStats.DirectoryCount)
+
+			require.Equal(t, expectStats.TotalLOC, actualStats.TotalLOC,
+				"Platform '%s' - Expected TotalLOC: %d\nActual TotalLOC: %d",
+				platform, expectStats.TotalLOC, actualStats.TotalLOC)
+
+			require.Equal(t, expectStats.FilesByDir, actualStats.FilesByDir,
+				"Platform '%s' - Expected FilesByDir: %v\nActual FilesByDir: %v",
+				platform, expectStats.FilesByDir, actualStats.FilesByDir)
+		}
 	}
 }

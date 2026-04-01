@@ -39,87 +39,85 @@ func Test_E2E_CLI(t *testing.T) {
 	templates := prepareTemplates()
 
 	for _, tt := range testcases.Tests {
-		if strings.Contains(tt.Name, "CLI-066") {
-			for arg := range tt.Args.Args {
-				tt := tt
-				arg := arg
-				t.Run(fmt.Sprintf("%s_%d", tt.Name, arg), func(t *testing.T) {
-					t.Parallel()
-	
-					useMock := false
-					if arg <= len(tt.Args.UseMock)-1 && tt.Args.UseMock[arg] {
-						useMock = true
-					}
-	
-					// fmt.Printf("Going to RunCommand with the first argument tt.Args.Args[%v] defined to : %v\n", arg, tt.Args.Args[arg])
-					out, err := utils.RunCommand(tt.Args.Args[arg], useDocker, useMock, kicsDockerImage)
-	
-					// Check command Error
-					require.NoError(t, err, "Capture CLI output should not yield an error")
-	
-					// Check exit status code (required)
-					require.True(t, arg < len(tt.WantStatus),
-						"No status code associated to this test. Check the wantStatus of the test case.")
-	
-					if showDetailsCI && tt.WantStatus[arg] != out.Status {
+		for arg := range tt.Args.Args {
+			tt := tt
+			arg := arg
+			t.Run(fmt.Sprintf("%s_%d", tt.Name, arg), func(t *testing.T) {
+				t.Parallel()
+
+				useMock := false
+				if arg <= len(tt.Args.UseMock)-1 && tt.Args.UseMock[arg] {
+					useMock = true
+				}
+
+				// fmt.Printf("Going to RunCommand with the first argument tt.Args.Args[%v] defined to : %v\n", arg, tt.Args.Args[arg])
+				out, err := utils.RunCommand(tt.Args.Args[arg], useDocker, useMock, kicsDockerImage)
+
+				// Check command Error
+				require.NoError(t, err, "Capture CLI output should not yield an error")
+
+				// Check exit status code (required) 
+				require.True(t, arg < len(tt.WantStatus),
+					"No status code associated to this test. Check the wantStatus of the test case.")
+
+				if showDetailsCI && tt.WantStatus[arg] != out.Status {
+					printTestDetails(out.Output)
+				}
+
+				require.Equalf(t, tt.WantStatus[arg], out.Status,
+					"Actual KICS status code: %v\nExpected KICS status code: %v",
+					out.Status, tt.WantStatus[arg])
+
+				if tt.Validation != nil {
+					fullString := strings.Join(out.Output, ";")
+					validation := tt.Validation(fullString)
+					if showDetailsCI && !validation {
 						printTestDetails(out.Output)
 					}
-	
-					require.Equalf(t, tt.WantStatus[arg], out.Status,
-						"Actual KICS status code: %v\nExpected KICS status code: %v",
-						out.Status, tt.WantStatus[arg])
-	
-					if tt.Validation != nil {
-						fullString := strings.Join(out.Output, ";")
-						validation := tt.Validation(fullString)
-						if showDetailsCI && !validation {
-							printTestDetails(out.Output)
-						}
-						require.True(t, validation, "KICS CLI output doesn't match the regex validation.")
+					require.True(t, validation, "KICS CLI output doesn't match the regex validation.")
+				}
+
+				if tt.Args.ExpectedResult != nil && arg < len(tt.Args.ExpectedResult) {
+					checkExpectedOutput(t, &tt, arg)
+				}
+
+				if tt.Args.ExpectedAnalyzerResults != nil && arg < len(tt.Args.ExpectedAnalyzerResults) {
+					checkExpectedAnalyzerResults(t, &tt, arg)
+				}
+
+				if tt.Args.ExpectedPayload != nil {
+					// Check payload file
+					utils.FileCheck(t, tt.Args.ExpectedPayload[arg], tt.Args.ExpectedPayload[arg], "payload")
+				}
+
+				if tt.Args.ExpectedLog.ValidationFunc != nil {
+					// Check log file
+					logData, _ := utils.ReadFixture(tt.Args.ExpectedLog.LogFile, "output")
+					validation := tt.Args.ExpectedLog.ValidationFunc(logData)
+
+					require.Truef(t, validation, "The output log file 'output/%s' doesn't match the regex validation",
+						tt.Args.ExpectedLog.LogFile)
+				}
+
+				if tt.Args.ExpectedOut != nil {
+					// Get and preapare expected output
+					want, errPrep := utils.PrepareExpected(tt.Args.ExpectedOut[arg], "fixtures")
+					require.NoErrorf(t, errPrep, "[fixtures/%s] Reading a fixture should not yield an error",
+						tt.Args.ExpectedOut[arg])
+
+					formattedWant := loadTemplates(want, templates)
+
+					// Check number of Lines
+					require.Equal(t, len(formattedWant), len(out.Output),
+						"[fixtures/%s] Expected number lines: %d\n[CLI] Actual KICS output lines: %d",
+						tt.Args.ExpectedOut[arg], len(formattedWant), len(out.Output))
+
+					// Check output lines
+					for idx := range formattedWant {
+						utils.CheckLine(t, out.Output[idx], formattedWant[idx], idx+1)
 					}
-	
-					if tt.Args.ExpectedResult != nil && arg < len(tt.Args.ExpectedResult) {
-						checkExpectedOutput(t, &tt, arg)
-					}
-	
-					if tt.Args.ExpectedAnalyzerResults != nil && arg < len(tt.Args.ExpectedAnalyzerResults) {
-						checkExpectedAnalyzerResults(t, &tt, arg)
-					}
-	
-					if tt.Args.ExpectedPayload != nil {
-						// Check payload file
-						utils.FileCheck(t, tt.Args.ExpectedPayload[arg], tt.Args.ExpectedPayload[arg], "payload")
-					}
-	
-					if tt.Args.ExpectedLog.ValidationFunc != nil {
-						// Check log file
-						logData, _ := utils.ReadFixture(tt.Args.ExpectedLog.LogFile, "output")
-						validation := tt.Args.ExpectedLog.ValidationFunc(logData)
-	
-						require.Truef(t, validation, "The output log file 'output/%s' doesn't match the regex validation",
-							tt.Args.ExpectedLog.LogFile)
-					}
-	
-					if tt.Args.ExpectedOut != nil {
-						// Get and preapare expected output
-						want, errPrep := utils.PrepareExpected(tt.Args.ExpectedOut[arg], "fixtures")
-						require.NoErrorf(t, errPrep, "[fixtures/%s] Reading a fixture should not yield an error",
-							tt.Args.ExpectedOut[arg])
-	
-						formattedWant := loadTemplates(want, templates)
-	
-						// Check number of Lines
-						require.Equal(t, len(formattedWant), len(out.Output),
-							"[fixtures/%s] Expected number lines: %d\n[CLI] Actual KICS output lines: %d",
-							tt.Args.ExpectedOut[arg], len(formattedWant), len(out.Output))
-	
-						// Check output lines
-						for idx := range formattedWant {
-							utils.CheckLine(t, out.Output[idx], formattedWant[idx], idx+1)
-						}
-					}
-				})
-			}
+				}
+			})
 		}
 	}
 
