@@ -86,13 +86,8 @@ jobs:
     - name: Check user username
       run: |
         response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics/members")
-        if ! echo "$response" | jq -e 'type == "array"' > /dev/null 2>&1; then
-          echo "::warning::Failed to fetch team members. API response: $(echo "$response" | jq -r '.message // "unknown error"' 2>/dev/null || echo "$response")"
-          team_members=""
-        else
-          team_members=$(echo "$response" | jq -r '.[].login')
-        fi
-        if [[ "$USERNAME" == "dependabot[bot]" ]] || echo "$team_members" | grep -Pq "^$USERNAME$"; then
+        team_members=$(echo "$response" | jq -r '.[].login')
+        if [[ "$USERNAME" == "dependabot[bot]" ]] || echo "${team_members[@]}" | grep -Pq "^$USERNAME$"; then
           echo "Contributor belongs to Checkmarx organization."
           is_member="true"
         else
