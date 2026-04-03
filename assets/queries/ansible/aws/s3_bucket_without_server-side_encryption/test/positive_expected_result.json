@@ -2,6 +2,14 @@
   {
     "queryName": "S3 Bucket Without Server-side-encryption",
     "severity": "HIGH",
-    "line": 5
+    "line": 5,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.s3_bucket",
+    "resourceName": "Create a simple s3 bucket",
+    "searchKey": "name={{Create a simple s3 bucket}}.{{amazon.aws.s3_bucket}}.encryption",
+    "searchValue": "",
+    "expectedValue": "s3_bucket.encryption should not be 'none'",
+    "actualValue": "s3_bucket.encryption is 'none'",
+    "issueType": "IncorrectValue"
   }
 ]

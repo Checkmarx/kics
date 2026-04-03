@@ -2,6 +2,14 @@
   {
     "queryName": "Role Binding To Default Service Account",
     "severity": "MEDIUM",
-    "line": 11
+    "line": 11,
+    "filename": "positive.yaml",
+    "resourceType": "RoleBinding",
+    "resourceName": "read-pods",
+    "searchKey": "subjects.name=default",
+    "searchValue": "",
+    "expectedValue": "subjects.kind=ServiceAccount.name should not be default",
+    "actualValue": "subjects.kind=ServiceAccount.name is default",
+    "issueType": "IncorrectValue"
   }
 ]

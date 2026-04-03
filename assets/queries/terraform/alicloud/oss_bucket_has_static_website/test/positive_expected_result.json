@@ -1,8 +1,15 @@
 [
-    {
-      "queryName": "OSS Bucket Has Static Website",
-      "severity": "HIGH",
-      "line": 4,
-      "fileName": "positive1.tf"
-    }
+  {
+    "queryName": "OSS Bucket Has Static Website",
+    "severity": "HIGH",
+    "line": 4,
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-1-website",
+    "searchKey": "alicloud_oss_bucket[bucket-website1].website",
+    "searchValue": "",
+    "expectedValue": "'website' to not be used.",
+    "actualValue": "'website' is being used.",
+    "issueType": "IncorrectValue"
+  }
 ]

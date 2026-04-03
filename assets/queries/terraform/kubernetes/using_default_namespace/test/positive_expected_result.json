@@ -2,11 +2,27 @@
   {
     "queryName": "Using Default Namespace",
     "severity": "LOW",
-    "line": 4
+    "line": 4,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test",
+    "searchKey": "kubernetes_pod[test].metadata.namespace",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test].metadata.namespace should not be set to 'default'",
+    "actualValue": "kubernetes_pod[test].metadata.namespace is set to 'default'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Using Default Namespace",
     "severity": "LOW",
-    "line": 9
+    "line": 9,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_cron_job",
+    "resourceName": "test2",
+    "searchKey": "kubernetes_cron_job[test2].metadata",
+    "searchValue": "",
+    "expectedValue": "kubernetes_cron_job[test2].metadata should be set",
+    "actualValue": "kubernetes_cron_job[test2].metadata is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

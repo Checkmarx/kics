@@ -3,12 +3,26 @@
     "queryName": "Stack Notifications Disabled",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudFormation::Stack",
+    "resourceName": "myStackWithParams",
+    "searchKey": "Resources.myStackWithParams.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.myStackWithParams.Properties.NotificationARNs should be set",
+    "actualValue": "Resources.myStackWithParams.Properties.NotificationARNs is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Stack Notifications Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudFormation::Stack",
+    "resourceName": "myStackWithParams",
+    "searchKey": "Resources.myStackWithParams.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.myStackWithParams.Properties.NotificationARNs should be set",
+    "actualValue": "Resources.myStackWithParams.Properties.NotificationARNs is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

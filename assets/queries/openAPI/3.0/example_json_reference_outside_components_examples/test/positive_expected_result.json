@@ -3,12 +3,26 @@
     "queryName": "Example JSON Reference Outside Components Examples",
     "severity": "INFO",
     "line": 77,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.post.requestBody.content.{{application/json}}.examples.Address.$ref",
+    "searchValue": "",
+    "expectedValue": "#/components/schemas/Address should be declared on components.schemas",
+    "actualValue": "#/components/schemas/Address is not declared on components.schemas",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Example JSON Reference Outside Components Examples",
     "severity": "INFO",
     "line": 51,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.post.requestBody.content.{{application/json}}.examples.Address.$ref",
+    "searchValue": "",
+    "expectedValue": "#/components/schemas/Address should be declared on components.schemas",
+    "actualValue": "#/components/schemas/Address is not declared on components.schemas",
+    "issueType": "MissingAttribute"
   }
 ]

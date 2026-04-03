@@ -3,24 +3,52 @@
     "queryName": "Lambda Function Without Dead Letter Queue",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "lambda_without_dlq",
+    "searchKey": "aws_lambda_function[lambda_without_dlq]",
+    "searchValue": "",
+    "expectedValue": "'aws_lambda_function[lambda_without_dlq].dead_letter_config' should be defined and not null",
+    "actualValue": "'aws_lambda_function[lambda_without_dlq].dead_letter_config' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Lambda Function Without Dead Letter Queue",
     "severity": "LOW",
     "line": 24,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "lambda_with_incomplete_dlq",
+    "searchKey": "aws_lambda_function[lambda_with_incomplete_dlq].dead_letter_config.target_arn",
+    "searchValue": "",
+    "expectedValue": "'aws_lambda_function[lambda_with_incomplete_dlq].dead_letter_config.target_arn' should be defined and not empty",
+    "actualValue": "'aws_lambda_function[lambda_with_incomplete_dlq].dead_letter_config.target_arn' is empty",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Lambda Function Without Dead Letter Queue",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[lambda_with_incomplete_dlq]",
+    "searchValue": "",
+    "expectedValue": "'module[lambda_with_incomplete_dlq].dead_letter_target_arn' should be defined and not null",
+    "actualValue": "'module[lambda_with_incomplete_dlq].dead_letter_target_arn' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Lambda Function Without Dead Letter Queue",
     "severity": "LOW",
     "line": 26,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[lambda_with_incomplete_dlq].dead_letter_target_arn",
+    "searchValue": "",
+    "expectedValue": "'module[lambda_with_incomplete_dlq].dead_letter_target_arn' should be defined and not empty",
+    "actualValue": "'module[lambda_with_incomplete_dlq].dead_letter_target_arn' is empty",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -3,12 +3,26 @@
     "queryName": "Config Rule For Encrypted Volumes Disabled",
     "severity": "HIGH",
     "line": 2,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Config::ConfigRule",
+    "resourceName": "access-keys-rotated",
+    "searchKey": "Resources.ConfigRule",
+    "searchValue": "",
+    "expectedValue": "There should be a ConfigRule for encrypted volumes.",
+    "actualValue": "There isn't a ConfigRule for encrypted volumes.",
+    "issueType": "MissingAttribute"
   },
   {
-    "fileName": "positive2.json",
     "queryName": "Config Rule For Encrypted Volumes Disabled",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "filename": "positive2.json",
+    "resourceType": "AWS::Config::ConfigRule",
+    "resourceName": "access-keys-rotated",
+    "searchKey": "Resources.ConfigRule",
+    "searchValue": "",
+    "expectedValue": "There should be a ConfigRule for encrypted volumes.",
+    "actualValue": "There isn't a ConfigRule for encrypted volumes.",
+    "issueType": "MissingAttribute"
   }
 ]

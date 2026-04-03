@@ -2,11 +2,27 @@
   {
     "queryName": "Zypper Install Without Version",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{opensuse/leap:15.2}}.{{RUN zypper install -y httpd && zypper clean}}",
+    "searchValue": "httpd",
+    "expectedValue": "The package version should always be specified when using zypper install",
+    "actualValue": "No version is specified in package 'httpd'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Zypper Install Without Version",
     "severity": "LOW",
-    "line": 3
+    "line": 3,
+    "filename": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{opensuse/leap:15.2}}.{{RUN [\"zypper\", \"install\", \"http\"]}}",
+    "searchValue": "http",
+    "expectedValue": "The package version should always be specified when using zypper install",
+    "actualValue": "No version is specified in package 'http'",
+    "issueType": "IncorrectValue"
   }
 ]

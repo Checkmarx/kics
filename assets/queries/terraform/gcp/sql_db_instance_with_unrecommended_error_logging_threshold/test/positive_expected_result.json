@@ -2,16 +2,40 @@
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Error Logging Threshold",
     "severity": "LOW",
-    "line": 13
+    "line": 13,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'log_min_error_statement' to 'ERROR' or a higher severity",
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'log_min_error_statement' to 'NOTICE'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Error Logging Threshold",
     "severity": "LOW",
-    "line": 31
+    "line": 31,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'log_min_error_statement' to 'ERROR' or a higher severity",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'log_min_error_statement' to 'DEBUG5'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Error Logging Threshold",
     "severity": "LOW",
-    "line": 44
+    "line": 44,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_3].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_3].settings.database_flags' should set 'log_min_error_statement' to 'ERROR' or a higher severity",
+    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' sets 'log_min_error_statement' to 'DEBUG4'",
+    "issueType": "IncorrectValue"
   }
 ]

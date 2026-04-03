@@ -3,12 +3,26 @@
     "queryName": "IAM Policy On User",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "BadPolicy",
+    "searchKey": "Resources.BadPolicy.Properties.Users",
+    "searchValue": "",
+    "expectedValue": "Resources.BadPolicy is assigned to a set of users",
+    "actualValue": "Resources.BadPolicy should be assigned to a set of groups",
+    "issueType": "IncorrectValue"
   },
   {
+    "queryName": "IAM Policy On User",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive2.json",
-    "queryName": "IAM Policy On User"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "BadPolicy",
+    "searchKey": "Resources.BadPolicy.Properties.Users",
+    "searchValue": "",
+    "expectedValue": "Resources.BadPolicy is assigned to a set of users",
+    "actualValue": "Resources.BadPolicy should be assigned to a set of groups",
+    "issueType": "IncorrectValue"
   }
 ]

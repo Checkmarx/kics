@@ -2,6 +2,14 @@
   {
     "queryName": "Role Binding To Default Service Account",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_role_binding",
+    "resourceName": "terraform-example",
+    "searchKey": "resource.kubernetes_role_binding[example]",
+    "searchValue": "",
+    "expectedValue": "resource.kubernetes_role_binding[example].subject[1].name should not be default",
+    "actualValue": "resource.kubernetes_role_binding[example].subject[1].name is default",
+    "issueType": "IncorrectValue"
   }
 ]

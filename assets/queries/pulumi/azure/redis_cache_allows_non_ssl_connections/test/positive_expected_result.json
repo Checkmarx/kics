@@ -1,8 +1,15 @@
 [
-	{
-		"queryName": "Redis Cache Allows Non SSL Connections",
-		"severity": "MEDIUM",
-		"line": 8,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "Redis Cache Allows Non SSL Connections",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "azure-native:cache:Redis",
+    "resourceName": "redis",
+    "searchKey": "resources[redis].properties.enableNonSslPort",
+    "searchValue": "",
+    "expectedValue": "Redis Cache should have attribute 'enableNonSslPort' set to false",
+    "actualValue": "Redis Cache has attribute 'enableNonSslPort' set to true",
+    "issueType": "IncorrectValue"
+  }
 ]

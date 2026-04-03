@@ -1,38 +1,80 @@
 [
   {
+    "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "MEDIUM",
     "line": 33,
-    "fileName": "positive1.yaml",
-    "queryName": "CloudFormation Specifying Credentials Not Safe"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer",
+    "searchKey": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId should not exist",
+    "actualValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId exists",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "MEDIUM",
     "line": 35,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer",
+    "searchKey": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey should not exist",
+    "actualValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey exists",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "MEDIUM",
     "line": 71,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer2",
+    "searchKey": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password should not exist",
+    "actualValue": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password exists",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "MEDIUM",
     "line": 48,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer",
+    "searchKey": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId should not exist",
+    "actualValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.accessKeyId exists",
+    "issueType": "MissingAttribute"
   },
   {
-    "line": 51,
-    "fileName": "positive2.json",
     "queryName": "CloudFormation Specifying Credentials Not Safe",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 51,
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer",
+    "searchKey": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey should not exist",
+    "actualValue": "Resources.WebServer.Metadata.AWS::CloudFormation::Authentication.S3AccessCreds.secretKey exists",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFormation Specifying Credentials Not Safe",
     "severity": "MEDIUM",
     "line": 112,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "WebServer2",
+    "searchKey": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password",
+    "searchValue": "",
+    "expectedValue": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password should not exist",
+    "actualValue": "Resources.WebServer2.Metadata.AWS::CloudFormation::Authentication.BasicAccessCreds.password exists",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -3,24 +3,52 @@
     "queryName": "VPC Peering Route Table with Unrestricted CIDR",
     "severity": "HIGH",
     "line": 118,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_route",
+    "resourceName": "public_route_table",
+    "searchKey": "aws_route_table[public_route_table].route",
+    "searchValue": "",
+    "expectedValue": "aws_route_table[public_route_table].route restricts CIDR",
+    "actualValue": "aws_route_table[public_route_table].route does not restrict CIDR",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Peering Route Table with Unrestricted CIDR",
     "severity": "HIGH",
     "line": 132,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_route",
+    "resourceName": "private_route2",
+    "searchKey": "aws_route[private_route2]",
+    "searchValue": "",
+    "expectedValue": "aws_route[private_route2] restricts CIDR",
+    "actualValue": "aws_route[private_route2] does not restrict CIDR",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Peering Route Table with Unrestricted CIDR",
     "severity": "HIGH",
     "line": 118,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_route",
+    "resourceName": "public_route_table",
+    "searchKey": "aws_route_table[public_route_table].route",
+    "searchValue": "",
+    "expectedValue": "aws_route_table[public_route_table].route restricts CIDR",
+    "actualValue": "aws_route_table[public_route_table].route does not restrict CIDR",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "VPC Peering Route Table with Unrestricted CIDR",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive4.tf"  
+    "filename": "positive4.tf",
+    "resourceType": "aws_route",
+    "resourceName": "art_nat_gw_out",
+    "searchKey": "aws_route_table[art_nat_gw_out].route",
+    "searchValue": "",
+    "expectedValue": "aws_route_table[art_nat_gw_out].route restricts CIDR",
+    "actualValue": "aws_route_table[art_nat_gw_out].route does not restrict CIDR",
+    "issueType": "IncorrectValue"
   }
 ]

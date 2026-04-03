@@ -2,6 +2,14 @@
   {
     "queryName": "CloudTrail Logging Disabled",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "aws_cloudtrail",
+    "resourceName": "positive",
+    "searchKey": "aws_cloudtrail.positive1.enable_logging",
+    "searchValue": "",
+    "expectedValue": "aws_cloudtrail.positive1.enable_logging should be true",
+    "actualValue": "aws_cloudtrail.positive1.enable_logging is false",
+    "issueType": "IncorrectValue"
   }
 ]

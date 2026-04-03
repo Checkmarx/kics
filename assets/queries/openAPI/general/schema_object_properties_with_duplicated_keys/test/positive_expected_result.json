@@ -3,108 +3,234 @@
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.ErrorModel.code",
+    "searchValue": "",
+    "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.ErrorModel.allOf.code",
+    "searchValue": "",
+    "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 53,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.ErrorModel.additionalProperties.code",
+    "searchValue": "",
+    "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.ErrorModel.code",
+    "searchValue": "",
+    "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.ErrorModel.allOf.code",
+    "searchValue": "",
+    "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.ErrorModel.additionalProperties.code",
+    "searchValue": "",
+    "expectedValue": "'code' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'code' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 44,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.allOf.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 57,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.additionalProperties.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 24,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 34,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.allOf.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v3)",
     "severity": "INFO",
     "line": 41,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.additionalProperties.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
     "severity": "INFO",
     "line": 44,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.allOf.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
     "severity": "INFO",
     "line": 57,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.additionalProperties.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
     "severity": "INFO",
     "line": 24,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
     "severity": "INFO",
     "line": 34,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.allOf.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object Properties With Duplicated Keys (v2)",
     "severity": "INFO",
     "line": 41,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.additionalProperties.message",
+    "searchValue": "",
+    "expectedValue": "'message' is unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "actualValue": "'message' is not unique through out the fields 'properties', 'allOf' and 'additionalProperties'",
+    "issueType": "IncorrectValue"
   }
 ]

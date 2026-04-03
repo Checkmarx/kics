@@ -3,12 +3,26 @@
     "queryName": "Request Body JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.$ref",
+    "searchValue": "",
+    "expectedValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody should be declared on components.requestBodies",
+    "actualValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody is not declared on components.requestBodies",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Request Body JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.$ref",
+    "searchValue": "",
+    "expectedValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody should be declared on components.requestBodies",
+    "actualValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody is not declared on components.requestBodies",
+    "issueType": "MissingAttribute"
   }
 ]

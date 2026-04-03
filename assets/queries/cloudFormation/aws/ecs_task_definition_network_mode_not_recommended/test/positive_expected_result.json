@@ -1,14 +1,28 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "ECS Task Definition Network Mode Not Recommended",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::TaskDefinition",
+    "resourceName": "taskdefinition",
+    "searchKey": "Resources.taskdefinition.Properties.NetworkMode",
+    "searchValue": "",
+    "expectedValue": "'Resources.taskdefinition.Properties.NetworkMode' should be 'awsvpc'",
+    "actualValue": "'Resources.taskdefinition.Properties.NetworkMode' is 'none'",
+    "issueType": "IncorrectValue"
   },
   {
-    "line": 7,
-    "fileName": "positive2.json",
     "queryName": "ECS Task Definition Network Mode Not Recommended",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::TaskDefinition",
+    "resourceName": "taskdefinition",
+    "searchKey": "Resources.taskdefinition.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.taskdefinition.Properties.NetworkMode' should be set and should be 'awsvpc'",
+    "actualValue": "'Resources.taskdefinition.Properties.NetworkMode' is undefined and defaults to 'bridge'",
+    "issueType": "MissingAttribute"
   }
 ]

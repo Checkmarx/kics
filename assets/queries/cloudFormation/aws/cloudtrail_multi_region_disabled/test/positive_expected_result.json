@@ -1,32 +1,67 @@
 [
-  { 
+  {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 70,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties.IsMultiRegionTrail",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' should be true",
+    "actualValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' is not true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 76,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail2",
+    "searchKey": "Resources.myTrail2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail2.Properties.IsMultiRegionTrail' should exist",
+    "actualValue": "'Resources.myTrail2.Properties.IsMultiRegionTrail' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties.IsMultiRegionTrail",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' should be true",
+    "actualValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' is not true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 32,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail2",
+    "searchKey": "Resources.myTrail2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail2.Properties.IsMultiRegionTrail' should exist",
+    "actualValue": "'Resources.myTrail2.Properties.IsMultiRegionTrail' is missing",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 70,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties.IsMultiRegionTrail",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' should be true",
+    "actualValue": "'Resources.myTrail.Properties.IsMultiRegionTrail' is not true",
+    "issueType": "IncorrectValue"
   }
 ]

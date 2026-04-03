@@ -1,14 +1,28 @@
 [
-	{
-		"queryName": "Nifcloud ELB Listener Using HTTP Protocol",
-		"severity": "MEDIUM",
-		"line": 1,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Nifcloud ELB Listener Using HTTP Protocol",
-		"severity": "MEDIUM",
-		"line": 1,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "Nifcloud ELB Listener Using HTTP Protocol",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive1.tf",
+    "resourceType": "nifcloud_elb_listener",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_elb_listener[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_elb_listener[positive]' should switch to HTTPS to benefit from TLS security features.",
+    "actualValue": "'nifcloud_elb_listener[positive]' using HTTP protocol.",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Nifcloud ELB Listener Using HTTP Protocol",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "nifcloud_elb_listener",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_elb_listener[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_elb_listener[positive]' should switch to HTTPS to benefit from TLS security features.",
+    "actualValue": "'nifcloud_elb_listener[positive]' using HTTP protocol.",
+    "issueType": "IncorrectValue"
+  }
 ]

@@ -2,25 +2,53 @@
   {
     "queryName": "Amplify App OAuth Token Exposed",
     "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive2.yaml"
-  },
-  {
     "line": 4,
-    "fileName": "positive1.yaml",
-    "queryName": "Amplify App OAuth Token Exposed",
-    "severity": "HIGH"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Amplify App OAuth Token Exposed",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive3.json"
+    "filename": "positive2.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Amplify App OAuth Token Exposed",
+    "severity": "HIGH",
+    "line": 5,
+    "filename": "positive3.json",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp-1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Amplify App OAuth Token Exposed",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue"
   }
 ]

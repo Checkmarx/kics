@@ -2,6 +2,14 @@
   {
     "queryName": "Cosmos DB Account Without Tags",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_cosmosdb_account",
+    "resourceName": "tfex-cosmos-db-${random_integer.ri.result}",
+    "searchKey": "azurerm_cosmosdb_account[positive1]",
+    "searchValue": "",
+    "expectedValue": "azurerm_cosmosdb_account[positive1].tags should be defined'",
+    "actualValue": "azurerm_cosmosdb_account[positive1].tags is undefined'",
+    "issueType": "MissingAttribute"
   }
 ]

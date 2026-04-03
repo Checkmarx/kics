@@ -3,12 +3,26 @@
     "queryName": "OSS Bucket Allows Put Action From All Principals",
     "severity": "CRITICAL",
     "line": 5,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-4-policy",
+    "searchKey": "alicloud_oss_bucket[bucket-policy4].policy",
+    "searchValue": "",
+    "expectedValue": "alicloud_oss_bucket[bucket-policy4].policy to not accept put action from all principals",
+    "actualValue": "alicloud_oss_bucket[bucket-policy4].policy accepts put action from all principals",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OSS Bucket Allows Put Action From All Principals",
     "severity": "CRITICAL",
     "line": 5,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-5-policy",
+    "searchKey": "alicloud_oss_bucket[bucket-policy5].policy",
+    "searchValue": "",
+    "expectedValue": "alicloud_oss_bucket[bucket-policy5].policy to not accept put action from all principals",
+    "actualValue": "alicloud_oss_bucket[bucket-policy5].policy accepts put action from all principals",
+    "issueType": "IncorrectValue"
   }
 ]

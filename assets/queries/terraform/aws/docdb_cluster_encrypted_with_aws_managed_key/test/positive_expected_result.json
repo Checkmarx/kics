@@ -2,6 +2,14 @@
   {
     "queryName": "DOCDB Cluster Encrypted With AWS Managed Key",
     "severity": "LOW",
-    "line": 16
+    "line": 16,
+    "filename": "positive.tf",
+    "resourceType": "aws_docdb_cluster",
+    "resourceName": "test2",
+    "searchKey": "aws_docdb_cluster[test2].kms_key_id",
+    "searchValue": "",
+    "expectedValue": "DOCDB Cluster should not be encrypted with AWS managed key",
+    "actualValue": "DOCDB Cluster is encrypted with AWS managed key",
+    "issueType": "IncorrectValue"
   }
 ]

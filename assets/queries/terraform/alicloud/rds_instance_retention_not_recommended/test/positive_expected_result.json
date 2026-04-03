@@ -3,36 +3,78 @@
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "sql_collector_status",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_status' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "sql_collector_config_value",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_config_value' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "sql_collector_config_value",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_config_value' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].sql_collector_status",
+    "searchValue": "",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_status' is set to 'Disabled'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "sql_collector_config_value",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_config_value' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Instance Retention Period Not Recommended",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].sql_collector_config_value",
+    "searchValue": "",
+    "expectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
+    "actualValue": "'sql_collector_config_value' is set to 30",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -3,18 +3,39 @@
     "queryName": "App Service Managed Identity Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-1].identity' should be defined and not null",
+    "actualValue": "'azurerm_app_service[positive1-1].identity' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "App Service Managed Identity Disabled",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive1-2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive1-2].identity' should be defined and not null",
+    "actualValue": "'azurerm_linux_web_app[positive1-2].identity' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "App Service Managed Identity Disabled",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive1-3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive1-3].identity' should be defined and not null",
+    "actualValue": "'azurerm_windows_web_app[positive1-3].identity' is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

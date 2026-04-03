@@ -1,14 +1,28 @@
 [
-	{
-		"queryName": "EC2 Not EBS Optimized",
-		"severity": "INFO",
-		"line": 10,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "EC2 Not EBS Optimized",
-		"severity": "INFO",
-		"line": 18,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "EC2 Not EBS Optimized",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive.yaml",
+    "resourceType": "aws:ec2:Instance",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties.ebsOptimized",
+    "searchValue": "",
+    "expectedValue": "Attribute 'ebsOptimized' should be set to true",
+    "actualValue": "Attribute 'ebsOptimized' is set to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "EC2 Not EBS Optimized",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive.yaml",
+    "resourceType": "aws:ec2:Instance",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'ebsOptimized' should be defined and set to true",
+    "actualValue": "Attribute 'ebsOptimized' is not defined",
+    "issueType": "MissingAttribute"
+  }
 ]

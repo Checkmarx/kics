@@ -1,15 +1,28 @@
 [
-    {
-      "queryName": "OSS Bucket Lifecycle Rule Disabled",
-      "severity": "LOW",
-      "line": 8,
-      "fileName": "positive1.tf"
-    },
-    {
-      "queryName": "OSS Bucket Lifecycle Rule Disabled",
-      "severity": "LOW",
-      "line": 1,
-      "fileName": "positive2.tf"
-    }
-  ]
-  
+  {
+    "queryName": "OSS Bucket Lifecycle Rule Disabled",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "oss_bucket_lifecycle_enabled2",
+    "searchKey": "alicloud_oss_bucket[oss_bucket_lifecycle_enabled2].lifecycle_rule.enabled",
+    "searchValue": "",
+    "expectedValue": "'lifecycle_rule' should be set and enabled",
+    "actualValue": "'lifecycle_rule' is set but disabled",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "OSS Bucket Lifecycle Rule Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-versioning",
+    "searchKey": "alicloud_oss_bucket[oss_bucket_lifecycle_enabled3]",
+    "searchValue": "",
+    "expectedValue": "'lifecycle_rule' should be set and enabled",
+    "actualValue": "'lifecycle_rule' is not set",
+    "issueType": "MissingAttribute"
+  }
+]

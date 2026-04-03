@@ -2,6 +2,14 @@
   {
     "queryName": "Certificate RSA Key Bytes Lower Than 256",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.aws_acm",
+    "resourceName": "upload a self-signed certificate",
+    "searchKey": "name={{upload a self-signed certificate}}.community.aws.aws_acm.certificate",
+    "searchValue": "",
+    "expectedValue": "'community.aws.aws_acm.certificate' should use a RSA key with a length equal to or higher than 256 bytes",
+    "actualValue": "'community.aws.aws_acm.certificate' does not use a RSA key with a length equal to or higher than 256 bytes",
+    "issueType": "IncorrectValue"
   }
 ]

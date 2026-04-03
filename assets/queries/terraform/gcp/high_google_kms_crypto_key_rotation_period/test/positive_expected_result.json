@@ -2,11 +2,27 @@
   {
     "queryName": "High Google KMS Crypto Key Rotation Period",
     "severity": "MEDIUM",
-    "line": 4
+    "line": 4,
+    "filename": "positive.tf",
+    "resourceType": "google_kms_crypto_key",
+    "resourceName": "crypto-key-example",
+    "searchKey": "google_kms_crypto_key[positive1].rotation_period",
+    "searchValue": "",
+    "expectedValue": "'google_kms_crypto_key.rotation_period' should be less or equal to 7776000",
+    "actualValue": "'google_kms_crypto_key.rotation_period' exceeds 7776000",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "High Google KMS Crypto Key Rotation Period",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 10,
+    "filename": "positive.tf",
+    "resourceType": "google_kms_crypto_key",
+    "resourceName": "crypto-key-example",
+    "searchKey": "google_kms_crypto_key[positive2]",
+    "searchValue": "",
+    "expectedValue": "'google_kms_crypto_key.rotation_period' should be defined with a value less or equal to 7776000",
+    "actualValue": "'google_kms_crypto_key.rotation_period' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

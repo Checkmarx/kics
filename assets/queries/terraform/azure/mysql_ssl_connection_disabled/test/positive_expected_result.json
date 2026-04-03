@@ -2,6 +2,14 @@
   {
     "queryName": "MySQL SSL Connection Disabled",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_mssql_server",
+    "resourceName": "webflux-mysql-${var.environment}${random_integer.rnd_int.result}",
+    "searchKey": "azurerm_mysql_server[positive1].ssl_enforcement_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mysql_server.positive1.ssl_enforcement_enabled' should equal 'true'",
+    "actualValue": "'azurerm_mysql_server.positive1.ssl_enforcement_enabled' is equal 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

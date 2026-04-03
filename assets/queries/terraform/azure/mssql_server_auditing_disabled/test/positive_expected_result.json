@@ -3,12 +3,26 @@
     "queryName": "MSSQL Server Auditing Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_mssql_server",
+    "resourceName": "mssqlserver",
+    "searchKey": "azurerm_mssql_server[example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mssql_server[example]' resource should have a 'azurerm_mssql_server_extended_auditing_policy' resource associated",
+    "actualValue": "'azurerm_mssql_server[example]' resource does not have a 'azurerm_mssql_server_extended_auditing_policy' resource associated",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MSSQL Server Auditing Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_mssql_server",
+    "resourceName": "mssqlserver",
+    "searchKey": "azurerm_mssql_server[example]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mssql_server[example]' resource should have a 'azurerm_mssql_server_extended_auditing_policy' resource associated",
+    "actualValue": "'azurerm_mssql_server[example]' resource does not have a 'azurerm_mssql_server_extended_auditing_policy' resource associated",
+    "issueType": "MissingAttribute"
   }
 ]

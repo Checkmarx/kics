@@ -3,12 +3,26 @@
     "queryName": "Aurora With Disabled at Rest Encryption",
     "severity": "HIGH",
     "line": 16,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "my_cluster",
+    "searchKey": "aws_rds_cluster[{{my_cluster}}].storage_encrypted",
+    "searchValue": "",
+    "expectedValue": "aws_rds_cluster.storage_encrypted should be set to 'true'",
+    "actualValue": "aws_rds_cluster.storage_encrypted is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Aurora With Disabled at Rest Encryption",
     "severity": "HIGH",
     "line": 5,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "my_cluster",
+    "searchKey": "aws_rds_cluster[{{my_cluster}}]",
+    "searchValue": "",
+    "expectedValue": "aws_rds_cluster.storage_encrypted should be defined and set to 'true'",
+    "actualValue": "aws_rds_cluster.storage_encrypted is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -3,24 +3,52 @@
     "queryName": "Server URL Not Absolute",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url has an absolute URL",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not have an absolute URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server URL Not Absolute",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.url=/development.gigantic-server.com/v1",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.servers.{{0}}.url has an absolute URL",
+    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not have an absolute URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server URL Not Absolute",
     "severity": "INFO",
     "line": 24,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url has an absolute URL",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url does not have an absolute URL",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Server URL Not Absolute",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.url=/development.gigantic-server.com/v1",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.servers.{{0}}.url has an absolute URL",
+    "actualValue": "paths.{{/}}.{{get}}.servers.{{0}}.url does not have an absolute URL",
+    "issueType": "IncorrectValue"
   }
 ]

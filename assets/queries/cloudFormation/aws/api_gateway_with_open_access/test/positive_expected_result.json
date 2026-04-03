@@ -3,12 +3,26 @@
     "queryName": "API Gateway With Open Access",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Method",
+    "resourceName": "MockMethod",
+    "searchKey": "Resources.MockMethod.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MockMethod.Properties.AuthorizationType is NONE and Resources.MockMethod.Properties.HttpMethod should be OPTIONS",
+    "actualValue": "Resources.MockMethod.Properties.AuthorizationType is NONE and Resources.MockMethod.Properties.HttpMethod is not OPTIONS",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway With Open Access",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ApiGateway::Method",
+    "resourceName": "MockMethod",
+    "searchKey": "Resources.MockMethod.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MockMethod.Properties.AuthorizationType is NONE and Resources.MockMethod.Properties.HttpMethod should be OPTIONS",
+    "actualValue": "Resources.MockMethod.Properties.AuthorizationType is NONE and Resources.MockMethod.Properties.HttpMethod is not OPTIONS",
+    "issueType": "IncorrectValue"
   }
 ]

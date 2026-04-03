@@ -3,12 +3,26 @@
     "queryName": "Service Does Not Target Pod",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Service",
+    "resourceName": "helloworld2",
+    "searchKey": "metadata.name={{helloworld2}}.spec.selector",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{helloworld2}}.spec.selector label refers to a Pod label",
+    "actualValue": "metadata.name={{helloworld2}}.spec.selector label does not match with any Pod label",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Service Does Not Target Pod",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Service",
+    "resourceName": "helloworld3",
+    "searchKey": "metadata.name={{helloworld3}}.spec.ports.port={{9377}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{helloworld3}}.spec.ports.port={{9377}} has a Pod port",
+    "actualValue": "metadata.name={{helloworld3}}.spec.ports.port={{9377}} does not have a Pod port",
+    "issueType": "IncorrectValue"
   }
 ]

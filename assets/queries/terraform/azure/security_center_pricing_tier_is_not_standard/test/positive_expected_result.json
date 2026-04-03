@@ -2,6 +2,14 @@
   {
     "queryName": "Security Center Pricing Tier Is Not Standard",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_security_center_subscription_pricing",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_security_center_subscription_pricing[positive1].tier",
+    "searchValue": "",
+    "expectedValue": "'azurerm_security_center_subscription_pricing.positive1.tier' is 'Standard'",
+    "actualValue": "'azurerm_security_center_subscription_pricing.positive1.tier' is 'Free'",
+    "issueType": "IncorrectValue"
   }
 ]

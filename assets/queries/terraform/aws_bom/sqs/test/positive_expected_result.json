@@ -3,30 +3,65 @@
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sqs_queue[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sqs_queue[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sqs_queue[positive3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sqs_queue[positive4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS SQS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sqs_queue[positive5]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

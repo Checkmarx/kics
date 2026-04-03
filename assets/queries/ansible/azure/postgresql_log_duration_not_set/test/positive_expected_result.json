@@ -2,31 +2,79 @@
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example1",
+    "searchKey": "name={{example1}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example2",
+    "searchKey": "name={{example2}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example3",
+    "searchKey": "name={{example3}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 24,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example4",
+    "searchKey": "name={{example4}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 30
+    "line": 30,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example5",
+    "searchKey": "name={{example5}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 36,
+    "filename": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example6",
+    "searchKey": "name={{example6}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue"
   }
 ]

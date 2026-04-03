@@ -2,6 +2,14 @@
   {
     "queryName": "Hardcoded AWS Access Key",
     "severity": "HIGH",
-    "line": 7
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ec2_instance",
+    "resourceName": "start an instance with a cpu_options",
+    "searchKey": "name={{start an instance with a cpu_options}}.{{community.aws.ec2_instance}}.user_data",
+    "searchValue": "",
+    "expectedValue": "'ec2_instance.user_data' shouldn't contain access key",
+    "actualValue": "'ec2_instance.user_data' contains access key",
+    "issueType": "IncorrectValue"
   }
 ]

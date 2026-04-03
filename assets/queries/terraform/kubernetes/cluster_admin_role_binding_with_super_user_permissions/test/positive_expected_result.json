@@ -2,6 +2,14 @@
   {
     "queryName": "Cluster Admin Rolebinding With Superuser Permissions",
     "severity": "LOW",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_cluster_role_binding",
+    "resourceName": "terraform-example2",
+    "searchKey": "kubernetes_cluster_role_binding[example2].role_ref.name",
+    "searchValue": "",
+    "expectedValue": "Resource name 'example2' isn't binding 'cluster-admin' role with superuser permissions",
+    "actualValue": "Resource name 'example2' is binding 'cluster-admin' role with superuser permissions",
+    "issueType": "IncorrectValue"
   }
 ]

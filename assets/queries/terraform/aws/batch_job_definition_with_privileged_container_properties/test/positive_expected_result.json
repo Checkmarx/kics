@@ -1,7 +1,15 @@
 [
   {
-    "line": 11,
     "queryName": "Batch Job Definition With Privileged Container Properties",
-    "severity": "HIGH"
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive.tf",
+    "resourceType": "aws_batch_job_definition",
+    "resourceName": "tf_test_batch_job_definition",
+    "searchKey": "aws_batch_job_definition[positive1].container_properties.privileged",
+    "searchValue": "",
+    "expectedValue": "aws_batch_job_definition[positive1].container_properties.privileged should be 'false' or not set",
+    "actualValue": "aws_batch_job_definition[positive1].container_properties.privileged is 'true'",
+    "issueType": "IncorrectValue"
   }
 ]

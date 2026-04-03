@@ -2,16 +2,40 @@
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_storageaccount",
+    "resourceName": "configure firewall and virtual networks",
+    "searchKey": "name={{configure firewall and virtual networks}}.{{azure_rm_storageaccount}}.network_acls.bypass",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.network_acls.bypass should not be set or contain 'AzureServices'",
+    "actualValue": "azure_rm_storageaccount.network_acls.bypass does not contain 'AzureServices' ",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 24,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_storageaccount",
+    "resourceName": "configure firewall and virtual networks2",
+    "searchKey": "name={{configure firewall and virtual networks2}}.{{azure_rm_storageaccount}}.network_acls.bypass",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.network_acls.bypass should not be set or contain 'AzureServices'",
+    "actualValue": "azure_rm_storageaccount.network_acls.bypass does not contain 'AzureServices' ",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 40
+    "line": 40,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_storageaccount",
+    "resourceName": "configure firewall and virtual networks3",
+    "searchKey": "name={{configure firewall and virtual networks3}}.{{azure_rm_storageaccount}}.network_acls.bypass",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.network_acls.bypass should not be set or contain 'AzureServices'",
+    "actualValue": "azure_rm_storageaccount.network_acls.bypass does not contain 'AzureServices' ",
+    "issueType": "IncorrectValue"
   }
 ]

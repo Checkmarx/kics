@@ -3,6 +3,13 @@
     "queryName": "REST API With Vulnerable Policy",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_api_gateway_rest_api_policy",
+    "resourceName": "test",
+    "searchKey": "aws_api_gateway_rest_api_policy[test].policy",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_rest_api_policy[test].policy should not have wildcard in 'Action' and 'Principal'",
+    "actualValue": "aws_api_gateway_rest_api_policy[test].policy has wildcard in 'Action' or 'Principal'",
+    "issueType": "IncorrectValue"
   }
 ]

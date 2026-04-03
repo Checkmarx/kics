@@ -1,14 +1,28 @@
 [
   {
+    "queryName": "S3 Bucket CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml",
-    "queryName": "S3 Bucket CloudTrail Logging Disabled"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "mybucketVulnerable",
+    "searchKey": "Resources.mybucketVulnerable.Properties",
+    "searchValue": "",
+    "expectedValue": "S3 bucket 'mybucketVulnerable' should have logging enabled",
+    "actualValue": "S3 bucket 'mybucketVulnerable' doesn't have logging enabled",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "S3 Bucket CloudTrail Logging Disabled",
     "severity": "MEDIUM",
     "line": 67,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "mybucketVulnerable",
+    "searchKey": "Resources.mybucketVulnerable.Properties",
+    "searchValue": "",
+    "expectedValue": "S3 bucket 'mybucketVulnerable' should have logging enabled",
+    "actualValue": "S3 bucket 'mybucketVulnerable' doesn't have logging enabled",
+    "issueType": "MissingAttribute"
   }
 ]

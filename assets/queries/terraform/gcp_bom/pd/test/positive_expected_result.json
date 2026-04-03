@@ -1,38 +1,80 @@
 [
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 1,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 12,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 28,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 44,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 60,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 76,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 12,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 28,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[positive3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 44,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[positive4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 60,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[negative1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 76,
+    "filename": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_compute_disk[negative2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  }
 ]

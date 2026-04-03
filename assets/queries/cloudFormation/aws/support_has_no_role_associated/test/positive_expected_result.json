@@ -1,38 +1,80 @@
 [
   {
-    "line": 4,
-    "fileName": "positive1.yaml",
     "queryName": "Support Has No Role Associated",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 4,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noRoles",
+    "searchValue": "",
+    "expectedValue": "'Resources.noRoles.Roles' should be set",
+    "actualValue": "'Resources.noRoles.Roles' is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noUsers",
+    "searchValue": "",
+    "expectedValue": "'Resources.noUsers.Users' should be set",
+    "actualValue": "'Resources.noUsers.Users' is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
     "line": 28,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noGroups",
+    "searchValue": "",
+    "expectedValue": "'Resources.noGroups.Groups' should be set",
+    "actualValue": "'Resources.noGroups.Groups' is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noRoles",
+    "searchValue": "",
+    "expectedValue": "'Resources.noRoles.Roles' should be set",
+    "actualValue": "'Resources.noRoles.Roles' is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
     "line": 29,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noUsers",
+    "searchValue": "",
+    "expectedValue": "'Resources.noUsers.Users' should be set",
+    "actualValue": "'Resources.noUsers.Users' is undefined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Support Has No Role Associated",
     "severity": "LOW",
     "line": 53,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "AWSSupportAccess",
+    "searchKey": "Resources.noGroups",
+    "searchValue": "",
+    "expectedValue": "'Resources.noGroups.Groups' should be set",
+    "actualValue": "'Resources.noGroups.Groups' is undefined",
+    "issueType": "IncorrectValue"
   }
 ]

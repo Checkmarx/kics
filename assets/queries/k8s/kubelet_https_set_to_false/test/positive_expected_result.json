@@ -3,6 +3,13 @@
     "queryName": "Kubelet HTTPS Set To False",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--kubelet-https flag should be set to true or not be defined",
+    "actualValue": "--kubelet-https flag is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

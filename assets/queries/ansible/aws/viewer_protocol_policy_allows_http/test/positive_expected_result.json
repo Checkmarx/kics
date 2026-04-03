@@ -2,11 +2,27 @@
   {
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
     "severity": "MEDIUM",
-    "line": 20
+    "line": 20,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudfront_distribution",
+    "resourceName": "example1",
+    "searchKey": "name={{example1}}.{{community.aws.cloudfront_distribution}}.default_cache_behavior.viewer_protocol_policy",
+    "searchValue": "",
+    "expectedValue": "cloudfront_distribution.default_cache_behavior.viewer_protocol_policy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "cloudfront_distribution.default_cache_behavior.viewer_protocol_policy isn't 'https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
     "severity": "MEDIUM",
-    "line": 50
+    "line": 50,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudfront_distribution",
+    "resourceName": "example2",
+    "searchKey": "name={{example2}}.{{community.aws.cloudfront_distribution}}.cache_behaviors.viewer_protocol_policy",
+    "searchValue": "",
+    "expectedValue": "cloudfront_distribution.cache_behaviors.viewer_protocol_policy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "cloudfront_distribution.cache_behaviors.viewer_protocol_policy isn't 'https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue"
   }
 ]

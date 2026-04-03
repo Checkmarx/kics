@@ -2,6 +2,14 @@
   {
     "queryName": "Small PostgreSQL DB Server Log Retention Period",
     "severity": "LOW",
-    "line": 5
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_retention_days",
+    "searchKey": "azurerm_postgresql_configuration[positive1].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration[positive1].value' is greater than 3 and less than 8",
+    "actualValue": "'azurerm_postgresql_configuration[positive1].value' is %!s(int=2)",
+    "issueType": "IncorrectValue"
   }
 ]

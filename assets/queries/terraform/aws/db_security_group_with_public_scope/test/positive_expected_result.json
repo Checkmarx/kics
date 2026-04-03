@@ -2,6 +2,14 @@
   {
     "queryName": "DB Security Group With Public Scope",
     "severity": "CRITICAL",
-    "line": 5
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "aws_db_security_group",
+    "resourceName": "positive1",
+    "searchKey": "aws_db_security_group[positive1].ingress.cidr",
+    "searchValue": "",
+    "expectedValue": "'aws_db_security_group.ingress.cidr' != 0.0.0.0/0",
+    "actualValue": "'aws_db_security_group.ingress.cidr'= 0.0.0.0/0",
+    "issueType": "IncorrectValue"
   }
 ]

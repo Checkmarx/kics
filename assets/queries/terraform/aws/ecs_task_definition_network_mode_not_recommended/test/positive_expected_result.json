@@ -2,6 +2,14 @@
   {
     "queryName": "ECS Task Definition Network Mode Not Recommended",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive.tf",
+    "resourceType": "aws_ecs_task_definition",
+    "resourceName": "positive1",
+    "searchKey": "aws_ecs_task_definition[positive1].network_mode",
+    "searchValue": "",
+    "expectedValue": "'network_mode' should equal to 'awsvpc'",
+    "actualValue": "'network_mode' is equal to 'none'",
+    "issueType": "IncorrectValue"
   }
 ]

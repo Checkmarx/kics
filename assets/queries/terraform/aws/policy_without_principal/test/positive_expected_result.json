@@ -3,6 +3,13 @@
     "queryName": "Policy Without Principal",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive.tf"
+    "filename": "positive.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "secure_policy",
+    "searchKey": "aws_kms_key[secure_policy].policy",
+    "searchValue": "",
+    "expectedValue": "'Principal' should be defined",
+    "actualValue": "'Principal' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

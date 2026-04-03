@@ -2,16 +2,40 @@
   {
     "queryName": "Google Container Node Pool Auto Repair Disabled",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_node_pool",
+    "resourceName": "create a node pool",
+    "searchKey": "name={{create a node pool}}.{{google.cloud.gcp_container_node_pool}}.management.auto_repair",
+    "searchValue": "",
+    "expectedValue": "gcp_container_node_pool.management.auto_repair should be set to true",
+    "actualValue": "gcp_container_node_poolmanagement.auto_repair is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Google Container Node Pool Auto Repair Disabled",
     "severity": "MEDIUM",
-    "line": 26
+    "line": 26,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_node_pool",
+    "resourceName": "create a node pool2",
+    "searchKey": "name={{create a node pool2}}.{{google.cloud.gcp_container_node_pool}}.management.auto_repair",
+    "searchValue": "",
+    "expectedValue": "gcp_container_node_pool.management.auto_repair should be set to true",
+    "actualValue": "gcp_container_node_poolmanagement.auto_repair is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Google Container Node Pool Auto Repair Disabled",
     "severity": "MEDIUM",
-    "line": 29
+    "line": 29,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_node_pool",
+    "resourceName": "create a node pool3",
+    "searchKey": "name={{create a node pool3}}.{{google.cloud.gcp_container_node_pool}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_node_pool.management should be defined",
+    "actualValue": "gcp_container_node_pool.management is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

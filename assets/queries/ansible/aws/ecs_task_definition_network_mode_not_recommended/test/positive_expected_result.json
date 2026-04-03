@@ -2,11 +2,27 @@
   {
     "queryName": "ECS Task Definition Network Mode Not Recommended",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ecs_taskdefinition",
+    "resourceName": "Create task definition",
+    "searchKey": "name={{Create task definition}}.{{community.aws.ecs_taskdefinition}}.network_mode",
+    "searchValue": "",
+    "expectedValue": "'ecs_taskdefinition.network_mode' should be set to 'awsvpc'",
+    "actualValue": "'ecs_taskdefinition.network_mode' is 'default'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECS Task Definition Network Mode Not Recommended",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.ecs_taskdefinition",
+    "resourceName": "Create task definition2",
+    "searchKey": "name={{Create task definition2}}.{{community.aws.ecs_taskdefinition}}.network_mode",
+    "searchValue": "",
+    "expectedValue": "'ecs_taskdefinition.network_mode' should be set to 'awsvpc'",
+    "actualValue": "'ecs_taskdefinition.network_mode' is 'none'",
+    "issueType": "IncorrectValue"
   }
 ]

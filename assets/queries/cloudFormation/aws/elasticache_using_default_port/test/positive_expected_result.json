@@ -3,24 +3,52 @@
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "BasicReplicationGroup",
+    "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 6379",
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 6379",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "BasicReplicationGroup",
+    "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 11211",
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 11211",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "BasicReplicationGroup",
+    "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 6379",
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 6379",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::ElastiCache::ReplicationGroup",
+    "resourceName": "BasicReplicationGroup",
+    "searchKey": "Resources.BasicReplicationGroup.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicReplicationGroup.Properties.Port should not be set to 11211",
+    "actualValue": "Resources.BasicReplicationGroup.Properties.Port is set to 11211",
+    "issueType": "IncorrectValue"
   }
 ]

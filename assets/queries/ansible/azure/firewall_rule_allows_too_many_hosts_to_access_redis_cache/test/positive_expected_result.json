@@ -2,6 +2,14 @@
   {
     "queryName": "Firewall Rule Allows Too Many Hosts To Access Redis Cache",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "filename": "positive.yaml",
+    "resourceType": "azure_rm_rediscachefirewallrule",
+    "resourceName": "too_many_hosts",
+    "searchKey": "name={{too_many_hosts}}.{{azure_rm_rediscachefirewallrule}}.start_ip_address",
+    "searchValue": "",
+    "expectedValue": "azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address should allow up to 255 hosts",
+    "actualValue": "azure_rm_rediscachefirewallrule.start_ip_address and end_ip_address allow 65539 hosts",
+    "issueType": "IncorrectValue"
   }
 ]

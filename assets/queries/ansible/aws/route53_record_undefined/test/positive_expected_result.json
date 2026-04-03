@@ -1,12 +1,28 @@
 [
-	{
-		"queryName": "Route53 Record Undefined",
-		"severity": "HIGH",
-		"line": 3
-	},
-	{
-		"queryName": "Route53 Record Undefined",
-		"severity": "HIGH",
-		"line": 14
-	}
+  {
+    "queryName": "Route53 Record Undefined",
+    "severity": "HIGH",
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.route53",
+    "resourceName": "Use a routing policy to distribute traffic02",
+    "searchKey": "name={{Use a routing policy to distribute traffic02}}.{{community.aws.route53}}",
+    "searchValue": "",
+    "expectedValue": "route53.value should be defined or not null",
+    "actualValue": "route53.value is undefined or null",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Route53 Record Undefined",
+    "severity": "HIGH",
+    "line": 14,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.route53",
+    "resourceName": "Use a routing policy to distribute traffic03",
+    "searchKey": "name={{Use a routing policy to distribute traffic03}}.{{community.aws.route53}}",
+    "searchValue": "",
+    "expectedValue": "route53.value should be defined or not null",
+    "actualValue": "route53.value is undefined or null",
+    "issueType": "MissingAttribute"
+  }
 ]

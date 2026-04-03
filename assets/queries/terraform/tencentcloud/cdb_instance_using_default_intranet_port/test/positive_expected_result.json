@@ -3,12 +3,26 @@
     "queryName": "CDB Instance Internet Using Default Intranet Port",
     "severity": "LOW",
     "line": 34,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "tencentcloud_mysql_instance",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_mysql_instance[example].intranet_port",
+    "searchValue": "",
+    "expectedValue": "[example] has 'intranet_port' set to non 3306",
+    "actualValue": "[example] has 'intranet_port' set to 3306",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CDB Instance Internet Using Default Intranet Port",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "tencentcloud_mysql_instance",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_mysql_instance[example]",
+    "searchValue": "",
+    "expectedValue": "[example] 'intranet_port' should be set and the value should not be 3306",
+    "actualValue": "[example] does not set 'intranet_port'",
+    "issueType": "MissingAttribute"
   }
 ]

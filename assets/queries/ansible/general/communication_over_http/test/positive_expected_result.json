@@ -1,8 +1,15 @@
 [
-    {
-      "queryName": "Communication Over HTTP",
-      "severity": "MEDIUM",
-      "line": 6,
-      "filename": "positive1.yaml"
-    }
+  {
+    "queryName": "Communication Over HTTP",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive1.yaml",
+    "resourceType": "ansible.builtin.uri",
+    "resourceName": "Verificar o status do site",
+    "searchKey": "name={{Verificar o status do site}}.{{ansible.builtin.uri}}.url",
+    "searchValue": "",
+    "expectedValue": "ansible.builtin.uri.url should be accessed via the HTTPS protocol",
+    "actualValue": "ansible.builtin.uri.url is accessed via the HTTP protocol'",
+    "issueType": "IncorrectValue"
+  }
 ]

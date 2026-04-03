@@ -3,6 +3,13 @@
     "queryName": "Google Compute Network Using Firewall Rule that Allows All Ports",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_network",
+    "resourceName": "create a network2",
+    "searchKey": "name={{create a network2}}.{{google.cloud.gcp_compute_network}}",
+    "searchValue": "",
+    "expectedValue": "'google.cloud.gcp_compute_network' should not be using a firewall rule that allows access to all ports",
+    "actualValue": "'google.cloud.gcp_compute_network' is using a firewall rule that allows access to all ports",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -3,102 +3,221 @@
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-1].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-1].ingress shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_security_group[positive1-1].ingress opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-2].ingress[1]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-2].ingress[1] shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_security_group[positive1-2].ingress[1] opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 39,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-3].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-3].ingress shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_security_group[positive1-3].ingress opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 60,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-4].ingress[1]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-4].ingress[1] shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_security_group[positive1-4].ingress[1] opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 73,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-5].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-5].ingress shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_security_group[positive1-5].ingress opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 87,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-6].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-6].ingress shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_security_group[positive1-6].ingress opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 101,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_security_group",
+    "resourceName": "allow_tls",
+    "searchKey": "aws_security_group[positive1-7].ingress",
+    "searchValue": "",
+    "expectedValue": "aws_security_group[positive1-7].ingress shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_security_group[positive1-7].ingress opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2-1",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2-1]",
+    "searchValue": "",
+    "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-1] shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-1] opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_vpc_security_group_ingress_rule",
+    "resourceName": "positive2-2",
+    "searchKey": "aws_vpc_security_group_ingress_rule[positive2-2]",
+    "searchValue": "",
+    "expectedValue": "aws_vpc_security_group_ingress_rule[positive2-2] shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_vpc_security_group_ingress_rule[positive2-2] opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3-1",
+    "searchKey": "aws_security_group_rule[positive3-1]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group_rule[positive3-1] shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_security_group_rule[positive3-1] opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_security_group_rule",
+    "resourceName": "positive3-2",
+    "searchKey": "aws_security_group_rule[positive3-2]",
+    "searchValue": "",
+    "expectedValue": "aws_security_group_rule[positive3-2] shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "aws_security_group_rule[positive3-2] opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv4].ingress_with_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[vote_service_sg_ipv4].ingress_with_cidr_blocks.0 shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "module[vote_service_sg_ipv4].ingress_with_cidr_blocks.0 opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 30,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "module[vote_service_sg_ipv6].ingress_with_ipv6_cidr_blocks.0 opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 49,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.0 opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 63,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2",
+    "searchValue": "",
+    "expectedValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "module[vote_service_sg_ipv4_array].ingress_with_cidr_blocks.2 opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 82,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.0",
+    "searchValue": "",
+    "expectedValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.0 shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.0 opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 96,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2",
+    "searchValue": "",
+    "expectedValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 shouldn't open SQL Analysis Services Port 2383",
+    "actualValue": "module[vote_service_sg_ipv6_array].ingress_with_ipv6_cidr_blocks.2 opens SQL Analysis Services Port 2383",
+    "issueType": "IncorrectValue"
   }
 ]

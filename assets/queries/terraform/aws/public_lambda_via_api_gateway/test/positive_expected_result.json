@@ -2,6 +2,14 @@
   {
     "queryName": "Public Lambda via API Gateway",
     "severity": "MEDIUM",
-    "line": 9
+    "line": 9,
+    "filename": "positive.tf",
+    "resourceType": "aws_lambda_permission",
+    "resourceName": "example",
+    "searchKey": "aws_lambda_permission[apigw].source_arn",
+    "searchValue": "",
+    "expectedValue": "'source_arn' should not equal '/*/*'",
+    "actualValue": "'source_arn' is equal '/*/*'",
+    "issueType": "IncorrectValue"
   }
 ]

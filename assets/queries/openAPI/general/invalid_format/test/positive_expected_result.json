@@ -3,96 +3,208 @@
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 14,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "number is float or double formats",
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 14,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "integer is int32 or int64 formats",
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 33,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.items.properties.myObject.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "integer is int32 or int64 formats",
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 33,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.items.properties.myObject.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "number is float or double formats",
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 37,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.items.properties.length.format=float",
+    "searchValue": "",
+    "expectedValue": "integer is int32 or int64 formats",
+    "actualValue": "integer is float format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 53,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.id.format=double",
+    "searchValue": "",
+    "expectedValue": "integer is int32 or int64 formats",
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 61,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.percentage.format=int32",
+    "searchValue": "",
+    "expectedValue": "number is float or double formats",
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "integer is int32 or int64 formats",
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "number is float or double formats",
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 26,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.items.properties.myObject.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "number is float or double formats",
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 26,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.items.properties.myObject.$ref=#/components/schemas/MyObject",
+    "searchValue": "",
+    "expectedValue": "integer is int32 or int64 formats",
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 29,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.items.properties.length.format=float",
+    "searchValue": "",
+    "expectedValue": "integer is int32 or int64 formats",
+    "actualValue": "integer is float format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 37,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.id.format=double",
+    "searchValue": "",
+    "expectedValue": "integer is int32 or int64 formats",
+    "actualValue": "integer is double format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v3)",
     "severity": "LOW",
     "line": 43,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyObject.properties.percentage.format=int32",
+    "searchValue": "",
+    "expectedValue": "number is float or double formats",
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v2)",
     "severity": "LOW",
     "line": 42,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.items.properties.percentage.format=int32",
+    "searchValue": "",
+    "expectedValue": "number is float or double formats",
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Invalid Format (v2)",
     "severity": "LOW",
     "line": 33,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.items.properties.percentage.format=int32",
+    "searchValue": "",
+    "expectedValue": "number is float or double formats",
+    "actualValue": "number is int32 format",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -3,66 +3,143 @@
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "google_logging_metric",
+    "resourceName": "audit_config_change",
+    "searchKey": "google_logging_metric[audit_config_change].filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive10.tf",
+    "resourceType": "google_logging_metric",
+    "resourceName": "audit_config_change",
+    "searchKey": "google_logging_metric[audit_config_change].filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive11.tf",
+    "resourceType": "google_logging_metric",
+    "resourceName": "audit_config_change",
+    "searchKey": "google_logging_metric[audit_config_change].filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "google_monitoring_alert_policy",
+    "resourceName": "Audit Config Change Alert",
+    "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_threshold.filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "google_monitoring_alert_policy",
+    "resourceName": "Audit Config Change Alert (Log Match)",
+    "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_matched_log.filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "google_monitoring_alert_policy",
+    "resourceName": "Audit Config Change Alert",
+    "searchKey": "google_monitoring_alert_policy[audit_config_alert]",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
+    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures all audit configuration changes but does not define a proper 'notification_channels'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "google_monitoring_alert_policy",
+    "resourceName": "Audit Config Change Alert (Log Match)",
+    "searchKey": "google_monitoring_alert_policy[audit_config_alert]",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
+    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures all audit configuration changes but does not define a proper 'notification_channels'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "google_monitoring_alert_policy",
+    "resourceName": "Audit Config Change Alert",
+    "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_threshold.filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive7.tf"
+    "filename": "positive7.tf",
+    "resourceType": "google_logging_metric",
+    "resourceName": "audit_config_change",
+    "searchKey": "google_logging_metric[audit_config_change].filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive8.tf"
+    "filename": "positive8.tf",
+    "resourceType": "google_logging_metric",
+    "resourceName": "audit_config_change",
+    "searchKey": "google_logging_metric[audit_config_change].filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive9.tf"
-  },
-  {
-    "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive10.tf"
-  },
-  {
-    "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive11.tf"
+    "filename": "positive9.tf",
+    "resourceType": "google_logging_metric",
+    "resourceName": "audit_config_change",
+    "searchKey": "google_logging_metric[audit_config_change].filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
+    "actualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+    "issueType": "IncorrectValue"
   }
 ]

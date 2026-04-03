@@ -3,24 +3,52 @@
     "queryName": "Schema Object With Circular Ref (v3)",
     "severity": "INFO",
     "line": 70,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.ExtendedErrorModel.allOf.$ref=#/components/schemas/ExtendedErrorModel",
+    "searchValue": "",
+    "expectedValue": "components.schemas.ExtendedErrorModel.allOf should not reference own schema",
+    "actualValue": "components.schemas.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object With Circular Ref (v2)",
     "severity": "INFO",
     "line": 46,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.ExtendedErrorModel.allOf.$ref=#/definitions/ExtendedErrorModel",
+    "searchValue": "",
+    "expectedValue": "definitions.ExtendedErrorModel.allOf should not reference own schema",
+    "actualValue": "definitions.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object With Circular Ref (v3)",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.ExtendedErrorModel.allOf.$ref=#/components/schemas/ExtendedErrorModel",
+    "searchValue": "",
+    "expectedValue": "components.schemas.ExtendedErrorModel.allOf should not reference own schema",
+    "actualValue": "components.schemas.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Schema Object With Circular Ref (v2)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.ExtendedErrorModel.allOf.$ref=#/definitions/ExtendedErrorModel",
+    "searchValue": "",
+    "expectedValue": "definitions.ExtendedErrorModel.allOf should not reference own schema",
+    "actualValue": "definitions.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue"
   }
 ]

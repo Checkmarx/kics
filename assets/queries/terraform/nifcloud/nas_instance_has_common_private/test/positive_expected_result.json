@@ -1,8 +1,15 @@
 [
-	{
-		"queryName": "Nifcloud NAS Has Common Private Network",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud NAS Has Common Private Network",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "nifcloud_nas_instance",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_nas_instance[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_nas_instance[positive]' should use a private LAN to isolate the private side network from the shared network",
+    "actualValue": "'nifcloud_nas_instance[positive]' has common private network",
+    "issueType": "IncorrectValue"
+  }
 ]

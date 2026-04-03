@@ -2,6 +2,14 @@
   {
     "queryName": "Not Proper Email Account In Use",
     "severity": "LOW",
-    "line": 6
+    "line": 6,
+    "filename": "positive.tf",
+    "resourceType": "google_project_iam_binding",
+    "resourceName": "positive1",
+    "searchKey": "google_project_iam_binding[positive1].members.user:jane@gmail.com",
+    "searchValue": "",
+    "expectedValue": "'members' cannot contain Gmail account addresses",
+    "actualValue": "'members' has email address: user:jane@gmail.com",
+    "issueType": "IncorrectValue"
   }
 ]

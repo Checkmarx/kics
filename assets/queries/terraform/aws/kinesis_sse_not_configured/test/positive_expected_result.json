@@ -2,21 +2,53 @@
   {
     "queryName": "Kinesis SSE Not Configured",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "filename": "positive.tf",
+    "resourceType": "aws_kinesis_firehose_delivery_stream",
+    "resourceName": "${aws_s3_bucket.logs.bucket}-firehose",
+    "searchKey": "aws_kinesis_firehose_delivery_stream[positive2]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'server_side_encryption' should be set",
+    "actualValue": "Attribute 'server_side_encryption' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Kinesis SSE Not Configured",
     "severity": "HIGH",
-    "line": 23
+    "line": 23,
+    "filename": "positive.tf",
+    "resourceType": "aws_kinesis_firehose_delivery_stream",
+    "resourceName": "${aws_s3_bucket.logs.bucket}-firehose",
+    "searchKey": "aws_kinesis_firehose_delivery_stream[positive3].server_side_encryption.enabled",
+    "searchValue": "",
+    "expectedValue": "Attribute 'server_side_encryption' should be enabled",
+    "actualValue": "Attribute 'server_side_encryption' is not enabled",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kinesis SSE Not Configured",
     "severity": "HIGH",
-    "line": 34
+    "line": 34,
+    "filename": "positive.tf",
+    "resourceType": "aws_kinesis_firehose_delivery_stream",
+    "resourceName": "${aws_s3_bucket.logs.bucket}-firehose",
+    "searchKey": "aws_kinesis_firehose_delivery_stream[positive4].server_side_encryption.key_type",
+    "searchValue": "",
+    "expectedValue": "Attribute 'key_type' should be valid",
+    "actualValue": "Attribute 'key_type' is invalid",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Kinesis SSE Not Configured",
     "severity": "HIGH",
-    "line": 42
+    "line": 42,
+    "filename": "positive.tf",
+    "resourceType": "aws_kinesis_firehose_delivery_stream",
+    "resourceName": "${aws_s3_bucket.logs.bucket}-firehose",
+    "searchKey": "aws_kinesis_firehose_delivery_stream[positive5].server_side_encryption",
+    "searchValue": "",
+    "expectedValue": "Attribute 'key_type' should be CUSTOMER_MANAGED_CMK and attribute 'key_arn' should be set",
+    "actualValue": "Attribute 'key_type' is CUSTOMER_MANAGED_CMK and attribute 'key_arn' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

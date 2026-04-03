@@ -3,36 +3,78 @@
     "queryName": "Success Response Code Undefined for Patch Operation (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.patch.responses",
+    "searchValue": "",
+    "expectedValue": "Patch should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Patch does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Patch Operation (v3)",
     "severity": "LOW",
     "line": 24,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.patch.responses",
+    "searchValue": "",
+    "expectedValue": "Patch should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Patch does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Patch Operation (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.patch.responses",
+    "searchValue": "",
+    "expectedValue": "Patch should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Patch does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Patch Operation (v3)",
     "severity": "LOW",
     "line": 18,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.patch.responses",
+    "searchValue": "",
+    "expectedValue": "Patch should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Patch does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Patch Operation (v2)",
     "severity": "LOW",
     "line": 24,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.patch.responses",
+    "searchValue": "",
+    "expectedValue": "Patch should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Patch does not have any successful code",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Success Response Code Undefined for Patch Operation (v2)",
     "severity": "LOW",
     "line": 18,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.patch.responses",
+    "searchValue": "",
+    "expectedValue": "Patch should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Patch does not have any successful code",
+    "issueType": "MissingAttribute"
   }
 ]

@@ -2,36 +2,92 @@
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance1",
+    "searchKey": "name={{create a instance1}}.{{google.cloud.gcp_compute_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config should be defined",
+    "actualValue": "gcp_compute_instance.shielded_instance_config is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 42
+    "line": 42,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance2",
+    "searchKey": "name={{create a instance2}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring should be defined",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 65
+    "line": 65,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance3",
+    "searchKey": "name={{create a instance3}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot should be defined",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 88
+    "line": 88,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance4",
+    "searchKey": "name={{create a instance4}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm should be defined",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 112
+    "line": 112,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance5",
+    "searchKey": "name={{create a instance5}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_integrity_monitoring",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring should be true",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_integrity_monitoring is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 137
+    "line": 137,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance6",
+    "searchKey": "name={{create a instance6}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_secure_boot",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot should be true",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_secure_boot is false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
-    "line": 162
+    "line": 162,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance7",
+    "searchKey": "name={{create a instance7}}.{{google.cloud.gcp_compute_instance}}.shielded_instance_config.enable_vtpm",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm should be true",
+    "actualValue": "gcp_compute_instance.shielded_instance_config.enable_vtpm is false",
+    "issueType": "IncorrectValue"
   }
 ]

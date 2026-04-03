@@ -3,12 +3,26 @@
     "queryName": "RDS Instance Events Not Logged",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_log_audit",
+    "resourceName": "tf-audit-test",
+    "searchKey": "alicloud_log_audit[example].variable_map.rds_enabled",
+    "searchValue": "",
+    "expectedValue": "'rds_enabled' parameter value should be 'true'",
+    "actualValue": "'rds_enabled' parameter value is 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Instance Events Not Logged",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_log_audit",
+    "resourceName": "tf-audit-test",
+    "searchKey": "alicloud_log_audit[example].variable_map",
+    "searchValue": "",
+    "expectedValue": "'rds_enabled' parameter value should be 'true'",
+    "actualValue": "'rds_enabled' parameter is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

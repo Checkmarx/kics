@@ -3,48 +3,104 @@
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 65,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyIntArray.items",
+    "searchValue": "",
+    "expectedValue": "components.schemas.MyIntArray.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "components.schemas.MyIntArray.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 22,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 21,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 42,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.MyIntArray.items",
+    "searchValue": "",
+    "expectedValue": "components.schemas.MyIntArray.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "components.schemas.MyIntArray.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 19,
-    "filename": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v3)",
     "severity": "LOW",
     "line": 19,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.responses.201.content.{{application/x-www-form-urlencoded}}.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v2)",
     "severity": "LOW",
     "line": 25,
-    "filename": "positive7.json"
+    "filename": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.parameters.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Items Has No Type (v2)",
     "severity": "LOW",
     "line": 20,
-    "filename": "positive8.yaml"
+    "filename": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.items",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.parameters.schema.items should have type, anyOf.type, $ref or anyOf.$ref should be defined",
+    "actualValue": "paths.{{/}}.get.parameters.schema.items have type, anyOf.type, $ref or anyOf.$ref is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

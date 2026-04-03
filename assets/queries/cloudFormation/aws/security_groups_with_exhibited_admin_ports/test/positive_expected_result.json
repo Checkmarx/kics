@@ -3,96 +3,208 @@
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group",
+    "searchKey": "Resources.Positive1_security_group.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive1_security_group.Properties.SecurityGroupIngress[0]' is exposed and contains port(s): 20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group",
+    "searchKey": "Resources.Positive1_ingress_ipv4.Properties",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive1_ingress_ipv4.Properties' is exposed and contains port(s): 20, 21, 22, 23",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 26,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group",
+    "searchKey": "Resources.Positive1_ingress_ipv6.Properties",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive1_ingress_ipv6.Properties' is exposed and contains port(s): 2049",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive2_security_group.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive2_security_group.Properties.SecurityGroupIngress[0]' is exposed and contains port(s): 20, 21, 22, 23",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive2_security_group.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive2_security_group.Properties.SecurityGroupIngress[1]' is exposed and contains port(s): 20, 21, 22, 23",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive2_security_group.Properties.SecurityGroupIngress[2]",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive2_security_group.Properties.SecurityGroupIngress[2]' is exposed and contains port(s): 20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 24,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive2_ingress_ipv4.Properties",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive2_ingress_ipv4.Properties' is exposed and contains port(s): 20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 34,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive1_ingress_ipv6.Properties",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive1_ingress_ipv6.Properties' is exposed and contains port(s): 20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group",
+    "searchKey": "Resources.Positive1_security_group.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive1_security_group.Properties.SecurityGroupIngress[0]' is exposed and contains port(s): 20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 22,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group",
+    "searchKey": "Resources.Positive1_ingress_ipv4.Properties",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive1_ingress_ipv4.Properties' is exposed and contains port(s): 20, 21, 22, 23",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 34,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive1_security_group",
+    "searchKey": "Resources.Positive1_ingress_ipv6.Properties",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive1_ingress_ipv6.Properties' is exposed and contains port(s): 2049",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive2_security_group.Properties.SecurityGroupIngress[0]",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive2_security_group.Properties.SecurityGroupIngress[0]' is exposed and contains port(s): 20, 21, 22, 23",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive2_security_group.Properties.SecurityGroupIngress[1]",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive2_security_group.Properties.SecurityGroupIngress[1]' is exposed and contains port(s): 20, 21, 22, 23",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 24,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive2_security_group.Properties.SecurityGroupIngress[2]",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive2_security_group.Properties.SecurityGroupIngress[2]' is exposed and contains port(s): 20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 34,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive2_ingress_ipv4.Properties",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive2_ingress_ipv4.Properties' is exposed and contains port(s): 20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Groups With Exposed Admin Ports",
     "severity": "HIGH",
     "line": 46,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive1_ingress_ipv6.Properties",
+    "searchValue": "",
+    "expectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+    "actualValue": "'Resources.Positive1_ingress_ipv6.Properties' is exposed and contains port(s): 20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389",
+    "issueType": "IncorrectValue"
   }
 ]

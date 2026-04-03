@@ -3,12 +3,26 @@
     "queryName": "Operation Object Parameters With 'body' And 'formatData' locations",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "operation object parameters only use one of 'body' or 'formatData' locations",
+    "actualValue": "operation object parameters use both 'body' and 'formatData' locations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Operation Object Parameters With 'body' And 'formatData' locations",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "operation object parameters only use one of 'body' or 'formatData' locations",
+    "actualValue": "operation object parameters use both 'body' and 'formatData' locations",
+    "issueType": "IncorrectValue"
   }
 ]

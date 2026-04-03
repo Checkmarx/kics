@@ -2,16 +2,40 @@
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive1].allow.ports=22",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive1].allow.ports' should not include SSH port 22",
+    "actualValue": "'google_compute_firewall[positive1].allow.ports' includes SSH port 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive2].allow.ports=21-3390",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive2].allow.ports' should not include SSH port 22",
+    "actualValue": "'google_compute_firewall[positive2].allow.ports' includes SSH port 22",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
-    "line": 43
+    "line": 43,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_firewall",
+    "resourceName": "test-firewall",
+    "searchKey": "google_compute_firewall[positive3].allow.ports=0-65535",
+    "searchValue": "",
+    "expectedValue": "'google_compute_firewall[positive3].allow.ports' should not include SSH port 22",
+    "actualValue": "'google_compute_firewall[positive3].allow.ports' includes SSH port 22",
+    "issueType": "IncorrectValue"
   }
 ]

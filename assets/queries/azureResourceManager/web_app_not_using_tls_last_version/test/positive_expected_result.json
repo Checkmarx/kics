@@ -2,73 +2,157 @@
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Web App Not Using TLS Last Version",
-    "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Web App Not Using TLS Last Version",
-    "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Web App Not Using TLS Last Version",
-    "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "Web App Not Using TLS Last Version",
-    "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Web App Not Using TLS Last Version",
-    "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive6.json"
-  },
-  {
-    "queryName": "Web App Not Using TLS Last Version",
-    "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.bicep"
+    "filename": "positive1.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "App",
+    "searchKey": "resources.name=App.properties.siteConfig.minTlsVersion",
+    "searchValue": "",
+    "expectedValue": "'siteConfig.minTlsVersion' should be 1.2 or 1.3",
+    "actualValue": "'minTlsVersion' is not 1.2 or 1.3",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Web App Not Using TLS Last Version",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive1.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "App",
+    "searchKey": "properties.template.resources.name=App.properties.siteConfig.minTlsVersion",
+    "searchValue": "",
+    "expectedValue": "'siteConfig.minTlsVersion' should be 1.2 or 1.3",
+    "actualValue": "'minTlsVersion' is not 1.2 or 1.3",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive2.bicep"
+    "filename": "positive2.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "App",
+    "searchKey": "resources.name=App.properties",
+    "searchValue": "",
+    "expectedValue": "'siteConfig.minTlsVersion' should be defined",
+    "actualValue": "'siteConfig.minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Web App Not Using TLS Last Version",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "App",
+    "searchKey": "properties.template.resources.name=App.properties",
+    "searchValue": "",
+    "expectedValue": "'siteConfig.minTlsVersion' should be defined",
+    "actualValue": "'siteConfig.minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive3.bicep"
+    "filename": "positive3.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "App",
+    "searchKey": "resources.name=App.properties.siteConfig.minTlsVersion",
+    "searchValue": "",
+    "expectedValue": "'siteConfig.minTlsVersion' should be 1.2 or 1.3",
+    "actualValue": "'minTlsVersion' is not 1.2 or 1.3",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Web App Not Using TLS Last Version",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive3.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "App",
+    "searchKey": "properties.template.resources.name=App.properties.siteConfig.minTlsVersion",
+    "searchValue": "",
+    "expectedValue": "'siteConfig.minTlsVersion' should be 1.2 or 1.3",
+    "actualValue": "'minTlsVersion' is not 1.2 or 1.3",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive4.bicep"
+    "filename": "positive4.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "App",
+    "searchKey": "resources.name=App.properties.siteConfig",
+    "searchValue": "",
+    "expectedValue": "'minTlsVersion' should be defined",
+    "actualValue": "'minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Web App Not Using TLS Last Version",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive4.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "App",
+    "searchKey": "properties.template.resources.name=App.properties.siteConfig",
+    "searchValue": "",
+    "expectedValue": "'minTlsVersion' should be defined",
+    "actualValue": "'minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive5.bicep"
+    "filename": "positive5.bicep",
+    "resourceType": "config",
+    "resourceName": "web",
+    "searchKey": "resources.resources.name=web.properties.minTlsVersion",
+    "searchValue": "",
+    "expectedValue": "'minTlsVersion' should be defined with the version '1.2' or higher",
+    "actualValue": "'minTlsVersion' is defined to '1.1'",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Web App Not Using TLS Last Version",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive5.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "meuAppService",
+    "searchKey": "resources.name=meuAppService.properties",
+    "searchValue": "",
+    "expectedValue": "'siteConfig.minTlsVersion' should be defined",
+    "actualValue": "'siteConfig.minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive6.bicep"
+    "filename": "positive6.bicep",
+    "resourceType": "config",
+    "resourceName": "web",
+    "searchKey": "resources.resources.name=web.properties",
+    "searchValue": "",
+    "expectedValue": "'minTlsVersion' should be defined with the version '1.2' or higher",
+    "actualValue": "'minTlsVersion' is not defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "Web App Not Using TLS Last Version",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive6.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "meuAppService",
+    "searchKey": "resources.name=meuAppService.properties",
+    "searchValue": "",
+    "expectedValue": "'siteConfig.minTlsVersion' should be defined",
+    "actualValue": "'siteConfig.minTlsVersion' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

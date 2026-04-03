@@ -3,24 +3,52 @@
     "queryName": "Header Object With Incorrect Ref",
     "severity": "INFO",
     "line": 73,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.headers.{{X-Rate-Limit-Limit}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Response ref points to '#/components/headers'",
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Object With Incorrect Ref",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.6xx.headers.{{X-Rate-Limit-Limit}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Response ref points to '#/components/headers'",
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Object With Incorrect Ref",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.headers.{{X-Rate-Limit-Limit}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Response ref points to '#/components/headers'",
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Header Object With Incorrect Ref",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.6xx.headers.{{X-Rate-Limit-Limit}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Response ref points to '#/components/headers'",
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue"
   }
 ]

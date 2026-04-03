@@ -1,22 +1,54 @@
 [
   {
+    "queryName": "CloudTrail Not Integrated With CloudWatch",
     "severity": "LOW",
     "line": 2,
-    "queryName": "CloudTrail Not Integrated With CloudWatch"
-  },
-  {
-    "severity": "LOW",
-    "line": 2,
-    "queryName": "CloudTrail Not Integrated With CloudWatch"
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "positive1",
+    "searchKey": "name={{positive1}}.{{community.aws.cloudtrail}}",
+    "searchValue": "cloudwatch_logs_log_group_arn",
+    "expectedValue": "name={{positive1}}.{{community.aws.cloudtrail}}.cloudwatch_logs_log_group_arn should be defined",
+    "actualValue": "name={{positive1}}.{{community.aws.cloudtrail}}.cloudwatch_logs_log_group_arn is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
     "severity": "LOW",
-    "line": 14
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "positive1",
+    "searchKey": "name={{positive1}}.{{community.aws.cloudtrail}}",
+    "searchValue": "cloudwatch_logs_role_arn",
+    "expectedValue": "name={{positive1}}.{{community.aws.cloudtrail}}.cloudwatch_logs_role_arn should be defined",
+    "actualValue": "name={{positive1}}.{{community.aws.cloudtrail}}.cloudwatch_logs_role_arn is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
     "severity": "LOW",
-    "line": 27
+    "line": 14,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "positive2",
+    "searchKey": "name={{positive2}}.{{community.aws.cloudtrail}}",
+    "searchValue": "cloudwatch_logs_log_group_arn",
+    "expectedValue": "name={{positive2}}.{{community.aws.cloudtrail}}.cloudwatch_logs_log_group_arn should be defined",
+    "actualValue": "name={{positive2}}.{{community.aws.cloudtrail}}.cloudwatch_logs_log_group_arn is not defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "CloudTrail Not Integrated With CloudWatch",
+    "severity": "LOW",
+    "line": 27,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.cloudtrail",
+    "resourceName": "positive3",
+    "searchKey": "name={{positive3}}.{{community.aws.cloudtrail}}",
+    "searchValue": "cloudwatch_logs_role_arn",
+    "expectedValue": "name={{positive3}}.{{community.aws.cloudtrail}}.cloudwatch_logs_role_arn should be defined",
+    "actualValue": "name={{positive3}}.{{community.aws.cloudtrail}}.cloudwatch_logs_role_arn is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

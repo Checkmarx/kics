@@ -3,12 +3,26 @@
     "queryName": "Link JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.links.$ref",
+    "searchValue": "",
+    "expectedValue": "APIWrongRepository from #/components/links/APIWrongRepository should be declared on components.links",
+    "actualValue": "APIWrongRepository from #/components/links/APIWrongRepository is not declared on components.links",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Link JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.links.$ref",
+    "searchValue": "",
+    "expectedValue": "APIWrongRepository from #/components/links/APIWrongRepository should be declared on components.links",
+    "actualValue": "APIWrongRepository from #/components/links/APIWrongRepository is not declared on components.links",
+    "issueType": "MissingAttribute"
   }
 ]

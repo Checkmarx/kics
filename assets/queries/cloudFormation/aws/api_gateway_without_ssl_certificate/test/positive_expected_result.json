@@ -3,12 +3,26 @@
     "queryName": "API Gateway Without SSL Certificate",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdApiGatewayStagePos.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdApiGatewayStagePos.Properties should have ClientCertificateId defined",
+    "actualValue": "Resources.ProdApiGatewayStagePos.Properties doesn't have ClientCertificateId defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Without SSL Certificate",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdApiGatewayStagePos2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdApiGatewayStagePos2.Properties should have ClientCertificateId defined",
+    "actualValue": "Resources.ProdApiGatewayStagePos2.Properties doesn't have ClientCertificateId defined",
+    "issueType": "MissingAttribute"
   }
 ]

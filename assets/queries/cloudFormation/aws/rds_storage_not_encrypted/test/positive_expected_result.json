@@ -3,30 +3,65 @@
     "queryName": "RDS Storage Not Encrypted",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.StorageEncrypted should be set to true",
+    "actualValue": "Resources.MyDBSmall.Properties.StorageEncrypted is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Storage Not Encrypted",
     "severity": "HIGH",
     "line": 30,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall2",
+    "searchKey": "Resources.MyDBSmall2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall2.Properties.StorageEncrypted should be defined and set to true",
+    "actualValue": "Resources.MyDBSmall2.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Storage Not Encrypted",
     "severity": "HIGH",
     "line": 50,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.StorageEncrypted should be set to true",
+    "actualValue": "Resources.MyDBSmall.Properties.StorageEncrypted is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS Storage Not Encrypted",
     "severity": "HIGH",
     "line": 45,
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall2",
+    "searchKey": "Resources.MyDBSmall2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall2.Properties.StorageEncrypted should be defined and set to true",
+    "actualValue": "Resources.MyDBSmall2.Properties.StorageEncrypted is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS Storage Not Encrypted",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive5.yaml"
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.StorageEncrypted should be set to true",
+    "actualValue": "Resources.MyDBSmall.Properties.StorageEncrypted is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

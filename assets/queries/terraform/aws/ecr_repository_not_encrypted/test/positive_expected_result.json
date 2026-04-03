@@ -2,11 +2,27 @@
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "bar",
+    "searchKey": "aws_ecr_repository[foo]",
+    "searchValue": "",
+    "expectedValue": "'encryption_configuration' should be defined with 'KMS' as encryption type and a KMS key ARN",
+    "actualValue": "'encryption_configuration' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
-    "line": 18
+    "line": 18,
+    "filename": "positive.tf",
+    "resourceType": "aws_ecr_repository",
+    "resourceName": "barX",
+    "searchKey": "aws_ecr_repository[fooX].encryption_configuration",
+    "searchValue": "",
+    "expectedValue": "'encryption_configuration.encryption_type' should be set to 'KMS' and 'encryption_configuration.kms_key' specifies a KMS key ARN",
+    "actualValue": "'encryption_configuration.encryption_type' is not set to 'KMS' and/or 'encryption_configuration.kms_key' does not specify a KMS key ARN",
+    "issueType": "IncorrectValue"
   }
 ]

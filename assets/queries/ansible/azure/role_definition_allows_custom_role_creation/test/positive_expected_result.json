@@ -3,12 +3,26 @@
     "queryName": "Role Definition Allows Custom Role Creation",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "azure_rm_roledefinition",
+    "resourceName": "Create a role definition",
+    "searchKey": "name={{Create a role definition}}.{{azure_rm_roledefinition}}.permissions.actions",
+    "searchValue": "",
+    "expectedValue": "azure_rm_roledefinition.permissions[0].actions should not allow custom role creation",
+    "actualValue": "azure_rm_roledefinition.permissions[0].actions allows custom role creation",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Role Definition Allows Custom Role Creation",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "azure_rm_roledefinition",
+    "resourceName": "Create a role definition2",
+    "searchKey": "name={{Create a role definition2}}.{{azure_rm_roledefinition}}.permissions.actions",
+    "searchValue": "",
+    "expectedValue": "azure_rm_roledefinition.permissions[0].actions should not allow custom role creation",
+    "actualValue": "azure_rm_roledefinition.permissions[0].actions allows custom role creation",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -3,24 +3,52 @@
     "queryName": "Security Field Undefined",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Field Undefined",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Field Undefined",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Security Field Undefined",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute"
   }
 ]

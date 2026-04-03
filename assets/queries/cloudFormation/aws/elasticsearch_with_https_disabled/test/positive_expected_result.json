@@ -3,24 +3,52 @@
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "OpenSearchDomain",
+    "searchKey": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS",
+    "searchValue": "",
+    "expectedValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be set to 'true'",
+    "actualValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "my-elasticsearch-domain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "my-elasticsearch-domain",
+    "searchKey": "Resources.ElasticsearchDomain.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be defined and set to 'true'",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is not set",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "AWS::OpenSearchService::Domain",
+    "resourceName": "OpenSearchDomain",
+    "searchKey": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS",
+    "searchValue": "",
+    "expectedValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS should be set to 'true'",
+    "actualValue": "Resources.OpenSearchDomain.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

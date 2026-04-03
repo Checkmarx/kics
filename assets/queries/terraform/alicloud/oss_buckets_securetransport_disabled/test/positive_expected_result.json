@@ -3,12 +3,26 @@
     "queryName": "OSS Buckets Secure Transport Disabled",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-securetransport1",
+    "searchKey": "alicloud_oss_bucket[bucket-securetransport1].policy",
+    "searchValue": "",
+    "expectedValue": "bucket-securetransport1[%!s(MISSING)].policy should not accept HTTP Requests",
+    "actualValue": "bucket-securetransport1[%!s(MISSING)].policy accepts HTTP Requests",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "OSS Buckets Secure Transport Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-policy",
+    "searchKey": "alicloud_oss_bucket[bucket-securetransport3].policy",
+    "searchValue": "",
+    "expectedValue": "bucket-securetransport3[%!s(MISSING)].policy should not accept HTTP Requests",
+    "actualValue": "bucket-securetransport3[%!s(MISSING)].policy accepts HTTP Requests",
+    "issueType": "IncorrectValue"
   }
 ]

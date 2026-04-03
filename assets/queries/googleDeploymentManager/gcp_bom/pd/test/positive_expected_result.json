@@ -1,32 +1,67 @@
 [
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 3,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 11,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 19,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 24,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP PD",
-		"severity": "TRACE",
-		"line": 31,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{disk-1-data}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 11,
+    "filename": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{disk-2-data}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 19,
+    "filename": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{disk-3-data}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 24,
+    "filename": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{disk-4-data}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  },
+  {
+    "queryName": "BOM - GCP PD",
+    "severity": "TRACE",
+    "line": 31,
+    "filename": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{disk-5-data}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
+  }
 ]

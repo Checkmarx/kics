@@ -2,11 +2,27 @@
   {
     "queryName": "AMI Not Encrypted",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_ami",
+    "resourceName": "Basic AMI Creation",
+    "searchKey": "name={{Basic AMI Creation}}.{{amazon.aws.ec2_ami}}.device_mapping.encrypted",
+    "searchValue": "",
+    "expectedValue": "ec2_ami.device_mapping.encrypted should be set to true",
+    "actualValue": "ec2_ami.device_mapping.encrypted is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "AMI Not Encrypted",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_ami",
+    "resourceName": "Basic AMI Creation2",
+    "searchKey": "name={{Basic AMI Creation2}}.{{amazon.aws.ec2_ami}}",
+    "searchValue": "",
+    "expectedValue": "ec2_ami.device_mapping.device_name.encrypted should be set to true",
+    "actualValue": "ec2_ami.device_mapping.device_name.encrypted is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

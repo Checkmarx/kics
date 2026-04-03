@@ -3,12 +3,26 @@
     "queryName": "MySQL Server Public Access Enabled",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_mssql_server",
+    "resourceName": "example-mysqlserver",
+    "searchKey": "azurerm_mysql_server[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mysql_server[positive1].public_network_access_enabled' should be defined",
+    "actualValue": "'azurerm_mysql_server[positive1].public_network_access_enabled' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "MySQL Server Public Access Enabled",
     "severity": "HIGH",
     "line": 17,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_mssql_server",
+    "resourceName": "example-mysqlserver",
+    "searchKey": "azurerm_mysql_server[positive2].public_network_access_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mysql_server[positive2].public_network_access_enabled' should be set to false",
+    "actualValue": "'azurerm_mysql_server[positive2].public_network_access_enabled' is set to true",
+    "issueType": "IncorrectValue"
   }
 ]

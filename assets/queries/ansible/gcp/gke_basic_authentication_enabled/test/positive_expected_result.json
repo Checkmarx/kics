@@ -2,26 +2,66 @@
   {
     "queryName": "GKE Basic Authentication Enabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_auth should be defined",
+    "actualValue": "gcp_container_cluster.master_auth is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GKE Basic Authentication Enabled",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster2",
+    "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.master_auth",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_auth.username should be defined",
+    "actualValue": "gcp_container_cluster.master_auth.username is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GKE Basic Authentication Enabled",
     "severity": "MEDIUM",
-    "line": 32
+    "line": 32,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster3",
+    "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.master_auth",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_auth.password should be defined",
+    "actualValue": "gcp_container_cluster.master_auth.password is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "GKE Basic Authentication Enabled",
     "severity": "MEDIUM",
-    "line": 47
+    "line": 47,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster4",
+    "searchKey": "name={{create a cluster4}}.{{google.cloud.gcp_container_cluster}}.master_auth.username",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_auth.username should be empty",
+    "actualValue": "gcp_container_cluster.master_auth.username is not empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "GKE Basic Authentication Enabled",
     "severity": "MEDIUM",
-    "line": 63
+    "line": 63,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster5",
+    "searchKey": "name={{create a cluster5}}.{{google.cloud.gcp_container_cluster}}.master_auth.password",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_auth.password should be empty",
+    "actualValue": "gcp_container_cluster.master_auth.password is not empty",
+    "issueType": "IncorrectValue"
   }
 ]

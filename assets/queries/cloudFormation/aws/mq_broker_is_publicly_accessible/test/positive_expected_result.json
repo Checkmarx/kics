@@ -3,18 +3,39 @@
     "queryName": "MQ Broker Is Publicly Accessible",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker.Properties.PubliclyAccessible should be set to false or undefined",
+    "actualValue": "Resources.BasicBroker.Properties.PubliclyAccessible is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MQ Broker Is Publicly Accessible",
     "severity": "HIGH",
     "line": 31,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker2.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker2.Properties.PubliclyAccessible should be set to false or undefined",
+    "actualValue": "Resources.BasicBroker2.Properties.PubliclyAccessible is true",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "MQ Broker Is Publicly Accessible",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker.Properties.PubliclyAccessible should be set to false or undefined",
+    "actualValue": "Resources.BasicBroker.Properties.PubliclyAccessible is true",
+    "issueType": "IncorrectValue"
   }
 ]

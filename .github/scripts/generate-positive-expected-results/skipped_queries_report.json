@@ -1,0 +1,527 @@
+[
+  {
+    "id": "1819ac03-542b-4026-976b-f37addd59f3b",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws/ebs_volume_not_attached_to_instances/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws/ebs_volume_not_attached_to_instances/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 54,
+      "files_parsed": 4,
+      "lines_parsed": 54,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:09:36.862538133Z",
+      "end": "2026-03-10T21:09:37.125576984Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws/ebs_volume_not_attached_to_instances/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "f6d299d2-21eb-41cc-b1e1-fe12d857500b",
+    "test_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws/vpc_flowlogs_disabled/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/cloudFormation/aws/vpc_flowlogs_disabled/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 4,
+      "lines_scanned": 280,
+      "files_parsed": 4,
+      "lines_parsed": 280,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:14:10.140367518Z",
+      "end": "2026-03-10T21:14:10.430882489Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/cloudFormation/aws/vpc_flowlogs_disabled/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "b9c83569-459b-4110-8f79-6305aa33cb37",
+    "test_path": "/home/ricardo/kics/assets/queries/k8s/using_kubernetes_native_secret_management/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/k8s/using_kubernetes_native_secret_management/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 3,
+      "lines_scanned": 70,
+      "files_parsed": 3,
+      "lines_parsed": 66,
+      "lines_ignored": 4,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:21:17.55744331Z",
+      "end": "2026-03-10T21:21:17.854914524Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/k8s/using_kubernetes_native_secret_management/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "1ec163d0-a9be-4695-89a8-a4028a2cbae7",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_network_security_group_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_network_security_group_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:36:41.360706913Z",
+      "end": "2026-03-10T21:36:41.728017239Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_network_security_group_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "99b47957-c575-4555-b8c0-ff92384249b4",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_public_ip_address_rule_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_public_ip_address_rule_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:36:42.947693087Z",
+      "end": "2026-03-10T21:36:43.329669351Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_public_ip_address_rule_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "8553d83f-fe77-4c96-8850-a95c5895b336",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_security_solution_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_security_solution_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:36:44.496885909Z",
+      "end": "2026-03-10T21:36:44.883018849Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_security_solution_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "1219a37a-9a2c-420d-8b8c-30bdbc3bfeb1",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_sql_server_firewall_rule_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_sql_server_firewall_rule_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:36:46.245238204Z",
+      "end": "2026-03-10T21:36:46.758666376Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_or_update_sql_server_firewall_rule_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "d0514e4b-9e95-4a7a-9bc5-0adb32514122",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_policy_assignment_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_policy_assignment_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:36:48.132274021Z",
+      "end": "2026-03-10T21:36:48.519158635Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_create_policy_assignment_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "62d120b1-b1e0-40ef-a81d-a4994ac88b3b",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_network_security_group_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_network_security_group_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:36:50.245121761Z",
+      "end": "2026-03-10T21:36:50.627450482Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_network_security_group_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "a7b422e3-0b2f-4795-a43a-136dbbd6cbb3",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_policy_assignment_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_policy_assignment_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:36:51.897827526Z",
+      "end": "2026-03-10T21:36:52.284502912Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_policy_assignment_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "b3b9ce2f-c229-4133-9a2b-4e649cf2347e",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_public_ip_address_rule_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_public_ip_address_rule_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:36:53.462302745Z",
+      "end": "2026-03-10T21:36:53.832331011Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_public_ip_address_rule_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "b97a1065-a86b-442f-86c4-f95afd9b3ac6",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_security_solution_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_security_solution_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:36:55.0886508Z",
+      "end": "2026-03-10T21:36:55.488912552Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_security_solution_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "8ce5c61f-5cd1-41bc-b7d9-b26b18efd505",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_sql_server_firewall_rule_not_configured/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_sql_server_firewall_rule_not_configured/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 8,
+      "lines_scanned": 285,
+      "files_parsed": 8,
+      "lines_parsed": 277,
+      "lines_ignored": 8,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:36:56.718499014Z",
+      "end": "2026-03-10T21:36:57.096622134Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/activity_log_alert_for_delete_sql_server_firewall_rule_not_configured/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "609839ae-bd81-4375-9910-5bce72ae7b92",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/azure/mssql_server_auditing_disabled/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/azure/mssql_server_auditing_disabled/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 3,
+      "lines_scanned": 103,
+      "files_parsed": 3,
+      "lines_parsed": 103,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:38:33.396715951Z",
+      "end": "2026-03-10T21:38:33.702529094Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/azure/mssql_server_auditing_disabled/test"
+      ],
+      "queries": []
+    }
+  },
+  {
+    "id": "4f60da73-190e-4048-8e1d-cc5a3974cd15",
+    "test_path": "/home/ricardo/kics/assets/queries/terraform/gcp/cloud_asset_inventory_disabled/test",
+    "results_file_path": "/home/ricardo/kics/assets/queries/terraform/gcp/cloud_asset_inventory_disabled/results",
+    "return_code": 0,
+    "all_results": {
+      "kics_version": "development",
+      "files_scanned": 12,
+      "lines_scanned": 112,
+      "files_parsed": 12,
+      "lines_parsed": 112,
+      "lines_ignored": 0,
+      "files_failed_to_scan": 0,
+      "queries_total": 1,
+      "queries_failed_to_execute": 0,
+      "queries_failed_to_compute_similarity_id": 0,
+      "scan_id": "console",
+      "severity_counters": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "INFO": 0,
+        "LOW": 0,
+        "MEDIUM": 0,
+        "TRACE": 0
+      },
+      "total_counter": 0,
+      "total_bom_resources": 0,
+      "start": "2026-03-10T21:40:41.995856833Z",
+      "end": "2026-03-10T21:40:42.339995358Z",
+      "paths": [
+        "/home/ricardo/kics/assets/queries/terraform/gcp/cloud_asset_inventory_disabled/test"
+      ],
+      "queries": []
+    }
+  }
+]

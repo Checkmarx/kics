@@ -3,36 +3,78 @@
     "queryName": "Amplify App Access Token Exposed",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive2.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp.Properties.AccessToken",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp.Properties.AccessToken must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   },
   {
-    "line": 10,
-    "fileName": "positive3.yaml",
-    "queryName": "Amplify App Access Token Exposed",
-    "severity": "HIGH"
-  },
-  {
-    "fileName": "positive1.yaml",
     "queryName": "Amplify App Access Token Exposed",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "filename": "positive2.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentAccessToken.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentAccessToken.Default should be defined",
+    "actualValue": "Parameters.ParentAccessToken.Default shouldn't be defined",
+    "issueType": "IncorrectValue"
   },
   {
-    "line": 11,
-    "fileName": "positive4.json",
     "queryName": "Amplify App Access Token Exposed",
-    "severity": "HIGH"
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewApp.Properties.AccessToken",
+    "searchValue": "",
+    "expectedValue": "Resources.NewApp.Properties.AccessToken must not be in plain text string",
+    "actualValue": "Resources.NewApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Amplify App Access Token Exposed",
+    "severity": "HIGH",
+    "line": 11,
+    "filename": "positive4.json",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp.Properties.AccessToken",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp.Properties.AccessToken must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Amplify App Access Token Exposed",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentAccessToken.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentAccessToken.Default should be defined",
+    "actualValue": "Parameters.ParentAccessToken.Default shouldn't be defined",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Amplify App Access Token Exposed",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive6.json"
+    "filename": "positive6.json",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewApp.Properties.AccessToken",
+    "searchValue": "",
+    "expectedValue": "Resources.NewApp.Properties.AccessToken must not be in plain text string",
+    "actualValue": "Resources.NewApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue"
   }
 ]

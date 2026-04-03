@@ -1,8 +1,15 @@
 [
-	{
-		"queryName": "Encryption Provider Config Is Not Defined",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Encryption Provider Config Is Not Defined",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--encryption-provider-config flag should be defined",
+    "actualValue": "--encryption-provider-config flag is not defined",
+    "issueType": "MissingAttribute"
+  }
 ]

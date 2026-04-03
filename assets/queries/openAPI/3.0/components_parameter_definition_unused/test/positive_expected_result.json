@@ -3,12 +3,26 @@
     "queryName": "Components Parameter Definition Is Unused",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.{{limitParam}}",
+    "searchValue": "",
+    "expectedValue": "Parameter should be used as reference somewhere",
+    "actualValue": "Parameter is not used as reference",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Components Parameter Definition Is Unused",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.{{limitParam}}",
+    "searchValue": "",
+    "expectedValue": "Parameter should be used as reference somewhere",
+    "actualValue": "Parameter is not used as reference",
+    "issueType": "IncorrectValue"
   }
 ]

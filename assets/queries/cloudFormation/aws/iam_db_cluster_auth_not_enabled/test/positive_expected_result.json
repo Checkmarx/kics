@@ -3,216 +3,468 @@
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
-    "line": 21,
-    "fileName": "positive2.json"
+    "line": 22,
+    "filename": "positive10.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive3.yaml"
+    "filename": "positive11.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive4.json"
+    "filename": "positive12.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive13.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive14.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive15.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive16.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive17.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive18.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive19.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive2.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive20.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive21.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive22.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive5.yaml"
+    "filename": "positive23.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive7.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 22,
-    "fileName": "positive8.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive9.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 22,
-    "fileName": "positive10.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive11.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive12.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive13.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 22,
-    "fileName": "positive14.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive15.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 22,
-    "fileName": "positive16.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive17.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive18.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive19.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive20.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive21.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive22.json"
+    "filename": "positive24.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive23.yaml"
+    "filename": "positive25.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive24.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 15,
-    "fileName": "positive25.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 21,
-    "fileName": "positive26.json"
+    "filename": "positive26.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive27.yaml"
+    "filename": "positive27.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive28.json"
+    "filename": "positive28.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive29.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 20,
-    "fileName": "positive30.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 15,
-    "fileName": "positive31.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 23,
-    "fileName": "positive32.json"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 15,
-    "fileName": "positive33.yaml"
-  },
-  {
-    "queryName": "IAM DB Cluster Auth Not Enabled",
-    "severity": "MEDIUM",
-    "line": 23,
-    "fileName": "positive34.json"
+    "filename": "positive29.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive35.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive30.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "PostgresDBCluster",
+    "searchKey": "Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.PostgresDBCluster.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive31.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive32.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive33.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive34.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive35.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM DB Cluster Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive36.json"
+    "filename": "positive36.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive4.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined (disabled by default)",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is not defined (disabled by default)",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive6.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive7.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive8.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive9.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "sample",
+    "searchKey": "Resources.sample.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' should be defined to true",
+    "actualValue": "'Resources.sample.Properties.EnableIAMDatabaseAuthentication' is defined to false",
+    "issueType": "IncorrectValue"
   }
 ]

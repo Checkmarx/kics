@@ -3,12 +3,26 @@
     "queryName": "Header JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.headers.X-Pages.$ref",
+    "searchValue": "",
+    "expectedValue": "wPages from #/components/headers/wPages should be declared on components.headers",
+    "actualValue": "wPages from #/components/headers/wPages is not declared on components.headers",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Header JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.headers.X-Pages.$ref",
+    "searchValue": "",
+    "expectedValue": "wPages from #/components/headers/wPages should be declared on components.headers",
+    "actualValue": "wPages from #/components/headers/wPages is not declared on components.headers",
+    "issueType": "MissingAttribute"
   }
 ]

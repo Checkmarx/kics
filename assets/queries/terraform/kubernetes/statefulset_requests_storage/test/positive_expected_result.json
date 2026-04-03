@@ -1,7 +1,15 @@
 [
-	{
-		"queryName": "StatefulSet Requests Storage",
-		"severity": "LOW",
-		"line": 177
-	}
+  {
+    "queryName": "StatefulSet Requests Storage",
+    "severity": "LOW",
+    "line": 177,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_stateful_set",
+    "resourceName": "prometheus",
+    "searchKey": "kubernetes_stateful_set[prometheus].spec.volume_claim_template.spec.resources.requests.storage",
+    "searchValue": "",
+    "expectedValue": "kubernetes_stateful_set[prometheus].spec.volume_claim_template.spec.resources.requests.storage should not be set",
+    "actualValue": "kubernetes_stateful_set[prometheus].spec.volume_claim_template.spec.resources.requests.storage is set to 16Gi",
+    "issueType": "IncorrectValue"
+  }
 ]

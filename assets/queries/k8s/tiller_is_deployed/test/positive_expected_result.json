@@ -1,23 +1,54 @@
 [
-	{
-		"queryName": "Tiller (Helm v2) Is Deployed",
-		"severity": "HIGH",
-		"line": 4
-	},
-	{
-		"queryName": "Tiller (Helm v2) Is Deployed",
-		"severity": "HIGH",
-		"line": 10
-	},
-	{
-		"queryName": "Tiller (Helm v2) Is Deployed",
-		"severity": "HIGH",
-		"line": 15
-	},
-	{
-		"queryName": "Tiller (Helm v2) Is Deployed",
-		"severity": "HIGH",
-		"line": 20
-	}
-
+  {
+    "queryName": "Tiller (Helm v2) Is Deployed",
+    "severity": "HIGH",
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "tiller-deploy",
+    "searchKey": "metadata.name={{tiller-deploy}}",
+    "searchValue": "Deployment",
+    "expectedValue": "'metadata' of Deployment should not refer to any Tiller resource",
+    "actualValue": "'metadata' of Deployment refers to a Tiller resource",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Tiller (Helm v2) Is Deployed",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "tiller-deploy",
+    "searchKey": "metadata.name={{tiller-deploy}}.spec.containers",
+    "searchValue": "Deployment",
+    "expectedValue": "'spec.containers' of Deployment shouldn't have any Tiller containers",
+    "actualValue": "'spec.containers' of Deployment contains a Tiller container",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Tiller (Helm v2) Is Deployed",
+    "severity": "HIGH",
+    "line": 15,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "tiller-deploy",
+    "searchKey": "metadata.name={{tiller-deploy}}.spec.template.metadata",
+    "searchValue": "Deployment",
+    "expectedValue": "'spec.template.metadata' should not refer to any Tiller resource%!(EXTRA string=Deployment)",
+    "actualValue": "'spec.template.metadata' refers to a Tiller resource%!(EXTRA string=Deployment)",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Tiller (Helm v2) Is Deployed",
+    "severity": "HIGH",
+    "line": 20,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "tiller-deploy",
+    "searchKey": "metadata.name={{tiller-deploy}}.spec.template.spec.containers",
+    "searchValue": "Deployment",
+    "expectedValue": "'spec.template.spec.containers' of Deployment shouldn't have any Tiller containers",
+    "actualValue": "'spec.template.spec.containers' of Deployment contains a Tiller container",
+    "issueType": "IncorrectValue"
+  }
 ]

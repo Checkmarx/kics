@@ -3,12 +3,26 @@
     "queryName": "Responses JSON Reference Does Not Exists (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/responses/Succes",
+    "searchValue": "",
+    "expectedValue": "Succes from #/responses/Succes should be declared on responses",
+    "actualValue": "Succes from #/responses/Succes is not declared on responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Responses JSON Reference Does Not Exists (v2)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/responses/Succes",
+    "searchValue": "",
+    "expectedValue": "Succes from #/responses/Succes should be declared on responses",
+    "actualValue": "Succes from #/responses/Succes is not declared on responses",
+    "issueType": "MissingAttribute"
   }
 ]

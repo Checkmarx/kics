@@ -3,6 +3,13 @@
     "queryName": "S3 Bucket Object Not Encrypted",
     "severity": "HIGH",
     "line": 14,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_s3_bucket_object",
+    "resourceName": "${aws_s3_bucket.examplebucket.id}",
+    "searchKey": "aws_s3_bucket_object[{{examplebucket_object}}]",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_object.server_side_encryption should be defined and not null",
+    "actualValue": "aws_s3_bucket_object.server_side_encryption is undefined or null",
+    "issueType": "MissingAttribute"
   }
 ]

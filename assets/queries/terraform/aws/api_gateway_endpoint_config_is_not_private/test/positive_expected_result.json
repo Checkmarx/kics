@@ -2,6 +2,14 @@
   {
     "queryName": "API Gateway Endpoint Config is Not Private",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "filename": "positive.tf",
+    "resourceType": "aws_api_gateway_rest_api",
+    "resourceName": "positive1",
+    "searchKey": "aws_api_gateway_rest_api[positive1].endpoint_configuration.types[%!s(int=0)]",
+    "searchValue": "",
+    "expectedValue": "'aws_api_gateway_rest_api.aws_api_gateway_rest_api.types' should be 'PRIVATE'.",
+    "actualValue": "'aws_api_gateway_rest_api.aws_api_gateway_rest_api.types' is not 'PRIVATE'.",
+    "issueType": "IncorrectValue"
   }
 ]

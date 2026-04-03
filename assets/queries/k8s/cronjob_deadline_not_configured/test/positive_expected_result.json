@@ -1,7 +1,15 @@
 [
-	{
-		"queryName": "CronJob Deadline Not Configured",
-		"severity": "LOW",
-		"line": 6
-	}
+  {
+    "queryName": "CronJob Deadline Not Configured",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive.yaml",
+    "resourceType": "CronJob",
+    "resourceName": "hello",
+    "searchKey": "metadata.name={{hello}}.spec",
+    "searchValue": "",
+    "expectedValue": "spec.startingDeadlineSeconds should be defined",
+    "actualValue": "spec.startingDeadlineSeconds is not defined",
+    "issueType": "MissingAttribute"
+  }
 ]

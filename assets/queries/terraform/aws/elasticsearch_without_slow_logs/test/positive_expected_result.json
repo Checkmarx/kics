@@ -3,6 +3,13 @@
     "queryName": "ElasticSearch Without Slow Logs",
     "severity": "LOW",
     "line": 4,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_elasticsearch_domain",
+    "resourceName": "positive1",
+    "searchKey": "aws_elasticsearch_domain[{{positive1}}].log_publishing_options.log_type",
+    "searchValue": "",
+    "expectedValue": "'log_publishing_options.log_type' should not be INDEX_SLOW_LOGS or SEARCH_SLOW_LOGS  ",
+    "actualValue": "'log_publishing_options.enabled' is ES_APPLICATION_LOGS or AUDIT_LOGS",
+    "issueType": "IncorrectValue"
   }
 ]

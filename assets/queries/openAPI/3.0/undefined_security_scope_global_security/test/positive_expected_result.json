@@ -3,24 +3,52 @@
     "queryName": "Undefined Scope 'securityScheme' On Global 'security' Field",
     "severity": "LOW",
     "line": 26,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "scope error:api should be defined on 'securityShemes'",
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Undefined Scope 'securityScheme' On Global 'security' Field",
     "severity": "LOW",
     "line": 26,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "scope error:api should be defined on 'securityShemes'",
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Undefined Scope 'securityScheme' On Global 'security' Field",
     "severity": "LOW",
     "line": 18,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "scope error:api should be defined on 'securityShemes'",
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Undefined Scope 'securityScheme' On Global 'security' Field",
     "severity": "LOW",
     "line": 17,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "scope error:api should be defined on 'securityShemes'",
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue"
   }
 ]

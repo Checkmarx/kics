@@ -3,30 +3,65 @@
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-1",
+    "searchKey": "metadata.name={{memory-demo-1}}.spec.containers.name={{memory-demo-ctr}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{memory-demo-1}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-1}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-2",
+    "searchKey": "metadata.name={{memory-demo-2}}.spec.containers.name={{memory-demo-ctr}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{memory-demo-2}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-2}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
     "line": 38,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-3",
+    "searchKey": "metadata.name={{memory-demo-3}}.spec.containers.name={{memory-demo-ctr}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{memory-demo-3}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-3}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
     "line": 57,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-4",
+    "searchKey": "metadata.name={{memory-demo-4}}.spec.containers.name={{memory-demo-ctr}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{memory-demo-4}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-4}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "test-deployment",
+    "searchKey": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.resources.limits.memory should be defined",
+    "actualValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

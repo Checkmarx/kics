@@ -3,24 +3,52 @@
     "queryName": "ECS No Load Balancer Attached",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "ECSService",
+    "searchKey": "Resources.ECSService.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.ECSService.Properties.LoadBalancers' should be defined",
+    "actualValue": "'Resources.ECSService.Properties.LoadBalancers' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "ECS No Load Balancer Attached",
     "severity": "MEDIUM",
     "line": 25,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "ECSService2",
+    "searchKey": "Resources.ECSService2.Properties.LoadBalancers",
+    "searchValue": "",
+    "expectedValue": "'Resources.ECSService2.Properties.LoadBalancers' should not be empty",
+    "actualValue": "'Resources.ECSService2.Properties.LoadBalancers' is empty",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "ECS No Load Balancer Attached",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "ECSService",
+    "searchKey": "Resources.ECSService.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.ECSService.Properties.LoadBalancers' should be defined",
+    "actualValue": "'Resources.ECSService.Properties.LoadBalancers' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
+    "queryName": "ECS No Load Balancer Attached",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2.json",
-    "queryName": "ECS No Load Balancer Attached"
+    "filename": "positive2.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "ECSService2",
+    "searchKey": "Resources.ECSService2.Properties.LoadBalancers",
+    "searchValue": "",
+    "expectedValue": "'Resources.ECSService2.Properties.LoadBalancers' should not be empty",
+    "actualValue": "'Resources.ECSService2.Properties.LoadBalancers' is empty",
+    "issueType": "IncorrectValue"
   }
 ]

@@ -3,84 +3,182 @@
     "queryName": "App Service Authentication Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1].auth_settings' should be defined",
+    "actualValue": "'azurerm_app_service[positive1].auth_settings' is not defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive10.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive10].auth_settings_v2.auth_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive10].auth_settings_v2.auth_enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_windows_web_app[positive10].auth_settings_v2.auth_enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive11.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive11].auth_settings_v2",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive11].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
+    "actualValue": "'azurerm_windows_web_app[positive11].auth_settings_v2.auth_enabled' is not defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive12.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive12].auth_settings_v2.auth_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive12].auth_settings_v2.auth_enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_windows_web_app[positive12].auth_settings_v2.auth_enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive13.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive13].auth_settings_v2",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive13].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
+    "actualValue": "'azurerm_linux_web_app[positive13].auth_settings_v2.auth_enabled' is not defined",
+    "issueType": "MissingAttribute"
+  },
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive14.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive14].auth_settings_v2.auth_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive14].auth_settings_v2.auth_enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_linux_web_app[positive14].auth_settings_v2.auth_enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "App Service Authentication Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "'azurerm_app_service[positive2].auth_settings.enabled'",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive2].auth_settings.enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_app_service[positive2].auth_settings.enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "App Service Authentication Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive3].auth_settings' or 'azurerm_linux_web_app[positive3].auth_settings_v2' should be defined",
+    "actualValue": "'azurerm_linux_web_app[positive3].auth_settings' and 'azurerm_linux_web_app[positive3].auth_settings_v2' are not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "App Service Authentication Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "'azurerm_linux_web_app[positive4].auth_settings.enabled'",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive4].auth_settings.enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_linux_web_app[positive4].auth_settings.enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "App Service Authentication Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive5.tf"
+    "filename": "positive5.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive5].auth_settings_v2",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive5].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
+    "actualValue": "'azurerm_linux_web_app[positive5].auth_settings_v2.auth_enabled' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "App Service Authentication Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive6.tf"
+    "filename": "positive6.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive6].auth_settings_v2.auth_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive6].auth_settings_v2.auth_enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_linux_web_app[positive6].auth_settings_v2.auth_enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "App Service Authentication Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive7.tf"
+    "filename": "positive7.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive7]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive7].auth_settings' or 'azurerm_windows_web_app[positive7].auth_settings_v2' should be defined",
+    "actualValue": "'azurerm_windows_web_app[positive7].auth_settings' and 'azurerm_windows_web_app[positive7].auth_settings_v2' are not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "App Service Authentication Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive8.tf"
+    "filename": "positive8.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "'azurerm_windows_web_app[positive8].auth_settings.enabled'",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive8].auth_settings.enabled' should be defined to 'true'",
+    "actualValue": "'azurerm_windows_web_app[positive8].auth_settings.enabled' is defined to 'false'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "App Service Authentication Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive9.tf"
-  },
-  {
-    "queryName": "App Service Authentication Disabled",
-    "severity": "MEDIUM",
-    "line": 8,
-    "fileName": "positive10.tf"
-  },
-  {
-    "queryName": "App Service Authentication Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive11.tf"
-  },
-  {
-    "queryName": "App Service Authentication Disabled",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive12.tf"
-  },
-  {
-    "queryName": "App Service Authentication Disabled",
-    "severity": "MEDIUM",
-    "line": 9,
-    "fileName": "positive13.tf"
-  },
-  {
-    "queryName": "App Service Authentication Disabled",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive14.tf"
+    "filename": "positive9.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive9].auth_settings_v2",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive9].auth_settings_v2.auth_enabled' should be defined (default value is 'false')",
+    "actualValue": "'azurerm_windows_web_app[positive9].auth_settings_v2.auth_enabled' is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

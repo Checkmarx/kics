@@ -1,38 +1,80 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "API Gateway Cache Encrypted Disabled",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.Deployment.Properties.StageDescription",
+    "searchValue": "",
+    "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be defined and not null",
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
-    "fileName": "positive2.json",
     "queryName": "API Gateway Cache Encrypted Disabled",
     "severity": "HIGH",
-    "line": 11
+    "line": 11,
+    "filename": "positive2.json",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.Deployment.Properties.StageDescription",
+    "searchValue": "",
+    "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be defined and not null",
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
-    "fileName": "positive3.yaml",
     "queryName": "API Gateway Cache Encrypted Disabled",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.Deployment.Properties.StageDescription.CacheDataEncrypted",
+    "searchValue": "",
+    "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be set to true",
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
-    "fileName": "positive4.json",
     "queryName": "API Gateway Cache Encrypted Disabled",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "filename": "positive4.json",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.Deployment.Properties.StageDescription.CacheDataEncrypted",
+    "searchValue": "",
+    "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be set to true",
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
-    "fileName": "positive5.yaml",
     "queryName": "API Gateway Cache Encrypted Disabled",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "filename": "positive5.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.Deployment.Properties.StageDescription.CacheDataEncrypted",
+    "searchValue": "",
+    "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be set to true",
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false",
+    "issueType": "IncorrectValue"
   },
   {
-    "fileName": "positive6.json",
     "queryName": "API Gateway Cache Encrypted Disabled",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "filename": "positive6.json",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "DummyStage",
+    "searchKey": "Resources.Deployment.Properties.StageDescription.CacheDataEncrypted",
+    "searchValue": "",
+    "expectedValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' should be set to true",
+    "actualValue": "'Resources.Deployment.Properties.StageDescription.CacheDataEncrypted' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

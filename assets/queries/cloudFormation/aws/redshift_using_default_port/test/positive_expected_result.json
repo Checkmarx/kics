@@ -3,24 +3,52 @@
     "queryName": "Redshift Using Default Port",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myCluster.Properties.Port' should be defined",
+    "actualValue": "'Resources.myCluster.Properties.Port' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Using Default Port",
     "severity": "LOW",
     "line": 28,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster2.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "'Resources.myCluster2.Properties.Port' should not be set to 5439",
+    "actualValue": "'Resources.myCluster2.Properties.Port' is set to 5439",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Redshift Using Default Port",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myCluster.Properties.Port' should be defined",
+    "actualValue": "'Resources.myCluster.Properties.Port' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Redshift Using Default Port",
     "severity": "LOW",
     "line": 39,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.myCluster2.Properties.Port",
+    "searchValue": "",
+    "expectedValue": "'Resources.myCluster2.Properties.Port' should not be set to 5439",
+    "actualValue": "'Resources.myCluster2.Properties.Port' is set to 5439",
+    "issueType": "IncorrectValue"
   }
 ]

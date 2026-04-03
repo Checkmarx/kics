@@ -3,12 +3,26 @@
     "queryName": "Security Group Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "None of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress should have port 3389",
+    "actualValue": "One of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 3389",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Security Group Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "None of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress should have port 3389",
+    "actualValue": "One of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 3389",
+    "issueType": "IncorrectValue"
   }
 ]

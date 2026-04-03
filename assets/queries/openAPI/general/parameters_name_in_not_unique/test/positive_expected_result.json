@@ -3,36 +3,78 @@
     "queryName": "Parameters Name In Combination Not Unique (v3)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Parameters Name In Combination Not Unique (v3)",
-    "severity": "INFO",
-    "line": 18,
-    "filename": "positive2.yaml"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.limitJSONParam.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.otherJSONParam.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Parameters Name In Combination Not Unique (v3)",
+    "severity": "INFO",
+    "line": 18,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.limitParam.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.otherParam.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v2)",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue"
   }
 ]

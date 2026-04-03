@@ -1,12 +1,28 @@
 [
   {
-    "line": 1,
     "queryName": "API Gateway Method Does Not Contains An API Key",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive.tf",
+    "resourceType": "aws_api_gateway_method",
+    "resourceName": "positive1",
+    "searchKey": "resource.aws_api_gateway_method[positive1]",
+    "searchValue": "",
+    "expectedValue": "resource.aws_api_gateway_method[positive1].api_key_required should be defined",
+    "actualValue": "resource.aws_api_gateway_method[positive1].api_key_required is undefined",
+    "issueType": "MissingAttribute"
   },
   {
-    "line": 13,
     "queryName": "API Gateway Method Does Not Contains An API Key",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive.tf",
+    "resourceType": "aws_api_gateway_method",
+    "resourceName": "positive2",
+    "searchKey": "resource.aws_api_gateway_method[positive2].api_key_required",
+    "searchValue": "",
+    "expectedValue": "resource.aws_api_gateway_method[positive2].api_key_required should be 'true'",
+    "actualValue": "resource.aws_api_gateway_method[positive2].api_key_required is 'false'",
+    "issueType": "IncorrectValue"
   }
 ]

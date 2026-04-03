@@ -2,16 +2,40 @@
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive1",
+    "searchKey": "google_sql_database_instance[positive1].settings",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration' should be defined and not null",
+    "actualValue": "'settings.ip_configuration' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
-    "line": 24
+    "line": 24,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive2",
+    "searchKey": "google_sql_database_instance[positive2].settings.ip_configuration",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.require_ssl' should be defined and not null",
+    "actualValue": "'settings.ip_configuration.require_ssl' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
-    "line": 44
+    "line": 44,
+    "filename": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "positive3",
+    "searchKey": "google_sql_database_instance[positive3].settings.ip_configuration.require_ssl",
+    "searchValue": "",
+    "expectedValue": "'settings.ip_configuration.require_ssl' should be true",
+    "actualValue": "'settings.ip_configuration.require_ssl' is false",
+    "issueType": "IncorrectValue"
   }
 ]

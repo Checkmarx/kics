@@ -1,20 +1,41 @@
 [
-    {
-        "queryName": "Public Security Group Rule All Ports or Protocols",
-        "severity": "HIGH",
-        "line": 13,
-        "fileName": "positive1.tf"
-    },
-    {
-        "queryName": "Public Security Group Rule All Ports or Protocols",
-        "severity": "HIGH",
-        "line": 13,
-        "fileName": "positive2.tf"
-    },
-    {
-        "queryName": "Public Security Group Rule All Ports or Protocols",
-        "severity": "HIGH",
-        "line": 13,
-        "fileName": "positive3.tf"
-    }
+  {
+    "queryName": "Public Security Group Rule All Ports or Protocols",
+    "severity": "HIGH",
+    "line": 13,
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].cidr_ip",
+    "searchValue": "",
+    "expectedValue": "cidr_ip should not be '0.0.0.0/0' when ip_protocol is equal to all",
+    "actualValue": "cidr_ip is '0.0.0.0/0' when ip_protocol is equal to all",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Public Security Group Rule All Ports or Protocols",
+    "severity": "HIGH",
+    "line": 13,
+    "filename": "positive2.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].cidr_ip",
+    "searchValue": "",
+    "expectedValue": "cidr_ip should not be '0.0.0.0/0' for the specified protocol",
+    "actualValue": "cidr_ip '0.0.0.0/0' exposes all ports for the gre protocol",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Public Security Group Rule All Ports or Protocols",
+    "severity": "HIGH",
+    "line": 13,
+    "filename": "positive3.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].cidr_ip",
+    "searchValue": "",
+    "expectedValue": "cidr_ip should not be '0.0.0.0/0' for the specified protocol",
+    "actualValue": "cidr_ip '0.0.0.0/0' exposes all ports for the tcp protocol",
+    "issueType": "IncorrectValue"
+  }
 ]

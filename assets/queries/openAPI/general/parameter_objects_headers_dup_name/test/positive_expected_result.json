@@ -2,121 +2,261 @@
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
     "severity": "INFO",
-    "line": 68,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
-    "severity": "INFO",
-    "line": 82,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
-    "severity": "INFO",
     "line": 14,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=id",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=id)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=ID",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=ID)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
     "severity": "INFO",
-    "line": 10,
-    "filename": "positive3.json"
+    "line": 68,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
     "severity": "INFO",
-    "line": 24,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
-    "severity": "INFO",
-    "line": 53,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
-    "severity": "INFO",
-    "line": 43,
-    "filename": "positive2.yaml"
+    "line": 82,
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=id",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=id)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=ID",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=ID)",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
+    "severity": "INFO",
+    "line": 43,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
+    "severity": "INFO",
+    "line": 53,
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.token.name=token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
+    "severity": "INFO",
+    "line": 24,
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.Token.name=Token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.token.name=token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
-    "severity": "INFO",
-    "line": 39,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
-    "severity": "INFO",
-    "line": 47,
-    "filename": "positive5.json"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.Token.name=Token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
     "severity": "INFO",
-    "line": 32,
-    "filename": "positive6.yaml"
+    "line": 39,
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.oneParam.name=Token2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token2)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
     "severity": "INFO",
-    "line": 26,
-    "filename": "positive6.yaml"
+    "line": 47,
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.anotherParam.name=token2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token2)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token)",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=token",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token)",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
+    "severity": "INFO",
+    "line": 26,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.oneParam.name=Token2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=Token2)",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
+    "severity": "INFO",
+    "line": 32,
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.anotherParam.name=token2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "Parameter Object with location 'header' has duplicate names (name=token2)",
+    "issueType": "IncorrectValue"
   }
 ]

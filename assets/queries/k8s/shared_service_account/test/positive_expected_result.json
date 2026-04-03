@@ -1,12 +1,28 @@
 [
-	{
-		"queryName": "Shared Service Account",
-		"severity": "MEDIUM",
-		"line": 6
-	},
-	{
-		"queryName": "Shared Service Account",
-		"severity": "MEDIUM",
-		"line": 16
-	}
+  {
+    "queryName": "Shared Service Account",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod1",
+    "searchKey": "metadata.name={{pod1}}.spec.serviceAccountName",
+    "searchValue": "",
+    "expectedValue": "'spec.serviceAccountName' should not be shared with other workloads",
+    "actualValue": "'spec.serviceAccountName' is shared with other workloads",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "Shared Service Account",
+    "severity": "MEDIUM",
+    "line": 16,
+    "filename": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod2",
+    "searchKey": "metadata.name={{pod2}}.spec.serviceAccountName",
+    "searchValue": "",
+    "expectedValue": "'spec.serviceAccountName' should not be shared with other workloads",
+    "actualValue": "'spec.serviceAccountName' is shared with other workloads",
+    "issueType": "IncorrectValue"
+  }
 ]

@@ -3,12 +3,26 @@
     "queryName": "Google Compute Subnetwork with Private Google Access Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "google_compute_subnetwork",
+    "resourceName": "test-subnetwork",
+    "searchKey": "google_compute_subnetwork[positive1]",
+    "searchValue": "",
+    "expectedValue": "'google_compute_subnetwork[positive1].private_ip_google_access' should be defined and not null",
+    "actualValue": "'google_compute_subnetwork[positive1].private_ip_google_access' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Google Compute Subnetwork with Private Google Access Disabled",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "google_compute_subnetwork",
+    "resourceName": "test-subnetwork",
+    "searchKey": "google_compute_subnetwork[positive2].private_ip_google_access",
+    "searchValue": "",
+    "expectedValue": "'google_compute_subnetwork[positive2].private_ip_google_access' should be set to true",
+    "actualValue": "'google_compute_subnetwork[positive2].private_ip_google_access' is set to false",
+    "issueType": "IncorrectValue"
   }
 ]

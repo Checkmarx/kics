@@ -3,36 +3,78 @@
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging.enabled",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be set to true",
+    "actualValue": "CloudFront logging enabled attribute is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 50,
-    "fileName": "positive.yaml"
+    "filename": "positive.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging.enabled",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be set to true",
+    "actualValue": "CloudFront logging enabled attribute is set to false",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
+    "actualValue": "CloudFront logging is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 41,
-    "fileName": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
+    "actualValue": "CloudFront logging is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
+    "actualValue": "CloudFront enable is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
+    "actualValue": "CloudFront enable is not defined",
+    "issueType": "MissingAttribute"
   }
 ]

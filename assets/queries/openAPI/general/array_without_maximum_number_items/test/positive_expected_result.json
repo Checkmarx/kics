@@ -3,36 +3,78 @@
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "MEDIUM",
     "line": 56,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "MEDIUM",
     "line": 32,
-    "filename": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "MEDIUM",
     "line": 20,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v2)",
     "severity": "MEDIUM",
     "line": 31,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Array Without Maximum Number of Items (v2)",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute"
   }
 ]

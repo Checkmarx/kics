@@ -1,8 +1,15 @@
 [
-	{
-		"queryName": "ElastiCache Without VPC",
-		"severity": "LOW",
-		"line": 2,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "ElastiCache Without VPC",
+    "severity": "LOW",
+    "line": 2,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.elasticache",
+    "resourceName": "Basic example",
+    "searchKey": "name={{Basic example}}.{{community.aws.elasticache}}",
+    "searchValue": "",
+    "expectedValue": "'cache_subnet_group' should be defined and not null",
+    "actualValue": "'cache_subnet_group' is undefined or null",
+    "issueType": "IncorrectValue"
+  }
 ]

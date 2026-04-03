@@ -2,25 +2,53 @@
   {
     "queryName": "API Gateway Without Security Policy",
     "severity": "MEDIUM",
-    "line": 13,
-    "fileName": "positive2.yaml"
+    "line": 20,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::DomainName",
+    "resourceName": "cfnDomainName",
+    "searchKey": "Resources.myDomainName.Properties.SecurityPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2",
+    "actualValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "API Gateway Without Security Policy",
     "severity": "MEDIUM",
-    "line": 20,
-    "fileName": "positive1.yaml"
+    "line": 13,
+    "filename": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::DomainName",
+    "resourceName": "cfnDomainName",
+    "searchKey": "Resources.myDomainName1.Properties.SecurityPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.myDomainName1.Properties.SecurityPolicy should not be defined",
+    "actualValue": "Resources.myDomainName1.Properties.SecurityPolicy is defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "API Gateway Without Security Policy",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "AWS::ApiGateway::DomainName",
+    "resourceName": "cfnDomainName",
+    "searchKey": "Resources.myDomainName.Properties.SecurityPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2",
+    "actualValue": "Resources.myDomainName.Properties.SecurityPolicy should be TLS_1_2",
+    "issueType": "IncorrectValue"
   },
   {
-    "fileName": "positive4.json",
     "queryName": "API Gateway Without Security Policy",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "filename": "positive4.json",
+    "resourceType": "AWS::ApiGateway::DomainName",
+    "resourceName": "cfnDomainName",
+    "searchKey": "Resources.myDomainName1.Properties.SecurityPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.myDomainName1.Properties.SecurityPolicy should not be defined",
+    "actualValue": "Resources.myDomainName1.Properties.SecurityPolicy is defined",
+    "issueType": "MissingAttribute"
   }
 ]

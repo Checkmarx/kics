@@ -3,12 +3,26 @@
     "queryName": "IAM Access Analyzer Not Enabled",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Resources",
+    "searchValue": "",
+    "expectedValue": "'AWS::AccessAnalyzer::Analyzer' should be set",
+    "actualValue": "'AWS::AccessAnalyzer::Analyzer' is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "IAM Access Analyzer Not Enabled",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Resources",
+    "searchValue": "",
+    "expectedValue": "'AWS::AccessAnalyzer::Analyzer' should be set",
+    "actualValue": "'AWS::AccessAnalyzer::Analyzer' is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

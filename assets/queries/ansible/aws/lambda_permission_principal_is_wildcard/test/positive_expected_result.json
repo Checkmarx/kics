@@ -1,7 +1,15 @@
 [
   {
-    "line": 8,
     "queryName": "Lambda Permission Principal Is Wildcard",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive.yaml",
+    "resourceType": "community.aws.lambda_policy",
+    "resourceName": "Lambda S3 event notification",
+    "searchKey": "name={{Lambda S3 event notification}}.{{community.aws.lambda_policy}}.principal",
+    "searchValue": "",
+    "expectedValue": "name={{Lambda S3 event notification}}.{{community.aws.lambda_policy}}.principal shouldn't contain a wildcard",
+    "actualValue": "name={{Lambda S3 event notification}}.{{community.aws.lambda_policy}}.principal contains a wildcard",
+    "issueType": "IncorrectValue"
   }
 ]

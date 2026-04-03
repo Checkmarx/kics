@@ -2,31 +2,79 @@
   {
     "queryName": "CPU Requests Not Set",
     "severity": "LOW",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].resources should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Requests Not Set",
     "severity": "LOW",
-    "line": 42
+    "line": 42,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].resources.requests.cpu should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.requests.cpu is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Requests Not Set",
     "severity": "LOW",
-    "line": 77
+    "line": 77,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[2].resources.requests.cpu should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[2].resources.requests.cpu is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Requests Not Set",
     "severity": "LOW",
-    "line": 134
+    "line": 134,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.resources should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.resources is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Requests Not Set",
     "severity": "LOW",
-    "line": 192
+    "line": 192,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container.resources",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container.resources.requests should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container.resources.requests is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "CPU Requests Not Set",
     "severity": "LOW",
-    "line": 258
+    "line": 258,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container.resources.requests",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.resources.requests.cpu should be set",
+    "actualValue": "kubernetes_pod[positive4].spec.container.resources.requests.cpu is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

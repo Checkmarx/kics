@@ -3,6 +3,13 @@
     "queryName": "Ram Account Password Policy Max Login Attempts Unrecommended",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "alicloud_ram_account_password_policy",
+    "resourceName": "corporate",
+    "searchKey": "alicloud_ram_account_password_policy[corporate].max_login_attempts",
+    "searchValue": "",
+    "expectedValue": "'max_login_attempts' should be set to 5 or less",
+    "actualValue": "'max_login_attempts' is above than 5",
+    "issueType": "IncorrectValue"
   }
 ]

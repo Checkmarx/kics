@@ -1,14 +1,28 @@
 [
   {
-    "fileName": "positive1.yaml",
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 14,
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDB",
+    "searchKey": "Resources.MyDB.Properties.BackupRetentionPeriod",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.BackupRetentionPeriod' should not equal to zero",
+    "actualValue": "'Resources.MyDB.Properties.BackupRetentionPeriod' is equal to zero",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDB",
+    "searchKey": "Resources.MyDB.Properties.BackupRetentionPeriod",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyDB.Properties.BackupRetentionPeriod' should not equal to zero",
+    "actualValue": "'Resources.MyDB.Properties.BackupRetentionPeriod' is equal to zero",
+    "issueType": "IncorrectValue"
   }
 ]

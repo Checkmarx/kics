@@ -2,21 +2,53 @@
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a instance",
+    "searchKey": "name={{create a instance}}.{{google.cloud.gcp_sql_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings should be defined",
+    "actualValue": "gcp_sql_instance.settings is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a second instance",
+    "searchKey": "name={{create a second instance}}.{{google.cloud.gcp_sql_instance}}.settings",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.backup_configuration should be defined",
+    "actualValue": "gcp_sql_instance.settings.backup_configuration is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 24,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a third instance",
+    "searchKey": "name={{create a third instance}}.{{google.cloud.gcp_sql_instance}}.settings.backup_configuration",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.backup_configuration.enabled should be defined",
+    "actualValue": "gcp_sql_instance.settings.backup_configuration.enabled is undefined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 38
+    "line": 38,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a forth instance",
+    "searchKey": "name={{create a forth instance}}.{{google.cloud.gcp_sql_instance}}.settings.backup_configuration.enabled",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.backup_configuration.require_ssl should be true",
+    "actualValue": "gcp_sql_instance.settings.backup_configuration.require_ssl is false",
+    "issueType": "IncorrectValue"
   }
 ]

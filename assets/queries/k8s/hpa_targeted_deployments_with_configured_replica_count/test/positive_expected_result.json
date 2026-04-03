@@ -2,6 +2,14 @@
   {
     "queryName": "HPA Targeted Deployments With Configured Replica Count",
     "severity": "INFO",
-    "line": 10
+    "line": 10,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "php-apache-1",
+    "searchKey": "metadata.name={{php-apache-1}}.spec.replicas",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{php-apache-1}}.spec.replicas should be undefined",
+    "actualValue": "metadata.name={{php-apache-1}}.spec.replicas is defined",
+    "issueType": "IncorrectValue"
   }
 ]

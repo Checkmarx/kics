@@ -3,12 +3,26 @@
     "queryName": "Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive3_1.tf"
+    "filename": "positive3_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive3_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive3_1]' resource monitors 'delete public ip address rule' events but is missing an 'action.action_group_id' field",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Beta - Activity Log Alert For Delete Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive3_2.tf"
+    "filename": "positive3_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive3_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive3_2]' resource monitors 'delete public ip address rule' events but is missing an 'action.action_group_id' field",
+    "issueType": "MissingAttribute"
   }
 ]

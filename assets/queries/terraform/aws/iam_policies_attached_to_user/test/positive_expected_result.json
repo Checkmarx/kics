@@ -3,18 +3,39 @@
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_iam_policy_attachment",
+    "resourceName": "excess_policy",
+    "searchKey": "aws_iam_policy_attachment[{{positive1_3}}].users",
+    "searchValue": "",
+    "expectedValue": "'users' is redundant",
+    "actualValue": "'users' exists",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "excess_policy",
+    "searchKey": "aws_iam_user_policy[{{positive2_3}}].user",
+    "searchValue": "",
+    "expectedValue": "'user' is redundant",
+    "actualValue": "'user' exists",
+    "issueType": "RedundantAttribute"
   },
   {
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
     "line": 27,
-    "filename": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_iam_user_policy_attachment",
+    "resourceName": "test-attach",
+    "searchKey": "aws_iam_user_policy_attachment[{{test-attach}}].user",
+    "searchValue": "",
+    "expectedValue": "'user' is redundant",
+    "actualValue": "'user' exists",
+    "issueType": "RedundantAttribute"
   }
 ]

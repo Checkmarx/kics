@@ -3,36 +3,78 @@
     "queryName": "Object Using Enum With Keyword (v3)",
     "severity": "INFO",
     "line": 42,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.Cat.allOf.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "Cat.allOf.components.schemas.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "Cat.allOf.components.schemas.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Using Enum With Keyword (v3)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.Cat.allOf.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "Cat.allOf.components.schemas.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "Cat.allOf.components.schemas.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
     "line": 39,
-    "filename": "positive3.json"
+    "filename": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Cat.allOf.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "Cat.allOf.definitions.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "Cat.allOf.definitions.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive4.yaml"
+    "filename": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Cat.allOf.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "Cat.allOf.definitions.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "Cat.allOf.definitions.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive5.json"
+    "filename": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "/.get.parameters.paths.schema.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "/.get.parameters.paths.schema.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
     "line": 31,
-    "filename": "positive6.yaml"
+    "filename": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.huntingSkill",
+    "searchValue": "",
+    "expectedValue": "/.get.parameters.paths.schema.properties.huntingSkill should not contain 'enum' and schema keyword",
+    "actualValue": "/.get.parameters.paths.schema.properties.huntingSkill contains 'enum' and schema keyword 'minLength'",
+    "issueType": "IncorrectValue"
   }
 ]

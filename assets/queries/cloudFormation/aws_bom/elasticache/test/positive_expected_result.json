@@ -3,18 +3,39 @@
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 2,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticacheCluster",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticacheCluster",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   },
   {
     "queryName": "BOM - AWS Elasticache",
     "severity": "TRACE",
     "line": 2,
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.ElasticacheCluster",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials"
   }
 ]

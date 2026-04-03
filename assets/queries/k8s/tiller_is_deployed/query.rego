@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"searchValue": document.kind, # multiple kind can match the same rule
 		"keyExpectedValue": sprintf("'metadata' of %s should not refer to any Tiller resource", [document.kind]),
 		"keyActualValue": sprintf("'metadata' of %s refers to a Tiller resource", [document.kind]),
-		"searchLine": commonLib.build_search_line(["metadata"],[]),
+		"searchLine": commonLib.build_search_line(["metadata", "name"],[]),
 	}
 }
 

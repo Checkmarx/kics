@@ -2,11 +2,27 @@
   {
     "queryName": "Google Compute SSL Policy Weak Cipher In Use",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_ssl_policy",
+    "resourceName": "custom-ssl-policy",
+    "searchKey": "google_compute_ssl_policy[positive1].min_tls_version",
+    "searchValue": "",
+    "expectedValue": "google_compute_ssl_policy[positive1].min_tls_version should be TLS_1_2",
+    "actualValue": "google_compute_ssl_policy[positive1].min_tls_version is not TLS_1_2",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Google Compute SSL Policy Weak Cipher In Use",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive.tf",
+    "resourceType": "google_compute_ssl_policy",
+    "resourceName": "custom-ssl-policy",
+    "searchKey": "google_compute_ssl_policy[positive2].min_tls_version",
+    "searchValue": "",
+    "expectedValue": "google_compute_ssl_policy[positive2].min_tls_version should be TLS_1_2",
+    "actualValue": "google_compute_ssl_policy[positive2].min_tls_version is undefined",
+    "issueType": "MissingAttribute"
   }
 ]

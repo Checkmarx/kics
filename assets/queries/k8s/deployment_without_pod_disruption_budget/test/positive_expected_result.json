@@ -2,6 +2,14 @@
   {
     "queryName": "Deployment Without PodDisruptionBudget",
     "severity": "LOW",
-    "line": 20
+    "line": 20,
+    "filename": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "nginx-deployment",
+    "searchKey": "metadata.name={{nginx-deployment}}.spec.selector.matchLabels",
+    "searchValue": "",
+    "expectedValue": "metadata.name=nginx-deployment is targeted by a PodDisruptionBudget",
+    "actualValue": "metadata.name=nginx-deployment is not targeted by a PodDisruptionBudget",
+    "issueType": "MissingAttribute"
   }
 ]

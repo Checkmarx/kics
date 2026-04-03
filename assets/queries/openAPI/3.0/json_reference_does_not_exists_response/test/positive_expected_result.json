@@ -3,12 +3,26 @@
     "queryName": "Response JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive1.json"
+    "filename": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.404.$ref",
+    "searchValue": "",
+    "expectedValue": "NotRight from #/components/responses/NotRight should be declared on components.responses",
+    "actualValue": "NotRight from #/components/responses/NotRight is not declared on components.responses",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "Response JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive2.yaml"
+    "filename": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.404.$ref",
+    "searchValue": "",
+    "expectedValue": "NotRight from #/components/responses/NotRight should be declared on components.responses",
+    "actualValue": "NotRight from #/components/responses/NotRight is not declared on components.responses",
+    "issueType": "MissingAttribute"
   }
 ]

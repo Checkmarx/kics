@@ -2,6 +2,14 @@
   {
     "queryName": "Cluster Admin Rolebinding With Superuser Permissions",
     "severity": "LOW",
-    "line": 11
+    "line": 11,
+    "filename": "positive.yaml",
+    "resourceType": "ClusterRoleBinding",
+    "resourceName": "tiller-clusterrolebinding",
+    "searchKey": "metadata.name={{tiller-clusterrolebinding}}.roleRef.name=cluster-admin",
+    "searchValue": "",
+    "expectedValue": "Resource name 'tiller-clusterrolebinding' of kind 'ClusterRoleBinding' isn't binding 'cluster-admin' role with superuser permissions",
+    "actualValue": "Resource name 'tiller-clusterrolebinding' of kind 'ClusterRoleBinding' is binding 'cluster-admin' role with superuser permissions",
+    "issueType": "IncorrectValue"
   }
 ]

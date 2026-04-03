@@ -2,6 +2,14 @@
   {
     "queryName": "VM With Full Cloud Access",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "create a instance",
+    "searchKey": "name={{create a instance}}.{{google.cloud.gcp_compute_instance}}.service_accounts",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.service_accounts.scopes should not contain 'cloud-platform'",
+    "actualValue": "gcp_compute_instance.service_accounts.scopes contains 'cloud-platform'",
+    "issueType": "IncorrectValue"
   }
 ]

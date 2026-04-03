@@ -1,26 +1,54 @@
 [
   {
+    "queryName": "EKS Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 5,
-    "queryName": "EKS Cluster Encryption Disabled",
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::EKS::Cluster",
+    "resourceName": "MyEKSClusterA",
+    "searchKey": "Resources.MyEKSClusterA.Properties",
+    "searchValue": "",
+    "expectedValue": "'EncryptionConfig' should be defined and not null",
+    "actualValue": "'EncryptionConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
+    "queryName": "EKS Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 6,
-    "queryName": "EKS Cluster Encryption Disabled",
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::EKS::Cluster",
+    "resourceName": "MyEKSClusterA",
+    "searchKey": "Resources.MyEKSClusterA.Properties",
+    "searchValue": "",
+    "expectedValue": "'EncryptionConfig' should be defined and not null",
+    "actualValue": "'EncryptionConfig' is undefined or null",
+    "issueType": "MissingAttribute"
   },
   {
+    "queryName": "EKS Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 16,
-    "queryName": "EKS Cluster Encryption Disabled",
-    "fileName": "positive3.yaml"
+    "filename": "positive3.yaml",
+    "resourceType": "AWS::EKS::Cluster",
+    "resourceName": "MyEKSClusterB",
+    "searchKey": "Resources.MyEKSClusterB.Properties.EncryptionConfig",
+    "searchValue": "",
+    "expectedValue": "'secrets' should be defined inside the Resources field",
+    "actualValue": "'secrets' is undefined on the Resources field",
+    "issueType": "IncorrectValue"
   },
   {
+    "queryName": "EKS Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 19,
-    "queryName": "EKS Cluster Encryption Disabled",
-    "fileName": "positive4.json"
+    "filename": "positive4.json",
+    "resourceType": "AWS::EKS::Cluster",
+    "resourceName": "MyEKSClusterB",
+    "searchKey": "Resources.MyEKSClusterB.Properties.EncryptionConfig",
+    "searchValue": "",
+    "expectedValue": "'secrets' should be defined inside the Resources field",
+    "actualValue": "'secrets' is undefined on the Resources field",
+    "issueType": "IncorrectValue"
   }
 ]

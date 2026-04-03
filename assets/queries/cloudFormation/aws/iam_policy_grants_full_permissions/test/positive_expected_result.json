@@ -3,24 +3,52 @@
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "IAM Policy Grants Full Permissions",
-    "severity": "HIGH",
-    "line": 29,
-    "fileName": "positive2.json"
+    "filename": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.json"
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
+  },
+  {
+    "queryName": "IAM Policy Grants Full Permissions",
+    "severity": "HIGH",
+    "line": 29,
+    "filename": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' should not equal to '*'",
+    "actualValue": "'PolicyDocument.Statement.Resource' and 'PolicyDocument.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue"
   }
 ]

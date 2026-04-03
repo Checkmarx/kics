@@ -3,24 +3,52 @@
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive1.tf"
+    "filename": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].backup_retention_period",
+    "searchValue": "",
+    "expectedValue": "'backup_retention_period' should not equal '0'",
+    "actualValue": "'backup_retention_period' is equal '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive2.tf"
+    "filename": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db].backup_retention_period",
+    "searchValue": "",
+    "expectedValue": "'backup_retention_period' should not equal '0'",
+    "actualValue": "'backup_retention_period' is equal '0'",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "filename": "positive3.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1]",
+    "searchValue": "",
+    "expectedValue": "'backup_retention_period' should be defined, and bigger than '0'",
+    "actualValue": "'backup_retention_period' is not defined",
+    "issueType": "MissingAttribute"
   },
   {
     "queryName": "RDS With Backup Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive4.tf"
+    "filename": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db]",
+    "searchValue": "",
+    "expectedValue": "'backup_retention_period' should be defined, and bigger than '0'",
+    "actualValue": "'backup_retention_period' is not defined",
+    "issueType": "IncorrectValue"
   }
 ]

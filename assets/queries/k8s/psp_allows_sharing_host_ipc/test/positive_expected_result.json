@@ -2,6 +2,14 @@
   {
     "queryName": "PSP Allows Sharing Host IPC",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "filename": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.hostIPC",
+    "searchValue": "",
+    "expectedValue": "'spec.hostIPC' should be set to false or undefined",
+    "actualValue": "'spec.hostIPC' is true",
+    "issueType": "IncorrectValue"
   }
 ]

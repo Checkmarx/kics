@@ -2,16 +2,40 @@
   {
     "queryName": "Containers With Added Capabilities",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 14,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].security_context.capabilities.add should be undefined",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].security_context.capabilities.add is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Containers With Added Capabilities",
     "severity": "MEDIUM",
-    "line": 49
+    "line": 49,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].security_context.capabilities.add should be undefined",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].security_context.capabilities.add is set",
+    "issueType": "IncorrectValue"
   },
   {
     "queryName": "Containers With Added Capabilities",
     "severity": "MEDIUM",
-    "line": 110
+    "line": 110,
+    "filename": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container.security_context.capabilities.add",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.security_context.capabilities.add should be undefined",
+    "actualValue": "kkubernetes_pod[positive2].spec.container.security_context.capabilities.add is set",
+    "issueType": "IncorrectValue"
   }
 ]
