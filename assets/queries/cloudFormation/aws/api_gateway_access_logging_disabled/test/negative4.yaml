@@ -9,6 +9,9 @@ Resources:
       DocumentationVersion: ""
       MethodSettings:
         - LoggingLevel: "INFO"
+          DataTraceEnabled: False
+        - DataTraceEnabled: False
+          LoggingLevel: "ERROR"
       AccessLogSetting:
         DestinationArn: "dest"
         Format: "format"

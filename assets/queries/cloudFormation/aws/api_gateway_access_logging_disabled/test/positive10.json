@@ -17,7 +17,14 @@
           "Ref": "CFNWebSocket"
         },
         "MethodSettings": [
-          {}
+          {},
+          {
+            "DetailedMetricsEnabled": true,
+            "LoggingLevel": "INFO",
+            "DataTraceEnabled": false,
+            "ThrottlingBurstLimit": 10,
+            "ThrottlingRateLimit": 10
+          }
         ]
       }
     }

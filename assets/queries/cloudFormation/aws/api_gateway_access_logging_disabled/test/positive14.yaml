@@ -12,3 +12,6 @@ Resources:
       DocumentationVersion: ""
       MethodSettings:
         - LoggingLevel: "OFF"
+          DataTraceEnabled: False
+        - DataTraceEnabled: False
+          LoggingLevel: "INFO"

@@ -14,12 +14,6 @@
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
-    "line": 25,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
-    "severity": "MEDIUM",
     "line": 7,
     "fileName": "positive2.json"
   },
@@ -68,7 +62,7 @@
   {
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
-    "line": 19,
+    "line": 22,
     "fileName": "positive10.json"
   },
   {
@@ -81,6 +75,12 @@
     "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
     "line": 22,
+    "fileName": "positive12.json"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 29,
     "fileName": "positive12.json"
   },
   {
@@ -118,5 +118,29 @@
     "severity": "MEDIUM",
     "line": 4,
     "fileName": "positive17.yaml"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive18.json"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 35,
+    "fileName": "positive18.json"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive19.yaml"
+  },
+  {
+    "queryName": "API Gateway V2 Stage Access Logging Settings Not Defined",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive19.yaml"
   }
 ]
