@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Beta - Kubernetes Web UI Is Not Disabled",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive5.tf"
+  }
+]

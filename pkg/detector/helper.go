@@ -124,7 +124,7 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
 				substr2 = generateSubstr(substr2, parts, 1)
 			}
 		}
-	} else {
+	} else if len(parts) >= valuePartsLength {
 		substr1 = parts[len(parts)-2]
 		substr2 = parts[len(parts)-1]
 	}

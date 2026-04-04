@@ -1,0 +1,14 @@
+{
+  "id": "7fa50094-0ca5-4253-aa71-f1a3b575d4a5",
+  "queryName": "Beta - Logic App Managed Identity Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Logic Apps should have managed identity enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/logic_app_standard",
+  "platform": "Terraform",
+  "descriptionID": "7fa50094",
+  "cloudProvider": "azure",
+  "cwe": "522",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

@@ -7,5 +7,6 @@ ignore:
       location: "/usr/bin/terraform"
   - package:
       location: "/usr/local/bin/terraform"
+  - vulnerability: GHSA-fw7p-63qq-7hpr # filippo.io/edwards25519 -> FP, not present in binary dependencies
 exclude:
   - './.github/scripts/**' # test files

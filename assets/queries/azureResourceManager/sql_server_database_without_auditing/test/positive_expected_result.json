@@ -33,6 +33,18 @@
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 8,
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 8,
     "filename": "positive5.json"
   },
   {
@@ -50,7 +62,7 @@
   {
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
-    "line": 15,
+    "line": 23,
     "filename": "positive6.json"
   },
   {
@@ -69,12 +81,6 @@
     "queryName": "SQL Server Database Without Auditing",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive8.json"
-  },
-  {
-    "queryName": "SQL Server Database Without Auditing",
-    "severity": "MEDIUM",
-    "line": 23,
     "filename": "positive8.json"
   },
   {
@@ -82,11 +88,5 @@
     "severity": "MEDIUM",
     "line": 8,
     "filename": "positive9.json"
-  },
-  {
-    "queryName": "SQL Server Database Without Auditing",
-    "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive10.json"
   }
 ]

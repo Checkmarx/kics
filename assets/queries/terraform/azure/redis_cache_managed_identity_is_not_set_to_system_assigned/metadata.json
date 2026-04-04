@@ -1,0 +1,14 @@
+{
+  "id": "d501246e-45d4-48fd-8975-a23e7124bdfc",
+  "queryName": "Beta - Redis Cache Managed Identity Is Not Set To System Assigned",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Without a System Assigned identity, the Redis instance cannot use Entra ID for secure RBAC access, increasing the risk of credential exposure or overly permissive access.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache",
+  "platform": "Terraform",
+  "descriptionID": "d501246e",
+  "cloudProvider": "azure",
+  "cwe": "522",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

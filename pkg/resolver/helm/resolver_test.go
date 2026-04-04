@@ -5,8 +5,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/require"
+
+	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
 func TestHelm_SupportedTypes(t *testing.T) {
@@ -189,6 +190,64 @@ spec:
 			},
 			wantErr: false,
 		},
+		{
+			name: "test_filer_out_empty_files",
+			args: args{
+				filePath: filepath.FromSlash("../../../test/fixtures/helm_empty_file"),
+			},
+			want: model.ResolvedFiles{
+				File: []model.ResolvedHelm{
+					{
+						FileName: filepath.FromSlash("../../../test/fixtures/helm_empty_file/templates/service.yaml"),
+						SplitID:  "# KICS_HELM_ID_1:",
+						IDInfo:   map[int]interface{}{1: map[int]int{1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 11: 11, 12: 12, 13: 13, 14: 14, 15: 15, 16: 16, 17: 17, 18: 18, 19: 19, 20: 20, 21: 21}},
+						Content: []byte(`
+# Source: test/templates/service.yaml
+# KICS_HELM_ID_1:
+apiVersion: v1
+kind: Service
+metadata:
+  name: some-random-value
+  labels:
+    app: some-random-value
+spec:
+  selector:
+    app: some-random-value
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3001
+    - name: metrics
+      port: 3000
+      targetPort: 3000
+`),
+						OriginalData: []byte(`---
+# KICS_HELM_ID_1:
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{$.Values.deployment.image.value}}
+  labels:
+    app: {{$.Values.deployment.image.value}}
+spec:
+  selector:
+    app: {{$.Values.deployment.image.value}}
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3001
+    - name: metrics
+      port: 3000
+      targetPort: 3000
+---
+---
+`),
+					},
+				},
+			},
+		},
 	}
 
 	for _, tt := range tests {
@@ -202,6 +261,41 @@ spec:
 			}
 			if err == nil {
 				require.NotEmpty(t, got.Excluded)
+			}
+		})
+	}
+}
+
+func Test_isEmptyFileRender(t *testing.T) {
+	tests := []struct {
+		name      string
+		fileLines []string
+		want      bool
+	}{
+		{
+			name: "valid_file",
+			fileLines: []string{
+				"test/templates/service.yaml",
+				"# KICS_HELM_ID_1:",
+				"apiVersion: v1",
+			},
+			want: false,
+		},
+		{
+			name: "single_element_only",
+			fileLines: []string{
+				"test/templates/service.yaml",
+				"",
+			},
+			want: true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := isEmptyFileRender(tt.fileLines)
+			if got != tt.want {
+				t.Errorf("isEmptyFileRender() = %v, want %v", got, tt.want)
 			}
 		})
 	}

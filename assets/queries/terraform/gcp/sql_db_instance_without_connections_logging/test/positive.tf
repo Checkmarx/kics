@@ -61,4 +61,8 @@ resource "google_sql_database_instance" "positive_5" {   # Single object support
       value = "off"
       }  # Flag is not set to "on"
   }
+
+  clone {
+    source_instance_name = google_sql_database_instance.source_instance.id
+  }
 }
