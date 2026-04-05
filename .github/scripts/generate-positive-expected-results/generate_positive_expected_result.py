@@ -1,23 +1,18 @@
 import argparse
 import json
 import os
-import re
+import shutil
 import subprocess
 import sys
+import tempfile
 
-FIELD_ORDER = [
-    "queryName", "severity", "line", "fileName",
-    "resourceType", "resourceName", "searchKey", "searchValue",
-    "expectedValue", "actualValue", "issueType", "similarityID", "search_line",
-]
-
-KICS_RESULT_CODES = {0, 1, 20, 30, 40, 50, 60}
-
-
-def _natural_sort_key(s: str):
-    """'positive2.tf' → ['positive', 2, '.tf'] so numeric parts sort numerically."""
-    return [int(c) if c.isdigit() else c for c in re.split(r'(\d+)', s)]
-
+from models import (
+    KICS_RESULT_CODES,
+    ExpectedResultEntry,
+    PositiveTest,
+    ScanFailure,
+    natural_sort_key,
+)
 
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT   = os.path.normpath(os.path.join(SCRIPT_DIR, "../../.."))
@@ -53,25 +48,57 @@ def build_command(query_id: str, scan_path: str, payload_path: str, output_path:
 
 
 def run_scan(query_id: str, scan_path: str, payload_path: str, output_path: str, output_name: str) -> int:
-    command = build_command(query_id, scan_path, payload_path, output_path, output_name)
+    """Run a KICS scan using a temporary directory that mirrors the assets/queries/
+    structure so that the similarity IDs match what the Go tests produce.
 
-    print("Running command:")
-    print(" ".join(command))
-    print("-" * 60)
-
-    try:
-        result = subprocess.run(command, cwd=REPO_ROOT)
-        if result.returncode not in KICS_RESULT_CODES:
-            print(f"\n[ERROR] Scan failed with return code {result.returncode}.", file=sys.stderr)
-        return result.returncode
-    except FileNotFoundError:
-        print("\n[ERROR] 'go' not found. Make sure Go is installed and in your PATH.", file=sys.stderr)
-        return 1
-
-
-def find_positive_tests(query_path: str) -> list[tuple[str, str]]:
+    The Go tests use baseScanPaths = ["../assets/queries/"], which means the
+    similarity ID hash includes the path relative to the queries root
+    (e.g. "terraform/.../test/positive1.tf").  The CLI uses whatever is passed
+    to -p as the base, so we create a temp dir that mirrors the structure and
+    pass -p <tmpdir> — giving the same relative paths.
     """
-    Return a sorted list of (label, scan_path) for each positive test in test/.
+    rel_to_queries = os.path.relpath(scan_path, QUERIES_DIR)
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        target_path = os.path.join(tmpdir, rel_to_queries)
+        if os.path.isdir(scan_path):
+            shutil.copytree(scan_path, target_path)
+        else:
+            os.makedirs(os.path.dirname(target_path), exist_ok=True)
+            shutil.copy2(scan_path, target_path)
+
+        # Copy auxiliary files (e.g. .pem certificates) that positive files
+        # may reference via functions like Terraform's file().  We skip other
+        # positive/negative test files to avoid duplicate scan results.
+        src_dir = os.path.dirname(scan_path)
+        dst_dir = os.path.dirname(target_path)
+        for name in os.listdir(src_dir):
+            if name.startswith("positive") or name.startswith("negative"):
+                continue
+            src = os.path.join(src_dir, name)
+            dst = os.path.join(dst_dir, name)
+            if os.path.isfile(src) and not os.path.exists(dst):
+                shutil.copy2(src, dst)
+
+        command = build_command(query_id, tmpdir, payload_path, output_path, output_name)
+
+        print("Running command:")
+        print(" ".join(command))
+        print("-" * 60)
+
+        try:
+            result = subprocess.run(command, cwd=REPO_ROOT)
+            if result.returncode not in KICS_RESULT_CODES:
+                print(f"\n[ERROR] Scan failed with return code {result.returncode}.", file=sys.stderr)
+            return result.returncode
+        except FileNotFoundError:
+            print("\n[ERROR] 'go' not found. Make sure Go is installed and in your PATH.", file=sys.stderr)
+            return 1
+
+
+def find_positive_tests(query_path: str) -> list[PositiveTest]:
+    """
+    Return a sorted list of PositiveTest for each positive test in test/.
 
     Handles two layouts:
       - File:      test/positiveX.<ext>  → label='positiveX_<ext>',  scan_path=the file
@@ -81,6 +108,10 @@ def find_positive_tests(query_path: str) -> list[tuple[str, str]]:
     The extension is always included in the label so that files with the same
     base name but different extensions (e.g. positive1.json / positive1.yaml)
     produce distinct payloads and result files.
+
+    ``group`` mirrors how the Go tests split scans: loose files use "test"
+    (results go to test/positive_expected_result.json) while subdirectory
+    files use "test/<dir>" (results go to test/<dir>/positive_expected_result.json).
     """
     test_dir = os.path.join(query_path, "test")
     if not os.path.isdir(test_dir):
@@ -102,58 +133,72 @@ def find_positive_tests(query_path: str) -> list[tuple[str, str]]:
                 if not after or not after[0].isdigit():      # skip positive_expected_result etc.
                     continue
                 ext = os.path.splitext(file)[1].lstrip(".")  # e.g. 'json', 'yaml', 'tf'
-                positives.append((f"{base_label}_{ext}", file_path))
+                positives.append(PositiveTest(f"{base_label}_{ext}", file_path, f"test/{entry}"))
         else:
             # File: positive.<ext> or positiveX.<ext>
             suffix = entry[len("positive"):].split(".")[0]
             if suffix and not suffix.isdigit():
                 continue  # skip positive_expected_result.json etc.
             ext = os.path.splitext(entry)[1].lstrip(".")     # e.g. 'json', 'yaml', 'tf'
-            positives.append((f"positive{suffix}_{ext}", full_path))
+            positives.append(PositiveTest(f"positive{suffix}_{ext}", full_path, "test"))
 
-    positives.sort(key=lambda x: _natural_sort_key(x[0]))
+    positives.sort(key=lambda x: natural_sort_key(x.label))
     return positives
 
 
-def run_query_scans(query_id: str, query_path: str) -> tuple[list[tuple[str, str, int]], bool]:
+def run_query_scans(query_id: str, query_path: str) -> tuple[list[ScanFailure], bool]:
     positives = find_positive_tests(query_path)
     if not positives:
         print(f"[WARN] No positive tests found in {query_path}/test, skipping.", file=sys.stderr)
         return [], False
 
-    payloads_dir = os.path.join(query_path, "payloads")
-    os.makedirs(payloads_dir, exist_ok=True)
+    with tempfile.TemporaryDirectory() as tmpdir:
+        payloads_dir = os.path.join(tmpdir, "payloads")
+        results_dir  = os.path.join(tmpdir, "results")
+        os.makedirs(payloads_dir)
+        os.makedirs(results_dir)
 
-    output_path = os.path.join(query_path, "results") + os.sep
-    os.makedirs(output_path, exist_ok=True)
+        label_to_group = {}
+        failed = []
+        for test in positives:
+            label_to_group[test.label] = test.group
+            payload_path = os.path.join(payloads_dir, f"{test.label}.json")
+            output_name  = f"{test.label}.json"
+            print(f"\n  -> {test.label}: {os.path.relpath(test.scan_path, REPO_ROOT)}")
+            rc = run_scan(query_id, test.scan_path, payload_path, results_dir + os.sep, output_name)
+            if rc not in KICS_RESULT_CODES:
+                failed.append(ScanFailure(test.scan_path, payload_path, rc))
 
-    failed = []
-    for label, scan_path in positives:
-        payload_path = os.path.join(payloads_dir, f"{label}.json")
-        output_name  = f"{label}.json"
-        print(f"\n  -> {label}: {os.path.relpath(scan_path, REPO_ROOT)}")
-        rc = run_scan(query_id, scan_path, payload_path, output_path, output_name)
-        if rc not in KICS_RESULT_CODES:
-            failed.append((scan_path, payload_path, rc))
+        written = collect_and_write_expected_results(query_path, results_dir, label_to_group)
 
-    written = collect_and_write_expected_results(query_path)
     return failed, written
 
 
-def collect_and_write_expected_results(query_path: str) -> bool:
+def collect_and_write_expected_results(query_path: str, results_dir: str, label_to_group: dict[str, str]) -> bool:
     """
-    Read all positive*.json result files from results/, extract findings,
-    sort by (fileName, line, issueType, searchKey, similarityID), and write
-    test/positive_expected_result.json. Returns True if the file was written.
+    Read all positive*.json result files from results_dir, extract findings,
+    group them by test group (loose files -> "test", subdirectory files ->
+    "test/<dir>"), sort each group, and write the corresponding
+    positive_expected_result.json files.
+
+    This mirrors the Go test structure where loose positive files are compared
+    against test/positive_expected_result.json and each positive subdirectory
+    against test/<dir>/positive_expected_result.json.
+
+    Returns True if at least one file was written.
     """
-    results_dir = os.path.join(query_path, "results")
     if not os.path.isdir(results_dir):
         return False
 
-    entries = []
+    grouped_entries: dict[str, list[ExpectedResultEntry]] = {}
+
     for filename in sorted(os.listdir(results_dir)):
         if not filename.startswith("positive") or not filename.endswith(".json"):
             continue
+
+        label = os.path.splitext(filename)[0]
+        group = label_to_group.get(label, "test")
+
         with open(os.path.join(results_dir, filename), encoding="utf-8") as f:
             data = json.load(f)
 
@@ -162,37 +207,30 @@ def collect_and_write_expected_results(query_path: str) -> bool:
             query_name = query.get("query_name", "")
             severity   = query.get("severity", "")
             for file_entry in query.get("files", []):
-                entry = {
-                    "queryName":    query_name,
-                    "severity":     severity,
-                    "line":         file_entry.get("line", 0),
-                    "fileName":     os.path.basename(file_entry.get("file_name", "")),
-                    "resourceType": file_entry.get("resource_type", ""),
-                    "resourceName": file_entry.get("resource_name", ""),
-                    "searchKey":    file_entry.get("search_key", ""),
-                    "searchValue":  file_entry.get("search_value", ""),
-                    "expectedValue":file_entry.get("expected_value", ""),
-                    "actualValue":  file_entry.get("actual_value", ""),
-                    "issueType":    file_entry.get("issue_type", ""),
-                    "similarityID": file_entry.get("similarity_id", ""),
-                    "search_line":  file_entry.get("search_line", 0),
-                }
-                entries.append({k: entry[k] for k in FIELD_ORDER})
+                entry = ExpectedResultEntry.from_kics_result(query_name, severity, file_entry)
+                grouped_entries.setdefault(group, []).append(entry)
 
-    if not entries:
+    if not grouped_entries:
         return False
 
-    entries.sort(key=lambda x: (
-        _natural_sort_key(x["fileName"]), x["line"], x["issueType"], x["searchKey"], x["similarityID"]
-    ))
+    # If subdirectory results exist but no loose-file results, still write
+    # an empty main expected file — the Go test always reads it.
+    if any(g != "test" for g in grouped_entries) and "test" not in grouped_entries:
+        grouped_entries["test"] = []
 
-    out_path = os.path.join(query_path, "test", "positive_expected_result.json")
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(entries, f, indent=2)
-        f.write("\n")
+    written_any = False
+    for group, entries in grouped_entries.items():
+        entries.sort(key=lambda e: e.sort_key())
 
-    print(f"  -> Written {len(entries)} entries to {os.path.relpath(out_path, REPO_ROOT)}")
-    return True
+        out_path = os.path.join(query_path, group, "positive_expected_result.json")
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump([e.to_ordered_dict() for e in entries], f, indent=2)
+            f.write("\n")
+
+        print(f"  -> Written {len(entries)} entries to {os.path.relpath(out_path, REPO_ROOT)}")
+        written_any = True
+
+    return written_any
 
 
 def iter_queries():
@@ -231,8 +269,8 @@ def main():
         print(f"[SUMMARY] {written_count}/{total} positive_expected_result.json written")
         if all_failed:
             print(f"          {len(all_failed)} scan(s) failed:")
-            for scan_path, payload_path, rc in all_failed:
-                print(f"  - {os.path.relpath(scan_path, REPO_ROOT)} → exit {rc}")
+            for failure in all_failed:
+                print(f"  - {os.path.relpath(failure.scan_path, REPO_ROOT)} → exit {failure.return_code}")
             sys.exit(1)
         else:
             print("          All scans completed successfully.")
