@@ -140,6 +140,7 @@ def validate_query(query_dir):
 
 
 def main():
+    print("Running script validate_search_line.py")
     query_dirs = get_changed_queries()
 
     if not query_dirs:
