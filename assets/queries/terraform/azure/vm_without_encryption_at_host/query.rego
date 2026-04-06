@@ -25,7 +25,7 @@ CxPolicy[result] {
 get_results(resource, type, name) = results {
 	not common_lib.valid_key(resource, "encryption_at_host_enabled")
 	results := {
-		"searchKey": sprintf("%s[%s]", [type, name]),
+		"searchKey": sprintf("%s.%s", [type, name]),
 		"issueType": "MissingAttribute",
 		"keyActualValue": sprintf("'%s[%s].encryption_at_host_enabled' is undefined or null", [type, name]),
 		"searchLine": common_lib.build_search_line(["resource", type, name], [])
@@ -33,7 +33,7 @@ get_results(resource, type, name) = results {
 } else = results {
 	resource.encryption_at_host_enabled != true
 	results := {
-		"searchKey": sprintf("%s[%s].encryption_at_host_enabled", [type, name]),
+		"searchKey": sprintf("%s.%s.encryption_at_host_enabled", [type, name]),
 		"issueType": "IncorrectValue",
 		"keyActualValue": sprintf("'%s[%s].encryption_at_host_enabled' is set to '%s'", [type, name, resource.encryption_at_host_enabled]),
 		"searchLine": common_lib.build_search_line(["resource", type, name, "encryption_at_host_enabled"], [])
