@@ -5,9 +5,9 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+from results_models import ScanResults
 
-REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
-
+REPO_ROOT = Path(__file__).resolve().parents[3]
 
 def get_changed_queries():
     """Parse CHANGED_QUERIES env var (JSON array from dorny/paths-filter) to get query directories."""
@@ -60,13 +60,14 @@ def run_kics_scan(query_dir):
         "--bom",
         "--enable-openapi-refs",
         "--ignore-on-exit", "results",
+        "--kics_compute_new_simid"
     ]
 
     print(f"  Running scan with query ID: {query_id}")
 
     proc = subprocess.run(cmd, capture_output=True, text=True, cwd=str(REPO_ROOT))
 
-    if proc.returncode != 0:
+    if proc.returncode not in {0, 60, 50, 40, 30, 20}:
         print(f"  ::error::Scan failed (exit code {proc.returncode})")
         if proc.stdout:
             print(f"  stdout (last 500 chars): ...{proc.stdout[-500:]}")
@@ -76,12 +77,9 @@ def run_kics_scan(query_dir):
 
     return True
 
-
 def validate_scan_results(query_dir):
     """
     Validate scan results:
-    - Sort results by: file_name, line, search_key, search_value, resource_type,
-      resource_name, query_name, expected_value, actual_value
     - Fail if any search_line != line
     - Fail if any search_line == -1
     """
@@ -93,27 +91,26 @@ def validate_scan_results(query_dir):
         return False
 
     data = json.loads(results_file.read_text())
+    scan_results = ScanResults(data)
+
+    if scan_results.queries_failed_to_execute > 0:
+        print(f"  ::error file={rel_dir}::{scan_results.queries_failed_to_execute} query(ies) failed to execute (possible panic/error during scan)")
+        return False
 
     # Flatten results from all queries
     all_results = []
-    for query in data.get("queries", []):
-        for entry in query.get("files", []):
-            all_results.append({
-                "file_name": entry.get("file_name", ""),
-                "line": entry.get("line", 0),
-                "search_line": entry.get("search_line", 0),
-            })
+    for query in scan_results.queries:
+        all_results.extend(query.files)
 
     if not all_results:
         print("  [OK] No results to validate")
         return True
-
     # Validate each result
     valid = True
-    for idx, r in enumerate(all_results):
-        sl = r["search_line"]
-        ln = r["line"]
-        fn = r["file_name"]
+    for idx, f in enumerate(all_results):
+        sl = int(f.search_line)
+        ln = int(f.line)
+        fn = f.file_name
 
         if sl == -1:
             print(f"  ::error::Result [{idx}] {fn}: search_line is -1")
@@ -143,10 +140,11 @@ def validate_query(query_dir):
 
 
 def main():
+    print("Running script validate_search_line.py")
     query_dirs = get_changed_queries()
 
     if not query_dirs:
-        print("No query.rego were changes - nothing to validate")
+        print("No query.rego were changed - nothing to validate")
         sys.exit(0)
 
     all_valid = True
@@ -160,3 +158,7 @@ def main():
     else:
         print("::error::Some searchLine validations failed. See errors above.")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
