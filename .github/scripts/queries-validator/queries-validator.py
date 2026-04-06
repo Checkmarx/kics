@@ -20,7 +20,7 @@ def exit_success():
 def fetch(page=1, max_items=100):
     print('Fetching PR #{} files... #page{}'.format(KICS_PR_NUMBER, page))
     headers = {'Authorization': 'token {}'.format(KICS_GITHUB_TOKEN)}
-    url = 'https://api.github.com/repos/checkmarx/kics/pulls/{}/files?per_page={}page={}'.format(KICS_PR_NUMBER, max_items, page)
+    url = 'https://api.github.com/repos/checkmarx/kics/pulls/{}/files?per_page={}&page={}'.format(KICS_PR_NUMBER, max_items, page)
     response = requests.get(url, headers=headers)
     return { "data": response.json(), "status": response.status_code }
 
