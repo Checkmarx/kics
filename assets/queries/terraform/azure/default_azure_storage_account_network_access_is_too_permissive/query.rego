@@ -6,7 +6,7 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[var0]
 	resource_name := tf_lib.get_resource_name(resource, var0)
-	networkRules := get_network_rules(resource, var0)
+	networkRules := get_network_rules(resource, var0, i)
 
 	res1 := publicNetworkAccessEnabled(resource)
 	res2 := aclsDefaultActionAllow(networkRules.rules)
@@ -33,8 +33,8 @@ prepare_issue(res1, res2, resource_id, rules_type, rules_key) = issue {
 	issue := {
 		"kav": "azurerm_storage_account.public_network_access_enabled is not set (default is 'true')",
 		"kev": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", resource_id, "public_network_access_enabled"], []),
-		"searchKey": sprintf("azurerm_storage_account[%s].public_network_access_enabled", [resource_id]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", resource_id], []),
+		"searchKey": sprintf("azurerm_storage_account[%s]", [resource_id]),
 		"issueType": "MissingAttribute",
 		"remediation": "public_network_access_enabled = false",
 		"remediationType": "addition",
@@ -85,8 +85,8 @@ prepare_issue(res1, res2, resource_id, rules_type, rules_key) = issue {
 	}
 }
 
-get_network_rules(storage_account, storage_account_name) = rules {
-	networkRules := input.document[i].resource.azurerm_storage_account_network_rules[var1]
+get_network_rules(storage_account, storage_account_name, doc_index) = rules {
+	networkRules := input.document[doc_index].resource.azurerm_storage_account_network_rules[var1]
     networkRules.storage_account_id == sprintf("${azurerm_storage_account.%s.id}", [storage_account_name])
     rules := {
         "rules": object.union(networkRules, {"name": var1}),
@@ -107,11 +107,11 @@ get_network_rules(storage_account, storage_account_name) = rules {
 	}
 }
 
-publicNetworkAccessEnabled(sa) = reason {
-    not has_key(sa, "public_network_access_enabled")
+publicNetworkAccessEnabled(resource) = reason {
+    not common_lib.valid_key(resource, "public_network_access_enabled")
 	reason := "not defined"
 } else = reason {
-	sa.public_network_access_enabled == true
+	resource.public_network_access_enabled == true
 	reason := "enabled"
 }
 
@@ -121,8 +121,4 @@ aclsDefaultActionAllow(network_rules) = reason {
 } else = reason {
 	lower(network_rules.default_action) == "allow"
 	reason := "allow"
-}
-
-has_key(x, k) {
-	_ = x[k]
 }
