@@ -21,6 +21,11 @@
             "type": "string",
             "minLength": 1,
             "pattern": "^[a-f0-9]{8}$"
+        },
+        "cwe_pattern": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[0-9]+$"
         }
     },
     "required": [
@@ -177,7 +182,7 @@
             ]
         },
         "cwe": {
-            "type": "string"
+            "$ref": "#/definitions/cwe_pattern"
         },
         "riskScore": {
             "type": "string"
