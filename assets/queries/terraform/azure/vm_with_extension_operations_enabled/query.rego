@@ -26,7 +26,7 @@ get_results(resource, type, name) = results {
 	contains(type, "scale_set")
 	not common_lib.valid_key(resource, "extension_operations_enabled")
 	results := [{
-		"searchKey": sprintf("%s[%s]", [type, name]),
+		"searchKey": sprintf("%s.%s", [type, name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s[%s].extension_operations_enabled' should be defined and set to 'false'", [type, name]),
 		"keyActualValue": sprintf("'%s[%s].extension_operations_enabled' is undefined or null", [type, name]),
@@ -36,7 +36,7 @@ get_results(resource, type, name) = results {
 	contains(type, "scale_set")
 	resource.extension_operations_enabled != false
 	results := [{
-		"searchKey": sprintf("%s[%s].extension_operations_enabled", [type, name]),
+		"searchKey": sprintf("%s.%s.extension_operations_enabled", [type, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s[%s].extension_operations_enabled' should be defined and set to 'false'", [type, name]),
 		"keyActualValue": sprintf("'%s[%s].extension_operations_enabled' is set to '%s'", [type, name, resource.extension_operations_enabled]),
@@ -46,7 +46,7 @@ get_results(resource, type, name) = results {
 	not contains(type, "scale_set")
 	not common_lib.valid_key(resource, "allow_extension_operations")
 	results := [{
-		"searchKey": sprintf("%s[%s]", [type, name]),
+		"searchKey": sprintf("%s.%s", [type, name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s[%s].allow_extension_operations' should be defined and set to 'false'", [type, name]),
 		"keyActualValue": sprintf("'%s[%s].allow_extension_operations' is undefined or null", [type, name]),
@@ -55,7 +55,7 @@ get_results(resource, type, name) = results {
 } else = results {
 	resource.allow_extension_operations != false
 	results := [{
-		"searchKey": sprintf("%s[%s].allow_extension_operations", [type, name]),
+		"searchKey": sprintf("%s.%s.allow_extension_operations", [type, name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s[%s].allow_extension_operations' should be defined and set to 'false'", [type, name]),
 		"keyActualValue": sprintf("'%s[%s].allow_extension_operations' is set to '%s'", [type, name, resource.allow_extension_operations]),
