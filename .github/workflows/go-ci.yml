@@ -117,13 +117,14 @@ jobs:
         with:
           python-version: '3.13'
       - name: Validate searchLine in modified queries
-        if: steps.filter.outputs.queries == 'true'
         env:
           CHANGED_QUERIES: ${{ steps.filter.outputs.queries_files }}
           KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_PR_NUMBER: ${{ github.event.number }}
         working-directory: .github/scripts/validate-search-line/
-        run: python3 validate_search_line.py
+        run: |
+          echo "I will run the script using python3 validate_search_line.py"
+          python3 validate_search_line.py
   security-scan:
     name: security-scan
     runs-on: ubuntu-latest
