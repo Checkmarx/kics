@@ -112,11 +112,13 @@ jobs:
           echo "queries changed: ${{ steps.filter.outputs.queries }}"
           echo "changed files: ${{ steps.filter.outputs.queries_files }}"
       - name: Set up Python
+        id: setup-python
         if: steps.filter.outputs.queries == 'true'
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: '3.13'
       - name: Validate searchLine in modified queries
+        if: steps.setup-python.outcome == 'success'
         env:
           CHANGED_QUERIES: ${{ steps.filter.outputs.queries_files }}
           KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
