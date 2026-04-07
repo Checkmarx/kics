@@ -1,4 +1,4 @@
-FROM checkmarx/go:1.26.1-r1@sha256:7eaab909cc0aca91eaa4dde0171ef12d03bcad437eea651ceebb70b0f63c5dee AS build_env
+FROM checkmarx/go:1.26.1@sha256:1d40555ccad7e4e931c5e36d9ca743e3d37d895923e061b94615ae0e69f57b8b AS build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -29,7 +29,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM checkmarx/git:2.53.0-r0@sha256:36de24faffc5abca400a8f3bdb178bedca1f359ca98262b0400af6c77c5858af
+FROM checkmarx/git:2.53.0@sha256:9b16c12c6247d4f5a50f11844bf8e89b6bf1c14ddeed18291cbc857e84d8c4e6
 
 ENV TERM xterm-256color
 
