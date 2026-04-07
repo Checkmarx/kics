@@ -21,6 +21,6 @@ CxPolicy[result] {
 }
 
 has_user_instruction(resource) {
-	
+
 	resource[_].Cmd == "user"
 }
