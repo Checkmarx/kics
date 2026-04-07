@@ -1,4 +1,4 @@
-resource "google_sql_database_instance" "negative1" {
+resource "google_sql_database_instance" "negative1" {   # legacy support (terraform version < 6.0.1)
   provider = google-beta
 
   name   = "private-instance-${random_id.db_name_suffix.hex}"
