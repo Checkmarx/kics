@@ -208,7 +208,7 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 }
 
 func setFieldsPayload(t *testing.T, expect, actual []string, expectFileName, actualFileName string) {
-    var actualI model.Documents
+	var actualI model.Documents
 	var expectI model.Documents
 	errE := json.Unmarshal([]byte(strings.Join(expect, "\n")), &expectI)
 	require.NoError(t, errE,
@@ -232,7 +232,7 @@ func setFieldsPayload(t *testing.T, expect, actual []string, expectFileName, act
 }
 
 func setFieldsResult(t *testing.T, expect, actual []string, expectFileName, actualFileName string) {
-    timeValue := time.Date(2021, 5, 1, 9, 0, 0, 0, time.UTC)
+	timeValue := time.Date(2021, 5, 1, 9, 0, 0, 0, time.UTC)
 
 	expectI := model.Summary{}
 	actualI := model.Summary{}
@@ -308,7 +308,7 @@ func setFieldsResult(t *testing.T, expect, actual []string, expectFileName, actu
 }
 
 func setFieldsResultAnalyze(t *testing.T, expect, actual []string, expectFileName, actualFileName string) {
-    expectResult := model.AnalyzedPaths{}
+	expectResult := model.AnalyzedPaths{}
 	actualResult := model.AnalyzedPaths{}
 
 	errE := json.Unmarshal([]byte(strings.Join(expect, "\n")), &expectResult)
