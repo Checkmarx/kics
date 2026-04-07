@@ -37,7 +37,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 
 	searchKey, startLine := extractLineHint(searchKey)
 	if startLine > 0 {
-		det.CurrentLine = startLine - 1
+		det.CurrentLine = startLine
 	}
 
 	var extractedString [][]string
@@ -77,7 +77,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	}
 }
 
-func extractLineHint(value string) (string, int) {
+func extractLineHint(value string) (TrimmedValue string, EndLine int) {
 	idx := strings.LastIndex(value, "--")
 	if n, err := strconv.Atoi(value[idx+len("--"):]); err == nil {
 		return value[:idx], n
