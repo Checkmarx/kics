@@ -55,9 +55,9 @@ To test and debug there are two ways:
 #### Query Development Tutorial
 
 In the first instance, take a look at the query composition:
-- **query.rego**: Includes the policy and defines the result. The policy builds the pattern that breaks the security of the infrastructure code, which the query is looking for. The result defines the specific data used to present the vulnerability in the infrastructure code.
-- **metadata.json**: Each query has a metadata.json companion file with all the relevant information about the vulnerability, including the severity, category and its description;
-- **test**: Folder that contains at least one negative and positive case and a JSON file with data about the expected results.
+  - **query.rego**: Includes the policy and defines the result. The policy builds the pattern that breaks the security of the infrastructure code, which the query is looking for. The result defines the specific data used to present the vulnerability in the infrastructure code.
+  - **metadata.json**: Each query has a metadata.json companion file with all the relevant information about the vulnerability, including the severity, category and its description;
+  - **test**: Folder that contains at least one negative and positive case and a JSON file with data about the expected results.
 
 ```
 - <technology>
@@ -248,8 +248,9 @@ go run ./cmd/console/main.go generate-id
 - `cloudProvider` should specify the target cloud provider, when necessary (e.g. AWS, AZURE, GCP, etc.)
 - `aggregation` [optional] should be used when more than one query is implemented in the same query.rego file. Indicates how many queries are implemented
 - `override` [optional] should only be used when a `metadata.json` is shared between queries from different platforms or different specification versions like for example OpenAPI 2.0 (Swagger) and OpenAPI 3.0. This field defines an object that each field is mapped to a given `overrideKey` that should be provided from the query execution result (covered in the next section), if an `overrideKey` is provided, this will generate a new query that inherits the root level metadata values and only rewrites the fields defined inside this object.
-- `cwe` CWE is a community-developed list of common software and hardware weakness types that could have security ramifications. To know more about CWE, please refer to cwe.mitre.org
-- `riskScore` Numeric score used to help users prioritize security findings by potential impact. Contributors adding new queries should follow this recommended severity → score mapping: Critical → 8.5, High → 6, Medium → 3, Low → 1, Info/Trace → 0. 
+- `cwe` CWE is a community-developed list of common software and hardware weakness types that could have security ramifications. To know more about CWE, please refer to _cwe.mitre.org_. It's represented by a string numeric value;
+- `riskScore` Numeric float with one decimal place used to help users prioritize security findings by potential impact. Contributors adding new queries should follow this recommended severity to risk score mapping: 
+  - Critical → 8.5; High → 6.0; Medium → 3.0; Low → 1.0; Info/Trace → 0.0 
 
 If the **query.rego** file implements more than one query, the **metadata.json** should indicate how many are implemented (through `aggregation`). That can be necessary due to two cases:
 1. It implements more than one query in the same **query.rego** for the same platform
