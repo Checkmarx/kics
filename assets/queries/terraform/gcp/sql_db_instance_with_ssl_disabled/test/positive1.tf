@@ -7,7 +7,7 @@ resource "google_sql_database_instance" "positive1" {   # legacy support (terraf
   depends_on = [google_service_networking_connection.private_vpc_connection]
 
   settings {
-    tier = "db-f1-micro"  # Missing "ip_configuration"
+    tier = "db-f1-micro"  # Undefined "ip_configuration"
   }
 }
 
@@ -24,7 +24,7 @@ resource "google_sql_database_instance" "positive2" {   # legacy support (terraf
     ip_configuration {
       ipv4_enabled    = false
       private_network = google_compute_network.private_network.id
-      # Missing "require_ssl"
+      # Undefined "require_ssl"
     }
   }
 }
