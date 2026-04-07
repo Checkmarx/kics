@@ -25,10 +25,10 @@ type Counters struct {
 }
 
 type ExpectedActual struct {
-	ExtraElements         ActualExpectedWithStatus // list of extra elements
-	TestInfo              []string
-	Messages 			  ActualExpectedWithStatus
-	FailOutput            []string
+	ExtraElements ActualExpectedWithStatus // list of extra elements
+	TestInfo      []string
+	Messages      ActualExpectedWithStatus
+	FailOutput    []string
 }
 
 type ActualExpectedWithStatus struct {
@@ -42,9 +42,9 @@ type CodeLineStatus struct {
 }
 
 type TestsData struct {
-	TestLog TestLog
+	TestLog        TestLog
 	ExpectedActual ExpectedActual
-	FailLog []string
+	FailLog        []string
 }
 
 type TestLog struct {
@@ -62,20 +62,20 @@ type TestFail struct {
 }
 
 const (
-	prefixActualPayload = "actualPayload"
-	prefixExpectedPayload = "expectedPayload"
-	prefixFail = "--- FAIL:"
-	prefixQueries = `"queries": [`
-	extraElementsListA = "extra elements in list A:"
-	extraElementsListB = "extra elements in list B:"
-	prefixTest = "Test:"
-	suffixExpectedQueries = "Expected Queries content: 'fixtures/{"
-	suffixActualQueries = "doesn't match the Actual Queries content: 'output/{"
-	prefixTypeInterface = "([]interface {})"
+	prefixActualPayload      = "actualPayload"
+	prefixExpectedPayload    = "expectedPayload"
+	prefixFail               = "--- FAIL:"
+	prefixQueries            = `"queries": [`
+	extraElementsListA       = "extra elements in list A:"
+	extraElementsListB       = "extra elements in list B:"
+	prefixTest               = "Test:"
+	suffixExpectedQueries    = "Expected Queries content: 'fixtures/{"
+	suffixActualQueries      = "doesn't match the Actual Queries content: 'output/{"
+	prefixTypeInterface      = "([]interface {})"
 	prefixTypeVulnerableFile = "(model.VulnerableFile) {"
-	expectedNumberOflines = "Expected file number of lines:"
-	actualNumberOfLines = "Actual file number of lines:"
-	severityCountersMarker = "Expected Severity Counters content:"
+	expectedNumberOflines    = "Expected file number of lines:"
+	actualNumberOfLines      = "Actual file number of lines:"
+	severityCountersMarker   = "Expected Severity Counters content:"
 )
 
 func FindTest(tests []TestsData, testName string) (*TestsData, bool) {
@@ -159,14 +159,14 @@ func extractPayloadDiffLines(failLog []string) ExpectedActual {
 		case stateMessagesActual:
 			if !strings.HasPrefix(trimmed, prefixActualPayload) {
 				messages.ActualContent = append(messages.ActualContent, CodeLineStatus{
-					Line: line,
+					Line:   line,
 					Status: false,
 				})
 			}
 		case stateMessagesExpected:
 			if !strings.HasPrefix(trimmed, prefixExpectedPayload) {
 				messages.ExpectedContent = append(messages.ExpectedContent, CodeLineStatus{
-					Line: line,
+					Line:   line,
 					Status: false,
 				})
 			}
@@ -178,8 +178,8 @@ func extractPayloadDiffLines(failLog []string) ExpectedActual {
 		}
 	}
 	return ExpectedActual{
-		TestInfo: testInfo,
-		Messages: messages,
+		TestInfo:   testInfo,
+		Messages:   messages,
 		FailOutput: failOutput,
 	}
 }
@@ -196,7 +196,7 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 	var failOutput []string
 
 	const (
-		stateNone         = iota
+		stateNone = iota
 		stateExtraA
 		stateExtraB
 		stateTestInfo
@@ -235,7 +235,7 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 			if isExtraElementsContentLine(trimmed) {
 				cleanedLine := cleanOutput(line)
 				extraElements.ExpectedContent = append(extraElements.ExpectedContent, CodeLineStatus{
-					Line: cleanedLine,
+					Line:   cleanedLine,
 					Status: false,
 				})
 			}
@@ -243,7 +243,7 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 			if isExtraElementsContentLine(trimmed) {
 				cleanedLine := cleanOutput(line)
 				extraElements.ActualContent = append(extraElements.ActualContent, CodeLineStatus{
-					Line: cleanedLine,
+					Line:   cleanedLine,
 					Status: false,
 				})
 			}
@@ -252,14 +252,14 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 		case stateMessagesActual:
 			if !strings.HasSuffix(trimmed, suffixActualQueries) {
 				messages.ActualContent = append(messages.ActualContent, CodeLineStatus{
-					Line: line,
+					Line:   line,
 					Status: false,
 				})
 			}
 		case stateMessagesExpected:
 			if !strings.HasSuffix(trimmed, suffixExpectedQueries) {
 				messages.ExpectedContent = append(messages.ExpectedContent, CodeLineStatus{
-					Line: line,
+					Line:   line,
 					Status: false,
 				})
 			}
@@ -274,9 +274,9 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 
 	return ExpectedActual{
 		ExtraElements: extraElements,
-		TestInfo: testInfo,
-		Messages: messages,
-		FailOutput: failOutput,
+		TestInfo:      testInfo,
+		Messages:      messages,
+		FailOutput:    failOutput,
 	}
 }
 
@@ -328,8 +328,8 @@ func extractSeverityCounterLines(failLog []string) ExpectedActual {
 	}
 
 	return ExpectedActual{
-		TestInfo: testInfo,
-		Messages: messages,
+		TestInfo:   testInfo,
+		Messages:   messages,
 		FailOutput: failOutput,
 	}
 }
@@ -378,9 +378,9 @@ func compareMessageContent(expectedActual *ExpectedActual) {
 	expectedLenExtraElements := len(expectedActual.ExtraElements.ActualContent)
 
 	maxLen := expectedLen
-    if actualLen > maxLen {
-        maxLen = actualLen
-    }
+	if actualLen > maxLen {
+		maxLen = actualLen
+	}
 	maxLenExtraElements := expectedLenExtraElements
 	if actualLenExtraElements > maxLenExtraElements {
 		maxLenExtraElements = actualLenExtraElements
