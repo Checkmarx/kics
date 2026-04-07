@@ -145,6 +145,42 @@
                   </div>
                 </div>
               </details>
+            {{ else if and $val.ExpectedActual.ExtraElements.ExpectedContent $val.ExpectedActual.ExtraElements.ActualContent }}
+              <div class="code-box test-info">
+                {{ range $line := $val.ExpectedActual.TestInfo }}
+                  <span>{{ $line }}</span>
+                {{ end }}
+              </div>
+              <div class="code-box test-info">
+                {{ range $line := $val.ExpectedActual.FailOutput }}
+                  <span>{{ $line }}</span>
+                {{ end }}
+              </div>
+              <details>
+                <summary class="sub-summary">View extra elements</summary>
+                <div class="code-box side-by-side">
+                  <div class="code-box first">
+                    <summary class="summary expected-actual">Expected in fixtures:</summary>
+                    {{ range $ec := $val.ExpectedActual.ExtraElements.ExpectedContent }}
+                      {{ if $ec.Status }}
+                        <span class="code diff">{{ $ec.Line }}</span>
+                      {{ else }}
+                        <span class="code">{{ $ec.Line }}</span>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                  <div class="code-box second">
+                    <summary class="summary expected-actual">Actual output:</summary>
+                    {{ range $ac := $val.ExpectedActual.ExtraElements.ActualContent }}
+                      {{ if $ac.Status }}
+                        <span class="code diff">{{ $ac.Line }}</span>
+                      {{ else }}
+                        <span class="code">{{ $ac.Line }}</span>
+                      {{ end }}
+                    {{ end }}
+                  </div>
+                </div>
+              </details>
             {{ else }}
               <div class="code-box">
                 {{ range $failLine := $val.FailLog }}

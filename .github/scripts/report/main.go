@@ -96,6 +96,38 @@ func cleanOutput(s string) string {
 	return s
 }
 
+func stripCommonLeadingWhitespace(lines []CodeLineStatus) []CodeLineStatus {
+	if len(lines) == 0 {
+		return lines
+	}
+	prefixLen := -1
+	for _, cls := range lines {
+		trimmed := strings.TrimRight(cls.Line, "\n\r")
+		if strings.TrimSpace(trimmed) == "" {
+			continue
+		}
+		count := 0
+		for count < len(trimmed) && (trimmed[count] == ' ' || trimmed[count] == '\t') {
+			count++
+		}
+		if prefixLen == -1 || count < prefixLen {
+			prefixLen = count
+		}
+	}
+	if prefixLen <= 0 {
+		return lines
+	}
+	result := make([]CodeLineStatus, len(lines))
+	for i, cls := range lines {
+		line := cls.Line
+		if len(line) >= prefixLen {
+			line = line[prefixLen:]
+		}
+		result[i] = CodeLineStatus{Line: line, Status: cls.Status}
+	}
+	return result
+}
+
 func extractPayloadDiffLines(failLog []string) ExpectedActual {
 	var testInfo []string
 	var messages ActualExpectedWithStatus
@@ -152,7 +184,10 @@ func extractPayloadDiffLines(failLog []string) ExpectedActual {
 }
 
 func isExtraElementsContentLine(trimmed string) bool {
-	return !strings.HasPrefix(trimmed, prefixTypeInterface) && !strings.HasPrefix(trimmed, prefixTypeVulnerableFile)
+	fmt.Printf("Checking if '%s' doesnt have the prefix '%s'\n", trimmed, prefixTypeVulnerableFile)
+	ret := !strings.HasPrefix(trimmed, prefixTypeInterface) && !strings.HasPrefix(trimmed, prefixTypeVulnerableFile)
+	fmt.Printf("isExtraElementsContentLine return '%v' for the trimmed value: %s\n", ret, trimmed)
+	return ret
 }
 
 func extractExpectedActualLines(failLog []string) ExpectedActual {
@@ -173,8 +208,8 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 	state := stateNone
 
 	for _, line := range failLog {
+		fmt.Printf("[extractExpectedActualLines] Analyzing line: %s\n", line)
 		trimmed := strings.TrimSpace(line)
-		
 		switch trimmed {
 		case extraElementsListA:
 			state = stateExtraA
@@ -183,7 +218,6 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 			state = stateExtraB
 			continue
 		}
-
 		if strings.HasPrefix(trimmed, prefixTest) {
 			state = stateTestInfo
 		} else if strings.HasSuffix(trimmed, suffixExpectedQueries) {
@@ -193,7 +227,6 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 		} else if strings.HasPrefix(trimmed, prefixFail) {
 			state = stateFailLog
 		}
-
 		if trimmed == "" && (state == stateExtraA || state == stateExtraB) {
 			state = stateNone
 			continue
@@ -217,6 +250,7 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 				})
 			}
 		case stateTestInfo:
+			fmt.Printf("Appending line into testInfo: %s\n", line)
 			testInfo = append(testInfo, line)
 		case stateMessagesActual:
 			if !strings.HasSuffix(trimmed, suffixActualQueries) {
@@ -228,14 +262,44 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 		case stateMessagesExpected:
 			if !strings.HasSuffix(trimmed, suffixExpectedQueries) {
 				messages.ExpectedContent = append(messages.ExpectedContent, CodeLineStatus{
-					Line: line, 
+					Line: line,
 					Status: false,
 				})
 			}
 		case stateFailLog:
+			fmt.Printf("Appending line into failOutput: %s\n", line)
 			failOutput = append(failOutput, line)
 			state = stateNone
 		}
+	}
+
+	extraElements.ExpectedContent = stripCommonLeadingWhitespace(extraElements.ExpectedContent)
+	extraElements.ActualContent = stripCommonLeadingWhitespace(extraElements.ActualContent)
+
+	fmt.Printf("___________________________________________________\n")
+	fmt.Printf("ExpectedActual to be returned:\n")
+	fmt.Printf("  ExtraElements:\n")
+	fmt.Printf("    ExpectedContent (%d):\n", len(extraElements.ExpectedContent))
+	for i, e := range extraElements.ExpectedContent {
+		fmt.Printf("      [%d] Line=%q Status=%v\n", i, e.Line, e.Status)
+	}
+	fmt.Printf("    ActualContent (%d):\n", len(extraElements.ActualContent))
+	for i, e := range extraElements.ActualContent {
+		fmt.Printf("      [%d] Line=%q Status=%v\n", i, e.Line, e.Status)
+	}
+	fmt.Printf("  TestInfo: %+v\n", testInfo)
+	fmt.Printf("  Messages:\n")
+	fmt.Printf("    ExpectedContent (%d):\n", len(messages.ExpectedContent))
+	for i, m := range messages.ExpectedContent {
+		fmt.Printf("      [%d] Line=%q Status=%v\n", i, m.Line, m.Status)
+	}
+	fmt.Printf("    ActualContent (%d):\n", len(messages.ActualContent))
+	for i, m := range messages.ActualContent {
+		fmt.Printf("      [%d] Line=%q Status=%v\n", i, m.Line, m.Status)
+	}
+	fmt.Printf("  FailOutput (%d):\n", len(failOutput))
+	for i, f := range failOutput {
+		fmt.Printf("    [%d] %s\n", i, f)
 	}
 
 	return ExpectedActual{
@@ -337,6 +401,7 @@ func compareMessageContent(expectedActual *ExpectedActual) {
 }
 
 func main() {
+	fmt.Printf("Started report script\n")
 	var testPath, testName, reportPath, reportName string
 
 	fmt.Printf("Report generator\n")
@@ -394,7 +459,9 @@ func main() {
 	}
 
 	// Parse Output from Failed Tests
+	fmt.Printf("Before checking if it has failures\n")
 	if hasFailures {
+		fmt.Printf("It has failures\n")
 		jsonTestsOutputClean, err := os.Open(filepath.Clean(filepath.Join(filepath.ToSlash(testPath), testName)))
 		if err != nil {
 			fmt.Printf("Error when trying to open: %v\n", filepath.Join(filepath.ToSlash(testPath), testName))
@@ -427,6 +494,7 @@ func main() {
 			}
 
 			if isExpectedVsActual(test.FailLog) {
+				fmt.Printf("IsExpectedVsActual\n")
 				expectedActual := extractExpectedActualLines(test.FailLog)
 				compareMessageContent(&expectedActual)
 				test.ExpectedActual = expectedActual
