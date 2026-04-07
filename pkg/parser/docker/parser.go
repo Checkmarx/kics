@@ -63,7 +63,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 			fromValue = child.Original[5:]
 			fromCount[fromValue]++
 			if fromCount[fromValue] > 1 {
-				fromValue = fmt.Sprintf("%s-kics-id-%d", fromValue, fromCount[fromValue]-1)
+				fromValue = fmt.Sprintf("%s(%d)", fromValue, child.StartLine)
 			}
 		}
 
