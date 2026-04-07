@@ -37,7 +37,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 
 	searchKey, startLine := extractLineHint(searchKey)
 	if startLine > 0 {
-		det.CurrentLine = startLine
+		det.CurrentLine = startLine - 1 // convert to 0-based
 	}
 
 	var extractedString [][]string
@@ -46,8 +46,6 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	for idx, str := range extractedString {
 		sKey = strings.ReplaceAll(sKey, str[0], `{{`+strconv.Itoa(idx)+`}}`)
 	}
-
-	extractedString[0][1], _, _ = strings.Cut(extractedString[0][1], "(")
 
 	unchangedText := make([]string, len(*file.LinesOriginalData))
 	copy(unchangedText, *file.LinesOriginalData)
@@ -79,9 +77,12 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	}
 }
 
-func extractLineHint(value string) (trimmedValue string, endLine int) {
-	idx := strings.LastIndex(value, "^")
-	if n, err := strconv.Atoi(value[idx+len("^"):]); err == nil {
+func extractLineHint(value string) (string, int) {
+	idx := strings.LastIndex(value, "--")
+	if idx == -1 {
+		return value, 0
+	}
+	if n, err := strconv.Atoi(value[idx+len("--"):]); err == nil {
 		return value[:idx], n
 	}
 	return value, 0
