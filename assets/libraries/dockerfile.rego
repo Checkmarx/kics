@@ -83,3 +83,10 @@ add_line_hint(raw_search_key, lineHint) = searchKey {
 	searchKey := sprintf("%s^%d", [raw_search_key, lineHint])
 }
 
+get_original_from_commands(commands) = from_commands {
+	from_commands = [from_command|
+		commands[i].Cmd == "from"
+	 	from_command := commands[i]
+		]
+}
+
