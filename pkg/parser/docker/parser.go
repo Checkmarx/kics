@@ -63,7 +63,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 			fromValue = child.Original[5:]
 			fromCount[fromValue]++
 			if fromCount[fromValue] > 1 {
-				fromValue = fmt.Sprintf("%s(%d)", fromValue, fromCount[fromValue]-1)
+				fromValue = fmt.Sprintf("%s-kics-id-%d", fromValue, fromCount[fromValue]-1)
 			}
 		}
 
@@ -138,7 +138,7 @@ func (p *Parser) GetKind() model.FileKind {
 
 // SupportedExtensions returns Dockerfile extensions
 func (p *Parser) SupportedExtensions() []string {
-	return []string{".dockerfile"}
+	return []string{"Dockerfile", ".dockerfile", ".ubi8", ".debian", "possibleDockerfile"}
 }
 
 // SupportedTypes returns types supported by this parser, which are dockerfile
