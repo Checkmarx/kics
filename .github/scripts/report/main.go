@@ -75,6 +75,7 @@ const (
 	prefixTypeVulnerableFile = "(model.VulnerableFile) {"
 	expectedNumberOflines = "Expected file number of lines:"
 	actualNumberOfLines = "Actual file number of lines:"
+	severityCountersMarker = "Expected Severity Counters content:"
 )
 
 func FindTest(tests []TestsData, testName string) (*TestsData, bool) {
@@ -310,6 +311,60 @@ func extractExpectedActualLines(failLog []string) ExpectedActual {
 	}
 }
 
+func isSeverityCountersDiff(failLog []string) bool {
+	for _, line := range failLog {
+		if strings.Contains(line, severityCountersMarker) {
+			return true
+		}
+	}
+	return false
+}
+
+func parseSeverityMap(mapStr string) []CodeLineStatus {
+	inner := strings.TrimPrefix(mapStr, "map[")
+	inner = strings.TrimSuffix(inner, "]")
+	re := regexp.MustCompile(`(\w+):%!s\(int=(\d+)\)`)
+	matches := re.FindAllStringSubmatch(inner, -1)
+	var lines []CodeLineStatus
+	for _, m := range matches {
+		lines = append(lines, CodeLineStatus{
+			Line:   fmt.Sprintf("%s: %s", m[1], m[2]),
+			Status: false,
+		})
+	}
+	return lines
+}
+
+func extractSeverityCounterLines(failLog []string) ExpectedActual {
+	var testInfo []string
+	var messages ActualExpectedWithStatus
+	var failOutput []string
+
+	for _, line := range failLog {
+		trimmed := strings.TrimSpace(line)
+		if strings.Contains(trimmed, severityCountersMarker) {
+			expectedMapRe := regexp.MustCompile(`fixtures/(map\[[^\]]+\])`)
+			actualMapRe := regexp.MustCompile(`output/(map\[[^\]]+\])`)
+			if em := expectedMapRe.FindStringSubmatch(trimmed); em != nil {
+				messages.ExpectedContent = parseSeverityMap(em[1])
+			}
+			if am := actualMapRe.FindStringSubmatch(trimmed); am != nil {
+				messages.ActualContent = parseSeverityMap(am[1])
+			}
+		} else if strings.HasPrefix(trimmed, prefixFail) {
+			failOutput = append(failOutput, line)
+		} else {
+			testInfo = append(testInfo, line)
+		}
+	}
+
+	return ExpectedActual{
+		TestInfo: testInfo,
+		Messages: messages,
+		FailOutput: failOutput,
+	}
+}
+
 func isDifferentNumberOfLines(failLog []string) bool {
 	var hasExpectedFileNumberLines, hasActualFileNumberLines bool
 	for _, failLogEntry := range failLog {
@@ -496,6 +551,11 @@ func main() {
 			if isExpectedVsActual(test.FailLog) {
 				fmt.Printf("IsExpectedVsActual\n")
 				expectedActual := extractExpectedActualLines(test.FailLog)
+				compareMessageContent(&expectedActual)
+				test.ExpectedActual = expectedActual
+			} else if isSeverityCountersDiff(test.FailLog) {
+				fmt.Printf("IsSeverityCountersDiff\n")
+				expectedActual := extractSeverityCounterLines(test.FailLog)
 				compareMessageContent(&expectedActual)
 				test.ExpectedActual = expectedActual
 			} else if isDifferentNumberOfLines(test.FailLog) {

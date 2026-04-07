@@ -311,6 +311,9 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			for i, excPath := range expectResult.Exc {
 				expectResult.Exc[i] = KicsDevPathAdapter(excPath)
 			}
+			for k, excPath := range actualResult.Exc {
+				actualResult.Exc[k] = KicsDevPathAdapter(excPath)
+			}
 			for platform, stats := range expectResult.FileStats {
 				adaptedFilesByDir := make(map[string]int)
 				for dir, count := range stats.FilesByDir {
@@ -318,6 +321,14 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 				}
 				stats.FilesByDir = adaptedFilesByDir
 				expectResult.FileStats[platform] = stats
+			}
+			for platform, stats := range actualResult.FileStats {
+				adaptedFilesByDir := make(map[string]int)
+				for dir, count := range stats.FilesByDir {
+					adaptedFilesByDir[KicsDevPathAdapter(dir)] = count
+				}
+				stats.FilesByDir = adaptedFilesByDir
+				actualResult.FileStats[platform] = stats
 			}
 		}
 
