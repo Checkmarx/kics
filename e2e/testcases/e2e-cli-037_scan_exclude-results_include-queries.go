@@ -9,7 +9,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 
 				[]string{"scan", "--include-queries", "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
-					"--exclude-results", "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
+					"--exclude-results", "77363db6350f38d12d51eae554b988852f3f7da1f7a05c030d51002492561cbd",
 					"-p", "/path/e2e/fixtures/samples/terraform-single.tf"},
 
 				[]string{"scan", "--include-queries", "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
