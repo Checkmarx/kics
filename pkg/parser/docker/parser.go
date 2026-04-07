@@ -50,6 +50,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 
 	fromValue := ""
 	from := make(map[string][]Command)
+	fromCount := make(map[string]int)
 	arguments := make([]Command, 0)
 	ignoreStruct := newIgnore()
 
@@ -60,6 +61,10 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 		child.Value = strings.ToLower(child.Value)
 		if child.Value == "from" {
 			fromValue = child.Original[5:]
+			fromCount[fromValue]++
+			if fromCount[fromValue] > 1 {
+				fromValue = fmt.Sprintf("%s-kics-id-%d", fromValue, fromCount[fromValue]-1)
+			}
 		}
 
 		if ignoreStruct.getIgnoreComments(child) {

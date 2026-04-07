@@ -47,6 +47,8 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		sKey = strings.ReplaceAll(sKey, str[0], `{{`+strconv.Itoa(idx)+`}}`)
 	}
 
+	extractedString[0][1], _, _ = strings.Cut(extractedString[0][1], "-kics-id-") //removes id from image_reference
+
 	unchangedText := make([]string, len(*file.LinesOriginalData))
 	copy(unchangedText, *file.LinesOriginalData)
 
