@@ -1,12 +1,9 @@
 {
+  "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
-    "CFNUser": {
-      "Type": "AWS::IAM::User",
+    "RootGroup": {
+      "Type": "AWS::IAM::Group",
       "Properties": {
-        "LoginProfile": {
-          "Password": "Password",
-          "PasswordResetRequired": false
-        },
         "Policies": [
           {
             "PolicyName": "root",

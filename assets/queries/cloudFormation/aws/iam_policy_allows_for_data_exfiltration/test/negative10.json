@@ -1,26 +1,20 @@
 {
-  "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
-    "RootRole": {
-      "Type": "AWS::IAM::Role",
+    "CreateTestDBPolicy": {
+      "Type": "AWS::IAM::ManagedPolicy",
       "Properties": {
-        "Policies": [
-          {
-            "PolicyName": "root",
-            "PolicyDocument": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "safe_action"
-                  ],
-                  "Resource": "*"
-                }
-              ]
-            }
-          }
-        ]
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "safe_action",
+          "Resource": "*"
+        }
+      ]
+        },
+        "Users": ["TestUser"],
+        "Description": "Policy for creating a test database"
       }
     }
   }
