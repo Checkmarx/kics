@@ -80,8 +80,8 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 }
 
 func extractLineHint(value string) (trimmedValue string, endLine int) {
-	idx := strings.LastIndex(value, "#")
-	if n, err := strconv.Atoi(value[idx+len("#"):]); err == nil {
+	idx := strings.LastIndex(value, "^")
+	if n, err := strconv.Atoi(value[idx+len("^"):]); err == nil {
 		return value[:idx], n
 	}
 	return value, 0
