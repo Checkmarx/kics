@@ -1,5 +1,6 @@
-resource "google_sql_database_instance" "negative1" {
+resource "google_sql_database_instance" "negative2_1" {
   name   = "private-instance-encrypted"
+  database_version = "POSTGRES_15"
   region = "us-central1"
 
   depends_on = [google_service_networking_connection.private_vpc_connection]
@@ -15,8 +16,9 @@ resource "google_sql_database_instance" "negative1" {
   }
 }
 
-resource "google_sql_database_instance" "negative2" {
+resource "google_sql_database_instance" "negative2_2" {
   name   = "private-instance-trusted-cert"
+  database_version = "POSTGRES_15"
   region = "us-central1"
 
   depends_on = [google_service_networking_connection.private_vpc_connection]

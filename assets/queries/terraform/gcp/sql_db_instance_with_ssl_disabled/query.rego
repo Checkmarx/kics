@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "'settings.ip_configuration' should be defined and not null",
 		"keyActualValue": "'settings.ip_configuration' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name],["settings"]),
-		"remediation": "ip_configuration {\n\t\trequire_ssl = true\n\t}\n",
+		"remediation": sprintf("ip_configuration {\n\t\tssl_mode = %s\n\t}\n", [get_remediation(input.document[i].resource.google_sql_database_instance[name].database_version)]),
 		"remediationType": "addition",
 	}
 }
@@ -40,15 +40,17 @@ CxPolicy[result] {
 		"keyExpectedValue": "'settings.ip_configuration.ssl_mode' should be defined and not null",
 		"keyActualValue": "'settings.ip_configuration.ssl_mode' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name],["settings", "ip_configuration"]),
-		"remediation": "ssl_mode = TRUSTED_CLIENT_CERTIFICATE_REQUIRED",
+		"remediation": sprintf("ssl_mode = %s", [get_remediation(input.document[i].resource.google_sql_database_instance[name].database_version)]),
 		"remediationType": "addition",
 	}
 }
 
 CxPolicy[result] {
-	settings := input.document[i].resource.google_sql_database_instance[name].settings
+	resource := input.document[i].resource.google_sql_database_instance[name]
+	settings := resource.settings
 
-	not common_lib.inArray(allowed_ssl_modes, settings.ip_configuration.ssl_mode)
+	database_version := input.document[i].resource.google_sql_database_instance[name].database_version
+	kev := get_expected_key(database_version, settings.ip_configuration.ssl_mode)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -56,12 +58,12 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(input.document[i].resource.google_sql_database_instance[name].settings, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.ssl_mode", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'settings.ip_configuration.ssl_mode' should be set to 'ENCRYPTED_ONLY' or 'TRUSTED_CLIENT_CERTIFICATE_REQUIRED'",
+		"keyExpectedValue": sprintf("'settings.ip_configuration.ssl_mode' should be set to %s", [kev]),
 		"keyActualValue": sprintf("'settings.ip_configuration.ssl_mode' is set to '%s'", [settings.ip_configuration.ssl_mode]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name],["settings", "ip_configuration", "ssl_mode"]),
 		"remediation": json.marshal({
 			"before": settings.ip_configuration.ssl_mode,
-			"after": "TRUSTED_CLIENT_CERTIFICATE_REQUIRED"
+			"after": get_remediation(database_version)
 		}),
 		"remediationType": "replacement",
 	}
@@ -88,3 +90,14 @@ CxPolicy[result] {																			# legacy support (terraform version < 6.0.1
 		"remediationType": "replacement",
 	}
 }
+
+get_expected_key(database_version, ssl_mode) = "'ENCRYPTED_ONLY'" {
+	contains(database_version, "SQLSERVER")
+	ssl_mode == "ENCRYPTED_ONLY"
+} else = "'ENCRYPTED_ONLY' or 'TRUSTED_CLIENT_CERTIFICATE_REQUIRED'" {
+	not common_lib.inArray(allowed_ssl_modes, ssl_mode)
+}
+
+get_remediation(database_version) = "ENCRYPTED_ONLY" {
+	contains(database_version, "SQLSERVER")
+} else = "TRUSTED_CLIENT_CERTIFICATE_REQUIRED"

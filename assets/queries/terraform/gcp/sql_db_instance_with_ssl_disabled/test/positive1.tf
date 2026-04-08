@@ -1,7 +1,8 @@
-resource "google_sql_database_instance" "positive1" {   # legacy support (terraform version < 6.0.1)
+resource "google_sql_database_instance" "positive1_1" {   # legacy support (terraform version < 6.0.1)
   provider = google-beta
 
   name   = "private-instance-${random_id.db_name_suffix.hex}"
+  database_version = "POSTGRES_15"
   region = "us-central1"
 
   depends_on = [google_service_networking_connection.private_vpc_connection]
@@ -11,10 +12,11 @@ resource "google_sql_database_instance" "positive1" {   # legacy support (terraf
   }
 }
 
-resource "google_sql_database_instance" "positive2" {   # legacy support (terraform version < 6.0.1)
+resource "google_sql_database_instance" "positive1_2" {   # legacy support (terraform version < 6.0.1)
   provider = google-beta
 
   name   = "private-instance-${random_id.db_name_suffix.hex}"
+  database_version = "POSTGRES_15"
   region = "us-central1"
 
   depends_on = [google_service_networking_connection.private_vpc_connection]
@@ -29,10 +31,11 @@ resource "google_sql_database_instance" "positive2" {   # legacy support (terraf
   }
 }
 
-resource "google_sql_database_instance" "positive3" {   # legacy support (terraform version < 6.0.1)
+resource "google_sql_database_instance" "positive1_3" {   # legacy support (terraform version < 6.0.1)
   provider = google-beta
 
   name   = "private-instance-${random_id.db_name_suffix.hex}"
+  database_version = "POSTGRES_15"
   region = "us-central1"
 
   depends_on = [google_service_networking_connection.private_vpc_connection]
