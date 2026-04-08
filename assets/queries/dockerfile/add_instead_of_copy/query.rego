@@ -12,18 +12,18 @@ CxPolicy[result] {
 	from_command := get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": get_search_key(from_command, name, resource),
+		"searchKey": get_search_key(from_command, name, resource, indexof(name, "(")),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'COPY' %s", [resource.Value[0]]),
 		"keyActualValue": sprintf("'ADD' %s", [resource.Value[0]]),
 	}
 }
 
-get_search_key(from_command, name, resource) = searchKey {
-	indexof(name, "(") == -1
+get_search_key(from_command, name, resource, indexof) = searchKey {
+	indexof == -1
 	searchKey := sprintf("%s={{%s}}.{{%s}}", [from_command.value, name, resource.Original])
 } else = searchKey {
-	searchKey := sprintf("%s={{%s}}.{{%s}}#%d", [from_command.value, get_name(name), resource.Original, from_command.EndLine-1])
+	searchKey := sprintf("%s={{%s}}.{{%s}}#%s#%d", [from_command.value, name, resource.Original, get_index(name, indexof), from_command.EndLine-1])
 }
 
 get_original_from_command(commands) = from_command {
@@ -34,8 +34,7 @@ get_original_from_command(commands) = from_command {
 	}
 }
 
-get_name(raw_image) = name {
-    idx := indexof(raw_image, "(")
+get_index(raw_image_name, idx) = name {
     idx >= 0
-    name := substring(raw_image, 0, idx)
+    name := substring(raw_image_name, idx + 1 , count(raw_image_name) - idx - 2)
 }
