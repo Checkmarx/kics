@@ -1,6 +1,6 @@
 {
   "id": "fe405074-7e18-40f9-9aef-024aa1d0a889",
-  "queryName": "Beta - TKE Cluster Log Agent Is Not Enabled",
+  "queryName": "TKE Cluster Log Agent Is Not Enabled",
   "severity": "LOW",
   "category": "Observability",
   "descriptionText": "TKE cluster log agent should be enabled",

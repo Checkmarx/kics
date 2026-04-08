@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Redis Cache Managed Identity Is Not Set To System Assigned",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Redis Cache Managed Identity Is Not Set To System Assigned",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.tf"
+  }
+]

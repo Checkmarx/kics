@@ -1,6 +1,6 @@
 {
   "id": "d135a36e-c474-452f-b891-76db1e6d1cd5",
-  "queryName": "Beta - Security Group Rule Set Accepts All Traffic",
+  "queryName": "Security Group Rule Set Accepts All Traffic",
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "Security Group Rule Set accepts all traffic",

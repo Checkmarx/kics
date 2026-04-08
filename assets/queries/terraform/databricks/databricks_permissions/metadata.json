@@ -1,6 +1,6 @@
 {
   "id": "a4edb7e1-c0e0-4f7f-9d7c-d1b603e81ad5",
-  "queryName": "Beta - Databricks Cluster or Job With None Or Insecure Permission(s)",
+  "queryName": "Databricks Cluster or Job With None Or Insecure Permission(s)",
   "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Databricks Cluster and Job must have restricted permissions",

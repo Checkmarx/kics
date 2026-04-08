@@ -2,7 +2,19 @@
   {
     "queryName": "Function App FTPS Enforce Disabled",
     "severity": "MEDIUM",
-    "line": 11,
+    "line": 9,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Function App FTPS Enforce Disabled",
+    "severity": "MEDIUM",
+    "line": 19,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Function App FTPS Enforce Disabled",
+    "severity": "MEDIUM",
+    "line": 24,
     "fileName": "positive1.tf"
   },
   {
@@ -10,5 +22,11 @@
     "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Function App FTPS Enforce Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive3.tf"
   }
 ]

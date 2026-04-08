@@ -1711,6 +1711,28 @@
             "tunnel2_inside_cidr": "tunnel2_inside_cidr"
           }
         },
+        "terraform-aws-modules/sns/aws": {
+          "resources": [
+            "aws_sns_topic",
+            "aws_sns_topic_data_protection_policy",
+            "aws_sns_topic_policy",
+            "aws_sns_topic_subscription"
+          ],
+          "inputs": {
+            "archive_policy": "archive_policy",
+            "content_based_deduplication": "content_based_deduplication",
+            "delivery_policy": "delivery_policy",
+            "display_name": "display_name",
+            "fifo_throughput_scope": "fifo_throughput_scope",
+            "fifo-topic": "fifo-topic",
+            "kms_master_key_id": "kms_master_key_id",
+            "name": "name",
+            "signature_version": "signature_version",
+            "tags": "tags",
+            "tracing_config": "tracing_config",
+            "policy": "topic_policy"
+          }
+        },
         "terraform-aws-modules/notify-slack/aws": {
           "resources": [
             "aws_cloudwatch_log_group",

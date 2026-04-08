@@ -1,0 +1,14 @@
+{
+  "id": "05d6b52e-11ca-453d-bb3a-21c7c853ee92",
+  "queryName": "Beta - Databricks Workspace Using Default Virtual Network",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Resources of type 'azurerm_databricks_workspace' should use a custom virtual network",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/databricks_workspace#virtual_network_id-1",
+  "platform": "Terraform",
+  "descriptionID": "05d6b52e",
+  "cloudProvider": "azure",
+  "cwe": "602",
+  "riskScore": "6.0",
+  "experimental": "true"
+}

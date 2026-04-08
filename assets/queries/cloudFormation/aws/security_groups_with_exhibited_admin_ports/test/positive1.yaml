@@ -1,24 +1,31 @@
 Resources:
-  Ec2Instance:
-    Type: 'AWS::EC2::Instance'
+  Positive1_security_group:
+    Type: 'AWS::EC2::SecurityGroup'
     Properties:
-      SecurityGroups:
-        - !Ref InstanceSecurityGroup
-      KeyName: mykey
-      ImageId: ''
-  InstanceSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
+      GroupDescription: Enable SSH access via port 22
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: "-1"
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+
+  # Standalone IPv4 ingress rule
+  Positive1_ingress_ipv4:
+    Type: AWS::EC2::SecurityGroupIngress
     Properties:
-        GroupDescription: Allow http to client host
-        VpcId:
-          Ref: myVPC
-        SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 20
-          ToPort: 20
-          CidrIp: 0.0.0.0/0
-        SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-          CidrIp: 0.0.0.0/0
+      GroupId: !Ref Positive1_security_group
+      IpProtocol: tcp
+      FromPort: 0       # exposes 20, 21, 22, 23
+      ToPort: 100
+      CidrIp: 0.0.0.0/0
+
+  # Standalone IPv6 ingress rule
+  Positive1_ingress_ipv6:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Positive1_security_group
+      IpProtocol: udp
+      FromPort: 2000      #exposes 2049
+      ToPort: 2060
+      CidrIpv6: ::/0

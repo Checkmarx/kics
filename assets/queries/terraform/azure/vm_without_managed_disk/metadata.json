@@ -1,0 +1,14 @@
+{
+  "id": "0536c90c-714e-4184-991e-3fed8d8b7b46",
+  "queryName": "Beta - VM Without Managed Disk",
+  "severity": "MEDIUM",
+  "category": "Resource Management",
+  "descriptionText": "Virtual machine resources should set a managed disk for encryption, resilience and reduction of costs",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine",
+  "platform": "Terraform",
+  "descriptionID": "0536c90c",
+  "cloudProvider": "azure",
+  "cwe": "922",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

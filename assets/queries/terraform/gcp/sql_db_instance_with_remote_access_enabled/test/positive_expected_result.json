@@ -1,0 +1,27 @@
+[
+  {
+    "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
+    "severity": "HIGH",
+    "line": 14
+  },
+  {
+    "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
+    "severity": "HIGH",
+    "line": 23
+  },
+  {
+    "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
+    "severity": "HIGH",
+    "line": 42
+  },
+  {
+    "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
+    "severity": "HIGH",
+    "line": 60
+  }
+]

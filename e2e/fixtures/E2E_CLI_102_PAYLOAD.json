@@ -1,0 +1,46 @@
+{
+  "document": [
+    {
+      "configuration": {},
+      "file": "file",
+      "format_version": "1.2",
+      "id": "0",
+      "output_changes": {},
+      "planned_values": {},
+      "prior_state": {},
+      "resource_changes": [],
+      "terraform_version": "1.12.2"
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "resource": {
+        "aws_lb": {
+          "test3": {
+            "internal": true,
+            "load_balancer_type": "application",
+            "name": "test123",
+            "subnets": [
+              "${aws_subnet.subnet1.id}",
+              "${aws_subnet.subnet2.id}"
+            ]
+          }
+        },
+        "aws_lb_listener": {
+          "listener5": {
+            "default_action": {
+              "redirect": {
+                "port": "80",
+                "protocol": "HTTP",
+                "status_code": "HTTP_301"
+              },
+              "type": "redirect"
+            },
+            "load_balancer_arn": "${aws_lb.test3.arn}",
+            "port": 80
+          }
+        }
+      }
+    }
+  ]
+}

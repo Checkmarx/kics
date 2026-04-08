@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - Storage Account Without CMK",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf"
+  }
+]

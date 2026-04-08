@@ -1,0 +1,14 @@
+{
+  "id": "8ca7e731-56f6-4fb4-9b98-fcb0a93518c8",
+  "queryName": "Beta - Google Kubernetes Engine Cluster Has Alpha Features Enabled",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "Alpha clusters are not covered by an SLA and are not production-ready",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
+  "platform": "Terraform",
+  "descriptionID": "8ca7e731",
+  "cloudProvider": "gcp",
+  "cwe": "1269",
+  "riskScore": "1.0",
+  "experimental": "true"
+}

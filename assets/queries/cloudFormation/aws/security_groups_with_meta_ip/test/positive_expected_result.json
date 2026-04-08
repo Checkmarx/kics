@@ -2,13 +2,97 @@
   {
     "queryName": "Security Groups With Meta IP",
     "severity": "HIGH",
-    "line": 19,
+    "line": 12,
     "fileName": "positive1.yaml"
   },
   {
-    "fileName": "positive2.json",
     "queryName": "Security Groups With Meta IP",
     "severity": "HIGH",
-    "line": 24
+    "line": 16,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 36,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 48,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 52,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 62,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 72,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 19,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 31,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 41,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 54,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 60,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 72,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Security Groups With Meta IP",
+    "severity": "HIGH",
+    "line": 82,
+    "fileName": "positive2.json"
   }
 ]

@@ -17,7 +17,6 @@ CxPolicy[result] {
 
 	common_lib.is_allow_effect(statement)
 	ilegal_action := is_ilegal(statement.Action)
-	ilegal_action != "none"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -42,7 +41,6 @@ CxPolicy[result] {
 
 	common_lib.is_allow_effect(statement)
 	ilegal_action := is_ilegal(statement.Action)
-	ilegal_action != "none"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -67,4 +65,4 @@ is_ilegal(Action) = Action {
 	]
 	res := concat(", ", illegal_actions_list)
 	res != ""
-} else = "none"
+}

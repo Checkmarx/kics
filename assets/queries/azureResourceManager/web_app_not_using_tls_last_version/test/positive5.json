@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.39.26.7824",
+      "templateHash": "11739403591702951112"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2022-09-01",
+      "name": "meuAppService",
+      "location": "West Europe",
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2022-09-01",
+      "name": "[format('{0}/{1}', 'meuAppService', 'web')]",
+      "properties": {
+        "minTlsVersion": "1.1"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', 'meuAppService')]"
+      ]
+    }
+  ]
+}

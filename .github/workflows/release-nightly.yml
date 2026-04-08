@@ -51,7 +51,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.24.x
+          go-version: 1.25.x
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@9c156ee8a17a598857849441385a2041ef570552 # v6.3.0
         with:
@@ -157,7 +157,7 @@ jobs:
         uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Get current date
         run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
       - name: Docker meta

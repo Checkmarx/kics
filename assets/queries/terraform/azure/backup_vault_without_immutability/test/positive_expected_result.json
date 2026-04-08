@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Beta - Backup Vault Without Immutability",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "Beta - Backup Vault Without Immutability",
+    "severity": "HIGH",
+    "line": 18
+  }
+]

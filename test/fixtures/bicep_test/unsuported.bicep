@@ -107,7 +107,7 @@ module moduleCollectionWithIndexedDependencies 'passthrough.bicep' = [for module
   ]
 }]
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2022-11-01' = {
   name: keyvaultName
 }
 

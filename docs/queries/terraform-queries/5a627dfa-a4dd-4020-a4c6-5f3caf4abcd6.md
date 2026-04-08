@@ -1,5 +1,5 @@
 ---
-title: Beta - Check use no LTS Spark Version
+title: Check use no LTS Spark Version
 hide:
   toc: true
   navigation: true
@@ -16,11 +16,12 @@ hide:
 </style>
 
 -   **Query id:** 5a627dfa-a4dd-4020-a4c6-5f3caf4abcd6
--   **Query name:** Beta - Check use no LTS Spark Version
+-   **Query name:** Check use no LTS Spark Version
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Best Practices
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/807.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/807.html')">807</a>
+-   **Risk score:** <span style="color:#edd57e">4.3</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/databricks/use_lts_spark_version)
 
 ### Description
@@ -149,3 +150,4 @@ resource "databricks_cluster" "negative2_research" {
 }
 
 ```
+

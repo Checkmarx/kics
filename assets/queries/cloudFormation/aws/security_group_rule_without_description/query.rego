@@ -3,9 +3,11 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
+types := ["AWS::RDS::DBSecurityGroup", "AWS::EC2::SecurityGroup"]
+
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-	resource.Type == "AWS::EC2::SecurityGroup"
+	resource.Type == types[_]
 
 	not common_lib.valid_key(resource.Properties, "GroupDescription")
 

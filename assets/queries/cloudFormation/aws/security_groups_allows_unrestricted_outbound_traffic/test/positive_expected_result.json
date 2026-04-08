@@ -1,14 +1,62 @@
 [
   {
-    "line": 16,
-    "fileName": "positive1.yaml",
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
-    "line": 21,
-    "fileName": "positive2.json"
+    "line": 16,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 34,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive4.json"
   }
 ]

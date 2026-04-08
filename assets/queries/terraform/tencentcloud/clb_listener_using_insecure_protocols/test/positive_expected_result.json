@@ -1,18 +1,18 @@
 [
   {
-    "queryName": "Beta - CLB Listener Using Insecure Protocols",
+    "queryName": "CLB Listener Using Insecure Protocols",
     "severity": "HIGH",
     "line": 4,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "Beta - CLB Listener Using Insecure Protocols",
+    "queryName": "CLB Listener Using Insecure Protocols",
     "severity": "HIGH",
     "line": 4,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "Beta - CLB Listener Using Insecure Protocols",
+    "queryName": "CLB Listener Using Insecure Protocols",
     "severity": "HIGH",
     "line": 4,
     "fileName": "positive3.tf"

@@ -1,0 +1,14 @@
+{
+  "id": "41d7989b-3be2-4081-8c79-cf903dd174c5",
+  "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Unnecessary assignements increase the likelihood of privilege escalation and unauthorized access.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment",
+  "platform": "Terraform",
+  "descriptionID": "41d7989b",
+  "cloudProvider": "azure",
+  "cwe": "250",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

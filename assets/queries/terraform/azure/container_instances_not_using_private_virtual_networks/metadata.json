@@ -1,0 +1,14 @@
+{
+  "id": "71884fcb-ae03-41c8-87b9-22c90353f256",
+  "queryName": "Beta - Container Instances Not Using Private Virtual Networks",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Ensuring container instances use private vNets reduces public exposure and limits potential security risks.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/4.54.0/docs/resources/container_group",
+  "platform": "Terraform",
+  "descriptionID": "71884fcb",
+  "cloudProvider": "azure",
+  "cwe": "306",
+  "riskScore": "1.0",
+  "experimental": "true"
+}

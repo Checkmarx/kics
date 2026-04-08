@@ -1,0 +1,122 @@
+{
+  "Resources": {
+    "EC2Instance01": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-79fd7eee",
+        "InstanceType": "t3.medium",
+        "SecurityGroupIds": [
+          { "Ref": "Positive1IPv4_1" },
+          { "Ref": "Positive1IPv4_2" },
+          { "Ref": "Positive1ArrayTestIPv4" },
+          { "Ref": "Positive1IPv6_1" },
+          { "Ref": "Positive1IPv6_2" },
+          { "Ref": "Positive1ArrayTestIPv6" }
+        ],
+        "KeyName": "my-new-rsa-key"
+      }
+    },
+    "Positive1IPv4_1": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "All ports exposed on all protocols",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "17",
+            "FromPort": 53,
+            "ToPort": 53,
+            "CidrIp": "10.0.0.0/0"
+          }
+        ]
+      }
+    },
+    "Positive1IPv4_2": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Port 80 on TCP exposed",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "192.168.0.0/0"
+          }
+        ]
+      }
+    },
+    "Positive1ArrayTestIPv4": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Ports 53 and 137 exposed on UDP",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "udp",
+            "FromPort": 53,
+            "ToPort": 53,
+            "CidrIp": "172.16.0.0/0"
+          },
+          {
+            "IpProtocol": "6",
+            "FromPort": 110,
+            "ToPort": 110,
+            "CidrIp": "10.68.0.0"
+          },
+          {
+            "IpProtocol": "udp",
+            "FromPort": 137,
+            "ToPort": 137,
+            "CidrIp": "172.16.0.0/0"
+          }
+        ]
+      }
+    },
+    "Positive1IPv6_1": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "All ports exposed on all protocols",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "-1",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv6": "fd00::/0"
+          }
+        ]
+      }
+    },
+    "Positive1IPv6_2": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Port 22 exposed on TCP",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "6",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv6": "fd12:3456:789a::1/0"
+          }
+        ]
+      }
+    },
+    "Positive1ArrayTestIPv6": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Ports 53 and 137 exposed on UDP",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "17",
+            "FromPort": 53,
+            "ToPort": 53,
+            "CidrIpv6": "fd00:abcd:1234::42/0"
+          },
+          {
+            "IpProtocol": "udp",
+            "FromPort": 137,
+            "ToPort": 137,
+            "CidrIpv6": "fd00:abcd:1234::42/0"
+          }
+        ]
+      }
+    }
+  }
+}

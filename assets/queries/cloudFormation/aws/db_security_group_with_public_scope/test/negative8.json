@@ -1,0 +1,34 @@
+{
+  "Resources": {
+    "DbSecurityByEC2SecurityGroup_neg8": {
+      "Type": "AWS::RDS::DBSecurityGroup",
+      "Properties": {
+        "GroupDescription": "Ingress for Amazon EC2 security group",
+        "DBSecurityGroupIngress": [
+          {
+            "CIDRIP": "0.0.0.0/0"
+          }
+        ]
+      }
+    },
+    "DBInstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "DBName": {
+          "Ref": "DBName"
+        },
+        "Engine": "MySQL",
+        "DBSubnetGroupName": [
+          {
+            "Ref": "MyDBSubnetGroup"
+          }
+        ],
+        "DBSecurityGroups": [
+          {
+            "Ref": "DbSecurityByEC2SecurityGroup_neg8"
+          }
+        ]
+      }
+    }
+  }
+}

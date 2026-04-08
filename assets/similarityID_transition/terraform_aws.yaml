@@ -1,7 +1,7 @@
 similarityIDChangeList:
     - queryId: 1b6799eb-4a7a-4b04-9001-8cceb9999326
       queryName: API Gateway Access Logging Disabled
-      observations: Changed some cases to be IncorrectValue instead of MissingAttribute
+      observations: "Changed some cases to be IncorrectValue instead of MissingAttribute"
       change: 5
     - queryId: 1bc367f6-901d-4870-ad0c-71d79762ef52
       queryName: CDN Configuration Is Missing
@@ -51,10 +51,6 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Small Public Network
       observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
       change: 2
-    - queryId: 92fe237e-074c-4262-81a4-2077acb928c1
-      queryName: Sensitive Port Is Exposed To Wide Private Network
-      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
-      change: 2
     - queryId: 54c417bf-c762-48b9-9d31-b3d87047e3f0
       queryName: SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible
       observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
@@ -67,3 +63,11 @@ similarityIDChangeList:
       queryName: Unrestricted Security Group Ingress
       observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
       change: 2
+    - queryId: b26d2b7e-60f6-413d-a3a1-a57db24aa2b3
+      queryName: SNS Topic is Publicly Accessible
+      observations: "Query did not properly handle arrays of 2+ elements, flagging multiple times in the same line is inevitable so searchValue was added"
+      change: 3
+    - queryId: 4d46ff3b-7160-41d1-a310-71d6d370b08f
+      queryName: EFS Volume With Disabled Transit Encryption
+      observations: "Changed search line to account with multiple Volume cases"
+      change: 1

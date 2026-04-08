@@ -1,0 +1,14 @@
+{
+  "id": "621fc7c5-c342-4223-b3dd-d1530acb43ae",
+  "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "All 'azurerm_storage_account' resources should use the latest SMB protocol version to prevent exploitation of known vulnerabilities",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#smb-2",
+  "platform": "Terraform",
+  "descriptionID": "621fc7c5",
+  "cloudProvider": "azure",
+  "cwe": "327",
+  "riskScore": "6.0",
+  "experimental": "true"
+}

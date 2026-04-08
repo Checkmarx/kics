@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive3_1.tf"
+  },
+  {
+    "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive3_2.tf"
+  }
+]

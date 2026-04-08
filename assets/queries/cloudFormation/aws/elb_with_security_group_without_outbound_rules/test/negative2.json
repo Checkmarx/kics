@@ -2,18 +2,18 @@
   "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
   "Resources": {
     "sgwithegress": {
+      "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
         "GroupDescription": "Limits security group egress traffic",
         "SecurityGroupEgress": [
           {
-            "IpProtocol": "tcp",
-            "FromPort": 80,
             "ToPort": 80,
-            "CidrIp": "0.0.0.0/0"
+            "CidrIp": "0.0.0.0/0",
+            "IpProtocol": "tcp",
+            "FromPort": 80
           }
         ]
-      },
-      "Type": "AWS::EC2::SecurityGroup"
+      }
     },
     "MyLoadBalancer": {
       "Type": "AWS::ElasticLoadBalancing::LoadBalancer",

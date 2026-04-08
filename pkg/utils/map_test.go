@@ -59,3 +59,84 @@ func TestMap_MergeMaps(t *testing.T) {
 		})
 	}
 }
+
+func TestMap_SafeAddToSliceMap(t *testing.T) {
+	type addOperation struct {
+		key   string
+		value int
+	}
+
+	tests := []struct {
+		name       string
+		operations []addOperation
+		expected   map[string][]int
+	}{
+		{
+			name: "should add single value to new key",
+			operations: []addOperation{
+				{key: "numbers", value: 1},
+			},
+			expected: map[string][]int{
+				"numbers": {1},
+			},
+		},
+		{
+			name: "should add multiple values to same key",
+			operations: []addOperation{
+				{key: "numbers", value: 1},
+				{key: "numbers", value: 2},
+				{key: "numbers", value: 3},
+			},
+			expected: map[string][]int{
+				"numbers": {1, 2, 3},
+			},
+		},
+		{
+			name: "should add values to different keys",
+			operations: []addOperation{
+				{key: "numbers", value: 1},
+				{key: "numbers", value: 2},
+				{key: "other", value: 10},
+			},
+			expected: map[string][]int{
+				"numbers": {1, 2},
+				"other":   {10},
+			},
+		},
+		{
+			name: "should handle multiple additions to same key",
+			operations: []addOperation{
+				{key: "counter", value: 1},
+				{key: "counter", value: 2},
+				{key: "counter", value: 3},
+				{key: "counter", value: 4},
+				{key: "counter", value: 5},
+			},
+			expected: map[string][]int{
+				"counter": {1, 2, 3, 4, 5},
+			},
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			m := make(map[string][]int)
+
+			for _, op := range test.operations {
+				SafeAddToSliceMap(m, op.key, op.value)
+			}
+
+			require.Equal(t, test.expected, m)
+		})
+	}
+
+	t.Run("should not panic with nil map", func(t *testing.T) {
+		var m map[string][]int
+
+		require.NotPanics(t, func() {
+			SafeAddToSliceMap(m, "key", 42)
+		})
+
+		require.Nil(t, m)
+	})
+}

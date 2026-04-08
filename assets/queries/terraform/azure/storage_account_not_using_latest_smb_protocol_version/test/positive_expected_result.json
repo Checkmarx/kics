@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
+    "severity": "HIGH",
+    "line": 18
+  },
+  {
+    "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
+    "severity": "HIGH",
+    "line": 32
+  },
+  {
+    "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
+    "severity": "HIGH",
+    "line": 47
+  },
+  {
+    "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
+    "severity": "HIGH",
+    "line": 61
+  },
+  {
+    "queryName": "Beta - Storage Account Not Using Latest SMB Protocol Version",
+    "severity": "HIGH",
+    "line": 75
+  }
+]

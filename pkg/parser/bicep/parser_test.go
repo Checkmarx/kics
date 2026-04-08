@@ -1717,6 +1717,210 @@ func TestParseBicepFile(t *testing.T) {
 				}`,
 			wantErr: false,
 		},
+		{
+			name:     "Parse Bicep file filters out resources with existing keyword",
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "bicep_test", "existing.bicep"),
+			want: `{
+					"parameters": {
+						"existingKeyVaultName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 2
+								},
+								"_kics_type": {
+									"_kics_line": 2
+								}
+							},
+							"defaultValue": "my-keyvault",
+							"type": "string"
+						},
+						"secretName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 3
+								},
+								"_kics_type": {
+									"_kics_line": 3
+								}
+							},
+							"defaultValue": "my-secret",
+							"type": "string"
+						}
+					},
+					"resources": [
+						{
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 11
+								},
+								"_kics_apiVersion": {
+									"_kics_line": 11
+								},
+								"_kics_kind": {
+									"_kics_line": 17
+								},
+								"_kics_location": {
+									"_kics_line": 13
+								},
+								"_kics_name": {
+									"_kics_line": 12
+								},
+								"_kics_sku": {
+									"_kics_line": 14
+								},
+								"_kics_type": {
+									"_kics_line": 11
+								}
+							},
+							"apiVersion": "2023-01-01",
+							"identifier": "newStorageAccount",
+							"kind": "StorageV2",
+							"location": "East US",
+							"name": "mystorageaccount",
+							"sku": {
+								"_kics_lines": {
+									"_kics__default": {
+										"_kics_line": 14
+									},
+									"_kics_name": {
+										"_kics_line": 15
+									}
+								},
+								"name": "Standard_LRS"
+							},
+							"type": "Microsoft.Storage/storageAccounts"
+						}
+					],
+					"variables": {}
+				}`,
+			wantErr: false,
+		},
+		{
+			name:     "Parse Bicep file includes children of parents with existing keyword",
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "bicep_test", "existing_parent.bicep"),
+			want: `{
+					"parameters": {
+						"containerName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 3
+								},
+								"_kics_type": {
+									"_kics_line": 3
+								}
+							},
+							"defaultValue": "mycontainer",
+							"type": "string"
+						},
+						"existingStorageAccountName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 2
+								},
+								"_kics_type": {
+									"_kics_line": 2
+								}
+							},
+							"defaultValue": "myexistingaccount",
+							"type": "string"
+						}
+					},
+					"resources": [
+						{
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 11
+								},
+								"_kics_apiVersion": {
+									"_kics_line": 11
+								},
+								"_kics_name": {
+									"_kics_line": 12
+								},
+								"_kics_type": {
+									"_kics_line": 11
+								}
+							},
+							"apiVersion": "2023-01-01",
+							"identifier": "fileService",
+							"name": "default",
+							"type": "Microsoft.Storage/storageAccounts/fileServices"
+						},
+						{
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 17
+								},
+								"_kics_apiVersion": {
+									"_kics_line": 17
+								},
+								"_kics_name": {
+									"_kics_line": 18
+								},
+								"_kics_type": {
+									"_kics_line": 17
+								}
+							},
+							"apiVersion": "2023-01-01",
+							"identifier": "blobService",
+							"name": "default",
+							"resources": [
+								{
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 23
+										},
+										"_kics_apiVersion": {
+											"_kics_line": 23
+										},
+										"_kics_name": {
+											"_kics_line": 24
+										},
+										"_kics_parent": {
+											"_kics_line": 25
+										},
+										"_kics_type": {
+											"_kics_line": 23
+										}
+									},
+									"apiVersion": "2023-01-01",
+									"identifier": "container",
+									"name": "[parameters('containerName')]",
+									"parent": "blobService",
+									"type": "containers"
+								},
+								{
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 29
+										},
+										"_kics_apiVersion": {
+											"_kics_line": 29
+										},
+										"_kics_name": {
+											"_kics_line": 30
+										},
+										"_kics_parent": {
+											"_kics_line": 31
+										},
+										"_kics_type": {
+											"_kics_line": 29
+										}
+									},
+									"apiVersion": "2023-01-01",
+									"identifier": "anotherContainer",
+									"name": "anothercontainer",
+									"parent": "blobService",
+									"type": "containers"
+								}
+							],
+							"type": "Microsoft.Storage/storageAccounts/blobServices"
+						}
+					],
+					"variables": {}
+				}`,
+			wantErr: false,
+		},
 	}
 
 	for _, tt := range tests {

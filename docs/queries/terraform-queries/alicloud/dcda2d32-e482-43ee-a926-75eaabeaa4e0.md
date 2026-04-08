@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Access Control
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/287.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/287.html')">287</a>
+-   **Risk score:** <span style="color:#edd57e">4.3</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/alicloud/ram_security_preference_not_enforce_mfa)
 
 ### Description
@@ -85,3 +86,4 @@ resource "alicloud_ram_security_preference" "example0" {
 }
 
 ```
+

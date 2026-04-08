@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Encryption
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/284.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/284.html')">284</a>
+-   **Risk score:** <span style="color:#bb2124">8.3</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/gcp/kms_crypto_key_publicly_accessible)
 
 ### Description
@@ -118,3 +119,4 @@ resource "google_kms_crypto_key_iam_policy" "negative" {
 }
 
 ```
+

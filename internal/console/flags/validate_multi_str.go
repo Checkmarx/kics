@@ -81,3 +81,11 @@ func validateWorkersFlag(flagName string) error {
 	}
 	return nil
 }
+
+func validateTimeoutFlag(flagName string) error {
+	timeout := GetIntFlag(flagName)
+	if timeout <= 0 {
+		return fmt.Errorf("invalid argument --%s: value must be greater than 0", flagName)
+	}
+	return nil
+}

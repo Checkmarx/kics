@@ -1,0 +1,14 @@
+{
+  "id": "00335e17-674c-442e-a64c-9436e60e6efb",
+  "queryName": "Beta - SQL DB Instance With Minimum Log Duration",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "No 'google_sql_database_instance' resource based on POSTGRES should set the 'log_min_duration_statement' flag to a value that is not '-1'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "00335e17",
+  "cloudProvider": "gcp",
+  "cwe": "532",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "b5b70198-2a34-4792-b0d9-ce99abe485bb",
+  "queryName": "Beta - SQL DB Instance With Exposed Show Privileges",
+  "severity": "MEDIUM",
+  "category": "Insecure Defaults",
+  "descriptionText": "All 'google_sql_database_instance' resources based on MYSQL should enable the 'skip_show_database' flag to prevent unwanted exposure",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "b5b70198",
+  "cloudProvider": "gcp",
+  "cwe": "732",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

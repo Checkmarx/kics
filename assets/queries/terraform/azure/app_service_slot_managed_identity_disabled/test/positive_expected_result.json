@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Beta - App Service Slot Managed Identity Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - App Service Slot Managed Identity Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - App Service Slot Managed Identity Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  }
+]

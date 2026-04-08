@@ -1,6 +1,6 @@
 {
   "id": "1ee0f202-31da-49ba-bbce-04a989912e4b",
-  "queryName": "Beta - Disk Encryption Disabled",
+  "queryName": "Disk Encryption Disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Disks should have encryption enabled",

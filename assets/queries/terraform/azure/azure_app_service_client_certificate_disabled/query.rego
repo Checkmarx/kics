@@ -8,14 +8,13 @@ types := {"azurerm_app_service", "azurerm_linux_web_app", "azurerm_windows_web_a
 CxPolicy[result] {
     resource := input.document[i].resource[types[t]][name]
 
-	not resource.site_config.http2_enabled  
+	not resource.site_config.http2_enabled
 	results := client_certificate_is_undefined_or_false(resource,name,types[t])
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": types[t],
-		"resourceName": tf_lib.get_resource_name(resource, name), 
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": results.searchKey,
 		"issueType": results.issueType,
 		"keyExpectedValue": results.keyExpectedValue,
@@ -26,7 +25,7 @@ CxPolicy[result] {
 	}
 }
 
-client_certificate_is_undefined_or_false(resource,name,type) = results { # case of no "client_cert_enabled" field 
+client_certificate_is_undefined_or_false(resource,name,type) = results { # case of no "client_cert_enabled" field
 	field_name = get_field(type)
 	not common_lib.valid_key(resource, field_name)
 
@@ -39,7 +38,7 @@ client_certificate_is_undefined_or_false(resource,name,type) = results { # case 
 		"remediation": sprintf("%s = true",[field_name]),
 		"remediationType": "addition",
 	}
-	
+
 } else = results { # case of both "client_cert_enabled" and "http2_enabled"(explicitly) set to false
 	common_lib.valid_key(resource.site_config, "http2_enabled")
 	resource.site_config.http2_enabled == false
@@ -74,8 +73,8 @@ client_certificate_is_undefined_or_false(resource,name,type) = results { # case 
 		}),
 		"remediationType": "replacement",
 	}
-} else = ""
+}
 
-get_field("azurerm_app_service")     = "client_cert_enabled" 
+get_field("azurerm_app_service")     = "client_cert_enabled"
 get_field("azurerm_linux_web_app")   = "client_certificate_enabled"
 get_field("azurerm_windows_web_app") = "client_certificate_enabled"

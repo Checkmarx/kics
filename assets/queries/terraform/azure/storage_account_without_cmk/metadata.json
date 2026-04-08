@@ -1,0 +1,14 @@
+{
+  "id": "9bf1568d-4cd2-4581-81ef-d2efabee1178",
+  "queryName": "Beta - Storage Account Without CMK",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "The 'azurerm_storage_account' resource should enable CMK encryption",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",
+  "platform": "Terraform",
+  "descriptionID": "9bf1568d",
+  "cloudProvider": "azure",
+  "cwe": "522",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

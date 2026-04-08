@@ -1,0 +1,83 @@
+name: CESARt
+on:
+  pull_request:
+    types: [ labeled ]
+
+env:
+  ENGINE_VERSION: ${{ vars.CES_ENGINE_VERSION }}
+  PLATFORM: "LINUX_X64"
+  ENGINE: "kics"
+  REMOVE_HISTORY: "true"
+
+jobs:
+  build:
+    if: (github.event.label.name == 'cesar' && github.event.pull_request.mergeable == true)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/merge
+          path: kics
+
+      - uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
+        with:
+          go-version-file: kics/go.mod
+          cache-dependency-path: kics/go.sum
+          cache: true
+
+      - name: Build kics Binary
+        env:
+          CGO_ENABLED: 0
+          GOOS: linux
+          GOARCH: amd64
+        run: |
+          cd $GITHUB_WORKSPACE/kics
+          go build -installsuffix cgo -ldflags "-s -w" -a -o ./bin/kics ./cmd/console/main.go
+          chmod +x ./bin/kics
+
+      - name: Create Metadata File
+        run: |
+          COMMIT_TIMESTAMP=$(git -C "$GITHUB_WORKSPACE/kics" log -1 --format=%ct)
+          METADATA_PATH="$GITHUB_WORKSPACE/pr-metadata.json"
+          CURR_TIMESTAMP=$(date +%s)
+          echo '{
+            "seq": "'"${CURR_TIMESTAMP}"'",
+            "tag": "'"${{ github.event.number }}"'",
+            "comment": "'"${{ github.event.pull_request.title }}"'",
+            "commit": "'"${{ github.event.pull_request.head.sha }}"'",
+            "owner": "'"${{ github.actor }}"'",
+            "branch": "'"${{ github.head_ref }}"'",
+            "engine": "'"${ENGINE}"'",
+            "platform": "'"${PLATFORM}"'",
+            "version": "'"${ENGINE_VERSION}"'",
+            "forkSeq": "'"${CURR_TIMESTAMP}"'",
+            "forkBranch": "'"${{ github.base_ref }}"'",
+            "removeHistory" : "'"${REMOVE_HISTORY}"'"
+          }' > "$METADATA_PATH"
+
+      - name: Zip kics Folder
+        run: |
+          cd $GITHUB_WORKSPACE
+          zip -qr kics.zip kics/
+
+      - name: Save kics
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: kics
+          path: ${{ github.workspace }}/kics.zip
+          retention-days: 1
+
+      - name: Pr parameters
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: Metadata
+          path: ${{ github.workspace }}/pr-metadata.json
+          retention-days: 1
+
+  ci-projects:
+    needs: build
+    uses: ./.github/workflows/run-projects.yaml
+    with:
+      machines-count: 10
+    secrets: inherit

@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Insecure Configurations
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/200.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/200.html')">200</a>
+-   **Risk score:** <span style="color:#edd57e">4.1</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/aks_dashboard_enabled)
 
 ### Description
@@ -609,3 +610,4 @@ resource aksCluster1 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
 
 ```
 </details>
+

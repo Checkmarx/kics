@@ -1,20 +1,85 @@
 {
   "Resources": {
-    "InstanceSecurityGroup": {
+    "Positive1IPv4": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
         "GroupDescription": "Expose unknown port to client host",
-        "VpcId": {
-          "Ref": "myVPC"
-        },
+        "VpcId": { "Ref": "myVPC" },
         "SecurityGroupIngress": [
           {
             "IpProtocol": "tcp",
-            "FromPort": 110,
-            "ToPort": 119,
+            "FromPort": 1000,
+            "ToPort": 2000,
+            "CidrIp": "0.0.0.0/0"
+          },
+          {
+            "IpProtocol": "-1",
+            "FromPort": 22,
+            "ToPort": 22,
             "CidrIp": "0.0.0.0/0"
           }
         ]
+      }
+    },
+    "IPv4Ingress1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Positive1IPv4" },
+        "IpProtocol": "udp",
+        "FromPort": 1000,
+        "ToPort": 2000,
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "IPv4Ingress2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Positive1IPv4" },
+        "IpProtocol": "-1",
+        "FromPort": 22,
+        "ToPort": 22,
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "Positive1IPv6": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Expose unknown port to client host",
+        "VpcId": { "Ref": "myVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 1000,
+            "ToPort": 2000,
+            "CidrIpv6": "::/0"
+          },
+          {
+            "IpProtocol": "-1",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv6": "::/0"
+          }
+        ]
+      }
+    },
+    "IPv6Ingress1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Positive1IPv6" },
+        "IpProtocol": "udp",
+        "FromPort": 1000,
+        "ToPort": 2000,
+        "CidrIpv6": "::/0"
+      }
+    },
+    "IPv6Ingress2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Positive1IPv6" },
+        "IpProtocol": "-1",
+        "FromPort": 22,
+        "ToPort": 22,
+        "CidrIpv6": "0000:0000:0000:0000:0000:0000:0000:0000/0"
       }
     }
   }

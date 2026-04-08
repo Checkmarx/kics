@@ -51,7 +51,7 @@ func TestJson_parseTFPlan(t *testing.T) {
 			want: model.Document{
 				"resource": map[string]interface{}{
 					"fakewebservices_database": map[string]interface{}{
-						"prod_db": map[string]interface{}{
+						"fakewebservices_database.prod_db": map[string]interface{}{
 							"name": "Production DB",
 							"size": (float64)(256),
 						},
@@ -71,6 +71,54 @@ func TestJson_parseTFPlan(t *testing.T) {
 			},
 			want:    model.Document{},
 			wantErr: true,
+		},
+		{
+			name: "test - parse tfplan with duplicate resource names (different addresses)",
+			args: args{
+				doc: model.Document{
+					"format_version":    "0.2",
+					"terraform_version": "1.0.5",
+					"planned_values": map[string]interface{}{
+						"root_module": map[string]interface{}{
+							"resources": []map[string]interface{}{
+								{
+									"address": "fakewebservices_database.prod_db[0]",
+									"type":    "fakewebservices_database",
+									"name":    "prod_db",
+									"values": map[string]interface{}{
+										"name": "Production DB A",
+										"size": 256,
+									},
+								},
+								{
+									"address": "fakewebservices_database.prod_db[1]",
+									"type":    "fakewebservices_database",
+									"name":    "prod_db",
+									"values": map[string]interface{}{
+										"name": "Production DB B",
+										"size": 512,
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			want: model.Document{
+				"resource": map[string]interface{}{
+					"fakewebservices_database": map[string]interface{}{
+						"fakewebservices_database.prod_db[0]": map[string]interface{}{
+							"name": "Production DB A",
+							"size": (float64)(256),
+						},
+						"fakewebservices_database.prod_db[1]": map[string]interface{}{
+							"name": "Production DB B",
+							"size": (float64)(512),
+						},
+					},
+				},
+			},
+			wantErr: false,
 		},
 	}
 

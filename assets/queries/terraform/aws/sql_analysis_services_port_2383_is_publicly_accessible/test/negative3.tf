@@ -63,7 +63,7 @@ resource "aws_security_group_rule" "negative3-6" {
   description       = "Remote desktop open private"
 }
 
-resource "aws_security_group_rule" "negative3-6" {
+resource "aws_security_group_rule" "negative3-7" {
   type              = "ingress"
   from_port         = 2383
   to_port           = 2383

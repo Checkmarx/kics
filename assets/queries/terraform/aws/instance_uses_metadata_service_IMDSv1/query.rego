@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-types := ["aws_instance","aws_launch_configuration"]
+types := ["aws_instance", "aws_launch_configuration", "aws_launch_template"]
 
 CxPolicy[result] {
     resource := input.document[i].resource[types[i2]][name]
@@ -47,7 +47,7 @@ CxPolicy[result] {
 }
 
 is_metadata_service_enabled (resource) {
-    resource.metadata_options.http_endpoint == "enabled" 
+    resource.metadata_options.http_endpoint == "enabled"
 } else {
     not common_lib.valid_key(resource, "metadata_options")
 } else {

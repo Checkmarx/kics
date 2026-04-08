@@ -9,12 +9,11 @@ CxPolicy[result] {
 	resource := input.document[i].resource[types[t]][name]
 
 	results := https_undefined_or_false(resource,name,types[t])
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": types[t],
-		"resourceName": tf_lib.get_resource_name(resource, name), 
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": results.searchKey,
 		"issueType": results.issueType,
 		"keyExpectedValue": results.keyExpectedValue,

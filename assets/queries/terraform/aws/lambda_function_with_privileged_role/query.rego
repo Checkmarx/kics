@@ -23,7 +23,7 @@ CxPolicy[result] {
 	inline_policy := document[p].resource.aws_iam_role_policy[inline_policy_id]
 	split(inline_policy.role, ".")[1] == role_id
 
-	policy := common_lib.json_unmarshal(inline_policy.policy)
+	policy := common_lib.get_policy(inline_policy.policy)
 	statements := tf_lib.getStatement(policy)
 	statement := statements[st]
 	matching_actions := hasPrivilegedPermissions(statement)
@@ -63,7 +63,7 @@ CxPolicy[result] {
 	customer_managed_policy = document[p].resource.aws_iam_policy[attached_customer_managed_policy_id]
 
 
-	policy := common_lib.json_unmarshal(customer_managed_policy.policy)
+	policy := common_lib.get_policy(customer_managed_policy.policy)
 	statements := tf_lib.getStatement(policy)
 	statement := statements[st]
 	matching_actions := hasPrivilegedPermissions(statement)

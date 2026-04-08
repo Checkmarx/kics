@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Beta - Key Vault Without HSM Protection",
+    "severity": "LOW",
+    "line": 4
+  },
+  {
+    "queryName": "Beta - Key Vault Without HSM Protection",
+    "severity": "LOW",
+    "line": 11
+  }
+]

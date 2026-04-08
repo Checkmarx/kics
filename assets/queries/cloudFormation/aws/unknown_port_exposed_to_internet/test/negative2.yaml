@@ -1,0 +1,63 @@
+Resources:
+
+  Negative2SecurityGroup:
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        GroupDescription: "Security group for negative test cases"
+        VpcId: !Ref MyVPC  
+
+# IPv4 Rules
+  Negative2IPv4Ingress1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "udp" 
+      FromPort: 22    # no "unknown" port 
+      ToPort: 22
+      CidrIp: "0.0.0.0/0"
+
+  Negative2IPv4Ingress2:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 0
+      ToPort: 6000
+      CidrIp: "192.0.0.0/16"  # CidrIP is not 0:0:0:0/0
+
+  Negative2IPv4Ingress3:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup 
+      IpProtocol: "udp"    # both fields "incorrect"
+      FromPort: 22          
+      ToPort: 22
+      CidrIp: "192.120.0.0/16"
+
+# IPv6 Rules
+  Negative2IPv6Ingress1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "udp" 
+      FromPort: 3389  # no "unknown" port 
+      ToPort: 3389
+      CidrIpv6: "::/0"
+
+  Negative2IPv6Ingress3:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 0
+      ToPort: 6000
+      CidrIpv6: "2400:cb00::/32"  # CidrIPv6 is not ::/0
+
+  Negative2IPv6Ingress4:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup   
+      IpProtocol: "udp"     # both fields "incorrect"
+      FromPort: 3389
+      ToPort: 3389
+      CidrIpv6: "2400:cb00::/32"

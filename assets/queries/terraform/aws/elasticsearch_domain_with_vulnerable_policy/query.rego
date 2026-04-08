@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_elasticsearch_domain_policy[name]
 
-	policy := common_lib.json_unmarshal(resource.access_policies)
+	policy := common_lib.get_policy(resource.access_policies)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 

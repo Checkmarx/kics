@@ -1,0 +1,14 @@
+{
+  "id": "02f0e3e7-2550-4d75-a23b-ab5254a3ebeb",
+  "queryName": "Beta - Container Group Managed Identity Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Azure Container Group should have managed identity enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_group",
+  "platform": "Terraform",
+  "descriptionID": "02f0e3e7",
+  "cloudProvider": "azure",
+  "cwe": "522",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

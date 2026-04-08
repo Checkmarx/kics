@@ -1,6 +1,6 @@
 {
   "id": "a3240001-40db-47b7-abb9-2bcd6a04c430",
-  "queryName": "Beta - VPC Flow Logs Disabled",
+  "queryName": "VPC Flow Logs Disabled",
   "severity": "LOW",
   "category": "Observability",
   "descriptionText": "VPC resources should have Flow Log enabled",

@@ -1,0 +1,14 @@
+{
+  "id": "03928f0d-bff0-4feb-a31a-615d093e6026",
+  "queryName": "Beta - Function App Deployment Slot Not Using Latest TLS Encryption Version",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensure Function App Deployment Slot is using the latest version of TLS encryption",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/windows_function_app_slot",
+  "platform": "Terraform",
+  "descriptionID": "03928f0d",
+  "cloudProvider": "azure",
+  "cwe": "326",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

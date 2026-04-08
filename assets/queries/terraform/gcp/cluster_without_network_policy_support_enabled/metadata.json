@@ -1,0 +1,14 @@
+{
+  "id": "99976ba0-aa37-4745-93a6-5f1d55997f67",
+  "queryName": "Beta - Cluster Without Network Policy Support Enabled",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "All 'google_container_cluster' resources should enable network policy support. Network policies can provide better security by limiting connections between pods thus reducing compromise radius",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#network_policy-1",
+  "platform": "Terraform",
+  "descriptionID": "99976ba0",
+  "cloudProvider": "gcp",
+  "cwe": "406",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
