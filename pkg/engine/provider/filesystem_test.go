@@ -128,7 +128,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "get_sources_file",
 			fields: fields{
-				paths:    []string{"assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile"},
+				paths:    []string{"assets/queries/dockerfile/add_instead_of_copy/test/positive1.dockerfile"},
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
