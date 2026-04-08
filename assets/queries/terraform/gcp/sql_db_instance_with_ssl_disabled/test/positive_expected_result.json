@@ -8,31 +8,61 @@
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
-    "line": 24,
+    "line": 26,
     "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "SQL DB Instance With SSL Disabled",
-    "severity": "HIGH",
-    "line": 45,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "SQL DB Instance With SSL Disabled",
-    "severity": "HIGH",
-    "line": 11,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "SQL DB Instance With SSL Disabled",
-    "severity": "HIGH",
-    "line": 31,
-    "fileName": "positive2.tf"
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
     "line": 48,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 12,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 33,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 51,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 25,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 46,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 64,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "SQL DB Instance With SSL Disabled",
+    "severity": "HIGH",
+    "line": 82,
+    "fileName": "positive3.tf"
   }
 ]

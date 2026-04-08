@@ -93,7 +93,7 @@ CxPolicy[result] {																			# legacy support (terraform version < 6.0.1
 
 get_expected_key(database_version, ssl_mode) = "'ENCRYPTED_ONLY'" {
 	contains(database_version, "SQLSERVER")
-	ssl_mode == "ENCRYPTED_ONLY"
+	ssl_mode != "ENCRYPTED_ONLY"
 } else = "'ENCRYPTED_ONLY' or 'TRUSTED_CLIENT_CERTIFICATE_REQUIRED'" {
 	not common_lib.inArray(allowed_ssl_modes, ssl_mode)
 }

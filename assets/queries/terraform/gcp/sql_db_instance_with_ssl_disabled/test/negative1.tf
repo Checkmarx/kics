@@ -12,7 +12,7 @@ resource "google_sql_database_instance" "negative1_1" {   # legacy support (terr
     ip_configuration {
       ipv4_enabled    = false
       private_network = google_compute_network.private_network.id
-	  require_ssl 	  = true
+	    require_ssl 	  = true
     }
   }
 }

@@ -1,4 +1,18 @@
 resource "google_sql_database_instance" "positive3_1" {
+  provider = google-beta
+
+  name   = "private-instance-${random_id.db_name_suffix.hex}"
+  database_version = "POSTGRES_15"
+  region = "us-central1"
+
+  depends_on = [google_service_networking_connection.private_vpc_connection]
+
+  settings {
+    tier = "db-f1-micro"  # Undefined "ip_configuration"
+  }
+}
+
+resource "google_sql_database_instance" "positive3_2" {
   name   = "private-instance-no-ssl-mode"
   database_version = "SQLSERVER_2017_STANDARD"
   region = "us-central1"
@@ -16,7 +30,7 @@ resource "google_sql_database_instance" "positive3_1" {
   }
 }
 
-resource "google_sql_database_instance" "positive3_2" {
+resource "google_sql_database_instance" "positive3_3" {
   name   = "private-instance-unspecified"
   database_version = "SQLSERVER_2017_STANDARD"
   region = "us-central1"
@@ -34,7 +48,7 @@ resource "google_sql_database_instance" "positive3_2" {
   }
 }
 
-resource "google_sql_database_instance" "positive3_3" {
+resource "google_sql_database_instance" "positive3_4" {
   name   = "private-instance-unencrypted"
   database_version = "SQLSERVER_2017_STANDARD"
   region = "us-central1"
@@ -52,7 +66,7 @@ resource "google_sql_database_instance" "positive3_3" {
   }
 }
 
-resource "google_sql_database_instance" "positive3_4" {
+resource "google_sql_database_instance" "positive3_5" {
   name   = "private-instance-unspecified"
   database_version = "SQLSERVER_2017_STANDARD"
   region = "us-central1"
