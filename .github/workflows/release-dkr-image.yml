@@ -118,7 +118,7 @@ jobs:
           file: ./docker/Dockerfile.ubi8
           push: true
           tags: checkmarx/kics:ubi8,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi8
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
