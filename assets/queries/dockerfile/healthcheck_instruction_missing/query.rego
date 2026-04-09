@@ -11,7 +11,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(resource)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}", [from_command, name]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}", [from_command.Value, name]), from_command.EndLine-1),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
 		"keyActualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",

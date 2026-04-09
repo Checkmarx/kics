@@ -19,7 +19,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(input.document[i].command[name2])
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}", [from_command, aliasResource.Value[idx_2]]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}", [from_command.Value, aliasResource.Value[idx_2]]), from_command.EndLine-1),
 		"issueType": "IncorrectValue", 
 		"keyExpectedValue": "Different FROM commands don't have the same alias defined",
 		"keyActualValue": sprintf("Different FROM commands with with the same alias '%s' defined", [aliasResource.Value[idx_2]]),

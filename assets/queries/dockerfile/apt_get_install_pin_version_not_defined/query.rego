@@ -23,7 +23,7 @@ CxPolicy[result] {
 	run_command := substring(resource.Original, 0, 3)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}.%s={{%s}}", [from_command, name, run_command, commands]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, commands]), from_command.EndLine-1),
 		"searchValue": packageName,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Package '%s' has version defined", [packageName]),
@@ -51,7 +51,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.EndLine-1),
 		"searchValue": packageName,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Package '%s' has version defined", [packageName]),

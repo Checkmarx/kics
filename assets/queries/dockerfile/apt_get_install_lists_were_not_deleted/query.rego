@@ -17,7 +17,7 @@ CxPolicy[result] {
 	run_command := substring(resource.Original, 0, 3)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}.%s={{%s}}", [from_command, name, run_command, commands]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, commands]), from_command.EndLine-1),
 		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
 		"keyExpectedValue": "After using apt-get install, the apt-get lists should be deleted",
 		"keyActualValue": "After using apt-get install, the apt-get lists were not deleted",

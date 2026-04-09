@@ -11,7 +11,7 @@ CxPolicy[result] {
 	maintainer_command := substring(resource.Original, 0, 10)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}.%s={{%s}}", [from_command, name, maintainer_command, resource.Value[0]]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, maintainer_command, resource.Value[0]]), from_command.EndLine-1),
 		"issueType": "IncorrectValue", 
 		"keyExpectedValue": sprintf("Maintainer instruction being used in Label 'LABEL maintainer=%s'", [resource.Value[0]]),
 		"keyActualValue": sprintf("Maintainer instruction not being used in Label 'MAINTAINER %s'", [resource.Value[0]]),

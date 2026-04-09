@@ -13,7 +13,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}", [from_command, name]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}", [from_command.Value, name]), from_command.EndLine-1),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("FROM %s:'version'", [resource.Value[0]]),
 		"keyActualValue": sprintf("FROM %s'", [resource.Value[0]]),

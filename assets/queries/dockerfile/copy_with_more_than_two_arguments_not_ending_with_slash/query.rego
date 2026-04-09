@@ -19,7 +19,7 @@ CxPolicy[result] {
 	copy_command := substring(resource.Original, 0, 3)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}.%s={{%s}}", [from_command, name, copy_command, resource.Value[0]]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, copy_command, resource.Value[0]]), from_command.EndLine-1),
 		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
 		"keyExpectedValue": "When COPY command has more than two arguments, the last one should end with a slash",
 		"keyActualValue": "COPY command has more than two arguments and the last one does not end with a slash",

@@ -10,7 +10,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(resource)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, resource[j].Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource[j].Original]), from_command.EndLine-1),
 		"category": "Best Practices",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "The 'Dockerfile' shouldn´t contain the 'chown' flag",
