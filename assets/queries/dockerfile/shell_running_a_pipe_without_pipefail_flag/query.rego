@@ -23,7 +23,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(commands)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, runCmd.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, runCmd.Original]), from_command.EndLine-1),
 		"searchValue": match.shell,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' has pipefail option set for pipe command with shell %s.", [runCmd.Original, match.shell]),
@@ -52,7 +52,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(commands)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("%s={{%s}}.{{%s}}", [from_command, name, runCmd.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, runCmd.Original]), from_command.EndLine-1),
 		"searchValue": match.shell,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' has pipefail option set for pipe command with shell %s.", [cmdFormatted, match.shell]),
