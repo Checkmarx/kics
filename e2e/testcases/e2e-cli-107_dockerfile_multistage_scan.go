@@ -8,10 +8,10 @@ func init() { //nolint
 		Name: "should perform a valid scan on dockerfile multistage sample [E2E-CLI-107]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-o", "/path/e2e/output",
+				[]string{"scan", "-o", "/path/e2e/output2",
 					"--output-name", "E2E_CLI_107_RESULT",
 					"-p", "/path/test/fixtures/dockerfile/Dockerfile-multistage",
-					"--payload-path", "/path/e2e/output/E2E_CLI_107_PAYLOAD.json",
+					"--payload-path", "/path/e2e/output2/E2E_CLI_107_PAYLOAD.json",
 				},
 			},
 			ExpectedResult: []ResultsValidation{
