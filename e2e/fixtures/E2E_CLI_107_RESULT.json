@@ -23,7 +23,7 @@
 	"start": "2026-04-09T14:58:58.1938463+01:00",
 	"end": "2026-04-09T14:59:10.5630691+01:00",
 	"paths": [
-		"path/test/fixtures/dockerfile/Dockerfile-multistage"
+		"/path/test/fixtures/dockerfile/Dockerfile-multistage"
 	],
 	"queries": [
 		{
