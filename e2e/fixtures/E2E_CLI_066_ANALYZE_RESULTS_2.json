@@ -1,0 +1,1 @@
+{"Types":["cloudformation"],"Exc":[],"ExpectedLOC":288,"FileStats":{"cloudformation":{"FileCount":1,"DirectoryCount":1,"FilesByDir":{"/path/e2e/fixtures/samples":1},"TotalLOC":288}}}
