@@ -257,7 +257,7 @@
 				
 				<option value="file100">github.com/Checkmarx/kics/v2/pkg/progress/progress.go (100.0%)</option>
 				
-				<option value="file101">github.com/Checkmarx/kics/v2/pkg/remediation/remediation.go (84.5%)</option>
+				<option value="file101">github.com/Checkmarx/kics/v2/pkg/remediation/remediation.go (83.6%)</option>
 				
 				<option value="file102">github.com/Checkmarx/kics/v2/pkg/remediation/scan.go (64.8%)</option>
 				
@@ -1981,7 +1981,7 @@ func remediate() error <span class="cov5" title="4">{
 
         for filePath := range remediationSets </span><span class="cov3" title="2">{
                 fix := remediationSets[filePath].(remediation.Set)
-                err = summary.RemediateFile(filePath, fix, openAPIResolveReferences, maxResolverDepth)
+                err = summary.RemediateFile(filePath, "", fix, openAPIResolveReferences, maxResolverDepth)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
@@ -2654,7 +2654,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -20948,12 +20948,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="49">{
-        for variable := range s.varList </span><span class="cov7" title="212">{
+        for variable := range s.varList </span><span class="cov7" title="223">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="42">for parameter := range s.paramList </span><span class="cov9" title="599">{
+        <span class="cov5" title="42">for parameter := range s.paramList </span><span class="cov9" title="600">{
                 if parameter == str </span><span class="cov4" title="23">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -28654,11 +28654,20 @@ type Set struct {
 }
 
 // RemediateFile remediationSets the replacements first and secondly, the additions sorted down
-func (s *Summary) RemediateFile(filePath string, remediationSet Set, openAPIResolveReferences bool, maxResolverDepth int) error <span class="cov10" title="4">{
+func (s *Summary) RemediateFile(
+        filePath, originalFileName string,
+        remediationSet Set,
+        openAPIResolveReferences bool,
+        maxResolverDepth int,
+) error <span class="cov10" title="4">{
         filepath.Clean(filePath)
         content, err := os.ReadFile(filePath)
 
-        if err != nil </span><span class="cov0" title="0">{
+        if originalFileName == "" </span><span class="cov0" title="0">{
+                originalFileName = filePath
+        }</span>
+
+        <span class="cov10" title="4">if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to read file: %s", err)
                 return err
         }</span>
@@ -28671,7 +28680,7 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set, openAPIReso
                         r := remediationSet.Replacement[i]
                         remediatedLines := replacement(&amp;r, lines)
                         if len(remediatedLines) &gt; 0 &amp;&amp; willRemediate(remediatedLines, filePath, &amp;r, openAPIResolveReferences, maxResolverDepth) </span><span class="cov5" title="2">{
-                                lines = s.writeRemediation(remediatedLines, lines, filePath, r.SimilarityID)
+                                lines = s.writeRemediation(remediatedLines, lines, filePath, originalFileName, r.SimilarityID)
                         }</span>
                 }
         }
@@ -28687,7 +28696,7 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set, openAPIReso
                         a := remediationSet.Addition[i]
                         remediatedLines := addition(&amp;a, &amp;lines)
                         if len(remediatedLines) &gt; 0 &amp;&amp; willRemediate(remediatedLines, filePath, &amp;a, openAPIResolveReferences, maxResolverDepth) </span><span class="cov1" title="1">{
-                                lines = s.writeRemediation(remediatedLines, lines, filePath, a.SimilarityID)
+                                lines = s.writeRemediation(remediatedLines, lines, filePath, originalFileName, a.SimilarityID)
                         }</span>
                 }
         }
@@ -28760,7 +28769,7 @@ const (
         FilePermMode = 0777
 )
 
-func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, similarityID string) []string <span class="cov8" title="3">{
+func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, originalFileName, similarityID string) []string <span class="cov8" title="3">{
         remediated := []byte(strings.Join(remediatedLines, "\n"))
 
         mode := os.FileMode(FilePermMode)
@@ -28772,6 +28781,7 @@ func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, si
 
         <span class="cov8" title="3">log.Info().Msgf("file '%s' was remediated with '%s'", filePath, similarityID)
         s.ActualRemediationDoneNumber++
+        s.RemediatedFiles = append(s.RemediatedFiles, originalFileName)
 
         return remediatedLines</span>
 }
@@ -29073,6 +29083,7 @@ import (
 type Summary struct {
         SelectedRemediationNumber   int
         ActualRemediationDoneNumber int
+        RemediatedFiles             []string
 }
 
 // GetRemediationSets collects all the replacements and additions per file
