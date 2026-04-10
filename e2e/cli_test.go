@@ -51,10 +51,11 @@ func Test_E2E_CLI(t *testing.T) {
 				}
 
 				out, err := utils.RunCommand(tt.Args.Args[arg], useDocker, useMock, kicsDockerImage)
+
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
 
-				// Check exit status code (required)
+				// Check exit status code (required) 
 				require.True(t, arg < len(tt.WantStatus),
 					"No status code associated to this test. Check the wantStatus of the test case.")
 
@@ -79,7 +80,7 @@ func Test_E2E_CLI(t *testing.T) {
 					checkExpectedOutput(t, &tt, arg)
 				}
 
-				if tt.Args.ExpectedAnalyzerResults != nil && arg < len(tt.Args.ExpectedResult) {
+				if tt.Args.ExpectedAnalyzerResults != nil && arg < len(tt.Args.ExpectedAnalyzerResults) {
 					checkExpectedAnalyzerResults(t, &tt, arg)
 				}
 
@@ -133,8 +134,13 @@ func Test_E2E_CLI(t *testing.T) {
 }
 
 func checkExpectedAnalyzerResults(t *testing.T, tt *testcases.TestCase, argIndex int) {
-	jsonFileName := tt.Args.ExpectedResult[argIndex].ResultsFile + ".json"
-	utils.JSONSchemaValidationFromFile(t, jsonFileName, "AnalyzerResults.json")
+	jsonFileName := tt.Args.ExpectedAnalyzerResults[argIndex].ResultsFile + ".json"
+
+	if _, err := os.Stat(filepath.Join("fixtures", jsonFileName)); err == nil {
+		utils.FileCheck(t, jsonFileName, jsonFileName, "result_analyze")
+	}
+	
+	utils.JSONSchemaValidationFromFile(t, jsonFileName, "result-analyzer.json")
 }
 
 func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {
