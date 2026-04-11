@@ -14,3 +14,6 @@ resource "aws_iam_role" "negative1" {
       }
     ]
   })
+
+  permissions_boundary = "arn:aws:iam::123456789012:policy/BoundaryPolicy"
+}
