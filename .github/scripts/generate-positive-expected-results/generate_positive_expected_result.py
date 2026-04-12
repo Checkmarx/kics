@@ -7,6 +7,7 @@ import sys
 import tempfile
 
 from models import (
+    FIELD_ORDER,
     KICS_RESULT_CODES,
     ExpectedResultEntry,
     PositiveTest,
@@ -96,6 +97,51 @@ def run_scan(query_id: str, scan_path: str, payload_path: str, output_path: str,
             return 1
 
 
+def run_directory_scan(query_id: str, scan_paths: list[str], payload_path: str, output_path: str, output_name: str) -> int:
+    """Run a KICS scan with all given files copied into a single temporary directory
+    that mirrors the assets/queries/ structure, so similarity IDs match.
+    """
+    if not scan_paths:
+        return 0
+
+    # All files share the same parent directory (test/).
+    src_dir = os.path.dirname(scan_paths[0])
+    rel_dir = os.path.relpath(src_dir, QUERIES_DIR)
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        target_dir = os.path.join(tmpdir, rel_dir)
+        os.makedirs(target_dir, exist_ok=True)
+
+        # Copy all positive files.
+        for scan_path in scan_paths:
+            dst = os.path.join(target_dir, os.path.basename(scan_path))
+            shutil.copy2(scan_path, dst)
+
+        # Copy auxiliary files (certificates, etc.) — skip other positive/negative files.
+        for name in os.listdir(src_dir):
+            if name.startswith("positive") or name.startswith("negative"):
+                continue
+            src = os.path.join(src_dir, name)
+            dst = os.path.join(target_dir, name)
+            if os.path.isfile(src) and not os.path.exists(dst):
+                shutil.copy2(src, dst)
+
+        command = build_command(query_id, tmpdir, payload_path, output_path, output_name)
+
+        print("Running command:")
+        print(" ".join(command))
+        print("-" * 60)
+
+        try:
+            result = subprocess.run(command, cwd=REPO_ROOT)
+            if result.returncode not in KICS_RESULT_CODES:
+                print(f"\n[ERROR] Scan failed with return code {result.returncode}.", file=sys.stderr)
+            return result.returncode
+        except FileNotFoundError:
+            print("\n[ERROR] 'go' not found. Make sure Go is installed and in your PATH.", file=sys.stderr)
+            return 1
+
+
 def find_positive_tests(query_path: str) -> list[PositiveTest]:
     """
     Return a sorted list of PositiveTest for each positive test in test/.
@@ -152,6 +198,10 @@ def run_query_scans(query_id: str, query_path: str) -> tuple[list[ScanFailure], 
         print(f"[WARN] No positive tests found in {query_path}/test, skipping.", file=sys.stderr)
         return [], False
 
+    # Check for subdirectory tests.
+    has_subdir_tests = any(t.group != "test" for t in positives)
+    loose_tests = [t for t in positives if t.group == "test"]
+
     with tempfile.TemporaryDirectory() as tmpdir:
         payloads_dir = os.path.join(tmpdir, "payloads")
         results_dir  = os.path.join(tmpdir, "results")
@@ -160,14 +210,65 @@ def run_query_scans(query_id: str, query_path: str) -> tuple[list[ScanFailure], 
 
         label_to_group = {}
         failed = []
-        for test in positives:
-            label_to_group[test.label] = test.group
-            payload_path = os.path.join(payloads_dir, f"{test.label}.json")
-            output_name  = f"{test.label}.json"
-            print(f"\n  -> {test.label}: {os.path.relpath(test.scan_path, REPO_ROOT)}")
-            rc = run_scan(query_id, test.scan_path, payload_path, results_dir + os.sep, output_name)
+
+        # passwords_and_secrets has too many positive files — only directory scan.
+        is_secrets_query = query_path.endswith(os.path.join("common", "passwords_and_secrets"))
+
+        if not has_subdir_tests and loose_tests:
+            # No subdirectories: scan all loose files together + each individually.
+
+            # 1. Directory scan (all loose files at once).
+            all_paths = [t.scan_path for t in loose_tests]
+            dir_label = "directory_scan"
+            label_to_group[dir_label] = "test"
+            payload_path = os.path.join(payloads_dir, f"{dir_label}.json")
+            output_name  = f"{dir_label}.json"
+            print(f"\n  -> directory scan: {[os.path.relpath(p, REPO_ROOT) for p in all_paths]}")
+            rc = run_directory_scan(query_id, all_paths, payload_path, results_dir + os.sep, output_name)
             if rc not in KICS_RESULT_CODES:
-                failed.append(ScanFailure(test.scan_path, payload_path, rc))
+                failed.append(ScanFailure(query_path, payload_path, rc))
+
+            # 2. Individual file scans (skip for passwords_and_secrets).
+            if not is_secrets_query:
+                for test in loose_tests:
+                    label_to_group[test.label] = test.group
+                    payload_path = os.path.join(payloads_dir, f"{test.label}.json")
+                    output_name  = f"{test.label}.json"
+                    print(f"\n  -> {test.label}: {os.path.relpath(test.scan_path, REPO_ROOT)}")
+                    rc = run_scan(query_id, test.scan_path, payload_path, results_dir + os.sep, output_name)
+                    if rc not in KICS_RESULT_CODES:
+                        failed.append(ScanFailure(test.scan_path, payload_path, rc))
+        else:
+            # Has subdirectories: directory scan for loose files + directory scan per subdirectory.
+
+            # 1. Directory scan for all loose positive files in test/.
+            if loose_tests:
+                all_loose_paths = [t.scan_path for t in loose_tests]
+                dir_label = "directory_scan"
+                label_to_group[dir_label] = "test"
+                payload_path = os.path.join(payloads_dir, f"{dir_label}.json")
+                output_name  = f"{dir_label}.json"
+                print(f"\n  -> directory scan (loose): {[os.path.relpath(p, REPO_ROOT) for p in all_loose_paths]}")
+                rc = run_directory_scan(query_id, all_loose_paths, payload_path, results_dir + os.sep, output_name)
+                if rc not in KICS_RESULT_CODES:
+                    failed.append(ScanFailure(query_path, payload_path, rc))
+
+            # 2. For each subdirectory, scan all files inside it together.
+            subdir_groups: dict[str, list[PositiveTest]] = {}
+            for test in positives:
+                if test.group != "test":
+                    subdir_groups.setdefault(test.group, []).append(test)
+
+            for group, tests in sorted(subdir_groups.items()):
+                all_paths = [t.scan_path for t in tests]
+                dir_label = group.replace("/", "_") + "_scan"
+                label_to_group[dir_label] = group
+                payload_path = os.path.join(payloads_dir, f"{dir_label}.json")
+                output_name  = f"{dir_label}.json"
+                print(f"\n  -> directory scan ({group}): {[os.path.relpath(p, REPO_ROOT) for p in all_paths]}")
+                rc = run_directory_scan(query_id, all_paths, payload_path, results_dir + os.sep, output_name)
+                if rc not in KICS_RESULT_CODES:
+                    failed.append(ScanFailure(query_path, payload_path, rc))
 
         written = collect_and_write_expected_results(query_path, results_dir, label_to_group)
 
@@ -193,11 +294,14 @@ def collect_and_write_expected_results(query_path: str, results_dir: str, label_
     grouped_entries: dict[str, list[ExpectedResultEntry]] = {}
 
     for filename in sorted(os.listdir(results_dir)):
-        if not filename.startswith("positive") or not filename.endswith(".json"):
+        if not filename.endswith(".json"):
             continue
 
         label = os.path.splitext(filename)[0]
-        group = label_to_group.get(label, "test")
+        if label not in label_to_group:
+            continue
+
+        group = label_to_group[label]
 
         with open(os.path.join(results_dir, filename), encoding="utf-8") as f:
             data = json.load(f)
@@ -209,6 +313,17 @@ def collect_and_write_expected_results(query_path: str, results_dir: str, label_
             for file_entry in query.get("files", []):
                 entry = ExpectedResultEntry.from_kics_result(query_name, severity, file_entry)
                 grouped_entries.setdefault(group, []).append(entry)
+
+    # Deduplicate entries within each group using all output fields.
+    for group in grouped_entries:
+        seen = set()
+        unique = []
+        for entry in grouped_entries[group]:
+            key = tuple(getattr(entry, k) for k in FIELD_ORDER)
+            if key not in seen:
+                seen.add(key)
+                unique.append(entry)
+        grouped_entries[group] = unique
 
     if not grouped_entries:
         return False
