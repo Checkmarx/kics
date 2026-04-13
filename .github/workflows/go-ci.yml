@@ -90,6 +90,42 @@ jobs:
         with:
           name: unit-test-${{ matrix.os }}-${{ github.event.pull_request.head.sha }}.log
           path: unit-test.log
+  validate-search-line:
+    name: validate-search-line
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Detect changed query.rego files
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        id: filter
+        with:
+          list-files: json
+          filters: |
+            queries:
+              - 'assets/queries/**/query.rego'
+      - name: Debug filter outputs
+        run: |
+          echo "queries changed: ${{ steps.filter.outputs.queries }}"
+          echo "changed files: ${{ steps.filter.outputs.queries_files }}"
+      - name: Set up Python
+        id: setup-python
+        if: steps.filter.outputs.queries == 'true'
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.13'
+      - name: Validate searchLine in modified queries
+        if: steps.setup-python.outcome == 'success'
+        env:
+          CHANGED_QUERIES: ${{ steps.filter.outputs.queries_files }}
+          KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KICS_PR_NUMBER: ${{ github.event.number }}
+        working-directory: .github/scripts/validate-search-line/
+        run: python3 validate_search_line.py
+  
   security-scan:
     name: security-scan
     runs-on: ubuntu-latest
