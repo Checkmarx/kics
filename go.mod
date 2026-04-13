@@ -1,6 +1,6 @@
 module github.com/Checkmarx/kics/v2
 
-go 1.26.2
+go 1.25.5
 
 require (
 	code.cloudfoundry.org/bytefmt v0.35.0
