@@ -1,1 +1,1 @@
-{"Types":["ansible","openapi"],"Exc":[],"ExpectedLOC":1233}
+{"Types":["cloudformation","openapi"],"Exc":["/path/e2e/fixtures/samples/swagger/swagger.yml"],"ExpectedLOC":1264,"FileStats":{"cloudformation":{"FileCount":1,"DirectoryCount":1,"FilesByDir":{"/path/e2e/fixtures/samples/swagger":1},"TotalLOC":39},"openapi":{"FileCount":1,"DirectoryCount":1,"FilesByDir":{"/path/e2e/fixtures/samples/swagger":1},"TotalLOC":1225}}}
