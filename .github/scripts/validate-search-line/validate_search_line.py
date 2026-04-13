@@ -11,8 +11,7 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 def get_changed_queries():
-    """
-    Parse CHANGED_QUERIES env var to get query directories.
+    """Parse CHANGED_QUERIES env var to get query directories.
 
     Expects a JSON array from dorny/paths-filter.
     """
