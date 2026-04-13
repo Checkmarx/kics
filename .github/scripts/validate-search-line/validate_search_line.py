@@ -9,6 +9,7 @@ from results_models import ScanResults
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
+
 def get_changed_queries():
     """
     Parse CHANGED_QUERIES env var to get query directories.
@@ -55,19 +56,27 @@ def run_kics_scan(query_dir):
     payloads_dir.mkdir(exist_ok=True)
 
     cmd = [
-        "go", "run", str(REPO_ROOT / "cmd" / "console" / "main.go"),
+        "go",
+        "run",
+        str(REPO_ROOT / "cmd" / "console" / "main.go"),
         "scan",
-        "-p", str(query_dir / "test"),
-        "-o", str(results_dir),
-        "--output-name", "all_results.json",
-        "-i", query_id,
-        "-d", str(payloads_dir / "all_payloads.json"),
+        "-p",
+        str(query_dir / "test"),
+        "-o",
+        str(results_dir),
+        "--output-name",
+        "all_results.json",
+        "-i",
+        query_id,
+        "-d",
+        str(payloads_dir / "all_payloads.json"),
         "-v",
         "--experimental-queries",
         "--bom",
         "--enable-openapi-refs",
-        "--ignore-on-exit", "results",
-        "--kics_compute_new_simid"
+        "--ignore-on-exit",
+        "results",
+        "--kics_compute_new_simid",
     ]
 
     print(f"  Running scan with query ID: {query_id}")
@@ -83,6 +92,7 @@ def run_kics_scan(query_dir):
         return False
 
     return True
+
 
 def validate_scan_results(query_dir):
     """
@@ -102,7 +112,9 @@ def validate_scan_results(query_dir):
     scan_results = ScanResults(data)
 
     if scan_results.queries_failed_to_execute > 0:
-        print(f"  ::error file={rel_dir}::{scan_results.queries_failed_to_execute} query(ies) failed to execute (possible panic/error during scan)")
+        print(
+            f"  ::error file={rel_dir}::{scan_results.queries_failed_to_execute} query(ies) failed to execute (possible panic/error during scan)"
+        )
         return False
 
     # Flatten results from all queries
