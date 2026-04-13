@@ -59,7 +59,7 @@ def run_kics_scan(query_dir):
         "--experimental-queries",
         "--bom",
         "--enable-openapi-refs",
-        "--ignore-on-exit", "results",Expand commentComment on line R62Resolved
+        "--ignore-on-exit", "results",
         "--kics_compute_new_simid"
     ]
 
