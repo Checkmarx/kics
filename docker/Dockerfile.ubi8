@@ -7,13 +7,13 @@ WORKDIR /build
 
 ENV PATH=$PATH:/usr/local/go/bin
 
-RUN echo "Installing Go 1.25.7 for ${TARGETARCH:-amd64} architecture"
+RUN echo "Installing Go 1.26.2 for ${TARGETARCH:-amd64} architecture"
 
 RUN yum install git gcc wget -y \
   && rm -rf /usr/local/go \
-  && wget -q https://golang.org/dl/go1.25.7.linux-${TARGETARCH:-amd64}.tar.gz \
-  && tar -C /usr/local -xzf go1.25.7.linux-${TARGETARCH:-amd64}.tar.gz \
-  && rm -f go1.25.7.linux-${TARGETARCH:-amd64}.tar.gz
+  && wget -q https://golang.org/dl/go1.26.2.linux-${TARGETARCH:-amd64}.tar.gz \
+  && tar -C /usr/local -xzf go1.26.2.linux-${TARGETARCH:-amd64}.tar.gz \
+  && rm -f go1.26.2.linux-${TARGETARCH:-amd64}.tar.gz
 
 ENV GOPRIVATE=github.com/Checkmarx/*
 ARG VERSION="development"
