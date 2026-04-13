@@ -1,10 +1,16 @@
+// "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08                                 positive-test   - #1
+// "Generic Secret"   - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99                                 positive-test   - #2
+// "Generic Token"    - baee238e-1921-4801-9c3f-79ae1d7b2cbc                                 positive-test   - #3
+// "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Proto File fields"  allow rule test - #4
+// "Generic Token"    - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Proto File fields"  allow-rule-test - #5
+// "Encryption Key"   - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding Proto File fields"  allow-rule-test - #6
+
 syntax = "proto3";
 
 // This sample should not flag the message defined only the exposed secrets in comments :
-// "password" = "test_sample"
-// "secret_key" : minimum_ten_characters
-// "unsafe_token" : "is_this_safe"
-// Note - This is as valid proto file that generates output with "protoc" command as of version "libprotoc 34.0"
+// "password" = "test_sample"               #1
+// "secret_key" : minimum_ten_characters    #2
+// "unsafe_token" : "is_this_safe"          #3
 
 package com.example.security_test.v1;
 
@@ -12,7 +18,7 @@ import "google/protobuf/wrappers.proto";
 
 message InocentMessage {
   google.protobuf.StringValue safe_value = 1;
-  double not_a_password = 2;
-  float not_a_token = 3;
-  string not_an_encryption_key = 4;
+  double not_a_password = 22222;      // #4
+  float not_a_token = 3;              // #5
+  string not_an_encryption_key = 4;   // #6
 }

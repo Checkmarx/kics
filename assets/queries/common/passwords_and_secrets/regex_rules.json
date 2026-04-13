@@ -43,7 +43,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)password\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
+          "regex": "(?i)password\\s*=\\s*[1-9][0-9]{0,8}\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
@@ -286,7 +286,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)private[_]?key\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
+          "regex": "(?i)private[_]?key\\s*=\\s*[1-9][0-9]{0,8}\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ]
     },
@@ -361,7 +361,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)token(_)?(key)?\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
+          "regex": "(?i)token(_)?(key)?\\s*=\\s*[1-9][0-9]{0,8}\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[\\s*$)"
         }
       ],
       "specialMask": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*"
@@ -388,7 +388,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)encryption[_]?key\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
+          "regex": "(?i)encryption[_]?key\\s*=\\s*[1-9][0-9]{0,8}\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ],
       "specialMask": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*"
