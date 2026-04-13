@@ -15,6 +15,7 @@ class ScanFile:
 
 
 class Query:
+    
     """Represents a query and its associated scan files."""
 
     def __init__(self, data):
@@ -25,6 +26,7 @@ class Query:
 
 
 class ScanResults:
+    
     """Represents scan results including failed queries and query list."""
 
     def __init__(self, data):

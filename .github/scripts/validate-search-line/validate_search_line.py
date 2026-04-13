@@ -10,7 +10,8 @@ from results_models import ScanResults
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
 def get_changed_queries():
-    """Parse CHANGED_QUERIES env var to get query directories.
+    """
+    Parse CHANGED_QUERIES env var to get query directories.
 
     Expects a JSON array from dorny/paths-filter.
     """
@@ -41,8 +42,7 @@ def has_search_line_defined(query_dir):
 
 
 def run_kics_scan(query_dir):
-    """
-    Run KICS scan for a single query.
+    """Run KICS scan for a single query.
 
     Returns True if the scan completed successfully.
     """
