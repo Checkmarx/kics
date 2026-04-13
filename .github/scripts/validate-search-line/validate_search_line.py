@@ -43,7 +43,8 @@ def has_search_line_defined(query_dir):
 
 
 def run_kics_scan(query_dir):
-    """Run KICS scan for a single query.
+    """
+    Run KICS scan for a single query.
 
     Returns True if the scan completed successfully.
     """
