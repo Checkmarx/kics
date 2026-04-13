@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"github.com/Checkmarx/kics/v2/internal/constants"
@@ -85,7 +86,8 @@ func readPossibleDockerFile(path string) bool {
 		if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(strings.ToLower(scanner.Text()), "arg") || scanner.Text() == "" {
 			continue
 		} else {
-			return strings.HasPrefix(strings.ToLower(scanner.Text()), "from ")
+			matched, _ := regexp.MatchString(`(?i)FROM\s+\S+(\s*$|\s+AS\s+\S+\s*$)`, scanner.Text())
+			return matched
 		}
 	}
 	return false
