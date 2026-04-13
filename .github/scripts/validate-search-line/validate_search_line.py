@@ -59,7 +59,7 @@ def run_kics_scan(query_dir):
         "--experimental-queries",
         "--bom",
         "--enable-openapi-refs",
-        "--ignore-on-exit", "results",
+        "--ignore-on-exit", "results",Expand commentComment on line R62Resolved
         "--kics_compute_new_simid"
     ]
 
@@ -115,7 +115,7 @@ def validate_scan_results(query_dir):
         if sl == -1:
             print(f"  ::error::Result [{idx}] {fn}: search_line is -1")
             valid = False
-        elif sl != ln:
+        elif sl != ln:Expand commentComment on line R118Resolved
             print(f"  ::error::Result [{idx}] {fn}: search_line ({sl}) != line ({ln})")
             valid = False
         else:
