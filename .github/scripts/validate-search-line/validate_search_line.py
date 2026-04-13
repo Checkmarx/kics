@@ -78,8 +78,8 @@ def run_kics_scan(query_dir):
     return True
 
 def validate_scan_results(query_dir):
-    """
-    Validate scan results:
+    """Validate scan results:
+
     - Fail if any search_line != line
     - Fail if any search_line == -1
     """
@@ -126,7 +126,6 @@ def validate_scan_results(query_dir):
 
 def validate_query(query_dir):
     """Validate a single query directory."""
-
     if not has_search_line_defined(query_dir):
         print("  [SKIP] searchLine not defined in query.rego - PASS")
         return True

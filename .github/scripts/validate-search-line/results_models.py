@@ -1,5 +1,6 @@
 class ScanFile:
     def __init__(self, data):
+        """Initialize ScanFile with scan result data."""
         self.file_name = data.get("file_name", "")
         self.similarity_id = data.get("similarity_id", "")
         self.line = int(data.get("line"))
@@ -14,6 +15,7 @@ class ScanFile:
 
 
 class Query:
+    """Initialize Query with a query name, ID, and its associated scan files."""
     def __init__(self, data):
         self.query_name = data.get("query_name", "")
         self.query_id = data.get("query_id", "")
@@ -21,6 +23,7 @@ class Query:
 
 
 class ScanResults:
+    """Initialize ScanResults with the total failed queries and list of queries."""
     def __init__(self, data):
         self.queries_failed_to_execute = int(data.get("queries_failed_to_execute", 0))
         self.queries = [Query(q) for q in data.get("queries", [])]
