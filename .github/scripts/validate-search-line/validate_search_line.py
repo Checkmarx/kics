@@ -115,7 +115,7 @@ def validate_scan_results(query_dir):
         if sl == -1:
             print(f"  ::error::Result [{idx}] {fn}: search_line is -1")
             valid = False
-        elif sl != ln:Expand commentComment on line R118Resolved
+        elif sl != ln:
             print(f"  ::error::Result [{idx}] {fn}: search_line ({sl}) != line ({ln})")
             valid = False
         else:
