@@ -15,7 +15,8 @@ class ScanFile:
 
 
 class Query:
-    """Initialize Query with a query name, ID, and its associated scan files."""
+    """Initialize Query with a query name, ID, and its associated scan
+    files."""
     def __init__(self, data):
         self.query_name = data.get("query_name", "")
         self.query_id = data.get("query_id", "")
@@ -23,7 +24,8 @@ class Query:
 
 
 class ScanResults:
-    """Initialize ScanResults with the total failed queries and list of queries."""
+    """Initialize ScanResults with the total failed queries and list of
+    queries."""
     def __init__(self, data):
         self.queries_failed_to_execute = int(data.get("queries_failed_to_execute", 0))
         self.queries = [Query(q) for q in data.get("queries", [])]

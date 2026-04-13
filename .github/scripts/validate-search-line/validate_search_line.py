@@ -10,7 +10,8 @@ from results_models import ScanResults
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
 def get_changed_queries():
-    """Parse CHANGED_QUERIES env var (JSON array from dorny/paths-filter) to get query directories."""
+    """Parse CHANGED_QUERIES env var (JSON array from dorny/paths-filter) to
+    get query directories."""
     raw = os.getenv("CHANGED_QUERIES", "")
     if not raw:
         print("::error::CHANGED_QUERIES environment variable is empty or not set")
@@ -38,7 +39,8 @@ def has_search_line_defined(query_dir):
 
 
 def run_kics_scan(query_dir):
-    """Run KICS scan for a single query and return True if it completed successfully."""
+    """Run KICS scan for a single query and return True if it completed
+    successfully."""
     query_id = json.loads((query_dir / "metadata.json").read_text())["id"]
 
     results_dir = query_dir / "results"
