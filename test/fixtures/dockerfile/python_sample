@@ -1,0 +1,7 @@
+from urllib import request
+
+def main():
+    print("coiso")
+    # I love the RUN docker funtion and the FROM too
+
+
