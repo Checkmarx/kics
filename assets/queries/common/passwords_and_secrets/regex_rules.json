@@ -39,7 +39,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)password\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
+          "regex": "(?i)password\\s*=\\s*(0|[1-9][0-9]{0,8})\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
@@ -83,6 +83,10 @@
         {
           "description": "Allow secrets retrieved from Bicep getSecret built in function",
           "regex": "(?i)['\"]?secret_?(key|value)?['\"]?\\s*[:=]\\s*[a-zA-Z]*\\.getSecret\\(\\s*['\"][A-Za-z0-9/~^_!@#&%(){};=?*+\\-<>,:;\\[\\]%$]+['\"]\\)"
+        },
+        {
+          "description": "Avoiding Proto File fields",
+          "regex": "(?i)secret_?(key|value)?\\s*=\\s*(0|[1-9][0-9]{0,8})\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ],
       "specialMask": "(?i)['\"]?secret_?(key)?['\"]?\\s*[:=]\\s*"
@@ -281,7 +285,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)private_?key\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
+          "regex": "(?i)private_?key\\s*=\\s*(0|[1-9][0-9]{0,8})\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ],
       "specialMask": "(?i)['\"]?private_?key['\"]?\\s*[:=]\\s*"
@@ -353,7 +357,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)token_?(key)?\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
+          "regex": "(?i)token_?(key)?\\s*=\\s*(0|[1-9][0-9]{0,8})\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[\\s*$)"
         }
       ],
       "specialMask": "(?i)['\"]?token_?(key)?['\"]?\\s*[:=]\\s*"
@@ -380,7 +384,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)encryption_?key\\s*=\\s*[1-9][0-9]{0,8}\\s*;"
+          "regex": "(?i)encryption_?key\\s*=\\s*(0|[1-9][0-9]{0,8})\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ],
       "specialMask": "(?i)['\"]?encryption_?key['\"]?\\s*[:=]\\s*"

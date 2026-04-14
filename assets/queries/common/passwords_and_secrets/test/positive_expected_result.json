@@ -488,19 +488,43 @@
   {
     "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
-    "line": 11,
+    "line": 13,
     "fileName": "positive56.proto"
   },
   {
     "queryName": "Passwords And Secrets - Generic Secret",
     "severity": "HIGH",
-    "line": 12,
+    "line": 14,
     "fileName": "positive56.proto"
   },
   {
     "queryName": "Passwords And Secrets - Generic Token",
     "severity": "HIGH",
-    "line": 13,
+    "line": 15,
+    "fileName": "positive56.proto"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 30,
+    "fileName": "positive56.proto"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Token",
+    "severity": "HIGH",
+    "line": 32,
+    "fileName": "positive56.proto"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Private Key",
+    "severity": "HIGH",
+    "line": 34,
+    "fileName": "positive56.proto"
+  },
+  {
+    "queryName": "Passwords And Secrets - Encryption Key",
+    "severity": "HIGH",
+    "line": 36,
     "fileName": "positive56.proto"
   }
 ]
