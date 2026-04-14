@@ -84,6 +84,16 @@ message MyOptions {
   string file_only_option_secret = 15[targets = TARGET_TYPE_FILE];                    // Generic Secret      #5
   int message_and_enum_option_secret = 25[targets = TARGET_TYPE_MESSAGE,
                                      targets = TARGET_TYPE_ENUM];                     // Generic Secret      #5 (line above)
+
+  int B_message_and_enum_option_token = 2 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];              // Generic Token        #1
+
+  int B_message_and_enum_option_private_key = 211 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];      // Generic Private Key  #2
+
+  int B_message_and_enum_option_encryption_key = 232 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];   // Encryption Key       #3
+
+  int B_message_and_enum_option_password = 243 [targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];         // Generic Password     #4
+
+  int B_message_and_enum_option_secret = 254[targets = TARGET_TYPE_MESSAGE, targets = TARGET_TYPE_ENUM];            // Generic Secret       #5
 }
 
 message Not_a_Token {
