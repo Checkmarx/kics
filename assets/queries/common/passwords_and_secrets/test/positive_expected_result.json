@@ -486,19 +486,19 @@
     "fileName": "positive56.proto"
   },
   {
-    "queryName": "Passwords And Secrets - Generic Secret",
+    "queryName": "Passwords And Secrets - Generic Token",
     "severity": "HIGH",
     "line": 32,
     "fileName": "positive56.proto"
   },
   {
-    "queryName": "Passwords And Secrets - Generic Token",
+    "queryName": "Passwords And Secrets - Generic Private Key",
     "severity": "HIGH",
     "line": 34,
     "fileName": "positive56.proto"
   },
   {
-    "queryName": "Passwords And Secrets - Generic Token",
+    "queryName": "Passwords And Secrets - Encryption Key",
     "severity": "HIGH",
     "line": 36,
     "fileName": "positive56.proto"
