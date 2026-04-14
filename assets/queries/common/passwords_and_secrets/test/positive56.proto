@@ -1,9 +1,11 @@
-// "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08                                 positive-test   - #1
-// "Generic Secret"   - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99                                 positive-test   - #2
-// "Generic Token"    - baee238e-1921-4801-9c3f-79ae1d7b2cbc                                 positive-test   - #3
-// "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Proto File fields"  allow rule test - #4
-// "Generic Token"    - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Proto File fields"  allow-rule-test - #5
-// "Encryption Key"   - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding Proto File fields"  allow-rule-test - #6
+// "Generic Password"    - 487f4be7-3fd9-4506-a07a-eae252180c08 -                               positive-test   - #1
+// "Generic Secret"      - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 -                               positive-test   - #2
+// "Generic Token"       - baee238e-1921-4801-9c3f-79ae1d7b2cbc -                               positive-test   - #3
+// "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 -                               positive-test   - #4
+// "Encryption Key"      - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 -                               positive-test   - #5
+// "Generic Password"    - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Proto File fields"  allow rule test - #6
+// "Generic Token"       - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Proto File fields"  allow-rule-test - #7
+// "Encryption Key"      - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding Proto File fields"  allow-rule-test - #8
 
 syntax = "proto3";
 
@@ -18,7 +20,19 @@ import "google/protobuf/wrappers.proto";
 
 message InocentMessage {
   google.protobuf.StringValue safe_value = 1;
-  double not_a_password = 22222;      // #4
-  float not_a_token = 3;              // #5
-  string not_an_encryption_key = 4;   // #6
+  double not_a_password = 22222;      // #6
+  float not_a_token = 3;              // #7
+  string not_an_encryption_key = 4;   // #8
+}
+
+
+extend google.protobuf.FileOptions {                // too generic for an allow rule
+   int32 source_retention_password = 12342134                 //#1
+      [retention = RETENTION_SOURCE];
+   string source_retention_token = 12342135                   //#3
+      [retention = RETENTION_SOURCE];
+   float source_retention_private_key = 12342137              //#4
+      [retention = RETENTION_SOURCE];
+   double source_retention_encryption_key = 12342136          //#5
+      [retention = RETENTION_SOURCE];
 }

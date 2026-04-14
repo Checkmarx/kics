@@ -2,107 +2,131 @@
 // "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 - "Avoiding Proto File fields"   allow rule test - #2
 // "Encryption Key"      - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding Proto File fields"   allow-rule-test - #3
 // "Generic Password"    - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Proto File fields"   allow rule test - #4
+// "Generic Secret"      - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - "Avoiding Proto File fields"   allow rule test - #5
+// Global allow rule     - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding Boolean's"           allow-rule-test - #6
 syntax = "proto3";
-
 package com.example.security_test.v1;
-
 import "google/protobuf/wrappers.proto";
-
 option go_package = "github.com/CheckmarxDev/router-audit/gen/presets/v1;presets";
 
+// Scenario 1 - Simple attribution
 message SampleMessageNegative {
   google.protobuf.StringValue refresh_token = 536870911; // if value is larger - out of range error "Field numbers cannot be greater than 536870911."  - Generic Token #1
   google.protobuf.StringValue sonar_token = 39;google.protobuf.StringValue codecov_token = 40;// trailing comment test - Generic Token #1
+
   google.protobuf.StringValue access_token= 111111111;                             // Generic Token #1
-  google.protobuf.StringValue id_token = 3;                                        // Generic Token #1
-  google.protobuf.StringValue    bearer_toaken = 4;;;                              // Generic Token #1
-  google.protobuf.StringValue api_token = 7   ;                                    // Generic Token #1
+  google.protobuf.StringValue    api_token = 7   ;                                 // Generic Token #1
   google.protobuf.StringValue token = 8;                                           // Generic Token #1
   google.protobuf.StringValue aws_session_token = 9;                               // Generic Token #1
-  google.protobuf.StringValue sas_token = 12;                                      // Generic Token #1
-  google.protobuf.StringValue auth_token = 13;                                     // Generic Token #1
-  google.protobuf.StringValue bot_token = 14;                                      // Generic Token #1
-  google.protobuf.StringValue callback_token = 32;                                 // Generic Token #1
-  google.protobuf.StringValue k8s_service_account_token = 33;                      // Generic Token #1
-  google.protobuf.StringValue registry_token = 34;                                 // Generic Token #1
-  google.protobuf.StringValue deploy_token = 35;                                   // Generic Token #1
-  google.protobuf.StringValue ci_token = 36;                                       // Generic Token #1
-  google.protobuf.StringValue npm_token = 37;                                      // Generic Token #1
-  google.protobuf.StringValue pypi_token = 38;                                     // Generic Token #1
-  google.protobuf.StringValue app_installation_token = 20;                         // Generic Token #1
   google.protobuf.StringValue twilio_auth_token = 21;                              // Generic Token #1
-  google.protobuf.StringValue twilio_auth_token_key =   121;                       // Generic Token #1
   google.protobuf.StringValue test_token_ = 122  ;                                 // Generic Token #1
+
   google.protobuf.StringValue jwt_private_key = 25;                                // Generic Private Key #2
   google.protobuf.StringValue ssh_private_key = 26;                                // Generic Private Key #2
   google.protobuf.StringValue tls_private_key = 27;                                // Generic Private Key #2
   google.protobuf.StringValue ca_private_key = 28    ;                             // Generic Private Key #2
-  google.protobuf.StringValue cosign_private_key = 41;                             // Generic Private Key #2
-  google.protobuf.StringValue service_account_private_key = 30;                    // Generic Private Key #2
-  google.protobuf.StringValue app_private_key = 19;                                // Generic Private Key #2
-  google.protobuf.StringValue gcp_private_key = 10;                                // Generic Private Key #2
   google.protobuf.StringValue private_key = 5;                                     // Generic Private Key #2
-  google.protobuf.StringValue sp_private_key = 6;                                  // Generic Private Key #2
+
   google.protobuf.StringValue encryption_key = 22;                                 // Encryption Key #3
   google.protobuf.StringValue data_encryption_key= 23   ;                          // Encryption Key #3
   google.protobuf.StringValue key_encryption_key=24;                               // Encryption Key #3
+
   google.protobuf.StringValue registry_password =    10421;                        // Generic Password #4
   google.protobuf.StringValue artifactory_password   = 10731  ;                    // Generic Password #4
   google.protobuf.StringValue nexus_password = 10853;                              // Generic Password #4
   string password =          64114;                                                // Generic Password #4
+
+  string secret_key =   123456789;                                                 // Generic Secret #5
+  string secret_value   = 123456790;                                               // Generic Secret #5
+  string   secret   =   123456791;                                                 // Generic Secret #5
 }
 
+// Scenario 2 - Attribution with options
 message SampleMessageNegative2 {
   google.protobuf.StringValue next_page_token = 5 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}];        // Generic Token #1
   google.protobuf.StringValue next_next_page_token = 6[(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}  ] ; // Generic Token #1
   google.protobuf.StringValue api_token = 7 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"jira_api_token\""}];    // Generic Token #1
-  google.protobuf.StringValue next_page_password = 51 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}];        // Generic Password #4
-  google.protobuf.StringValue next_next_page_password = 61[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}  ] ; // Generic Password #4
-  google.protobuf.StringValue api_password = 71 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"jira_api_password\""}];    // Generic Password #4
-}
 
-extend google.protobuf.FileOptions {
-   int32 source_retention_password = 12342134
-      [retention = RETENTION_SOURCE];
-}
+  google.protobuf.StringValue next_page_private_key = 8 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}];             // Generic Private Key #2
+  google.protobuf.StringValue next_next_page_private_key = 8[(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}  ] ;      // Generic Private Key #2
+  google.protobuf.StringValue api_private_key = 10 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"jira_api_private_key\""}];  // Generic Private Key #2
 
-enum Corpus {
-  DATA_UNSPECIFIED = 0;
-  DATA_A_TOKEN = 1 [deprecated = true];
+  google.protobuf.StringValue next_page_encryption_key = 11 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}];                // Encryption Key #3
+  google.protobuf.StringValue next_next_page_encryption_key = 12[(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"test\""}  ] ;         // Encryption Key #3
+  google.protobuf.StringValue api_encryption_key = 13 [(grpc.gateway.protoc_gen_openapiv3.options.openapiv3_field) = {example: "\"jira_api_encryption_key\""}];   // Encryption Key #3
 
-  DATA_B_TOKEN = 2[
-    (string_name) = "display_value"
-  ];
+  google.protobuf.StringValue next_page_password = 14 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}];          // Generic Password #4
+  google.protobuf.StringValue next_next_page_password = 15[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}  ] ;   // Generic Password #4
+  google.protobuf.StringValue api_password = 16 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"jira_api_password\""}];   // Generic Password #4
 
-  DATA_B_PASSWORD = 28970[
-    (string_name) = "display_value"
-  ];
-
-  DATA_B_SECRET = 2 [
-    (string_name) = "display_value"
-  ];
-}
-
-enum EnumAllowingAlias {
-  reserved "password", "api_token", "private_key", "encryption_key";
-  option allow_token = true;
-  EAA_UNSPECIFIED = 0;
+  google.protobuf.StringValue next_page_secret = 17[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}];           // Generic Secret #5
+  google.protobuf.StringValue next_next_page_secret = 18[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"test\""}  ] ;   // Generic Secret #5
+  google.protobuf.StringValue api_secret = 19[(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {example: "\"jira_api_secret\""}];      // Generic Secret #5
 }
 
 message MyOptions {
-  string file_only_option_token = 1 [targets = TARGET_TYPE_FILE];
-  int32 message_and_enum_option_token = 2 [targets = TARGET_TYPE_MESSAGE,
-                                     targets = TARGET_TYPE_ENUM];
+  string file_only_option_token = 1 [targets = TARGET_TYPE_FILE];                     // Generic Token       #1
+  int message_and_enum_option_token = 2 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Token       #1 (line above)
+
+  string file_only_option_private_key = 11 [targets = TARGET_TYPE_FILE];              // Generic Private Key #2
+  int message_and_enum_option_private_key = 21 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Private Key #2 (line above)
+
+  string file_only_option_encryption_key = 13 [targets = TARGET_TYPE_FILE];           // Encryption Key      #3
+  int message_and_enum_option_encryption_key = 23 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Encryption Key      #3 (line above)
+
+  string file_only_option_password = 14 [targets = TARGET_TYPE_FILE];                 // Generic Password    #4
+  int message_and_enum_option_password = 24 [targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Password    #4 (line above)
+
+  string file_only_option_secret = 15[targets = TARGET_TYPE_FILE];                    // Generic Secret      #5
+  int message_and_enum_option_secret = 25[targets = TARGET_TYPE_MESSAGE,
+                                     targets = TARGET_TYPE_ENUM];                     // Generic Secret      #5 (line above)
 }
 
 message Not_a_Token {
-  string token          = 1  [json_name = "tk"];
-  string password       = 2  [json_name = "ps"];
-  string encryption_key = 3  [json_name = "ek"];
-  string private_key    = 4  [json_name = "pk"];
+  string token          = 1  [json_name = "tk"];          // Generic Token       #1
+  string private_key    = 4  [json_name = "pk"];          // Generic Private Key #2
+  string encryption_key = 3  [json_name = "ek"];          // Encryption Key      #3
+  string password       = 2  [json_name = "ps"];          // Generic Password    #4
+  string secret         = 5[json_name = "se"];            // Generic Secret      #5
 }
 
-message Config {
-  map<string, string> api_token = 1;
-  map<string, string> encryption_keys = 2;
+// Scenario 3 - Enum attributions
+enum Corpus {
+  DATA_A_TOKEN = 1 [  deprecated =   true  ] ;     // Generic Token       #1
+  DATA_A_TOKEN = 11[deprecated=true] ;             // Generic Token       #1 & #6
+  DATA_A_PRIVATE_KEY = 2[deprecated = false];      // Generic Private Key #2 & #6
+  DATA_A_ENCRYPTION_KEY = 3[deprecated = true];    // Encryption Key      #3 & #6
+  DATA_A_PASSWORD = 1234  [deprecated = false];    // Generic Password    #4 & #6
+  DATA_A_SECRET = 5[deprecated=true];              // Generic Secret      #5 & #6
+
+                                                        // Generic Token       #1 (line below)
+  DATA_B_TOKEN = 2[
+    (string_name) = "display_value"
+  ];
+                                                        // Generic Private Key #2 (line below)
+  DATA_B_PRIVATE_KEY = 2 [
+    (string_name) = "display_value"
+  ];
+                                                        // Encryption Key      #3 (line below)
+  DATA_B_ENCRYPTION_KEY = 2 [
+    (string_name) = "display_value"
+  ];
+                                                        // Generic Password    #4 (line below)
+  DATA_B_PASSWORD = 28970[
+    (string_name) = "display_value"
+  ];
+                                                        // Generic Secret      #5 (line below)
+  DATA_B_SECRET = 123456789[
+    (string_name) = "display_value"
+  ];
+}
+
+// Scenario 4 - Generic keywords in "reserved"
+enum EnumAllowingAlias {
+  reserved "password", "api_token", "private_key", "encryption_key", "exposed_secret";
+  option end_of_sample = true;
 }
