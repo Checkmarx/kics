@@ -43,7 +43,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)password\\s*=\\s*[1-9][0-9]{0,8}\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
+          "regex": "(?i)password\\s*=\\s*(0|[1-9][0-9]{0,8})\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
@@ -90,7 +90,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)secret[_]?(key|value)?\\s*=\\s*[1-9][0-9]{0,8}\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
+          "regex": "(?i)secret[_]?(key|value)?\\s*=\\s*(0|[1-9][0-9]{0,8})\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ],
       "specialMask": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*"
@@ -290,7 +290,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)private[_]?key\\s*=\\s*[1-9][0-9]{0,8}\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
+          "regex": "(?i)private[_]?key\\s*=\\s*(0|[1-9][0-9]{0,8})\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ]
     },
@@ -365,7 +365,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)token(_)?(key)?\\s*=\\s*[1-9][0-9]{0,8}\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[\\s*$)"
+          "regex": "(?i)token(_)?(key)?\\s*=\\s*(0|[1-9][0-9]{0,8})\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[\\s*$)"
         }
       ],
       "specialMask": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*"
@@ -392,7 +392,7 @@
         },
         {
           "description": "Avoiding Proto File fields",
-          "regex": "(?i)encryption[_]?key\\s*=\\s*[1-9][0-9]{0,8}\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
+          "regex": "(?i)encryption[_]?key\\s*=\\s*(0|[1-9][0-9]{0,8})\\s*(\\[.+=.+\\]\\s*;|\\[.+=.+,|;|\\[)"
         }
       ],
       "specialMask": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*"

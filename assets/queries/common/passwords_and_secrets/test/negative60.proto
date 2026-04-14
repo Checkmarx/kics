@@ -96,12 +96,12 @@ message Not_a_Token {
 
 // Scenario 3 - Enum attributions
 enum Corpus {
-  DATA_A_TOKEN = 1 [  deprecated =   true  ] ;     // Generic Token       #1
-  DATA_A_TOKEN = 11[deprecated=true] ;             // Generic Token       #1 & #6
-  DATA_A_PRIVATE_KEY = 2[deprecated = false];      // Generic Private Key #2 & #6
-  DATA_A_ENCRYPTION_KEY = 3[deprecated = true];    // Encryption Key      #3 & #6
-  DATA_A_PASSWORD = 1234  [deprecated = false];    // Generic Password    #4 & #6
-  DATA_A_SECRET = 5[deprecated=true];              // Generic Secret      #5 & #6
+  DATA_A_UNSPECIFIED_TOKEN = 0 [  deprecated =   true  ] ;    // Generic Token       #1
+  DATA_A_TOKEN = 11[deprecated=true] ;                        // Generic Token       #1 & #6
+  DATA_A_PRIVATE_KEY = 2[deprecated = false];                 // Generic Private Key #2 & #6
+  DATA_A_ENCRYPTION_KEY = 3[deprecated = true];               // Encryption Key      #3 & #6
+  DATA_A_PASSWORD = 1234  [deprecated = false];               // Generic Password    #4 & #6
+  DATA_A_SECRET = 5[deprecated=true];                         // Generic Secret      #5 & #6
 
                                                         // Generic Token       #1 (line below)
   DATA_B_TOKEN = 2[
