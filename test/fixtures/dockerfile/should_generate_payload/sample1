@@ -1,0 +1,4 @@
+FROM --platform=linux/arm64 scratch
+COPY myapp /
+ENTRYPOINT ["/myapp"]
+ADD ${JAR_FILE} app.jar
