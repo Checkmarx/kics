@@ -95,8 +95,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/Dockerfile-example",
-      "id": "642ad448-baac-4d93-a84a-03cd1dc3838d"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -149,8 +149,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/any_name/DOCKERfile.txt",
-      "id": "473ae0ea-61c1-4b4e-b60d-1788f4ffa4ac"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -228,8 +228,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/any_name/Dockerfile.something",
-      "id": "67c9db37-1f48-465b-bd63-e092bcdda028"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -307,8 +307,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/any_name/any_name.debian",
-      "id": "c3867724-c34f-439a-9e60-ae3478c03912"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -386,8 +386,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/any_name/any_name.ubi8",
-      "id": "f75b700b-983e-4448-b4f0-5dafb6f702bd"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -465,8 +465,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/any_name/dockerFILE",
-      "id": "93231545-8aa9-4c86-b1a5-aeb72ed75013"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -532,8 +532,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/any_name/file.Dockerfile",
-      "id": "5b574486-7742-47ea-95c8-64a12a014c7d"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -599,8 +599,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/any_name/file_2.DOCKERfile",
-      "id": "68ab189b-439b-4e6f-907d-5e518b162941"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -666,8 +666,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/any_name/random_name",
-      "id": "1974d0b3-0bf0-45dc-80c3-e7533dc0cf81"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -720,8 +720,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/case_insensitive_tests/DOCKERfile.txt",
-      "id": "ea99ceac-12a4-4672-9282-e34336d48ad8"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -799,8 +799,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/case_insensitive_tests/Dockerfile.something",
-      "id": "fc3fa3c3-ef24-4032-bde8-7215870a1064"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -878,8 +878,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/case_insensitive_tests/any_name.debian",
-      "id": "82d4be70-fc35-4869-b1b2-3a7af63eaefe"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -957,8 +957,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/case_insensitive_tests/any_name.ubi8",
-      "id": "2bdab0c9-53c3-4fad-8fae-6431682d9752"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -1036,8 +1036,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/case_insensitive_tests/dockerFILE",
-      "id": "9756f049-fa73-4004-abfc-30447d8f9daa"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -1103,8 +1103,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/case_insensitive_tests/file.Dockerfile",
-      "id": "7fa06995-2b59-4a58-b3aa-ec2fd81e3e7b"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -1170,8 +1170,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/case_insensitive_tests/file_2.DOCKERfile",
-      "id": "56c3ad64-8527-48f5-87ef-6c1049bda118"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -1237,8 +1237,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/case_insensitive_tests/random_name",
-      "id": "adbb6d2b-d2dc-4d65-8994-d57a73e05035"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1285,8 +1285,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/corrupted_dockerfile",
-      "id": "a4fba452-33cb-4802-8e99-1de54bc8a814"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1346,8 +1346,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/should_generate_payload/sample1",
-      "id": "63b92b43-2d56-4602-af11-5c5d544f91b0"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1421,8 +1421,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/should_generate_payload/sample2",
-      "id": "8e7173a5-eb7f-4b72-9124-504498687f6b"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1484,8 +1484,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/should_generate_payload/sample3",
-      "id": "9e309d8f-9236-4320-aeb5-e6338afad188"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1544,8 +1544,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/should_generate_payload/sample4",
-      "id": "5d4a9144-c86e-4bed-a018-03d93120cd77"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [
@@ -1642,8 +1642,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/should_generate_payload/sample5",
-      "id": "53169e02-57cb-4930-9f6a-9e83afaf30b6"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1690,8 +1690,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/should_generate_payload/sample6",
-      "id": "2c80b3a1-57f5-4f73-91bb-19e2174beb01"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1736,8 +1736,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/should_generate_payload/sample7",
-      "id": "d2b0dd02-9e09-4723-94d3-b71065c2b669"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1782,8 +1782,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/should_generate_payload/sample8",
-      "id": "df6865bc-6af6-450d-9e82-5002f02b1077"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1836,8 +1836,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/test_folder_names/docker/any_file.txt",
-      "id": "5a51adb1-fe50-4830-9fb3-de1e78c78bba"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1890,8 +1890,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/test_folder_names/dockerfile/any_file.txt",
-      "id": "32a0c395-eb13-4bd9-a7f0-1ce1c8d50746"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1944,8 +1944,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/test_folder_names/dockerfiles/any_file.txt",
-      "id": "61f901f7-fc3f-4e57-9fcd-1e22a5b43a5a"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -1998,8 +1998,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/test_folder_names_case/Docker/any_file.txt",
-      "id": "c693ecb3-eefa-4eb6-b331-456a4acf27d4"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -2052,8 +2052,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/test_folder_names_case/Dockerfile/any_file.txt",
-      "id": "6d418be9-9293-4cfa-9076-def24bad356d"
+      "file": "file",
+      "id": "0"
     },
     {
       "args": [],
@@ -2106,8 +2106,8 @@
           }
         ]
       },
-      "file": "../test/fixtures/dockerfile/test_folder_names_case/Dockerfiles/any_file.txt",
-      "id": "2097b474-af54-4b09-b64d-52e58a01e25c"
+      "file": "file",
+      "id": "0"
     }
   ]
 }
