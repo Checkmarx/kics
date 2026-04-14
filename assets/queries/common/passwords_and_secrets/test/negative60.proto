@@ -138,5 +138,4 @@ enum Corpus {
 // Scenario 4 - Generic keywords in "reserved"
 enum EnumAllowingAlias {
   reserved "password", "api_token", "private_key", "encryption_key", "exposed_secret";
-  option end_of_sample = true;
-}
+  option end_of_sample = false;}enum InlineMessageFormat{option end_of_sample = true;}
