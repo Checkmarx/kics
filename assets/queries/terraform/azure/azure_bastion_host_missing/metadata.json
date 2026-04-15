@@ -1,6 +1,6 @@
 {
   "id": "a3e941c5-7708-40d1-943b-7093446ef5e6",
-  "queryName": "Azure Bastion Host Missing",
+  "queryName": "Beta - Azure Bastion Host Missing",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Ensures that an Azure Bastion Host is present when Virtual Networks are defined. Azure Bastion provides secure and seamless RDP/SSH connectivity to your virtual machines directly from the Azure portal over SSL.",
@@ -9,5 +9,6 @@
   "descriptionID": "a3e941c5",
   "cloudProvider": "azure",
   "cwe": "284",
-  "riskScore": "5.0"
+  "riskScore": "5.0",
+  "experimental": "true"
 }
