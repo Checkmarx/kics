@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container_immutability_policy#locked",
   "platform": "Terraform",
   "cloudProvider": "azure",
-  "cwe": "CWE-284",
+  "cwe": "284",
   "descriptionID": "9b959753",
   "riskScore": "5.0"
 }
