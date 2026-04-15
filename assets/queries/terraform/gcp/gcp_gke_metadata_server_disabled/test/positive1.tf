@@ -4,6 +4,6 @@ resource "google_container_cluster" "fail_cluster_no_block" {
 
   node_config {
     machine_type = "e2-medium"
-    # FALLO: No existe workload_metadata_config
+    # FAIL: Does not exist workload_metadata_config
   }
 }
