@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "App Service Application Insights Not Configured",
+    "queryName": "Beta - App Service Application Insights Not Configured",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "App Service Application Insights Not Configured",
+    "queryName": "Beta - App Service Application Insights Not Configured",
     "severity": "MEDIUM",
     "line": 7,
     "fileName": "positive2.tf"
