@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Beta - Elastic SAN Public Network Access Enabled",
+    "queryName": "Beta - Elastic SAN Volume Group Network Rules Not Configured",
     "severity": "HIGH",
     "line": 1,
     "fileName": "positive1.tf"
