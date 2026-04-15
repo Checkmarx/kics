@@ -4,5 +4,5 @@ resource "ibm_cis_dns_record" "dns_record_missing" {
   name      = "test-missing"
   type      = "A"
   content   = "192.168.1.2"
-  # FALLO: Falta el atributo proxied
+  # FAIL: Missing The attribute proxied
 }
