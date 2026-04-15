@@ -1,9 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
+
 expected_event := "com.oraclecloud.identitycontrolplane.updateidentityprovider"
 
-# RULE 1: Missing (Global)
-# No rule exists in the project monitoring el evento de Identity Provider.
+# RULE 1: No rule exists in the project monitoring Identity Provider changes.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.oci
@@ -25,8 +26,7 @@ CxPolicy[result] {
     }
 }
 
-# RULE 2: Disabled (Local)
-# The rule Exists y monitorea IdP, but is disabled.
+# RULE 2: A rule monitors IdP events but is disabled.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
@@ -37,6 +37,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.oci_events_rule.%s.is_enabled", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_events_rule", name, "is_enabled"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'is_enabled' should be true",
         "keyActualValue": "'is_enabled' is false",
