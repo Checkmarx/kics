@@ -1,6 +1,6 @@
 {
   "id": "d08b8443-aa59-4099-9523-5cfc6bee1d4a",
-  "queryName": "IBM IAM Policies Attached to Users (Manual)",
+  "queryName": "Beta - IBM IAM Policies Attached to Users (Manual)",
   "severity": "INFO",
   "category": "Access Control",
   "descriptionText": "Detects usage of 'ibm_iam_user_policy'. Access policies should be assigned to Access Groups ('ibm_iam_access_group_policy') rather than directly to users to ensure scalable and manageable IAM governance.",
@@ -9,5 +9,6 @@
   "descriptionID": "d08b8443",
   "cloudProvider": "ibm",
   "cwe": "284",
-  "riskScore": 0.0
+  "riskScore": 0.0,
+  "experimental": "true"
 }
