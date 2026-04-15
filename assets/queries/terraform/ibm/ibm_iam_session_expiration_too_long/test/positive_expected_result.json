@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "IBM Account Session Expiration Too Long",
+    "queryName": "Beta - IBM Account Session Expiration Too Long",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "IBM Account Session Expiration Too Long",
+    "queryName": "Beta - IBM Account Session Expiration Too Long",
     "severity": "MEDIUM",
     "line": 2,
     "fileName": "positive2.tf"
