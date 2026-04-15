@@ -1,6 +1,6 @@
 {
   "id": "0ef3f3f1-0592-475b-b073-81ac1ac869e2",
-  "queryName": "GCP HTTP(S) Load Balancer Logging Disabled",
+  "queryName": "Beta - GCP HTTP(S) Load Balancer Logging Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Ensures that logging is enabled for Google Compute Backend Services used in HTTP(S) Load Balancers. Access logs are essential for monitoring traffic patterns, latency, and identifying potential security threats.",
@@ -9,5 +9,6 @@
   "descriptionID": "0ef3f3f1",
   "cloudProvider": "gcp",
   "cwe": "778",
-  "riskScore": "5.0"
+  "riskScore": "5.0",
+  "experimental": "true"
 }
