@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Azure Bastion Host Missing",
+    "queryName": "Beta - Azure Bastion Host Missing",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
