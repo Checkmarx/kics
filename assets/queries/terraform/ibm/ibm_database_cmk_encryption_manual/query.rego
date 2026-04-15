@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# CASO 1: Base de datos sin 'key_protect_key'.
+# CASE 1: Base de datos sin 'key_protect_key'.
 CxPolicy[result] {
     doc := input.document[i]
     db := doc.resource.ibm_database[name]
