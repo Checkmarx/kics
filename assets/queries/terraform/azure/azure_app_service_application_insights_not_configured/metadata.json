@@ -1,6 +1,6 @@
 {
   "id": "721c26ff-776f-4d7a-b151-45447712343b",
-  "queryName": "App Service Application Insights Not Configured",
+  "queryName": "Beta - App Service Application Insights Not Configured",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Ensures that Azure App Services and Function Apps are linked to Application Insights for performance monitoring and error tracking.",
@@ -9,5 +9,6 @@
   "descriptionID": "721c26ff",
   "cloudProvider": "azure",
   "cwe": "778",
-  "riskScore": "5.0"
+  "riskScore": "5.0",
+  "experimental": "true"
 }
