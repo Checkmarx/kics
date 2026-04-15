@@ -2,7 +2,7 @@
   {
     "queryName": "Beta - Event Rule for IAM Policy Changes is Missing",
     "severity": "HIGH",
-    "line": 2,
+    "line": 1,
     "fileName": "positive1.tf"
   },
   {
