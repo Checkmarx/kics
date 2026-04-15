@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 # RULE 1: 'sandbox_config' block missing in google_container_cluster.
