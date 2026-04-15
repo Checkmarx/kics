@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 ensure_array(x) = x { is_array(x) }
 ensure_array(x) = [x] { is_object(x) }
 
@@ -19,6 +21,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_identity_authentication_policy.%s.password_policy.minimum_password_length", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_identity_authentication_policy", name, "password_policy", "minimum_password_length"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'minimum_password_length' should be 14 or greater",
         "keyActualValue": sprintf("'minimum_password_length' is %d", [to_number(policy.minimum_password_length)]),
@@ -39,6 +42,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_identity_authentication_policy.%s.password_policy", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_identity_authentication_policy", name, "password_policy"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'minimum_password_length' should be explicitly defined (>= 14)",
         "keyActualValue": "'minimum_password_length' is missing (using default)",
@@ -55,6 +59,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_identity_authentication_policy.%s", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_identity_authentication_policy", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'password_policy' block should be defined with 'minimum_password_length' >= 14",
         "keyActualValue": "'password_policy' block is missing",
