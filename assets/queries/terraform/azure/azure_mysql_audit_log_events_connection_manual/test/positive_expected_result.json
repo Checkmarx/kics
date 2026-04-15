@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "MySQL Audit Log Events Connection (Manual)",
+    "queryName": "Beta - MySQL Audit Log Events Connection (Manual)",
     "severity": "INFO",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "MySQL Audit Log Events Connection (Manual)",
+    "queryName": "Beta - MySQL Audit Log Events Connection (Manual)",
     "severity": "INFO",
     "line": 1,
     "fileName": "positive2.tf"
