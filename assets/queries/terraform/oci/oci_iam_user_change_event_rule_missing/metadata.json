@@ -1,6 +1,6 @@
 {
   "id": "b1405757-feb9-4218-b685-ff53775ddf48",
-  "queryName": "Event Rule for IAM User Changes is Missing",
+  "queryName": "Beta - Event Rule for IAM User Changes is Missing",
   "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on changes to IAM users. Auditing the full lifecycle of user accounts (creation, modification, deletion, enable/disable) is a critical security measure to detect unauthorized account creation or privilege changes.",
@@ -9,5 +9,6 @@
   "descriptionID": "b1405757",
   "cloudProvider": "oci",
   "cwe": "778",
-  "riskScore": 6.0
+  "riskScore": 6.0,
+  "experimental": "true"
 }
