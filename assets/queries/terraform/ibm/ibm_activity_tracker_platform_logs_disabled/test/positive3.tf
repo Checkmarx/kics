@@ -8,6 +8,6 @@ resource "ibm_resource_instance" "tracker_disabled" {
   plan     = "lite"
   location = "eu-de"
   
-  # FALLO: Deshabilitado explícitamente
+  # FAIL: Deshabilitado explícitamente
   platform_logs = false
 }
