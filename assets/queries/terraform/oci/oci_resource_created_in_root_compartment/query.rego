@@ -46,6 +46,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.%s.%s.compartment_id", [resource_type, resource_name]),
+        "searchLine": common_lib.build_search_line(["resource", resource_type, resource_name, "compartment_id"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("Resource '%s' should be created in a child compartment, not the root compartment", [resource_name]),
         "keyActualValue": sprintf("Resource '%s' is created in the root compartment (tenancy)", [resource_name]),
