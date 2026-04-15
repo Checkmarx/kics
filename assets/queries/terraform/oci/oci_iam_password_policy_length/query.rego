@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 ensure_array(x) = x { is_array(x) }
 ensure_array(x) = [x] { is_object(x) }
 
-# CASO 1: El bloque 'password_policy' EXISTE, pero el valor es menor a 14.
+# CASE 1: The block 'password_policy' Exists, but el valor es menor a 14.
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.oci_identity_authentication_policy[name]
@@ -28,7 +28,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: El bloque 'password_policy' EXISTE, pero FALTA el atributo 'minimum_password_length'.
+# CASE 2: The block 'password_policy' Exists, but Missing The attribute 'minimum_password_length'.
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.oci_identity_authentication_policy[name]
@@ -49,7 +49,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 3: El bloque 'password_policy' NO EXISTE en absoluto.
+# CASE 3: The block 'password_policy' Does not exist en absoluto.
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.oci_identity_authentication_policy[name]
