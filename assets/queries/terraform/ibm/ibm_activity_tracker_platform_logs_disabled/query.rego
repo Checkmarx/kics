@@ -1,6 +1,6 @@
 package Cx
 
-# REGLA 1: No existe ningún recurso 'ibm_resource_instance' para el servicio 'activity-tracker'.
+# RULE 1: Does not exist ningún resource 'ibm_resource_instance' para el servicio 'activity-tracker'.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.ibm
@@ -22,7 +22,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El atributo 'platform_logs' está ausente en la instancia de Activity Tracker.
+# RULE 2: The 'platform_logs' attribute is missing en la instancia de Activity Tracker.
 CxPolicy[result] {
     tracker := input.document[i].resource.ibm_resource_instance[tracker_name]
     tracker.service == "activity-tracker"
@@ -38,7 +38,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: El atributo 'platform_logs' está explícitamente configurado como 'false'.
+# RULE 3: The attribute 'platform_logs' está explícitamente configurado como 'false'.
 CxPolicy[result] {
     tracker := input.document[i].resource.ibm_resource_instance[tracker_name]
     tracker.service == "activity-tracker"
