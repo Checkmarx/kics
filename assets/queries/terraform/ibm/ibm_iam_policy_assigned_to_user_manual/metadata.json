@@ -8,6 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "d08b8443",
   "cloudProvider": "ibm",
-  "cwe": "CWE-284",
+  "cwe": "284",
   "riskScore": 0.0
 }
