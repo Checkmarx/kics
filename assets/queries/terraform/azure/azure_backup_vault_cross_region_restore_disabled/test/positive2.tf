@@ -4,6 +4,6 @@ resource "azurerm_data_protection_backup_vault" "fail_explicit" {
   location                     = "West Europe"
   datastore_type               = "VaultStore"
   redundancy                   = "GeoRedundant"
-  
-  cross_region_restore_enabled = false # FALLO
+
+  cross_region_restore_enabled = false # FAIL
 }
