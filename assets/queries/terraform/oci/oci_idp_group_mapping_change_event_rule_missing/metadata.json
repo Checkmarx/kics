@@ -1,6 +1,6 @@
 {
   "id": "1f106aa1-a994-4a11-afbc-109f31947d6a",
-  "queryName": "Event Rule for IdP Group Mapping Changes is Missing",
+  "queryName": "Beta - Event Rule for IdP Group Mapping Changes is Missing",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on changes to Identity Provider (IdP) group mappings. Auditing these changes is vital for detecting unauthorized modifications to user group permissions.",
@@ -9,5 +9,6 @@
   "descriptionID": "1f106aa1",
   "cloudProvider": "oci",
   "cwe": "778",
-  "riskScore": 3.0
+  "riskScore": 3.0,
+  "experimental": "true"
 }
