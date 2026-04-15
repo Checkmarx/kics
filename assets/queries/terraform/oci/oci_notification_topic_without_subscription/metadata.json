@@ -1,6 +1,6 @@
 {
   "id": "8e61709a-7ba2-4d51-a8ef-796a45e7c82c",
-  "queryName": "Notification Topic Without Subscription",
+  "queryName": "Beta - Notification Topic Without Subscription",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Ensures that OCI notification topics have at least one active subscription to deliver alerts. A topic without a subscription receives messages but does not send them to any destination, rendering monitoring alerts ineffective.",
@@ -9,5 +9,6 @@
   "descriptionID": "8e61709a",
   "cloudProvider": "oci",
   "cwe": "778",
-  "riskScore": 3.0
+  "riskScore": 3.0,
+  "experimental": "true"
 }
