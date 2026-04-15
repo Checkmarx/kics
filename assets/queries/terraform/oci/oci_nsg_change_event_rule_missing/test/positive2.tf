@@ -7,7 +7,7 @@ resource "oci_events_rule" "incomplete_nsg_rule" {
   compartment_id = "ocid1.tenancy..."
   is_enabled     = true
 
-  # FALLO: Falta "deletenetworksecuritygroup"
+  # FAIL: Missing "deletenetworksecuritygroup"
   condition = jsonencode({
     "eventType": [
       "com.oraclecloud.virtualnetwork.createnetworksecuritygroup",
