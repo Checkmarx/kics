@@ -4,7 +4,7 @@ provider "oci" {
 
 resource "oci_events_rule" "disabled_rule" {
   display_name = "DisabledRule"
-  # FALLO: Deshabilitada
+  # FAIL: Deshabilitada
   is_enabled   = false
   
   condition = <<EOT
