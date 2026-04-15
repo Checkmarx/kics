@@ -1,6 +1,6 @@
 package Cx
 
-# REGLA 1: No existe ningún recurso 'oci_cloud_guard_configuration'.
+# RULE 1: Does not exist ningún resource 'oci_cloud_guard_configuration'.
 CxPolicy[result] {
 	doc := input.document[i]
 	_ := doc.provider.oci
@@ -21,7 +21,7 @@ CxPolicy[result] {
 	}
 }
 
-# REGLA 2: Cloud Guard existe, pero su 'status' no es 'ENABLED'.
+# RULE 2: Cloud Guard Exists, but su 'status' no es 'ENABLED'.
 CxPolicy[result] {
 	cg := input.document[i].resource.oci_cloud_guard_configuration[cg_name]
 
@@ -36,7 +36,7 @@ CxPolicy[result] {
 	}
 }
 
-# REGLA 3: Cloud Guard existe y está habilitado, pero no en el compartimento raíz.
+# RULE 3: Cloud Guard Exists y is enabled, but no en el compartimento raíz.
 CxPolicy[result] {
 	cg := input.document[i].resource.oci_cloud_guard_configuration[cg_name]
 
