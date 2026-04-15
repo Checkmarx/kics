@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # REGLA 1: El bloque 'rotation_policy' está completamente ausente.
 CxPolicy[result] {
     key := input.document[i].resource.ibm_kms_key[key_name]
@@ -9,6 +11,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.ibm_kms_key.%s", [key_name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_kms_key", key_name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'rotation_policy' block should be present and configured",
         "keyActualValue": "'rotation_policy' block is missing",
@@ -25,6 +28,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.ibm_kms_key.%s.rotation_policy", [key_name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_kms_key", key_name, "rotation_policy"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'rotation_interval_month' should be defined within the rotation policy",
         "keyActualValue": "'rotation_interval_month' is missing",
@@ -40,6 +44,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.ibm_kms_key.%s.rotation_policy.rotation_interval_month", [key_name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_kms_key", key_name, "rotation_policy", "rotation_interval_month"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'rotation_interval_month' should be a value between 1 and 12",
         "keyActualValue": "'rotation_interval_month' is set to 0, disabling rotation",
