@@ -2,8 +2,8 @@ package Cx
 
 import data.generic.common as common_lib
 
-# REGLA 1: El atributo 'versioning' está ausente en el bucket.
-# Por defecto, si no se especifica, el versionado está deshabilitado.
+# RULE 1: The 'versioning' attribute is missing en el bucket.
+# Por defecto, si no se especifica, el versionado is disabled.
 CxPolicy[result] {
     bucket := input.document[i].resource.oci_objectstorage_bucket[bucket_name]
 
@@ -19,7 +19,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El atributo 'versioning' existe pero no es 'Enabled'.
+# RULE 2: The attribute 'versioning' Exists but no es 'Enabled'.
 # Puede ser 'Disabled' o 'Suspended'.
 CxPolicy[result] {
     bucket := input.document[i].resource.oci_objectstorage_bucket[bucket_name]
