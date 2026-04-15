@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "App Service HTTP Logs Disabled",
+    "queryName": "Beta - App Service HTTP Logs Disabled",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "App Service HTTP Logs Disabled",
+    "queryName": "Beta - App Service HTTP Logs Disabled",
     "severity": "MEDIUM",
     "line": 7,
     "fileName": "positive2.tf"
