@@ -7,6 +7,6 @@ resource "oci_objectstorage_bucket" "bucket_suspended_versioning" {
   namespace      = "my-namespace"
   name           = "bucket-suspended"
   
-  # FALLO: Está suspendido
+  # FAIL: Está suspendido
   versioning = "Suspended"
 }
