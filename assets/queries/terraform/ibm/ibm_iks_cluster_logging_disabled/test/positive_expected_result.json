@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "IKS Cluster Logging Disabled",
+    "queryName": "Beta - IKS Cluster Logging Disabled",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
