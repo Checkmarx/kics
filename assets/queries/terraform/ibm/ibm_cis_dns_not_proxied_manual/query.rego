@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# CASO 1: El atributo 'proxied' está explícitamente en false.
+# CASE 1: The attribute 'proxied' está explícitamente en false.
 CxPolicy[result] {
     doc := input.document[i]
     record := doc.resource.ibm_cis_dns_record[name]
@@ -19,7 +19,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: El atributo 'proxied' falta (por defecto es false).
+# CASE 2: The attribute 'proxied' Missing (por defecto es false).
 CxPolicy[result] {
     doc := input.document[i]
     record := doc.resource.ibm_cis_dns_record[name]
