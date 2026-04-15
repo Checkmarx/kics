@@ -16,6 +16,7 @@ CxPolicy[result] {
         "resourceType": "azurerm_elastic_san_volume_group",
         "resourceName": tf_lib.get_resource_name(vg, name),
         "searchKey": sprintf("azurerm_elastic_san_volume_group[%s]", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "azurerm_elastic_san_volume_group", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'azurerm_elastic_san_volume_group.%s' should have a 'network_rule' block to restrict public access", [name]),
         "keyActualValue": sprintf("'azurerm_elastic_san_volume_group.%s' is missing the 'network_rule' block", [name]),
