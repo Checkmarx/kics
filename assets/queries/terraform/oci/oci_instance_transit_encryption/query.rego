@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 ensure_array(x) = x { is_array(x) }
 ensure_array(x) = [x] { is_object(x) }
 
-# CASO 1: El bloque launch_options existe, pero la opción está explícitamente en FALSE.
+# CASE 1: The block launch_options Exists, but la opción está explícitamente en FALSE.
 CxPolicy[result] {
     doc := input.document[i]
     instance := doc.resource.oci_core_instance[name]
@@ -25,7 +25,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: El bloque launch_options existe, pero FALTA el atributo (default es false/inseguro).
+# CASE 2: The block launch_options Exists, but Missing The attribute (default es false/inseguro).
 CxPolicy[result] {
     doc := input.document[i]
     instance := doc.resource.oci_core_instance[name]
@@ -45,7 +45,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 3: FALTA el bloque launch_options completo.
+# CASE 3: Missing The block launch_options completo.
 CxPolicy[result] {
     doc := input.document[i]
     instance := doc.resource.oci_core_instance[name]
