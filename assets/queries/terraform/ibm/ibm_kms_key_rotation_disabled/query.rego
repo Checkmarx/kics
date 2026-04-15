@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# REGLA 1: El bloque 'rotation_policy' está completamente ausente.
+# RULE 1: The 'rotation_policy' block is completely missing.
 CxPolicy[result] {
     key := input.document[i].resource.ibm_kms_key[key_name]
 
@@ -18,7 +18,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El bloque 'rotation_policy' existe, pero le falta 'rotation_interval_month'.
+# RULE 2: The block 'rotation_policy' Exists, but le Missing 'rotation_interval_month'.
 CxPolicy[result] {
     key := input.document[i].resource.ibm_kms_key[key_name]
 
@@ -35,7 +35,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: 'rotation_interval_month' está explícitamente configurado como 0.
+# RULE 3: 'rotation_interval_month' está explícitamente configurado como 0.
 CxPolicy[result] {
     key := input.document[i].resource.ibm_kms_key[key_name]
     
