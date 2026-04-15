@@ -14,6 +14,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": "provider.oci",
+		"searchLine": common_lib.build_search_line(["provider", "oci"], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Resource 'oci_cloud_guard_configuration' should exist to enable Cloud Guard",
 		"keyActualValue": "Resource 'oci_cloud_guard_configuration' is missing",
