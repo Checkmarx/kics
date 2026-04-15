@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/elastic_san_volume_group#encryption_type",
   "platform": "Terraform",
   "cloudProvider": "azure",
-  "cwe": "CWE-326",
+  "cwe": "326",
   "descriptionID": "3b101ad5",
   "riskScore": "5.0"
 }
