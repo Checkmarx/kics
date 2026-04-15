@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 ensure_array(x) = x { is_array(x) }
