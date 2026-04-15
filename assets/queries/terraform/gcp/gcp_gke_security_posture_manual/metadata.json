@@ -1,6 +1,6 @@
 {
   "id": "0d688e9b-79a1-4adb-8893-4cae93442ffd",
-  "queryName": "GKE Security Posture Disabled (Manual)",
+  "queryName": "Beta - GKE Security Posture Disabled (Manual)",
   "severity": "INFO",
   "category": "Observability",
   "descriptionText": "GKE Security Posture Dashboard provides visibility into the security status of the cluster. It is not explicitly enabled. Verify if the cluster version supports 'security_posture_config' with mode 'BASIC' or 'ENTERPRISE'.",
@@ -9,5 +9,6 @@
   "descriptionID": "0d688e9b",
   "cloudProvider": "gcp",
   "cwe": "1038",
-  "riskScore": "0.0"
+  "riskScore": "0.0",
+  "experimental": "true"
 }
