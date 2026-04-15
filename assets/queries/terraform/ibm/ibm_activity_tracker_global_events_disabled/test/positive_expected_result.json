@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Activity Tracker for Global Events Disabled",
+    "queryName": "Beta - Activity Tracker for Global Events Disabled",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "Activity Tracker for Global Events Disabled",
+    "queryName": "Beta - Activity Tracker for Global Events Disabled",
     "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive2.tf"
