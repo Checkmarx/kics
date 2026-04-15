@@ -7,5 +7,5 @@ resource "oci_objectstorage_bucket" "bucket_missing_versioning" {
   namespace      = "my-namespace"
   name           = "bucket-no-ver"
   access_type    = "NoPublicAccess"
-  # FALLO: Falta el atributo versioning
+  # FAIL: Missing The attribute versioning
 }
