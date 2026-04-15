@@ -11,7 +11,7 @@ resource "ibm_container_cluster" "secure_cluster" {
   private_vlan_id = "456"
 }
 
-# CORRECTO: Se define la notificación para el VA
+# PASS: Se define la notificación para el VA
 resource "ibm_container_va_notification" "alerts" {
   cluster_id = ibm_container_cluster.secure_cluster.id
   email      = "admin@example.com"
