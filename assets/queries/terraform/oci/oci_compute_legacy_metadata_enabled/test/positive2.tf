@@ -4,7 +4,7 @@ resource "oci_core_instance" "positive2" {
   shape               = "VM.Standard2.1"
 
   agent_config {
-    # FALLO: Falta atributo (Caso 2)
+    # FAIL: Missing atributo (Caso 2)
     is_monitoring_disabled = false
   }
 }
