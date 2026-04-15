@@ -7,7 +7,7 @@ resource "oci_logging_log" "wrong_service_log" {
   configuration {
     source {
       resource = "ocid1.subnet.oc1..aaaa"
-      # FALLO: Debería ser flowlogs
+      # FAIL: Debería ser flowlogs
       service  = "wronglogs"
     }
   }
