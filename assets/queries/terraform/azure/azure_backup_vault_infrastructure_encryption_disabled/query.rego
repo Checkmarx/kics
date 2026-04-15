@@ -15,6 +15,7 @@ CxPolicy[result] {
         "resourceType": "azurerm_data_protection_backup_vault",
         "resourceName": tf_lib.get_resource_name(vault, name),
         "searchKey": sprintf("azurerm_data_protection_backup_vault[%s]", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "azurerm_data_protection_backup_vault", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'azurerm_data_protection_backup_vault.%s' should have an 'identity' block to support advanced encryption", [name]),
         "keyActualValue": sprintf("'azurerm_data_protection_backup_vault.%s' is missing the 'identity' block", [name]),
