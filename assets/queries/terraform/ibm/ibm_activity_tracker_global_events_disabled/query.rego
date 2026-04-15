@@ -1,6 +1,8 @@
 package Cx
 
-# RULE 1: Does not exist ningún resource 'ibm_resource_instance' para 'activity-tracker'.
+import data.generic.common as common_lib
+
+# RULE 1: No ibm_resource_instance for activity-tracker exists in the configuration.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.ibm
@@ -22,7 +24,7 @@ CxPolicy[result] {
     }
 }
 
-# RULE 2: Una instancia de 'activity-tracker' está en una región incorrecta para events globales.
+# RULE 2: An activity-tracker instance is in a region that does not support global events.
 CxPolicy[result] {
     global_event_regions := {"eu-de", "eu-gb", "us-south", "au-syd"}
 
@@ -34,6 +36,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.ibm_resource_instance.%s.location", [tracker_name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_resource_instance", tracker_name, "location"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "Activity Tracker 'location' should be a global event region (e.g., 'eu-de', 'us-south')",
         "keyActualValue": sprintf("Activity Tracker 'location' is '%s', which is not a global event region", [tracker.location]),
