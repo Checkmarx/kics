@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # CASO 1: Restricciones de IP no configuradas (Atributo ausente).
 CxPolicy[result] {
     doc := input.document[i]
@@ -10,6 +12,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_iam_account_settings.%s", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_iam_account_settings", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'allowed_ip_addresses' should be defined with a list of trusted IPs",
         "keyActualValue": "'allowed_ip_addresses' is missing (access allowed from anywhere)",
@@ -27,6 +30,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_iam_account_settings.%s.allowed_ip_addresses", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_iam_account_settings", name, "allowed_ip_addresses"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'allowed_ip_addresses' should contain at least one trusted IP/Subnet",
         "keyActualValue": "'allowed_ip_addresses' is empty",
