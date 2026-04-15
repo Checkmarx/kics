@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-# CASO 1: No hay restricciones definidas.
+# CASE 1: No hay restricciones definidas.
 CxPolicy[result] {
     doc := input.document[i]
     key := doc.resource.google_apikeys_key[name]
@@ -22,7 +22,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: Hay restricciones definidas.
+# CASE 2: Hay restricciones definidas.
 CxPolicy[result] {
     doc := input.document[i]
     key := doc.resource.google_apikeys_key[name]
