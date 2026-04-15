@@ -1,6 +1,6 @@
 package Cx
 
-# REGLA 1: El recurso 'ibm_iam_account_settings' no existe en la configuración.
+# RULE 1: El resource 'ibm_iam_account_settings' Does not exist en la configuración.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.ibm
@@ -21,7 +21,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El atributo 'mfa' está ausente dentro del recurso.
+# RULE 2: The 'mfa' attribute is missing within the resource.
 CxPolicy[result] {
     settings := input.document[i].resource.ibm_iam_account_settings[settings_name]
     object.get(settings, "mfa", null) == null
@@ -35,7 +35,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: El atributo 'mfa' tiene un valor inseguro ('NONE' o 'LEVEL1').
+# RULE 3: The attribute 'mfa' tiene un valor inseguro ('NONE' o 'LEVEL1').
 CxPolicy[result] {
     settings := input.document[i].resource.ibm_iam_account_settings[settings_name]
     insecure_mfa_levels := {"NONE", "LEVEL1"}
