@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/iot_security_solution",
   "platform": "Terraform",
   "cloudProvider": "azure",
-  "cwe": "CWE-693",
+  "cwe": "693",
   "descriptionID": "13be738b",
   "riskScore": "5.0"
 }
