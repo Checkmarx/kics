@@ -3,6 +3,6 @@ resource "ibm_cm_certificate" "cert_compliant" {
   name        = "cert-compliant"
   label       = "secure"
   
-  # CORRECTO
+  # PASS
   auto_renew_enabled = true
 }
