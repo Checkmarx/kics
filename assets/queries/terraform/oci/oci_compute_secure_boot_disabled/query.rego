@@ -11,6 +11,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.oci_core_instance.%s", [instance_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_core_instance", instance_name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'platform_config' block should be defined with 'is_secure_boot_enabled' set to true",
         "keyActualValue": "'platform_config' block is missing",
@@ -27,6 +28,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.oci_core_instance.%s.platform_config", [instance_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_core_instance", instance_name, "platform_config"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'is_secure_boot_enabled' should be present inside 'platform_config' and set to 'true'",
         "keyActualValue": "'is_secure_boot_enabled' is missing inside 'platform_config'",
@@ -42,6 +44,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.oci_core_instance.%s.platform_config.is_secure_boot_enabled", [instance_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_core_instance", instance_name, "platform_config", "is_secure_boot_enabled"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'is_secure_boot_enabled' attribute should be 'true'",
         "keyActualValue": "'is_secure_boot_enabled' attribute is 'false'",
