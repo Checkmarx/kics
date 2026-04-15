@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# REGLA: Detectar instancias de LogDNA que no tienen un recurso de archivado asociado.
+# REGLA: Detectar instancias de LogDNA que no tienen un resource de archivado asociado.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.resource.ibm_logdna_instance[instance_name]
