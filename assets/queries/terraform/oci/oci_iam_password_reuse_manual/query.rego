@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# CASO 1: Identity Domains - Historial insuficiente (< 24).
+# CASE 1: Identity Domains - Historial insuficiente (< 24).
 CxPolicy[result] {
     doc := input.document[i]
     policy := doc.resource.oci_identity_domains_password_policy[name]
@@ -19,7 +19,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: Identity Domains - Atributo faltante.
+# CASE 2: Identity Domains - Atributo faltante.
 CxPolicy[result] {
     doc := input.document[i]
     policy := doc.resource.oci_identity_domains_password_policy[name]
@@ -36,7 +36,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 3: IAM Clásico (Legacy) - Manual.
+# CASE 3: IAM Clásico (Legacy) - Manual.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.resource.oci_identity_authentication_policy[name]
