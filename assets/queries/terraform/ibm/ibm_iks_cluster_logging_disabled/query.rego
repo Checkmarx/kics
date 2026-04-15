@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.resource.ibm_container_cluster[cluster_name]
@@ -14,6 +16,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_container_cluster.%s", [cluster_name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_container_cluster", cluster_name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "ibm_container_cluster should have an associated ibm_ob_logging_config resource",
         "keyActualValue": "ibm_container_cluster does not have an associated ibm_ob_logging_config resource",
