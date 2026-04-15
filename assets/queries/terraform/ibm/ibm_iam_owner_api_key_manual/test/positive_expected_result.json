@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "IBM Owner Account API Key (Manual)",
+    "queryName": "Beta - IBM Owner Account API Key (Manual)",
     "severity": "INFO",
     "line": 1,
     "fileName": "positive1.tf"
