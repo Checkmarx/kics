@@ -8,6 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "3e784705",
   "cloudProvider": "oci",
-  "cwe": "CWE-16",
+  "cwe": "16",
   "riskScore": 6.0
 }
