@@ -1,9 +1,9 @@
 {
   "id": "f7bf03d5-ae0e-4b36-aab3-f8d2346a8843",
-  "queryName": "Beta - Backup Vault Infrastructure Encryption Disabled",
+  "queryName": "Beta - Backup Vault Managed Identity Not Configured",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "Ensures that Azure Backup Vaults have a managed identity configured. A managed identity is required to support advanced encryption features including customer-managed keys (CMK) and infrastructure encryption.",
+  "descriptionText": "Ensures that Azure Backup Vaults have a managed identity configured. The 'identity' block is required to enable Customer-Managed Keys (CMK) for vault encryption. Without it, the vault relies solely on Microsoft-managed platform encryption, removing customer control over key lifecycle and rotation.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/data_protection_backup_vault#identity",
   "platform": "Terraform",
   "descriptionID": "f7bf03d5",
