@@ -4,6 +4,6 @@ resource "ibm_kms_key" "key_empty_policy" {
   standard_key = false
   
   rotation_policy {
-    # Falta rotation_interval_month
+    # Missing rotation_interval_month
   }
 }
