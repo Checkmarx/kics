@@ -5,6 +5,6 @@ resource "ibm_cis_dns_record" "dns_record_false" {
   type      = "A"
   content   = "192.168.1.1"
   
-  # FALLO: Deshabilitado explícitamente
+  # FAIL: Deshabilitado explícitamente
   proxied = false
 }
