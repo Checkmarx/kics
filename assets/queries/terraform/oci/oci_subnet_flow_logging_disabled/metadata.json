@@ -4,7 +4,7 @@
   "severity": "HIGH",
   "category": "Observability",
   "descriptionText": "VCN Subnet should have flow logging enabled to monitor traffic, as per CIS v3.0.0 recommendation 4.13.",
-  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_subnet",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/logging_log",
   "platform": "Terraform",
   "descriptionID": "30d3bb83",
   "cloudProvider": "oci",
