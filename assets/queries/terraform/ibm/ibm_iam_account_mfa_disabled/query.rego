@@ -14,6 +14,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": "provider.ibm",
+        "searchLine": common_lib.build_search_line(["provider", "ibm"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "Resource 'ibm_iam_account_settings' should exist to enforce MFA",
         "keyActualValue": "Resource 'ibm_iam_account_settings' is missing in this IBM configuration",
