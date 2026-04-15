@@ -44,6 +44,7 @@ CxPolicy[result] {
         "resourceType": resource_type,
         "resourceName": tf_lib.get_resource_name(resource_instance, name),
         "searchKey": sprintf("%s[%s]", [resource_type, name]),
+        "searchLine": common_lib.build_search_line(["resource", resource_type, name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'%s.%s' should be linked to an 'azurerm_private_endpoint'", [resource_type, name]),
         "keyActualValue": sprintf("'%s.%s' is not linked to any 'azurerm_private_endpoint' in this file", [resource_type, name]),
