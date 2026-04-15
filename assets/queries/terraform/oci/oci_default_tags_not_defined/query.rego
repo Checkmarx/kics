@@ -13,6 +13,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": "provider.oci",
+        "searchLine": common_lib.build_search_line(["provider", "oci"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "At least one 'oci_identity_tag_default' resource should exist to define a default tagging policy",
         "keyActualValue": "No 'oci_identity_tag_default' resource was found in the configuration",
