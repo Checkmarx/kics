@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Critical Data Storage CMK (Manual)",
+    "queryName": "Beta - Critical Data Storage CMK (Manual)",
     "severity": "INFO",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "Critical Data Storage CMK (Manual)",
+    "queryName": "Beta - Critical Data Storage CMK (Manual)",
     "severity": "INFO",
     "line": 8,
     "fileName": "positive2.tf"
