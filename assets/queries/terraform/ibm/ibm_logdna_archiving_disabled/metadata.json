@@ -1,6 +1,6 @@
 {
   "id": "54c5b041-1902-4e19-b414-5473f1b349d2",
-  "queryName": "LogDNA Archiving Is Disabled",
+  "queryName": "Beta - LogDNA Archiving Is Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Ensures that every IBM LogDNA instance has archiving configured through an 'ibm_logdna_archive' resource. Archiving is critical for long-term log retention, compliance, and forensic analysis.",
@@ -9,5 +9,6 @@
   "descriptionID": "54c5b041",
   "cloudProvider": "ibm",
   "cwe": "223",
-  "riskScore": 5.0
+  "riskScore": 5.0,
+  "experimental": "true"
 }
