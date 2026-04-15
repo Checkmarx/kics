@@ -1,6 +1,6 @@
 package Cx
 
-# REGLA 1: No existe ningún recurso 'ibm_resource_instance' para 'activity-tracker'.
+# RULE 1: Does not exist ningún resource 'ibm_resource_instance' para 'activity-tracker'.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.ibm
@@ -22,7 +22,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Una instancia de 'activity-tracker' está en una región incorrecta para eventos globales.
+# RULE 2: Una instancia de 'activity-tracker' está en una región incorrecta para events globales.
 CxPolicy[result] {
     global_event_regions := {"eu-de", "eu-gb", "us-south", "au-syd"}
 
