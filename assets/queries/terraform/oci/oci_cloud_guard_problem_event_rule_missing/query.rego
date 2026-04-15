@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.oci
