@@ -1,6 +1,8 @@
 package Cx
 
-# RULE 1: El resource 'ibm_iam_account_settings' Does not exist en la configuración.
+import data.generic.common as common_lib
+
+# RULE 1: No ibm_iam_account_settings resource exists in the configuration.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.ibm
@@ -21,7 +23,7 @@ CxPolicy[result] {
     }
 }
 
-# RULE 2: The 'mfa' attribute is missing within the resource.
+# RULE 2: The 'mfa' attribute is missing from the resource.
 CxPolicy[result] {
     settings := input.document[i].resource.ibm_iam_account_settings[settings_name]
     object.get(settings, "mfa", null) == null
@@ -29,13 +31,14 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.ibm_iam_account_settings.%s", [settings_name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_iam_account_settings", settings_name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'mfa' attribute should be present and set to 'LEVEL2' or 'LEVEL3'",
         "keyActualValue": "'mfa' attribute is missing",
     }
 }
 
-# RULE 3: The attribute 'mfa' tiene un valor inseguro ('NONE' o 'LEVEL1').
+# RULE 3: The 'mfa' attribute is set to an insecure value ('NONE' or 'LEVEL1').
 CxPolicy[result] {
     settings := input.document[i].resource.ibm_iam_account_settings[settings_name]
     insecure_mfa_levels := {"NONE", "LEVEL1"}
@@ -44,6 +47,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.ibm_iam_account_settings.%s.mfa", [settings_name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_iam_account_settings", settings_name, "mfa"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'mfa' attribute should be 'LEVEL2' or 'LEVEL3'",
         "keyActualValue": sprintf("'mfa' attribute is set to '%s'", [settings.mfa]),
