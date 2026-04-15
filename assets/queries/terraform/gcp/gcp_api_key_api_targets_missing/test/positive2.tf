@@ -6,6 +6,6 @@ resource "google_apikeys_key" "key_no_targets" {
     server_key_restrictions {
       allowed_ips = ["1.2.3.4"]
     }
-    # FALLO: Falta el bloque api_targets
+    # FAIL: Missing The block api_targets
   }
 }
