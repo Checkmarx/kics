@@ -1,24 +1,25 @@
 package Cx
 
+import data.generic.common as common_lib
+
 expected_event_types := [
     "com.oraclecloud.virtualnetwork.createroutetable",
     "com.oraclecloud.virtualnetwork.updateroutetable",
     "com.oraclecloud.virtualnetwork.deleteroutetable"
 ]
 
-# RULE 1: Missing (Global)
-# No rule exists in the project monitoring Route Tables.
+# RULE 1: No rule exists in the project monitoring Route Table change events.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.oci
 
-    any_rt_rule := [rule |
+    any_rule := [rule |
         rule := input.document[_].resource.oci_events_rule[_]
         event := expected_event_types[_]
         contains(rule.condition, event)
     ]
 
-    count(any_rt_rule) == 0
+    count(any_rule) == 0
 
     result := {
         "documentId": doc.id,
@@ -30,16 +31,15 @@ CxPolicy[result] {
     }
 }
 
-# RULE 2: Incomplete (Local)
-# The rule Exists, but is missing events (ej: tiene create but Missing update).
+# RULE 2: A rule exists but is missing some of the required events.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
-    matches := [event | 
+    matches := [event |
         event := expected_event_types[_]
         contains(rule.condition, event)
     ]
-    
+
     count(matches) > 0
     count(matches) < count(expected_event_types)
 
@@ -48,18 +48,18 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.oci_events_rule.%s.condition", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_events_rule", name, "condition"], []),
         "issueType": "IncorrectValue",
-        "keyExpectedValue": "The rule condition should include all 3 Route Table events (create, update, delete)",
+        "keyExpectedValue": "The rule condition should include all required Route Table events",
         "keyActualValue": sprintf("The rule is missing %d Route Table event(s)", [missing_count]),
     }
 }
 
-# RULE 3: Disabled (Local)
-# The rule es relevante (Route Table) but está apagada.
+# RULE 3: A relevant rule exists but is disabled.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
-    matches := [event | 
+    matches := [event |
         event := expected_event_types[_]
         contains(rule.condition, event)
     ]
@@ -70,6 +70,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.oci_events_rule.%s.is_enabled", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_events_rule", name, "is_enabled"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'is_enabled' should be true",
         "keyActualValue": "'is_enabled' is false",
