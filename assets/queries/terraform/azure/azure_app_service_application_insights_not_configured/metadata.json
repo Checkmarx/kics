@@ -4,7 +4,7 @@
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Ensures that Azure App Services and Function Apps are linked to Application Insights for performance monitoring and error tracking.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_web_app#app_settings",
+  "descriptionUrl": "https://learn.microsoft.com/en-us/azure/azure-functions/configure-monitoring?tabs=v2#enable-application-insights-integration",
   "platform": "Terraform",
   "descriptionID": "721c26ff",
   "cloudProvider": "azure",
