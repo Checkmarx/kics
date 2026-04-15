@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "LogDNA Archiving Is Disabled",
+    "queryName": "Beta - LogDNA Archiving Is Disabled",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
