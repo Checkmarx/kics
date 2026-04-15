@@ -7,7 +7,7 @@
   "descriptionUrl": "https://learn.microsoft.com/en-us/azure/mysql/single-server/concepts-audit-logs",
   "platform": "Terraform",
   "cloudProvider": "azure",
-  "cwe": "CWE-778",
+  "cwe": "778",
   "descriptionID": "8d8ac482",
   "riskScore": "0.0"
 }
