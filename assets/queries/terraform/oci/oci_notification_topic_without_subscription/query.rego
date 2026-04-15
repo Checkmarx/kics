@@ -1,7 +1,8 @@
 package Cx
 
-# RULE 1: Missing (Global)
-# Does not exist ningún resource 'oci_ons_notification_topic' en todo el documento.
+import data.generic.common as common_lib
+
+# RULE 1: No oci_ons_notification_topic resource exists in the configuration.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.oci
@@ -22,8 +23,7 @@ CxPolicy[result] {
     }
 }
 
-# RULE 2: Orphan Topic (Local)
-# Exists un tópico, but NO suscripción apunta a él.
+# RULE 2: A notification topic exists but has no subscription pointing to it.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.resource.oci_ons_notification_topic[topic_name]
@@ -38,6 +38,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_ons_notification_topic.%s", [topic_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_ons_notification_topic", topic_name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'oci_ons_notification_topic' should have at least one associated 'oci_ons_subscription'",
         "keyActualValue": "'oci_ons_notification_topic' has no subscriptions",
