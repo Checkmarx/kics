@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # REGLA 1: No existe ningún log asociado a la subred (Missing)
 CxPolicy[result] {
     doc := input.document[i]
@@ -14,6 +16,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_core_subnet.%s", [subnet_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_core_subnet", subnet_name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "Subnet to have an associated VCN flow log",
         "keyActualValue": "Subnet does not have an associated VCN flow log",
@@ -32,6 +35,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_logging_log.%s.is_enabled", [log_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_logging_log", log_name, "is_enabled"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'is_enabled' should be 'true'",
         "keyActualValue": "'is_enabled' is 'false'",
@@ -49,6 +53,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_logging_log.%s.log_type", [log_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_logging_log", log_name, "log_type"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'log_type' should be 'SERVICE'",
         "keyActualValue": sprintf("'log_type' is '%s'", [log.log_type]),
@@ -66,6 +71,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_logging_log.%s.configuration.source.service", [log_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_logging_log", log_name, "configuration", "source", "service"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'service' should be 'flowlogs'",
         "keyActualValue": sprintf("'service' is '%s'", [object.get(log.configuration.source, "service", "undefined")]),
