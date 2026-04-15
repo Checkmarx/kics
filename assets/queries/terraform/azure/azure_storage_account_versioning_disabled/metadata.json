@@ -1,6 +1,6 @@
 {
   "id": "0f437572-8be4-4e05-9f76-dd266d7ad90b",
-  "queryName": "Storage Account Blob Versioning Disabled",
+  "queryName": "Beta - Storage Account Blob Versioning Disabled",
   "severity": "MEDIUM",
   "category": "Backup",
   "descriptionText": "Ensures that 'Versioning' is enabled for Azure Storage Account Blob services. Blob versioning enables automatic retention of previous versions of an object.",
@@ -9,5 +9,6 @@
   "cloudProvider": "azure",
   "cwe": "226",
   "descriptionID": "0f437572",
-  "riskScore": "5.0"
+  "riskScore": "5.0",
+  "experimental": "true"
 }
