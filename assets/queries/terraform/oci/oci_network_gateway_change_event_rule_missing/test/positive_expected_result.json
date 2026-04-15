@@ -1,18 +1,18 @@
 [
   {
-    "queryName": "Event Rule for Network Gateway Changes is Missing",
+    "queryName": "Beta - Event Rule for Network Gateway Changes is Missing",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "Event Rule for Network Gateway Changes is Missing",
+    "queryName": "Beta - Event Rule for Network Gateway Changes is Missing",
     "severity": "MEDIUM",
     "line": 11,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "Event Rule for Network Gateway Changes is Missing",
+    "queryName": "Beta - Event Rule for Network Gateway Changes is Missing",
     "severity": "MEDIUM",
     "line": 37,
     "fileName": "positive3.tf"
