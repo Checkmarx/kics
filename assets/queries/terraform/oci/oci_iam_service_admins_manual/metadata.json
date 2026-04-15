@@ -1,6 +1,6 @@
 {
   "id": "0401f017-91ee-4019-842a-f940d08b22aa",
-  "queryName": "OCI Service Level Admins (Manual)",
+  "queryName": "Beta - OCI Service Level Admins (Manual)",
   "severity": "INFO",
   "category": "Identity and Access Management",
   "descriptionText": "CIS controls recommend creating specific Service Level Administrators (e.g., Network Admin, Storage Admin) rather than relying solely on the default Tenancy Administrator. Review this policy to ensure it delegates 'manage' permissions for specific resource families to appropriate groups, implementing Least Privilege.",
@@ -9,5 +9,6 @@
   "cloudProvider": "oci",
   "cwe": "276",
   "descriptionID": "0401f017",
-  "riskScore": 0.0
+  "riskScore": 0.0,
+  "experimental": "true"
 }
