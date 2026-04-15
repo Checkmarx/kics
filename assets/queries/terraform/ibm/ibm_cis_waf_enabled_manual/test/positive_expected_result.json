@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "IBM CIS WAF Not Enabled (Manual)",
+    "queryName": "Beta - IBM CIS WAF Not Enabled (Manual)",
     "severity": "INFO",
     "line": 6,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "IBM CIS WAF Not Enabled (Manual)",
+    "queryName": "Beta - IBM CIS WAF Not Enabled (Manual)",
     "severity": "INFO",
     "line": 1,
     "fileName": "positive2.tf"
