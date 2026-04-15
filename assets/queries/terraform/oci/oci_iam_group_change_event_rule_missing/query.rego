@@ -24,6 +24,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": "provider.oci",
+        "searchLine": common_lib.build_search_line(["provider", "oci"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "An 'oci_events_rule' for IAM group changes should exist",
         "keyActualValue": "No 'oci_events_rule' found for IAM group changes",
