@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "App Engine HTTPS Enforcement (Manual)",
+    "queryName": "Beta - App Engine HTTPS Enforcement (Manual)",
     "severity": "INFO",
     "line": 6,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "App Engine HTTPS Enforcement (Manual)",
+    "queryName": "Beta - App Engine HTTPS Enforcement (Manual)",
     "severity": "INFO",
     "line": 1,
     "fileName": "positive2.tf"
