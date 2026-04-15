@@ -15,6 +15,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": "provider.ibm",
+        "searchLine": common_lib.build_search_line(["provider", "ibm"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "An 'ibm_resource_instance' with service='activity-tracker' should exist",
         "keyActualValue": "No 'ibm_resource_instance' for service 'activity-tracker' was found",
