@@ -1,6 +1,6 @@
 {
   "id": "20fcb3ef-4524-4d45-baa9-60b0eb229beb",
-  "queryName": "Critical Data Storage CMK (Manual)",
+  "queryName": "Beta - Critical Data Storage CMK (Manual)",
   "severity": "INFO",
   "category": "Encryption",
   "descriptionText": "Identifies Storage Accounts using default Platform-Managed Keys. If these accounts store business-critical or sensitive data, they must be encrypted using Customer-Managed Keys (CMK). Manual verification of data sensitivity is required.",
@@ -9,5 +9,6 @@
   "cloudProvider": "azure",
   "cwe": "312",
   "descriptionID": "20fcb3ef",
-  "riskScore": "0.0"
+  "riskScore": "0.0",
+  "experimental": "true"
 }
