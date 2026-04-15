@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock",
   "platform": "Terraform",
   "cloudProvider": "azure",
-  "cwe": "CWE-400",
+  "cwe": "400",
   "descriptionID": "3a716202",
   "riskScore": "2.0"
 }
