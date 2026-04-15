@@ -7,7 +7,7 @@ resource "oci_events_rule" "incomplete_gateway_rule" {
   compartment_id = "ocid1.tenancy..."
   is_enabled     = true
 
-  # FALLO: Solo tiene Internet Gateway, faltan los otros 12 eventos
+  # FAIL: Solo tiene Internet Gateway, faltan los otros 12 events
   condition = jsonencode({
     "eventType": [
       "com.oraclecloud.virtualnetwork.createinternetgateway",
