@@ -18,6 +18,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": "provider.oci",
+        "searchLine": common_lib.build_search_line(["provider", "oci"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "An 'oci_events_rule' for Identity Provider changes should exist",
         "keyActualValue": "No 'oci_events_rule' found for Identity Provider changes",
