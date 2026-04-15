@@ -2,8 +2,8 @@ package Cx
 
 import data.generic.common as common_lib
 
-# REGLA 1: El atributo 'object_events_enabled' está ausente (MissingAttribute).
-# Por defecto en OCI Terraform es false, así que su ausencia es un riesgo.
+# RULE 1: The 'object_events_enabled' attribute is missing (MissingAttribute).
+# Default in OCI Terraform is false, así que su ausencia es un riesgo.
 CxPolicy[result] {
     bucket := input.document[i].resource.oci_objectstorage_bucket[bucket_name]
 
@@ -19,7 +19,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El atributo 'object_events_enabled' está explícitamente en 'false' (IncorrectValue).
+# RULE 2: The attribute 'object_events_enabled' está explícitamente en 'false' (IncorrectValue).
 CxPolicy[result] {
     bucket := input.document[i].resource.oci_objectstorage_bucket[bucket_name]
 
