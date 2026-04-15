@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# CASO 1: Restricciones de IP no configuradas (Atributo ausente).
+# CASE 1: Restricciones de IP no configuradas (Atributo missing).
 CxPolicy[result] {
     doc := input.document[i]
     settings := doc.resource.ibm_iam_account_settings[name]
@@ -19,7 +19,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: Restricciones definidas pero lista vacía.
+# CASE 2: Restricciones definidas but lista vacía.
 CxPolicy[result] {
     doc := input.document[i]
     settings := doc.resource.ibm_iam_account_settings[name]
