@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # CASO 1: Identity Domains - Expiración (password_expires_after) > 365.
 CxPolicy[result] {
     doc := input.document[i]
@@ -10,6 +12,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_identity_domains_password_policy.%s.password_expires_after", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_identity_domains_password_policy", name, "password_expires_after"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'password_expires_after' should be <= 365",
         "keyActualValue": sprintf("'password_expires_after' is %d", [policy.password_expires_after]),
@@ -26,6 +29,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_identity_domains_password_policy.%s", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_identity_domains_password_policy", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'password_expires_after' should be defined (<= 365)",
         "keyActualValue": "'password_expires_after' is missing",
@@ -40,6 +44,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_identity_authentication_policy.%s", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_identity_authentication_policy", name], []),
         "issueType": "MissingAttribute", 
         "keyExpectedValue": "Password expiration should be enforced (<= 365 days)",
         "keyActualValue": "Legacy resource does not support password expiration config in Terraform. Manual console check required.",
