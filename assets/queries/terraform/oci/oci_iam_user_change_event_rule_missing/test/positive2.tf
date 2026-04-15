@@ -7,7 +7,7 @@ resource "oci_events_rule" "incomplete_user_rule" {
   compartment_id = "ocid1.tenancy..."
   is_enabled     = true
 
-  # FALLO: Faltan enableuser y disableuser
+  # FAIL: Faltan enableuser y disableuser
   condition = jsonencode({
     "eventType": [
       "com.oraclecloud.identity.createuser",
