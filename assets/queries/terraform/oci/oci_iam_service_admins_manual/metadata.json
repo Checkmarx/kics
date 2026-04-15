@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy",
   "platform": "Terraform",
   "cloudProvider": "oci",
-  "cwe": "CWE-276",
+  "cwe": "276",
   "descriptionID": "0401f017",
   "riskScore": 0.0
 }
