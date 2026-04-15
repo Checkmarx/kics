@@ -1,6 +1,6 @@
 {
   "id": "b7b0bc16-aedc-405e-a27e-cf159c200f1e",
-  "queryName": "Recovery Services Vault Cross Region Restore Disabled",
+  "queryName": "Beta - Recovery Services Vault Cross Region Restore Disabled",
   "severity": "MEDIUM",
   "category": "Backup",
   "descriptionText": "Ensures that 'Cross Region Restore' is enabled for Azure Recovery Services Vaults. This feature allows you to restore data in the secondary region, which is essential for business continuity during a primary region disaster.",
@@ -9,5 +9,6 @@
   "cloudProvider": "azure",
   "cwe": "668",
   "descriptionID": "b7b0bc16",
-  "riskScore": "5.0"
+  "riskScore": "5.0",
+  "experimental": "true"
 }
