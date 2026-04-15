@@ -6,6 +6,6 @@ resource "azurerm_storage_account" "fail_1" {
   account_replication_type = "LRS"
 
   queue_properties {
-    # Falta bloque logging
+    # Missing bloque logging
   }
 }
