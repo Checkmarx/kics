@@ -1,18 +1,18 @@
 [
   {
-    "queryName": "GCP Compute Logging Service Disabled",
+    "queryName": "Beta - GCP Compute Logging Service Disabled",
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "GCP Compute Logging Service Disabled",
+    "queryName": "Beta - GCP Compute Logging Service Disabled",
     "severity": "MEDIUM",
     "line": 3,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "GCP Compute Logging Service Disabled",
+    "queryName": "Beta - GCP Compute Logging Service Disabled",
     "severity": "MEDIUM",
     "line": 4,
     "fileName": "positive3.tf"
