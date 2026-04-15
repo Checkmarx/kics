@@ -1,6 +1,6 @@
 {
   "id": "9436d439-99f6-4f81-bef2-e7f50d24d453",
-  "queryName": "Recovery Services Vault CMK Encryption Disabled",
+  "queryName": "Beta - Recovery Services Vault CMK Encryption Disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Ensures that Azure Recovery Services Vaults are encrypted using Customer-Managed Keys (CMK) stored in Azure Key Vault. Using CMK provides control over key lifecycle and access policies, unlike the default platform-managed keys.",
@@ -9,5 +9,6 @@
   "cloudProvider": "azure",
   "cwe": "326",
   "descriptionID": "9436d439",
-  "riskScore": "5.0"
+  "riskScore": "5.0",
+  "experimental": "true"
 }
