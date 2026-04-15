@@ -4,7 +4,7 @@ resource "oci_core_instance" "positive3" {
   shape               = "VM.Standard2.1"
 
   agent_config {
-    # FALLO: Valor incorrecto (Caso 3)
+    # FAIL: Valor incorrecto (Caso 3)
     are_legacy_imds_endpoints_disabled = false
   }
 }
