@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/recovery_services_vault#encryption",
   "platform": "Terraform",
   "cloudProvider": "azure",
-  "cwe": "CWE-326",
+  "cwe": "326",
   "descriptionID": "9436d439",
   "riskScore": "5.0"
 }
