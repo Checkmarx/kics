@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# REGLA 1: Falta el atributo 'session_expiration_in_seconds'.
+# RULE 1: Missing The attribute 'session_expiration_in_seconds'.
 CxPolicy[result] {
     doc := input.document[i]
     settings := doc.resource.ibm_iam_account_settings[name]
@@ -19,7 +19,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: La sesión dura más de 1 hora (3600 segundos).
+# RULE 2: La sesión dura más de 1 hora (3600 segundos).
 CxPolicy[result] {
     doc := input.document[i]
     settings := doc.resource.ibm_iam_account_settings[name]
