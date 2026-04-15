@@ -1,6 +1,6 @@
 {
   "id": "cdaf415c-d1b9-4d15-8e6f-e27165b49d55",
-  "queryName": "KMS Key Rotation Disabled",
+  "queryName": "Beta - KMS Key Rotation Disabled",
   "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Ensures that cryptographic keys in IBM Key Protect have an automated rotation policy enabled. Rotating keys periodically limits the amount of data exposed if a single key is compromised.",
@@ -9,5 +9,6 @@
   "descriptionID": "cdaf415c",
   "cloudProvider": "ibm",
   "cwe": "320",
-  "riskScore": 9.0
+  "riskScore": 9.0,
+  "experimental": "true"
 }
