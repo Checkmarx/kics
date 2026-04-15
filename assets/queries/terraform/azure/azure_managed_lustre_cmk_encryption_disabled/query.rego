@@ -15,6 +15,7 @@ CxPolicy[result] {
         "resourceType": "azurerm_managed_lustre_file_system",
         "resourceName": tf_lib.get_resource_name(lustre, name),
         "searchKey": sprintf("azurerm_managed_lustre_file_system[%s]", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "azurerm_managed_lustre_file_system", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'azurerm_managed_lustre_file_system.%s' should have an 'encryption_key' block defined", [name]),
         "keyActualValue": sprintf("'azurerm_managed_lustre_file_system.%s' is missing the 'encryption_key' block", [name]),
