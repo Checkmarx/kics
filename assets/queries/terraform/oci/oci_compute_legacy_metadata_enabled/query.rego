@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # REGLA 1: Falta el bloque 'agent_config' por completo.
 CxPolicy[result] {
     instance := input.document[i].resource.oci_core_instance[instance_name]
@@ -9,6 +11,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.oci_core_instance.%s", [instance_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_core_instance", instance_name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'agent_config' block should be defined",
         "keyActualValue": "'agent_config' block is missing",
@@ -26,6 +29,7 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         # AQUI ESTA EL CAMBIO: Apuntamos al bloque agent_config
         "searchKey": sprintf("resource.oci_core_instance.%s.agent_config", [instance_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_core_instance", instance_name, "agent_config"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'are_legacy_imds_endpoints_disabled' should be present and set to 'true'",
         "keyActualValue": "'are_legacy_imds_endpoints_disabled' is missing inside 'agent_config'",
@@ -41,6 +45,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.oci_core_instance.%s.agent_config.are_legacy_imds_endpoints_disabled", [instance_name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_core_instance", instance_name, "agent_config", "are_legacy_imds_endpoints_disabled"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'are_legacy_imds_endpoints_disabled' attribute should be 'true'",
         "keyActualValue": "'are_legacy_imds_endpoints_disabled' attribute is 'false'",
