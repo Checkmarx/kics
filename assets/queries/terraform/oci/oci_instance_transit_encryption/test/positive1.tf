@@ -9,7 +9,7 @@ resource "oci_core_instance" "instance_explicit_false" {
 
   launch_options {
     boot_volume_type = "PARAVIRTUALIZED"
-    # FALLO: Explícitamente false (sin comentario pegado encima)
+    # FAIL: Explícitamente false (sin comentario pegado encima)
     is_pv_encryption_in_transit_enabled = false
   }
 
