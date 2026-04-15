@@ -1,4 +1,4 @@
-# Caso con Connection String (Recomendado)
+# Case: Connection String (Recommended)
 resource "azurerm_linux_web_app" "pass_connection_string" {
   name                = "pass-app-1"
   resource_group_name = "rg"
