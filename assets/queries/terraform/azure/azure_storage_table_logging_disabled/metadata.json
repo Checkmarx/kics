@@ -1,6 +1,6 @@
 {
   "id": "0d29e3cf-0033-4ca6-9b97-fa3e6c4d25b8",
-  "queryName": "Storage Table Service Logging Disabled",
+  "queryName": "Beta - Storage Table Service Logging Disabled",
   "severity": "LOW",
   "category": "Observability",
   "descriptionText": "Ensures that Storage Logging is enabled for the Table service for 'Read', 'Write', and 'Delete' requests. This provides an audit trail of operations performed on NoSQL tables within the storage account.",
@@ -9,5 +9,6 @@
   "cloudProvider": "azure",
   "cwe": "778",
   "descriptionID": "0d29e3cf",
-  "riskScore": "2.0"
+  "riskScore": "2.0",
+  "experimental": "true"
 }
