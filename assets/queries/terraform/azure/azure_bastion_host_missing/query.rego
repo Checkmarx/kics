@@ -18,6 +18,7 @@ CxPolicy[result] {
         "resourceType": "azurerm_virtual_network",
         "resourceName": tf_lib.get_resource_name(vnet, name),
         "searchKey": sprintf("azurerm_virtual_network[%s]", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "azurerm_virtual_network", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("An 'azurerm_bastion_host' resource should be defined to protect Virtual Network '%s'", [name]),
         "keyActualValue": "No 'azurerm_bastion_host' resource was found in the configuration",
