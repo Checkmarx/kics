@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "GKE Workload Identity & Dedicated SA (Manual)",
+    "queryName": "Beta - GKE Workload Identity & Dedicated SA (Manual)",
     "severity": "INFO",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "GKE Workload Identity & Dedicated SA (Manual)",
+    "queryName": "Beta - GKE Workload Identity & Dedicated SA (Manual)",
     "severity": "INFO",
     "line": 4,
     "fileName": "positive2.tf"
