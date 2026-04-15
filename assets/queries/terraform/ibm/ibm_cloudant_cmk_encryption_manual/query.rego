@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# CASO 1: El bloque 'parameters' está ausente.
+# CASE 1: The block 'parameters' is missing.
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.ibm_resource_instance[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: El bloque 'parameters' existe pero falta 'key_protect_key'.
+# CASE 2: The block 'parameters' Exists but Missing 'key_protect_key'.
 CxPolicy[result] {
     doc := input.document[i]
     resource := doc.resource.ibm_resource_instance[name]
