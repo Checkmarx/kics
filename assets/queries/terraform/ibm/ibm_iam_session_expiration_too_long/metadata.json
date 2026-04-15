@@ -9,6 +9,6 @@
   "descriptionID": "3d6db2d6",
   "cloudProvider": "ibm",
   "cwe": "613",
-  "riskScore": 5.0,
+  "riskScore": "3.0",
   "experimental": "true"
 }
