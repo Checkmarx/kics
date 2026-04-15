@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 expected_event_types := [
     "com.oraclecloud.identity.createuser",
     "com.oraclecloud.identity.updateuser",
@@ -8,8 +10,7 @@ expected_event_types := [
     "com.oraclecloud.identity.disableuser"
 ]
 
-# RULE 1: Missing (Global)
-# No rule exists in the project monitoring events de usuarios.
+# RULE 1: No rule exists in the project monitoring IAM User change events.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.oci
@@ -32,16 +33,15 @@ CxPolicy[result] {
     }
 }
 
-# RULE 2: Incomplete (Local)
-# The rule Exists y es relevante, but le Missing alguno de los 5 events.
+# RULE 2: A rule exists but is missing some of the 5 required events.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
-    matches := [event | 
+    matches := [event |
         event := expected_event_types[_]
         contains(rule.condition, event)
     ]
-    
+
     count(matches) > 0
     count(matches) < count(expected_event_types)
 
@@ -50,18 +50,18 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.oci_events_rule.%s.condition", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_events_rule", name, "condition"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "The rule condition should include all 5 IAM User events",
         "keyActualValue": sprintf("The rule is missing %d IAM User event(s)", [missing_count]),
     }
 }
 
-# RULE 3: Disabled (Local)
-# Si es una regla de Usuarios (relevante) y está apagada -> FALLO CRÍTICO.
+# RULE 3: A relevant rule exists but is disabled.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
-    matches := [event | 
+    matches := [event |
         event := expected_event_types[_]
         contains(rule.condition, event)
     ]
@@ -72,6 +72,7 @@ CxPolicy[result] {
     result := {
         "documentId": input.document[i].id,
         "searchKey": sprintf("resource.oci_events_rule.%s.is_enabled", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_events_rule", name, "is_enabled"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'is_enabled' should be true",
         "keyActualValue": "'is_enabled' is false",
