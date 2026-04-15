@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 ensure_array(x) = x { is_array(x) }
 ensure_array(x) = [x] { not is_array(x) }
 
-# CASO 1: Bloque 'boot_volume' totalmente ausente.
+# CASE 1: Bloque 'boot_volume' totalmente missing.
 CxPolicy[result] {
     doc := input.document[i]
     instance := doc.resource.ibm_is_instance[name]
@@ -22,7 +22,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: Bloque 'boot_volume' presente, pero falta 'encryption'.
+# CASE 2: Bloque 'boot_volume' presente, but Missing 'encryption'.
 CxPolicy[result] {
     doc := input.document[i]
     instance := doc.resource.ibm_is_instance[name]
