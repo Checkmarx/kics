@@ -1,6 +1,6 @@
 {
   "id": "e0c61731-a692-44d8-bbf2-8279985a4e41",
-  "queryName": "Event Rule for Local User Authentication is Missing",
+  "queryName": "Beta - Event Rule for Local User Authentication is Missing",
   "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on authentication events from local IAM users. Auditing local user logins is a critical security measure to detect unauthorized access attempts and compromised credentials.",
@@ -9,5 +9,6 @@
   "descriptionID": "e0c61731",
   "cloudProvider": "oci",
   "cwe": "778",
-  "riskScore": 6.0
+  "riskScore": 6.0,
+  "experimental": "true"
 }
