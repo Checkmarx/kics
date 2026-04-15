@@ -3,7 +3,7 @@ resource "google_container_node_pool" "fail_pool" {
   cluster    = "some-cluster"
   
   node_config {
-    # FALLO: Falta service_account
+    # FAIL: Missing service_account
     preemptible = true
   }
 }
