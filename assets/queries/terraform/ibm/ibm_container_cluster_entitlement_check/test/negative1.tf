@@ -10,6 +10,6 @@ resource "ibm_container_cluster" "cluster_with_entitlement" {
   public_vlan_id  = "123"
   private_vlan_id = "456"
 
-  # CORRECTO: Se automatiza el secreto de descarga
+  # PASS: Se automatiza el secreto de descarga
   entitlement     = "my-entitlement-key-crn"
 }
