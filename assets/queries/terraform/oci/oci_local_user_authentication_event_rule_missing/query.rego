@@ -2,8 +2,8 @@ package Cx
 
 expected_event := "com.oraclecloud.identity.localuser.authenticate"
 
-# REGLA 1: Missing (Global)
-# No existe NINGUNA regla en el proyecto que monitoree el evento de autenticación local.
+# RULE 1: Missing (Global)
+# No rule exists in the project monitoring el evento de autenticación local.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.oci
@@ -25,8 +25,8 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Disabled (Local)
-# La regla existe y monitorea autenticación, pero está deshabilitada.
+# RULE 2: Disabled (Local)
+# The rule Exists y monitorea autenticación, but is disabled.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
