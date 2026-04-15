@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # REGLA: Verificar si el cluster de Kubernetes tiene configuradas las alertas de vulnerabilidad.
 CxPolicy[result] {
     doc := input.document[i]
@@ -12,6 +14,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_container_cluster.%s", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_container_cluster", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "A 'ibm_container_va_notification' resource should be defined to alert on image vulnerabilities",
         "keyActualValue": "Vulnerability Advisor notifications are missing for this cluster environment",
