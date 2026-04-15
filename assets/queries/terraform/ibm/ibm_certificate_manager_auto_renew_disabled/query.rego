@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # REGLA 1: El atributo 'auto_renew_enabled' está ausente en el certificado.
 CxPolicy[result] {
     doc := input.document[i]
@@ -10,6 +12,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_cm_certificate.%s", [cert_name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_cm_certificate", cert_name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'auto_renew_enabled' should be present and set to 'true'",
         "keyActualValue": "'auto_renew_enabled' is missing and defaults to 'false'",
@@ -26,6 +29,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_cm_certificate.%s.auto_renew_enabled", [cert_name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_cm_certificate", cert_name, "auto_renew_enabled"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'auto_renew_enabled' attribute should be 'true'",
         "keyActualValue": "'auto_renew_enabled' attribute is 'false'",
