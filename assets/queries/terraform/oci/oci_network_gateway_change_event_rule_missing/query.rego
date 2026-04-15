@@ -18,8 +18,8 @@ expected_event_types := [
     "com.oraclecloud.virtualnetwork.deletelocalpeeringgateway"
 ]
 
-# REGLA 1: Missing (Global)
-# No existe NINGUNA regla en el proyecto que monitoree Gateways.
+# RULE 1: Missing (Global)
+# No rule exists in the project monitoring Gateways.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.oci
@@ -42,8 +42,8 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Incomplete (Local)
-# La regla existe, pero le faltan eventos (ej. tiene IGW pero falta NAT).
+# RULE 2: Incomplete (Local)
+# The rule Exists, but is missing events (ej. tiene IGW but Missing NAT).
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
@@ -66,8 +66,8 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: Disabled (Local)
-# La regla es relevante (gateways) pero está apagada.
+# RULE 3: Disabled (Local)
+# The rule es relevante (gateways) but está apagada.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
