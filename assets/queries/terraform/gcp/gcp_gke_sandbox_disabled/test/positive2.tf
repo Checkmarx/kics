@@ -4,6 +4,6 @@ resource "google_container_node_pool" "fail_pool_no_sandbox" {
 
   node_config {
     machine_type = "e2-medium"
-    # FALLO: Falta sandbox_config
+    # FAIL: Missing sandbox_config
   }
 }
