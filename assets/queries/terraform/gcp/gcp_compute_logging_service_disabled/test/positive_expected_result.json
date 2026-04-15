@@ -14,7 +14,7 @@
   {
     "queryName": "Beta - GCP Compute Logging Service Disabled",
     "severity": "MEDIUM",
-    "line": 4,
+    "line": 3,
     "fileName": "positive3.tf"
   }
 ]
