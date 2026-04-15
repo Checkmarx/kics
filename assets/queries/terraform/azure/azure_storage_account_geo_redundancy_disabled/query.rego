@@ -19,6 +19,7 @@ CxPolicy[result] {
         "resourceType": "azurerm_storage_account",
         "resourceName": tf_lib.get_resource_name(sa, name),
         "searchKey": sprintf("azurerm_storage_account[%s].account_replication_type", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "account_replication_type"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'account_replication_type' should be 'GRS', 'RAGRS', 'GZRS', or 'RAGZRS'",
         "keyActualValue": sprintf("'account_replication_type' is set to '%s'", [current_type]),
