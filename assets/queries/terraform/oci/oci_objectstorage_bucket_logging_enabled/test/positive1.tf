@@ -7,5 +7,5 @@ resource "oci_objectstorage_bucket" "bucket_missing_log" {
   namespace      = "my-namespace"
   name           = "bucket-no-logs"
   access_type    = "NoPublicAccess"
-  # FALLO: Falta object_events_enabled
+  # FAIL: Missing object_events_enabled
 }
