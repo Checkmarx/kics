@@ -5,6 +5,6 @@ resource "ibm_is_instance" "vsi_no_encryption" {
   
   boot_volume {
     name = "boot-disk-standard"
-    # FALLO: Falta atributo encryption
+    # FAIL: Missing atributo encryption
   }
 }
