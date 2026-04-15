@@ -23,6 +23,7 @@ CxPolicy[result] {
         "resourceType": "azurerm_iothub",
         "resourceName": tf_lib.get_resource_name(iot_hub, hub_name),
         "searchKey": sprintf("azurerm_iothub[%s]", [hub_name]),
+        "searchLine": common_lib.build_search_line(["resource", "azurerm_iothub", hub_name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'azurerm_iothub.%s' should be included in 'iothub_ids' of an 'azurerm_iot_security_solution'", [hub_name]),
         "keyActualValue": sprintf("'azurerm_iothub.%s' is not associated with any 'azurerm_iot_security_solution'", [hub_name]),
