@@ -7,6 +7,6 @@ resource "oci_objectstorage_bucket" "bucket_disabled_log" {
   namespace      = "my-namespace"
   name           = "bucket-disabled-logs"
   
-  # FALLO: Explícitamente false
+  # FAIL: Explícitamente false
   object_events_enabled = false
 }
