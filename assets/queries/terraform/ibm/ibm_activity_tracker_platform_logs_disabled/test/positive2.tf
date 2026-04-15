@@ -7,5 +7,5 @@ resource "ibm_resource_instance" "tracker_no_attr" {
   service  = "activity-tracker"
   plan     = "lite"
   location = "eu-de"
-  # FALLO: Falta platform_logs
+  # FAIL: Missing platform_logs
 }
