@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# REGLA 1: No existe ningún log asociado a la subred (Missing)
+# RULE 1: Does not exist ningún log asociado a la subred (Missing)
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.resource.oci_core_subnet[subnet_name]
@@ -23,7 +23,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Un log de flujo está deshabilitado
+# RULE 2: Un log de flujo is disabled
 CxPolicy[result] {
     doc := input.document[i]
     log := doc.resource.oci_logging_log[log_name]
@@ -42,7 +42,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: Un log de flujo tiene el tipo incorrecto
+# RULE 3: Un log de flujo tiene el tipo incorrecto
 CxPolicy[result] {
     doc := input.document[i]
     log := doc.resource.oci_logging_log[log_name]
@@ -60,7 +60,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 4: Un log de flujo tiene el servicio incorrecto
+# RULE 4: Un log de flujo tiene el servicio incorrecto
 CxPolicy[result] {
     doc := input.document[i]
     log := doc.resource.oci_logging_log[log_name]
