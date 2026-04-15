@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 # REGLA 1: El bloque 'iap' está ausente en google_compute_backend_service.
