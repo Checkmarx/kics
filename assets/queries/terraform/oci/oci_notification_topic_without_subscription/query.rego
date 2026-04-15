@@ -15,6 +15,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": "provider.oci",
+        "searchLine": common_lib.build_search_line(["provider", "oci"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "At least one 'oci_ons_notification_topic' resource should exist",
         "keyActualValue": "No 'oci_ons_notification_topic' resource was found",
