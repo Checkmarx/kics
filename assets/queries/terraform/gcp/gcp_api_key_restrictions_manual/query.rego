@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 # CASO 1: No hay restricciones definidas.
