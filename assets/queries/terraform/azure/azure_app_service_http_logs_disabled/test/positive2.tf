@@ -8,6 +8,6 @@ resource "azurerm_windows_web_app" "fail_incomplete_logs" {
     application_logs {
       file_system_level = "Information"
     }
-    # Falta http_logs
+    # Missing http_logs
   }
 }
