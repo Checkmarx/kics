@@ -3,7 +3,7 @@ resource "oci_logging_log" "disabled_flow_log" {
   log_group_id = "ocid1.loggroup.oc1..cccc"
   log_type     = "SERVICE"
   
-  # FALLO: Deshabilitado
+  # FAIL: Deshabilitado
   is_enabled   = false
 
   configuration {
