@@ -7,7 +7,7 @@ resource "oci_events_rule" "incomplete_rule" {
   compartment_id = "ocid1.tenancy.oc1.."
   is_enabled     = true
 
-  # FALLO: Falta "deletepolicy"
+  # FAIL: Missing "deletepolicy"
   condition = jsonencode({
     "eventType": [
       "com.oraclecloud.identity.createpolicy",
