@@ -1,7 +1,7 @@
 package Cx
 
-# REGLA 1: Missing (Global)
-# No existe ningún recurso 'oci_ons_notification_topic' en todo el documento.
+# RULE 1: Missing (Global)
+# Does not exist ningún resource 'oci_ons_notification_topic' en todo el documento.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.oci
@@ -22,8 +22,8 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Orphan Topic (Local)
-# Existe un tópico, pero ninguna suscripción apunta a él.
+# RULE 2: Orphan Topic (Local)
+# Exists un tópico, but NO suscripción apunta a él.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.resource.oci_ons_notification_topic[topic_name]
