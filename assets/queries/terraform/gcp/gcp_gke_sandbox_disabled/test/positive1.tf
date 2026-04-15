@@ -4,6 +4,6 @@ resource "google_container_cluster" "fail_cluster_no_sandbox" {
 
   node_config {
     machine_type = "e2-medium"
-    # FALLO: Falta sandbox_config
+    # FAIL: Missing sandbox_config
   }
 }
