@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # REGLA: Detectar clústeres de IKS sin configuración de monitorización asociada.
 CxPolicy[result] {
     doc := input.document[i]
@@ -15,6 +17,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_container_cluster.%s", [cluster_name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_container_cluster", cluster_name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "ibm_container_cluster should have an associated ibm_ob_monitoring_config resource",
         "keyActualValue": "ibm_container_cluster does not have an associated ibm_ob_monitoring_config resource",
