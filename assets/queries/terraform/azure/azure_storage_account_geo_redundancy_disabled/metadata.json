@@ -1,6 +1,6 @@
 {
   "id": "56c748b8-9ec8-4f3e-84ac-c9a6992e1b20",
-  "queryName": "Storage Account Geo-Redundancy Disabled",
+  "queryName": "Beta - Storage Account Geo-Redundancy Disabled",
   "severity": "MEDIUM",
   "category": "Availability",
   "descriptionText": "Ensures that Azure Storage Accounts use Geo-Redundant Storage (GRS, RAGRS, GZRS, or RAGZRS). This is critical for disaster recovery, ensuring data is durable even in the event of a complete regional outage.",
@@ -9,5 +9,6 @@
   "cloudProvider": "azure",
   "cwe": "668",
   "descriptionID": "56c748b8",
-  "riskScore": "5.0"
+  "riskScore": "5.0",
+  "experimental": "true"
 }
