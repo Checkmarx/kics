@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 targets := {"azurerm_linux_web_app", "azurerm_windows_web_app"}
