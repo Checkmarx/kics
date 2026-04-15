@@ -1,6 +1,6 @@
 {
   "id": "bd3a6fc3-fadb-472b-b06c-54c7d7645f15",
-  "queryName": "Production Workload using Basic or Consumption SKU",
+  "queryName": "Beta - Production Workload using Basic or Consumption SKU",
   "severity": "LOW",
   "category": "Resource Management",
   "descriptionText": "Detects the use of Basic, Free, or Consumption SKUs in Azure resources. These SKUs are often unsuitable for production workloads due to lack of SLAs, VNet integration support, or 'cold start' issues.",
@@ -9,5 +9,6 @@
   "cloudProvider": "azure",
   "cwe": "1038",
   "descriptionID": "bd3a6fc3",
-  "riskScore": "2.0"
+  "riskScore": "2.0",
+  "experimental": "true"
 }
