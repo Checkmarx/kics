@@ -23,6 +23,7 @@ CxPolicy[result] {
         "resourceType": "google_sql_database_instance",
         "resourceName": tf_lib.get_resource_name(resource, name),
         "searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'log_error_verbosity' should be set to 'default' or 'terse'",
         "keyActualValue": sprintf("'log_error_verbosity' is set to '%s'", [flag.value]),
