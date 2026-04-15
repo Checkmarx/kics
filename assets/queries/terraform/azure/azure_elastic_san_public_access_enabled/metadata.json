@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/elastic_san#public_network_access_enabled",
   "platform": "Terraform",
   "cloudProvider": "azure",
-  "cwe": "CWE-284",
+  "cwe": "284",
   "descriptionID": "660863a5",
   "riskScore": "9.0"
 }
