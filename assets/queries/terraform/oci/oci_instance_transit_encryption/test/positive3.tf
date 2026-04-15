@@ -7,7 +7,7 @@ resource "oci_core_instance" "instance_missing_block" {
   compartment_id      = "ocid1.compartment..."
   shape               = "VM.Standard.E4.Flex"
 
-  # No existe el bloque launch_options
+  # Does not exist The block launch_options
   source_details {
     source_id   = "ocid1.image..."
     source_type = "image"
