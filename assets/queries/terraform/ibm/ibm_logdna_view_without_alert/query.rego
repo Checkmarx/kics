@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# REGLA: Detectar vistas de LogDNA que no tienen ninguna alerta asociada.
+# REGLA: Detectar vistas de LogDNA que no tienen NO alerta asociada.
 CxPolicy[result] {
     doc := input.document[i]
     view := doc.resource.ibm_logdna_view[view_name]
