@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# REGLA 1: Falta el bloque 'agent_config' por completo.
+# RULE 1: Missing The block 'agent_config' por completo.
 CxPolicy[result] {
     instance := input.document[i].resource.oci_core_instance[instance_name]
 
@@ -18,7 +18,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Existe 'agent_config', pero falta el atributo dentro.
+# RULE 2: Exists 'agent_config', but Missing The attribute dentro.
 CxPolicy[result] {
     instance := input.document[i].resource.oci_core_instance[instance_name]
     agent_config := instance.agent_config
@@ -27,7 +27,7 @@ CxPolicy[result] {
 
     result := {
         "documentId": input.document[i].id,
-        # AQUI ESTA EL CAMBIO: Apuntamos al bloque agent_config
+        # AQUI ESTA EL CAMBIO: Pointing to the block agent_config
         "searchKey": sprintf("resource.oci_core_instance.%s.agent_config", [instance_name]),
         "searchLine": common_lib.build_search_line(["resource", "oci_core_instance", instance_name, "agent_config"], []),
         "issueType": "MissingAttribute",
@@ -36,7 +36,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: El atributo existe pero es 'false'.
+# RULE 3: The attribute Exists but es 'false'.
 CxPolicy[result] {
     instance := input.document[i].resource.oci_core_instance[instance_name]
 
