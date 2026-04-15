@@ -42,6 +42,7 @@ CxPolicy[result] {
 }
 
 # RULE 3: State is ENCRYPTED but key name (key_name) is missing.
+# searchLine points to database_encryption block since key_name is absent.
 CxPolicy[result] {
     doc := input.document[i]
     cluster := doc.resource.google_container_cluster[name]
@@ -56,7 +57,7 @@ CxPolicy[result] {
         "resourceType": "google_container_cluster",
         "resourceName": tf_lib.get_resource_name(cluster, name),
         "searchKey": sprintf("google_container_cluster[%s].database_encryption.key_name", [name]),
-        "searchLine": common_lib.build_search_line(["resource", "google_container_cluster", name, "database_encryption", "key_name"], []),
+        "searchLine": common_lib.build_search_line(["resource", "google_container_cluster", name, "database_encryption"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'key_name' should be defined with a valid KMS key ID",
         "keyActualValue": "'key_name' is missing or empty",
