@@ -3,7 +3,7 @@
   "queryName": "Beta - MySQL Audit Log Events Connection (Manual)",
   "severity": "INFO",
   "category": "Observability",
-  "descriptionText": "Ensures that the 'audit_log_events' server parameter includes 'CONNECTION' for Azure MySQL Database Servers. This ensures that successful and failed connection attempts are logged.",
+  "descriptionText": "Ensures that the 'audit_log_events' server parameter includes 'CONNECTION' for Azure MySQL Flexible Server and Azure SQL Server (MSSQL) instances, capturing successful and failed connection attempts. Manual verification is required.",
   "descriptionUrl": "https://learn.microsoft.com/en-us/azure/mysql/single-server/concepts-audit-logs",
   "platform": "Terraform",
   "cloudProvider": "azure",
