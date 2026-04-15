@@ -9,5 +9,5 @@ resource "ibm_container_cluster" "cluster_without_entitlement" {
   hardware        = "shared"
   public_vlan_id  = "123"
   private_vlan_id = "456"
-  # FALLO: No se define 'entitlement'
+  # FAIL: No se define 'entitlement'
 }
