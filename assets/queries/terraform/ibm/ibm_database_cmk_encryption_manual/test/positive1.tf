@@ -7,5 +7,5 @@ resource "ibm_database" "db_insecure" {
   service  = "databases-for-mongodb"
   plan     = "standard"
   location = "us-south"
-  # FALLO: Falta el atributo key_protect_key
+  # FAIL: Missing The attribute key_protect_key
 }
