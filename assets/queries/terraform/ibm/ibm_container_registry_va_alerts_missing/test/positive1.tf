@@ -9,5 +9,5 @@ resource "ibm_container_cluster" "cluster_without_va" {
   hardware        = "shared"
   public_vlan_id  = "123"
   private_vlan_id = "456"
-  # FALLO: No existe un ibm_container_va_notification en el documento
+  # FAIL: Does not exist un ibm_container_va_notification en el documento
 }
