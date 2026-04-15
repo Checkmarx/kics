@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# CASO 1: El atributo 'waf' existe pero tiene un valor incorrecto (ej. "off").
+# CASE 1: The attribute 'waf' Exists but tiene un valor incorrecto (ej. "off").
 CxPolicy[result] {
     doc := input.document[i]
     settings := doc.resource.ibm_cis_domain_settings[name]
@@ -20,7 +20,7 @@ CxPolicy[result] {
     }
 }
 
-# CASO 2: El atributo 'waf' NO existe en el recurso (valor por defecto varía por plan, se requiere definición explícita).
+# CASE 2: The attribute 'waf' Does not exist en el resource (valor por defecto varía por plan, se requiere definición explícita).
 CxPolicy[result] {
     doc := input.document[i]
     settings := doc.resource.ibm_cis_domain_settings[name]
