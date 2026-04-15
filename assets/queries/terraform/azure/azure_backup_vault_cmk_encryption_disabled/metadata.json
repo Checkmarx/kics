@@ -1,6 +1,6 @@
 {
   "id": "bf4474a7-7495-4292-af22-a97c1cc95d2b",
-  "queryName": "Backup Vault CMK Encryption Disabled",
+  "queryName": "Beta - Backup Vault CMK Encryption Disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Ensures that Azure Backup Vaults (Data Protection) are encrypted using Customer-Managed Keys (CMK) stored in Azure Key Vault, instead of platform-managed keys.",
@@ -9,5 +9,6 @@
   "descriptionID": "bf4474a7",
   "cloudProvider": "azure",
   "cwe": "326",
-  "riskScore": "5.0"
+  "riskScore": "5.0",
+  "experimental": "true"
 }
