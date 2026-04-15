@@ -8,8 +8,8 @@ expected_event_types := [
     "com.oraclecloud.identity.disableuser"
 ]
 
-# REGLA 1: Missing (Global)
-# No existe NINGUNA regla en el proyecto que monitoree eventos de usuarios.
+# RULE 1: Missing (Global)
+# No rule exists in the project monitoring events de usuarios.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.oci
@@ -32,8 +32,8 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Incomplete (Local)
-# La regla existe y es relevante, pero le falta alguno de los 5 eventos.
+# RULE 2: Incomplete (Local)
+# The rule Exists y es relevante, but le Missing alguno de los 5 events.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
@@ -56,7 +56,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: Disabled (Local)
+# RULE 3: Disabled (Local)
 # Si es una regla de Usuarios (relevante) y está apagada -> FALLO CRÍTICO.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
