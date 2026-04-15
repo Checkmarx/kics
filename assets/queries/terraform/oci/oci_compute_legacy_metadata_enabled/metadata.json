@@ -9,6 +9,6 @@
   "descriptionID": "96b464dc",
   "cloudProvider": "oci",
   "cwe": "918",
-  "riskScore": 3.0,
+  "riskScore": "3.0",
   "experimental": "true"
 }
