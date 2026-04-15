@@ -1,6 +1,6 @@
 {
   "id": "a1b080a7-8d58-4018-a14d-17beb72f5cef",
-  "queryName": "Event Rule for NSG Changes is Missing",
+  "queryName": "Beta - Event Rule for NSG Changes is Missing",
   "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Ensures that an OCI event rule is configured to monitor and alert on changes to Network Security Groups (NSGs). Auditing changes to NSGs is critical for detecting unauthorized modifications to network micro-segmentation rules that could expose services.",
@@ -9,5 +9,6 @@
   "descriptionID": "a1b080a7",
   "cloudProvider": "oci",
   "cwe": "778",
-  "riskScore": 3.0
+  "riskScore": 3.0,
+  "experimental": "true"
 }
