@@ -1,9 +1,9 @@
 {
   "id": "660863a5-bb45-4907-8afe-d7478177a446",
-  "queryName": "Beta - Elastic SAN Public Network Access Enabled",
+  "queryName": "Beta - Elastic SAN Volume Group Network Rules Not Configured",
   "severity": "HIGH",
   "category": "Networking and Firewall",
-  "descriptionText": "Ensures that Azure Elastic SAN Volume Groups have network rules configured to restrict public network access to approved virtual networks only. Volume groups without a network_rule block allow unrestricted public access to storage volumes.",
+  "descriptionText": "Ensures that Azure Elastic SAN Volume Groups have network rules configured to restrict access to approved virtual networks only. The network_rule block defines a whitelist of subnets permitted to access the volume group; without it, no subnet-level access restriction is applied. Note: public_network_access_enabled is a separate attribute on azurerm_elastic_san (the SAN resource itself) and controls network access at the SAN level.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/elastic_san_volume_group#network_rule",
   "platform": "Terraform",
   "cloudProvider": "azure",
