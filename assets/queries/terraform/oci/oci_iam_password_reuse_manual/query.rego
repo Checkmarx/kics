@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # CASO 1: Identity Domains - Historial insuficiente (< 24).
 CxPolicy[result] {
     doc := input.document[i]
@@ -10,6 +12,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_identity_domains_password_policy.%s.num_passwords_in_history", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_identity_domains_password_policy", name, "num_passwords_in_history"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'num_passwords_in_history' should be >= 24",
         "keyActualValue": sprintf("Current history size is %d", [policy.num_passwords_in_history]),
@@ -26,6 +29,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_identity_domains_password_policy.%s", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_identity_domains_password_policy", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'num_passwords_in_history' should be defined (>= 24)",
         "keyActualValue": "'num_passwords_in_history' is missing",
@@ -40,6 +44,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_identity_authentication_policy.%s", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_identity_authentication_policy", name], []),
         "issueType": "MissingAttribute", 
         "keyExpectedValue": "Password reuse prevention should be enabled (History >= 24)",
         "keyActualValue": "Legacy resource does not support password history settings in Terraform. Manual console check required.",
