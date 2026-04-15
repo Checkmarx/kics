@@ -1,3 +1,4 @@
+# This file should be excluded on the analyze command
 variables:
   - name: environment
     value: dev

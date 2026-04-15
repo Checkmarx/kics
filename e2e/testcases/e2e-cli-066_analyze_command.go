@@ -11,13 +11,22 @@ func init() { //nolint
 				[]string{"analyze",
 					"--analyze-path", "/path/e2e/fixtures/samples/swagger",
 					"--analyze-results", "/path/e2e/output/E2E_CLI_066_ANALYZE_RESULTS.json"},
+				[]string{"analyze",
+					"--analyze-path", "/path/e2e/fixtures/samples/positive.yaml",
+					"--analyze-results", "/path/e2e/output/E2E_CLI_066_ANALYZE_RESULTS_2.json"},
 			},
-			ExpectedAnalyzerResults: &ResultsValidation{
-				ResultsFile:    "E2E_CLI_066_ANALYZE_RESULTS",
-				ResultsFormats: []string{"json"},
+			ExpectedAnalyzerResults: []ResultsValidation{
+				{
+					ResultsFile:    "E2E_CLI_066_ANALYZE_RESULTS",
+					ResultsFormats: []string{"json"},
+				},
+				{
+					ResultsFile:    "E2E_CLI_066_ANALYZE_RESULTS_2",
+					ResultsFormats: []string{"json"},
+				},
 			},
 		},
-		WantStatus: []int{0},
+		WantStatus: []int{0, 0},
 	}
 	Tests = append(Tests, testSample)
 }
