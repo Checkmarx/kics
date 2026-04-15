@@ -1,6 +1,6 @@
 {
   "id": "72b1c53c-619e-4e0a-937a-9af24cae69df",
-  "queryName": "Object Storage Bucket Versioning Disabled",
+  "queryName": "Beta - Object Storage Bucket Versioning Disabled",
   "severity": "MEDIUM",
   "category": "Data Security",
   "descriptionText": "Ensures that OCI Object Storage buckets have versioning enabled. Versioning protects against accidental deletion or overwriting of objects by keeping a history of all object versions.",
@@ -9,5 +9,6 @@
   "descriptionID": "72b1c53c",
   "cloudProvider": "oci",
   "cwe": "668",
-  "riskScore": 3.0
+  "riskScore": 3.0,
+  "experimental": "true"
 }
