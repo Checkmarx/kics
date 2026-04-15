@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#logging",
   "platform": "Terraform",
   "cloudProvider": "azure",
-  "cwe": "CWE-778",
+  "cwe": "778",
   "descriptionID": "0d29e3cf",
   "riskScore": "2.0"
 }
