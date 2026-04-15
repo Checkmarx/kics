@@ -17,6 +17,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": "provider.oci",
+        "searchLine": common_lib.build_search_line(["provider", "oci"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "An 'oci_events_rule' for Cloud Guard problems should exist in the project",
         "keyActualValue": "No 'oci_events_rule' is configured to audit Cloud Guard problems",
