@@ -1,6 +1,6 @@
 {
   "id": "d2fc37af-3cd9-4830-b8a0-a3eda8fba0ed",
-  "queryName": "IBM Cluster Entitlement Key Missing (Automated)",
+  "queryName": "Beta - IBM Cluster Entitlement Key Missing (Automated)",
   "severity": "INFO",
   "category": "Supply-Chain",
   "descriptionText": "The IBM Cloud Kubernetes Service cluster does not have an 'entitlement' key configured. This argument automates the creation of image pull secrets for the IBM Entitled Registry. If using IBM Cloud Paks or entitled software, this should be defined to ensure secure image pull access.",
@@ -9,5 +9,6 @@
   "descriptionID": "d2fc37af",
   "cloudProvider": "ibm",
   "cwe": "284",
-  "riskScore": 0.0
+  "riskScore": 0.0,
+  "experimental": "true"
 }
