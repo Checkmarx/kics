@@ -7,7 +7,7 @@ resource "oci_events_rule" "incomplete_rt_rule" {
   compartment_id = "ocid1.tenancy..."
   is_enabled     = true
 
-  # FALLO: Falta "deleteroutetable"
+  # FAIL: Missing "deleteroutetable"
   condition = jsonencode({
     "eventType": [
       "com.oraclecloud.virtualnetwork.createroutetable",
