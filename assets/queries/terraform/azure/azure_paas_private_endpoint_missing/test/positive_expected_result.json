@@ -10,5 +10,17 @@
     "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Ensure Private Endpoints Are Used Where Possible",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - Ensure Private Endpoints Are Used Where Possible",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive4.tf"
   }
 ]
