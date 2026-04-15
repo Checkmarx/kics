@@ -4,6 +4,6 @@ resource "google_container_node_pool" "fail_pool_no_block" {
 
   node_config {
     preemptible = true
-    # FALLO: No existe workload_metadata_config
+    # FAIL: Does not exist workload_metadata_config
   }
 }
