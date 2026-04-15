@@ -1,8 +1,0 @@
-[
-  {
-    "queryName": "Beta - SQL Server TDE Not Encrypted with CMK",
-    "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive1.tf"
-  }
-]
