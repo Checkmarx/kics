@@ -7,6 +7,6 @@ resource "oci_objectstorage_bucket" "bucket_enabled_log" {
   namespace      = "my-namespace"
   name           = "bucket-secure"
   
-  # CORRECTO
+  # PASS
   object_events_enabled = true
 }
