@@ -1,4 +1,4 @@
-# Caso con Instrumentation Key (Legacy)
+# Case: Instrumentation Key (Legacy)
 resource "azurerm_windows_web_app" "pass_instrumentation_key" {
   name                = "pass-app-2"
   resource_group_name = "rg"
