@@ -3,7 +3,7 @@ provider "oci" {
 }
 
 resource "oci_cloud_guard_configuration" "cg_correct" {
-  # CORRECTO: Contiene la palabra "tenancy"
+  # PASS: Contiene la palabra "tenancy"
   compartment_id   = var.tenancy_ocid
   reporting_region = "us-ashburn-1"
   status           = "ENABLED"
