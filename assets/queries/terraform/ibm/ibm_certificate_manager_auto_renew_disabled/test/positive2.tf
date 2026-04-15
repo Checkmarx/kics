@@ -3,6 +3,6 @@ resource "ibm_cm_certificate" "cert_disabled" {
   name        = "cert-disabled"
   label       = "test"
   
-  # FALLO: Deshabilitado explícitamente
+  # FAIL: Deshabilitado explícitamente
   auto_renew_enabled = false
 }
