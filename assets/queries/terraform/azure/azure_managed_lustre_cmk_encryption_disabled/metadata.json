@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/managed_lustre_file_system#key_encryption_key",
   "platform": "Terraform",
   "cloudProvider": "azure",
-  "cwe": "CWE-326",
+  "cwe": "326",
   "descriptionID": "7fc653e2",
   "riskScore": "5.0"
 }
