@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-# REGLA 1: El bloque 'iap' está ausente en google_compute_backend_service.
+# RULE 1: The block 'iap' is missing en google_compute_backend_service.
 CxPolicy[result] {
     doc := input.document[i]
     bs := doc.resource.google_compute_backend_service[name]
@@ -22,7 +22,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El bloque 'iap' existe pero falta 'oauth2_client_id'.
+# RULE 2: The block 'iap' Exists but Missing 'oauth2_client_id'.
 CxPolicy[result] {
     doc := input.document[i]
     bs := doc.resource.google_compute_backend_service[name]
@@ -42,7 +42,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: El bloque 'iap' existe pero falta 'oauth2_client_secret'.
+# RULE 3: The block 'iap' Exists but Missing 'oauth2_client_secret'.
 CxPolicy[result] {
     doc := input.document[i]
     bs := doc.resource.google_compute_backend_service[name]
