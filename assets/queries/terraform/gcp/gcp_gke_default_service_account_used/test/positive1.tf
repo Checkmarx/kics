@@ -4,6 +4,6 @@ resource "google_container_cluster" "fail_cluster" {
 
   node_config {
     machine_type = "e2-medium"
-    # FALLO: Falta service_account
+    # FAIL: Missing service_account
   }
 }
