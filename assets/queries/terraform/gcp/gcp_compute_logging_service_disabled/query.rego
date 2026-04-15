@@ -55,7 +55,7 @@ CxPolicy[result] {
         "resourceType": "google_compute_instance",
         "resourceName": tf_lib.get_resource_name(instance, name),
         "searchKey": sprintf("google_compute_instance[%s].metadata.google-logging-enabled", [name]),
-        "searchLine": common_lib.build_search_line(["resource", "google_compute_instance", name, "metadata", "google-logging-enabled"], []),
+        "searchLine": common_lib.build_search_line(["resource", "google_compute_instance", name, "metadata"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'google-logging-enabled' should be set to 'true'",
         "keyActualValue": "'google-logging-enabled' is set to 'false'",
