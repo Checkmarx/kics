@@ -1,6 +1,6 @@
 {
   "id": "d7df9989-f87a-45cb-80ea-d4d20e3d4530",
-  "queryName": "GCP Access Approval Disabled",
+  "queryName": "Beta - GCP Access Approval Disabled",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Ensures that Access Approval is enabled for the GCP Project. Access Approval allows you to approve or deny access to your data by Google support and engineering personnel.",
@@ -9,5 +9,6 @@
   "descriptionID": "d7df9989",
   "cloudProvider": "gcp",
   "cwe": "284",
-  "riskScore": "5.0"
+  "riskScore": "5.0",
+  "experimental": "true"
 }
