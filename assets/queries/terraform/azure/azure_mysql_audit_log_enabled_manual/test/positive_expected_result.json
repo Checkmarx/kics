@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "MySQL Audit Log Enabled (Manual)",
+    "queryName": "Beta - MySQL Audit Log Enabled (Manual)",
     "severity": "INFO",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "MySQL Audit Log Enabled (Manual)",
+    "queryName": "Beta - MySQL Audit Log Enabled (Manual)",
     "severity": "INFO",
     "line": 1,
     "fileName": "positive2.tf"
