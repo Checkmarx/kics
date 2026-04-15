@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Default Tags Not Defined",
+    "queryName": "Beta - Default Tags Not Defined",
     "severity": "LOW",
     "line": 1,
     "fileName": "positive1.tf"
