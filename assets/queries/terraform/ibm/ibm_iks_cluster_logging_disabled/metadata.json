@@ -1,6 +1,6 @@
 {
   "id": "e55a0224-47b8-41a8-8cc1-8c8581e13a8d",
-  "queryName": "IKS Cluster Logging Disabled",
+  "queryName": "Beta - IKS Cluster Logging Disabled",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Ensures that every IBM Cloud Kubernetes Service (IKS) cluster has an associated logging service configuration. Centralized logging is essential for troubleshooting applications, monitoring cluster activity, and performing security analysis.",
@@ -9,5 +9,6 @@
   "descriptionID": "e55a0224",
   "cloudProvider": "ibm",
   "cwe": "778",
-  "riskScore": 5.0
+  "riskScore": 5.0,
+  "experimental": "true"
 }
