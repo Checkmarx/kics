@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 ensure_array(x) = x { is_array(x) }
 ensure_array(x) = [x] { is_object(x) }
 
@@ -16,6 +18,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_core_instance.%s.launch_options.is_pv_encryption_in_transit_enabled", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_core_instance", name, "launch_options", "is_pv_encryption_in_transit_enabled"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'is_pv_encryption_in_transit_enabled' should be set to true",
         "keyActualValue": "'is_pv_encryption_in_transit_enabled' is set to false",
@@ -35,6 +38,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_core_instance.%s.launch_options", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_core_instance", name, "launch_options"], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'is_pv_encryption_in_transit_enabled' should be defined and set to true",
         "keyActualValue": "'is_pv_encryption_in_transit_enabled' is missing",
@@ -51,6 +55,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.oci_core_instance.%s", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "oci_core_instance", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'launch_options' block with 'is_pv_encryption_in_transit_enabled = true' should be defined",
         "keyActualValue": "'launch_options' block is missing",
