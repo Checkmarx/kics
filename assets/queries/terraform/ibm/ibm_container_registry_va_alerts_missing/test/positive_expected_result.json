@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "IBM Container Registry VA Alerts Missing (Automated)",
+    "queryName": "Beta - IBM Container Registry VA Alerts Missing (Automated)",
     "severity": "MEDIUM",
     "line": 5,
     "fileName": "positive1.tf"
