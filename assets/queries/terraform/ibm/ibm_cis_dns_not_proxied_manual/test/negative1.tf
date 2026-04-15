@@ -5,6 +5,6 @@ resource "ibm_cis_dns_record" "dns_record_secure" {
   type      = "A"
   content   = "1.2.3.4"
   
-  # CORRECTO: Bajo el escudo de CIS
+  # PASS: Bajo el escudo de CIS
   proxied = true
 }
