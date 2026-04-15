@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "IBM Cloud Database Without CMK (Manual)",
+    "queryName": "Beta - IBM Cloud Database Without CMK (Manual)",
     "severity": "INFO",
     "line": 5,
     "fileName": "positive1.tf"
