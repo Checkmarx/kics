@@ -1,6 +1,6 @@
 {
   "id": "660863a5-bb45-4907-8afe-d7478177a446",
-  "queryName": "Elastic SAN Public Network Access Enabled",
+  "queryName": "Beta - Elastic SAN Public Network Access Enabled",
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "Ensures that 'public_network_access_enabled' is set to false for Azure Elastic SAN. Disabling public access ensures that the SAN is only accessible via private endpoints within the virtual network.",
@@ -9,5 +9,6 @@
   "cloudProvider": "azure",
   "cwe": "284",
   "descriptionID": "660863a5",
-  "riskScore": "9.0"
+  "riskScore": "9.0",
+  "experimental": "true"
 }
