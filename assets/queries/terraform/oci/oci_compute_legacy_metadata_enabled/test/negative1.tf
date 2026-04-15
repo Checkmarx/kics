@@ -4,7 +4,7 @@ resource "oci_core_instance" "negative1" {
   shape               = "VM.Standard2.1"
 
   agent_config {
-    # CORRECTO
+    # PASS
     are_legacy_imds_endpoints_disabled = true
   }
 }
