@@ -1,6 +1,6 @@
 {
   "id": "6c8a93a9-c0c5-4314-8ee6-3bcb3a0dbd70",
-  "queryName": "GKE Sandbox (gVisor) Disabled",
+  "queryName": "Beta - GKE Sandbox (gVisor) Disabled",
   "severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "GKE Sandbox (gVisor) provides an extra layer of defense for untrusted workloads. It is not enabled on this Node Pool. Consider enabling it if this pool runs untrusted code (e.g., SaaS user scripts).",
@@ -9,5 +9,6 @@
   "descriptionID": "6c8a93a9",
   "cloudProvider": "gcp",
   "cwe": "1038",
-  "riskScore": "3.0"
+  "riskScore": "3.0",
+  "experimental": "true"
 }
