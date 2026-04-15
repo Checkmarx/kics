@@ -5,7 +5,7 @@ resource "google_app_engine_standard_app_version" "app_insecure" {
 
   handlers {
     url_regex = "/.*"
-    # FALLO: security_level no es SECURE_ALWAYS
+    # FAIL: security_level no es SECURE_ALWAYS
     security_level = "SECURE_OPTIONAL"
   }
 }
