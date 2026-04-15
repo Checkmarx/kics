@@ -3,8 +3,9 @@ resource "oci_core_instance" "negative1" {
   compartment_id      = "ocid1.compartment..."
   shape               = "VM.Standard2.1"
 
-  shape_config {
-    # CORRECTO
+  platform_config {
+    # PASS: Secure Boot enabled
+    type                   = "AMD_VM"
     is_secure_boot_enabled = true
   }
 }
