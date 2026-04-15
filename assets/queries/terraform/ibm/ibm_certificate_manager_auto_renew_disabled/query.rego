@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-# REGLA 1: El atributo 'auto_renew_enabled' está ausente en el certificado.
+# RULE 1: The 'auto_renew_enabled' attribute is missing en el certificado.
 CxPolicy[result] {
     doc := input.document[i]
     certificate := doc.resource.ibm_cm_certificate[cert_name]
@@ -19,7 +19,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: El atributo 'auto_renew_enabled' está explícitamente configurado como 'false'.
+# RULE 2: The attribute 'auto_renew_enabled' está explícitamente configurado como 'false'.
 CxPolicy[result] {
     doc := input.document[i]
     certificate := doc.resource.ibm_cm_certificate[cert_name]
