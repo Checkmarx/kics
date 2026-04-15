@@ -17,6 +17,7 @@ CxPolicy[result] {
         "resourceType": resource_type,
         "resourceName": tf_lib.get_resource_name(server, name),
         "searchKey": sprintf("%s[%s]", [resource_type, name]),
+        "searchLine": common_lib.build_search_line(["resource", resource_type, name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": sprintf("'audit_log_events' should include 'CONNECTION' for '%s.%s' (Manual Verification)", [resource_type, name]),
         "keyActualValue": "Audit log event configuration requires manual verification or check of 'azurerm_mysql_configuration'",
