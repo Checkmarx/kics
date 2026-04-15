@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # REGLA 1: Falta el atributo 'session_expiration_in_seconds'.
 CxPolicy[result] {
     doc := input.document[i]
@@ -10,6 +12,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_iam_account_settings.%s", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_iam_account_settings", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'session_expiration_in_seconds' should be defined and set to 3600 (1 hour) or less",
         "keyActualValue": "'session_expiration_in_seconds' is missing (using insecure default)",
@@ -28,6 +31,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_iam_account_settings.%s.session_expiration_in_seconds", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_iam_account_settings", name, "session_expiration_in_seconds"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'session_expiration_in_seconds' should be <= 3600",
         "keyActualValue": sprintf("'session_expiration_in_seconds' is set to '%v'", [expiration]),
