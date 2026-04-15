@@ -7,6 +7,6 @@ resource "oci_objectstorage_bucket" "bucket_enabled_versioning" {
   namespace      = "my-namespace"
   name           = "bucket-secure"
   
-  # CORRECTO
+  # PASS
   versioning = "Enabled"
 }
