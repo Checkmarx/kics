@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-# REGLA 1: Bloque 'log_config' ausente.
+# RULE 1: Bloque 'log_config' missing.
 CxPolicy[result] {
     doc := input.document[i]
     bs := doc.resource.google_compute_backend_service[name]
@@ -22,7 +22,7 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Bloque 'log_config' existe pero 'enable' es false.
+# RULE 2: Bloque 'log_config' Exists but 'enable' es false.
 CxPolicy[result] {
     doc := input.document[i]
     bs := doc.resource.google_compute_backend_service[name]
