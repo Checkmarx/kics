@@ -1,6 +1,6 @@
 {
   "id": "ccf65fe5-85f2-414d-b68e-b5101bc4bc03",
-  "queryName": "Activity Tracker Platform Logs Disabled",
+  "queryName": "Beta - Activity Tracker Platform Logs Disabled",
   "severity": "HIGH",
   "category": "Observability",
   "descriptionText": "Ensures that the IBM Cloud Activity Tracker instance is configured to receive platform logs. Capturing platform management events is critical for security auditing, threat detection, and compliance.",
@@ -9,5 +9,6 @@
   "descriptionID": "ccf65fe5",
   "cloudProvider": "ibm",
   "cwe": "778",
-  "riskScore": 6.0
+  "riskScore": 6.0,
+  "experimental": "true"
 }
