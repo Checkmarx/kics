@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 # RULE 1: Azure Service Plan using Basic (B), Free (F), or Consumption (Y1) SKU.
