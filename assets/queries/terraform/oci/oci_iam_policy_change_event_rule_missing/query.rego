@@ -6,8 +6,8 @@ expected_event_types := [
     "com.oraclecloud.identity.deletepolicy"
 ]
 
-# REGLA 1: Missing (Global)
-# No existe NINGUNA regla en el proyecto que monitoree eventos de Políticas IAM.
+# RULE 1: Missing (Global)
+# No rule exists in the project monitoring events de Políticas IAM.
 CxPolicy[result] {
     doc := input.document[i]
     _ := doc.provider.oci
@@ -30,8 +30,8 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 2: Incomplete (Local)
-# La regla existe y mira eventos de Políticas, pero le falta alguno de los 3 requeridos.
+# RULE 2: Incomplete (Local)
+# The rule Exists y mira events de Políticas, but le Missing alguno de los 3 requeridos.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
@@ -54,8 +54,8 @@ CxPolicy[result] {
     }
 }
 
-# REGLA 3: Disabled (Local)
-# La regla tiene todos los eventos correctos, pero está deshabilitada.
+# RULE 3: Disabled (Local)
+# The rule has all the correct events but is disabled.
 CxPolicy[result] {
     rule := input.document[i].resource.oci_events_rule[name]
 
