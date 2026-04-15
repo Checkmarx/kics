@@ -1,6 +1,6 @@
 {
   "id": "6797782b-0523-4419-9297-1747e1bf82ab",
-  "queryName": "Certificate Manager Auto Renew Disabled",
+  "queryName": "Beta - Certificate Manager Auto Renew Disabled",
   "severity": "MEDIUM",
   "category": "Best Practices",
   "descriptionText": "Ensures that certificates managed by IBM Cloud Certificate Manager are configured to renew automatically before expiration. Disabling auto-renewal can lead to service disruptions and security risks due to expired certificates.",
@@ -9,5 +9,6 @@
   "descriptionID": "6797782b",
   "cloudProvider": "ibm",
   "cwe": "320",
-  "riskScore": 3.0
+  "riskScore": 3.0,
+  "experimental": "true"
 }
