@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # CASO 1: El atributo 'waf' existe pero tiene un valor incorrecto (ej. "off").
 CxPolicy[result] {
     doc := input.document[i]
@@ -11,6 +13,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_cis_domain_settings.%s.waf", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_cis_domain_settings", name, "waf"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'waf' attribute should be set to 'on'",
         "keyActualValue": sprintf("'waf' attribute is set to '%s'", [settings.waf]),
@@ -27,6 +30,7 @@ CxPolicy[result] {
     result := {
         "documentId": doc.id,
         "searchKey": sprintf("resource.ibm_cis_domain_settings.%s", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "ibm_cis_domain_settings", name], []),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'waf' attribute should be defined and set to 'on'",
         "keyActualValue": "'waf' attribute is missing",
