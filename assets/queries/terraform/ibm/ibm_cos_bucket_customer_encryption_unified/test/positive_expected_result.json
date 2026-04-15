@@ -1,8 +1,0 @@
-[
-  {
-    "queryName": "Beta - IBM COS Bucket Encryption (CMK/BYOK/KYOK) Manual",
-    "severity": "INFO",
-    "line": 5,
-    "fileName": "positive1.tf"
-  }
-]
