@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 # RULE 1: The 'platform_config' block is missing entirely.
 CxPolicy[result] {
     instance := input.document[i].resource.oci_core_instance[instance_name]
