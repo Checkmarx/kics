@@ -1,6 +1,6 @@
 {
   "id": "c29ef8f7-33bc-4788-9085-3a561c91f7d1",
-  "queryName": "OCI Instance In-Transit Encryption Disabled",
+  "queryName": "Beta - OCI Instance In-Transit Encryption Disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Compute instances should have in-transit encryption enabled for data moving between the instance and block storage. This is configured via 'is_pv_encryption_in_transit_enabled' in the 'launch_options' block.",
@@ -9,5 +9,6 @@
   "descriptionID": "c29ef8f7",
   "cloudProvider": "oci",
   "cwe": "311",
-  "riskScore": 3.0
+  "riskScore": 3.0,
+  "experimental": "true"
 }
