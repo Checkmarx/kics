@@ -101,6 +101,145 @@
     {
       "args": [],
       "command": {
+        "ubuntu:latestnightly": [
+          {
+            "Cmd": "from",
+            "EndLine": 1,
+            "Flags": [],
+            "JSON": false,
+            "Original": "FROM ubuntu:latestnightly",
+            "SubCmd": "",
+            "Value": [
+              "ubuntu:latestnightly"
+            ],
+            "_kics_line": 1
+          },
+          {
+            "Cmd": "volume",
+            "EndLine": 2,
+            "Flags": [],
+            "JSON": false,
+            "Original": "VOLUME /tmp",
+            "SubCmd": "",
+            "Value": [
+              "/tmp"
+            ],
+            "_kics_line": 2
+          },
+          {
+            "Cmd": "entrypoint",
+            "EndLine": 3,
+            "Flags": [],
+            "JSON": true,
+            "Original": "ENTRYPOINT [\"java\",\"-Djava.security.egd=file:/dev/./urandom\",\"-jar\",\"/app.jar\"]",
+            "SubCmd": "",
+            "Value": [
+              "java",
+              "-Djava.security.egd=file:/dev/./urandom",
+              "-jar",
+              "/app.jar"
+            ],
+            "_kics_line": 3
+          }
+        ],
+        "ubuntu:latestnightly(1)": [
+          {
+            "Cmd": "from",
+            "EndLine": 5,
+            "Flags": [],
+            "JSON": false,
+            "Original": "FROM ubuntu:latestnightly",
+            "SubCmd": "",
+            "Value": [
+              "ubuntu:latestnightly"
+            ],
+            "_kics_line": 5
+          },
+          {
+            "Cmd": "volume",
+            "EndLine": 6,
+            "Flags": [],
+            "JSON": false,
+            "Original": "VOLUME /tmp",
+            "SubCmd": "",
+            "Value": [
+              "/tmp"
+            ],
+            "_kics_line": 6
+          },
+          {
+            "Cmd": "add",
+            "EndLine": 7,
+            "Flags": [],
+            "JSON": false,
+            "Original": "ADD http://source.file/package.file.tar.gz /temp",
+            "SubCmd": "",
+            "Value": [
+              "http://source.file/package.file.tar.gz",
+              "/temp"
+            ],
+            "_kics_line": 7
+          },
+          {
+            "Cmd": "run",
+            "EndLine": 8,
+            "Flags": [],
+            "JSON": false,
+            "Original": "RUN tar -xjf /temp/package.file.tar.gz",
+            "SubCmd": "",
+            "Value": [
+              "tar -xjf /temp/package.file.tar.gz"
+            ],
+            "_kics_line": 8
+          },
+          {
+            "Cmd": "arg",
+            "EndLine": 9,
+            "Flags": [],
+            "JSON": false,
+            "Original": "ARG JAR_FILE",
+            "SubCmd": "",
+            "Value": [
+              "JAR_FILE"
+            ],
+            "_kics_line": 9
+          },
+          {
+            "Cmd": "add",
+            "EndLine": 10,
+            "Flags": [],
+            "JSON": false,
+            "Original": "ADD ${JAR_FILE} app.jar",
+            "SubCmd": "",
+            "Value": [
+              "${JAR_FILE}",
+              "app.jar"
+            ],
+            "_kics_line": 10
+          },
+          {
+            "Cmd": "entrypoint",
+            "EndLine": 11,
+            "Flags": [],
+            "JSON": true,
+            "Original": "ENTRYPOINT [\"java\",\"-Djava.security.egd=file:/dev/./urandom\",\"-jar\",\"/app.jar\"]",
+            "SubCmd": "",
+            "Value": [
+              "java",
+              "-Djava.security.egd=file:/dev/./urandom",
+              "-jar",
+              "/app.jar"
+            ],
+            "_kics_line": 11
+          }
+        ]
+      },
+      "file": "file",
+      "id": "0"
+    },
+    {
+      "args": [],
+      "command": {
         "alpine:3.19 AS builder": [
           {
             "Cmd": "from",
@@ -1374,10 +1513,10 @@
             "EndLine": 2,
             "Flags": [],
             "JSON": false,
-            "Original": "RUN apt-get update \u0026\u0026 apt-get install -y gcc",
+            "Original": "RUN apt-get update && apt-get install -y gcc",
             "SubCmd": "",
             "Value": [
-              "apt-get update \u0026\u0026 apt-get install -y gcc"
+              "apt-get update && apt-get install -y gcc"
             ],
             "_kics_line": 2
           },
@@ -1510,10 +1649,10 @@
             "EndLine": 2,
             "Flags": [],
             "JSON": false,
-            "Original": "RUN apt-get update \u0026\u0026 apt-get install -y curl",
+            "Original": "RUN apt-get update && apt-get install -y curl",
             "SubCmd": "",
             "Value": [
-              "apt-get update \u0026\u0026 apt-get install -y curl"
+              "apt-get update && apt-get install -y curl"
             ],
             "_kics_line": 2
           },
