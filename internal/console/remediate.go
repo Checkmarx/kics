@@ -107,7 +107,7 @@ func remediate() error {
 
 	for filePath := range remediationSets {
 		fix := remediationSets[filePath].(remediation.Set)
-		err = summary.RemediateFile(filePath, fix, openAPIResolveReferences, maxResolverDepth)
+		err = summary.RemediateFile(filePath, "", fix, openAPIResolveReferences, maxResolverDepth)
 		if err != nil {
 			return err
 		}

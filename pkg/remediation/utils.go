@@ -15,6 +15,7 @@ import (
 type Summary struct {
 	SelectedRemediationNumber   int
 	ActualRemediationDoneNumber int
+	RemediatedFiles             []string
 }
 
 // GetRemediationSets collects all the replacements and additions per file

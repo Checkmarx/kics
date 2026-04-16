@@ -72,6 +72,17 @@ summary {
   font-weight: bold;
 }
 
+summary.sub-summary {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 5px 0;
+}
+
+summary.expected-actual {
+  font-size: 14px;
+  font-weight: 580;
+}
+
 .testBlock {
   width: 95vw;
   display: flex;
@@ -125,6 +136,11 @@ summary {
   color: gray;
 }
 
+.code.diff {
+  background-color: rgba(255, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
 .results {
   display: flex;
   flex-direction: column;
@@ -139,4 +155,45 @@ summary {
   flex-direction: column;
   background-color: #503e9e10;
   gap: 5px;
+}
+
+.code-box.side-by-side {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: transparent;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.code-box.first {
+  width: 50%;
+  float: none;
+  height: auto;
+  align-self: auto;
+}
+
+.code-box.second {
+  width: 50%;
+  float: none;
+  height: auto;
+  align-self: auto;
+}
+
+.code-box.test-info {
+  background-color: white;
+  margin-bottom: 5px;
+}
+
+.code.pre {
+  white-space: pre-wrap;
+}
+
+.container_expected_actual {
+    width: auto;
+    background-color: #fff;
+    margin: auto;
+    display: flex;
+    float: none;
 }
