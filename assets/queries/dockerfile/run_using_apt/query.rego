@@ -14,7 +14,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(commands[img])
 	result := {
 		"documentId": document.id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, img, commands[img][c].Original]), from_command.EndLine-1),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, img, commands[img][c].Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instructions should not use the 'apt' program",
 		"keyActualValue": "RUN instruction is invoking the 'apt' program",

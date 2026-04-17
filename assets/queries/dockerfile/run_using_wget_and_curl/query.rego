@@ -14,7 +14,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(resource)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, curl[0]]), from_command.EndLine-1),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, curl[0]]), from_command.LineHint),
 		"issueType": "RedundantAttribute",
 		"keyExpectedValue": "Exclusively using 'wget' or 'curl'",
 		"keyActualValue": "Using both 'wget' and 'curl'",

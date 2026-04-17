@@ -75,7 +75,7 @@ get_original_from_command(commands) = from_command {
 	commands[i].Cmd == "from"
 	from_command :=  {
 		"Value": substring(commands[i].Original, 0, 4),
-		"EndLine" : commands[i].EndLine
+		"LineHint" : commands[i].EndLine - 1
 	}
 }
 

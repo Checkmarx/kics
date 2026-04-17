@@ -12,7 +12,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(resource)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, cmdInst[0].Original]), from_command.EndLine-1),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, cmdInst[0].Original]), from_command.LineHint),
 		"issueType": "RedundantAttribute", #"MissingAttribute" / "RedundantAttribute"
 		"keyExpectedValue": "There should be only one CMD instruction",
 		"keyActualValue": sprintf("There are %d CMD instructions", [count(cmdInst)]),

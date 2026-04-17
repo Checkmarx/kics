@@ -25,7 +25,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(resource)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, lineCounter[0].Original]), from_command.EndLine-1),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, lineCounter[0].Original]), from_command.LineHint),
 		"issueType": "RedundantAttribute",
 		"keyExpectedValue": sprintf("There isn´t any %s instruction that could be grouped", [upperName]),
 		"keyActualValue": sprintf("There are %s instructions that could be grouped", [upperName]),
