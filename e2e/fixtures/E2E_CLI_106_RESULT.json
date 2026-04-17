@@ -944,8 +944,8 @@
           "search_key": "FROM={{--platform=linux/arm64 scratch}}.{{FROM --platform=linux/arm64 scratch}}",
           "search_line": -1,
           "search_value": "",
-          "expected_value": "{\"EndLine\": 1, \"Value\": \"FROM\"}={{--platform=linux/arm64 scratch}}.{{FROM --platform=linux/arm64 scratch}} should not use the '--platform' flag",
-          "actual_value": "{\"EndLine\": 1, \"Value\": \"FROM\"}={{--platform=linux/arm64 scratch}}.{{FROM --platform=linux/arm64 scratch}} is using the '--platform' flag"
+          "expected_value": "FROM={{--platform=linux/arm64 scratch}}.{{FROM --platform=linux/arm64 scratch}} should not use the '--platform' flag",
+          "actual_value": "FROM={{--platform=linux/arm64 scratch}}.{{FROM --platform=linux/arm64 scratch}} is using the '--platform' flag"
         },
         {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/sample3",
@@ -955,8 +955,8 @@
           "search_key": "FROM={{--platform=linux/amd64 alpine:latest}}.{{FROM --platform=linux/amd64 alpine:latest}}",
           "search_line": -1,
           "search_value": "",
-          "expected_value": "{\"EndLine\": 1, \"Value\": \"FROM\"}={{--platform=linux/amd64 alpine:latest}}.{{FROM --platform=linux/amd64 alpine:latest}} should not use the '--platform' flag",
-          "actual_value": "{\"EndLine\": 1, \"Value\": \"FROM\"}={{--platform=linux/amd64 alpine:latest}}.{{FROM --platform=linux/amd64 alpine:latest}} is using the '--platform' flag"
+          "expected_value": "FROM={{--platform=linux/amd64 alpine:latest}}.{{FROM --platform=linux/amd64 alpine:latest}} should not use the '--platform' flag",
+          "actual_value": "FROM={{--platform=linux/amd64 alpine:latest}}.{{FROM --platform=linux/amd64 alpine:latest}} is using the '--platform' flag"
         },
         {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/sample2",
@@ -966,8 +966,8 @@
           "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}}",
           "search_line": -1,
           "search_value": "",
-          "expected_value": "{\"EndLine\": 1, \"Value\": \"FROM\"}={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}} should not use the '--platform' flag",
-          "actual_value": "{\"EndLine\": 1, \"Value\": \"FROM\"}={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}} is using the '--platform' flag"
+          "expected_value": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}} should not use the '--platform' flag",
+          "actual_value": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}} is using the '--platform' flag"
         },
         {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/sample6",
@@ -977,8 +977,8 @@
           "search_key": "FROM={{--platform=linux/amd64 ubuntu}}.{{FROM --platform=linux/amd64 ubuntu}}",
           "search_line": -1,
           "search_value": "",
-          "expected_value": "{\"EndLine\": 1, \"Value\": \"FROM\"}={{--platform=linux/amd64 ubuntu}}.{{FROM --platform=linux/amd64 ubuntu}} should not use the '--platform' flag",
-          "actual_value": "{\"EndLine\": 1, \"Value\": \"FROM\"}={{--platform=linux/amd64 ubuntu}}.{{FROM --platform=linux/amd64 ubuntu}} is using the '--platform' flag"
+          "expected_value": "FROM={{--platform=linux/amd64 ubuntu}}.{{FROM --platform=linux/amd64 ubuntu}} should not use the '--platform' flag",
+          "actual_value": "FROM={{--platform=linux/amd64 ubuntu}}.{{FROM --platform=linux/amd64 ubuntu}} is using the '--platform' flag"
         },
         {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/sample5",
@@ -988,8 +988,8 @@
           "search_key": "FROM={{--platform=$BUILDPLATFORM golang:1.21}}.{{FROM --platform=$BUILDPLATFORM golang:1.21}}",
           "search_line": -1,
           "search_value": "",
-          "expected_value": "{\"EndLine\": 2, \"Value\": \"FROM\"}={{--platform=$BUILDPLATFORM golang:1.21}}.{{FROM --platform=$BUILDPLATFORM golang:1.21}} should not use the '--platform' flag",
-          "actual_value": "{\"EndLine\": 2, \"Value\": \"FROM\"}={{--platform=$BUILDPLATFORM golang:1.21}}.{{FROM --platform=$BUILDPLATFORM golang:1.21}} is using the '--platform' flag"
+          "expected_value": "FROM={{--platform=$BUILDPLATFORM golang:1.21}}.{{FROM --platform=$BUILDPLATFORM golang:1.21}} should not use the '--platform' flag",
+          "actual_value": "FROM={{--platform=$BUILDPLATFORM golang:1.21}}.{{FROM --platform=$BUILDPLATFORM golang:1.21}} is using the '--platform' flag"
         },
         {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/sample4",
@@ -999,8 +999,8 @@
           "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest}}.{{FROM --platform=linux/amd64 ubuntu:latest}}",
           "search_line": -1,
           "search_value": "",
-          "expected_value": "{\"EndLine\": 1, \"Value\": \"FROM\"}={{--platform=linux/amd64 ubuntu:latest}}.{{FROM --platform=linux/amd64 ubuntu:latest}} should not use the '--platform' flag",
-          "actual_value": "{\"EndLine\": 1, \"Value\": \"FROM\"}={{--platform=linux/amd64 ubuntu:latest}}.{{FROM --platform=linux/amd64 ubuntu:latest}} is using the '--platform' flag"
+          "expected_value": "FROM={{--platform=linux/amd64 ubuntu:latest}}.{{FROM --platform=linux/amd64 ubuntu:latest}} should not use the '--platform' flag",
+          "actual_value": "FROM={{--platform=linux/amd64 ubuntu:latest}}.{{FROM --platform=linux/amd64 ubuntu:latest}} is using the '--platform' flag"
         }
       ]
     }
