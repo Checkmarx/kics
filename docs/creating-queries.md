@@ -462,8 +462,49 @@ Examples:
     build_search_line(path, ["son"])
 ```
 
-##### Ansible Inventory
+#### 🚨 Platform Specific Guidelines 🚨
+
+##### Ⓐ Ansible Inventory "searchLine"
 To create a `searchLine` query in Rego for this case, you need to think of the path as if you were dealing with a YAML/JSON file. This way, the query will be capable of locating vulnerabilities in all three types of Ansible host files.
+
+---
+
+#####  🐳 Dockerfile "searchKey"
+
+Dockerfile queries use a dedicated searchKey format and two helper functions from the `dockerfile.rego` library (`import data.generic.dockerfile as dockerLib`).
+
+Basic format:
+
+```
+FROM={{<image>}}.<COMMAND>={{<value>}}
+```
+
+Where the first segment identifies the build stage by its FROM image, and subsequent segments identify the target instruction. For example:
+
+```
+FROM={{alpine:3.14}}.RUN={{apk update && apk add curl}}
+```
+
+Helper functions:
+
+  - `dockerLib.get_original_from_command(stage)` — returns an object with `Value` (the literal `"FROM"` string preserving the original casing) and `LineHint` (the line number hint derived from the FROM instruction, used to tell the detector where to start searching). Use this instead of hardcoding `"FROM"`.
+  - `dockerLib.add_line_hint(searchKey, lineHint)` — appends a `^<line>` suffix to the searchKey that tells the detector where to start searching in the file. The line hint is stripped before reaching the final results.
+
+Typical usage in a query: 
+
+```rego
+stage := input.document[i].command[name]
+from_command := dockerLib.get_original_from_command(stage)
+
+result := {
+    "documentId": input.document[i].id,
+    "searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, commands]), from_command.LineHint),
+    ...
+}
+```
+
+This produces a searchKey like: `FROM={{alpine:3.14}}.RUN={{apk update && apk add curl}}^2`
+
 
 #### Allowing users to overwrite query data
 Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users have different datasets for multiple environments. This can be supported easily following some steps:

@@ -19,7 +19,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.EndLine-1),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("{{%s}} should have 'yum clean all' after 'yum install' command", [resource.Original]),
 		"keyActualValue": sprintf("{{%s}} doesn't have 'yum clean all' after 'yum install' command", [resource.Original]),

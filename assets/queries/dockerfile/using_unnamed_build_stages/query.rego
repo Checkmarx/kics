@@ -17,7 +17,7 @@ CxPolicy[result] {
 	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, commands.Original]), from_command.EndLine-1),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, commands.Original]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "COPY '--from' should reference a previously defined FROM alias",
 		"keyActualValue": "COPY '--from' does not reference a previously defined FROM alias",

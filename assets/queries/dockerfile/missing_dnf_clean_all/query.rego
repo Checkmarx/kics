@@ -18,7 +18,7 @@ CxPolicy[result] {
 	run_command := substring(resource.Original, 0, 3)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, resource.Value[0]]), from_command.EndLine-1),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, resource.Value[0]]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "After installing a package with dnf, command 'dnf clean all' should run.",
 		"keyActualValue": "Command `dnf clean all` is not being run after installing packages.",

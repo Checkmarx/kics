@@ -13,7 +13,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}", [from_command.Value, name]), from_command.EndLine-1),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}", [from_command.Value, name]), from_command.LineHint),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The 'Dockerfile' should contain the 'USER' instruction",
 		"keyActualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
