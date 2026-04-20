@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: ${{ secrets.CES_EXECUTOR_REPO }}
-          token: ${{ secrets.CX_CEBOT_GITHUB_TOKEN_CHECKMARX }}
+          token: ${{ secrets.GH_TOKEN }}
           path: cli
           ref: master
 
