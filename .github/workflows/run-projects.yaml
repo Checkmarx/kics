@@ -43,7 +43,6 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v6.1.0
         with:
-          audience: sts.amazonaws.com.cn
           role-to-assume: ${{ secrets.CES_BUCKET_AWS_ROLE }}
           aws-region: ${{ secrets.CES_BUCKET_AWS_REGION }}
 
