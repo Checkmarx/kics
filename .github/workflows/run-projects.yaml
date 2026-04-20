@@ -37,8 +37,6 @@ jobs:
         machine: ${{ fromJSON(needs.setup.outputs.machines) }}
 
     steps:
-
-    steps:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
