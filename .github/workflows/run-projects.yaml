@@ -12,6 +12,9 @@ env:
   ENGINE: "kics"
   CES_ENVIRONMENT: "prod"
 
+permissions:
+  id-token: write
+
 jobs:
   setup:
     runs-on: ubuntu-latest
