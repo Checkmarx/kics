@@ -28,8 +28,6 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.CES_BUCKET_AWS_ACCESS_KEY }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.CES_BUCKET_AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.CES_BUCKET_AWS_REGION }}
 
     strategy:
@@ -39,6 +37,12 @@ jobs:
         machine: ${{ fromJSON(needs.setup.outputs.machines) }}
 
     steps:
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: ${{ secrets.CES_BUCKET_AWS_ROLE }}
+          aws-region: ${{ secrets.CES_BUCKET_AWS_REGION }}
+
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: ${{ secrets.CES_EXECUTOR_REPO }}
