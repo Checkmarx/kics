@@ -14,6 +14,7 @@ import (
 
 const (
 	extDockerfile = ".dockerfile"
+	UrlRegex      = `[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)`
 )
 
 // GetExtension gets the extension of a file path
@@ -86,7 +87,6 @@ func readPossibleDockerFile(path string) bool {
 		if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(strings.ToLower(scanner.Text()), "arg") || scanner.Text() == "" {
 			continue
 		} else {
-			UrlRegex := `[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)`
 			pattern := `(?i)^\s*FROM\s+(--platform=\S+\s+)?(` + UrlRegex + `:[0-9]+)?[a-zA-Z0-9.\-/]+(:[a-zA-Z0-9.\-_]+)?(\s*$|\s+AS\s+\S+\s*$)`
 			matched, _ := regexp.MatchString(pattern, scanner.Text())
 			return matched
