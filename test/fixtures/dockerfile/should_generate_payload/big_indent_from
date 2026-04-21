@@ -1,0 +1,4 @@
+                    FROM      alpine:latest
+COPY --from=builder /src/bin /usr/local/bin/
+CMD ["/usr/local/bin/app"]
+ADD ${JAR_FILE} app.jar

@@ -1,4 +1,0 @@
-FROM --platform=linux/amd64 ubuntu:latest
-RUN apt-get update && apt-get install -y curl
-CMD ["/bin/bash"]
-ADD ${JAR_FILE} app.jar
