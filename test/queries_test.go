@@ -315,7 +315,16 @@ func vulnerabilityCompare(vulnerabilitySlice []model.Vulnerability, i, j int) bo
 	if cmp := strings.Compare(a.KeyExpectedValue, b.KeyExpectedValue); cmp != 0 {
 		return cmp < 0
 	}
-	return strings.Compare(a.KeyActualValue, b.KeyActualValue) < 0
+	if cmp := strings.Compare(a.KeyActualValue, b.KeyActualValue); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(string(a.IssueType), string(b.IssueType)); cmp != 0 {
+		return cmp < 0
+	}
+	if cmp := strings.Compare(a.SimilarityID, b.SimilarityID); cmp != 0 {
+		return cmp < 0
+	}
+	return a.SearchLine < b.SearchLine
 }
 
 func validateQueryResultFields(tb testing.TB, vulnerabilities []model.Vulnerability) {
