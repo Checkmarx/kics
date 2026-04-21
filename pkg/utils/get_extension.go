@@ -13,9 +13,24 @@ import (
 )
 
 const (
-	extDockerfile = ".dockerfile"
-	UrlRegex      = `[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)`
+	extDockerfile               = ".dockerfile"
+	dockerFromPattern           = `(?i)^\s*from\s+`
+
+	// Patters to exclude:
+	pythonImportPattern         = `(?i)from\s+\S+\s+import\s+\S+`
+	emailPattern                = `(?i)from\s*(:)?\s*[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}`
+	capitalizedAliasPattern     = `^\s*(?i:FROM)\s+\S+\s+(?i:AS)\s+[A-Z]`
+	dockerfileIllegalCharacters = `["'` + "`" + `()\[\],;|&?*^%!~<>]`
 )
+
+var dockerFrom = regexp.MustCompile(dockerFromPattern)
+
+var falsePositiveFROMPatterns = []*regexp.Regexp{
+	regexp.MustCompile(pythonImportPattern),
+	regexp.MustCompile(emailPattern),
+	regexp.MustCompile(capitalizedAliasPattern),
+	regexp.MustCompile(dockerfileIllegalCharacters),
+}
 
 // GetExtension gets the extension of a file path
 func GetExtension(path string) (string, error) {
@@ -87,9 +102,16 @@ func readPossibleDockerFile(path string) bool {
 		if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(strings.ToLower(scanner.Text()), "arg") || scanner.Text() == "" {
 			continue
 		} else {
-			pattern := `(?i)^\s*FROM\s+(--platform=\S+\s+)?(` + UrlRegex + `:[0-9]+)?[a-zA-Z0-9.\-/]+(:[a-zA-Z0-9.\-_]+)?(\s*$|\s+AS\s+\S+\s*$)`
-			matched, _ := regexp.MatchString(pattern, scanner.Text())
-			return matched
+			return dockerFrom.MatchString(scanner.Text()) && !matchesAny(falsePositiveFROMPatterns, scanner.Text())
+		}
+	}
+	return false
+}
+
+func matchesAny(patterns []*regexp.Regexp, s string) bool {
+	for _, p := range patterns {
+		if p.MatchString(s) {
+			return true
 		}
 	}
 	return false

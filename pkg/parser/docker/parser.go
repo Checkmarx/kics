@@ -60,6 +60,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 		child.Value = strings.ToLower(child.Value)
 		if child.Value == "from" {
 			fromValue = child.Original[5:]
+			fromValue = strings.TrimSpace(fromValue)
 		}
 
 		if ignoreStruct.getIgnoreComments(child) {
