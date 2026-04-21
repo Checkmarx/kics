@@ -15,8 +15,6 @@ import (
 const (
 	extDockerfile               = ".dockerfile"
 	dockerFromPattern           = `(?i)^\s*from\s+`
-
-	// Patters to exclude:
 	pythonImportPattern         = `(?i)from\s+\S+\s+import\s+\S+`
 	emailPattern                = `(?i)from\s*(:)?\s*[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}`
 	capitalizedAliasPattern     = `^\s*(?i:FROM)\s+\S+\s+(?i:AS)\s+[A-Z]`
