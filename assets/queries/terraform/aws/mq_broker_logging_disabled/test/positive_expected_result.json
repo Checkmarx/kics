@@ -1,17 +1,47 @@
 [
-	{
-		"queryName": "MQ Broker Logging Disabled",
-		"severity": "MEDIUM",
-		"line": 1
-	},
-	{
-		"queryName": "MQ Broker Logging Disabled",
-		"severity": "MEDIUM",
-		"line": 8
-	},
-	{
-		"queryName": "MQ Broker Logging Disabled",
-		"severity": "MEDIUM",
-		"line": 17
-	}
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_mq_broker",
+    "resourceName": "no-logging",
+    "searchKey": "aws_mq_broker[positive1]",
+    "searchValue": "",
+    "expectedValue": "'logs' should be set and enabling general AND audit logging",
+    "actualValue": "'logs' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b95395b11a38b1da4260fe5535bacb4f1e6cf27e326d2780b4f231c988104cce",
+    "search_line": -1
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "aws_mq_broker",
+    "resourceName": "partial-logging",
+    "searchKey": "aws_mq_broker[positive2].logs",
+    "searchValue": "",
+    "expectedValue": "'general' and 'audit' logging should be set to true",
+    "actualValue": "'general' and/or 'audit' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "287a87753eb3eec58f3038eddab8973621baaa41120f455f577884880ef5e03e",
+    "search_line": -1
+  },
+  {
+    "queryName": "MQ Broker Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive.tf",
+    "resourceType": "aws_mq_broker",
+    "resourceName": "disabled-logging",
+    "searchKey": "aws_mq_broker[positive3].logs.general",
+    "searchValue": "",
+    "expectedValue": "'general' and 'audit' logging should be set to true",
+    "actualValue": "'general' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "2ccc16e21b009cbb359662560960b397c90a34ea6ce4d0065238cd88e2a9536e",
+    "search_line": -1
+  }
 ]

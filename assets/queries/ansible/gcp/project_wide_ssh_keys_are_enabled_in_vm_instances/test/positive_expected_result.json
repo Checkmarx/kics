@@ -1,17 +1,47 @@
 [
-	{
-		"queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
-		"severity": "MEDIUM",
-		"line": 4
-	},
-	{
-		"queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
-		"severity": "MEDIUM",
-		"line": 9
-	},
-	{
-		"queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
-		"severity": "MEDIUM",
-		"line": 15
-	}
+  {
+    "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "ssh_keys_unblocked",
+    "searchKey": "name={{ssh_keys_unblocked}}.{{google.cloud.gcp_compute_instance}}.metadata.block-project-ssh-keys",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.metadata.block-project-ssh-keys should be true",
+    "actualValue": "gcp_compute_instance.metadata.block-project-ssh-keys is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "522028039ece31e652ed60f40db4e7f4a975d7c5d5f5355dca173892f0c0f4aa",
+    "search_line": -1
+  },
+  {
+    "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "ssh_keys_missing",
+    "searchKey": "name={{ssh_keys_missing}}.{{google.cloud.gcp_compute_instance}}.metadata",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.metadata.block-project-ssh-keys should be set to true",
+    "actualValue": "gcp_compute_instance.metadata.block-project-ssh-keys is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7caf13daeee207a2858a7335073d97a546ca7b3fd3b96b74453f315d01a37f60",
+    "search_line": -1
+  },
+  {
+    "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_instance",
+    "resourceName": "no_metadata",
+    "searchKey": "name={{no_metadata}}.{{google.cloud.gcp_compute_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_instance.metadata should be set",
+    "actualValue": "gcp_compute_instance.metadata is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a49caab94bd8192a564cecc1d7bc177616bf1e339e7e15b318fe7c7938ff6558",
+    "search_line": -1
+  }
 ]

@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "API Gateway without WAF",
-		"severity": "MEDIUM",
-		"line": 8,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "API Gateway without WAF",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_api_gateway",
+    "resourceName": "Setup AWS API Gateway setup on AWS and deploy API definition2",
+    "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition2}}.{{community.aws.aws_api_gateway}}",
+    "searchValue": "",
+    "expectedValue": "API Gateway Stage should be associated with a Web Application Firewall",
+    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall",
+    "issueType": "MissingAttribute",
+    "similarityID": "9cbcfe5e8565dc00849abb844c7886491dce873e260d7f53facca6fb5384b4fa",
+    "search_line": 8
+  }
 ]

@@ -2,6 +2,16 @@
   {
     "queryName": "StatefulSet Without PodDisruptionBudget",
     "severity": "LOW",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_stateful_set",
+    "resourceName": "prometheus",
+    "searchKey": "kubernetes_stateful_set[prometheus].spec.selector.match_labels",
+    "searchValue": "",
+    "expectedValue": "kubernetes_stateful_set[prometheus].spec.selector.match_labels is targeted by a PodDisruptionBudget",
+    "actualValue": "kubernetes_stateful_set[prometheus].spec.selector.match_labels is not targeted by a PodDisruptionBudget",
+    "issueType": "MissingAttribute",
+    "similarityID": "e002b6f58efe519806c29ed4407545dfe9e4ad1c10f53ac00524be96e50f7419",
+    "search_line": -1
   }
 ]

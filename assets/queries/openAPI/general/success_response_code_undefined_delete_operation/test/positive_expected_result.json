@@ -3,36 +3,90 @@
     "queryName": "Success Response Code Undefined for Delete Operation (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.delete.responses",
+    "searchValue": "",
+    "expectedValue": "Delete should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Delete does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "3c3228755551dbc4498d442895f7fbff88221172ad9c4fd7c8b49effb0529899",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Delete Operation (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.delete.responses",
+    "searchValue": "",
+    "expectedValue": "Delete should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Delete does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "21a83b02dc73ab81085660af09e1d68d42f44aae5899ada2c7803ca2057df7b7",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Delete Operation (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.delete.responses",
+    "searchValue": "",
+    "expectedValue": "Delete should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Delete does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "b0a9cb8db97a35cc60f9eefb80d3f47f8464fa998d4236c9492e5d908a57a7f5",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Delete Operation (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.delete.responses",
+    "searchValue": "",
+    "expectedValue": "Delete should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Delete does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "d7401bf333ddc715745419d4b40d24f4f77af836331a13d22e2f845fcc202a89",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Delete Operation (v2)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.delete.responses",
+    "searchValue": "",
+    "expectedValue": "Delete should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Delete does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "4425ecee87c425b4c287c664df5d2c461d98aa796f4227bc35112dd1fd8afa07",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Delete Operation (v2)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.delete.responses",
+    "searchValue": "",
+    "expectedValue": "Delete should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Delete does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "b6d2bf1980e7430257e414f84eb13ecf98b7aa8f61dd0de0a74a17efc55534f0",
+    "search_line": -1
   }
 ]

@@ -3,30 +3,75 @@
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 2,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket",
+    "searchKey": "Resources.Bucket",
+    "searchValue": "",
+    "expectedValue": "associated Bucket Policy should not allow access to any principal",
+    "actualValue": "associated Bucket Policy allows access to any principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "083b5523b7b89038d62eda8348d9ee383c3e5891c54e8d01890a0ab082c98d6b",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 27,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket2",
+    "searchKey": "Resources.Bucket2",
+    "searchValue": "",
+    "expectedValue": "associated Bucket Policy should not allow access to any principal",
+    "actualValue": "associated Bucket Policy allows access to any principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "9322b21f294d9fce9407178602b64e0522aa20c7e6cf908d46de67995dc9253b",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 3,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket",
+    "searchKey": "Resources.Bucket",
+    "searchValue": "",
+    "expectedValue": "associated Bucket Policy should not allow access to any principal",
+    "actualValue": "associated Bucket Policy allows access to any principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0f13fa2b3313aa6b8536d105b4a9dab2b5820406fc486bc1f22b8dc46d51615",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 42,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket2",
+    "searchKey": "Resources.Bucket2",
+    "searchValue": "",
+    "expectedValue": "associated Bucket Policy should not allow access to any principal",
+    "actualValue": "associated Bucket Policy allows access to any principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "94b92ee450ecb1ea3a8a780c43ba785d224bceb2ca72c83427712a87862643dc",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 3,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3BucketName",
+    "searchKey": "Resources.SWBS3Bucket",
+    "searchValue": "",
+    "expectedValue": "associated Bucket Policy should not allow access to any principal",
+    "actualValue": "associated Bucket Policy allows access to any principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "c95952a37a1d6748dce58a1e1db33e88cec5941af016a0c70704075f4d294842",
+    "search_line": -1
   }
 ]

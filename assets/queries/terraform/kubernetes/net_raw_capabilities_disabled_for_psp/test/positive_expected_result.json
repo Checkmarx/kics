@@ -2,6 +2,16 @@
   {
     "queryName": "NET_RAW Capabilities Disabled for PSP",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example].spec.required_drop_capabilities",
+    "searchValue": "",
+    "expectedValue": "spec.required_drop_capabilities 'is ALL or NET_RAW'",
+    "actualValue": "spec.required_drop_capabilities 'is not ALL or NET_RAW'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9a174143e4dd66df924f7af82aeff336e94759adebaa60136d505a4138705ad",
+    "search_line": 17
   }
 ]

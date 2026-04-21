@@ -3,12 +3,30 @@
     "queryName": "Callback JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.callbacks.myEvent.$ref",
+    "searchValue": "",
+    "expectedValue": "inProgress from #/components/callbacks/inProgress should be declared on components.callbacks",
+    "actualValue": "inProgress from #/components/callbacks/inProgress is not declared on components.callbacks",
+    "issueType": "MissingAttribute",
+    "similarityID": "9da57a9c184538b9a3d304283c02096d3fa26b725da919e28fd65af713e96499",
+    "search_line": 0
   },
   {
     "queryName": "Callback JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.callbacks.myEvent.$ref",
+    "searchValue": "",
+    "expectedValue": "inProgress from #/components/callbacks/inProgress should be declared on components.callbacks",
+    "actualValue": "inProgress from #/components/callbacks/inProgress is not declared on components.callbacks",
+    "issueType": "MissingAttribute",
+    "similarityID": "aa9856a17f40833e30cf5a0e47e46b00cf716ac9a79ba38c3641bf6d41c8fbfa",
+    "search_line": 0
   }
 ]

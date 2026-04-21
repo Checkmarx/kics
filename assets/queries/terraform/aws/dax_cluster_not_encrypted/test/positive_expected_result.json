@@ -3,18 +3,45 @@
     "queryName": "DAX Cluster Not Encrypted",
     "severity": "HIGH",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_dax_cluster",
+    "resourceName": "bar_1",
+    "searchKey": "aws_dax_cluster[{{bar_1}}]",
+    "searchValue": "",
+    "expectedValue": "aws_dax_cluster.server_side_encryption.enabled should be set to true",
+    "actualValue": "aws_dax_cluster.server_side_encryption is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "7bf8659f469ddf174301c3b4ce79fdcd00a0e319050446b0b1a63c65362094c9",
+    "search_line": -1
   },
   {
     "queryName": "DAX Cluster Not Encrypted",
     "severity": "HIGH",
     "line": 14,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_dax_cluster",
+    "resourceName": "bar_2",
+    "searchKey": "aws_dax_cluster[{{bar_2}}].server_side_encryption",
+    "searchValue": "",
+    "expectedValue": "aws_dax_cluster.server_side_encryption.enabled should be set to true",
+    "actualValue": "aws_dax_cluster.server_side_encryption.enabled is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "ef5820dc200a32febe007783e5e94653a11db7616dae28127ac3f84809f04b39",
+    "search_line": -1
   },
   {
     "queryName": "DAX Cluster Not Encrypted",
     "severity": "HIGH",
     "line": 25,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_dax_cluster",
+    "resourceName": "bar_3",
+    "searchKey": "aws_dax_cluster[{{bar_3}}].server_side_encryption.enabled",
+    "searchValue": "",
+    "expectedValue": "aws_dax_cluster.server_side_encryption.enabled should be set to true",
+    "actualValue": "aws_dax_cluster.server_side_encryption.enabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "68968a0912cb81bb042ea83a125e1090945c2aa0ca69db7168c87f55e695e6b3",
+    "search_line": 25
   }
 ]

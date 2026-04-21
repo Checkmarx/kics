@@ -1,26 +1,62 @@
 [
-	{
-		"queryName": "Cluster Allows Unsafe Sysctls",
-		"severity": "HIGH",
-		"line": 11,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Cluster Allows Unsafe Sysctls",
-		"severity": "HIGH",
-		"line": 13,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Cluster Allows Unsafe Sysctls",
-		"severity": "HIGH",
-		"line": 24,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Cluster Allows Unsafe Sysctls",
-		"severity": "HIGH",
-		"line": 18,
-		"fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "Cluster Allows Unsafe Sysctls",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "sysctl-example",
+    "searchKey": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{net.core.somaxconn}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{net.core.somaxconn}} should not be used",
+    "actualValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{net.core.somaxconn}} is an unsafe sysctl",
+    "issueType": "IncorrectValue",
+    "similarityID": "7b9e6d256e9d6620b3772d7d46dcd016c8743b3ac9641c6c76516398d5f07355",
+    "search_line": -1
+  },
+  {
+    "queryName": "Cluster Allows Unsafe Sysctls",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "sysctl-example",
+    "searchKey": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}} should not be used",
+    "actualValue": "metadata.name={{sysctl-example}}.spec.securityContext.sysctls.name={{kernel.msgmax}} is an unsafe sysctl",
+    "issueType": "IncorrectValue",
+    "similarityID": "d480fb7c28f6d0bbae3fa30f6bd598727521573714f2d8e36ff9243844f8f3c9",
+    "search_line": -1
+  },
+  {
+    "queryName": "Cluster Allows Unsafe Sysctls",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive1.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "sysctl-psp",
+    "searchKey": "metadata.name={{sysctl-psp}}.spec.allowedUnsafeSysctls",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{sysctl-psp}}.spec.allowedUnsafeSysctls should be undefined",
+    "actualValue": "metadata.name={{sysctl-psp}}.spec.allowedUnsafeSysctls is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9a0e32f62175e5b1eff7673848a77715398c38e7c3c4817834b037ba80801cc",
+    "search_line": -1
+  },
+  {
+    "queryName": "Cluster Allows Unsafe Sysctls",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "test-app",
+    "searchKey": "metadata.name={{test-app}}.spec.template.spec.securityContext.sysctls.name={{kernel.sem}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{test-app}}.spec.template.spec.securityContext.sysctls.name={{kernel.sem}} should not be used",
+    "actualValue": "metadata.name={{test-app}}.spec.template.spec.securityContext.sysctls.name={{kernel.sem}} is an unsafe sysctl",
+    "issueType": "IncorrectValue",
+    "similarityID": "d2458829b75b6d8b7f741ee7fd5c5074743ffc4fa35899491c25a74284824a93",
+    "search_line": -1
+  }
 ]

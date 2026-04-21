@@ -1,38 +1,92 @@
 [
   {
+    "queryName": "RouterTable with Default Routing",
     "severity": "LOW",
     "line": 54,
     "fileName": "positive1.yaml",
-    "queryName": "RouterTable with Default Routing"
-  },
-  {
-    "queryName": "RouterTable with Default Routing",
-    "severity": "LOW",
-    "line": 66,
-    "fileName": "positive1.yaml"
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute1",
+    "searchKey": "Resources.PublicRoute1.Properties.DestinationCidrBlock",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock should be different from the default value",
+    "actualValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock is 0.0.0.0/0",
+    "issueType": "IncorrectValue",
+    "similarityID": "eb5bd5f029b12d20d5b38cdb9a30036176c954dc4492ec9f4c89e2a1f48af53a",
+    "search_line": -1
   },
   {
     "queryName": "RouterTable with Default Routing",
     "severity": "LOW",
     "line": 61,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute2",
+    "searchKey": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock should be different from the default value",
+    "actualValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock is ::/0",
+    "issueType": "IncorrectValue",
+    "similarityID": "0dde5d6a785df848a4ead547ec61f4fc9cc0c3d78d223d006129ebb9e2243eb0",
+    "search_line": -1
   },
   {
+    "queryName": "RouterTable with Default Routing",
+    "severity": "LOW",
+    "line": 66,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute3",
+    "searchKey": "Resources.PublicRoute3.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute3.Properties.NatGatewayId should be defined",
+    "actualValue": "Resources.PublicRoute3.Properties.NatGatewayId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a26f5565d3ce130e0fabaf1ff090899b13e6ffc82931d7269a71152a55c2a300",
+    "search_line": -1
+  },
+  {
+    "queryName": "RouterTable with Default Routing",
     "severity": "LOW",
     "line": 37,
     "fileName": "positive2.json",
-    "queryName": "RouterTable with Default Routing"
-  },
-  {
-    "line": 108,
-    "fileName": "positive2.json",
-    "queryName": "RouterTable with Default Routing",
-    "severity": "LOW"
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute1",
+    "searchKey": "Resources.PublicRoute1.Properties.DestinationCidrBlock",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock should be different from the default value",
+    "actualValue": "Resources.PublicRoute1.Properties.DestinationCidrBlock is 0.0.0.0/0",
+    "issueType": "IncorrectValue",
+    "similarityID": "4959c886457fa94f6d5236d039847483108acbde4f7c8230d1fab644613f0212",
+    "search_line": -1
   },
   {
     "queryName": "RouterTable with Default Routing",
     "severity": "LOW",
     "line": 43,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute3",
+    "searchKey": "Resources.PublicRoute3.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute3.Properties.NatGatewayId should be defined",
+    "actualValue": "Resources.PublicRoute3.Properties.NatGatewayId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "13a875a2fe10c8de17a89e8e85a7858f282a29de4961f1c29112eb893fb20c1d",
+    "search_line": -1
+  },
+  {
+    "queryName": "RouterTable with Default Routing",
+    "severity": "LOW",
+    "line": 108,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Route",
+    "resourceName": "PublicRoute2",
+    "searchKey": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock should be different from the default value",
+    "actualValue": "Resources.PublicRoute2.Properties.DestinationIpv6CidrBlock is ::/0",
+    "issueType": "IncorrectValue",
+    "similarityID": "f2176d202bdbb6f2c4d3a5517ecdacc4d04833b64b0dced54847e94891995337",
+    "search_line": -1
   }
 ]

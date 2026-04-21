@@ -2,49 +2,121 @@
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
     "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1",
+    "searchValue": "",
+    "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
+    "actualValue": "'networkProfile.networkPolicy' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d44e89f34fc17b5863f0a4aa738f94be9e59dc7d65a5227d77549370fc3e8ae2",
+    "search_line": 2
+  },
+  {
+    "queryName": "AKS Cluster Network Policy Not Configured",
+    "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1",
+    "searchValue": "",
+    "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
+    "actualValue": "'networkProfile.networkPolicy' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0201f31af223c848187fd47de847d7a8cccb8e60522f7aa471f153a530df7235",
+    "search_line": 6
+  },
+  {
+    "queryName": "AKS Cluster Network Policy Not Configured",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.networkProfile.networkPolicy",
+    "searchValue": "",
+    "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
+    "actualValue": "'networkProfile.networkPolicy' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "e2186562c64317aaa15eac8cfb61749037132a68fa9b47a8fb50c5381301dc0d",
+    "search_line": 31
   },
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
     "severity": "MEDIUM",
     "line": 37,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.networkProfile.networkPolicy",
+    "searchValue": "",
+    "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
+    "actualValue": "'networkProfile.networkPolicy' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "40f8f77709cc877143138ae48c95ecd0a61b7ea919fb620eee6d393c47834c30",
+    "search_line": 37
+  },
+  {
+    "queryName": "AKS Cluster Network Policy Not Configured",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1",
+    "searchValue": "",
+    "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
+    "actualValue": "'networkProfile.networkPolicy' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "979d5ae8dea27ad67cdb5e1583887c13b65f61cf90e8e700db5ddd971d6c896a",
+    "search_line": 2
   },
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "properties.template.resources.name=aksCluster1",
+    "searchValue": "",
+    "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
+    "actualValue": "'networkProfile.networkPolicy' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "edace701973cd8d35d42453016fe316f86c9dd3a15d8e99ff364a2afd0bd8c70",
+    "search_line": 8
+  },
+  {
+    "queryName": "AKS Cluster Network Policy Not Configured",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.networkProfile.networkPolicy",
+    "searchValue": "",
+    "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
+    "actualValue": "'networkProfile.networkPolicy' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "d75e83783da12507ea7d52d3cd7b235e3847f7ace12ee1ac0f0731b1ba26de33",
+    "search_line": 31
   },
   {
     "queryName": "AKS Cluster Network Policy Not Configured",
     "severity": "MEDIUM",
     "line": 39,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "AKS Cluster Network Policy Not Configured",
-    "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive1.bicep"  
-  },
-  {
-    "queryName": "AKS Cluster Network Policy Not Configured",
-    "severity": "MEDIUM",
-    "line": 31,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "AKS Cluster Network Policy Not Configured",
-    "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive3.bicep"
-  },
-  {
-    "queryName": "AKS Cluster Network Policy Not Configured",
-    "severity": "MEDIUM",
-    "line": 31,
-    "filename": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "properties.template.resources.name=aksCluster1.properties.networkProfile.networkPolicy",
+    "searchValue": "",
+    "expectedValue": "'networkProfile.networkPolicy' should be defined and not empty",
+    "actualValue": "'networkProfile.networkPolicy' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "b834759326b4ee9f2abc1ed3b4984bc9877c4b9703be1832fb7363ac6ad9f4a4",
+    "search_line": 39
   }
 ]

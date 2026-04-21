@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "User Data Contains Encoded Private Key",
-		"severity": "HIGH",
-		"line": 12,
-    "fileName": "positive.json"
-	},
   {
-		"queryName": "User Data Contains Encoded Private Key",
-		"severity": "HIGH",
-		"line": 13,
-    "fileName": "positive.yaml"
-	}
+    "queryName": "User Data Contains Encoded Private Key",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive.json",
+    "resourceType": "AWS::AutoScaling::LaunchConfiguration",
+    "resourceName": "myLaunchConfig3",
+    "searchKey": "Resources.myLaunchConfig3.Properties.UserData",
+    "searchValue": "",
+    "expectedValue": "'Resources.myLaunchConfig3.Properties.UserData' shouldn't contain RSA Private Key",
+    "actualValue": "'Resources.myLaunchConfig3.Properties.UserData' contains RSA Private Key",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9cac3779b52b7efaacfe43cb672f6d7e63590e1b4a3b267d59e84787cc9d8b1",
+    "search_line": -1
+  },
+  {
+    "queryName": "User Data Contains Encoded Private Key",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "AWS::AutoScaling::LaunchConfiguration",
+    "resourceName": "myLaunchConfig4",
+    "searchKey": "Resources.myLaunchConfig4.Properties.UserData",
+    "searchValue": "",
+    "expectedValue": "'Resources.myLaunchConfig4.Properties.UserData' shouldn't contain RSA Private Key",
+    "actualValue": "'Resources.myLaunchConfig4.Properties.UserData' contains RSA Private Key",
+    "issueType": "IncorrectValue",
+    "similarityID": "2fa85244d7341334e96a8d44aac71061b87c7c8edab736bf868e8ff079f26f1a",
+    "search_line": -1
+  }
 ]

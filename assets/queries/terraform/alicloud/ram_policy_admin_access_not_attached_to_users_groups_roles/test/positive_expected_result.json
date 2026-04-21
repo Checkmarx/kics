@@ -3,18 +3,45 @@
     "queryName": "Ram Policy Admin Access Not Attached to Users Groups Roles",
     "severity": "MEDIUM",
     "line": 35,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_ram_user_policy_attachment",
+    "resourceName": "attach",
+    "searchKey": "alicloud_ram_user_policy_attachment[attach].policy_name",
+    "searchValue": "",
+    "expectedValue": "alicloud_ram_policy[policy4] should not give admin access to any user, group or role",
+    "actualValue": "alicloud_ram_policy[policy4] is attached to a user, group or role and gives admin access",
+    "issueType": "IncorrectValue",
+    "similarityID": "bcad3b514615fa742f181c628e90fdac61516b4ac69286528fea8733ed30e887",
+    "search_line": -1
   },
   {
     "queryName": "Ram Policy Admin Access Not Attached to Users Groups Roles",
     "severity": "MEDIUM",
     "line": 32,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_ram_group_policy_attachment",
+    "resourceName": "attach",
+    "searchKey": "alicloud_ram_group_policy_attachment[attach].policy_name",
+    "searchValue": "",
+    "expectedValue": "alicloud_ram_policy[policy5] should not give admin access to any user, group or role",
+    "actualValue": "alicloud_ram_policy[policy5] is attached to a user, group or role and gives admin access",
+    "issueType": "IncorrectValue",
+    "similarityID": "ac79285ff5a1dc14508be20ccd96d992e79557d57a346b2b937a843e95a25404",
+    "search_line": -1
   },
   {
     "queryName": "Ram Policy Admin Access Not Attached to Users Groups Roles",
     "severity": "MEDIUM",
     "line": 49,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "alicloud_ram_role_policy_attachment",
+    "resourceName": "attach",
+    "searchKey": "alicloud_ram_role_policy_attachment[attach].policy_name",
+    "searchValue": "",
+    "expectedValue": "alicloud_ram_policy[policy6] should not give admin access to any user, group or role",
+    "actualValue": "alicloud_ram_policy[policy6] is attached to a user, group or role and gives admin access",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9023141d00edc5047547cd9fb6b08d852faefd745e36f6fbb468cc9d9bf45c1",
+    "search_line": -1
   }
 ]

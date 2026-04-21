@@ -3,36 +3,90 @@
     "queryName": "JSON Object Schema Without Type (v3)",
     "severity": "MEDIUM",
     "line": 75,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'type' defined",
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b158b7d22b5313b7a8edcd88471db06a81366bd69c76cc1800a3f9c4c712b3e8",
+    "search_line": 0
   },
   {
     "queryName": "JSON Object Schema Without Type (v3)",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'type' defined",
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "3e2c0dbe65af802fdcdd8716e501862bb4eea7a27a8c2cab2b22cdf7e4f5caa2",
+    "search_line": 0
   },
   {
     "queryName": "JSON Object Schema Without Type (v3)",
     "severity": "MEDIUM",
     "line": 45,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'type' defined",
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "aa54e75cf7e178df3964183b381110662b2ef8f70ac9057923771ed52071c467",
+    "search_line": 0
   },
   {
     "queryName": "JSON Object Schema Without Type (v3)",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'type' defined",
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "15f7591c3c4dbf5f7872122119df1f8cbdcf1be35a869c060118ec6db5f9c092",
+    "search_line": 0
   },
   {
     "queryName": "JSON Object Schema Without Type (v2)",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'type' defined",
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ab1288df20635b2dea71651861379a56361066872a597098c5e93164f238494c",
+    "search_line": 0
   },
   {
     "queryName": "JSON Object Schema Without Type (v2)",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema of the JSON object should have 'type' defined",
+    "actualValue": "Schema of the JSON object does not have 'type' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "3328e22a99cdf0c94a2edda0107afa80dfb4d695ed28c79ae36c49db176ede81",
+    "search_line": 0
   }
 ]

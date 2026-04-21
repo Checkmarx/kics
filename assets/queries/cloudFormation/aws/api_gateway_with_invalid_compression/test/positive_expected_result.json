@@ -3,36 +3,90 @@
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "API Gateway With Invalid Compression",
-    "severity": "LOW",
-    "line": 22,
-    "fileName": "positive4.json"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi3.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi3.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.RestApi3.Properties.MinimumCompressionSize is set to smaller than 0",
+    "issueType": "IncorrectValue",
+    "similarityID": "0b5b47cfce9fda1f02fa9bd9b1abd02a7fadf633cbd05023a37b18287aa9d1a2",
+    "search_line": 17
   },
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi4.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi4.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.RestApi4.Properties.MinimumCompressionSize is set to greater than 10485759",
+    "issueType": "IncorrectValue",
+    "similarityID": "50da7698a5cb142ab64e900ea0f53f7b61a7bf908b803d011970b0ca50bb13f3",
+    "search_line": 17
+  },
+  {
+    "queryName": "API Gateway With Invalid Compression",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi5.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi5.Properties.MinimumCompressionSize should be defined",
+    "actualValue": "Resources.RestApi5.Properties.MinimumCompressionSize is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0c645df2ddf654a526211b2b09a8e10ea5a37e701cee092e9c289fbfd6e64cb6",
+    "search_line": 5
   },
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
     "line": 22,
-    "fileName": "positive5.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi6.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi6.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.RestApi6.Properties.MinimumCompressionSize is set to smaller than 0",
+    "issueType": "IncorrectValue",
+    "similarityID": "d131596f115850d372b9ac0b2ab5f848fa310346b7d9f6e429a02f1156347cea",
+    "search_line": 22
+  },
+  {
+    "queryName": "API Gateway With Invalid Compression",
+    "severity": "LOW",
+    "line": 22,
+    "fileName": "positive5.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi7.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi7.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.RestApi7.Properties.MinimumCompressionSize is set to greater than 10485759",
+    "issueType": "IncorrectValue",
+    "similarityID": "e07ed7701ded6a67f9304e0c69efdf663129c2e1ccddded035c2489db4315e61",
+    "search_line": 22
   },
   {
     "queryName": "API Gateway With Invalid Compression",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive3.yaml"
-  },
-  {
-    "queryName": "API Gateway With Invalid Compression",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::ApiGateway::RestApi",
+    "resourceName": "myApi",
+    "searchKey": "Resources.RestApi8.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RestApi8.Properties.MinimumCompressionSize should be defined",
+    "actualValue": "Resources.RestApi8.Properties.MinimumCompressionSize is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8cbb42c9b883cf1683489b02c521efd578246aa2a21a1c16a579c61c8f1ecd43",
+    "search_line": 5
   }
 ]

@@ -3,36 +3,90 @@
     "queryName": "API Gateway Cache Cluster Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos1.Properties.CacheClusterEnabled should be defined and not null",
+    "actualValue": "Resources.ProdPos1.Properties.CacheClusterEnabled is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "3961b1385f8afe28cfbd45084abe599d514e6242fcb9d29a988877fa00cff0ed",
+    "search_line": 6
   },
   {
     "queryName": "API Gateway Cache Cluster Disabled",
     "severity": "LOW",
     "line": 31,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos2.Properties.CacheClusterEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos2.Properties.CacheClusterEnabled should be set to true",
+    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "01bfa5f3da0ec5337390b4547ab94e068d8ebdc6d94b55214daea0f70003959d",
+    "search_line": 31
   },
   {
     "queryName": "API Gateway Cache Cluster Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos1.Properties.CacheClusterEnabled should be defined and not null",
+    "actualValue": "Resources.ProdPos1.Properties.CacheClusterEnabled is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "7330bd6aaa97ee2f866f6c6bfdc278d38a003f9f26da8710031b36c92a422d48",
+    "search_line": 6
   },
   {
     "queryName": "API Gateway Cache Cluster Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos2.Properties.CacheClusterEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos2.Properties.CacheClusterEnabled should be set to true",
+    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "d651f8a6604b6edc6272ba301e199f4dbffdd2962836de4ba962b88633ca9755",
+    "search_line": 6
   },
   {
     "queryName": "API Gateway Cache Cluster Disabled",
     "severity": "LOW",
     "line": 31,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos2.Properties.CacheClusterEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos2.Properties.CacheClusterEnabled should be set to true",
+    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "3fd835d8cb792169ea97193633a68cd29f3ddd729207a13a6c7204f024d1c8c4",
+    "search_line": 31
   },
   {
     "queryName": "API Gateway Cache Cluster Disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.ProdPos2.Properties.CacheClusterEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ProdPos2.Properties.CacheClusterEnabled should be set to true",
+    "actualValue": "Resources.ProdPos2.Properties.CacheClusterEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "5692f88f52405eb98a064a3b732b832de2516fed5450a4db799141e81aea187e",
+    "search_line": 6
   }
 ]

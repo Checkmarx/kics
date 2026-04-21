@@ -3,6 +3,15 @@
     "queryName": "RDS Cluster With Backup Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_rds_cluster",
+    "resourceName": "postgresql",
+    "searchKey": "aws_rds_cluster[{{postgresql}}]",
+    "searchValue": "",
+    "expectedValue": "aws_rds_cluster.backup_retention_period should be defined and not null",
+    "actualValue": "aws_rds_cluster.backup_retention_period is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "2232a05bf2e4ef95e2869948fb9672ebb1912dc17c9378fff13834a79c9ddbb2",
+    "search_line": -1
   }
 ]

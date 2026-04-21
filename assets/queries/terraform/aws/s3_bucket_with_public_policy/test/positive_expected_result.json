@@ -3,60 +3,150 @@
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
-    "line": 12,
-    "filename": "positive2.tf"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
-    "line": 9,
-    "filename": "positive4.tf"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive5.tf"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
-    "line": 5,
-    "filename": "positive6.tf"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
-    "line": 7,
-    "filename": "positive7.tf"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
-    "line": 11,
-    "filename": "positive8.tf"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
-    "line": 2,
-    "filename": "positive9.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "allow_public",
+    "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "64d93d7de3ca7705f99de0db62c0e6406b48323beb013310e8f7d72cc21632b2",
+    "search_line": 11
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive10.tf"
+    "fileName": "positive10.tf",
+    "resourceType": "aws_s3_account_public_access_block",
+    "resourceName": "allow_public_acc",
+    "searchKey": "aws_s3_account_public_access_block[allow_public_acc]",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is not defined (defaults to false)",
+    "issueType": "MissingAttribute",
+    "similarityID": "15caea81ff4d009c12662d30fd5e52b88a755cd42110ef8803b41b1aefbc06b5",
+    "search_line": 1
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive2.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "allow_public",
+    "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a2b86db2604c2350c0b4e6144aad100a6900750a3461b18c84e54afde6aa3e49",
+    "search_line": 12
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive3.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "allow_public",
+    "searchKey": "aws_s3_bucket_public_access_block[allow_public]",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)",
+    "issueType": "MissingAttribute",
+    "similarityID": "108d801a299bcf97818f05ecf4f0b214b7f6b2db409ff1602f1ac272f7f4d788",
+    "search_line": 9
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive4.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "allow_public",
+    "searchKey": "aws_s3_bucket_public_access_block[allow_public]",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)",
+    "issueType": "MissingAttribute",
+    "similarityID": "2ee6e08a100b9dc74f213cc6d99838833131554fbb802e99166862710c26b90b",
+    "search_line": 9
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive5.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "allow_public",
+    "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e34478ac3a331d0194537dbc50108664f126f073467f21c1ea59b1902d08fe8",
+    "search_line": 11
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive6.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "allow_public",
+    "searchKey": "aws_s3_bucket_public_access_block[allow_public]",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is not defined (defaults to false)",
+    "issueType": "MissingAttribute",
+    "similarityID": "c82c458d53346dba17a08634dd2524cba0142a2443eaa93d245af258b15a0e0b",
+    "search_line": 5
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive7.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "allow_public",
+    "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "9e935a352f6ed201698677981f5bd685faa6abf750c7635eef08cfb680616f01",
+    "search_line": 7
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive8.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "allow_public",
+    "searchKey": "aws_s3_bucket_public_access_block[allow_public].block_public_policy",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_bucket_public_access_block[allow_public].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f8f70b116bfa5d03497bbe0e5695f754dd40e79471a0fd864068288142fa28ba",
+    "search_line": 11
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive9.tf",
+    "resourceType": "aws_s3_account_public_access_block",
+    "resourceName": "allow_public_acc",
+    "searchKey": "aws_s3_account_public_access_block[allow_public_acc].block_public_policy",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is defined to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "7d6a022d1554b5a793068d4767643e5e701785ce3567a00d023e24792ca83a1f",
+    "search_line": 2
   }
 ]

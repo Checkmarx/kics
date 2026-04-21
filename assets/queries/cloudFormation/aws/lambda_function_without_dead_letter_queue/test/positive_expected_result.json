@@ -3,18 +3,45 @@
     "queryName": "Lambda Function Without Dead Letter Queue",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Function",
+    "searchKey": "Resources.Function.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Function.Properties.DeadLetterConfig' should be defined and not null",
+    "actualValue": "'Resources.Function.Properties.DeadLetterConfig' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "0293ee21702ccd64a319bc8b9d3b07f928cb46829671de1db3aeac9a3fd8a25a",
+    "search_line": 6
   },
   {
     "queryName": "Lambda Function Without Dead Letter Queue",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Function2",
+    "searchKey": "Resources.Function2.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Function2.Properties.DeadLetterConfig' should be defined and not null",
+    "actualValue": "'Resources.Function2.Properties.DeadLetterConfig' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "8265d76b01a9d75626a364d5618dfa8aa529df21e1be1aa20a3b6ee31600d6a6",
+    "search_line": 6
   },
   {
     "queryName": "Lambda Function Without Dead Letter Queue",
     "severity": "LOW",
     "line": 27,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Function2",
+    "searchKey": "Resources.Function2.Properties.DeadLetterConfig",
+    "searchValue": "",
+    "expectedValue": "'Resources.Function2.Properties.DeadLetterConfig.TargetArn' should be defined and not null",
+    "actualValue": "'Resources.Function2.Properties.DeadLetterConfig.TargetArn' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c202d72fb590c06f5ec4b6f9b65afdcc6956683dfbbf932d426be94498fabc4b",
+    "search_line": 27
   }
 ]

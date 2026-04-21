@@ -3,24 +3,60 @@
     "queryName": "Non Body Parameter Without Schema",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Non Body Parameter Without Schema",
-    "severity": "INFO",
-    "line": 13,
-    "filename": "positive2.yaml"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=limit2.schema",
+    "searchValue": "",
+    "expectedValue": "'schema' should not be set",
+    "actualValue": "'schema' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "bb172850a87f037ed8ecb01e3d37a2c8faa539a3951e52d982c7cdf3e59689b3",
+    "search_line": -1
   },
   {
     "queryName": "Non Body Parameter Without Schema",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit.schema",
+    "searchValue": "",
+    "expectedValue": "'schema' should not be set",
+    "actualValue": "'schema' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "b04dadc6f3188332ebe85e4d7f18eff77847fc6a07b538a498d649e4b6a90757",
+    "search_line": -1
+  },
+  {
+    "queryName": "Non Body Parameter Without Schema",
+    "severity": "INFO",
+    "line": 13,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=limit2.schema",
+    "searchValue": "",
+    "expectedValue": "'schema' should not be set",
+    "actualValue": "'schema' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "5a5ab8d78f9089af9b5b7f8fa2be6eaf646e1f87ed39353eb6626ff92c8f631f",
+    "search_line": -1
   },
   {
     "queryName": "Non Body Parameter Without Schema",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit.schema",
+    "searchValue": "",
+    "expectedValue": "'schema' should not be set",
+    "actualValue": "'schema' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "8cd38fbe09e36712b4baa0fa511cf303a9c136e38877ce7214f72db9d48b0c59",
+    "search_line": -1
   }
 ]

@@ -2,46 +2,136 @@
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].resources.requests.memory should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources.requests.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e65f24d84605aa6c2c50b3196833c713cac151b2b05ce98dd1743fafda0da655",
+    "search_line": 12
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 51
+    "line": 51,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].resources.requests.memory should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.requests.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7819e1f88e6eca2d91a610a5c7dfcfa7d2b7eebd05b7d98d44f1e6a2487d8189",
+    "search_line": 51
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 109
+    "line": 109,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container[0].resources should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container[0].resources is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9024362c7abcdba3c9410d967c9a7c3f215ab8116e8153894284c5a90dea91f5",
+    "search_line": 109
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 138
+    "line": 138,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container[1].resources should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container[1].resources is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "df57ed93f5924192c98ce041df76006f4ee6d486d1f23f2fe15e515726bcc02f",
+    "search_line": 138
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 195
+    "line": 195,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[0].resources.requests should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container[0].resources.requests is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "af077d33c454bc1157e0b6ee2f9d7a961a9441fa84ffa0639837c164ad357ae9",
+    "search_line": 195
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 231
+    "line": 231,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[1].resources.requests should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container[1].resources.requests is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "77e75c4f1d0e32139bde6d8be1d8ba615516c9c8e1985fd79260e32b8249aa13",
+    "search_line": 231
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 296
+    "line": 296,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container.resources.requests",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.resources.requests.memory should be set",
+    "actualValue": "kubernetes_pod[positive4].spec.container.resources.requests.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fe5303eed69fe1542075de8c7372ce5b70ef4975c4c3187ef4f383d9b54ef307",
+    "search_line": 296
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 350
+    "line": 350,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive5",
+    "searchKey": "kubernetes_pod[positive5].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive5].spec.container.resources should be set",
+    "actualValue": "kubernetes_pod[positive5].spec.container.resources is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5a35f28881a2503f5df81c41e89d9aa2744a05d56c8128b5ffb0ff5e4931bb97",
+    "search_line": 350
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 408
+    "line": 408,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive6",
+    "searchKey": "kubernetes_pod[positive6].spec.container.resources",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive6].spec.container.resources.requests should be set",
+    "actualValue": "kubernetes_pod[positive6].spec.container.resources.requests is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7f9ae424634559d08e32760d3100b9d121c2a5533d788f9a0c5ec8527ecdd4ae",
+    "search_line": 408
   }
 ]

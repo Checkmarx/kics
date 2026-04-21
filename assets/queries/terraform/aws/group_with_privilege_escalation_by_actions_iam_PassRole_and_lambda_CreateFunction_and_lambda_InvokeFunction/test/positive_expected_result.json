@@ -3,6 +3,15 @@
     "queryName": "Group With Privilege Escalation By Actions 'lambda:CreateFunction' And 'iam:PassRole' And 'lambda:InvokeFunction'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_group",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_group[cosmic]",
+    "searchValue": "",
+    "expectedValue": "group cosmic shouldn't be associated with a policy that has Action set to 'lambda:CreateFunction' and 'iam:PassRole' and 'lambda:InvokeFunction' and Resource set to '*'",
+    "actualValue": "group cosmic is associated with a policy that has Action set to 'lambda:CreateFunction' and 'iam:PassRole' and 'lambda:InvokeFunction' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5f2b5ea6c0c97df2658e155ad994f745cb91f39b7dc65c93851cfe32a0b8a647",
+    "search_line": 1
   }
 ]

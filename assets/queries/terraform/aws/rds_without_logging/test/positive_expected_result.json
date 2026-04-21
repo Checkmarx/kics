@@ -3,24 +3,60 @@
     "queryName": "RDS Without Logging",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "positive1",
+    "searchKey": "aws_db_instance[positive1]",
+    "searchValue": "",
+    "expectedValue": "'enabled_cloudwatch_logs_exports' should be defined",
+    "actualValue": "'enabled_cloudwatch_logs_exports' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6afb50b039516e2199fadd88c51d2b7202ca2350613ffffedd18540f6dfb0b1d",
+    "search_line": 1
   },
   {
     "queryName": "RDS Without Logging",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "positive2",
+    "searchKey": "aws_db_instance[positive2].enabled_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "'enabled_cloudwatch_logs_exports' has one or more values",
+    "actualValue": "'enabled_cloudwatch_logs_exports' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "486515aca15b2ce6c484502fe118bf3bf7b8e881c8cacb2b9b68fde4a26bc37d",
+    "search_line": 7
   },
   {
     "queryName": "RDS Without Logging",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db]",
+    "searchValue": "",
+    "expectedValue": "'enabled_cloudwatch_logs_exports' should be defined",
+    "actualValue": "'enabled_cloudwatch_logs_exports' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "68e20a03b605535ea24a346c762894cc68e19840011753208374c95622ee39a2",
+    "search_line": 1
   },
   {
     "queryName": "RDS Without Logging",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db].enabled_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "'enabled_cloudwatch_logs_exports' has one or more values",
+    "actualValue": "'enabled_cloudwatch_logs_exports' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "d24956106a485a4a14553d5774dd738704d7caba18adcf35d626b7714c096ea0",
+    "search_line": 11
   }
 ]

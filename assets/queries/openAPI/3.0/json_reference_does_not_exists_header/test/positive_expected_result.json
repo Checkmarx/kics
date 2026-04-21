@@ -3,12 +3,30 @@
     "queryName": "Header JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.headers.X-Pages.$ref",
+    "searchValue": "",
+    "expectedValue": "wPages from #/components/headers/wPages should be declared on components.headers",
+    "actualValue": "wPages from #/components/headers/wPages is not declared on components.headers",
+    "issueType": "MissingAttribute",
+    "similarityID": "c5bdfde1323ed96d152bf461ada0a2573b4dcfc90bc14c83e4bd6642b2025749",
+    "search_line": 0
   },
   {
     "queryName": "Header JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.headers.X-Pages.$ref",
+    "searchValue": "",
+    "expectedValue": "wPages from #/components/headers/wPages should be declared on components.headers",
+    "actualValue": "wPages from #/components/headers/wPages is not declared on components.headers",
+    "issueType": "MissingAttribute",
+    "similarityID": "bc647d905201d417e28d839990f9f81d539c7ac4d8415838a2e42e9448973246",
+    "search_line": 0
   }
 ]

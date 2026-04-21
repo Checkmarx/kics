@@ -3,12 +3,30 @@
     "queryName": "Default VPC Exists",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_default_vpc",
+    "resourceName": "Default VPC",
+    "searchKey": "aws_default_vpc[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_default_vpc' should not exist",
+    "actualValue": "'aws_default_vpc' exists",
+    "issueType": "IncorrectValue",
+    "similarityID": "57089b35eb1038a73e3ba96cc84ac3fa4b54e6756ec58ecf94c237b7a92cf225",
+    "search_line": 1
   },
   {
     "queryName": "Default VPC Exists",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "vpc.default_vpc_name",
+    "searchValue": "",
+    "expectedValue": "'aws_default_vpc' should not exist",
+    "actualValue": "'aws_default_vpc' exists",
+    "issueType": "IncorrectValue",
+    "similarityID": "75c23bdd15a61f22b3e193a58023838dbfea3b3524ca888b575257f2bc89814f",
+    "search_line": 14
   }
 ]

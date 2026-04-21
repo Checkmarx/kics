@@ -3,30 +3,75 @@
     "queryName": "Apt Get Install Lists Were Not Deleted",
     "severity": "INFO",
     "line": 2,
-    "fileName": "positive.dockerfile"
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox1}}.RUN={{apt-get update && apt-get install --no-install-recommends -y python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "c07edd4d624cfe28134599df8890346820acf8d4ba759dbf1892b362a85539e8",
+    "search_line": -1
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
     "severity": "INFO",
     "line": 5,
-    "fileName": "positive.dockerfile"
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox2}}.RUN={{apt-get install python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "523ae91e156509c6cf08e0feb66e3f8402fd0f08997c1f6d43be28a589b32e17",
+    "search_line": -1
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
     "severity": "INFO",
     "line": 8,
-    "fileName": "positive.dockerfile"
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox3}}.RUN={{apt-get update && apt-get install --no-install-recommends -y python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "3c8fe0469cd162a01c3884a0cb73776d78d668e099de9607b100fa48c98a47d8",
+    "search_line": -1
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
     "severity": "INFO",
     "line": 12,
-    "fileName": "positive.dockerfile"
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox4}}.RUN={{apt-get update && apt-get install --no-install-recommends -y python}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "d256b08f1cb7bb7baa1c0a0e9d08db276fb6efec725d3c714b9f3c61c33d88f4",
+    "search_line": -1
   },
   {
     "queryName": "Apt Get Install Lists Were Not Deleted",
     "severity": "INFO",
     "line": 2,
-    "fileName": "positive2.dockerfile"
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox5}}.RUN={{set -eux; \tapt-get update; \tapt-get install -y --no-install-recommends package=0.0.0}}",
+    "searchValue": "",
+    "expectedValue": "After using apt-get install, the apt-get lists should be deleted",
+    "actualValue": "After using apt-get install, the apt-get lists were not deleted",
+    "issueType": "IncorrectValue",
+    "similarityID": "56b1a1a6fa4cfd2f8bdd13611e394e9eff045d29fc2de0bb556b1a717cb8cb99",
+    "search_line": -1
   }
 ]

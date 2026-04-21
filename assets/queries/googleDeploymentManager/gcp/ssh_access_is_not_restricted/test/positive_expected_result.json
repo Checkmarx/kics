@@ -3,18 +3,45 @@
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "compute.v1.firewall",
+    "resourceName": "firewall",
+    "searchKey": "resources.name={{firewall}}.properties.allowed[%!d(string=22)].ports=%!s(MISSING)",
+    "searchValue": "",
+    "expectedValue": "'allowed[0].ports' to not include SSH port 22",
+    "actualValue": "'allowed[0].ports' includes SSH port 22",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e933c6a4d6372acb35d07485d840a1b382c56759942b33e234cfcb8f1c96970",
+    "search_line": 10
   },
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "compute.v1.firewall",
+    "resourceName": "firewall",
+    "searchKey": "resources.name={{firewall}}.properties.allowed[%!d(string=21-3390)].ports=%!s(MISSING)",
+    "searchValue": "",
+    "expectedValue": "'allowed[0].ports' to not include SSH port 22",
+    "actualValue": "'allowed[0].ports' includes SSH port 22",
+    "issueType": "IncorrectValue",
+    "similarityID": "0e8aa75447187f032217f44b0c8bca56a090f667ba73788d8d2edb08380b7ffe",
+    "search_line": 10
   },
   {
     "queryName": "SSH Access Is Not Restricted",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "compute.v1.firewall",
+    "resourceName": "firewall",
+    "searchKey": "resources.name={{firewall}}.properties.allowed[%!d(string=0-65535)].ports=%!s(MISSING)",
+    "searchValue": "",
+    "expectedValue": "'allowed[0].ports' to not include SSH port 22",
+    "actualValue": "'allowed[0].ports' includes SSH port 22",
+    "issueType": "IncorrectValue",
+    "similarityID": "f0ecef102b4be6ed45591b13ac1f1d9cf9576890e65a8cb06c94fc0092793398",
+    "search_line": -1
   }
 ]

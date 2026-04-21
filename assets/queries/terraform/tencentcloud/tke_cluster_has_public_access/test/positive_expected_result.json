@@ -3,72 +3,180 @@
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 63,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned should be equal to 'false'",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned is equal to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "828b538c5ac97b8f33a6777b500dbc7dca55e72ba6bdecc9f8bd982b24a92979",
+    "search_line": 63
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 84,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned should equal 'false'",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned is equal 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "852a11865d9994e9e983d2fcf3a8456e5e5aceeec6cadc4ded0289838bffbc1d",
+    "search_line": 84
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 62,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out should equal '0' or undefined",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out is not equal '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c7d2c438c3e039d1684986a14fa3b2ab3dcafb180fb394db8c83eb3a3012cd53",
+    "search_line": 62
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 83,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out should equal '0' or undefined",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out is defined and not equal to '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d869818092f7f431ca944fb7990ae510cc41b507bc4246872594754d83ce28af",
+    "search_line": 83
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 63,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned should be equal to 'false'",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned is equal 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "747fa47454523f2f97f32a7b46d574351b74fed890957720eefbfa884cce1b73",
+    "search_line": 63
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 84,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned should be equal to 'false'",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.public_ip_assigned is equal 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0cf7d0861b7fcbb8ebd04f982599228ffad9cba9bf9897f45696e67cf4af2c96",
+    "search_line": 84
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 105,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned should equal 'false'",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned is equal 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "eda8da2fd493c7f94b2b53c384f3546f0fbdd1bb1893fb9e8a4a294d9923f6e0",
+    "search_line": 105
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 126,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned should equal 'false'",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.public_ip_assigned is equal 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c3682b0b36ce06178ac3d663317f0c26b206bf6faa300c1d0314822343b90092",
+    "search_line": 126
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 62,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out should equal '0' or null",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out is not equal '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "50067e6013c76288d563377a6579325ac044b19a32b63ea867d220fa2ab45abf",
+    "search_line": 62
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 83,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out should equal '0' or null",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].master_config.internet_max_bandwidth_out is not equal '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3735ef22f028b8bd654065dd02c73a31896715b7fc91d833d444f61bfb44bf3d",
+    "search_line": 83
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 104,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out should be equal to '0' or null",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out is defined and not equal to '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2b10eb140cee1f280ad08ef8910f5bc3ab5ceec29ed224e796e5928514178ba3",
+    "search_line": 104
   },
   {
     "queryName": "TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 124,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "tencentcloud_kubernetes_cluster",
+    "resourceName": "example",
+    "searchKey": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out",
+    "searchValue": "",
+    "expectedValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out should be equal to '0' or null",
+    "actualValue": "tencentcloud_kubernetes_cluster[example].worker_config.internet_max_bandwidth_out is defined and not equal to '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "aa507a6522fe60618eaba7ae40210dc62a843a231a8287920f0f79d9776cccde",
+    "search_line": 124
   }
 ]

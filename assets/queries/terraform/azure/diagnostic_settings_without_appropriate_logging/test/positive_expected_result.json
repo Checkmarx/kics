@@ -3,42 +3,105 @@
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "diagnostic-settings-name",
+    "searchKey": "azurerm_monitor_diagnostic_setting[positive1_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[positive1_1].enabled_log' objects should be defined for all 4 main categories",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[positive1_1]' does not define a single 'enabled_log' object",
+    "issueType": "MissingAttribute",
+    "similarityID": "9b584778ac3cf8cbf828af0f2d5e06b5e08d3de2bc8f80302aca47588fe0f4d5",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "diagnostic-settings-name",
+    "searchKey": "azurerm_monitor_diagnostic_setting[positive1_2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[positive1_2].enabled_log' objects should enable logging for all 4 main categories",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[positive1_2].enabled_log' objects do not enable logging for 3 of the main categories: 'Alert', 'Policy', 'Security'",
+    "issueType": "MissingAttribute",
+    "similarityID": "df01f78758d84c30f9d9fdf4cac182be252cc2ea9a2d37ab27bfd88dff9abe4a",
+    "search_line": 8
   },
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "diagnostic-settings-name",
+    "searchKey": "azurerm_monitor_diagnostic_setting[positive1_3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[positive1_3].enabled_log' objects should enable logging for all 4 main categories",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[positive1_3].enabled_log' objects do not enable logging for 2 of the main categories: 'Policy', 'Security'",
+    "issueType": "MissingAttribute",
+    "similarityID": "cce8846c902de9fcf7ce14b178d9d62e42c03f5be28b679a16c94337fa9f7bc5",
+    "search_line": 18
   },
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "diagnostic-settings-name",
+    "searchKey": "azurerm_monitor_diagnostic_setting[positive2_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[positive2_1].log' objects should enable logging for all 4 main categories",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[positive2_1].log' objects do not enable logging for 3 of the main categories: 'Alert', 'Policy', 'Security'",
+    "issueType": "MissingAttribute",
+    "similarityID": "a81d96c2c686e5a670885be1bd80015701e05482186b82e5c00e163ca95a0515",
+    "search_line": 3
   },
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "diagnostic-settings-name",
+    "searchKey": "azurerm_monitor_diagnostic_setting[positive2_2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[positive2_2].log' objects should enable logging for all 4 main categories",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[positive2_2].log' objects do not enable logging for 4 of the main categories: 'Administrative', 'Alert', 'Policy', 'Security'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ec2d85eda1077ef252ae590e6d1206034c0900c2d9fad92522c4cff8b7b4d8f5",
+    "search_line": 13
   },
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "diagnostic-settings-name",
+    "searchKey": "azurerm_monitor_diagnostic_setting[positive2_3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[positive2_3].log' objects should enable logging for all 4 main categories",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[positive2_3].log' objects do not enable logging for 2 of the main categories: 'Alert', 'Policy'",
+    "issueType": "MissingAttribute",
+    "similarityID": "ced83c160d074ab40ca5643b0d1af558491f430dd942287c4fd3bd046095c3ed",
+    "search_line": 23
   },
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
     "line": 39,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_monitor_diagnostic_setting",
+    "resourceName": "diagnostic-settings-name",
+    "searchKey": "azurerm_monitor_diagnostic_setting[positive2_4]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_monitor_diagnostic_setting[positive2_4].log' objects should enable logging for all 4 main categories",
+    "actualValue": "'azurerm_monitor_diagnostic_setting[positive2_4].log' objects do not enable logging for 1 of the main categories: 'Administrative'",
+    "issueType": "IncorrectValue",
+    "similarityID": "91643286de274ac5c75fe8955f3f75fdba808903aa141894001a3b0d428ffd57",
+    "search_line": 39
   }
 ]

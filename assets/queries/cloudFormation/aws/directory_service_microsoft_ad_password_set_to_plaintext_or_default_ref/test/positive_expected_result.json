@@ -2,37 +2,91 @@
   {
     "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
     "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive3.yaml"
+    "line": 14,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::DirectoryService::MicrosoftAD",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp-2.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp-2.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "actualValue": "Resources.NewAmpApp-2.Properties.Password must not be in plain text string",
+    "issueType": "IncorrectValue",
+    "similarityID": "2b673b6fd22d6ca845e9f99eda08b32ee4f66c51f0fcb4493842e4a13ba8d9f4",
+    "search_line": -1
   },
   {
     "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
-    "severity": "HIGH",
-    "line": 14,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
-    "severity": "HIGH",
-    "line": 17,
-    "fileName": "positive4.json"
-  },
-  {
-    "severity": "HIGH",
-    "line": 11,
-    "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
-    "fileName": "positive5.json"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::DirectoryService::MicrosoftAD",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "actualValue": "Resources.NewAmpApp.Properties.Password must not be in plain text string",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9d6c23478d3467db670193e7243455c19236860ee8739501ee13487df441819",
+    "search_line": -1
   },
   {
     "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive6.json"
+    "fileName": "positive3.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentMasterPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentMasterPassword.Default should not be defined",
+    "actualValue": "Parameters.ParentMasterPassword.Default is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "6259df86759c23df2313c0b92d15157b07e9f8add97316d4fc3cb379f7295958",
+    "search_line": -1
+  },
+  {
+    "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive4.json",
+    "resourceType": "AWS::DirectoryService::MicrosoftAD",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp-2.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp-2.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "actualValue": "Resources.NewAmpApp-2.Properties.Password must not be in plain text string",
+    "issueType": "IncorrectValue",
+    "similarityID": "26f1937259b3fcf3427f8026ee2f74430b57dbad80a09a465553db74ba48e5fe",
+    "search_line": -1
+  },
+  {
+    "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive5.json",
+    "resourceType": "AWS::DirectoryService::MicrosoftAD",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "actualValue": "Resources.NewAmpApp.Properties.Password must not be in plain text string",
+    "issueType": "IncorrectValue",
+    "similarityID": "6a9116985e70f4c8876dd90d65afc7c5fa0b384269d7408fc2d05b9ef0b21c29",
+    "search_line": -1
+  },
+  {
+    "queryName": "Directory Service Microsoft AD Password Set to Plaintext or Default Ref",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive6.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentMasterPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentMasterPassword.Default should not be defined",
+    "actualValue": "Parameters.ParentMasterPassword.Default is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "3ddb1cf4fe7f069b857062da3e64c3055e1f395c5f389aafe2d87a10d8a1b6b2",
+    "search_line": -1
   }
 ]

@@ -3,48 +3,120 @@
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "addonsConfig",
+    "expectedValue": "'addonsConfig' should be defined and not null",
+    "actualValue": "'addonsConfig' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "f338be1fa18d05f3998acb37b7fbba586f5f9dc3e8ba89becbe327173583b6eb",
+    "search_line": 4
   },
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "networkPolicy",
+    "expectedValue": "'networkPolicy' should be defined and not null",
+    "actualValue": "'networkPolicy' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a13dd8bc179c3880f13b68f51ac78e4c8af60375a15089c545cc54bd444b9d43",
+    "search_line": 4
   },
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "addonsConfig",
+    "expectedValue": "'addonsConfig' should be defined and not null",
+    "actualValue": "'addonsConfig' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1a498e49aac6596e17139a0b130feff2343dda39f7ba635adca5ea0fd2756c35",
+    "search_line": 4
   },
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.networkPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "'networkPolicy.enabled' should be true",
+    "actualValue": "'networkPolicy.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d6b222eb22695e60ac02575fc3e6ef972e2bce4aabac1486ee8219b35a77be3",
+    "search_line": 7
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive3.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "networkPolicy",
+    "expectedValue": "'networkPolicy' should be defined and not null",
+    "actualValue": "'networkPolicy' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "13fd843ed235b66fbff569f46f2417542d032c2f6dc57909fd302fc04d8a71df",
+    "search_line": 4
   },
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "Network Policy Disabled",
-    "severity": "MEDIUM",
-    "line": 4,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "Network Policy Disabled",
-    "severity": "MEDIUM",
-    "line": 10,
-    "filename": "positive4.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.addonsConfig.networkPolicyConfig.disabled",
+    "searchValue": "",
+    "expectedValue": "'addonsConfig.networkPolicyConfig.disabled' should be false",
+    "actualValue": "'addonsConfig.networkPolicyConfig.disabled' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "190d6c6efe6984010cd8a398e0557aba3e4d3e0639e19c0ddfea48040463d59a",
+    "search_line": 8
   },
   {
     "queryName": "Network Policy Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.networkPolicy.enabled",
+    "searchValue": "",
+    "expectedValue": "'networkPolicy.enabled' should be true",
+    "actualValue": "'networkPolicy.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "cccfcd7c45662d55e20e157a84642a883a7b0cb9bb41a4a65fb697b41250ffef",
+    "search_line": 7
+  },
+  {
+    "queryName": "Network Policy Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive4.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.addonsConfig.networkPolicyConfig.disabled",
+    "searchValue": "",
+    "expectedValue": "'addonsConfig.networkPolicyConfig.disabled' should be false",
+    "actualValue": "'addonsConfig.networkPolicyConfig.disabled' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "fafa3e5bc0b19c193c28a1f14f9cd7924ce4730fa78c18b357f5a9c599ea30ba",
+    "search_line": 10
   }
 ]

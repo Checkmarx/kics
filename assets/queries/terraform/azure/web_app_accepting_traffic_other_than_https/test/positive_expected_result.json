@@ -3,36 +3,90 @@
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-1].https_only",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-1].https_only' should be set to true",
+    "actualValue": "'azurerm_app_service[positive1-1].https_only' is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c8847b9b4e0c1687e17e8d21e1f890a426a76e8ea8fcf8c998819c68626d877",
+    "search_line": 12
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-2].https_only' should be defined and set to true",
+    "actualValue": "'azurerm_app_service[positive1-2].https_only' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "76946e5a8bfab64ea0d9d99cff761967162108123d6cee4662c88fcccdcef16b",
+    "search_line": 15
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive2-1].https_only",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive2-1].https_only' should be set to true",
+    "actualValue": "'azurerm_linux_web_app[positive2-1].https_only' is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "6955692058da13968d1eb0740055544efc59d255a7d15da998ffacd17e841429",
+    "search_line": 12
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive2-2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive2-2].https_only' should be defined and set to true",
+    "actualValue": "'azurerm_linux_web_app[positive2-2].https_only' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bd4f39db8cafd75253cb97de09713bbbf798a05fff32290102ba199c75959c9d",
+    "search_line": 15
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive3-1].https_only",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive3-1].https_only' should be set to true",
+    "actualValue": "'azurerm_windows_web_app[positive3-1].https_only' is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "ed8e7340d4f07407b4f789a9195dfac95699839c0eaac005ec0c18d360597e4b",
+    "search_line": 12
   },
   {
     "queryName": "Web App Accepting Traffic Other Than HTTPS",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive3-2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive3-2].https_only' should be defined and set to true",
+    "actualValue": "'azurerm_windows_web_app[positive3-2].https_only' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bd47a2b887224e3d265c00510062599afee6c3c4fedc5e45314040bf2e0a0603",
+    "search_line": 15
   }
 ]

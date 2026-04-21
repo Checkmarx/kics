@@ -2,25 +2,61 @@
   {
     "queryName": "IAM User Has Too Many Access Keys",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive1.yaml"
-  },
-  {
     "line": 10,
     "fileName": "positive1.yaml",
-    "queryName": "IAM User Has Too Many Access Keys",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::IAM::AccessKey",
+    "resourceName": "firstKey",
+    "searchKey": "Resources.firstKey",
+    "searchValue": "",
+    "expectedValue": "'Resources.firstKey' is the only AccessKey of user 'myuser'",
+    "actualValue": "'Resources.firstKey' is not the only AccessKey of user 'myuser'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6c0fb7b14f82776c08b0f16921e2c2fe80171385651c893d7d4f1562cc1872e2",
+    "search_line": -1
   },
   {
     "queryName": "IAM User Has Too Many Access Keys",
     "severity": "MEDIUM",
-    "line": 20,
-    "fileName": "positive2.json"
+    "line": 14,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::AccessKey",
+    "resourceName": "secondKey",
+    "searchKey": "Resources.secondKey",
+    "searchValue": "",
+    "expectedValue": "'Resources.secondKey' is the only AccessKey of user 'myuser'",
+    "actualValue": "'Resources.secondKey' is not the only AccessKey of user 'myuser'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8a002ac02d9fa884176b533f4c63212477c536f94cfc2855a10d58beffd32888",
+    "search_line": -1
   },
   {
     "queryName": "IAM User Has Too Many Access Keys",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::AccessKey",
+    "resourceName": "secondKey",
+    "searchKey": "Resources.secondKey",
+    "searchValue": "",
+    "expectedValue": "'Resources.secondKey' is the only AccessKey of user 'myuser'",
+    "actualValue": "'Resources.secondKey' is not the only AccessKey of user 'myuser'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ccb7d7e2eadde9ad7afc7a6e30bcd4d72851fdc3c37ce228f90b030a3e8077a7",
+    "search_line": -1
+  },
+  {
+    "queryName": "IAM User Has Too Many Access Keys",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::AccessKey",
+    "resourceName": "firstKey",
+    "searchKey": "Resources.firstKey",
+    "searchValue": "",
+    "expectedValue": "'Resources.firstKey' is the only AccessKey of user 'myuser'",
+    "actualValue": "'Resources.firstKey' is not the only AccessKey of user 'myuser'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9ff62e52952319e42a13f7e51caed1a8facb866eff2930c92d4f1e841bf5fc09",
+    "search_line": -1
   }
 ]

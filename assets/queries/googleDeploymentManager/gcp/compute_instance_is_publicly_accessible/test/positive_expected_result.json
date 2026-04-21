@@ -3,6 +3,15 @@
     "queryName": "Compute Instance Is Publicly Accessible",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "instance",
+    "searchKey": "resources.name={{instance}}.properties.networkInterfaces",
+    "searchValue": "",
+    "expectedValue": "'accessConfigs' should be undefined",
+    "actualValue": "'accessConfigs' is defined and not null",
+    "issueType": "IncorrectValue",
+    "similarityID": "3b0e6124f05aeec7a2a92e9737c3e3e2ddd83dc69a9eb2e8c9ee8d9ba94188d5",
+    "search_line": 8
   }
 ]

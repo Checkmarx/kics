@@ -2,11 +2,31 @@
   {
     "queryName": "Beta - SQL DB Instance With Limited User Connections",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should be defined and set 'user connections' to '0'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'user connections' to '1001'",
+    "issueType": "IncorrectValue",
+    "similarityID": "de80c980595a9b202c85841c239867b93ede33b692ed7642a37c447d637747ff",
+    "search_line": 13
   },
   {
     "queryName": "Beta - SQL DB Instance With Limited User Connections",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should be defined and set 'user connections' to '0'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'user connections' to '1000'",
+    "issueType": "IncorrectValue",
+    "similarityID": "623979e667f1e160e25f491e228b44c669808a86e3dae3fa80ded1d004f05afb",
+    "search_line": 31
   }
 ]

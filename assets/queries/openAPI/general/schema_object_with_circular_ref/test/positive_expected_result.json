@@ -3,24 +3,60 @@
     "queryName": "Schema Object With Circular Ref (v3)",
     "severity": "INFO",
     "line": 70,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.ExtendedErrorModel.allOf.$ref=#/components/schemas/ExtendedErrorModel",
+    "searchValue": "",
+    "expectedValue": "components.schemas.ExtendedErrorModel.allOf should not reference own schema",
+    "actualValue": "components.schemas.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue",
+    "similarityID": "c0db68c0382d32e230a0ecbf5fcec7a99a5097229a0aef0e27e32e77de6c167e",
+    "search_line": 0
   },
   {
     "queryName": "Schema Object With Circular Ref (v2)",
     "severity": "INFO",
     "line": 46,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.ExtendedErrorModel.allOf.$ref=#/definitions/ExtendedErrorModel",
+    "searchValue": "",
+    "expectedValue": "definitions.ExtendedErrorModel.allOf should not reference own schema",
+    "actualValue": "definitions.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue",
+    "similarityID": "fe87a3143a00ecda6b1f1debfc8fbde58e5f8ccc3ea65de82756868d4e9f42af",
+    "search_line": 0
   },
   {
     "queryName": "Schema Object With Circular Ref (v3)",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.ExtendedErrorModel.allOf.$ref=#/components/schemas/ExtendedErrorModel",
+    "searchValue": "",
+    "expectedValue": "components.schemas.ExtendedErrorModel.allOf should not reference own schema",
+    "actualValue": "components.schemas.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue",
+    "similarityID": "f96a1d4598210b4fb2acd61cb5dd07d1cde1e0be4e57fd1d2c89cb56a1caf658",
+    "search_line": 0
   },
   {
     "queryName": "Schema Object With Circular Ref (v2)",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.ExtendedErrorModel.allOf.$ref=#/definitions/ExtendedErrorModel",
+    "searchValue": "",
+    "expectedValue": "definitions.ExtendedErrorModel.allOf should not reference own schema",
+    "actualValue": "definitions.ExtendedErrorModel.allOf reference own schema",
+    "issueType": "IncorrectValue",
+    "similarityID": "0040b183b67bc97330264e68cbbd733ff2a25fe0d033d561db7c33e4078e4be0",
+    "search_line": 0
   }
 ]

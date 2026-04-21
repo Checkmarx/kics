@@ -2,6 +2,16 @@
   {
     "queryName": "Redis Not Compliant",
     "severity": "HIGH",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster-example",
+    "searchKey": "aws_elasticache_cluster[positive1].engine_version",
+    "searchValue": "",
+    "expectedValue": "aws_elasticache_cluster[positive1].engine_version should be compliant with the requirements",
+    "actualValue": "aws_elasticache_cluster[positive1].engine_version isn't compliant with the requirements",
+    "issueType": "IncorrectValue",
+    "similarityID": "3d747327caff865ee661c76312dfad61cce0a6dda4776302c522bdc621932ca4",
+    "search_line": -1
   }
 ]

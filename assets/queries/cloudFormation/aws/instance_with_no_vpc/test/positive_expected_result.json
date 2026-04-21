@@ -1,26 +1,62 @@
 [
   {
+    "queryName": "Instance With No VPC",
+    "severity": "LOW",
     "line": 21,
     "fileName": "positive1.yaml",
-    "queryName": "Instance With No VPC",
-    "severity": "LOW"
+    "resourceType": "AWS::EC2::Subnet",
+    "resourceName": "${AWS::StackName}-Public-A",
+    "searchKey": "Resources.PublicSubnetA.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicSubnetA.Properties.VpcId should be defined",
+    "actualValue": "Resources.PublicSubnetA.Properties.VpcId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "25d0b1c150779082b4c4cc79ddc1b5425692f3a40f2af499296ed453f8153326",
+    "search_line": -1
   },
   {
     "queryName": "Instance With No VPC",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Ec2Instance-02",
+    "searchKey": "Resources.Ec2Instance-02.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces should be defined",
+    "actualValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "38ef4731b3531b3e464f774029f6ef70282f579a24d03254b59e8445a21e3d58",
+    "search_line": -1
   },
   {
     "queryName": "Instance With No VPC",
     "severity": "LOW",
     "line": 35,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::EC2::Subnet",
+    "resourceName": "${AWS::StackName}-Public-A",
+    "searchKey": "Resources.PublicSubnetA.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.PublicSubnetA.Properties.VpcId should be defined",
+    "actualValue": "Resources.PublicSubnetA.Properties.VpcId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0630bbeaaf9a65cb32296f0680900cfb9878c45cd191aaa11eb594020729edd8",
+    "search_line": -1
   },
   {
-    "fileName": "positive4.json",
     "queryName": "Instance With No VPC",
     "severity": "LOW",
-    "line": 5
+    "line": 5,
+    "fileName": "positive4.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "Ec2Instance-02",
+    "searchKey": "Resources.Ec2Instance-02.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces should be defined",
+    "actualValue": "Resources.Ec2Instance-02.Properties.NetworkInterfaces is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "94f42ca9577530a33256158a1c35108353cc30adfc262a1218a413ad7f88da10",
+    "search_line": -1
   }
 ]

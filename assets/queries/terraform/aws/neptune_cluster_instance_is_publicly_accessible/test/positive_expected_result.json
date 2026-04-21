@@ -3,6 +3,15 @@
     "queryName": "Neptune Cluster Instance is Publicly Accessible",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_neptune_cluster_instance",
+    "resourceName": "example",
+    "searchKey": "aws_neptune_cluster_instance[example].publicly_accessible",
+    "searchValue": "",
+    "expectedValue": "aws_neptune_cluster_instance[example].publicly_accessible should be set to false",
+    "actualValue": "aws_neptune_cluster_instance[example].publicly_accessible is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "ff9dc058c096dad4bc82850f8a52569462d893c262e28d78864f69cd9052118f",
+    "search_line": 7
   }
 ]

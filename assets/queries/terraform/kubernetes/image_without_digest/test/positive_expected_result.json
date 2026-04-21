@@ -2,31 +2,91 @@
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].image should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].image is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "94bd7e74fa48b3c42a9b60eb6ee738fea23108ca14b5f8e4d583a1ef98117f27",
+    "search_line": 9
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 36
+    "line": 36,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].image should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].image is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "06a4a692925265116176ab20ba3d6c756051c4d4d457573eb844e884a4d6d97b",
+    "search_line": 36
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 88
+    "line": 88,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.image should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.image is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "903fb8df60fb7f00e552a610dd39f31db4ec757b2d2d2fd845ca4c75269c52cb",
+    "search_line": 88
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 142
+    "line": 142,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[0].image has '@'",
+    "actualValue": "kubernetes_pod[positive3].spec.container[0].image does not have '@'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3e57a36e0b09e41c5ccaf4399d1464020a25ed648cedee32b191cea282fb53a7",
+    "search_line": 142
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 170
+    "line": 170,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[1].image has '@'",
+    "actualValue": "kubernetes_pod[positive3].spec.container[1].image does not have '@'",
+    "issueType": "IncorrectValue",
+    "similarityID": "db0233b806d5dd651c43198a6e786ee4ba162d09001d383df2c0385d69330d92",
+    "search_line": 170
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 224
+    "line": 224,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container.image",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.image has '@'",
+    "actualValue": "kubernetes_pod[positive4].spec.container.image does not have '@'",
+    "issueType": "IncorrectValue",
+    "similarityID": "556bcabf4edfb36d2e5e68812bf6badc98baa1823615c0858c93e47d205d30ff",
+    "search_line": 224
   }
 ]

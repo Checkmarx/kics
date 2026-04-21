@@ -2,11 +2,31 @@
   {
     "queryName": "Beta - SQL DB Instance With Ownership Chaining Enabled",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'cross db ownership chaining' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'cross db ownership chaining' to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8fb1f70e064bc03e9f72d698c0a69520de6a45d868b7183b3e6569f2f7a8646d",
+    "search_line": 13
   },
   {
     "queryName": "Beta - SQL DB Instance With Ownership Chaining Enabled",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'cross db ownership chaining' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'cross db ownership chaining' to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2712cdf3d554bf9d9d7b9daa4681d50695b606767d3d4553e94e584521b8be4b",
+    "search_line": 31
   }
 ]

@@ -3,6 +3,15 @@
     "queryName": "Always Admit Admission Control Plugin Set",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--enable-admission-plugins flag should not contain 'AlwaysAdmit' plugin",
+    "actualValue": "--enable-admission-plugins flag contains 'AlwaysAdmit' plugin",
+    "issueType": "MissingAttribute",
+    "similarityID": "f78448583dcb6a0c8a4ffb8f4890826d7392b86e1efd711a2a14e626f189ea39",
+    "search_line": 11
   }
 ]

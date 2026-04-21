@@ -3,24 +3,60 @@
     "queryName": "JSON '$ref' alongside other properties (v3)",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
+    "actualValue": "Property '$ref'alongside other properties",
+    "issueType": "MissingAttribute",
+    "similarityID": "f0bdc42f606fbbe8348ebb4ac9da13d7f42a576b2f1f52d0331672f6ed9d9b18",
+    "search_line": 0
   },
   {
     "queryName": "JSON '$ref' alongside other properties (v3)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
+    "actualValue": "Property '$ref'alongside other properties",
+    "issueType": "MissingAttribute",
+    "similarityID": "c43c06eea97e355f523d9993a0a55ccb79fcf5cf3a0e78b2ada688cec3714692",
+    "search_line": 0
   },
   {
     "queryName": "JSON '$ref' alongside other properties (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
+    "actualValue": "Property '$ref'alongside other properties",
+    "issueType": "MissingAttribute",
+    "similarityID": "4fe32df438e59a0ac025f25303bb85e7db354ee20dd42de92ee0f0d69c848ca6",
+    "search_line": 0
   },
   {
     "queryName": "JSON '$ref' alongside other properties (v2)",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "Only '$ref' property should be declared or other properties declared without '$ref'",
+    "actualValue": "Property '$ref'alongside other properties",
+    "issueType": "MissingAttribute",
+    "similarityID": "05902df004e4fd71cf3ed8e121034fa3bd8328a30dd2f35f4826f549919588b9",
+    "search_line": 0
   }
 ]

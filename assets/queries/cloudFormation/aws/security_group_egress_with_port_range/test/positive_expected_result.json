@@ -3,24 +3,60 @@
     "queryName": "Security Group Egress With Port Range",
     "severity": "MEDIUM",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0]",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].FromPort should equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].ToPort",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].FromPort is not equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].ToPort",
+    "issueType": "IncorrectValue",
+    "similarityID": "4d91984e3c39f54ecd19bf0f6f4c2fd6d2903bfe12d4e094e8d65ac94e758591",
+    "search_line": 15
   },
   {
     "queryName": "Security Group Egress With Port Range",
     "severity": "MEDIUM",
     "line": 22,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.FromPort should equal to Resources.OutboundRule.Properties.ToPort",
+    "actualValue": "Resources.OutboundRule.Properties.FromPort is not equal to Resources.OutboundRule.Properties.ToPort",
+    "issueType": "IncorrectValue",
+    "similarityID": "040a1d7a174c0a50caa9ed4186661f918773c4f273c8d01801dd26fdab815291",
+    "search_line": 22
   },
   {
     "queryName": "Security Group Egress With Port Range",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0]",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].FromPort should equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].ToPort",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].FromPort is not equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].ToPort",
+    "issueType": "IncorrectValue",
+    "similarityID": "000b5072849bd09c1fedfa3d97c59bfa16a1388587e49368d9bd32a89c94a60f",
+    "search_line": 21
   },
   {
     "queryName": "Security Group Egress With Port Range",
     "severity": "MEDIUM",
     "line": 32,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.FromPort should equal to Resources.OutboundRule.Properties.ToPort",
+    "actualValue": "Resources.OutboundRule.Properties.FromPort is not equal to Resources.OutboundRule.Properties.ToPort",
+    "issueType": "IncorrectValue",
+    "similarityID": "1280a1b0f98ae454960d53d6cd05a4fa5ceb045e0e87f0e08e8471bb0436b7d9",
+    "search_line": 32
   }
 ]

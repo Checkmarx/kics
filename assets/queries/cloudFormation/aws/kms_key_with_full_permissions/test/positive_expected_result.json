@@ -3,24 +3,60 @@
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive.json"
+    "fileName": "positive.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "RSASigningKey",
+    "searchKey": "Resources.RSASigningKey.Properties.KeyPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement should not have wildcard in 'Action' and 'Principal'",
+    "actualValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement has wildcard in 'Action' and 'Principal'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3a5551593bbb57279a3d36566482a5e653f2474d11568395f8ccbe311488df96",
+    "search_line": -1
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "RSASigningKey",
+    "searchKey": "Resources.RSASigningKey.Properties.KeyPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement should not have wildcard in 'Action' and 'Principal'",
+    "actualValue": "Resources.RSASigningKey.Properties.KeyPolicy.Statement has wildcard in 'Action' and 'Principal'",
+    "issueType": "IncorrectValue",
+    "similarityID": "40df512915d87f5aa67a9db9b5526a41869021c7d87da734012b4430145a55bf",
+    "search_line": -1
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "RSASigningKey2",
+    "searchKey": "Resources.RSASigningKey2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RSASigningKey2.Properties.KeyPolicy should be defined and not null",
+    "actualValue": "Resources.RSASigningKey2.Properties.KeyPolicy is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "4c090a8abee42be187bf11858e1e1be48715921ae8cee470b3d70b820a9f3b87",
+    "search_line": -1
   },
   {
     "queryName": "KMS Key With Vulnerable Policy",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "RSASigningKey2",
+    "searchKey": "Resources.RSASigningKey2.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RSASigningKey2.Properties.KeyPolicy should be defined and not null",
+    "actualValue": "Resources.RSASigningKey2.Properties.KeyPolicy is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "bc11615e1791c6d9e4d822cb8ab98c1ed37d77aa187b1df76f155d307094e57a",
+    "search_line": -1
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "Serverless API Without Content Encoding",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi",
+    "searchKey": "Resources.ApiGatewayApi.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi.Properties.MinimumCompressionSize should be defined and not null",
+    "actualValue": "Resources.ApiGatewayApi.Properties.MinimumCompressionSize is not defined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1b40443a642282d4b556811a088fa53e36f2a9231242daca25bebd0df6691996",
+    "search_line": 7
   },
   {
     "queryName": "Serverless API Without Content Encoding",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi2",
+    "searchKey": "Resources.ApiGatewayApi2.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi2.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.ApiGatewayApi2.Properties.MinimumCompressionSize is set but smaller than 0 or greater than 10485759",
+    "issueType": "IncorrectValue",
+    "similarityID": "4272cb40c750addfd4e6a682df901e6d6ad796bf2c0527ef13e8e8f6f0cbe5c7",
+    "search_line": 19
   },
   {
     "queryName": "Serverless API Without Content Encoding",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi3",
+    "searchKey": "Resources.ApiGatewayApi3.Properties.MinimumCompressionSize",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi3.Properties.MinimumCompressionSize should be greater than -1 and smaller than 10485760",
+    "actualValue": "Resources.ApiGatewayApi3.Properties.MinimumCompressionSize is set but smaller than 0 or greater than 10485759",
+    "issueType": "IncorrectValue",
+    "similarityID": "2684fd9594eeebbdc55b3e530b4c98eecf40a3f93dc9214aa0014a6b342a40e1",
+    "search_line": 19
   }
 ]

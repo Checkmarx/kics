@@ -3,18 +3,45 @@
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 27,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster",
+    "searchKey": "Resources.NeptuneDBCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted should be set to True",
+    "actualValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted is False",
+    "issueType": "IncorrectValue",
+    "similarityID": "b587d12db3e35ffe6457489e0acf0113341724c02c98255a9906e7c92ae37358",
+    "search_line": -1
   },
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster",
+    "searchKey": "Resources.NeptuneDBCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted should be set to True",
+    "actualValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted is False",
+    "issueType": "IncorrectValue",
+    "similarityID": "be69063d462a8bea2bd9f70852560cb7709d7cea6df7442b3143a52cd27a6456",
+    "search_line": -1
   },
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
     "line": 27,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Neptune::DBCluster",
+    "resourceName": "NeptuneDBCluster",
+    "searchKey": "Resources.NeptuneDBCluster.Properties.StorageEncrypted",
+    "searchValue": "",
+    "expectedValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted should be set to True",
+    "actualValue": "Resources.NeptuneDBCluster.Properties.StorageEncrypted is False",
+    "issueType": "IncorrectValue",
+    "similarityID": "70fe111308fc97b3b7e70c739a24283e62fb9d5029341808a12f80e8bd8b62c1",
+    "search_line": -1
   }
 ]

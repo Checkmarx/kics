@@ -3,12 +3,30 @@
     "queryName": "EBS Volume Not Attached To Instances",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Volume",
+    "resourceName": "NewVolume",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "'Resources.NewVolume' should be attached to instances",
+    "actualValue": "'Resources.NewVolume' is not attached to instances",
+    "issueType": "MissingAttribute",
+    "similarityID": "603ab1ea978fe701502898c59dd2f9d516e7bc4e8d7aa7f52b97304dc14f7a22",
+    "search_line": -1
   },
   {
     "queryName": "EBS Volume Not Attached To Instances",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Volume",
+    "resourceName": "NewVolume",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "'Resources.NewVolume' should be attached to instances",
+    "actualValue": "'Resources.NewVolume' is not attached to instances",
+    "issueType": "MissingAttribute",
+    "similarityID": "afa9eb22385571da59cc3448a6a4980b5c03b500df840e399fbec2fbcbbf8862",
+    "search_line": -1
   }
 ]

@@ -1,38 +1,92 @@
 [
   {
+    "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
+    "severity": "HIGH",
     "line": 13,
     "fileName": "positive1.yaml",
-    "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
-    "severity": "HIGH"
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.MasterMongoDBPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.MasterMongoDBPassword.Default should be defined",
+    "actualValue": "Parameters.MasterMongoDBPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "2052bef22e0df2ecb6e3a80487aec0415a5150ae57c64fa6edc33fd4397e609a",
+    "search_line": -1
   },
   {
+    "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
+    "severity": "HIGH",
     "line": 24,
     "fileName": "positive2.yaml",
-    "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
-    "severity": "HIGH"
+    "resourceType": "AWS::DMS::Endpoint",
+    "resourceName": "NewAmpApp5",
+    "searchKey": "Resources.NewAmpApp5.Properties.MongoDbSettings.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp5.Properties.MongoDbSettings.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp5.Properties.MongoDbSettings.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "d3ccd6298104c938fad39830445bd895865754ace36b86727e6255a2ca1372a2",
+    "search_line": -1
   },
   {
+    "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
     "severity": "HIGH",
     "line": 35,
     "fileName": "positive3.yaml",
-    "queryName": "DMS Endpoint MongoDB Settings Password Exposed"
+    "resourceType": "AWS::DMS::Endpoint",
+    "resourceName": "NewAmpApp6",
+    "searchKey": "Resources.NewAmpApp6.Properties.MongoDbSettings.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp6.Properties.MongoDbSettings.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp6.Properties.MongoDbSettings.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "d6a8e8ad01fd2d87f81b54908ad1f88b887ac929880f9afb42fce5238e211f16",
+    "search_line": -1
   },
   {
     "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.MasterMongoDBPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.MasterMongoDBPassword.Default should be defined",
+    "actualValue": "Parameters.MasterMongoDBPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "161097d9cc6b4283e2e35049881e08e8da7f06d43080b30b558388327340ae8b",
+    "search_line": -1
   },
   {
     "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
     "severity": "HIGH",
     "line": 26,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::DMS::Endpoint",
+    "resourceName": "NewAmpApp5",
+    "searchKey": "Resources.NewAmpApp5.Properties.MongoDbSettings.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp5.Properties.MongoDbSettings.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp5.Properties.MongoDbSettings.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "fcdab12370e90aeb483b1ae3ac1c3e713d1b05dda9faf2bdcdfd9e2802f6c23f",
+    "search_line": -1
   },
   {
     "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
     "severity": "HIGH",
     "line": 38,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::DMS::Endpoint",
+    "resourceName": "NewAmpApp6",
+    "searchKey": "Resources.NewAmpApp6.Properties.MongoDbSettings.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp6.Properties.MongoDbSettings.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp6.Properties.MongoDbSettings.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "545c0e3fa78fb814488b877642927fc2350d455491f1f38e9972c3b02429cdbb",
+    "search_line": -1
   }
 ]

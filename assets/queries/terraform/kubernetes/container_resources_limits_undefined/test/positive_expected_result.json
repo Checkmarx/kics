@@ -2,26 +2,76 @@
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].resources should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "074f5a6cb833f3185c5e50248a38370d6a27150f19791c54b7561fe25950db86",
+    "search_line": 8
   },
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 42
+    "line": 42,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "limits",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.limits is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7e674266fe198ad1c7b372d21dd60a854e6fab4699663df9d1cd342293f7756c",
+    "search_line": 42
   },
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 106
+    "line": 106,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container.resources",
+    "searchValue": "requests",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.resources.requests should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.resources.requests is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9a1d7b7d766ea940d1ff0870649e49c99e9ec993a4f133c7cdce32309b54c247",
+    "search_line": 106
   },
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 167
+    "line": 167,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container.resources",
+    "searchValue": "limits",
+    "expectedValue": "kubernetes_pod[positive3].spec.container.resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container.resources.limits is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6da9080f9ec17e4d04537a1ba23775afb162806e74ca5b8aa6afadb2d520e6c8",
+    "search_line": 167
   },
   {
     "queryName": "Container Resources Limits Undefined",
     "severity": "MEDIUM",
-    "line": 224
+    "line": 224,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.resources should be set",
+    "actualValue": "kubernetes_pod[positive4].spec.container.resources is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "214a446655b667bf616b9cd565474964ca0fab6bfbfdb071e54468363cc86824",
+    "search_line": 224
   }
 ]

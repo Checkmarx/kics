@@ -1,14 +1,32 @@
 [
   {
+    "queryName": "ECS Services assigned with public IP address",
     "severity": "MEDIUM",
     "line": 19,
-    "queryName": "ECS Services assigned with public IP address",
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "community.aws.ecs_service",
+    "resourceName": "Create ECS service with network configuration",
+    "searchKey": "name={{Create ECS service with network configuration}}.{{community.aws.ecs_service}}.network_configuration.assign_public_ip",
+    "searchValue": "",
+    "expectedValue": "'community.aws.ecs_service.network_configuration.assign_public_ip' should be set to false (default value is false)",
+    "actualValue": "'community.aws.ecs_service.network_configuration.assign_public_ip' is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "b5cb8550e898b0343a0176a17fdb329b79b42176f0a6499d6c7ee209e44f9027",
+    "search_line": 19
   },
   {
+    "queryName": "ECS Services assigned with public IP address",
     "severity": "MEDIUM",
     "line": 19,
-    "queryName": "ECS Services assigned with public IP address",
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "ecs_service",
+    "resourceName": "Create ECS service with network configuration",
+    "searchKey": "name={{Create ECS service with network configuration}}.{{ecs_service}}.network_configuration.assign_public_ip",
+    "searchValue": "",
+    "expectedValue": "'ecs_service.network_configuration.assign_public_ip' should be set to false (default value is false)",
+    "actualValue": "'ecs_service.network_configuration.assign_public_ip' is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "71b30572dbb1248fa098e886b2a6603f0dd639c18435aeee9a47c18155a3e09a",
+    "search_line": 19
   }
 ]

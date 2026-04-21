@@ -2,11 +2,31 @@
   {
     "queryName": "SQL Database Audit Disabled",
     "severity": "MEDIUM",
-    "line": 50
+    "line": 34,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_sql_database",
+    "resourceName": "myexamplesqldatabase",
+    "searchKey": "azurerm_sql_database[positive4].threat_detection_policy.state",
+    "searchValue": "",
+    "expectedValue": "'threat_detection_policy.state' equal 'Enabled'",
+    "actualValue": "'threat_detection_policy.state' equal 'Disabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c94f95a84232a32788354c5ec07ec26ebc1f44283aaba706974cbd693bac16f1",
+    "search_line": 34
   },
   {
     "queryName": "SQL Database Audit Disabled",
     "severity": "MEDIUM",
-    "line": 34
+    "line": 50,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_sql_database",
+    "resourceName": "myexamplesqldatabase",
+    "searchKey": "azurerm_sql_database[positive5].threat_detection_policy",
+    "searchValue": "",
+    "expectedValue": "'threat_detection_policy' should exist",
+    "actualValue": "'threat_detection_policy' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "e88c3c3ffc4ad70ad23505b51745fa2e2158970717fb3270e97c3260ae8ce4cb",
+    "search_line": -1
   }
 ]

@@ -3,36 +3,90 @@
     "queryName": "Postgres RDS logging disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_db_parameter_group",
+    "resourceName": "postgres-logging",
+    "searchKey": "aws_db_parameter_group.postgres_logging",
+    "searchValue": "",
+    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
+    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are not set or both have the wrong value",
+    "issueType": "IncorrectValue",
+    "similarityID": "6f5caae3f17d042b3a696b202d74891bfed227b610fa1056107cc97335e2d8ef",
+    "search_line": 1
   },
   {
     "queryName": "Postgres RDS logging disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_db_parameter_group",
+    "resourceName": "postgres-logging",
+    "searchKey": "aws_db_parameter_group.postgres_logging",
+    "searchValue": "",
+    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
+    "actualValue": "aws_db_parameter_group's log_statement has the wrong value",
+    "issueType": "IncorrectValue",
+    "similarityID": "09d152449d0fda100038e3e29f7ab44fa8a1de5ccb0932bff037d825c574de14",
+    "search_line": 6
   },
   {
     "queryName": "Postgres RDS logging disabled",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_db_parameter_group",
+    "resourceName": "postgres-logging",
+    "searchKey": "aws_db_parameter_group.postgres_logging",
+    "searchValue": "",
+    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
+    "actualValue": "aws_db_parameter_group's log_min_duration_statement has the wrong value",
+    "issueType": "IncorrectValue",
+    "similarityID": "f57bd01856de98838095da5769c99253f4dbcc068e0e96e605e22a8d26c5cb6a",
+    "search_line": 10
   },
   {
     "queryName": "Postgres RDS logging disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_db_parameter_group",
+    "resourceName": "postgres-logging",
+    "searchKey": "aws_db_parameter_group.postgres_logging",
+    "searchValue": "",
+    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
+    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bc9240d162ea2b53edd09b5006b5eab405f452834c72487536c43eee5b2ad0e7",
+    "search_line": 1
   },
   {
     "queryName": "Postgres RDS logging disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_db_parameter_group",
+    "resourceName": "postgres-logging",
+    "searchKey": "aws_db_parameter_group.example",
+    "searchValue": "",
+    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
+    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "43dabdd7c9482c89778f91d370d974b41acca530e47f16f3434bf92dd6faabed",
+    "search_line": 1
   },
   {
     "queryName": "Postgres RDS logging disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_db_parameter_group",
+    "resourceName": "postgres-logging",
+    "searchKey": "aws_db_parameter_group.example",
+    "searchValue": "",
+    "expectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be defined",
+    "actualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d51be2a0f8ccf9f3ab770f73d0d64d7b63c3b8904ebaaede66a4a9bed8fd93d3",
+    "search_line": 1
   }
 ]

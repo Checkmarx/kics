@@ -3,24 +3,60 @@
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.PolicyDocument.Statement' shouldn't contain '*'",
+    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3ef1fdd9ef7c32df611b4a9263e2010baf1d60735d237c446c71b9bb5deaa38b",
+    "search_line": -1
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.PolicyDocument.Statement' shouldn't contain '*'",
+    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d1b20b8b342dd30544727a9ac1c44537603d1f0ee23b450d8acedd4dc0668368",
+    "search_line": -1
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.PolicyDocument.Statement' shouldn't contain '*'",
+    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "94ba689558b7028ce9c044ca41019d66d94717d8f4b9adbec62c7ac47bc36803",
+    "search_line": -1
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::Policy",
+    "resourceName": "mygrouppolicy",
+    "searchKey": "Resources.mypolicy2.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.PolicyDocument.Statement' shouldn't contain '*'",
+    "actualValue": "'Resources.Properties.PolicyDocument.Statement' contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9a1b094ee1eaec354c71d861548414c7e62787bdbe66bce4c3402f01c711ad1b",
+    "search_line": -1
   }
 ]

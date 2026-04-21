@@ -3,6 +3,15 @@
     "queryName": "Elasticsearch Domain With Vulnerable Policy",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_elasticsearch_domain_policy",
+    "resourceName": "main",
+    "searchKey": "aws_elasticsearch_domain_policy[main].access_policies",
+    "searchValue": "",
+    "expectedValue": "aws_elasticsearch_domain_policy[main].access_policies should not have wildcard in 'Action' and 'Principal'",
+    "actualValue": "aws_elasticsearch_domain_policy[main].access_policies has wildcard in 'Action' or 'Principal'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9b6928f0059b7de227fe3b54acef45bdf4fa0223d908027991821cc166236c48",
+    "search_line": 18
   }
 ]

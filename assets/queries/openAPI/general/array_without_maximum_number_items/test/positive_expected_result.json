@@ -3,36 +3,90 @@
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "MEDIUM",
     "line": 56,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5d2c154a3df17c650ba8c8391a73e7303c6af31c91702848fe663faed8e85a70",
+    "search_line": 56
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c3822993bde0d0738b2f8a7ec70e792ec7a71f509124cec80ea02add23484f8d",
+    "search_line": 28
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "MEDIUM",
     "line": 32,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "77ca1bf7f5acd09cbf35f9b77ae39d5447504247e1561612ee7b83aa2305aed2",
+    "search_line": 32
   },
   {
     "queryName": "Array Without Maximum Number of Items (v3)",
     "severity": "MEDIUM",
     "line": 20,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8b123d5dfd830e485665af2d852e3b51d73a0a694d6fb343aeffa3df83521446",
+    "search_line": 20
   },
   {
     "queryName": "Array Without Maximum Number of Items (v2)",
     "severity": "MEDIUM",
     "line": 31,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "285526637344d6b638eb68d6cc7332ef75828b4be5282cb9508d04b27f449771",
+    "search_line": 31
   },
   {
     "queryName": "Array Without Maximum Number of Items (v2)",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "Array schema has 'maxItems' set",
+    "actualValue": "Array schema has 'maxItems' undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a44f5ad1035f5635dcbb75e203c49ef75bcfc4b5fdcb932351bd035a65dbc455",
+    "search_line": 23
   }
 ]

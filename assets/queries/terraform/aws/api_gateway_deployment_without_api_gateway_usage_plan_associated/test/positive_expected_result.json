@@ -3,24 +3,60 @@
     "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_api_gateway_deployment",
+    "resourceName": "positive1",
+    "searchKey": "aws_api_gateway_deployment[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_deployment[positive1] has a 'aws_api_gateway_usage_plan' resource associated. ",
+    "actualValue": "aws_api_gateway_deployment[positive1] doesn't have a 'aws_api_gateway_usage_plan' resource associated.",
+    "issueType": "IncorrectValue",
+    "similarityID": "971a59288bc6805a254e7ba2c46417cf5a24b9464fd84bbaff02f1d830791894",
+    "search_line": 1
   },
   {
     "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 9,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_api_gateway_deployment",
+    "resourceName": "positive2",
+    "searchKey": "aws_api_gateway_deployment[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_deployment[positive2] has a 'aws_api_gateway_usage_plan' resource associated. ",
+    "actualValue": "aws_api_gateway_deployment[positive2] doesn't have a 'aws_api_gateway_usage_plan' resource associated.",
+    "issueType": "IncorrectValue",
+    "similarityID": "56cb3fa413fee55bdddf27516f5b11322fd9b82406f10d2104cfa062f97d773d",
+    "search_line": 9
   },
   {
     "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 14,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "aws_api_gateway_deployment",
+    "resourceName": "aws_api_gateway_deployment.positive1",
+    "searchKey": "aws_api_gateway_deployment[aws_api_gateway_deployment.positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_deployment[aws_api_gateway_deployment.positive1] has a 'aws_api_gateway_usage_plan' resource associated. ",
+    "actualValue": "aws_api_gateway_deployment[aws_api_gateway_deployment.positive1] doesn't have a 'aws_api_gateway_usage_plan' resource associated.",
+    "issueType": "IncorrectValue",
+    "similarityID": "0fea02836af59323ee937b2c0c855e622e93b9283cd1693916f923c403de1c8c",
+    "search_line": 14
   },
   {
     "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 31,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "aws_api_gateway_deployment",
+    "resourceName": "aws_api_gateway_deployment.positive2",
+    "searchKey": "aws_api_gateway_deployment[aws_api_gateway_deployment.positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_deployment[aws_api_gateway_deployment.positive2] has a 'aws_api_gateway_usage_plan' resource associated. ",
+    "actualValue": "aws_api_gateway_deployment[aws_api_gateway_deployment.positive2] doesn't have a 'aws_api_gateway_usage_plan' resource associated.",
+    "issueType": "IncorrectValue",
+    "similarityID": "bf7894fad979c7389aaa8d563550f3af2ac0347e3258badce197ae5269ffc4f3",
+    "search_line": 31
   }
 ]

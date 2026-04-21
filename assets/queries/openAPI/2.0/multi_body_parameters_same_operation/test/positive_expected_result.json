@@ -3,12 +3,30 @@
     "queryName": "Multiple Body Parameters In The Same Operation",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Operation's parameters should have just one body type parameter",
+    "actualValue": "Operation's parameters has more than one body type parameter",
+    "issueType": "IncorrectValue",
+    "similarityID": "f0db7aee6557185fec6dff7f98855f926a60dd5cc9d02afd6077ee43ce85c757",
+    "search_line": -1
   },
   {
     "queryName": "Multiple Body Parameters In The Same Operation",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "Operation's parameters should have just one body type parameter",
+    "actualValue": "Operation's parameters has more than one body type parameter",
+    "issueType": "IncorrectValue",
+    "similarityID": "5e703313b41c9ec2867ebb71579c7e5575b57f806ec2e751647de34cb88f664d",
+    "search_line": -1
   }
 ]

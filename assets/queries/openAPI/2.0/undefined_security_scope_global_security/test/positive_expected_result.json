@@ -3,12 +3,30 @@
     "queryName": "Undefined Scope 'securityDefinition' On Global 'security' Field",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "scope error:api should be defined on 'securityDefinitions'",
+    "actualValue": "scope error:api is not defined on 'securityDefinitions'",
+    "issueType": "IncorrectValue",
+    "similarityID": "253d23847dd04ea0a55d0cd08948c1cb953d65f0a329bff496c6a9e55db61e8e",
+    "search_line": 23
   },
   {
     "queryName": "Undefined Scope 'securityDefinition' On Global 'security' Field",
     "severity": "LOW",
     "line": 33,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "scope error:api should be defined on 'securityDefinitions'",
+    "actualValue": "scope error:api is not defined on 'securityDefinitions'",
+    "issueType": "IncorrectValue",
+    "similarityID": "16b7f0a85859f2504089c52f55640feb56dc5fe706b912a30504fbc07a18eaea",
+    "search_line": 33
   }
 ]

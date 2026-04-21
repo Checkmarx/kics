@@ -3,30 +3,75 @@
     "queryName": "OAuth2 With Implicit Flow",
     "severity": "MEDIUM",
     "line": 58,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.implicit",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows should not use 'implicit' flow",
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows is using 'implicit' flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "5ddcf692053f23caebabb7a7a569b566429d79ad3adb2933ec0755c4185b1e84",
+    "search_line": -1
   },
   {
     "queryName": "OAuth2 With Implicit Flow",
     "severity": "MEDIUM",
     "line": 34,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.implicit",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows should not use 'implicit' flow",
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows is using 'implicit' flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "67fe7c9a2b8f07d307292567c64f5c04510f7a7c7d5b51322ef2ccc1bdf67603",
+    "search_line": -1
   },
   {
     "queryName": "OAuth2 With Implicit Flow",
     "severity": "MEDIUM",
     "line": 37,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{oAuth2AuthCode}}.flows.implicit",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows should not use 'implicit' flow",
+    "actualValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows is using 'implicit' flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "66c637e1d3ebe20e5def334e8283fcfd01579171ff3bd0388abf2516472ee2a4",
+    "search_line": -1
   },
   {
     "queryName": "OAuth2 With Implicit Flow",
     "severity": "MEDIUM",
     "line": 27,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{oAuth2AuthCode}}.flows.implicit",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows should not use 'implicit' flow",
+    "actualValue": "components.securitySchemes.{{oAuth2AuthCode}}.flows is using 'implicit' flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "033e935b8a47548a982f643985f27eb6efd3f97016b0c87dd7c011589f60acf9",
+    "search_line": -1
   },
   {
     "queryName": "OAuth2 With Implicit Flow",
     "severity": "MEDIUM",
     "line": 31,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{oAuth2AuthCode2}}.flows.implicit",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{oAuth2AuthCode2}}.flows should not use 'implicit' flow",
+    "actualValue": "components.securitySchemes.{{oAuth2AuthCode2}}.flows is using 'implicit' flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "2473c84f68368d49f578b4a1bf626f61de784c636dcfbbac072473b67e69cd06",
+    "search_line": -1
   }
 ]

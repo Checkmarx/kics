@@ -2,49 +2,121 @@
   {
     "queryName": "Secret Without Expiration Date",
     "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive1.bicep",
+    "resourceType": "secrets",
+    "resourceName": "secretid1",
+    "searchKey": "resources.resources.name={{secretid1}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "af9ad3b9b0374880b4e14c642eba2d8d33e79df4ed3472ffa5984ad21bbc884b",
+    "search_line": 33
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "MEDIUM",
     "line": 49,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.KeyVault/vaults/secrets",
+    "resourceName": "keyVault1/secretid1",
+    "searchKey": "resources.name={{keyVault1/secretid1}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c73fa85a9bd0b43ee3f36435720254f9b71ef5d296693292070aba8e7b948203",
+    "search_line": 49
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "MEDIUM",
+    "line": 35,
+    "fileName": "positive2.bicep",
+    "resourceType": "secrets",
+    "resourceName": "keyVaultSecret1",
+    "searchKey": "resources.resources.name={{keyVaultSecret1}}.properties.attributes",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c14ceb7d48f90f39e1b4a5d8277a1afc77385ca3ca725cd8ff2345d834628458",
+    "search_line": 35
   },
   {
     "queryName": "Secret Without Expiration Date",
     "severity": "MEDIUM",
     "line": 54,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "secrets",
+    "resourceName": "keyVaultSecret1",
+    "searchKey": "resources.resources.name={{keyVaultSecret1}}.properties.attributes",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e965d44fe254273506dcbc881c0170186c6751ecb7656e616715d4c397e7fd61",
+    "search_line": 54
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive3.bicep",
+    "resourceType": "secrets",
+    "resourceName": "secretid1",
+    "searchKey": "resources.resources.name={{secretid1}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6f9ddb8ba784a9ceaab90e5be996125a65cfa198a9d251fc7854f77bb2b85668",
+    "search_line": 33
   },
   {
     "queryName": "Secret Without Expiration Date",
     "severity": "MEDIUM",
     "line": 51,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.KeyVault/vaults/secrets",
+    "resourceName": "keyVault1/secretid1",
+    "searchKey": "properties.template.resources.name={{keyVault1/secretid1}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0fcb56937f51b0317249e70298f3cc5eb0425b08cad719001522014bd1f0ba21",
+    "search_line": 51
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "MEDIUM",
+    "line": 35,
+    "fileName": "positive4.bicep",
+    "resourceType": "secrets",
+    "resourceName": "keyVaultSecret1",
+    "searchKey": "resources.resources.name={{keyVaultSecret1}}.properties.attributes",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "590066a7bfd78959941e72ca0fa352b8993371f54c6a2f715574029e96036e27",
+    "search_line": 35
   },
   {
     "queryName": "Secret Without Expiration Date",
     "severity": "MEDIUM",
     "line": 56,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "Secret Without Expiration Date",
-    "severity": "MEDIUM",
-    "line": 33,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "Secret Without Expiration Date",
-    "severity": "MEDIUM",
-    "line": 35,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "Secret Without Expiration Date",
-    "severity": "MEDIUM",
-    "line": 33,
-    "filename": "positive3.bicep"
-  },
-  {
-    "queryName": "Secret Without Expiration Date",
-    "severity": "MEDIUM",
-    "line": 35,
-    "filename": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "secrets",
+    "resourceName": "keyVaultSecret1",
+    "searchKey": "properties.template.resources.resources.name={{keyVaultSecret1}}.properties.attributes",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' should have 'attributes.exp' property id defined",
+    "actualValue": "resource with type 'Microsoft.KeyVault/vaults/secrets' doesn't have 'attributes.exp' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "da627c601dd38ad1eb93cf8ade97e1d471057ec4f2720f82b0968b6d686326a3",
+    "search_line": 56
   }
 ]

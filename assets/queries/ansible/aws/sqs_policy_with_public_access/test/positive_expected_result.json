@@ -3,12 +3,30 @@
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.sqs_queue",
+    "resourceName": "First SQS queue with policy",
+    "searchKey": "name={{First SQS queue with policy}}.{{community.aws.sqs_queue}}.policy",
+    "searchValue": "",
+    "expectedValue": "sqs_queue.policy.Principal should not equal to '*'",
+    "actualValue": "sqs_queue.policy.Principal is equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e10130270e16e4b0c6e3b6c63eada4f080f3c7b267e80c8e3391f3067e77868e",
+    "search_line": 10
   },
   {
     "queryName": "SQS Policy With Public Access",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.sqs_queue",
+    "resourceName": "Second SQS queue with policy",
+    "searchKey": "name={{Second SQS queue with policy}}.{{community.aws.sqs_queue}}.policy",
+    "searchValue": "",
+    "expectedValue": "sqs_queue.policy.Principal should not equal to '*'",
+    "actualValue": "sqs_queue.policy.Principal is equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0d2d0a52bd7740b349c76594e4fb0dd2b61932e3b871c89251a011dc14be1b05",
+    "search_line": 28
   }
 ]

@@ -3,36 +3,90 @@
     "queryName": "No Global And Operation Security Defined (v3)",
     "severity": "HIGH",
     "line": 9,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute",
+    "similarityID": "a0bae0068fe767cbb53b157fef5339e4f3304a4ada43e4c789ad1ac1a1018735",
+    "search_line": -1
   },
   {
     "queryName": "No Global And Operation Security Defined (v3)",
     "severity": "HIGH",
     "line": 46,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{patch}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute",
+    "similarityID": "6277196a3877d206c108a4b2ddf963a3cef4384247b061a8a609ae2497f649ef",
+    "search_line": -1
   },
   {
     "queryName": "No Global And Operation Security Defined (v3)",
     "severity": "HIGH",
     "line": 7,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute",
+    "similarityID": "8f45857d4f0c7edd2e6a256a0a071b9a70d06d00f73484c415efea04f7378c0a",
+    "search_line": -1
   },
   {
     "queryName": "No Global And Operation Security Defined (v3)",
     "severity": "HIGH",
     "line": 27,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{patch}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute",
+    "similarityID": "2f9e811d917f705a1f565f418a89f2b073c8e44622616e356eb08ca9aaa35611",
+    "search_line": -1
   },
   {
     "queryName": "No Global And Operation Security Defined (v2)",
     "severity": "HIGH",
     "line": 7,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute",
+    "similarityID": "0c68baf656a57df6232bd8752023a6265327f8749d31ad00b0b13ac9a7243245",
+    "search_line": 0
   },
   {
     "queryName": "No Global And Operation Security Defined (v2)",
     "severity": "HIGH",
     "line": 9,
-    "filename": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}",
+    "searchValue": "",
+    "expectedValue": "A security schema should be used",
+    "actualValue": "No security schema is used",
+    "issueType": "MissingAttribute",
+    "similarityID": "bd849b7ede5e3fcbfefb9f10d414b089c30c5dd37cee58dcdd5dabe44b4988b8",
+    "search_line": 0
   }
 ]

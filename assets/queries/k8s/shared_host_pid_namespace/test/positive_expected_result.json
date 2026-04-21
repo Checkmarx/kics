@@ -3,12 +3,30 @@
     "queryName": "Shared Host PID Namespace",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.hostPID",
+    "searchValue": "",
+    "expectedValue": "'spec.hostPID' should be set to false or undefined",
+    "actualValue": "'spec.hostPID' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "221b86992263152cb916d1b3599a36e3f4fd751b7e27299af687c38733e691f0",
+    "search_line": -1
   },
   {
     "queryName": "Shared Host PID Namespace",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.hostPID",
+    "searchValue": "",
+    "expectedValue": "'spec.template.spec.hostPID' should be set to false or undefined",
+    "actualValue": "'spec.template.spec.hostPID' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "8530125b81aa7e4f34e94ce209e3b04a9be003a96c5ee9cb01c9b77e9b7e56e2",
+    "search_line": -1
   }
 ]

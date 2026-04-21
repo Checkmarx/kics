@@ -3,24 +3,60 @@
     "queryName": "ELB Using Insecure Protocols",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy.Attributes.Name=Protocol-SSLv2",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.Protocol-SSLv2' should not be an insecure protocol",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.Protocol-SSLv2' is an insecure protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "f77c4d0af32671cdecfe0e53bebe67ce4174f09b99a6aecc280c5b67d5a562c1",
+    "search_line": -1
   },
   {
     "queryName": "ELB Using Insecure Protocols",
     "severity": "MEDIUM",
     "line": 34,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy2.Attributes.Name=Protocol-TLSv1",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.Protocol-TLSv1' should not be an insecure protocol",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.Protocol-TLSv1' is an insecure protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "a956bbc2258175f82395e57d1b6cbdf348e9d75c145acf4906d6f42afb82908e",
+    "search_line": -1
   },
   {
     "queryName": "ELB Using Insecure Protocols",
     "severity": "MEDIUM",
     "line": 35,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy.Attributes.Name=Protocol-SSLv2",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.Protocol-SSLv2' should not be an insecure protocol",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy.Attributes.Protocol-SSLv2' is an insecure protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "7d19c48e5ddae801d6dc137a77da6395444c69ece326e9ba699a935dd6a871ce",
+    "search_line": -1
   },
   {
     "queryName": "ELB Using Insecure Protocols",
     "severity": "MEDIUM",
     "line": 50,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties.Policies.PolicyName=My-SSLNegotiation-Policy2.Attributes.Name=Protocol-TLSv1",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.Protocol-TLSv1' should not be an insecure protocol",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.Policies.My-SSLNegotiation-Policy2.Attributes.Protocol-TLSv1' is an insecure protocol",
+    "issueType": "IncorrectValue",
+    "similarityID": "79cb5384f341aaf0b9732c01ab385c43fa3fd2a7b9205c4d115198c445665d08",
+    "search_line": -1
   }
 ]

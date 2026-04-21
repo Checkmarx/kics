@@ -3,24 +3,60 @@
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance[{{web}}]",
+    "searchValue": "",
+    "expectedValue": "'ebs_optimized' should be set to true",
+    "actualValue": "'ebs_optimized' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "7da8a09356c76b035cacc69c037658aff89ccd49b12d298e7421f51abfaa3888",
+    "search_line": 17
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance[{{web}}].ebs_optimized",
+    "searchValue": "",
+    "expectedValue": "'ebs_optimized' should be set to true",
+    "actualValue": "'ebs_optimized' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "efcb90259294d7ed6f5197b2ceda411924c2a0c64392f5468bb504426604ff55",
+    "search_line": 20
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance]",
+    "searchValue": "",
+    "expectedValue": "'ebs_optimized' should be set to true",
+    "actualValue": "'ebs_optimized' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "e5fbf03016d3800b4e8a0fd12206816c34d70e59fc61dabb0281a42c0fff5f6a",
+    "search_line": 1
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 9,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance].ebs_optimized",
+    "searchValue": "",
+    "expectedValue": "'ebs_optimized' should be set to true",
+    "actualValue": "'ebs_optimized' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "cefc8594d51c772e25e5475f53170602e6f4e6914761a98adbb5be68187b58ef",
+    "search_line": 9
   }
 ]

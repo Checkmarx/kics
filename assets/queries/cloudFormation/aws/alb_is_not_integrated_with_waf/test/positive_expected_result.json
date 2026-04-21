@@ -3,24 +3,60 @@
     "queryName": "ALB Is Not Integrated With WAF",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer22",
+    "searchKey": "Resources.MyLoadBalancer22",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer22' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
+    "actualValue": "'Resources.MyLoadBalancer22' does not have an 'internal' scheme and a 'WebACLAssociation' associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "e09ae0aadbeae9d0cd6d629e533ad0a1a75fd90602ea88a2e827ba9e7c0e338a",
+    "search_line": -1
   },
   {
+    "queryName": "ALB Is Not Integrated With WAF",
+    "severity": "MEDIUM",
+    "line": 3,
     "fileName": "positive2.yaml",
-    "queryName": "ALB Is Not Integrated With WAF",
-    "severity": "MEDIUM",
-    "line": 3
-  },
-  {
-    "fileName": "positive3.json",
-    "queryName": "ALB Is Not Integrated With WAF",
-    "severity": "MEDIUM",
-    "line": 4
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "myloadbalancerv2",
+    "searchKey": "Resources.MyLoadBalancerV2",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancerV2' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
+    "actualValue": "'Resources.MyLoadBalancerV2' does not have an 'internal' scheme and a 'WebACLAssociation' associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "935ecfea379e406be2fbcdf0f00f0f9bd3cf4b47cfa87e69fab803e6adb395ca",
+    "search_line": -1
   },
   {
     "queryName": "ALB Is Not Integrated With WAF",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive4.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer22222222",
+    "searchKey": "Resources.MyLoadBalancer22222222",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer22222222' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
+    "actualValue": "'Resources.MyLoadBalancer22222222' does not have an 'internal' scheme and a 'WebACLAssociation' associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "d8024dc78f4a06b4d6f10e95b29c17f50ffecb93d1b3d43d4c17c094a12bf149",
+    "search_line": -1
+  },
+  {
+    "queryName": "ALB Is Not Integrated With WAF",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "resourceName": "myloadbalancerv2",
+    "searchKey": "Resources.MyLoadBalancerV22222",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancerV22222' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
+    "actualValue": "'Resources.MyLoadBalancerV22222' does not have an 'internal' scheme and a 'WebACLAssociation' associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "6e6ec505b6432081832bb7991f4c43cb39a0a9f8a4fd2beddafadf59f3808af7",
+    "search_line": -1
   }
 ]

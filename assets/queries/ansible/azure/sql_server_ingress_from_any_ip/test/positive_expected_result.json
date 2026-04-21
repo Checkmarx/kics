@@ -2,6 +2,16 @@
   {
     "queryName": "SQLServer Ingress From Any IP",
     "severity": "CRITICAL",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_sqlfirewallrule",
+    "resourceName": "Create (or update) Firewall Rule",
+    "searchKey": "name={{Create (or update) Firewall Rule}}.{{azure.azcollection.azure_rm_sqlfirewallrule}}.end_ip_address",
+    "searchValue": "",
+    "expectedValue": "azure_rm_sqlfirewallrule should allow all IPs",
+    "actualValue": "azure_rm_sqlfirewallrule should not allow all IPs (range from start_ip_address to end_ip_address)",
+    "issueType": "IncorrectValue",
+    "similarityID": "b6b50cc9e9317e447a6ede96def6056b6bd176fbbea48ea8709550051114109d",
+    "search_line": -1
   }
 ]

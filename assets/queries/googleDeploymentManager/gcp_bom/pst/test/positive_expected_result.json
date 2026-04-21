@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "BOM - GCP PST",
-		"severity": "TRACE",
-		"line": 3,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "BOM - GCP PST",
-		"severity": "TRACE",
-		"line": 8,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{topic-1}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "5a49820e48357de2d5d63a349dc362a9869299dec214caed098ca6aab3ebbc07",
+    "search_line": -1
+  },
+  {
+    "queryName": "BOM - GCP PST",
+    "severity": "TRACE",
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "resources.name={{topic-2}}",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "95b5ebb3cc45f75075a24524cb6c5309e8100a9beea945a0fac1f4a99283b57e",
+    "search_line": -1
+  }
 ]

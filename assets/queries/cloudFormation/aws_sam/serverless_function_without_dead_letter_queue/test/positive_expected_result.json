@@ -3,6 +3,15 @@
     "queryName": "Serverless Function Without Dead Letter Queue",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Function",
+    "resourceName": "Function",
+    "searchKey": "Resources.Function.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Function.Properties.DeadLetterConfig' should be defined and not null",
+    "actualValue": "'Resources.Function.Properties.DeadLetterConfig' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ed69ed7ca08f29652dd8c22efcb423698a08260ea2ef9b23914e90acd360f3c4",
+    "search_line": 7
   }
 ]

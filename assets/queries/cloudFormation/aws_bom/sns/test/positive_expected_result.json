@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.SnsTopic",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "0202fe9140b4ba9f0adab818d4331e6ae6410641111969ec3894cdbd3b831bd4",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.SnsTopic",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "92abb3f85a19d4bd22d56502f02c37348cf0a74819a97070f8516b338f70d058",
+    "search_line": 5
   }
 ]

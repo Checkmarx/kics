@@ -3,18 +3,45 @@
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "community.aws.iam_role",
+    "resourceName": "Create a role with description and tags",
+    "searchKey": "name={{Create a role with description and tags}}.{{community.aws.iam_role}}.assume_role_policy_document",
+    "searchValue": "",
+    "expectedValue": "assume_role_policy_document should not contain ':root",
+    "actualValue": "assume_role_policy_document contains ':root'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ba0e1edfdbb6fc80f92057030345c5783db939f7adba9f97a722f6e1cf244ff4",
+    "search_line": 4
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "community.aws.iam_role",
+    "resourceName": "Create a role with description and tags2",
+    "searchKey": "name={{Create a role with description and tags2}}.{{community.aws.iam_role}}.assume_role_policy_document",
+    "searchValue": "",
+    "expectedValue": "assume_role_policy_document should not contain ':root",
+    "actualValue": "assume_role_policy_document contains ':root'",
+    "issueType": "IncorrectValue",
+    "similarityID": "66e05e182dc9994b6ccd0d31bb9afe40a157334e3a59dff8907167208a2884a9",
+    "search_line": 4
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "community.aws.iam_role",
+    "resourceName": "Create a role with description and tags3",
+    "searchKey": "name={{Create a role with description and tags3}}.{{community.aws.iam_role}}.assume_role_policy_document",
+    "searchValue": "",
+    "expectedValue": "assume_role_policy_document should not contain ':root",
+    "actualValue": "assume_role_policy_document contains ':root'",
+    "issueType": "IncorrectValue",
+    "similarityID": "80ae83319a958da5a911cd58c81b9798d81e97cb7970b2ccbbe82104ff681f9c",
+    "search_line": 4
   }
 ]

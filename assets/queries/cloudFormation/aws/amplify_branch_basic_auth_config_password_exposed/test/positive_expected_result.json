@@ -3,37 +3,90 @@
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Amplify::Branch",
+    "resourceName": "NewAmpApp1",
+    "searchKey": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "c2f29a5c5f589fe94469b63db119927c526774ffac87afe8f929d8f25dfc87b7",
+    "search_line": -1
   },
   {
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "2c6b4e4cd3a730e143620ae6462bd59e3078b86edaaeb9adc1af4c0b5f6ec830",
+    "search_line": -1
   },
   {
-    
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 19,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::Amplify::Branch",
+    "resourceName": "NewAmpApp1",
+    "searchKey": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "967dd8d4c213d19f86a2aab7c67ceb06ab988b4395269cbc2497de3a481bc220",
+    "search_line": -1
   },
   {
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentPassword.Default should be defined",
+    "actualValue": "Parameters.ParentPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "472e1cc3039d9e06bda3673c75ce7fa897bf70ceba9f54a8757abb4abf4142c9",
+    "search_line": -1
   },
   {
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::Amplify::Branch",
+    "resourceName": "NewAmpApp1",
+    "searchKey": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "67179a7d1434872516da64b231e5a2379e7f52dfbcf17a57525a2c1758e32534",
+    "search_line": -1
   },
   {
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 19,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::Amplify::Branch",
+    "resourceName": "NewAmpApp1",
+    "searchKey": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp1.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "339f591674de2e71188eeaae47834a6e1ea57342b7a4f72b94f0dfae24b55a29",
+    "search_line": -1
   }
 ]

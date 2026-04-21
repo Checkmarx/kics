@@ -2,6 +2,16 @@
   {
     "queryName": "EFS Without KMS",
     "severity": "LOW",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.efs",
+    "resourceName": "foo",
+    "searchKey": "name={{foo}}.{{community.aws.efs}}",
+    "searchValue": "",
+    "expectedValue": "efs.kms_key_id should be set",
+    "actualValue": "efs.kms_key_id is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fa02b70671ab9c968ddc8595c9e9ecee1eb6c0e1342c847be55e6ace4c631f8d",
+    "search_line": -1
   }
 ]

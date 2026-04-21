@@ -3,36 +3,90 @@
     "queryName": "Responses Object Is Empty (v3)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "bcbe1ec3785598a2ff24e9f01bfb77f9efb107200f054d888eeb52aac7008efc",
+    "search_line": -1
   },
   {
     "queryName": "Responses Object Is Empty (v3)",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "320169df9f69fa430678b5b19ea0b335358d678fcec257f6af36475adddcdf19",
+    "search_line": -1
   },
   {
     "queryName": "Responses Object Is Empty (v3)",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "e11cad42c2d7c6595af1d453bbbcbc559efab31bbb4d192d02ec208525e6ea8d",
+    "search_line": -1
   },
   {
     "queryName": "Responses Object Is Empty (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "f36616a1ba1d2b74c605d6f3b7a80b081f047e31265cc7a7f98bbcb8ba84fd57",
+    "search_line": -1
   },
   {
     "queryName": "Responses Object Is Empty (v2)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "5d721f099a70da4104329c99ca6c2dbd5b1444c19b7cd35e5bba88b3db1bd4ae",
+    "search_line": -1
   },
   {
     "queryName": "Responses Object Is Empty (v2)",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses",
+    "searchValue": "",
+    "expectedValue": "'responses' should not be empty",
+    "actualValue": "'responses' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "12ced33abf13b283abbd26f6eedaa77b102730e349e004d67720d3b4301fbd01",
+    "search_line": -1
   }
 ]

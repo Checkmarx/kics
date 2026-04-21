@@ -3,24 +3,60 @@
     "queryName": "Paths Object is Empty (v3)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths",
+    "searchValue": "",
+    "expectedValue": "The Paths Object should should not be empty",
+    "actualValue": "The Paths Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "6144e22c2e1e23172f2c8017040353145c12c93fa1dd6e2f9d08bd816dd7cf9a",
+    "search_line": -1
   },
   {
     "queryName": "Paths Object is Empty (v2)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths",
+    "searchValue": "",
+    "expectedValue": "The Paths Object should should not be empty",
+    "actualValue": "The Paths Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "e7c8c80a91c8b11880652252f36063f19782e85773ca3f0da727c2d13918e7a7",
+    "search_line": -1
   },
   {
     "queryName": "Paths Object is Empty (v3)",
     "severity": "INFO",
     "line": 5,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths",
+    "searchValue": "",
+    "expectedValue": "The Paths Object should should not be empty",
+    "actualValue": "The Paths Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "1ba0999d02db7f55c947f8f68ea32a50ff853b5ab959a4b50f45005e533567fd",
+    "search_line": -1
   },
   {
     "queryName": "Paths Object is Empty (v2)",
     "severity": "INFO",
     "line": 5,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths",
+    "searchValue": "",
+    "expectedValue": "The Paths Object should should not be empty",
+    "actualValue": "The Paths Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "7a4c1b963cadde29a4c63b2bf4ddc1532a0e776df658725c39ff1658e611feca",
+    "search_line": -1
   }
 ]

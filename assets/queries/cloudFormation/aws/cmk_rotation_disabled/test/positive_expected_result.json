@@ -3,30 +3,75 @@
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myKey.Properties.EnableKeyRotation' should be defined and not null",
+    "actualValue": "'Resources.myKey.Properties.EnableKeyRotation' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1ddda8eb0f95b12ad879fe4319fbaf43dd408c8034ec467a04c5928489ea91ef",
+    "search_line": -1
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 31,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey2",
+    "searchKey": "Resources.myKey2.Properties.EnableKeyRotation",
+    "searchValue": "",
+    "expectedValue": "'Resources.myKey2.Properties.EnableKeyRotation' should be true",
+    "actualValue": "'Resources.myKey2.Properties.EnableKeyRotation' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "63a2db6139961fa79a93b0ea6f9197144c9205ddb51bdd62f285a9b7de1edfec",
+    "search_line": -1
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey",
+    "searchKey": "Resources.myKey.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myKey.Properties.EnableKeyRotation' should be defined and not null",
+    "actualValue": "'Resources.myKey.Properties.EnableKeyRotation' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1ad799e06a57eb11ed33a30375d1466506a78e814bd1d36d9fef3b6b58ae5044",
+    "search_line": -1
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 49,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey2",
+    "searchKey": "Resources.myKey2.Properties.EnableKeyRotation",
+    "searchValue": "",
+    "expectedValue": "'Resources.myKey2.Properties.EnableKeyRotation' should be true",
+    "actualValue": "'Resources.myKey2.Properties.EnableKeyRotation' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f9fe3f842c101b1fde77c6a7eb85647a35e810e5b86de52a1e3c18abd4e07953",
+    "search_line": -1
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::KMS::Key",
+    "resourceName": "myKey2",
+    "searchKey": "Resources.myKey2.Properties.EnableKeyRotation",
+    "searchValue": "",
+    "expectedValue": "'Resources.myKey2.Properties.EnableKeyRotation' should be true",
+    "actualValue": "'Resources.myKey2.Properties.EnableKeyRotation' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1d7a62cae8a8fa6eb498d75bc587bd496f1d780b0a1d7fc1303a31adfce04832",
+    "search_line": -1
   }
 ]

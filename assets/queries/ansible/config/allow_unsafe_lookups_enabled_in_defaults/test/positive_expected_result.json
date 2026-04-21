@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "Allow Unsafe Lookups Enabled In Defaults",
-		"severity": "HIGH",
-		"line": 19
-	}
+  {
+    "queryName": "Allow Unsafe Lookups Enabled In Defaults",
+    "severity": "HIGH",
+    "line": 19,
+    "fileName": "positive1.cfg",
+    "resourceType": "n/a",
+    "resourceName": "defaults",
+    "searchKey": "defaults.allow_unsafe_lookups",
+    "searchValue": "",
+    "expectedValue": "allow_unsafe_lookups should be set to 'False'",
+    "actualValue": "allow_unsafe_lookups is set to 'True'",
+    "issueType": "IncorrectValue",
+    "similarityID": "125aa7cafdebda2e4096ff53acc3fd3a4a60374d51d9d9cdc94ca6ca35564ca0",
+    "search_line": -1
+  }
 ]

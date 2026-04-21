@@ -3,12 +3,30 @@
     "queryName": "S3 Bucket With All Permissions",
     "severity": "CRITICAL",
     "line": 5,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "S3B_181355",
+    "searchKey": "aws_s3_bucket[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement' should not allow all actions to all principal",
+    "actualValue": "'policy.Statement' allows all actions to all principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "029a88e69190b8476b2930a495bfe57dda3f13fabf01ec1f15cc6a47836ad30a",
+    "search_line": 5
   },
   {
     "queryName": "S3 Bucket With All Permissions",
     "severity": "CRITICAL",
     "line": 12,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement' should not allow all actions to all principal",
+    "actualValue": "'policy.Statement' allows all actions to all principal",
+    "issueType": "IncorrectValue",
+    "similarityID": "3692cf1f5fb3f83f9f07eaf4de6390003d50a05e03099826750311181c3ff2d1",
+    "search_line": 12
   }
 ]

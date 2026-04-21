@@ -3,24 +3,60 @@
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_virtual_machine",
+    "resourceName": "${var.prefix}-vm",
+    "searchKey": "azurerm_virtual_machine[positive1].os_profile_linux_config.disable_password_authentication",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_machine[positive1].os_profile_linux_config.disable_password_authentication' should be set to 'true'",
+    "actualValue": "'azurerm_virtual_machine[positive1].os_profile_linux_config.disable_password_authentication' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5e0d0c18ad643fee2e65408050e17822b3080ac25efedcc82f3e973a2f72f694",
+    "search_line": 9
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "${var.prefix}-vm",
+    "searchKey": "azurerm_linux_virtual_machine[positive2].disable_password_authentication",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[positive2].disable_password_authentication' should be set to 'true'",
+    "actualValue": "'azurerm_linux_virtual_machine[positive2].disable_password_authentication' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "83b910b3ccefdc4f70bd49d5f2da569083de13389fe7966877bea9a9ed80ed5d",
+    "search_line": 8
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_linux_virtual_machine_scale_set",
+    "resourceName": "positive3-vmss",
+    "searchKey": "azurerm_linux_virtual_machine_scale_set[positive3].disable_password_authentication",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive3].disable_password_authentication' should be set to 'true'",
+    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive3].disable_password_authentication' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9b78ce81f5d3cf5eb5c70891662a45e77a046c8e975e62f848c9c98e91dd5e57",
+    "search_line": 9
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_virtual_machine_scale_set",
+    "resourceName": "${var.prefix}-vm",
+    "searchKey": "azurerm_virtual_machine_scale_set[positive4].os_profile_linux_config.disable_password_authentication",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_machine_scale_set[positive4].os_profile_linux_config.disable_password_authentication' should be set to 'true'",
+    "actualValue": "'azurerm_virtual_machine_scale_set[positive4].os_profile_linux_config.disable_password_authentication' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "559f64ce25cb06a05bd039560ee1980bc69a623156cddd5f38bfaa06fd64f9ad",
+    "search_line": 7
   }
 ]

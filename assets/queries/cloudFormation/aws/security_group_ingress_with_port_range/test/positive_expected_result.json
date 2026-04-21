@@ -1,26 +1,62 @@
 [
   {
+    "queryName": "Security Group Ingress With Port Range",
     "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive1.yaml",
-    "queryName": "Security Group Ingress With Port Range"
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].FromPort should equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].ToPort",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].FromPort is not equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].ToPort",
+    "issueType": "IncorrectValue",
+    "similarityID": "ec9d819008be7c3737aa05967a7d8e6f21b84f1d0631db2bd8f4f9e35017f92b",
+    "search_line": 9
   },
   {
     "queryName": "Security Group Ingress With Port Range",
     "severity": "MEDIUM",
     "line": 37,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.FromPort should equal to Resources.InboundRule.Properties.ToPort",
+    "actualValue": "Resources.InboundRule.Properties.FromPort is not equal to Resources.InboundRule.Properties.ToPort",
+    "issueType": "IncorrectValue",
+    "similarityID": "d7de98ed1e9687fb8c5cbdabdfc50b0737f7b19e214af98b45e1ac8891d6c1f0",
+    "search_line": 37
   },
   {
+    "queryName": "Security Group Ingress With Port Range",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].FromPort should equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].ToPort",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].FromPort is not equal to Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].ToPort",
+    "issueType": "IncorrectValue",
+    "similarityID": "404e91d41510cd37c8df31e2c718f91c481f020e2269530399f242ad72a8d9d3",
+    "search_line": 11
+  },
+  {
+    "queryName": "Security Group Ingress With Port Range",
     "severity": "MEDIUM",
     "line": 53,
     "fileName": "positive2.json",
-    "queryName": "Security Group Ingress With Port Range"
-  },
-  {
-    "fileName": "positive2.json",
-    "queryName": "Security Group Ingress With Port Range",
-    "severity": "MEDIUM",
-    "line": 11
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.FromPort should equal to Resources.InboundRule.Properties.ToPort",
+    "actualValue": "Resources.InboundRule.Properties.FromPort is not equal to Resources.InboundRule.Properties.ToPort",
+    "issueType": "IncorrectValue",
+    "similarityID": "ca2d767cfc83abeef28b19db1fdf381201bcd9c212b3b1c04fe8a3ca9284dab3",
+    "search_line": 53
   }
 ]

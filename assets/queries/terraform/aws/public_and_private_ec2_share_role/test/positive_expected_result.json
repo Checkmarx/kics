@@ -3,12 +3,30 @@
     "queryName": "Public and Private EC2 Share Role",
     "severity": "MEDIUM",
     "line": 103,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "pub_ins",
+    "searchKey": "aws_instance[pub_ins].iam_instance_profile",
+    "searchValue": "",
+    "expectedValue": "Public and private instances should not share the same role",
+    "actualValue": "Public and private instances share the same role",
+    "issueType": "IncorrectValue",
+    "similarityID": "b298ec946bd77f7e2face0090d3fb9abf563fd943ecaa0aeac10ddf96f3b5a27",
+    "search_line": 103
   },
   {
     "queryName": "Public and Private EC2 Share Role",
     "severity": "MEDIUM",
     "line": 38,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_public_instance].iam_instance_profile",
+    "searchValue": "",
+    "expectedValue": "Public and private instances should not share the same role",
+    "actualValue": "Public and private instances share the same role",
+    "issueType": "IncorrectValue",
+    "similarityID": "7ec00828620a4b8768092259084f7923419adc967693765ac61bfa863aa50635",
+    "search_line": 38
   }
 ]

@@ -2,6 +2,16 @@
   {
     "queryName": "API Gateway Endpoint Config is Not Private",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_api_gateway",
+    "resourceName": "Setup AWS API Gateway setup on AWS and deploy API definition",
+    "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition}}.{{community.aws.aws_api_gateway}}.endpoint_type",
+    "searchValue": "",
+    "expectedValue": "'aws_api_gateway.endpoint_type' should be set to 'PRIVATE'",
+    "actualValue": "'aws_api_gateway.endpoint_type' is not 'PRIVATE'",
+    "issueType": "IncorrectValue",
+    "similarityID": "afbad0b8491f6423e427a5b02ade6b0dda8368c355eb2377d9b774291cf0b4e7",
+    "search_line": -1
   }
 ]

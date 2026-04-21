@@ -2,16 +2,46 @@
   {
     "queryName": "Cognito UserPool Without MFA",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cognito_user_pool",
+    "resourceName": "positive1",
+    "searchKey": "aws_cognito_user_pool[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_cognito_user_pool[positive1].mfa_configuration should be set",
+    "actualValue": "aws_cognito_user_pool[positive1].mfa_configuration is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d395907f246f3495b7e041269c14ab1f0358280dda185ce1f9dcc3a1a368f8a6",
+    "search_line": -1
   },
   {
     "queryName": "Cognito UserPool Without MFA",
     "severity": "LOW",
-    "line": 16
+    "line": 16,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cognito_user_pool",
+    "resourceName": "positive2",
+    "searchKey": "aws_cognito_user_pool[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_cognito_user_pool[positive2].mfa_configuration should be set to 'ON' or 'OPTIONAL",
+    "actualValue": "aws_cognito_user_pool[positive2].mfa_configuration is set to 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3d41aba81b06e65cfb1d1f7af792645fcb28a267a973bdc76fe65de994918824",
+    "search_line": -1
   },
   {
     "queryName": "Cognito UserPool Without MFA",
     "severity": "LOW",
-    "line": 32
+    "line": 32,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cognito_user_pool",
+    "resourceName": "positive3",
+    "searchKey": "aws_cognito_user_pool[positive3]",
+    "searchValue": "",
+    "expectedValue": "aws_cognito_user_pool[positive3] should have 'sms_configuration' or 'software_token_mfa_configuration' defined",
+    "actualValue": "aws_cognito_user_pool[positive3] doesn't have 'sms_configuration' or 'software_token_mfa_configuration' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "056fded746da9805d47e17e34b9d270c705f584df7c8f940266c65af47290c32",
+    "search_line": -1
   }
 ]

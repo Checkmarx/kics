@@ -3,24 +3,60 @@
     "queryName": "Encoding Map Key Mismatch Schema Defined Properties",
     "severity": "INFO",
     "line": 70,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} should be set in schema defined properties",
+    "actualValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} is not set in schema defined properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "f7194441c600073c684d803bc4d0fbd03b96adcdf54da6ae0cbc07c4f3b6fd7a",
+    "search_line": -1
   },
   {
     "queryName": "Encoding Map Key Mismatch Schema Defined Properties",
     "severity": "INFO",
     "line": 36,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} should be set in schema defined properties",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} is not set in schema defined properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc837fca414521eeb3957be1cdfe8639c3ad929006bfbbf638d033bbf54e9941",
+    "search_line": -1
   },
   {
     "queryName": "Encoding Map Key Mismatch Schema Defined Properties",
     "severity": "INFO",
     "line": 42,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} should be set in schema defined properties",
+    "actualValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} is not set in schema defined properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "37f1401e48d58fa3e5d893aeb38a7153b2dda6feeb6be9e70bd483ec17d6fb34",
+    "search_line": -1
   },
   {
     "queryName": "Encoding Map Key Mismatch Schema Defined Properties",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} should be set in schema defined properties",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} is not set in schema defined properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "40979cb51c5ff28d476ca85f5266add97c10f4455b8c897c51f0d4b5cc8528a9",
+    "search_line": -1
   }
 ]

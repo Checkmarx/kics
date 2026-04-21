@@ -1,14 +1,32 @@
 [
   {
+    "queryName": "Public Lambda via API Gateway",
+    "severity": "MEDIUM",
     "line": 11,
     "fileName": "positive1.yaml",
-    "queryName": "Public Lambda via API Gateway",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::Lambda::Permission",
+    "resourceName": "s3Permission3",
+    "searchKey": "Resources.s3Permission3.Properties.SourceArn",
+    "searchValue": "",
+    "expectedValue": "Resources.s3Permission3.Properties.SourceArn should not equal to '/*/*'",
+    "actualValue": "Resources.s3Permission3.Properties.SourceArn is equal to '/*/*' or contains '/*/*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c926f7ba93eaf4827a5127c57b4e3d851a11c774d72c6329a1d5ae5fdcf58de",
+    "search_line": -1
   },
   {
+    "queryName": "Public Lambda via API Gateway",
+    "severity": "MEDIUM",
     "line": 18,
     "fileName": "positive2.json",
-    "queryName": "Public Lambda via API Gateway",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::Lambda::Permission",
+    "resourceName": "s3Permission",
+    "searchKey": "Resources.s3Permission.Properties.SourceArn",
+    "searchValue": "",
+    "expectedValue": "Resources.s3Permission.Properties.SourceArn should not equal to '/*/*'",
+    "actualValue": "Resources.s3Permission.Properties.SourceArn is equal to '/*/*' or contains '/*/*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6e88f8ea10441ccd63c7340c563b1410832eae1f5d0b3536744f9827a15e2790",
+    "search_line": -1
   }
 ]

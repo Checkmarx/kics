@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "Redis Cache Allows Non SSL Connections",
-		"severity": "MEDIUM",
-		"line": 8
-	}
+  {
+    "queryName": "Redis Cache Allows Non SSL Connections",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_redis_cache",
+    "resourceName": "example-cache",
+    "searchKey": "azurerm_redis_cache[positive1].enable_non_ssl_port",
+    "searchValue": "",
+    "expectedValue": "'azurerm_redis_cache[positive1].enable_non_ssl_port' should be set to false or undefined (false as default)",
+    "actualValue": "'azurerm_redis_cache[positive1].enable_non_ssl_port' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "94f3d8776dd62e9e49398557a1b87632b060716d96f7e729fa9ea077d954341b",
+    "search_line": 8
+  }
 ]

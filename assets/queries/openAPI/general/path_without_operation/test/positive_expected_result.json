@@ -3,24 +3,60 @@
     "queryName": "Path Without Operation (v3)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}} has at least one operation object defined",
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "be04fcc762f86e888693f23747519a08aee1b61e06253647932a016416bf19fe",
+    "search_line": -1
   },
   {
     "queryName": "Path Without Operation (v3)",
     "severity": "INFO",
     "line": 6,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}} has at least one operation object defined",
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "1eed1de4f53c89df128354afa14742120fc9dcc6ef3cd71df924493dce72e039",
+    "search_line": -1
   },
   {
     "queryName": "Path Without Operation (v2)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}} has at least one operation object defined",
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "56d88c7eeb052dcb005cc50fd9769d56ea50940958537ec407219c11718faa43",
+    "search_line": -1
   },
   {
     "queryName": "Path Without Operation (v2)",
     "severity": "INFO",
     "line": 6,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}} has at least one operation object defined",
+    "actualValue": "paths.{{/}} does not have at least one operation object defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "52d4ccf53f1825fe4c1b3987613ea3c87724cc9f3c476dfe7b28f0c9b79930ac",
+    "search_line": -1
   }
 ]

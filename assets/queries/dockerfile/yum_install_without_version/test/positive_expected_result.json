@@ -2,11 +2,31 @@
   {
     "queryName": "Yum install Without Version",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{opensuse/leap:15.2}}.{{RUN yum install -y httpd && yum clean all}}",
+    "searchValue": "httpd",
+    "expectedValue": "The package version should always be specified when using yum install",
+    "actualValue": "No version is specified in package 'httpd'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9c40b4a93a5956beb0e5f6a7507d7b48b5f21291ac96f1581b73b9a1caa97f06",
+    "search_line": -1
   },
   {
     "queryName": "Yum install Without Version",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{opensuse/leap:15.2}}.{{RUN [\"yum\", \"install\", \"httpd\"]}}",
+    "searchValue": "httpd",
+    "expectedValue": "The package version should always be specified when using yum install",
+    "actualValue": "No version is specified in package 'httpd'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b1376a80466222e7863af688a27a63c09e70f550d89d4f6b8e620a671ae39b0d",
+    "search_line": -1
   }
 ]

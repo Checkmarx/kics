@@ -2,73 +2,181 @@
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
     "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Network/networkSecurityGroups",
+    "resourceName": "security group",
+    "searchKey": "resources.name={{security group}}.properties.securityRules",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' should restrict access to RDP",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "1d1f331194f52943236e5e60b6584c44da2620628cd5624303fab52321e0ca89",
+    "search_line": 9
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To RDP",
+    "severity": "HIGH",
     "line": 19,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Network/networkSecurityGroups",
+    "resourceName": "security group",
+    "searchKey": "resources.name={{security group}}.properties.securityRules",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' should restrict access to RDP",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "91f385187aebeeb7eb61eed62d635a5850723114037efd77996ed80c87ea2d16",
+    "search_line": 19
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules",
+    "resourceName": "sample/securitygroup",
+    "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' should restrict access to RDP",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "5448472899e546fbc78f1e22995ef2f07f1f47faf0f9b056c06aa2bece30724e",
+    "search_line": 3
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules",
+    "resourceName": "sample/securitygroup",
+    "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' should restrict access to RDP",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "88f6b4f2a7c965cda227711647c8ce41f512373da0d1b7a7a4393617d6f84b9d",
+    "search_line": 13
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive3.bicep",
+    "resourceType": "securityRules",
+    "resourceName": "sr",
+    "searchKey": "resources.type={{securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'securityRules' should restrict access to RDP",
+    "actualValue": "resource with type 'securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "aff52525e1bbc8e25b969a911a908a6617d4b278af51da975bb35917d4320837",
+    "search_line": 10
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 20,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "securityRules",
+    "resourceName": "sr",
+    "searchKey": "resources.type={{securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'securityRules' should restrict access to RDP",
+    "actualValue": "resource with type 'securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "22365a85a29266bd9ca0b262189e315984c15897451e206a43046ebd7870e113",
+    "search_line": 20
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.Network/networkSecurityGroups",
+    "resourceName": "security group",
+    "searchKey": "resources.name={{security group}}.properties.securityRules",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' should restrict access to RDP",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "5159c2b256b40939964f714967e556a814f7fba7d012dae4822937029f0345a5",
+    "search_line": 9
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 21,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Network/networkSecurityGroups",
+    "resourceName": "security group",
+    "searchKey": "properties.template.resources.name={{security group}}.properties.securityRules",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups' should restrict access to RDP",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "d0c2bf3dc244f4980fd39f677eeb25e59d89028f198103e3173db15c09c14067",
+    "search_line": 21
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive5.bicep",
+    "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules",
+    "resourceName": "sample/securitygroup",
+    "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' should restrict access to RDP",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "66c1543243e287e99c6889345ad153b4199fe745be18b7e24c3b2f46ca8ef5e6",
+    "search_line": 3
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.Network/networkSecurityGroups/securityRules",
+    "resourceName": "sample/securitygroup",
+    "searchKey": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' should restrict access to RDP",
+    "actualValue": "resource with type 'Microsoft.Network/networkSecurityGroups/securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "fe06efbac25917395186e74795b295e84841a5a81a7d1f6a9aa69cb4a64e2100",
+    "search_line": 15
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To RDP",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive6.bicep",
+    "resourceType": "securityRules",
+    "resourceName": "sr",
+    "searchKey": "resources.type={{securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'securityRules' should restrict access to RDP",
+    "actualValue": "resource with type 'securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c288902e8bea769b212bd43f5e68ab778f10a0cdd2b73420c0b343bf602200a",
+    "search_line": 10
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To RDP",
     "severity": "HIGH",
     "line": 22,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To RDP",
-    "severity": "HIGH",
-    "line": 9,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To RDP",
-    "severity": "HIGH",
-    "line": 3,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To RDP",
-    "severity": "HIGH",
-    "line": 10,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To RDP",
-    "severity": "HIGH",
-    "line": 9,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To RDP",
-    "severity": "HIGH",
-    "line": 3,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "Network Security Group With Unrestricted Access To RDP",
-    "severity": "HIGH",
-    "line": 10,
-    "fileName": "positive6.bicep"
+    "fileName": "positive6.json",
+    "resourceType": "securityRules",
+    "resourceName": "sr",
+    "searchKey": "resources.type={{securityRules}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'securityRules' should restrict access to RDP",
+    "actualValue": "resource with type 'securityRules' does not restrict access to RDP",
+    "issueType": "IncorrectValue",
+    "similarityID": "5f36aa9d2b115ce5f5be2f007a585c1ec042bda2b13975a14d1de3b707ca970a",
+    "search_line": 22
   }
 ]

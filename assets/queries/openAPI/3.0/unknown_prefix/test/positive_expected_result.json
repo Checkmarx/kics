@@ -3,24 +3,60 @@
     "queryName": "Unknown Prefix (v3)",
     "severity": "INFO",
     "line": 53,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{applicasdsadtion/json}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.ResponseExample.content.{{applicasdsadtion/json}} is a known prefix",
+    "actualValue": "components.responses.ResponseExample.content.{{applicasdsadtion/json}} is an unknown prefix",
+    "issueType": "IncorrectValue",
+    "similarityID": "e6ea689a473f8daec2bd308466e1c3d47367a96b823ad6f33e0a6131ecb626d0",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Prefix (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{ddddd/json}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{ddddd/json}} is a known prefix",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{ddddd/json}} is an unknown prefix",
+    "issueType": "IncorrectValue",
+    "similarityID": "47f5ffc3aab91a19f54440c53f8f700452a92f6d809d8d4a7405c6bbd3837ee6",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Prefix (v3)",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{sssssss/json}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.ResponseExample.content.{{sssssss/json}} is a known prefix",
+    "actualValue": "components.responses.ResponseExample.content.{{sssssss/json}} is an unknown prefix",
+    "issueType": "IncorrectValue",
+    "similarityID": "3fd04d41b008c34831531643888a07ddeee3a6942f05d8e5075174259c871255",
+    "search_line": -1
   },
   {
     "queryName": "Unknown Prefix (v3)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{applicatisdsdsdon/json}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.responses.200.content.{{applicatisdsdsdon/json}} is a known prefix",
+    "actualValue": "paths.{{/}}.get.responses.200.content.{{applicatisdsdsdon/json}} is an unknown prefix",
+    "issueType": "IncorrectValue",
+    "similarityID": "98bdb22315704128c66d24e8e8a34bf3f0c9834ee17d988c3f7c8954b7bafcb0",
+    "search_line": -1
   }
 ]

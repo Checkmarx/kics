@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Etcd Peer Client Certificate Authentication Set To False",
-		"severity": "MEDIUM",
-		"line": 21,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Etcd Peer Client Certificate Authentication Set To False",
-		"severity": "MEDIUM",
-		"line": 21,
-        "fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "Etcd Peer Client Certificate Authentication Set To False",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive1.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "app-etcd-deployment",
+    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "",
+    "expectedValue": "--peer-client-cert-auth flag should be set to true",
+    "actualValue": "--peer-client-cert-auth flag is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "6a6957b17c21ff6d6d3d6e4fbf800bb151d18210aea9d357221267f5bbf409da",
+    "search_line": 21
+  },
+  {
+    "queryName": "Etcd Peer Client Certificate Authentication Set To False",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "app-etcd-deployment",
+    "searchKey": "metadata.name={{app-etcd-deployment}}.spec.template.spec.containers.name={{database}}.command",
+    "searchValue": "",
+    "expectedValue": "--peer-client-cert-auth flag should be defined and set to true",
+    "actualValue": "--peer-client-cert-auth flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4a425d854eb219c0c5eba8190e79a9721f6a567afa728747ab6ee94adf64fa8b",
+    "search_line": 21
+  }
 ]

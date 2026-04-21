@@ -3,18 +3,45 @@
     "queryName": "Container Is Privileged",
     "severity": "HIGH",
     "line": 10,
-		"fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-4",
+    "searchKey": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-4}}.securityContext.privileged",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-4}}.securityContext.privileged is unset or false",
+    "actualValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-4}}.securityContext.privileged is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "21961d22a60b3f56c773e09dcd724255eee02eb80c371b8c84eba9d174f3fbb3",
+    "search_line": -1
   },
   {
     "queryName": "Container Is Privileged",
     "severity": "HIGH",
     "line": 23,
-		"fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-5",
+    "searchKey": "metadata.name={{security-context-demo-5}}.spec.initContainers.name={{sec-ctx-4}}.securityContext.privileged",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{security-context-demo-5}}.spec.initContainers.name={{sec-ctx-4}}.securityContext.privileged is unset or false",
+    "actualValue": "metadata.name={{security-context-demo-5}}.spec.initContainers.name={{sec-ctx-4}}.securityContext.privileged is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "a2825270a0fc509e57751fc1526f9e73899e8d7541db8aa642931ddd8f9d8155",
+    "search_line": -1
   },
   {
     "queryName": "Container Is Privileged",
     "severity": "HIGH",
     "line": 21,
-		"fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "test-deployment",
+    "searchKey": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged is unset or false",
+    "actualValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.securityContext.privileged is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "a827ff8cc1832f772de48584bf8eb47c2615cd42e6824c28a1b8b7a4b312649c",
+    "search_line": -1
   }
 ]

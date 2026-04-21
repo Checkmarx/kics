@@ -3,36 +3,90 @@
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 47,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue",
+    "similarityID": "f1ae27c5d0b77f3a6b9ecf02cc8a35f9ea9d701af87b16e958e472b16b36ff24",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue",
+    "similarityID": "aba6e812e9882a20ca848179c23ad7980bd4ea22c2ce51beaab7b489f991e000",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue",
+    "similarityID": "57bd255ba340e8c93106341d27ff11e6fff2c7f76023c56bd92585d95b4967c5",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 32,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue",
+    "similarityID": "7ee038395a4703b517f903615dc0e35d54ce9f7017bfca7b9959cf7f5e82d83c",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue",
+    "similarityID": "abf47272ec3d7258446e7d770a332112ae6d28480fddaa4a361b761b58773b93",
+    "search_line": -1
   },
   {
     "queryName": "Property 'allowEmptyValue' Ignored",
     "severity": "INFO",
     "line": 31,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.allowEmptyValue",
+    "searchValue": "",
+    "expectedValue": "Property 'allowEmptyValue' should not be ignored",
+    "actualValue": "Property 'allowEmptyValue' is ignored (due to one of the following cases: {\"sytle\": \"simple\", \"explode\": false}, {\"sytle\": \"simple\", \"explode\": true}, {\"sytle\": \"spaceDelimited\", \"explode\": false}, {\"sytle\": \"pipeDelimited\", \"explode\": false}, or {\"sytle\": \"deepObject\", \"explode\": true})",
+    "issueType": "IncorrectValue",
+    "similarityID": "ab07388c9bc9730bfafad46a2fe19442c4b0881e6d5f994d0e15c8472947c20a",
+    "search_line": -1
   }
 ]

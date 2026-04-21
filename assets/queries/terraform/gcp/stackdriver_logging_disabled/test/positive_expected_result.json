@@ -3,12 +3,30 @@
     "queryName": "Stackdriver Logging Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1].logging_service",
+    "searchValue": "",
+    "expectedValue": "Attribute 'logging_service' should be undefined or 'logging.googleapis.com/kubernetes'",
+    "actualValue": "Attribute 'logging_service' is 'none'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5cdce7aa4018948518a4a98ffdfc4dbcbf3f5d5e8056107eebafbd4eabef185d",
+    "search_line": -1
   },
   {
     "queryName": "Stackdriver Logging Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive2].logging_service",
+    "searchValue": "",
+    "expectedValue": "Attribute 'logging_service' should be undefined or 'logging.googleapis.com/kubernetes'",
+    "actualValue": "Attribute 'logging_service' is 'logging.googleapis.com'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8a2a3fed4ae67bd0d8db4120d7b4f558ce142447da54c64250a37efa54173553",
+    "search_line": -1
   }
 ]

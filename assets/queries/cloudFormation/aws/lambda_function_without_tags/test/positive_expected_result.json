@@ -3,12 +3,30 @@
     "queryName": "Lambda Function Without Tags",
     "severity": "LOW",
     "line": 52,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "AppendItemToListFunction",
+    "searchKey": "Resources.AppendItemToListFunction.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.AppendItemToListFunction.Properties.Tags' should be defined",
+    "actualValue": "'Resources.AppendItemToListFunction.Properties.Tags' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5bcd4558d53cf4751be42eae39550ca9be4b5c880775eae66e46ba87da26ab97",
+    "search_line": -1
   },
   {
-    "fileName": "positive2.json",
     "queryName": "Lambda Function Without Tags",
     "severity": "LOW",
-    "line": 75
+    "line": 75,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "AppendItemToListFunction",
+    "searchKey": "Resources.AppendItemToListFunction.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.AppendItemToListFunction.Properties.Tags' should be defined",
+    "actualValue": "'Resources.AppendItemToListFunction.Properties.Tags' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6f2bff70341c7f8733593400f9f9fead24d9d00e7b85712480f99e5227dbd08a",
+    "search_line": -1
   }
 ]

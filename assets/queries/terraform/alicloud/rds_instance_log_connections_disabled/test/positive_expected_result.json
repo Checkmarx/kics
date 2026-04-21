@@ -3,18 +3,45 @@
     "queryName": "RDS Instance Log Connections Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].parameters",
+    "searchValue": "",
+    "expectedValue": "'log_connections' parameter should be defined and value should be 'ON'",
+    "actualValue": "'log_connections' parameter is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "196aa45cc743dbeb915b30c455cf598f321f386f9279e25de2c8575a27798d83",
+    "search_line": 6
   },
   {
     "queryName": "RDS Instance Log Connections Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].parameters[2].value",
+    "searchValue": "",
+    "expectedValue": "'log_connections' parameter value should be 'ON'",
+    "actualValue": "'log_connections' parameter value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9d659a10e8caf8308296b6331edb5dc30974a0431322090537d428ff3167235a",
+    "search_line": 14
   },
   {
     "queryName": "RDS Instance Log Connections Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "",
+    "expectedValue": "'log_connections' parameter should be defined and value should be 'ON' in parameters array",
+    "actualValue": "'log_connections' parameter is not defined in parameters array",
+    "issueType": "MissingAttribute",
+    "similarityID": "efd2c2d39b555294bdaf3b04973861c2dc38dccb712aa0e47d6caf471298de83",
+    "search_line": 1
   }
 ]

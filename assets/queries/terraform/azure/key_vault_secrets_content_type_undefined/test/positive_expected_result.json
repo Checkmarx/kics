@@ -3,6 +3,15 @@
     "queryName": "Key Vault Secrets Content Type Undefined",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_key_vault_secret",
+    "resourceName": "secret-sauce",
+    "searchKey": "azurerm_key_vault_secret[positive]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_key_vault_secret[positive].content_type' should be defined and not null",
+    "actualValue": "'azurerm_key_vault_secret[positive].content_type' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "467c85d4fbf410a4e5c006ef12db6ef16534825fce76095fbd8f849b653cfffc",
+    "search_line": 1
   }
 ]

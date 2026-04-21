@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.MyBucket",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "786203e616ce98f7c27822924a72559a34c61b7115e59c7884652e8b621b2ac3",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.JenkinsArtifacts03",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "b76d1c235e0399cdece96e2e93c7188983cb0f48a9551f790d13925ee4bf76ab",
+    "search_line": 5
   }
 ]

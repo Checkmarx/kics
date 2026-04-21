@@ -3,12 +3,30 @@
     "queryName": "MariaDB Server Geo-redundant Backup Disabled",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_mariadb_server",
+    "resourceName": "example-mariadb-server",
+    "searchKey": "azurerm_mariadb_server[positive1].geo_redundant_backup_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mariadb_server[positive1].geo_redundant_backup_enabled' should be set to true",
+    "actualValue": "'azurerm_mariadb_server[positive1].geo_redundant_backup_enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "0da54c681e1d3fbea90813b99114ffb7e0d82ae040cf798a3c8dbe51dbebec65",
+    "search_line": 15
   },
   {
     "queryName": "MariaDB Server Geo-redundant Backup Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_mariadb_server",
+    "resourceName": "example-mariadb-server",
+    "searchKey": "azurerm_mariadb_server[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mariadb_server[positive2].geo_redundant_backup_enabled' should be defined and set to true",
+    "actualValue": "'azurerm_mariadb_server[positive2].geo_redundant_backup_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "11139727c622d455c7c1d63df75a19e9d1c898f022c9c969bfa267344af8ef3f",
+    "search_line": 1
   }
 ]

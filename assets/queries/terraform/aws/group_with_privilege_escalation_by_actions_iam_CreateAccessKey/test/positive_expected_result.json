@@ -3,6 +3,15 @@
     "queryName": "Group With Privilege Escalation By Actions 'iam:CreateAccessKey'",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_group",
+    "resourceName": "cosmic",
+    "searchKey": "aws_iam_group[cosmic]",
+    "searchValue": "",
+    "expectedValue": "group cosmic should not be associated with a policy that has Action set to 'iam:CreateAccessKey' and Resource set to '*'",
+    "actualValue": "group cosmic is associated with a policy that has Action set to 'iam:CreateAccessKey' and Resource set to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "254afde9f580ba6df3f0bd32601e1773402d7cbfbed5c191f005ce12ac58a001",
+    "search_line": 1
   }
 ]

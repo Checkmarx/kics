@@ -3,18 +3,45 @@
     "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm",
+    "searchKey": "resources.name={{vm}}.properties",
+    "searchValue": "",
+    "expectedValue": "'metadata' should be defined and not null",
+    "actualValue": "'metadata' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "38ddfcd86a8c97f92e0f07558277d0e77db6da81a397bdb81031e1649f11780a",
+    "search_line": 4
   },
   {
     "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm",
+    "searchKey": "resources.name={{vm}}.properties.metadata.items",
+    "searchValue": "",
+    "expectedValue": "'metadata.items' should have 'block-project-ssh-keys'",
+    "actualValue": "'metadata.items' does not have 'block-project-ssh-keys'",
+    "issueType": "MissingAttribute",
+    "similarityID": "2448324f71d5ee123bcac225da5dfb9feb0f2f92376a3da0aee5cd9e47598f67",
+    "search_line": 8
   },
   {
     "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
     "severity": "MEDIUM",
     "line": 12,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm",
+    "searchKey": "resources.name={{vm}}.properties.metadata.items[1].key",
+    "searchValue": "",
+    "expectedValue": "'metadata.items[1].value' should be true",
+    "actualValue": "'metadata.items[1].value' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc561b8a93790ac1c72841e93d9356acbfdbe28112dc0b1df4486899f328a480",
+    "search_line": 12
   }
 ]

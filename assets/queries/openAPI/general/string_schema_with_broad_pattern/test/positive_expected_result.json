@@ -3,48 +3,120 @@
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "LOW",
     "line": 61,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.pattern",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "14d519e92a8371fc16f363ca2b4b50a9ac24e8b6426681365f088d9161a939e9",
+    "search_line": 0
   },
   {
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "LOW",
     "line": 81,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "0e6fb1dc88175ea62438081710cdeda787e67c9e1416da66112f67347f506ce4",
+    "search_line": 0
   },
   {
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "LOW",
     "line": 30,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.pattern",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "c5ade9f4b88a2ece6c27a5cbbd80cb8a39affea88757825773e8850c6d7a5e39",
+    "search_line": -1
   },
   {
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "LOW",
     "line": 37,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.pattern",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "6cd7166964d37739f9d9a5b646e39c7e5cd2aafc378ddf8f54e08c404bbb143c",
+    "search_line": 0
   },
   {
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "LOW",
     "line": 51,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "8b20b7ac6a9c5c5c7a084de4672f4d0bc8926409c8c15717eafb51a5e23791e0",
+    "search_line": 0
   },
   {
     "queryName": "String Schema with Broad Pattern (v3)",
     "severity": "LOW",
     "line": 25,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "String Schema with Broad Pattern (v2)",
-    "severity": "LOW",
-    "line": 30,
-    "filename": "positive6.json"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.pattern",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "75004389bb1793c55cc0309ddfbb191298176dc95c1234dc023ed078a08003fc",
+    "search_line": -1
   },
   {
     "queryName": "String Schema with Broad Pattern (v2)",
     "severity": "LOW",
     "line": 26,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.pattern",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "fb477f3cd3cf0e7de3c5be0fcdeaba94c1cd7106ef19232b4b8384ff36f37e85",
+    "search_line": -1
+  },
+  {
+    "queryName": "String Schema with Broad Pattern (v2)",
+    "severity": "LOW",
+    "line": 30,
+    "fileName": "positive6.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.pattern",
+    "searchValue": "",
+    "expectedValue": "String schema has 'pattern' restricted",
+    "actualValue": "String schema does not have 'pattern' restricted",
+    "issueType": "IncorrectValue",
+    "similarityID": "64d955c142b29807141f25aa7ac10a8ad858564d7fa4af8fad97bd0624ecbf8d",
+    "search_line": -1
   }
 ]

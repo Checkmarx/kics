@@ -3,18 +3,45 @@
     "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{ubuntu}}.{{RUN apt-get install -y wget}}",
+    "searchValue": "",
+    "expectedValue": "There isn\u00b4t any RUN instruction that could be grouped",
+    "actualValue": "There are RUN instructions that could be grouped",
+    "issueType": "RedundantAttribute",
+    "similarityID": "0bcc8d4c913b014a3e736c1d4039394d127857d1adfc1a7b3fe69221a0a3ae1c",
+    "search_line": -1
   },
   {
     "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive2.dockerfile"
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{ubuntu}}.{{COPY README.md ./}}",
+    "searchValue": "",
+    "expectedValue": "There isn\u00b4t any COPY instruction that could be grouped",
+    "actualValue": "There are COPY instructions that could be grouped",
+    "issueType": "RedundantAttribute",
+    "similarityID": "19157fe9f1662bdbe370f47ffc2c65f4187955dd2ba8828eee5f4c471c693bdd",
+    "search_line": -1
   },
   {
     "queryName": "Multiple RUN, ADD, COPY, Instructions Listed",
     "severity": "LOW",
     "line": 2,
-    "fileName": "positive3.dockerfile"
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{ubuntu}}.{{ADD cairo.spec /rpmbuild/SOURCES}}",
+    "searchValue": "",
+    "expectedValue": "There isn\u00b4t any ADD instruction that could be grouped",
+    "actualValue": "There are ADD instructions that could be grouped",
+    "issueType": "RedundantAttribute",
+    "similarityID": "f1de0824f227342b7b5d9f6150d2ec1a3bfb3f657365240ad29a6d3663fba8d4",
+    "search_line": -1
   }
 ]

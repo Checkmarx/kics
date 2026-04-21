@@ -3,12 +3,30 @@
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive1.yml"
+    "fileName": "positive1.yml",
+    "resourceType": "AWS::Lambda",
+    "resourceName": "hello",
+    "searchKey": "functions.hello",
+    "searchValue": "",
+    "expectedValue": "'role' should be defined inside the function",
+    "actualValue": "'role' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6eed7e292b81cc619e50ece9b9d0b15e9dc01a236af88bc00dc446443bce7f58",
+    "search_line": 8
   },
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive2.yml"
+    "fileName": "positive2.yml",
+    "resourceType": "AWS::Lambda",
+    "resourceName": "hello",
+    "searchKey": "functions[%!s(int=0)].hello",
+    "searchValue": "",
+    "expectedValue": "'role' should be defined inside the function",
+    "actualValue": "'role' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f17c86d2552b48821022b7862f8d9a7852feae038ceb23fdc95a9254f0c6f033",
+    "search_line": 8
   }
 ]

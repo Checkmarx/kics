@@ -3,12 +3,30 @@
     "queryName": "Lambda Functions With Full Privileges",
     "severity": "HIGH",
     "line": 76,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "AppendItemToListFunction",
+    "searchKey": "Resources.LambdaExecutionRole.Properties.Policies.PolicyDocument",
+    "searchValue": "AppendItemToListFunction",
+    "expectedValue": "Resources.LambdaExecutionRole.Properties.Policies[root].PolicyDocument should not give admin privileges to Resources.AppendItemToListFunction ",
+    "actualValue": "Resources.LambdaExecutionRole.Properties.Policies[root].PolicyDocument gives admin privileges to Resources.AppendItemToListFunction ",
+    "issueType": "IncorrectValue",
+    "similarityID": "091609324540d23952213df9cb2fde6a0c5fc9eb1b4ff557be832ee4bdbf0397",
+    "search_line": 76
   },
   {
+    "queryName": "Lambda Functions With Full Privileges",
     "severity": "HIGH",
     "line": 101,
     "fileName": "positive2.json",
-    "queryName": "Lambda Functions With Full Privileges"
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "AppendItemToListFunction",
+    "searchKey": "Resources.LambdaExecutionRole.Properties.Policies.PolicyDocument",
+    "searchValue": "AppendItemToListFunction",
+    "expectedValue": "Resources.LambdaExecutionRole.Properties.Policies[root].PolicyDocument should not give admin privileges to Resources.AppendItemToListFunction ",
+    "actualValue": "Resources.LambdaExecutionRole.Properties.Policies[root].PolicyDocument gives admin privileges to Resources.AppendItemToListFunction ",
+    "issueType": "IncorrectValue",
+    "similarityID": "c08191aaf204ba9828c99d8a451d58f2a7d40b92f745761060e91a13ce155a05",
+    "search_line": 101
   }
 ]

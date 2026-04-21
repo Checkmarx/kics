@@ -3,6 +3,15 @@
     "queryName": "OSLogin Is Disabled In VM Instance",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm",
+    "searchKey": "resources.name={{vm}}.properties.metadata.items[0]",
+    "searchValue": "",
+    "expectedValue": "'metadata.items[0]'.value should be true",
+    "actualValue": "'metadata.items[0]'.value is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "5a63abf60d0a505ed3fbde9c1674295a5ab797d0c86bd233df041eefa09b208d",
+    "search_line": 10
   }
 ]

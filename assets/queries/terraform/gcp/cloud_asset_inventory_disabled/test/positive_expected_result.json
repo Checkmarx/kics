@@ -3,42 +3,105 @@
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_project_service",
+    "resourceName": "positive1_1",
+    "searchKey": "google_project_service[positive1_1].service",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue",
+    "similarityID": "569268c9884d5e0ef5b4ad14b7b46e0e59d399d632153400562f0c093929f27f",
+    "search_line": 2
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_project_service",
+    "resourceName": "positive1_2",
+    "searchKey": "google_project_service[positive1_2].service",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3d88ca76e41f8cc225eb7543598ce299a68be719ccec8393703405881f7a3681",
+    "search_line": 6
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "google_project_service",
+    "resourceName": "positive_2",
+    "searchKey": "google_project_service[positive_2].service",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0eb5efd2fede6c6431422a9d4f68324d3067c0ece2b7392014cdd0a2f992fbc3",
+    "search_line": 6
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "google_project_service",
+    "resourceName": "positive_3",
+    "searchKey": "google_project_service[positive_3].service",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6ac5f87ac21ee7ff09316a6d61e2049a5bdf9c8ea8b2589bc72f3df33aa9293b",
+    "search_line": 6
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "google_project_service",
+    "resourceName": "positive_4",
+    "searchKey": "google_project_service[positive_4].service",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue",
+    "similarityID": "aeaeeb082b5fea87b72ac72bbd6074f280a2c4acf489953f4913b3fd857a36b0",
+    "search_line": 7
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "google_project_service",
+    "resourceName": "positive_5",
+    "searchKey": "google_project_service[positive_5].service",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2ad01585c3c65eb3d29ac7d2bfc077ffc749003cbce2d5ba60e6a976dc29ae8b",
+    "search_line": 10
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "google_project_service",
+    "resourceName": "positive_6",
+    "searchKey": "google_project_service[positive_6].service",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
+    "actualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4f8d7438bc5a7cfd871d34efd08f103d311a6bfd76ad0426ec91e85120e35027",
+    "search_line": 10
   }
 ]

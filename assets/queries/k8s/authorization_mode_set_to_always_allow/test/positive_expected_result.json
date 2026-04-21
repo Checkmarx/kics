@@ -3,36 +3,90 @@
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "HIGH",
     "line": 11,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
+    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode",
+    "issueType": "IncorrectValue",
+    "similarityID": "b0c72e95465aaf65f68c83d4eab5fada4ebf0e14b6b2000a3169518302c1dca2",
+    "search_line": -1
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "HIGH",
     "line": 11,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
+    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode",
+    "issueType": "IncorrectValue",
+    "similarityID": "86d8962be258a154f9f675701a694d03321ca7008d542eff9358290802cf5719",
+    "search_line": -1
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "HIGH",
     "line": 11,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
+    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode",
+    "issueType": "IncorrectValue",
+    "similarityID": "b31df93c77c8df74fbf50d3b957e0f4bb1980ca545e9477880151c90c2c50447",
+    "search_line": -1
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "HIGH",
     "line": 11,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--authorization-mode flag to not have 'AlwaysAllow' mode",
+    "actualValue": "--authorization-mode flag contains 'AlwaysAllow' mode",
+    "issueType": "IncorrectValue",
+    "similarityID": "0eb7100e2e36d62225f7517cc507b85bf6782aa6012d5deac5eb999b4a73dced",
+    "search_line": -1
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "HIGH",
     "line": 11,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.authorization.mode",
+    "searchValue": "",
+    "expectedValue": "authorization.mode attribute should not be 'AlwaysAllow'",
+    "actualValue": "authorization.mode attribute is equal to 'AlwaysAllow'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7b5a1d206bdcb0a2e2cb4f6050c9f231c8ad591bf2470d37c0271b26912d0838",
+    "search_line": -1
   },
   {
     "queryName": "Authorization Mode Set To Always Allow",
     "severity": "HIGH",
     "line": 6,
-    "filename": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.authorization.mode",
+    "searchValue": "",
+    "expectedValue": "authorization.mode attribute should not be 'AlwaysAllow'",
+    "actualValue": "authorization.mode attribute is equal to 'AlwaysAllow'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0da91607f6f61d297bae3c7bfc2ea8644ffdd8ebc17064c93a49dba34cf359c",
+    "search_line": -1
   }
 ]

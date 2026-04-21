@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Secure Port Set To Zero",
-		"severity": "HIGH",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Secure Port Set To Zero",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--secure-port flag should not be set to 0",
+    "actualValue": "--secure-port flag is set to 0",
+    "issueType": "IncorrectValue",
+    "similarityID": "e80fd6ae30f84935aeecf0b3420c28dea2b345946a46cbfbf8ccca49e5a29400",
+    "search_line": 11
+  }
 ]

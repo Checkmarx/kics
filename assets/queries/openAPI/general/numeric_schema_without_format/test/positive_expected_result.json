@@ -3,48 +3,120 @@
     "queryName": "Numeric Schema Without Format (v3)",
     "severity": "LOW",
     "line": 58,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'format' defined",
+    "actualValue": "Numeric schema does not have 'format' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dd1eab92456d9fdf0aea78fa622e03427e1e7f2a6feac0d9e7cb079dc0326bce",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Format (v3)",
     "severity": "LOW",
     "line": 75,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'format' defined",
+    "actualValue": "Numeric schema does not have 'format' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "08a5af090c405dd6e3599fc05e525e39314ce7a6cebc8637614378329b362ea8",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Format (v3)",
     "severity": "LOW",
     "line": 27,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'format' defined",
+    "actualValue": "Numeric schema does not have 'format' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c92cd992954af61d2596e08cf096bb63427253083caf496d3aad10f54c628f57",
+    "search_line": -1
   },
   {
     "queryName": "Numeric Schema Without Format (v3)",
     "severity": "LOW",
     "line": 34,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'format' defined",
+    "actualValue": "Numeric schema does not have 'format' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "77f6a0d04d72264cf01f3565bd5b2fced2fdb4f4c3912ddee1e9dd10cfcded09",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Format (v3)",
     "severity": "LOW",
     "line": 46,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'format' defined",
+    "actualValue": "Numeric schema does not have 'format' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ef4b2e0ca251cc37cd8b37e1fae0340654f7d83fcfedd15602460e62bfb786dc",
+    "search_line": 0
   },
   {
     "queryName": "Numeric Schema Without Format (v3)",
     "severity": "LOW",
     "line": 22,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'format' defined",
+    "actualValue": "Numeric schema does not have 'format' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2d77614507c69f401da12188b81ad7b34f1421ec87712ff1ef682c5b5fd93b72",
+    "search_line": -1
   },
   {
     "queryName": "Numeric Schema Without Format (v2)",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'format' defined",
+    "actualValue": "Numeric schema does not have 'format' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c6f8392124590a3cd0e8ca59d3bf5a1fded67199b3bfa154d7d97f068583d115",
+    "search_line": -1
   },
   {
     "queryName": "Numeric Schema Without Format (v2)",
     "severity": "LOW",
     "line": 20,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "Numeric schema should have 'format' defined",
+    "actualValue": "Numeric schema does not have 'format' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "18e1edce527322fdcf336cd89625dadb5f0e38a5d714d5cdd37c19fc0d048ee7",
+    "search_line": -1
   }
 ]

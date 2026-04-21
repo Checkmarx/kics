@@ -3,12 +3,30 @@
     "queryName": "Log Retention Is Not Greater Than 90 Days",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_log_store",
+    "resourceName": "tf-log-store",
+    "searchKey": "alicloud_log_store[example2]",
+    "searchValue": "",
+    "expectedValue": "For attribute 'retention_period' should be set and over 90 days.",
+    "actualValue": "The attribute 'retention_period' is undefined. The default duration when undefined is 30 days, which is too short.",
+    "issueType": "MissingAttribute",
+    "similarityID": "4ff527d23d47cf1ae5652adebd5c3aed1e8250dcfd6190c7282382d87768c14f",
+    "search_line": 6
   },
   {
     "queryName": "Log Retention Is Not Greater Than 90 Days",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_log_store",
+    "resourceName": "tf-log-store",
+    "searchKey": "alicloud_log_store[example4].retention_period",
+    "searchValue": "",
+    "expectedValue": "For the attribite 'retention_period' should be set to 90+ days",
+    "actualValue": "The attribute 'retention_period' is not set to 90+ days",
+    "issueType": "IncorrectValue",
+    "similarityID": "40c5aae8ce44e8ed7c3d5a8e37f236eb90464268e057a79e6dec5c4d67a3fafa",
+    "search_line": 9
   }
 ]

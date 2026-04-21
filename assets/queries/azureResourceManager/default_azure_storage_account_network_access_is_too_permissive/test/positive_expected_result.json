@@ -2,37 +2,91 @@
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive1",
+    "searchKey": "resources.name=positive1.properties.networkAcls.defaultAction",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to 'Allow')",
+    "issueType": "IncorrectValue",
+    "similarityID": "9488978958dc094409df1980058fa3812af476702cc1fe193de163f8d72b5087",
+    "search_line": 12
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
     "line": 13,
-    "fileName": "positive1.json"
-  },
-  {
-    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "HIGH",
-    "line": 11,
-    "fileName": "positive2.json"
-  },
-  {
-    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "HIGH",
-    "line": 12,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "HIGH",
-    "line": 12,
-    "fileName": "positive1.bicep"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive1",
+    "searchKey": "resources.name=positive1.properties.networkAcls.defaultAction",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to 'Allow')",
+    "issueType": "IncorrectValue",
+    "similarityID": "e5766f69e475357c3e78d5404d341b3b8bedd926b8ea1b1d19cf8edc0bdb88bd",
+    "search_line": 13
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive2.bicep"
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive2",
+    "searchKey": "resources.name=positive2.properties.publicNetworkAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is not set (default is 'Enabled')",
+    "issueType": "MissingAttribute",
+    "similarityID": "fb758be0bbaf6c97b0592ac56a9c3dda71abb969eb232b9050bbe5e5f3436102",
+    "search_line": 10
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive3.bicep"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive2",
+    "searchKey": "resources.name=positive2.properties.publicNetworkAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is not set (default is 'Enabled')",
+    "issueType": "MissingAttribute",
+    "similarityID": "8073bf8fc2d77a3e2ff468dd1f62df9554c2789d537fd17b0e8ee070d58ab28b",
+    "search_line": 11
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive3",
+    "searchKey": "resources.name=positive3.properties.publicNetworkAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to 'Enabled')",
+    "issueType": "IncorrectValue",
+    "similarityID": "f6d4a6a7e4cb7b015f47dd8061a6fdf3de567403a6faa48930d7f8f175902b37",
+    "search_line": 11
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "positive3",
+    "searchKey": "resources.name=positive3.properties.publicNetworkAccess",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to 'Enabled')",
+    "issueType": "IncorrectValue",
+    "similarityID": "501b82fe6a0c8480668df4162da9c3c506df47b9664ec6b2cb685e6a9780d7e2",
+    "search_line": 12
   }
 ]

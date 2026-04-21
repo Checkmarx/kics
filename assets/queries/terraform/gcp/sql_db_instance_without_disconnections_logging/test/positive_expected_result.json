@@ -2,26 +2,76 @@
   {
     "queryName": "Beta - SQL DB Instance Without Disconnections Logging",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_1]",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should be defined and set 'log_disconnections' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ccb5f58fd081e4b7e02f6493c18e1a2b586766582270e39227f2f5da0aeaa0af",
+    "search_line": 1
   },
   {
     "queryName": "Beta - SQL DB Instance Without Disconnections Logging",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 14,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should be defined and set 'log_disconnections' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1f75dbf9609f3c52d4fc7ad45e21fddde9546fa9652a023ca5b53dfde5d2e68e",
+    "search_line": 14
   },
   {
     "queryName": "Beta - SQL DB Instance Without Disconnections Logging",
     "severity": "MEDIUM",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_3].settings.database_flags",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_3].settings.database_flags' should be defined and set 'log_disconnections' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' does not set 'log_disconnections'",
+    "issueType": "MissingAttribute",
+    "similarityID": "b9c706c5ac8fc6b3a12d7c488887fea16bd443b2ae7c109db1410b84ab0b931f",
+    "search_line": 23
   },
   {
     "queryName": "Beta - SQL DB Instance Without Disconnections Logging",
     "severity": "MEDIUM",
-    "line": 42
+    "line": 42,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_4].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_4].settings.database_flags' should be defined and set 'log_disconnections' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_4].settings.database_flags' sets 'log_disconnections' to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0138d02176dd45aa30a72961737c728cd269a047da43a28a4661c310b761730",
+    "search_line": 42
   },
   {
     "queryName": "Beta - SQL DB Instance Without Disconnections Logging",
     "severity": "MEDIUM",
-    "line": 60
+    "line": 60,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_5].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_5].settings.database_flags' should be defined and set 'log_disconnections' to 'on'",
+    "actualValue": "'google_sql_database_instance[positive_5].settings.database_flags' sets 'log_disconnections' to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a06f3987eba663c5370a6c157806b18e8a459726f638a49629e8184ac4a30f11",
+    "search_line": 60
   }
 ]

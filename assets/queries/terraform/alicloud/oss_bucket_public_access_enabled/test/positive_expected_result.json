@@ -3,12 +3,30 @@
     "queryName": "OSS Bucket Public Access Enabled",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-acl",
+    "searchKey": "alicloud_oss_bucket[bucket_public_access_enabled2].acl",
+    "searchValue": "",
+    "expectedValue": "'acl' should be set to private or not set",
+    "actualValue": "'acl' is public-read",
+    "issueType": "IncorrectValue",
+    "similarityID": "60c4da933328ec43376633feeb9bac7fab65d66d0e3a731e10d7e4e6a4cb8db2",
+    "search_line": 3
   },
   {
     "queryName": "OSS Bucket Public Access Enabled",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-acl",
+    "searchKey": "alicloud_oss_bucket[bucket_public_access_enabled3].acl",
+    "searchValue": "",
+    "expectedValue": "'acl' should be set to private or not set",
+    "actualValue": "'acl' is public-read-write",
+    "issueType": "IncorrectValue",
+    "similarityID": "c5e2d9ea6a2acd7cb4d5c5a7047d90171bdf038d5f172305e5558d5c542787fd",
+    "search_line": 3
   }
 ]

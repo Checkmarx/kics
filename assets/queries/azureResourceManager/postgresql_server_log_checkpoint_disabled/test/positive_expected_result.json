@@ -2,97 +2,241 @@
   {
     "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
     "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer1",
+    "searchKey": "resources.name={{MyDBServer1}}.resources.name=log_checkpoints",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_checkpoints' set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' 'log_checkpoints' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "15dc5a867b0abea4f3152cd852c223df38aa6972c4421f81c60454d51adbf502",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
     "line": 43,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer1",
+    "searchKey": "resources.name={{MyDBServer1}}.resources.name=log_checkpoints",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_checkpoints' set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' 'log_checkpoints' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "31162bae648338f74d06f38ca9205b39f5c5d1e6cff2aefc0b25f02cadc372cd",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer2",
+    "searchKey": "resources.name={{MyDBServer2}}.resources.name=log_checkpoints.properties.value",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_checkpoints' property value set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_checkpoints' set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fbcd8117deaa88446a816f878e6c5b2a8008195846d45e016d7974f3854c5ccc",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
     "severity": "MEDIUM",
     "line": 45,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer2",
+    "searchKey": "resources.name={{MyDBServer2}}.resources.name=log_checkpoints.properties.value",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_checkpoints' property value set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_checkpoints' set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8c16bfddcfed420d751c1db734f40ae4233d291923abe0f5f8d06642dcca2bc7",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_checkpoints",
+    "searchKey": "resources.name={{MyDBServer/log_checkpoints}}.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_checkpoints' property value set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_checkpoints' property set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9c7de78fe65d64964a742676d8cb1e9655cf097a7d8d75383e5fb38c65bdd869",
+    "search_line": 32
   },
   {
     "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
     "severity": "MEDIUM",
     "line": 44,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_checkpoints",
+    "searchKey": "resources.name={{MyDBServer/log_checkpoints}}.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_checkpoints' property value set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_checkpoints' property set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f19a688279c6be7cccefaa3fe41b817065f455ecda038c9b6125bc30533d3746",
+    "search_line": 44
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_checkpoints",
+    "searchKey": "resources.name={{MyDBServer/log_checkpoints}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_checkpoints' property set to 'off'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' 'log_checkpoints' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "420e9f7af228d4890d74ced4fda1b1fe916bb0728323c5569f929df2ef4b2b09",
+    "search_line": 31
   },
   {
     "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
     "severity": "MEDIUM",
     "line": 43,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_checkpoints",
+    "searchKey": "resources.name={{MyDBServer/log_checkpoints}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_checkpoints' property set to 'off'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' 'log_checkpoints' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "18fb1a6c10f4135b56b90d04dc781cc57d0c2a8dca6e72e8bd816d5708d048a7",
+    "search_line": 43
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive5.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer1",
+    "searchKey": "resources.name={{MyDBServer1}}.resources.name=log_checkpoints",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_checkpoints' set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' 'log_checkpoints' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fc6c2f633f255e601aa70eba75fe2a595fc7621b77128797221aeff0bf084236",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
     "severity": "MEDIUM",
     "line": 45,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer1",
+    "searchKey": "properties.template.resources.name={{MyDBServer1}}.resources.name=log_checkpoints",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_checkpoints' set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' 'log_checkpoints' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a2bb46869b01bc4d9a6c1a1b92dd6e2cb058cc6a5ad82cf40d5bee5777c848be",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive6.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer2",
+    "searchKey": "resources.name={{MyDBServer2}}.resources.name=log_checkpoints.properties.value",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_checkpoints' property value set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_checkpoints' set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ac1c3f8b943ec5ce6cc0d57491dc442f0d626f478777601fcd046564e0dc17fe",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers",
+    "resourceName": "MyDBServer2",
+    "searchKey": "properties.template.resources.name={{MyDBServer2}}.resources.name=log_checkpoints.properties.value",
+    "searchValue": "",
+    "expectedValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' should have 'log_checkpoints' property value set to 'on'",
+    "actualValue": "child resource with 'configurations' of resource type 'Microsoft.DBforPostgreSQL/servers' has 'log_checkpoints' set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f95f5dde0b38bb29229c646f59c07ade390857662c6fab9e3359e8eedfdf060",
+    "search_line": -1
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive7.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_checkpoints",
+    "searchKey": "resources.name={{MyDBServer/log_checkpoints}}.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_checkpoints' property value set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_checkpoints' property set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a657fd1437b8a540c33e92c36612b638604e1eec20759d020e03c0597e65dfe0",
+    "search_line": 32
   },
   {
     "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_checkpoints",
+    "searchKey": "properties.template.resources.name={{MyDBServer/log_checkpoints}}.properties.value",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_checkpoints' property value set to 'on'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' doesn't have 'log_checkpoints' property set to 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a1a943e6b3b7e44e5e53d4a433758cce28f034dbb18bb33b557e66a851556bae",
+    "search_line": 46
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive8.bicep",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_checkpoints",
+    "searchKey": "resources.name={{MyDBServer/log_checkpoints}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_checkpoints' property set to 'off'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' 'log_checkpoints' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dae41948526f9fa502f569ecb22dff4a0fb70e94391ecc240a14eb35abf9cacc",
+    "search_line": 31
   },
   {
     "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
     "severity": "MEDIUM",
     "line": 45,
-    "fileName": "positive8.json"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
-    "severity": "MEDIUM",
-    "line": 40,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
-    "severity": "MEDIUM",
-    "line": 33,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
-    "severity": "MEDIUM",
-    "line": 32,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
-    "severity": "MEDIUM",
-    "line": 40,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
-    "severity": "MEDIUM",
-    "line": 33,
-    "fileName": "positive6.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
-    "severity": "MEDIUM",
-    "line": 32,
-    "fileName": "positive7.bicep"
-  },
-  {
-    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive8.bicep"
+    "fileName": "positive8.json",
+    "resourceType": "Microsoft.DBforPostgreSQL/servers/configurations",
+    "resourceName": "MyDBServer/log_checkpoints",
+    "searchKey": "properties.template.resources.name={{MyDBServer/log_checkpoints}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' should have 'log_checkpoints' property set to 'off'",
+    "actualValue": "resource with type 'Microsoft.DBforPostgreSQL/servers/configurations' 'log_checkpoints' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "27035bf0e77cfc87bfeac1f25bc9b46f0b43d0aa0e38cc16b9f9a725cea2b6db",
+    "search_line": 45
   }
 ]

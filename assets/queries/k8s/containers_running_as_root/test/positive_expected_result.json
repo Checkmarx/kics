@@ -1,86 +1,212 @@
 [
-	{
-		"queryName": "Container Running As Root",
-		"severity": "MEDIUM",
-		"line": 12,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Container Running As Root",
-		"severity": "MEDIUM",
-		"line": 28,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Container Running As Root",
-		"severity": "MEDIUM",
-		"line": 43,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Container Running As Root",
-		"severity": "MEDIUM",
-		"line": 17,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Container Running As Root",
-		"severity": "MEDIUM",
-		"line": 12,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Container Running As Root",
-		"severity": "MEDIUM",
-		"line": 12,
-		"fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Container Running As Root",
-		"severity": "MEDIUM",
-		"line": 7,
-		"fileName": "positive4.yaml"
-	},
-	{
-		"queryName": "Container Running As Root",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive4.yaml"
-	},
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
-    "line": 20,
-    "fileName": "positive5.yaml"
+    "line": 12,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-2",
+    "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1749d4a888ae4a6b3d2dc76f0328bd2aa19f24efe4c4539aca1c0ace7bbee5b7",
+    "search_line": 12
   },
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
-    "line": 42,
-    "fileName": "positive5.yaml"
+    "line": 28,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-3",
+    "searchKey": "metadata.name={{security-context-demo-3}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo-3}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo-3}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "20ff72ba0fd901601dd988992f593f87050c164dcff282fa7295aac4b71bd7f2",
+    "search_line": 28
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 43,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-4",
+    "searchKey": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo-4}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "5e7076d6969d6ad22bbf80f4754ed04589f1b4ed20e7862d0d34078984348e56",
+    "search_line": 43
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-2",
+    "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "076d9df3397f94fdf3f296335d2d7fd472348f115ec9b7d971e6eccd0f9bd168",
+    "search_line": 12
   },
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive6.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-2",
+    "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext.runAsUser",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-200}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "51bb308be981357918f61e3ad086ec6a1a3fb21395764607807863fc7ac11a89",
+    "search_line": 17
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "containers-runs-as-root",
+    "searchKey": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext.runAsUser",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{containers-runs-as-root}}.spec.containers.name={{sec-ctx-demo-100}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "57da3345ab0d7d97e34e796d06b94ac2d2225a9bc53b7e5cb0b2b97a2eca2610",
+    "search_line": 12
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-2",
+    "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-1}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "MissingAttribute",
+    "similarityID": "3490e1f65b2ee442b4e8c42e3d426cb6bf720c6d24047c7616ccc5cc7e11da08",
+    "search_line": 7
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo-2",
+    "searchKey": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext.runAsUser",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo-2}}.spec.containers.name={{sec-ctx-demo-2}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1fe9234b2f6682b58597afeb520288eed338e5f14b22a9943fad706b078e7117",
+    "search_line": 11
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive5.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser",
+    "searchValue": "StatefulSet",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8608d943ed8c1ec51d0e07254efa2800cb9b448be1e5adf0098bad358f97e7bc",
+    "search_line": 20
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 42,
+    "fileName": "positive5.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b9fe433d4e5c1de82255173683b6b86b54e34e4c3b12271a4752f221cd7c920c",
+    "search_line": 42
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive6.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser",
+    "searchValue": "StatefulSet",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1f9d01e014089d583e3011ba7afddf8e97ec0b8d648bcd5dc3c505cf76a8dbcd",
+    "search_line": 17
   },
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
     "line": 37,
-    "fileName": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.securityContext.runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "71907436dfffcbccd35ac78aa7a203f6d42d87cc401a496857a4ebccb39b0193",
+    "search_line": 37
   },
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
+    "searchValue": "StatefulSet",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "MissingAttribute",
+    "similarityID": "403bced8aa3782d81bf8299edac8d452abfe6163db0ae026e58f896a2d12a64c",
+    "search_line": 18
   },
   {
     "queryName": "Container Running As Root",
     "severity": "MEDIUM",
     "line": 36,
-    "fileName": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false",
+    "issueType": "MissingAttribute",
+    "similarityID": "67f38684ea32c8f6375fe840f349730292b9a90276ad660d661cd51e4f5b2665",
+    "search_line": 36
   }
 ]

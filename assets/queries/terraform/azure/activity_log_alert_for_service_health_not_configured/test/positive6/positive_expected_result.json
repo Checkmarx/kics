@@ -3,6 +3,15 @@
     "queryName": "Beta - Activity Log Alert For Service Health Not Configured",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive6_1.tf"
+    "fileName": "positive6_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "",
+    "searchKey": "azurerm_subscription[positive6]",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'ServiceHealth' events should be defined for each subscription",
+    "actualValue": "There is not a single 'azurerm_monitor_activity_log_alert' resource associated with the 'positive6' subscription",
+    "issueType": "MissingAttribute",
+    "similarityID": "2dc2e0dd57ee1409939954286fb090a54284a24c6b85341c118f5e0ef379eab3",
+    "search_line": 3
   }
 ]

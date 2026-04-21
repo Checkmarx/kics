@@ -3,18 +3,45 @@
     "queryName": "App Service Managed Identity Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1-1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1-1].identity' should be defined and not null",
+    "actualValue": "'azurerm_app_service[positive1-1].identity' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "dbb532f044526bcb5ac1e4a0cf1b6af0bd9598e7a021602f4d09f2df8d191d58",
+    "search_line": 1
   },
   {
     "queryName": "App Service Managed Identity Disabled",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive1-2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive1-2].identity' should be defined and not null",
+    "actualValue": "'azurerm_linux_web_app[positive1-2].identity' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "71ff87c44214a9ab81484f4f203e4c0642d288a745cd66aa35b83400fdd4bade",
+    "search_line": 8
   },
   {
     "queryName": "App Service Managed Identity Disabled",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive1-3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive1-3].identity' should be defined and not null",
+    "actualValue": "'azurerm_windows_web_app[positive1-3].identity' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "4c5d4aecff82d8cad028fec3ffd6aee23f6a90316eb698f38eba4509d66e7978",
+    "search_line": 15
   }
 ]

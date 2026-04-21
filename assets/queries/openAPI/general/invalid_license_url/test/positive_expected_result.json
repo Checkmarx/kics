@@ -3,24 +3,60 @@
     "queryName": "Invalid License URL (v3)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.license.url",
+    "searchValue": "",
+    "expectedValue": "info.license.url has a valid URL",
+    "actualValue": "info.license.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "846ee2a172bd14f791afb93a36a126dc8e29ddbce8aece2613adbb512b77be4a",
+    "search_line": -1
   },
   {
     "queryName": "Invalid License URL (v3)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.license.url",
+    "searchValue": "",
+    "expectedValue": "info.license.url has a valid URL",
+    "actualValue": "info.license.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "493bdeecbb6c6c92d5ee82cea57fdc5e343bc0ac5596caeba0056b90c5d5fecc",
+    "search_line": -1
   },
   {
     "queryName": "Invalid License URL (v2)",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.license.url",
+    "searchValue": "",
+    "expectedValue": "info.license.url has a valid URL",
+    "actualValue": "info.license.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "860d99eb27cddfcc095bb5feade3b95929ce949fac1cb6f9c667bb9ead21214e",
+    "search_line": -1
   },
   {
     "queryName": "Invalid License URL (v2)",
     "severity": "INFO",
     "line": 7,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "info.license.url",
+    "searchValue": "",
+    "expectedValue": "info.license.url has a valid URL",
+    "actualValue": "info.license.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "d32aab121cb232824d1b642e33c7c6bd9499bf90455db49dea0da1c204ad03c3",
+    "search_line": -1
   }
 ]

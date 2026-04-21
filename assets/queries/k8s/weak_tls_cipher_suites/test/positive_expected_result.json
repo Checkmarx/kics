@@ -1,27 +1,62 @@
 [
-    {
-      "queryName": "Weak TLS Cipher Suites",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Weak TLS Cipher Suites",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Weak TLS Cipher Suites",
-      "severity": "MEDIUM",
-      "line": 9,
-      "filename": "positive3.yaml"
-    },
-    {
-      "queryName": "Weak TLS Cipher Suites",
-      "severity": "MEDIUM",
-      "line": 2,
-      "filename": "positive4.json"
-    }
-  ]
-  
+  {
+    "queryName": "Weak TLS Cipher Suites",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "TLS cipher suites should use strong ciphers",
+    "actualValue": "TLS cipher suites uses a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "b4113b0a8aea2ed8c2132e6a531dc5a2c73668d6e871e7686c271bb064533247",
+    "search_line": 11
+  },
+  {
+    "queryName": "Weak TLS Cipher Suites",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "TLS cipher suites should use strong ciphers",
+    "actualValue": "TLS cipher suites uses a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "199ba32e527646e09e6b70b85eb2aee7d32dd3f2df1876c31231b2681cd9c46f",
+    "search_line": 11
+  },
+  {
+    "queryName": "Weak TLS Cipher Suites",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive3.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.tlsCipherSuites",
+    "searchValue": "",
+    "expectedValue": "TLS cipher suites should use strong ciphers",
+    "actualValue": "TLS cipher suites uses a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "57f176a3e4fbc7fb6eaea25595f389d24c0e1ae6eafa2504374f75f42a733c5b",
+    "search_line": -1
+  },
+  {
+    "queryName": "Weak TLS Cipher Suites",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive4.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}",
+    "searchValue": "",
+    "expectedValue": "KubeletConfiguration should have 'tlsCipherSuites' attribute with strong ciphers defined",
+    "actualValue": "TLS cipher suites are not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c9c7d91bdb2e290964b4fe4d98778d2e7efed00a95e9ed42a33e17e5f35d354c",
+    "search_line": -1
+  }
+]

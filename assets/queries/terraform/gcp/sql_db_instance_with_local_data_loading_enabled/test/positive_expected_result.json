@@ -2,26 +2,76 @@
   {
     "queryName": "Beta - SQL DB Instance With Local Data Loading Enabled",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_1]",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should be defined and set 'local_infile' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "5a8d225ab2a5c7635abe3ea16676c271479914bd721a74b3fe95c65524fdf9a2",
+    "search_line": 1
   },
   {
     "queryName": "Beta - SQL DB Instance With Local Data Loading Enabled",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 14,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should be defined and set 'local_infile' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "f28293753e65f4c3f6e1df35feec1e62df5d85cd93d2e54a5e08ba5b0ddd1faf",
+    "search_line": 14
   },
   {
     "queryName": "Beta - SQL DB Instance With Local Data Loading Enabled",
     "severity": "MEDIUM",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_3].settings.database_flags",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_3].settings.database_flags' should be defined and set 'local_infile' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' does not set 'local_infile'",
+    "issueType": "MissingAttribute",
+    "similarityID": "851307e613eb936ecd3f0327de1e8079040e872c482d5fdcfe65b81e288be3ff",
+    "search_line": 23
   },
   {
     "queryName": "Beta - SQL DB Instance With Local Data Loading Enabled",
     "severity": "MEDIUM",
-    "line": 42
+    "line": 42,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_4].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_4].settings.database_flags' should be defined and set 'local_infile' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_4].settings.database_flags' sets 'local_infile' to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9b72a057f1dbc3d191ed57e57469eeb0d79f6616aee4c48a1803452392011210",
+    "search_line": 42
   },
   {
     "queryName": "Beta - SQL DB Instance With Local Data Loading Enabled",
     "severity": "MEDIUM",
-    "line": 60
+    "line": 60,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_5].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_5].settings.database_flags' should be defined and set 'local_infile' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_5].settings.database_flags' sets 'local_infile' to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "23a4c541b2fe7726b310370cb3e7050dbe6045f9c7672b81050ce98febdd6802",
+    "search_line": 60
   }
 ]

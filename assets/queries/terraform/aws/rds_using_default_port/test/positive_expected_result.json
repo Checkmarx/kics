@@ -3,24 +3,60 @@
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].port",
+    "searchValue": "",
+    "expectedValue": "aws_db_instance[positive1].port should not be set to 3306",
+    "actualValue": "aws_db_instance[positive1].port is set to 3306",
+    "issueType": "IncorrectValue",
+    "similarityID": "0023c397899205051b446eb37ed10bbbbad2631ea7d8efb52a73fcaf385da517",
+    "search_line": 11
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive2].port",
+    "searchValue": "",
+    "expectedValue": "aws_db_instance[positive2].port should not be set to 5432",
+    "actualValue": "aws_db_instance[positive2].port is set to 5432",
+    "issueType": "IncorrectValue",
+    "similarityID": "c876a87bc99ecead23da907951cea456cba01a2fd99cd0cca837adbe30b520a5",
+    "search_line": 10
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive3].port",
+    "searchValue": "",
+    "expectedValue": "aws_db_instance[positive3].port should not be set to 1521",
+    "actualValue": "aws_db_instance[positive3].port is set to 1521",
+    "issueType": "IncorrectValue",
+    "similarityID": "bfd11ee735f26327c5cd5178aa4aeea17f22044270f9129210785e352181c28e",
+    "search_line": 10
   },
   {
     "queryName": "RDS Using Default Port",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive4].port",
+    "searchValue": "",
+    "expectedValue": "aws_db_instance[positive4].port should not be set to 1433",
+    "actualValue": "aws_db_instance[positive4].port is set to 1433",
+    "issueType": "IncorrectValue",
+    "similarityID": "42910f31b199e4eeac0325e74fed7e6a206021dac957a5e81c0d09480c71cdb3",
+    "search_line": 10
   }
 ]

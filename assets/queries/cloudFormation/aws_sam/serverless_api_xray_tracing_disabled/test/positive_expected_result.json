@@ -3,18 +3,45 @@
     "queryName": "Serverless API X-Ray Tracing Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi",
+    "searchKey": "Resources.ApiGatewayApi.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi.Properties.TracingEnabled should be defined and not null",
+    "actualValue": "Resources.ApiGatewayApi.Properties.TracingEnabled is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "2de43656bc5fce3b68ce1ff5140aa4da32c80462ec9295afb46624fc1fb520f8",
+    "search_line": 7
   },
   {
     "queryName": "Serverless API X-Ray Tracing Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi2",
+    "searchKey": "Resources.ApiGatewayApi2.Properties.TracingEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi2.Properties.TracingEnabled should be set to true",
+    "actualValue": "Resources.ApiGatewayApi2.Properties.TracingEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b6f8879f06c199b7c70140216da7cef8e535dcdcda19dc45d44937b02d5c1566",
+    "search_line": 9
   },
   {
     "queryName": "Serverless API X-Ray Tracing Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Serverless::Api",
+    "resourceName": "ApiGatewayApi2",
+    "searchKey": "Resources.ApiGatewayApi2.Properties.TracingEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ApiGatewayApi2.Properties.TracingEnabled should be set to true",
+    "actualValue": "Resources.ApiGatewayApi2.Properties.TracingEnabled is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f370d7fea53d7fe20bb9eca75d33e6af7208cb5b68ce406e8af953d57ac7c1bf",
+    "search_line": 9
   }
 ]

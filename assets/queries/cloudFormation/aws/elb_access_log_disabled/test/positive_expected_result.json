@@ -3,30 +3,75 @@
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' should exist",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "16d588cf576401f607f3ed6ac6d6240ef20552d9f6396df88e7cc2b46075026a",
+    "search_line": -1
   },
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer2",
+    "searchKey": "Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is true",
+    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "d0af674356cd7231aaea234d133afe250814f013f3cce9d5eb331e181588523d",
+    "search_line": -1
   },
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer",
+    "searchKey": "Resources.MyLoadBalancer.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' should exist",
+    "actualValue": "'Resources.MyLoadBalancer.Properties.AccessLoggingPolicy' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "3e4ef8103ae6f99dd3e2613211fd2b732338d737223522dd9d7d060a5a023159",
+    "search_line": -1
   },
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer2",
+    "searchKey": "Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is true",
+    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "d048a68e2abdf1e213d46ae792f2449a16614c8f8db1a07516c6e5b5e054f8c0",
+    "search_line": -1
   },
   {
     "queryName": "ELB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "resourceName": "MyLoadBalancer2",
+    "searchKey": "Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is true",
+    "actualValue": "'Resources.MyLoadBalancer2.Properties.AccessLoggingPolicy.Enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "7fc0162e54bd244bc1491c724a425ec10b0da0d1a6a6e07c1bc3b31ecbea7bc9",
+    "search_line": -1
   }
 ]

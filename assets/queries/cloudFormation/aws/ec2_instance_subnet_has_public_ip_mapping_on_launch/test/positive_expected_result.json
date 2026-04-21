@@ -3,18 +3,45 @@
     "queryName": "EC2 Instance Subnet Has Public IP Mapping On Launch",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Subnet",
+    "resourceName": "mySubnet",
+    "searchKey": "Resources.mySubnet.Properties.MapPublicIpOnLaunch",
+    "searchValue": "",
+    "expectedValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' should be false",
+    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "070f6e584cdd88308cfa2e3afc34a91ebc7716dc363b4f0d7c27c73d0bb8c057",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Instance Subnet Has Public IP Mapping On Launch",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Subnet",
+    "resourceName": "mySubnet",
+    "searchKey": "Resources.mySubnet.Properties.MapPublicIpOnLaunch",
+    "searchValue": "",
+    "expectedValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' should be false",
+    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "cf191242f2403558e137700367a77450ceda737e4c1482cdf12c1c22a5594d47",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Instance Subnet Has Public IP Mapping On Launch",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::EC2::Subnet",
+    "resourceName": "mySubnet",
+    "searchKey": "Resources.mySubnet.Properties.MapPublicIpOnLaunch",
+    "searchValue": "",
+    "expectedValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' should be false",
+    "actualValue": "'Resources.mySubnet.Properties.MapPublicIpOnLaunch' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "c6c15101a665fef1470604bb4e7f8d4613d93fb7e6ed724e08b7a5afea665aaa",
+    "search_line": -1
   }
 ]
