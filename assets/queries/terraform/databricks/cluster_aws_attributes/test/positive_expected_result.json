@@ -3,24 +3,60 @@
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "databricks_cluster",
+    "resourceName": "positive1",
+    "searchKey": "databricks_cluster[positive1].aws_attributes.availability",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive1].aws_attributes.availability' should not be equal to 'SPOT'",
+    "actualValue": "'databricks_cluster[positive1].aws_attributes.availability' is equal to 'SPOT'",
+    "issueType": "IncorrectValue",
+    "similarityID": "36f1eedc78ff1d9cc61667858178ee88a6564e66985b85c3e7bf52ba1f07b03d",
+    "search_line": -1
   },
   {
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 13,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "databricks_cluster",
+    "resourceName": "positive2",
+    "searchKey": "databricks_cluster[positive2].aws_attributes.first_on_demand",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive2].aws_attributes.first_on_demand' should not be equal to '0'",
+    "actualValue": "'databricks_cluster[positive2].aws_attributes.first_on_demand' is equal to '0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4e6d7db5d794d342b5e8d85d8efe50201f58ff6bbfad923514825ef05a8f126d",
+    "search_line": -1
   },
   {
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "databricks_cluster",
+    "resourceName": "positive3",
+    "searchKey": "databricks_cluster[positive3].aws_attributes.first_on_demand",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive3].aws_attributes.first_on_demand' should present",
+    "actualValue": "'databricks_cluster[positive3].aws_attributes.first_on_demand' is not present",
+    "issueType": "IncorrectValue",
+    "similarityID": "e79a4553c7379a417351c1414697b8e529a321eaa5fc2d623cb272054c020bf2",
+    "search_line": -1
   },
   {
     "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "databricks_cluster",
+    "resourceName": "positive4",
+    "searchKey": "databricks_cluster[positive4].aws_attributes.zone_id",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive4].aws_attributes.zone_id' should be egal to 'auto'",
+    "actualValue": "'databricks_cluster[positive4].aws_attributes.zone_id' is not equal to 'auto'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e44b41d597063d3b7257c4628713016c9fe3ffa9f65bcc1639c04564aa2bb25a",
+    "search_line": -1
   }
 ]

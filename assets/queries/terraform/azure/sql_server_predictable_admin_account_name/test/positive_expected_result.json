@@ -2,11 +2,31 @@
   {
     "queryName": "SQL Server Predictable Admin Account Name",
     "severity": "LOW",
-    "line": 20
+    "line": 20,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_sql_server",
+    "resourceName": "mssqlserver",
+    "searchKey": "azurerm_sql_server[positive3].administrator_login",
+    "searchValue": "",
+    "expectedValue": "'azurerm_sql_server[positive3].administrator_login' should not be empty'",
+    "actualValue": "'azurerm_sql_server[positive3].administrator_login' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "52e9dbca8d6e15557a2e926c784ef60441578e445e4ea025246b3a05f28829ff",
+    "search_line": -1
   },
   {
     "queryName": "SQL Server Predictable Admin Account Name",
     "severity": "LOW",
-    "line": 40
+    "line": 40,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_sql_server",
+    "resourceName": "mssqlserver",
+    "searchKey": "azurerm_sql_server[positive4].administrator_login",
+    "searchValue": "",
+    "expectedValue": "'azurerm_sql_server[positive4].administrator_login' should not be predictable'",
+    "actualValue": "'azurerm_sql_server[positive4].administrator_login' is predictable",
+    "issueType": "IncorrectValue",
+    "similarityID": "aefa50e23ca9d5638dfd4105f3ace622fcedb7f3384882a835505e017d87130f",
+    "search_line": -1
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "API Gateway Without Configured Authorizer",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "community.aws.aws_api_gateway",
+    "resourceName": "Setup AWS API Gateway setup on AWS and deploy API definition",
+    "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition}}.{{community.aws.aws_api_gateway}}.swagger_dict",
+    "searchValue": "",
+    "expectedValue": "'community.aws.aws_api_gateway.swagger_dict' should have an authorizer set",
+    "actualValue": "'community.aws.aws_api_gateway.swagger_dict' does not have a authorizer set",
+    "issueType": "IncorrectValue",
+    "similarityID": "fe3e377c6f66b5ec4b204a63bd1d92d5bd0940f7709d64d1c8020c8a22d12b3c",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "aws_api_gateway",
+    "resourceName": "Setup AWS API Gateway setup on AWS and deploy API definition2",
+    "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition2}}.{{aws_api_gateway}}",
+    "searchValue": "",
+    "expectedValue": "'aws_api_gateway' should have swagger_file, swagger_text or swagger_dict set",
+    "actualValue": "'aws_api_gateway' does not have swagger_file, swagger_text or swagger_dict set",
+    "issueType": "IncorrectValue",
+    "similarityID": "ddfb7af6321147fc9725e8e859bb0e19cf96060b80fc3977302df93344a243ec",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "aws_api_gateway",
+    "resourceName": "Setup AWS API Gateway setup on AWS and deploy API 222",
+    "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API 222}}.{{aws_api_gateway}}.swagger_file",
+    "searchValue": "",
+    "expectedValue": "'aws_api_gateway.swagger_file' should have an authorizer set",
+    "actualValue": "'aws_api_gateway.swagger_file' does not have a authorizer set",
+    "issueType": "IncorrectValue",
+    "similarityID": "54d917d994910ab583e416d8ed3ffbfbc5c3b76e4e389d4ec001c942a5895542",
+    "search_line": 0
   },
   {
     "queryName": "API Gateway Without Configured Authorizer",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "aws_api_gateway",
+    "resourceName": "Setup AWS API Gateway setup on AWS and deploy API 222",
+    "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API 222}}.{{aws_api_gateway}}.swagger_text",
+    "searchValue": "",
+    "expectedValue": "'aws_api_gateway.swagger_text' should have an authorizer set",
+    "actualValue": "'aws_api_gateway.swagger_text' does not have a authorizer set",
+    "issueType": "IncorrectValue",
+    "similarityID": "7eeb99b352c87ebbcec5de88dfe2e950b218a1f367b6215a0c9f7f7b5297bc54",
+    "search_line": -1
   }
 ]

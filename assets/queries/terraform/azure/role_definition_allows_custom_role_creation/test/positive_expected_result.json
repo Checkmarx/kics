@@ -3,12 +3,30 @@
     "queryName": "Role Definition Allows Custom Role Creation",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_role_definition",
+    "resourceName": "my-custom-role-definition",
+    "searchKey": "azurerm_role_definition[example2].permissions.actions",
+    "searchValue": "",
+    "expectedValue": "azurerm_role_definition[example2].permissions.actions should not allow custom role creation",
+    "actualValue": "azurerm_role_definition[example2].permissions.actions allows custom role creation",
+    "issueType": "IncorrectValue",
+    "similarityID": "7814d16a772c71fa4d1b0fcd54a8897976cd375dd26d0590d65099475452296c",
+    "search_line": -1
   },
   {
     "queryName": "Role Definition Allows Custom Role Creation",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_role_definition",
+    "resourceName": "my-custom-role",
+    "searchKey": "azurerm_role_definition[example].permissions.actions",
+    "searchValue": "",
+    "expectedValue": "azurerm_role_definition[example].permissions.actions should not allow custom role creation",
+    "actualValue": "azurerm_role_definition[example].permissions.actions allows custom role creation",
+    "issueType": "IncorrectValue",
+    "similarityID": "01aced7eec11d777e3699465ae5d41c326bff8730bd824136918c1473b49db05",
+    "search_line": -1
   }
 ]

@@ -2,49 +2,121 @@
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'disablePasswordAuthentication' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a29f3bb24b67e1c9d7f541bb5b939dd5340273507878d71d5e3be577b073ebcc",
+    "search_line": 27
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
     "line": 53,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'disablePasswordAuthentication' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "4a0fc5016482e71fd3c0e3db6945078c6929c6815bce5d47c7607a78e1937b3e",
+    "search_line": 53
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')]",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c31ac66241a38459b67bbebee6fdfd12b7c3d9d326cefe1636bed57f81737f60",
+    "search_line": 17
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 40,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')]",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c49bc0c03f3ff399bc9e5b4d79085362e5579156a2e2ade7cc748908881becfa",
+    "search_line": 40
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'disablePasswordAuthentication' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "fbd37c5e8f857019e44e5a8c92a225392ab8c44544362fd4299c6a7e0409d7e9",
+    "search_line": 27
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 55,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "properties.template.resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'disablePasswordAuthentication' property value is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9d773a0d17906fe313dfe47ae9ed7e83dcd3ac0711cc28cdaba57e6959a2afb",
+    "search_line": 55
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "resources.name=[variables('vmName')]",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ff1c6946f0044d9aee55caab5c8908b67d78036e1b05e108ada32b43e295798a",
+    "search_line": 17
   },
   {
     "queryName": "Azure Instance Using Basic Authentication",
     "severity": "MEDIUM",
     "line": 42,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "Azure Instance Using Basic Authentication",
-    "severity": "MEDIUM",
-    "line": 27,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "Azure Instance Using Basic Authentication",
-    "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "Azure Instance Using Basic Authentication",
-    "severity": "MEDIUM",
-    "line": 27,
-    "filename": "positive3.bicep"
-  },
-  {
-    "queryName": "Azure Instance Using Basic Authentication",
-    "severity": "MEDIUM",
-    "line": 17,
-    "filename": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Compute/virtualMachines",
+    "resourceName": "[variables('vmName')]",
+    "searchKey": "properties.template.resources.name=[variables('vmName')]",
+    "searchValue": "",
+    "expectedValue": "'disablePasswordAuthentication' should be set to true",
+    "actualValue": "'linuxConfiguration.disablePasswordAuthentication' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "cfe857608c881b9987cac33f3fd23ba306af00ebb3c827836e5cb6352c4e10f0",
+    "search_line": 42
   }
 ]

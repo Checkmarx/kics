@@ -3,36 +3,90 @@
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "paths.{{/}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute",
+    "similarityID": "2b15a23723de4331d81d27649e5a70213566b8e52d43ee2b0215ccb33aca0755",
+    "search_line": -1
   },
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 55,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.{{get}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.{{get}}.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "paths.{{/users/{id}}}.{{get}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute",
+    "similarityID": "9f8090348aaaf27fd41e43a5da26ca5b734c487b25739fcfebf221492901996c",
+    "search_line": -1
   },
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "paths.{{/}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute",
+    "similarityID": "800673c1d1bbeeafec9b74a29d844d28bd3388d387a20fe86530f63a40716660",
+    "search_line": -1
   },
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 40,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.{{get}}.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.{{get}}.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "paths.{{/users/{id}}}.{{get}}.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute",
+    "similarityID": "911306e5f4adcbd4d0ab8e62177b3d45cf2c22e8787736cae36cc9e32487e5f4",
+    "search_line": -1
   },
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi.components.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "openapi.components.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "openapi.components.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute",
+    "similarityID": "266347623d8f972fa745341c4d6d78213d7277dd7fa60c8d82bb14a70abb4353",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object With Undefined Type",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi.components.parameters.name={{id}}",
+    "searchValue": "",
+    "expectedValue": "openapi.components.parameters type should be defined%!(EXTRA string=id)",
+    "actualValue": "openapi.components.parameters type is not defined%!(EXTRA string=id)",
+    "issueType": "MissingAttribute",
+    "similarityID": "3d0c390820adf30105fa41144bb4ed2bff600939a03379b8c7d628ba48280565",
+    "search_line": 0
   }
 ]

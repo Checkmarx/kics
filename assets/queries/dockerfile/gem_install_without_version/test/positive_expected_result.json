@@ -2,16 +2,46 @@
   {
     "queryName": "Gem Install Without Version",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN gem install bundler}}",
+    "searchValue": "",
+    "expectedValue": "RUN gem install bundler is 'gem install <gem>:<version>'",
+    "actualValue": "RUN gem install bundler is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue",
+    "similarityID": "4b3f69e0acb287888ec895f3bf3a2a777a98c20910bad89b9d856ef48949b504",
+    "search_line": -1
   },
   {
     "queryName": "Gem Install Without Version",
     "severity": "MEDIUM",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN [\"gem\", \"install\", \"blunder\"]}}",
+    "searchValue": "",
+    "expectedValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>:<version>'",
+    "actualValue": "RUN [\"gem\", \"install\", \"blunder\"] is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue",
+    "similarityID": "432fde0e556e53f41ab2472d0497555a6dfc3050fa5530de5045a52611748497",
+    "search_line": -1
   },
   {
     "queryName": "Gem Install Without Version",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder}}",
+    "searchValue": "",
+    "expectedValue": "RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>:<version>'",
+    "actualValue": "RUN gem install grpc -v ${GRPC_RUBY_VERSION} blunder is 'gem install <gem>', you should use 'gem install <gem>:<version>",
+    "issueType": "IncorrectValue",
+    "similarityID": "ae9e4b85ce4bea3eb95ce7a6a88b10ce01dc0dfbf9e9d3b7ca6fe44265f38af5",
+    "search_line": -1
   }
 ]

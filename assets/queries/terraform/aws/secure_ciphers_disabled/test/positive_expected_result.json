@@ -2,6 +2,16 @@
   {
     "queryName": "Secure Ciphers Disabled",
     "severity": "MEDIUM",
-    "line": 42
+    "line": 42,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive1",
+    "searchKey": "resource.aws_cloudfront_distribution[positive1].viewer_certificate.minimum_protocol_version",
+    "searchValue": "",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive1].viewer_certificate.minimum_protocol_version should start with TLSv1.1 or TLSv1.2",
+    "actualValue": "resource.aws_cloudfront_distribution[positive1].viewer_certificate.minimum_protocol_version doesn't start with TLSv1.1 or TLSv1.2",
+    "issueType": "IncorrectValue",
+    "similarityID": "5a5749e6e1956ad7de147c3dc3a6723300e5cfaad9314347a04494ef9f7b3318",
+    "search_line": -1
   }
 ]

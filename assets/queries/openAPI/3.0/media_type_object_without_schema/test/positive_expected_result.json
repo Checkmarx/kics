@@ -3,60 +3,150 @@
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ab44cab63297f1ca7f8b4129d0d3ec75258faea115c859d7879ca7c1109e5559",
+    "search_line": 16
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 49,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content[multipart/data]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5964a0115ba7eb49352ac1d57097d12aa24f2f1848e53e0d77b010b5e70772e8",
+    "search_line": 49
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dcedd3a372811880d7913fcc15e262e67ebb86f1c42b4e69ff2bbedef3f72b44",
+    "search_line": 16
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.content[multipart/form-data]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7afbf4f470be4e15ee75d989afba9a327f0f478cec35b5d447b34df1b15c61f5",
+    "search_line": 28
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.requestBody.content[text/plain]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fbd0ab21d9744f4dcd78b816d2d2774720c57654047558d7796e73ffae83205c",
+    "search_line": 26
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "3ec908833bcacf48e36586db60a8aaadd3c1145c0a5ee06440a7759c97c77095",
+    "search_line": 14
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 31,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content[multipart/form-data]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "43a489ef7104910b34dfb755a15e9ebf6637b265cde9e364d2059907662cd00f",
+    "search_line": 31
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content[application/json]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ee8eabc75c60441c68f4e7e73cbe4d469678457cdfa9716f3c663b115f043753",
+    "search_line": 14
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 20,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.content[multipart/form-data]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "aa7c0ff4036cee27746652c67951f94cab311a3b9ddb75559ade43ac32656938",
+    "search_line": 20
   },
   {
     "queryName": "Media Type Object Without Schema",
     "severity": "MEDIUM",
     "line": 20,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.requestBody.content[text/plain]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d37de5a38d751e5afa6800127a5504e525f1909f8d8cc2a5c486ff321b6a52d7",
+    "search_line": 20
   }
 ]

@@ -3,36 +3,90 @@
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "CRITICAL",
     "line": 4,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive1].policy.Action should not be a 'Delete' action",
+    "actualValue": "aws_s3_bucket_policy[positive1].policy.Action is a 'Delete' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "12c9a0ba10edb786ed5f1bc19d8c8bee77d98455ec2872319ed7a46a1af75e83",
+    "search_line": 4
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "CRITICAL",
     "line": 4,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${aws_s3_bucket.b.id}",
+    "searchKey": "aws_s3_bucket_policy[positive2].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive2].policy.Action should not be a 'Delete' action",
+    "actualValue": "aws_s3_bucket_policy[positive2].policy.Action is a 'Delete' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "b56cb7953ce2fe19fa04552b2c7b2f872e296d6a39583958a29d710e2084d17e",
+    "search_line": 4
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "CRITICAL",
     "line": 12,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Action' should not be a 'Delete' action",
+    "actualValue": "'policy.Statement.Action' is a 'Delete' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "08e5156c4822569653dc190c041dd1b8e5844e68e9ee46b4202303fc5a1a21d0",
+    "search_line": 12
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "CRITICAL",
     "line": 37,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${var.positive4}",
+    "searchKey": "aws_s3_bucket_policy[positive4].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive4].policy.Action should not be a 'Delete' action",
+    "actualValue": "aws_s3_bucket_policy[positive4].policy.Action is a 'Delete' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "cbc96cef609bfb467f0324dd64c2410761c4d25b218d45f803767780d72c9172",
+    "search_line": 37
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "CRITICAL",
     "line": 37,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${var.positive5}",
+    "searchKey": "aws_s3_bucket_policy[positive5].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive5].policy.Action should not be a 'Delete' action",
+    "actualValue": "aws_s3_bucket_policy[positive5].policy.Action is a 'Delete' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "90c104ec5c7ff1e2e15500cae45cf0689d54f63c2a3b3f1f58a92b4458b6f9f5",
+    "search_line": 37
   },
   {
     "queryName": "S3 Bucket Allows Delete Action From All Principals",
     "severity": "CRITICAL",
     "line": 37,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_s3_bucket_policy",
+    "resourceName": "${var.positive6}",
+    "searchKey": "aws_s3_bucket_policy[positive6].policy",
+    "searchValue": "",
+    "expectedValue": "aws_s3_bucket_policy[positive6].policy.Action should not be a 'Delete' action",
+    "actualValue": "aws_s3_bucket_policy[positive6].policy.Action is a 'Delete' action",
+    "issueType": "IncorrectValue",
+    "similarityID": "f9b1d86f722dda882e4aa14b0f2b6693088ee532e0a24bfb2af787e64e5c7457",
+    "search_line": 37
   }
 ]

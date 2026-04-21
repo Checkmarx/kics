@@ -3,72 +3,180 @@
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 14,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f68ad5d39fc1fa582f4bd52695348786158ede92c8e6a989c5104c8aa0fc1b5",
+    "search_line": 14
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 12,
-    "fileName": "positive3.json"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 10,
-    "fileName": "positive4.yaml"
+    "fileName": "positive10.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "22f3eb069c05adf47f9730e08d0f0ceae15f0cf5b07153c5af8de955060fd698",
+    "search_line": 12
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive5.json"
+    "fileName": "positive11.json",
+    "resourceType": "AWS::AutoScaling::LaunchConfiguration",
+    "resourceName": "MyLaunchConfiguration",
+    "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8686e7ddfd611cc9e410d7101ac88bc26390d82c4878b297f42d518cf6f0917f",
+    "search_line": 15
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive6.yaml"
+    "fileName": "positive12.yaml",
+    "resourceType": "AWS::AutoScaling::LaunchConfiguration",
+    "resourceName": "MyLaunchConfiguration",
+    "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9928995e5ceda500d74ff464479ef399008cc165adb8bba3e57a4196d2235a9e",
+    "search_line": 12
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "33d429c94190cce37748cd14d3193496de4e3147c983a04ef3b0e94070c36770",
+    "search_line": 12
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive3.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a71180933ed68f97fa22c5f2f9be35fdd2061db09a1f39114bfd9ab4c65f2bd1",
+    "search_line": 12
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0eb14c99c2ba087a0b08bd50e9c5577e80f93f3c76ac5dd1ab0ef2492bc35b2f",
+    "search_line": 10
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive5.json",
+    "resourceType": "AWS::AutoScaling::LaunchConfiguration",
+    "resourceName": "MyLaunchConfiguration",
+    "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "18e52f384a6941183d38f0e101c8f95175e0b2e2c31ee4f8eca7648f460fdb34",
+    "search_line": 15
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive6.yaml",
+    "resourceType": "AWS::AutoScaling::LaunchConfiguration",
+    "resourceName": "MyLaunchConfiguration",
+    "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f08b68757b64b3a9e977d33c4c20a58b5110801a19d1b984302a12ede7dee8d5",
+    "search_line": 12
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "AWS::AutoScaling::LaunchConfiguration",
+    "resourceName": "MyLaunchConfiguration",
+    "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "57ecd3f0d275f1b792d1788f056b5c16caa54d7b33592f542e47587146908eb7",
+    "search_line": 13
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "AWS::AutoScaling::LaunchConfiguration",
+    "resourceName": "MyLaunchConfiguration",
+    "searchKey": "Resources.MyLaunchConfiguration.Properties.BlockDeviceMappings[0].Ebs",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "689218e67739a053e6818ae29a2d91646020359f3ac237c69b635435805a3a2b",
+    "search_line": 10
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 14,
-    "fileName": "positive9.json"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 12,
-    "fileName": "positive10.yaml"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 15,
-    "fileName": "positive11.json"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 12,
-    "fileName": "positive12.yaml"
+    "fileName": "positive9.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.BlockDeviceMappings[0].Ebs.Encrypted",
+    "searchValue": "",
+    "expectedValue": "'BlockDeviceMappings[0].Ebs.Encrypted' should be defined to 'true'",
+    "actualValue": "'BlockDeviceMappings[0].Ebs.Encrypted' is not defined to 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c75954adc05e1063aa40aceae9dc9eaa03ffdd38646e0d49cfcf15f0cb0ccc63",
+    "search_line": 14
   }
 ]

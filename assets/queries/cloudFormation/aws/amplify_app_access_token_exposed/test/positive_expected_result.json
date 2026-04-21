@@ -3,36 +3,90 @@
     "queryName": "Amplify App Access Token Exposed",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "line": 10,
-    "fileName": "positive3.yaml",
-    "queryName": "Amplify App Access Token Exposed",
-    "severity": "HIGH"
-  },
-  {
     "fileName": "positive1.yaml",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp.Properties.AccessToken",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp.Properties.AccessToken must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "a7b0912a47a22405d98f02d3a0e3a89f8acd70f8ca874c7c2b5ffc209b3ab0a1",
+    "search_line": -1
+  },
+  {
     "queryName": "Amplify App Access Token Exposed",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "fileName": "positive2.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentAccessToken.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentAccessToken.Default should be defined",
+    "actualValue": "Parameters.ParentAccessToken.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "48e129d4d69f85dca43b7e14326732721f3144fb4409c0fbf798e05b2362b46e",
+    "search_line": -1
   },
   {
+    "queryName": "Amplify App Access Token Exposed",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewApp.Properties.AccessToken",
+    "searchValue": "",
+    "expectedValue": "Resources.NewApp.Properties.AccessToken must not be in plain text string",
+    "actualValue": "Resources.NewApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "0620309c97a3e1a08aa4bf8a2cf7551050c90d29cd59dbce3b805ed15e532708",
+    "search_line": -1
+  },
+  {
+    "queryName": "Amplify App Access Token Exposed",
+    "severity": "HIGH",
     "line": 11,
     "fileName": "positive4.json",
-    "queryName": "Amplify App Access Token Exposed",
-    "severity": "HIGH"
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "String",
+    "searchKey": "Resources.NewAmpApp.Properties.AccessToken",
+    "searchValue": "",
+    "expectedValue": "Resources.NewAmpApp.Properties.AccessToken must not be in plain text string",
+    "actualValue": "Resources.NewAmpApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "e76c1531c21e09b10f4fea24c713525983d19647abbee1682f7d11b3618dc4fb",
+    "search_line": -1
   },
   {
     "queryName": "Amplify App Access Token Exposed",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentAccessToken.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentAccessToken.Default should be defined",
+    "actualValue": "Parameters.ParentAccessToken.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "4e1eed6bb77bbdebe52e2bec6472d08407fb32c3c5c6853c9f855f309457cff2",
+    "search_line": -1
   },
   {
     "queryName": "Amplify App Access Token Exposed",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::Amplify::App",
+    "resourceName": "NewAmpApp",
+    "searchKey": "Resources.NewApp.Properties.AccessToken",
+    "searchValue": "",
+    "expectedValue": "Resources.NewApp.Properties.AccessToken must not be in plain text string",
+    "actualValue": "Resources.NewApp.Properties.AccessToken must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "d70bb472890441e67f7bdf0741a86cd108a012d0aec9c1ce7a7da7a058bc526d",
+    "search_line": -1
   }
 ]

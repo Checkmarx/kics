@@ -3,24 +3,60 @@
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "d9c28d9736e0abcf1a4aaaf34a3769f52a7334079747a28fff154537e73d74e6",
+    "search_line": 10
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "f203394628604489c39b0ffd79cbc3befe720f738b95039da9cdb9b809bd3e27",
+    "search_line": 1
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db]",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "0f6495292348074ef7b7333f71be5dd1926769bb233d50b8b1818732baf935a0",
+    "search_line": 1
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[db].iam_database_authentication_enabled",
+    "searchValue": "",
+    "expectedValue": "'iam_database_authentication_enabled' should be set to true",
+    "actualValue": "'iam_database_authentication_enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b34a95ffa93898546ae96d653099854591e389901c9550b5d48224b4f31f5b01",
+    "search_line": 17
   }
 ]

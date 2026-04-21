@@ -2,6 +2,16 @@
   {
     "queryName": "EKS Cluster Has Public Access",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "aws_eks_cluster",
+    "resourceName": "example",
+    "searchKey": "aws_eks_cluster[positive1].vpc_config.endpoint_public_access",
+    "searchValue": "",
+    "expectedValue": "'vpc_config.endpoint_public_access' should equal 'false'",
+    "actualValue": "'vpc_config.endpoint_public_access' is equal 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "344679a9754df503aa0ef7261ed4d85f39f5707afae37590f0d27b66ad208968",
+    "search_line": 7
   }
 ]

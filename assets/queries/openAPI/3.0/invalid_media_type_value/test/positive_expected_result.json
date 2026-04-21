@@ -3,12 +3,30 @@
     "queryName": "Invalid Media Type Value (v3)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.content.multipart/form- data",
+    "searchValue": "",
+    "expectedValue": "The Media Type should be a valid value",
+    "actualValue": "The Media Type is an invalid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "c30003e6cbe519f3db99e96974d150f8d7ac996d74b39e604f3189f0add2d54d",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Media Type Value (v3)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.content.multipart/form- data",
+    "searchValue": "",
+    "expectedValue": "The Media Type should be a valid value",
+    "actualValue": "The Media Type is an invalid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "9a0a65dca182f3cb9ad4e32d377f55af9d79bb8ffd7b7172446069984011e755",
+    "search_line": -1
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "community.aws.elasticache",
+    "resourceName": "Basic example",
+    "searchKey": "name={{Basic example}}.{{community.aws.elasticache}}.cache_port",
+    "searchValue": "",
+    "expectedValue": "'cache_port' should not be set to 11211",
+    "actualValue": "'cache_port' is set to 11211",
+    "issueType": "IncorrectValue",
+    "similarityID": "0fb4ef1f0e47cc6df56d9363527c4c7faa2afa069b04854dd867d11b0fa07dac",
+    "search_line": 9
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "community.aws.elasticache",
+    "resourceName": "Basic example2",
+    "searchKey": "name={{Basic example2}}.{{community.aws.elasticache}}.cache_port",
+    "searchValue": "",
+    "expectedValue": "'cache_port' should not be set to 6379",
+    "actualValue": "'cache_port' is set to 6379",
+    "issueType": "IncorrectValue",
+    "similarityID": "7a43aab58e513c90febce284a82c02ae8ebe2e4a39d56ab85ea555d56bd07570",
+    "search_line": 9
   }
 ]

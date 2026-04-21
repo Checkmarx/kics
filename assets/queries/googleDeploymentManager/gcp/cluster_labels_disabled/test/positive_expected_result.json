@@ -3,6 +3,15 @@
     "queryName": "Cluster Labels Disabled",
     "severity": "LOW",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "",
+    "expectedValue": "'resourceLabels' should be defined and not null",
+    "actualValue": "'resourceLabels' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "f6b9d435d5a6627ce76113f7e75fbc7b99308978c9d2124fc6684702fc969b17",
+    "search_line": 4
   }
 ]

@@ -3,30 +3,75 @@
     "queryName": "RDS DB Instance With Deletion Protection Disabled",
     "severity": "LOW",
     "line": 34,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.DeletionProtection",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.DeletionProtection should be set to true",
+    "actualValue": "Resources.MyDBSmall.Properties.DeletionProtection is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8bbb6da736c91605fdf8c1d94455f8c1d4ea0ed186902c9390d298c7ea962884",
+    "search_line": -1
   },
   {
     "queryName": "RDS DB Instance With Deletion Protection Disabled",
     "severity": "LOW",
     "line": 30,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall1",
+    "searchKey": "Resources.MyDBSmall1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall1.Properties.DeletionProtection should be defined",
+    "actualValue": "Resources.MyDBSmall1.Properties.DeletionProtection is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a4e54570f4eab1192bacbd6cbebf21c74aabc2d8ebe4c5caec3a1cefb57fd5bb",
+    "search_line": -1
   },
   {
     "queryName": "RDS DB Instance With Deletion Protection Disabled",
     "severity": "LOW",
     "line": 49,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.DeletionProtection",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.DeletionProtection should be set to true",
+    "actualValue": "Resources.MyDBSmall.Properties.DeletionProtection is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c5e952339a2dae6222d4488e7bfcce3acd33688ac5296d05787d53691edbdebb",
+    "search_line": -1
   },
   {
     "queryName": "RDS DB Instance With Deletion Protection Disabled",
     "severity": "LOW",
     "line": 45,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall1",
+    "searchKey": "Resources.MyDBSmall1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall1.Properties.DeletionProtection should be defined",
+    "actualValue": "Resources.MyDBSmall1.Properties.DeletionProtection is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "949dea03b6a976a7e7e99d72bf2265fd303c35ff3472387b7026269fd042a614",
+    "search_line": -1
   },
   {
     "queryName": "RDS DB Instance With Deletion Protection Disabled",
     "severity": "LOW",
     "line": 34,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.DeletionProtection",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.DeletionProtection should be set to true",
+    "actualValue": "Resources.MyDBSmall.Properties.DeletionProtection is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f90038d6f552557f9a12cbf28a1bcf0ca51d8d8a0105344bf8bd01809ec7c160",
+    "search_line": -1
   }
 ]

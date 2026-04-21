@@ -3,24 +3,60 @@
     "queryName": "ElasticSearch Encryption With KMS Disabled",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.KmsKeyId should be set",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.KmsKeyId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "24774623e4212be567e40d6f2ed54209a3e6b7c0d012b5df05f7cc716b063225",
+    "search_line": -1
   },
   {
+    "queryName": "ElasticSearch Encryption With KMS Disabled",
+    "severity": "HIGH",
     "line": 7,
     "fileName": "positive2.json",
-    "queryName": "ElasticSearch Encryption With KMS Disabled",
-    "severity": "HIGH"
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.KmsKeyId should be set",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.KmsKeyId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "742b9ac705bfd4e31f4f1ab688059ad0f8aca2955c8467b03cc6bf7f5797e04a",
+    "search_line": -1
   },
   {
+    "queryName": "ElasticSearch Encryption With KMS Disabled",
+    "severity": "HIGH",
     "line": 6,
     "fileName": "positive3.yaml",
-    "queryName": "ElasticSearch Encryption With KMS Disabled",
-    "severity": "HIGH"
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions should be defined and not null",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "aeebfe0068900d036229d10b2f94a6ac550e29489dabb8bdcbedd0e27e6618fd",
+    "search_line": -1
   },
   {
+    "queryName": "ElasticSearch Encryption With KMS Disabled",
+    "severity": "HIGH",
     "line": 6,
     "fileName": "positive4.json",
-    "queryName": "ElasticSearch Encryption With KMS Disabled",
-    "severity": "HIGH"
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions should be defined and not null",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a6a79486929b5363bc8c961e54ef7c556f61f2ca666f9ebc22eefba7735bdb6b",
+    "search_line": -1
   }
 ]

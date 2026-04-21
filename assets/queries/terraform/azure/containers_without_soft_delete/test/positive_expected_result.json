@@ -2,16 +2,46 @@
   {
     "queryName": "Beta - Containers Without Soft Delete",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_storage_account[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive1].blob_properties.container_delete_retention_policy' should be defined and not null",
+    "actualValue": "'azurerm_storage_account[positive1].blob_properties' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a314a72687b47709043bc54a7f7e88bcbb829ee7f71f0123d9492cf1098176ed",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Containers Without Soft Delete",
     "severity": "HIGH",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_storage_account[positive2].blob_properties",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive2].blob_properties.container_delete_retention_policy' should be defined and not null",
+    "actualValue": "'azurerm_storage_account[positive2].blob_properties.container_delete_retention_policy' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "52731f503c920874965dada45d4163f2fc3ac72a6d1fef485fbf268d20b7b925",
+    "search_line": 18
   },
   {
     "queryName": "Beta - Containers Without Soft Delete",
     "severity": "HIGH",
-    "line": 32
+    "line": 32,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_storage_account[positive3].blob_properties.container_delete_retention_policy.days",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive3].blob_properties.container_delete_retention_policy.days' should be set to a value higher than '6'",
+    "actualValue": "'azurerm_storage_account[positive3].blob_properties.container_delete_retention_policy' is set to '5'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d8ea9b6a701c205353dcab157953677ac69761e9fde1f7180aae27b51d5f095b",
+    "search_line": 32
   }
 ]

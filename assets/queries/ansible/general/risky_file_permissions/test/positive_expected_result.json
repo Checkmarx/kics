@@ -1,62 +1,152 @@
 [
-    {
-        "queryName": "Risky File Permissions",
-        "severity": "INFO",
-        "file": "positive1.yaml",
-        "line": 5
-    },
-    {
-        "queryName": "Risky File Permissions",
-        "severity": "INFO",
-        "file": "positive1.yaml",
-        "line": 13
-    },
-    {
-        "queryName": "Risky File Permissions",
-        "severity": "INFO",
-        "file": "positive1.yaml",
-        "line": 17
-    },
-    {
-        "queryName": "Risky File Permissions",
-        "severity": "INFO",
-        "file": "positive1.yaml",
-        "line": 25
-    },
-    {
-        "queryName": "Risky File Permissions",
-        "severity": "INFO",
-        "file": "positive1.yaml",
-        "line": 29
-    },
-    {
-        "queryName": "Risky File Permissions",
-        "severity": "INFO",
-        "file": "positive1.yaml",
-        "line": 38
-    },
-    {
-        "queryName": "Risky File Permissions",
-        "severity": "INFO",
-        "file": "positive1.yaml",
-        "line": 46
-    },
-    {
-        "queryName": "Risky File Permissions",
-        "severity": "INFO",
-        "file": "positive1.yaml",
-        "line": 55
-    },
-    {
-        "queryName": "Risky File Permissions",
-        "severity": "INFO",
-        "file": "positive1.yaml",
-        "line": 64
-    },
-    {
-        "queryName": "Risky File Permissions",
-        "severity": "INFO",
-        "file": "positive1.yaml",
-        "line": 74
-    }
+  {
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "line": 5,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.file",
+    "resourceName": "not preserve value",
+    "searchKey": "name={{not preserve value}}.{{ansible.builtin.file}}",
+    "searchValue": "",
+    "expectedValue": "ansible.builtin.file does not allow setting 'preserve' value for 'mode' key",
+    "actualValue": "'Mode' key of ansible.builtin.file is set to 'preserve'",
+    "issueType": "IncorrectValue",
+    "similarityID": "18e99cb407b717b7779b3753aef16eb12a1edae67e77db8e988bd874142fb328",
+    "search_line": -1
+  },
+  {
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "line": 13,
+    "fileName": "positive1.yaml",
+    "resourceType": "file",
+    "resourceName": "Permissions missing",
+    "searchKey": "name={{Permissions missing}}.{{file}}",
+    "searchValue": "",
+    "expectedValue": "All the permissions set in file about creating files/directories",
+    "actualValue": "There are some permissions missing in file and might create directory/file",
+    "issueType": "MissingAttribute",
+    "similarityID": "149f78dfd01604a8989acb49e66b89b09b2f27a41ae35e12db925574d8d57e51",
+    "search_line": -1
+  },
+  {
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "line": 17,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.file",
+    "resourceName": "Permissions missing 2x",
+    "searchKey": "name={{Permissions missing 2x}}.{{ansible.builtin.file}}",
+    "searchValue": "",
+    "expectedValue": "All the permissions set in ansible.builtin.file about creating files/directories",
+    "actualValue": "There are some permissions missing in ansible.builtin.file and might create directory/file",
+    "issueType": "MissingAttribute",
+    "similarityID": "f3459cfcb08ee2113ef28d56914b731c6115f1474bb121dd9676904369ab66f4",
+    "search_line": -1
+  },
+  {
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "line": 25,
+    "fileName": "positive1.yaml",
+    "resourceType": "file",
+    "resourceName": "Permissions missing 3x",
+    "searchKey": "name={{Permissions missing 3x}}.{{file}}",
+    "searchValue": "",
+    "expectedValue": "All the permissions set in file about creating files/directories",
+    "actualValue": "There are some permissions missing in file and might create directory/file",
+    "issueType": "MissingAttribute",
+    "similarityID": "68552148e6cf06969987dce0851b9e2573fc61b50996ee0669e640b924f8a5fc",
+    "search_line": -1
+  },
+  {
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "line": 29,
+    "fileName": "positive1.yaml",
+    "resourceType": "false",
+    "resourceName": "create is true",
+    "searchKey": "name={{create is true}}.{{ansible.builtin.lineinfile}}",
+    "searchValue": "",
+    "expectedValue": "ansible.builtin.lineinfile 'create' key should set to 'false' or 'mode' key should be defined",
+    "actualValue": "ansible.builtin.lineinfile 'create' key is set to 'true' and 'mode' key is not defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "fd6d04586a81306d06aafb93834e236e72c1ae183b833a91ae3b5dabb7020fb1",
+    "search_line": -1
+  },
+  {
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "line": 38,
+    "fileName": "positive1.yaml",
+    "resourceType": "get_url",
+    "resourceName": "Permissions missing 4x",
+    "searchKey": "name={{Permissions missing 4x}}.{{get_url}}",
+    "searchValue": "",
+    "expectedValue": "All the permissions set in get_url about creating files/directories",
+    "actualValue": "There are some permissions missing in get_url and might create directory/file",
+    "issueType": "MissingAttribute",
+    "similarityID": "98ae6191a96df387225fcad92b2883ef07e3beea3e98eec46da5db13cd916d71",
+    "search_line": -1
+  },
+  {
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "line": 46,
+    "fileName": "positive1.yaml",
+    "resourceType": "false",
+    "resourceName": "create is true 2x",
+    "searchKey": "name={{create is true 2x}}.{{ansible.builtin.lineinfile}}",
+    "searchValue": "",
+    "expectedValue": "ansible.builtin.lineinfile 'create' key should set to 'false' or 'mode' key should be defined",
+    "actualValue": "ansible.builtin.lineinfile 'create' key is set to 'true' and 'mode' key is not defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "1b3eb77b24465f79531be6c2b536eed078772e7329d0f44de23fe3ff984a60d9",
+    "search_line": -1
+  },
+  {
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "line": 55,
+    "fileName": "positive1.yaml",
+    "resourceType": "replace",
+    "resourceName": "not preserve mode 2x",
+    "searchKey": "name={{not preserve mode 2x}}.{{replace}}",
+    "searchValue": "",
+    "expectedValue": "replace does not allow setting 'preserve' value for 'mode' key",
+    "actualValue": "'Mode' key of replace is set to 'preserve'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5dde56e9ca961afde974f86538ff9440ebf46f2bcfc5ee361eb6a5f45952d546",
+    "search_line": -1
+  },
+  {
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "line": 64,
+    "fileName": "positive1.yaml",
+    "resourceType": "file",
+    "resourceName": "Not Permissions",
+    "searchKey": "name={{Not Permissions}}.{{file}}",
+    "searchValue": "",
+    "expectedValue": "All the permissions set in file about creating files/directories",
+    "actualValue": "There are some permissions missing in file and might create directory/file",
+    "issueType": "MissingAttribute",
+    "similarityID": "be22834f2b136802426e8f85e51d033eb29393276559167be3807ba2f76a75fd",
+    "search_line": -1
+  },
+  {
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "line": 74,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.lineinfile",
+    "resourceName": "create_false",
+    "searchKey": "name={{create_false}}.{{ansible.builtin.lineinfile}}",
+    "searchValue": "",
+    "expectedValue": "ansible.builtin.lineinfile does not allow setting 'preserve' value for 'mode' key",
+    "actualValue": "'Mode' key of ansible.builtin.lineinfile is set to 'preserve'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e65af750078cd24b73232df02228412116c8e065cd15b43cd2c13a82613ef601",
+    "search_line": -1
+  }
 ]

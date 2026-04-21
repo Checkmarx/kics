@@ -3,36 +3,90 @@
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging.enabled",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be set to true",
+    "actualValue": "CloudFront logging enabled attribute is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1639929d959902b6b4c0a8bb398f9ac70a46e6a1d06587a24dfb083a306e2770",
+    "search_line": 12
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 50,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging.enabled",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be set to true",
+    "actualValue": "CloudFront logging enabled attribute is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1812b4bf58a2072fdde26f401ba8e1990ac46e333caa0d609b4caea71f08b758",
+    "search_line": 50
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
+    "actualValue": "CloudFront logging is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8c9ae0a939f08c304ede760a69fb75834dc6f2bd6a1b8b169b61d689ad3bae60",
+    "search_line": 8
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 41,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
+    "actualValue": "CloudFront logging is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0f19484366f5a483caf985f17e83a5a00f00742e0ead952f272abf6982aee741",
+    "search_line": 41
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
+    "actualValue": "CloudFront enable is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ec7b6def43597594e5504b18f3425f0b2eeea00871014cd3e3c3739fb0de160e",
+    "search_line": 11
   },
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be defined and set to true",
+    "actualValue": "CloudFront enable is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "22a2cd6ad23fa482e94f09485748c5e44249a99f18cda784f355f0050b3965b8",
+    "search_line": 47
   }
 ]

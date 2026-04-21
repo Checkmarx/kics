@@ -2,26 +2,76 @@
   {
     "queryName": "Security Group is Not Configured",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_subnet",
+    "resourceName": "Create a subnet1",
+    "searchKey": "name={{Create a subnet1}}.{{azure_rm_subnet}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_subnet.security_group should be defined and not null",
+    "actualValue": "azure_rm_subnet.security_group is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "d156eef59841d6f6792eb2a405422939edbcb21835c04da92aa2f010875b0535",
+    "search_line": -1
   },
   {
     "queryName": "Security Group is Not Configured",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_subnet",
+    "resourceName": "Create a subnet2",
+    "searchKey": "name={{Create a subnet2}}.{{azure_rm_subnet}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_subnet.security_group should be defined and not null",
+    "actualValue": "azure_rm_subnet.security_group is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "e214c37587100b3ba34f9ac07f818a49bcfb99c64bf1cc8916dd8a174c4480a8",
+    "search_line": -1
   },
   {
     "queryName": "Security Group is Not Configured",
     "severity": "HIGH",
-    "line": 16
+    "line": 16,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_subnet",
+    "resourceName": "Create a subnet3",
+    "searchKey": "name={{Create a subnet3}}.{{azure_rm_subnet}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_subnet.security_group should be defined and not null",
+    "actualValue": "azure_rm_subnet.security_group is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "08cc8bf1aee3f241462cfc67ef5d887f02a50904405b87911cff7bddb29d9052",
+    "search_line": -1
   },
   {
     "queryName": "Security Group is Not Configured",
     "severity": "HIGH",
-    "line": 28
+    "line": 28,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_subnet",
+    "resourceName": "Create a subnet4",
+    "searchKey": "name={{Create a subnet4}}.{{azure_rm_subnet}}.security_group",
+    "searchValue": "",
+    "expectedValue": "azure_rm_subnet.security_group should not be empty",
+    "actualValue": "azure_rm_subnet.security_group is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "20a83c7cef36f954a9f6c06993659a53b6f24833395ae83cc973bced005bd201",
+    "search_line": -1
   },
   {
     "queryName": "Security Group is Not Configured",
     "severity": "HIGH",
-    "line": 35
+    "line": 35,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_subnet",
+    "resourceName": "Create a subnet5",
+    "searchKey": "name={{Create a subnet5}}.{{azure_rm_subnet}}.security_group_name",
+    "searchValue": "",
+    "expectedValue": "azure_rm_subnet.security_group_name should not be empty",
+    "actualValue": "azure_rm_subnet.security_group_name is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "b863ba1087425eb18dc3a37dde335528d28feaeb0840fb45d9ec8112aab8d9f6",
+    "search_line": -1
   }
 ]

@@ -2,31 +2,91 @@
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example1",
+    "searchKey": "name={{example1}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a8f2ae22d11bcec97e6c70082aff701d8682a4a7d0fe53a8812397a9df495f09",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example2",
+    "searchKey": "name={{example2}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9b3d3714198d7032a0133a7eeb2f4c3b74bb8e385c4a0fcbb0ef2561e6fa0f8a",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example3",
+    "searchKey": "name={{example3}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4e454e0aa471e18bd5f199753da5209f23ce06922b62d2eb5d70882311164826",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example4",
+    "searchKey": "name={{example4}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7dd91beafbfa5fb34dc4e0ddc32b6457ed276d067ec4280e0ddc42df1a23f989",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 30
+    "line": 30,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example5",
+    "searchKey": "name={{example5}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue",
+    "similarityID": "218904d179627a0d05cd6f53fea3846cbb69b1764a9d9aca71d8ce84160feb09",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 36,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "example6",
+    "searchKey": "name={{example6}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' for 'log_duration'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value is 'OFF' for 'log_duration'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ae80675d325876066e1bc4953fb17dc972c11042dbed34325d0e63bc606f39cc",
+    "search_line": -1
   }
 ]

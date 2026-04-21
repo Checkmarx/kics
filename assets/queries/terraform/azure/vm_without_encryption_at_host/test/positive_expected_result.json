@@ -3,48 +3,120 @@
     "queryName": "Beta - VM Without Encryption At Host",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "positive1_1-machine",
+    "searchKey": "azurerm_linux_virtual_machine[positive1_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[positive1_1].encryption_at_host_enabled' should be defined and set to 'true'",
+    "actualValue": "'azurerm_linux_virtual_machine[positive1_1].encryption_at_host_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1bb0e0a766750baf7a267590f152dc432fbbfc6573e678dfb0100109ca562eb0",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM Without Encryption At Host",
     "severity": "LOW",
     "line": 24,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_linux_virtual_machine",
+    "resourceName": "positive1_2-machine",
+    "searchKey": "azurerm_linux_virtual_machine[positive1_2].encryption_at_host_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine[positive1_2].encryption_at_host_enabled' should be defined and set to 'true'",
+    "actualValue": "'azurerm_linux_virtual_machine[positive1_2].encryption_at_host_enabled' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1dc680d562cd633aba18addd8c8fe2ffebf2ddf638d90ce5fa85dff05cfccbc7",
+    "search_line": 24
   },
   {
     "queryName": "Beta - VM Without Encryption At Host",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_virtual_machine_scale_set",
+    "resourceName": "positive2_1-vmss",
+    "searchKey": "azurerm_linux_virtual_machine_scale_set[positive2_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive2_1].encryption_at_host_enabled' should be defined and set to 'true'",
+    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive2_1].encryption_at_host_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "f9e8f071bf5fe55414f05affc30674e08e2306ff84098e09b4f7600440a542c3",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM Without Encryption At Host",
     "severity": "LOW",
     "line": 20,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_virtual_machine_scale_set",
+    "resourceName": "positive2_2-vmss",
+    "searchKey": "azurerm_linux_virtual_machine_scale_set[positive2_2].encryption_at_host_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_virtual_machine_scale_set[positive2_2].encryption_at_host_enabled' should be defined and set to 'true'",
+    "actualValue": "'azurerm_linux_virtual_machine_scale_set[positive2_2].encryption_at_host_enabled' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "74225d05537607dfdc10d9f0df20f9b688b581b6fb1b917e4b37eb62d94c0c0d",
+    "search_line": 20
   },
   {
     "queryName": "Beta - VM Without Encryption At Host",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_virtual_machine",
+    "resourceName": "positive3_1-machine",
+    "searchKey": "azurerm_windows_virtual_machine[positive3_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine[positive3_1].encryption_at_host_enabled' should be defined and set to 'true'",
+    "actualValue": "'azurerm_windows_virtual_machine[positive3_1].encryption_at_host_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "98a64db7f54a2c1e09f677fca1b505fcc9514c1f335d783cd1535e06eb324f8a",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM Without Encryption At Host",
     "severity": "LOW",
     "line": 22,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_virtual_machine",
+    "resourceName": "positive3_2-machine",
+    "searchKey": "azurerm_windows_virtual_machine[positive3_2].encryption_at_host_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine[positive3_2].encryption_at_host_enabled' should be defined and set to 'true'",
+    "actualValue": "'azurerm_windows_virtual_machine[positive3_2].encryption_at_host_enabled' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "47af2052da63c3e8e8307e65cbad226a713bc778e077edf8fd4ec33c7ef4e711",
+    "search_line": 22
   },
   {
     "queryName": "Beta - VM Without Encryption At Host",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_windows_virtual_machine_scale_set",
+    "resourceName": "positive4_1-vmss",
+    "searchKey": "azurerm_windows_virtual_machine_scale_set[positive4_1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine_scale_set[positive4_1].encryption_at_host_enabled' should be defined and set to 'true'",
+    "actualValue": "'azurerm_windows_virtual_machine_scale_set[positive4_1].encryption_at_host_enabled' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "831833ff20616303a71f920b36b4ddcafef9a111da4c34337cbddfbe3d55ee62",
+    "search_line": 1
   },
   {
     "queryName": "Beta - VM Without Encryption At Host",
     "severity": "LOW",
     "line": 20,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_windows_virtual_machine_scale_set",
+    "resourceName": "positive4_2-machine",
+    "searchKey": "azurerm_windows_virtual_machine_scale_set[positive4_2].encryption_at_host_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine_scale_set[positive4_2].encryption_at_host_enabled' should be defined and set to 'true'",
+    "actualValue": "'azurerm_windows_virtual_machine_scale_set[positive4_2].encryption_at_host_enabled' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e6520a0879378fe64f3c968ac61b470a02b3cfbfdb38b9193760595981c7ea6",
+    "search_line": 20
   }
 ]

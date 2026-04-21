@@ -3,12 +3,30 @@
     "queryName": "VPC FlowLogs Disabled",
     "severity": "MEDIUM",
     "line": 34,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::VPC",
+    "resourceName": "10.${ClassB}.0.0/16",
+    "searchKey": "Resources.MyVPC",
+    "searchValue": "",
+    "expectedValue": "Resources.MyVPC has a FlowLogs resource associated",
+    "actualValue": "Resources.MyVPC doesn't have a FlowLogs resource associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "c0b27a6b70f2a8bf840aed7ffec9be5ffbddf4b1b25cb635fd3f54f653d648f4",
+    "search_line": -1
   },
   {
     "queryName": "VPC FlowLogs Disabled",
     "severity": "MEDIUM",
     "line": 52,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::VPC",
+    "resourceName": "10.${ClassB}.0.0/16",
+    "searchKey": "Resources.MyVPC",
+    "searchValue": "",
+    "expectedValue": "Resources.MyVPC has a FlowLogs resource associated",
+    "actualValue": "Resources.MyVPC doesn't have a FlowLogs resource associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "1df9dd048090dcf82b1e2aea0b099eb4ecb49a922402b56802e32550e91d5794",
+    "search_line": -1
   }
 ]

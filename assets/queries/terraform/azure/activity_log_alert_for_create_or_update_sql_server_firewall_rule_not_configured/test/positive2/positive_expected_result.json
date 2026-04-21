@@ -3,42 +3,105 @@
     "queryName": "Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'create or update SQL server firewall rule' events but sets 1 filter(s): caller",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c0564c8e43643908eee1c5a6fe66c5d9855d4c2efa324352d930384d94e647b",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'create or update SQL server firewall rule' events but sets 1 filter(s): level",
+    "issueType": "IncorrectValue",
+    "similarityID": "448495ea8fec2e606c7b99da74b2ee8e4f767bcfba2b3701a3fa06f87f784460",
+    "search_line": 28
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_3].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'create or update SQL server firewall rule' events but sets 1 filter(s): levels",
+    "issueType": "IncorrectValue",
+    "similarityID": "d8d7e7694ef1f2bee8f1f3f0cfecf2cb843eeec80bdfd0752c100f9cdfbf8fc5",
+    "search_line": 47
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 66,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_4].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'create or update SQL server firewall rule' events but sets 1 filter(s): status",
+    "issueType": "IncorrectValue",
+    "similarityID": "7bbc893d625d95ea8c6387a9b778208a3d91e491f6596a10806b7201750a38e0",
+    "search_line": 66
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_5].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'create or update SQL server firewall rule' events but sets 1 filter(s): statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "e4ed4b1d15b44eeb72114c6cabff72a4d00ac5b32a02126f526b0b1246640c53",
+    "search_line": 8
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_6].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'create or update SQL server firewall rule' events but sets 1 filter(s): sub_status",
+    "issueType": "IncorrectValue",
+    "similarityID": "5ff503b69463640fe9a44135753a1a918d39366979d935ea3e758e6dc285e9b6",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_7].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'create or update SQL server firewall rule' events but sets 1 filter(s): sub_statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "e38274822ba043edb10e1c76600fe412bd3a7ddf4b2f3e84cb7e71b7cbc91482",
+    "search_line": 46
   }
 ]

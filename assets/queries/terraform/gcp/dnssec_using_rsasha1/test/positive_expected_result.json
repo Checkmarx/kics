@@ -2,6 +2,16 @@
   {
     "queryName": "DNSSEC Using RSASHA1",
     "severity": "MEDIUM",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "google_dns_managed_zone",
+    "resourceName": "positive1",
+    "searchKey": "google_dns_managed_zone[positive1].dnssec_config.default_key_specs.algorithm",
+    "searchValue": "",
+    "expectedValue": "dnssec_config.default_key_specs.algorithm shouldn't be 'rsasha1'",
+    "actualValue": "dnssec_config.default_key_specs.algorithm is 'rsasha1'",
+    "issueType": "IncorrectValue",
+    "similarityID": "aad2719a4ff8175d67ac75e964c1445c0507e69ffc206b6104950f35791a0bae",
+    "search_line": 11
   }
 ]

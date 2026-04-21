@@ -3,6 +3,15 @@
     "queryName": "CVM Instance Has Public IP",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "tencentcloud_instance",
+    "resourceName": "cvm_postpaid",
+    "searchKey": "tencentcloud_instance[cvm_postpaid].allocate_public_ip",
+    "searchValue": "",
+    "expectedValue": "[cvm_postpaid] 'allocate_public_ip' should be set to false",
+    "actualValue": "[cvm_postpaid] 'allocate_public_ip' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "6b0812d4069ad83b433307eeb9cc8a807b2970926f06dd61fa2763b7118d8559",
+    "search_line": 13
   }
 ]

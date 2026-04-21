@@ -2,11 +2,31 @@
   {
     "queryName": "SQL Server Predictable Active Directory Account Name",
     "severity": "LOW",
-    "line": 21
+    "line": 21,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_sql_active_directory_administrator",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_sql_active_directory_administrator[positive3].login",
+    "searchValue": "",
+    "expectedValue": "'azurerm_sql_active_directory_administrator[positive3].login' should not be empty'",
+    "actualValue": "'azurerm_sql_active_directory_administrator[positive3].login' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "09b44c85485ee678689abdc8075711a71ee66395d30e0075df12942077c49105",
+    "search_line": -1
   },
   {
     "queryName": "SQL Server Predictable Active Directory Account Name",
     "severity": "LOW",
-    "line": 29
+    "line": 29,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_sql_active_directory_administrator",
+    "resourceName": "positive4",
+    "searchKey": "azurerm_sql_active_directory_administrator[positive4].login",
+    "searchValue": "",
+    "expectedValue": "'azurerm_sql_active_directory_administrator[positive4].login' should not be predictable'",
+    "actualValue": "'azurerm_sql_active_directory_administrator[positive4].login' is predictable",
+    "issueType": "IncorrectValue",
+    "similarityID": "6c7bd9c9a6d35e5070821159047acb71541b78982926342dc889e5d07d3266bc",
+    "search_line": -1
   }
 ]

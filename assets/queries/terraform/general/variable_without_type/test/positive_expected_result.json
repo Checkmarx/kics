@@ -3,18 +3,45 @@
     "queryName": "Variable Without Type",
     "severity": "INFO",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "variable.{{cluster_name}}",
+    "searchValue": "",
+    "expectedValue": "'type' should be defined and not null",
+    "actualValue": "'type' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "70144a3989f645c8fdcb7585c546b688c15496357fda19deffbf5e16b49909a8",
+    "search_line": -1
   },
   {
     "queryName": "Variable Without Type",
     "severity": "INFO",
     "line": 3,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "variable.{{cluster_name}}.type",
+    "searchValue": "",
+    "expectedValue": "'type' should not be empty",
+    "actualValue": "'type' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "6b30a477169037e43086ece199ff03344744ac0a5608d1b6191af41816e3fbb4",
+    "search_line": -1
   },
   {
     "queryName": "Variable Without Type",
     "severity": "INFO",
     "line": 3,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "variable.{{cluster_name}}.type",
+    "searchValue": "",
+    "expectedValue": "'type' should not be empty",
+    "actualValue": "'type' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "0bfc8449c4b06f56de7f868d917f8155c0f4e52d2789dc602da10e4be5c78856",
+    "search_line": -1
   }
 ]

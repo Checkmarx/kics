@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "Service Account Allows Access Secrets",
-		"severity": "MEDIUM",
-		"line": 7
-	},
   {
-		"queryName": "Service Account Allows Access Secrets",
-		"severity": "MEDIUM",
-		"line": 49
-	}
+    "queryName": "Service Account Allows Access Secrets",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_cluster_role",
+    "resourceName": "cluster_role_name",
+    "searchKey": "kubernetes_cluster_role[cluster_role_name].rule",
+    "searchValue": "",
+    "expectedValue": "kubernetes_cluster_role[cluster_role_name].rule.verbs should not contain the following verbs: [\"get\", \"watch\", \"list\", \"*\"]",
+    "actualValue": "kubernetes_cluster_role[cluster_role_name].rule.verbs contain one of the following verbs: [\"get\", \"watch\", \"list\", \"*\"]",
+    "issueType": "IncorrectValue",
+    "similarityID": "5e721ceda86f7c23a9e22db50d67024ba16d258bf4270a6876ad01e53fd5b813",
+    "search_line": -1
+  },
+  {
+    "queryName": "Service Account Allows Access Secrets",
+    "severity": "MEDIUM",
+    "line": 49,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_role",
+    "resourceName": "role_name",
+    "searchKey": "kubernetes_role[role_name].rule",
+    "searchValue": "",
+    "expectedValue": "kubernetes_role[role_name].rule.verbs should not contain the following verbs: [\"get\", \"watch\", \"list\", \"*\"]",
+    "actualValue": "kubernetes_role[role_name].rule.verbs contain one of the following verbs: [\"get\", \"watch\", \"list\", \"*\"]",
+    "issueType": "IncorrectValue",
+    "similarityID": "ef2ccb33604bd875ff6245212df3e1bca7e3a9e035dd658aaf9092ce2287b0f2",
+    "search_line": -1
+  }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "master-instance",
+    "searchKey": "google_sql_database_instance[positive1].settings",
+    "searchValue": "",
+    "expectedValue": "settings.backup_configuration should be defined and not null",
+    "actualValue": "settings.backup_configuration is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "9a31b93fa8f464debad6484a5cc9123bfcb41f01b6b4ef41a145e65a1f26eed4",
+    "search_line": 6
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "master-instance",
+    "searchKey": "google_sql_database_instance[positive2].settings.backup_configuration",
+    "searchValue": "",
+    "expectedValue": "settings.backup_configuration.enabled should be defined and not null",
+    "actualValue": "settings.backup_configuration.enabled is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "45b53713c4fbddb532132d27e903a667f760388b0b2187dffd1d992cc1c08839",
+    "search_line": 18
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "master-instance",
+    "searchKey": "google_sql_database_instance[positive3].settings.backup_configuration.enabled",
+    "searchValue": "",
+    "expectedValue": "settings.backup_configuration.enabled should be true",
+    "actualValue": "settings.backup_configuration.enabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "608c80865122c01611cbaa84432ead0f4523eca86462ac935fdcf5bb6efc1a6c",
+    "search_line": 31
   }
 ]

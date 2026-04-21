@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS MSK",
     "severity": "TRACE",
     "line": 84,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_msk_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "935ff2aa0ade25bd53803dbae27feee4b3ee25ed0676f31d42031718ce5561bd",
+    "search_line": -1
   },
   {
     "queryName": "BOM - AWS MSK",
     "severity": "TRACE",
     "line": 84,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_msk_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "846640d104d81c70a06ac64bf7988cf77500a1fa3fea0688e5d99de8e1203a2d",
+    "search_line": -1
   }
 ]

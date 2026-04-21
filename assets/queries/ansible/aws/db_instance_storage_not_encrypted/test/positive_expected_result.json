@@ -1,17 +1,47 @@
 [
-	{
-		"queryName": "DB Instance Storage Not Encrypted",
-		"severity": "HIGH",
-		"line": 7
-	},
-	{
-		"queryName": "DB Instance Storage Not Encrypted",
-		"severity": "HIGH",
-		"line": 17
-	},
-	{
-		"queryName": "DB Instance Storage Not Encrypted",
-		"severity": "HIGH",
-		"line": 23
-	}
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "foo",
+    "searchKey": "name={{foo}}.{{community.aws.rds_instance}}.storage_encrypted",
+    "searchValue": "",
+    "expectedValue": "rds_instance.storage_encrypted should be set to true",
+    "actualValue": "rds_instance.storage_encrypted is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ae714fb69a5cdb4f9ed36ae2945e6b24c92b89b6eeddaf32e18c3591f54c1cb9",
+    "search_line": -1
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "foo2",
+    "searchKey": "name={{foo2}}.{{community.aws.rds_instance}}.storage_encrypted",
+    "searchValue": "",
+    "expectedValue": "rds_instance.storage_encrypted should be set to true",
+    "actualValue": "rds_instance.storage_encrypted is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b10bc98897c130e36b5f43fb1296f3ea1a9e277bc1622a8679f48a496a8919b6",
+    "search_line": -1
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 23,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "foo3",
+    "searchKey": "name={{foo3}}.{{community.aws.rds_instance}}",
+    "searchValue": "",
+    "expectedValue": "rds_instance.storage_encrypted should be set to true",
+    "actualValue": "rds_instance.storage_encrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d98aaed5bf8b579fe0db4fd341998fac09f69176c7dd96051d3e8723a927c2f5",
+    "search_line": -1
+  }
 ]

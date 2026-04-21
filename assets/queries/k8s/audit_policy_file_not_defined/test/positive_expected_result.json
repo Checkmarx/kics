@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "Audit Policy File Not Defined",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Audit Policy File Not Defined",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Audit Policy File Not Defined",
-		"severity": "MEDIUM",
-		"line": 12,
-        "fileName": "positive3.yaml"
-	}
+  {
+    "queryName": "Audit Policy File Not Defined",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-policy-file flag should be defined",
+    "actualValue": "--audit-policy-file is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a53063be36619a246da535c0ee308ef280cb3b08ae9496a76e9363edebd66bfa",
+    "search_line": 11
+  },
+  {
+    "queryName": "Audit Policy File Not Defined",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-policy-file flag should have a valid file",
+    "actualValue": "--audit-policy-file does not have a valid file",
+    "issueType": "IncorrectValue",
+    "similarityID": "d7c0efac80dff4c8f9de35432519ad5358db513bfa97bce2e4f0a686834e45fe",
+    "search_line": 11
+  },
+  {
+    "queryName": "Audit Policy File Not Defined",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive3.yaml",
+    "resourceType": "Service",
+    "resourceName": "dummy",
+    "searchKey": "metadata.name={{dummy}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-policy-file flag should be defined",
+    "actualValue": "--audit-policy-file is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "81c5abe3b34035f22ce40a0230f532ff6f6c0ce6c5b65d2ab0ed3749a6df0a4c",
+    "search_line": 12
+  }
 ]

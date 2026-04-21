@@ -2,6 +2,16 @@
   {
     "queryName": "DB Security Group Open To Large Scope",
     "severity": "HIGH",
-    "line": 22
+    "line": 22,
+    "fileName": "positive.yaml",
+    "resourceType": "ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{ec2_group}}.rules.cidr_ip",
+    "searchValue": "",
+    "expectedValue": "'ec2_group.rules.cidr_ip' should be one of [10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12]",
+    "actualValue": "'ec2_group.rules.cidr_ip' is [0.0.0.0/0,10.0.0.0/8,192.168.1.0/24]",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d3b53d214ec03443d86428d87a49055a1138d5ace8be6eeee28fb744a007045",
+    "search_line": -1
   }
 ]

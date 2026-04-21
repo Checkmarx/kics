@@ -3,12 +3,30 @@
     "queryName": "Instance With No VPC",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive1",
+    "searchKey": "aws_instance[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'vpc_security_group_ids' should be defined and not null",
+    "actualValue": "Attribute 'vpc_security_group_ids' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "20e5be65d10dda3cf1ae8afe532112f60000dcdb4ceabbb7485f83667c689964",
+    "search_line": 1
   },
   {
     "queryName": "Instance With No VPC",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'vpc_security_group_ids' should be defined and not null",
+    "actualValue": "Attribute 'vpc_security_group_ids' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1bca73d41de2026923dcd1aeacdbc67877aae9d792bcb1d44a2ccab13c5a43e1",
+    "search_line": 1
   }
 ]

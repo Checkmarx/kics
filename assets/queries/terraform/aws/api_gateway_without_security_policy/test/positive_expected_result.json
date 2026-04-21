@@ -3,12 +3,30 @@
     "queryName": "API Gateway Without Security Policy",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_api_gateway_domain_name",
+    "resourceName": "example",
+    "searchKey": "aws_api_gateway_domain_name[example]",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_domain_name[example].security_policy should be set",
+    "actualValue": "aws_api_gateway_domain_name[example].security_policy is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8e601eb2e3ede7365ee7310e414b01fd838c8b18d82a6c9c4fe0735ebdc8fb8c",
+    "search_line": 1
   },
   {
     "queryName": "API Gateway Without Security Policy",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_api_gateway_domain_name",
+    "resourceName": "example2",
+    "searchKey": "aws_api_gateway_domain_name[example2].security_policy",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_domain_name[example2].security_policy should be set to TLS_1_2",
+    "actualValue": "aws_api_gateway_domain_name[example2].security_policy is set to TLS_1_0",
+    "issueType": "IncorrectValue",
+    "similarityID": "bafae8f671aca3c4b66101dd0de0e4e9f09019f13ba30bd40c1eb0d097db68cd",
+    "search_line": 3
   }
 ]

@@ -3,72 +3,180 @@
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./.get.responses.200",
+    "searchValue": "",
+    "expectedValue": "paths./.get.responses.200.content should be defined",
+    "actualValue": "paths./.get.responses.200.content is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "689264129e2ab66dffd585b683c46d53f87773f0142354e9246f046831e66acc",
+    "search_line": -1
+  },
+  {
+    "queryName": "Response on operations that should have a body has undefined schema (v2)",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive10.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./.get.responses.200",
+    "searchValue": "",
+    "expectedValue": "paths./.get.responses.200.schema should be defined",
+    "actualValue": "paths./.get.responses.200.schema is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f452ffdfa0eafca01d0bcf5788a4cc93e6c04c9192d4ad72255ac25ea30210fb",
+    "search_line": -1
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
     "line": 21,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should be defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "987eb0bdd84de511c4279e085049bc6489f98290c7a845625d3b00b24a862c97",
+    "search_line": -1
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
     "line": 21,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}.schema should be defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}.schema is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4cdfc4ad71fb4c2fc044ba7f4c077fd2f266780a7a9b845091690bd586222622",
+    "search_line": 0
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should be defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b8744b16258e55e06836c94ffa4d00b40b49714e0ca74e2cf5f88e527c78533e",
+    "search_line": 0
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
     "line": 20,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content should have at least one content-type defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content has no content-type defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e80f36367f914541d37ec20690b75b995fcce818b6f3d4989a013ed9b033983f",
+    "search_line": -1
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./.get.responses.200",
+    "searchValue": "",
+    "expectedValue": "paths./.get.responses.200.content should be defined",
+    "actualValue": "paths./.get.responses.200.content is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d10ee3f1809a541634efe1069e72c5f317d8ceced409540502d3beb21e2572dc",
+    "search_line": -1
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should be defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0226c51207ab7bfed5808ee380fc4bb81e57166f5b71ead2105d91a7cdbc61c1",
+    "search_line": -1
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}.schema should be defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/pdf}}.schema is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9ac7f78bc267e9ec0715756fba749ee1bbb149fe78c05c767cb2e352d433765f",
+    "search_line": 0
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
     "line": 19,
-    "filename": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema should be defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.schema is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f1c4c23c0c6775113096178390fed5a41908d22220fad4b498d6f06c04a1c6d3",
+    "search_line": 0
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content should have at least one content-type defined",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content has no content-type defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "be62ff0d12c68910e15b8d1a0c27a0232632d0c9a3eabb46883eb2f9c9a6b5df",
+    "search_line": -1
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v2)",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive9.json"
-  },
-  {
-    "queryName": "Response on operations that should have a body has undefined schema (v2)",
-    "severity": "MEDIUM",
-    "line": 15,
-    "filename": "positive10.yaml"
+    "fileName": "positive9.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./.get.responses.200",
+    "searchValue": "",
+    "expectedValue": "paths./.get.responses.200.schema should be defined",
+    "actualValue": "paths./.get.responses.200.schema is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "24978cac01bb7724563f8b192a9d1da471de213371e7ed165a358465e28a4e82",
+    "search_line": -1
   }
 ]

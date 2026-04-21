@@ -3,18 +3,45 @@
     "queryName": "S3 Static Website Host Enabled",
     "severity": "HIGH",
     "line": 18,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "s3-website-test.hashicorp.com",
+    "searchKey": "resource.aws_s3_bucket[positive1].website",
+    "searchValue": "",
+    "expectedValue": "resource.aws_s3_bucket[positive1].website to not have static websites inside",
+    "actualValue": "resource.aws_s3_bucket[positive1].website does have static websites inside",
+    "issueType": "IncorrectValue",
+    "similarityID": "8299c24126bdcca703e0a8867ab3950cc8b0e5843516742da9363f6ae5142c76",
+    "search_line": 18
   },
   {
     "queryName": "S3 Static Website Host Enabled",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].website",
+    "searchValue": "",
+    "expectedValue": "'website' to not have static websites inside",
+    "actualValue": "'website' does have static websites inside",
+    "issueType": "IncorrectValue",
+    "similarityID": "98243e3991885492641ed7999e02c61081436a2bf8eff695d2dbdc659c42a894",
+    "search_line": 12
   },
   {
     "queryName": "S3 Static Website Host Enabled",
     "severity": "HIGH",
     "line": 15,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[buc]",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket' to not have 'aws_s3_bucket_website_configuration' associated",
+    "actualValue": "'aws_s3_bucket' has 'aws_s3_bucket_website_configuration' associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "22a6443a0f0264d62a878d56206baa353f60b5d3299fee3405c14ea0f661f2e5",
+    "search_line": 15
   }
 ]

@@ -1,8 +1,17 @@
 [
-    {
-      "queryName": "Docker Socket Mounted In Container",
-      "severity": "HIGH",
-      "line": 9,
-      "filename": "positive1.yaml"
-    }
+  {
+    "queryName": "Docker Socket Mounted In Container",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.service1.volumes",
+    "searchValue": "",
+    "expectedValue": "To not have docker socket named 'docker.sock' mounted in a volume",
+    "actualValue": "There is a docker socket named 'docker.sock' mounted in a volume",
+    "issueType": "IncorrectValue",
+    "similarityID": "bbb7781cc66360dc020635d3c8cc7f81b7b9d5746e41d86c7586f21c4c502032",
+    "search_line": 9
+  }
 ]

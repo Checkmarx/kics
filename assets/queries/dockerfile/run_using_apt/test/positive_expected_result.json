@@ -2,6 +2,16 @@
   {
     "queryName": "Run Using apt",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox:1.0}}.{{RUN apt install curl}}",
+    "searchValue": "",
+    "expectedValue": "RUN instructions should not use the 'apt' program",
+    "actualValue": "RUN instruction is invoking the 'apt' program",
+    "issueType": "IncorrectValue",
+    "similarityID": "59199720dc88ce76449c600169d5787360b29ea88334730a4759a857ece516c7",
+    "search_line": -1
   }
 ]

@@ -2,37 +2,91 @@
   {
     "queryName": "DMS Endpoint Password Exposed",
     "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive2.yaml"
+    "line": 20,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::DMS::Endpoint",
+    "resourceName": "DMSEndpoint4",
+    "searchKey": "Resources.DMSEndpoint4.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.DMSEndpoint4.Properties.Password must not be in plain text string",
+    "actualValue": "Resources.DMSEndpoint4.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "d50d0540b05b5dc3c190a38e7f83d305f24750daf715680258412846d2904c71",
+    "search_line": -1
   },
   {
     "queryName": "DMS Endpoint Password Exposed",
     "severity": "HIGH",
-    "line": 20,
-    "fileName": "positive1.yaml"
+    "line": 5,
+    "fileName": "positive2.yaml",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentMasterPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentMasterPassword.Default should be defined",
+    "actualValue": "Parameters.ParentMasterPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "683dae86bbe8ed3c4b5037fb7dfa227bfcfca7e732b42f943b5c102564bf682a",
+    "search_line": -1
   },
   {
     "queryName": "DMS Endpoint Password Exposed",
     "severity": "HIGH",
     "line": 25,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::DMS::Endpoint",
+    "resourceName": "DMSEndpoint6",
+    "searchKey": "Resources.DMSEndpoint6.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.DMSEndpoint6.Properties.Password must not be in plain text string",
+    "actualValue": "Resources.DMSEndpoint6.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "311f8ee416ffa5ec51f7f415d8d79b9762dfba44f0eddd40f67a0053faca84dc",
+    "search_line": -1
   },
   {
     "queryName": "DMS Endpoint Password Exposed",
     "severity": "HIGH",
     "line": 23,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::DMS::Endpoint",
+    "resourceName": "DMSEndpoint4",
+    "searchKey": "Resources.DMSEndpoint4.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.DMSEndpoint4.Properties.Password must not be in plain text string",
+    "actualValue": "Resources.DMSEndpoint4.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "4c8f0a8a73c28a9ae7d10425cae171087c8654506a07f01abaf28742f4389fc4",
+    "search_line": -1
   },
   {
     "queryName": "DMS Endpoint Password Exposed",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "Parameters.ParentMasterPassword.Default",
+    "searchValue": "",
+    "expectedValue": "Parameters.ParentMasterPassword.Default should be defined",
+    "actualValue": "Parameters.ParentMasterPassword.Default shouldn't be defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "218584054f507cfb2e2f1c76c72895d0698fd5701db3d5a5d44a0bcf0b40e4e8",
+    "search_line": -1
   },
   {
     "queryName": "DMS Endpoint Password Exposed",
     "severity": "HIGH",
     "line": 26,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::DMS::Endpoint",
+    "resourceName": "DMSEndpoint6",
+    "searchKey": "Resources.DMSEndpoint6.Properties.Password",
+    "searchValue": "",
+    "expectedValue": "Resources.DMSEndpoint6.Properties.Password must not be in plain text string",
+    "actualValue": "Resources.DMSEndpoint6.Properties.Password must be defined as a parameter or have a secret manager referenced",
+    "issueType": "IncorrectValue",
+    "similarityID": "dc03e7f000e92d8c5eb971af3e303912fdcc44c113603cbd29cac49b93b7cc4f",
+    "search_line": -1
   }
 ]

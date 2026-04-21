@@ -3,6 +3,15 @@
     "queryName": "Multiple ENTRYPOINT Instructions Listed",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive.dockerfile"
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest  }}.{{ENTRYPOINT [ \"/opt/app/run.sh\", \"--port\", \"8080\" ]}}",
+    "searchValue": "",
+    "expectedValue": "There should be only one ENTRYPOINT instruction",
+    "actualValue": "There are 2 ENTRYPOINT instructions",
+    "issueType": "RedundantAttribute",
+    "similarityID": "321f745a0f2d11b009133b2f2be9b9b6bc1dfb86fb41db190bca97a1c0f1aee7",
+    "search_line": -1
   }
 ]

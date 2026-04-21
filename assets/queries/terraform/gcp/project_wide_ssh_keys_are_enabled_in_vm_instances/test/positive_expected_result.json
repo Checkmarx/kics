@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
-		"severity": "MEDIUM",
-		"line": 29
-	},
-	{
-		"queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
-		"severity": "MEDIUM",
-		"line": 39
-	}
+  {
+    "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+    "severity": "MEDIUM",
+    "line": 29,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "test",
+    "searchKey": "google_compute_instance[positive1].metadata.block-project-ssh-keys",
+    "searchValue": "",
+    "expectedValue": "google_compute_instance[positive1].metadata.block-project-ssh-keys should be true",
+    "actualValue": "google_compute_instance[positive1].metadata.block-project-ssh-keys is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "75ab8f5d17d4c3ba0e0fa94223259aa4b40c75c9190807488c4d5e30685b8055",
+    "search_line": -1
+  },
+  {
+    "queryName": "Project-wide SSH Keys Are Enabled In VM Instances",
+    "severity": "MEDIUM",
+    "line": 39,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "test",
+    "searchKey": "google_compute_instance[positive2]",
+    "searchValue": "",
+    "expectedValue": "google_compute_instance[positive2].metadata should be set",
+    "actualValue": "google_compute_instance[positive2].metadata is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ae571eb3f06fb5cd0f06d84e3f2633af2db0142834b01c44ae90836844572da8",
+    "search_line": -1
+  }
 ]

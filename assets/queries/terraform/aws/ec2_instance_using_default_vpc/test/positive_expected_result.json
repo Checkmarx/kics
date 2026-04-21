@@ -3,6 +3,15 @@
     "queryName": "EC2 Instance Using Default VPC",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "positive1",
+    "searchKey": "aws_instance[positive1].subnet_id",
+    "searchValue": "",
+    "expectedValue": "aws_instance[positive1].subnet_id should not be associated with a default VPC",
+    "actualValue": "aws_instance[positive1].subnet_id is associated with a default VPC",
+    "issueType": "IncorrectValue",
+    "similarityID": "5fa312676b2c55265a88fc327e7c5b713596ff1fc97bf7e623ef2cdc90b41ac7",
+    "search_line": 6
   }
 ]

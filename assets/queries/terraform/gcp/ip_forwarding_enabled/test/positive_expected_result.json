@@ -2,6 +2,16 @@
   {
     "queryName": "IP Forwarding Enabled",
     "severity": "MEDIUM",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "primary-application-server",
+    "searchKey": "google_compute_instance[appserver].can_ip_forward",
+    "searchValue": "",
+    "expectedValue": "Attribute 'can_ip_forward' should be set to false or Attribute 'can_ip_forward' should be undefined",
+    "actualValue": "Attribute 'can_ip_forward' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "7e325ba821308c4d8b3a27aa973a8f04f4af82d340e42a0bf555ba8ebf445c41",
+    "search_line": 4
   }
 ]

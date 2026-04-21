@@ -3,6 +3,15 @@
     "queryName": "Serverless Function Without Tags",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive1.yml"
+    "fileName": "positive1.yml",
+    "resourceType": "AWS::Lambda",
+    "resourceName": "hello",
+    "searchKey": "functions.hello",
+    "searchValue": "",
+    "expectedValue": "'tags' should be defined inside the function",
+    "actualValue": "'tags' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e37f1b581854a2965b73b4255ef09da78a48e81fcb0516d253ecd884b6ba0650",
+    "search_line": 8
   }
 ]

@@ -2,6 +2,16 @@
   {
     "queryName": "Redis Entirely Accessible",
     "severity": "CRITICAL",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_rediscachefirewallrule",
+    "resourceName": "Create a Firewall rule for Azure Cache for Redis",
+    "searchKey": "name={{Create a Firewall rule for Azure Cache for Redis}}.{{azure_rm_rediscachefirewallrule}}.start_ip_address",
+    "searchValue": "",
+    "expectedValue": "azure_rm_rediscachefirewallrule start_ip and end_ip should not equal to '0.0.0.0'",
+    "actualValue": "azure_rm_rediscachefirewallrule start_ip and end_ip are equal to '0.0.0.0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0ac01d66fb431b706730d4b61e886e574d10098b991b205300f7fbee1db660ff",
+    "search_line": -1
   }
 ]

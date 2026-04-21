@@ -3,12 +3,30 @@
     "queryName": "OSS Bucket Transfer Acceleration Disabled",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket_name",
+    "searchKey": "alicloud_oss_bucket[bucket-accelerate].transfer_acceleration.enabled",
+    "searchValue": "",
+    "expectedValue": "'transfer_acceleration.enabled' should be defined and set to true",
+    "actualValue": "'transfer_acceleration.enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f97bb1f83d74d5e50504a93e92ffb346338f29e0a39cf9542563992aea242a6c",
+    "search_line": 5
   },
   {
     "queryName": "OSS Bucket Transfer Acceleration Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket_name",
+    "searchKey": "alicloud_oss_bucket[bucket-accelerate2]",
+    "searchValue": "",
+    "expectedValue": "'transfer_acceleration.enabled' should be defined and set to true",
+    "actualValue": "'transfer_acceleration' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "6df1cc087a299935ce27c02f1af82d959568d7addb6a2b6e3006e7c988560de6",
+    "search_line": 1
   }
 ]

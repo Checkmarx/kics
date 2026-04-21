@@ -2,11 +2,31 @@
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_firewall",
+    "resourceName": "rdp_in_range",
+    "searchKey": "name={{rdp_in_range}}.{{google.cloud.gcp_compute_firewall}}.allowed.ip_protocol=tcp.ports",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_firewall.allowed.ip_protocol=tcp.ports shouldn't contain RDP port (3389) with unrestricted ingress traffic",
+    "actualValue": "gcp_compute_firewall.allowed.ip_protocol=tcp.ports contain RDP port (3389) with unrestricted ingress traffic",
+    "issueType": "IncorrectValue",
+    "similarityID": "6553780f25947ff777226dbf02d441b5a48a0307d2b1ee719159ea41b594f256",
+    "search_line": -1
   },
   {
     "queryName": "RDP Access Is Not Restricted",
     "severity": "HIGH",
-    "line": 29
+    "line": 29,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_compute_firewall",
+    "resourceName": "rdp_in_port",
+    "searchKey": "name={{rdp_in_port}}.{{google.cloud.gcp_compute_firewall}}.allowed.ip_protocol=tcp.ports",
+    "searchValue": "",
+    "expectedValue": "gcp_compute_firewall.allowed.ip_protocol=tcp.ports shouldn't contain RDP port (3389) with unrestricted ingress traffic",
+    "actualValue": "gcp_compute_firewall.allowed.ip_protocol=tcp.ports contain RDP port (3389) with unrestricted ingress traffic",
+    "issueType": "IncorrectValue",
+    "similarityID": "a6c88547a338bca54e9b37eb0e12db21a28244b676f6bc683f9699b8b532835e",
+    "search_line": -1
   }
 ]

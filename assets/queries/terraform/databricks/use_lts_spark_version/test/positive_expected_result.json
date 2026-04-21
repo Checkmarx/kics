@@ -3,18 +3,45 @@
     "queryName": "Check use no LTS Spark Version",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "databricks_spark_version",
+    "resourceName": "postive1_gpu_ml",
+    "searchKey": "databricks_spark_version[postive1_gpu_ml].long_term_support",
+    "searchValue": "",
+    "expectedValue": "'databricks_spark_version[postive1_gpu_ml]' should be a LTS version'",
+    "actualValue": "'databricks_spark_version[postive1_gpu_ml]' is not a LTS version'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8ef421bb2376d5ba63abeba9abd416da4595f355ef8d2f6a19888a030d5d9a39",
+    "search_line": -1
   },
   {
     "queryName": "Check use no LTS Spark Version",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "databricks_spark_version",
+    "resourceName": "positive2_gpu_ml",
+    "searchKey": "databricks_spark_version[positive2_gpu_ml].long_term_support",
+    "searchValue": "",
+    "expectedValue": "'databricks_spark_version[positive2_gpu_ml]' should be a LTS version'",
+    "actualValue": "'databricks_spark_version[positive2_gpu_ml]' is not a LTS version'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d1587df99a081102d958eaf758e544969be19273f3e12a420ffa2c795a201012",
+    "search_line": -1
   },
   {
     "queryName": "Check use no LTS Spark Version",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "databricks_spark_version",
+    "resourceName": "positive3_research",
+    "searchKey": "databricks_cluster[positive3_research].spark_version",
+    "searchValue": "",
+    "expectedValue": "'databricks_cluster[positive3_research].spark_version' should be a LTS version'",
+    "actualValue": "'databricks_cluster[positive3_research].spark_version' is not a LTS version'",
+    "issueType": "IncorrectValue",
+    "similarityID": "464c2203a00ff8ef75439895ccf6a6632add2b3a0c64e51b6d64d07fbbfd5dd7",
+    "search_line": -1
   }
 ]

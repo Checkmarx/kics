@@ -2,6 +2,16 @@
   {
     "queryName": "No Stack Policy",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.cloudformation",
+    "resourceName": "create a stack, pass in the template via an URL",
+    "searchKey": "name={{create a stack, pass in the template via an URL}}.{{amazon.aws.cloudformation}}",
+    "searchValue": "",
+    "expectedValue": "cloudformation.stack_policy should be set",
+    "actualValue": "cloudformation.stack_policy is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ec6dba3a41e615a17730eabcbcfa37225966c4dd065a3013812265064500eca6",
+    "search_line": -1
   }
 ]

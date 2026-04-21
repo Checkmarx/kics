@@ -3,48 +3,120 @@
     "queryName": "Invalid Tag External Documentation URL (v3)",
     "severity": "INFO",
     "line": 53,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=pets",
+    "searchValue": "",
+    "expectedValue": "tags[0].externalDocs.url has a valid URL",
+    "actualValue": "tags[0].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "2838909c77cb1aa5dd3981719c6f7832ed3e3be2261a67dd946998349fa3e71d",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
     "severity": "INFO",
     "line": 57,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=store",
+    "searchValue": "",
+    "expectedValue": "tags[1].externalDocs.url has a valid URL",
+    "actualValue": "tags[1].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "6aed712ae5af21e89fe26bc055767c80bfe91237e7e89c66c2e2783f5731e079",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=pets",
+    "searchValue": "",
+    "expectedValue": "tags[0].externalDocs.url has a valid URL",
+    "actualValue": "tags[0].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "7911be4c4ca3828827627da1582172c0e762bc281783ef1179ac9af0270f4e6f",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v3)",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=store",
+    "searchValue": "",
+    "expectedValue": "tags[1].externalDocs.url has a valid URL",
+    "actualValue": "tags[1].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "4a945862079115555c239cd504d91e531048f6b4db46a26e395003acff56b57d",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=pets",
+    "searchValue": "",
+    "expectedValue": "tags[0].externalDocs.url has a valid URL",
+    "actualValue": "tags[0].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "121498b4d9597151116b77955039536cca509ca4d32f2b87b3ea5c3c68c385f6",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
     "severity": "INFO",
     "line": 34,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=store",
+    "searchValue": "",
+    "expectedValue": "tags[1].externalDocs.url has a valid URL",
+    "actualValue": "tags[1].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "1b899c2e5d4864f00bbf520cdb779e88de4a774c2cc21625c30cf88053653d7a",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=pets",
+    "searchValue": "",
+    "expectedValue": "tags[0].externalDocs.url has a valid URL",
+    "actualValue": "tags[0].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "1fe083fcf953a54fbd563f29b320bdf1a32e2bd667756b8c50f3e962e936119d",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Tag External Documentation URL (v2)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "tags.name=store",
+    "searchValue": "",
+    "expectedValue": "tags[1].externalDocs.url has a valid URL",
+    "actualValue": "tags[1].externalDocs.url has an invalid URL",
+    "issueType": "IncorrectValue",
+    "similarityID": "b09096fc5122d26d66e5f81405776701fdd89c53db93a0588a0b01859bb7db15",
+    "search_line": -1
   }
 ]

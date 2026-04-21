@@ -3,12 +3,30 @@
     "queryName": "Schema JSON Reference Does Not Exist (v2)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.$ref=#/definitions/Use",
+    "searchValue": "",
+    "expectedValue": "Use from #/definitions/Use should be declared on definitions",
+    "actualValue": "Use from #/definitions/Use is not declared on definitions",
+    "issueType": "MissingAttribute",
+    "similarityID": "111681def49b88c9f72b7b80d3c87cdbc9749d69c729fc31535d2019233cf243",
+    "search_line": 0
   },
   {
     "queryName": "Schema JSON Reference Does Not Exist (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.$ref=#/definitions/Use",
+    "searchValue": "",
+    "expectedValue": "Use from #/definitions/Use should be declared on definitions",
+    "actualValue": "Use from #/definitions/Use is not declared on definitions",
+    "issueType": "MissingAttribute",
+    "similarityID": "503871e43255e588cc158e99f3ac7296771e072935a11510ad773099264b445c",
+    "search_line": 0
   }
 ]

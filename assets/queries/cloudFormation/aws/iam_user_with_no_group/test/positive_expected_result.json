@@ -1,26 +1,62 @@
 [
   {
+    "queryName": "IAM User With No Group",
     "severity": "LOW",
     "line": 6,
     "fileName": "positive1.yaml",
-    "queryName": "IAM User With No Group"
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "TestUser",
+    "searchKey": "Resources.MyUser.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties should contain Groups",
+    "actualValue": "'Resources.Properties' does not contain Groups",
+    "issueType": "MissingAttribute",
+    "similarityID": "b9a1326bd5d11d2f24d67e75ea8aed68724b840f1e9a54247fe51288218b9f98",
+    "search_line": -1
   },
   {
-    "fileName": "positive2.yaml",
     "queryName": "IAM User With No Group",
     "severity": "LOW",
-    "line": 7
+    "line": 7,
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "TestUser",
+    "searchKey": "Resources.emptyGroup.Properties.Groups",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.Groups' should contain groups",
+    "actualValue": "'Resources.Properties.Groups' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "3a1c2da8779126c51e51d0e2887671f7cc2da510d5d30fae2c7f69c67d3aade2",
+    "search_line": -1
   },
   {
     "queryName": "IAM User With No Group",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "TestUser",
+    "searchKey": "Resources.MyUser.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties should contain Groups",
+    "actualValue": "'Resources.Properties' does not contain Groups",
+    "issueType": "MissingAttribute",
+    "similarityID": "bbf6d4f2efd6508466d1e3acc4cdaf6264cbce71ebdfdb68542ac8a48d3337ac",
+    "search_line": -1
   },
   {
     "queryName": "IAM User With No Group",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "TestUser",
+    "searchKey": "Resources.emptyGroup.Properties.Groups",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.Groups' should contain groups",
+    "actualValue": "'Resources.Properties.Groups' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "d18882d12cc0bff491990bf185481796d175b4368816f16091578f08ba7ba511",
+    "search_line": -1
   }
 ]

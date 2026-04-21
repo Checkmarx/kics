@@ -3,42 +3,105 @@
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
     "line": 2,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN npm install sax}}",
+    "searchValue": "",
+    "expectedValue": "'RUN npm install sax' uses npm install with a pinned version",
+    "actualValue": "'RUN npm install sax' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "a55b551c163b2a0f5afcb9df731f44a79e9f7fe2a2315de6f147910cd7acc436",
+    "search_line": -1
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
     "line": 3,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN npm install sax --no-cache}}",
+    "searchValue": "",
+    "expectedValue": "'RUN npm install sax --no-cache' uses npm install with a pinned version",
+    "actualValue": "'RUN npm install sax --no-cache' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "766ef47a4f0d5de0d24e6a4ec31163525fda22916713753168720de84c1230d9",
+    "search_line": -1
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN npm install sax | grep fail && npm install sax@latest}}",
+    "searchValue": "",
+    "expectedValue": "'RUN npm install sax | grep fail && npm install sax@latest' uses npm install with a pinned version",
+    "actualValue": "'RUN npm install sax | grep fail && npm install sax@latest' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "b08a26eaf8119039034ba133397f0df0fbee47a8d3c439bf911e72265dd49e5d",
+    "search_line": -1
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN npm install sax@latest | grep fail && npm install sax}}",
+    "searchValue": "",
+    "expectedValue": "'RUN npm install sax@latest | grep fail && npm install sax' uses npm install with a pinned version",
+    "actualValue": "'RUN npm install sax@latest | grep fail && npm install sax' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "29ff38f7b79220bf6551844f728500d16102d4a7574b409b812feb011af1394e",
+    "search_line": -1
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN npm install sax | grep fail && npm install sax}}",
+    "searchValue": "",
+    "expectedValue": "'RUN npm install sax | grep fail && npm install sax' uses npm install with a pinned version",
+    "actualValue": "'RUN npm install sax | grep fail && npm install sax' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "c24ac6ff0e4dc22be8edf240c5b95bb21103f3e993c816fa8e5bacb850ee8f30",
+    "search_line": -1
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN npm i -g @angular/cli}}",
+    "searchValue": "",
+    "expectedValue": "'RUN npm i -g @angular/cli' uses npm install with a pinned version",
+    "actualValue": "'RUN npm i -g @angular/cli' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc73c895c4c2dcf9d8c686d4c368087f878c9f263ec0aac3def90f5426436a69",
+    "search_line": -1
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:12}}.{{RUN [\"npm\",\"add\",\"sax\"]}}",
+    "searchValue": "",
+    "expectedValue": "'RUN [\"npm\",\"add\",\"sax\"]' uses npm install with a pinned version",
+    "actualValue": "'RUN [\"npm\",\"add\",\"sax\"]' does not uses npm install with a pinned version",
+    "issueType": "IncorrectValue",
+    "similarityID": "5dba4a651019aefe5c71ad3eb474be07108381de446f5abcc864fd0077faf39f",
+    "search_line": -1
   }
 ]

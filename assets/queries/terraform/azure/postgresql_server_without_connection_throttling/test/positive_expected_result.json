@@ -2,16 +2,46 @@
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "connection_throttling",
+    "searchKey": "azurerm_postgresql_configuration[positive1].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive1.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive1.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9baee9c3e3d1c20f6bc80f5016df9982a13b02efc82b4982545128a1c6380ef2",
+    "search_line": 5
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
     "severity": "MEDIUM",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "connection_throttling",
+    "searchKey": "azurerm_postgresql_configuration[positive2].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive2.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive2.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ad4aeb3e1afec0d4a373935514bdf23d4f5b216007846ea91727f109400c70c4",
+    "search_line": 12
   },
   {
     "queryName": "PostgreSQL Server Without Connection Throttling",
     "severity": "MEDIUM",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "connection_throttling",
+    "searchKey": "azurerm_postgresql_configuration[positive3].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive3.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive3.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1ad3c8aecdf0f178b4a1c4a9c64d78d9af5009abbb813e6f9d72fbcbd31ea73e",
+    "search_line": 19
   }
 ]

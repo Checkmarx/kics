@@ -3,48 +3,120 @@
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
     "line": 62,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.EnableLogFileValidation' should exist",
+    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "a65eb62561846f36db73c315c37aef47fd09e8c9cb53a188a2495073ce9bd69d",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
     "line": 77,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail2",
+    "searchKey": "Resources.myTrail2.Properties.EnableLogFileValidation",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' should be true",
+    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f5463283cd3cf176b75a00df40369fa891252b112f4e2f9d2a681574efeb20f",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
     "line": 87,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.EnableLogFileValidation' should exist",
+    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "55daf7df0a900468fe064ec740b7dc1a89dfef7be499915f9a1b870bafb577ba",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
     "line": 108,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail2",
+    "searchKey": "Resources.myTrail2.Properties.EnableLogFileValidation",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' should be true",
+    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true",
+    "issueType": "IncorrectValue",
+    "similarityID": "5c8658fbaa0486f4b46f03b5bc32b995b59a6f88057aa62cb332e678f1708076",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
     "line": 62,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.EnableLogFileValidation' should exist",
+    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "96569bc644135d9300e145c9344e4b07b257cc577e3d827c0c380421bf4a1142",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
     "line": 77,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail2",
+    "searchKey": "Resources.myTrail2.Properties.EnableLogFileValidation",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' should be true",
+    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true",
+    "issueType": "IncorrectValue",
+    "similarityID": "f2acaf6944d1ba2ac68f667d7d7dbbed730d0a77940b44856d8f94bde2ca64c8",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
     "line": 87,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail",
+    "searchKey": "Resources.myTrail.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail.Properties.EnableLogFileValidation' should exist",
+    "actualValue": "'Resources.myTrail.Properties.EnableLogFileValidation' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "d6f56b807f3d4e43bf6cae75bc1486adb8f555ac5826075a832f081ce7cb4a1a",
+    "search_line": -1
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
     "line": 108,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::CloudTrail::Trail",
+    "resourceName": "myTrail2",
+    "searchKey": "Resources.myTrail2.Properties.EnableLogFileValidation",
+    "searchValue": "",
+    "expectedValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' should be true",
+    "actualValue": "'Resources.myTrail2.Properties.EnableLogFileValidation' is not true",
+    "issueType": "IncorrectValue",
+    "similarityID": "1df195d1ea8da1c86cd17b27a263f5828d5d35745ae8c867fdb379a4bacd62ae",
+    "search_line": -1
   }
 ]

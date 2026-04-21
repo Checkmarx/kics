@@ -3,54 +3,135 @@
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1].site_config' should be defined and not null",
+    "actualValue": "'azurerm_app_service[positive1].site_config' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "efb92953fd86102d4ec0188109d338a169a6b75e08c56fd510f862bae5af6a85",
+    "search_line": 1
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive2].site_config",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive2].site_config.http2_enabled' should be defined and not null",
+    "actualValue": "'azurerm_app_service[positive2].site_config.http2_enabled' is undefined or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "caef99ffa858dfff72a11ce1e020ad2386f3118e603486c0835fdd15603e45fc",
+    "search_line": 17
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive3].site_config.http2_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive3].site_config.http2_enabled' should be set to true",
+    "actualValue": "'azurerm_app_service[positive3].site_config.http2_enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "648dd02b62ee06dce7426f21e76c93bf2c3a6d41848c1b93b277758a7755d42b",
+    "search_line": 21
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive4].site_config",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive4].site_config.http2_enabled' should be defined and not null",
+    "actualValue": "'azurerm_linux_web_app[positive4].site_config.http2_enabled' is undefined or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "d07ef2cd105fb4dbac562165767ce2f991c055e22da80948be60723c0aac9214",
+    "search_line": 7
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive5].site_config.http2_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive5].site_config.http2_enabled' should be set to true",
+    "actualValue": "'azurerm_linux_web_app[positive5].site_config.http2_enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "5f790b6cd4d288db6d71311bf5dd900ac67193ae5af757eeb073cfb1e1449f15",
+    "search_line": 8
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive6].site_config.http2_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive6].site_config.http2_enabled' should be set to true",
+    "actualValue": "'azurerm_windows_web_app[positive6].site_config.http2_enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9d23b4e9fd94c3e355860f6866851cfedfb53250d10c273fa2aa24f95173264",
+    "search_line": 8
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive7.tf"
+    "fileName": "positive7.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive7].site_config",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive7].site_config.http2_enabled' should be defined and not null",
+    "actualValue": "'azurerm_windows_web_app[positive7].site_config.http2_enabled' is undefined or null",
+    "issueType": "IncorrectValue",
+    "similarityID": "c7adedbdcf2a747ef3273d01849a3ef23acd2c9a596779fee4b35e905faf874b",
+    "search_line": 7
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive8.tf"
+    "fileName": "positive8.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_linux_web_app[positive8]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive8].site_config' should be defined and not null",
+    "actualValue": "'azurerm_linux_web_app[positive8].site_config' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a88b2749d3f97cd28e5bd09c42357415f49b66a9010630537a685044e1dd5f35",
+    "search_line": 1
   },
   {
     "queryName": "App Service HTTP2 Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive9.tf"
+    "fileName": "positive9.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_windows_web_app[positive9]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive9].site_config' should be defined and not null",
+    "actualValue": "'azurerm_windows_web_app[positive9].site_config' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "8d98b0f0672e899c1b52cb917d26b08b26d2137e4eb95733b531fb04f9ac0051",
+    "search_line": 1
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "community.aws.opensearch",
+    "resourceName": "Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters",
+    "searchKey": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https",
+    "searchValue": "",
+    "expectedValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https should be set to 'true'",
+    "actualValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8cf8cee2a4dd771470e059a9047a5199dd2800d5a031746cab7273e38fb85c91",
+    "search_line": 11
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "community.aws.opensearch",
+    "resourceName": "Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters",
+    "searchKey": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options",
+    "searchValue": "",
+    "expectedValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https should be defined and set to 'true'",
+    "actualValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "39df102fc1373d1280734fef2d42ef4ca2bbd6286bb1d74d3594a1e8f9cdf12e",
+    "search_line": 10
   },
   {
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "community.aws.opensearch",
+    "resourceName": "Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters",
+    "searchKey": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}",
+    "searchValue": "",
+    "expectedValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https should be defined and set to 'true'",
+    "actualValue": "name={{Create OpenSearch domain for dev environment, no zone awareness, no dedicated masters}}.{{community.aws.opensearch}}.domain_endpoint_options.enforce_https is not set",
+    "issueType": "MissingAttribute",
+    "similarityID": "c5b63b8e9a876196cf2d6e126767962bc7db99a92f590ec06c6a086d2e070e8e",
+    "search_line": 2
   }
 ]

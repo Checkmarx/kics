@@ -2,97 +2,241 @@
   {
     "queryName": "App Service Authentication Is Not Set",
     "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "resources.name=webApp1.resources.name=authsettings.properties.enabled",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' property value is false on authsettings properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "1532513588663cf871515eab85e34a96d3479ad0abe5b71ca55366ee34fa5a0f",
+    "search_line": 33
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
     "line": 37,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "resources.name=webApp1.resources.name=authsettings.properties.enabled",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' property value is false on authsettings properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "94425953062829dc7e0d43c593580a3488570b2bec326c5296aaaf467c3e6d2b",
+    "search_line": 37
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "resources.name=webApp1.resources.name=authsettings",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dfee59742cabe9e5e4a97191b7ec522704645f85dd70674d4bb533faedf3a8e8",
+    "search_line": 31
   },
   {
     "queryName": "App Service Authentication Is Not Set",
     "severity": "MEDIUM",
     "line": 33,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "resources.name=webApp1.resources.name=authsettings",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5cea04df89e407c29b5fd69b1796939cac2aa49e8ffc80698c9aa921e300e132",
+    "search_line": 33
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "resources.name=webApp1.resources.name=authsettings.properties.enabled",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' property value is false on authsettings properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "bc4437ceccd9262f6b96f7092a62ae5ec9acdc33db2fce1a09aed67c18a696c3",
+    "search_line": 33
   },
   {
     "queryName": "App Service Authentication Is Not Set",
     "severity": "MEDIUM",
     "line": 44,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Web/sites/config",
+    "resourceName": "webApp1/authsettings",
+    "searchKey": "resources.name=webApp1/authsettings.properties.enabled",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' property value is false on authsettings properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "a9d7d7da26e0f708f9cd5d3583ea12528802690882cc5314fd4d9d3293196458",
+    "search_line": 44
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "resources.name=webApp1.resources.name=authsettings",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0337e0fc7659d2ad175044d3a31443bd4cd8556ef496e6bb1649dca2c8daead1",
+    "search_line": 31
   },
   {
     "queryName": "App Service Authentication Is Not Set",
     "severity": "MEDIUM",
     "line": 40,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Web/sites/config",
+    "resourceName": "webApp1/authsettings",
+    "searchKey": "resources.name=webApp1/authsettings",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7e1a38db19142e5b7e34eb9e67acf5ffaa5134ce819ccec756a55c5836b03c2b",
+    "search_line": 40
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive5.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "resources.name=webApp1.resources.name=authsettings.properties.enabled",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' property value is false on authsettings properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "d8b29e005fda3f40cdfa78856ac6c8e3873b82865356aaf9477a2612f2ae5544",
+    "search_line": 33
   },
   {
     "queryName": "App Service Authentication Is Not Set",
     "severity": "MEDIUM",
     "line": 39,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "properties.template.resources.name=webApp1.resources.name=authsettings.properties.enabled",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' property value is false on authsettings properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "67f504918f32854124d282e87a399b31838aa7baf4d3a7f05aa1edf1ffff1dd7",
+    "search_line": 39
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive6.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "resources.name=webApp1.resources.name=authsettings",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6cc22dfe25e56ca6349f63bc6628d9171f0c4b9faa7ea6296d18b6b3c8435001",
+    "search_line": 31
   },
   {
     "queryName": "App Service Authentication Is Not Set",
     "severity": "MEDIUM",
     "line": 35,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "properties.template.resources.name=webApp1.resources.name=authsettings",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e01e35b9b3796fa3e4a51532b410b94dbe8ff59b38038a221cd164fed927d754",
+    "search_line": 35
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive7.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "resources.name=webApp1.resources.name=authsettings.properties.enabled",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' property value is false on authsettings properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "f6a05cc1d1aa1238de4bcaf5f9e3e2a29ef45bbc5d5fef4c9c8a2968f5bccc2e",
+    "search_line": 33
   },
   {
     "queryName": "App Service Authentication Is Not Set",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "Microsoft.Web/sites/config",
+    "resourceName": "webApp1/authsettings",
+    "searchKey": "properties.template.resources.name=webApp1/authsettings.properties.enabled",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' property value is false on authsettings properties",
+    "issueType": "IncorrectValue",
+    "similarityID": "2c6fc7ba607fa5f1abd6072a6fda81b113a4331996fd77b73a83e3362b54d01f",
+    "search_line": 46
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive8.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webApp1",
+    "searchKey": "resources.name=webApp1.resources.name=authsettings",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "09c8d6be55d3d088e94e00bdef3c0cc1f1df8a73769af873f909bc48b28db3ce",
+    "search_line": 31
   },
   {
     "queryName": "App Service Authentication Is Not Set",
     "severity": "MEDIUM",
     "line": 42,
-    "fileName": "positive8.json"
-  },
-  {
-    "queryName": "App Service Authentication Is Not Set",
-    "severity": "MEDIUM",
-    "line": 33,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "App Service Authentication Is Not Set",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "App Service Authentication Is Not Set",
-    "severity": "MEDIUM",
-    "line": 33,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "App Service Authentication Is Not Set",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "App Service Authentication Is Not Set",
-    "severity": "MEDIUM",
-    "line": 33,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "App Service Authentication Is Not Set",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive6.bicep"
-  },
-  {
-    "queryName": "App Service Authentication Is Not Set",
-    "severity": "MEDIUM",
-    "line": 33,
-    "fileName": "positive7.bicep"
-  },
-  {
-    "queryName": "App Service Authentication Is Not Set",
-    "severity": "MEDIUM",
-    "line": 31,
-    "fileName": "positive8.bicep"
+    "fileName": "positive8.json",
+    "resourceType": "Microsoft.Web/sites/config",
+    "resourceName": "webApp1/authsettings",
+    "searchKey": "properties.template.resources.name=webApp1/authsettings",
+    "searchValue": "",
+    "expectedValue": "resource authsettings should have 'properties.enabled' property set to true",
+    "actualValue": "'enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6d38975ff73fd6ccbee468c524dd6b50e6393f32b6d2da635b4470c591eafe9a",
+    "search_line": 42
   }
 ]

@@ -3,72 +3,180 @@
     "queryName": "Global security field has an empty object (v3)",
     "severity": "HIGH",
     "line": 43,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 43,
-    "filename": "positive2.json"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 43,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 43,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 25,
-    "filename": "positive5.yaml"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 25,
-    "filename": "positive6.yaml"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 25,
-    "filename": "positive7.yaml"
-  },
-  {
-    "queryName": "Global security field has an empty object (v3)",
-    "severity": "HIGH",
-    "line": 25,
-    "filename": "positive8.yaml"
-  },
-  {
-    "queryName": "Global security field has an empty object (v2)",
-    "severity": "HIGH",
-    "line": 38,
-    "filename": "positive9.yaml"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "d1cb95a3beb850489729285c7dbbf7ce5591fcc4f9a427153a1bfc6359c0c53c",
+    "search_line": -1
   },
   {
     "queryName": "Global security field has an empty object (v2)",
     "severity": "HIGH",
     "line": 60,
-    "filename": "positive10.json"
+    "fileName": "positive10.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "8f537b1de0bfbdf027012cfe80df9b36b07f2717418a1f353eecbfc41515ac45",
+    "search_line": -1
   },
   {
     "queryName": "Global security field has an empty object (v2)",
     "severity": "HIGH",
     "line": 38,
-    "filename": "positive11.yaml"
+    "fileName": "positive11.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "adf5cd15dd9964b5f5542c6b3170e4e68d57a20f5271d6d7750de5d079120e44",
+    "search_line": -1
   },
   {
     "queryName": "Global security field has an empty object (v2)",
     "severity": "HIGH",
     "line": 60,
-    "filename": "positive12.json"
+    "fileName": "positive12.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "b86815d4a2a3497ece59485fff825ed589a6f8ae139cfd5353f8f5335f748115",
+    "search_line": -1
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 43,
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "8debad644ad0973dff1e169dce70be128ca975d917215425797b5b227e85a189",
+    "search_line": -1
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 43,
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "e6c3856cacdeba429f1d5b9978b9d548d0b0b971ae172b3465f9b9168d91d3c3",
+    "search_line": -1
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 43,
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "4c3716863e6a3f4f5c630779da8b9282292d6734b2a484496b2117575b82b501",
+    "search_line": -1
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 25,
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "28c91f0d18cbad885a3adfde8c2026091f433868985e4f6498465bdc4b955821",
+    "search_line": -1
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 25,
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "18cd086c95a8c80d2aaed96b940c3171f0f8930de792e25ae2dffb146880446d",
+    "search_line": -1
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 25,
+    "fileName": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "45c46808055b74efef0d1a6b6b2dcaf25cf1bbd7565fbd38ef72ce3a9b6abef3",
+    "search_line": -1
+  },
+  {
+    "queryName": "Global security field has an empty object (v3)",
+    "severity": "HIGH",
+    "line": 25,
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "4c18e02b37177761864cbb31d31c3c61ec85b490ebf0f5639860f0c23a9edb81",
+    "search_line": -1
+  },
+  {
+    "queryName": "Global security field has an empty object (v2)",
+    "severity": "HIGH",
+    "line": 38,
+    "fileName": "positive9.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "security",
+    "searchValue": "",
+    "expectedValue": "Global security field definition should not have an empty object",
+    "actualValue": "Global security field definition has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "4e44ae9a2e234871df77f88b35a86024f0fe1e6d4ae9a170a00d8c72a7c65bd8",
+    "search_line": -1
   }
 ]

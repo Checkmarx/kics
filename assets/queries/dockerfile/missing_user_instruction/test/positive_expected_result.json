@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Missing User Instruction",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive.dockerfile"
-	},
-	{
-		"queryName": "Missing User Instruction",
-		"severity": "HIGH",
-		"line": 7,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Missing User Instruction",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:2.7}}",
+    "searchValue": "",
+    "expectedValue": "The 'Dockerfile' should contain the 'USER' instruction",
+    "actualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
+    "issueType": "MissingAttribute",
+    "similarityID": "dceb883897a76938fb70b71edbc0bc676f8d06fd70dcc9d85944611686ab1eff",
+    "search_line": -1
+  },
+  {
+    "queryName": "Missing User Instruction",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest  }}",
+    "searchValue": "",
+    "expectedValue": "The 'Dockerfile' should contain the 'USER' instruction",
+    "actualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
+    "issueType": "MissingAttribute",
+    "similarityID": "8f06b797ed4fe607b201dfc4bcc23614f61365ddace5defadd411f7464898960",
+    "search_line": -1
+  }
 ]

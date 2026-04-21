@@ -2,11 +2,31 @@
   {
     "queryName": "Redshift Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_redshift_cluster[positive1].logging.enable",
+    "searchValue": "",
+    "expectedValue": "'aws_redshift_cluster.logging' should be true",
+    "actualValue": "'aws_redshift_cluster.logging' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "2ef2058c287d3e56e358b5f55801a74014dc0d0aeb68eccf25f24257d7988682",
+    "search_line": 9
   },
   {
     "queryName": "Redshift Cluster Logging Disabled",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive2",
+    "searchKey": "aws_redshift_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "'aws_redshift_cluster.logging' should be true",
+    "actualValue": "'aws_redshift_cluster.logging' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0d865259fdb2cdebe18bff2532ddf06f8c8a0d736687cb5a5bf9d887b6979273",
+    "search_line": 13
   }
 ]

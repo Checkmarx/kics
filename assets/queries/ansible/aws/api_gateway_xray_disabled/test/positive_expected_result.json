@@ -2,11 +2,31 @@
   {
     "queryName": "API Gateway X-Ray Disabled",
     "severity": "LOW",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_api_gateway",
+    "resourceName": "Setup AWS API Gateway setup on AWS and deploy API definition",
+    "searchKey": "name={{Setup AWS API Gateway setup on AWS and deploy API definition}}.{{community.aws.aws_api_gateway}}.tracing_enabled",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway.tracing_enabled should be true",
+    "actualValue": "aws_api_gateway.tracing_enabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a4bfd27485407d0ae95b6482412dba8405ddc8fb658736e4c96929cccb0942b6",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway X-Ray Disabled",
     "severity": "LOW",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_api_gateway",
+    "resourceName": "Update API definition to deploy new version",
+    "searchKey": "name={{Update API definition to deploy new version}}.{{community.aws.aws_api_gateway}}",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway.tracing_enabled should be defined",
+    "actualValue": "aws_api_gateway.tracing_enabled is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6ea68590704c074e40d25b3f4881fdb4ee56ca108a3b49638cae87ce9e8ed305",
+    "search_line": -1
   }
 ]

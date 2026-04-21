@@ -3,60 +3,150 @@
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Content-Type",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "aa6cae0bf7455547d0b913a0fe0da37ec7fe4fc28011a672504c7ff7ccfb97bf",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
     "severity": "INFO",
     "line": 58,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Content-Type",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Content-Type should not be 'Content-Type",
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8c67764efdb2b47a4404dd9da8643e651f2812e93d6094f859334a81eea15cfe",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Content-Type",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3ff444c3fb76c5ff2de53463c442d450d0b201edc566c3ec384c45ba560fb54a",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
     "severity": "INFO",
     "line": 36,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Content-Type",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Content-Type should not be 'Content-Type",
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "62da76b405b119ffcdba94863669ae2749af37dded410fe1281bfa16ccf71a31",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Content-Type",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "914b4ee52362e46d03aac745c15d76ad3255b762747380cf4411320389068016",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Content-Type",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "28924938b8091f7821783cd120ea3cc46b6e1befd3ae2b179410a1d7ffeb3f7e",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v2)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Header Parameter Named as 'Content-Type' (v2)",
-    "severity": "INFO",
-    "line": 14,
-    "filename": "positive6.yaml"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Content-Type",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "98e036ae41bf6af1c9ceeb74752a830651fd00ae29de2b1d4b64c942998aace9",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v2)",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.name=Content-Type",
+    "searchValue": "",
+    "expectedValue": "parameters.limitParam.name=Content-Type should not be 'Content-Type",
+    "actualValue": "parameters.limitParam.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "77363926d736aeb1443ed7ddcb48662d65abd01e17fa45d3be08a83923f33bd3",
+    "search_line": -1
+  },
+  {
+    "queryName": "Header Parameter Named as 'Content-Type' (v2)",
+    "severity": "INFO",
+    "line": 14,
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Content-Type",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Content-Type should not be 'Content-Type",
+    "actualValue": "paths.{{/}}.parameters.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d949da4adcf135d2b57ff9570269f5f07398aa876a7bc2170cdeede65957abf7",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Content-Type' (v2)",
     "severity": "INFO",
     "line": 23,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.name=Content-Type",
+    "searchValue": "",
+    "expectedValue": "parameters.limitParam.name=Content-Type should not be 'Content-Type",
+    "actualValue": "parameters.limitParam.name=Content-Type is 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "800ed0a472c2604b454106c617ee235c2d43f9b78e076e9d66b246ed02a4f62d",
+    "search_line": -1
   }
 ]

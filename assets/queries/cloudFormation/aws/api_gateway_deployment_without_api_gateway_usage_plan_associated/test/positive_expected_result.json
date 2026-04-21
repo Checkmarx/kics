@@ -3,36 +3,90 @@
     "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Deployment",
+    "searchValue": "",
+    "expectedValue": "Resources.Deployment should have UsagePlan defined",
+    "actualValue": "Resources.Deployment doesn't have UsagePlan defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "18286655dafa2e529915d48668af24d5c63e56b523a100d2018d32a8ded68cb5",
+    "search_line": 4
   },
   {
+    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
     "line": 4,
     "fileName": "positive2.yaml",
-    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
-    "severity": "LOW"
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Deployment1",
+    "searchValue": "",
+    "expectedValue": "Resources.Deployment1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Deployment1 resource",
+    "actualValue": "Resources.Deployment1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Deployment1 resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "7c5b721891b4325c6c30288fe4e064b25a43bd0cd64e7778c8cd4f7dfd6b6d0c",
+    "search_line": 4
   },
   {
     "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "Prod1",
+    "searchKey": "Resources.Deployment2",
+    "searchValue": "",
+    "expectedValue": "Resources.Deployment2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Deployment2 resource",
+    "actualValue": "Resources.Deployment2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Deployment2 resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "c0f3a0dfe8e503b5ff9f727afd808f64caf8597c3c2c4e603182c8f9ac884f64",
+    "search_line": 4
   },
   {
+    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
     "line": 5,
     "fileName": "positive4.json",
-    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
-    "severity": "LOW"
-  },
-  {
-    "fileName": "positive5.json",
-    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
-    "severity": "LOW",
-    "line": 5
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Deployment",
+    "searchValue": "",
+    "expectedValue": "Resources.Deployment should have UsagePlan defined",
+    "actualValue": "Resources.Deployment doesn't have UsagePlan defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f7dc694668a05b302b5fc77f34de765a3e3c02eef2fba312a02f485b22e778e3",
+    "search_line": 5
   },
   {
     "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive6.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Deployment1",
+    "searchValue": "",
+    "expectedValue": "Resources.Deployment1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Deployment1 resource",
+    "actualValue": "Resources.Deployment1 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Deployment1 resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "db7780ea7b84b8d7af1ee90ac37b54e60217d18c5e67f290b25e542b0e6c9278",
+    "search_line": 5
+  },
+  {
+    "queryName": "API Gateway Deployment Without API Gateway UsagePlan Associated",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive6.json",
+    "resourceType": "AWS::ApiGateway::Deployment",
+    "resourceName": "Prod1",
+    "searchKey": "Resources.Deployment2",
+    "searchValue": "",
+    "expectedValue": "Resources.Deployment2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same as the Deployment2 resource",
+    "actualValue": "Resources.Deployment2 should have AWS::ApiGateway::UsagePlan associated, RestApiId and StageName should be the same in the Deployment2 resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "c3f1118397d53042c85bd4717a5ddcd0d41a93ac1c04b6dcb9f002fca987b855",
+    "search_line": 5
   }
 ]

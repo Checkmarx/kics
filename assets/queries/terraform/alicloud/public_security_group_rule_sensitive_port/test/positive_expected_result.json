@@ -1,20 +1,47 @@
 [
-    {
-        "queryName": "Public Security Group Rule Sensitive Port",
-        "severity": "HIGH",
-        "line": 10,
-        "fileName": "positive1.tf"
-    },
-    {
-        "queryName": "Public Security Group Rule Sensitive Port",
-        "severity": "HIGH",
-        "line": 10,
-        "fileName": "positive2.tf"
-    },
-    {
-        "queryName": "Public Security Group Rule Sensitive Port",
-        "severity": "HIGH",
-        "line": 10,
-        "fileName": "positive3.tf"
-    }
+  {
+    "queryName": "Public Security Group Rule Sensitive Port",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
+    "searchValue": "20",
+    "expectedValue": "tcp:20 port should not be allowed",
+    "actualValue": "tcp:20 port is allowed",
+    "issueType": "IncorrectValue",
+    "similarityID": "356b87dc646dccf941ef3d7fca2cf6839edeb7beca06ce83b8e116dd8165548d",
+    "search_line": 10
+  },
+  {
+    "queryName": "Public Security Group Rule Sensitive Port",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
+    "searchValue": "4333",
+    "expectedValue": "udp:4333 port should not be allowed",
+    "actualValue": "udp:4333 port is allowed",
+    "issueType": "IncorrectValue",
+    "similarityID": "8394146fbc871ca77a5481c7c36039ff6200be77e1188fddefc1a654429fd832",
+    "search_line": 10
+  },
+  {
+    "queryName": "Public Security Group Rule Sensitive Port",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive3.tf",
+    "resourceType": "alicloud_security_group_rule",
+    "resourceName": "allow_all_tcp",
+    "searchKey": "alicloud_security_group_rule[allow_all_tcp].port_range",
+    "searchValue": "445",
+    "expectedValue": "all:445 port should not be allowed",
+    "actualValue": "all:445 port is allowed",
+    "issueType": "IncorrectValue",
+    "similarityID": "5a4fd17477b72dfa2bb292deb401f60e5968a4b632ab18c77e07ff7c6f9ea319",
+    "search_line": 10
+  }
 ]

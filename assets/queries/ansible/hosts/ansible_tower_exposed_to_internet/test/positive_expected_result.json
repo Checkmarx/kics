@@ -3,12 +3,30 @@
     "queryName": "Ansible Tower Exposed To Internet",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.ini"
+    "fileName": "positive1.ini",
+    "resourceType": "n/a",
+    "resourceName": "children",
+    "searchKey": "[tower]",
+    "searchValue": "",
+    "expectedValue": "Ansible Tower IP should be private",
+    "actualValue": "Ansible Tower IP is public",
+    "issueType": "IncorrectValue",
+    "similarityID": "09a6bd1d189279ce9ff103ae52cea28de90d2ab066e3e33484e1b8b21f44334d",
+    "search_line": -1
   },
   {
     "queryName": "Ansible Tower Exposed To Internet",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "n/a",
+    "resourceName": "children",
+    "searchKey": "all.children.tower.hosts",
+    "searchValue": "",
+    "expectedValue": "Ansible Tower IP should be private",
+    "actualValue": "Ansible Tower IP is public",
+    "issueType": "IncorrectValue",
+    "similarityID": "3106839ed34aaf7e2c38d7958c702834bc83552b4d046600cce67014339327d7",
+    "search_line": -1
   }
 ]

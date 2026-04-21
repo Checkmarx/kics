@@ -2,6 +2,16 @@
   {
     "queryName": "VM Not Attached To Network",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_virtualmachine",
+    "resourceName": "Create a VM with a custom image",
+    "searchKey": "name={{Create a VM with a custom image}}.{{azure_rm_virtualmachine}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_virtualmachine.network_interface_names should be defined",
+    "actualValue": "azure_rm_virtualmachine.network_interface_names is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "357731ae905821bed427bb25541d1f3279a2b686b2440fbaa520c9873e7c27c3",
+    "search_line": -1
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "Shared Host Network Namespace",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.hostNetwork",
+    "searchValue": "",
+    "expectedValue": "'spec.hostNetwork' should be set to false or undefined",
+    "actualValue": "'spec.hostNetwork' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "bb0532cd2eb747e4af82f822db6f636c80aaee953dc5408b0f4e61a50947d429",
+    "search_line": -1
   },
   {
     "queryName": "Shared Host Network Namespace",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.hostNetwork",
+    "searchValue": "",
+    "expectedValue": "'spec.template.spec.hostNetwork' should be set to false or undefined",
+    "actualValue": "'spec.template.spec.hostNetwork' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "2f33c9eedd0866ae2d9447000a38591fd4b48e3ddae4e1a53eddc13a850eb1e4",
+    "search_line": -1
   }
 ]

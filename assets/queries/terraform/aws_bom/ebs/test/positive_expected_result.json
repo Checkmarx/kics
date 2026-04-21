@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_ebs_volume[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "7b09901116ba2f02de9382e79c867279afefa9264ec7947fe7b2cfa150d1a775",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_ebs_volume[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "b117bf28948bf0d59f9d243b3724e463f9a375a633d5556fb0499a4bd302e3b2",
+    "search_line": 1
   }
 ]

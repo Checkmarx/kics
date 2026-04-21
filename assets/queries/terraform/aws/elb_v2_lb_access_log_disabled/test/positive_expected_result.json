@@ -3,36 +3,90 @@
     "queryName": "ELBv2 LB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[test].access_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs.enabled' is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "6cb1a0d6d618f67fa0281a6542643777da281bdc6a838e746a498db6e6ce5d54",
+    "search_line": 13
   },
   {
     "queryName": "ELBv2 LB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[test].access_logs",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs.enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "73243539202493cd1b9975b95e573d93f2d0e219807529aedbf0d521fd6491a0",
+    "search_line": 10
   },
   {
     "queryName": "ELBv2 LB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_lb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_lb[test]",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "95e419b52a3ee5640a46c515afda8880899688b23d1cdaac30ebc520fc01f0ba",
+    "search_line": 1
   },
   {
     "queryName": "ELBv2 LB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_alb[test].access_logs.enabled",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs.enabled' is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0e45c930674df6801494b90c99e4cc988d4c3c1a7701b7af81a00722489e974",
+    "search_line": 14
   },
   {
     "queryName": "ELBv2 LB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_alb[test].access_logs",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs.enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b3fa6fef0a6c221cc8effed4b24bc186ad0ab95b08daf9ccd234194fd75a158c",
+    "search_line": 11
   },
   {
     "queryName": "ELBv2 LB Access Log Disabled",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_alb",
+    "resourceName": "test-lb-tf",
+    "searchKey": "aws_alb[test]",
+    "searchValue": "",
+    "expectedValue": "'access_logs.enabled' should be defined and set to true",
+    "actualValue": "'access_logs' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "15dbfef179cd44c747d6d5f749122b8f5574275a991c7293a0bcfe35fedbe013",
+    "search_line": 2
   }
 ]

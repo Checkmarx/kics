@@ -3,18 +3,45 @@
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
     "line": 49,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "test-VPC-EFS",
+    "searchKey": "Resources.EFSFileSystem01.Properties.Encrypted",
+    "searchValue": "",
+    "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled",
+    "actualValue": "EFS resource 'EFSFileSystem01' has encryption set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ea8d57696d56e14b3c09cb678680ff0760c60832e645946e30733a22b0567c6d",
+    "search_line": -1
   },
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
     "line": 90,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "test-VPC-EFS",
+    "searchKey": "Resources.EFSFileSystem01.Properties.Encrypted",
+    "searchValue": "",
+    "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled",
+    "actualValue": "EFS resource 'EFSFileSystem01' has encryption set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "23ef605a47217c04f4bbc873fb2c7b300a663075a5f944fe369d59c69e5a38f5",
+    "search_line": -1
   },
   {
     "queryName": "EFS Not Encrypted",
     "severity": "HIGH",
     "line": 49,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::EFS::FileSystem",
+    "resourceName": "test-VPC-EFS",
+    "searchKey": "Resources.EFSFileSystem01.Properties.Encrypted",
+    "searchValue": "",
+    "expectedValue": "EFS resource 'EFSFileSystem01' should have encryption enabled",
+    "actualValue": "EFS resource 'EFSFileSystem01' has encryption set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "75407b6034ad88706bffe25fa775b35c8aa5016493b0952ed560fb529782dfbd",
+    "search_line": -1
   }
 ]
