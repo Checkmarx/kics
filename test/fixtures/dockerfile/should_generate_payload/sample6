@@ -1,3 +1,0 @@
-FROM --platform=linux/amd64 ubuntu
-RUN echo "hello"
-ADD ${JAR_FILE} app.jar

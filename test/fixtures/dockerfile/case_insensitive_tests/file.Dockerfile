@@ -3,7 +3,7 @@ arg BASE_IMAGE=ubuntu:22.04
 
 # Comments after arg
 
-  from alpine:3.19 as builder
+from alpine:3.19 as builder
 
 copy . .
 
