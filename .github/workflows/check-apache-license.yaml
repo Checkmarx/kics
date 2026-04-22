@@ -31,6 +31,12 @@ jobs:
         else
           echo "TAG_EXISTS=false" >> $GITHUB_ENV
         fi
+    - name: Generate KICS Bot token
+      id: kics-bot-token
+      uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+      with:
+        client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+        private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
     - name: Delete comment if license is fixed
       if: env.TAG_EXISTS == 'true'
       uses: thollander/actions-comment-pull-request@e4a76dd2b0a3c2027c3fd84147a67c22ee4c90fa
@@ -39,7 +45,7 @@ jobs:
           Deleting comment...
         comment-tag: apache_license
         mode: delete
-        github-token: ${{ secrets.KICS_BOT_PAT }}
+        github-token: ${{ steps.kics-bot-token.outputs.token }}
     - name: Add comment if no license
       if: env.CHECK_FAILED == 'true'
       uses: thollander/actions-comment-pull-request@e4a76dd2b0a3c2027c3fd84147a67c22ee4c90fa

@@ -69,11 +69,17 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
+      - name: Generate KICS Bot token
+        id: kics-bot-token
+        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+        with:
+          client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v6
         with:
           title: "docs(kicsbot): update images digest"
-          token: ${{ secrets.KICS_BOT_PAT }}
+          token: ${{ steps.kics-bot-token.outputs.token }}
           commit-message: "docs(kicsbot): update github-action image digest"
           delete-branch: true
           branch: feature/kicsbot-update-gh-actions-digest

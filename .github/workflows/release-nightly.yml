@@ -31,10 +31,17 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
+      - name: Generate KICS Bot token
+        id: kics-bot-token
+        if: always()
+        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+        with:
+          client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
         if: always()
         with:
-          github-token: ${{ secrets.KICS_BOT_PAT }}
+          github-token: ${{ steps.kics-bot-token.outputs.token }}
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
           card-layout-start: cozy
           card-layout-exit: complete
@@ -129,10 +136,17 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Generate KICS Bot token
+        id: kics-bot-token
+        if: always()
+        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+        with:
+          client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
         if: always()
         with:
-          github-token: ${{ secrets.KICS_BOT_PAT }}
+          github-token: ${{ steps.kics-bot-token.outputs.token }}
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
           card-layout-start: cozy
           card-layout-exit: complete
@@ -236,7 +250,7 @@ jobs:
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v6
         with:
           title: "docs(kicsbot): update images digest"
-          token: ${{ secrets.KICS_BOT_PAT }}
+          token: ${{ steps.kics-bot-token.outputs.token }}
           commit-message: "docs(kicsbot): update images digest"
           delete-branch: true
           branch: feature/kicsbot-update-queries-docs
