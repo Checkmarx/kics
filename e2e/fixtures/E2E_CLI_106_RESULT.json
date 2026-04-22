@@ -1,9 +1,9 @@
 {
   "kics_version": "development",
-  "files_scanned": 36,
-  "lines_scanned": 261,
-  "files_parsed": 36,
-  "lines_parsed": 250,
+  "files_scanned": 37,
+  "lines_scanned": 273,
+  "files_parsed": 37,
+  "lines_parsed": 262,
   "lines_ignored": 11,
   "files_failed_to_scan": 0,
   "queries_total": 48,
@@ -12,16 +12,16 @@
   "scan_id": "console",
   "severity_counters": {
     "CRITICAL": 0,
-    "HIGH": 35,
+    "HIGH": 37,
     "INFO": 6,
-    "LOW": 17,
-    "MEDIUM": 16,
+    "LOW": 19,
+    "MEDIUM": 19,
     "TRACE": 0
   },
-  "total_counter": 74,
+  "total_counter": 81,
   "total_bom_resources": 0,
-  "start": "2026-04-21T15:48:50.4046892+01:00",
-  "end": "2026-04-21T15:48:58.266124+01:00",
+  "start": "2026-04-22T11:22:16.7947548+01:00",
+  "end": "2026-04-22T11:22:18.3420558+01:00",
   "paths": [
     "/path/test/fixtures/dockerfile",
     "/path/test/fixtures/negative_dockerfile"
@@ -42,11 +42,88 @@
       "description_id": "eb49caf6",
       "files": [
         {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag",
+          "similarity_id": "574ad8efea37036e772f5f133327ee6d82456fcfa268e0a01f942dd36d84a30d",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{--platform=linux/amd64 alpine:latest}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/test_folder_names/dockerfiles/any_file.txt",
+          "similarity_id": "e150676345e87674484ea970ca810125007b743069646ac448feaba242b7211f",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:3.19 AS builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/any_name/file_2.DOCKERfile",
+          "similarity_id": "29858cfa69a98973cc1ae10f84e66267240bd630126eba2ba15e58a7aa2dd54d",
+          "line": 4,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:3.19 AS builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "c77e7ff048b27b896b53a89ac6008ec2fea042fb92a18807de325774dd93dfeb",
+          "line": 5,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{ubuntu:latestnightly(1)}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/big_indent_from",
           "similarity_id": "fd5fe33f391e08e2d4d4fe8058f5e93a75c6cd8424ea137b9944b8d871d5c37e",
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "FROM={{alpine:latest}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/test_folder_names_case/Dockerfiles/any_file.txt",
+          "similarity_id": "b58c4c4ed6c88b82fdf62608154342a31a2de95eaae39716ff4f6ccf1a5bcdda",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:3.19 AS builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/DOCKERfile.txt",
+          "similarity_id": "a1bc54f29a5cd60b430490ab4ddf040dde52e24f1a9c81544e3aae9e21704fe7",
+          "line": 13,
+          "issue_type": "MissingAttribute",
+          "search_key": "from={{alpine:3.19 as builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/any_name/file.Dockerfile",
+          "similarity_id": "1d972910b640dfb968ab630847182b4a19f44b78aeeaa0ef93c96c7e27aa8b6a",
+          "line": 6,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:3.19 AS builder}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
@@ -64,30 +141,19 @@
           "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag",
-          "similarity_id": "574ad8efea37036e772f5f133327ee6d82456fcfa268e0a01f942dd36d84a30d",
-          "line": 1,
+          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/any_name.ubi8",
+          "similarity_id": "99145bb5bb5996f2d9518769bbebb143a6edff8c1b9866b9de64b2b6fba667e5",
+          "line": 4,
           "issue_type": "MissingAttribute",
-          "search_key": "FROM={{--platform=linux/amd64 alpine:latest}}",
+          "search_key": "from={{alpine:3.19 as builder}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
           "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/corrupted_dockerfile",
-          "similarity_id": "558c83370b9fc9e230035e00ff7b5302cd64c16f700e73c830579947e250a381",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:latest}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/file_2.DOCKERfile",
-          "similarity_id": "b0694a2913d293ea034d0fe62bd549aed2dd316a81fb82b611a7ab901e32b1b6",
+          "file_name": "path/test/fixtures/dockerfile/test_folder_names_case/Docker/any_file.txt",
+          "similarity_id": "6da391b0e3e24d85f72b3ace5db0569be32ef11e6f9a433b138ae4e0b004df58",
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "FROM={{alpine:3.19 AS builder}}",
@@ -108,77 +174,11 @@
           "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/big_host_name",
-          "similarity_id": "357d434e6436d7fc32420359985019be12903ca92c03f50369e95a19b96e9d97",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{bighostnameusedasasample.example.com:4903/team/my-app:2.0}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_and_alias",
-          "similarity_id": "d6c1ff98af764022d3ff3dce0b91cb19fb8dce099e87c506ddd542176b9444c1",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_scratch",
-          "similarity_id": "f7e67be39f384d20f8816eff63ab5538f5990b6bae86ddd244478d9cb89f7b65",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{--platform=linux/arm64 scratch}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/multiline_from_statement",
-          "similarity_id": "af265ea3757c481a3f200faa7949ddb6fe1b0527c191d95ef81be533b12a55ca",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.18     AS base}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/any_name/DOCKERfile.txt",
-          "similarity_id": "5663f110b46dbc0378ff0540fc4a54700c80197a1ced862564f987d4f2e7116d",
-          "line": 13,
+          "file_name": "path/test/fixtures/dockerfile/any_name/any_name.ubi8",
+          "similarity_id": "4d64348b27180d867de9cf04a51db582786ea6622adb94fb54fdbac03b284769",
+          "line": 4,
           "issue_type": "MissingAttribute",
           "search_key": "FROM={{alpine:3.19 AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/host_ip_address",
-          "similarity_id": "9f206d8845b08c15965c3cf00b7db7d9ee679c281d14cb5f2d414065a423b8a3",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{192.168.1.100:5000/team/image:v1}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/random_name",
-          "similarity_id": "4df62f3dddaa0fe84e53c387514ff1ffb2405fb47a80011271dfc6742078a0e8",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 as builder}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
@@ -196,72 +196,6 @@
           "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/test_folder_names/dockerfiles/any_file.txt",
-          "similarity_id": "e150676345e87674484ea970ca810125007b743069646ac448feaba242b7211f",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/dockerFILE",
-          "similarity_id": "9977ed3614740afd406ca0a86f0df4da5e8680efbb6e9e66ff71ae1dc2d9025f",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 as builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/any_name/any_name.debian",
-          "similarity_id": "ef335c394fbaebc802c99ba59b1b3ec830043ac020b711efc7cf497752b73429",
-          "line": 4,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/use_of_host",
-          "similarity_id": "98a9086dd512b76196866fa544fda9b79cdbe49097e0781edb284da60286a356",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{example.com:5000/team/my-app:2.0}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/test_folder_names_case/Dockerfiles/any_file.txt",
-          "similarity_id": "b58c4c4ed6c88b82fdf62608154342a31a2de95eaae39716ff4f6ccf1a5bcdda",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/any_name/any_name.ubi8",
-          "similarity_id": "4d64348b27180d867de9cf04a51db582786ea6622adb94fb54fdbac03b284769",
-          "line": 4,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_with_arg_reference",
           "similarity_id": "68909c9c7a5f9979df2102bd5e7a21930d1b036b25710875c5cd76f52539490d",
           "line": 2,
@@ -273,31 +207,9 @@
           "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/Dockerfile-example",
-          "similarity_id": "aeaf42752011d846797cea09ce1a0eb5457673c67b0fb16914a0c639a253e5c7",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{openjdk:10-jdk}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/base_image_reference",
-          "similarity_id": "d2716fd01d8e6d44b30749e106a2bd40ce4cb0b673ec7e62a4df8ca982c0582e",
-          "line": 2,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{${BASE_IMAGE}}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/test_folder_names/docker/any_file.txt",
-          "similarity_id": "9d78b93c92fe63c29dec006a12993b74dc6c6fbf29ae295ff7c6e19136657e2d",
-          "line": 1,
+          "file_name": "path/test/fixtures/dockerfile/any_name/Dockerfile.something",
+          "similarity_id": "b41a39fe06c21fc69fbd6e8f7b3e2c44e8d0d7a8e2b0e0c251f5d6a174e031ee",
+          "line": 4,
           "issue_type": "MissingAttribute",
           "search_key": "FROM={{alpine:3.19 AS builder}}",
           "search_line": -1,
@@ -317,50 +229,6 @@
           "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/any_name/random_name",
-          "similarity_id": "ee3531797486eec98e3dd28ec8cc5f7f6f00743d1cf79cd47f6859df87026f59",
-          "line": 3,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/any_name.debian",
-          "similarity_id": "c949a1c23fe7c61dea7daac22ce6a13ffb8dec65b4bcbeacc76bf295518e72ef",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 as builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/any_name/file_2.DOCKERfile",
-          "similarity_id": "29858cfa69a98973cc1ae10f84e66267240bd630126eba2ba15e58a7aa2dd54d",
-          "line": 4,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/DOCKERfile.txt",
-          "similarity_id": "f9caf5d57d5872073bc7b7a555a3283708f72c9990689c8d4e6b3ce1957b496a",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 as builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
           "file_name": "path/test/fixtures/dockerfile/test_folder_names/dockerfile/any_file.txt",
           "similarity_id": "c2e7f0c0c566a723ff253f4a95e837749faba964ec008551c1f87a7faa476110",
           "line": 1,
@@ -372,19 +240,8 @@
           "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/any_name/file.Dockerfile",
-          "similarity_id": "1d972910b640dfb968ab630847182b4a19f44b78aeeaa0ef93c96c7e27aa8b6a",
-          "line": 6,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/test_folder_names_case/Docker/any_file.txt",
-          "similarity_id": "6da391b0e3e24d85f72b3ace5db0569be32ef11e6f9a433b138ae4e0b004df58",
+          "file_name": "path/test/fixtures/dockerfile/test_folder_names/docker/any_file.txt",
+          "similarity_id": "9d78b93c92fe63c29dec006a12993b74dc6c6fbf29ae295ff7c6e19136657e2d",
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "FROM={{alpine:3.19 AS builder}}",
@@ -394,8 +251,140 @@
           "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/any_name/Dockerfile.something",
-          "similarity_id": "b41a39fe06c21fc69fbd6e8f7b3e2c44e8d0d7a8e2b0e0c251f5d6a174e031ee",
+          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/file.Dockerfile",
+          "similarity_id": "5f4fd65d6c624e63abde45a2c7fbfc4a3c64ab9e7b7bc95ddde9b861818aedfc",
+          "line": 6,
+          "issue_type": "MissingAttribute",
+          "search_key": "from={{alpine:3.19 as builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-example",
+          "similarity_id": "aeaf42752011d846797cea09ce1a0eb5457673c67b0fb16914a0c639a253e5c7",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{openjdk:10-jdk}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/random_name",
+          "similarity_id": "9ca22b0eb1ead0048eef0d5aba185858c316469892ded249c7c261720f293370",
+          "line": 3,
+          "issue_type": "MissingAttribute",
+          "search_key": "from={{alpine:3.19 as builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/big_host_name",
+          "similarity_id": "357d434e6436d7fc32420359985019be12903ca92c03f50369e95a19b96e9d97",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{bighostnameusedasasample.example.com:4903/team/my-app:2.0}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/host_ip_address",
+          "similarity_id": "9f206d8845b08c15965c3cf00b7db7d9ee679c281d14cb5f2d414065a423b8a3",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{192.168.1.100:5000/team/image:v1}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/multiline_from_statement",
+          "similarity_id": "af265ea3757c481a3f200faa7949ddb6fe1b0527c191d95ef81be533b12a55ca",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:3.18     AS base}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/file_2.DOCKERfile",
+          "similarity_id": "fbc4d6daf991234501dbcba5df28a58b2de1983ffbcc8b18d2f4546c295dfa39",
+          "line": 4,
+          "issue_type": "MissingAttribute",
+          "search_key": "from={{alpine:3.19 AS builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/any_name.debian",
+          "similarity_id": "3bcbe17d4e87888fabeadb6871fac6370dec66a162d8c94b3afed2327a3ecc11",
+          "line": 4,
+          "issue_type": "MissingAttribute",
+          "search_key": "from={{alpine:3.19 as builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_and_alias",
+          "similarity_id": "d6c1ff98af764022d3ff3dce0b91cb19fb8dce099e87c506ddd542176b9444c1",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/corrupted_dockerfile",
+          "similarity_id": "558c83370b9fc9e230035e00ff7b5302cd64c16f700e73c830579947e250a381",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:latest}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/use_of_host",
+          "similarity_id": "98a9086dd512b76196866fa544fda9b79cdbe49097e0781edb284da60286a356",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{example.com:5000/team/my-app:2.0}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/base_image_reference",
+          "similarity_id": "d2716fd01d8e6d44b30749e106a2bd40ce4cb0b673ec7e62a4df8ca982c0582e",
+          "line": 2,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{${BASE_IMAGE}}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/any_name/any_name.debian",
+          "similarity_id": "ef335c394fbaebc802c99ba59b1b3ec830043ac020b711efc7cf497752b73429",
           "line": 4,
           "issue_type": "MissingAttribute",
           "search_key": "FROM={{alpine:3.19 AS builder}}",
@@ -405,22 +394,55 @@
           "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/Dockerfile.something",
-          "similarity_id": "2b1d191f474528c93b66c1f5f891efd3763834725ed4008cbd216702f576ef20",
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_scratch",
+          "similarity_id": "f7e67be39f384d20f8816eff63ab5538f5990b6bae86ddd244478d9cb89f7b65",
           "line": 1,
           "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 as builder}}",
+          "search_key": "FROM={{--platform=linux/arm64 scratch}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
           "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/any_name.ubi8",
-          "similarity_id": "ce95928798897e3f22c2677202d38812030cc2dfb5cf0470d397d7baaf8c1de1",
-          "line": 1,
+          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/dockerFILE",
+          "similarity_id": "bda0e263debb4ef181a93c60d35e0f28a57ca27f9f19b0a550a2a219c7fb56b6",
+          "line": 6,
           "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.19 as builder}}",
+          "search_key": "from={{alpine:3.19 as builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/case_insensitive_tests/Dockerfile.something",
+          "similarity_id": "58a26cafd4b62b89183a99f03c581a511654a67074c333f95c0481af8816450e",
+          "line": 4,
+          "issue_type": "MissingAttribute",
+          "search_key": "from={{alpine:3.19 as builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/any_name/random_name",
+          "similarity_id": "ee3531797486eec98e3dd28ec8cc5f7f6f00743d1cf79cd47f6859df87026f59",
+          "line": 3,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:3.19 AS builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/any_name/DOCKERfile.txt",
+          "similarity_id": "5663f110b46dbc0378ff0540fc4a54700c80197a1ced862564f987d4f2e7116d",
+          "line": 13,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:3.19 AS builder}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
@@ -442,11 +464,22 @@
       "description_id": "0aedd324",
       "files": [
         {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_and_alias",
-          "similarity_id": "331f21aa559609154c76603d67a2ea7ae94f1fe97c9c8614dba0424eb43da6bf",
-          "line": 5,
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_with_arg_reference",
+          "similarity_id": "a6fec2d84a496642691bb3bb5e77cb5fdd04755e956063e42804d5072abb2281",
+          "line": 7,
           "issue_type": "IncorrectValue",
-          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{ADD ${JAR_FILE} app.jar}}",
+          "search_key": "FROM={{--platform=$BUILDPLATFORM golang:1.21}}.{{ADD ${JAR_FILE} app.jar}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "'COPY' ${JAR_FILE}",
+          "actual_value": "'ADD' ${JAR_FILE}"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/multiline_from_statement",
+          "similarity_id": "65fa5eb4dc035a375e7de6745c524a241571a42543ac1e1e50ab6b97992e36e7",
+          "line": 1,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{alpine:3.18     AS base}}.{{ADD ${JAR_FILE} app.jar}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "'COPY' ${JAR_FILE}",
@@ -464,11 +497,33 @@
           "actual_value": "'ADD' ${JAR_FILE}"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag",
-          "similarity_id": "7a1036d28f16660bc2d10439a80109abd807dfef90aae78130092d8a395b6868",
-          "line": 4,
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-example",
+          "similarity_id": "9d6bb1f4ca1093d79890b1b24b00dbb2e8fa60ca0df6b2ba391db348256eec6f",
+          "line": 6,
           "issue_type": "IncorrectValue",
-          "search_key": "FROM={{--platform=linux/amd64 alpine:latest}}.{{ADD ${JAR_FILE} app.jar}}",
+          "search_key": "FROM={{openjdk:10-jdk}}.{{ADD ${JAR_FILE} app.jar}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "'COPY' ${JAR_FILE}",
+          "actual_value": "'ADD' ${JAR_FILE}"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/use_of_host",
+          "similarity_id": "46bf1a187c7c8aa95cc825281d886f4f34560a3f48210f81bbc1ed7c0b0ebab6",
+          "line": 3,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{example.com:5000/team/my-app:2.0}}.{{ADD ${JAR_FILE} app.jar}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "'COPY' ${JAR_FILE}",
+          "actual_value": "'ADD' ${JAR_FILE}"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "2c8f808eeabb29c31b940c9d5d7526fe997c8c2d155857c1c462030cffd8c366",
+          "line": 10,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{ubuntu:latestnightly(1)}}.{{ADD ${JAR_FILE} app.jar}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "'COPY' ${JAR_FILE}",
@@ -486,28 +541,6 @@
           "actual_value": "'ADD' ${JAR_FILE}"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_with_arg_reference",
-          "similarity_id": "a6fec2d84a496642691bb3bb5e77cb5fdd04755e956063e42804d5072abb2281",
-          "line": 7,
-          "issue_type": "IncorrectValue",
-          "search_key": "FROM={{--platform=$BUILDPLATFORM golang:1.21}}.{{ADD ${JAR_FILE} app.jar}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "'COPY' ${JAR_FILE}",
-          "actual_value": "'ADD' ${JAR_FILE}"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/Dockerfile-example",
-          "similarity_id": "9d6bb1f4ca1093d79890b1b24b00dbb2e8fa60ca0df6b2ba391db348256eec6f",
-          "line": 6,
-          "issue_type": "IncorrectValue",
-          "search_key": "FROM={{openjdk:10-jdk}}.{{ADD ${JAR_FILE} app.jar}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "'COPY' ${JAR_FILE}",
-          "actual_value": "'ADD' ${JAR_FILE}"
-        },
-        {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_scratch",
           "similarity_id": "b293e7dc91ace6a7c4fec199190cdf5805dede7f6f499ede4f8401b32c6b0d95",
           "line": 4,
@@ -519,11 +552,22 @@
           "actual_value": "'ADD' ${JAR_FILE}"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/multiline_from_statement",
-          "similarity_id": "65fa5eb4dc035a375e7de6745c524a241571a42543ac1e1e50ab6b97992e36e7",
-          "line": 8,
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag",
+          "similarity_id": "7a1036d28f16660bc2d10439a80109abd807dfef90aae78130092d8a395b6868",
+          "line": 4,
           "issue_type": "IncorrectValue",
-          "search_key": "FROM={{alpine:3.18     AS base}}.{{ADD ${JAR_FILE} app.jar}}",
+          "search_key": "FROM={{--platform=linux/amd64 alpine:latest}}.{{ADD ${JAR_FILE} app.jar}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "'COPY' ${JAR_FILE}",
+          "actual_value": "'ADD' ${JAR_FILE}"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_and_alias",
+          "similarity_id": "331f21aa559609154c76603d67a2ea7ae94f1fe97c9c8614dba0424eb43da6bf",
+          "line": 5,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{ADD ${JAR_FILE} app.jar}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "'COPY' ${JAR_FILE}",
@@ -535,17 +579,6 @@
           "line": 10,
           "issue_type": "IncorrectValue",
           "search_key": "FROM={{openjdk:10-jdk}}.{{ADD ${JAR_FILE} app.jar}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "'COPY' ${JAR_FILE}",
-          "actual_value": "'ADD' ${JAR_FILE}"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/use_of_host",
-          "similarity_id": "46bf1a187c7c8aa95cc825281d886f4f34560a3f48210f81bbc1ed7c0b0ebab6",
-          "line": 3,
-          "issue_type": "IncorrectValue",
-          "search_key": "FROM={{example.com:5000/team/my-app:2.0}}.{{ADD ${JAR_FILE} app.jar}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "'COPY' ${JAR_FILE}",
@@ -571,7 +604,7 @@
           "similarity_id": "f6fd7d36e1105623f456a64c19447ba1688c981aac4d7ae8724c57c8437461fb",
           "line": 2,
           "issue_type": "MissingAttribute",
-          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.RUN={{apt-get update \u0026\u0026 apt-get install -y gcc}}",
+          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.RUN={{apt-get update /u0026/u0026 apt-get install -y gcc}}",
           "search_line": -1,
           "search_value": "gcc",
           "expected_value": "Package 'gcc' has version defined",
@@ -592,17 +625,6 @@
       "description": "When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag",
       "description_id": "22f535ec",
       "files": [
-        {
-          "file_name": "path/test/fixtures/dockerfile/corrupted_dockerfile",
-          "similarity_id": "b8c6f58c6b52c4155b70475008be34bcf7ca39a15378ca1828e657a75ba907f3",
-          "line": 1,
-          "issue_type": "IncorrectValue",
-          "search_key": "FROM={{alpine:latest}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "FROM alpine:latest:'version' where version should not be 'latest'",
-          "actual_value": "FROM alpine:latest'"
-        },
         {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/base_image_reference",
           "similarity_id": "2b585700aa5471374491ee55cb32bd19043a996c4b527ef7968f21e217aa2d83",
@@ -626,6 +648,17 @@
           "actual_value": "FROM alpine:latest'"
         },
         {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/big_indent_from",
+          "similarity_id": "152040fb0f74af479251b64b3f3e04cddc103fceebe34abc81c8402b33b5791e",
+          "line": 1,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{alpine:latest}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "FROM alpine:latest:'version' where version should not be 'latest'",
+          "actual_value": "FROM alpine:latest'"
+        },
+        {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_and_alias",
           "similarity_id": "eddc0cae749b1b03806a495198d58e2675acdf908cd8d039dfd8743339069808",
           "line": 1,
@@ -637,8 +670,30 @@
           "actual_value": "FROM ubuntu:latest'"
         },
         {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/big_indent_from",
-          "similarity_id": "152040fb0f74af479251b64b3f3e04cddc103fceebe34abc81c8402b33b5791e",
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "c9903f97a9c6b1d61827bd33319d69199388b1c8f2723062fcdffeaa4114e609",
+          "line": 5,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{ubuntu:latestnightly(1)}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "FROM ubuntu:latestnightly:'version' where version should not be 'latest'",
+          "actual_value": "FROM ubuntu:latestnightly'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "2293ffe73033c89194caa88cbeb6155961a38f987f4ec5da36603522770c38f7",
+          "line": 1,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{ubuntu:latestnightly}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "FROM ubuntu:latestnightly:'version' where version should not be 'latest'",
+          "actual_value": "FROM ubuntu:latestnightly'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/corrupted_dockerfile",
+          "similarity_id": "b8c6f58c6b52c4155b70475008be34bcf7ca39a15378ca1828e657a75ba907f3",
           "line": 1,
           "issue_type": "IncorrectValue",
           "search_key": "FROM={{alpine:latest}}",
@@ -674,6 +729,17 @@
           "actual_value": "'ADD' http://source.file/package.file.tar.gz"
         },
         {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "553c7b4eeea7e969b88c30c34e9b7e97dc16963e731d1888fec90bb55f00e35a",
+          "line": 7,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{ubuntu:latestnightly(1)}}.{{ADD http://source.file/package.file.tar.gz /temp}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Should use 'curl' or 'wget' to download http://source.file/package.file.tar.gz",
+          "actual_value": "'ADD' http://source.file/package.file.tar.gz"
+        },
+        {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/with_excluded_comments",
           "similarity_id": "b7b5e6e04d1eedc9ce08a3b3cc6182d6c77f41539c44825f6b065a9b911a9541",
           "line": 7,
@@ -687,7 +753,7 @@
         {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/multiline_from_statement",
           "similarity_id": "b859a2050fd4032304ab5aa47a5ec7e7be60998e29f82c531d23ca123d31bbc0",
-          "line": 5,
+          "line": 1,
           "issue_type": "IncorrectValue",
           "search_key": "FROM={{alpine:3.18     AS base}}.{{ADD http://source.file/package.file.tar.gz /temp}}",
           "search_line": -1,
@@ -711,121 +777,11 @@
       "description_id": "426121ee",
       "files": [
         {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/big_host_name",
-          "similarity_id": "0fbe6b1fc068e59c4519a7f0191bf3c66bcd48426bb400f8a17ada2e0db7f373",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{bighostnameusedasasample.example.com:4903/team/my-app:2.0}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/big_indent_from",
-          "similarity_id": "6606bcfea791ee1653816d7fd3d11dda7df4f96cb35ef1557fa3556b0fdca764",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:latest}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag",
-          "similarity_id": "1d75c91d6f47b6b0e00a70fb3aba1461133e91c394cd42a0378a30020a772c33",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{--platform=linux/amd64 alpine:latest}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/multiline_from_statement",
-          "similarity_id": "60e999ea86c199e26ee55024580e3e69d262b5c83092a25da9eddd321c7c2d21",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:3.18     AS base}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/corrupted_dockerfile",
-          "similarity_id": "ae470ca681b82da606c6080acf7ea93906066db785bf47e2372ef7b342f43f7e",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{alpine:latest}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/Dockerfile-example",
-          "similarity_id": "4d0420e48f4c7d991ed6694980266d5b7313da8abb2e29b2dd777ce7c6f6251d",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{openjdk:10-jdk}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/base_image_reference",
-          "similarity_id": "f89c7daf1bda819bc9f8c88ba0537cc09d73eabc47d2fb265289c7b60d6318c2",
-          "line": 2,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{${BASE_IMAGE}}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-        },
-        {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_and_alias",
           "similarity_id": "84c42fce04501e4cab82857ba0eac27193fbf52554ddf85aed92c9e50b1a55cc",
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/use_of_host",
-          "similarity_id": "e295d381f5cf7b496d9557d229dace321cf50a10cf6f35a47733c05d16cec1b4",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{example.com:5000/team/my-app:2.0}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_with_arg_reference",
-          "similarity_id": "2b6ecbffb0ae35559c7e7fd068707a6774060cfdb0b6aad4e30c27f6f2201a2e",
-          "line": 2,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{--platform=$BUILDPLATFORM golang:1.21}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_scratch",
-          "similarity_id": "1413f0f83a852273b3346b226059394439ada151ef2e23c654bf26fa3a2de923",
-          "line": 1,
-          "issue_type": "MissingAttribute",
-          "search_key": "FROM={{--platform=linux/arm64 scratch}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
@@ -843,11 +799,132 @@
           "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
         },
         {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_scratch",
+          "similarity_id": "1413f0f83a852273b3346b226059394439ada151ef2e23c654bf26fa3a2de923",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{--platform=linux/arm64 scratch}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-example",
+          "similarity_id": "4d0420e48f4c7d991ed6694980266d5b7313da8abb2e29b2dd777ce7c6f6251d",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{openjdk:10-jdk}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "e6541da925ea5f5ca321e7c1850bc77e4a80991324087953bd41234691c6b8c5",
+          "line": 5,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{ubuntu:latestnightly(1)}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_with_arg_reference",
+          "similarity_id": "2b6ecbffb0ae35559c7e7fd068707a6774060cfdb0b6aad4e30c27f6f2201a2e",
+          "line": 2,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{--platform=$BUILDPLATFORM golang:1.21}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag",
+          "similarity_id": "1d75c91d6f47b6b0e00a70fb3aba1461133e91c394cd42a0378a30020a772c33",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{--platform=linux/amd64 alpine:latest}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/corrupted_dockerfile",
+          "similarity_id": "ae470ca681b82da606c6080acf7ea93906066db785bf47e2372ef7b342f43f7e",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:latest}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/base_image_reference",
+          "similarity_id": "f89c7daf1bda819bc9f8c88ba0537cc09d73eabc47d2fb265289c7b60d6318c2",
+          "line": 2,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{${BASE_IMAGE}}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/multiline_from_statement",
+          "similarity_id": "60e999ea86c199e26ee55024580e3e69d262b5c83092a25da9eddd321c7c2d21",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:3.18     AS base}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/big_indent_from",
+          "similarity_id": "6606bcfea791ee1653816d7fd3d11dda7df4f96cb35ef1557fa3556b0fdca764",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{alpine:latest}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/full_sha_digest",
           "similarity_id": "bac31787e6c7d3a127e2936f11ef5dadc6b477d8db1a10ed9e5d50c1c688d619",
           "line": 1,
           "issue_type": "MissingAttribute",
           "search_key": "FROM={{alpine@sha256:e1c082e3d3c45cccac829840a25941e679c25d438cc8412c2fa221cf1a824e6a}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/use_of_host",
+          "similarity_id": "e295d381f5cf7b496d9557d229dace321cf50a10cf6f35a47733c05d16cec1b4",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{example.com:5000/team/my-app:2.0}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/big_host_name",
+          "similarity_id": "0fbe6b1fc068e59c4519a7f0191bf3c66bcd48426bb400f8a17ada2e0db7f373",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{bighostnameusedasasample.example.com:4903/team/my-app:2.0}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
@@ -884,11 +961,11 @@
           "similarity_id": "9e2783060abf1251b3d7a3d12355870c24afc059e8755e7794806b710f95967e",
           "line": 2,
           "issue_type": "IncorrectValue",
-          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{RUN apt-get update \u0026\u0026 apt-get install -y gcc}}",
+          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{RUN apt-get update /u0026/u0026 apt-get install -y gcc}}",
           "search_line": -1,
           "search_value": "",
-          "expected_value": "'RUN apt-get update \u0026\u0026 apt-get install -y gcc' uses '--no-install-recommends' flag to avoid installing additional packages",
-          "actual_value": "'RUN apt-get update \u0026\u0026 apt-get install -y gcc' does not use '--no-install-recommends' flag to avoid installing additional packages"
+          "expected_value": "'RUN apt-get update /u0026/u0026 apt-get install -y gcc' uses '--no-install-recommends' flag to avoid installing additional packages",
+          "actual_value": "'RUN apt-get update /u0026/u0026 apt-get install -y gcc' does not use '--no-install-recommends' flag to avoid installing additional packages"
         }
       ]
     },
@@ -910,7 +987,7 @@
           "similarity_id": "589b8ca20e5ccc137ddd4f428f5217d55df9621929f33a87b75c724f6a93239f",
           "line": 2,
           "issue_type": "IncorrectValue",
-          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.RUN={{apt-get update \u0026\u0026 apt-get install -y gcc}}",
+          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.RUN={{apt-get update /u0026/u0026 apt-get install -y gcc}}",
           "search_line": -1,
           "search_value": "",
           "expected_value": "After using apt-get install, the apt-get lists should be deleted",
@@ -932,6 +1009,17 @@
       "description": "'FROM' instruction should not use the flag '--platform'",
       "description_id": "5bd0baab",
       "files": [
+        {
+          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_and_alias",
+          "similarity_id": "9b809e69a6609234e47deb34e1c6c519bb5a76364d8bbf6c1df962b9f7eebdcf",
+          "line": 1,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}} should not use the '--platform' flag",
+          "actual_value": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}} is using the '--platform' flag"
+        },
         {
           "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_scratch",
           "similarity_id": "aa0029fe9eeb17144a5fd68b1017848f3bf0ca1fe083f9aacea7c4b6ca22b8cd",
@@ -964,17 +1052,6 @@
           "search_value": "",
           "expected_value": "FROM={{--platform=linux/amd64 alpine:latest}}.{{FROM --platform=linux/amd64 alpine:latest}} should not use the '--platform' flag",
           "actual_value": "FROM={{--platform=linux/amd64 alpine:latest}}.{{FROM --platform=linux/amd64 alpine:latest}} is using the '--platform' flag"
-        },
-        {
-          "file_name": "path/test/fixtures/dockerfile/should_generate_payload/platform_flag_and_alias",
-          "similarity_id": "9b809e69a6609234e47deb34e1c6c519bb5a76364d8bbf6c1df962b9f7eebdcf",
-          "line": 1,
-          "issue_type": "IncorrectValue",
-          "search_key": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}} should not use the '--platform' flag",
-          "actual_value": "FROM={{--platform=linux/amd64 ubuntu:latest AS builder}}.{{FROM --platform=linux/amd64 ubuntu:latest AS builder}} is using the '--platform' flag"
         }
       ]
     }
