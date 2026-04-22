@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -48,16 +49,35 @@ def build_command(query_id: str, scan_path: str, payload_path: str, output_path:
     ]
 
 
-def run_scan(query_id: str, scan_path: str, payload_path: str, output_path: str, output_name: str) -> int:
-    """Run a KICS scan using a temporary directory that mirrors the assets/queries/
-    structure so that the similarity IDs match what the Go tests produce.
+def _copy_auxiliary_files(src_dir: str, dst_dir: str) -> None:
+    """Copy non-positive/negative helper files (e.g. .pem certs) into dst_dir."""
+    for name in os.listdir(src_dir):
+        if name.startswith("positive") or name.startswith("negative"):
+            continue
+        src = os.path.join(src_dir, name)
+        dst = os.path.join(dst_dir, name)
+        if os.path.isfile(src) and not os.path.exists(dst):
+            shutil.copy2(src, dst)
 
-    The Go tests use baseScanPaths = ["../assets/queries/"], which means the
-    similarity ID hash includes the path relative to the queries root
-    (e.g. "terraform/.../test/positive1.tf").  The CLI uses whatever is passed
-    to -p as the base, so we create a temp dir that mirrors the structure and
-    pass -p <tmpdir> — giving the same relative paths.
-    """
+
+def _run_kics(query_id: str, scan_root: str, payload_path: str,
+              output_path: str, output_name: str) -> int:
+    command = build_command(query_id, scan_root, payload_path, output_path, output_name)
+    print("Running command:")
+    print(" ".join(command))
+    print("-" * 60)
+    try:
+        result = subprocess.run(command, cwd=REPO_ROOT)
+        if result.returncode not in KICS_RESULT_CODES:
+            print(f"\n[ERROR] Scan failed with return code {result.returncode}.", file=sys.stderr)
+        return result.returncode
+    except FileNotFoundError:
+        print("\n[ERROR] 'go' not found. Make sure Go is installed and in your PATH.", file=sys.stderr)
+        return 1
+
+def run_scan(query_id: str, scan_path: str, payload_path: str, output_path: str,
+             output_name: str) -> int:
+    """ Run a KICS scan using a temporary directory that mirrors the assets/queries/structure for a single file"""
     rel_to_queries = os.path.relpath(scan_path, QUERIES_DIR)
 
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -68,43 +88,19 @@ def run_scan(query_id: str, scan_path: str, payload_path: str, output_path: str,
             os.makedirs(os.path.dirname(target_path), exist_ok=True)
             shutil.copy2(scan_path, target_path)
 
-        # Copy auxiliary files (e.g. .pem certificates) that positive files
-        # may reference via functions like Terraform's file().  We skip other
-        # positive/negative test files to avoid duplicate scan results.
-        src_dir = os.path.dirname(scan_path)
-        dst_dir = os.path.dirname(target_path)
-        for name in os.listdir(src_dir):
-            if name.startswith("positive") or name.startswith("negative"):
-                continue
-            src = os.path.join(src_dir, name)
-            dst = os.path.join(dst_dir, name)
-            if os.path.isfile(src) and not os.path.exists(dst):
-                shutil.copy2(src, dst)
+        _copy_auxiliary_files(os.path.dirname(scan_path), os.path.dirname(target_path))
 
-        command = build_command(query_id, tmpdir, payload_path, output_path, output_name)
-
-        print("Running command:")
-        print(" ".join(command))
-        print("-" * 60)
-
-        try:
-            result = subprocess.run(command, cwd=REPO_ROOT)
-            if result.returncode not in KICS_RESULT_CODES:
-                print(f"\n[ERROR] Scan failed with return code {result.returncode}.", file=sys.stderr)
-            return result.returncode
-        except FileNotFoundError:
-            print("\n[ERROR] 'go' not found. Make sure Go is installed and in your PATH.", file=sys.stderr)
-            return 1
+        return _run_kics(query_id, tmpdir, payload_path, output_path, output_name)
 
 
-def run_directory_scan(query_id: str, scan_paths: list[str], payload_path: str, output_path: str, output_name: str) -> int:
+def run_directory_scan(query_id: str, scan_paths: list[str], payload_path: str, output_path: str,
+                       output_name: str) -> int:
     """Run a KICS scan with all given files copied into a single temporary directory
-    that mirrors the assets/queries/ structure, so similarity IDs match.
+    that mirrors the assets/queries/ structure for an entire directory.
     """
     if not scan_paths:
         return 0
 
-    # All files share the same parent directory (test/).
     src_dir = os.path.dirname(scan_paths[0])
     rel_dir = os.path.relpath(src_dir, QUERIES_DIR)
 
@@ -117,48 +113,12 @@ def run_directory_scan(query_id: str, scan_paths: list[str], payload_path: str, 
             dst = os.path.join(target_dir, os.path.basename(scan_path))
             shutil.copy2(scan_path, dst)
 
-        # Copy auxiliary files (certificates, etc.) — skip other positive/negative files.
-        for name in os.listdir(src_dir):
-            if name.startswith("positive") or name.startswith("negative"):
-                continue
-            src = os.path.join(src_dir, name)
-            dst = os.path.join(target_dir, name)
-            if os.path.isfile(src) and not os.path.exists(dst):
-                shutil.copy2(src, dst)
+        _copy_auxiliary_files(src_dir, target_dir)
 
-        command = build_command(query_id, tmpdir, payload_path, output_path, output_name)
-
-        print("Running command:")
-        print(" ".join(command))
-        print("-" * 60)
-
-        try:
-            result = subprocess.run(command, cwd=REPO_ROOT)
-            if result.returncode not in KICS_RESULT_CODES:
-                print(f"\n[ERROR] Scan failed with return code {result.returncode}.", file=sys.stderr)
-            return result.returncode
-        except FileNotFoundError:
-            print("\n[ERROR] 'go' not found. Make sure Go is installed and in your PATH.", file=sys.stderr)
-            return 1
+        return _run_kics(query_id, tmpdir, payload_path, output_path, output_name)
 
 
 def find_positive_tests(query_path: str) -> list[PositiveTest]:
-    """
-    Return a sorted list of PositiveTest for each positive test in test/.
-
-    Handles two layouts:
-      - File:      test/positiveX.<ext>  → label='positiveX_<ext>',  scan_path=the file
-      - Directory: test/positiveX/       → for each positiveX_Y.<ext> inside,
-                                           label='positiveX_Y_<ext>', scan_path=the file
-
-    The extension is always included in the label so that files with the same
-    base name but different extensions (e.g. positive1.json / positive1.yaml)
-    produce distinct payloads and result files.
-
-    ``group`` mirrors how the Go tests split scans: loose files use "test"
-    (results go to test/positive_expected_result.json) while subdirectory
-    files use "test/<dir>" (results go to test/<dir>/positive_expected_result.json).
-    """
     test_dir = os.path.join(query_path, "test")
     if not os.path.isdir(test_dir):
         return []
@@ -169,23 +129,21 @@ def find_positive_tests(query_path: str) -> list[PositiveTest]:
             continue
         full_path = os.path.join(test_dir, entry)
         if os.path.isdir(full_path):
-            # Directory: positiveX/ — scan each file inside individually
             for file in os.listdir(full_path):
                 file_path = os.path.join(full_path, file)
                 if not os.path.isfile(file_path):
                     continue
-                base_label = os.path.splitext(file)[0]      # e.g. 'positive2_1'
+                base_label = os.path.splitext(file)[0]
                 after = base_label[len("positive"):]
-                if not after or not after[0].isdigit():      # skip positive_expected_result etc.
+                if not after or not after[0].isdigit():
                     continue
-                ext = os.path.splitext(file)[1].lstrip(".")  # e.g. 'json', 'yaml', 'tf'
+                ext = os.path.splitext(file)[1].lstrip(".")
                 positives.append(PositiveTest(f"{base_label}_{ext}", file_path, f"test/{entry}"))
         else:
-            # File: positive.<ext> or positiveX.<ext>
             suffix = entry[len("positive"):].split(".")[0]
             if suffix and not suffix.isdigit():
-                continue  # skip positive_expected_result.json etc.
-            ext = os.path.splitext(entry)[1].lstrip(".")     # e.g. 'json', 'yaml', 'tf'
+                continue
+            ext = os.path.splitext(entry)[1].lstrip(".")
             positives.append(PositiveTest(f"positive{suffix}_{ext}", full_path, "test"))
 
     positives.sort(key=lambda x: natural_sort_key(x.label))
@@ -198,7 +156,6 @@ def run_query_scans(query_id: str, query_path: str) -> tuple[list[ScanFailure], 
         print(f"[WARN] No positive tests found in {query_path}/test, skipping.", file=sys.stderr)
         return [], False
 
-    # Check for subdirectory tests.
     has_subdir_tests = any(t.group != "test" for t in positives)
     loose_tests = [t for t in positives if t.group == "test"]
 
@@ -211,11 +168,9 @@ def run_query_scans(query_id: str, query_path: str) -> tuple[list[ScanFailure], 
         label_to_group = {}
         failed = []
 
-        # passwords_and_secrets has too many positive files — only directory scan.
         is_secrets_query = query_path.endswith(os.path.join("common", "passwords_and_secrets"))
 
         if not has_subdir_tests and loose_tests:
-            # No subdirectories: scan all loose files together + each individually.
 
             # 1. Directory scan (all loose files at once).
             all_paths = [t.scan_path for t in loose_tests]
@@ -239,8 +194,6 @@ def run_query_scans(query_id: str, query_path: str) -> tuple[list[ScanFailure], 
                     if rc not in KICS_RESULT_CODES:
                         failed.append(ScanFailure(test.scan_path, payload_path, rc))
         else:
-            # Has subdirectories: directory scan for loose files + directory scan per subdirectory.
-
             # 1. Directory scan for all loose positive files in test/.
             if loose_tests:
                 all_loose_paths = [t.scan_path for t in loose_tests]
@@ -275,18 +228,78 @@ def run_query_scans(query_id: str, query_path: str) -> tuple[list[ScanFailure], 
     return failed, written
 
 
-def collect_and_write_expected_results(query_path: str, results_dir: str, label_to_group: dict[str, str]) -> bool:
-    """
-    Read all positive*.json result files from results_dir, extract findings,
-    group them by test group (loose files -> "test", subdirectory files ->
-    "test/<dir>"), sort each group, and write the corresponding
-    positive_expected_result.json files.
+def fix_secrets_query_names(entries: list[ExpectedResultEntry], query_path: str) -> None:
+    """fix results from passwords and secrets query"""
+    rules_path = os.path.join(query_path, "regex_rules.json")
+    if not os.path.isfile(rules_path):
+        return
 
-    This mirrors the Go test structure where loose positive files are compared
-    against test/positive_expected_result.json and each positive subdirectory
-    against test/<dir>/positive_expected_result.json.
+    with open(rules_path, encoding="utf-8") as f:
+        rules = json.load(f).get("rules", [])
 
-    Returns True if at least one file was written.
+    # Find rule IDs that appear more than once.
+    id_to_rules: dict[str, list[dict]] = {}
+    for rule in rules:
+        rid = rule.get("id", "")
+        id_to_rules.setdefault(rid, []).append(rule)
+
+    # Collect names that belong to duplicate-ID groups and compile only those rules.
+    duplicate_names: set[str] = set()
+    compiled_dup_rules: list[tuple[str, re.Pattern]] = []
+    for rid, rlist in id_to_rules.items():
+        if len(rlist) <= 1:
+            continue
+        for rule in rlist:
+            duplicate_names.add(rule["name"])
+            try:
+                compiled_dup_rules.append((rule["name"], re.compile(rule["regex"])))
+            except (re.error, KeyError):
+                continue
+
+    if not compiled_dup_rules:
+        return
+
+    metadata_path = os.path.join(query_path, "metadata.json")
+    with open(metadata_path, encoding="utf-8") as f:
+        base_name = json.load(f).get("queryName", "")
+    prefix = base_name + " - " if base_name else ""
+
+    test_dir = os.path.join(query_path, "test")
+    file_cache: dict[str, list[str]] = {}
+
+    for entry in entries:
+        if not prefix or not entry.queryName.startswith(prefix):
+            continue
+
+        current_rule_name = entry.queryName[len(prefix):]
+        if current_rule_name not in duplicate_names:
+            continue
+
+        file_path = os.path.join(test_dir, entry.fileName)
+        if file_path not in file_cache:
+            try:
+                with open(file_path, encoding="utf-8") as f:
+                    file_cache[file_path] = f.readlines()
+            except (OSError, UnicodeDecodeError):
+                continue
+
+        lines = file_cache.get(file_path)
+        if not lines or entry.line <= 0 or entry.line > len(lines):
+            continue
+
+        line_content = lines[entry.line - 1]
+
+        for rule_name, pattern in compiled_dup_rules:
+            if pattern.search(line_content):
+                entry.queryName = prefix + rule_name
+                break
+
+
+def collect_and_write_expected_results(query_path: str, results_dir: str,
+                                      label_to_group: dict[str, str]) -> bool:
+    """Read all results files from results_dir, group them by group("test" for loose files
+    and "test/<dir> for subdirectory files") and write the results sorted into the
+    respective positive_expected_result.json files.
     """
     if not os.path.isdir(results_dir):
         return False
@@ -314,7 +327,10 @@ def collect_and_write_expected_results(query_path: str, results_dir: str, label_
                 entry = ExpectedResultEntry.from_kics_result(query_name, severity, file_entry)
                 grouped_entries.setdefault(group, []).append(entry)
 
-    # Deduplicate entries within each group using all output fields.
+    if query_path.endswith(os.path.join("common", "passwords_and_secrets")):
+        for entries in grouped_entries.values():
+            fix_secrets_query_names(entries, query_path)
+
     for group in grouped_entries:
         seen = set()
         unique = []
@@ -328,8 +344,7 @@ def collect_and_write_expected_results(query_path: str, results_dir: str, label_
     if not grouped_entries:
         return False
 
-    # If subdirectory results exist but no loose-file results, still write
-    # an empty main expected file — the Go test always reads it.
+    # If subdirectory results exist but no loose-file results, still write an empty main expected file
     if any(g != "test" for g in grouped_entries) and "test" not in grouped_entries:
         grouped_entries["test"] = []
 

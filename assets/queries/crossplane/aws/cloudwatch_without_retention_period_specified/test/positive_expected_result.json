@@ -2,36 +2,6 @@
   {
     "queryName": "CloudWatch Without Retention Period Specified",
     "severity": "INFO",
-    "line": 9,
-    "fileName": "positive.yaml",
-    "resourceType": "LogGroup",
-    "resourceName": "lg-3",
-    "searchKey": "metadata.name={{lg-3}}.spec.forProvider.retentionInDays",
-    "searchValue": "",
-    "expectedValue": "retentionInDays should be set to a valid value",
-    "actualValue": "retentionInDays is set to a invalid value",
-    "issueType": "IncorrectValue",
-    "similarityID": "e20e0b25c2147241bd249382bdb5623bc206c2008edc935f6f91cb8d7aed0ed4",
-    "search_line": 9
-  },
-  {
-    "queryName": "CloudWatch Without Retention Period Specified",
-    "severity": "INFO",
-    "line": 38,
-    "fileName": "positive.yaml",
-    "resourceType": "LogGroup",
-    "resourceName": "lg-4",
-    "searchKey": "spec.resources.base.metadata.name={{lg-4}}.spec.forProvider.retentionInDays",
-    "searchValue": "",
-    "expectedValue": "retentionInDays should be set to a valid value",
-    "actualValue": "retentionInDays is set to a invalid value",
-    "issueType": "IncorrectValue",
-    "similarityID": "7e90d6737f906ce277ff27553bc6fc7d2e1a7a3dbeab66b05adcd7932f480e65",
-    "search_line": 38
-  },
-  {
-    "queryName": "CloudWatch Without Retention Period Specified",
-    "severity": "INFO",
     "line": 6,
     "fileName": "positive2.yaml",
     "resourceType": "LogGroup",
@@ -58,5 +28,35 @@
     "issueType": "MissingAttribute",
     "similarityID": "75f677f7aa922e4cade5574b48c6edfd27248f0d5a8a0d40ec3295e57696d7b2",
     "search_line": 34
+  },
+  {
+    "queryName": "CloudWatch Without Retention Period Specified",
+    "severity": "INFO",
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "LogGroup",
+    "resourceName": "lg-3",
+    "searchKey": "metadata.name={{lg-3}}.spec.forProvider.retentionInDays",
+    "searchValue": "",
+    "expectedValue": "retentionInDays should be set to a valid value",
+    "actualValue": "retentionInDays is set to a invalid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "e20e0b25c2147241bd249382bdb5623bc206c2008edc935f6f91cb8d7aed0ed4",
+    "search_line": 9
+  },
+  {
+    "queryName": "CloudWatch Without Retention Period Specified",
+    "severity": "INFO",
+    "line": 38,
+    "fileName": "positive.yaml",
+    "resourceType": "LogGroup",
+    "resourceName": "lg-4",
+    "searchKey": "spec.resources.base.metadata.name={{lg-4}}.spec.forProvider.retentionInDays",
+    "searchValue": "",
+    "expectedValue": "retentionInDays should be set to a valid value",
+    "actualValue": "retentionInDays is set to a invalid value",
+    "issueType": "IncorrectValue",
+    "similarityID": "7e90d6737f906ce277ff27553bc6fc7d2e1a7a3dbeab66b05adcd7932f480e65",
+    "search_line": 38
   }
 ]

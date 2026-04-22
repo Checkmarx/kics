@@ -2,36 +2,6 @@
   {
     "queryName": "CloudFront Logging Disabled",
     "severity": "MEDIUM",
-    "line": 12,
-    "fileName": "positive.yaml",
-    "resourceType": "Distribution",
-    "resourceName": "sample-distribution",
-    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging.enabled",
-    "searchValue": "",
-    "expectedValue": "CloudFront logging enabled attribute should be set to true",
-    "actualValue": "CloudFront logging enabled attribute is set to false",
-    "issueType": "IncorrectValue",
-    "similarityID": "1639929d959902b6b4c0a8bb398f9ac70a46e6a1d06587a24dfb083a306e2770",
-    "search_line": 12
-  },
-  {
-    "queryName": "CloudFront Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 50,
-    "fileName": "positive.yaml",
-    "resourceType": "Distribution",
-    "resourceName": "sample-distribution",
-    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging.enabled",
-    "searchValue": "",
-    "expectedValue": "CloudFront logging enabled attribute should be set to true",
-    "actualValue": "CloudFront logging enabled attribute is set to false",
-    "issueType": "IncorrectValue",
-    "similarityID": "1812b4bf58a2072fdde26f401ba8e1990ac46e333caa0d609b4caea71f08b758",
-    "search_line": 50
-  },
-  {
-    "queryName": "CloudFront Logging Disabled",
-    "severity": "MEDIUM",
     "line": 8,
     "fileName": "positive2.yaml",
     "resourceType": "Distribution",
@@ -88,5 +58,35 @@
     "issueType": "MissingAttribute",
     "similarityID": "22a2cd6ad23fa482e94f09485748c5e44249a99f18cda784f355f0050b3965b8",
     "search_line": 47
+  },
+  {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging.enabled",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be set to true",
+    "actualValue": "CloudFront logging enabled attribute is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1639929d959902b6b4c0a8bb398f9ac70a46e6a1d06587a24dfb083a306e2770",
+    "search_line": 12
+  },
+  {
+    "queryName": "CloudFront Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 50,
+    "fileName": "positive.yaml",
+    "resourceType": "Distribution",
+    "resourceName": "sample-distribution",
+    "searchKey": "spec.resources.base.metadata.name={{sample-distribution}}.spec.forProvider.distributionConfig.logging.enabled",
+    "searchValue": "",
+    "expectedValue": "CloudFront logging enabled attribute should be set to true",
+    "actualValue": "CloudFront logging enabled attribute is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1812b4bf58a2072fdde26f401ba8e1990ac46e333caa0d609b4caea71f08b758",
+    "search_line": 50
   }
 ]

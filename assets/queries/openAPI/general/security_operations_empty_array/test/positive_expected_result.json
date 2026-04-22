@@ -15,21 +15,6 @@
     "search_line": -1
   },
   {
-    "queryName": "Security Field On Operations Has An Empty Array (v2)",
-    "severity": "HIGH",
-    "line": 17,
-    "fileName": "positive10.json",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.{{get}}.security",
-    "searchValue": "",
-    "expectedValue": "Security operation field array, when declared, should not be empty",
-    "actualValue": "Security operation field array is declared and empty",
-    "issueType": "IncorrectValue",
-    "similarityID": "37bfcabf922b8f913169bee78eb80396bbf2655e1cc21c26e166c75ecd00641e",
-    "search_line": -1
-  },
-  {
     "queryName": "Security Field On Operations Has An Empty Array (v3)",
     "severity": "HIGH",
     "line": 51,
@@ -147,6 +132,21 @@
     "actualValue": "Security operation field array is declared and empty",
     "issueType": "IncorrectValue",
     "similarityID": "3276179ad6ceb54640aed84433d5033398e927dc7773dc12ff097ed0ac850669",
+    "search_line": -1
+  },
+  {
+    "queryName": "Security Field On Operations Has An Empty Array (v2)",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive10.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field array, when declared, should not be empty",
+    "actualValue": "Security operation field array is declared and empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "37bfcabf922b8f913169bee78eb80396bbf2655e1cc21c26e166c75ecd00641e",
     "search_line": -1
   }
 ]

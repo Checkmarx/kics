@@ -32,36 +32,6 @@
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
     "severity": "LOW",
-    "line": 10,
-    "fileName": "positive10.json",
-    "resourceType": "AWS::EC2::Instance",
-    "resourceName": "MyEC2Instance",
-    "searchKey": "Resources.MyEC2Instance.Properties.MetadataOptions",
-    "searchValue": "",
-    "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined",
-    "issueType": "MissingAttribute",
-    "similarityID": "a2b10e9a39c643b4a4c845d907921a3d9a85761ee9c4403659f88aa6bfa08278",
-    "search_line": 10
-  },
-  {
-    "queryName": "Instance Uses Metadata Service IMDSv1",
-    "severity": "LOW",
-    "line": 24,
-    "fileName": "positive10.json",
-    "resourceType": "AWS::EC2::LaunchTemplate",
-    "resourceName": "MyLaunchTemplate",
-    "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions",
-    "searchValue": "",
-    "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' should be defined to 'required'",
-    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined",
-    "issueType": "MissingAttribute",
-    "similarityID": "5748b12f774bd7f65a8acf8144bc8ed1db36951adc86701950f6b2c667abec30",
-    "search_line": 24
-  },
-  {
-    "queryName": "Instance Uses Metadata Service IMDSv1",
-    "severity": "LOW",
     "line": 7,
     "fileName": "positive2.json",
     "resourceType": "AWS::EC2::Instance",
@@ -298,5 +268,35 @@
     "issueType": "MissingAttribute",
     "similarityID": "5947684014707564b07d60288075370985284424cc86a6b52762fe33d1431db8",
     "search_line": 22
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive10.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.MetadataOptions",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' should be defined to 'required'",
+    "actualValue": "'Resources.MyEC2Instance.Properties.MetadataOptions.HttpTokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a2b10e9a39c643b4a4c845d907921a3d9a85761ee9c4403659f88aa6bfa08278",
+    "search_line": 10
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 24,
+    "fileName": "positive10.json",
+    "resourceType": "AWS::EC2::LaunchTemplate",
+    "resourceName": "MyLaunchTemplate",
+    "searchKey": "Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions",
+    "searchValue": "",
+    "expectedValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' should be defined to 'required'",
+    "actualValue": "'Resources.MyLaunchTemplate.Properties.LaunchTemplateData.MetadataOptions.HttpTokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5748b12f774bd7f65a8acf8144bc8ed1db36951adc86701950f6b2c667abec30",
+    "search_line": 24
   }
 ]

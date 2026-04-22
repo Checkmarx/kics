@@ -74,11 +74,17 @@ class ExpectedResultEntry:
         return {k: getattr(self, k) for k in FIELD_ORDER}
 
     def sort_key(self) -> tuple:
-        """Key for deterministic sorting of expected results."""
         return (
             natural_sort_key(self.fileName),
             self.line,
-            self.issueType,
             self.searchKey,
+            self.searchValue,
+            self.resourceType,
+            self.resourceName,
+            self.queryName,
+            self.expectedValue,
+            self.actualValue,
+            self.issueType,
             self.similarityID,
+            self.search_line,
         )

@@ -47,36 +47,6 @@
   {
     "queryName": "Instance Uses Metadata Service IMDSv1",
     "severity": "LOW",
-    "line": 9,
-    "fileName": "positive10.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[positive10_instance].metadata_options",
-    "searchValue": "",
-    "expectedValue": "'module[positive10_instance].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'module[positive10_instance].metadata_options.http_tokens' is not defined",
-    "issueType": "MissingAttribute",
-    "similarityID": "b88a0160d74f8fb9a752f1676df853afeb491b12ff896cc0500a0925f24b7055",
-    "search_line": 9
-  },
-  {
-    "queryName": "Instance Uses Metadata Service IMDSv1",
-    "severity": "LOW",
-    "line": 18,
-    "fileName": "positive10.tf",
-    "resourceType": "n/a",
-    "resourceName": "n/a",
-    "searchKey": "module[positive10_launch_config].metadata_options",
-    "searchValue": "",
-    "expectedValue": "'module[positive10_launch_config].metadata_options.http_tokens' should be defined to 'required'",
-    "actualValue": "'module[positive10_launch_config].metadata_options.http_tokens' is not defined",
-    "issueType": "MissingAttribute",
-    "similarityID": "40e2d6633a05df4752fecf197a5ec2df69b69b0b629a93c4bd8858b08f467d20",
-    "search_line": 18
-  },
-  {
-    "queryName": "Instance Uses Metadata Service IMDSv1",
-    "severity": "LOW",
     "line": 11,
     "fileName": "positive2.tf",
     "resourceType": "aws_instance",
@@ -373,5 +343,35 @@
     "issueType": "MissingAttribute",
     "similarityID": "85014796ba5160f7e0b53e68d447495c7aaf71c3e292277e1ba2fbb0eed9dc67",
     "search_line": 13
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive10.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive10_instance].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'module[positive10_instance].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'module[positive10_instance].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b88a0160d74f8fb9a752f1676df853afeb491b12ff896cc0500a0925f24b7055",
+    "search_line": 9
+  },
+  {
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive10.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[positive10_launch_config].metadata_options",
+    "searchValue": "",
+    "expectedValue": "'module[positive10_launch_config].metadata_options.http_tokens' should be defined to 'required'",
+    "actualValue": "'module[positive10_launch_config].metadata_options.http_tokens' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "40e2d6633a05df4752fecf197a5ec2df69b69b0b629a93c4bd8858b08f467d20",
+    "search_line": 18
   }
 ]

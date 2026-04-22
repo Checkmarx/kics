@@ -32,36 +32,6 @@
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
     "severity": "LOW",
-    "line": 31,
-    "fileName": "positive10.bicep",
-    "resourceType": "Microsoft.ContainerService/managedClusters",
-    "resourceName": "aksCluster1",
-    "searchKey": "resources.name=aksCluster1.properties.apiServerAccessProfile.authorizedIPRanges",
-    "searchValue": "",
-    "expectedValue": "'apiServerAccessProfile.authorizedIPRanges' should be defined as an array",
-    "actualValue": "'apiServerAccessProfile.authorizedIPRanges' is empty",
-    "issueType": "IncorrectValue",
-    "similarityID": "b9a69167c28c8ed141b8c8d9d5d521c3f1685e325310c1046cd8f38b1279e90d",
-    "search_line": -1
-  },
-  {
-    "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "LOW",
-    "line": 39,
-    "fileName": "positive10.json",
-    "resourceType": "Microsoft.ContainerService/managedClusters",
-    "resourceName": "aksCluster1",
-    "searchKey": "properties.template.resources.name=aksCluster1.properties.apiServerAccessProfile.authorizedIPRanges",
-    "searchValue": "",
-    "expectedValue": "'apiServerAccessProfile.authorizedIPRanges' should be defined as an array",
-    "actualValue": "'apiServerAccessProfile.authorizedIPRanges' is empty",
-    "issueType": "IncorrectValue",
-    "similarityID": "e92292f79c40003c798668f56bfada84e91888f0d46f19f5f7e28012622e8f26",
-    "search_line": -1
-  },
-  {
-    "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "LOW",
     "line": 2,
     "fileName": "positive2.bicep",
     "resourceType": "Microsoft.ContainerService/managedClusters",
@@ -298,5 +268,35 @@
     "issueType": "MissingAttribute",
     "similarityID": "aaa6ff3e2cfd59fa1aea16b12c86f28ea16e5adc89861facbf20da60e2a4e21e",
     "search_line": 8
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive10.bicep",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "resources.name=aksCluster1.properties.apiServerAccessProfile.authorizedIPRanges",
+    "searchValue": "",
+    "expectedValue": "'apiServerAccessProfile.authorizedIPRanges' should be defined as an array",
+    "actualValue": "'apiServerAccessProfile.authorizedIPRanges' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "b9a69167c28c8ed141b8c8d9d5d521c3f1685e325310c1046cd8f38b1279e90d",
+    "search_line": -1
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 39,
+    "fileName": "positive10.json",
+    "resourceType": "Microsoft.ContainerService/managedClusters",
+    "resourceName": "aksCluster1",
+    "searchKey": "properties.template.resources.name=aksCluster1.properties.apiServerAccessProfile.authorizedIPRanges",
+    "searchValue": "",
+    "expectedValue": "'apiServerAccessProfile.authorizedIPRanges' should be defined as an array",
+    "actualValue": "'apiServerAccessProfile.authorizedIPRanges' is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "e92292f79c40003c798668f56bfada84e91888f0d46f19f5f7e28012622e8f26",
+    "search_line": -1
   }
 ]

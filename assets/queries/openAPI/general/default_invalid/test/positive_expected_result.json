@@ -15,21 +15,6 @@
     "search_line": -1
   },
   {
-    "queryName": "Default Invalid (v2)",
-    "severity": "INFO",
-    "line": 17,
-    "fileName": "positive10.yaml",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "paths.{{/}}.get.responses.200.schema.default",
-    "searchValue": "",
-    "expectedValue": "The field 'default' should be consistent with the type",
-    "actualValue": "The field 'default' is not consistent with the type",
-    "issueType": "IncorrectValue",
-    "similarityID": "bdd6f88d7749825f6fa1ce7656fa07afea0a6f449c5d6f1b0becc2653a0cfc12",
-    "search_line": -1
-  },
-  {
     "queryName": "Default Invalid (v3)",
     "severity": "INFO",
     "line": 22,
@@ -147,6 +132,21 @@
     "actualValue": "The field 'default' is not consistent with the type",
     "issueType": "IncorrectValue",
     "similarityID": "778ad55a24791450a08645876831b302d7ce5f19bbca354eb1bbde220bfc5f74",
+    "search_line": -1
+  },
+  {
+    "queryName": "Default Invalid (v2)",
+    "severity": "INFO",
+    "line": 17,
+    "fileName": "positive10.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "bdd6f88d7749825f6fa1ce7656fa07afea0a6f449c5d6f1b0becc2653a0cfc12",
     "search_line": -1
   }
 ]

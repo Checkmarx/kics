@@ -2,21 +2,6 @@
   {
     "queryName": "NAS File System Not Encrypted",
     "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive.tf",
-    "resourceType": "alicloud_nas_file_system",
-    "resourceName": "foopos",
-    "searchKey": "alicloud_nas_file_system[foopos].encrypt_type",
-    "searchValue": "",
-    "expectedValue": "alicloud_nas_file_system[foopos].encrypt_type' should not be 0",
-    "actualValue": "alicloud_nas_file_system[foopos].encrypt_type' is 0",
-    "issueType": "IncorrectValue",
-    "similarityID": "a16f88e942158bc0b1d436dfda1472948fa8c1d55f87d916a07609deb17efb9d",
-    "search_line": 5
-  },
-  {
-    "queryName": "NAS File System Not Encrypted",
-    "severity": "HIGH",
     "line": 1,
     "fileName": "positive2.tf",
     "resourceType": "alicloud_nas_file_system",
@@ -28,5 +13,20 @@
     "issueType": "MissingAttribute",
     "similarityID": "d76feea117a5f67397fa1af14796ceca6c86fdbcace61c786bc149149daa328f",
     "search_line": 1
+  },
+  {
+    "queryName": "NAS File System Not Encrypted",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "alicloud_nas_file_system",
+    "resourceName": "foopos",
+    "searchKey": "alicloud_nas_file_system[foopos].encrypt_type",
+    "searchValue": "",
+    "expectedValue": "alicloud_nas_file_system[foopos].encrypt_type' should not be 0",
+    "actualValue": "alicloud_nas_file_system[foopos].encrypt_type' is 0",
+    "issueType": "IncorrectValue",
+    "similarityID": "a16f88e942158bc0b1d436dfda1472948fa8c1d55f87d916a07609deb17efb9d",
+    "search_line": 5
   }
 ]
