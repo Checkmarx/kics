@@ -228,71 +228,86 @@ def run_query_scans(query_id: str, query_path: str) -> tuple[list[ScanFailure], 
     return failed, written
 
 
-def fix_secrets_query_names(entries: list[ExpectedResultEntry], query_path: str) -> None:
-    """fix results from passwords and secrets query"""
-    rules_path = os.path.join(query_path, "regex_rules.json")
-    if not os.path.isfile(rules_path):
-        return
-
+def _load_duplicate_rules(rules_path: str) -> tuple[set[str], list[tuple[str, re.Pattern]]]:
+    """Return duplicate-ID rule names and their compiled regex patterns."""
     with open(rules_path, encoding="utf-8") as f:
         rules = json.load(f).get("rules", [])
 
-    # Find rule IDs that appear more than once.
     id_to_rules: dict[str, list[dict]] = {}
     for rule in rules:
-        rid = rule.get("id", "")
-        id_to_rules.setdefault(rid, []).append(rule)
+        id_to_rules.setdefault(rule.get("id", ""), []).append(rule)
 
-    # Collect names that belong to duplicate-ID groups and compile only those rules.
     duplicate_names: set[str] = set()
-    compiled_dup_rules: list[tuple[str, re.Pattern]] = []
-    for rid, rlist in id_to_rules.items():
+    compiled: list[tuple[str, re.Pattern]] = []
+    for rlist in id_to_rules.values():
         if len(rlist) <= 1:
             continue
         for rule in rlist:
             duplicate_names.add(rule["name"])
             try:
-                compiled_dup_rules.append((rule["name"], re.compile(rule["regex"])))
+                compiled.append((rule["name"], re.compile(rule["regex"])))
             except (re.error, KeyError):
                 continue
 
+    return duplicate_names, compiled
+
+
+def _get_cached_lines(file_path: str, file_cache: dict[str, list[str]]) -> list[str]:
+    """Return lines for file_path, reading and caching on first access."""
+    if file_path not in file_cache:
+        try:
+            with open(file_path, encoding="utf-8") as f:
+                file_cache[file_path] = f.readlines()
+        except (OSError, UnicodeDecodeError):
+            file_cache[file_path] = []
+    return file_cache[file_path]
+
+
+def _fix_entry_name(
+    entry: ExpectedResultEntry,
+    prefix: str,
+    duplicate_names: set[str],
+    compiled_dup_rules: list[tuple[str, re.Pattern]],
+    test_dir: str,
+    file_cache: dict[str, list[str]],
+) -> None:
+    """Correct the queryName of a single entry when it belongs to a duplicate-ID rule group."""
+    if not entry.queryName.startswith(prefix):
+        return
+    if entry.queryName[len(prefix):] not in duplicate_names:
+        return
+
+    lines = _get_cached_lines(os.path.join(test_dir, entry.fileName), file_cache)
+    if not lines or not (0 < entry.line <= len(lines)):
+        return
+
+    line_content = lines[entry.line - 1]
+    for rule_name, pattern in compiled_dup_rules:
+        if pattern.search(line_content):
+            entry.queryName = prefix + rule_name
+            break
+
+
+def fix_secrets_query_names(entries: list[ExpectedResultEntry], query_path: str) -> None:
+    """Fix query names for entries from the passwords_and_secrets query."""
+    rules_path = os.path.join(query_path, "regex_rules.json")
+    if not os.path.isfile(rules_path):
+        return
+
+    duplicate_names, compiled_dup_rules = _load_duplicate_rules(rules_path)
     if not compiled_dup_rules:
         return
 
-    metadata_path = os.path.join(query_path, "metadata.json")
-    with open(metadata_path, encoding="utf-8") as f:
+    with open(os.path.join(query_path, "metadata.json"), encoding="utf-8") as f:
         base_name = json.load(f).get("queryName", "")
     prefix = base_name + " - " if base_name else ""
+    if not prefix:
+        return
 
     test_dir = os.path.join(query_path, "test")
     file_cache: dict[str, list[str]] = {}
-
     for entry in entries:
-        if not prefix or not entry.queryName.startswith(prefix):
-            continue
-
-        current_rule_name = entry.queryName[len(prefix):]
-        if current_rule_name not in duplicate_names:
-            continue
-
-        file_path = os.path.join(test_dir, entry.fileName)
-        if file_path not in file_cache:
-            try:
-                with open(file_path, encoding="utf-8") as f:
-                    file_cache[file_path] = f.readlines()
-            except (OSError, UnicodeDecodeError):
-                continue
-
-        lines = file_cache.get(file_path)
-        if not lines or entry.line <= 0 or entry.line > len(lines):
-            continue
-
-        line_content = lines[entry.line - 1]
-
-        for rule_name, pattern in compiled_dup_rules:
-            if pattern.search(line_content):
-                entry.queryName = prefix + rule_name
-                break
+        _fix_entry_name(entry, prefix, duplicate_names, compiled_dup_rules, test_dir, file_cache)
 
 
 def collect_and_write_expected_results(query_path: str, results_dir: str,
