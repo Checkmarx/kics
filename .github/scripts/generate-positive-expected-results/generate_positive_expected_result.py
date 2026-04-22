@@ -77,9 +77,7 @@ def _run_kics(query_id: str, scan_root: str, payload_path: str,
 
 def run_scan(query_id: str, scan_path: str, payload_path: str, output_path: str,
              output_name: str) -> int:
-    """
-    Run a KICS scan using a temporary directory that mirrors the assets/queries/structure for a single file.
-    """
+    """Run a KICS scan using a temporary directory that mirrors the assets/queries/structure for a single file."""
     rel_to_queries = os.path.relpath(scan_path, QUERIES_DIR)
 
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -314,9 +312,10 @@ def fix_secrets_query_names(entries: list[ExpectedResultEntry], query_path: str)
 
 def collect_and_write_expected_results(query_path: str, results_dir: str,
                                       label_to_group: dict[str, str]) -> bool:
-    """
-    Read all results files from results_dir, group them by group("test" for loose files and "test/<dir> for subdirectory files") and write the results sorted into the
-    respective positive_expected_result.json files.
+    """Read all results files from results_dir and write positive_expected_result.json files.
+
+    Groups findings by scan group ("test" for loose files, "test/<dir>" for subdirectory files)
+    and writes the results sorted into the respective output files.
     """
     if not os.path.isdir(results_dir):
         return False
