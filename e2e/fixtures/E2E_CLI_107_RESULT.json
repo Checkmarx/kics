@@ -1,172 +1,194 @@
 {
-	"kics_version": "development",
-	"files_scanned": 1,
-	"lines_scanned": 12,
-	"files_parsed": 1,
-	"lines_parsed": 12,
-	"lines_ignored": 0,
-	"files_failed_to_scan": 0,
-	"queries_total": 48,
-	"queries_failed_to_execute": 0,
-	"queries_failed_to_compute_similarity_id": 0,
-	"scan_id": "console",
-	"severity_counters": {
-		"CRITICAL": 0,
-		"HIGH": 1,
-		"INFO": 0,
-		"LOW": 2,
-		"MEDIUM": 3,
-		"TRACE": 0
-	},
-	"total_counter": 6,
-	"total_bom_resources": 0,
-	"start": "2026-04-09T14:58:58.1938463+01:00",
-	"end": "2026-04-09T14:59:10.5630691+01:00",
-	"paths": [
-		"/path/test/fixtures/dockerfile/Dockerfile-multistage"
-	],
-	"queries": [
-		{
-			"query_name": "Missing User Instruction",
-			"query_id": "fd54f200-402c-4333-a5a4-36ef6709af2f",
-			"query_url": "https://docs.docker.com/engine/reference/builder/#user",
-			"severity": "HIGH",
-			"platform": "Dockerfile",
-			"cwe": "250",
-			"risk_score": "7.7",
-			"cloud_provider": "COMMON",
-			"category": "Build Process",
-			"experimental": false,
-			"description": "Always set a user in the runtime stage of your Dockerfile. Without it, the container defaults to root, even if earlier build stages define a user.",
-			"description_id": "eb49caf6",
-			"files": [
-				{
-					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
-					"similarity_id": "d39796b9bbf6b6b45774ce1a7aea11e5ef87c9c24cd7fd5b99c4595cb2b510d3",
-					"line": 5,
-					"issue_type": "MissingAttribute",
-					"search_key": "FROM={{ubuntu:latestnightly(1)}}",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
-					"actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
-				}
-			]
-		},
-		{
-			"query_name": "Add Instead of Copy",
-			"query_id": "9513a694-aa0d-41d8-be61-3271e056f36b",
-			"query_url": "https://docs.docker.com/engine/reference/builder/#add",
-			"severity": "MEDIUM",
-			"platform": "Dockerfile",
-			"cwe": "610",
-			"risk_score": "5.2",
-			"category": "Supply-Chain",
-			"experimental": false,
-			"description": "Using ADD to load external installation scripts could lead to an evil web server leveraging this and loading a malicious script.",
-			"description_id": "0aedd324",
-			"files": [
-				{
-					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
-					"similarity_id": "8a77052e7fe9677bd371c5a652763f6d4edcb6ef3ece7b2574a37de1e532870c",
-					"line": 10,
-					"issue_type": "IncorrectValue",
-					"search_key": "FROM={{ubuntu:latestnightly(1)}}.{{ADD ${JAR_FILE} app.jar}}",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "'COPY' ${JAR_FILE}",
-					"actual_value": "'ADD' ${JAR_FILE}"
-				}
-			]
-		},
-		{
-			"query_name": "Image Version Using 'latest'",
-			"query_id": "f45ea400-6bbe-4501-9fc7-1c3d75c32067",
-			"query_url": "https://docs.docker.com/develop/dev-best-practices/",
-			"severity": "MEDIUM",
-			"platform": "Dockerfile",
-			"cwe": "1357",
-			"risk_score": "5.1",
-			"category": "Best Practices",
-			"experimental": false,
-			"description": "When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag",
-			"description_id": "22f535ec",
-			"files": [
-				{
-					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
-					"similarity_id": "7cd0ad90e5f32a85978dbfa12788d4098d089c58464d0206b3686a24c0401a0f",
-					"line": 5,
-					"issue_type": "IncorrectValue",
-					"search_key": "FROM={{ubuntu:latestnightly(1)}}",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "FROM ubuntu:latestnightly:'version' where version should not be 'latest'",
-					"actual_value": "FROM ubuntu:latestnightly'"
-				},
-				{
-					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
-					"similarity_id": "61497abefc29818ee73a40c7bd0c69f67c83e20279fbd89fbe69e7f6eac4e71c",
-					"line": 1,
-					"issue_type": "IncorrectValue",
-					"search_key": "FROM={{ubuntu:latestnightly}}",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "FROM ubuntu:latestnightly:'version' where version should not be 'latest'",
-					"actual_value": "FROM ubuntu:latestnightly'"
-				}
-			]
-		},
-		{
-			"query_name": "Curl or Wget Instead of Add",
-			"query_id": "4b410d24-1cbe-4430-a632-62c9a931cf1c",
-			"query_url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
-			"severity": "LOW",
-			"platform": "Dockerfile",
-			"cwe": "610",
-			"risk_score": "2.8",
-			"category": "Best Practices",
-			"experimental": false,
-			"description": "Use of Curl or Wget should be done instead of Add to fetch packages from remote URLs due to the use of Add being strongly discouraged",
-			"description_id": "29e8216b",
-			"files": [
-				{
-					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
-					"similarity_id": "dfcf010141323091aa3e4594c429c4fa9c9c9e3ac1baa0bc553772e6cc5efafc",
-					"line": 7,
-					"issue_type": "IncorrectValue",
-					"search_key": "FROM={{ubuntu:latestnightly(1)}}.{{ADD http://source.file/package.file.tar.gz /temp}}",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "Should use 'curl' or 'wget' to download http://source.file/package.file.tar.gz",
-					"actual_value": "'ADD' http://source.file/package.file.tar.gz"
-				}
-			]
-		},
-		{
-			"query_name": "Healthcheck Instruction Missing",
-			"query_id": "b03a748a-542d-44f4-bb86-9199ab4fd2d5",
-			"query_url": "https://docs.docker.com/engine/reference/builder/#healthcheck",
-			"severity": "LOW",
-			"platform": "Dockerfile",
-			"cwe": "710",
-			"risk_score": "3.6",
-			"category": "Insecure Configurations",
-			"experimental": false,
-			"description": "Ensure that HEALTHCHECK is being used. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working",
-			"description_id": "426121ee",
-			"files": [
-				{
-					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
-					"similarity_id": "d2274cbdc91a3888d9efcf4241ef4acf2da0ac270d9bf6066f6bf37d6e99616c",
-					"line": 5,
-					"issue_type": "MissingAttribute",
-					"search_key": "FROM={{ubuntu:latestnightly(1)}}",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
-					"actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
-				}
-			]
-		}
-	]
+  "kics_version": "development",
+  "files_scanned": 1,
+  "lines_scanned": 15,
+  "files_parsed": 1,
+  "lines_parsed": 15,
+  "lines_ignored": 0,
+  "files_failed_to_scan": 0,
+  "queries_total": 48,
+  "queries_failed_to_execute": 0,
+  "queries_failed_to_compute_similarity_id": 0,
+  "scan_id": "console",
+  "severity_counters": {
+    "CRITICAL": 0,
+    "HIGH": 1,
+    "INFO": 0,
+    "LOW": 2,
+    "MEDIUM": 5,
+    "TRACE": 0
+  },
+  "total_counter": 8,
+  "total_bom_resources": 0,
+  "start": "2026-04-22T12:30:41.5288415+01:00",
+  "end": "2026-04-22T12:30:43.3332084+01:00",
+  "paths": [
+    "/path/test/fixtures/dockerfile/Dockerfile-multistage"
+  ],
+  "queries": [
+    {
+      "query_name": "Missing User Instruction",
+      "query_id": "fd54f200-402c-4333-a5a4-36ef6709af2f",
+      "query_url": "https://docs.docker.com/engine/reference/builder/#user",
+      "severity": "HIGH",
+      "platform": "Dockerfile",
+      "cwe": "250",
+      "risk_score": "7.7",
+      "cloud_provider": "COMMON",
+      "category": "Build Process",
+      "experimental": false,
+      "description": "Always set a user in the runtime stage of your Dockerfile. Without it, the container defaults to root, even if earlier build stages define a user.",
+      "description_id": "eb49caf6",
+      "files": [
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "10ce4cfcc91d053ee1b926b632f05f3c744c73044a629a8ac5416a73d6ba80da",
+          "line": 14,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{ubuntu:latestnightly(3)}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+          "actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+        }
+      ]
+    },
+    {
+      "query_name": "Add Instead of Copy",
+      "query_id": "9513a694-aa0d-41d8-be61-3271e056f36b",
+      "query_url": "https://docs.docker.com/engine/reference/builder/#add",
+      "severity": "MEDIUM",
+      "platform": "Dockerfile",
+      "cwe": "610",
+      "risk_score": "5.2",
+      "category": "Supply-Chain",
+      "experimental": false,
+      "description": "Using ADD to load external installation scripts could lead to an evil web server leveraging this and loading a malicious script.",
+      "description_id": "0aedd324",
+      "files": [
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "8a77052e7fe9677bd371c5a652763f6d4edcb6ef3ece7b2574a37de1e532870c",
+          "line": 10,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{ubuntu:latestnightly(1)}}.{{ADD ${JAR_FILE} app.jar}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "'COPY' ${JAR_FILE}",
+          "actual_value": "'ADD' ${JAR_FILE}"
+        }
+      ]
+    },
+    {
+      "query_name": "Image Version Using 'latest'",
+      "query_id": "f45ea400-6bbe-4501-9fc7-1c3d75c32067",
+      "query_url": "https://docs.docker.com/develop/dev-best-practices/",
+      "severity": "MEDIUM",
+      "platform": "Dockerfile",
+      "cwe": "1357",
+      "risk_score": "5.1",
+      "category": "Best Practices",
+      "experimental": false,
+      "description": "When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag",
+      "description_id": "22f535ec",
+      "files": [
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "7cd0ad90e5f32a85978dbfa12788d4098d089c58464d0206b3686a24c0401a0f",
+          "line": 5,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{ubuntu:latestnightly(1)}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "FROM ubuntu:latestnightly:'version' where version should not be 'latest'",
+          "actual_value": "FROM ubuntu:latestnightly'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "35196abdb4d1bc998a888b4f84a2c27ff21cc3ef0c98866f921313a59e871c2f",
+          "line": 13,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{ubuntu:latestnightly(2)}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "FROM ubuntu:latestnightly:'version' where version should not be 'latest'",
+          "actual_value": "FROM ubuntu:latestnightly'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "3ce5bdec335929d052c1cd553ea0f09716eca37667944c5f2703da9e92b1a50c",
+          "line": 14,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{ubuntu:latestnightly(3)}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "FROM ubuntu:latestnightly:'version' where version should not be 'latest'",
+          "actual_value": "FROM ubuntu:latestnightly'"
+        },
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "61497abefc29818ee73a40c7bd0c69f67c83e20279fbd89fbe69e7f6eac4e71c",
+          "line": 1,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{ubuntu:latestnightly}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "FROM ubuntu:latestnightly:'version' where version should not be 'latest'",
+          "actual_value": "FROM ubuntu:latestnightly'"
+        }
+      ]
+    },
+    {
+      "query_name": "Curl or Wget Instead of Add",
+      "query_id": "4b410d24-1cbe-4430-a632-62c9a931cf1c",
+      "query_url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+      "severity": "LOW",
+      "platform": "Dockerfile",
+      "cwe": "610",
+      "risk_score": "2.8",
+      "category": "Best Practices",
+      "experimental": false,
+      "description": "Use of Curl or Wget should be done instead of Add to fetch packages from remote URLs due to the use of Add being strongly discouraged",
+      "description_id": "29e8216b",
+      "files": [
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "dfcf010141323091aa3e4594c429c4fa9c9c9e3ac1baa0bc553772e6cc5efafc",
+          "line": 7,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{ubuntu:latestnightly(1)}}.{{ADD http://source.file/package.file.tar.gz /temp}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Should use 'curl' or 'wget' to download http://source.file/package.file.tar.gz",
+          "actual_value": "'ADD' http://source.file/package.file.tar.gz"
+        }
+      ]
+    },
+    {
+      "query_name": "Healthcheck Instruction Missing",
+      "query_id": "b03a748a-542d-44f4-bb86-9199ab4fd2d5",
+      "query_url": "https://docs.docker.com/engine/reference/builder/#healthcheck",
+      "severity": "LOW",
+      "platform": "Dockerfile",
+      "cwe": "710",
+      "risk_score": "3.6",
+      "category": "Insecure Configurations",
+      "experimental": false,
+      "description": "Ensure that HEALTHCHECK is being used. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working",
+      "description_id": "426121ee",
+      "files": [
+        {
+          "file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
+          "similarity_id": "ab1403dc6252c1a8affa62b3642775a987231a5e7144b78bdce4c4747376ef51",
+          "line": 14,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{ubuntu:latestnightly(3)}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        }
+      ]
+    }
+  ]
 }
