@@ -14,10 +14,10 @@ import (
 
 const (
 	extDockerfile               = ".dockerfile"
-	dockerFromPattern           = `(?i)^\s*from\s+`
+	dockerFromPattern           = `(?i)^from\s+`
 	pythonImportPattern         = `(?i)from\s+\S+\s+import\s+\S+`
 	emailPattern                = `(?i)from\s*(:)?\s*[\w\-.]+@([\w\-]+\.)+[\w\-]{2,4}`
-	capitalizedAliasPattern     = `^\s*(?i:FROM)\s+\S+\s+(?i:AS)\s+[A-Z]`
+	capitalizedAliasPattern     = `^(?i:FROM)\s+\S+\s+(?i:AS)\s+[A-Z]`
 	dockerfileIllegalCharacters = `["'` + "`" + `()\[\],;|&?*^%!~<>]`
 )
 
@@ -97,10 +97,11 @@ func readPossibleDockerFile(path string) bool {
 	scanner := bufio.NewScanner(file)
 	// Read lines from the file
 	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(strings.ToLower(scanner.Text()), "arg") || scanner.Text() == "" {
+		line := strings.TrimSpace(scanner.Text())
+		if strings.HasPrefix(line, "#") || strings.HasPrefix(strings.ToLower(line), "arg") || line == "" {
 			continue
 		} else {
-			return dockerFrom.MatchString(scanner.Text()) && !matchesAny(falsePositiveFROMPatterns, scanner.Text())
+			return dockerFrom.MatchString(line) && !matchesAny(falsePositiveFROMPatterns, line)
 		}
 	}
 	return false

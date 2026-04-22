@@ -232,6 +232,34 @@
             ],
             "_kics_line": 11
           }
+        ],
+        "ubuntu:latestnightly(2)": [
+          {
+            "Cmd": "from",
+            "EndLine": 13,
+            "Flags": [],
+            "JSON": false,
+            "Original": "FROM ubuntu:latestnightly",
+            "SubCmd": "",
+            "Value": [
+              "ubuntu:latestnightly"
+            ],
+            "_kics_line": 13
+          }
+        ],
+        "ubuntu:latestnightly(3)": [
+          {
+            "Cmd": "from",
+            "EndLine": 14,
+            "Flags": [],
+            "JSON": false,
+            "Original": "FROM ubuntu:latestnightly",
+            "SubCmd": "",
+            "Value": [
+              "ubuntu:latestnightly"
+            ],
+            "_kics_line": 14
+          }
         ]
       },
       "file": "file",
@@ -1562,6 +1590,40 @@
               "app.jar"
             ],
             "_kics_line": 4
+          }
+        ]
+      },
+      "file": "file",
+      "id": "0"
+    },
+    {
+      "args": [
+        {
+          "Cmd": "arg",
+          "EndLine": 1,
+          "Flags": [],
+          "JSON": false,
+          "Original": "ARG BASE_IMAGE=alpine:latest",
+          "SubCmd": "",
+          "Value": [
+            "BASE_IMAGE=alpine:latest"
+          ],
+          "_kics_line": 1
+        }
+      ],
+      "command": {
+        "${BASE_IMAGE}": [
+          {
+            "Cmd": "from",
+            "EndLine": 2,
+            "Flags": [],
+            "JSON": false,
+            "Original": "FROM ${BASE_IMAGE}",
+            "SubCmd": "",
+            "Value": [
+              "alpine:latest"
+            ],
+            "_kics_line": 2
           }
         ]
       },
