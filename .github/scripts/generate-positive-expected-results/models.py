@@ -19,9 +19,8 @@ def natural_sort_key(s: str):
 
 @dataclass
 class PositiveTest:
-    
     """A positive test file to scan."""
-    
+
     label: str
     scan_path: str
     group: str  # "test" for loose files, "test/<dir>" for subdirectory files
@@ -29,7 +28,6 @@ class PositiveTest:
 
 @dataclass
 class ScanFailure:
-    
     """A scan that failed with an unexpected return code."""
     
     scan_path: str
@@ -39,7 +37,6 @@ class ScanFailure:
 
 @dataclass
 class ExpectedResultEntry:
-    
     """A single expected vulnerability finding."""
     
     queryName: str = ""
