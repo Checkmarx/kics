@@ -2,21 +2,6 @@
   {
     "queryName": "Shared Host IPC Namespace",
     "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive.yaml",
-    "resourceType": "Pod",
-    "resourceName": "security-context-demo",
-    "searchKey": "metadata.name={{security-context-demo}}.spec.hostIPC",
-    "searchValue": "",
-    "expectedValue": "'spec.hostIPC' should be set to false or undefined",
-    "actualValue": "'spec.hostIPC' is true",
-    "issueType": "IncorrectValue",
-    "similarityID": "6e480e708baf6e3bebaa47fd127e0d9f3752b00f170265e67cb3e4c570fb8e0b",
-    "search_line": -1
-  },
-  {
-    "queryName": "Shared Host IPC Namespace",
-    "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive2.yaml",
     "resourceType": "Configuration",
@@ -27,6 +12,21 @@
     "actualValue": "'spec.template.spec.hostIPC' is true",
     "issueType": "IncorrectValue",
     "similarityID": "45e78418040aadee3e0b056fe98e135d5c03bd58f52f6b35fe6b29533e5a6902",
+    "search_line": -1
+  },
+  {
+    "queryName": "Shared Host IPC Namespace",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.hostIPC",
+    "searchValue": "",
+    "expectedValue": "'spec.hostIPC' should be set to false or undefined",
+    "actualValue": "'spec.hostIPC' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "6e480e708baf6e3bebaa47fd127e0d9f3752b00f170265e67cb3e4c570fb8e0b",
     "search_line": -1
   }
 ]

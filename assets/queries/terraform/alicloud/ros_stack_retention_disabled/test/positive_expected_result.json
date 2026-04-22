@@ -2,21 +2,6 @@
   {
     "queryName": "ROS Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive.tf",
-    "resourceType": "alicloud_ros_stack_instance",
-    "resourceName": "example",
-    "searchKey": "alicloud_ros_stack_instance[example].retain_stacks",
-    "searchValue": "",
-    "expectedValue": "alicloud_ros_stack_instance[example].retain_stacks should be true ",
-    "actualValue": "alicloud_ros_stack_instance[example].retain_stacks is false",
-    "issueType": "IncorrectValue",
-    "similarityID": "018c8abf5f2f02b92a9a5c4345c5b27fb38438e8e64e4891c9479834c478600f",
-    "search_line": 6
-  },
-  {
-    "queryName": "ROS Stack Retention Disabled",
-    "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive2.tf",
     "resourceType": "alicloud_ros_stack_instance",
@@ -28,5 +13,20 @@
     "issueType": "MissingAttribute",
     "similarityID": "f4dea785f91f946d4ba5c3ce86ecbe88ee17d6094db3ce4cdbfccaadb6447307",
     "search_line": 1
+  },
+  {
+    "queryName": "ROS Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive.tf",
+    "resourceType": "alicloud_ros_stack_instance",
+    "resourceName": "example",
+    "searchKey": "alicloud_ros_stack_instance[example].retain_stacks",
+    "searchValue": "",
+    "expectedValue": "alicloud_ros_stack_instance[example].retain_stacks should be true ",
+    "actualValue": "alicloud_ros_stack_instance[example].retain_stacks is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "018c8abf5f2f02b92a9a5c4345c5b27fb38438e8e64e4891c9479834c478600f",
+    "search_line": 6
   }
 ]

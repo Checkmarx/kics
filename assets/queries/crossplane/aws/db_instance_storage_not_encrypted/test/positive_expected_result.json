@@ -2,36 +2,6 @@
   {
     "queryName": "DB Instance Storage Not Encrypted",
     "severity": "HIGH",
-    "line": 21,
-    "fileName": "positive.yaml",
-    "resourceType": "RDSInstance",
-    "resourceName": "rds3",
-    "searchKey": "metadata.name={{rds3}}.spec.forProvider.storageEncrypted",
-    "searchValue": "",
-    "expectedValue": "storageEncrypted should be set to true",
-    "actualValue": "storageEncrypted is set to false",
-    "issueType": "IncorrectValue",
-    "similarityID": "ff154841eb5e80a77a8676628d2e96d23d7e7e2341981ae73a521e185a7c3962",
-    "search_line": 21
-  },
-  {
-    "queryName": "DB Instance Storage Not Encrypted",
-    "severity": "HIGH",
-    "line": 63,
-    "fileName": "positive.yaml",
-    "resourceType": "RDSInstance",
-    "resourceName": "rds4",
-    "searchKey": "spec.resources.base.metadata.name={{rds4}}.spec.forProvider.storageEncrypted",
-    "searchValue": "",
-    "expectedValue": "storageEncrypted should be set to true",
-    "actualValue": "storageEncrypted is set to false",
-    "issueType": "IncorrectValue",
-    "similarityID": "75eda5b9cfeffb10409f292d89b9775f77b66e76b1b3a9535b1a461052bff1ac",
-    "search_line": 63
-  },
-  {
-    "queryName": "DB Instance Storage Not Encrypted",
-    "severity": "HIGH",
     "line": 6,
     "fileName": "positive2.yaml",
     "resourceType": "RDSInstance",
@@ -58,5 +28,35 @@
     "issueType": "MissingAttribute",
     "similarityID": "934b0b809d8b91c38ab598e6f9c7080cda883a4062785cb6d66483bce65f785b",
     "search_line": 47
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive.yaml",
+    "resourceType": "RDSInstance",
+    "resourceName": "rds3",
+    "searchKey": "metadata.name={{rds3}}.spec.forProvider.storageEncrypted",
+    "searchValue": "",
+    "expectedValue": "storageEncrypted should be set to true",
+    "actualValue": "storageEncrypted is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ff154841eb5e80a77a8676628d2e96d23d7e7e2341981ae73a521e185a7c3962",
+    "search_line": 21
+  },
+  {
+    "queryName": "DB Instance Storage Not Encrypted",
+    "severity": "HIGH",
+    "line": 63,
+    "fileName": "positive.yaml",
+    "resourceType": "RDSInstance",
+    "resourceName": "rds4",
+    "searchKey": "spec.resources.base.metadata.name={{rds4}}.spec.forProvider.storageEncrypted",
+    "searchValue": "",
+    "expectedValue": "storageEncrypted should be set to true",
+    "actualValue": "storageEncrypted is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "75eda5b9cfeffb10409f292d89b9775f77b66e76b1b3a9535b1a461052bff1ac",
+    "search_line": 63
   }
 ]

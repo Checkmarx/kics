@@ -17,21 +17,6 @@
   {
     "queryName": "S3 Bucket Allows Public Policy",
     "severity": "MEDIUM",
-    "line": 1,
-    "fileName": "positive10.tf",
-    "resourceType": "aws_s3_account_public_access_block",
-    "resourceName": "allow_public_acc",
-    "searchKey": "aws_s3_account_public_access_block[allow_public_acc]",
-    "searchValue": "",
-    "expectedValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' should be defined to true",
-    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is not defined (defaults to false)",
-    "issueType": "MissingAttribute",
-    "similarityID": "15caea81ff4d009c12662d30fd5e52b88a755cd42110ef8803b41b1aefbc06b5",
-    "search_line": 1
-  },
-  {
-    "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "MEDIUM",
     "line": 12,
     "fileName": "positive2.tf",
     "resourceType": "aws_s3_bucket_public_access_block",
@@ -148,5 +133,20 @@
     "issueType": "IncorrectValue",
     "similarityID": "7d6a022d1554b5a793068d4767643e5e701785ce3567a00d023e24792ca83a1f",
     "search_line": 2
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive10.tf",
+    "resourceType": "aws_s3_account_public_access_block",
+    "resourceName": "allow_public_acc",
+    "searchKey": "aws_s3_account_public_access_block[allow_public_acc]",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' should be defined to true",
+    "actualValue": "'aws_s3_account_public_access_block[allow_public_acc].block_public_policy' is not defined (defaults to false)",
+    "issueType": "MissingAttribute",
+    "similarityID": "15caea81ff4d009c12662d30fd5e52b88a755cd42110ef8803b41b1aefbc06b5",
+    "search_line": 1
   }
 ]

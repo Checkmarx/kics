@@ -2,36 +2,6 @@
   {
     "queryName": "Neptune Database Cluster Encryption Disabled",
     "severity": "HIGH",
-    "line": 6,
-    "fileName": "positive.yaml",
-    "resourceType": "DBCluster",
-    "resourceName": "sample-cluster3",
-    "searchKey": "metadata.name={{sample-cluster3}}.spec.forProvider",
-    "searchValue": "",
-    "expectedValue": "storageEncrypted should be defined and set to true",
-    "actualValue": "storageEncrypted is not defined",
-    "issueType": "MissingAttribute",
-    "similarityID": "8e40fb5c5183d151a9f634ebf8d8229c953f0abd59d1e4abc7a178697c4506a2",
-    "search_line": 6
-  },
-  {
-    "queryName": "Neptune Database Cluster Encryption Disabled",
-    "severity": "HIGH",
-    "line": 40,
-    "fileName": "positive.yaml",
-    "resourceType": "DBCluster",
-    "resourceName": "sample-cluster4",
-    "searchKey": "spec.resources.base.metadata.name={{sample-cluster4}}.spec.forProvider",
-    "searchValue": "",
-    "expectedValue": "storageEncrypted should be defined and set to true",
-    "actualValue": "storageEncrypted is not defined",
-    "issueType": "MissingAttribute",
-    "similarityID": "88bef55f96ed6a8884ed9b34b8215684027617002288fc210be12a100f23a412",
-    "search_line": 40
-  },
-  {
-    "queryName": "Neptune Database Cluster Encryption Disabled",
-    "severity": "HIGH",
     "line": 15,
     "fileName": "positive2.yaml",
     "resourceType": "DBCluster",
@@ -58,5 +28,35 @@
     "issueType": "IncorrectValue",
     "similarityID": "475e4daa8c58ce8465b4f9b53b3acc1ed1c88e361f689a5f8737752f8a3b0eb7",
     "search_line": 50
+  },
+  {
+    "queryName": "Neptune Database Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "sample-cluster3",
+    "searchKey": "metadata.name={{sample-cluster3}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "storageEncrypted should be defined and set to true",
+    "actualValue": "storageEncrypted is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8e40fb5c5183d151a9f634ebf8d8229c953f0abd59d1e4abc7a178697c4506a2",
+    "search_line": 6
+  },
+  {
+    "queryName": "Neptune Database Cluster Encryption Disabled",
+    "severity": "HIGH",
+    "line": 40,
+    "fileName": "positive.yaml",
+    "resourceType": "DBCluster",
+    "resourceName": "sample-cluster4",
+    "searchKey": "spec.resources.base.metadata.name={{sample-cluster4}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "storageEncrypted should be defined and set to true",
+    "actualValue": "storageEncrypted is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "88bef55f96ed6a8884ed9b34b8215684027617002288fc210be12a100f23a412",
+    "search_line": 40
   }
 ]

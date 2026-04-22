@@ -2,21 +2,6 @@
   {
     "queryName": "MariaDB Server Public Network Access Enabled",
     "severity": "HIGH",
-    "line": 16,
-    "fileName": "positive.tf",
-    "resourceType": "azurerm_mariadb_server",
-    "resourceName": "example-mariadb-server",
-    "searchKey": "azurerm_mariadb_server[positive].public_network_access_enabled",
-    "searchValue": "",
-    "expectedValue": "'azurerm_mariadb_server[positive].public_network_access_enabled.enabled' should be set to false",
-    "actualValue": "'azurerm_mariadb_server[positive].public_network_access_enabled.enabled' is not set to false",
-    "issueType": "IncorrectValue",
-    "similarityID": "39240d71abaa9cd635ab3ac5c966f8eccd1cc7a2aad19491bbfd3f6685be5f90",
-    "search_line": 16
-  },
-  {
-    "queryName": "MariaDB Server Public Network Access Enabled",
-    "severity": "HIGH",
     "line": 1,
     "fileName": "positive2.tf",
     "resourceType": "azurerm_mariadb_server",
@@ -28,5 +13,20 @@
     "issueType": "MissingAttribute",
     "similarityID": "e7c6edad01d5b1e5507ac9aae430063285518b00e3d72a7391697635f028356d",
     "search_line": 1
+  },
+  {
+    "queryName": "MariaDB Server Public Network Access Enabled",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_mariadb_server",
+    "resourceName": "example-mariadb-server",
+    "searchKey": "azurerm_mariadb_server[positive].public_network_access_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mariadb_server[positive].public_network_access_enabled.enabled' should be set to false",
+    "actualValue": "'azurerm_mariadb_server[positive].public_network_access_enabled.enabled' is not set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "39240d71abaa9cd635ab3ac5c966f8eccd1cc7a2aad19491bbfd3f6685be5f90",
+    "search_line": 16
   }
 ]

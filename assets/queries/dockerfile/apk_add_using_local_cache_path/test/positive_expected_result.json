@@ -3,21 +3,6 @@
     "queryName": "Apk Add Using Local Cache Path",
     "severity": "INFO",
     "line": 2,
-    "fileName": "positive.dockerfile",
-    "resourceType": "",
-    "resourceName": "",
-    "searchKey": "FROM={{gliderlabs/alpine:3.3}}.{{RUN apk add --update-cache python}}",
-    "searchValue": "",
-    "expectedValue": "'RUN' should not contain 'apk add' command without '--no-cache' switch",
-    "actualValue": "'RUN' contains 'apk add' command without '--no-cache' switch",
-    "issueType": "IncorrectValue",
-    "similarityID": "9d74206602aa797d477d3a8173131cbc049e41cbb735a05685a5615f37f76489",
-    "search_line": -1
-  },
-  {
-    "queryName": "Apk Add Using Local Cache Path",
-    "severity": "INFO",
-    "line": 2,
     "fileName": "positive2.dockerfile",
     "resourceType": "",
     "resourceName": "",
@@ -27,6 +12,21 @@
     "actualValue": "'RUN' contains 'apk add' command without '--no-cache' switch",
     "issueType": "IncorrectValue",
     "similarityID": "f872f5a089d6884f57e9305b5ce8b42055dac9ad71eef7bd7d4ee6485cd59543",
+    "search_line": -1
+  },
+  {
+    "queryName": "Apk Add Using Local Cache Path",
+    "severity": "INFO",
+    "line": 2,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{gliderlabs/alpine:3.3}}.{{RUN apk add --update-cache python}}",
+    "searchValue": "",
+    "expectedValue": "'RUN' should not contain 'apk add' command without '--no-cache' switch",
+    "actualValue": "'RUN' contains 'apk add' command without '--no-cache' switch",
+    "issueType": "IncorrectValue",
+    "similarityID": "9d74206602aa797d477d3a8173131cbc049e41cbb735a05685a5615f37f76489",
     "search_line": -1
   }
 ]

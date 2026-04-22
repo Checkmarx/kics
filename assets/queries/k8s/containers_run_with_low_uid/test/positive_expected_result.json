@@ -17,36 +17,6 @@
   {
     "queryName": "Container Running With Low UID",
     "severity": "MEDIUM",
-    "line": 18,
-    "fileName": "positive10.yaml",
-    "resourceType": "StatefulSet",
-    "resourceName": "security-context-demo",
-    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
-    "searchValue": "StatefulSet",
-    "expectedValue": "3 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be defined",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is undefined",
-    "issueType": "MissingAttribute",
-    "similarityID": "1b60386329fabd1881d58eef759f5167fe3f6ad400ecda260f746021988f9ed7",
-    "search_line": 18
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
-    "line": 36,
-    "fileName": "positive10.yaml",
-    "resourceType": "Deployment",
-    "resourceName": "security-context-demo",
-    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
-    "searchValue": "Deployment",
-    "expectedValue": "3 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be defined",
-    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is undefined",
-    "issueType": "MissingAttribute",
-    "similarityID": "0631b9386a9262ea3f5faf5f0cd988d6f050645c0d98ce7ae3e20e1042896e5e",
-    "search_line": 36
-  },
-  {
-    "queryName": "Container Running With Low UID",
-    "severity": "MEDIUM",
     "line": 13,
     "fileName": "positive2.yaml",
     "resourceType": "Pod",
@@ -253,5 +223,35 @@
     "issueType": "IncorrectValue",
     "similarityID": "9f46f4c40f5e5470f1eaf4df72da94f707a26e7337ba5882669704832e03d4a8",
     "search_line": 38
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive10.yaml",
+    "resourceType": "StatefulSet",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
+    "searchValue": "StatefulSet",
+    "expectedValue": "3 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be defined",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "1b60386329fabd1881d58eef759f5167fe3f6ad400ecda260f746021988f9ed7",
+    "search_line": 18
+  },
+  {
+    "queryName": "Container Running With Low UID",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive10.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "security-context-demo",
+    "searchKey": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}",
+    "searchValue": "Deployment",
+    "expectedValue": "3 metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser should be defined",
+    "actualValue": "metadata.name={{security-context-demo}}.spec.template.spec.containers.name={{sec-ctx-demo}}.securityContext.runAsUser is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0631b9386a9262ea3f5faf5f0cd988d6f050645c0d98ce7ae3e20e1042896e5e",
+    "search_line": 36
   }
 ]
