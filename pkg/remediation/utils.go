@@ -113,7 +113,14 @@ func removedResult(results []model.Vulnerability, remediation *Remediation) bool
 func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
 	filepath.Clean(filePathCopyFrom)
 	filepath.Clean(tmpFilePath)
-	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, FilePermMode)
+
+	info, err := os.Stat(filePathCopyFrom)
+	if err != nil {
+		log.Error().Msgf("failed to stat file '%s': %s", filePathCopyFrom, err)
+		return ""
+	}
+
+	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, info.Mode().Perm())
 
 	if err != nil {
 		log.Error().Msgf("failed to open file '%s': %s", tmpFilePath, err)
