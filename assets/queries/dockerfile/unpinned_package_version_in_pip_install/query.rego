@@ -53,6 +53,10 @@ CxPolicy[result] {
 	resource.Value[j] != "pip"
 	resource.Value[j] != "pip3"
 
+	not contains(resource.Value[j], "://")
+	not contains(resource.Value[j], "/")
+	not isFlagArgument(resource.Value, j)
+
 	regex.match("^[a-zA-Z]", resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
 
@@ -88,5 +92,5 @@ isFlagArgument(arr, k) {
 	k > 0
 	regex.match("^-", arr[k - 1])
 	not startswith(arr[k], "-")
-	contains(arr[k], ".")
+	regex.match(`[.:/]`, arr[k])
 }
