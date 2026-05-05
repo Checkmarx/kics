@@ -46,5 +46,11 @@
     "severity": "HIGH",
     "line": 13,
     "fileName": "positive7.yaml"
+  },
+  {
+    "queryName": "Run Block Injection",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive8.yaml"
   }
 ]

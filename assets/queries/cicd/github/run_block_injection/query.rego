@@ -62,7 +62,8 @@ CxPolicy[result] {
 	patterns := [
     "github.event.comment.body",
 	"github.event.issue.body",
-	"github.event.issue.title"
+	"github.event.issue.title",
+	"github.event.comment.user.login"
 	]
 
 	matched = containsPatterns(run, patterns)
@@ -174,8 +175,6 @@ CxPolicy[result] {
 		"searchValue": matched[m]
 	}
 }
-
-
 
 containsPatterns(str, patterns) = matched {
     matched := {pattern |
