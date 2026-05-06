@@ -5,16 +5,17 @@ import (
 	"path/filepath"
 	"regexp"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/comment"
-	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
-	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
-	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	ctyjson "github.com/zclconf/go-cty/cty/json"
+
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/comment"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
+	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
+	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 // RetriesDefaultValue is default number of times a parser will retry to execute
@@ -25,9 +26,11 @@ type Converter func(file *hcl.File, inputVariables converter.VariableMap) (model
 
 // Parser struct that contains the function to parse file and the number of retries if something goes wrong
 type Parser struct {
-	convertFunc       Converter
-	numOfRetries      int
-	terraformVarsPath string
+	convertFunc          Converter
+	numOfRetries         int
+	terraformVarsPath    string
+	scanSourcePaths      []string
+	strictSourceResolver bool
 }
 
 // NewDefault initializes a parser with Parser default values
@@ -39,9 +42,11 @@ func NewDefault() *Parser {
 }
 
 // NewDefaultWithVarsPath initializes a parser with the default values using a variables path
-func NewDefaultWithVarsPath(terraformVarsPath string) *Parser {
+func NewDefaultWithVarsPath(terraformVarsPath string, scanSourcePaths []string, secureResolver bool) *Parser {
 	parser := NewDefault()
 	parser.terraformVarsPath = terraformVarsPath
+	parser.scanSourcePaths = scanSourcePaths
+	parser.strictSourceResolver = secureResolver
 	return parser
 }
 
@@ -54,7 +59,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string, _ bool, _ int) ([]
 			masterUtils.HandlePanic(r, errMessage)
 		}
 	}()
-	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
+	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath, p.scanSourcePaths, p.strictSourceResolver)
 	getDataSourcePolicy(filepath.Dir(filename))
 	return fileContent, nil
 }

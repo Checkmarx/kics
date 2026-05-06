@@ -10,14 +10,16 @@ import (
 
 // Parser defines a parser type
 type Parser struct {
-	shouldIdent   bool
-	resolvedFiles map[string]model.ResolvedFile
+	shouldIdent          bool
+	resolvedFiles        map[string]model.ResolvedFile
+	ScanSourcePaths      []string
+	StrictSourceResolver bool
 }
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string, resolveReferences bool, maxResolverDepth int) ([]byte, error) {
 	// Resolve files passed as arguments with file resolver (e.g. file://)
-	res := file.NewResolver(json.Unmarshal, json.Marshal, p.SupportedExtensions())
+	res := file.NewResolver(json.Unmarshal, json.Marshal, p.SupportedExtensions(), p.ScanSourcePaths)
 	initialResolvingStatus := file.ResolvingStatus{
 		CurrentDepth:          0,
 		MaxDepth:              maxResolverDepth,

@@ -6,9 +6,10 @@ import (
 	"os"
 	"strings"
 
+	"github.com/rs/zerolog/log"
+
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/rs/zerolog/log"
 )
 
 type kindParser interface {
@@ -69,9 +70,10 @@ var ErrNotSupportedFile = errors.New("unsupported file to parse")
 
 // Parser is a struct that associates a parser to its supported extensions
 type Parser struct {
-	parsers    kindParser
-	extensions model.Extensions
-	Platform   []string
+	parsers         kindParser
+	extensions      model.Extensions
+	Platform        []string
+	ScanSourcePaths []string
 }
 
 // ParsedDocument is a struct containing data retrieved from parsing

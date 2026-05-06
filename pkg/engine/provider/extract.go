@@ -91,7 +91,7 @@ func GetSources(source []string) (ExtractedPath, error) {
 
 		opts := []getter.ClientOption{}
 
-		opts = append(opts, getter.WithInsecure())
+		opts = append(opts)
 
 		ctx, cancel := context.WithCancel(context.Background())
 
