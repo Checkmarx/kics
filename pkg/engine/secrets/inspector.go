@@ -455,7 +455,7 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 
 		text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
 		contentMatchRemovedLines := strings.Split(text, "\n")
-		for i := 0; i < len(lines); i++ {
+		for i := range min(len(lines), len(contentMatchRemovedLines)) {
 			if lines[i] != contentMatchRemovedLines[i] {
 				lineVulneInfoObject.lineNumber = i + realLineUpdater
 				lineVulneInfoObject.lineContent = lines[i]
