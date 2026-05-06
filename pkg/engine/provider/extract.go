@@ -89,7 +89,7 @@ func GetSources(source []string) (ExtractedPath, error) {
 			log.Fatal().Msgf("Error getting wd: %s", err)
 		}
 
-		opts := []getter.ClientOption{}
+		var opts []getter.ClientOption
 
 		ctx, cancel := context.WithCancel(context.Background()) //nolint:gosec
 
