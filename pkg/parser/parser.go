@@ -70,10 +70,9 @@ var ErrNotSupportedFile = errors.New("unsupported file to parse")
 
 // Parser is a struct that associates a parser to its supported extensions
 type Parser struct {
-	parsers         kindParser
-	extensions      model.Extensions
-	Platform        []string
-	ScanSourcePaths []string
+	parsers    kindParser
+	extensions model.Extensions
+	Platform   []string
 }
 
 // ParsedDocument is a struct containing data retrieved from parsing

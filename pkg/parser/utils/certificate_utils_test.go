@@ -38,8 +38,6 @@ func TestCheckCertificateBody(t *testing.T) {
 func TestAddCertificateInfo_StrictRejectsUnsafePath(t *testing.T) {
 	allowedBase := t.TempDir()
 	outsideDir := t.TempDir()
-	defer os.Remove(allowedBase)
-	defer os.Remove(outsideDir)
 	outsideCert := filepath.Join(outsideDir, "cert.pem")
 	require.NoError(t, os.WriteFile(outsideCert, []byte("placeholder"), 0o600))
 
@@ -53,8 +51,6 @@ func TestAddCertificateInfo_StrictRejectsUnsafePath(t *testing.T) {
 func TestAddCertificateInfo_StrictRejectsTraversalRelativePath(t *testing.T) {
 	allowedBase := t.TempDir()
 	siblingDir := t.TempDir()
-	defer os.Remove(allowedBase)
-	defer os.Remove(siblingDir)
 	// Relative path that, when joined with the .tf file's directory, escapes
 	// allowedBase. No file needs to exist: os.Stat on a relative path is
 	// resolved against test CWD and fails, so the join branch is taken; the
