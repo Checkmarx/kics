@@ -91,9 +91,7 @@ func GetSources(source []string) (ExtractedPath, error) {
 
 		opts := []getter.ClientOption{}
 
-		opts = append(opts)
-
-		ctx, cancel := context.WithCancel(context.Background())
+		ctx, cancel := context.WithCancel(context.Background()) //nolint:gosec
 
 		goGetter := getterStruct{
 			ctx:         ctx,

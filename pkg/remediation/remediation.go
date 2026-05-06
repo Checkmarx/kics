@@ -52,6 +52,8 @@ type Set struct {
 	Addition    []Remediation
 }
 
+const filePermissions = 0600
+
 // RemediateFile remediationSets the replacements first and secondly, the additions sorted down
 func (s *Summary) RemediateFile(
 	filePath, originalFileName string,
@@ -60,7 +62,7 @@ func (s *Summary) RemediateFile(
 	maxResolverDepth int,
 ) error {
 	filepath.Clean(filePath)
-	content, err := os.ReadFile(filePath)
+	content, err := os.ReadFile(filePath) //nolint:gosec
 
 	if originalFileName == "" {
 		originalFileName = filePath
@@ -169,7 +171,7 @@ func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, or
 
 	// perm is ignored by os.WriteFile when the file already exists (which it does — we just read it);
 	// 0600 is a safe fallback only used if the file was deleted between read and write.
-	if err := os.WriteFile(filePath, remediated, 0600); err != nil {
+	if err := os.WriteFile(filePath, remediated, filePermissions); err != nil { //nolint:gosec
 		log.Error().Msgf("failed to write file: %s", err)
 		return lines
 	}

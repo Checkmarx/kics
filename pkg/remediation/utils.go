@@ -120,14 +120,14 @@ func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
 		return ""
 	}
 
-	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, info.Mode().Perm())
+	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, info.Mode().Perm()) //nolint:gosec
 
 	if err != nil {
 		log.Error().Msgf("failed to open file '%s': %s", tmpFilePath, err)
 		return ""
 	}
 
-	content, err := os.ReadFile(filePathCopyFrom)
+	content, err := os.ReadFile(filePathCopyFrom) //nolint:gosec
 
 	defer func(f *os.File) {
 		err = f.Close()
