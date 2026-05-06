@@ -212,7 +212,7 @@ func TestTerraform_ProcessContent(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			processContent(tt.args.elements, tt.args.content, tt.args.path)
+			processContent(tt.args.elements, tt.args.content, tt.args.path, nil, false)
 			require.Equal(t, tt.want, tt.args.elements["certificate_body"])
 		})
 	}

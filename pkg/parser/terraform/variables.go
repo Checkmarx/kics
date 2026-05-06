@@ -167,7 +167,7 @@ func getInputVariables(currentPath, fileContent, terraformVarsPath string, secur
 		terraformVarsPathMatch := terraformVarsPathRegex.FindStringSubmatch(fileContent)
 		if terraformVarsPathMatch != nil {
 			_, sanitizeErr := utils.SanitizePath(secureSourcePaths, terraformVarsPathMatch[1])
-			if strictSourceResolver && sanitizeErr != nil {
+			if !strictSourceResolver || sanitizeErr == nil {
 				// There is a path to the variables file in the file so that will be the path to the variables tf file
 				terraformVarsPath = terraformVarsPathMatch[1]
 				// If the path contains ":" assume it's a global path
