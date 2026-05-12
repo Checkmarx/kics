@@ -2,6 +2,8 @@ package scan
 
 import (
 	_ "embed" // Embed kics CLI img and scan-flags
+	// "encoding/json"
+	// "fmt"
 	"os"
 	"path/filepath"
 	"sort"
@@ -9,7 +11,7 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
-	"github.com/Checkmarx/kics/v2/pkg/descriptions"
+	// "github.com/Checkmarx/kics/v2/pkg/descriptions"
 	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
@@ -34,16 +36,6 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 	summary.Times = model.Times{
 		Start: c.ScanStartTime,
 		End:   end,
-	}
-
-	if c.ScanParams.DisableFullDesc {
-		log.Warn().Msg("Skipping descriptions because provided disable flag is set")
-	} else {
-		err := descriptions.RequestAndOverrideDescriptions(&summary)
-		if err != nil {
-			log.Warn().Msgf("Unable to get descriptions: %s", err)
-			log.Warn().Msgf("Using default descriptions")
-		}
 	}
 
 	return summary
