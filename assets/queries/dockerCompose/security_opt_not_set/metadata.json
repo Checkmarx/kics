@@ -4,7 +4,7 @@
   "severity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "Attribute 'security_opt' should be defined.",
-  "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt",
+  "descriptionUrl": "https://docs.docker.com/reference/compose-file/services/#security_opt",
   "platform": "DockerCompose",
   "descriptionID": "83fb7a65",
   "cloudProvider": "common",
