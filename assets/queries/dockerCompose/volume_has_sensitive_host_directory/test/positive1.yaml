@@ -8,7 +8,7 @@ services:
   backup:
     image: backup-service
     volumes:
-      - /var/lib/backup/data
+      - /var/lib/backup/data:/backup/data
 
 volumes:
   data-volume:
