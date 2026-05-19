@@ -14,7 +14,6 @@ import (
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/rs/zerolog/log"
 	"github.com/zclconf/go-cty/cty"
-	"github.com/zclconf/go-cty/cty/gocty"
 	ctyjson "github.com/zclconf/go-cty/cty/json"
 )
 
@@ -74,6 +73,13 @@ type convertedPolicy struct {
 
 var mutexData = &sync.Mutex{}
 
+var dataSourceMetaArguments = map[string]struct{}{
+	"count":      {},
+	"depends_on": {},
+	"for_each":   {},
+	"provider":   {},
+}
+
 func getDataSourcePolicy(currentPath string) {
 	tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
 	if err != nil {
@@ -83,7 +89,7 @@ func getDataSourcePolicy(currentPath string) {
 	if len(tfFiles) == 0 {
 		return
 	}
-	jsonMap := make(map[string]map[string]string)
+	jsonMap := make(map[string]cty.Value)
 	for _, tfFile := range tfFiles {
 		parsedFile, parseErr := parseFile(tfFile, true)
 		if parseErr != nil {
@@ -97,24 +103,35 @@ func getDataSourcePolicy(currentPath string) {
 		for _, block := range body.Blocks {
 			if block.Type == "data" && block.Labels[0] == "aws_iam_policy_document" && len(block.Labels) > 1 {
 				policyJSON := parseDataSourceBody(block.Body)
-				jsonMap[block.Labels[1]] = map[string]string{
-					"json": policyJSON,
+				policyValue := cty.ObjectVal(map[string]cty.Value{
+					"json": cty.StringVal(policyJSON),
+				})
+				if hasCountMetaArgument(block.Body) {
+					policyValue = cty.TupleVal([]cty.Value{policyValue})
 				}
+				jsonMap[block.Labels[1]] = policyValue
 			}
 		}
 	}
-	policyResource := map[string]map[string]map[string]string{
-		"aws_iam_policy_document": jsonMap,
-	}
-	data, err := gocty.ToCtyValue(policyResource, cty.Map(cty.Map(cty.Map(cty.String))))
-	if err != nil {
-		log.Error().Msgf("Error trying to convert policy to cty value: %s", err)
-		return
-	}
+	data := cty.ObjectVal(map[string]cty.Value{
+		"aws_iam_policy_document": objectVal(jsonMap),
+	})
 
 	mutexData.Lock()
 	inputVariableMap["data"] = data
 	mutexData.Unlock()
+}
+
+func hasCountMetaArgument(body *hclsyntax.Body) bool {
+	_, ok := body.Attributes["count"]
+	return ok
+}
+
+func objectVal(values map[string]cty.Value) cty.Value {
+	if len(values) == 0 {
+		return cty.EmptyObjectVal
+	}
+	return cty.ObjectVal(values)
 }
 
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy {
@@ -233,6 +250,9 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 	}
 
 	resolveDataResources(body)
+	removedMetaArguments := removeDataSourceMetaArguments(body)
+	defer restoreDataSourceMetaArguments(body, removedMetaArguments)
+
 	paths := extractVariablePathsFromBody(body)
 	grouped := groupPathsByRoot(paths)
 
@@ -305,6 +325,23 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		return ""
 	}
 	return buffer.String()
+}
+
+func removeDataSourceMetaArguments(body *hclsyntax.Body) map[string]*hclsyntax.Attribute {
+	removed := make(map[string]*hclsyntax.Attribute)
+	for name := range dataSourceMetaArguments {
+		if attr, ok := body.Attributes[name]; ok {
+			removed[name] = attr
+			delete(body.Attributes, name)
+		}
+	}
+	return removed
+}
+
+func restoreDataSourceMetaArguments(body *hclsyntax.Body, removed map[string]*hclsyntax.Attribute) {
+	for name, attr := range removed {
+		body.Attributes[name] = attr
+	}
 }
 
 // groupsPathsByRoot groups paths by their root variable (first element of the path)
