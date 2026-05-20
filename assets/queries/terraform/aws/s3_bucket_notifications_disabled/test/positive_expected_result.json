@@ -52,23 +52,5 @@
     "severity": "LOW",
     "line": 6,
     "fileName": "positive9.tf"
-  },
-  {
-    "queryName": "S3 bucket notifications disabled",
-    "severity": "LOW",
-    "line": 1,
-    "fileName": "positive10.tf"
-  },
-  {
-    "queryName": "S3 bucket notifications disabled",
-    "severity": "LOW",
-    "line": 1,
-    "fileName": "positive11.tf"
-  },
-  {
-    "queryName": "S3 bucket notifications disabled",
-    "severity": "LOW",
-    "line": 1,
-    "fileName": "positive12.tf"
   }
 ]

@@ -4,28 +4,6 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-    # Cases of "SNS Topic" or "SQS Queue" or "Lambda Function" with aws_s3_bucket_notification undefined
-    s3 := input.document[i].resource[type][name]
-    types := ["aws_sns_topic","aws_sqs_queue","aws_lambda_function"]
-    type == types[_]
-
-    not common_lib.valid_key(input.document[i].resource, "aws_s3_bucket_notification")  
-
-    result := {
-        "documentId": input.document[i].id,
-        "resourceType": type,
-		"resourceName": tf_lib.get_specific_resource_name(s3, "aws_s3_bucket_notification", type),
-        "searchKey": sprintf("%s[%s]",[type,name]),
-        "issueType": "MissingAttribute",
-        "keyExpectedValue": "'aws_s3_bucket_notification' should be defined and not null",
-        "keyActualValue": "'aws_s3_bucket_notification' is undefined or null",
-        "searchLine": common_lib.build_search_line(["resource", type, name], []),
-    }
-}
-
-
-
-CxPolicy[result] {
     # Cases of "SNS Topic" or "SQS Queue" or "Lambda Function" not referenced in aws_s3_bucket_notification
     s3 := input.document[i].resource[type][name]
     types := ["aws_sns_topic","aws_sqs_queue","aws_lambda_function"]
