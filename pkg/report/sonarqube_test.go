@@ -1,6 +1,7 @@
 package report
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"testing"
@@ -57,7 +58,21 @@ func TestPrintSonarQubeReport(t *testing.T) {
 			if err := PrintSonarQubeReport(tt.args.path, tt.args.filename, tt.args.body); (err != nil) != tt.wantErr {
 				t.Errorf("PrintSonarQubeReport() error = %v, wantErr %v", err, tt.wantErr)
 			}
-			require.FileExists(t, filepath.Join(tt.args.path, "sonarqube-"+tt.args.filename+".json"))
+			reportPath := filepath.Join(tt.args.path, "sonarqube-"+tt.args.filename+".json")
+			require.FileExists(t, reportPath)
+			if tt.args.body != "" {
+				reportBytes, err := os.ReadFile(reportPath)
+				require.NoError(t, err)
+
+				var reportBody map[string][]map[string]interface{}
+				require.NoError(t, json.Unmarshal(reportBytes, &reportBody))
+
+				require.NotEmpty(t, reportBody["rules"])
+				require.NotEmpty(t, reportBody["issues"])
+				require.NotContains(t, reportBody["issues"][0], "engineId")
+				require.NotContains(t, reportBody["issues"][0], "severity")
+				require.NotContains(t, reportBody["issues"][0], "type")
+			}
 			os.RemoveAll(tt.args.path)
 		})
 	}

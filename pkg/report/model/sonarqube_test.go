@@ -20,6 +20,7 @@ func TestNewSonarQubeRepory(t *testing.T) {
 			want: &SonarQubeReportBuilder{
 				version: "KICS " + constants.Version,
 				report: &SonarQubeReport{
+					Rules:  make([]Rule, 0),
 					Issues: make([]Issue, 0),
 				},
 			},
@@ -54,6 +55,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 			fields: fields{
 				version: "KICS " + constants.Version,
 				report: &SonarQubeReport{
+					Rules:  make([]Rule, 0),
 					Issues: make([]Issue, 0),
 				},
 			},
@@ -61,13 +63,26 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 				summary: &test.SummaryMock,
 			},
 			want: &SonarQubeReport{
+				Rules: []Rule{
+					{
+						ID:                 "de7f5e83-da88-4046-871f-ea18504b1d43",
+						Name:               "ALB protocol is HTTP",
+						Description:        "ALB protocol is HTTP Description",
+						EngineID:           "KICS " + constants.Version,
+						CleanCodeAttribute: "TRUSTWORTHY",
+						Type:               "VULNERABILITY",
+						Severity:           "CRITICAL",
+						Impacts: []Impact{
+							{
+								SoftwareQuality: "SECURITY",
+								Severity:        "HIGH",
+							},
+						},
+					},
+				},
 				Issues: []Issue{
 					{
-						EngineID: "KICS " + constants.Version,
-						RuleID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
-						Severity: "CRITICAL",
-						CWE:      "",
-						Type:     "",
+						RuleID: "de7f5e83-da88-4046-871f-ea18504b1d43",
 						PrimaryLocation: &Location{
 							Message:  "ALB protocol is HTTP Description",
 							FilePath: "positive.tf",
@@ -93,6 +108,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 			fields: fields{
 				version: "KICS " + constants.Version,
 				report: &SonarQubeReport{
+					Rules:  make([]Rule, 0),
 					Issues: make([]Issue, 0),
 				},
 			},
@@ -100,13 +116,26 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 				summary: &test.SummaryMockCWE,
 			},
 			want: &SonarQubeReport{
+				Rules: []Rule{
+					{
+						ID:                 "97707503-a22c-4cd7-b7c0-f088fa7cf830",
+						Name:               "AMI Not Encrypted",
+						Description:        "AWS AMI Encryption is not enabled",
+						EngineID:           "KICS " + constants.Version,
+						CleanCodeAttribute: "TRUSTWORTHY",
+						Type:               "VULNERABILITY",
+						Severity:           "CRITICAL",
+						Impacts: []Impact{
+							{
+								SoftwareQuality: "SECURITY",
+								Severity:        "HIGH",
+							},
+						},
+					},
+				},
 				Issues: []Issue{
 					{
-						EngineID: "KICS " + constants.Version,
-						RuleID:   "97707503-a22c-4cd7-b7c0-f088fa7cf830",
-						Severity: "CRITICAL",
-						CWE:      "22",
-						Type:     "",
+						RuleID: "97707503-a22c-4cd7-b7c0-f088fa7cf830",
 						PrimaryLocation: &Location{
 							Message:  "AWS AMI Encryption is not enabled",
 							FilePath: "positive.tf",
@@ -132,6 +161,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 			fields: fields{
 				version: "KICS " + constants.Version,
 				report: &SonarQubeReport{
+					Rules:  make([]Rule, 0),
 					Issues: make([]Issue, 0),
 				},
 			},
@@ -139,12 +169,26 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 				summary: &test.SummaryMockCriticalSonar,
 			},
 			want: &SonarQubeReport{
+				Rules: []Rule{
+					{
+						ID:                 "316278b3-87ac-444c-8f8f-a733a28da609",
+						Name:               "AmazonMQ Broker Encryption Disabled",
+						Description:        "AmazonMQ Broker should have Encryption Options defined",
+						EngineID:           "KICS " + constants.Version,
+						CleanCodeAttribute: "TRUSTWORTHY",
+						Type:               "VULNERABILITY",
+						Severity:           "BLOCKER",
+						Impacts: []Impact{
+							{
+								SoftwareQuality: "SECURITY",
+								Severity:        "BLOCKER",
+							},
+						},
+					},
+				},
 				Issues: []Issue{
 					{
-						EngineID: "KICS " + constants.Version,
-						RuleID:   "316278b3-87ac-444c-8f8f-a733a28da609",
-						Severity: "BLOCKER",
-						Type:     "VULNERABILITY",
+						RuleID: "316278b3-87ac-444c-8f8f-a733a28da609",
 						PrimaryLocation: &Location{
 							Message:  "AmazonMQ Broker should have Encryption Options defined",
 							FilePath: "../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml",
@@ -165,11 +209,23 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 				report:  tt.fields.report,
 			}
 			got := s.BuildReport(tt.args.summary)
+			if len(got.Rules) != len(tt.want.Rules) {
+				t.Errorf("Number of rules mismatch: got %d, want %d", len(got.Rules), len(tt.want.Rules))
+				return
+			}
+			for i := range got.Rules {
+				if !reflect.DeepEqual(got.Rules[i], tt.want.Rules[i]) {
+					t.Errorf("Rule mismatch at index %d: got %+v, want %+v", i, got.Rules[i], tt.want.Rules[i])
+				}
+			}
 			if len(got.Issues) != len(tt.want.Issues) {
 				t.Errorf("Number of issues mismatch: got %d, want %d", len(got.Issues), len(tt.want.Issues))
 				return
 			}
 			for i := range got.Issues {
+				if got.Issues[i].RuleID != tt.want.Issues[i].RuleID {
+					t.Errorf("RuleID mismatch at index %d: got %s, want %s", i, got.Issues[i].RuleID, tt.want.Issues[i].RuleID)
+				}
 				if !reflect.DeepEqual(got.Issues[i].PrimaryLocation, tt.want.Issues[i].PrimaryLocation) {
 					t.Errorf("PrimaryLocation mismatch at index %d: got %+v, want %+v", i, got.Issues[i].PrimaryLocation, tt.want.Issues[i].PrimaryLocation)
 				}
