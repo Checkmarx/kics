@@ -8,6 +8,7 @@ CxPolicy[result] {
 
 	labels := resource[name].metadata.labels
 
+	not is_terraform_reference(labels[key])
 	regex.match("^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$", labels[key]) == false
 
 	result := {
@@ -20,4 +21,10 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("%s[%s].metada.labels[%s] has invalid label", [resourceType, name, key]),
 		"searchLine": common_lib.build_search_line(["resource", resourceType, name, "metadata"], ["labels", key]),
 	}
+}
+
+is_terraform_reference(label) {
+	regex.match("^\\$\\{(local|var|data)\\.[^}]+\\}$", label)
+} else {
+	regex.match("^(local|var|data)\\.[A-Za-z0-9_][A-Za-z0-9_.-]*$", label)
 }

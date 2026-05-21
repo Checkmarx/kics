@@ -54,3 +54,29 @@ resource "kubernetes_pod" "test2" {
     dns_policy = "None"
   }
 }
+
+locals {
+  resource_name = "my-app-service"
+}
+
+resource "kubernetes_service_v1" "test3" {
+  metadata {
+    name      = "terraform-service-example"
+    namespace = "default"
+
+    labels = {
+      app = local.resource_name
+    }
+  }
+
+  spec {
+    selector = {
+      app = local.resource_name
+    }
+
+    port {
+      port        = 80
+      target_port = 8080
+    }
+  }
+}
