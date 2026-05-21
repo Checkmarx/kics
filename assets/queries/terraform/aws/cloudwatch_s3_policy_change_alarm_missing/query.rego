@@ -58,9 +58,9 @@ expressionArr := [
 #{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }
 CxPolicy[result] {
 	doc := input.document[i]
-	_ := doc.resource.aws_cloudwatch_log_metric_filter[name]
+	filterResource := doc.resource.aws_cloudwatch_log_metric_filter[name]
+	is_s3_policy_change_filter(filterResource)
 
-	
 	count([alarm | alarm := doc.resource.aws_cloudwatch_metric_alarm[_]; contains(alarm.metric_name, name)]) == 0 
 	
 	result := {
@@ -73,6 +73,10 @@ CxPolicy[result] {
 		"keyActualValue": "aws_cloudwatch_log_metric_filter not associated with any aws_cloudwatch_metric_alarm",
 		"searchLine": common_lib.build_search_line(["resource","aws_cloudwatch_log_metric_filter", name], []),
 	}
+}
+
+is_s3_policy_change_filter(filter) {
+	contains(filter.pattern, "s3.amazonaws.com")
 }
 
 
@@ -90,6 +94,7 @@ CxPolicy[result] {
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
 
 	resourceNames := [resourceName | [path, value] := walk(resources);
+	    is_s3_policy_change_filter(value);
 	    filter := common_lib.json_unmarshal(value.pattern);
 	    not check_expression_missing(filter);
 	    resourceName := path[count(path)-1]

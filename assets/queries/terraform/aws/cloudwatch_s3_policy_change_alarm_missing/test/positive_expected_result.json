@@ -14,12 +14,6 @@
   {
     "queryName": "CloudWatch S3 policy Change Alarm Missing",
     "severity": "MEDIUM",
-    "line": 30,
-    "fileName": "positive1.tf"
-  },
-  {
-    "queryName": "CloudWatch S3 policy Change Alarm Missing",
-    "severity": "MEDIUM",
     "line": 3,
     "fileName": "positive2.tf"
   },
@@ -44,7 +38,7 @@
   {
     "queryName": "CloudWatch S3 policy Change Alarm Missing",
     "severity": "MEDIUM",
-    "line": 31,
+    "line": 4,
     "fileName": "positive5.tf"
   }
 ]

@@ -49,3 +49,15 @@ resource "aws_cloudwatch_metric_alarm" "cis_no_mfa_console_signin_cw_alarm" {
   alarm_actions             = [aws_sns_topic.CIS_Alerts_SNS_Topic.arn]
   insufficient_data_actions = []
 }
+
+resource "aws_cloudwatch_log_metric_filter" "custom_application_metric_filter" {
+  name           = "CustomApplicationMetric"
+  pattern        = "[MYTEXT]"
+  log_group_name = aws_cloudwatch_log_group.Application_CloudWatch_LogsGroup.name
+
+  metric_transformation {
+    name      = "CustomApplicationMetric"
+    namespace = "Application_Metric_Alarm_Namespace"
+    value     = "1"
+  }
+}
