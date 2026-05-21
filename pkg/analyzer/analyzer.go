@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"runtime"
 	"sort"
 	"strings"
 	"sync"
@@ -37,6 +38,8 @@ const (
 	crossplane = "crossplane"
 	knative    = "knative"
 	sizeMb     = 1048576
+
+	maxAnalyzerWorkers = 128
 )
 
 // move the openApi regex to public to be used on file.go
@@ -373,18 +376,33 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 	a.Types, a.ExcludeTypes = typeLower(a.Types, a.ExcludeTypes)
 
-	// Start the workers
-	for _, file := range files {
-		wg.Add(1)
-		// analyze the files concurrently
-		a := &analyzerInfo{
-			typesFlag:               a.Types,
-			excludeTypesFlag:        a.ExcludeTypes,
-			filePath:                file,
-			fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
-		}
-		go a.worker(results, unwanted, locCount, fileInfo, &wg)
+	// Start a bounded worker pool. Large repositories can contain tens of
+	// thousands of candidate files, so one goroutine per file can exhaust
+	// runtime threads while workers are blocked on file I/O.
+	filesToAnalyze := make(chan string)
+	workerCount := analyzerWorkerCount(len(files))
+	wg.Add(workerCount)
+	for range workerCount {
+		go func() {
+			defer wg.Done()
+			for file := range filesToAnalyze {
+				fileAnalyzer := &analyzerInfo{
+					typesFlag:               a.Types,
+					excludeTypesFlag:        a.ExcludeTypes,
+					filePath:                file,
+					fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
+				}
+				fileAnalyzer.worker(results, unwanted, locCount, fileInfo)
+			}
+		}()
 	}
+
+	go func() {
+		for _, file := range files {
+			filesToAnalyze <- file
+		}
+		close(filesToAnalyze)
+	}()
 
 	go func() {
 		// close channel results when the worker has finished writing into it
@@ -419,14 +437,12 @@ func (a *analyzerInfo) worker( //nolint: gocyclo
 	unwanted chan<- string,
 	locCount chan<- int,
 	fileInfo chan<- fileTypeInfo,
-	wg *sync.WaitGroup,
 ) {
 	defer func() {
 		if err := recover(); err != nil {
 			log.Warn().Msgf("Recovered from analyzing panic for file %s with error: %#v", a.filePath, err.(error).Error())
 			unwanted <- a.filePath
 		}
-		wg.Done()
 	}()
 
 	ext, errExt := utils.GetExtension(a.filePath)
@@ -519,6 +535,24 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 		return true
 	}
 	return false
+}
+
+func analyzerWorkerCount(fileCount int) int {
+	if fileCount < 1 {
+		return 0
+	}
+
+	workers := runtime.GOMAXPROCS(0) * 2
+	if workers < 1 {
+		workers = 1
+	}
+	if workers > maxAnalyzerWorkers {
+		workers = maxAnalyzerWorkers
+	}
+	if fileCount < workers {
+		return fileCount
+	}
+	return workers
 }
 
 // checkContent will determine the file type by content when worker was unable to

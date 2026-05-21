@@ -2,6 +2,7 @@ package analyzer
 
 import (
 	"path/filepath"
+	"runtime"
 	"sort"
 	"testing"
 
@@ -733,4 +734,16 @@ type platformFileStats struct {
 	fileCount int
 	dirCount  int
 	totalLOC  int
+}
+
+func TestAnalyzerWorkerCount(t *testing.T) {
+	oldMaxProcs := runtime.GOMAXPROCS(1)
+	defer runtime.GOMAXPROCS(oldMaxProcs)
+
+	require.Equal(t, 0, analyzerWorkerCount(0))
+	require.Equal(t, 2, analyzerWorkerCount(10))
+
+	runtime.GOMAXPROCS(maxAnalyzerWorkers)
+	require.Equal(t, 5, analyzerWorkerCount(5))
+	require.Equal(t, maxAnalyzerWorkers, analyzerWorkerCount(maxAnalyzerWorkers+1))
 }
