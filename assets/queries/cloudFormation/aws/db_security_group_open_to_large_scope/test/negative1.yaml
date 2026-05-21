@@ -13,6 +13,7 @@ Resources:
       GroupDescription: "Ingress for Amazon EC2 security group"
       SecurityGroupIngress:
         - CidrIp: 1.2.3.4/28
+        - CidrIp: 10.0.0.0/24
 
   DbSecurityByEC2SecurityGroup2:
     Type: AWS::EC2::SecurityGroup

@@ -32,7 +32,7 @@ large_scope(ip_address, cidr) {
 	to_number(input_mask[1]) < 120		# should be 120-128
 } else {
 	input_mask := split(ip_address, "/")
-	to_number(input_mask[1]) < 25	# should be 25-32
+	to_number(input_mask[1]) < 24	# should be 24-32
 }
 
 exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = results { # inline ingresses
