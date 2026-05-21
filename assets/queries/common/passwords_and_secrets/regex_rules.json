@@ -403,6 +403,10 @@
       "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*=\\s*['\"]?(var\\.)['\"]?"
     },
     {
+      "description": "Avoiding TF local references",
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*=\\s*['\"]?(local\\.[a-zA-Z_][a-zA-Z0-9_]*(\\.[a-zA-Z_][a-zA-Z0-9_]*|\\[[^\\]]+\\])*)['\"]?\\s*$"
+    },
+    {
       "description": "!Ref is a cloudFormation reference",
       "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*:\\s+!Ref\\s+\\.*"
     },
