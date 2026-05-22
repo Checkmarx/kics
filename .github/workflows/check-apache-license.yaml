@@ -4,9 +4,12 @@ on:
     types: [opened, synchronize, edited, reopened]
     branches:
       - master
+permissions:
+  contents: read
+
 jobs:
   check-license:
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     env:
       BODY: ${{ github.event.pull_request.body }}
       USERNAME: ${{ github.event.pull_request.user.login }}

@@ -4,17 +4,23 @@ on:
   push:
     branches: [master]
 
+permissions:
+  contents: read
+
 jobs:
   sonarcloud:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
+      pull-requests: read  # for SonarSource/sonarcloud-github-action to determine which PR to decorate
     name: SonarCloud
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     if: github.repository == 'Checkmarx/kics'
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@ba3875ecf642b2129de2b589510c81a8b53dbf4e # master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
