@@ -5,10 +5,13 @@ on:
   release:
     type: [published]
 
+permissions:
+  contents: read
+
 jobs:
   update-infra-version:
     name: Updates infra with new release
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     if: "!github.event.release.prerelease"
     steps:
       - name: Checkout project
