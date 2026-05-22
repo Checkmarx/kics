@@ -9,10 +9,16 @@ on:
       - "assets/queries/**/test/**"
       - ".github/scripts/docs-generator/**"
 
+permissions:
+  contents: read
+
 jobs:
   update-docs:
+    permissions:
+      actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
+      contents: read  # for actions/checkout to fetch code
     name: Update queries documentation
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@85880fa0301c86cca9da44039ee3bb12d3bedbfa # 0.12.1
