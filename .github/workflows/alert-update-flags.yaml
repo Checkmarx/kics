@@ -7,10 +7,13 @@ on:
     paths:
       - "internal/console/assets/*-flags.json"
 
+permissions:
+  contents: read
+
 jobs:
   notification-update-flags:
     name: Send email with flag changes
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
 
     steps:
       - name: Checkout project

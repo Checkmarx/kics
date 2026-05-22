@@ -8,7 +8,7 @@ on:
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     if: "!github.event.release.prerelease"
     env:
       DOCKER_CLI_EXPERIMENTAL: "enabled"
