@@ -4,10 +4,13 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+
 jobs:
   coverage:
     name: generate-coverage
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     outputs:
       coverage: ${{ steps.testcov.outputs.coverage }}
       color: ${{ steps.testcov.outputs.color }}

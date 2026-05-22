@@ -4,8 +4,14 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+
 jobs:
   e2e-tests:
+    permissions:
+      actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
+      contents: read  # for docker/build-push-action to read repo content
     name: e2e-tests-${{ matrix.config.tag_suffix }}
     strategy:
       fail-fast: false

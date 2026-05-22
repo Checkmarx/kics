@@ -5,10 +5,16 @@ on:
   release:
     type: [published]
 
+permissions:
+  contents: read
+
 jobs:
   update-docs-release:
+    permissions:
+      actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
+      contents: write  # for Git to git push
     name: Create new docs version
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     if: "!github.event.release.prerelease"
     steps:
       - name: Cancel Previous Runs

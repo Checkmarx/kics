@@ -5,10 +5,13 @@ on:
     branches:
       - "master"
 
+permissions:
+  contents: read
+
 jobs:
   coverage:
     name: generate-coverage
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     outputs:
       coverage: ${{ steps.testcov.outputs.coverage }}
       color: ${{ steps.testcov.outputs.color }}
@@ -42,8 +45,10 @@ jobs:
           name: ${{ runner.os }}-coverage-latest
           path: coverage.html
   publish:
+    permissions:
+      contents: write  # for Git to git push
     name: publish-coverage
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     needs: coverage
     steps:
       - name: Checkout Source

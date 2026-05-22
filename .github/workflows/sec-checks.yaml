@@ -4,10 +4,13 @@ on:
     branches:
       - main
   pull_request:
+permissions:
+  contents: read
+
 jobs:
   trivy-file-system:
     name: Trivy fs scan
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     steps:
       - name: Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -33,7 +36,7 @@ jobs:
           path: ./results.txt
   trivy-docker-image:
     name: Trivy docker image scan
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     strategy:
       fail-fast: false
       matrix:
@@ -81,7 +84,7 @@ jobs:
           path: ./results.txt
   grype-file-system:
     name: Grype fs scan
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     steps:
       - name: Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -96,7 +99,7 @@ jobs:
           fail-build: true
   grype-docker-image:
     name: Grype docker image scan
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     strategy:
       fail-fast: false
       matrix:
@@ -133,7 +136,7 @@ jobs:
           output-format: table
           fail-build: true
   govulncheck-file-system:
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     name: govulncheck fs scan
     steps:
       - name: Checkout code
@@ -157,12 +160,12 @@ jobs:
           name: govulncheck-fs-scan-results
           path: ./results.txt
   govulncheck-binary:
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     name: govulncheck binary scan
     steps:
       - name: Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version: 'stable'
       - name: Build kics
