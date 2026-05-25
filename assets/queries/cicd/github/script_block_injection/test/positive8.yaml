@@ -1,0 +1,24 @@
+name: Push Commit Author Email Script Workflow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  process_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run script
+        uses: actions/github-script@latest
+        with:
+          script: |
+            const author = '${{ github.event.head_commit.author.email }}';
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Pushed by: ' + author
+            });
