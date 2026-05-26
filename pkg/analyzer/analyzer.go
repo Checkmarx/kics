@@ -338,6 +338,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	projectConfigFiles := make([]string, 0)
 	done := make(chan bool)
 	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
+	excludedFiles := resolveExcludedFiles(a.Exc)
 	// get all the files inside the given paths
 	for _, path := range a.Paths {
 		if _, err := os.Stat(path); err != nil {
@@ -351,14 +352,19 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			ext, errExt := utils.GetExtension(path)
 			if errExt == nil {
 				trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
+				ignoreFilesLen := len(ignoreFiles)
 				ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
+				if len(ignoreFiles) > ignoreFilesLen {
+					excludedFiles[path] = struct{}{}
+				}
 
 				if isConfigFile(path, defaultConfigFiles) {
 					projectConfigFiles = append(projectConfigFiles, path)
 					a.Exc = append(a.Exc, path)
+					excludedFiles[path] = struct{}{}
 				}
 
-				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
+				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, excludedFiles) {
 					files = append(files, path)
 				}
 			}
@@ -782,19 +788,25 @@ func getKeysFromExcludeTypesFlag(excludeTypesFlag []string) []string {
 	return ks
 }
 
-// isExcludedFile verifies if the path is pointed in the --exclude-paths flag
-func isExcludedFile(path string, exc []string) bool {
+func resolveExcludedFiles(exc []string) map[string]struct{} {
+	excludedFiles := make(map[string]struct{})
 	for i := range exc {
 		exclude, err := provider.GetExcludePaths(exc[i])
 		if err != nil {
 			log.Err(err).Msg("failed to get exclude paths")
 		}
 		for j := range exclude {
-			if exclude[j] == path {
-				log.Info().Msgf("Excluded file %s from analyzer", path)
-				return true
-			}
+			excludedFiles[exclude[j]] = struct{}{}
 		}
+	}
+	return excludedFiles
+}
+
+// isExcludedFile verifies if the path is pointed in the --exclude-paths flag
+func isExcludedFile(path string, excludedFiles map[string]struct{}) bool {
+	if _, ok := excludedFiles[path]; ok {
+		log.Info().Msgf("Excluded file %s from analyzer", path)
+		return true
 	}
 	return false
 }

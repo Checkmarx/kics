@@ -1,6 +1,7 @@
 package analyzer
 
 import (
+	"os"
 	"path/filepath"
 	"sort"
 	"testing"
@@ -727,6 +728,33 @@ func TestAnalyzer_FileStats(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestAnalyzer_AnalyzeWithGlobExclude(t *testing.T) {
+	tempDir := t.TempDir()
+
+	err := os.MkdirAll(filepath.Join(tempDir, "nested", "excluded"), 0755)
+	require.NoError(t, err)
+	err = os.MkdirAll(filepath.Join(tempDir, "nested", "included"), 0755)
+	require.NoError(t, err)
+	err = os.WriteFile(filepath.Join(tempDir, "nested", "excluded", "main.tf"), []byte("resource \"aws_s3_bucket\" \"excluded\" {}\n"), 0644)
+	require.NoError(t, err)
+	err = os.WriteFile(filepath.Join(tempDir, "nested", "included", "main.tf"), []byte("resource \"aws_s3_bucket\" \"included\" {}\n"), 0644)
+	require.NoError(t, err)
+
+	analyzer := &Analyzer{
+		Paths:        []string{tempDir},
+		Types:        []string{""},
+		ExcludeTypes: []string{""},
+		Exc:          []string{filepath.Join(tempDir, "**", "excluded", "*.tf")},
+		MaxFileSize:  -1,
+	}
+
+	got, err := Analyze(analyzer)
+	require.NoError(t, err)
+
+	require.Contains(t, got.Types, "terraform")
+	require.Equal(t, 1, got.FileStats["terraform"].FileCount)
 }
 
 type platformFileStats struct {
