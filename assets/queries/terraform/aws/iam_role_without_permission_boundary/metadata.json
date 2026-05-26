@@ -1,6 +1,6 @@
 {
   "id": "a4d32b6e-9c7f-4b2a-8e5d-1f3c9a0e7b42",
-  "queryName": "IAM Role Without Permission Boundary",
+  "queryName": "BETA - IAM Role Without Permission Boundary",
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "IAM roles should have a permissions boundary defined to limit the maximum permissions that can be granted. Without a permission boundary, IAM roles can potentially be exploited to escalate privileges beyond intended scope.",
@@ -9,5 +9,6 @@
   "descriptionID": "a4d32b6e",
   "cloudProvider": "aws",
   "cwe": "269",
-  "riskScore": 3.0
+  "riskScore": 3.0,
+  "experimental": "true"
 }
