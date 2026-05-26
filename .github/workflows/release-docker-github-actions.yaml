@@ -7,10 +7,13 @@ on:
         description: "Version To push"
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   push_to_registry:
     name: Push Docker GitHub Actions image to Docker Hub
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     steps:
       - name: Check out the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
