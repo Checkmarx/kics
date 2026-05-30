@@ -36,14 +36,14 @@ jobs:
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v2
+        uses: step-security/setup-qemu-action@109c6ed9f089be1a250c75fd6a534e30df44e030 # v4.0.0
         with:
           image: tonistiigi/binfmt:latest
           platforms: linux/amd64,linux/arm64
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3.11.1
+        uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Login to DockerHub
-        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
+        uses: step-security/docker-login-action@870af644803bf9f204aed474adbad2958fec048b # v4.1.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -67,7 +67,7 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.created=${{ env.CREATED_AT }}
       - name: Push main to Docker Hub
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         id: build_main
         with:
           context: .
@@ -82,7 +82,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       - name: Build and push alpine to Docker Hub
         id: build_alpine
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           context: .
           file: ./docker/Dockerfile.alpine
@@ -97,7 +97,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       - name: Build and push debian to Docker Hub
         id: build_debian
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           context: .
           file: ./docker/Dockerfile.debian
@@ -112,7 +112,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       - name: Build and push ubi8 to Docker Hub
         id: build_ubi8
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           context: .
           file: ./docker/Dockerfile.ubi8
