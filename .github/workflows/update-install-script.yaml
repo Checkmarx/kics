@@ -56,7 +56,7 @@ jobs:
       - name: Update install.sh
         run: ./.bin/godownloader --repo Checkmarx/kics <(echo ${{ steps.outputs.filter.goreleaser }}) > install.sh
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v6
+        uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "chore(install): update install script"
           token: ${{ secrets.KICS_BOT_PAT }}
