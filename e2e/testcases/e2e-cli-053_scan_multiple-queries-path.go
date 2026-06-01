@@ -2,11 +2,11 @@ package testcases
 
 import "regexp"
 
-// E2E-CLI-054 - Kics scan command with --queries-path using multiple entries
+// E2E-CLI-053 - Kics scan command with --queries-path using multiple entries
 // should load and execute queries found in the provided paths
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should load and execute queries from multiple paths [E2E-CLI-054]",
+		Name: "should load and execute queries from multiple paths [E2E-CLI-053]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/queries/valid/single_query," +

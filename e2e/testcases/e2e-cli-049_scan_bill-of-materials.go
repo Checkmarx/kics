@@ -1,10 +1,10 @@
 package testcases
 
-// E2E-CLI-050 - Kics scan command with --bom (or -m)
+// E2E-CLI-049 - Kics scan command with --bom (or -m)
 // should include bill of materials (BoM) in results output
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should include bill of materials in results output [E2E-CLI-050]",
+		Name: "should include bill of materials in results output [E2E-CLI-049]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-p", "/path/e2e/fixtures/samples/bom-positive.tf",

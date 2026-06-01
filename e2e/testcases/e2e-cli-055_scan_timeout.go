@@ -4,11 +4,11 @@ import (
 	"regexp"
 )
 
-// E2E-CLI-056 - Kics scan command with timeout flag
+// E2E-CLI-055 - Kics scan command with timeout flag
 // should stop a query execution when reaching the provided timeout (seconds)
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should timeout queries when reaching the timeout limit [E2E-CLI-056]",
+		Name: "should timeout queries when reaching the timeout limit [E2E-CLI-055]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--config", "/path/e2e/fixtures/samples/configs/config.yaml", "-v"},

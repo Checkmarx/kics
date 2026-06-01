@@ -1,10 +1,10 @@
 package testcases
 
-// E2E-CLI-051 - Kics scan command with --queries-path
+// E2E-CLI-050 - Kics scan command with --queries-path
 // should load and execute queries found in the provided path
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should load and execute queries from a custom path [E2E-CLI-051]",
+		Name: "should load and execute queries from a custom path [E2E-CLI-050]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/queries/valid/single_query",
