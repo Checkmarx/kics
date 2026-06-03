@@ -72,3 +72,28 @@ resource "aws_security_group_rule" "negative3_ipv6_4" {
   ipv6_cidr_blocks  = ["fd03:5678::/64", "2400:cb00::/32"]
   type              = "ingress"
 }
+
+# correct port and protocol, but the cidr is a small PRIVATE network (RFC1918 / ULA), so it must not be flagged
+resource "aws_security_group_rule" "negative3_private_ipv4_1" {
+  from_port    = 22
+  to_port      = 22
+  protocol     = "tcp"
+  cidr_blocks  = ["10.0.0.0/25"]
+  type         = "ingress"
+}
+
+resource "aws_security_group_rule" "negative3_private_ipv4_2" {
+  from_port    = 22
+  to_port      = 22
+  protocol     = "tcp"
+  cidr_blocks  = ["192.168.0.0/26"]
+  type         = "ingress"
+}
+
+resource "aws_security_group_rule" "negative3_private_ipv6_1" {
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  ipv6_cidr_blocks  = ["fd00::/121"]
+  type              = "ingress"
+}
