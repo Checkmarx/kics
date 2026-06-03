@@ -8,5 +8,15 @@
     "queryName": "Missing Version Specification In dnf install",
     "severity": "MEDIUM",
     "line": 3
+  },
+  {
+    "queryName": "Missing Version Specification In dnf install",
+    "severity": "MEDIUM",
+    "line": 4
+  },
+  {
+    "queryName": "Missing Version Specification In dnf install",
+    "severity": "MEDIUM",
+    "line": 5
   }
 ]
