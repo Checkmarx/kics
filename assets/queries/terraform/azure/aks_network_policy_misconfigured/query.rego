@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].network_profile.network_policy", [name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_kubernetes_cluster", name, "network_profile", "network_policy"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].network_profile.network_policy' should be either 'azure' or 'calico'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].network_profile.network_policy' should be either 'azure', 'calico' or 'cilium'", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].network_profile.network_policy' is %s", [name, policy]),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [policy]),
@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].network_profile", [name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_kubernetes_cluster", name, "network_profile"], []),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].network_profile.network_policy' should be set to either 'azure' or 'calico'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_kubernetes_cluster[%s].network_profile.network_policy' should be set to either 'azure', 'calico' or 'cilium'", [name]),
 		"keyActualValue": sprintf("'azurerm_kubernetes_cluster[%s].network_profile.network_policy' is undefined", [name]),
 		"remediation": "network_policy = \"azure\"",
 		"remediationType": "addition",
@@ -67,3 +67,5 @@ CxPolicy[result] {
 validPolicy("azure") = true
 
 validPolicy("calico") = true
+
+validPolicy("cilium") = true
