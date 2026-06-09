@@ -39,7 +39,7 @@ jobs:
         run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804 # v5.7.0
+        uses: step-security/metadata-action@619b5adf759ed62ddd8c6d474364da38ea264eee # v6.1.0
         with:
           images: "checkmarx/kics"
           labels: |
