@@ -91,6 +91,7 @@ func (s *Service) resolverSink(
 				Commands:          fileCommands,
 				IDInfo:            rfile.IDInfo,
 				LinesIgnore:       documents.IgnoreLines,
+				QueryLinesIgnore:  documents.QueryIgnoreLines,
 				ResolvedFiles:     documents.ResolvedFiles,
 				LinesOriginalData: utils.SplitLines(string(rfile.OriginalData)),
 				IsMinified:        documents.IsMinified,

@@ -582,7 +582,7 @@ func (j *JSONProto) processCommentProto(comment *proto.Comment, lineStart int, e
 			comment = model.KICSCommentRgxp.ReplaceAllString(comment, "")
 			comment = strings.Trim(comment, "\n")
 			commands := strings.Split(strings.Trim(comment, "\r"), " ")
-			value = model.ProcessCommands(commands)
+			value, _ = model.ProcessCommands(commands)
 		}
 		continue
 	}

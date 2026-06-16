@@ -103,6 +103,12 @@
     "defaultValue": "false",
     "usage": "simplified version of CLI output"
   },
+  "no-logo": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "hides the KICS ASCII logo"
+  },
   "no-progress": {
     "flagType": "bool",
     "shorthandFlag": "",

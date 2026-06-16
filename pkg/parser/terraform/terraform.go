@@ -25,9 +25,10 @@ type Converter func(file *hcl.File, inputVariables converter.VariableMap) (model
 
 // Parser struct that contains the function to parse file and the number of retries if something goes wrong
 type Parser struct {
-	convertFunc       Converter
-	numOfRetries      int
-	terraformVarsPath string
+	convertFunc         Converter
+	numOfRetries        int
+	terraformVarsPath   string
+	queryIgnoreLines    model.QueryIgnoreLines
 }
 
 // NewDefault initializes a parser with Parser default values
@@ -179,12 +180,14 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, er
 		return nil, []int{}, err
 	}
 
-	ignore, err := comment.ParseComments(content, path)
+	ignore, qi, err := comment.ParseComments(content, path)
 	if err != nil {
 		log.Err(err).Msg("failed to parse comments")
 	}
 
-	linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
+	body := file.Body.(*hclsyntax.Body)
+	linesToIgnore := comment.GetIgnoreLines(ignore, body)
+	p.queryIgnoreLines = comment.GetQueryIgnoreLines(qi, body)
 
 	fc, parseErr := p.convertFunc(file, inputVariableMap)
 	json, err := addExtraInfo([]model.Document{fc}, path)
@@ -223,4 +226,9 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 // GetResolvedFiles returns the files that are resolved
 func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile {
 	return make(map[string]model.ResolvedFile)
+}
+
+// GetQueryIgnoreLines returns the per-query suppressed lines from the last Parse call.
+func (p *Parser) GetQueryIgnoreLines() model.QueryIgnoreLines {
+	return p.queryIgnoreLines
 }

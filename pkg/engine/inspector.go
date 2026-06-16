@@ -605,7 +605,9 @@ func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultIte
 		log.Debug().
 			Msgf("Excluding result SimilarityID: %s", vulnerability.SimilarityID)
 		return nil, false
-	} else if checkComment(vulnerability.Line, file.LinesIgnore) {
+	}
+	if checkComment(vulnerability.Line, file.LinesIgnore) ||
+		checkQueryComment(vulnerability.Line, vulnerability.QueryID, file.QueryLinesIgnore) {
 		log.Debug().
 			Msgf("Excluding result Comment: %s", vulnerability.SimilarityID)
 		return nil, false
@@ -617,6 +619,23 @@ func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultIte
 // checkComment checks if the vulnerability should be skipped from comment
 func checkComment(line int, ignoreLines []int) bool {
 	for _, ignoreLine := range ignoreLines {
+		if line == ignoreLine {
+			return true
+		}
+	}
+	return false
+}
+
+// checkQueryComment returns true if the given line is suppressed for the specific queryID.
+func checkQueryComment(line int, queryID string, queryIgnoreLines model.QueryIgnoreLines) bool {
+	if queryIgnoreLines == nil {
+		return false
+	}
+	lines, ok := queryIgnoreLines[queryID]
+	if !ok {
+		return false
+	}
+	for _, ignoreLine := range lines {
 		if line == ignoreLine {
 			return true
 		}

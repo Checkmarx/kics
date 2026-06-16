@@ -139,7 +139,9 @@ func (console *console) preScan() {
 	}
 
 	printer := internalPrinter.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
-	printer.Success.Printf("\n%s\n", banner)
+	if !flags.GetBoolFlag(flags.NoLogoFlag) {
+		printer.Success.Printf("\n%s\n", banner)
+	}
 
 	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
 	fmt.Println(versionMsg)

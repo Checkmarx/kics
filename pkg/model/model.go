@@ -26,9 +26,11 @@ const (
 
 // Constants to describe commands given from comments
 const (
-	IgnoreLine    CommentCommand = "ignore-line"
-	IgnoreBlock   CommentCommand = "ignore-block"
-	IgnoreComment CommentCommand = "ignore-comment"
+	IgnoreLine      CommentCommand = "ignore-line"
+	IgnoreBlock     CommentCommand = "ignore-block"
+	IgnoreComment   CommentCommand = "ignore-comment"
+	IgnoreLineQuery CommentCommand = "ignore-line-query"
+	IgnoreBlockQuery CommentCommand = "ignore-block-query"
 )
 
 // Constants to describe vulnerability's severity
@@ -72,7 +74,9 @@ var (
 	// KICSGetContentCommentRgxp to gets the kics comment on the hel case
 	KICSGetContentCommentRgxp = regexp.MustCompile(`(^|\n)((/{2})|#|;)*\s*kics-scan([^\n]*)\n`)
 	// KICSCommentRgxpYaml is the regexp to identify if the comment has KICS comment at the end of the comment in YAML
-	KICSCommentRgxpYaml = regexp.MustCompile(`((/{2})|#)*\s*kics-scan\s*(ignore-line|ignore-block)\s*\n*$`)
+	KICSCommentRgxpYaml = regexp.MustCompile(`((/{2})|#)*\s*kics-scan\s*(ignore-line|ignore-block)(=[0-9a-fA-F-]+)?\s*\n*$`)
+	// KICSIgnoreQueryRgxp is the regexp to extract the query UUID from an ignore-line= or ignore-block= command
+	KICSIgnoreQueryRgxp = regexp.MustCompile(`^(ignore-line|ignore-block)=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$`)
 )
 
 // Version - is the model for the version response
@@ -103,8 +107,8 @@ type IssueType string
 
 // CodeLine is the lines containing and adjacent to the vulnerability line with their respective positions
 type CodeLine struct {
-	Position int
-	Line     string
+	Position int    `json:"line_no"`
+	Line     string `json:"line"`
 }
 
 // ExtractedPathObject is the struct that contains the path location of extracted source
@@ -116,6 +120,9 @@ type ExtractedPathObject struct {
 
 // CommentsCommands list of commands on a file that will be parsed
 type CommentsCommands map[string]string
+
+// QueryIgnoreLines maps a query UUID to the set of line numbers suppressed for that query.
+type QueryIgnoreLines map[string][]int
 
 // FileMetadata is a representation of basic information and content of a file
 type FileMetadata struct {
@@ -131,6 +138,7 @@ type FileMetadata struct {
 	IDInfo            map[int]interface{}
 	Commands          CommentsCommands
 	LinesIgnore       []int
+	QueryLinesIgnore  QueryIgnoreLines
 	ResolvedFiles     map[string]ResolvedFile
 	LinesOriginalData *[]string
 	IsMinified        bool
