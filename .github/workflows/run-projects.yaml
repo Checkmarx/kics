@@ -7,6 +7,15 @@ on:
         description: 'Total number of machines'
         required: true
         type: number
+    secrets:
+      CES_BUCKET_AWS_REGION:
+        required: true
+      CES_BUCKET_AWS_ROLE:
+        required: true
+      CES_EXECUTOR_REPO:
+        required: true
+      GH_TOKEN:
+        required: true
 
 env:
   ENGINE: "kics"
