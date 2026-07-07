@@ -1,4 +1,5 @@
-FROM checkmarx/go:1.26.2@sha256:9bc691851ef2244d13b0b9ff48bd2d409f4d7300ce1e3589c886c3e393631366 AS build_env
+ARG GO_BASE_IMAGE=checkmarx/go:1.26.4@sha256:93827e6d07502a8d2d969e89b63067b097a6d7860465da6ed09f87a25a09759f
+FROM ${GO_BASE_IMAGE} AS build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -10,6 +11,7 @@ ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
 ARG TARGETOS
 ARG TARGETARCH
+ARG CGO_ENABLED=0
 
 # Copy go mod and sum files
 COPY go.mod go.sum  ./
@@ -21,7 +23,7 @@ RUN go mod download -x
 COPY . .
 
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
+RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
@@ -29,7 +31,8 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM checkmarx/git:2.53.0@sha256:efb3b1704c76c7ebc0aa133281491a619b49db51030d86eaaa334281e0c4b214
+ARG GIT_BASE_IMAGE=checkmarx/git:2.54.0@sha256:adba29510618bc4e2421f3d4e75af47f03a46ece88123bec5337236385814fc1
+FROM ${GIT_BASE_IMAGE}
 
 ENV TERM xterm-256color
 
