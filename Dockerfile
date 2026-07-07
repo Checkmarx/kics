@@ -34,7 +34,7 @@ RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # kics-scan ignore-line
 FROM ${GIT_BASE_IMAGE}
 
-ENV TERM xterm-256color
+ENV TERM=xterm-256color
 
 # Copy built binary to the runtime container
 # Vulnerability fixed in latest version of KICS remove when gh actions version is updated
@@ -50,7 +50,7 @@ WORKDIR /app/bin
 USER root
 
 # Healthcheck the container
-ENV PATH $PATH:/app/bin
+ENV PATH=$PATH:/app/bin
 
 # Command to run the executable
 ENTRYPOINT ["/app/bin/kics"]
