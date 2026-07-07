@@ -139,3 +139,7 @@ func (v *BasebicepVisitor) VisitArgumentList(ctx *ArgumentListContext) interface
 func (v *BasebicepVisitor) VisitIdentifier(ctx *IdentifierContext) interface{} {
 	return v.VisitChildren(ctx)
 }
+
+func (v *BasebicepVisitor) VisitComment(ctx *CommentContext) interface{} {
+	return v.VisitChildren(ctx)
+}

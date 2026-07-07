@@ -70,6 +70,12 @@ generate: mod-tidy ## go generate
 generate-antlr: ## generate parser with ANTLRv4, needs JRE (Java Runtime Environment) on the system
 	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.13.1-complete.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
 
+.PHONY: generate-bicep
+generate-bicep:
+	@cd pkg/parser/bicep/antlr && java -jar $(LIB)/antlr-4.13.1-complete.jar \
+		-Dlanguage=Go -visitor -no-listener \
+		-o parser bicep.g4
+
 .PHONY: test
 test-short: # Run sanity unit tests
 test-short: generate
