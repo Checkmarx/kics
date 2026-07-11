@@ -33,7 +33,7 @@ Available archive formats:
 -   `xz`
 
 ```
-To scan a zip file, we would use this instruction: 
+To scan a zip file, we would use this instruction:
 
 docker run -t -v "{path_to_folder_of_zip}:/path" checkmarx/kics:latest scan -p /path/{name_of_zip_file}
 
@@ -41,13 +41,13 @@ docker run -t -v "{path_to_folder_of_zip}:/path" checkmarx/kics:latest scan -p /
 
 -v "{path_to_folder_of_zip}:/path": Mounts the directory containing the zip file to be scanned into the Docker container.
 
-checkmarx/kics:latest: Specifies the Docker image to use, which is the latest version of KICS available. 
+checkmarx/kics:latest: Specifies the Docker image to use, which is the latest version of KICS available.
 
 scan -p /path/{name_of_zip_file}: initiates a scan on the zip file we provided, considering it's folder path.
 ```
 
 ```
-To scan a file named "Example", we would use this instruction: 
+To scan a file named "Example", we would use this instruction:
 
 docker run -t -v "{path_to_folder_of_file_Example}:/path" checkmarx/kics:latest scan -p /path/Example
 
@@ -55,14 +55,14 @@ docker run -t -v "{path_to_folder_of_file_Example}:/path" checkmarx/kics:latest 
 
 -v "{path_to_folder_of_file_Example}:/path": Mounts the directory containing the file to be scanned into the Docker container.
 
-checkmarx/kics:latest: Specifies the Docker image to use, which is the latest version of KICS available. 
+checkmarx/kics:latest: Specifies the Docker image to use, which is the latest version of KICS available.
 
 scan -p /path/Example: initiates a scan on the "Example" file we provided, considering it's folder path.
 ```
 
-More information on Docker CLI can be seen [here](https://docs.docker.com/engine/reference/commandline/cli/)   
+More information on Docker CLI can be seen [here](https://docs.docker.com/engine/reference/commandline/cli/)
 
-More information on Go getter can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)   
+More information on Go getter can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)
 
 ### S3
 
@@ -232,6 +232,21 @@ Results that point to lines 2 and 3 will be ignored.
 ```
 
 Results that point from line 1 to 6 will be ignored.
+
+For Bicep, `ignore-block` is only usable within a `resource` block, either for the whole block or for a single property.
+
+```bicep
+1: resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
+2:   name: 'storageaccountname'
+3:   // kics-scan ignore-block
+4:   sku: {
+5:     name: 'Standard_LRS'
+6:   }
+7: }
+...
+```
+
+Results that point from line 4 to 6 will be ignored.
 
 For Dockerfile `ignore-block` is only usable when the whole `FROM` block should be ignored.
 
