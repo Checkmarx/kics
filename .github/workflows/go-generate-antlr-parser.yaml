@@ -28,11 +28,17 @@ jobs:
       - name: Generate Parser
         run: |
           docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter:/work -it antlr4-generator:dev
+      - name: Generate KICS Bot token
+        id: kics-bot-token
+        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+        with:
+          client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
       - name: Create Pull Request
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "chore(parser): updating AWS jsonfilter ANTLR generated parser"
-          token: ${{ secrets.KICS_BOT_PAT }}
+          token: ${{ steps.kics-bot-token.outputs.token }}
           commit-message: "chore(parser): updating AWS jsonfilter ANTLR generated parser"
           delete-branch: true
           branch: feature/kicsbot-update-jsonfilter-parser

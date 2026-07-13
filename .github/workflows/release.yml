@@ -13,10 +13,17 @@
 #         uses: actions/checkout@v2.3.4
 #         with:
 #           fetch-depth: 0
+#       - name: Generate KICS Bot token
+#        id: kics-bot-token
+#        if: always()
+#        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+#        with:
+#          client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+#          private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
 #       - uses: toko-bifrost/ms-teams-deploy-card@master
 #         if: always()
 #         with:
-#           github-token: ${{ secrets.KICS_BOT_PAT }}
+#           github-token: ${{ steps.kics-bot-token.outputs.token }}
 #           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
 #           card-layout-start: cozy
 #           card-layout-exit: complete
@@ -38,6 +45,6 @@
 #           args: release --rm-dist --timeout 120m
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
+#           KICS_BOT_TOKEN: ${{ steps.kics-bot-token.outputs.token }}
 #           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 #           DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}

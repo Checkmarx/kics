@@ -23,12 +23,18 @@ jobs:
         with:
           files: |
              *.json
+      - name: Generate KICS Bot token
+        id: kics-bot-token
+        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+        with:
+          client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
       - name: Create pull request
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "build(deps): updating software versions"
-          token: ${{ secrets.KICS_BOT_PAT }}
+          token: ${{ steps.kics-bot-token.outputs.token }}
           commit-message: "build(deps): updating software versions to new release"
           delete-branch: true
           branch: feature/kicsbot-software-versions

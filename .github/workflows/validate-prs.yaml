@@ -34,10 +34,16 @@ jobs:
         regex=$(python3 .github/scripts/pr-issue-info/get_title_types.py)
         echo "Title regex: $regex"
         echo "$TITLE" | grep -Pq "$regex" || (echo "$ERROR_MSG" && echo "TITLE_CHECK_FAILED=true" >> $GITHUB_ENV)
+    - name: Generate KICS Bot token
+      id: kics-bot-token
+      uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+      with:
+        client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+        private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
     - name: Check for comment tag
       if: env.TITLE_CHECK_FAILED != 'true'
       run: |
-        comments=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" \
+        comments=$(curl -s -H "Authorization: token ${{ steps.kics-bot-token.outputs.token }}" \
             -X GET "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments")
         if echo "$comments" | grep -q "title_check"; then
           echo "TAG_EXISTS=true" >> $GITHUB_ENV
@@ -52,7 +58,7 @@ jobs:
           Deleting comment, please refresh the page...
         comment-tag: title_check
         mode: delete
-        github-token: ${{ secrets.KICS_BOT_PAT }}
+        github-token: ${{ steps.kics-bot-token.outputs.token }}
     - name: Add comment if title fails
       if: env.TITLE_CHECK_FAILED == 'true'
       uses: step-security/actions-comment-pull-request@60cd38988a354b2d22b47612fb02a20e822d6048 # v3.0.2
@@ -61,7 +67,7 @@ jobs:
         comment-tag: title_check
         mode: recreate
         create-if-not-exists: true
-        github-token: ${{ secrets.KICS_BOT_PAT }}
+        github-token: ${{ steps.kics-bot-token.outputs.token }}
     - name: Workflow failed
       if: env.TITLE_CHECK_FAILED == 'true'
       run: exit 1
@@ -83,9 +89,15 @@ jobs:
       run: echo "USERNAME=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
     - name: Install JQ
       run: sudo apt-get install jq
+    - name: Generate KICS Bot token
+      id: kics-bot-token
+      uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+      with:
+        client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+        private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
     - name: Check user username
       run: |
-        response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics/members")
+        response=$(curl -s -H "Authorization: token ${{ steps.kics-bot-token.outputs.token }}" "https://api.github.com/orgs/Checkmarx/teams/kics/members")
         team_members=$(echo "$response" | jq -r '.[].login')
         if [[ "$USERNAME" == "dependabot[bot]" ]] || echo "${team_members[@]}" | grep -Pq "^$USERNAME$"; then
           echo "Contributor belongs to Checkmarx organization."

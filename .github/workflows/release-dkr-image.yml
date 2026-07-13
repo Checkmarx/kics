@@ -21,10 +21,17 @@ jobs:
         id: get-version
         run: |
           echo "::set-output name=version::$(git describe --match='v*' --tags --abbrev=0)"
+      - name: Generate KICS Bot token
+        id: kics-bot-token
+        if: always()
+        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+        with:
+          client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
         if: always()
         with:
-          github-token: ${{ secrets.KICS_BOT_PAT }}
+          github-token: ${{ steps.kics-bot-token.outputs.token }}
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
           card-layout-start: cozy
           card-layout-exit: complete

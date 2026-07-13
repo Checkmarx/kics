@@ -44,11 +44,17 @@ jobs:
             -f md \
             --t .github/scripts/docs-generator/query-page-generator/templates/query-page-template.md \
             --df
+      - name: Generate KICS Bot token
+        id: kics-bot-token
+        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+        with:
+          client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
       - name: Create Pull Request
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "docs(queries): update queries catalog"
-          token: ${{ secrets.KICS_BOT_PAT }}
+          token: ${{ steps.kics-bot-token.outputs.token }}
           commit-message: "docs(queries): update queries catalog"
           delete-branch: true
           branch: feature/kicsbot-update-queries-docs

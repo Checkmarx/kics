@@ -19,6 +19,12 @@ jobs:
     - name: Check for Apache License
       run: |
         echo "$BODY" | grep -iPq "I submit this contribution under the Apache-2.0 license." || echo "CHECK_FAILED=true" >> $GITHUB_ENV
+    - name: Generate KICS Bot token
+      id: kics-bot-token
+      uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 #v3.1.1
+      with:
+        client-id: ${{ vars.GH_APP_KICSAPP_CLIENT_ID }}
+        private-key: ${{ secrets.GH_APP_KICSAPP_PRIVATE_KEY }}
     - name: Delete comment if license is fixed
       if: env.CHECK_FAILED != 'true'
       uses: thollander/actions-comment-pull-request@v2
@@ -27,7 +33,7 @@ jobs:
           Deleting comment...
         comment_tag: apache_license
         mode: delete
-        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+        GITHUB_TOKEN: ${{ steps.kics-bot-token.outputs.token }}
     - name: Add comment if no license
       if: env.CHECK_FAILED == 'true'
       uses: thollander/actions-comment-pull-request@v2
@@ -36,7 +42,7 @@ jobs:
         comment_tag: apache_license
         mode: recreate
         create_if_not_exists: true
-        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+        GITHUB_TOKEN: ${{ steps.kics-bot-token.outputs.token }}
     - name: Workflow failed
       if: env.CHECK_FAILED == 'true'
       run: exit 1
