@@ -3,54 +3,135 @@
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test10",
+    "searchKey": "kubernetes_pod[test10].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test10].spec.container[0].security_context.capabilities.drop should be set",
+    "actualValue": "kubernetes_pod[test10].spec.container[0].security_context.capabilities.drop is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4a1a3664d5f8de0693e3ebe06803bed0891a17ac674537bd694a276690e2fabf",
+    "search_line": 12
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 47,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test10",
+    "searchKey": "kubernetes_pod[test10].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test10].spec.container[1].security_context.capabilities.drop should be set",
+    "actualValue": "kubernetes_pod[test10].spec.container[1].security_context.capabilities.drop is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6c677d3c2d72d2ce16f6322b831c2a9d13bde47ea18c046fbd706a658a2dee29",
+    "search_line": 47
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 141,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test11",
+    "searchKey": "kubernetes_pod[test11].spec.container.security_context.capabilities",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test11].spec.container.security_context.capabilities.drop should be set",
+    "actualValue": "kubernetes_pod[test11].spec.container.security_context.capabilities.drop is undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "0a8c475ee3e6e4a98c2dee821374825fc2c547a8fa14c0f0d4d828adcf9e0997",
+    "search_line": 141
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test20",
+    "searchKey": "kubernetes_pod[test20].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test20].spec.container[0].security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[test20].spec.container[0].security_context.capabilities is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c54dd682d68a78a9959da88fb994b984ec13e8729aacd21dba31231a9f353d51",
+    "search_line": 11
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 44,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test20",
+    "searchKey": "kubernetes_pod[test20].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test20].spec.container[1].security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[test20].spec.container[1].security_context.capabilities is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6fc6667f7ea6951b52a55fb93b8440f7ca2e994d931b44fafb902bb9dd1b507a",
+    "search_line": 44
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 136,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test21",
+    "searchKey": "kubernetes_pod[test21].spec.container.security_context",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test21].spec.container.security_context.capabilities should be set",
+    "actualValue": "kubernetes_pod[test21].spec.container.security_context.capabilities is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a26e8346d3ed60978b8e29f1acd84ddda66520e8e3cf919cd2026c9c0bd26cb6",
+    "search_line": 136
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test30",
+    "searchKey": "kubernetes_pod[test30].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test30].spec.container[0].security_context should be set",
+    "actualValue": "kubernetes_pod[test30].spec.container[0].security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "235e9b39a28dec1a81b6d1ba762e930f29be6e4b1975d8230ad809e5f038aadd",
+    "search_line": 7
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 36,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test30",
+    "searchKey": "kubernetes_pod[test30].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test30].spec.container[1].security_context should be set",
+    "actualValue": "kubernetes_pod[test30].spec.container[1].security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "523df27e9835ae2bb32aa0905fbc6547c8598c46d84a457dadfb178fe4518078",
+    "search_line": 36
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
     "line": 124,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "test31",
+    "searchKey": "kubernetes_pod[test31].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[test31].spec.container.security_context should be set",
+    "actualValue": "kubernetes_pod[test31].spec.container.security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "22c4f78193fd7eff0d65559b0bbc2448ff01ccc6a37582acf4fcbed0385aa49c",
+    "search_line": 124
   }
 ]

@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Encryption Provider Not Properly Configured",
-		"severity": "MEDIUM",
-		"line": 6,
-        "fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Encryption Provider Not Properly Configured",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.yaml",
+    "resourceType": "EncryptionConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{EncryptionConfiguration}}.providers",
+    "searchValue": "",
+    "expectedValue": "aescbc, kms or secretbox provider should be defined",
+    "actualValue": "aescbc, kms or secretbox provider is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "158d2ecf8cfbe287d24880ed53547ed938cf46d558a518d9b635d2f07f094cb0",
+    "search_line": -1
+  }
 ]

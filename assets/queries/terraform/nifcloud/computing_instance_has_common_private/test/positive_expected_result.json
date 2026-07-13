@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Nifcloud Computing Has Common Private Network",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Nifcloud Computing Has Common Private Network",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "Nifcloud Computing Has Common Private Network",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive1.tf",
+    "resourceType": "nifcloud_instance",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_instance[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_instance[positive]' should use a private LAN to isolate the private side network from the shared network",
+    "actualValue": "'nifcloud_instance[positive]' has common private network",
+    "issueType": "IncorrectValue",
+    "similarityID": "440aea90c0585416d66529a92e1a16d0f7991220dab94271aeb19c9a5e1545f1",
+    "search_line": -1
+  },
+  {
+    "queryName": "Nifcloud Computing Has Common Private Network",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive2.tf",
+    "resourceType": "nifcloud_instance",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_instance[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_instance[positive]' should use a private LAN to isolate the private side network from the shared network",
+    "actualValue": "'nifcloud_instance[positive]' has common private network",
+    "issueType": "IncorrectValue",
+    "similarityID": "239b3c01f3dbdd29e4dbc48ea6dcd8da7f6d55d8748743764f443bcf3fa50fb2",
+    "search_line": -1
+  }
 ]

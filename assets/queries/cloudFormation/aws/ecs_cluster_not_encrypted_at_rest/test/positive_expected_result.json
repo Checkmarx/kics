@@ -3,24 +3,60 @@
     "queryName": "ECS Cluster Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 37,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "service",
+    "searchKey": "Resources.taskdefinition.Properties.Volumes",
+    "searchValue": "",
+    "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be enabled",
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "f3840eb7e23c4a431eda68779879aae0b83719df00ac8d83d405ae9a05d6ac9d",
+    "search_line": -1
   },
   {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 26,
     "fileName": "positive2.yaml",
-    "queryName": "ECS Cluster Not Encrypted At Rest"
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "service",
+    "searchKey": "Resources.taskdefinition1",
+    "searchValue": "",
+    "expectedValue": "Resources.taskdefinition1 should be defined",
+    "actualValue": "Resources.taskdefinition1 is not defined.",
+    "issueType": "MissingAttribute",
+    "similarityID": "25856e60812109cc6f49f83672e2cc32595ab20d0a2110b40b7a466a0b181138",
+    "search_line": -1
   },
   {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 122,
     "fileName": "positive3.json",
-    "queryName": "ECS Cluster Not Encrypted At Rest"
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "service",
+    "searchKey": "Resources.taskdefinition.Properties.Volumes",
+    "searchValue": "",
+    "expectedValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption should be enabled",
+    "actualValue": "Resources.taskdefinition.Properties.Volumes[0].EFSVolumeConfiguration.TransitEncryption is disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "ad47ad5311652dc0a9f9f02107719160c7bf0d227000b939a80f362475de7480",
+    "search_line": -1
   },
   {
     "queryName": "ECS Cluster Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 54,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ECS::Service",
+    "resourceName": "service",
+    "searchKey": "Resources.taskdefinition1",
+    "searchValue": "",
+    "expectedValue": "Resources.taskdefinition1 should be defined",
+    "actualValue": "Resources.taskdefinition1 is not defined.",
+    "issueType": "MissingAttribute",
+    "similarityID": "169667ee07f6d4bc1aac4b64e28ffa1d35c49ad6d293afb759fc7f7dc766364f",
+    "search_line": -1
   }
 ]

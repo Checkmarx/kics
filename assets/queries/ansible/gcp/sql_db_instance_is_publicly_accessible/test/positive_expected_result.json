@@ -2,16 +2,46 @@
   {
     "queryName": "SQL DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "sql_instance",
+    "searchKey": "name={{sql_instance}}.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration.authorized_networks.name={{google dns server}}.value",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.ip_configuration.authorized_networks.name={{google dns server}}.value address should be trusted",
+    "actualValue": "gcp_sql_instance.settings.ip_configuration.authorized_networks.name={{google dns server}}.value address is not restricted: '0.0.0.0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "55e0c3a317d9259387f57951e485aaff9f51bb10321139af30246028e73dd972",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "sql_instance2",
+    "searchKey": "name={{sql_instance2}}.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration.ipv4_enabled",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.ip_configuration.ipv4_enabled should be disabled when there are no authorized networks",
+    "actualValue": "gcp_sql_instance.settings.ip_configuration.ipv4_enabled is enabled when there are no authorized networks",
+    "issueType": "IncorrectValue",
+    "similarityID": "1f96778e0644e21e91e673282a0d5c7580b333429ca242b3dc49f554c8a2875e",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 34
+    "line": 34,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "sql_instance3",
+    "searchKey": "name={{sql_instance3}}.{{google.cloud.gcp_sql_instance}}.settings",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.ip_configuration should be defined and allow only trusted networks",
+    "actualValue": "gcp_sql_instance.settings.ip_configuration is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "952b453a67327000d906f3fecec4c006d3b636bc32f24fe2b0fb014557084f09",
+    "search_line": -1
   }
 ]

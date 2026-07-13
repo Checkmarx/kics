@@ -3,24 +3,60 @@
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "positive2",
+    "searchKey": "aws_s3_bucket_public_access_block[positive2].ignore_public_acls",
+    "searchValue": "",
+    "expectedValue": "'ignore_public_acls' should equal 'true'",
+    "actualValue": "'ignore_public_acls' is equal 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1edbf8d94b2f8de41206d30074f378887c261ce4ce0c99a0028fa0a6933b963a",
+    "search_line": 10
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].ignore_public_acls",
+    "searchValue": "",
+    "expectedValue": "'ignore_public_acls' should equal 'true'",
+    "actualValue": "'ignore_public_acls' is equal 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "154eacbc10b1a4f7cf26332a7f2ca325fc829ca5a37afb78ed44e3d3092fb24b",
+    "search_line": 7
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].ignore_public_acls",
+    "searchValue": "",
+    "expectedValue": "'ignore_public_acls' should equal 'true'",
+    "actualValue": "'ignore_public_acls' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "cf6f2a7cc14ad30e2aea1e8f4b20cc996584e5700da88fc3c7785cf8ff0af346",
+    "search_line": 1
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "positive2",
+    "searchKey": "aws_s3_bucket_public_access_block[positive2]",
+    "searchValue": "",
+    "expectedValue": "'ignore_public_acls' should equal 'true'",
+    "actualValue": "'ignore_public_acls' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "e760b446a46b1658375245fd5b7bde7f85b5545e2e4c0d73d5125bc049a601a9",
+    "search_line": 5
   }
 ]

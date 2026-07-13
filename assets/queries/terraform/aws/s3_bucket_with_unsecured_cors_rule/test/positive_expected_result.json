@@ -3,30 +3,75 @@
     "queryName": "S3 Bucket with Unsecured CORS Rule",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive1].cors_rule",
+    "searchValue": "",
+    "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue",
+    "similarityID": "32cfb31234e9c8e7cda9cd126e1045af6f46f240a05a65262294c4ae9235ba20",
+    "search_line": 27
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_s3_bucket",
+    "resourceName": "my-tf-test-bucket",
+    "searchKey": "aws_s3_bucket[positive2].cors_rule",
+    "searchValue": "",
+    "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue",
+    "similarityID": "66399dbcb7ed08edbc724900391646d4e451ac7a75903c81a54ea776a436176d",
+    "search_line": 27
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
     "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].cors_rule",
+    "searchValue": "",
+    "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue",
+    "similarityID": "7935f5b4f176fe573d15a81076453fa1273742aaccdd7c887dfa5a435ed860ce",
+    "search_line": 16
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
     "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].cors_rule",
+    "searchValue": "",
+    "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue",
+    "similarityID": "13db4e20cdab81dbb59286314b7b95d01f95c944bc475626c16a1ca90eedce69",
+    "search_line": 16
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_s3_bucket_cors_configuration",
+    "resourceName": "example",
+    "searchKey": "aws_s3_bucket_cors_configuration[example].cors_rule",
+    "searchValue": "",
+    "expectedValue": "'cors_rule' to not allow all methods, all headers or several origins",
+    "actualValue": "'cors_rule' allows all methods, all headers or several origins",
+    "issueType": "IncorrectValue",
+    "similarityID": "cbd08b99b9f975c059d86ab99055ea6e2849c26866018e0a2141c493cd67726d",
+    "search_line": 26
   }
 ]

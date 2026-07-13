@@ -3,42 +3,105 @@
     "queryName": "Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'create or update public ip address rule' events but sets 1 filter(s): caller",
+    "issueType": "IncorrectValue",
+    "similarityID": "07879089627e9466155abbf8f40bbfa5a11e58184278db2ea781697da0ad6e23",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'create or update public ip address rule' events but sets 1 filter(s): level",
+    "issueType": "IncorrectValue",
+    "similarityID": "9ab738dee5be1ac616daa3e816c096349fbc1c045db88092303bb6f19d2be13d",
+    "search_line": 28
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_3].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'create or update public ip address rule' events but sets 1 filter(s): levels",
+    "issueType": "IncorrectValue",
+    "similarityID": "5231ea529d389281f010a908ba5c7d4fb89077d2a6a79ae079a54b82a20bc3b1",
+    "search_line": 47
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 66,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_4].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'create or update public ip address rule' events but sets 1 filter(s): status",
+    "issueType": "IncorrectValue",
+    "similarityID": "ef6001d81b21d18b15c002182f37931b885727f6fd5b156dee1a0fc339b7ab72",
+    "search_line": 66
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_5].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'create or update public ip address rule' events but sets 1 filter(s): statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "66e983c5613aa6edccacf608b971d57899b1da7f54b8363db73890a8117498de",
+    "search_line": 8
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_6].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'create or update public ip address rule' events but sets 1 filter(s): sub_status",
+    "issueType": "IncorrectValue",
+    "similarityID": "9025688b9c5535943538933c8e40e3faed37fc75a4f2c97a0706519d8a1faee2",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Activity Log Alert For Create or Update Public IP Address Rule Not Configured",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_7].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update public ip address rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'create or update public ip address rule' events but sets 1 filter(s): sub_statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "e67b4e60d8439ac0bda70af6ccf7aa971d4361b2e70634eac1550c2349dd03fc",
+    "search_line": 46
   }
 ]

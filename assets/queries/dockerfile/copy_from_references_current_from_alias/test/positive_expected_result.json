@@ -2,6 +2,16 @@
   {
     "queryName": "COPY '--from' References Current FROM Alias",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{myimage:tag as dep}}.{{COPY --from=dep /binary /}}",
+    "searchValue": "",
+    "expectedValue": "COPY --from should not reference the current FROM alias",
+    "actualValue": "COPY --from references the current FROM alias",
+    "issueType": "IncorrectValue",
+    "similarityID": "aecff3960c701a2fe929812a2b558e878406b7f67dd9872c59a3a53d8f5a0f5b",
+    "search_line": -1
   }
 ]

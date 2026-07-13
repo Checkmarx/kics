@@ -2,6 +2,16 @@
   {
     "queryName": "Containers With Sys Admin Capabilities",
     "severity": "HIGH",
-    "line": 12
+    "line": 12,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod4",
+    "searchKey": "metadata.name={{pod4}}.spec.containers.name={{app}}.securityContext.capabilities.add",
+    "searchValue": "",
+    "expectedValue": "spec.containers.name=app should not use CAP_SYS_ADMIN Linux capability",
+    "actualValue": "spec.containers.name=app uses CAP_SYS_ADMIN Linux capability",
+    "issueType": "IncorrectValue",
+    "similarityID": "a2115d4fb54acba517cb35f9893b544b5a0bcfe3a1c65c9fdf449245af138277",
+    "search_line": -1
   }
 ]

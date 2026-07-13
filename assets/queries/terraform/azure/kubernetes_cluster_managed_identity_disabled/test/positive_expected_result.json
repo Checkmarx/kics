@@ -3,6 +3,15 @@
     "queryName": "Beta - Kubernetes Cluster Managed Identity Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive]",
+    "searchValue": "",
+    "expectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
+    "actualValue": "'identity' block is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d267d23bedaf16afe1570e5bbe82d087ec628ca073b8f8a87c64bfa396a419eb",
+    "search_line": 1
   }
 ]

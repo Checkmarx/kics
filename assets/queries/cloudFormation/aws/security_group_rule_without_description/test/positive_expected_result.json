@@ -3,72 +3,180 @@
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.GroupDescription should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.GroupDescription is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "79803d8cefdd01201275e0b5806e85bc1708dc3ceb3cf55dc7cd03dd56507e36",
+    "search_line": 4
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].Description should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].Description is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2c31d01ea13a3b2365593e38e6a82691c71955bfb19ceae90f95dfafc5a7afa8",
+    "search_line": 8
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].Description should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].Description is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9e4efcde90690ca5b93d00902d4a994340975fbc9443bce9cf147d1b99ef3e91",
+    "search_line": 13
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 19,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.Description should be set",
+    "actualValue": "Resources.OutboundRule.Properties.Description is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "88bf60f1391e178e94c09c33fcddc71c2984403a38b389ea2e3336124913f0f0",
+    "search_line": 19
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 33,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.Description should be set",
+    "actualValue": "Resources.InboundRule.Properties.Description is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "3583059dc382b3ccecab61fe3dffb583e32a26f38d1a75e1a46d8107d2238dc1",
+    "search_line": 33
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 47,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBSecurityGroup",
+    "resourceName": "LegacySecurityGroup",
+    "searchKey": "Resources.LegacySecurityGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.LegacySecurityGroup.Properties.GroupDescription should be set",
+    "actualValue": "Resources.LegacySecurityGroup.Properties.GroupDescription is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a4495c7a7e7ddd0cd8659ac3eb58142712ddb7546a30f3c81308ed9448301c8f",
+    "search_line": 47
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.GroupDescription should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.GroupDescription is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2a8e521154e6d09a5baa254bd34f04ab0417ab821468c3663eeded86300cb505",
+    "search_line": 5
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 11,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].Description should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].Description is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ac8598d1a9a09e39f407d2c503e286b83330d7f217dd184ee0b4ba7fa0a79030",
+    "search_line": 11
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 19,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].Description should be set",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].Description is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7780ade76495377d5b6b309c1376a439ce51af6d0933791712bc66cb2dbd3c9a",
+    "search_line": 19
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 29,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.Description should be set",
+    "actualValue": "Resources.OutboundRule.Properties.Description is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "aa4e54468800923e52c2b2600e28c03a86dba9e3a91a8ab18001921589e9c735",
+    "search_line": 29
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 49,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.Description should be set",
+    "actualValue": "Resources.InboundRule.Properties.Description is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0359905080be1aa26737867e365a36c00372143708782e3b35b0a0f9cec35ac1",
+    "search_line": 49
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 69,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::RDS::DBSecurityGroup",
+    "resourceName": "LegacySecurityGroup",
+    "searchKey": "Resources.LegacySecurityGroup.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.LegacySecurityGroup.Properties.GroupDescription should be set",
+    "actualValue": "Resources.LegacySecurityGroup.Properties.GroupDescription is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fc4c2bd631131bb276c80d845c085bab3414112fe7d045e9e2a6dbe93275433a",
+    "search_line": 69
   }
 ]

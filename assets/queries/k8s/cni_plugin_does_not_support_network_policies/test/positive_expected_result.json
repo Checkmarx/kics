@@ -2,13 +2,31 @@
   {
     "queryName": "CNI Plugin Does Not Support Network Policies",
     "severity": "MEDIUM",
-    "line": 6,
-		"fileName": "positive.json"
+    "line": 10,
+    "fileName": "positive2.yaml",
+    "resourceType": "ConfigMap",
+    "resourceName": "kube-flannel-cfg",
+    "searchKey": "data.cni-conf.json",
+    "searchValue": "",
+    "expectedValue": "Plugins should not contain a plugin that does not support Network Policies",
+    "actualValue": "Plugins contains a plugin that does not support Network Policies",
+    "issueType": "IncorrectValue",
+    "similarityID": "7b62aa99180f566835e9f096cc1605d79fcc2cee26c74c199b7a0d1228e2b6f2",
+    "search_line": 10
   },
   {
     "queryName": "CNI Plugin Does Not Support Network Policies",
     "severity": "MEDIUM",
-    "line": 10,
-		"fileName": "positive2.yaml"
+    "line": 6,
+    "fileName": "positive.json",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "plugins",
+    "searchValue": "",
+    "expectedValue": "Plugins should not contain a plugin that does not support Network Policies",
+    "actualValue": "Plugins contains a plugin that does not support Network Policies",
+    "issueType": "IncorrectValue",
+    "similarityID": "9f9d55ee80338fdb854f4dc2b0f8d58918eaa2dc8d433c9d75e5affcec6a9559",
+    "search_line": 6
   }
 ]

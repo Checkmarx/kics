@@ -2,73 +2,181 @@
   {
     "queryName": "SQL Alert Policy Without Emails",
     "severity": "INFO",
+    "line": 31,
+    "fileName": "positive1.bicep",
+    "resourceType": "securityAlertPolicies",
+    "resourceName": "securityPolicy1",
+    "searchKey": "resources.resources.resources.name={{securityPolicy1}}.properties",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "561c20d7922fb8ad1ab175dc1d933a7f35ac5b28829b8f4e00d897febb4e44ac",
+    "search_line": 31
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
     "line": 46,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sqlServer1/sqlDatabase1/securityPolicy1",
+    "searchKey": "resources.resources.name={{sqlServer1/sqlDatabase1/securityPolicy1}}.properties",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "848f61512491720f9909484f20176e2633407933a4c3c8a9c8c2780e31cb9cd4",
+    "search_line": 46
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 33,
+    "fileName": "positive2.bicep",
+    "resourceType": "securityAlertPolicies",
+    "resourceName": "securityPolicy1",
+    "searchKey": "resources.resources.resources.name={{securityPolicy1}}.properties.emailAddresses",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses doesn't contain emails",
+    "issueType": "IncorrectValue",
+    "similarityID": "b5298c1240bba75e1b131ddfaf669d42788fb862617dc96f38633b7a3e876a52",
+    "search_line": 33
   },
   {
     "queryName": "SQL Alert Policy Without Emails",
     "severity": "INFO",
     "line": 48,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sqlServer1/sqlDatabase1/securityPolicy1",
+    "searchKey": "resources.resources.name={{sqlServer1/sqlDatabase1/securityPolicy1}}.properties.emailAddresses",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses doesn't contain emails",
+    "issueType": "IncorrectValue",
+    "similarityID": "56d17a1e5c739d1c453a47502c154bd0f08f706776ed64c3d14fe31d4624b6ec",
+    "search_line": 48
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 33,
+    "fileName": "positive3.bicep",
+    "resourceType": "securityAlertPolicies",
+    "resourceName": "securityPolicy1",
+    "searchKey": "resources.resources.resources.name={{securityPolicy1}}.properties.emailAddresses",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses doesn't contain emails",
+    "issueType": "IncorrectValue",
+    "similarityID": "afaa1cdf571a176b33191e177aa14b8f73dcc66febcb5933338de9645cf8806c",
+    "search_line": 33
   },
   {
     "queryName": "SQL Alert Policy Without Emails",
     "severity": "INFO",
     "line": 48,
-    "filename": "positive3.json"
-  },
-  {
-    "queryName": "SQL Alert Policy Without Emails",
-    "severity": "INFO",
-    "line": 48,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "SQL Alert Policy Without Emails",
-    "severity": "INFO",
-    "line": 50,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "SQL Alert Policy Without Emails",
-    "severity": "INFO",
-    "line": 50,
-    "filename": "positive6.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sqlServer1/sqlDatabase1/securityPolicy1",
+    "searchKey": "resources.resources.name={{sqlServer1/sqlDatabase1/securityPolicy1}}.properties.emailAddresses",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses doesn't contain emails",
+    "issueType": "IncorrectValue",
+    "similarityID": "567433e5e1d35645eff72a4c4f29f7ec09f86c55eecab67c21bff1bc6305ba9b",
+    "search_line": 48
   },
   {
     "queryName": "SQL Alert Policy Without Emails",
     "severity": "INFO",
     "line": 31,
-    "filename": "positive1.bicep"
+    "fileName": "positive4.bicep",
+    "resourceType": "securityAlertPolicies",
+    "resourceName": "securityPolicy1",
+    "searchKey": "resources.resources.resources.name={{securityPolicy1}}.properties",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7c829ede658e27eba33c2039ee80fb39b841f2572348831a4f22e2464e796018",
+    "search_line": 31
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 48,
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sqlServer1/sqlDatabase1/securityPolicy1",
+    "searchKey": "properties.template.resources.resources.name={{sqlServer1/sqlDatabase1/securityPolicy1}}.properties",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "594a2edc285a2bea2c484505495bd2c7743b2bf6a34bf06ac83de05f270875bc",
+    "search_line": 48
   },
   {
     "queryName": "SQL Alert Policy Without Emails",
     "severity": "INFO",
     "line": 33,
-    "filename": "positive2.bicep"
+    "fileName": "positive5.bicep",
+    "resourceType": "securityAlertPolicies",
+    "resourceName": "securityPolicy1",
+    "searchKey": "resources.resources.resources.name={{securityPolicy1}}.properties.emailAddresses",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses doesn't contain emails",
+    "issueType": "IncorrectValue",
+    "similarityID": "0d0cf9ee2b625b1c17cfb9c1ed9d8f5916907963662dac7650a4fc5344c4e234",
+    "search_line": 33
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 50,
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sqlServer1/sqlDatabase1/securityPolicy1",
+    "searchKey": "properties.template.resources.resources.name={{sqlServer1/sqlDatabase1/securityPolicy1}}.properties.emailAddresses",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses doesn't contain emails",
+    "issueType": "IncorrectValue",
+    "similarityID": "3ca39f812711461e28cb7bca65825d21f9b7f0dddc2985d08985e4113f5c71d9",
+    "search_line": 50
   },
   {
     "queryName": "SQL Alert Policy Without Emails",
     "severity": "INFO",
     "line": 33,
-    "filename": "positive3.bicep"
+    "fileName": "positive6.bicep",
+    "resourceType": "securityAlertPolicies",
+    "resourceName": "securityPolicy1",
+    "searchKey": "resources.resources.resources.name={{securityPolicy1}}.properties.emailAddresses",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses doesn't contain emails",
+    "issueType": "IncorrectValue",
+    "similarityID": "582022e3dda97c757e595c44d51aa76871c6a5d8efbc316f47ccb714c925ec22",
+    "search_line": 33
   },
   {
     "queryName": "SQL Alert Policy Without Emails",
     "severity": "INFO",
-    "line": 31,
-    "filename": "positive4.bicep"
-  },
-  {
-    "queryName": "SQL Alert Policy Without Emails",
-    "severity": "INFO",
-    "line": 33,
-    "filename": "positive5.bicep"
-  },
-  {
-    "queryName": "SQL Alert Policy Without Emails",
-    "severity": "INFO",
-    "line": 33,
-    "filename": "positive6.bicep"
+    "line": 50,
+    "fileName": "positive6.json",
+    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceName": "sqlServer1/sqlDatabase1/securityPolicy1",
+    "searchKey": "properties.template.resources.resources.name={{sqlServer1/sqlDatabase1/securityPolicy1}}.properties.emailAddresses",
+    "searchValue": "",
+    "expectedValue": "securityAlertPolicies.properties.emailAddresses should be defined and contain emails",
+    "actualValue": "securityAlertPolicies.properties.emailAddresses doesn't contain emails",
+    "issueType": "IncorrectValue",
+    "similarityID": "da2c7516d8f68728e02e6f31d18cdef65df1c894ce9482d3e19b1b2e0439059f",
+    "search_line": 50
   }
 ]

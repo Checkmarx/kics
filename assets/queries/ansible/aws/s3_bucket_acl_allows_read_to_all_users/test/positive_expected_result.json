@@ -2,11 +2,31 @@
   {
     "queryName": "S3 Bucket ACL Allows Read to All Users",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.aws_s3",
+    "resourceName": "Create an empty bucket",
+    "searchKey": "name={{Create an empty bucket}}.{{amazon.aws.aws_s3}}.permission",
+    "searchValue": "",
+    "expectedValue": "aws_s3 should not have read access for all user groups",
+    "actualValue": "aws_s3 has read access for all user groups",
+    "issueType": "IncorrectValue",
+    "similarityID": "b0823392aa5982e0503ed5c2468b7183645bebf8e0ece444fbf545f87c57bf37",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to All Users",
     "severity": "HIGH",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.aws_s3",
+    "resourceName": "Create an empty bucket2",
+    "searchKey": "name={{Create an empty bucket2}}.{{amazon.aws.aws_s3}}.permission",
+    "searchValue": "",
+    "expectedValue": "aws_s3 should not have read access for all user groups",
+    "actualValue": "aws_s3 has read access for all user groups",
+    "issueType": "IncorrectValue",
+    "similarityID": "0696c638fdf8e40cc62500cea022c10a4817fac87036e781052590dfe0c03c09",
+    "search_line": -1
   }
 ]

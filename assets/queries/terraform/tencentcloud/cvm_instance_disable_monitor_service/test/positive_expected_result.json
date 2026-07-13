@@ -3,6 +3,15 @@
     "queryName": "CVM Instance Disable Monitor Service",
     "severity": "INFO",
     "line": 13,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "tencentcloud_instance",
+    "resourceName": "cvm_postpaid",
+    "searchKey": "tencentcloud_instance[cvm_postpaid].disable_monitor_service",
+    "searchValue": "",
+    "expectedValue": "[cvm_postpaid] 'disable_monitor_service' should be set to false",
+    "actualValue": "[cvm_postpaid] 'disable_monitor_service' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "6ee027e72affbeb09d959c0f9be1f862c867bf43cbf68a6d5d94da441a38bbad",
+    "search_line": 13
   }
 ]

@@ -3,36 +3,90 @@
     "queryName": "Response on operations that should not have a body has declared content (v3)",
     "severity": "LOW",
     "line": 29,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{delete}}.responses.{{204}}.content",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{delete}}.responses.{{204}}.content should not be defined",
+    "actualValue": "paths.{{/}}.{{delete}}.responses.{{204}}.content is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "3ee09c705cccd9184431b2e7c934e40c19a0ea755ceba90a024b1d8451c01ea8",
+    "search_line": 0
   },
   {
     "queryName": "Response on operations that should not have a body has declared content (v3)",
     "severity": "LOW",
     "line": 20,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.responses.{{200}}.content",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.responses.{{200}}.content should not be defined",
+    "actualValue": "paths.{{/}}.responses.{{200}}.content is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "a5cdcd48ac6725caacb88174e7015fd50f2842d25d36ff52172d2daeb08a5248",
+    "search_line": 0
   },
   {
     "queryName": "Response on operations that should not have a body has declared content (v3)",
     "severity": "LOW",
     "line": 23,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{delete}}.responses.{{204}}.content",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{delete}}.responses.{{204}}.content should not be defined",
+    "actualValue": "paths.{{/}}.{{delete}}.responses.{{204}}.content is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "a86bb1c6e12f73b3eeed0671d40c97955a271f3e64001e8e5ed509597ddf6c5b",
+    "search_line": 0
   },
   {
     "queryName": "Response on operations that should not have a body has declared content (v3)",
     "severity": "LOW",
     "line": 17,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.responses.{{200}}.content",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.responses.{{200}}.content should not be defined",
+    "actualValue": "paths.{{/}}.responses.{{200}}.content is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "abfb30c556aeabcee9d57fdcde5a23efc29ddb3d2be0fc4919580209d2dccd92",
+    "search_line": 0
   },
   {
     "queryName": "Response on operations that should not have a body has declared content (v2)",
     "severity": "LOW",
     "line": 13,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.responses.{{200}}.schema",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.responses.{{200}}.schema should not be defined",
+    "actualValue": "paths.{{/}}.responses.{{200}}.schema is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "ff9ac85677cdb2ceda70a4714042f58bd87d4d82633c07b44cd7a010bfa73291",
+    "search_line": -1
   },
   {
     "queryName": "Response on operations that should not have a body has declared content (v2)",
     "severity": "LOW",
     "line": 15,
-    "filename": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.responses.{{200}}.schema",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.responses.{{200}}.schema should not be defined",
+    "actualValue": "paths.{{/}}.responses.{{200}}.schema is defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "9355e86e3a5a30ed224158c60198e85d9005af429cc17be74dee1f2711ca5d45",
+    "search_line": -1
   }
 ]

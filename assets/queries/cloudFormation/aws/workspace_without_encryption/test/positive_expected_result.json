@@ -2,25 +2,61 @@
   {
     "queryName": "Workspace Without Encryption",
     "severity": "HIGH",
-    "line": 14,
-    "fileName": "positive2.yaml"
+    "line": 4,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::WorkSpaces::Workspace",
+    "resourceName": "MyWorkSpace",
+    "searchKey": "Resources.MyWorkSpace.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyWorkSpace.Properties should have the property UserVolumeEncryptionEnabled set to true",
+    "actualValue": "Resources.MyWorkSpace.Properties does not have the UserVolumeEncryptionEnabled property set",
+    "issueType": "MissingAttribute",
+    "similarityID": "fbe4c60832e05acf8b3810b740716f3ccb17b209c4c669e6ab02b82cdde31d68",
+    "search_line": -1
   },
   {
     "queryName": "Workspace Without Encryption",
     "severity": "HIGH",
-    "line": 4,
-    "fileName": "positive1.yaml"
+    "line": 14,
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::WorkSpaces::Workspace",
+    "resourceName": "MyWorkSpace2",
+    "searchKey": "Resources.MyWorkSpace2.Properties.UserVolumeEncryptionEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.MyWorkSpace2.Properties.UserVolumeEncryptionEnabled should be set to true",
+    "actualValue": "Resources.MyWorkSpace2.Properties.UserVolumeEncryptionEnabled is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "f2f86868bcab7b15675494cb266928910772126c1c1c920e2c2715d36f3a44cd",
+    "search_line": -1
   },
   {
     "queryName": "Workspace Without Encryption",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::WorkSpaces::Workspace",
+    "resourceName": "MyWorkSpace",
+    "searchKey": "Resources.MyWorkSpace.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyWorkSpace.Properties should have the property UserVolumeEncryptionEnabled set to true",
+    "actualValue": "Resources.MyWorkSpace.Properties does not have the UserVolumeEncryptionEnabled property set",
+    "issueType": "MissingAttribute",
+    "similarityID": "5901d3593de308e76196adf27fca3204927ed949872c632b1036030082d50e9c",
+    "search_line": -1
   },
   {
     "queryName": "Workspace Without Encryption",
     "severity": "HIGH",
     "line": 17,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::WorkSpaces::Workspace",
+    "resourceName": "MyWorkSpace2",
+    "searchKey": "Resources.MyWorkSpace2.Properties.UserVolumeEncryptionEnabled",
+    "searchValue": "",
+    "expectedValue": "Resources.MyWorkSpace2.Properties.UserVolumeEncryptionEnabled should be set to true",
+    "actualValue": "Resources.MyWorkSpace2.Properties.UserVolumeEncryptionEnabled is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "e3100dcdbb5b418f84bcfbaf16983fe13638c745284b9dc66e51f7a241ef7a1f",
+    "search_line": -1
   }
 ]

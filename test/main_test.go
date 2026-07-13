@@ -199,7 +199,7 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 
 	for _, parser := range combinedParser {
 		docs, err := parser.Parse(filePath, content, true, false, 15)
-		for _, document := range docs.Docs {
+		for idx, document := range docs.Docs {
 			require.NoError(t, err)
 			files = append(files, model.FileMetadata{
 				ID:                uuid.NewString(),
@@ -211,6 +211,7 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 				FilePath:          filePath,
 				LinesOriginalData: utils.SplitLines(docs.Content),
 				ResolvedFiles:     docs.ResolvedFiles,
+				SubDocumentIndex:  idx,
 			})
 		}
 	}

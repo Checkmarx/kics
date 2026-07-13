@@ -1,102 +1,302 @@
 [
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 8
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 22
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 36
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 50
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 64
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 78
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 92
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 106
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 120
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 134
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 153
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 165
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 177
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 189
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 201
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 213
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 225
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 237
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 249
-	},
-	{
-		"queryName": "RDP Is Exposed To The Internet",
-		"severity": "HIGH",
-		"line": 261
-	}
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive1].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive1.destination_port_range' cannot be 3389",
+    "actualValue": "'azurerm_network_security_rule.positive1.destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "e6657a646f990be2cf34cfa97f80845bf6a5f64459557a3fcba0c7e9e9d46dab",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 22,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive2].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive2.destination_port_range' cannot be 3389",
+    "actualValue": "'azurerm_network_security_rule.positive2.destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "aee5df28688a69f18f8bc992b5fabdeaf28bce6e9e0ad3019d63be8d4483418d",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 36,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive3].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive3.destination_port_range' cannot be 3389",
+    "actualValue": "'azurerm_network_security_rule.positive3.destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "b19f814635a3fa63bb27c770ce9c508ad85bb815631b799d7da15ece80c272bc",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 50,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive4].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive4.destination_port_range' cannot be 3389",
+    "actualValue": "'azurerm_network_security_rule.positive4.destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "425c7d6cb6c47c17b02c6b4c3037fc9a69236f8d339781cb5357a408db267c1e",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 64,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive5].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive5.destination_port_range' cannot be 3389",
+    "actualValue": "'azurerm_network_security_rule.positive5.destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "80c9ccae7fdad6c5468463b2446b13b424cf552c0cad221d1dfafe624d8bae57",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 78,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive6].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive6.destination_port_range' cannot be 3389",
+    "actualValue": "'azurerm_network_security_rule.positive6.destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "aa5d969142f701ef50ece84c786357efc74df95e73b539817d1e4aa03c759553",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 92,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive7].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive7.destination_port_range' cannot be 3389",
+    "actualValue": "'azurerm_network_security_rule.positive7.destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "2736e6f865b5d62eafcee589fe521b4768d9cdb49089b456f464fb2cc1b458c9",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 106,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive8].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive8.destination_port_range' cannot be 3389",
+    "actualValue": "'azurerm_network_security_rule.positive8.destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "6d5b09bdde63304baa81e1c71e657fbb8aa719a6059271b16c9fd8d58ea87633",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 120,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive9].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive9.destination_port_range' cannot be 3389",
+    "actualValue": "'azurerm_network_security_rule.positive9.destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "444db1e77955a844e03bf90a5f850bdc3648984ca5bffa1c3b244fd543092922",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 134,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_rule",
+    "resourceName": "example",
+    "searchKey": "azurerm_network_security_rule[positive10].destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'azurerm_network_security_rule.positive10.destination_port_range' cannot be 3389",
+    "actualValue": "'azurerm_network_security_rule.positive10.destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "32da6a00bbe28929435ce405beb43e9e2db9ae258d6450e1cc55d9f5842fa250",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 153,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive11",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive11}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 3389",
+    "actualValue": "'destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "213e5cb5ebfdedbca2590ac4ab8e1df67ce609cc3602c797d5cb51f72817f3ce",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 165,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive12",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive12}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 3389",
+    "actualValue": "'destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "ac1dd1bd3b760410d4c9dfa5acc9ae34fb1b8c3c18d02f09fa967d4628c00a3c",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 177,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive13",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive13}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 3389",
+    "actualValue": "'destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "a72ffd56144c6630cb64037a91a91551a54af6d11d941bc95ea2a50e4f9da942",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 189,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive14",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive14}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 3389",
+    "actualValue": "'destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "9060f5326439affd73315b63806c0f6859df271e0bfea182dc203cde3aca12c2",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 201,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive15",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive15}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 3389",
+    "actualValue": "'destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "8a9ed4901ee7a3f3c3cd485674eb44025e17fe4c4e28a44acd9c37f7167a95e3",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 213,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive16",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive16}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 3389",
+    "actualValue": "'destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "69e7d28fd89b97bb8d98500f0ab3b1048b4fd49a68b97366a426259f60304fcb",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 225,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive17",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive17}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 3389",
+    "actualValue": "'destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "fee1be46fac239aa822663ef433dab6712c707814ff33e26ff397e2e2e2db68a",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 237,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive18",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive18}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 3389",
+    "actualValue": "'destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "ab9cb4d4c7fddcdecbb48de119fb8453174bfa7fbf729736c8c49a2294f9c4ae",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 249,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive19",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive19}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 3389",
+    "actualValue": "'destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8bb95b44bf8568b8c771e54fd0eb1c66f3d096ace83187738f904a31cfe1175",
+    "search_line": -1
+  },
+  {
+    "queryName": "RDP Is Exposed To The Internet",
+    "severity": "HIGH",
+    "line": 261,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": "positive20",
+    "searchKey": "azurerm_network_security_group[positive11-20].security_rule.name={{positive20}}.destination_port_range",
+    "searchValue": "",
+    "expectedValue": "'destination_port_range' cannot be 3389",
+    "actualValue": "'destination_port_range' might be 3389",
+    "issueType": "IncorrectValue",
+    "similarityID": "f4c86fa2edd75e8b6366289d13fcc45b037b0c7e5fdb172e01aebffac363d496",
+    "search_line": -1
+  }
 ]

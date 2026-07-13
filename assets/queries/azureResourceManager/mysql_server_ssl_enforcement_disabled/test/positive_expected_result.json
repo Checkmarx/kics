@@ -2,49 +2,121 @@
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
     "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.DBforMySQL/servers",
+    "resourceName": "server",
+    "searchKey": "resources.name={{server}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property defined",
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d4436e9abf9843f8c585618a58f1c6f9146881ed8eb4d8cd017428617ec240cd",
+    "search_line": 6
+  },
+  {
+    "queryName": "MySQL Server SSL Enforcement Disabled",
+    "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.DBforMySQL/servers",
+    "resourceName": "server",
+    "searchKey": "resources.name={{server}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property defined",
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "433e90b8e7f3074f002654b24bbdfea3cad893454a4fcbb2b8b043883197f1f1",
+    "search_line": 16
+  },
+  {
+    "queryName": "MySQL Server SSL Enforcement Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.DBforMySQL/servers",
+    "resourceName": "server",
+    "searchKey": "resources.name={{server}}.properties.sslEnforcement",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property value set to 'Enabled'",
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5e6189de91b7f0cb668654c9117df1b5cb4e221309769ac8067e5c9d3ed9e7a7",
+    "search_line": 8
   },
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.DBforMySQL/servers",
+    "resourceName": "server",
+    "searchKey": "resources.name={{server}}.properties.sslEnforcement",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property value set to 'Enabled'",
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5562e9601c72db91696bdfa510a62609de41c01d4cf6f155e3c02bd79652f14e",
+    "search_line": 18
+  },
+  {
+    "queryName": "MySQL Server SSL Enforcement Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.DBforMySQL/servers",
+    "resourceName": "server",
+    "searchKey": "resources.name={{server}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property defined",
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6816dabe401dfae21512ca327a250948964ecede20008cf28bc08844e27e689d",
+    "search_line": 6
   },
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.DBforMySQL/servers",
+    "resourceName": "server",
+    "searchKey": "properties.template.resources.name={{server}}.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property defined",
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "13c028d5ef61191ff885eddaf14af92c870bd163c75b339f6524996fe9945314",
+    "search_line": 18
+  },
+  {
+    "queryName": "MySQL Server SSL Enforcement Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.DBforMySQL/servers",
+    "resourceName": "server",
+    "searchKey": "resources.name={{server}}.properties.sslEnforcement",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property value set to 'Enabled'",
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2adf93f22b039c6e6e255e4fe0fb7975832ca88cb84deb5ad689d758c6d127af",
+    "search_line": 8
   },
   {
     "queryName": "MySQL Server SSL Enforcement Disabled",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "MySQL Server SSL Enforcement Disabled",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "MySQL Server SSL Enforcement Disabled",
-    "severity": "MEDIUM",
-    "line": 8,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "MySQL Server SSL Enforcement Disabled",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "MySQL Server SSL Enforcement Disabled",
-    "severity": "MEDIUM",
-    "line": 8,
-    "fileName": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.DBforMySQL/servers",
+    "resourceName": "server",
+    "searchKey": "properties.template.resources.name={{server}}.properties.sslEnforcement",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.DBforMySQL/servers' should have the 'sslEnforcement' property value set to 'Enabled'",
+    "actualValue": "resource with type 'Microsoft.DBforMySQL/servers' doesn't have 'sslEnforcement' set to 'Enabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "631e4554bdba4d328437cf502ecff88803f6c6f6398370c80c025acc773a89fb",
+    "search_line": 20
   }
 ]

@@ -2,21 +2,61 @@
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 14
+    "line": 14,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example1",
+    "searchKey": "name={{example1}}.{{amazon.aws.ec2_group}}.rules.cidr_ip={{0.0.0.0/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ip should not contain the value '0.0.0.0/0'",
+    "actualValue": "ec2_group.rules.cidr_ip contains value '0.0.0.0/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7b5b17d27ed8a5051e354e8f0dbd3df0f5fbb71042592dc9936b365bfb9e28d8",
+    "search_line": -1
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 28
+    "line": 28,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example2",
+    "searchKey": "name={{example2}}.{{amazon.aws.ec2_group}}.rules.cidr_ip.{{0.0.0.0/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ip should not contain the value '0.0.0.0/0'",
+    "actualValue": "ec2_group.rules.cidr_ip contains value '0.0.0.0/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2f6c054a1fba796fc4d50f366c35a8959d11a6e3213123e08afbf2f1fc732919",
+    "search_line": -1
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 41
+    "line": 41,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example3",
+    "searchKey": "name={{example3}}.{{amazon.aws.ec2_group}}.rules.cidr_ipv6={{::/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ipv6 should not contain the value '::/0'",
+    "actualValue": "ec2_group.rules.cidr_ipv6 contains value '::/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b680bf44b5e5108e35da7831a74364139bfd91c57f55c079ee58c5c12bdd53bb",
+    "search_line": -1
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 55
+    "line": 55,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example4",
+    "searchKey": "name={{example4}}.{{amazon.aws.ec2_group}}.rules.cidr_ipv6.{{::/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ipv6 should not contain the value '::/0'",
+    "actualValue": "ec2_group.rules.cidr_ipv6 contains value '::/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7f518185f32738bb9b5ba3bc51a17d355b00baa8c425ce659441537df289c14c",
+    "search_line": -1
   }
 ]

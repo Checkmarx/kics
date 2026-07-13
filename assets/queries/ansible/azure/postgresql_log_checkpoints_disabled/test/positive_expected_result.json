@@ -2,31 +2,91 @@
   {
     "queryName": "PostgreSQL Log Checkpoints Disabled",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting",
+    "searchKey": "name={{Update PostgreSQL Server setting}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_checkpoints'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a113982e80e73b7d7c9d06722ca3b6185355970cd77e06f80822fce9da61c98b",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Checkpoints Disabled",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting2",
+    "searchKey": "name={{Update PostgreSQL Server setting2}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_checkpoints'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "08e2f64320b09efd25c5ba4e37e402c498942aa8b95d9dfca31c18bf7f011658",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Checkpoints Disabled",
     "severity": "MEDIUM",
-    "line": 19
+    "line": 19,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting3",
+    "searchKey": "name={{Update PostgreSQL Server setting3}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_checkpoints'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4b457b522e8936fce705a53ca57da0fea1b4e0e48a37f9878beeb3f567870e50",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Checkpoints Disabled",
     "severity": "MEDIUM",
-    "line": 25
+    "line": 25,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting4",
+    "searchKey": "name={{Update PostgreSQL Server setting4}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_checkpoints'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9e2f4628a840f1eb892760e96ed8776652d6f774bac67142c7e44bb06b0de19a",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Checkpoints Disabled",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting5",
+    "searchKey": "name={{Update PostgreSQL Server setting5}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_checkpoints'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "38de4e2c4b5fa3ea2f1e578790a16c22339d119e767a6ce023ac5d5fea1b7120",
+    "search_line": -1
   },
   {
     "queryName": "PostgreSQL Log Checkpoints Disabled",
     "severity": "MEDIUM",
-    "line": 37
+    "line": 37,
+    "fileName": "positive.yaml",
+    "resourceType": "azure.azcollection.azure_rm_postgresqlconfiguration",
+    "resourceName": "Update PostgreSQL Server setting6",
+    "searchKey": "name={{Update PostgreSQL Server setting6}}.{{azure.azcollection.azure_rm_postgresqlconfiguration}}.value",
+    "searchValue": "",
+    "expectedValue": "azure_rm_postgresqlconfiguration.value should be 'ON' when name is 'log_checkpoints'",
+    "actualValue": "azure_rm_postgresqlconfiguration.value if 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c5f78a3bf383dab3f409d91e906aa72f39f93e23eba1a3b269e978e8230ea796",
+    "search_line": -1
   }
 ]

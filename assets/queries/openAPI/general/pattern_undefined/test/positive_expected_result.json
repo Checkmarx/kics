@@ -2,97 +2,241 @@
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
-    "line": 63,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Pattern Undefined (v3)",
-    "severity": "MEDIUM",
     "line": 58,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "37ccc38e539f60e7583ab64d29362e82c90b29c18e2225b3d199791592f40934",
+    "search_line": 0
+  },
+  {
+    "queryName": "Pattern Undefined (v3)",
+    "severity": "MEDIUM",
+    "line": 63,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "29ee3c43a913d3b18c54c08821c4c2eab8125958b716c00f23d6b5c4c7668dd3",
+    "search_line": 0
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 79,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7a5c8275e21c9e68a5592989f2d47d7b045ab4c86559764a887b48194b194588",
+    "search_line": 0
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 79,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "eecf8433ba032014306f644a85dae76bd8f7d1da6b9c549326617e7924484708",
+    "search_line": 0
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 27,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "39c8b35feb8ed20d2fa660656d5cc66b45105ea381d4a24830d93b24864d08e8",
+    "search_line": 27
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 32,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "263ffea12aea4df437f03db581e764e021fa3151d5c6ee6588b26c2f0cdb62f1",
+    "search_line": 32
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 34,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a35d6659e0b59a83a1219e73c60589fa5b77a3cde342001528ee96a9d6016c7a",
+    "search_line": 0
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 38,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "3e84c71c98ef3c3c911609cb444706fdfaf2b3a18f647df6f4f54294b078a2df",
+    "search_line": 0
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 49,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "59c43fc507c3cc25a1945eaf40f3527ccf9306f7746b08bb390124613d8b273f",
+    "search_line": 0
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 49,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref=#/components/schemas/GeneralError",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ebb3422181c5c0b114e3f0113fafb6595842862cdcb0f4f9d52da0ebafcb0dcf",
+    "search_line": 0
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "06cf658d646de6ed09162b603a39759bc387c072b5fb57abbd5dd91f75dba22a",
+    "search_line": 22
   },
   {
     "queryName": "Pattern Undefined (v3)",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6a7d3f0ada86af6b10b65380502fff689429f972795d18c449a29f9a1947eb3b",
+    "search_line": 26
   },
   {
     "queryName": "Pattern Undefined (v2)",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "60817fcc4fe2f1818786d4cb54699acb4ead3085f99744e1707b18f5a13cec0c",
+    "search_line": 23
   },
   {
     "queryName": "Pattern Undefined (v2)",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6f53e2280a3bda395cb38e6d22d2e6092a9a64cdf05074329b20280bef929a40",
+    "search_line": 28
   },
   {
     "queryName": "Pattern Undefined (v2)",
     "severity": "MEDIUM",
     "line": 19,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.code.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "251946cb25d887dc1c6d9e669e4f83cba98afbaa732247279d2efc06f96a4336",
+    "search_line": 19
   },
   {
     "queryName": "Pattern Undefined (v2)",
     "severity": "MEDIUM",
     "line": 23,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.properties.message.type",
+    "searchValue": "",
+    "expectedValue": "'pattern' should be defined",
+    "actualValue": "'pattern' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4b5f13ede65417d93ca1fe62eb9b42d69c871029b03624f055004f2ac6553080",
+    "search_line": 23
   }
 ]

@@ -3,6 +3,15 @@
     "queryName": "MySQL Instance With Local Infile On",
     "severity": "HIGH",
     "line": 8,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "sqladmin.v1beta4.instance",
+    "resourceName": "db-instance",
+    "searchKey": "resources.name={{db-instance}}.properties.settings.databaseFlags[0]",
+    "searchValue": "",
+    "expectedValue": "'settings.databaseFlags[0]' should be 'off'",
+    "actualValue": "'settings.databaseFlags[0]' is equal to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d693fffb7ed1b4ab2f7b36adb454763c3006c7be77c2f4dfd340971f7bbb425d",
+    "search_line": 8
   }
 ]

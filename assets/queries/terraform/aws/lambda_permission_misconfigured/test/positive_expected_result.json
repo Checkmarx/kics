@@ -2,6 +2,16 @@
   {
     "queryName": "Lambda Permission Misconfigured",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.tf",
+    "resourceType": "aws_lambda_permission",
+    "resourceName": "positive1",
+    "searchKey": "aws_lambda_permission[positive1].action",
+    "searchValue": "",
+    "expectedValue": "aws_lambda_permission[name].action should be 'lambda:InvokeFunction'%!(EXTRA string=positive1)",
+    "actualValue": "aws_lambda_permission[name].action is positive1%!(EXTRA string=lambda:DeleteFunction)",
+    "issueType": "IncorrectValue",
+    "similarityID": "893a591e640cc1873874f7ce28a0b2013391cd6d7e17b5b5939a753270962eb2",
+    "search_line": 2
   }
 ]

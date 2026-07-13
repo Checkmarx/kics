@@ -1,26 +1,62 @@
 [
   {
+    "queryName": "Lambda Functions Without X-Ray Tracing",
+    "severity": "LOW",
     "line": 37,
     "fileName": "positive1.yaml",
-    "queryName": "Lambda Functions Without X-Ray Tracing",
-    "severity": "LOW"
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "primer",
+    "searchKey": "Resources.primer.Properties.TracingConfig.Mode",
+    "searchValue": "",
+    "expectedValue": "TracingConfig.Mode should be set to 'Active'",
+    "actualValue": "TracingConfig.Mode is set to 'PassThrough'",
+    "issueType": "IncorrectValue",
+    "similarityID": "da9bb1b2a4bc3bc8c2d07eb22ab52dc29a1da230ebd4217520b503c663828dc1",
+    "search_line": -1
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Function",
+    "searchKey": "Resources.Function.Properties",
+    "searchValue": "",
+    "expectedValue": "Property 'TracingConfig' should be defined",
+    "actualValue": "Property 'TracingConfig' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0f5993b849e6187c6ca415b089aa86db5d8667e33f6396092a842867f22adcf1",
+    "search_line": -1
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "primer",
+    "searchKey": "Resources.primer.Properties.TracingConfig.Mode",
+    "searchValue": "",
+    "expectedValue": "TracingConfig.Mode should be set to 'Active'",
+    "actualValue": "TracingConfig.Mode is set to 'PassThrough'",
+    "issueType": "IncorrectValue",
+    "similarityID": "11bd81156bfb50f14506941300da7a175d5033c9fd6ad08b587bc3ba9da9e925",
+    "search_line": -1
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Function",
+    "searchKey": "Resources.Function.Properties",
+    "searchValue": "",
+    "expectedValue": "Property 'TracingConfig' should be defined",
+    "actualValue": "Property 'TracingConfig' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6dbd587675c1f5138ee568ab3d305eeae77da37c2e5be10c3469112b2e493a3d",
+    "search_line": -1
   }
 ]

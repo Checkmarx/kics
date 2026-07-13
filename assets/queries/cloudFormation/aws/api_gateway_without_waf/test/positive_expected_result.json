@@ -1,14 +1,32 @@
 [
   {
     "queryName": "API Gateway without WAF",
-	  "severity": "MEDIUM",
+    "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.StageName",
+    "searchValue": "",
+    "expectedValue": "API Gateway Stage should be associated with a Web Application Firewall",
+    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall",
+    "issueType": "IncorrectValue",
+    "similarityID": "4d5c1fd573d888ee1ea76053fb46ac0b1792847111364538a1a704dc0a1c5c59",
+    "search_line": 7
   },
   {
     "queryName": "API Gateway without WAF",
     "severity": "MEDIUM",
     "line": 33,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ApiGateway::Stage",
+    "resourceName": "Prod",
+    "searchKey": "Resources.Prod.Properties.StageName",
+    "searchValue": "",
+    "expectedValue": "API Gateway Stage should be associated with a Web Application Firewall",
+    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall",
+    "issueType": "IncorrectValue",
+    "similarityID": "cdb49ab2d4c3816c712f6e1adea31c8c2afe6e9a93225eb8017c3dac7334c6e8",
+    "search_line": 33
   }
 ]

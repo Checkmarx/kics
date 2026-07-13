@@ -2,16 +2,46 @@
   {
     "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "MEDIUM",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_windows_virtual_machine",
+    "resourceName": "positive1-machine",
+    "searchKey": "azurerm_windows_virtual_machine[positive1].enable_automatic_updates",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine[positive1].enable_automatic_updates' should be set to 'true'",
+    "actualValue": "'azurerm_windows_virtual_machine[positive1].enable_automatic_updates' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1f25f187721663c3a636edee034690ef7c3084f116a21a715f7bdda3bcdfef4a",
+    "search_line": 11
   },
   {
     "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_windows_virtual_machine",
+    "resourceName": "positive2-machine",
+    "searchKey": "azurerm_windows_virtual_machine[positive2].automatic_updates_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine[positive2].automatic_updates_enabled' should be set to 'true'",
+    "actualValue": "'azurerm_windows_virtual_machine[positive2].automatic_updates_enabled' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9bdda8c50ff313d8871c63b8e13951872a6adb1daee0f86ddaf535b1c02ac1a7",
+    "search_line": 24
   },
   {
     "queryName": "Beta - VM With Automatic Updates Disabled",
     "severity": "MEDIUM",
-    "line": 37
+    "line": 37,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_windows_virtual_machine_scale_set",
+    "resourceName": "positive3-vmss",
+    "searchKey": "azurerm_windows_virtual_machine_scale_set[positive3].enable_automatic_updates",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_virtual_machine_scale_set[positive3].enable_automatic_updates' should be set to 'true'",
+    "actualValue": "'azurerm_windows_virtual_machine_scale_set[positive3].enable_automatic_updates' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5397414fb0198048d7e859dbbbd24164f464d1bcd5635f62e22a8e08c2d117bf",
+    "search_line": 37
   }
 ]

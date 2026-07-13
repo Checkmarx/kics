@@ -3,42 +3,105 @@
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket11",
+    "searchKey": "Resources.Bucket11.Properties",
+    "searchValue": "",
+    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)",
+    "issueType": "MissingAttribute",
+    "similarityID": "65873559b51fee1a0ccbba1688b24d0a4aeb3d96f46d41e89e17be25e4c106e7",
+    "search_line": 4
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket12",
+    "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
+    "searchValue": "",
+    "expectedValue": "'IgnorePublicAcls' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "actualValue": "'IgnorePublicAcls' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "issueType": "MissingAttribute",
+    "similarityID": "207b65d00a698a21d0e9514e0ced41e3a99aa79b5d525eeb47924042e69096f7",
+    "search_line": 10
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 21,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket13",
+    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls",
+    "searchValue": "",
+    "expectedValue": "'IgnorePublicAcls' should be set to true%!(EXTRA string=Bucket13)",
+    "actualValue": "'IgnorePublicAcls' is set to false%!(EXTRA string=Bucket13)",
+    "issueType": "IncorrectValue",
+    "similarityID": "b9450c0f730a23824504ea8a125fe3e1f89bfefe55bce6146efe8360830db8ee",
+    "search_line": 21
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket1",
+    "searchKey": "Resources.Bucket1.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls",
+    "searchValue": "",
+    "expectedValue": "'IgnorePublicAcls' should be set to true%!(EXTRA string=Bucket1)",
+    "actualValue": "'IgnorePublicAcls' is set to false%!(EXTRA string=Bucket1)",
+    "issueType": "IncorrectValue",
+    "similarityID": "134e83958f884b92b1c482507b2bfa75eb29d1720a07a162f65270ba7812ba3c",
+    "search_line": 9
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket11",
+    "searchKey": "Resources.Bucket11.Properties",
+    "searchValue": "",
+    "expectedValue": "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=Bucket11)",
+    "actualValue": "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=Bucket11)",
+    "issueType": "MissingAttribute",
+    "similarityID": "a60560ac8d0b2e30b6a8d9937c5550bbece99e41a13c8f350ae54b903205f879",
+    "search_line": 4
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket12",
+    "searchKey": "Resources.Bucket12.Properties.PublicAccessBlockConfiguration",
+    "searchValue": "",
+    "expectedValue": "'IgnorePublicAcls' should be defined and set to true in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "actualValue": "'IgnorePublicAcls' is not defined in the 'PublicAccessBlockConfiguration'%!(EXTRA string=Bucket12)",
+    "issueType": "MissingAttribute",
+    "similarityID": "4d1cdb18299a8b1708444c2a07f91b00dc6c7be14405499f32d79d37507e083b",
+    "search_line": 10
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
     "severity": "MEDIUM",
     "line": 21,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "Bucket13",
+    "searchKey": "Resources.Bucket13.Properties.PublicAccessBlockConfiguration.IgnorePublicAcls",
+    "searchValue": "",
+    "expectedValue": "'IgnorePublicAcls' should be set to true%!(EXTRA string=Bucket13)",
+    "actualValue": "'IgnorePublicAcls' is set to false%!(EXTRA string=Bucket13)",
+    "issueType": "IncorrectValue",
+    "similarityID": "ab2c74b37b274342d8489b2e10dee59c9bb6412ec10aeaf154352d8311e38912",
+    "search_line": 21
   }
 ]

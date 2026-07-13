@@ -1,50 +1,122 @@
 [
   {
+    "queryName": "Low RDS Backup Retention Period",
+    "severity": "LOW",
     "line": 52,
     "fileName": "positive1.yaml",
-    "queryName": "Low RDS Backup Retention Period",
-    "severity": "LOW"
-  },
-  {
-    "fileName": "positive4.yaml",
-    "queryName": "Low RDS Backup Retention Period",
-    "severity": "LOW",
-    "line": 43
-  },
-  {
-    "queryName": "Low RDS Backup Retention Period",
-    "severity": "LOW",
-    "line": 22,
-    "fileName": "positive3.yaml"
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "DatabaseCluster",
+    "searchKey": "Resources.DatabaseCluster.Properties.BackupRetentionPeriod",
+    "searchValue": "",
+    "expectedValue": "The RDS DBCluster 'DatabaseCluster' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBCluster 'DatabaseCluster' resource has backup retention period of '%!s(int=3)' which is less than the minimum of 7 days",
+    "issueType": "IncorrectValue",
+    "similarityID": "9659c144d049140a188d0c8c966585a7612bf8f1da6d71834e566ba4d2af4499",
+    "search_line": -1
   },
   {
     "queryName": "Low RDS Backup Retention Period",
     "severity": "LOW",
     "line": 35,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.BackupRetentionPeriod",
+    "searchValue": "",
+    "expectedValue": "The RDS DBInstance 'MyDBSmall' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBCluster 'MyDBSmall' resource has backup retention period of '%!s(int=6)' which is less than the minimum of 7 days, and no RDS Cluster are defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "50905c0e2b61c62afff537dc4362315a65b8e810ec4d4cd5d9025c6e67ef9962",
+    "search_line": -1
+  },
+  {
+    "queryName": "Low RDS Backup Retention Period",
+    "severity": "LOW",
+    "line": 22,
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDB",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "The RDS DBInstance 'MyDB' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBInstance 'MyDB' resource doesn't define a backup retention period and no RDS Cluster are defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "95c9854cc62b9a446a569952a5e5417724c8d597401213a23934da978299a74f",
+    "search_line": -1
+  },
+  {
+    "queryName": "Low RDS Backup Retention Period",
+    "severity": "LOW",
+    "line": 43,
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "BadDatabaseCluster",
+    "searchKey": "Resources.BadDatabaseCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "The RDS DBCluster 'BadDatabaseCluster' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBCluster 'BadDatabaseCluster' resource doesn't define a backup retention period",
+    "issueType": "MissingAttribute",
+    "similarityID": "61b4aff48115302508a3e9982faa77ec4d393f8430b325b7cc56473410027874",
+    "search_line": -1
   },
   {
     "queryName": "Low RDS Backup Retention Period",
     "severity": "LOW",
     "line": 113,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "DatabaseCluster",
+    "searchKey": "Resources.DatabaseCluster.Properties.BackupRetentionPeriod",
+    "searchValue": "",
+    "expectedValue": "The RDS DBCluster 'DatabaseCluster' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBCluster 'DatabaseCluster' resource has backup retention period of '%!s(int=3)' which is less than the minimum of 7 days",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc07629472dacc751300b2863251b11f088689468b1b1719551fbf18398c21c3",
+    "search_line": -1
   },
   {
     "queryName": "Low RDS Backup Retention Period",
     "severity": "LOW",
     "line": 55,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.BackupRetentionPeriod",
+    "searchValue": "",
+    "expectedValue": "The RDS DBInstance 'MyDBSmall' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBCluster 'MyDBSmall' resource has backup retention period of '%!s(int=6)' which is less than the minimum of 7 days, and no RDS Cluster are defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "58da2b4cd05af6af623770cf306e49d65ad1690bc219a12f81aab76774df9b62",
+    "search_line": -1
   },
   {
     "queryName": "Low RDS Backup Retention Period",
     "severity": "LOW",
     "line": 26,
-    "fileName": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDB",
+    "searchKey": "Resources.MyDB.Properties",
+    "searchValue": "",
+    "expectedValue": "The RDS DBInstance 'MyDB' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBInstance 'MyDB' resource doesn't define a backup retention period and no RDS Cluster are defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "f37b9258488f5bdaf73020b9054775f8e11e16dbf82938aadd233fddf243d357",
+    "search_line": -1
   },
   {
     "queryName": "Low RDS Backup Retention Period",
     "severity": "LOW",
     "line": 54,
-    "fileName": "positive8.json"
+    "fileName": "positive8.json",
+    "resourceType": "AWS::RDS::DBCluster",
+    "resourceName": "BadDatabaseCluster",
+    "searchKey": "Resources.BadDatabaseCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "The RDS DBCluster 'BadDatabaseCluster' resource should have backup retention period of at least 7 days",
+    "actualValue": "The RDS DBCluster 'BadDatabaseCluster' resource doesn't define a backup retention period",
+    "issueType": "MissingAttribute",
+    "similarityID": "0246bed67a93954ebf1bf95705c6053c1d3ad3839ecee50b95b3295ed4d85b05",
+    "search_line": -1
   }
 ]

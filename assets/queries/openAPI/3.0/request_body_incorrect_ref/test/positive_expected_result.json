@@ -3,12 +3,30 @@
     "queryName": "Request Body With Incorrect Ref",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.$ref",
+    "searchValue": "",
+    "expectedValue": "Request body ref points to '#/components/requestBodies'",
+    "actualValue": "Request body ref doesn't point to '#/components/requestBodies'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7efc929f172743cea2d79ff98116709481c841de03b9a05fbeb084a8a21e5f0d",
+    "search_line": 0
   },
   {
     "queryName": "Request Body With Incorrect Ref",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.$ref",
+    "searchValue": "",
+    "expectedValue": "Request body ref points to '#/components/requestBodies'",
+    "actualValue": "Request body ref doesn't point to '#/components/requestBodies'",
+    "issueType": "IncorrectValue",
+    "similarityID": "349a7c3ccfd8efcd89f9a728d0ecbe92c36da2c403991ef4fed26eb522eb2ee6",
+    "search_line": 0
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "Client Certificate Disabled",
     "severity": "HIGH",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "",
+    "expectedValue": "'masterAuth' should be defined and not null",
+    "actualValue": "'masterAuth' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "b9987e7cf38934d421fdf9d1770a443ac274b30cd69324d56b65e9c0fcde8ff2",
+    "search_line": 4
   },
   {
     "queryName": "Client Certificate Disabled",
     "severity": "HIGH",
     "line": 6,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.masterAuth",
+    "searchValue": "",
+    "expectedValue": "'masterAuth.clientCertificateConfig' should be defined and not null",
+    "actualValue": "'masterAuth.clientCertificateConfig' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "fa793f5f5d6d4d3e43cf553d272ce78b534c28e2d1673459925f04665b6f6b7c",
+    "search_line": 6
   },
   {
     "queryName": "Client Certificate Disabled",
     "severity": "HIGH",
     "line": 8,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.masterAuth.clientCertificateConfig.issueClientCertificate",
+    "searchValue": "",
+    "expectedValue": "'masterAuth.clientCertificateConfig.issueClientCertificate' should be true",
+    "actualValue": "'masterAuth.clientCertificateConfig.issueClientCertificate' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8c0cf4424e58614ae9bfb2690b1d1a2ce2ea34972cb1c4c6207756bbb9b62cdd",
+    "search_line": 8
   }
 ]

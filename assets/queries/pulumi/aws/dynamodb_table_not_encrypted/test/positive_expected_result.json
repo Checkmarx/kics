@@ -3,12 +3,30 @@
     "queryName": "DynamoDB Table Not Encrypted",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "aws:dynamodb:Table",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'serverSideEncryption' should be defined",
+    "actualValue": "Attribute 'serverSideEncryption' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ef09555104d643b791c3e996bdb229e786e911c56b3189f7340105adc086d14d",
+    "search_line": 7
   },
   {
     "queryName": "DynamoDB Table Not Encrypted",
     "severity": "HIGH",
     "line": 17,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "aws:dynamodb:Table",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties.serverSideEncryption.enabled",
+    "searchValue": "",
+    "expectedValue": "Attribute 'enabled' in 'serverSideEncryption' should be set to true",
+    "actualValue": "Attribute 'enabled' in 'serverSideEncryption'  is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c7a963c8418437d6ba99090c82732691e0734faa8c4f282e4372eb5d07ea959b",
+    "search_line": 17
   }
 ]

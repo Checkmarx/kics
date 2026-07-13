@@ -3,12 +3,30 @@
     "queryName": "S3 Bucket With All Permissions",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy3",
+    "searchKey": "Resources.SampleBucketPolicy3.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement should not allow all actions from all principals",
+    "actualValue": "Resources.SampleBucketPolicy3.Properties.PolicyDocument.Statement allows all actions from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "53ea4a79f92c248441aeb1ceb8d3dd4b42bdb4e8f04a8d065a64edfaacce5cb3",
+    "search_line": 7
   },
   {
     "queryName": "S3 Bucket With All Permissions",
     "severity": "CRITICAL",
     "line": 9,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::S3::BucketPolicy",
+    "resourceName": "SampleBucketPolicy4",
+    "searchKey": "Resources.SampleBucketPolicy4.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement should not allow all actions from all principals",
+    "actualValue": "Resources.SampleBucketPolicy4.Properties.PolicyDocument.Statement allows all actions from all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "b0574b3235792b8836c3f1dfd41e6d020295a9eee9e5534cc25ff157bd512b62",
+    "search_line": 9
   }
 ]

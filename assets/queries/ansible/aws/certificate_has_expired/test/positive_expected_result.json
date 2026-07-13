@@ -2,6 +2,16 @@
   {
     "queryName": "Certificate Has Expired",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_acm",
+    "resourceName": "upload a self-signed certificate",
+    "searchKey": "name={{upload a self-signed certificate}}.community.aws.aws_acm.certificate",
+    "searchValue": "",
+    "expectedValue": "'community.aws.aws_acm.certificate' should not have expired",
+    "actualValue": "'community.aws.aws_acm.certificate' has expired",
+    "issueType": "IncorrectValue",
+    "similarityID": "05b27a7539bd47f61d4e8aebd02ddb5189b55c225c5538a19ad2267aaa9aedc1",
+    "search_line": -1
   }
 ]

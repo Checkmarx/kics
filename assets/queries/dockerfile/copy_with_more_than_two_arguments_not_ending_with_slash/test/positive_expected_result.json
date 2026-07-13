@@ -2,7 +2,16 @@
   {
     "queryName": "Copy With More Than Two Arguments Not Ending With Slash",
     "severity": "LOW",
+    "line": 2,
     "fileName": "positive.dockerfile",
-    "line": 2
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:carbon2}}.COPY={{package.json}}",
+    "searchValue": "",
+    "expectedValue": "When COPY command has more than two arguments, the last one should end with a slash",
+    "actualValue": "COPY command has more than two arguments and the last one does not end with a slash",
+    "issueType": "IncorrectValue",
+    "similarityID": "5d73230985c736202dcc046a098484d359ecb71ec1debfea951e34d745d7af1f",
+    "search_line": -1
   }
 ]

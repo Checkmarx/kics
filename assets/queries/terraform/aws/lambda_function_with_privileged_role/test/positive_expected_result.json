@@ -3,30 +3,75 @@
     "queryName": "Lambda Function With Privileged Role",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "lambda",
+    "searchKey": "aws_lambda_function[positivefunction1].role",
+    "searchValue": "positiverole1/aws_iam_policy_attachment[positivedirectpolicyattachment1]/positivecustomermanagedpolicy2/0",
+    "expectedValue": "aws_lambda_function[positivefunction1].role shouldn't have privileged permissions through attached managed policy",
+    "actualValue": "aws_lambda_function[positivefunction1].role has been provided privileged permissions through attached managed policy 'positivecustomermanagedpolicy2'. Provided privileged permissions: 'sts:AssumeRole'. List of privileged permissions '[\"iam:CreatePolicyVersion\", \"iam:SetDefaultPolicyVersion\", \"iam:CreateAccessKey\", \"iam:CreateLoginProfile\", \"iam:UpdateLoginProfile\", \"iam:AttachUserPolicy\", \"iam:AttachGroupPolicy\", \"iam:AttachRolePolicy\", \"iam:PutUserPolicy\", \"iam:PutGroupPolicy\", \"iam:PutRolePolicy\", \"iam:AddUserToGroup\", \"iam:UpdateAssumeRolePolicy\", \"iam:PassRole\", \"iam:CreateServiceLinkedRole\", \"sts:AssumeRole\", \"iam:*\", \"sts:*\"]'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2f746a027f5271f2c40053feb619d5c813667d34dd743ded8d076bf0efd60139",
+    "search_line": 4
   },
   {
     "queryName": "Lambda Function With Privileged Role",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "lambda",
+    "searchKey": "aws_lambda_function[positivefunction1].role",
+    "searchValue": "positiverole1/aws_iam_role_policy_attachment[positiverolepolicyattachment1]/positivecustomermanagedpolicy1/0",
+    "expectedValue": "aws_lambda_function[positivefunction1].role shouldn't have privileged permissions through attached managed policy",
+    "actualValue": "aws_lambda_function[positivefunction1].role has been provided privileged permissions through attached managed policy 'positivecustomermanagedpolicy1'. Provided privileged permissions: 'sts:AssumeRole'. List of privileged permissions '[\"iam:CreatePolicyVersion\", \"iam:SetDefaultPolicyVersion\", \"iam:CreateAccessKey\", \"iam:CreateLoginProfile\", \"iam:UpdateLoginProfile\", \"iam:AttachUserPolicy\", \"iam:AttachGroupPolicy\", \"iam:AttachRolePolicy\", \"iam:PutUserPolicy\", \"iam:PutGroupPolicy\", \"iam:PutRolePolicy\", \"iam:AddUserToGroup\", \"iam:UpdateAssumeRolePolicy\", \"iam:PassRole\", \"iam:CreateServiceLinkedRole\", \"sts:AssumeRole\", \"iam:*\", \"sts:*\"]'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e92b81f243a6c954ebf736654bcc1ca74761dcf0c1f0f8cd4dcb2b69cbbccbb2",
+    "search_line": 4
   },
   {
     "queryName": "Lambda Function With Privileged Role",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "lambda",
+    "searchKey": "aws_lambda_function[positivefunction1].role",
+    "searchValue": "positiverole1/aws_iam_role_policy_attachment[positiverolepolicyattachment1]/positivecustomermanagedpolicy1/1",
+    "expectedValue": "aws_lambda_function[positivefunction1].role shouldn't have privileged permissions through attached managed policy",
+    "actualValue": "aws_lambda_function[positivefunction1].role has been provided privileged permissions through attached managed policy 'positivecustomermanagedpolicy1'. Provided privileged permissions: 'iam:CreateLoginProfile'. List of privileged permissions '[\"iam:CreatePolicyVersion\", \"iam:SetDefaultPolicyVersion\", \"iam:CreateAccessKey\", \"iam:CreateLoginProfile\", \"iam:UpdateLoginProfile\", \"iam:AttachUserPolicy\", \"iam:AttachGroupPolicy\", \"iam:AttachRolePolicy\", \"iam:PutUserPolicy\", \"iam:PutGroupPolicy\", \"iam:PutRolePolicy\", \"iam:AddUserToGroup\", \"iam:UpdateAssumeRolePolicy\", \"iam:PassRole\", \"iam:CreateServiceLinkedRole\", \"sts:AssumeRole\", \"iam:*\", \"sts:*\"]'",
+    "issueType": "IncorrectValue",
+    "similarityID": "94b052422a9ceb4f68426adf040348727c8d58eb3b37360db4212f6a1543b544",
+    "search_line": 4
   },
   {
     "queryName": "Lambda Function With Privileged Role",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "lambda",
+    "searchKey": "aws_lambda_function[positivefunction1].role",
+    "searchValue": "positiverole1/positiveinlinepolicy1/0",
+    "expectedValue": "aws_lambda_function[positivefunction1].role shouldn't have privileged permissions through attached inline policy.",
+    "actualValue": "aws_lambda_function[positivefunction1].role has been provided privileged permissions through attached inline policy. Provided privileged permissions: 'iam:*'. List of privileged permissions '[\"iam:CreatePolicyVersion\", \"iam:SetDefaultPolicyVersion\", \"iam:CreateAccessKey\", \"iam:CreateLoginProfile\", \"iam:UpdateLoginProfile\", \"iam:AttachUserPolicy\", \"iam:AttachGroupPolicy\", \"iam:AttachRolePolicy\", \"iam:PutUserPolicy\", \"iam:PutGroupPolicy\", \"iam:PutRolePolicy\", \"iam:AddUserToGroup\", \"iam:UpdateAssumeRolePolicy\", \"iam:PassRole\", \"iam:CreateServiceLinkedRole\", \"sts:AssumeRole\", \"iam:*\", \"sts:*\"]'",
+    "issueType": "IncorrectValue",
+    "similarityID": "34a3b509ad9600b0d691e8abaeb59ae1bdcc7a6b5cc27f462cdcd74cc74d3287",
+    "search_line": 4
   },
   {
     "queryName": "Lambda Function With Privileged Role",
     "severity": "HIGH",
     "line": 23,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "lambda",
+    "searchKey": "aws_lambda_function[positivefunction2].role",
+    "searchValue": "positiverole2/aws_iam_policy_attachment[positivedirectpolicyattachment2]",
+    "expectedValue": "aws_lambda_function[positivefunction2].role shouldn't have privileged permissions",
+    "actualValue": "aws_lambda_function[positivefunction2].role has been provided privileged permissions through attached pre-existing managed policy 'arn:aws:iam::policy/AmazonPersonalizeFullAccess'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "c945ef20dbdd1eb0aecc20b20ec118f4b3bfa959951550efa41aed052e49d4b9",
+    "search_line": 23
   }
 ]

@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "Image Pull Policy Of The Container Is Not Set To Always",
-		"severity": "LOW",
-		"line": 9,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Image Pull Policy Of The Container Is Not Set To Always",
-		"severity": "LOW",
-		"line": 18,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Image Pull Policy Of The Container Is Not Set To Always",
-		"severity": "LOW",
-		"line": 16,
-		"fileName": "positive3.yaml"
-	}
+  {
+    "queryName": "Image Pull Policy Of The Container Is Not Set To Always",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "private-image-test-always",
+    "searchKey": "metadata.name={{private-image-test-always}}.spec.containers.name={{uses-private-image}}.imagePullPolicy",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{private-image-test-always}}.spec.containers.name={{uses-private-image}}.imagePullPolicy should be set to 'Always'",
+    "actualValue": "metadata.name={{private-image-test-always}}.spec.containers.name={{uses-private-image}}.imagePullPolicy relies on mutable images in cache",
+    "issueType": "IncorrectValue",
+    "similarityID": "c74339891995d9c00530ea1561340097b8fb6f18bd314d56137d0b9774f6c5a8",
+    "search_line": 9
+  },
+  {
+    "queryName": "Image Pull Policy Of The Container Is Not Set To Always",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "deployment-with-image-pull-policy",
+    "searchKey": "metadata.name={{deployment-with-image-pull-policy}}.spec.template.spec.containers.name={{nginx}}.imagePullPolicy",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{deployment-with-image-pull-policy}}.spec.template.spec.containers.name={{nginx}}.imagePullPolicy should be set to 'Always'",
+    "actualValue": "metadata.name={{deployment-with-image-pull-policy}}.spec.template.spec.containers.name={{nginx}}.imagePullPolicy relies on mutable images in cache",
+    "issueType": "IncorrectValue",
+    "similarityID": "0a14c1e2c1ad9b1d635ae7b4e539f6d36199c471ffcdc8f4711d9ef4e5c421c4",
+    "search_line": 18
+  },
+  {
+    "queryName": "Image Pull Policy Of The Container Is Not Set To Always",
+    "severity": "LOW",
+    "line": 16,
+    "fileName": "positive3.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "deployment-with-image-pull-policy1",
+    "searchKey": "metadata.name={{deployment-with-image-pull-policy1}}.spec.template.spec.containers.name={{nginx}}",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{deployment-with-image-pull-policy1}}.spec.template.spec.containers.name={{nginx}}.imagePullPolicy should be set to 'Always'",
+    "actualValue": "metadata.name={{deployment-with-image-pull-policy1}}.spec.template.spec.containers.name={{nginx}}.imagePullPolicy relies on mutable images in cache",
+    "issueType": "MissingAttribute",
+    "similarityID": "a4f7d2f3bc91c2f7df97224a70760355288e237ac115ae079fc45423714b0e9f",
+    "search_line": 16
+  }
 ]

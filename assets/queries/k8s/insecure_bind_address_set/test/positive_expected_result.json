@@ -3,12 +3,30 @@
     "queryName": "Insecure Bind Address Set",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--insecure-bind-address flag should not be set",
+    "actualValue": "--insecure-bind-address flag is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "50b4e94ba75a29f72b1d4575264a93c0c4091e659625423365de48876f93e09f",
+    "search_line": 11
   },
   {
     "queryName": "Insecure Bind Address Set",
     "severity": "HIGH",
     "line": 11,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--insecure-bind-address flag should not be set",
+    "actualValue": "--insecure-bind-address flag is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "430f2bde39a53eb1832f54f70876c1e7d9f657def34793a065bdd3d199846b07",
+    "search_line": 11
   }
 ]

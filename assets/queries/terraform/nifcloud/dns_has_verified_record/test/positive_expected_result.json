@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Nifcloud DNS Has Verified Record",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Nifcloud DNS Has Verified Record",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "nifcloud_dns_record",
+    "resourceName": "test.example.test",
+    "searchKey": "nifcloud_dns_record[positive]",
+    "searchValue": "",
+    "expectedValue": "Verified records should be removed from 'nifcloud_dns_record[positive]'.",
+    "actualValue": "'nifcloud_dns_record[positive]' has risk of DNS records being used by others.",
+    "issueType": "IncorrectValue",
+    "similarityID": "37fd35c3a6c8789141270d3815253c1a7c28a226a4088710b7b3af1a8977e2bc",
+    "search_line": -1
+  }
 ]

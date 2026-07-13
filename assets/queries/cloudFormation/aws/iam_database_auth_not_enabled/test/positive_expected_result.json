@@ -3,30 +3,75 @@
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication should be true",
+    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "80d838822b2adab2a5a2c1b509a79d67c0c94c87d0d729311f25206d370fed29",
+    "search_line": -1
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication should be true",
+    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a14b915c51387c227288efb7ae06ad2ddbed9c03eff0ca523b6bc3225e3ed6bc",
+    "search_line": -1
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication should be defined",
+    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d610df1e9875ddbb1527f5fdc419bd5cc68f1a30b95e9065764234dabf92a99b",
+    "search_line": -1
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication should be defined",
+    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f5fdd52c6e07a3cb77f657f2d4c1fdbe6b00d90496f906ec6fcdd8962d38994b",
+    "search_line": -1
   },
   {
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "MyDBSmall",
+    "searchKey": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication",
+    "searchValue": "",
+    "expectedValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication should be true",
+    "actualValue": "Resources.MyDBSmall.Properties.EnableIAMDatabaseAuthentication is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "6633e5f1ececec22052aad1a9b6c37ce608529fb487efa835f1ccf38d47f0a41",
+    "search_line": -1
   }
 ]

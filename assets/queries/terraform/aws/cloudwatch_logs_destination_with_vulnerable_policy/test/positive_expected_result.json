@@ -3,6 +3,15 @@
     "queryName": "CloudWatch Logs Destination With Vulnerable Policy",
     "severity": "LOW",
     "line": 22,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudwatch_log_destination_policy",
+    "resourceName": "test_destination_policy",
+    "searchKey": "aws_cloudwatch_log_destination_policy[test_destination_policy].access_policy",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_destination_policy[test_destination_policy].access_policy should not have wildcard in 'principals' and 'actions'",
+    "actualValue": "aws_cloudwatch_log_destination_policy[test_destination_policy].access_policy has wildcard in 'principals' or 'actions'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ce92cad0b84639b2c03ec20f947fe68c6b99d57aeee160116b6df1f1e1094d08",
+    "search_line": 22
   }
 ]

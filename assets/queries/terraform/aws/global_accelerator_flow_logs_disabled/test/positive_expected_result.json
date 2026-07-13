@@ -3,18 +3,45 @@
     "queryName": "Global Accelerator Flow Logs Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_globalaccelerator_accelerator",
+    "resourceName": "Example",
+    "searchKey": "aws_globalaccelerator_accelerator[{{positive1}}]",
+    "searchValue": "",
+    "expectedValue": "aws_globalaccelerator_accelerator[{{positive1}}].flow_logs_enabled should be defined and not null",
+    "actualValue": "aws_globalaccelerator_accelerator[{{positive1}}].flow_logs_enabled is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "3e0e7ddee8436957270a5d5561e6f905d09126400d953e4a09c77141f1a75420",
+    "search_line": 1
   },
   {
     "queryName": "Global Accelerator Flow Logs Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_globalaccelerator_accelerator",
+    "resourceName": "Example",
+    "searchKey": "aws_globalaccelerator_accelerator[{{positive2}}].attributes",
+    "searchValue": "",
+    "expectedValue": "aws_globalaccelerator_accelerator[{{positive2}}].flow_logs_enabled should be defined and not null",
+    "actualValue": "aws_globalaccelerator_accelerator[{{positive2}}].flow_logs_enabled is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "0728b7081b4a6e0de7e86a8b02c49da658f2c821909661bae3b8d469c6b245a6",
+    "search_line": 6
   },
   {
     "queryName": "Global Accelerator Flow Logs Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_globalaccelerator_accelerator",
+    "resourceName": "Example",
+    "searchKey": "aws_globalaccelerator_accelerator[{{positive3}}].attributes.flow_logs_enabled",
+    "searchValue": "",
+    "expectedValue": "aws_globalaccelerator_accelerator[{{positive3}}].flow_logs_enabled should be true",
+    "actualValue": "aws_globalaccelerator_accelerator[{{positive3}}].flow_logs_enabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "5f4df54e35a9b6e759b8ee7c6611993478fa77052b320fa7944749635b4c94f4",
+    "search_line": 7
   }
 ]

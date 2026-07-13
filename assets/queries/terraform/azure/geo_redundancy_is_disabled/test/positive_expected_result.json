@@ -2,11 +2,31 @@
   {
     "queryName": "Geo Redundancy Is Disabled",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_server",
+    "resourceName": "dbserver",
+    "searchKey": "azurerm_postgresql_server[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_server.positive1.geo_redundant_backup_enabled' should be set",
+    "actualValue": "'azurerm_postgresql_server.positive1.geo_redundant_backup_enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d3eb8c911685ed872de16efc64c0b9c1159809ee3d45501787dd251a515ff126",
+    "search_line": 2
   },
   {
     "queryName": "Geo Redundancy Is Disabled",
     "severity": "LOW",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_server",
+    "resourceName": "dbserver",
+    "searchKey": "azurerm_postgresql_server[positive2].geo_redundant_backup_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_server.positive2.geo_redundant_backup_enabled' should be true",
+    "actualValue": "'azurerm_postgresql_server.positive2.geo_redundant_backup_enabled' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ad14b4d5a2794dce578d0f198da239e4bc282a90e001cd57f44c22adf54bee56",
+    "search_line": 31
   }
 ]

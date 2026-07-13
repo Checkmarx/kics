@@ -3,12 +3,30 @@
     "queryName": "Redshift Using Default Port",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_redshift_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_redshift_cluster.port should be defined and not null",
+    "actualValue": "aws_redshift_cluster.port is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1064291b9a80aad25c95151b0ed8765c147110704725eb6e85d23f08c3968a1b",
+    "search_line": 1
   },
   {
     "queryName": "Redshift Using Default Port",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive2",
+    "searchKey": "aws_redshift_cluster[positive2].port",
+    "searchValue": "",
+    "expectedValue": "aws_redshift_cluster.port should not be set to 5439",
+    "actualValue": "aws_redshift_cluster.port is set to 5439",
+    "issueType": "IncorrectValue",
+    "similarityID": "a6b17ce635b83074481371e2ece44f165e1455a14e3a8038a5b5976c0424fe3f",
+    "search_line": 9
   }
 ]

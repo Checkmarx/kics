@@ -2,11 +2,31 @@
   {
     "queryName": "Google Project Auto Create Network Disabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "google_project",
+    "resourceName": "My Project",
+    "searchKey": "google_project[positive1].auto_create_network",
+    "searchValue": "",
+    "expectedValue": "google_project[positive1].auto_create_network should be set to false",
+    "actualValue": "google_project[positive1].auto_create_network is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "1f87c6558055c4bad9cbb26387399e0b63d798a4424ae926754c52891e9f8aaf",
+    "search_line": 5
   },
   {
     "queryName": "Google Project Auto Create Network Disabled",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "google_project",
+    "resourceName": "My Project",
+    "searchKey": "google_project[positive2]",
+    "searchValue": "",
+    "expectedValue": "google_project[positive2].auto_create_network should be set to false",
+    "actualValue": "google_project[positive2].auto_create_network is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "33b72733d4501a0e0d6834d69364faeac7d1f8454ca58aa948cc0dd378aaac27",
+    "search_line": 8
   }
 ]

@@ -3,30 +3,75 @@
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "NET_RAW Capabilities Not Being Dropped",
-    "severity": "MEDIUM",
-    "line": 18,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "NET_RAW Capabilities Not Being Dropped",
-    "severity": "MEDIUM",
-    "line": 23,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.containers.name={{payment}}.securityContext.capabilities.drop",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example}}.spec.containers.name={{payment}}.securityContext.capabilities.drop includes ALL or NET_RAW",
+    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment}}.securityContext.capabilities.drop does not include ALL or NET_RAW",
+    "issueType": "IncorrectValue",
+    "similarityID": "98363bc21c81d78aefcac71b4138084bac1019ced0137e14540ba90802b81b35",
+    "search_line": 11
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.containers.name={{payment2}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example}}.spec.containers.name={{payment2}}.securityContext.capabilities.drop should be defined",
+    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment2}}.securityContext.capabilities.drop is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "44e996a2d60e11c5b65f9c1b5a997c5a08017043809b1573254359b4e341868b",
+    "search_line": 13
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.containers.name={{payment4}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example}}.spec.containers.name={{payment4}}.securityContext.capabilities.drop should be defined",
+    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment4}}.securityContext.capabilities.drop is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c47d7e680a9d678fc2c47f3ff0410a5ce1209404c13d975cd30885fa6358343d",
+    "search_line": 18
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
+    "line": 23,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.containers.name={{payment3}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example}}.spec.containers.name={{payment3}}.securityContext.capabilities.drop should be defined",
+    "actualValue": "metadata.name={{example}}.spec.containers.name={{payment3}}.securityContext.capabilities.drop is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bc0f05efa5b005c7c8036f5d2b57a9a3acc77baf15bab3f28d5cb6aa5e9257e6",
+    "search_line": 23
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "redis-unhealthy-deployment",
+    "searchKey": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}.securityContext.capabilities.drop should be defined",
+    "actualValue": "metadata.name={{redis-unhealthy-deployment}}.spec.template.spec.containers.name={{redis}}.securityContext.capabilities.drop is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "19756d67fceb30c59706ac9caff71e3509237dc9b4a69074bedb6351e91f8ca7",
+    "search_line": 31
   }
 ]

@@ -2,6 +2,16 @@
   {
     "queryName": "API Gateway With CloudWatch Logging Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudwatchlogs_log_group",
+    "resourceName": "Setup AWS API Gateway setup on AWS cloudwatchlogs",
+    "searchKey": "name={{Setup AWS API Gateway setup on AWS cloudwatchlogs}}.{{community.aws.cloudwatchlogs_log_group}}",
+    "searchValue": "",
+    "expectedValue": "cloudwatchlogs_log_grouptracing_enabled should contain log_group_name",
+    "actualValue": "cloudwatchlogs_log_group does not contain log_group_name defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d9c365cf6b6e094fce902d9ef3572fc723f092e8ca343c0d36fe5a41c7bb63c6",
+    "search_line": -1
   }
 ]

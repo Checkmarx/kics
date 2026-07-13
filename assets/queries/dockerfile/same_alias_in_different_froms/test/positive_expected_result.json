@@ -2,6 +2,16 @@
   {
     "queryName": "Same Alias In Different Froms",
     "severity": "LOW",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{build}}",
+    "searchValue": "",
+    "expectedValue": "Different FROM commands don't have the same alias defined",
+    "actualValue": "Different FROM commands with with the same alias 'build' defined",
+    "issueType": "IncorrectValue",
+    "similarityID": "78b6f666b89e28f9be82fbbb75e311fc187d4adc001dabe3f9f7b3422038ccca",
+    "search_line": -1
   }
 ]

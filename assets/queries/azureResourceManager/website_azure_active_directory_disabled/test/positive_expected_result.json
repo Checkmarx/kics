@@ -2,85 +2,211 @@
   {
     "queryName": "Website Azure Active Directory Disabled",
     "severity": "LOW",
+    "line": 2,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive2",
+    "searchKey": "resources.name={{webSitePositive2}}",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "76b41f3d600aee4bd2d1b055fa21ff08fe8228ce544d1dc22a1ac0a07a46a7b4",
+    "search_line": 2
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
     "line": 10,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive2",
+    "searchKey": "resources.name={{webSitePositive2}}",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "57979ec88a7adfd2c14b744cb6f590e3f6e2e85501417fab174c64b7219cf8a7",
+    "search_line": 10
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive3",
+    "searchKey": "resources.name={{webSitePositive3}}.identity",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3aa12b236bfe1523304483cc867a4194898bd30c23a33fc86b74d309a8d1b038",
+    "search_line": 5
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive3",
+    "searchKey": "resources.name={{webSitePositive3}}.identity",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c8a45f0735faf73862596070c68eec8da0a4723570e73f6ffc11a43c778d672b",
+    "search_line": 15
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive3",
+    "searchKey": "resources.name={{webSitePositive3}}.identity",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f0748b9dbd707e473dcd1708636a7c9248c76ed953f4f5b46977aa9781e29943",
+    "search_line": 5
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
     "severity": "LOW",
     "line": 15,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive3",
+    "searchKey": "resources.name={{webSitePositive3}}.identity",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "747ad335201d4061d69eada7094ba9f173f4fe626fa8cb2953a6e1d00a2ab121",
+    "search_line": 15
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive2",
+    "searchKey": "resources.name={{webSitePositive2}}",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c7bf8906f8befd31aab212a1658299d51cb888dedec3d3fedaa3c0f3495b79ba",
+    "search_line": 2
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive2",
+    "searchKey": "properties.template.resources.name={{webSitePositive2}}",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "70c3d9568decfc22df2238fb32fe830d46bf5b2573e0d2fbf4b829e7eb175523",
+    "search_line": 12
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive5.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive3",
+    "searchKey": "resources.name={{webSitePositive3}}.identity",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue",
+    "similarityID": "72bdc70dc871d8fb86f30d5fe9e9904770f4fff3d330ff321a6aa34ad799cc5f",
+    "search_line": 5
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive3",
+    "searchKey": "properties.template.resources.name={{webSitePositive3}}.identity",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4ac06f3f8583056f10271d7a56c51e1e1928af55ba7e2503dd805eb07e3d955b",
+    "search_line": 17
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive6.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive3",
+    "searchKey": "resources.name={{webSitePositive3}}.identity",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2a1e9b47b70afb6642251796452912b3acfd4bf97857361210fafebef5705a65",
+    "search_line": 5
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
     "severity": "LOW",
     "line": 17,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive3",
+    "searchKey": "properties.template.resources.name={{webSitePositive3}}.identity",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned' and 'userAssignedIdentities' defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "53f8d94b517921781b20c0f33c384ffc872da7cf0a2c87ec4cbe14893feffe5a",
+    "search_line": 17
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive7.bicep",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive7",
+    "searchKey": "resources.name={{webSitePositive7}}.identity",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue",
+    "similarityID": "de1ea628d320c2d441aaf1530f3957dca499724b047f6e211062b095b8d8a7a2",
+    "search_line": 5
   },
   {
     "queryName": "Website Azure Active Directory Disabled",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive7.json"
-  },
-  {
-    "queryName": "Website Azure Active Directory Disabled",
-    "severity": "LOW",
-    "line": 2,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Website Azure Active Directory Disabled",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Website Azure Active Directory Disabled",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Website Azure Active Directory Disabled",
-    "severity": "LOW",
-    "line": 2,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "Website Azure Active Directory Disabled",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "Website Azure Active Directory Disabled",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive6.bicep"
-  },
-  {
-    "queryName": "Website Azure Active Directory Disabled",
-    "severity": "LOW",
-    "line": 5,
-    "fileName": "positive7.bicep"
+    "fileName": "positive7.json",
+    "resourceType": "Microsoft.Web/sites",
+    "resourceName": "webSitePositive7",
+    "searchKey": "resources.name={{webSitePositive7}}.identity",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Web/sites' should have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "actualValue": "resource with type 'Microsoft.Web/sites' doesn't have the identity type set to 'SystemAssigned' or 'UserAssigned'",
+    "issueType": "IncorrectValue",
+    "similarityID": "814698a043814b611e9d269b8d58eac9414a23547fee3d94c82d912aa4a72ea8",
+    "search_line": 18
   }
 ]

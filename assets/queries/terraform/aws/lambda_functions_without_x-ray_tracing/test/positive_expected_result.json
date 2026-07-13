@@ -1,12 +1,32 @@
 [
   {
-    "line": 28,
     "queryName": "Lambda Functions Without X-Ray Tracing",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 28,
+    "fileName": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "test_lambda2",
+    "searchKey": "aws_lambda_function[test_lambda2].tracing_config.mode",
+    "searchValue": "",
+    "expectedValue": "aws_lambda_function[test_lambda2].tracing_config.mode should be set to 'Active'",
+    "actualValue": "aws_lambda_function[test_lambda2].tracing_config.mode is set to 'PassThrough'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2c4824e39084c04cd1f7dbec33243a9d95998c080598796e6bd037162bbbc0c3",
+    "search_line": 28
   },
   {
     "queryName": "Lambda Functions Without X-Ray Tracing",
     "severity": "LOW",
-    "line": 45
+    "line": 45,
+    "fileName": "positive.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "test_lambda3",
+    "searchKey": "aws_lambda_function[test_lambda3]",
+    "searchValue": "",
+    "expectedValue": "aws_lambda_function[test_lambda3].tracing_config should be defined and not null",
+    "actualValue": "aws_lambda_function[test_lambda3].tracing_config is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "746ddcb7318416d277f5b9a06be4b6073bb2e4439c060630a289d42b0357f7a0",
+    "search_line": 45
   }
 ]

@@ -3,60 +3,150 @@
     "queryName": "Default Invalid (v3)",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "e648720e97f8e0b7199292847b7c1bde0f1b9f6908617e2b94b289c6ae4b1ec4",
+    "search_line": -1
   },
   {
     "queryName": "Default Invalid (v3)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "6cbbd8e8cbe04b175631379825dc606e4f1cec60fa89cf41c8e1f1df79e7dd9f",
+    "search_line": -1
   },
   {
     "queryName": "Default Invalid (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "bc3394515fb5619d0831e16d0910a4f02f52a163e54ce9470fad9fa59eacf467",
+    "search_line": -1
   },
   {
     "queryName": "Default Invalid (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "f01b315794c8c486caa37291af8ffb20e1f21fa7547a70807f5e2b3068a4f207",
+    "search_line": -1
   },
   {
     "queryName": "Default Invalid (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "9e31e01d0e5570d67340b264ef09b11064a4679d8210ee03220099e5ffdc2953",
+    "search_line": -1
   },
   {
     "queryName": "Default Invalid (v3)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "ab6858250a1c880bfc75c5188b8beb66702e99b6d39b3907db8bd92ef40a0695",
+    "search_line": -1
   },
   {
     "queryName": "Default Invalid (v3)",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "a815c5ef3512c51154f07bee709a8d8296a38309306d6bfadd1448a0097f607c",
+    "search_line": -1
   },
   {
     "queryName": "Default Invalid (v3)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "e908358b5df0f91347dc9d67db634b41910dd96b2b54d9b4b28e92f134dfcbe8",
+    "search_line": -1
   },
   {
     "queryName": "Default Invalid (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive9.json"
+    "fileName": "positive9.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "778ad55a24791450a08645876831b302d7ce5f19bbca354eb1bbde220bfc5f74",
+    "search_line": -1
   },
   {
     "queryName": "Default Invalid (v2)",
     "severity": "INFO",
     "line": 17,
-    "filename": "positive10.yaml"
+    "fileName": "positive10.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema.default",
+    "searchValue": "",
+    "expectedValue": "The field 'default' should be consistent with the type",
+    "actualValue": "The field 'default' is not consistent with the type",
+    "issueType": "IncorrectValue",
+    "similarityID": "bdd6f88d7749825f6fa1ce7656fa07afea0a6f449c5d6f1b0becc2653a0cfc12",
+    "search_line": -1
   }
 ]

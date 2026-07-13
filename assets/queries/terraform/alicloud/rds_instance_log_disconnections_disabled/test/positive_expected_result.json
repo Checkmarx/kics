@@ -3,18 +3,45 @@
     "queryName": "RDS Instance Log Disconnections Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].parameters[2].value",
+    "searchValue": "",
+    "expectedValue": "'log_disconnections' parameter value should be 'ON'",
+    "actualValue": "'log_disconnections' parameter value is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f71c5ae261063ca2b1ab7fedcdfad61c0e63e09fbfa60d3c81491287d6a1f4e2",
+    "search_line": 14
   },
   {
     "queryName": "RDS Instance Log Disconnections Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].parameters",
+    "searchValue": "",
+    "expectedValue": "'log_disconnections' parameter should be defined and value should be 'ON'",
+    "actualValue": "'log_disconnections' parameter is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "72bb74f425e5790a121903d60d9fdfe1e24919dd4b53a370587159320b0d28cd",
+    "search_line": 6
   },
   {
     "queryName": "RDS Instance Log Disconnections Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]]",
+    "searchValue": "",
+    "expectedValue": "'log_disconnections' parameter should be defined and value should be 'ON' in parametes array",
+    "actualValue": "'log_disconnections' parameter is not defined in parametes array",
+    "issueType": "MissingAttribute",
+    "similarityID": "31aea0923467333070f6bfa6f2106ecfccb7246559456a897dfd25897a841f37",
+    "search_line": 1
   }
 ]

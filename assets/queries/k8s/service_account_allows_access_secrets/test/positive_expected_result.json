@@ -1,17 +1,47 @@
 [
-	{
-		"queryName": "ServiceAccount Allows Access Secrets",
-		"severity": "MEDIUM",
-		"line": 10
-	},
-	{
-		"queryName": "ServiceAccount Allows Access Secrets",
-		"severity": "MEDIUM",
-		"line": 34
-	},
-	{
-		"queryName": "ServiceAccount Allows Access Secrets",
-		"severity": "MEDIUM",
-		"line": 58
-	}
+  {
+    "queryName": "ServiceAccount Allows Access Secrets",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "Role",
+    "resourceName": "testRoleVulnerable",
+    "searchKey": "metadata.name={{testRoleVulnerable}}.rules",
+    "searchValue": "Role",
+    "expectedValue": "The metadata.name={{testRoleVulnerable}}.rules.verbs should not contain the following verbs: [[\"get\", \"watch\", \"list\"]]",
+    "actualValue": "The metadata.name={{testRoleVulnerable}}.rules.verbs contain the following verbs: [[\"get\", \"watch\", \"list\"]]",
+    "issueType": "IncorrectValue",
+    "similarityID": "d066063b0e6379ae1cd5672d746b074ad904169662ce75effe4ae900eb574e6b",
+    "search_line": 10
+  },
+  {
+    "queryName": "ServiceAccount Allows Access Secrets",
+    "severity": "MEDIUM",
+    "line": 34,
+    "fileName": "positive.yaml",
+    "resourceType": "Role",
+    "resourceName": "testRoleVulnerable2",
+    "searchKey": "metadata.name={{testRoleVulnerable2}}.rules",
+    "searchValue": "Role",
+    "expectedValue": "The metadata.name={{testRoleVulnerable2}}.rules.verbs should not contain the following verbs: [[\"*\"]]",
+    "actualValue": "The metadata.name={{testRoleVulnerable2}}.rules.verbs contain the following verbs: [[\"*\"]]",
+    "issueType": "IncorrectValue",
+    "similarityID": "c3b2aeb60e73db935523dea716f6ea348234323def5c906c2437cf3baa285c3d",
+    "search_line": 34
+  },
+  {
+    "queryName": "ServiceAccount Allows Access Secrets",
+    "severity": "MEDIUM",
+    "line": 58,
+    "fileName": "positive.yaml",
+    "resourceType": "ClusterRole",
+    "resourceName": "testClusterRoleVulnerable",
+    "searchKey": "metadata.name={{testClusterRoleVulnerable}}.rules",
+    "searchValue": "ClusterRole",
+    "expectedValue": "The metadata.name={{testClusterRoleVulnerable}}.rules.verbs should not contain the following verbs: [[\"update\", \"list\"]]",
+    "actualValue": "The metadata.name={{testClusterRoleVulnerable}}.rules.verbs contain the following verbs: [[\"update\", \"list\"]]",
+    "issueType": "IncorrectValue",
+    "similarityID": "aac657348ad542676cd6131a8958c44a8c2d06644177b0a26be4527abb9f80af",
+    "search_line": 58
+  }
 ]

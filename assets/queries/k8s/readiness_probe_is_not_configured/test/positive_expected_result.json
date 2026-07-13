@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "Readiness Probe Is Not Configured",
-		"severity": "MEDIUM",
-		"line": 9
-	}
+  {
+    "queryName": "Readiness Probe Is Not Configured",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "goproxy",
+    "searchKey": "metadata.name={{goproxy}}.spec.containers.name={{goproxy}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{goproxy}}.spec.containers.name={{goproxy}}.readinessProbe should be defined",
+    "actualValue": "metadata.name={{goproxy}}.spec.containers.name={{goproxy}}.readinessProbe is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "26a467acab1762ba545e4b663c97c89bca142cf5ef30ae2b29606ba5c4ab1b75",
+    "search_line": 9
+  }
 ]

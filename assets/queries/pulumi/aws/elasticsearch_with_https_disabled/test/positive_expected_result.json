@@ -3,6 +3,15 @@
     "queryName": "Elasticsearch with HTTPS disabled",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "aws.elasticsearch.Domain",
+    "resourceName": "0",
+    "searchKey": "resources[%!s(int=0)].properties.domainEndpointOptions.enforceHTTPS",
+    "searchValue": "",
+    "expectedValue": "resources[%!s(int=0)].properties.domainEndpointOptions.enforceHTTPS should be set to 'true'",
+    "actualValue": "resources[%!s(int=0)].properties.domainEndpointOptions.enforceHTTPS is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "405a6a93c9a041ba1b2b1d9a12dabe579884edd8804fd9e225e3689e91279fec",
+    "search_line": 31
   }
 ]

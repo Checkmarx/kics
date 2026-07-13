@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "ElastiCache Redis Cluster Without Backup",
-		"severity": "MEDIUM",
-		"line": 9,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "ElastiCache Redis Cluster Without Backup",
-		"severity": "MEDIUM",
-		"line": 17,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "ElastiCache Redis Cluster Without Backup",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "aws:elasticache:Cluster",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties.snapshotRetentionLimit",
+    "searchValue": "",
+    "expectedValue": "Attribute 'snapshotRetentionLimit' should be set to higher than 0",
+    "actualValue": "Attribute 'snapshotRetentionLimit' is set to 0",
+    "issueType": "IncorrectValue",
+    "similarityID": "933c03265526b346b1a15e70b87071d92b1422590fc8b8135d8dd467f7436b0a",
+    "search_line": 9
+  },
+  {
+    "queryName": "ElastiCache Redis Cluster Without Backup",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive.yaml",
+    "resourceType": "aws:elasticache:Cluster",
+    "resourceName": "example",
+    "searchKey": "resources[example].properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'snapshotRetentionLimit' should be defined and set to higher than 0",
+    "actualValue": "Attribute 'snapshotRetentionLimit' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "40126329df3de65ce0deff34e99fc706cd87fb868bc8a6b0d6d0e8172473f4df",
+    "search_line": 17
+  }
 ]

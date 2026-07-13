@@ -3,12 +3,30 @@
     "queryName": "AmazonMQ Broker Encryption Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker.Properties.EncryptionOptions",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker.Properties.EncryptionOptions should be defined",
+    "actualValue": "Resources.BasicBroker.Properties.EncryptionOptions is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ce9cc2369ef0986b19ab4e627250e1888e0461c03d739a99772519659cfa67d0",
+    "search_line": -1
   },
   {
     "queryName": "AmazonMQ Broker Encryption Disabled",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::AmazonMQ::Broker",
+    "resourceName": "MyBasicBroker",
+    "searchKey": "Resources.BasicBroker.Properties.EncryptionOptions",
+    "searchValue": "",
+    "expectedValue": "Resources.BasicBroker.Properties.EncryptionOptions should be defined",
+    "actualValue": "Resources.BasicBroker.Properties.EncryptionOptions is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d1260fcced563560449fdb9e7b214febf8749f2a875e485fbb8cf29f1262994c",
+    "search_line": -1
   }
 ]

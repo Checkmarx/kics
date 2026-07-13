@@ -3,60 +3,150 @@
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field should not be empty object",
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "5729a9f3ff9890616de9fa8b74fba91adf914f918e87672c3349c047f52ec664",
+    "search_line": -1
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
     "line": 51,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{patch}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field array should not have an empty object",
+    "actualValue": "Security operation field array has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "b4b94305201496f0a9bc966db1569392c592021a1ddc4f9527a05df5f7621e7f",
+    "search_line": -1
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
     "line": 44,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{patch}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field array should not have an empty object",
+    "actualValue": "Security operation field array has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "7d303a40f51b75fbdbd160fd8c50da658f3ba126957cdeb64b5cdf177356a160",
+    "search_line": -1
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
     "line": 53,
-    "filename": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/apis}}.{{get}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field should not be empty object",
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "23edeaa112c681864a9873a52e9f71cc29207632234f8aa03ed7aac9498b4a85",
+    "search_line": -1
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
     "line": 10,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field should not be empty object",
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "23f68a0450cecdbdb4b21260500e39e9eb33f6059e599221a17930f7b1476a97",
+    "search_line": -1
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
     "line": 31,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{patch}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field array should not have an empty object",
+    "actualValue": "Security operation field array has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "bc0401a9e0c9eaa15e61159b35933cfd8248d1321b651a2ebcb9f7846afb3c97",
+    "search_line": -1
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
     "line": 28,
-    "filename": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{patch}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field array should not have an empty object",
+    "actualValue": "Security operation field array has an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "43453a26077627489ae377498a7331accf97ec1dab70fbce00c1518821839b10",
+    "search_line": -1
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v3)",
     "severity": "HIGH",
     "line": 32,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/apis}}.{{get}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field should not be empty object",
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "60dd473180192bebb93f421981d54b21c95228c1b18553d3c50c11d0a3a4c132",
+    "search_line": -1
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v2)",
     "severity": "HIGH",
     "line": 14,
-    "filename": "positive9.yaml"
+    "fileName": "positive9.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field should not be empty object",
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "9baafd04cadf694aca90beee415017649a379132c61c5bfcc356275099b87c56",
+    "search_line": -1
   },
   {
     "queryName": "Security Field On Operations Has An Empty Object Definition (v2)",
     "severity": "HIGH",
     "line": 17,
-    "filename": "positive10.json"
+    "fileName": "positive10.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security",
+    "searchValue": "",
+    "expectedValue": "Security operation field should not be empty object",
+    "actualValue": "Security operation field is an empty object",
+    "issueType": "IncorrectValue",
+    "similarityID": "dcf6c1355682c4f92a6240d9756c8adc7876e8d283b250795c90617c09cec235",
+    "search_line": -1
   }
 ]

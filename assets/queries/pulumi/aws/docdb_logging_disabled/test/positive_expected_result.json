@@ -3,18 +3,45 @@
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "aws:docdb:Cluster",
+    "resourceName": "aws:docdb/cluster",
+    "searchKey": "resources[aws:docdb/cluster].properties",
+    "searchValue": "",
+    "expectedValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports should be defined",
+    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "947371b3792acadf72ad5445e039061711c5980474b6e076cf4ce411ea2469ad",
+    "search_line": 10
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "aws:docdb:Cluster",
+    "resourceName": "aws:docdb/cluster",
+    "searchKey": "resources[aws:docdb/cluster].properties.enabledCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports has the following missing values: audit, profiler",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0e2e2021e6a06c7d9f3fec82516102c5913551bc41a5762ed72ba7432ffd2fc",
+    "search_line": 18
   },
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "aws:docdb:Cluster",
+    "resourceName": "aws:docdb/cluster",
+    "searchKey": "resources[aws:docdb/cluster].properties.enabledCloudwatchLogsExports",
+    "searchValue": "",
+    "expectedValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports should have all following values: audit, profiler",
+    "actualValue": "aws:docdb:Cluster.enabledCloudwatchLogsExports has the following missing values: profiler",
+    "issueType": "IncorrectValue",
+    "similarityID": "4e93d87cdb6e6a5778f69346b30879c1bce439c78a7e98f49b5686041a287713",
+    "search_line": 18
   }
 ]

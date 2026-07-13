@@ -3,6 +3,15 @@
     "queryName": "Security Contact Email",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_security_center_contact",
+    "resourceName": "positive",
+    "searchKey": "azurerm_security_center_contact[positive]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_security_center_contact[positive].email' should be defined and not null",
+    "actualValue": "'azurerm_security_center_contact[positive].email' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a7da8d11606369bbdcff9c529e91a6e4632340e9dcec1c03ff9b0858fee44d66",
+    "search_line": 1
   }
 ]

@@ -3,24 +3,60 @@
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_elasticache_cluster.port should be defined and not null",
+    "actualValue": "aws_elasticache_cluster.port is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ba28ab54716ed2b230606a502ba9b3c73871f29238d2757a51dc1e9465794978",
+    "search_line": 1
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_elasticache_cluster.port should be defined and not null",
+    "actualValue": "aws_elasticache_cluster.port is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "f8bc5f6649e01944301f517edcb541306008b3599379e615d030fd681bd13c1a",
+    "search_line": 1
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive3].port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 6379",
+    "actualValue": "'port' is set to 6379",
+    "issueType": "IncorrectValue",
+    "similarityID": "1acf9a731f71dfc9cfba5a2e3f767f1f7452b604b76fd1c828b88f082de5b5e6",
+    "search_line": 7
   },
   {
     "queryName": "ElastiCache Using Default Port",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_elasticache_cluster",
+    "resourceName": "cluster",
+    "searchKey": "aws_elasticache_cluster[positive2].port",
+    "searchValue": "",
+    "expectedValue": "'port' should not be set to 11211",
+    "actualValue": "'port' is set to 11211",
+    "issueType": "IncorrectValue",
+    "similarityID": "6813904e4f1688b435017179a9e62706d1b6160a54987d68d39a88720ea369ac",
+    "search_line": 7
   }
 ]

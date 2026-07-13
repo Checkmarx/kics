@@ -2,26 +2,76 @@
   {
     "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "mysql-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_1]",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should be defined and set 'remote access' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "f7a114245a005dbbf84224241b6ed30dfe871c8f81ad61d90e47081cf7f0343b",
+    "search_line": 1
   },
   {
     "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
     "severity": "HIGH",
-    "line": 14
+    "line": 14,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should be defined and set 'remote access' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "78881bd1513e38d01db5771db3629f0d7bcb4ee14223f61df99d68bdbf8f79d4",
+    "search_line": 14
   },
   {
     "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
     "severity": "HIGH",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-without-flag",
+    "searchKey": "google_sql_database_instance[positive_3].settings.database_flags",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_3].settings.database_flags' should be defined and set 'remote access' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_3].settings.database_flags' does not set 'remote access'",
+    "issueType": "MissingAttribute",
+    "similarityID": "20e662aa13e1ee768c1701138983b143d57d19d52c1ca858e2dadd0287e1cb91",
+    "search_line": 23
   },
   {
     "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
     "severity": "HIGH",
-    "line": 42
+    "line": 42,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_4].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_4].settings.database_flags' should be defined and set 'remote access' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_4].settings.database_flags' sets 'remote access' to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9d8b3fc67248681fb92fbb257483dfbe354294681eaddf6f0daeff8b12c46f16",
+    "search_line": 42
   },
   {
     "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
     "severity": "HIGH",
-    "line": 60
+    "line": 60,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_5].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_5].settings.database_flags' should be defined and set 'remote access' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_5].settings.database_flags' sets 'remote access' to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "96afaddd946a3a3573bf02f91cdb86bb22106f2b94dda2a37f93b2a6cd34de6d",
+    "search_line": 60
   }
 ]

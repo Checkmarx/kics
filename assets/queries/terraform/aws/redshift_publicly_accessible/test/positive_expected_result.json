@@ -2,11 +2,31 @@
   {
     "queryName": "Redshift Publicly Accessible",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_redshift_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_redshift_cluster.publicly_accessible should be defined and not null",
+    "actualValue": "aws_redshift_cluster.publicly_accessible is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "5d891e06add3825e102f943d47d2c8dcb0c4d1579228d83b984a0e48c0bb6f5d",
+    "search_line": -1
   },
   {
     "queryName": "Redshift Publicly Accessible",
     "severity": "HIGH",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive2",
+    "searchKey": "aws_redshift_cluster[positive2].publicly_accessible",
+    "searchValue": "",
+    "expectedValue": "aws_redshift_cluster.publicly_accessible should be set to false",
+    "actualValue": "aws_redshift_cluster.publicly_accessible is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "8142d56535d2c3e5fbcd1e1f19eb856870dd3f2ce7bd42e8cd650257360a7a3f",
+    "search_line": -1
   }
 ]

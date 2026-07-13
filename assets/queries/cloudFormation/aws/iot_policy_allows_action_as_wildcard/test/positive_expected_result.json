@@ -3,12 +3,30 @@
     "queryName": "IoT Policy Allows Action as Wildcard",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IoT::Policy",
+    "resourceName": "PolicyName",
+    "searchKey": "Resources.IoTPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Action should not be '*'",
+    "actualValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Action is '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6ce497718f163204b763466825f4bbcec176b13cb4a7b8f0eb7d964217ec4eb8",
+    "search_line": -1
   },
   {
     "queryName": "IoT Policy Allows Action as Wildcard",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IoT::Policy",
+    "resourceName": "PolicyName",
+    "searchKey": "Resources.IoTPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Action should not be '*'",
+    "actualValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Action is '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0b926cd28799830d01ae5e7ea0de2fdbfb9d01d087274d03d5de286baeb184d8",
+    "search_line": -1
   }
 ]

@@ -2,21 +2,61 @@
   {
     "queryName": "Encryption On Managed Disk Disabled",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_managed_disk",
+    "resourceName": "acctestmd",
+    "searchKey": "azurerm_managed_disk[positive1].encryption_settings.enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_managed_disk[positive1].encryption_settings.enabled' should be set to true",
+    "actualValue": "'azurerm_managed_disk[positive1].encryption_settings.enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f4a70ac9bab03db4511991e6cdf33180ac50bb07bf6920fce36fdf24e678e830",
+    "search_line": 10
   },
   {
     "queryName": "Encryption On Managed Disk Disabled",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 14,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_managed_disk",
+    "resourceName": "acctestmd",
+    "searchKey": "azurerm_managed_disk[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_managed_disk[positive2].encryption_settings' should be defined and not null",
+    "actualValue": "'azurerm_managed_disk[positive2].encryption_settings' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a4adbbe7c7f2c537473e03402d68ebc10ab4e41bdc3b8026242c6093c877eba7",
+    "search_line": 14
   },
   {
     "queryName": "Encryption On Managed Disk Disabled",
     "severity": "MEDIUM",
-    "line": 33
+    "line": 33,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_managed_disk",
+    "resourceName": "acctestmd",
+    "searchKey": "azurerm_managed_disk[positive3].encryption_settings",
+    "searchValue": "",
+    "expectedValue": "'azurerm_managed_disk[positive3].encryption_settings' should be defined and not null",
+    "actualValue": "'azurerm_managed_disk[positive3].encryption_settings' is set to '{}",
+    "issueType": "IncorrectValue",
+    "similarityID": "606fd0106e787886a5a7419716df799b57e98e507564cebad0e2412ecefb2cf4",
+    "search_line": 33
   },
   {
     "queryName": "Encryption On Managed Disk Disabled",
     "severity": "MEDIUM",
-    "line": 44
+    "line": 44,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_managed_disk",
+    "resourceName": "acctestmd",
+    "searchKey": "azurerm_managed_disk[positive4].encryption_settings",
+    "searchValue": "",
+    "expectedValue": "'azurerm_managed_disk[positive4].encryption_settings' should be defined and not null",
+    "actualValue": "'azurerm_managed_disk[positive4].encryption_settings' is set to '[]",
+    "issueType": "IncorrectValue",
+    "similarityID": "f6478614828b1afcbfa5a825ebeb6d9aef70fae24782d95c4f6e95bff626f3df",
+    "search_line": 44
   }
 ]

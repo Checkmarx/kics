@@ -3,48 +3,120 @@
     "queryName": "CloudWatch S3 policy Change Alarm Missing",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "cis_s3_bucket_policy_change_metric_filter",
+    "searchKey": "aws_cloudwatch_log_metric_filter[cis_s3_bucket_policy_change_metric_filter]",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should be associated an aws_cloudwatch_metric_alarm",
+    "actualValue": "aws_cloudwatch_log_metric_filter not associated with any aws_cloudwatch_metric_alarm",
+    "issueType": "MissingAttribute",
+    "similarityID": "b3da1daa6cb620a26c9b02ec2ca14e882e03fa23abdc9dfb03406018fc9d5edd",
+    "search_line": 1
   },
   {
     "queryName": "CloudWatch S3 policy Change Alarm Missing",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "cis_s3_bucket_policy_change_metric_filter",
+    "searchKey": "aws_cloudwatch_log_metric_filter.cis_s3_bucket_policy_change_metric_filter",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` and `DeleteBucketReplication`",
+    "actualValue": "aws_cloudwatch_log_metric_filter with wrong pattern",
+    "issueType": "MissingAttribute",
+    "similarityID": "76c8ef8a22a247820d8e9ba714d8a2d8f29e58ce3243db07669619326fd59b98",
+    "search_line": 3
   },
   {
     "queryName": "CloudWatch S3 policy Change Alarm Missing",
     "severity": "MEDIUM",
     "line": 30,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "cis_no_mfa_console_signin_metric_filter",
+    "searchKey": "aws_cloudwatch_log_metric_filter.cis_no_mfa_console_signin_metric_filter",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` and `DeleteBucketReplication`",
+    "actualValue": "aws_cloudwatch_log_metric_filter with wrong pattern",
+    "issueType": "MissingAttribute",
+    "similarityID": "52ee6aefb2e830dda4644dec09ae063221268d15195b3ddf0167fd2fd5ad0abc",
+    "search_line": 30
   },
   {
     "queryName": "CloudWatch S3 policy Change Alarm Missing",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "cis_s3_bucket_policy_change_metric_filter",
+    "searchKey": "aws_cloudwatch_log_metric_filter.cis_s3_bucket_policy_change_metric_filter",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` and `DeleteBucketReplication`",
+    "actualValue": "aws_cloudwatch_log_metric_filter with wrong pattern",
+    "issueType": "MissingAttribute",
+    "similarityID": "4c19fa7bb0a1026474da07e9f40e1c131b29e584d1db93046f5fc45b263e5ff9",
+    "search_line": 3
   },
   {
     "queryName": "CloudWatch S3 policy Change Alarm Missing",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "cis_s3_bucket_policy_change_metric_filter",
+    "searchKey": "aws_cloudwatch_log_metric_filter.cis_s3_bucket_policy_change_metric_filter",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` and `DeleteBucketReplication`",
+    "actualValue": "aws_cloudwatch_log_metric_filter with wrong pattern",
+    "issueType": "MissingAttribute",
+    "similarityID": "787135365c1a3d28766ad9307ed68ad776b76923bc958592b1d563318544fe8f",
+    "search_line": 3
   },
   {
     "queryName": "CloudWatch S3 policy Change Alarm Missing",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "cis_s3_bucket_policy_change_metric_filter",
+    "searchKey": "aws_cloudwatch_log_metric_filter.cis_s3_bucket_policy_change_metric_filter",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` and `DeleteBucketReplication`",
+    "actualValue": "aws_cloudwatch_log_metric_filter with wrong pattern",
+    "issueType": "MissingAttribute",
+    "similarityID": "dc17a1fbbdb918795f2e572e9c8f49ba33e66bf40731a145b0f382973f10581a",
+    "search_line": 3
   },
   {
     "queryName": "CloudWatch S3 policy Change Alarm Missing",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "cis_s3_bucket_policy_change_metric_filter",
+    "searchKey": "aws_cloudwatch_log_metric_filter.cis_s3_bucket_policy_change_metric_filter",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` and `DeleteBucketReplication`",
+    "actualValue": "aws_cloudwatch_log_metric_filter with wrong pattern",
+    "issueType": "MissingAttribute",
+    "similarityID": "13b7000750e81ed22f133f96c95584681a1f4afad3159b56295e70f5ced72da9",
+    "search_line": 4
   },
   {
     "queryName": "CloudWatch S3 policy Change Alarm Missing",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_cloudwatch_log_metric_filter",
+    "resourceName": "cis_no_mfa_console_signin_metric_filter",
+    "searchKey": "aws_cloudwatch_log_metric_filter.cis_no_mfa_console_signin_metric_filter",
+    "searchValue": "",
+    "expectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` and `DeleteBucketReplication`",
+    "actualValue": "aws_cloudwatch_log_metric_filter with wrong pattern",
+    "issueType": "MissingAttribute",
+    "similarityID": "84e1a094f2416edcfc14b2a9202839c4a1fb8e3ff8f9d6bcfcc6d383a968eef7",
+    "search_line": 31
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "OAuth2 With Password Flow",
     "severity": "MEDIUM",
     "line": 58,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.password",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows do not contain an 'password' flow",
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows contain an 'password' flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "18ba0494dd0a0577abbf4d3f71825e4b1f9b910608d623eefd6873c636326764",
+    "search_line": -1
   },
   {
     "queryName": "OAuth2 With Password Flow",
     "severity": "MEDIUM",
     "line": 34,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.{{petstore_auth}}.flows.password",
+    "searchValue": "",
+    "expectedValue": "components.securitySchemes.{{petstore_auth}}.flows do not contain an 'password' flow",
+    "actualValue": "components.securitySchemes.{{petstore_auth}}.flows contain an 'password' flow",
+    "issueType": "IncorrectValue",
+    "similarityID": "f43c0ae899a3f6cc571d3dfbdcd1d384e80a68259b77c21accefe294828ac9ff",
+    "search_line": -1
   }
 ]

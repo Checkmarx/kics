@@ -3,12 +3,30 @@
     "queryName": "IAM Password Without Minimum Length",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.LoginProfile.Password",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.LoginProfile.Password' has a minimum length of 14",
+    "actualValue": "'Resources.Properties.LoginProfile.Password' doesn't have a minimum length of 14",
+    "issueType": "IncorrectValue",
+    "similarityID": "1b7276fa4386172ff972583841214e991ff901de47851a24f9ffda40be308170",
+    "search_line": -1
   },
   {
     "queryName": "IAM Password Without Minimum Length",
     "severity": "LOW",
     "line": 10,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.LoginProfile.Password",
+    "searchValue": "",
+    "expectedValue": "'Resources.Properties.LoginProfile.Password' has a minimum length of 14",
+    "actualValue": "'Resources.Properties.LoginProfile.Password' doesn't have a minimum length of 14",
+    "issueType": "IncorrectValue",
+    "similarityID": "84b38ed47bee07e3cc1ebd3d77943d77c8bff6660314b5e1609fa1ab51fa3be3",
+    "search_line": -1
   }
 ]

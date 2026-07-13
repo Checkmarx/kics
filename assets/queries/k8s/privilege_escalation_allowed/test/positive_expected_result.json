@@ -1,32 +1,77 @@
 [
-	{
-		"queryName": "Privilege Escalation Allowed",
-		"severity": "HIGH",
-		"line": 10,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Privilege Escalation Allowed",
-		"severity": "HIGH",
-		"line": 21,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Privilege Escalation Allowed",
-		"severity": "HIGH",
-		"line": 9,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Privilege Escalation Allowed",
-		"severity": "HIGH",
-		"line": 13,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Privilege Escalation Allowed",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "Privilege Escalation Allowed",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod2",
+    "searchKey": "metadata.name={{pod2}}.spec.containers.name={{app}}.securityContext.allowPrivilegeEscalation",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{pod2}}.spec.containers.name={{app}}.securityContext.allowPrivilegeEscalation should be set to false",
+    "actualValue": "metadata.name={{pod2}}.spec.containers.name={{app}}.securityContext.allowPrivilegeEscalation is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "79385452360a3bc98b91ea8fcad02bc1b406d358a1bc72d99ae4c2c1f152bad2",
+    "search_line": 10
+  },
+  {
+    "queryName": "Privilege Escalation Allowed",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "pod2",
+    "searchKey": "metadata.name={{pod2}}.spec.containers.name={{log-aggregator}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{pod2}}.spec.containers.name={{log-aggregator}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
+    "actualValue": "metadata.name={{pod2}}.spec.containers.name={{log-aggregator}}.securityContext.allowPrivilegeEscalation is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "044a7fb7e14c9188f57ec9daeefad8929dd54dcce3f708548a53116deab6e079",
+    "search_line": 21
+  },
+  {
+    "queryName": "Privilege Escalation Allowed",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example-priv",
+    "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
+    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment}}.securityContext.allowPrivilegeEscalation is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6603b94a9a5b6c39de8faa82c798a128bccd347266825773702a1f5e49c52f42",
+    "search_line": 9
+  },
+  {
+    "queryName": "Privilege Escalation Allowed",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example-priv",
+    "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
+    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment2}}.securityContext.allowPrivilegeEscalation is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "40566df749eb229e0dd73e526f390ff70bf57d8f44d816b38a2f06854f33ff6a",
+    "search_line": 13
+  },
+  {
+    "queryName": "Privilege Escalation Allowed",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "example-priv",
+    "searchKey": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}.securityContext.allowPrivilegeEscalation should be set and should be set to false",
+    "actualValue": "metadata.name={{example-priv}}.spec.containers.name={{payment4}}.securityContext.allowPrivilegeEscalation is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d626ab4583bfd92dc7f453046e0b95f1a1324529a41f49e640b018d3259b7d3e",
+    "search_line": 17
+  }
 ]

@@ -2,26 +2,76 @@
   {
     "queryName": "No Password Policy Enabled",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "positive2",
+    "searchKey": "aws_iam_user_login_profile[positive2].password_reset_required",
+    "searchValue": "",
+    "expectedValue": "Attribute 'password_reset_required' should be true",
+    "actualValue": "Attribute 'password_reset_required' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f50299a4cc8e3d86d63ce93c29843b479384c786f469b5f67c31b8209a2afa62",
+    "search_line": -1
   },
   {
     "queryName": "No Password Policy Enabled",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "positive3",
+    "searchKey": "aws_iam_user_login_profile[positive3].password_length",
+    "searchValue": "",
+    "expectedValue": "Attribute 'password_length' should be 14 or greater",
+    "actualValue": "Attribute 'password_length' is smaller than 14",
+    "issueType": "IncorrectValue",
+    "similarityID": "08bb3a0fde898844af29c3e717fe7350ab8ae2a6d8437d02f145d76498019e4b",
+    "search_line": -1
   },
   {
     "queryName": "No Password Policy Enabled",
     "severity": "MEDIUM",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "positive6",
+    "searchKey": "aws_iam_user_login_profile[positive6].password_length",
+    "searchValue": "",
+    "expectedValue": "Attribute 'password_length' should be 14 or greater",
+    "actualValue": "Attribute 'password_length' is smaller than 14",
+    "issueType": "IncorrectValue",
+    "similarityID": "f033d84bdb025c36625e86f20a29f90cb72959531bf861a65e59824f984f64c6",
+    "search_line": -1
   },
   {
     "queryName": "No Password Policy Enabled",
     "severity": "MEDIUM",
-    "line": 30
+    "line": 30,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "positive7",
+    "searchKey": "aws_iam_user_login_profile[positive7].password_reset_required",
+    "searchValue": "",
+    "expectedValue": "Attribute 'password_reset_required' should be true",
+    "actualValue": "Attribute 'password_reset_required' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c7f17616c70a3ce627bb6ee693e325a6f900b6f2a15df8abc8213476bfb99bc3",
+    "search_line": -1
   },
   {
     "queryName": "No Password Policy Enabled",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_user_login_profile",
+    "resourceName": "positive7",
+    "searchKey": "aws_iam_user_login_profile[positive7].password_length",
+    "searchValue": "",
+    "expectedValue": "Attribute 'password_length' should be 14 or greater",
+    "actualValue": "Attribute 'password_length' is smaller than 14",
+    "issueType": "IncorrectValue",
+    "similarityID": "54d5112b9f0db7dfaf7b336e4b66360f6293d5e51cbc196a5e1b65ca0cff35f7",
+    "search_line": -1
   }
 ]

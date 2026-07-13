@@ -2,11 +2,31 @@
   {
     "queryName": "Google Project IAM Member Service Account has Token Creator or Account User Role",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_member",
+    "resourceName": "positive1",
+    "searchKey": "google_project_iam_member[positive1].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_member[positive1].role should be Service Account Token Creator",
+    "actualValue": "google_project_iam_member[positive1].role is not Service Account Token Creator",
+    "issueType": "IncorrectValue",
+    "similarityID": "3604bcf6b42e4200722927071c7d90bf02901e3a0518a1191a733d5b49b69a0d",
+    "search_line": -1
   },
   {
     "queryName": "Google Project IAM Member Service Account has Token Creator or Account User Role",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.tf",
+    "resourceType": "google_project_iam_member",
+    "resourceName": "positive2",
+    "searchKey": "google_project_iam_member[positive2].role",
+    "searchValue": "",
+    "expectedValue": "google_project_iam_member[positive2].role should be Service Account User",
+    "actualValue": "google_project_iam_member[positive2].role is not Service Account User",
+    "issueType": "IncorrectValue",
+    "similarityID": "5c604d30ba0c6e9963f9027de6ebe8fa200019da5586fa129ee44835b6c59ab9",
+    "search_line": -1
   }
 ]

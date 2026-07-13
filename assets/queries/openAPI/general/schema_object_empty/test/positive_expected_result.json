@@ -3,48 +3,120 @@
     "queryName": "Schema Object is Empty (v3)",
     "severity": "MEDIUM",
     "line": 50,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}",
+    "searchValue": "",
+    "expectedValue": "The Schema Object should not be empty",
+    "actualValue": "The Schema Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "7b8839982dae47c7f5e02c970e7aa0f87fc1995f4fd30f4eed2c864f18269c83",
+    "search_line": -1
   },
   {
     "queryName": "Schema Object is Empty (v3)",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "The Schema Object should not be empty",
+    "actualValue": "The Schema Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "c4b70c3f1a16f09b9781e02166865f9ef34977be22f054fe1305ad7e2a246b3c",
+    "search_line": -1
   },
   {
     "queryName": "Schema Object is Empty (v3)",
     "severity": "MEDIUM",
     "line": 27,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.{{GeneralError}}",
+    "searchValue": "",
+    "expectedValue": "The Schema Object should not be empty",
+    "actualValue": "The Schema Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "63683e360ec22afed9bb5ac5c09701af3194aa8cb7cfebaef4946e9c5ddf84c2",
+    "search_line": -1
   },
   {
     "queryName": "Schema Object is Empty (v3)",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "The Schema Object should not be empty",
+    "actualValue": "The Schema Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "685ff8d5979172a46c84813c26554382219151857a601a56d65c5ae412d771b4",
+    "search_line": -1
   },
   {
     "queryName": "Schema Object is Empty (v2)",
     "severity": "MEDIUM",
     "line": 20,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Schema Object is Empty (v2)",
-    "severity": "MEDIUM",
-    "line": 26,
-    "filename": "positive7.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "The Schema Object should not be empty",
+    "actualValue": "The Schema Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "56a0fe46b3a479a89b498215ffffd3272fcb4d74dcf206c87cffa4b8892088b3",
+    "search_line": -1
   },
   {
     "queryName": "Schema Object is Empty (v2)",
     "severity": "MEDIUM",
     "line": 13,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "The Schema Object should not be empty",
+    "actualValue": "The Schema Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "04fd052dfcdf632fe8fbbf216664f6fe6096c347ed9806551ae64e64e5ac75fc",
+    "search_line": -1
+  },
+  {
+    "queryName": "Schema Object is Empty (v2)",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive7.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{GeneralError}}",
+    "searchValue": "",
+    "expectedValue": "The Schema Object should not be empty",
+    "actualValue": "The Schema Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "08c729c69dedb072e79d10831656eaf943c63f5c7b1d07155f0077e4ad149d64",
+    "search_line": -1
   },
   {
     "queryName": "Schema Object is Empty (v2)",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.{{GeneralError}}",
+    "searchValue": "",
+    "expectedValue": "The Schema Object should not be empty",
+    "actualValue": "The Schema Object is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "bd305321b724c2beda0d9dd276b40363d63f89989071a413080c4a3978ef2291",
+    "search_line": -1
   }
 ]

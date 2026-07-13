@@ -2,6 +2,16 @@
   {
     "queryName": "Redis Not Compliant",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.elasticache",
+    "resourceName": "Basic example",
+    "searchKey": "name={{Basic example}}.{{community.aws.elasticache}}.cache_engine_version",
+    "searchValue": "",
+    "expectedValue": "elasticache.cache_engine_version should be compliant with the AWS PCI DSS requirements",
+    "actualValue": "elasticache.cache_engine_version isn't compliant with the AWS PCI DSS requirements",
+    "issueType": "IncorrectValue",
+    "similarityID": "4f8f37af2386143649977e45d0c75f4245b541bc89487abe36545c6f2779ddb4",
+    "search_line": -1
   }
 ]

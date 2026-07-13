@@ -3,42 +3,105 @@
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_1]' resource monitors 'create or update network security group' events but sets 1 filter(s): caller",
+    "issueType": "IncorrectValue",
+    "similarityID": "8e08d14b174bb474c2a348d8397f2a36e3387dbebe18e6773a033ee71a6ef142",
+    "search_line": 9
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_2].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_2]' resource monitors 'create or update network security group' events but sets 1 filter(s): level",
+    "issueType": "IncorrectValue",
+    "similarityID": "f79398da6410fe2c3c79935d334c888341c7ee90db0171c2ea74ebff265bfc01",
+    "search_line": 28
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 47,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_3].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_3]' resource monitors 'create or update network security group' events but sets 1 filter(s): levels",
+    "issueType": "IncorrectValue",
+    "similarityID": "8a9f35cdd0e2e406b4b6d756a8c30c34e8fafc76421863a7d99a6aaaef351066",
+    "search_line": 47
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 66,
-    "fileName": "positive2_1.tf"
+    "fileName": "positive2_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_4].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_4]' resource monitors 'create or update network security group' events but sets 1 filter(s): status",
+    "issueType": "IncorrectValue",
+    "similarityID": "31e88b1a8fddabf3183bb797b7f5c01a9184a44cab8f3bae8f3097112ed2b082",
+    "search_line": 66
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_5].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_5]' resource monitors 'create or update network security group' events but sets 1 filter(s): statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0e8178c575f875f895f88c6cfa86ec548eb38ed2f2589c63ea049098f1ec2ed",
+    "search_line": 8
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_6].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_6]' resource monitors 'create or update network security group' events but sets 1 filter(s): sub_status",
+    "issueType": "IncorrectValue",
+    "similarityID": "bee49fd948283076795c8f46a5488714ce703b96b1cb23f7bf9a37a1457ef7b4",
+    "search_line": 27
   },
   {
     "queryName": "Beta - Activity Log Alert For Create Or Update Network Security Group Not Configured",
     "severity": "MEDIUM",
     "line": 46,
-    "fileName": "positive2_2.tf"
+    "fileName": "positive2_2.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive2_7].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'create or update network security group' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive2_7]' resource monitors 'create or update network security group' events but sets 1 filter(s): sub_statuses",
+    "issueType": "IncorrectValue",
+    "similarityID": "624b1af29423ed837d2a49a34e5b6bfc65302a9a1fd7abedd31bdcfecbff8c5c",
+    "search_line": 46
   }
 ]

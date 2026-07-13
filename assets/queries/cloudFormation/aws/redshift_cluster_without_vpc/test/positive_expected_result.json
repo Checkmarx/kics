@@ -3,72 +3,180 @@
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
+    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds or ClusterSubnetGroupName",
+    "issueType": "MissingAttribute",
+    "similarityID": "92b9b8b8ec6935bf2411c51d3a556bb5ffb070f8592c2e5d3d3c80e48310673f",
+    "search_line": 5
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
+    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds",
+    "issueType": "MissingAttribute",
+    "similarityID": "b537545ed8f4419da10fdd48a3c3a6d793e8720b1732688a1f2e00d25fedf66f",
+    "search_line": 5
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
+    "actualValue": "Resources.RedshiftCluster.Properties does not define ClusterSubnetGroupName",
+    "issueType": "MissingAttribute",
+    "similarityID": "956098e0dd59df08d89e614dfd10c795ae27215db03f1470b6f52832b56fc0ba",
+    "search_line": 5
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
+    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields have invalid references",
+    "issueType": "IncorrectValue",
+    "similarityID": "66018802a119a64a7028a2a0a0e16876da72e5d73edf040aae9f6a5501777c54",
+    "search_line": 5
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties.VpcSecurityGroupIds",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
+    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds field has an invalid reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "05b0ed191c397549f83f55bb5d862b731da2b32e979ac3f8b343cda7639df80e",
+    "search_line": 19
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties.ClusterSubnetGroupName",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
+    "actualValue": "Resources.RedshiftCluster.Properties ClusterSubnetGroupName field has an invalid reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "8cdaa3abbb29e0d54826460d237dafb9b7abbf90288860ca7a2ff657683d9178",
+    "search_line": 18
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
+    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds or ClusterSubnetGroupName",
+    "issueType": "MissingAttribute",
+    "similarityID": "25102b4d38f1141403c127e2dcb19fc68039f76c3134419a534fb84208fcc10e",
+    "search_line": 6
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive8.json"
+    "fileName": "positive8.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
+    "actualValue": "Resources.RedshiftCluster.Properties does not define VpcSecurityGroupIds",
+    "issueType": "MissingAttribute",
+    "similarityID": "3d6fb3f7f5c4c2b9301fd6403e7aaa48af0733d3e76a74096bec2ce67db6634d",
+    "search_line": 6
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive9.json"
+    "fileName": "positive9.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties should have VpcSecurityGroupIds and ClusterSubnetGroupName fields defined",
+    "actualValue": "Resources.RedshiftCluster.Properties does not define ClusterSubnetGroupName",
+    "issueType": "MissingAttribute",
+    "similarityID": "482ce5d3df9f7ccfb99e8737284ab465bd64c2edca77e792845ba535dc862a5e",
+    "search_line": 6
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive10.json"
+    "fileName": "positive10.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
+    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields have invalid references",
+    "issueType": "IncorrectValue",
+    "similarityID": "b5376a59d3047fd3a1d6b583c6195866fe0406cb82c997769f3a193ea91c8c58",
+    "search_line": 6
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 26,
-    "fileName": "positive11.json"
+    "fileName": "positive11.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties.VpcSecurityGroupIds",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
+    "actualValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds field has an invalid reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "0975d057691acffe0f52126d7d0ef3ca98c13f026d7fd0d467d528291b854345",
+    "search_line": 26
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
     "line": 24,
-    "fileName": "positive12.json"
+    "fileName": "positive12.json",
+    "resourceType": "AWS::Redshift::Cluster",
+    "resourceName": "mydb",
+    "searchKey": "Resources.RedshiftCluster.Properties.ClusterSubnetGroupName",
+    "searchValue": "",
+    "expectedValue": "Resources.RedshiftCluster.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references",
+    "actualValue": "Resources.RedshiftCluster.Properties ClusterSubnetGroupName field has an invalid reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "4b70acb7ddb2c1fc5c8747ffddb790e6765634f4e909c1e01cc06e4898de55ac",
+    "search_line": 24
   }
 ]

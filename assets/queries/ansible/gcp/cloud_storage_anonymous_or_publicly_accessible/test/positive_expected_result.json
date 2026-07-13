@@ -2,16 +2,46 @@
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_storage_bucket",
+    "resourceName": "create a bucket1",
+    "searchKey": "name={{create a bucket1}}.{{google.cloud.gcp_storage_bucket}}.default_object_acl.entity",
+    "searchValue": "",
+    "expectedValue": "gcp_storage_bucket.default_object_acl.entity should not be 'allUsers' or 'allAuthenticatedUsers'",
+    "actualValue": "gcp_storage_bucket.default_object_acl.entity is 'allUsers' or 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9f7e6f735043378cec2d8f42c15413d12a81413003b6000560957da289b77988",
+    "search_line": -1
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 22
+    "line": 22,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_storage_bucket",
+    "resourceName": "create a bucket2",
+    "searchKey": "name={{create a bucket2}}.{{google.cloud.gcp_storage_bucket}}.acl.entity",
+    "searchValue": "",
+    "expectedValue": "gcp_storage_bucket.acl.entity should not be 'allUsers' or 'allAuthenticatedUsers'",
+    "actualValue": "gcp_storage_bucket.acl.entity is 'allUsers' or 'allAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "236333b5c675aa0fb8055441dcc268915b49d36949ec4f0ac19b8d42d6a4f188",
+    "search_line": -1
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 28
+    "line": 28,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_storage_bucket",
+    "resourceName": "create a bucket3",
+    "searchKey": "name={{create a bucket3}}.{{google.cloud.gcp_storage_bucket}}",
+    "searchValue": "",
+    "expectedValue": "gcp_storage_bucket.default_object_acl should be defined",
+    "actualValue": "gcp_storage_bucket.default_object_acl is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5bfca4be0a579da3be3419751da202a5d7414c707f9166e298ac3e2cb07d6016",
+    "search_line": -1
   }
 ]

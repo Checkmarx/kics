@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Always Pull Images Admission Control Plugin Not Set",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Always Pull Images Admission Control Plugin Not Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--enable-admission-plugins flag should contain 'AlwaysPullImages' plugin",
+    "actualValue": "--enable-admission-plugins flag does not contain 'AlwaysPullImages' plugin",
+    "issueType": "MissingAttribute",
+    "similarityID": "cca690e28b9ef8f6320e747822faf97421c2796b1cc5ef1fc68914f490ef53e3",
+    "search_line": 11
+  }
 ]

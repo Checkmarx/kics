@@ -3,24 +3,60 @@
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template",
+    "searchKey": "resources.name={{vm-template}}.properties",
+    "searchValue": "",
+    "expectedValue": "'shieldedInstanceConfig' should be defined and not null",
+    "actualValue": "'shieldedInstanceConfig' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "bc90144e0e386f2516b2b05823a1326d05b3ec4e1628e9b9f41df0673f5542ea",
+    "search_line": 4
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template2",
+    "searchKey": "resources.name={{vm-template2}}.properties.shieldedInstanceConfig",
+    "searchValue": "enableIntegrityMonitoring",
+    "expectedValue": "'enableIntegrityMonitoring' should be defined and not null",
+    "actualValue": "'enableIntegrityMonitoring' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "6a73045530ca430c32488cdba1c0d187b8698d4a9ded3a8a47d7bf50e45d790d",
+    "search_line": 17
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template2",
+    "searchKey": "resources.name={{vm-template2}}.properties.shieldedInstanceConfig",
+    "searchValue": "enableVtpm",
+    "expectedValue": "'enableVtpm' should be defined and not null",
+    "actualValue": "'enableVtpm' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "0d02709536f9fbc380fc5e4236f7148c959a4a96f66fc505c48603b2ee657974",
+    "search_line": 17
   },
   {
     "queryName": "Shielded VM Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "compute.v1.instance",
+    "resourceName": "vm-template2",
+    "searchKey": "resources.name={{vm-template2}}.properties.shieldedInstanceConfig.enableSecureBoot",
+    "searchValue": "",
+    "expectedValue": "'enableSecureBoot' should be set to true",
+    "actualValue": "'enableSecureBoot' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f4f30ade6bfa4798705cfec3ada64b6213c1f69d3be50d97fdc8cc4b461229aa",
+    "search_line": 18
   }
 ]

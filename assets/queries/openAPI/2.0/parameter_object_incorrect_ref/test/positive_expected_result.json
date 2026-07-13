@@ -3,12 +3,30 @@
     "queryName": "Parameter Object With Incorrect Ref (v2)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.$ref=#/definitions/User",
+    "searchValue": "",
+    "expectedValue": "Parameters ref points to '#/parameters'",
+    "actualValue": "Parameters ref doesn't point to '#/parameters'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e797791fca0cb72435d24cfeebbc348dc74c490f9318347cf9d51c492f4a048f",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object With Incorrect Ref (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.$ref=#/definitions/User",
+    "searchValue": "",
+    "expectedValue": "Parameters ref points to '#/parameters'",
+    "actualValue": "Parameters ref doesn't point to '#/parameters'",
+    "issueType": "IncorrectValue",
+    "similarityID": "189e0eceb15d2a09142dc6e373a47fe03a9a6f55b814e1c668dc246d3952a2ee",
+    "search_line": 0
   }
 ]

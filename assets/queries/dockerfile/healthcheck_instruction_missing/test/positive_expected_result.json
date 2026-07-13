@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Healthcheck Instruction Missing",
-		"severity": "LOW",
-		"line": 1,
-		"fileName": "positive.dockerfile"
-	},
-	{
-		"queryName": "Healthcheck Instruction Missing",
-		"severity": "LOW",
-		"line": 7,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Healthcheck Instruction Missing",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest  }}",
+    "searchValue": "",
+    "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
+    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",
+    "issueType": "MissingAttribute",
+    "similarityID": "5a01bccea4a1686e9eef7fe6f8e291a134f9a710d962baed4c0abfd04a52558f",
+    "search_line": -1
+  },
+  {
+    "queryName": "Healthcheck Instruction Missing",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:alpine}}",
+    "searchValue": "",
+    "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
+    "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",
+    "issueType": "MissingAttribute",
+    "similarityID": "c41844d3841583b93b5fcfe4086c9c8a4081ceb4370d55594b36bb2e822f0293",
+    "search_line": -1
+  }
 ]

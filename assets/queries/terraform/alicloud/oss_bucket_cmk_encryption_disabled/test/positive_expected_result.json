@@ -3,12 +3,30 @@
     "queryName": "OSS Bucket Encryption Using CMK Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-sserule",
+    "searchKey": "alicloud_oss_bucket[bucket_cmk_encryption2].server_side_encryption_rule",
+    "searchValue": "",
+    "expectedValue": "[bucket_cmk_encryption2].policy has kms master key id defined",
+    "actualValue": "[bucket_cmk_encryption2].policy does not kms master key id defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e04aece04e5a911b6921885d353600f94f722cde02cf0c31525ee5ae7fd8b2da",
+    "search_line": -1
   },
   {
     "queryName": "OSS Bucket Encryption Using CMK Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "bucket-170309-sserule",
+    "searchKey": "alicloud_oss_bucket[bucket_cmk_encryption3]",
+    "searchValue": "",
+    "expectedValue": "[bucket_cmk_encryption3].policy has server side encryption rule and kms master key id defined",
+    "actualValue": "[bucket_cmk_encryption3].policy does not have server side encryption rule and kms master key id defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f6ef290c1eec9f66e29f63d51f2de15a661303e9d167199801f03c485339932f",
+    "search_line": 1
   }
 ]

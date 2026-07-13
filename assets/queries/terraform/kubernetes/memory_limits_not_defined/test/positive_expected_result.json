@@ -2,46 +2,136 @@
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].resources.limits.memory should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].resources.limits.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6fbd44b90eb58f847ebc7758ebfa4cabdabc80cfb3e6d89f00c7d17870048e83",
+    "search_line": 15
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 53
+    "line": 53,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].resources.limits.memory should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].resources.limits.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d8858e14932141fede1500a5644521584312c2a88b3673ed3ff39c676430f923",
+    "search_line": 53
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 107
+    "line": 107,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container[0].resources should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container[0].resources is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a993df8d08361ba31b98c6a7e3070a9f61a58b59327b17cb00cc228f57e92f83",
+    "search_line": 107
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 136
+    "line": 136,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container[1].resources should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container[1].resources is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "1ebb7d9bef883c86bafedd561e8a72427283f969604bb818bfd1231201cdd801",
+    "search_line": 136
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 193
+    "line": 193,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[0].resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container[0].resources.limits is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "27bf98271213641976275cdee426f43f9b83b40d1952e07fdb76105a58a5c98c",
+    "search_line": 193
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 228
+    "line": 228,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive3",
+    "searchKey": "kubernetes_pod[positive3].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive3].spec.container[1].resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive3].spec.container[1].resources.limits is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c61ded49929eb1959bc779c3edeccdfc11f3d7782b3255006a22416c0608fc01",
+    "search_line": 228
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 288
+    "line": 288,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive4",
+    "searchKey": "kubernetes_pod[positive4].spec.container.resources.limits",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive4].spec.container.resources.limits.memory should be set",
+    "actualValue": "kubernetes_pod[positive4].spec.container.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "70319b0d2929acd80c97cb099dc2e514fa0cfc17d12c258dc08fbfe121108dd2",
+    "search_line": 288
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 343
+    "line": 343,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive5",
+    "searchKey": "kubernetes_pod[positive5].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive5].spec.container.resources should be set",
+    "actualValue": "kubernetes_pod[positive5].spec.container.resources is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "09d5a0ad255d58fa3cbf382fa5e9f9084850212ca81d072e7b075dd308db1701",
+    "search_line": 343
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
-    "line": 400
+    "line": 400,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive6",
+    "searchKey": "kubernetes_pod[positive6].spec.container.resources",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive6].spec.container.resources.limits should be set",
+    "actualValue": "kubernetes_pod[positive6].spec.container.resources.limits is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b523770d73372ce8ffd6876aae3bbb462b12206ad93a3b820d9ed70c6275af3d",
+    "search_line": 400
   }
 ]

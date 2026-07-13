@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "IAM Access Key Is Exposed",
-		"severity": "MEDIUM",
-		"line": 2
-	},
-	{
-		"queryName": "IAM Access Key Is Exposed",
-		"severity": "MEDIUM",
-		"line": 7
-	}
+  {
+    "queryName": "IAM Access Key Is Exposed",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_access_key",
+    "resourceName": "positive1",
+    "searchKey": "aws_iam_access_key[positive1].user",
+    "searchValue": "",
+    "expectedValue": "'aws_iam_access_key[positive1].user' should not be 'root' for an active access key",
+    "actualValue": "'aws_iam_access_key[positive1].user' is 'root' for an active access key",
+    "issueType": "IncorrectValue",
+    "similarityID": "f0befacc003c12b7f430e75c031115320fa221b2e77ec88f5885d03b0cdf4439",
+    "search_line": -1
+  },
+  {
+    "queryName": "IAM Access Key Is Exposed",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_access_key",
+    "resourceName": "positive2",
+    "searchKey": "aws_iam_access_key[positive2].user",
+    "searchValue": "",
+    "expectedValue": "'aws_iam_access_key[positive2].user' should not be 'root' for an active access key",
+    "actualValue": "'aws_iam_access_key[positive2].user' is 'root' for an active access key",
+    "issueType": "IncorrectValue",
+    "similarityID": "904f1ae9ace03bf30527565da9707dad040cf3853dedacbd3cf0f756d80b11ef",
+    "search_line": -1
+  }
 ]

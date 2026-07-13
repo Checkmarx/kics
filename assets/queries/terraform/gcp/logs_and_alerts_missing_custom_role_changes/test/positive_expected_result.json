@@ -3,54 +3,135 @@
     "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_logging_metric",
+    "resourceName": "audit_config_change",
+    "searchKey": "google_logging_metric[audit_config_change].filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_logging_metric' resource should capture all custom role changes",
+    "actualValue": "'google_logging_metric[audit_config_change].filter' is applied to the wrong resource type",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f35d038cd3c038f9c6e59fccca1ae885724537d7aca0f1509b7517a8bb673d7",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "google_monitoring_alert_policy",
+    "resourceName": "Audit Config Change Alert",
+    "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_threshold.filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all custom role changes",
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures all custom role changes",
+    "issueType": "IncorrectValue",
+    "similarityID": "8ade09f4677e1ea2743531ae83abbbb0653ec03737edcc3e71aa8a3258f257e5",
+    "search_line": 13
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "google_monitoring_alert_policy",
+    "resourceName": "Audit Config Change Alert (Log Match)",
+    "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_matched_log.filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all custom role changes",
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures all custom role changes",
+    "issueType": "IncorrectValue",
+    "similarityID": "38667e2c330a46d23978d3fb7e877d96f7935a9877f6bddc508476e762aa6c02",
+    "search_line": 13
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "google_monitoring_alert_policy",
+    "resourceName": "Audit Config Change Alert",
+    "searchKey": "google_monitoring_alert_policy[audit_config_alert]",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all custom role changes",
+    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures all custom role changes but does not define a proper 'notification_channels'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a8ee4834ff81df38c06e932cb1d050b1b1f7533594f2bf78fd30641ef2748e1a",
+    "search_line": 13
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "google_monitoring_alert_policy",
+    "resourceName": "Audit Config Change Alert (Log Match)",
+    "searchKey": "google_monitoring_alert_policy[audit_config_alert]",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all custom role changes",
+    "actualValue": "The 'google_monitoring_alert_policy[audit_config_alert]' resource captures all custom role changes but does not define a proper 'notification_channels'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8b7991d0e9deba870db5f6e7d35ae44c1d62dc6003c9ebad105b9e52d839cb9e",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "google_monitoring_alert_policy",
+    "resourceName": "Audit Config Change Alert",
+    "searchKey": "google_monitoring_alert_policy[audit_config_alert].conditions.condition_threshold.filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all custom role changes",
+    "actualValue": "No 'google_monitoring_alert_policy' resource captures all custom role changes",
+    "issueType": "IncorrectValue",
+    "similarityID": "926d3a114a1765c81df1f3bb1dd1bffd9e6e46da3fbf940a892e08a8a2eeddc6",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive7.tf"
+    "fileName": "positive7.tf",
+    "resourceType": "google_logging_metric",
+    "resourceName": "audit_config_change",
+    "searchKey": "google_logging_metric[audit_config_change].filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_logging_metric' resource should capture all custom role changes",
+    "actualValue": "'google_logging_metric[audit_config_change].filter' is applied to the wrong resource type",
+    "issueType": "IncorrectValue",
+    "similarityID": "8da380d00e46ae45efe895f254adc75dbe16444bbcd5b0a9c8bdbd78feaf26da",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive8.tf"
+    "fileName": "positive8.tf",
+    "resourceType": "google_logging_metric",
+    "resourceName": "audit_config_change_1",
+    "searchKey": "google_logging_metric[audit_config_change].filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_logging_metric' resource should capture all custom role changes",
+    "actualValue": "'google_logging_metric[audit_config_change].filter' does not capture all custom role changes for resource type 'iam_role'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ff7f1a863a9c1593b74adb4895a53e7f7f512715a989d9043de3d3fb24fcd951",
+    "search_line": 1
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive9.tf"
+    "fileName": "positive9.tf",
+    "resourceType": "google_logging_metric",
+    "resourceName": "audit_config_change",
+    "searchKey": "google_logging_metric[audit_config_change].filter",
+    "searchValue": "",
+    "expectedValue": "At least one 'google_logging_metric' resource should capture all custom role changes",
+    "actualValue": "'google_logging_metric[audit_config_change].filter' does not capture all custom role changes for resource type 'iam_role'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc3e5a739d5118e2eecafd4bc5f046b0db12a5e568ad6ae02fd3f0c3266af76f",
+    "search_line": 1
   }
 ]

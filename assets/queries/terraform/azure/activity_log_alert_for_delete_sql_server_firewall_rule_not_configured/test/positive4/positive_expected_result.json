@@ -3,6 +3,15 @@
     "queryName": "Beta - Activity Log Alert For Delete SQL Server Firewall Rule Not Configured",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive4_1.tf"
+    "fileName": "positive4_1.tf",
+    "resourceType": "azurerm_monitor_activity_log_alert",
+    "resourceName": "example-activitylogalert",
+    "searchKey": "azurerm_monitor_activity_log_alert[positive4_1].criteria",
+    "searchValue": "",
+    "expectedValue": "A 'azurerm_monitor_activity_log_alert' resource that monitors 'delete SQL server firewall rule' events should be defined",
+    "actualValue": "The 'azurerm_monitor_activity_log_alert[positive4_1]' resource monitors 'delete SQL server firewall rule' events but is missing an 'action.action_group_id' field",
+    "issueType": "MissingAttribute",
+    "similarityID": "d455006440bb7381f3d0068de6b2fba3b785d58665d4fc5e5c4e979e96b602af",
+    "search_line": 9
   }
 ]

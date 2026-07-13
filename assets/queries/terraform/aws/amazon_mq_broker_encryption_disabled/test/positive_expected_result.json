@@ -2,6 +2,16 @@
   {
     "queryName": "AmazonMQ Broker Encryption Disabled",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_mq_broker",
+    "resourceName": "example",
+    "searchKey": "resource.aws_mq_broker[positive1]",
+    "searchValue": "",
+    "expectedValue": "resource.aws_mq_broker[positive1].encryption_options should be defined",
+    "actualValue": "resource.aws_mq_broker[positive1].encryption_options is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e95ea89232cbc83a4a02a21a6ed565fdc92a93230821359dd59646bcdbfac6eb",
+    "search_line": -1
   }
 ]

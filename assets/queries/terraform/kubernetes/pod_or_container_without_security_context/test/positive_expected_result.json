@@ -2,26 +2,76 @@
   {
     "queryName": "Pod or Container Without Security Context",
     "severity": "LOW",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[positive1].spec",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.security_context should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4e58ac7916664727e87f7119f284c5037a3e66480df3fe667e675afda8146428",
+    "search_line": 6
   },
   {
     "queryName": "Pod or Container Without Security Context",
     "severity": "LOW",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[0].security_context should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[0].security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "81531b9d9a1141702143fa9b9fedb94cf8584efa826591cbb316ea052ea46f9f",
+    "search_line": 7
   },
   {
     "queryName": "Pod or Container Without Security Context",
     "severity": "LOW",
-    "line": 36
+    "line": 36,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive1",
+    "searchKey": "kubernetes_pod[positive1].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive1].spec.container[1].security_context should be set",
+    "actualValue": "kubernetes_pod[positive1].spec.container[1].security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e1adfe5e5cf9eebceb641fe514b8a1caddfb24d7e9fbc6d0da796b95b513402c",
+    "search_line": 36
   },
   {
     "queryName": "Pod or Container Without Security Context",
     "severity": "LOW",
-    "line": 88
+    "line": 88,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod[positive2].spec",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.security_context should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "09d22c473f37f862930c6d68848a3d5771dceabb83d454947038c50d5c437791",
+    "search_line": 88
   },
   {
     "queryName": "Pod or Container Without Security Context",
     "severity": "LOW",
-    "line": 89
+    "line": 89,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod",
+    "resourceName": "positive2",
+    "searchKey": "kubernetes_pod[positive2].spec.container",
+    "searchValue": "",
+    "expectedValue": "kubernetes_pod[positive2].spec.container.security_context should be set",
+    "actualValue": "kubernetes_pod[positive2].spec.container.security_context is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "88ffd12d4acf7b8872278c3435419a26b22d688c4708d307db21c10c21fed509",
+    "search_line": 89
   }
 ]

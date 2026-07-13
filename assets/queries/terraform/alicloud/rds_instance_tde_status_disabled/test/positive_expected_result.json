@@ -3,24 +3,60 @@
     "queryName": "RDS Instance TDE Status Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].tde_status",
+    "searchValue": "",
+    "expectedValue": "'tde_status' value should be 'Enabled'",
+    "actualValue": "'tde_status' value is set to 'Disabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b38e1490747da8aea60028bd82c72be3115944400b2b4b6107a3b36280e643d9",
+    "search_line": 6
   },
   {
     "queryName": "RDS Instance TDE Status Disabled",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "",
+    "expectedValue": "'tde_status' value should be 'Enabled'",
+    "actualValue": "'tde_status' is not declared",
+    "issueType": "MissingAttribute",
+    "similarityID": "67bf46c8e92bd2ae16b8509137ce260136f88b07ad8785b79410fa0a23c59d9f",
+    "search_line": 1
   },
   {
     "queryName": "RDS Instance TDE Status Disabled",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].tde_status",
+    "searchValue": "",
+    "expectedValue": "'tde_status' value should be 'Enabled'",
+    "actualValue": "'tde_status' value is set to 'Disabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1d8fccb9e3ff5b8a3ee08cb1f47d474b423d3a7c802e2246784313edb27be1c5",
+    "search_line": 6
   },
   {
     "queryName": "RDS Instance TDE Status Disabled",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "",
+    "expectedValue": "'tde_status' value should be 'Enabled'",
+    "actualValue": "'tde_status' is not declared",
+    "issueType": "MissingAttribute",
+    "similarityID": "767fa4b18f7736be7c1e1d74b6053d3b259b2190196e31fb0e28457e772f9964",
+    "search_line": 1
   }
 ]

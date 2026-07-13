@@ -3,24 +3,60 @@
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "RecordServiceS3Bucket",
+    "searchKey": "Resources.RecordServiceS3Bucket.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration should be defined",
+    "actualValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e15b005081ed7039f501209c357ab18603152078525bdc964ea9408a9871f3ba",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "RecordServiceS3Bucket2",
+    "searchKey": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status",
+    "searchValue": "",
+    "expectedValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status should be set to Enabled",
+    "actualValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status is set to Suspended",
+    "issueType": "IncorrectValue",
+    "similarityID": "59b90bc24eccddd323980891cecbfabecb4762f5cce41ca89a8b8ae9b25080e3",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
     "line": 4,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "RecordServiceS3Bucket",
+    "searchKey": "Resources.RecordServiceS3Bucket.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration should be defined",
+    "actualValue": "Resources.RecordServiceS3Bucket.Properties.VersioningConfiguration is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9f902e7a61fd11a2e9c7136e6fb3ca3e548469efb729bf1b1244c84817a5b571",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket Without Versioning",
     "severity": "MEDIUM",
     "line": 48,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "RecordServiceS3Bucket2",
+    "searchKey": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status",
+    "searchValue": "",
+    "expectedValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status should be set to Enabled",
+    "actualValue": "Resources.RecordServiceS3Bucket2.Properties.VersioningConfiguration.Status is set to Suspended",
+    "issueType": "IncorrectValue",
+    "similarityID": "eea039f6e9d10ed9f89f9646ef8a5f9b5abfab1f5d9977348719d24f3d16f65a",
+    "search_line": -1
   }
 ]

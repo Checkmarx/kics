@@ -3,12 +3,30 @@
     "queryName": "RDS Instance SSL Action Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default].ssl_action",
+    "searchValue": "",
+    "expectedValue": "'ssl_action' value should be 'Open'",
+    "actualValue": "'ssl_action' value is 'Close'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d103bf2bbccee856aecf93cb9ae60bd896bc4e9e5d1307cdceacde2c4e9e7ace",
+    "search_line": 6
   },
   {
     "queryName": "RDS Instance SSL Action Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_db_instance",
+    "resourceName": "default",
+    "searchKey": "alicloud_db_instance[default]",
+    "searchValue": "",
+    "expectedValue": "'ssl_action' value should be 'Open'",
+    "actualValue": "'ssl_action' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d32220121c329aca878454ddef40bcc79810069a07efad5d8ad605b0be960367",
+    "search_line": 1
   }
 ]

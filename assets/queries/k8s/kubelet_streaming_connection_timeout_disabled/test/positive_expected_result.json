@@ -3,18 +3,45 @@
     "queryName": "Kubelet Streaming Connection Timeout Disabled",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--streaming-connection-idle-timeout flag not should be 0",
+    "actualValue": "--streaming-connection-idle-timeout flag is 0",
+    "issueType": "IncorrectValue",
+    "similarityID": "4f863f9126d1db438bb75f2c53cc392f6ae3af70e021ef50b5d8d0bede82a3ee",
+    "search_line": 11
   },
   {
     "queryName": "Kubelet Streaming Connection Timeout Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.streamingConnectionIdleTimeout",
+    "searchValue": "",
+    "expectedValue": "streamingConnectionIdleTimeout not should be 0s",
+    "actualValue": "streamingConnectionIdleTimeout is 0s",
+    "issueType": "IncorrectValue",
+    "similarityID": "82fff1e64890655dd3c0822f5b6b878495d70c492c01bf4ae53df596b0113188",
+    "search_line": -1
   },
   {
     "queryName": "Kubelet Streaming Connection Timeout Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "KubeletConfiguration",
+    "resourceName": "n/a",
+    "searchKey": "kind={{KubeletConfiguration}}.streamingConnectionIdleTimeout",
+    "searchValue": "",
+    "expectedValue": "streamingConnectionIdleTimeout not should be 0s",
+    "actualValue": "streamingConnectionIdleTimeout is 0s",
+    "issueType": "IncorrectValue",
+    "similarityID": "925eef7c798a5b1d5f6d579145d9d49e73cb1488ba291a7111267fa554db6a3a",
+    "search_line": -1
   }
 ]

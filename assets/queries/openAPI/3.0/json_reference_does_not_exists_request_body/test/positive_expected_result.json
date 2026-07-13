@@ -3,12 +3,30 @@
     "queryName": "Request Body JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.$ref",
+    "searchValue": "",
+    "expectedValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody should be declared on components.requestBodies",
+    "actualValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody is not declared on components.requestBodies",
+    "issueType": "MissingAttribute",
+    "similarityID": "52c0d4dc2625a69b140378799af9295c36850419c66c0b2b3777449c881bdb58",
+    "search_line": 0
   },
   {
     "queryName": "Request Body JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.requestBody.$ref",
+    "searchValue": "",
+    "expectedValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody should be declared on components.requestBodies",
+    "actualValue": "MyWrongObjectBody from #/components/requestBodies/MyWrongObjectBody is not declared on components.requestBodies",
+    "issueType": "MissingAttribute",
+    "similarityID": "ec97632c401b73dfa84ea6b167436511184af11fe64a11da5eff9942ddd6238c",
+    "search_line": 0
   }
 ]

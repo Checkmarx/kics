@@ -1,44 +1,107 @@
 [
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive1.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive2.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive3.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive4.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive5.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive6.yaml"
-	},
-    {
-		"queryName": "Script Block Injection",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive7.yaml"
-	}
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.issue.title }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.issue.title",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user.",
+    "issueType": "IncorrectValue",
+    "similarityID": "b472d93958d74770d0153959e0d817fc8a861a3011a87d48a499b728519c9fd6",
+    "search_line": 17
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.pull_request.title }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.pull_request.title",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user.",
+    "issueType": "IncorrectValue",
+    "similarityID": "b87888b344b6cff8edc1d1fc29062354474a4fa1ef6ae47e7db4021e01ba0b03",
+    "search_line": 17
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.issue.title }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.issue.title",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user.",
+    "issueType": "IncorrectValue",
+    "similarityID": "aecc0263b1348f0c5f97fab8c7bb59b9474b34db571b382af41b33debb2d6e80",
+    "search_line": 17
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.discussion.title }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.discussion.title",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user.",
+    "issueType": "IncorrectValue",
+    "similarityID": "32628f6f985121ba009cc0dbddaee715b3b11b1c3df65815b40fef456f9dadd8",
+    "search_line": 17
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.discussion.title }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.discussion.title",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user.",
+    "issueType": "IncorrectValue",
+    "similarityID": "c085d838ed90c8903449a94e9b17cac86e3bfa25c7b8f7802cc5b1db5b025556",
+    "search_line": 17
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.workflow.path }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.event.workflow.path",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user.",
+    "issueType": "IncorrectValue",
+    "similarityID": "7d45b831d545a6ee8fc00e808112fa9038406f7d444a890e0e18bc73ca60663f",
+    "search_line": 17
+  },
+  {
+    "queryName": "Script Block Injection",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "script={{const fs = require('fs');\nconst body = fs.readFileSync('/tmp/${{ github.event.authors.name }}.txt', {encoding: 'utf8'});\n\nawait github.rest.issues.createComment({\n  issue_number: context.issue.number,\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  body: 'Thanks for reporting!'\n})\n\nreturn true;\n}}",
+    "searchValue": "github.*.authors.name",
+    "expectedValue": "Script block does not contain dangerous input controlled by user.",
+    "actualValue": "Script block contains dangerous input controlled by user.",
+    "issueType": "IncorrectValue",
+    "similarityID": "bba30b5a5775bd6c9e989ee710821d145e18cec9b1e03cf2828d44f4c8fd1525",
+    "search_line": 17
+  }
 ]

@@ -3,12 +3,30 @@
     "queryName": "ElastiCache Replication Group Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_elasticache_replication_group",
+    "resourceName": "example",
+    "searchKey": "aws_elasticache_replication_group[example]",
+    "searchValue": "",
+    "expectedValue": "The attribute 'at_rest_encryption_enabled' should be set to true",
+    "actualValue": "The attribute 'at_rest_encryption_enabled' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dddf27bfb7165f78dc071ad9b7b07ef6995447eb575087f585d95da45923804f",
+    "search_line": 1
   },
   {
     "queryName": "ElastiCache Replication Group Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_elasticache_replication_group",
+    "resourceName": "example2",
+    "searchKey": "aws_elasticache_replication_group[example2].at_rest_encryption_enabled",
+    "searchValue": "",
+    "expectedValue": "The attribute 'at_rest_encryption_enabled' should be set to true",
+    "actualValue": "The attribute 'at_rest_encryption_enabled' is not set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "7f9b706cf6be574a894ec67e7702b797571b602283aa601b284dc9e46694b412",
+    "search_line": 9
   }
 ]

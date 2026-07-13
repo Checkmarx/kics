@@ -3,24 +3,60 @@
     "queryName": "VPC FlowLogs Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_flow_log",
+    "resourceName": "example",
+    "searchKey": "aws_flow_log[example]",
+    "searchValue": "",
+    "expectedValue": "aws_flow_log[example].vpc_id should be defined and not null",
+    "actualValue": "aws_flow_log[example].vpc_id is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "cd0675d3e6e0e228ea40e12e3a88cdb9a8e74d794e3367a8d98c74ad716e6887",
+    "search_line": 5
   },
   {
     "queryName": "VPC FlowLogs Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_vpc",
+    "resourceName": "main",
+    "searchKey": "aws_vpc[main]",
+    "searchValue": "",
+    "expectedValue": "aws_vpc[main] should be the same as Flow Logs VPC id",
+    "actualValue": "aws_vpc[main] is not the same as Flow Logs VPC id",
+    "issueType": "IncorrectValue",
+    "similarityID": "0e68ba0ab49ef7ff3b63feb3ae861a08cd3dd2749131d3b2a565d328511c4791",
+    "search_line": 1
   },
   {
     "queryName": "VPC FlowLogs Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "vpc.enable_flow_log",
+    "searchValue": "",
+    "expectedValue": "vpc.enable_flow_log should be set to true",
+    "actualValue": "vpc.enable_flow_log is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "f7daab1edf2aa8756cc7057dfb56311f1086febd93b4403d6c6a0f6f71034ce9",
+    "search_line": 14
   },
   {
     "queryName": "VPC FlowLogs Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "vpc",
+    "searchValue": "",
+    "expectedValue": "vpc.enable_flow_log should be set to true",
+    "actualValue": "vpc.enable_flow_log is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "442c5ac6dd364fef4df870215ac072eb5c9a07640fc66abce2094f3f55427ff4",
+    "search_line": 1
   }
 ]

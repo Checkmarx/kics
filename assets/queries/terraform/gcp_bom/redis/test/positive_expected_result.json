@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "BOM - GCP Redis",
-		"severity": "TRACE",
-		"line": 1,
-		"fileName": "positive.tf"
-	},
-	{
-		"queryName": "BOM - GCP Redis",
-		"severity": "TRACE",
-		"line": 20,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "BOM - GCP Redis",
+    "severity": "TRACE",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_redis_instance[cache]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "9ee97d6020cabca093806d44f0b4ac352ac8be24b8befdb19d942fe56c19f994",
+    "search_line": 1
+  },
+  {
+    "queryName": "BOM - GCP Redis",
+    "severity": "TRACE",
+    "line": 20,
+    "fileName": "positive.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "google_redis_instance[cache2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "505092e86459c3ebc4b2ac5df1e3fb81ffb1850b5574909adea0f903cd632ec0",
+    "search_line": 20
+  }
 ]

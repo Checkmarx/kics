@@ -3,12 +3,30 @@
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "RDSInstance",
+    "resourceName": "sample-cluster3",
+    "searchKey": "metadata.name={{sample-cluster3}}.spec.forProvider.publiclyAccessible",
+    "searchValue": "",
+    "expectedValue": "publiclyAccessible should be set to false",
+    "actualValue": "publiclyAccessible is set to true",
+    "issueType": "MissingAttribute",
+    "similarityID": "0e911cf09a5d855e9c37d7243e33e6dd36e753c3b4aad6227c95bf70e3f478e3",
+    "search_line": -1
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "CRITICAL",
     "line": 11,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "RDSInstance",
+    "resourceName": "my-rds-instance",
+    "searchKey": "metadata.name={{my-rds-instance}}.spec.forProvider.dbSubnetGroupName",
+    "searchValue": "",
+    "expectedValue": "dbSubnetGroupName' subnets not being part of a VPC that has an Internet gateway attached to it",
+    "actualValue": "dbSubnetGroupName' subnets are part of a VPC that has an Internet gateway attached to it",
+    "issueType": "MissingAttribute",
+    "similarityID": "f7d5a3d66ca07e0cd063cf02be176530bd83fde30e27f696034778241940cc13",
+    "search_line": -1
   }
 ]

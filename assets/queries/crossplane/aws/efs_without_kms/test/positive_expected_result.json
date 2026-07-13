@@ -3,12 +3,30 @@
     "queryName": "EFS Without KMS",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "FileSystem",
+    "resourceName": "example3",
+    "searchKey": "metadata.name={{example3}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "kmsKeyID should be defined",
+    "actualValue": "kmsKeyID is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dcc3cc9bb707ef9bb53faa05a0538c092b506d0a86fa67e4df9b6d2dfc2a43e8",
+    "search_line": 6
   },
   {
     "queryName": "EFS Without KMS",
     "severity": "LOW",
     "line": 36,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "FileSystem",
+    "resourceName": "example4",
+    "searchKey": "spec.resources.base.metadata.name={{example4}}.spec.forProvider",
+    "searchValue": "",
+    "expectedValue": "kmsKeyID should be defined",
+    "actualValue": "kmsKeyID is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "32c130235c8152ad6c70c974c921c17f0350f9c42a51b9644d7a11bcb2abd9a8",
+    "search_line": 36
   }
 ]

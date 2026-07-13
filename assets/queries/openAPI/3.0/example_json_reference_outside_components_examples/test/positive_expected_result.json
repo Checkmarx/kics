@@ -3,12 +3,30 @@
     "queryName": "Example JSON Reference Outside Components Examples",
     "severity": "INFO",
     "line": 77,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.post.requestBody.content.{{application/json}}.examples.Address.$ref",
+    "searchValue": "",
+    "expectedValue": "#/components/schemas/Address should be declared on components.schemas",
+    "actualValue": "#/components/schemas/Address is not declared on components.schemas",
+    "issueType": "MissingAttribute",
+    "similarityID": "65072a7f86fa0210d1549a12bc1c33295dca4e069d5be2b59a50bcf784d0282d",
+    "search_line": 0
   },
   {
     "queryName": "Example JSON Reference Outside Components Examples",
     "severity": "INFO",
     "line": 51,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.post.requestBody.content.{{application/json}}.examples.Address.$ref",
+    "searchValue": "",
+    "expectedValue": "#/components/schemas/Address should be declared on components.schemas",
+    "actualValue": "#/components/schemas/Address is not declared on components.schemas",
+    "issueType": "MissingAttribute",
+    "similarityID": "e3de07fa6e735cf8582cb5799288e5743acd2375c0c8e270d4695b6c8b87a438",
+    "search_line": 0
   }
 ]

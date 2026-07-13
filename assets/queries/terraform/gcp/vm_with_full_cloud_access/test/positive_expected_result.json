@@ -2,6 +2,16 @@
   {
     "queryName": "VM With Full Cloud Access",
     "severity": "MEDIUM",
-    "line": 20
+    "line": 20,
+    "fileName": "positive.tf",
+    "resourceType": "google_compute_instance",
+    "resourceName": "test",
+    "searchKey": "google_compute_instance[positive1].service_account.scopes",
+    "searchValue": "",
+    "expectedValue": "'service_account.scopes' should not contain 'cloud-platform'",
+    "actualValue": "'service_account.scopes' contains 'cloud-platform'",
+    "issueType": "IncorrectValue",
+    "similarityID": "4a1fd1326b99fef16793f753ca82f9079e7135a3187148d934322e2a8290a439",
+    "search_line": -1
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "SageMaker EndPoint Config Should Specify KmsKeyId Attribute",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::SageMaker::EndpointConfig",
+    "resourceName": "EndpointConfig",
+    "searchKey": "Resources.EndpointConfig.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.EndpointConfig.Properties.KmsKeyId should be defined",
+    "actualValue": "Resources.EndpointConfig.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "51192be9742a6a3ad3f6d48b984f1cec80dfad30a77567f65ee9b6bd0ae97d9d",
+    "search_line": -1
   },
   {
     "queryName": "SageMaker EndPoint Config Should Specify KmsKeyId Attribute",
     "severity": "MEDIUM",
     "line": 40,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::SageMaker::EndpointConfig",
+    "resourceName": "EndpointConfig",
+    "searchKey": "Resources.EndpointConfig.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.EndpointConfig.Properties.KmsKeyId should be defined",
+    "actualValue": "Resources.EndpointConfig.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "07cb51710d5687a0cd449e17c694d32d8809b00896f7868d9d1d104f490fd47d",
+    "search_line": -1
   }
 ]

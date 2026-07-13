@@ -2,11 +2,31 @@
   {
     "queryName": "Storage Container Is Publicly Accessible",
     "severity": "HIGH",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_storageblob",
+    "resourceName": "Create container foo and upload a file",
+    "searchKey": "name={{Create container foo and upload a file}}.{{azure_rm_storageblob}}.public_access",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageblob.public_access should not be set",
+    "actualValue": "azure_rm_storageblob.public_access is equal to 'blob' or 'container'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1349a6e1434486c73f0184c0931c8cda22cf813353f54e073787c4131903b4a5",
+    "search_line": -1
   },
   {
     "queryName": "Storage Container Is Publicly Accessible",
     "severity": "HIGH",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_storageblob",
+    "resourceName": "Create container foo2 and upload a file",
+    "searchKey": "name={{Create container foo2 and upload a file}}.{{azure_rm_storageblob}}.public_access",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageblob.public_access should not be set",
+    "actualValue": "azure_rm_storageblob.public_access is equal to 'blob' or 'container'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f5eaa5d1626c6dc7b966224127fa4d1198d4b5b1834df6fbcbb53bb33b4fdfbf",
+    "search_line": -1
   }
 ]

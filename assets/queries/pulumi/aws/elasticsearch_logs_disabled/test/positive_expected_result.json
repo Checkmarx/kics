@@ -1,20 +1,47 @@
 [
-	{
-		"queryName": "Elasticsearch Logs Disabled",
-		"severity": "MEDIUM",
-		"line": 14,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Elasticsearch Logs Disabled",
-		"severity": "MEDIUM",
-		"line": 17,
-		"fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Elasticsearch Logs Disabled",
-		"severity": "MEDIUM",
-		"line": 18,
-		"fileName": "positive3.yaml"
-	}
+  {
+    "queryName": "Elasticsearch Logs Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive1.yaml",
+    "resourceType": "aws:elasticsearch:Domain",
+    "resourceName": "exampleDomain",
+    "searchKey": "resources.exampleDomain.properties",
+    "searchValue": "",
+    "expectedValue": "Attribute 'logPublishingOptions' should be defined",
+    "actualValue": "Attribute 'logPublishingOptions' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d66a467de5c017718c0fd7e5d518e33db4ae2d8e5957c6c07cf5c6984d1db07a",
+    "search_line": 14
+  },
+  {
+    "queryName": "Elasticsearch Logs Disabled",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive2.yaml",
+    "resourceType": "aws:elasticsearch:Domain",
+    "resourceName": "exampleDomain",
+    "searchKey": "resources.exampleDomain.properties.logPublishingOptions[0].logType",
+    "searchValue": "",
+    "expectedValue": "Attribute 'enabled' should be defined and set to 'true'",
+    "actualValue": "Attribute 'enabled' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e868e1588511d3a8b263d5b2d1b08bf77858bb9968476d25db9bed9d1cfa07d9",
+    "search_line": 17
+  },
+  {
+    "queryName": "Elasticsearch Logs Disabled",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive3.yaml",
+    "resourceType": "aws:elasticsearch:Domain",
+    "resourceName": "exampleDomain",
+    "searchKey": "resources.exampleDomain.properties.logPublishingOptions[0].logType",
+    "searchValue": "",
+    "expectedValue": "Attribute 'enabled' should be set to 'true'",
+    "actualValue": "Attribute 'enabled' is set to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "53bf4e5d01e69eafe010ca56b8844e0f883bcc7981f205079ae8701ac0e2bfdf",
+    "search_line": 18
+  }
 ]

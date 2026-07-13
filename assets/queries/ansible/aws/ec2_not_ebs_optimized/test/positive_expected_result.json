@@ -3,18 +3,45 @@
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 2,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "amazon.aws.ec2",
+    "resourceName": "example",
+    "searchKey": "name={{example}}.{{amazon.aws.ec2}}",
+    "searchValue": "",
+    "expectedValue": "ec2 to have ebs_optimized set to true.",
+    "actualValue": "ec2 doesn't have ebs_optimized set to true.",
+    "issueType": "MissingAttribute",
+    "similarityID": "72b0bbe36c98dc9e61088c27744fcd7a57c5b864a3ea33b96206938b9c7ed38d",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 10,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "amazon.aws.ec2",
+    "resourceName": "example2",
+    "searchKey": "name={{example2}}.{{amazon.aws.ec2}}.ebs_optimized",
+    "searchValue": "",
+    "expectedValue": "ec2 to have ebs_optimized set to true.",
+    "actualValue": "ec2 ebs_optimized is set to false.",
+    "issueType": "IncorrectValue",
+    "similarityID": "e2f4722aa0a6a6c8a9940b5041e6662d508a3560c208c16a421257b1335b3a80",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 2,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "amazon.aws.ec2",
+    "resourceName": "example3",
+    "searchKey": "name={{example3}}.{{amazon.aws.ec2}}",
+    "searchValue": "",
+    "expectedValue": "ec2 to have ebs_optimized set to true.",
+    "actualValue": "ec2 doesn't have ebs_optimized set to true.",
+    "issueType": "MissingAttribute",
+    "similarityID": "e94901248730933cff4e3412880721ac15468d82337677d38a3bf71cb95f5157",
+    "search_line": -1
   }
 ]

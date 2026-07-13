@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Ensure Administrative Boundaries Between Resources",
-		"severity": "INFO",
-		"line": 5,
-        "fileName": "positive.yaml"
-	}
+  {
+    "queryName": "Ensure Administrative Boundaries Between Resources",
+    "severity": "INFO",
+    "line": 5,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "frontend",
+    "searchKey": "metadata.namespace={{cosmic-namespace}}",
+    "searchValue": "",
+    "expectedValue": "ensure that these namespaces are the ones you need and are adequately administered as per your requirements.",
+    "actualValue": "namespaces in use: cosmic-namespace",
+    "issueType": "IncorrectValue",
+    "similarityID": "656dc930c3bd8ee7b645a8809b365baac9bc60f4ffc01ce86e97d836889d80e7",
+    "search_line": 5
+  }
 ]

@@ -2,26 +2,76 @@
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules.cidr_ip.{{0.0.0.0/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ip should not contain the value '0.0.0.0/0'",
+    "actualValue": "ec2_group.rules.cidr_ip contains value '0.0.0.0/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ca8ccc6220ced6369d8c6ca0fcc377900f2f634c3467977fffe3837a85b504cf",
+    "search_line": -1
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 30
+    "line": 30,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example2 ec2 group",
+    "searchKey": "name={{example2 ec2 group}}.{{amazon.aws.ec2_group}}.rules_egress.cidr_ip={{0.0.0.0/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules_egress.cidr_ip should not contain the value '0.0.0.0/0'",
+    "actualValue": "ec2_group.rules_egress.cidr_ip contains value '0.0.0.0/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "32e787da1cb2b5ec025dcd1fa905dfb6ed3b65bfb4039bc38196c4bd275f556b",
+    "search_line": -1
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 48
+    "line": 48,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example3 ec2 group",
+    "searchKey": "name={{example3 ec2 group}}.{{amazon.aws.ec2_group}}.rules.cidr_ipv6={{::/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules.cidr_ipv6 should not contain the value '::/0'",
+    "actualValue": "ec2_group.rules.cidr_ipv6 contains value '::/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0fdf946b87b91b47963038d47d7ae2278679e42d7cc0fbf3c3b519ad7fc46c0d",
+    "search_line": -1
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 61
+    "line": 61,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example4 ec2 group",
+    "searchKey": "name={{example4 ec2 group}}.{{amazon.aws.ec2_group}}.rules_egress.cidr_ipv6={{::/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules_egress.cidr_ipv6 should not contain the value '::/0'",
+    "actualValue": "ec2_group.rules_egress.cidr_ipv6 contains value '::/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "293032568f5f4927218769c8f4941915bb8a3f2d4e57767b38e309090fa74636",
+    "search_line": -1
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 83
+    "line": 83,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example5 ec2 group",
+    "searchKey": "name={{example5 ec2 group}}.{{amazon.aws.ec2_group}}.rules_egress.cidr_ipv6.{{::/0}}",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules_egress.cidr_ipv6 should not contain the value '::/0'",
+    "actualValue": "ec2_group.rules_egress.cidr_ipv6 contains value '::/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ca887fdd403b588f1922e9ba444a2a1da7701e127d0b7f23653aeee2dd42c17d",
+    "search_line": -1
   }
 ]

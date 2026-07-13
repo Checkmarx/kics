@@ -2,16 +2,46 @@
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_db_security_group",
+    "resourceName": "positive1",
+    "searchKey": "aws_default_security_group[positive1]",
+    "searchValue": "",
+    "expectedValue": "ingress.cidr_blocks or egress.cidr_blocks diferent from '0.0.0.0/0' and '::/0'",
+    "actualValue": "ingress.cidr_blocks or egress.cidr_blocks are equal to '0.0.0.0/0' or '::/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fc97d75ae30f483073718da877ef8a12ce6ab274142b46a5858bfd5a1880bd17",
+    "search_line": -1
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "aws_db_security_group",
+    "resourceName": "positive2",
+    "searchKey": "aws_default_security_group[positive2]",
+    "searchValue": "",
+    "expectedValue": "ingress.cidr_blocks or egress.cidr_blocks diferent from '0.0.0.0/0' and '::/0'",
+    "actualValue": "ingress.cidr_blocks or egress.cidr_blocks are equal to '0.0.0.0/0' or '::/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1b527a262a319285207cd0cf0276fd1868195e53240cff6bd397eb707a57cac3",
+    "search_line": -1
   },
   {
     "queryName": "Default Security Groups With Unrestricted Traffic",
     "severity": "HIGH",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.tf",
+    "resourceType": "aws_db_security_group",
+    "resourceName": "positive3",
+    "searchKey": "aws_default_security_group[positive3]",
+    "searchValue": "",
+    "expectedValue": "ingress.cidr_blocks or egress.cidr_blocks diferent from '0.0.0.0/0' and '::/0'",
+    "actualValue": "ingress.cidr_blocks or egress.cidr_blocks are equal to '0.0.0.0/0' or '::/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f65d96636040b9b31e232907574db6325b00afe8e710eee6a71c1b44d0812c8a",
+    "search_line": -1
   }
 ]

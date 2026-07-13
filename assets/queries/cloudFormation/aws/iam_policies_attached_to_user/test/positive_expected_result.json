@@ -2,25 +2,61 @@
   {
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "IAM Policies Attached To User",
-    "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.ManagedPoliciesArns",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is undefined or empty",
+    "actualValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is not empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "a9c1df5ecb98a248719f4fbb5cb719f0265d9c1883b1aaa5a6f27f845462ee58",
+    "search_line": -1
   },
   {
     "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
     "line": 14,
-    "fileName": "positive2.json"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.Policies",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.Policies' should be undefined or empty",
+    "actualValue": "'Resources.myuser.Properties.Policies' is not empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "1f7843989f90cae834b1304e8feafd7af93929ceaad93235781d4ff062f996e7",
+    "search_line": -1
   },
   {
+    "queryName": "IAM Policies Attached To User",
     "severity": "MEDIUM",
     "line": 10,
     "fileName": "positive2.json",
-    "queryName": "IAM Policies Attached To User"
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.ManagedPoliciesArns",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is undefined or empty",
+    "actualValue": "'Resources.myuser.Properties.ManagedPoliciesArns' is not empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "d4626351e72322f8585eda50063db7a158c8bb6fc624e497435a6472fd790c61",
+    "search_line": -1
+  },
+  {
+    "queryName": "IAM Policies Attached To User",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IAM::User",
+    "resourceName": "myuser",
+    "searchKey": "Resources.myuser.Properties.Policies",
+    "searchValue": "",
+    "expectedValue": "'Resources.myuser.Properties.Policies' should be undefined or empty",
+    "actualValue": "'Resources.myuser.Properties.Policies' is not empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "b115059c017d3487e9a5e5557e94814e33907ae72f954401e1a94182ed998db6",
+    "search_line": -1
   }
 ]

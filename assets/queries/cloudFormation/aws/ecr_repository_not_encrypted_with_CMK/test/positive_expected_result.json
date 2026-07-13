@@ -3,60 +3,150 @@
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration should be defined and not null",
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "83465947aa718961e2043a1e53c5b17260528786943bb00df9821ab7de687488",
+    "search_line": 6
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0fd99d6ae0fe06af99ec303742544c7d3261b63f8a99320be3a15974c860637a",
+    "search_line": 12
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 12,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e74983ec0ad2d5d0cf1256e25cbcbae414e8ed8458fe0805cf84a23bc8ec41ba",
+    "search_line": 12
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "4703bbe5971b2d44545f527ba40725f05197cc1903721b61753e56635311578c",
+    "search_line": 11
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 11,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository.Properties.EncryptionConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
+    "actualValue": "Resources.MyRepository.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1333b15e125b4f8c5f61de2f0e511fb33eb6071e845461cead77d0f434c590ed",
+    "search_line": 11
   },
-   {
+  {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "ecrepo",
+    "searchKey": "Resources.ecrepo.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration should be defined and not null",
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "0a331b5c19ccb6ffc3c7a3aecece5b4383f8c7f6b48ef43fb0155be76acb6051",
+    "search_line": 5
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "ecrepo",
+    "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType",
+    "searchValue": "",
+    "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue",
+    "similarityID": "13b3bfbf10045eb62197da6118ea1714704bada514c9ab63ebee26c98d326951",
+    "search_line": 9
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive8.yaml"
+    "fileName": "positive8.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "ecrepo",
+    "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType",
+    "searchValue": "",
+    "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType should be 'KMS_DSSE' or 'KMS'",
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.EncryptionType is 'AES256'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f020279c07d8d2666f9fee559a50997bf1105dd5151f8f652d2c0d805221e8fe",
+    "search_line": 9
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive9.yaml"
+    "fileName": "positive9.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "ecrepo",
+    "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "a26dd56c1219e29060d045f73cf407dc7d470e8876c802f2f9f6d063d74627f4",
+    "search_line": 8
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive10.yaml"
+    "fileName": "positive10.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "ecrepo",
+    "searchKey": "Resources.ecrepo.Properties.EncryptionConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey should be defined and not null",
+    "actualValue": "Resources.ecrepo.Properties.EncryptionConfiguration.KmsKey is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "4f899b45a287aab2ddfa69b4a015fa51269aa1ed9e7ea119cf935d92e4b465db",
+    "search_line": 8
   }
 ]

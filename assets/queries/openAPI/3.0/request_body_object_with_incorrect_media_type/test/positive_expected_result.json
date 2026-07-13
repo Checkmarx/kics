@@ -3,24 +3,60 @@
     "queryName": "Request Body Object With Incorrect Media Type",
     "severity": "INFO",
     "line": 64,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{NewItem}}.content.{{application/json}}.encoding",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.{{NewItem}}.content.{{application/json}} should be 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set",
+    "actualValue": "components.requestBodies.{{NewItem}}.content.{{application/json}} is not 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "a1dea7dc635fe3cee4b273aa379d9d859247e15ad35026b51628d796b9372323",
+    "search_line": 0
   },
   {
     "queryName": "Request Body Object With Incorrect Media Type",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{application/octet-stream}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/octet-stream}} should be 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set",
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/octet-stream}} is not 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "28c0a3f2ea21615f2885fb84077d87026525024503d8b6363d456b620ff1f29c",
+    "search_line": -1
   },
   {
     "queryName": "Request Body Object With Incorrect Media Type",
     "severity": "INFO",
     "line": 41,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{NewItem}}.content.{{application/json}}.encoding",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.{{NewItem}}.content.{{application/json}} should be 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set",
+    "actualValue": "components.requestBodies.{{NewItem}}.content.{{application/json}} is not 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "c0f9101b19b970a61acc6db8c1645a32e7111ee843db0f80a58833c6151a793f",
+    "search_line": 0
   },
   {
     "queryName": "Request Body Object With Incorrect Media Type",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{application/octet-stream}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/octet-stream}} should be 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set",
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/octet-stream}} is not 'multipart' or 'application/x-www-form-urlencoded' when 'encoding' is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "0f306070d610bd1f8a04b1fb2a4d6010650581b60a2b8816c676a59ba61883ad",
+    "search_line": -1
   }
 ]

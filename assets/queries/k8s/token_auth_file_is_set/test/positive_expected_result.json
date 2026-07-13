@@ -3,12 +3,30 @@
     "queryName": "Token Auth File Is Set",
     "severity": "HIGH",
     "line": 11,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--token-auth-file flag should not be set",
+    "actualValue": "--token-auth-file flag is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "0c4cce42bcb9e94626f3d1f2f8edc01300b0ca53d3f4360202241672f97d969a",
+    "search_line": 11
   },
   {
     "queryName": "Token Auth File Is Set",
     "severity": "HIGH",
     "line": 11,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--token-auth-file flag should not be set",
+    "actualValue": "--token-auth-file flag is set",
+    "issueType": "IncorrectValue",
+    "similarityID": "359bff1a7c206c71c519dbc1835183b778b5ab148eba37324afbee7085ee41ec",
+    "search_line": 11
   }
 ]

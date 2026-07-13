@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS MQ",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_mq_broker[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "03046bbe8286e437246fbd71698b86c909a0fcbdb34e6974159036184d015192",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS MQ",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_mq_broker[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "43dc908a6561014a31109494e8c33fb58edcc39a76bac7ef46475a65e5ef8be5",
+    "search_line": 1
   }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_storageaccount",
+    "resourceName": "configure firewall and virtual networks",
+    "searchKey": "name={{configure firewall and virtual networks}}.{{azure_rm_storageaccount}}.network_acls.bypass",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.network_acls.bypass should not be set or contain 'AzureServices'",
+    "actualValue": "azure_rm_storageaccount.network_acls.bypass does not contain 'AzureServices' ",
+    "issueType": "IncorrectValue",
+    "similarityID": "1db8f59dba37b47d666c9aef189200fa69f696fb4f6baf49879dea329fe53c57",
+    "search_line": -1
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_storageaccount",
+    "resourceName": "configure firewall and virtual networks2",
+    "searchKey": "name={{configure firewall and virtual networks2}}.{{azure_rm_storageaccount}}.network_acls.bypass",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.network_acls.bypass should not be set or contain 'AzureServices'",
+    "actualValue": "azure_rm_storageaccount.network_acls.bypass does not contain 'AzureServices' ",
+    "issueType": "IncorrectValue",
+    "similarityID": "f58f5d67bb04599a42a94e67700463fef2b9b52835562e132feb513f588eacc1",
+    "search_line": -1
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 40
+    "line": 40,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_storageaccount",
+    "resourceName": "configure firewall and virtual networks3",
+    "searchKey": "name={{configure firewall and virtual networks3}}.{{azure_rm_storageaccount}}.network_acls.bypass",
+    "searchValue": "",
+    "expectedValue": "azure_rm_storageaccount.network_acls.bypass should not be set or contain 'AzureServices'",
+    "actualValue": "azure_rm_storageaccount.network_acls.bypass does not contain 'AzureServices' ",
+    "issueType": "IncorrectValue",
+    "similarityID": "73916e77dd823f20ae001ff9e69c9e05146463a230c9dad9f401b85a179b1a18",
+    "search_line": -1
   }
 ]

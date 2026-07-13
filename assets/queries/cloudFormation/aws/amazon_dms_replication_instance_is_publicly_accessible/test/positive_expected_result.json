@@ -3,18 +3,45 @@
     "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 9,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::DMS::ReplicationInstance",
+    "resourceName": "ReplicationInstance",
+    "searchKey": "Resources.ReplicationInstance.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible should be defined to 'false'",
+    "actualValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible is defined to 'true",
+    "issueType": "IncorrectValue",
+    "similarityID": "c4b8a59faa522b7ec0207d1d5e69aab65c0b0bd6a1d15b0765b7cc703901d7fa",
+    "search_line": 9
   },
   {
     "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 4,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::DMS::ReplicationInstance",
+    "resourceName": "ReplicationInstance",
+    "searchKey": "Resources.ReplicationInstance.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible should be defined to 'false'",
+    "actualValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5dd95cfa554a0ec0fdf27545b024ddd944a4535be65f4a0202bd87996a4c6c6d",
+    "search_line": -1
   },
   {
     "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 9,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::DMS::ReplicationInstance",
+    "resourceName": "ReplicationInstance",
+    "searchKey": "Resources.ReplicationInstance.Properties.PubliclyAccessible",
+    "searchValue": "",
+    "expectedValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible should be defined to 'false'",
+    "actualValue": "Resources.ReplicationInstance.Properties.PubliclyAccessible is defined to 'true",
+    "issueType": "IncorrectValue",
+    "similarityID": "631f26fcf01c458be8ca5965a19874fd6f5b76f77fba4fb7e071baafbdd23c5b",
+    "search_line": 9
   }
 ]

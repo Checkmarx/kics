@@ -3,12 +3,30 @@
     "queryName": "SNS Topic Not Encrypted",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_sns_topic",
+    "resourceName": "user-updates-topic",
+    "searchKey": "aws_sns_topic[user_updates].kms_master_key_id",
+    "searchValue": "",
+    "expectedValue": "SNS Topic should be encrypted",
+    "actualValue": "SNS Topic is not encrypted",
+    "issueType": "IncorrectValue",
+    "similarityID": "9d67ba7201456f369908f4c969c8c176cdfe8380124beee7daeb5b5a9de1af3e",
+    "search_line": -1
   },
   {
     "queryName": "SNS Topic Not Encrypted",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_sns_topic",
+    "resourceName": "sns_not_ecnrypted",
+    "searchKey": "aws_sns_topic[test]",
+    "searchValue": "",
+    "expectedValue": "SNS Topic should be encrypted",
+    "actualValue": "SNS Topic is not encrypted",
+    "issueType": "MissingAttribute",
+    "similarityID": "590d003c990ef84a61b553ab819388bd6e69b2f1604e0031cf2517a21d5e5dc1",
+    "search_line": -1
   }
 ]

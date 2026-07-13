@@ -3,12 +3,30 @@
     "queryName": "Stackdriver Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1].monitoring_service",
+    "searchValue": "",
+    "expectedValue": "Attribute 'monitoring_service' should be undefined or 'monitoring.googleapis.com/kubernetes'",
+    "actualValue": "Attribute 'monitoring_service' is 'none'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2344e0c5254fa61a734133a9414a49b3aad63c6dce754c8761e0769b09510d04",
+    "search_line": -1
   },
   {
     "queryName": "Stackdriver Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 18,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive2].monitoring_service",
+    "searchValue": "",
+    "expectedValue": "Attribute 'monitoring_service' should be undefined or 'monitoring.googleapis.com/kubernetes'",
+    "actualValue": "Attribute 'monitoring_service' is 'monitoring.googleapis.com'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0bd6b2211966ed57163d3255341910cdd92b6674580ec8ddfd7df02d5dac69d3",
+    "search_line": -1
   }
 ]

@@ -1,26 +1,62 @@
 [
-    {
-      "queryName": "Volume Mounted In Multiple Containers",
-      "severity": "HIGH",
-      "line": 15,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Volume Mounted In Multiple Containers",
-      "severity": "HIGH",
-      "line": 15,
-      "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Volume Mounted In Multiple Containers",
-      "severity": "HIGH",
-      "line": 15,
-      "filename": "positive3.yaml"
-    },
-    {
-      "queryName": "Volume Mounted In Multiple Containers",
-      "severity": "HIGH",
-      "line": 15,
-      "filename": "positive4.yaml"
-    }
+  {
+    "queryName": "Volume Mounted In Multiple Containers",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.old8k.volumes.bind.propagation",
+    "searchValue": "",
+    "expectedValue": "Volumes should not be mounted in multiple containers",
+    "actualValue": "Volumes are being mounted in multiple containers, mode: rshared",
+    "issueType": "IncorrectValue",
+    "similarityID": "69fb974996bdfda1c9bfa2aaae96ec6236c45f527c3b7ea34d0bf69274d8000e",
+    "search_line": 15
+  },
+  {
+    "queryName": "Volume Mounted In Multiple Containers",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.old8k.volumes.bind.propagation",
+    "searchValue": "",
+    "expectedValue": "Volumes should not be mounted in multiple containers",
+    "actualValue": "Volumes are being mounted in multiple containers, mode: shared",
+    "issueType": "IncorrectValue",
+    "similarityID": "8e121b7af6265971ef4516b93b91bf1b515ea00ac5d5dd6485a611e99157237b",
+    "search_line": 15
+  },
+  {
+    "queryName": "Volume Mounted In Multiple Containers",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.old8k.volumes.bind.propagation",
+    "searchValue": "",
+    "expectedValue": "Volumes should not be mounted in multiple containers",
+    "actualValue": "Volumes are being mounted in multiple containers, mode: rslave",
+    "issueType": "IncorrectValue",
+    "similarityID": "d2f579eb4c43bbc6b775488a8cafb68c545307e180ad7f546a672d5af245e48a",
+    "search_line": 15
+  },
+  {
+    "queryName": "Volume Mounted In Multiple Containers",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.old8k.volumes.bind.propagation",
+    "searchValue": "",
+    "expectedValue": "Volumes should not be mounted in multiple containers",
+    "actualValue": "Volumes are being mounted in multiple containers, mode: slave",
+    "issueType": "IncorrectValue",
+    "similarityID": "4aeb80e6a97e3a54cd3d7eb41fb5ad332aaaa800be25b7fdd7044cc3f52a5215",
+    "search_line": 15
+  }
 ]

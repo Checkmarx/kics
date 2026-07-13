@@ -3,60 +3,150 @@
     "queryName": "API Key Exposed In Operation Security (v3)",
     "severity": "LOW",
     "line": 14,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./pets.post.security.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "54e992777417cdd99993ccb5044fa3ec123e4d44567d92d56d138b29a34d1f71",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Operation Security (v3)",
     "severity": "LOW",
     "line": 15,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./pets.post.security.apiKey2",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "452be46e4946e0447e93b791373431fc8a7c0e015e87f7cc786202f2c8308b97",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Operation Security (v3)",
     "severity": "LOW",
     "line": 16,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./pets.post.security.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "64067913055dcc425aeab37c37b2c0a35fb05ce9c1c4268778a0dd4970783b32",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Operation Security (v3)",
     "severity": "LOW",
     "line": 11,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./pets.post.security.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "d0fddfe18c88010958fd1d04b09b51c9eaff05ec282c0f173d8f8b86be422a1f",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Operation Security (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./pets.post.security.apiKey2",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "a38ea94b1560b025663df01ba9b0a584d2bfd0c2a1815f3ca2f5eaef6a2653d9",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Operation Security (v3)",
     "severity": "LOW",
     "line": 13,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./pets.post.security.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "0e5328e5847e7eba6564e359e82d86355c21a056c2836e47baaf0af92c8031c8",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Operation Security (v2)",
     "severity": "LOW",
     "line": 14,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./pets.post.security.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "fe18955683f2c49850b015712df51bec33b41ee38bea846bea52d5e2b28a7cf9",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Operation Security (v2)",
     "severity": "LOW",
     "line": 15,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./pets.post.security.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "3b14e8ad48255b25644636dce6357c6758f56b39c47347dc57009b5173ab8afd",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Operation Security (v2)",
     "severity": "LOW",
     "line": 11,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./pets.post.security.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "49b9cb48986cbdd284d854e646c406e6ec0ea9db3542408cc7602ab90c07b01a",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Operation Security (v2)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths./pets.post.security.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "5da2bc7d893f6d8fd8eb7ed990b16ec10182577d708e89defaddb29741c651a8",
+    "search_line": -1
   }
 ]

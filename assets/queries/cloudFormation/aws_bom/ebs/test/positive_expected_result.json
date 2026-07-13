@@ -3,36 +3,90 @@
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "4ce5abb875cda696fae4284ecd5ba62ac2fd4c7d10948e6b219ae0a8f8dad49e",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "d8a4d26dfcc2e71a6a21fc56f846a6d266289b88087a0372332f4d3cafdcd5b8",
+    "search_line": 5
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "285213d6da72f24033d1f5ba53a98214fd9f6726290c6392da285b6cd572c7a1",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 5,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "08e0b7a2f83d72abe04aa20adedcc4aba5d75b2915b100dfc1675d7e5bc7d728",
+    "search_line": 5
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "e23195636bdfa8956798ab6836c8cdcf8247ee156d4b059c56ec4fbaec58a440",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS EBS",
     "severity": "TRACE",
     "line": 5,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.NewVolume",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "b5d72f9e20fee38f0578c34e786507134482275c407d64136058104a640205e3",
+    "search_line": 5
   }
 ]

@@ -3,60 +3,150 @@
     "queryName": "Header Parameter Named as 'Accept' (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Accept",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "08567541e21146d103db6ccf8a0058191e731c45b05c797ec57a26e1a7150c03",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v3)",
     "severity": "INFO",
     "line": 58,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Accept",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Accept should not be 'Accept'",
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "023d10b2e9da5952528f49451cff32f7ca81b6dbef52dcc87622a17f56ea0225",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Accept",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fbe14530acfb47bcc5461f955bc771c56cdfebb02fc2cd152003e295d31ea098",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v3)",
     "severity": "INFO",
     "line": 36,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users/{id}}}.get.parameters.name=Accept",
+    "searchValue": "",
+    "expectedValue": "paths.{{/users/{id}}}.get.parameters.name=Accept should not be 'Accept'",
+    "actualValue": "paths.{{/users/{id}}}.get.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d9e564a0cef9836cf7c3654b988ec6d4b7f5d3c49f59a63ed60ef0a52ece6f29",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v3)",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Accept",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "25402426416001311ad469695c362d84a63856e700a9b1836bf740f396a59ab6",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v3)",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Accept",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ebfc353eab31fbb1a3ce9d5498b79d8fa0fb0d7ad9602d6603517b4224d51c6d",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v2)",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Accept",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c4857d0abd98cd2eb5247b198f45eeb1856772bc5c750c395163bc6053d9fdef",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v2)",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.name=Accept",
+    "searchValue": "",
+    "expectedValue": "parameters.limitParam.name=Accept should not be 'Accept'",
+    "actualValue": "parameters.limitParam.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "83e609b4aa7d3dea86280ec79fe69e0ec51837e2c9071888b84ea08585b4911c",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.name=Accept",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.name=Accept should not be 'Accept'",
+    "actualValue": "paths.{{/}}.parameters.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8664f08ac9896b3771b71527dca8c2f6f7512f360eb82f24bf1c2503b4e24c1d",
+    "search_line": -1
   },
   {
     "queryName": "Header Parameter Named as 'Accept' (v2)",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.limitParam.name=Accept",
+    "searchValue": "",
+    "expectedValue": "parameters.limitParam.name=Accept should not be 'Accept'",
+    "actualValue": "parameters.limitParam.name=Accept is 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "bb911587990bbadd9ed03a8a419b99c549e5a9ee13a3999e3e7f47afb3340b75",
+    "search_line": -1
   }
 ]

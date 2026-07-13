@@ -2,6 +2,16 @@
   {
     "queryName": "MySQL Instance With Local Infile On",
     "severity": "HIGH",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "sql_instance",
+    "searchKey": "name={{sql_instance}}.{{google.cloud.gcp_sql_instance}}.settings.database_flags",
+    "searchValue": "",
+    "expectedValue": "cloud_gcp_sql_instance.settings.database_flags should be correct",
+    "actualValue": "cloud_gcp_sql_instance.settings.database_flags.name is 'local_infile' and cloud_gcp_sql_instance.settings.database_flags.value is not 'off'",
+    "issueType": "IncorrectValue",
+    "similarityID": "21af406666a8c35abf9b07ab12f1226dd1ba172a32bc5321cf5b99ce90ea4b09",
+    "search_line": -1
   }
 ]

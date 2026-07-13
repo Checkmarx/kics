@@ -3,24 +3,60 @@
     "queryName": "Security Operation Field Undefined",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute",
+    "similarityID": "0c4fc05340179cd1bff9ecca87132da0129aa4446b611036ec2a36809117860b",
+    "search_line": 14
   },
   {
     "queryName": "Security Operation Field Undefined",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute",
+    "similarityID": "5c9467777bb14620cf704fc983ba037b738d45c5ceb2008c2e77aef887be5ddd",
+    "search_line": 14
   },
   {
     "queryName": "Security Operation Field Undefined",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute",
+    "similarityID": "00eccb6c4daaff6af4ff0603e9ef94c46145430a59cbb80b1ab115c654fdb7e8",
+    "search_line": 11
   },
   {
     "queryName": "Security Operation Field Undefined",
     "severity": "INFO",
     "line": 11,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.petstore_auth",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.security[0].petstore_auth should be defined in '#/components/securitySchemes'",
+    "actualValue": "paths.{{/}}.{{get}}.security[0].petstore_auth is not defined in '#/components/securitySchemes'",
+    "issueType": "MissingAttribute",
+    "similarityID": "b5dff7f5b94903c14059b025cc8316d84d468cdf1ec452a50b023e70eec6c0ac",
+    "search_line": 11
   }
 ]

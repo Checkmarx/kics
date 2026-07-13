@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Nifcloud LB Using Insecure TLS Policy ID",
-		"severity": "MEDIUM",
-		"line": 1,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Nifcloud LB Using Insecure TLS Policy ID",
-		"severity": "MEDIUM",
-		"line": 1,
-		"fileName": "positive2.tf"
-	}
+  {
+    "queryName": "Nifcloud LB Using Insecure TLS Policy ID",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf",
+    "resourceType": "nifcloud_load_balancer",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_load_balancer[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_load_balancer[positive]' should not use outdated/insecure TLS versions for encryption. You should be using TLS v1.2+.",
+    "actualValue": "'nifcloud_load_balancer[positive]' using outdated SSL policy.",
+    "issueType": "MissingAttribute",
+    "similarityID": "aae1e195c7f4940fca14b1954bd86a87b5608d280753d4136149b0a0015087b8",
+    "search_line": -1
+  },
+  {
+    "queryName": "Nifcloud LB Using Insecure TLS Policy ID",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf",
+    "resourceType": "nifcloud_load_balancer",
+    "resourceName": "positive",
+    "searchKey": "nifcloud_load_balancer[positive]",
+    "searchValue": "",
+    "expectedValue": "'nifcloud_load_balancer[positive]' should not use outdated/insecure TLS versions for encryption. You should be using TLS v1.2+.",
+    "actualValue": "'nifcloud_load_balancer[positive]' using outdated SSL policy.",
+    "issueType": "MissingAttribute",
+    "similarityID": "e9cdcd4c85756db1af995c673c81fef51afeef22440d9c006dbbfa12990844b9",
+    "search_line": -1
+  }
 ]

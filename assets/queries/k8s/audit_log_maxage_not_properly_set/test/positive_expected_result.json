@@ -1,38 +1,92 @@
 [
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 11,
-        "fileName": "positive2.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 12,
-        "fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 27,
-        "fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 40,
-        "fileName": "positive3.yaml"
-	},
-	{
-		"queryName": "Audit Log Maxage Not Properly Set",
-		"severity": "LOW",
-		"line": 55,
-        "fileName": "positive3.yaml"
-	}
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is set to less than 30 days",
+    "issueType": "IncorrectValue",
+    "similarityID": "25606bbdfa3a9d20fb5c2147701d5b9f61cab46e0417c269f2f8af078f29b84a",
+    "search_line": 11
+  },
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "315b75a39489cd02e9a9b8977e65ba37276f3f694fc9505af1be187b24aa5d89",
+    "search_line": 11
+  },
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive3.yaml",
+    "resourceType": "Service",
+    "resourceName": "dummy",
+    "searchKey": "metadata.name={{dummy}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4dac52b912c1da43c1814f3f709dc87ce7f4f96c7e16c03beb0df8c0a65affc4",
+    "search_line": 12
+  },
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 27,
+    "fileName": "positive3.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "576f18acbfea506c790f576cb6e928dcf04d60795c3c64c70679a92d54f95e91",
+    "search_line": 27
+  },
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 40,
+    "fileName": "positive3.yaml",
+    "resourceType": "Revision",
+    "resourceName": "dummy-rev",
+    "searchKey": "metadata.name={{dummy-rev}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6519a34acaddae2f643b84a5728a77ac18db92074af69edbd1cff40a30426a44",
+    "search_line": 40
+  },
+  {
+    "queryName": "Audit Log Maxage Not Properly Set",
+    "severity": "LOW",
+    "line": 55,
+    "fileName": "positive3.yaml",
+    "resourceType": "ContainerSource",
+    "resourceName": "dummy-cs",
+    "searchKey": "metadata.name={{dummy-cs}}.spec.template.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--audit-log-maxage flag should be defined and set to 30 or more days",
+    "actualValue": "--audit-log-maxage flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ef0d5d2316971223f7c45417ae43e8ca9e2af5932b6a1bd28ce0f210e1f634bb",
+    "search_line": 55
+  }
 ]

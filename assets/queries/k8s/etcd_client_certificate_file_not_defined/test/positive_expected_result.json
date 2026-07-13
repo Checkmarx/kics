@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Etcd Client Certificate File Not Defined",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Etcd Client Certificate File Not Defined",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--etcd-cafile flag should be defined",
+    "actualValue": "--etcd-cafile flag is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "c7ea1cce5a039be6d13da30e6fcb938b62ee4e0fc7deb75eba844871dc03ad69",
+    "search_line": 11
+  }
 ]

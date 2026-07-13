@@ -3,12 +3,30 @@
     "queryName": "AKS RBAC Disabled",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "AKSCluster",
+    "resourceName": "anais-crossplane-demo",
+    "searchKey": "metadata.name={{anais-crossplane-demo}}.spec.disableRBAC",
+    "searchValue": "",
+    "expectedValue": "disableRBAC should be set to false",
+    "actualValue": "disableRBAC is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "1d12b5bcaf4e3cb9089ef43aca6a3dc0bc460519f33031a2d5397e461b669428",
+    "search_line": 13
   },
   {
     "queryName": "AKS RBAC Disabled",
     "severity": "MEDIUM",
     "line": 40,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "AKSCluster",
+    "resourceName": "anais-crossplane-demo",
+    "searchKey": "spec.resources.base.metadata.name={{anais-crossplane-demo}}.spec.disableRBAC",
+    "searchValue": "",
+    "expectedValue": "disableRBAC should be set to false",
+    "actualValue": "disableRBAC is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "7135551b97d537375c8c7ffeeef4b09d46edd7241209d6f4396f2f7008d39045",
+    "search_line": 40
   }
 ]

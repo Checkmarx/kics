@@ -3,6 +3,15 @@
     "queryName": "RDS Associated with Public Subnet",
     "severity": "CRITICAL",
     "line": 9,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.rds_instance",
+    "resourceName": "create minimal aurora instance in default VPC and default subnet group",
+    "searchKey": "name={{create minimal aurora instance in default VPC and default subnet group}}.{{community.aws.rds_instance}}.db_subnet_group_name",
+    "searchValue": "",
+    "expectedValue": "RDS should not be running in a public subnet",
+    "actualValue": "RDS is running in a public subnet",
+    "issueType": "MissingAttribute",
+    "similarityID": "d07c151ca753f97cf024c801a050f7c83f4e4fafa289785b8eb02326c75e9856",
+    "search_line": 9
   }
 ]

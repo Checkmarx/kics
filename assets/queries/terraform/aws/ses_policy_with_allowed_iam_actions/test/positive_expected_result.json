@@ -3,6 +3,15 @@
     "queryName": "SES Policy With Allowed IAM Actions",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_ses_identity_policy",
+    "resourceName": "example",
+    "searchKey": "aws_ses_identity_policy[positive1].policy",
+    "searchValue": "",
+    "expectedValue": "'policy' should not allow IAM actions to all principals",
+    "actualValue": "'policy' allows IAM actions to all principals",
+    "issueType": "IncorrectValue",
+    "similarityID": "823218e9ed20841b76b9a6f3728f02681609abd5d98d7b82d7a7e3da9d83f9ad",
+    "search_line": 4
   }
 ]

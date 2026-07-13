@@ -3,24 +3,60 @@
     "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
-    "severity": "INFO",
-    "line": 10,
-    "filename": "positive2.yaml"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=limit2.in",
+    "searchValue": "",
+    "expectedValue": "'in' field should be 'query' or 'formData'",
+    "actualValue": "'in' field is path",
+    "issueType": "IncorrectValue",
+    "similarityID": "e4e19788ac888b9d06912b3ce4245799e4f18f5259838649aef67e01b8d02cf9",
+    "search_line": -1
   },
   {
     "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit.in",
+    "searchValue": "",
+    "expectedValue": "'in' field should be 'query' or 'formData'",
+    "actualValue": "'in' field is path",
+    "issueType": "IncorrectValue",
+    "similarityID": "bf35a079aff3c12f96ed6129e243cec391f4a7e7e942086d862802b0f89f03ef",
+    "search_line": -1
+  },
+  {
+    "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
+    "severity": "INFO",
+    "line": 10,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name=limit2.in",
+    "searchValue": "",
+    "expectedValue": "'in' field should be 'query' or 'formData'",
+    "actualValue": "'in' field is path",
+    "issueType": "IncorrectValue",
+    "similarityID": "e8d76e9a991997c2f37de78df974727998b0221346e8822aecfcd77dbef451de",
+    "search_line": -1
   },
   {
     "queryName": "Multi 'collectionformat' Not Valid For 'in' Parameter",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "parameters.name=limit.in",
+    "searchValue": "",
+    "expectedValue": "'in' field should be 'query' or 'formData'",
+    "actualValue": "'in' field is path",
+    "issueType": "IncorrectValue",
+    "similarityID": "e896b42b3b35492abd39fd13d50351a7e08f50fd6f9b1aecadacf5c3414c3798",
+    "search_line": -1
   }
 ]

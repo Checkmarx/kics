@@ -3,6 +3,15 @@
     "queryName": "Service Control Policies Disabled",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "aws_organizations_organization",
+    "resourceName": "positive1",
+    "searchKey": "aws_organizations_organization[positive1].feature_set",
+    "searchValue": "",
+    "expectedValue": "'feature_set' should be set to 'ALL' or undefined",
+    "actualValue": "'feature_set' is set to 'CONSOLIDATED_BILLING'",
+    "issueType": "IncorrectValue",
+    "similarityID": "12ef0a3fd657751c00a12deeb1663a1fe050c0cbeb6adc446ba5760d6dfac285",
+    "search_line": 7
   }
 ]

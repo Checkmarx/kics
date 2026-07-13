@@ -3,72 +3,180 @@
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_sns_topic",
+    "resourceName": "s3-event-notification-topic",
+    "searchKey": "aws_sns_topic[topic2]",
+    "searchValue": "",
+    "expectedValue": "aws_sns_topic.topic2 should be evoked in aws_s3_bucket_notification ",
+    "actualValue": "aws_sns_topic.topic2 is not properly evoked in aws_s3_bucket_notification ",
+    "issueType": "MissingAttribute",
+    "similarityID": "83d7a77a5152f76974453de1eb2fe64714d7d6985cfce07c37ef4fd925108b90",
+    "search_line": 6
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_sqs_queue",
+    "resourceName": "s3-event-notification-queue",
+    "searchKey": "aws_sqs_queue[queue2]",
+    "searchValue": "",
+    "expectedValue": "aws_sqs_queue.queue2 should be evoked in aws_s3_bucket_notification ",
+    "actualValue": "aws_sqs_queue.queue2 is not properly evoked in aws_s3_bucket_notification ",
+    "issueType": "MissingAttribute",
+    "similarityID": "88564c1492b6694fd2e43b23e9c4b76cb5b0aea8cbd793a912cd0211a45f7c1a",
+    "search_line": 6
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 14,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "func2",
+    "searchKey": "aws_lambda_function[func2]",
+    "searchValue": "",
+    "expectedValue": "aws_lambda_function.func2 should be evoked in aws_s3_bucket_notification ",
+    "actualValue": "aws_lambda_function.func2 is not properly evoked in aws_s3_bucket_notification ",
+    "issueType": "MissingAttribute",
+    "similarityID": "c689bc0a1890a296149396e112ee06a669c6d773f7bddb9ebf59f040dea1ef55",
+    "search_line": 14
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_sns_topic",
+    "resourceName": "s3-event-notification-topic",
+    "searchKey": "aws_sns_topic[topic]",
+    "searchValue": "",
+    "expectedValue": "aws_sns_topic.topic should be evoked in aws_s3_bucket_notification ",
+    "actualValue": "aws_sns_topic.topic is not properly evoked in aws_s3_bucket_notification ",
+    "issueType": "MissingAttribute",
+    "similarityID": "ab958919b66b1b34857c70cf672aa5b10f1ea4c14b757b0d55fff9bb3775da8b",
+    "search_line": 1
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_sqs_queue",
+    "resourceName": "s3-event-notification-queue",
+    "searchKey": "aws_sqs_queue[queue]",
+    "searchValue": "",
+    "expectedValue": "aws_sqs_queue.queue should be evoked in aws_s3_bucket_notification ",
+    "actualValue": "aws_sqs_queue.queue is not properly evoked in aws_s3_bucket_notification ",
+    "issueType": "MissingAttribute",
+    "similarityID": "a104cf121ccf63d2be832b3eeba5217998668b596e85bbac6fb54790eb4a9ac0",
+    "search_line": 1
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "func",
+    "searchKey": "aws_lambda_function[func]",
+    "searchValue": "",
+    "expectedValue": "aws_lambda_function.func should be evoked in aws_s3_bucket_notification ",
+    "actualValue": "aws_lambda_function.func is not properly evoked in aws_s3_bucket_notification ",
+    "issueType": "MissingAttribute",
+    "similarityID": "31c36cda599616cd4967c6d5e7616b3e65deee93e778c01cb744d7ff655a0414",
+    "search_line": 6
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive7.tf"
+    "fileName": "positive7.tf",
+    "resourceType": "aws_sns_topic",
+    "resourceName": "s3-event-notification-topic",
+    "searchKey": "aws_sns_topic[topic]",
+    "searchValue": "",
+    "expectedValue": "aws_sns_topic.topic should be evoked in aws_s3_bucket_notification ",
+    "actualValue": "aws_sns_topic.topic is not properly evoked in aws_s3_bucket_notification ",
+    "issueType": "MissingAttribute",
+    "similarityID": "5aed46a5a9ca2617fa14b07ed30affe603bd72d86a81fe7730a409df1dbee97d",
+    "search_line": 1
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive8.tf"
+    "fileName": "positive8.tf",
+    "resourceType": "aws_sqs_queue",
+    "resourceName": "s3-event-notification-queue",
+    "searchKey": "aws_sqs_queue[queue]",
+    "searchValue": "",
+    "expectedValue": "aws_sqs_queue.queue should be evoked in aws_s3_bucket_notification ",
+    "actualValue": "aws_sqs_queue.queue is not properly evoked in aws_s3_bucket_notification ",
+    "issueType": "MissingAttribute",
+    "similarityID": "efc10e5c89bc414520cf00e566cb4e5ec56f640ebf3b71e8bc8f47ab86d6fd15",
+    "search_line": 1
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 6,
-    "fileName": "positive9.tf"
+    "fileName": "positive9.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "func",
+    "searchKey": "aws_lambda_function[func]",
+    "searchValue": "",
+    "expectedValue": "aws_lambda_function.func should be evoked in aws_s3_bucket_notification ",
+    "actualValue": "aws_lambda_function.func is not properly evoked in aws_s3_bucket_notification ",
+    "issueType": "MissingAttribute",
+    "similarityID": "2b12764a14954a1b8620f035fdc4401257685afce196bdb09c437041e8f54911",
+    "search_line": 6
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive10.tf"
+    "fileName": "positive10.tf",
+    "resourceType": "aws_sns_topic",
+    "resourceName": "s3-event-notification-topic",
+    "searchKey": "aws_sns_topic[topic1]",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_notification' should be defined and not null",
+    "actualValue": "'aws_s3_bucket_notification' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "eee78c0b491e0bf0c07666b19d41ecd7e023aebd107ac7c52a3fe23eabe72f19",
+    "search_line": 1
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive11.tf"
+    "fileName": "positive11.tf",
+    "resourceType": "aws_sqs_queue",
+    "resourceName": "s3-event-notification-queue",
+    "searchKey": "aws_sqs_queue[queue]",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_notification' should be defined and not null",
+    "actualValue": "'aws_s3_bucket_notification' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "3e97ff166048ae26e0c2ebc26c47ffd713f74efc8ec0380e96c4b3a0b1a85c74",
+    "search_line": 1
   },
   {
     "queryName": "S3 bucket notifications disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive12.tf"
+    "fileName": "positive12.tf",
+    "resourceType": "aws_lambda_function",
+    "resourceName": "aws_lambda_function",
+    "searchKey": "aws_lambda_function[func]",
+    "searchValue": "",
+    "expectedValue": "'aws_s3_bucket_notification' should be defined and not null",
+    "actualValue": "'aws_s3_bucket_notification' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c8e8a062f338c558f26173b1c32c611693aa4fba32b33d1cbb0cdd7b9d89abae",
+    "search_line": 1
   }
 ]

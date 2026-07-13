@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "CodeBuild Not Encrypted",
-		"severity": "MEDIUM",
-		"line": 2
-	}
-
+  {
+    "queryName": "CodeBuild Not Encrypted",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_codebuild",
+    "resourceName": "My project",
+    "searchKey": "name={{My project}}.{{community.aws.aws_codebuild}}",
+    "searchValue": "",
+    "expectedValue": "aws_codebuild.encryption_key should be set",
+    "actualValue": "aws_codebuild.encryption_key is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8e2a206d92f3fe55055ecbed8e4592349dd8d7d058d3849f7b8007b6d07f7e92",
+    "search_line": -1
+  }
 ]

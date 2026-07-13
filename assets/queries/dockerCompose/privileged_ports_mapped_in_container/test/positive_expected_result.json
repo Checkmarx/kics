@@ -1,80 +1,197 @@
 [
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 12,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive7.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive5.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive4.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive8.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 5,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive10.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive6.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive11.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive3.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive9.yaml"
-    },
-    {
-      "queryName": "Privileged Ports Mapped In Container",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive12.yaml"
-    }
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.dhcpd.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "2beabfce9c06a1811183b09936119dd29de3f7bb3836257855b81a5c8bb68b56",
+    "search_line": 5
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.dhcp_client.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "3e8bb918c713dfe636365ead13442bceaf38a3908b84b41edf1a8717a3eb5af9",
+    "search_line": 12
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "8f4e0d4203c1372854714b42a854a0b2febf8df76aebf9196fae75dcc907a698",
+    "search_line": 11
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "4ba19d7087240453528bd991ca88e1714c7ada9361b2ef0f94f977ed95f04731",
+    "search_line": 11
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "e7418329e1f31b65fea3ab927cff25dc280b2174daa782428c70adc4213aa114",
+    "search_line": 11
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "f4a1a52e700cf4db7c5ddbc70928c9a8e344d424a071e2f5c1f83e2b18cceb5b",
+    "search_line": 11
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "c7f3bfa9cc3d9358e607ef97585168b923bc2da3d5aac927aec559337f31a2be",
+    "search_line": 11
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "83e1a0ba6d60aa768e7bdf3098d78164af568c5361f83afe8620398cb92ddff5",
+    "search_line": 11
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive8.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "73ccca8bab821af3d80fe2aeed92b036194614abcb77282a61396a2ce11379b5",
+    "search_line": 11
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive9.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "7ffe3051df6c5451fd1c31a035370a1e3ee0b521cf7437cb45be19bfe67d9af8",
+    "search_line": 11
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive10.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "572d3829b2014d34ff5b45733ce962a9367e7ef61ef72a049e2e1846772cda04",
+    "search_line": 11
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive11.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "6e76000de25ca7949b7e19d26163525018f5a4e50d4429ca51df221bb059f6e8",
+    "search_line": 11
+  },
+  {
+    "queryName": "Privileged Ports Mapped In Container",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive12.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.webapp.ports",
+    "searchValue": "",
+    "expectedValue": "Docker compose file to have 'ports' attribute not set to privileged ports (<1024).",
+    "actualValue": "Docker compose file has 'ports' attribute set to privileged ports (<1024).",
+    "issueType": "IncorrectValue",
+    "similarityID": "d08fc1421bcf15b3743533ab870ea9ab5cdcb9f19c72d77417513dc753674ee1",
+    "search_line": 11
+  }
 ]

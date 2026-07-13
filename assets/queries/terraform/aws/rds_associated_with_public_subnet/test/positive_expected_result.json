@@ -3,12 +3,30 @@
     "queryName": "RDS Associated with Public Subnet",
     "severity": "CRITICAL",
     "line": 11,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive1].db_subnet_group_name",
+    "searchValue": "",
+    "expectedValue": "RDS should not be running in a public subnet",
+    "actualValue": "RDS is running in a public subnet",
+    "issueType": "IncorrectValue",
+    "similarityID": "a4f2fb29d67f2d86912de970224f63a29655e72d9ba9132a0f44b5b127e9d087",
+    "search_line": 11
   },
   {
     "queryName": "RDS Associated with Public Subnet",
     "severity": "CRITICAL",
     "line": 11,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_db_instance",
+    "resourceName": "mydb",
+    "searchKey": "aws_db_instance[positive2].db_subnet_group_name",
+    "searchValue": "",
+    "expectedValue": "RDS should not be running in a public subnet",
+    "actualValue": "RDS is running in a public subnet",
+    "issueType": "IncorrectValue",
+    "similarityID": "988743d0b20c07a0d0f40a5b674a0926afdd76da7b6b6242f7e020ef8a182001",
+    "search_line": 11
   }
 ]

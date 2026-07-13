@@ -3,12 +3,30 @@
     "queryName": "Response Object With Incorrect Ref (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.{{200}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Response ref points to '#/responses'",
+    "actualValue": "Response ref doesn't point to '#/responses'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d02a0da46fe7c43d11e59ff26335efd0b54b744da27d2af0004e26ac11ab2dde",
+    "search_line": 0
   },
   {
     "queryName": "Response Object With Incorrect Ref (v2)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.{{200}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Response ref points to '#/responses'",
+    "actualValue": "Response ref doesn't point to '#/responses'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6711101dc1b9b1c6df61eaf96d11b86c5fd316db4ed908135912c7c803b0c0b7",
+    "search_line": 0
   }
 ]
