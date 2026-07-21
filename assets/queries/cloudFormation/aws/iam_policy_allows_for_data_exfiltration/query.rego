@@ -3,20 +3,21 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
-ilegal_actions := ["s3:GetObject", "ssm:GetParameter", "ssm:GetParameters", "ssm:GetParametersByPath", "secretsmanager:GetSecretValue","*","s3:*"] 
+ilegal_actions := ["s3:GetObject", "ssm:GetParameter", "ssm:GetParameters", "ssm:GetParametersByPath", "secretsmanager:GetSecretValue","*","s3:*"]
 
 CxPolicy[result] {
 	types := ["AWS::IAM::Group", "AWS::IAM::Role", "AWS::IAM::User"]
 
 	resource := input.document[i].Resources[name]
 	resource.Type == types[_]
-	
+
 	policy := resource.Properties.Policies[i2].PolicyDocument
 	st := common_lib.get_statement(common_lib.get_policy(policy))
 	statement := st[st_index]
 
 	common_lib.is_allow_effect(statement)
 	ilegal_action := is_ilegal(statement.Action)
+	common_lib.equalsOrInArray(statement.Resource, "*")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -41,6 +42,7 @@ CxPolicy[result] {
 
 	common_lib.is_allow_effect(statement)
 	ilegal_action := is_ilegal(statement.Action)
+	common_lib.equalsOrInArray(statement.Resource, "*")
 
 	result := {
 		"documentId": input.document[i].id,

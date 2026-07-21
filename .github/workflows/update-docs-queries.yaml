@@ -9,10 +9,16 @@ on:
       - "assets/queries/**/test/**"
       - ".github/scripts/docs-generator/**"
 
+permissions:
+  contents: read
+
 jobs:
   update-docs:
+    permissions:
+      actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
+      contents: read  # for actions/checkout to fetch code
     name: Update queries documentation
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@85880fa0301c86cca9da44039ee3bb12d3bedbfa # 0.12.1
@@ -21,7 +27,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
         with:
           python-version: "3.x"
       - name: Update docs
@@ -39,7 +45,7 @@ jobs:
             --t .github/scripts/docs-generator/query-page-generator/templates/query-page-template.md \
             --df
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v6
+        uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "docs(queries): update queries catalog"
           token: ${{ secrets.KICS_BOT_PAT }}

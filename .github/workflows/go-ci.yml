@@ -7,22 +7,22 @@ on:
 jobs:
   lint:
     name: lint
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: go.mod
           cache: false
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v9.2.0
+        uses: step-security/golangci-lint-action@1797facf9ea427614d729a4e9cab0fae1a7852d9 # v9.2.0
         with:
           version: v2.9.0
           args: -c .golangci.yml --timeout 20m
   go-generate:
     name: go-generate
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     steps:
       - name: Check out code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -30,7 +30,7 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: go.mod
       - name: Generate mocks and marshall/unmarshall code
@@ -39,12 +39,12 @@ jobs:
     name: unit-tests
     strategy:
       matrix:
-        go-version: [1.25.x]
+        go-version: [1.26.x]
         os: [ubuntu-latest, ubuntu-24.04-arm, windows-2022, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version: ${{ matrix.go-version }}
       - name: Check out code into the Go module directory
@@ -90,9 +90,45 @@ jobs:
         with:
           name: unit-test-${{ matrix.os }}-${{ github.event.pull_request.head.sha }}.log
           path: unit-test.log
+  validate-search-line:
+    name: validate-search-line
+    runs-on: cx-public-ubuntu-x64
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Detect changed query.rego files
+        uses: step-security/paths-filter@5c5241b8233e77b55b9046daf88f1cb7560281de # v4.0.1
+        id: filter
+        with:
+          list-files: json
+          filters: |
+            queries:
+              - 'assets/queries/**/query.rego'
+      - name: Debug filter outputs
+        run: |
+          echo "queries changed: ${{ steps.filter.outputs.queries }}"
+          echo "changed files: ${{ steps.filter.outputs.queries_files }}"
+      - name: Set up Python
+        id: setup-python
+        if: steps.filter.outputs.queries == 'true'
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.13'
+      - name: Validate searchLine in modified queries
+        if: steps.setup-python.outcome == 'success'
+        env:
+          CHANGED_QUERIES: ${{ steps.filter.outputs.queries_files }}
+          KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KICS_PR_NUMBER: ${{ github.event.number }}
+        working-directory: .github/scripts/validate-search-line/
+        run: python3 validate_search_line.py
+  
   security-scan:
     name: security-scan
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     env:
       GO111MODULE: on
     steps:

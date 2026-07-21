@@ -4,10 +4,13 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+
 jobs:
   coverage:
     name: generate-coverage
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     outputs:
       coverage: ${{ steps.testcov.outputs.coverage }}
       color: ${{ steps.testcov.outputs.color }}
@@ -17,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 #v6.3.0
         with:
           go-version-file: go.mod
       - name: Run test metrics script

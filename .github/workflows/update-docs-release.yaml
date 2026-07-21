@@ -5,10 +5,16 @@ on:
   release:
     type: [published]
 
+permissions:
+  contents: read
+
 jobs:
   update-docs-release:
+    permissions:
+      actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
+      contents: write  # for Git to git push
     name: Create new docs version
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     if: "!github.event.release.prerelease"
     steps:
       - name: Cancel Previous Runs
@@ -32,7 +38,7 @@ jobs:
           echo "curr tag ${{ steps.version.outputs.ctag }}"
           echo "prev ver ${{ steps.version.outputs.pversion }}"
           echo "curr ver ${{ steps.version.outputs.cversion }}"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
         with:
           python-version: 3.x
       - name: Install dependencies

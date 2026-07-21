@@ -3,10 +3,16 @@ name: update-install-script
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   update-install:
+    permissions:
+      actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
+      contents: read  # for actions/checkout to fetch code
     name: Update install script
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@85880fa0301c86cca9da44039ee3bb12d3bedbfa # 0.12.1
@@ -30,7 +36,7 @@ jobs:
             && chmod +x godownloader \
             && rm -vf $(basename "${FULL_URL}") \
             && cd "${PROJDIR}"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
         with:
           python-version: "3.x"
       - name: Install dependencies
@@ -50,7 +56,7 @@ jobs:
       - name: Update install.sh
         run: ./.bin/godownloader --repo Checkmarx/kics <(echo ${{ steps.outputs.filter.goreleaser }}) > install.sh
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v6
+        uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "chore(install): update install script"
           token: ${{ secrets.KICS_BOT_PAT }}
