@@ -6,7 +6,7 @@ CxPolicy[result] {
 	stage := input.document[i].command[name]
 
 	resource = stage[s]
-	stage[s].Cmd = "add"
+	stage[s].Cmd == "add"
 	not dockerLib.arrayContains(stage[s].Value, {".tar", ".tar."})
 
 	from_command := dockerLib.get_original_from_command(stage)
