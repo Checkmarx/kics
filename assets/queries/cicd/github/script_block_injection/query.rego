@@ -48,7 +48,8 @@ CxPolicy[result] {
 
 	patterns := [
     "github.event.issue.body",
-	"github.event.issue.title"
+	"github.event.issue.title",
+	"github.event.comment.user.login"
 	]
 
 	matched = containsPatterns(script, patterns)
