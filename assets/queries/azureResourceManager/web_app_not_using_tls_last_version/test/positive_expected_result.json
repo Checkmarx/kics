@@ -26,13 +26,13 @@
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
-    "line": 17,
+    "line": 24,
     "filename": "positive5.json"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
-    "line": 17,
+    "line": 23,
     "filename": "positive6.json"
   },
   {
