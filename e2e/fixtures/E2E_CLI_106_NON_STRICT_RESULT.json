@@ -1,0 +1,788 @@
+{
+	"kics_version": "development",
+	"files_scanned": 3,
+	"lines_scanned": 76,
+	"files_parsed": 3,
+	"lines_parsed": 77,
+	"lines_ignored": 1,
+	"files_failed_to_scan": 0,
+	"queries_total": 1383,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 4,
+		"INFO": 9,
+		"LOW": 17,
+		"MEDIUM": 8,
+		"TRACE": 0
+	},
+	"total_counter": 38,
+	"total_bom_resources": 0,
+	"start": "2026-05-06T16:25:59.801484063+01:00",
+	"end": "2026-05-06T16:26:23.337099197+01:00",
+	"paths": [
+		"/path/e2e/fixtures/samples/strict-source-resolution/scan"
+	],
+	"queries": [
+		{
+			"query_name": "Global Security Field Is Undefined (v3)",
+			"query_id": "8af270ce-298b-4405-9922-82a10aee7a4f",
+			"query_url": "https://swagger.io/specification/#security-requirement-object",
+			"severity": "HIGH",
+			"platform": "OpenAPI",
+			"cwe": "284",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Access Control",
+			"experimental": false,
+			"description": "Global security field should be defined to prevent API to have insecure paths and have this rules defined on securitySchemes",
+			"description_id": "25b129f1",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "b71898fefb021c12e6d317de695821d9814de95a07e92bd349fb4d064275e082",
+					"line": 2,
+					"issue_type": "MissingAttribute",
+					"search_key": "openapi",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "A default security property should be defined",
+					"actual_value": "A default security property is not defined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "1d64c66e5e8b3d49aee56b5a4ccf2eb134598e0f5c7e4f7f776ff4d0f57fd62f",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "openapi",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "A default security property should be defined",
+					"actual_value": "A default security property is not defined"
+				}
+			]
+		},
+		{
+			"query_name": "No Global And Operation Security Defined (v3)",
+			"query_id": "96729c6b-7400-4d9e-9807-17f00cdde4d2",
+			"query_url": "https://swagger.io/specification/#security-requirement-object",
+			"severity": "HIGH",
+			"platform": "OpenAPI",
+			"cwe": "284",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Access Control",
+			"experimental": false,
+			"description": "All paths should have security scheme, if it is omitted, global security field should be defined",
+			"description_id": "8ecf5376",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "8f138398cb9656b2b8f96c763db83ba242671ee1f8e915e00f133322e4f21870",
+					"line": 7,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "A security schema should be used",
+					"actual_value": "No security schema is used"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "ec73f330532416990c61c0d0128a6def757e1ea2c52039557c7941106dfc61ef",
+					"line": 9,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "A security schema should be used",
+					"actual_value": "No security schema is used"
+				}
+			]
+		},
+		{
+			"query_name": "EC2 Instance Has Public IP",
+			"query_id": "5a2486aa-facf-477d-a5c1-b010789459ce",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#associate_public_ip_address",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cwe": "200",
+			"risk_score": "5.1",
+			"cloud_provider": "AWS",
+			"category": "Networking and Firewall",
+			"experimental": false,
+			"description": "EC2 Instance should not have a public IP address.",
+			"description_id": "c6f1d1f4",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/main.tf",
+					"similarity_id": "cdfa8bfcb376d8ae5f0c4c69548ec6fc0ffda8652d3af8ac907d9774778095f8",
+					"line": 8,
+					"resource_type": "aws_instance",
+					"resource_name": "example",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_instance.example",
+					"search_line": 8,
+					"search_value": "",
+					"expected_value": "'associate_public_ip_address' should be defined and not null",
+					"actual_value": "'associate_public_ip_address' is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "EC2 Instance Monitoring Disabled",
+			"query_id": "23b70e32-032e-4fa6-ba5c-82f56b9980e6",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#monitoring",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cwe": "778",
+			"risk_score": "5.1",
+			"cloud_provider": "AWS",
+			"category": "Observability",
+			"experimental": false,
+			"description": "EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods",
+			"description_id": "0d5413e6",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/main.tf",
+					"similarity_id": "de3f22e4fcd0b01fa7bc633cfe722e83a2f1ad927d711d23a7e2c177d77955e7",
+					"line": 8,
+					"resource_type": "aws_instance",
+					"resource_name": "example",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_instance.{{example}}",
+					"search_line": 8,
+					"search_value": "",
+					"expected_value": "'monitoring' should be defined and not null",
+					"actual_value": "'monitoring' is undefined or null",
+					"remediation": "monitoring = true",
+					"remediation_type": "addition"
+				}
+			]
+		},
+		{
+			"query_name": "Field 'securityScheme' On Components Is Undefined",
+			"query_id": "8db5544e-4874-4baa-9322-e9f75a2d219e",
+			"query_url": "https://swagger.io/specification/#security-scheme-object",
+			"severity": "MEDIUM",
+			"platform": "OpenAPI",
+			"cwe": "284",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Access Control",
+			"experimental": false,
+			"description": "Components' securityScheme field must have a valid scheme",
+			"description_id": "61dba06b",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "1ac578be12e3fa1f25590146d384f83d420412ba9fa6310d75d6456070bfcf51",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "openapi",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "A security scheme on components should be defined",
+					"actual_value": "Components is not defined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "c50b7ca6589186d6f1ee4b6424ecde1fa0bdb683c9b1aaa1f6ec5328e9d34a97",
+					"line": 2,
+					"issue_type": "MissingAttribute",
+					"search_key": "openapi",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "A security scheme on components should be defined",
+					"actual_value": "Components is not defined"
+				}
+			]
+		},
+		{
+			"query_name": "Global Server Object Uses HTTP",
+			"query_id": "2d8c175a-6d90-412b-8b0e-e034ea49a1fe",
+			"query_url": "https://swagger.io/specification/#server-object",
+			"severity": "MEDIUM",
+			"platform": "OpenAPI",
+			"cwe": "319",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Encryption",
+			"experimental": false,
+			"description": "Global server object URL should use 'https' protocol instead of 'http'",
+			"description_id": "6b568693",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "86c76b55b399b48628cb4708bcb19fb507306f0e754ed278ef6b43c86fe04486",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "openapi",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Global servers array should be defined",
+					"actual_value": "Global servers array is not defined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "f11c980e115795dc0d42ddaa8ec591e5ecb74d9ab655a82380e64cea241e0bca",
+					"line": 2,
+					"issue_type": "MissingAttribute",
+					"search_key": "openapi",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Global servers array should be defined",
+					"actual_value": "Global servers array is not defined"
+				}
+			]
+		},
+		{
+			"query_name": "Pattern Undefined (v3)",
+			"query_id": "00b78adf-b83f-419c-8ed8-c6018441dd3a",
+			"query_url": "https://swagger.io/specification/#schema-object",
+			"severity": "MEDIUM",
+			"platform": "OpenAPI",
+			"cwe": "20",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "String schema should have 'pattern' defined.",
+			"description_id": "16f07413",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "930d67f78344e324cd45d2dfd470c2fdfa06c41951f51a873142e59846198eec",
+					"line": 15,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.get.responses.200.content.{{application/json}}.schema.$ref=../leaked/external-schema.yaml",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'pattern' should be defined",
+					"actual_value": "'pattern' is undefined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "80768624fe4937cbd4d183556ada4bb0be97a23c1d142c227ffd0530907074cb",
+					"line": 17,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.get.responses.200.content.{{application/json}}.schema.$ref=../leaked/external-schema.json",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'pattern' should be defined",
+					"actual_value": "'pattern' is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "Additional Properties Too Permissive",
+			"query_id": "9f88c88d-824d-4d9a-b985-e22977046042",
+			"query_url": "https://swagger.io/specification/#schema-object",
+			"severity": "LOW",
+			"platform": "OpenAPI",
+			"cwe": "665",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "Objects should not accept 'additionalProperties' if it is possible",
+			"description_id": "3623f181",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "f004e2c5723aa341df63738f8dd09b0da61428e18a5fe3fc7967aae2b6d2d195",
+					"line": 16,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.get.responses.200.content.{{application/json}}.schema",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'additionalProperties' needs to be set and to false",
+					"actual_value": "'additionalProperties' is not set"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "674858b53b67ed35c6c8c7bf7658bfcf6b0f5b2e3182163f401ef8007059b26d",
+					"line": 14,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.get.responses.200.content.{{application/json}}.schema",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'additionalProperties' needs to be set and to false",
+					"actual_value": "'additionalProperties' is not set"
+				}
+			]
+		},
+		{
+			"query_name": "Default Response Undefined On Operations (v3)",
+			"query_id": "86e3702f-c868-44b2-b61d-ea5316c18110",
+			"query_url": "https://swagger.io/specification/#responses-object",
+			"severity": "LOW",
+			"platform": "OpenAPI",
+			"cwe": "665",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Networking and Firewall",
+			"experimental": false,
+			"description": "Operations responses should have a default response defined",
+			"description_id": "fcdbb44e",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "ae83756b662d97429f6256cf9092a3daf811aa155293848d01206d35c148db12",
+					"line": 11,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}.responses",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Default field should be defined on responses",
+					"actual_value": "Default field is not defined on responses"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "25a91640526a87b7ecf3eda5da7121fc6e8b36dd1ce86324aa02e519e59b4484",
+					"line": 9,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}.responses",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Default field should be defined on responses",
+					"actual_value": "Default field is not defined on responses"
+				}
+			]
+		},
+		{
+			"query_name": "IAM Access Analyzer Not Enabled",
+			"query_id": "e592a0c5-5bdb-414c-9066-5dba7cdea370",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer",
+			"severity": "LOW",
+			"platform": "Terraform",
+			"cwe": "710",
+			"risk_score": "3.5",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
+			"description_id": "d03e85ae",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/main.tf",
+					"similarity_id": "0a7d0464de505a54720d6002d14a22a32e6b20bb8189d444ab621d8ab838304f",
+					"line": 8,
+					"resource_type": "n/a",
+					"resource_name": "n/a",
+					"issue_type": "MissingAttribute",
+					"search_key": "resource",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'aws_accessanalyzer_analyzer' should be set",
+					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "Instance Uses Metadata Service IMDSv1",
+			"query_id": "c306ac53-ee5b-41d3-86a9-0fd2722b4e67",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance.html?lang=typescript#metadata-options",
+			"severity": "LOW",
+			"platform": "Terraform",
+			"cwe": "200",
+			"risk_score": "1.0",
+			"cloud_provider": "AWS",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "Instance metadata can be accessed with both IMDSv1 or IMDSv2. Although, IMDSv2 service is a session-oriented service, granting additional protection against exposure of metadata information. That version should be used instead of IMDSv1 in order to mitigate those situations.",
+			"description_id": "c306ac53",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/main.tf",
+					"similarity_id": "6c7dde2369378eb6908114cf71e2aa05ac3139c9fa8c65e7a07fef494cd37b6d",
+					"line": 8,
+					"resource_type": "aws_instance",
+					"resource_name": "example",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_instance[example]",
+					"search_line": 8,
+					"search_value": "",
+					"expected_value": "'aws_instance[example].metadata_options' should be defined with 'http_tokens' field set to 'required'",
+					"actual_value": "'aws_instance[example].metadata_options' is not defined"
+				}
+			]
+		},
+		{
+			"query_name": "Instance With No VPC",
+			"query_id": "a31a5a29-718a-4ff4-8001-a69e5e4d029e",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance",
+			"severity": "LOW",
+			"platform": "Terraform",
+			"cwe": "284",
+			"risk_score": "2.9",
+			"cloud_provider": "AWS",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "EC2 Instances should be configured under a VPC network. AWS VPCs provide the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations.",
+			"description_id": "225a9f30",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/main.tf",
+					"similarity_id": "ceb668f7818103fddd670e2d8c2ba61e667fd6bcb28531d902c39847825364fc",
+					"line": 8,
+					"resource_type": "aws_instance",
+					"resource_name": "example",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_instance[example]",
+					"search_line": 8,
+					"search_value": "",
+					"expected_value": "Attribute 'vpc_security_group_ids' should be defined and not null",
+					"actual_value": "Attribute 'vpc_security_group_ids' is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "Maximum Length Undefined (v3)",
+			"query_id": "8c8261c2-19a9-4ef7-ad37-b8bc7bdd4d85",
+			"query_url": "https://swagger.io/specification/#schema-object",
+			"severity": "LOW",
+			"platform": "OpenAPI",
+			"cwe": "20",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "String schema should have 'maxLength' defined.",
+			"description_id": "e470e664",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "4e9d87f388ba6c54075e96904dce05f5baa0e1c811b40866118c98324bfd31c3",
+					"line": 17,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.get.responses.200.content.{{application/json}}.schema.$ref=../leaked/external-schema.json",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'maxLength' should be defined",
+					"actual_value": "'maxLength' is undefined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "1bcecf37fccbd2364760a231ddbdddb61344d503909646331f95d97c16c6cd3d",
+					"line": 15,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.get.responses.200.content.{{application/json}}.schema.$ref=../leaked/external-schema.yaml",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'maxLength' should be defined",
+					"actual_value": "'maxLength' is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "Response Code Missing (v3)",
+			"query_id": "6c35d2c6-09f2-4e5c-a094-e0e91327071d",
+			"query_url": "https://swagger.io/specification/#operation-object",
+			"severity": "LOW",
+			"platform": "OpenAPI",
+			"cwe": "665",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Networking and Firewall",
+			"experimental": false,
+			"description": "500, 429 and 400 responses should be defined for all operations, except head operation. 415 response should be defined for the post, put, and patch operations. 404 response should be defined for the get, put, head, delete operations. 200 response should be defined for options operation. 401 and 403 response should be defined for all operations when the security field is defined.",
+			"description_id": "dbf15009",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "4f22b23558ebddfe4550f4fd323a3690eedcbda5bd350a9710ad7e071278bb3e",
+					"line": 11,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}.responses",
+					"search_line": 0,
+					"search_value": "400 response",
+					"expected_value": "400 response should be set",
+					"actual_value": "400 response is undefined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "7da2b5a10348163af2f07d4dcf0ed0d0261b4b99aa5a92d9df6883e6580c037f",
+					"line": 11,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}.responses",
+					"search_line": 0,
+					"search_value": "429 response",
+					"expected_value": "429 response should be set",
+					"actual_value": "429 response is undefined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "6c89af9762e1c4ab185bcb55ddd9fdf3da7df2740f04a5458128444c75467c82",
+					"line": 9,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}.responses",
+					"search_line": 0,
+					"search_value": "400 response",
+					"expected_value": "400 response should be set",
+					"actual_value": "400 response is undefined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "0e804ffd6f84f31c4765ec9e4ef48a25d52b1f9db01836914d8001adb4dc396c",
+					"line": 9,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}.responses",
+					"search_line": 0,
+					"search_value": "429 response",
+					"expected_value": "429 response should be set",
+					"actual_value": "429 response is undefined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "fec5bdbb9ab679d6bac0a601cacc7bf52ebef0881ae5f243c0243f5550f634a6",
+					"line": 9,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}.responses",
+					"search_line": 0,
+					"search_value": "500 response",
+					"expected_value": "500 response should be set",
+					"actual_value": "500 response is undefined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "7e13943d8f48ae75e48ba87b0298277e602b0948ad6babfc7a7d39a1dda71b29",
+					"line": 11,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}.responses",
+					"search_line": 0,
+					"search_value": "404 response",
+					"expected_value": "404 response should be set",
+					"actual_value": "404 response is undefined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "cc719a03ded13beec2c38222c171b838b9ae955cb612a522dd8516c397db5786",
+					"line": 9,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}.responses",
+					"search_line": 0,
+					"search_value": "404 response",
+					"expected_value": "404 response should be set",
+					"actual_value": "404 response is undefined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "9625199ad8cce8c06ed6cd45875530851b420447c3b887aea947e38d802ff1af",
+					"line": 11,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.{{get}}.responses",
+					"search_line": 0,
+					"search_value": "500 response",
+					"expected_value": "500 response should be set",
+					"actual_value": "500 response is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "EC2 Not EBS Optimized",
+			"query_id": "60224630-175a-472a-9e23-133827040766",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs_optimized",
+			"severity": "INFO",
+			"platform": "Terraform",
+			"cwe": "710",
+			"risk_score": "0.0",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance",
+			"description_id": "ddce4bd9",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/main.tf",
+					"similarity_id": "4997a3a254f174e666a76e49516ee51733085dd5c02668f7936ae1713cacc439",
+					"line": 8,
+					"resource_type": "aws_instance",
+					"resource_name": "example",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_instance[{{example}}]",
+					"search_line": 8,
+					"search_value": "",
+					"expected_value": "'ebs_optimized' should be set to true",
+					"actual_value": "'ebs_optimized' is undefined or null",
+					"remediation": "ebs_optimized = true",
+					"remediation_type": "addition"
+				}
+			]
+		},
+		{
+			"query_name": "Resource Not Using Tags",
+			"query_id": "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging",
+			"severity": "INFO",
+			"platform": "Terraform",
+			"cwe": "665",
+			"risk_score": "0.0",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "AWS services resource tags are an essential part of managing components. As a best practice, the field 'tags' should have additional tags defined other than 'Name'",
+			"description_id": "09db2d52",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/main.tf",
+					"similarity_id": "1265c17ddb10e10d9934e238addd9b0460ebb652867d617589c115251c07e951",
+					"line": 8,
+					"resource_type": "aws_instance",
+					"resource_name": "example",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_instance[{{example}}]",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_instance[{{example}}].tags should be defined and not null",
+					"actual_value": "aws_instance[{{example}}].tags is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "Schema Has A Required Property Undefined (v3)",
+			"query_id": "2bd608ae-8a1f-457f-b710-c237883cb313",
+			"query_url": "https://swagger.io/specification/#schema-object",
+			"severity": "INFO",
+			"platform": "OpenAPI",
+			"cwe": "20",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Structure and Semantics",
+			"experimental": false,
+			"description": "Schema Object should not be have a required property that is not defined on properties",
+			"description_id": "35016950",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "3d0ce6c6bff6869a3ff45f3d33e34e1fc19b8dcc28894f7b8d8d493ee769e2e2",
+					"line": 14,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.get.responses.200.content.{{application/json}}.schema",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Schema should have all required properties defined",
+					"actual_value": "Schema has required properties that are not defined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "59a2b636844e5aa799d0df291ce105aca5fb5c7717181f49020b332eb787e8b5",
+					"line": 16,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/pets}}.get.responses.200.content.{{application/json}}.schema",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Schema should have all required properties defined",
+					"actual_value": "Schema has required properties that are not defined"
+				}
+			]
+		},
+		{
+			"query_name": "Schema Object Incorrect Ref (v3)",
+			"query_id": "4cac7ace-b0fb-477d-830d-65395d9109d9",
+			"query_url": "https://swagger.io/specification/#schema-object",
+			"severity": "INFO",
+			"platform": "OpenAPI",
+			"cwe": "20",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Structure and Semantics",
+			"experimental": false,
+			"description": "Schema Object reference must always point to '#/components/schemas'",
+			"description_id": "9f6a14ba",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "a61f3248bca970c26e14d759924b74d2f810a9da3be7348335c3d5a60ddf32ac",
+					"line": 15,
+					"issue_type": "IncorrectValue",
+					"search_key": "paths.{{/pets}}.get.responses.200.content.{{application/json}}.schema.$ref",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Schema reference points to '#components/schemas'",
+					"actual_value": "Schema reference does not point to '#components/schemas'"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "1b5ccdb88902d38edf2e5d8bef15e6768fc82a99e9f84b05c471c7191c355e18",
+					"line": 17,
+					"issue_type": "IncorrectValue",
+					"search_key": "paths.{{/pets}}.get.responses.200.content.{{application/json}}.schema.$ref",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Schema reference points to '#components/schemas'",
+					"actual_value": "Schema reference does not point to '#components/schemas'"
+				}
+			]
+		},
+		{
+			"query_name": "Servers Array Undefined",
+			"query_id": "c66ebeaa-676c-40dc-a3ff-3e49395dcd5e",
+			"query_url": "https://swagger.io/specification/#server-object",
+			"severity": "INFO",
+			"platform": "OpenAPI",
+			"cwe": "665",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Structure and Semantics",
+			"experimental": false,
+			"description": "The Servers array should have at least one server defined. If not, the default value would be a Server Object with a URL value of '/'.",
+			"description_id": "890ee1bd",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.yaml",
+					"similarity_id": "255df5ee1bf366b4ecaa5aeff8a61dd2dc4312627d2e8c1ea026727ad184ab40",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "openapi",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Servers array has at least one server defined",
+					"actual_value": "Servers array does not have at least one server defined"
+				},
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/openapi.json",
+					"similarity_id": "9d444addef493e0c2e97c580a609b9813324947948eec0441df0dd3258ba2bb1",
+					"line": 2,
+					"issue_type": "MissingAttribute",
+					"search_key": "openapi",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "Servers array has at least one server defined",
+					"actual_value": "Servers array does not have at least one server defined"
+				}
+			]
+		},
+		{
+			"query_name": "Variable Without Description",
+			"query_id": "2a153952-2544-4687-bcc9-cc8fea814a9b",
+			"query_url": "https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation",
+			"severity": "INFO",
+			"platform": "Terraform",
+			"cwe": "710",
+			"risk_score": "0.0",
+			"cloud_provider": "COMMON",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "All variables should contain a valid description.",
+			"description_id": "b44986be",
+			"files": [
+				{
+					"file_name": "path/e2e/fixtures/samples/strict-source-resolution/scan/main.tf",
+					"similarity_id": "c29e2f52a255f6da1caa3fab79b113d64379d2b96a03c09398947273d4ac2126",
+					"line": 3,
+					"resource_type": "n/a",
+					"resource_name": "n/a",
+					"issue_type": "MissingAttribute",
+					"search_key": "variable.{{instance_type}}",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'description' should be defined and not null",
+					"actual_value": "'description' is undefined or null"
+				}
+			]
+		}
+	]
+}

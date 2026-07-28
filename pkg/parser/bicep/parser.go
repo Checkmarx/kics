@@ -5,9 +5,10 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/antlr4-go/antlr/v4"
+
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/antlr/parser"
-	"github.com/antlr4-go/antlr/v4"
 )
 
 type Parser struct {
@@ -657,7 +658,7 @@ func parseComplexInterp(ctx *parser.InterpStringContext, s *BicepVisitor) string
 
 	interpString = append(interpString, leftPiece)
 
-	if middlePieces != nil && (len(middlePieces) > 0) {
+	if len(middlePieces) > 0 {
 		for idx, val := range middlePieces {
 			expression := acceptExpressionAtIndex(idx, ctx, s)
 			interpString = append(interpString, expression, val.GetText())
