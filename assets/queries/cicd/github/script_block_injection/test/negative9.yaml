@@ -1,0 +1,20 @@
+name: Push Safe Context Vars Script Workflow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  process_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run script
+        uses: actions/github-script@latest
+        with:
+          script: |
+            const sha = '${{ github.sha }}';
+            const ref = '${{ github.ref }}';
+            console.log('SHA: ' + sha + ', Ref: ' + ref);
