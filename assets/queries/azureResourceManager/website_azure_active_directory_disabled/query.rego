@@ -57,4 +57,8 @@ is_valid_identity(identity) {
 } else {
 	identity.type == "UserAssigned"
 	common_lib.valid_key(identity, "userAssignedIdentities")
+} else {
+	contains(identity.type, "SystemAssigned")
+	contains(identity.type, "UserAssigned")
+	common_lib.valid_key(identity, "userAssignedIdentities")
 }
