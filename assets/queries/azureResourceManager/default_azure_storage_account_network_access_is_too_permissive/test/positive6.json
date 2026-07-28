@@ -1,0 +1,29 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "networkAcls": {
+            "type": "object",
+            "defaultValue": {
+                "defaultAction": "Allow"
+            }
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2021-06-01",
+            "dependsOn": [],
+            "kind": "Storage",
+            "location": "[variables('computeLocation')]",
+            "name": "positive6",
+            "properties": {
+                "networkAcls": "[parameters('networkAcls')]"
+            },
+            "sku": {
+                "name": "[parameters('supportLogStorageAccountType')]"
+            },
+            "tags": {},
+            "type": "Microsoft.Storage/storageAccounts"
+        }
+    ]
+}
