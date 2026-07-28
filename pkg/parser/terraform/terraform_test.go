@@ -151,7 +151,7 @@ func Test_Count(t *testing.T) {
 // Test_Parentheses_Expr tests if parentheses expr is well parsed
 func Test_Parentheses_Expr(t *testing.T) {
 	parser := NewDefault()
-	getInputVariables(filepath.FromSlash("../../../test/fixtures/test-tf-parentheses"), parentheses, "")
+	getInputVariables(filepath.FromSlash("../../../test/fixtures/test-tf-parentheses"), parentheses, "", nil, false)
 	document, _, err := parser.Parse("parentheses.tf", []byte(parentheses))
 	require.NoError(t, err)
 	require.Len(t, document, 1)
@@ -212,7 +212,7 @@ func TestTerraform_ProcessContent(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			processContent(tt.args.elements, tt.args.content, tt.args.path)
+			processContent(tt.args.elements, tt.args.content, tt.args.path, nil, false)
 			require.Equal(t, tt.want, tt.args.elements["certificate_body"])
 		})
 	}
