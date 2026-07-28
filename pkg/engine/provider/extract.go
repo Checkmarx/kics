@@ -11,10 +11,10 @@ import (
 
 	"github.com/alexmullins/zip"
 
+	"github.com/rs/zerolog/log"
+
 	"github.com/Checkmarx/kics/v2/pkg/kuberneter"
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/rs/zerolog/log"
 
 	"github.com/hashicorp/go-getter"
 )
@@ -23,11 +23,9 @@ const (
 	channelLength = 2
 )
 
-// ExtractedPath is a struct that contains the paths, temporary paths to remove
-// and extraction map path of the sources
-// Path is the slice of paths to scan
-// ExtractionMap is a map that correlates the temporary path to the given path
-// RemoveTmp is the slice containing temporary paths to be removed
+// ExtractedPath is a struct that contains the paths and the extraction map of the sources.
+// Path is the slice of paths to scan.
+// ExtractionMap correlates the temporary extraction path to the original given path.
 type ExtractedPath struct {
 	Path          []string
 	ExtractionMap map[string]model.ExtractedPathObject
@@ -77,7 +75,12 @@ func GetSources(source []string) (ExtractedPath, error) {
 		ExtractionMap: make(map[string]model.ExtractedPathObject),
 	}
 	for _, path := range source {
-		destination := filepath.Join(os.TempDir(), "kics-extract-"+utils.NextRandom())
+		parent, err := os.MkdirTemp("", "kics-extract-*")
+		if err != nil {
+			log.Error().Msgf("failed to create extraction temp dir: %s", err)
+			return ExtractedPath{}, err
+		}
+		destination := filepath.Join(parent, "src") // path to src folder to be used by go-getter inside temp folder
 
 		mode := getter.ClientModeAny
 
@@ -86,11 +89,9 @@ func GetSources(source []string) (ExtractedPath, error) {
 			log.Fatal().Msgf("Error getting wd: %s", err)
 		}
 
-		opts := []getter.ClientOption{}
+		var opts []getter.ClientOption
 
-		opts = append(opts, getter.WithInsecure())
-
-		ctx, cancel := context.WithCancel(context.Background())
+		ctx, cancel := context.WithCancel(context.Background()) //nolint:gosec
 
 		goGetter := getterStruct{
 			ctx:         ctx,
@@ -104,6 +105,9 @@ func GetSources(source []string) (ExtractedPath, error) {
 
 		getterDst, err := getPaths(&goGetter)
 		if err != nil {
+			if removeErr := os.RemoveAll(parent); removeErr != nil {
+				log.Warn().Msgf("failed to remove extraction temp dir %s: %s", parent, removeErr)
+			}
 			if ignoreDamagedFiles(path) {
 				continue
 			}
@@ -112,6 +116,9 @@ func GetSources(source []string) (ExtractedPath, error) {
 		}
 		tempDst, local, err := checkSymLink(getterDst, path)
 		if err != nil {
+			if removeErr := os.RemoveAll(parent); removeErr != nil {
+				log.Warn().Msgf("failed to remove extraction temp dir %s: %s", parent, removeErr)
+			}
 			log.Warn().Msgf("%s", err)
 			continue
 		}

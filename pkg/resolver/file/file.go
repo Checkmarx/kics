@@ -17,6 +17,7 @@ import (
 	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/Checkmarx/kics/v2/pkg/analyzer"
 	"github.com/Checkmarx/kics/v2/pkg/model"
+	parserUtils "github.com/Checkmarx/kics/v2/pkg/parser/utils"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
@@ -28,10 +29,12 @@ type ResolvedFile struct {
 
 // Resolver - replace or modifies in-memory content before parsing
 type Resolver struct {
-	unmarshler    func(fileContent []byte, v any) error
-	marshler      func(v any) ([]byte, error)
-	ResolvedFiles map[string]model.ResolvedFile
-	Extension     []string
+	unmarshler           func(fileContent []byte, v any) error
+	marshler             func(v any) ([]byte, error)
+	ResolvedFiles        map[string]model.ResolvedFile
+	Extension            []string
+	ScanSourcePaths      []string
+	StrictSourceResolver bool // if true, the resolver will avoid path traversal via resolvers trying to access paths outside scan scope
 }
 
 type ResolvingStatus struct {
@@ -57,12 +60,15 @@ func (r *ResolvingStatus) checkCircularPath(filePath string) bool {
 func NewResolver(
 	unmarshler func(fileContent []byte, v any) error,
 	marshler func(v any) ([]byte, error),
-	ext []string) *Resolver {
+	ext []string, scanSourcePaths []string, strictSourceResolver bool,
+) *Resolver {
 	return &Resolver{
-		unmarshler:    unmarshler,
-		marshler:      marshler,
-		ResolvedFiles: make(map[string]model.ResolvedFile),
-		Extension:     ext,
+		unmarshler:           unmarshler,
+		marshler:             marshler,
+		ResolvedFiles:        make(map[string]model.ResolvedFile),
+		Extension:            ext,
+		ScanSourcePaths:      scanSourcePaths,
+		StrictSourceResolver: strictSourceResolver,
 	}
 }
 
@@ -317,8 +323,15 @@ func (r *Resolver) resolveYamlPath(
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvingStatus.ResolvedFilesCache[filename]; !ok {
 			// check circular reference before resolving the file
-			if checkCircularReference(filepath.Clean(filePath), filename, &resolvingStatus) {
+			if checkCircularReference(filepath.Clean(filePath), onlyFilePath, &resolvingStatus) {
 				return *v, false, false
+			}
+
+			if r.StrictSourceResolver {
+				// avoid path traversal via resolvers trying to access paths outside scan scope
+				if _, err := parserUtils.SanitizePath(r.ScanSourcePaths, onlyFilePath); err != nil {
+					return yaml.Node{}, false, false
+				}
 			}
 
 			ret, isError, canBeCachedFromResolve := r.resolveFile(value, onlyFilePath, resolvingStatus, true)
@@ -491,6 +504,13 @@ func (r *Resolver) resolvePath(
 		if _, ok := resolvingStatus.ResolvedFilesCache[onlyFilePath]; !ok {
 			if checkCircularReference(filepath.Clean(filePath), onlyFilePath, &resolvingStatus) {
 				return value, false, false
+			}
+
+			if r.StrictSourceResolver {
+				// avoid path traversal via resolvers trying to access paths outside scan scope
+				if _, err := parserUtils.SanitizePath(r.ScanSourcePaths, onlyFilePath); err != nil {
+					return value, false, false
+				}
 			}
 
 			ret, isError, canBeCachedFromResolve := r.resolveFile(value, onlyFilePath, resolvingStatus, false)

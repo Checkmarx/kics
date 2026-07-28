@@ -14,9 +14,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/require"
 	"github.com/xeipuuv/gojsonschema"
+
+	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
 var filekey = "file"
@@ -169,7 +170,7 @@ func formatVulnFiles(files []map[string]interface{}) string {
 	for _, f := range files {
 		b, err := json.MarshalIndent(f, "", " ")
 		if err != nil {
-			sb.WriteString(fmt.Sprintf("error formatting file: %v\n", err))
+			sb.WriteString(fmt.Sprintf("error formatting file: %v\n", err)) //nolint:staticcheck
 			continue
 		}
 		sb.WriteString(string(b))

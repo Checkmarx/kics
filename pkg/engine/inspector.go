@@ -230,7 +230,7 @@ func getSimilarityIDTransitionQueryMap(informationPath string) map[string]Transi
 		}
 
 		if filepath.Ext(d.Name()) == ".yaml" || filepath.Ext(d.Name()) == ".yml" {
-			content, err := os.ReadFile(filepath.Clean(path))
+			content, err := os.ReadFile(filepath.Clean(path)) //nolint:gosec
 			if err != nil {
 				log.Error().Msgf("Error reading transition information file %s", d.Name())
 				return err
