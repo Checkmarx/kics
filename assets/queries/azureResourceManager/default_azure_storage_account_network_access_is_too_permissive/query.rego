@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -8,8 +9,8 @@ CxPolicy[result] {
 
 	value.type == "Microsoft.Storage/storageAccounts"
 
-	res1 := publicNetworkAccessEnabled(value.properties)
-    res2 := aclsDefaultActionAllow(value.properties)
+	res1 := publicNetworkAccessEnabled(doc, value.properties)
+    res2 := aclsDefaultActionAllow(doc, value.properties)
 
     issue := prepare_issue(res1, res2)
 
@@ -25,18 +26,48 @@ CxPolicy[result] {
 	}
 }
 
-publicNetworkAccessEnabled(properties) = reason {
+publicNetworkAccessEnabled(doc, properties) = reason {
 	not properties.publicNetworkAccess
     reason := "not defined"
 } else = reason {
+	common_lib.valid_key(properties, "publicNetworkAccess")
+    [publicNetworkAcessFromParams, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.publicNetworkAccess)
+    is_array(publicNetworkAcessFromParams)
+    lower(publicNetworkAcessFromParams[_]) == "enabled"
+    reason := "enabled"
+} else = reason {
+	common_lib.valid_key(properties, "publicNetworkAccess")
+    [publicNetworkAcessFromParams, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.publicNetworkAccess)
+    not is_array(publicNetworkAcessFromParams)
+    lower(publicNetworkAcessFromParams) == "enabled"
+    reason := "enabled"
+} else = reason {
 	properties.publicNetworkAccess
+    not arm_lib.isParameterReference(properties.publicNetworkAccess)
 	lower(properties.publicNetworkAccess) == "enabled"
     reason := "enabled"
 }
 
-aclsDefaultActionAllow(properties) = reason {
-	not properties.networkAcls.defaultAction
+aclsDefaultActionAllow(doc, properties) = reason {
+	not common_lib.valid_key(properties, "networkAcls")
     reason := "not defined"
+} else = reason {
+    common_lib.valid_key(properties, "networkAcls")
+    not common_lib.valid_key(properties.networkAcls, "defaultAction")
+    not arm_lib.isParameterReference(properties.networkAcls)
+    reason := "not defined"
+} else = reason {
+	common_lib.valid_key(properties, "networkAcls")
+    [networkAclsFromParams, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.networkAcls)
+    is_array(networkAclsFromParams)
+    lower(networkAclsFromParams[_].defaultAction) == "allow"
+    reason := "allow"
+} else = reason {
+	common_lib.valid_key(properties, "networkAcls")
+    [networkAclsFromParams, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.networkAcls)
+    not is_array(networkAclsFromParams)
+    lower(networkAclsFromParams.defaultAction) == "allow"
+    reason := "allow"
 } else = reason {
 	properties.networkAcls.defaultAction
     lower(properties.networkAcls.defaultAction) == "allow"
@@ -64,8 +95,8 @@ prepare_issue(val1, val2) = issue {
     val2 == "allow"
     issue := {
     	"kav": "resource with type 'Microsoft.Storage/storageAccounts' networkAcls.defaultAction is set to 'Allow')",
-        "sk": ".properties.networkAcls.defaultAction",
-        "sl": ["properties", "networkAcls", "defaultAction"],
+        "sk": ".properties.networkAcls",
+        "sl": ["properties", "networkAcls"],
         "issueType": "IncorrectValue"
     }
 }
