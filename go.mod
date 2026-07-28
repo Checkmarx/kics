@@ -41,7 +41,7 @@ require (
 	github.com/zclconf/go-cty v1.16.2
 	golang.org/x/exp v0.0.0-20260603202125-055de637280b
 	golang.org/x/net v0.56.0
-	golang.org/x/text v0.39.0
+	golang.org/x/text v0.40.0
 	golang.org/x/tools/godoc v0.1.0-deprecated
 	gopkg.in/yaml.v3 v3.0.1
 	helm.sh/helm/v3 v3.21.2
@@ -246,7 +246,7 @@ require (
 	github.com/yashtewari/glob-intersection v0.2.0 // indirect
 	golang.org/x/crypto v0.53.0 // indirect
 	golang.org/x/oauth2 v0.36.0 // indirect
-	golang.org/x/sync v0.21.0 // indirect
+	golang.org/x/sync v0.22.0 // indirect
 	golang.org/x/sys v0.46.0 // indirect
 	golang.org/x/term v0.44.0 // indirect
 	golang.org/x/time v0.15.0 // indirect
