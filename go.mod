@@ -42,7 +42,6 @@ require (
 	golang.org/x/exp v0.0.0-20260603202125-055de637280b
 	golang.org/x/net v0.55.0
 	golang.org/x/text v0.38.0
-	golang.org/x/tools/godoc v0.1.0-deprecated
 	gopkg.in/yaml.v3 v3.0.1
 	helm.sh/helm/v3 v3.21.2
 	mvdan.cc/sh/v3 v3.11.0
