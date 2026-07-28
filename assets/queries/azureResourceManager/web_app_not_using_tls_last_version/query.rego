@@ -11,7 +11,7 @@ CxPolicy[result] { # resource of type Microsoft.Web/sites without child resource
 	value := site.value
 	path := site.path
 
-	children_array := arm_lib.get_children(doc, value, path)
+	children_array := get_children_ext(doc, value, path)
 
 	count(children_array) == 0
 	not is_last_tls(doc, value)
@@ -38,10 +38,11 @@ CxPolicy[result] {
 	value := site.value
 	path := site.path
 
-	children_array := arm_lib.get_children(doc, value, path)
+	children_array := get_children_ext(doc, value, path)
 	not count(children_array) == 0
 	child_resource := children_array[_]
 	is_sites_config(child_resource.value.type) # is a resource of type Microsoft.Web/sites/config
+	is_web_config_name(child_resource.value.name) # only the 'web' configuration resource
 	child_resource_status := get_child_resource_info(doc, child_resource.value)
 
 	res := check_tls_version(doc, value, path, child_resource, child_resource_status)
@@ -79,6 +80,25 @@ web_site_resources(doc) = result {
 	]
 
 	result := array.concat(array.concat(root_resources, template_resources), nested_resources)
+}
+
+get_children_ext(doc, parent, path) = children {
+	base := arm_lib.get_children(doc, parent, path)
+	extra := format_config_children(doc, parent)
+	children := array.concat(base, extra)
+}
+
+format_config_children(doc, parent) = extra {
+	extra := [{"value": resource, "path": ["resources", idx]} |
+		resource := doc.resources[idx]
+		is_sites_config(resource.type)
+		contains(resource.name, "format(")
+		contains(resource.name, sprintf("'%s'", [parent.name]))
+	]
+}
+
+is_web_config_name(name) {
+	regex.match(`(^|/|')web('|$)`, name)
 }
 
 check_tls_version(doc, value, path, child_resource, child_resource_status) = res {

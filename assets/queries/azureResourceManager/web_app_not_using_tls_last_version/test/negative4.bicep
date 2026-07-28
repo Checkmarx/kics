@@ -4,10 +4,10 @@ resource myAppService 'Microsoft.Web/sites@2022-09-01' = {
   properties: {}
 }
 
-resource myAppService_web 'Microsoft.Web/sites/config@2022-09-01' = {
+resource myApppService_web 'Microsoft.Web/sites/config@2022-09-01' = {
   parent: myAppService
-  name: 'web'
+  name: 'config'
   properties: {
-    minTlsVersion: '1.2'
+    minTlsVersion: '1.1'
   }
 }
