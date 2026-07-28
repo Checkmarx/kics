@@ -2,7 +2,7 @@
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
-    "line": 13,
+    "line": 12,
     "fileName": "positive1.json"
   },
   {
@@ -20,7 +20,25 @@
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
-    "line": 12,
+    "line": 20,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 20,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 11,
     "fileName": "positive1.bicep"
   },
   {
@@ -34,5 +52,23 @@
     "severity": "HIGH",
     "line": 11,
     "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive6.bicep"
   }
 ]
