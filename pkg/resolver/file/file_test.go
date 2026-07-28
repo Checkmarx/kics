@@ -39,7 +39,7 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 		{
 			name: "test",
 			fields: fields{
-				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}, nil, false),
 			},
 			args: args{
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi/responses/_index.yaml"),
@@ -57,7 +57,7 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 		{
 			name: "json test",
 			fields: fields{
-				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}),
+				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}, nil, false),
 			},
 			args: args{
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi_json/openapi.json"),
@@ -76,7 +76,7 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 		{
 			name: "test_serverless",
 			fields: fields{
-				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}, nil, false),
 			},
 			args: args{
 				path: filepath.ToSlash("test/fixtures/unresolved_serverless/serverless.yml"),
@@ -94,7 +94,7 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 		{
 			name: "test_direct_cyclic_reference_with_./_yaml",
 			fields: fields{
-				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}, nil, false),
 			},
 			args: args{
 				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample.yaml"),
@@ -113,7 +113,7 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 		{
 			name: "test_direct_cyclic_reference_with_.\\_yaml",
 			fields: fields{
-				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}, nil, false),
 			},
 			args: args{
 				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample_win.yaml"),
@@ -132,7 +132,7 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 		{
 			name: "test_direct_cyclic_reference_with_./_json",
 			fields: fields{
-				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".json"}),
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".json"}, nil, false),
 			},
 			args: args{
 				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample.json"),
@@ -151,7 +151,7 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 		{
 			name: "test_direct_cyclic_reference_with_.\\_json",
 			fields: fields{
-				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}),
+				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}, nil, false),
 			},
 			args: args{
 				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample_win.json"),
@@ -211,7 +211,7 @@ func TestResolver_Resolve_Ansible_Vars(t *testing.T) {
 		{
 			name: "resolve ansible vars when vars folder is present",
 			fields: fields{
-				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}, nil, false),
 			},
 			args: args{
 				path: filepath.ToSlash("test/fixtures/resolve_ansible_vars_with_vars_folder/main.yml"),
@@ -230,7 +230,7 @@ func TestResolver_Resolve_Ansible_Vars(t *testing.T) {
 		{
 			name: "resolve ansible vars when vars folder is not present",
 			fields: fields{
-				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}, nil, false),
 			},
 			args: args{
 				path: filepath.ToSlash("test/fixtures/resolve_ansible_vars_without_vars_folder/main.yml"),
@@ -326,6 +326,95 @@ func prepareString(content string) string {
 	content = strings.ReplaceAll(content, "\r", "")
 	content = strings.ReplaceAll(content, " ", "")
 	return content
+}
+
+func TestResolver_StrictModeRejectsOutOfBaseRef(t *testing.T) {
+	type setupResult struct {
+		resolver *Resolver
+		mainPath string
+		content  []byte
+	}
+
+	makeYaml := func(t *testing.T, strict bool) setupResult {
+		t.Helper()
+		scanDir := t.TempDir()
+		outsideDir := t.TempDir()
+		t.Cleanup(func() {
+			os.Remove(scanDir)
+			os.Remove(outsideDir)
+		})
+		targetPath := filepath.Join(outsideDir, "target.yaml")
+		require.NoError(t, os.WriteFile(targetPath, []byte("hello: world\n"), 0o600))
+
+		rel, err := filepath.Rel(scanDir, targetPath)
+		require.NoError(t, err)
+		mainContent := []byte(fmt.Sprintf("data:\n  $ref: %q\n", filepath.ToSlash(rel)))
+		mainPath := filepath.Join(scanDir, "main.yaml")
+		require.NoError(t, os.WriteFile(mainPath, mainContent, 0o600))
+
+		return setupResult{
+			resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}, []string{scanDir}, strict),
+			mainPath: mainPath,
+			content:  mainContent,
+		}
+	}
+
+	makeJSON := func(t *testing.T, strict bool) setupResult {
+		t.Helper()
+		scanDir := t.TempDir()
+		outsideDir := t.TempDir()
+		t.Cleanup(func() {
+			os.Remove(scanDir)
+			os.Remove(outsideDir)
+		})
+		targetPath := filepath.Join(outsideDir, "target.json")
+		require.NoError(t, os.WriteFile(targetPath, []byte(`{"hello":"world"}`), 0o600))
+
+		rel, err := filepath.Rel(scanDir, targetPath)
+		require.NoError(t, err)
+		mainContent := []byte(fmt.Sprintf(`{"data":{"$ref":%q}}`, filepath.ToSlash(rel)))
+		mainPath := filepath.Join(scanDir, "main.json")
+		require.NoError(t, os.WriteFile(mainPath, mainContent, 0o600))
+
+		return setupResult{
+			resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}, []string{scanDir}, strict),
+			mainPath: mainPath,
+			content:  mainContent,
+		}
+	}
+
+	status := func() ResolvingStatus {
+		return ResolvingStatus{
+			CurrentDepth:          0,
+			MaxDepth:              15,
+			ResolvedFilesCache:    make(map[string]ResolvedFile),
+			CurrentResolutionPath: []string{},
+			ResolveReferences:     true,
+		}
+	}
+
+	tests := []struct {
+		name  string
+		setup func(t *testing.T, strict bool) setupResult
+	}{
+		{name: "yaml branch", setup: makeYaml},
+		{name: "json branch", setup: makeJSON},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name+" / strict rejects", func(t *testing.T) {
+			s := tc.setup(t, true)
+			s.resolver.Resolve(s.content, s.mainPath, status())
+			require.Empty(t, s.resolver.ResolvedFiles,
+				"strict mode must not resolve $ref pointing outside scan source paths")
+		})
+		t.Run(tc.name+" / non-strict resolves", func(t *testing.T) {
+			s := tc.setup(t, false)
+			s.resolver.Resolve(s.content, s.mainPath, status())
+			require.NotEmpty(t, s.resolver.ResolvedFiles,
+				"non-strict mode should resolve the same $ref (control case)")
+		})
+	}
 }
 
 func Test_checkCircularReference(t *testing.T) {

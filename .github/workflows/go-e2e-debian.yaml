@@ -4,8 +4,14 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+
 jobs:
   e2e-tests:
+    permissions:
+      actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
+      contents: read  # for docker/build-push-action to read repo content
     name: e2e-tests-${{ matrix.config.tag_suffix }}
     strategy:
       fail-fast: false
@@ -27,7 +33,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Check out code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
       - name: Set up Go
@@ -42,6 +48,9 @@ jobs:
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f #v6.3.0
         with:
           node-version: "20"
+      - name: Lint lockfile
+        run: npx --yes lockfile-lint --path package-lock.json --type npm --allowed-hosts npm
+        working-directory: .github/scripts/server-mock
       - name: Install mock server
         run: npm ci
         working-directory: .github/scripts/server-mock
@@ -50,7 +59,7 @@ jobs:
         working-directory: .github/scripts/server-mock
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3.11.1
+        uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Cache Docker layers
         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
         with:
@@ -66,7 +75,7 @@ jobs:
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
       - name: Build
         id: docker_build
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           load: true
           context: ./
