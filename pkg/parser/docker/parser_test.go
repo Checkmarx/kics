@@ -216,6 +216,26 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 	}
 }
 
+// TestParser_Parse_DuplicateFROM tests that two FROM statements referencing the same image
+// produce two distinct command groups in the parsed output
+func TestParser_Parse_DuplicateFROM(t *testing.T) {
+	p := &Parser{}
+	sample := `FROM alpine:3.14
+RUN echo "stage1"
+FROM alpine:3.14
+RUN echo "stage2"
+`
+	doc, _, err := p.Parse("Dockerfile", []byte(sample))
+	require.NoError(t, err)
+	require.Len(t, doc, 1)
+
+	commands := doc[0]["command"].(map[string]interface{})
+
+	require.Len(t, commands, 2)
+	require.Contains(t, commands, "alpine:3.14")
+	require.Contains(t, commands, "alpine:3.14(1)")
+}
+
 func TestParser_GetResolvedFiles(t *testing.T) {
 	tests := []struct {
 		name string
