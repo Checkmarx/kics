@@ -11,7 +11,6 @@ import (
 	"time"
 
 	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
-	// "github.com/Checkmarx/kics/v2/pkg/descriptions"
 	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
