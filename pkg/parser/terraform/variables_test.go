@@ -198,7 +198,7 @@ func TestGetInputVariables(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			fileContent, _ := os.ReadFile(tt.filename)
-			getInputVariables(tt.filename, string(fileContent), "../../../test/fixtures/test_terraform_variables/varsToUse/varsToUse.tf")
+			getInputVariables(tt.filename, string(fileContent), "../../../test/fixtures/test_terraform_variables/varsToUse/varsToUse.tf", nil, false)
 			require.Equal(t, tt.want, inputVariableMap)
 		})
 	}
@@ -276,6 +276,29 @@ func TestBuildVariablesForDirectory(t *testing.T) {
 	})
 }
 
+func TestGetInputVariables_StrictResolverRejectsUnsafeVarsPath(t *testing.T) {
+	variableCache = make(map[string]converter.VariableMap)
+	inputVariableMap = make(converter.VariableMap)
+	t.Cleanup(func() {
+		variableCache = make(map[string]converter.VariableMap)
+		inputVariableMap = make(converter.VariableMap)
+	})
+
+	dir := t.TempDir()
+	// Embed an out-of-base path via the kics_terraform_vars comment.
+	fileContent := "// kics_terraform_vars: /etc/passwd\n"
+
+	getInputVariables(dir, fileContent, "", []string{dir}, true)
+
+	// terraformVarsPath must not have been adopted, so the cache key should
+	// be the bare directory (no "|<unsafe>" suffix).
+	require.Contains(t, variableCache, dir, "expected cache to contain bare directory key")
+	for key := range variableCache {
+		require.NotContains(t, key, "passwd",
+			"unsafe path must not appear in cache key %q", key)
+	}
+}
+
 func TestGetInputVariables_Caching(t *testing.T) {
 	tests := []struct {
 		name             string
@@ -307,7 +330,7 @@ func TestGetInputVariables_Caching(t *testing.T) {
 
 			fileContent1, err := os.ReadFile(filepath.Join(tt.firstCallPath, "test.tf"))
 			require.NoError(t, err)
-			getInputVariables(tt.firstCallPath, string(fileContent1), "")
+			getInputVariables(tt.firstCallPath, string(fileContent1), "", nil, false)
 
 			cacheSize := len(variableCache)
 			require.Equal(t, 1, cacheSize, "cache should have one entry after first call")
@@ -317,7 +340,7 @@ func TestGetInputVariables_Caching(t *testing.T) {
 				fileContent2, err = os.ReadFile(filepath.Join(tt.secondCallPath, "varsToUse.tf"))
 			}
 			require.NoError(t, err)
-			getInputVariables(tt.secondCallPath, string(fileContent2), "")
+			getInputVariables(tt.secondCallPath, string(fileContent2), "", nil, false)
 
 			if tt.shouldUseCache {
 				require.Equal(t, cacheSize, len(variableCache), "cache size should not change when reusing cache")

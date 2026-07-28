@@ -435,9 +435,10 @@ func TestYaml_processElements(t *testing.T) {
 		},
 	}
 
+	parser := &Parser{}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			processElements(tt.args.elements, tt.args.filePath)
+			parser.processElements(tt.args.elements, tt.args.filePath)
 			if tt.wantErr {
 				require.Error(t, errors.New("Failed to parse certificate: ..\\..\\..\\test\\fixtures\\test_certificate\\certificate.pem"))
 			} else {

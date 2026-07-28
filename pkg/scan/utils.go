@@ -8,14 +8,15 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
+
 	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
 	"github.com/Checkmarx/kics/v2/pkg/analyzer"
 	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 )
 
 var (
@@ -213,8 +214,12 @@ func deleteExtractionFolder(extractionMap map[string]model.ExtractedPathObject) 
 		if strings.Contains(extractionFile, "kics-extract-kuberneter") {
 			continue
 		}
-		err := os.RemoveAll(extractionFile)
-		if err != nil {
+		// remove parent if it matches kics temp folder pattern
+		target := extractionFile
+		if parent := filepath.Dir(extractionFile); strings.HasPrefix(filepath.Base(parent), "kics-extract-") {
+			target = parent
+		}
+		if err := os.RemoveAll(target); err != nil {
 			log.Err(err).Msg("Failed to delete KICS extraction folder")
 		}
 	}

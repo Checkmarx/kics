@@ -63,6 +63,29 @@ SET "E2E_KICS_DOCKER=kics:e2e-tests" (or set the variable using environment vari
 go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
 ```
 
+## Running Selected Tests (optional)
+
+Selecting a subset of E2E test cases is fully **optional** — by default, every registered test runs as before. To narrow the run, set the `E2E_TESTS` environment variable to a comma-separated list of test IDs.
+
+Each entry may be the numeric id (`106`), the full id (`E2E-CLI-106`), or the bracketed form (`[E2E-CLI-106]`) — they are all normalized to the `[E2E-CLI-NNN]` tag carried in the test case `Name`. Cases whose name does not contain any of the selected tags are silently skipped (they are not registered as subtests). When the env var is unset or blank, no filter is applied.
+
+Run a single test:
+```bash
+E2E_TESTS=106 go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
+```
+
+Run multiple tests:
+```bash
+E2E_TESTS=071,094,106 go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
+```
+
+Run selected tests in a Docker run (CI):
+```bash
+E2E_KICS_DOCKER=kics:e2e-tests E2E_TESTS=106 go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
+```
+
+You can combine `E2E_TESTS` with Go's built-in `-run` flag if you need a finer match — `E2E_TESTS` filters at the test-case level, while `-run` matches the rendered subtest name (e.g. `_0`, `_1`).
+
 ## Test Structure
 
 Test case main structure 
