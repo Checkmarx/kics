@@ -5,16 +5,16 @@
     {
       "type": "Microsoft.Web/sites",
       "apiVersion": "2022-09-01",
-      "name": "meuAppService",
+      "name": "myAppService",
       "location": "West Europe",
       "properties": {}
     },
     {
       "type": "Microsoft.Web/sites/config",
       "apiVersion": "2022-09-01",
-      "name": "meuAppService/web",
+      "name": "myAppService/web",
       "dependsOn": [
-        "Microsoft.Web/sites/meuAppService"
+        "Microsoft.Web/sites/myAppService"
       ],
       "properties": {
         "minTlsVersion": "1.2"
