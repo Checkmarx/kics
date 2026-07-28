@@ -22,5 +22,29 @@
     "severity": "MEDIUM",
     "line": 18,
     "filename": "positive1.dockerfile"
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive2.dockerfile"
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.dockerfile"
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive3.dockerfile"
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 3,
+    "filename": "positive4.dockerfile"
   }
 ]
