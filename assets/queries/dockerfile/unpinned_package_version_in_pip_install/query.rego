@@ -15,13 +15,22 @@ CxPolicy[result] {
 	yum != null
 
 	packages = dockerLib.getPackages(commands, yum)
-    refactorPackages = [ x | x := packages[_]; x != ""]
-    length := count(refactorPackages)
+	refactorPackages = [ x | x := packages[_]; x != ""]
 
 	count({x | x := refactorPackages[_]; x == flags[_]}) == 0
 
+	cleanPackages = [ p |
+		some k
+		p := refactorPackages[k]
+		not startswith(p, "-")
+		not contains(p, "://")
+		not contains(p, "/")
+		not isFlagArgument(refactorPackages, k)
+	]
+	length := count(cleanPackages)
+
 	some j
-	analyzePackages(j, refactorPackages[j], packages, length)
+	analyzePackages(j, cleanPackages[j], cleanPackages, length)
 
 	stage := input.document[i].command[name]
 	from_command := dockerLib.get_original_from_command(stage)
@@ -45,6 +54,10 @@ CxPolicy[result] {
 	resource.Value[j] != "install"
 	resource.Value[j] != "pip"
 	resource.Value[j] != "pip3"
+
+	not contains(resource.Value[j], "://")
+	not contains(resource.Value[j], "/")
+	not isFlagArgument(resource.Value, j)
 
 	regex.match("^[a-zA-Z]", resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
@@ -77,4 +90,11 @@ analyzePackages(j, currentPackage, packages, length) {
 	regex.match("^[a-zA-Z]", currentPackage) == true
 	packages[plus(j, 1)] != "-v"
 	not dockerLib.withVersion(currentPackage)
+}
+
+isFlagArgument(arr, k) {
+	k > 0
+	regex.match("^-", arr[k - 1])
+	not startswith(arr[k], "-")
+	regex.match(`[.:/]`, arr[k])
 }

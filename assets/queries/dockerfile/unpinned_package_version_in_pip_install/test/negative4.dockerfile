@@ -1,20 +1,12 @@
-from alpine:3.4
-run apk add --update py-pip=7.1.2-r0
-run sudo pip install --upgrade pip=20.3 connexion=2.7.0
-copy requirements.txt /usr/src/app/
-run pip install --no-cache-dir -r /usr/src/app/requirements.txt
-copy app.py /usr/src/app/
-copy templates/index.html /usr/src/app/templates/
-expose 5000
-cmd ["python", "/usr/src/app/app.py"]
+FROM python:3.12-slim
 
-from alpine:3.1
-run apk add py-pip=7.1.2-r0
-run sudo pip install --upgrade pip=20.3 connexion=2.7.0
-copy requirements.txt /usr/src/app/
-run pip install --no-cache-dir -r /usr/src/app/requirements.txt
-run pip3 install requests=2.7.0
-copy app.py /usr/src/app/
-copy templates/index.html /usr/src/app/templates/
-expose 5000
-cmd ["python", "/usr/src/app/app.py"]
+RUN pip install \
+    --no-cache-dir \
+    --index-url https://example.com/simple \
+    --trusted-host example.com \
+    requests==2.28.0 \
+    flask==2.3.0
+
+FROM python:3.11-slim
+
+RUN pip3 install --no-cache-dir --index-url https://example.com/simple --trusted-host example.com numpy==1.24.0
