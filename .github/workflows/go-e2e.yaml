@@ -49,7 +49,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Check out code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
       - name: Set up Go
@@ -64,6 +64,9 @@ jobs:
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f #v6.3.0
         with:
           node-version: "20"
+      - name: Lint lockfile
+        run: npx --yes lockfile-lint --path package-lock.json --type npm --allowed-hosts npm
+        working-directory: .github/scripts/server-mock
       - name: Install mock server
         run: npm ci
         working-directory: .github/scripts/server-mock
