@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource.Cmd == "from"
 	not resource.Value[0] == "scratch"
 
-	versionNotExplicit(resource.Value,resource.EndLine)
+	versionNotExplicit(resource.Value,resource.EndLine,i)
 
 	stage := input.document[i].command[name]
 	from_command := dockerLib.get_original_from_command(stage)
@@ -20,14 +20,14 @@ CxPolicy[result] {
 	}
 }
 
-versionNotExplicit(cmd,line) {
+versionNotExplicit(cmd,line,i) {
 	count(cmd) == 1
 	regex.match("^\\$[{}A-z0-9-_+].*", cmd[0]) == false
 	not contains(cmd[0], ":")
     count([x | x := input.document[i].command[name][_]; x.EndLine < line; build_name_exists(x, cmd[0])]) == 0
 }
 
-versionNotExplicit(cmd,_) {
+versionNotExplicit(cmd,_,i) {
 	count(cmd) == 1
 	regex.match("^\\$[{}A-z0-9-_+].*", cmd[0]) == true
 
@@ -44,11 +44,11 @@ versionNotExplicit(cmd,_) {
 	not contains(resource.Value[0], ":")
 }
 
-versionNotExplicit(cmd,line) {
+versionNotExplicit(cmd,line,i) {
 	count(cmd) > 1
 
 	not contains(cmd[0], ":")
-    count([x | x := input.document[i].command[name][_]; input.document[i].command[name][_].EndLine < line; build_name_exists(x, cmd[0])]) == 0
+    count([x | x := input.document[i].command[name][_]; x.EndLine < line; build_name_exists(x, cmd[0])]) == 0
 }
 
 build_name_exists(resource, build_name){

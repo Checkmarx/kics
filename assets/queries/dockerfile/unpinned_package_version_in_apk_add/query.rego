@@ -122,7 +122,7 @@ CxPolicy[result] {
 	}
 }
 
-analyzePackages(j, currentPackage, packages, length) {
+analyzePackages(j, currentPackage, _, length) {
 	j == length - 1
 	regex.match("^[a-zA-Z]", currentPackage)
 	not dockerLib.withVersion(currentPackage)
