@@ -9,9 +9,10 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/stretchr/testify/require"
+
 	"github.com/Checkmarx/kics/v2/e2e/testcases"
 	"github.com/Checkmarx/kics/v2/e2e/utils"
-	"github.com/stretchr/testify/require"
 )
 
 func Test_E2E_CLI(t *testing.T) {
@@ -38,7 +39,12 @@ func Test_E2E_CLI(t *testing.T) {
 
 	templates := prepareTemplates()
 
+	selectedIDs := parseSelectedTestIDs(os.Getenv("E2E_TESTS"))
+
 	for _, tt := range testcases.Tests {
+		if !matchesSelectedTestIDs(tt.Name, selectedIDs) {
+			continue
+		}
 		for arg := range tt.Args.Args {
 			tt := tt
 			arg := arg
@@ -55,7 +61,7 @@ func Test_E2E_CLI(t *testing.T) {
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
 
-				// Check exit status code (required) 
+				// Check exit status code (required)
 				require.True(t, arg < len(tt.WantStatus),
 					"No status code associated to this test. Check the wantStatus of the test case.")
 
@@ -139,7 +145,7 @@ func checkExpectedAnalyzerResults(t *testing.T, tt *testcases.TestCase, argIndex
 	if _, err := os.Stat(filepath.Join("fixtures", jsonFileName)); err == nil {
 		utils.FileCheck(t, jsonFileName, jsonFileName, "result_analyze")
 	}
-	
+
 	utils.JSONSchemaValidationFromFile(t, jsonFileName, "result-analyzer.json")
 }
 
@@ -259,6 +265,47 @@ func loadTemplates(lines []string, templates testcases.TestTemplates) []string {
 	builder = nil
 
 	return strings.Split(t, "\n")
+}
+
+// parseSelectedTestIDs reads the E2E_TESTS env var and returns the set of
+// `[E2E-CLI-NNN]` tags to keep. Each comma-separated entry may be just the
+// numeric id ("106"), the full id ("E2E-CLI-106"), or already bracketed
+// ("[E2E-CLI-106]"). An empty/blank input returns nil, meaning "no filter".
+func parseSelectedTestIDs(raw string) map[string]struct{} {
+	raw = strings.TrimSpace(raw)
+	if raw == "" {
+		return nil
+	}
+	ids := make(map[string]struct{})
+	for _, entry := range strings.Split(raw, ",") {
+		entry = strings.TrimSpace(entry)
+		entry = strings.Trim(entry, "[]")
+		if entry == "" {
+			continue
+		}
+		if !strings.HasPrefix(entry, "E2E-CLI-") {
+			entry = "E2E-CLI-" + entry
+		}
+		ids["["+entry+"]"] = struct{}{}
+	}
+	if len(ids) == 0 {
+		return nil
+	}
+	return ids
+}
+
+// matchesSelectedTestIDs returns true when the filter is empty or the test
+// name contains one of the selected `[E2E-CLI-NNN]` tags.
+func matchesSelectedTestIDs(testName string, selected map[string]struct{}) bool {
+	if selected == nil {
+		return true
+	}
+	for tag := range selected {
+		if strings.Contains(testName, tag) {
+			return true
+		}
+	}
+	return false
 }
 
 func printTestDetails(output []string) {

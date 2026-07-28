@@ -4,12 +4,13 @@ import (
 	"context"
 	"time"
 
+	"github.com/rs/zerolog/log"
+
 	"github.com/Checkmarx/kics/v2/internal/storage"
 	"github.com/Checkmarx/kics/v2/internal/tracker"
 	"github.com/Checkmarx/kics/v2/pkg/descriptions"
 	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
 	"github.com/Checkmarx/kics/v2/pkg/progress"
-	"github.com/rs/zerolog/log"
 )
 
 // Parameters represents all available scan parameters
@@ -50,6 +51,7 @@ type Parameters struct {
 	UseOldSeverities            bool
 	MaxResolverDepth            int
 	KicsComputeNewSimID         bool
+	StrictSourceResolution      bool
 }
 
 // Client represents a scan client
