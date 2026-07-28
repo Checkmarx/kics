@@ -1,0 +1,14 @@
+name: Push Commits Author Name Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  process_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Commits Author Name
+        run: |
+          echo "Commit author: ${{ github.event.commits[0].author.name }}"
