@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"runtime"
 	"testing"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
@@ -629,6 +630,9 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 
 // TestFileSystemSourceProvider_AddExcluded tests the functions [AddExcluded()] and all the methods called by them
 func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
+	if runtime.GOOS == "windows" {
+		t.Skip("skipping test on Windows")
+	}
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Errorf("failed to change dir: %s", err)
 	}
