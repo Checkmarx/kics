@@ -1,7 +1,8 @@
-resource "google_sql_database_instance" "negative1" {
+resource "google_sql_database_instance" "negative1_1" {   # legacy support (terraform version < 6.0.1)
   provider = google-beta
 
   name   = "private-instance-${random_id.db_name_suffix.hex}"
+  database_version = "POSTGRES_15"
   region = "us-central1"
 
   depends_on = [google_service_networking_connection.private_vpc_connection]
@@ -11,7 +12,7 @@ resource "google_sql_database_instance" "negative1" {
     ip_configuration {
       ipv4_enabled    = false
       private_network = google_compute_network.private_network.id
-	  require_ssl 	  = true
+	    require_ssl 	  = true
     }
   }
 }
