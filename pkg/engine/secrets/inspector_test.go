@@ -3,8 +3,11 @@ package secrets
 import (
 	"context"
 	"path/filepath"
+	"strings"
 	"sync"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 
 	"github.com/Checkmarx/kics/v2/assets"
 	"github.com/Checkmarx/kics/v2/internal/tracker"
@@ -12,7 +15,6 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/progress"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/stretchr/testify/require"
 )
 
 var testCompileRegexesInput = []struct {
@@ -812,4 +814,31 @@ func TestInspect(t *testing.T) {
 			}()
 		}()
 	}
+}
+
+func TestSecretsDetectLine_MultilineMatchAtEndDoesNotPanic(t *testing.T) {
+	// Regression test for CWE-129: when the DetectLineGroup capture spans newlines
+	// at the end of the file, removing it makes contentMatchRemovedLines shorter
+	// than lines, and all remaining elements are equal empty strings, so the
+	// comparison loop reaches i == len(contentMatchRemovedLines) and panics OOB.
+	//
+	// Trigger: content = "A\n\n", groups[1] = "\n"
+	//   lines                    = ["A", "", ""]  (3 elements)
+	//   contentMatchRemovedLines = ["A", ""]      (2 elements)
+	//   loop i=0: "A"=="A" equal; i=1: ""=="" equal; i=2: OOB
+	content := "A\n\n"
+	c := &Inspector{mu: sync.RWMutex{}}
+	file := &model.FileMetadata{
+		OriginalData:      content,
+		LinesOriginalData: new(strings.Split(content, "\n")),
+	}
+	query := &RegexQuery{
+		Multiline: MultilineResult{DetectLineGroup: 1},
+	}
+	// groups[1] = "\n": a newline captured at the end of the file content.
+	vulnGroups := [][]string{{"full match", "\n"}}
+
+	require.NotPanics(t, func() {
+		c.secretsDetectLine(query, file, vulnGroups)
+	})
 }

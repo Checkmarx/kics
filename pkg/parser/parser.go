@@ -6,9 +6,10 @@ import (
 	"os"
 	"strings"
 
+	"github.com/rs/zerolog/log"
+
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/rs/zerolog/log"
 )
 
 type kindParser interface {
