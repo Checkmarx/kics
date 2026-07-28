@@ -9,12 +9,12 @@
       "functions": [],
       "resources": [
         {
-          "name": "webSiteNegative3",
+          "name": "webSiteNegative6",
           "type": "Microsoft.Web/sites",
           "apiVersion": "2019-08-01",
           "location": "location1",
           "identity": {
-            "type": "SystemAssigned"
+            "type": "SystemAssigned, UserAssigned"
           },
           "tags": {},
           "properties": {
