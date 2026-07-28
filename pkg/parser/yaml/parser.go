@@ -15,13 +15,15 @@ import (
 
 // Parser defines a parser type
 type Parser struct {
-	resolvedFiles map[string]model.ResolvedFile
+	resolvedFiles        map[string]model.ResolvedFile
+	ScanSourcePaths      []string
+	StrictSourceResolver bool
 }
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string, resolveReferences bool, maxResolverDepth int) ([]byte, error) {
 	// Resolve files passed as arguments with file resolver (e.g. file://)
-	res := file.NewResolver(yaml.Unmarshal, yaml.Marshal, p.SupportedExtensions())
+	res := file.NewResolver(yaml.Unmarshal, yaml.Marshal, p.SupportedExtensions(), p.ScanSourcePaths, p.StrictSourceResolver)
 	initialResolvingStatus := file.ResolvingStatus{
 		CurrentDepth:       0,
 		MaxDepth:           maxResolverDepth,
@@ -58,7 +60,7 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 
 	linesToIgnore := model.NewIgnore.GetLines()
 
-	return convertKeysToString(addExtraInfo(documents, filePath)), linesToIgnore, nil
+	return convertKeysToString(p.addExtraInfo(documents, filePath)), linesToIgnore, nil
 }
 
 // convertKeysToString goes through every document to convert map[interface{}]interface{}
@@ -125,49 +127,49 @@ func (p *Parser) GetKind() model.FileKind {
 	return model.KindYAML
 }
 
-func processCertContent(elements map[string]interface{}, content, filePath string) {
+func (p *Parser) processCertContent(elements map[string]interface{}, content, filePath string) {
 	var certInfo map[string]interface{}
 	if content != "" {
-		certInfo = utils.AddCertificateInfo(filePath, content)
+		certInfo = utils.AddCertificateInfo(filePath, content, p.ScanSourcePaths, p.StrictSourceResolver)
 		if certInfo != nil {
 			elements["certificate"] = certInfo
 		}
 	}
 }
 
-func processElements(elements map[string]interface{}, filePath string) {
+func (p *Parser) processElements(elements map[string]interface{}, filePath string) {
 	if elements["certificate"] != nil {
 		certificate, ok := elements["certificate"].(string)
 		if !ok {
 			log.Warn().Msgf("Failed to parse certificate: %s", filePath)
 			return
 		}
-		processCertContent(elements, utils.CheckCertificate(certificate), filePath)
+		p.processCertContent(elements, utils.CheckCertificate(certificate), filePath)
 	}
 }
 
-func addExtraInfo(documents []model.Document, filePath string) []model.Document {
+func (p *Parser) addExtraInfo(documents []model.Document, filePath string) []model.Document {
 	for _, documentPlaybooks := range documents { // iterate over documents
 		if playbooks, ok := documentPlaybooks["playbooks"]; ok {
-			processPlaybooks(playbooks, filePath)
+			p.processPlaybooks(playbooks, filePath)
 		}
 	}
 
 	return documents
 }
 
-func processPlaybooks(playbooks interface{}, filePath string) {
+func (p *Parser) processPlaybooks(playbooks interface{}, filePath string) {
 	sliceResources, ok := playbooks.([]interface{})
 	if !ok { // prevent panic if playbooks is not a slice
 		log.Warn().Msgf("Failed to parse playbooks: %s", filePath)
 		return
 	}
 	for _, resources := range sliceResources { // iterate over playbooks
-		processPlaybooksElements(resources, filePath)
+		p.processPlaybooksElements(resources, filePath)
 	}
 }
 
-func processPlaybooksElements(resources interface{}, filePath string) {
+func (p *Parser) processPlaybooksElements(resources interface{}, filePath string) {
 	mapResources, ok := resources.(map[string]interface{})
 	if !ok {
 		log.Warn().Msgf("Failed to parse playbooks elements: %s", filePath)
@@ -178,7 +180,7 @@ func processPlaybooksElements(resources interface{}, filePath string) {
 		if !ok {
 			continue
 		}
-		processElements(mapValue, filePath)
+		p.processElements(mapValue, filePath)
 	}
 }
 

@@ -1,0 +1,78 @@
+{
+	"document": [
+		{
+      "file": "file",
+      "id": "0",
+			"resource": {
+				"aws_instance": {
+					"example": {
+						"ami": "ami-0c55b159cbfafe1f0",
+						"instance_type": "t2.micro"
+					}
+				}
+			},
+			"variable": {
+				"instance_type": {
+					"default": "t2.micro",
+					"type": "${string}"
+				}
+			}
+		},
+		{
+      "file": "file",
+      "id": "0",
+			"info": {
+				"title": "strict-source-resolution test",
+				"version": "1.0.0"
+			},
+			"openapi": "3.0.0",
+			"paths": {
+				"/pets": {
+					"get": {
+						"responses": {
+							"200": {
+								"content": {
+									"application/json": {
+										"schema": {
+											"$ref": "../leaked/external-schema.yaml"
+										}
+									}
+								},
+								"description": "ok"
+							}
+						},
+						"summary": "list pets"
+					}
+				}
+			}
+		},
+		{
+      "file": "file",
+      "id": "0",
+			"info": {
+				"title": "strict-source-resolution test (json)",
+				"version": "1.0.0"
+			},
+			"openapi": "3.0.0",
+			"paths": {
+				"/pets": {
+					"get": {
+						"responses": {
+							"200": {
+								"content": {
+									"application/json": {
+										"schema": {
+											"$ref": "../leaked/external-schema.json"
+										}
+									}
+								},
+								"description": "ok"
+							}
+						},
+						"summary": "list pets"
+					}
+				}
+			}
+		}
+	]
+}

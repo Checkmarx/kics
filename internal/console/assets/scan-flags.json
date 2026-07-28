@@ -241,5 +241,11 @@
     "defaultValue": "false",
     "usage": "calculate old similarity id in query results",
     "hidden": true
+  },
+  "strict-source-resolution": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "disable resolution of source files that are not part of the provided scan paths"
   }
 }
