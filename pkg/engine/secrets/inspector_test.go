@@ -262,6 +262,34 @@ var OriginalData7 = `# kics-scan disable=baee238e-1921-4801-9c3f-79ae1d7b2cbc
 	register: result
 `
 
+var OriginalData8 = `
+  syntax = "proto3";
+
+  package com.example.security_test.v1;
+
+  import "google/protobuf/wrappers.proto";
+
+  message ResultsThatFlag {
+    google.protobuf.StringValue refresh_token = 536870911; // if value is larger - out of range error "Field numbers cannot be greater than 536870911."  - Generic Token
+    google.protobuf.StringValue access_token= 1;                                    // Generic Token
+    google.protobuf.StringValue id_token = 3;                                        // Generic Token
+    google.protobuf.StringValue    bearer_toaken = 4;;;                              // Generic Token
+    google.protobuf.StringValue api_token = 7   ;                                    // Generic Token
+    google.protobuf.StringValue token = 8;                                           // Generic Token
+    google.protobuf.StringValue sonar_token = 39;google.protobuf.StringValue codecov_token = 40;// trailing comment test - Generic Token
+    google.protobuf.StringValue jwt_private_key = 25;                                // Generic Private Key
+    google.protobuf.StringValue ssh_private_key = 26;                                // Generic Private Key
+    google.protobuf.StringValue tls_private_key = 27;                                // Generic Private Key
+    google.protobuf.StringValue sp_private_key = 6;                                  // Generic Private Key
+    google.protobuf.StringValue encryption_key = 22;                                 // Encryption Key
+    google.protobuf.StringValue data_encryption_key= 23   ;                         // Encryption Key
+    google.protobuf.StringValue key_encryption_key=24;                             // Encryption Key
+    google.protobuf.StringValue registry_password =    104;                             // Generic Password
+    google.protobuf.StringValue artifactory_password   = 107  ;                        // Generic Password
+    google.protobuf.StringValue nexus_password = 108;                                // Generic Password
+    string password =          64;                                                   // Generic Password
+`
+
 var testInspectInput = []struct {
 	name     string
 	files    model.FileMetadatas
@@ -415,6 +443,21 @@ var testInspectInput = []struct {
 				LinesOriginalData: utils.SplitLines(OriginalData7),
 				Kind:              "ANS",
 				FilePath:          "assets/queries/common/passwords_and_secrets/test/positive28.yaml",
+			},
+		},
+		wantVuln: []model.Vulnerability{},
+		wantErr:  false,
+	},
+	{
+		name: "valid_no_results",
+		files: model.FileMetadatas{
+			{
+				ID:                "a6fbadc6-da29-4340-8d56-aa26a8852526",
+				Document:          model.Document{},
+				OriginalData:      OriginalData8,
+				LinesOriginalData: utils.SplitLines(OriginalData8),
+				Kind:              "PROTO",
+				FilePath:          "assets/queries/common/passwords_and_secrets/test/negative60.proto",
 			},
 		},
 		wantVuln: []model.Vulnerability{},
