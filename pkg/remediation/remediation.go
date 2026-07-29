@@ -68,6 +68,10 @@ func (s *Summary) RemediateFile(
 		originalFileName = filePath
 	}
 
+	if originalFileName == "" {
+		originalFileName = filePath
+	}
+
 	if err != nil {
 		log.Error().Msgf("failed to read file: %s", err)
 		return err
