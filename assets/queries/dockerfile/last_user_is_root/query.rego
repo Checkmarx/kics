@@ -7,7 +7,7 @@ CxPolicy[result] {
 	dockerLib.check_multi_stage(name, input.document[i].command)
 
 	userCmd := [x | resource[j].Cmd == "user"; x := resource[j]]
-	userCmd[minus(count(userCmd), 1)].Value[0] == "root"
+	userCmd[minus(count(userCmd), 1)].Value[0] == ["root","0","root:root","0:0"][_]
 
 	result := {
 		"documentId": input.document[i].id,
