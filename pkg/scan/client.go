@@ -24,7 +24,6 @@ var versionHTTPClient = &http.Client{
 // Parameters represents all available scan parameters
 type Parameters struct {
 	CloudProvider               []string
-	DisableFullDesc             bool
 	ExcludeCategories           []string
 	ExcludePaths                []string
 	ExcludeQueries              []string
@@ -105,7 +104,7 @@ func CheckVersion(t *tracker.CITracker) {
 		return
 	}
 
-	resp, err := versionHTTPClient.Get("https://api.github.com/repos/Checkmarx/kics/releases/latest")
+	resp, err := versionHTTPClient.Get(constants.GitHubReleasesURL)
 	
 	if err != nil {
 		t.TrackVersion(baseVersionInfo)

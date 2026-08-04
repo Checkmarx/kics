@@ -41,9 +41,7 @@ func Test_GetSummary(t *testing.T) {
 					LatestVersionTag: "Dev",
 				},
 			},
-			scanParameters: Parameters{
-				DisableFullDesc: false,
-			},
+			scanParameters: Parameters{},
 			results: []model.Vulnerability{
 				{
 					ScanID:       "console",
