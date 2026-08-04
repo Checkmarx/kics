@@ -1,5 +1,5 @@
-ARG GO_BASE_IMAGE=checkmarx/go:1.26.4@sha256:9e7f3dd6ceeb3252b7dd844a6152f43518aa7a7c21ff196525cd45a0a8fdbfba
-ARG GIT_BASE_IMAGE=checkmarx/git:2.55.0@sha256:c1d0c185d7ad77c99c1c9323770220c449cba6a6065dd3a78a8fa8794da5741f
+ARG GO_BASE_IMAGE=checkmarx/go:1.26.4@sha256:cb8702a93db4a4b07da9c6e6e93bf412091e7b121b6ade95aa4228ec5fae4301
+ARG GIT_BASE_IMAGE=checkmarx/git:2.55.0@sha256:25f9c40d0991aeb3fab4f68bc8b96e9af819ebf3bcd2d882eb1f735a03485967
 FROM ${GO_BASE_IMAGE} AS build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
