@@ -1,12 +1,12 @@
 {
-  "id": "8221c5b3-0031-4233-a9a2-08ec4cd20ced",
+  "id": "cb76b715-5dbf-44a7-b3c6-486cd1e066f4",
   "queryName": "Synapse Workspace Managed Virtual Network Not Enabled",
   "severity": "",
   "category": "Networking and Firewall",
   "descriptionText": "Azure Synapse workspaces should have Managed Virtual Network enabled",
-  "descriptionUrl": "https://learn.microsoft.com/en-us/azure/templates/microsoft.synapse/workspaces?pivots=deployment-language-bicep#workspaceproperties",
-  "platform": "AzureResourceManager",
-  "descriptionID": "8221c5b3",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_workspace#managed_virtual_network_enabled",
+  "platform": "Terraform",
+  "descriptionID": "cb76b715",
   "cloudProvider": "azure",
   "cwe": "732",
   "riskScore": ""
