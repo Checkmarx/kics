@@ -18,11 +18,11 @@ jobs:
       matrix:
         go-version: [1.26.x]
         config:
-          - os: ubuntu-latest
+          - os: cx-public-ubuntu-x64
             platform: linux/amd64
             dockerfile: docker/Dockerfile.debian
             tag_suffix: debian-amd64
-          - os: ubuntu-24.04-arm
+          - os: cx-public-ubuntu-arm64
             platform: linux/arm64
             dockerfile: docker/Dockerfile.debian
             tag_suffix: debian-arm64
