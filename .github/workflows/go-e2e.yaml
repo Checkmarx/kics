@@ -18,27 +18,27 @@ jobs:
       matrix:
         go-version: [1.26.x]
         config:
-          - os: ubuntu-latest
+          - os: cx-public-ubuntu-x64
             platform: linux/amd64
             dockerfile: Dockerfile
             tag_suffix: default-amd64
-          - os: ubuntu-latest
+          - os: cx-public-ubuntu-x64
             platform: linux/amd64
             dockerfile: docker/Dockerfile.ubi8
             tag_suffix: ubi8-amd64
-          - os: ubuntu-latest
+          - os: cx-public-ubuntu-x64
             platform: linux/amd64
             dockerfile: docker/Dockerfile.alpine
             tag_suffix: alpine-amd64
-          - os: ubuntu-24.04-arm
+          - os: cx-public-ubuntu-arm64
             platform: linux/arm64
             dockerfile: Dockerfile
             tag_suffix: default-arm64
-          - os: ubuntu-24.04-arm
+          - os: cx-public-ubuntu-arm64
             platform: linux/arm64
             dockerfile: docker/Dockerfile.ubi8
             tag_suffix: ubi8-arm64
-          - os: ubuntu-24.04-arm
+          - os: cx-public-ubuntu-arm64
             platform: linux/arm64
             dockerfile: docker/Dockerfile.alpine
             tag_suffix: alpine-arm64
