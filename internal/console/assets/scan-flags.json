@@ -12,12 +12,6 @@
     "defaultValue": "",
     "usage": "path to configuration file"
   },
-  "disable-full-descriptions": {
-    "flagType": "bool",
-    "shorthandFlag": "",
-    "defaultValue": "false",
-    "usage": "disable request for full descriptions and use default vulnerability descriptions"
-  },
   "exclude-categories": {
     "flagType": "multiStr",
     "shorthandFlag": "",
