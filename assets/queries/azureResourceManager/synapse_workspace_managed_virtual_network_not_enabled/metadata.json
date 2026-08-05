@@ -1,7 +1,7 @@
 {
   "id": "8221c5b3-0031-4233-a9a2-08ec4cd20ced",
   "queryName": "Synapse Workspace Managed Virtual Network Not Enabled",
-  "severity": "",
+  "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "Azure Synapse workspaces should have Managed Virtual Network enabled",
   "descriptionUrl": "https://learn.microsoft.com/en-us/azure/templates/microsoft.synapse/workspaces?pivots=deployment-language-bicep#workspaceproperties",
@@ -9,5 +9,5 @@
   "descriptionID": "8221c5b3",
   "cloudProvider": "azure",
   "cwe": "732",
-  "riskScore": ""
+  "riskScore": "1.0"
 }
