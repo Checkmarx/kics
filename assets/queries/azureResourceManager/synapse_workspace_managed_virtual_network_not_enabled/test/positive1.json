@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Synapse/workspaces",
+      "apiVersion": "2021-06-01",
+      "name": "positive1",
+      "location": "location1",
+      "properties": {
+        "defaultDataLakeStorage": {
+          "accountUrl": "https://accountname.dfs.core.windows.net",
+          "filesystem": "filesystem1"
+        },
+        "sqlAdministratorLogin": "sqladminuser"
+      }
+    }
+  ],
+  "outputs": {}
+}
