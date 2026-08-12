@@ -18,6 +18,7 @@ permissions:
 
 jobs:
   build:
+    name: Build KICS binary
     if: (github.event.label.name == 'cesar' && github.event.pull_request.mergeable == true)
     runs-on: cx-public-ubuntu-x64
     steps:

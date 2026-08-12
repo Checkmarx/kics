@@ -2,8 +2,14 @@ name: validate-issues
 on:
   issues:
     types: [opened, edited, reopened]
+
+concurrency:
+  group: check-apache-license-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   title-check:
+    name: Title Check
     runs-on: cx-public-ubuntu-x64
     env:
       BODY: ${{ github.event.issue.body }}
@@ -61,7 +67,9 @@ jobs:
     - name: Workflow failed
       if: env.TITLE_CHECK_FAILED == 'true'
       run: exit 1
+
   labels-check:
+    name: Check Labels
     runs-on: cx-public-ubuntu-x64
     env:
       BODY: ${{ github.event.issue.body }}

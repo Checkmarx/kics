@@ -10,12 +10,16 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: check-apache-license-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   sonarcloud:
+    name: SonarCloud
     permissions:
       contents: read  # for actions/checkout to fetch code
       pull-requests: read  # for SonarSource/sonarcloud-github-action to determine which PR to decorate
-    name: SonarCloud
     runs-on: cx-public-ubuntu-x64
     steps:
       - name: Check out the repo

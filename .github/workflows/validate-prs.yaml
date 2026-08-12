@@ -11,6 +11,7 @@ concurrency:
 
 jobs:
   title-check:
+    name: Check Title
     timeout-minutes: 1
     runs-on: cx-public-ubuntu-x64
     env:
@@ -71,7 +72,9 @@ jobs:
     - name: Workflow failed
       if: env.TITLE_CHECK_FAILED == 'true'
       run: exit 1
+
   labels-check:
+    name: Check Labels
     runs-on: cx-public-ubuntu-x64
     timeout-minutes: 1
     env:

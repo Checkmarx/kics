@@ -7,18 +7,24 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: check-apache-license-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   sonarcloud:
+    name: SonarCloud
     permissions:
       contents: read  # for actions/checkout to fetch code
       pull-requests: read  # for SonarSource/sonarcloud-github-action to determine which PR to decorate
-    name: SonarCloud
     runs-on: cx-public-ubuntu-x64
     if: github.repository == 'Checkmarx/kics'
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+          persist-credentials: false
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@ba3875ecf642b2129de2b589510c81a8b53dbf4e # master
         env:
