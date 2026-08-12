@@ -4,9 +4,11 @@ on:
     types: [opened, synchronize, edited, reopened]
     branches:
       - master
+
 concurrency:
   group: validate-prs-${{ github.event.pull_request.number }}
   cancel-in-progress: true
+
 jobs:
   title-check:
     timeout-minutes: 1
