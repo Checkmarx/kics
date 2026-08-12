@@ -66,7 +66,6 @@ RUN yum install git wget unzip -y \
   -s /bin/bash \
   ${KUSER}
 
-
 USER ${KUSER}
 
 COPY LICENSE /licenses/LICENSE
