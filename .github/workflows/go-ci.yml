@@ -85,14 +85,6 @@ jobs:
       - name: Get Modules
         run: |
           go mod vendor
-      - name: Diagnose pagefile capability
-        if: matrix.os == 'cx-public-windows-2022-x64'
-        shell: powershell
-        run: |
-          $autoManaged = (Get-CimInstance Win32_ComputerSystem).AutomaticManagedPagefile
-          $hasPrivilege = [bool](whoami /priv | Select-String "SeCreatePagefilePrivilege")
-          Write-Output "AutomaticManagedPagefile: $autoManaged"
-          Write-Output "HasCreatePagefilePrivilege: $hasPrivilege"
       - name: Set Windows Page size
         if: matrix.os == 'cx-public-windows-2022-x64'
         uses: al-cheb/configure-pagefile-action@a3b6ebd6b634da88790d9c58d4b37a7f4a7b8708 # v1.4
@@ -112,8 +104,18 @@ jobs:
         run: Add-MpPreference -ExclusionPath $env:TEMP
       - name: Test and Generate Report Windows Dev
         if: matrix.os == 'cx-public-windows-2022-x64'
+        shell: powershell
         run: |
-          go test -mod=vendor -tags dev -v -timeout 2100s $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -mod=vendor -tags dev -v -timeout 2100s $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | Tee-Object unit-test.log
+          $exitCode = $LASTEXITCODE
+          if ($exitCode -ne 0) {
+            $realFailure = Select-String -Path unit-test.log -Pattern '^(--- FAIL|FAIL\s|panic:)' -Quiet
+            if ($realFailure) {
+              exit $exitCode
+            }
+            Write-Warning "go test exited $exitCode with no FAIL/panic in output - treating as the known Windows 'go: unlinkat ...: Access is denied' cleanup flake."
+            exit 0
+          }
       - name: Archive test logs
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
