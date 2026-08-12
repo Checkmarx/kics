@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   prepare-release:
     name: prepare for next release
@@ -15,33 +19,38 @@ jobs:
     permissions:
       contents: write  # for actions/checkout to fetch code and create-pull-request to push a branch
       pull-requests: write  # for create-pull-request to open the PR
+    env:
+      GIT_VERSION: ${{ github.event.inputs.version }}
+      CURRENT_DATE: ${{ steps.cdate.outputs.date }}
+      PR_SHA: ${{ github.sha }}
     steps:
       - name: Checkout project
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Get current date
         id: cdate
         run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
       - name: Print variables
         run: |
-          echo "Version :: ${{ github.event.inputs.version }}"
-          echo "Date :: ${{ steps.cdate.outputs.date }}"
+          echo "Version :: ${{ GIT_VERSION }}"
+          echo "Date :: ${{ CURRENT_DATE }}"
       - name: Replace lines
         run: |
-          sed -E -i "s/<h4>Version \d+(\.\d+)*<\/h4>/<h4>Version ${{ github.event.inputs.version }}<\/h4>/" docs/index.md
-          sed -E -i "s/(<p.*>)[0-9]{4}\.[0-9]{2}\.[0-9]{2}<p>/\1${{ steps.cdate.outputs.date }}<p>/" docs/index.md
+          sed -E -i "s/<h4>Version \d+(\.\d+)*<\/h4>/<h4>Version ${{ GIT_VERSION }}<\/h4>/" docs/index.md
+          sed -E -i "s/(<p.*>)[0-9]{4}\.[0-9]{2}\.[0-9]{2}<p>/\1${{ CURRENT_DATE }}<p>/" docs/index.md
           sed -E -i "s/(<a.*href=\"https:\/\/github.com\/Checkmarx\/kics\/releases\/download\/).*(\/kics_).*(_[a-z]+_.*>)/\1v${{ github.event.inputs.version }}\2${{ github.event.inputs.version }}\3/g" docs/index.md
       - name: Create pull request
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
-          title: "docs: preparing for release ${{ github.event.inputs.version }}"
-          commit-message: "docs: preparing for release ${{ github.event.inputs.version }}"
+          title: "docs: preparing for release ${{ GIT_VERSION }}"
+          commit-message: "docs: preparing for release ${{ GIT_VERSION }}"
           delete-branch: true
           branch: feature/update-docs-index
           base: master
           body: |
             **Automated Changes**
             Updating documentation index page.
-            Triggered by SHA: _${{ github.sha }}_
+            Triggered by SHA: _${{ PR_SHA }}_
           labels: documentation
