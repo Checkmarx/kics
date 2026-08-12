@@ -28,7 +28,6 @@ jobs:
       - name: golangci-lint
         uses: step-security/golangci-lint-action@1797facf9ea427614d729a4e9cab0fae1a7852d9 # v9.2.0
         with:
-          skip-pkg-cache: true
           version: v2.11.3
           args: -c .golangci.yml --timeout 20m
 

@@ -95,7 +95,7 @@ func Test_PrintVersionCheck(t *testing.T) {
 					LatestVersionTag: "1.1.0",
 				},
 			},
-			expectedOutput: "A new version 'v1.1.0' of KICS is available, please consider updating",
+			expectedOutput: "A new version '1.1.0' of KICS is available, please consider updating",
 		},
 	}
 	for _, tt := range tests {
