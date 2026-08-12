@@ -6,17 +6,27 @@ on:
     branches: [master]
     paths:
       - "assets/queries/**/metadata.json"
+
 permissions:
   contents: read
+
+concurrency:
+  group: check-apache-license-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   metrics:
     name: test-metrics
     runs-on: cx-public-ubuntu-x64
+    env:
+      TOTAL_QUERIES: ${{ steps.metrics.outputs.total_queries }}
     steps:
       - name: Checkout Source
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
+        with:
+          persist-credentials: false
+      - name: Step up python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
         with:
           python-version: "3.x"
       - name: Run test metrics script
@@ -27,12 +37,13 @@ jobs:
       - name: Generate badge
         run: |
           curl -L \
-            https://img.shields.io/badge/Queries-${{ steps.metrics.outputs.total_queries }}-blue.svg > queries.svg
+            https://img.shields.io/badge/Queries-${{ TOTAL_QUERIES }}-blue.svg > queries.svg
           cat queries.svg
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ${{ runner.os }}-queries-badge-latest
           path: queries.svg
+
   publish:
     permissions:
       contents: write  # for Git to git push
@@ -44,6 +55,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: gh-pages
+          persist-credentials: true
       - name: Configure git commit author
         run: |
           git config --global user.name "KICSBot"

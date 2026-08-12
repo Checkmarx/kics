@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: check-apache-license-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   integration-tests:
     permissions:
@@ -14,6 +18,9 @@ jobs:
       contents: read  # for docker/build-push-action to read repo content
     name: integration-tests
     runs-on: cx-public-ubuntu-x64
+    env:
+      OUTPUT_DIGEST: ${{ steps.docker_build.outputs.digest }}
+      PR_SHA: ${{ github.sha }}
     steps:
       - id: skip_check
         uses: step-security/skip-duplicate-actions@4eef6ae57f2ca5ea100e5c1da2ead9138483f53c # v5.3.4
@@ -45,18 +52,18 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: false
-          tags: kics:${{ github.sha }}
+          tags: kics:${{ PR_SHA }}
           build-args: |
             VERSION=${GITHUB_SHA_SHORT}
             COMMIT=${GITHUB_SHA}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        run: echo ${{ OUTPUT_DIGEST }}
       - name: Run docker image and generate results.json
         run: |
           docker run --user $(id -u):$(id -g) -v ${PWD}/assets/queries:/path \
-            kics:${{ github.sha }} scan \
+            kics:${{ PR_SHA }} scan \
             --silent \
             --ignore-on-exit "results" \
             --log-level DEBUG \

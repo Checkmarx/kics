@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: check-apache-license-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   coverage:
     name: generate-coverage
@@ -20,6 +24,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Set up Go
         uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 #v6.3.0
         with:
@@ -32,18 +37,24 @@ jobs:
           echo "Total Tests :: ${TOTAL_TESTS}"
           echo "::set-output name=total_tests::${TOTAL_TESTS}"
       - name: Generate badge
+        env:
+          GO_COVERAGE: ${{ steps.testcov.outputs.coverage }}
+          GO_COLOR: ${{ steps.testcov.outputs.color }}
         run: |
           curl -L \
-            https://img.shields.io/badge/Go%20Coverage-${{ steps.testcov.outputs.coverage }}%25-${{ steps.testcov.outputs.color }}.svg > coverage.svg
+            https://img.shields.io/badge/Go%20Coverage-${{ GO_COVERAGE }}%25-${{ GO_COLOR }}.svg > coverage.svg
           cat coverage.svg
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - name: Upload coverage svg Artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ${{ runner.os }}-badge-latest
           path: coverage.svg
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - name: Upload coverage html Artifcat
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ${{ runner.os }}-coverage-latest
           path: coverage.html
+
   publish:
     permissions:
       contents: write  # for Git to git push
