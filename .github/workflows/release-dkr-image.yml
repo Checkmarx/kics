@@ -10,6 +10,9 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: cx-public-ubuntu-x64
     if: "!github.event.release.prerelease"
+    permissions:
+      contents: read
+      id-token: write  # required to request the GitHub OIDC token exchanged with Docker Hub's OIDC login
     env:
       DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
@@ -24,7 +27,7 @@ jobs:
       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
         if: always()
         with:
-          github-token: ${{ secrets.KICS_BOT_PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
           card-layout-start: cozy
           card-layout-exit: complete
@@ -43,10 +46,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Login to DockerHub
-        uses: step-security/docker-login-action@870af644803bf9f204aed474adbad2958fec048b # v4.1.0
+        uses: step-security/docker-login-action@bd6978fd4ef9a5f78130095b298b8a721afcb0d8 # v4.5.1
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: checkmarx
+        env:
+          DOCKERHUB_OIDC_CONNECTIONID: ${{ secrets.DOCKERHUB_OIDC_CONNECTIONID }}
       - name: Get current date
         run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
       - name: Docker meta

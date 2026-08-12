@@ -43,10 +43,10 @@ jobs:
           python-version: 3.x
       - name: Install dependencies
         run: pip install mkdocs-bootswatch mike mkdocs-material
-      - name: Config KICSBot git user
+      - name: Config git user
         run: |
-          git config --global user.name "KICSBot"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - name: Checkout previous tag
         run: |
           git checkout ${{ steps.version.outputs.ptag }}

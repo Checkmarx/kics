@@ -12,6 +12,9 @@ jobs:
   prepare-release:
     name: prepare for next release
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: write  # for actions/checkout to fetch code and create-pull-request to push a branch
+      pull-requests: write  # for create-pull-request to open the PR
     steps:
       - name: Checkout project
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -32,11 +35,10 @@ jobs:
       - name: Create pull request
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
-          title: "docs(kicsbot): preparing for release ${{ github.event.inputs.version }}"
-          token: ${{ secrets.KICS_BOT_PAT }}
-          commit-message: "docs(kicsbot): preparing for release ${{ github.event.inputs.version }}"
+          title: "docs: preparing for release ${{ github.event.inputs.version }}"
+          commit-message: "docs: preparing for release ${{ github.event.inputs.version }}"
           delete-branch: true
-          branch: feature/kicsbot-update-docs-index
+          branch: feature/update-docs-index
           base: master
           body: |
             **Automated Changes**

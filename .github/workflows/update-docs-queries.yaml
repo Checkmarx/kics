@@ -16,7 +16,8 @@ jobs:
   update-docs:
     permissions:
       actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
-      contents: read  # for actions/checkout to fetch code
+      contents: write  # for actions/checkout to fetch code and create-pull-request to push a branch
+      pull-requests: write  # for create-pull-request to open the PR
     name: Update queries documentation
     runs-on: cx-public-ubuntu-x64
     steps:
@@ -48,10 +49,9 @@ jobs:
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "docs(queries): update queries catalog"
-          token: ${{ secrets.KICS_BOT_PAT }}
           commit-message: "docs(queries): update queries catalog"
           delete-branch: true
-          branch: feature/kicsbot-update-queries-docs
+          branch: feature/update-queries-docs
           body: |
             **Automated Changes**
             Updating queries' documentation.
