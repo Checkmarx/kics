@@ -85,12 +85,20 @@ jobs:
       - name: Get Modules
         run: |
           go mod vendor
+      - name: Diagnose pagefile capability
+        if: matrix.os == 'cx-public-windows-2022-x64'
+        shell: powershell
+        run: |
+          $autoManaged = (Get-CimInstance Win32_ComputerSystem).AutomaticManagedPagefile
+          $hasPrivilege = [bool](whoami /priv | Select-String "SeCreatePagefilePrivilege")
+          Write-Output "AutomaticManagedPagefile: $autoManaged"
+          Write-Output "HasCreatePagefilePrivilege: $hasPrivilege"
       - name: Set Windows Page size
         if: matrix.os == 'cx-public-windows-2022-x64'
         uses: al-cheb/configure-pagefile-action@a3b6ebd6b634da88790d9c58d4b37a7f4a7b8708 # v1.4
         with:
-          minimum-size: 16GB
-          maximum-size: 16GB
+          minimum-size: 32GB
+          maximum-size: 32GB
           disk-root: "C:"
       - name: Test and Generate Report Dev
         if: matrix.os != 'cx-public-windows-2022-x64'
