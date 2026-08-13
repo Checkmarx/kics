@@ -113,58 +113,58 @@ jobs:
     - name: Add community label if user does not belong to Checkmarx Organization
       run: |
         if [[ "$IS_MEMBER" == "false" ]]; then
-          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["community"]}'
+          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels -d '{"labels": ["community"]}'
         fi
     - name: Add feature or feature request label
       run: |
         if [[ "$TITLE" == feat* ]]; then
           if [[ "$IS_MEMBER" == "true" ]]; then
             echo "Adding 'feature' label..."
-            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["feature"]}'
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels -d '{"labels": ["feature"]}'
           else
             echo "Adding 'feature request' label..."
-            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["feature request"]}'
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels -d '{"labels": ["feature request"]}'
           fi
         else
           if echo "$LABELS" | grep -q "feature request"; then
             echo "Removing 'feature request' label..."
-            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/feature%20request
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels/feature%20request
           elif echo "$LABELS" | grep -q "feature"; then
             echo "Removing 'feature' label..."
-            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/feature
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels/feature
           fi
         fi
     - name: Add documentation label
       run: |
         if [[ "$TITLE" == docs* ]]; then
           echo "Adding 'documentation' label..."
-          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["documentation"]}'
+          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels -d '{"labels": ["documentation"]}'
         else
           if echo "$LABELS" | grep -q "documentation"; then
             echo "Removing 'documentation' label..."
-            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/documentation
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels/documentation
           fi
         fi
     - name: Add bug label
       run: |
         if echo "$TITLE $BODY" | grep -iqP "(\\b|_)bugs?(\\b|_)"; then
           echo "Adding 'bug' label..."
-          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["bug"]}'
+          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels -d '{"labels": ["bug"]}'
         else
           if echo "$LABELS" | grep -q "bug"; then
             echo "Removing 'bug' label..."
-            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/bug
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels/bug
           fi
         fi
     - name: Add query label
       run: |
         if echo "$TITLE $BODY" | grep -iqP "(\\b|_)quer(y|ies)(\\b|_)"; then
           echo "Adding 'query' label..."
-          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["query"]}'
+          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels -d '{"labels": ["query"]}'
         else
           if echo "$LABELS" | grep -q "query"; then
             echo "Removing 'query' label..."
-            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/query
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels/query
           fi
         fi
     - name: Set up Python
@@ -192,10 +192,10 @@ jobs:
           label=${keywords[$keyword]}
           if [[ ! " ${labels_to_add[@]} " =~ " ${label} " ]] && [[ " ${current_labels[@]} " =~ " ${label} " ]]; then
             echo "Removing '$label' label..."
-            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/$label
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels/$label
           elif [[ " ${labels_to_add[@]} " =~ " ${label} " ]] && [[ ! " ${current_labels[@]} " =~ " ${label} " ]]; then
             echo "Adding '$label' label..."
-            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d "{\"labels\": [\"$label\"]}"
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/labels -d "{\"labels\": [\"$label\"]}"
           fi
         done
 
