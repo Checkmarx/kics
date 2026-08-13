@@ -135,9 +135,6 @@ jobs:
     runs-on: cx-public-ubuntu-x64
     permissions:
       contents: read  # for actions/checkout to fetch code
-    env:
-      QUERIES_FILTER: ${{ steps.filter.outputs.queries }}
-      QUERIES_FILES: ${{ steps.filter.outputs.queries_files }}
     steps:
       - name: Check out code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -153,6 +150,9 @@ jobs:
             queries:
               - 'assets/queries/**/query.rego'
       - name: Debug filter outputs
+        env:
+          QUERIES_FILTER: ${{ steps.filter.outputs.queries }}
+          QUERIES_FILES: ${{ steps.filter.outputs.queries_files }}
         run: |
           echo "queries changed: ${QUERIES_FILTER}"
           echo "changed files: ${QUERIES_FILES}"

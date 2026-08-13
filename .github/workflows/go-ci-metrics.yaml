@@ -18,8 +18,6 @@ jobs:
   metrics:
     name: test-metrics
     runs-on: cx-public-ubuntu-x64
-    env:
-      TOTAL_QUERIES: ${{ steps.metrics.outputs.total_queries }}
     steps:
       - name: Checkout Source
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -35,9 +33,11 @@ jobs:
           pip3 install -r .github/scripts/metrics/requirements.txt
           python3 .github/scripts/metrics/get_metrics.py
       - name: Generate badge
+        env:
+          TOTAL_QUERIES: ${{ steps.metrics.outputs.total_queries }}
         run: |
           curl -L \
-            https://img.shields.io/badge/Queries-${{ TOTAL_QUERIES }}-blue.svg > queries.svg
+            "https://img.shields.io/badge/Queries-${TOTAL_QUERIES}-blue.svg" > queries.svg
           cat queries.svg
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:

@@ -20,11 +20,6 @@ jobs:
       contents: write  # for Git to git push
     runs-on: cx-public-ubuntu-x64
     if: "!github.event.release.prerelease"
-    env:
-      PREVIOUS_TAG: ${{ steps.version.outputs.ptag }}
-      CURRENT_TAG: ${{ steps.version.outputs.ctag }}
-      PREVIOUS_VERSION: ${{ steps.version.outputs.pversion }}
-      CURRENT_VERSION: ${{ steps.version.outputs.cversion }}
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@85880fa0301c86cca9da44039ee3bb12d3bedbfa # 0.12.1
@@ -43,11 +38,16 @@ jobs:
           echo "::set-output name=pversion::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1) | cut -c2-)"
           echo "::set-output name=ptag::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1))"
       - name: Print tags
+        env:
+          PREVIOUS_TAG: ${{ steps.version.outputs.ptag }}
+          CURRENT_TAG: ${{ steps.version.outputs.ctag }}
+          PREVIOUS_VERSION: ${{ steps.version.outputs.pversion }}
+          CURRENT_VERSION: ${{ steps.version.outputs.cversion }}
         run: |
-          echo "prev tag "${PREVIOUS_TAG}""
-          echo "curr tag "${CURRENT_TAG}""
-          echo "prev ver "${PREVIOUS_VERSION}""
-          echo "curr ver "${CURRENT_VERSION}""
+          echo "prev tag ${PREVIOUS_TAG}"
+          echo "curr tag ${CURRENT_TAG}"
+          echo "prev ver ${PREVIOUS_VERSION}"
+          echo "curr ver ${CURRENT_VERSION}"
       - name: Setup Python
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
         with:
@@ -59,16 +59,24 @@ jobs:
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - name: Checkout previous tag
+        env:
+          PREVIOUS_TAG: ${{ steps.version.outputs.ptag }}
         run: |
           git checkout "${PREVIOUS_TAG}"
       - name: Mike deploy previous version
+        env:
+          PREVIOUS_VERSION: ${{ steps.version.outputs.pversion }}
         run: |
           mike delete "${PREVIOUS_VERSION}" || echo 'version does not exists yet'
           mike deploy "${PREVIOUS_VERSION}"
       - name: Checkout current tag
+        env:
+          CURRENT_TAG: ${{ steps.version.outputs.ctag }}
         run: |
           git checkout "${CURRENT_TAG}"
       - name: Mike deploy current version
+        env:
+          CURRENT_VERSION: ${{ steps.version.outputs.cversion }}
         run: |
           mike delete latest
           mike deploy latest "${CURRENT_VERSION}"

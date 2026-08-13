@@ -21,7 +21,6 @@ jobs:
       pull-requests: write  # for create-pull-request to open the PR
     env:
       GIT_VERSION: ${{ github.event.inputs.version }}
-      CURRENT_DATE: ${{ steps.cdate.outputs.date }}
       PR_SHA: ${{ github.sha }}
     steps:
       - name: Checkout project
@@ -33,10 +32,14 @@ jobs:
         id: cdate
         run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
       - name: Print variables
+        env:
+          CURRENT_DATE: ${{ steps.cdate.outputs.date }}
         run: |
           echo "Version :: ${GIT_VERSION}"
           echo "Date :: ${CURRENT_DATE}"
       - name: Replace lines
+        env:
+          CURRENT_DATE: ${{ steps.cdate.outputs.date }}
         run: |
           sed -E -i "s/<h4>Version \d+(\.\d+)*<\/h4>/<h4>Version ${GIT_VERSION}<\/h4>/" docs/index.md
           sed -E -i "s/(<p.*>)[0-9]{4}\.[0-9]{2}\.[0-9]{2}<p>/\1${CURRENT_DATE}<p>/" docs/index.md

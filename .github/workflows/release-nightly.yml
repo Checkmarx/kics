@@ -91,9 +91,10 @@ jobs:
       - name: Create Release and Upload Assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SHA8: ${{ needs.pre_release_job.outputs.sha8 }}
         run: |
           gh release create nightly \
-            --title "nightly-${{ needs.pre_release_job.outputs.sha8 }}" \
+            --title "nightly-${SHA8}" \
             --prerelease \
             --notes "" \
             /home/runner/work/kics/kics/dist/kics_nightly_linux_x64.tar.gz#kics_nightly-release_linux_amd64.tar.gz \

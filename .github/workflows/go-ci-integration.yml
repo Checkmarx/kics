@@ -19,7 +19,6 @@ jobs:
     name: integration-tests
     runs-on: cx-public-ubuntu-x64
     env:
-      OUTPUT_DIGEST: ${{ steps.docker_build.outputs.digest }}
       PR_SHA: ${{ github.sha }}
     steps:
       - id: skip_check
@@ -59,6 +58,8 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
+        env:
+          OUTPUT_DIGEST: ${{ steps.docker_build.outputs.digest }}
         run: echo "${OUTPUT_DIGEST}"
       - name: Run docker image and generate results.json
         run: |

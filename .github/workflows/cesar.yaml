@@ -99,7 +99,4 @@ jobs:
     uses: ./.github/workflows/run-projects.yaml
     with:
       machines-count: 10
-    # zizmor: ignore[secrets-inherit] run-projects.yaml is an internal reusable workflow in this same
-    # repo, only called from here and ci-projects.yaml; it needs several CES_*/GH_TOKEN secrets for its
-    # AWS OIDC + private executor-repo checkout, no cross-repo/cross-trust-boundary exposure
-    secrets: inherit
+    secrets: inherit # zizmor: ignore[secrets-inherit] run-projects.yaml is an internal same-repo reusable workflow, fixed caller set (here + ci-projects.yaml), needs several CES_*/GH_TOKEN secrets for AWS OIDC + private executor-repo checkout

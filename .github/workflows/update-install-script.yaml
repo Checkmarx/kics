@@ -18,7 +18,6 @@ jobs:
       contents: read  # for actions/checkout to fetch code
     runs-on: cx-public-ubuntu-x64
     env:
-      GO_RELEASER: ${{ steps.outputs.filter.goreleaser }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - name: Cancel Previous Runs
@@ -63,21 +62,20 @@ jobs:
             print(f"::set-output name=goreleaser::{file_content}", end='')
         shell: python3 {0}
       - name: Update install.sh
+        env:
+          GO_RELEASER: ${{ steps.filter.outputs.goreleaser }}
         run: ./.bin/godownloader --repo Checkmarx/kics <(echo "${GO_RELEASER}") > install.sh
       - name: Create Pull Request
-        env:
-          KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
-          PR_SHA: ${{ github.sha }}
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "chore(install): update install script"
-          token: "${KICS_BOT_PAT}"
+          token: ${{ secrets.KICS_BOT_PAT }}
           delete-branch: true
           commit-message: "chore(install): update install script"
-          branch: feature/kicsbot-update-install-script
+          branch: feature/update-install-script
           base: master
           body: |
             **Automated Changes**
             Updating oneliner godownloader installation script
-            Triggered by SHA: _"${PR_SHA}_
+            Triggered by SHA: _${{ github.sha }}_
           labels: CI
