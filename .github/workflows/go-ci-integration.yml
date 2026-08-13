@@ -51,7 +51,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: false
-          tags: kics:"${PR_SHA}"
+          tags: kics:${{ env.PR_SHA }}
           build-args: |
             VERSION=${GITHUB_SHA_SHORT}
             COMMIT=${GITHUB_SHA}
