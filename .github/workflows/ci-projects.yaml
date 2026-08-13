@@ -54,11 +54,11 @@ jobs:
           METADATA_PATH="$GITHUB_WORKSPACE/pr-metadata.json"
           echo '{
             "seq": "'"${COMMIT_TIMESTAMP}"'",
-            "tag": "'"${{ PR_NUMBER }}"'",
-            "comment": "'"${{ PR_TITLE }}"'",
-            "commit": "'"${{ PR_SHA }}"'",
-            "owner": "'"${{ PR_ACTOR }}"'",
-            "branch": "'"${{ PR_BASE_REF }}"'",
+            "tag": "'"${PR_NUMBER}"'",
+            "comment": "'"${PR_TITLE}"'",
+            "commit": "'"${PR_SHA}"'",
+            "owner": "'"${PR_ACTOR}"'",
+            "branch": "'"${PR_BASE_REF}"'",
             "engine": "'"${ENGINE}"'",
             "platform": "'"${PLATFORM}"'",
             "version": "'"${ENGINE_VERSION}"'"

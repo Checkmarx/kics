@@ -34,6 +34,8 @@ jobs:
             -u https://registry.terraform.io/v1/modules
       - name: Create Pull Request
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
+        env:
+          GIT_SHA: ${{ github.sha }}
         with:
           title: "feat(queries): update terraform registry data on commons.json"
           token: ${{ secrets.KICS_BOT_PAT }}
@@ -43,5 +45,5 @@ jobs:
           body: |
             **Automated Changes**
             Updating terraform registry data on commons.json.
-            Triggered by SHA: _${{ github.sha }}_
+            Triggered by SHA: _"${GIT_SHA}"_
           labels: terraform

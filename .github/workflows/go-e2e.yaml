@@ -111,7 +111,7 @@ jobs:
       - name: Image digest
         env:
           DIGEST: ${{ steps.docker_build.outputs.digest }}
-        run: echo ${{ DIGEST }}
+        run: echo "${DIGEST}"
       - name: Display PWD / Files
         run: |
           pwd

@@ -40,5 +40,5 @@ jobs:
           GO_COVERAGE: ${{ steps.testcov.outputs.coverage }}%
         if: GO_COVERAGE < 74
         run: |
-          echo "Go coverage is lower than 74%: ${{ GO_COVERAGE }}%"
+          echo "Go coverage is lower than 74%: "${GO_COVERAGE }"%"
           exit 1

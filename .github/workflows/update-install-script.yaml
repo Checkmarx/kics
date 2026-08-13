@@ -24,7 +24,7 @@ jobs:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@85880fa0301c86cca9da44039ee3bb12d3bedbfa # 0.12.1
         with:
-          access_token: ${{ GH_TOKEN }}
+          access_token: "${GH_TOKEN}"
       - name: Checkout project
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -63,7 +63,7 @@ jobs:
             print(f"::set-output name=goreleaser::{file_content}", end='')
         shell: python3 {0}
       - name: Update install.sh
-        run: ./.bin/godownloader --repo Checkmarx/kics <(echo ${{ GO_RELEASER }}) > install.sh
+        run: ./.bin/godownloader --repo Checkmarx/kics <(echo "${GO_RELEASER}") > install.sh
       - name: Create Pull Request
         env:
           KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
@@ -71,7 +71,7 @@ jobs:
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "chore(install): update install script"
-          token: ${{ KICS_BOT_PAT }}
+          token: "${KICS_BOT_PAT}"
           delete-branch: true
           commit-message: "chore(install): update install script"
           branch: feature/kicsbot-update-install-script
@@ -79,5 +79,5 @@ jobs:
           body: |
             **Automated Changes**
             Updating oneliner godownloader installation script
-            Triggered by SHA: _${{ PR_SHA }}_
+            Triggered by SHA: _"${PR_SHA}_
           labels: CI
