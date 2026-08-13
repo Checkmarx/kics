@@ -1,5 +1,8 @@
 name: validate-prs
 on:
+  # zizmor: ignore[dangerous-triggers] needs secrets/write access to label & comment on PRs from forks;
+  # checkout never overrides ref, so it always checks out the trusted base branch, never the PR head,
+  # and no PR-supplied content is ever executed as code (only compared/sent as plain data)
   pull_request_target:
     types: [opened, synchronize, edited, reopened]
     branches:
@@ -94,8 +97,6 @@ jobs:
         sparse-checkout: |
           .github/scripts/pr-issue-info/get_keywords.py
           .github/keywords.yaml
-    - name: Get username
-      run: echo "USERNAME="${USERNAME}"" >> $GITHUB_ENV
     - name: Install JQ
       run: sudo apt-get install jq
     - name: Check user username
@@ -109,6 +110,7 @@ jobs:
           echo "Contributor does not belong to Checkmarx organization."
           is_member="false"
         fi
+        # zizmor: ignore[github-env] is_member is always a literal "true"/"false" set by this script, never derived from untrusted input
         echo "IS_MEMBER=$is_member" >> $GITHUB_ENV
     - name: Add community label if user does not belong to Checkmarx Organization
       run: |

@@ -1,5 +1,8 @@
 name: check-apache-license
 on:
+  # zizmor: ignore[dangerous-triggers] needs secrets/write access to label & comment on PRs from forks;
+  # checkout never overrides ref, so it always checks out the trusted base branch, never the PR head,
+  # and no PR-supplied content is ever executed as code (only compared/sent as plain data)
   pull_request_target:
     types: [opened, synchronize, edited, reopened]
     branches:
