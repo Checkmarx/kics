@@ -26,6 +26,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ github.event.inputs.branch }}
+          persist-credentials: false
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@ba3875ecf642b2129de2b589510c81a8b53dbf4e # master
         env:

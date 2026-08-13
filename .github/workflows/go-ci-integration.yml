@@ -52,18 +52,18 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: false
-          tags: kics:${{ PR_SHA }}
+          tags: kics:"${PR_SHA}"
           build-args: |
             VERSION=${GITHUB_SHA_SHORT}
             COMMIT=${GITHUB_SHA}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
-        run: echo ${{ OUTPUT_DIGEST }}
+        run: echo "${OUTPUT_DIGEST}"
       - name: Run docker image and generate results.json
         run: |
           docker run --user $(id -u):$(id -g) -v ${PWD}/assets/queries:/path \
-            kics:${{ PR_SHA }} scan \
+            kics:"${PR_SHA}" scan \
             --silent \
             --ignore-on-exit "results" \
             --log-level DEBUG \

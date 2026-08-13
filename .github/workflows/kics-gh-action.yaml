@@ -5,8 +5,13 @@ on:
     branches: [master]
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   kics-scan:
+    name: Run Kics scan through github action
     runs-on: cx-public-ubuntu-x64
     steps:
       - name: Checkout

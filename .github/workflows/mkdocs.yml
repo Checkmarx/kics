@@ -7,13 +7,16 @@ on:
     paths:
       - "docs/**"
       - "mkdocs.yml"
+
 jobs:
   deploy:
+    name: Deploy documentation pages
     runs-on: cx-public-ubuntu-x64
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
         if: always()
         with:

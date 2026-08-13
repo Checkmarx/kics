@@ -6,8 +6,13 @@ on:
     branches: [master]
     paths:
       - "pkg/parser/jsonfilter/JSONFilter.g4"
+
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   metrics:

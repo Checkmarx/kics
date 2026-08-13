@@ -16,17 +16,19 @@ concurrency:
 
 jobs:
   build:
+    name: Build Kics to run againts projects
     if: github.event.pull_request.merged == true
     runs-on: cx-public-ubuntu-x64
-
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ github.event.pull_request.merge_commit_sha }}
           path: kics
           persist-credentials: false
 
-      - uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
+      - name: Setup Go
+        uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
         with:
           go-version-file: kics/go.mod
           cache-dependency-path: kics/go.sum

@@ -126,6 +126,9 @@ jobs:
   validate-search-line:
     name: validate-search-line
     runs-on: cx-public-ubuntu-x64
+    env:
+      QUERIES_FILTER: ${{ steps.filter.outputs.queries }}
+      QUERIES_FILES: ${{ steps.filter.outputs.queries_files }}
     steps:
       - name: Check out code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -142,8 +145,8 @@ jobs:
               - 'assets/queries/**/query.rego'
       - name: Debug filter outputs
         run: |
-          echo "queries changed: ${{ steps.filter.outputs.queries }}"
-          echo "changed files: ${{ steps.filter.outputs.queries_files }}"
+          echo "queries changed: "${QUERIES_FILTER}"
+          echo "changed files: "${QUERIES_FILES}"
       - name: Set up Python
         id: setup-python
         if: steps.filter.outputs.queries == 'true'
@@ -153,7 +156,6 @@ jobs:
       - name: Validate searchLine in modified queries
         if: steps.setup-python.outcome == 'success'
         env:
-          CHANGED_QUERIES: ${{ steps.filter.outputs.queries_files }}
           KICS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KICS_PR_NUMBER: ${{ github.event.number }}
         working-directory: .github/scripts/validate-search-line/
@@ -167,6 +169,8 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Run Gosec Security Scanner
         uses: securego/gosec@d2d3ae66bd8d340b78b5142b6fe610691783c2fe # v2.22.5
         with:

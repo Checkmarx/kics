@@ -14,6 +14,7 @@ concurrency:
 
 jobs:
   check-license:
+    name: Check Apache License
     runs-on: cx-public-ubuntu-x64
     timeout-minutes: 1
     env:
