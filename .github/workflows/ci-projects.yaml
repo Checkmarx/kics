@@ -11,14 +11,19 @@ env:
   ENGINE: "kics"
 
 concurrency:
-  group: check-apache-license-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read # for actions/checkout to fetch code
 
 jobs:
   build:
     name: Build Kics to run againts projects
     if: github.event.pull_request.merged == true
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read # for actions/checkout to fetch code
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -87,7 +92,12 @@ jobs:
 
   ci-projects:
     needs: build
+    permissions:
+      id-token: write # required to pass id-token permission through to run-projects.yaml for AWS OIDC federation
     uses: ./.github/workflows/run-projects.yaml
     with:
       machines-count: 10
+    # zizmor: ignore[secrets-inherit] run-projects.yaml is an internal reusable workflow in this same
+    # repo, only called from here and cesar.yaml; it needs several CES_*/GH_TOKEN secrets for its
+    # AWS OIDC + private executor-repo checkout, no cross-repo/cross-trust-boundary exposure
     secrets: inherit

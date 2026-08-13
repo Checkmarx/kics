@@ -6,13 +6,18 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: check-apache-license-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read # default deny-write baseline; jobs below elevate as needed
 
 jobs:
   pre_release_job:
     name: Pre Release Job
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read # for actions/checkout to fetch code
     outputs:
       changes: ${{ steps.lasttag.outputs.newchanges }}
       sha8: ${{ steps.shorthash.outputs.sha8 }}
@@ -34,6 +39,8 @@ jobs:
     needs: pre_release_job
     if: ${{ needs.pre_release_job.outputs.changes == 'yes' }}
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: write # to create/delete the nightly release and upload its assets
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -78,67 +85,34 @@ jobs:
           tag_name: nightly # tag name to delete
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # v1.1.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: nightly
-          release_name: nightly-${{ needs.pre_release_job.outputs.sha8 }}
-          draft: false
-          prerelease: true
       - name: Display assets
         run: |
           ls -l /home/runner/work/kics/kics/dist
-      - name: Upload Release Asset Linux
-        id: upload-release-asset-linux
-        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1.0.2
+      - name: Create Release and Upload Assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: /home/runner/work/kics/kics/dist/kics_nightly_linux_x64.tar.gz
-          asset_name: kics_nightly-release_linux_amd64.tar.gz
-          asset_content_type: application/gzip
-      - name: Upload Release Asset Darwin
-        id: upload-release-asset-darwin
-        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: /home/runner/work/kics/kics/dist/kics_nightly_darwin_x64.tar.gz
-          asset_name: kics_nightly-release_darwin_amd64.tar.gz
-          asset_content_type: application/gzip
-      - name: Upload Release Asset Windows
-        id: upload-release-asset-windows
-        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: /home/runner/work/kics/kics/dist/kics_nightly_windows_x64.zip
-          asset_name: kics_nightly-release_windows_amd64.zip
-          asset_content_type: application/zip
-      - name: Upload Release Asset Checksum
-        id: upload-release-asset-checksums
-        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: /home/runner/work/kics/kics/dist/kics_nightly_checksums.txt
-          asset_name: kics_nightly-release_checksums.txt
-          asset_content_type: text/plain
+        run: |
+          gh release create nightly \
+            --title "nightly-${{ needs.pre_release_job.outputs.sha8 }}" \
+            --prerelease \
+            --notes "" \
+            /home/runner/work/kics/kics/dist/kics_nightly_linux_x64.tar.gz#kics_nightly-release_linux_amd64.tar.gz \
+            /home/runner/work/kics/kics/dist/kics_nightly_darwin_x64.tar.gz#kics_nightly-release_darwin_amd64.tar.gz \
+            /home/runner/work/kics/kics/dist/kics_nightly_windows_x64.zip#kics_nightly-release_windows_amd64.zip \
+            /home/runner/work/kics/kics/dist/kics_nightly_checksums.txt#kics_nightly-release_checksums.txt
   push_to_registry:
     name: Push Docker image to Docker Hub
     needs: pre_release_job
     if: ${{ needs.pre_release_job.outputs.changes == 'yes' }}
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: write # for create-pull-request to push a branch
+      pull-requests: write # for create-pull-request to open the PR
     steps:
       - name: Check out the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
         if: always()
         with:

@@ -9,10 +9,16 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read # for actions/checkout to fetch code
+
 jobs:
   kics-scan:
     name: Run Kics scan through github action
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      pull-requests: write # for checkmarx/kics-github-action's enable_comments to post scan results on the PR
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2

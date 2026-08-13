@@ -9,7 +9,7 @@ on:
         type: number
 
 concurrency:
-  group: check-apache-license-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 env:
@@ -17,7 +17,7 @@ env:
   CES_ENVIRONMENT: "prod"
 
 permissions:
-  id-token: read
+  id-token: read # default deny-write baseline; the run-projects job below elevates to write for AWS OIDC
 
 jobs:
   setup:

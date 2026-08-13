@@ -4,13 +4,18 @@ on:
     types: [opened, edited, reopened]
 
 concurrency:
-  group: check-apache-license-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read # default deny-write baseline; jobs below elevate as needed
 
 jobs:
   title-check:
     name: Title Check
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read # for actions/checkout to fetch code; comment actions use KICS_BOT_PAT, not GITHUB_TOKEN
     env:
       BODY: ${{ github.event.issue.body }}
       TITLE: ${{ github.event.issue.title }}
@@ -74,6 +79,9 @@ jobs:
   labels-check:
     name: Check Labels
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      issues: write # to add/remove labels on the issue via GITHUB_TOKEN
     env:
       BODY: ${{ github.event.issue.body }}
       LABELS: ${{ toJson(github.event.issue.labels) }}

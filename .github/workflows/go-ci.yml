@@ -8,11 +8,14 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read # for actions/checkout to fetch code
+
 jobs:
   lint:
     permissions:
-      contents: read
-      pull-requests: read
+      contents: read  # for actions/checkout to fetch code
+      pull-requests: read  # for step-security/golangci-lint-action to post PR review comments
     name: lint (golangci-lint)
     runs-on: cx-public-ubuntu-x64
     steps:
@@ -34,6 +37,8 @@ jobs:
   go-generate:
     name: go-generate
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     steps:
       - name: Check out code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -49,6 +54,8 @@ jobs:
 
   unit-tests:
     name: unit-tests
+    permissions:
+      contents: read  # for actions/checkout and actions/cache
     strategy:
       matrix:
         go-version: [1.26.x]
@@ -126,6 +133,8 @@ jobs:
   validate-search-line:
     name: validate-search-line
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read  # for actions/checkout to fetch code
     env:
       QUERIES_FILTER: ${{ steps.filter.outputs.queries }}
       QUERIES_FILES: ${{ steps.filter.outputs.queries_files }}
@@ -145,8 +154,8 @@ jobs:
               - 'assets/queries/**/query.rego'
       - name: Debug filter outputs
         run: |
-          echo "queries changed: "${QUERIES_FILTER}"
-          echo "changed files: "${QUERIES_FILES}"
+          echo "queries changed: ${QUERIES_FILTER}"
+          echo "changed files: ${QUERIES_FILES}"
       - name: Set up Python
         id: setup-python
         if: steps.filter.outputs.queries == 'true'
@@ -164,6 +173,9 @@ jobs:
   security-scan:
     name: security-scan
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read  # for actions/checkout to fetch code
+      security-events: write  # for github/codeql-action/upload-sarif to upload scan results
     env:
       GO111MODULE: on
     steps:

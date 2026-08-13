@@ -12,11 +12,16 @@ concurrency:
   group: validate-prs-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
+permissions:
+  contents: read # default deny-write baseline; jobs below elevate as needed
+
 jobs:
   title-check:
     name: Check Title
     timeout-minutes: 1
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read # for actions/checkout to fetch code; comment actions use KICS_BOT_PAT, not GITHUB_TOKEN
     env:
       ERROR_MSG: "The PR title does not match the required format: <type>(<scope>): <title>"
       TITLE: ${{ github.event.pull_request.title }}
@@ -82,6 +87,9 @@ jobs:
     name: Check Labels
     runs-on: cx-public-ubuntu-x64
     timeout-minutes: 1
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      pull-requests: write # to add/remove labels on the PR via GITHUB_TOKEN
     env:
       BODY: ${{ github.event.pull_request.body }}
       LABELS: ${{ toJson(github.event.pull_request.labels) }}

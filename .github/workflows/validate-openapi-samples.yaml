@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: check-apache-license-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -43,6 +43,7 @@ jobs:
           node-version: '20'
       - name: Installing jsonlint
         run: |
+          # zizmor: ignore[adhoc-packages] single small CLI lint tool pinned to an exact version, not a project dependency warranting its own lockfile
           npm install -g --ignore-scripts jsonlint@1.6.3
           npm show jsonlint
           which jsonlint

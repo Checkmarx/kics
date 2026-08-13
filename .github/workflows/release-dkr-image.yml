@@ -6,8 +6,11 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: check-apache-license-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read # default deny-write baseline; the push_to_registry job elevates as needed
 
 jobs:
   push_to_registry:

@@ -10,11 +10,12 @@ env:
   REMOVE_HISTORY: "true"
 
 concurrency:
-  group: check-apache-license-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
-  id-token: read
+  contents: read # for actions/checkout to fetch code
+  id-token: read # default deny-write baseline; the ci-projects job below elevates to write for AWS OIDC
 
 jobs:
   build:
@@ -98,4 +99,7 @@ jobs:
     uses: ./.github/workflows/run-projects.yaml
     with:
       machines-count: 10
+    # zizmor: ignore[secrets-inherit] run-projects.yaml is an internal reusable workflow in this same
+    # repo, only called from here and ci-projects.yaml; it needs several CES_*/GH_TOKEN secrets for its
+    # AWS OIDC + private executor-repo checkout, no cross-repo/cross-trust-boundary exposure
     secrets: inherit

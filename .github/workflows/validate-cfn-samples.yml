@@ -8,13 +8,19 @@ on:
     - "assets/queries/cloudFormation/**/test/*.json"
 
 concurrency:
-  group: check-apache-license-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read # for actions/checkout to fetch code
 
 jobs:
   validate-cfn-syntax:
     name: Validate Cloudformation Syntax
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      pull-requests: read # for lots0logs/gh-action-get-changed-files to read the PR's changed file list
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2

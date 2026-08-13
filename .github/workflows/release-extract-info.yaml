@@ -6,13 +6,18 @@ on:
     type: [published]
 
 concurrency:
-  group: check-apache-license-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read # for actions/checkout to fetch code
 
 jobs:
   statistics:
     name: extract-info
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: write # for step-security/upload-release-action to attach the file to the release
     steps:
       - name: Checkout Source
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2

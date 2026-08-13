@@ -8,10 +8,19 @@ on:
       - "docs/**"
       - "mkdocs.yml"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # for actions/checkout to fetch code
+
 jobs:
   deploy:
     name: Deploy documentation pages
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: write # for git push to gh-pages
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
