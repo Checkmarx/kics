@@ -102,7 +102,7 @@ jobs:
           persist-credentials: false
       - name: Run Grype vulnerability scanner in repo mode
         id: grype-fs-scan
-        uses: anchore/scan-action@3c9a191a0fbab285ca6b8530b5de5a642cba332f # 7.2.2
+        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # 7.4.0
         with:
           path: "."
           only-fixed: true
@@ -141,7 +141,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Scan image
         id: grype-image-scan
-        uses: anchore/scan-action@3c9a191a0fbab285ca6b8530b5de5a642cba332f # 7.2.2
+        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # 7.4.0
         with:
           image: kics:sec-tests-${{ github.sha }}
           only-fixed: true
