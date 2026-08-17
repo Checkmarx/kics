@@ -50,7 +50,7 @@ LABEL name="KICS" \
   description="Checkmarx/kics is an opensource project that enable you to find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code find more in https://kics.io" \
   maintainer="kics@checkmarx.com" \
   vendor="Checkmarx" \
-  version="v2.1.20" \
+  version="v2.1.21" \
   release="1" \
   io.k8s.display-name="KICS by Checkmarx" \
   io.openshift.tags="kics checkmarx"
@@ -81,7 +81,7 @@ WORKDIR /app/bin
 COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/bin/kics /app/bin/kics
 COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/assets/ /app/bin/assets/
 
-ENV PATH $PATH:/app/bin
+ENV PATH=$PATH:/app/bin
 
 # Command to run the executable
 ENTRYPOINT ["/app/bin/kics"]

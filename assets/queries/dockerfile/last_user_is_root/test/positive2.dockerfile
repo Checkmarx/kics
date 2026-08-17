@@ -1,3 +1,3 @@
-from alpine:2.6
-user root
-run npm install
+FROM alpine:2.6
+USER root:root
+RUN npm install

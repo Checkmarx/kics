@@ -58,7 +58,6 @@ jobs:
           docker run --user $(id -u):$(id -g) -v ${PWD}/assets/queries:/path \
             kics:${{ github.sha }} scan \
             --silent \
-            --disable-full-descriptions \
             --ignore-on-exit "results" \
             --log-level DEBUG \
             --log-path "/path/info.log" \

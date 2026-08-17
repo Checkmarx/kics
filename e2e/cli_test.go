@@ -61,7 +61,7 @@ func Test_E2E_CLI(t *testing.T) {
 				// Check command Error
 				require.NoError(t, err, "Capture CLI output should not yield an error")
 
-				// Check exit status code (required)
+				// Check exit status code (required) 
 				require.True(t, arg < len(tt.WantStatus),
 					"No status code associated to this test. Check the wantStatus of the test case.")
 

@@ -41,11 +41,11 @@ Example of a valid `flags.json` file:
 To mark a flag as hidden use the following configuration:
 ```json
 {
-  "disable-full-descriptions": {
+  "log-file": {
     "flagType": "bool",
-    "shorthandFlag": "",
+    "shorthandFlag": "l",
     "defaultValue": "false",
-    "usage": "disable request for full descriptions and use default vulnerability descriptions",
+    "usage": "writes log messages to log file",
     "hidden": true
   }
 }
@@ -55,14 +55,14 @@ If you also want to display a flag deprecation warning you can define it like th
 
 ```json
 {
-  "disable-full-descriptions": {
+  "log-file": {
     "flagType": "bool",
-    "shorthandFlag": "",
+    "shorthandFlag": "l",
     "defaultValue": "false",
-    "usage": "disable request for full descriptions and use default vulnerability descriptions",
+    "usage": "writes log messages to log file",
     "hidden": true,
     "deprecated": true,
-    "deprecatedInfo": "use --disable-full-descriptions instead"
+    "deprecatedInfo": "please use --log-path instead"
   }
 }
 ```
