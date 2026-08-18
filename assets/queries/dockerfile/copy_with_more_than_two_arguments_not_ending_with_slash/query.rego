@@ -13,6 +13,7 @@ CxPolicy[result] {
 	numElems > 2
 
 	not endswith(command[minus(numElems, 1)], "/")
+	not endswith(command[minus(numElems, 1)], "\\")
 
 	stage := input.document[i].command[name]
 	from_command := dockerLib.get_original_from_command(stage)
