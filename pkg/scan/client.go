@@ -105,12 +105,17 @@ func CheckVersion(t *tracker.CITracker) {
 	}
 
 	resp, err := versionHTTPClient.Get(constants.GitHubReleasesURL)
-	
+
 	if err != nil {
 		t.TrackVersion(baseVersionInfo)
 		return
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			log.Err(err)
+		}
+	}(resp.Body)
 
 	if resp.StatusCode == http.StatusNotFound {
 		t.TrackVersion(baseVersionInfo)
