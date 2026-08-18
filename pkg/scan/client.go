@@ -105,7 +105,6 @@ func CheckVersion(t *tracker.CITracker) {
 	}
 
 	resp, err := versionHTTPClient.Get(constants.GitHubReleasesURL)
-
 	if err != nil {
 		t.TrackVersion(baseVersionInfo)
 		return
