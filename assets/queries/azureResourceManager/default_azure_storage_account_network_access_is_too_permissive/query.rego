@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
         "searchLine": common_lib.build_search_line(path, issue.sl),
 		"issueType": issue.issueType,
-		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to false, and/or networkAcls.defaultAction should be set to deny",
+		"keyExpectedValue": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess should be set to 'Disabled', and/or networkAcls.defaultAction should be set to 'Deny'",
 		"keyActualValue": issue.kav,
 	}
 }
