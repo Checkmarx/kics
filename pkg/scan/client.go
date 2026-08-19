@@ -109,12 +109,12 @@ func CheckVersion(t *tracker.CITracker) {
 		t.TrackVersion(baseVersionInfo)
 		return
 	}
-	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		if err != nil {
+
+	defer func() {
+		if err := resp.Body.Close(); err != nil {
 			log.Err(err)
 		}
-	}(resp.Body)
+	}()
 
 	if resp.StatusCode == http.StatusNotFound {
 		t.TrackVersion(baseVersionInfo)
