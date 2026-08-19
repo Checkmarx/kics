@@ -45,7 +45,7 @@ WORKDIR /app/bin
 USER checkmarx
 
 # Add kics to PATH
-ENV PATH $PATH:/app/bin
+ENV PATH=$PATH:/app/bin
 
 # Healthcheck the container (consistent with Debian variant)
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
