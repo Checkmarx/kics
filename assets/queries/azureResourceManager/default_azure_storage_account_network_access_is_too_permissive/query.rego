@@ -80,6 +80,7 @@ prepare_issue(val1, val2) = issue {
         "issueType": "MissingAttribute"
     }
 } else = issue {
+    val2 == "not defined"
     issue := {
     	"kav": sprintf("resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is set to '%s')", [val1]),
         "sk": ".properties.publicNetworkAccess",
