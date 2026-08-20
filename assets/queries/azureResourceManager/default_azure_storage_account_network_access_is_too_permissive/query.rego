@@ -9,9 +9,9 @@ CxPolicy[result] {
 
 	value.type == "Microsoft.Storage/storageAccounts"
 
-	res1 := publicNetworkAccessNotDisabled(doc, value.properties)
+	res1 := publicNetworkAccess(doc, value.properties)
     lower(res1) != "disabled"
-    res2 := aclsDefaultActionNotDeny(doc, value.properties)
+    res2 := aclsDefaultAction(doc, value.properties)
     lower(res2) != "deny"
 
     issue := prepare_issue(res1, res2)
@@ -28,7 +28,7 @@ CxPolicy[result] {
 	}
 }
 
-publicNetworkAccessNotDisabled(doc, properties) = reason {
+publicNetworkAccess(doc, properties) = reason {
 	not properties.publicNetworkAccess
     reason := "not defined"
 } else = reason {
@@ -47,7 +47,7 @@ publicNetworkAccessNotDisabled(doc, properties) = reason {
 	reason := properties.publicNetworkAccess
 }
 
-aclsDefaultActionNotDeny(doc, properties) = reason {
+aclsDefaultAction(doc, properties) = reason {
 	not common_lib.valid_key(properties, "networkAcls")
     reason := "not defined"
 } else = reason {
