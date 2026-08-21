@@ -242,7 +242,7 @@ func usingCustomQueries(queriesPath []string) bool {
 // printVersionCheck - Prints and logs warning if not using KICS latest version
 func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) {
 	if !s.LatestVersion.Latest {
-		message := fmt.Sprintf("A new version '%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
+		message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
 
 		fmt.Println(customPrint.VersionMessage.Sprintf("%s", message))
 	}
