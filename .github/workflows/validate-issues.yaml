@@ -31,7 +31,7 @@ jobs:
           .github/scripts/pr-issue-info/issue-fail.md
           .github/scripts/pr-issue-info/get_title_types.py
           .github/issue-title-types.yaml
-    - name: Set up Python
+    - name: Setup Python
       uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
       with:
         python-version: "3.x"
@@ -161,7 +161,7 @@ jobs:
             curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels/query
           fi
         fi
-    - name: Set up Python
+    - name: Setup Python
       uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
       with:
         python-version: "3.x"

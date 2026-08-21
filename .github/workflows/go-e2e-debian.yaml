@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - name: Set up Go
+      - name: Setup Go
         uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 #v6.3.0
         with:
           go-version: ${{ matrix.go-version }}
@@ -49,7 +49,7 @@ jobs:
         run: go env
       - name: Get Modules
         run: go mod vendor
-      - name: Set up Node v14
+      - name: Setup Node v14
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f #v6.3.0
         with:
           node-version: "20"
@@ -69,7 +69,7 @@ jobs:
       - name: Start mock server
         run: (npm run start&)
         working-directory: .github/scripts/server-mock
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         id: buildx
         uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Cache Docker layers

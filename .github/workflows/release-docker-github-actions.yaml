@@ -35,12 +35,12 @@ jobs:
         with:
           ref: ${{ GIT_VERSION }}
           persist-credentials: false
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: step-security/setup-qemu-action@109c6ed9f089be1a250c75fd6a534e30df44e030 # v4.0.0
         with:
           image: tonistiigi/binfmt:latest
           platforms: linux/amd64,linux/arm64
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Login to DockerHub
         uses: step-security/docker-login-action@870af644803bf9f204aed474adbad2958fec048b # v4.1.0

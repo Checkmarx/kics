@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - name: Set up Go
+      - name: Setup Go
         uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: go.mod
@@ -45,7 +45,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Set up Go
+      - name: Setup Go
         uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: go.mod
@@ -68,7 +68,7 @@ jobs:
         with:
           use-policy-store: true
           api-key: ${{ secrets.STEP_SECURITY_API_KEY }}
-      - name: Set up Go
+      - name: Setup Go
         uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version: ${{ matrix.go-version }}
@@ -156,7 +156,7 @@ jobs:
         run: |
           echo "queries changed: ${QUERIES_FILTER}"
           echo "changed files: ${QUERIES_FILES}"
-      - name: Set up Python
+      - name: Setup Python
         id: setup-python
         if: steps.filter.outputs.queries == 'true'
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
