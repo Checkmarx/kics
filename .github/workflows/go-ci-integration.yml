@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   integration-tests:
     permissions:
@@ -14,6 +18,8 @@ jobs:
       contents: read  # for docker/build-push-action to read repo content
     name: integration-tests
     runs-on: cx-public-ubuntu-x64
+    env:
+      PR_SHA: ${{ github.sha }}
     steps:
       - id: skip_check
         uses: step-security/skip-duplicate-actions@4eef6ae57f2ca5ea100e5c1da2ead9138483f53c # v5.3.4
@@ -24,7 +30,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         id: buildx
         uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Cache Docker layers
@@ -45,18 +51,20 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: false
-          tags: kics:${{ github.sha }}
+          tags: kics:${{ env.PR_SHA }}
           build-args: |
             VERSION=${GITHUB_SHA_SHORT}
             COMMIT=${GITHUB_SHA}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        env:
+          OUTPUT_DIGEST: ${{ steps.docker_build.outputs.digest }}
+        run: echo "${OUTPUT_DIGEST}"
       - name: Run docker image and generate results.json
         run: |
           docker run --user $(id -u):$(id -g) -v ${PWD}/assets/queries:/path \
-            kics:${{ github.sha }} scan \
+            kics:"${PR_SHA}" scan \
             --silent \
             --ignore-on-exit "results" \
             --log-level DEBUG \

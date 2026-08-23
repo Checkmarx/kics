@@ -1,7 +1,4 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.26.2-alpine AS build_env
-
-# Install build dependencies
-RUN apk add --no-cache git
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.26.2@sha256:b54cbf583d390341599d7bcbc062425c081105cc5ef6d170ced98ef9d047c716 AS build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -29,11 +26,8 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
 
-# Runtime image - Alpine base with apk support
-FROM alpine:latest
-
-# Install runtime dependencies including git for scanning repositories
-RUN apk add --no-cache git wget unzip
+# Runtime image - Alpine base with git preinstalled (wget/unzip come from busybox already)
+FROM alpine/git:latest@sha256:3b44767883ac77bddae0160cc27b6b039345e23fa3504f4159efaa32264ab57f
 
 RUN addgroup -g 1000 checkmarx && \
     adduser -D -u 1000 -G checkmarx -h /app/bin -s /bin/sh checkmarx
@@ -51,7 +45,7 @@ WORKDIR /app/bin
 USER checkmarx
 
 # Add kics to PATH
-ENV PATH $PATH:/app/bin
+ENV PATH=$PATH:/app/bin
 
 # Healthcheck the container (consistent with Debian variant)
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt

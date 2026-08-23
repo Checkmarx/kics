@@ -8,15 +8,20 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   notification-update-flags:
     name: Send email with terraform modules updates
     runs-on: cx-public-ubuntu-x64
-
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Execute diff and send email
         env:
           AWS_REGION: ${{ secrets.EMAIL_AWS_REGION }}
@@ -29,6 +34,8 @@ jobs:
             -u https://registry.terraform.io/v1/modules
       - name: Create Pull Request
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
+        env:
+          GIT_SHA: ${{ github.sha }}
         with:
           title: "feat(queries): update terraform registry data on commons.json"
           token: ${{ secrets.KICS_BOT_PAT }}
@@ -38,5 +45,5 @@ jobs:
           body: |
             **Automated Changes**
             Updating terraform registry data on commons.json.
-            Triggered by SHA: _${{ github.sha }}_
+            Triggered by SHA: _"${GIT_SHA}"_
           labels: terraform
