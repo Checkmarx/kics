@@ -2,8 +2,6 @@ package scan
 
 import (
 	_ "embed" // Embed kics CLI img and scan-flags
-	// "encoding/json"
-	// "fmt"
 	"os"
 	"path/filepath"
 	"sort"

@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   statistics:
     name: test-statistics
@@ -14,10 +18,13 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Set up Go
+        with:
+          persist-credentials: false
+      - name: Setup Go
         uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 #v6.3.0
         with:
           go-version-file: go.mod
+          cache: false
       - name: Run test metrics script
         id: testcoverage
         run: |
@@ -36,6 +43,10 @@ jobs:
           python-version: "3.x"
       - name: Run test statistics script
         id: metrics
+        env:
+          COVERAGE: ${{steps.testcoverage.outputs.coverage}}
+          LOC: ${{steps.go_loc.outputs.goloc}}
+          TOTAL_TESTS: ${{steps.testcoverage.outputs.total_tests}}
         run: |
           pip3 install -r .github/scripts/statistics/requirements.txt
-          python3 .github/scripts/statistics/get_statistics.py -c ${{steps.testcoverage.outputs.coverage}} -t ${{steps.testcoverage.outputs.total_tests}} -g ${{steps.go_loc.outputs.goloc}}
+          python3 .github/scripts/statistics/get_statistics.py -c "${COVERAGE}" -t "${TOTAL_TESTS}" -g "${LOC}"

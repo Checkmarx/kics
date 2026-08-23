@@ -8,26 +8,37 @@ on:
         required: true
         type: number
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 env:
   ENGINE: "kics"
   CES_ENVIRONMENT: "prod"
 
 permissions:
-  id-token: write
+  id-token: read # default deny-write baseline; the run-projects job below elevates to write for AWS OIDC
 
 jobs:
   setup:
+    name: Setup
     runs-on: cx-public-ubuntu-x64
     outputs:
       machines: ${{ steps.set-machines.outputs.machines }}
+    env:
+      MACHINES_COUNT: ${{ inputs.machines-count }}
+      MACHINES_MATRIX: ${{ matrix.machine }}
     steps:
       - name: Generate Machine Matrix
         id: set-machines
         run: |
-          machines=$(seq -s, 0 $((${{ inputs.machines-count }} - 1)))
+          machines=$(seq -s, 0 $(("${MACHINES_COUNT}" - 1)))
           echo "machines=[$machines]" >> "$GITHUB_OUTPUT"
 
   run-projects:
+    name: Run kics againts projects
+    permissions:
+      id-token: write # permission to run kics againts project
     needs: setup
     runs-on: cx-public-ubuntu-x64
     env:
@@ -46,14 +57,17 @@ jobs:
           role-to-assume: ${{ secrets.CES_BUCKET_AWS_ROLE }}
           aws-region: ${{ secrets.CES_BUCKET_AWS_REGION }}
 
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: ${{ secrets.CES_EXECUTOR_REPO }}
           token: ${{ secrets.GH_TOKEN }}
           path: cli
           ref: master
+          persist-credentials: false
 
-      - uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
+      - name: Setup Go
+        uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
         with:
           go-version-file: cli/go.mod
           cache: false
@@ -81,7 +95,7 @@ jobs:
 
       - name: Set log file
         run: |
-          LOG_FILE="$GITHUB_WORKSPACE/log_${{ matrix.machine }}.log"
+          LOG_FILE="$GITHUB_WORKSPACE/log_"${MACHINES_MATRIX}".log"
           echo "LOG_FILE=$LOG_FILE" >> $GITHUB_ENV
 
       - name: Select Projects
@@ -91,8 +105,8 @@ jobs:
           ./executor sources \
           -s $GITHUB_WORKSPACE/zips/ \
           -e $ENGINE \
-          --chunk ${{ matrix.machine }} \
-          --machines ${{ inputs.machines-count }} \
+          --chunk "${MACHINES_MATRIX}" \
+          --machines "${MACHINES_COUNT}" \
           >> "$LOG_FILE" 2>&1
 
       - name: Prepare Projects
