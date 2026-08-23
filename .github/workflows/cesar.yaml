@@ -9,18 +9,28 @@ env:
   ENGINE: "kics"
   REMOVE_HISTORY: "true"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # for actions/checkout to fetch code
+  id-token: read # default deny-write baseline; the ci-projects job below elevates to write for AWS OIDC
+
 jobs:
   build:
+    name: Build KICS binary
     if: (github.event.label.name == 'cesar' && github.event.pull_request.mergeable == true)
     runs-on: cx-public-ubuntu-x64
-
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: refs/pull/${{ github.event.pull_request.number }}/merge
           path: kics
-
-      - uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
+          persist-credentials: false
+      - name: Setup Go
+        uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
         with:
           go-version-file: kics/go.mod
           cache-dependency-path: kics/go.sum
@@ -37,22 +47,29 @@ jobs:
           chmod +x ./bin/kics
 
       - name: Create Metadata File
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_ACTOR: ${{ github.actor }}
+          PR_HEAD_REF: ${{ github.head_ref }}
+          PR_BASE_REF: ${{ github.base_ref }}
         run: |
           COMMIT_TIMESTAMP=$(git -C "$GITHUB_WORKSPACE/kics" log -1 --format=%ct)
           METADATA_PATH="$GITHUB_WORKSPACE/pr-metadata.json"
           CURR_TIMESTAMP=$(date +%s)
           echo '{
             "seq": "'"${CURR_TIMESTAMP}"'",
-            "tag": "'"${{ github.event.number }}"'",
-            "comment": "'"${{ github.event.pull_request.title }}"'",
-            "commit": "'"${{ github.event.pull_request.head.sha }}"'",
-            "owner": "'"${{ github.actor }}"'",
-            "branch": "'"${{ github.head_ref }}"'",
+            "tag": "'"${PR_NUMBER}"'",
+            "comment": "'"${PR_TITLE}"'",
+            "commit": "'"${PR_HEAD_SHA}"'",
+            "owner": "'"${PR_ACTOR}"'",
+            "branch": "'"${PR_HEAD_REF}"'",
             "engine": "'"${ENGINE}"'",
             "platform": "'"${PLATFORM}"'",
             "version": "'"${ENGINE_VERSION}"'",
             "forkSeq": "'"${CURR_TIMESTAMP}"'",
-            "forkBranch": "'"${{ github.base_ref }}"'",
+            "forkBranch": "'"${PR_BASE_REF}"'",
             "removeHistory" : "'"${REMOVE_HISTORY}"'"
           }' > "$METADATA_PATH"
 
@@ -76,8 +93,10 @@ jobs:
           retention-days: 1
 
   ci-projects:
+    permissions:
+      id-token: write # run kics againts the projects
     needs: build
     uses: ./.github/workflows/run-projects.yaml
     with:
       machines-count: 10
-    secrets: inherit
+    secrets: inherit # zizmor: ignore[secrets-inherit] run-projects.yaml is an internal same-repo reusable workflow, fixed caller set (here + ci-projects.yaml), needs several CES_*/GH_TOKEN secrets for AWS OIDC + private executor-repo checkout

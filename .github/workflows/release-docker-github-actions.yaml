@@ -10,31 +10,43 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   push_to_registry:
     name: Push Docker GitHub Actions image to Docker Hub
     runs-on: cx-public-ubuntu-x64
+    env:
+      GIT_VERSION: ${{ github.event.inputs.version }}
+      PR_SHA: ${{ github.sha }}
+      KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Check out the tag
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          ref: ${{ github.event.inputs.version }}
-      - name: Set up QEMU
+          ref: ${{ GIT_VERSION }}
+          persist-credentials: false
+      - name: Setup QEMU
         uses: step-security/setup-qemu-action@109c6ed9f089be1a250c75fd6a534e30df44e030 # v4.0.0
         with:
           image: tonistiigi/binfmt:latest
           platforms: linux/amd64,linux/arm64
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Login to DockerHub
         uses: step-security/docker-login-action@870af644803bf9f204aed474adbad2958fec048b # v4.1.0
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ DOCKER_USERNAME }}
+          password: ${{ DOCKERHUB_TOKEN }}
       - name: Get current date
         run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
       - name: Docker meta
@@ -44,7 +56,7 @@ jobs:
           images: "checkmarx/kics"
           labels: |
             org.opencontainers.image.title=KICS
-            org.opencontainers.image.version=${{ github.event.inputs.version }}
+            org.opencontainers.image.version=${{ GIT_VERSION }}
             org.opencontainers.image.vendor=Checkmarx
             org.opencontainers.image.authors=KICS
             org.opencontainers.image.description=Find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code with KICS by Checkmarx.
@@ -52,7 +64,7 @@ jobs:
             org.opencontainers.image.url=https://github.com/Checkmarx/kics
             org.opencontainers.image.source=https://github.com/Checkmarx/kics
             org.opencontainers.image.licenses=Apache-2.0
-            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.revision=${{ PR_SHA }}
             org.opencontainers.image.created=${{ env.CREATED_AT }}
       - name: Push Github Action Image to Docker Hub
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
@@ -63,8 +75,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:gh-action-kics2.0
           build-args: |
-            VERSION=${{ github.event.inputs.version }}
-            COMMIT=${{ github.sha }}
+            VERSION=${{ GIT_VERSION }}
+            COMMIT=${{ PR_SHA }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -72,16 +84,17 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Create Pull Request
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "docs(kicsbot): update images digest"
-          token: ${{ secrets.KICS_BOT_PAT }}
+          token: ${{ KICS_BOT_PAT }}
           commit-message: "docs(kicsbot): update github-action image digest"
           delete-branch: true
           branch: feature/kicsbot-update-gh-actions-digest
           body: |
             **Automated Changes**
             Updating docker github-action image digest
-            Triggered by SHA: _${{ github.sha }}_
+            Triggered by SHA: _${{ PR_SHA }}_
           labels: documentation

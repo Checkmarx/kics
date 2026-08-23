@@ -7,12 +7,17 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+
 jobs:
   e2e-tests:
+    name: e2e-tests-${{ matrix.config.tag_suffix }}
     permissions:
       actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
       contents: read  # for docker/build-push-action to read repo content
-    name: e2e-tests-${{ matrix.config.tag_suffix }}
     strategy:
       fail-fast: false
       matrix:
@@ -36,7 +41,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - name: Set up Go
+      - name: Setup Go
         uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 #v6.3.0
         with:
           go-version: ${{ matrix.go-version }}
@@ -44,10 +49,17 @@ jobs:
         run: go env
       - name: Get Modules
         run: go mod vendor
-      - name: Set up Node v14
+      - name: Setup Node v14
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f #v6.3.0
         with:
           node-version: "20"
+          registry-url: https://npm.echohq.com/
+      - name: Authenticate with npm registry
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
+        run: |
+          npm config set //npm.echohq.com/:_authToken "${ECHO_LIBRARIES_ACCESS_KEY}"
+          npm config set //packages.echohq.com/:_authToken "${ECHO_LIBRARIES_ACCESS_KEY}"
       - name: Lint lockfile
         run: npx --yes lockfile-lint --path package-lock.json --type npm --allowed-hosts npm
         working-directory: .github/scripts/server-mock
@@ -57,7 +69,7 @@ jobs:
       - name: Start mock server
         run: (npm run start&)
         working-directory: .github/scripts/server-mock
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         id: buildx
         uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Cache Docker layers
@@ -91,7 +103,9 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        env:
+          DIGEST: ${{ steps.docker_build.outputs.digest }}
+        run: echo "${DIGEST}"
       - name: Display PWD / Files
         run: |
           pwd
