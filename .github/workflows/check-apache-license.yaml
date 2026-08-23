@@ -1,22 +1,31 @@
 name: check-apache-license
 on:
+  # zizmor: ignore[dangerous-triggers] needs secrets/write access to label & comment on PRs from forks;
+  # checkout never overrides ref, so it always checks out the trusted base branch, never the PR head,
+  # and no PR-supplied content is ever executed as code (only compared/sent as plain data)
   pull_request_target:
     types: [opened, synchronize, edited, reopened]
     branches:
       - master
+
 permissions:
   contents: read
 
 concurrency:
   group: check-apache-license-${{ github.event.pull_request.number }}
   cancel-in-progress: true
+
 jobs:
   check-license:
+    name: Check Apache License
     runs-on: cx-public-ubuntu-x64
     timeout-minutes: 1
     env:
       BODY: ${{ github.event.pull_request.body }}
       USERNAME: ${{ github.event.pull_request.user.login }}
+      KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
+      REPOSITORY: ${{ github.repository }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
     steps:
     - name: Checkout code
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -31,8 +40,8 @@ jobs:
     - name: Check for comment tag
       if: env.CHECK_FAILED != 'true'
       run: |
-        comments=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" \
-            -X GET "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments")
+        comments=$(curl -s -H "Authorization: token "${KICS_BOT_PAT}"" \
+            -X GET "https://api.github.com/repos/"${REPOSITORY}"/issues/"${PR_NUMBER}"/comments")
         if echo "$comments" | grep -q "apache_license"; then
           echo "TAG_EXISTS=true" >> $GITHUB_ENV
         else
@@ -46,7 +55,7 @@ jobs:
           Deleting comment...
         comment-tag: apache_license
         mode: delete
-        github-token: ${{ secrets.KICS_BOT_PAT }}
+        github-token: "${KICS_BOT_PAT}"
     - name: Add comment if no license
       if: env.CHECK_FAILED == 'true'
       uses: step-security/actions-comment-pull-request@60cd38988a354b2d22b47612fb02a20e822d6048 # v3.0.2
@@ -55,7 +64,7 @@ jobs:
         comment-tag: apache_license
         mode: recreate
         create-if-not-exists: true
-        github-token: ${{ secrets.KICS_BOT_PAT }}
+        github-token: "${KICS_BOT_PAT}"
     - name: Workflow failed
       if: env.CHECK_FAILED == 'true'
       run: exit 1

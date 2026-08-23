@@ -2,12 +2,26 @@ name: validate-issues
 on:
   issues:
     types: [opened, edited, reopened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # default deny-write baseline; jobs below elevate as needed
+
 jobs:
   title-check:
+    name: Title Check
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read # for actions/checkout to fetch code; comment actions use KICS_BOT_PAT, not GITHUB_TOKEN
     env:
       BODY: ${{ github.event.issue.body }}
       TITLE: ${{ github.event.issue.title }}
+      KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
+      GITHUB_REPO: ${{ github.repository }}
+      GITHUB_ISSUE: ${{ github.event.issue.number }}
     steps:
     - name: Checkout code
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -17,7 +31,7 @@ jobs:
           .github/scripts/pr-issue-info/issue-fail.md
           .github/scripts/pr-issue-info/get_title_types.py
           .github/issue-title-types.yaml
-    - name: Set up Python
+    - name: Setup Python
       uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
       with:
         python-version: "3.x"
@@ -33,8 +47,8 @@ jobs:
     - name: Check for comment tag
       if: env.TITLE_CHECK_FAILED != 'true'
       run: |
-        comments=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" \
-            -X GET "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments")
+        comments=$(curl -s -H "Authorization: token "${KICS_BOT_PAT}"" \
+            -X GET "https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/comments")
         if echo "$comments" | grep -q "title_check"; then
           echo "TAG_EXISTS=true" >> $GITHUB_ENV
         else
@@ -61,12 +75,22 @@ jobs:
     - name: Workflow failed
       if: env.TITLE_CHECK_FAILED == 'true'
       run: exit 1
+
   labels-check:
+    name: Check Labels
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      issues: write # to add/remove labels on the issue via GITHUB_TOKEN
     env:
       BODY: ${{ github.event.issue.body }}
       LABELS: ${{ toJson(github.event.issue.labels) }}
       TITLE: ${{ github.event.issue.title }}
+      KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
+      USERNAME: ${{ github.event.issue.user.login }}"
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_REPO: ${{ github.repository }}
+      GITHUB_ISSUE: ${{ github.event.issue.number }}
     steps:
     - name: Checkout code
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -78,10 +102,10 @@ jobs:
     - name: Install JQ
       run: sudo apt-get install jq
     - name: Get username
-      run: echo "USERNAME=${{ github.event.issue.user.login }}" >> $GITHUB_ENV
+      run: echo "USERNAME="${USERNAME}"" >> $GITHUB_ENV
     - name: Check user username
       run: |
-        response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics/members")
+        response=$(curl -s -H "Authorization: token "${KICS_BOT_PAT}"" "https://api.github.com/orgs/Checkmarx/teams/kics/members")
         team_members=$(echo "$response" | jq -r '.[].login')
         if echo "${team_members[@]}" | grep -Pq "^$USERNAME$"; then
           echo "Contributor belongs to Checkmarx organization"
@@ -94,50 +118,50 @@ jobs:
     - name: Add community label if user does not belong to Checkmarx Organization
       run: |
         if [[ "$IS_MEMBER" == "false" ]]; then
-          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["community"]}'
+          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels -d '{"labels": ["community"]}'
         fi
     - name: Add feature or feature request label
       run: |
         if [[ "$TITLE" == feat* ]] || echo "$TITLE $BODY" | grep -iqP "feature request" || echo "$BODY" | grep -iqP "Is your feature request related to a problem? Please describe." || echo "$BODY" | grep -iqP "Describe the solution you'd like" || echo "$BODY" | grep -iqP "Describe alternatives you've considered" || echo "$BODY" | grep -iqP "Additional context"; then
           if [[ "$IS_MEMBER" == "true" ]]; then
             echo "Adding 'feature' label..."
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["feature"]}'
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels -d '{"labels": ["feature"]}'
           else
             echo "Adding 'feature request' label..."
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["feature request"]}'
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels -d '{"labels": ["feature request"]}'
           fi
         else
           if echo "$LABELS" | grep -q "feature request"; then
             echo "Removing 'feature request' label..."
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/feature%20request
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels/feature%20request
           elif echo "$LABELS" | grep -q "feature"; then
             echo "Removing 'feature' label..."
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/feature
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels/feature
           fi
         fi
     - name: Add bug label
       run: |
         if echo "$TITLE $BODY" | grep -iqP "(\\b|_)bugs?(\\b|_)" || echo "$BODY" | grep -iqP "steps to reproduce" || echo "$BODY" | grep -iqP "actual behavior" || echo "$BODY" | grep -iqP "expected behavior"; then
           echo "Adding 'bug' label..."
-          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["bug"]}'
+          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels -d '{"labels": ["bug"]}'
         else
           if echo "$LABELS" | grep -q "bug"; then
             echo "Removing 'bug' label..."
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/bug
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels/bug
           fi
         fi
     - name: Add query label
       run: |
         if echo "$TITLE $BODY" | grep -iqP "(\\b|_)quer(y|ies)(\\b|_)" || echo "$BODY" | grep -iqP "### Platform" || echo "$BODY" | grep -iqP "### Provider"; then
           echo "Adding 'query' label... "
-          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["query"]}'
+          curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels -d '{"labels": ["query"]}'
         else
           if echo "$LABELS" | grep -q "query"; then
             echo "Removing 'query' label..."
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/query
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels/query
           fi
         fi
-    - name: Set up Python
+    - name: Setup Python
       uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
       with:
         python-version: "3.x"
@@ -159,9 +183,9 @@ jobs:
           label=${keywords[$keyword]}
           if [[ ! " ${labels_to_add[@]} " =~ " ${label} " ]] && [[ " ${current_labels[@]} " =~ " ${label} " ]]; then
             echo "Removing '$label' label..."
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/$label
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels/$label
           elif [[ " ${labels_to_add[@]} " =~ " ${label} " ]] && [[ ! " ${current_labels[@]} " =~ " ${label} " ]]; then
             echo "Adding '$label' label..."
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d "{\"labels\": [\"$label\"]}"
+            curl -s -H "Authorization: token "${GITHUB_TOKEN}"" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/labels -d "{\"labels\": [\"$label\"]}"
           fi
         done
