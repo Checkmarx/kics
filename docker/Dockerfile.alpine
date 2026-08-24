@@ -27,7 +27,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -o bin/kics cmd/console/main.go
 
 # Runtime image - Alpine base with git preinstalled (wget/unzip come from busybox already)
-FROM alpine/git:latest@sha256:3b44767883ac77bddae0160cc27b6b039345e23fa3504f4159efaa32264ab57f
+FROM alpine/git:latest@sha256:6f8eae2205a85c51106a9650e574a37fb1d5e4f645e5f6ea57cb57b9462cd4cf
 
 RUN addgroup -g 1000 checkmarx && \
     adduser -D -u 1000 -G checkmarx -h /app/bin -s /bin/sh checkmarx

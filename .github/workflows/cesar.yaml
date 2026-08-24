@@ -15,7 +15,7 @@ concurrency:
 
 permissions:
   contents: read # for actions/checkout to fetch code
-  id-token: read # default deny-write baseline; the ci-projects job below elevates to write for AWS OIDC
+  id-token: none # default deny-write baseline; the ci-projects job below elevates to write for AWS OIDC
 
 jobs:
   build:

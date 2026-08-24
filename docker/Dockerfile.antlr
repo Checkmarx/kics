@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine AS builder
+FROM adoptopenjdk/openjdk11:alpine@sha256:b11c19251c5174d449d67793c9b18f729b209c0030f25f9a127b3c96b519c131 AS builder
 
 WORKDIR /opt/antlr4
 
@@ -13,7 +13,7 @@ RUN apk add --no-cache maven git \
   && mvn -DskipTests install --projects tool --also-make \
   && mv ./tool/target/antlr4-*-complete.jar antlr4-tool.jar
 
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM adoptopenjdk/openjdk11:alpine-jre@sha256:ed992fd62dc87ba31aea960de3a664b932776b0ba55161936840690cd7c83191
 
 ARG user=appuser
 ARG group=appuser
