@@ -17,7 +17,7 @@ env:
   CES_ENVIRONMENT: "prod"
 
 permissions:
-  id-token: read # default deny-write baseline; the run-projects job below elevates to write for AWS OIDC
+  id-token: none # default deny baseline; the run-projects job below elevates to write for AWS OIDC
 
 jobs:
   setup:

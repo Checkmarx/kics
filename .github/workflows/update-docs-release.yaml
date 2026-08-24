@@ -33,10 +33,12 @@ jobs:
       - name: Get release version
         id: version
         run: |
-          echo "::set-output name=cversion::$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
-          echo "::set-output name=ctag::$(git describe --tags --match='v*' --abbrev=0)"
-          echo "::set-output name=pversion::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1) | cut -c2-)"
-          echo "::set-output name=ptag::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1))"
+          {
+            echo "cversion=$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
+            echo "ctag=$(git describe --tags --match='v*' --abbrev=0)"
+            echo "pversion=$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1) | cut -c2-)"
+            echo "ptag=$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1))"
+          } >> "$GITHUB_OUTPUT"
       - name: Print tags
         env:
           PREVIOUS_TAG: ${{ steps.version.outputs.ptag }}
