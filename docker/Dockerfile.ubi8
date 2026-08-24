@@ -12,7 +12,7 @@ ENV PATH=$PATH:/usr/local/go/bin
 COPY --from=go_toolchain /usr/local/go /usr/local/go
 
 ENV GOPRIVATE=github.com/Checkmarx/*
-ARG VERSION="development"
+ARG ENGINE_VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
@@ -29,17 +29,17 @@ COPY . .
 
 # Build the Go app
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
-  -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
+  -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${ENGINE_VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
   -a -installsuffix cgo \
   -o bin/kics cmd/console/main.go
 
 FROM redhat/ubi8:latest@sha256:a94c5e31450d30190afe6f7a09628dd1dd7a3dc98784ba5ed1d19fd77098fcb2
 
 ARG RELEASE
-ARG VERSION
+ARG ENGINE_VERSION
 
 ENV RELEASE=$RELEASE \
-  VERSION=$VERSION
+  VERSION=$ENGINE_VERSION
 
 LABEL name="KICS" \
   summary="Provides the latest release of the KICS (Keeping Infrastructure as Code Secure) scanner" \

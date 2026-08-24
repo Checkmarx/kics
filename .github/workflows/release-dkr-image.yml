@@ -87,7 +87,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }}
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
@@ -102,7 +102,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
@@ -117,7 +117,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
@@ -132,7 +132,7 @@ jobs:
           tags: checkmarx/kics:ubi8,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi8
           platforms: linux/amd64,linux/arm64
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}

@@ -121,12 +121,12 @@ cover: test
 .PHONY: docker
 docker: ## build docker image
 	$(call print-target)
-	@docker build --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
+	@docker build --build-arg ENGINE_VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
 
 .PHONY: podman
 podman: ## build podman image
 	$(call print-target)
-	@podman build --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
+	@podman build --build-arg ENGINE_VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
 
 .PHONY: docker-compose
 dkr-compose: ## build docker image and runs docker-compose up

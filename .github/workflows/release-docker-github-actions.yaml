@@ -75,7 +75,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:gh-action-kics2.0
           build-args: |
-            VERSION=${{ GIT_VERSION }}
+            ENGINE_VERSION=${{ GIT_VERSION }}
             COMMIT=${{ PR_SHA }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
