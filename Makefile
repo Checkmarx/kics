@@ -121,22 +121,22 @@ cover: test
 .PHONY: docker
 docker: ## build docker image
 	$(call print-target)
-	@docker build --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
+	@docker build --build-arg ENGINE_VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
 
 .PHONY: podman
 podman: ## build podman image
 	$(call print-target)
-	@podman build --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
+	@podman build --build-arg ENGINE_VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
 
 .PHONY: docker-compose
 dkr-compose: ## build docker image and runs docker-compose up
 	$(call print-target)
-	VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} docker-compose up --build
+	ENGINE_VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} docker-compose up --build
 
 .PHONY: podman-compose
 podman-compose: ## build podman image and runs podman-compose up
 	$(call print-target)
-	VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} podman-compose up --build
+	ENGINE_VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} podman-compose up --build
 
 .PHONY: dkr-build-antlr
 dkr-build-antlr: ## build ANTLRv4 docker image and generate parser based on given grammar
