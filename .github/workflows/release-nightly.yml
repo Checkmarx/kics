@@ -171,7 +171,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:nightly
           build-args: |
-            VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
+            ENGINE_VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -185,7 +185,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:nightly-alpine
           build-args: |
-            VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
+            ENGINE_VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -199,7 +199,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:nightly-debian
           build-args: |
-            VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
+            ENGINE_VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -213,7 +213,7 @@ jobs:
           tags: checkmarx/kics:nightly-ubi8
           platforms: linux/amd64
           build-args: |
-            VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
+            ENGINE_VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
