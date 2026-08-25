@@ -131,12 +131,12 @@ podman: ## build podman image
 .PHONY: docker-compose
 dkr-compose: ## build docker image and runs docker-compose up
 	$(call print-target)
-	VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} docker-compose up --build
+	ENGINE_VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} docker-compose up --build
 
 .PHONY: podman-compose
 podman-compose: ## build podman image and runs podman-compose up
 	$(call print-target)
-	VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} podman-compose up --build
+	ENGINE_VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} podman-compose up --build
 
 .PHONY: dkr-build-antlr
 dkr-build-antlr: ## build ANTLRv4 docker image and generate parser based on given grammar

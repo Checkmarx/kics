@@ -33,7 +33,7 @@ jobs:
       - name: Check out the tag
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          ref: ${{ GIT_VERSION }}
+          ref: ${{ env.GIT_VERSION }}
           persist-credentials: false
       - name: Setup QEMU
         uses: step-security/setup-qemu-action@109c6ed9f089be1a250c75fd6a534e30df44e030 # v4.0.0
@@ -45,8 +45,8 @@ jobs:
       - name: Login to DockerHub
         uses: step-security/docker-login-action@870af644803bf9f204aed474adbad2958fec048b # v4.1.0
         with:
-          username: ${{ DOCKER_USERNAME }}
-          password: ${{ DOCKERHUB_TOKEN }}
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ env.DOCKER_TOKEN }}
       - name: Get current date
         run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
       - name: Docker meta
@@ -56,7 +56,7 @@ jobs:
           images: "checkmarx/kics"
           labels: |
             org.opencontainers.image.title=KICS
-            org.opencontainers.image.version=${{ GIT_VERSION }}
+            org.opencontainers.image.version=${{ env.GIT_VERSION }}
             org.opencontainers.image.vendor=Checkmarx
             org.opencontainers.image.authors=KICS
             org.opencontainers.image.description=Find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code with KICS by Checkmarx.
@@ -64,7 +64,7 @@ jobs:
             org.opencontainers.image.url=https://github.com/Checkmarx/kics
             org.opencontainers.image.source=https://github.com/Checkmarx/kics
             org.opencontainers.image.licenses=Apache-2.0
-            org.opencontainers.image.revision=${{ PR_SHA }}
+            org.opencontainers.image.revision=${{ env.PR_SHA }}
             org.opencontainers.image.created=${{ env.CREATED_AT }}
       - name: Push Github Action Image to Docker Hub
         uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
