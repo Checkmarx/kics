@@ -53,7 +53,7 @@ jobs:
           push: false
           tags: kics:${{ env.PR_SHA }}
           build-args: |
-            VERSION=${GITHUB_SHA_SHORT}
+            ENGINE_VERSION=${GITHUB_SHA_SHORT}
             COMMIT=${GITHUB_SHA}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
