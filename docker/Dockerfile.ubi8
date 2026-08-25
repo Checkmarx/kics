@@ -1,4 +1,6 @@
-FROM registry.access.redhat.com/ubi8:latest AS build_env
+FROM golang:1.26.2@sha256:b54cbf583d390341599d7bcbc062425c081105cc5ef6d170ced98ef9d047c716 AS go_toolchain
+
+FROM redhat/ubi8:latest@sha256:a94c5e31450d30190afe6f7a09628dd1dd7a3dc98784ba5ed1d19fd77098fcb2 AS build_env
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -7,13 +9,7 @@ WORKDIR /build
 
 ENV PATH=$PATH:/usr/local/go/bin
 
-RUN echo "Installing Go 1.26.2 for ${TARGETARCH:-amd64} architecture"
-
-RUN yum install git gcc wget -y \
-  && rm -rf /usr/local/go \
-  && wget -q https://golang.org/dl/go1.26.2.linux-${TARGETARCH:-amd64}.tar.gz \
-  && tar -C /usr/local -xzf go1.26.2.linux-${TARGETARCH:-amd64}.tar.gz \
-  && rm -f go1.26.2.linux-${TARGETARCH:-amd64}.tar.gz
+COPY --from=go_toolchain /usr/local/go /usr/local/go
 
 ENV GOPRIVATE=github.com/Checkmarx/*
 ARG VERSION="development"
@@ -37,7 +33,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
   -a -installsuffix cgo \
   -o bin/kics cmd/console/main.go
 
-FROM registry.access.redhat.com/ubi8:latest
+FROM redhat/ubi8:latest@sha256:a94c5e31450d30190afe6f7a09628dd1dd7a3dc98784ba5ed1d19fd77098fcb2
 
 ARG RELEASE
 ARG VERSION
@@ -69,7 +65,6 @@ RUN yum install git wget unzip -y \
   -g ${KGROUP} \
   -s /bin/bash \
   ${KUSER}
-
 
 USER ${KUSER}
 
