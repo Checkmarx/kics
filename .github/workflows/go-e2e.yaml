@@ -108,7 +108,7 @@ jobs:
           tags: kics:e2e-${{ matrix.config.tag_suffix }}-${{ github.sha }}
           platforms: ${{ matrix.config.platform }}
           build-args: |
-            VERSION=development
+            ENGINE_VERSION=development
             COMMIT=${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache

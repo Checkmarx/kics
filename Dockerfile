@@ -6,7 +6,7 @@ FROM ${GO_BASE_IMAGE} AS build_env
 WORKDIR /app
 
 ENV GOPRIVATE=github.com/Checkmarx/*
-ARG VERSION="development"
+ARG ENGINE_VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
@@ -25,7 +25,7 @@ COPY . .
 
 # Build the Go app
 RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
-    -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
+    -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${ENGINE_VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
 
