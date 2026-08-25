@@ -75,8 +75,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:gh-action-kics2.0
           build-args: |
-            ENGINE_VERSION=${{ GIT_VERSION }}
-            COMMIT=${{ PR_SHA }}
+            ENGINE_VERSION=${{ env.GIT_VERSION }}
+            COMMIT=${{ env.PR_SHA }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -89,12 +89,12 @@ jobs:
         uses: step-security/create-pull-request@50c103da2b9ca12cd5bc013fc6931051a5aa872b # v8.1.1
         with:
           title: "docs(kicsbot): update images digest"
-          token: ${{ KICS_BOT_PAT }}
+          token: ${{ env.KICS_BOT_PAT }}
           commit-message: "docs(kicsbot): update github-action image digest"
           delete-branch: true
           branch: feature/kicsbot-update-gh-actions-digest
           body: |
             **Automated Changes**
             Updating docker github-action image digest
-            Triggered by SHA: _${{ PR_SHA }}_
+            Triggered by SHA: _${{ env.PR_SHA }}_
           labels: documentation
