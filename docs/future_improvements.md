@@ -42,6 +42,17 @@ We advise reviewing your project's specific security needs to determine if this 
 
 ---
 
+## Regal Linter for Rego files
+
+Regal Linter for Rego Files
+In KICS version 2.X, we are introducing the use of the Regal linter to scan all ``.rego`` files. This update will improve the formatting, understanding, and performance of our queries, making it easier to work with and maintain complex Rego code.
+
+The integration of Regal linter is part of a larger initiative to upgrade the KICS OPA engine from version 0.68 to 1.0. This is the first step in this upgrade process, ensuring that our policies are consistent, well-structured and optimized for performance.
+
+As part of this transition, all existing queries will be updated to conform to Regal's best practices, ensuring a smooth migration to the new version of the OPA engine.
+
+---
+
 ## Contribution
 
 If you'd like to contribute or provide insightful feedback regarding KICS' capabilities and limitations, please don't hesitate to contact [our team](https://github.com/Checkmarx/kics/issues/).
