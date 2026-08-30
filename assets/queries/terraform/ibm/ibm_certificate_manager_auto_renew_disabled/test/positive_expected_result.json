@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Certificate Manager Auto Renew Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Certificate Manager Auto Renew Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive2.tf"
+  }
+]

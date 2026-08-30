@@ -1,0 +1,14 @@
+{
+  "id": "1f24d72d-c8be-403f-92b8-84ed910fe96e",
+  "queryName": "Beta - Compute Instance Secure Boot Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Ensures that OCI Compute Instances have a platform configuration block (platform_config) defined with is_secure_boot_enabled set to true. Secure Boot prevents unauthorized firmware and operating systems from loading during instance startup, protecting against rootkits and boot-level malware.",
+  "descriptionUrl": "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance#platform_config",
+  "platform": "Terraform",
+  "descriptionID": "1f24d72d",
+  "cloudProvider": "oci",
+  "cwe": "427",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Azure IoT Hub Defender Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Azure IoT Hub Defender Disabled",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive2.tf"
+  }
+]
