@@ -1,0 +1,11 @@
+{
+  "id": "1d324fc2-eca5-41e8-bc13-cf8f2a69fe0e",
+  "queryName": "Backup Vault Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Amazon Backup Vault does not have encryption enabled. It shall be provided a key to encrypt the backups, preventing access from unauthorized users.",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane-contrib/provider-jet-aws/backup.aws.jet.crossplane.io/Vault/v1alpha1@v0.3.0-preview#spec-forProvider-kmsKeyArn",
+  "platform": "Crossplane",
+  "descriptionID": "7f3d3553",
+  "cloudProvider": "aws"
+}
