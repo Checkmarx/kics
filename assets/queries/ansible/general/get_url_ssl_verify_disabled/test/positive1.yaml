@@ -1,0 +1,8 @@
+- name: Download file without SSL verification
+  hosts: localhost
+  tasks:
+    - name: Download binary package
+      ansible.builtin.get_url:
+        url: "https://releases.example.com/package.tar.gz"
+        dest: "/tmp/package.tar.gz"
+        validate_certs: false

@@ -1,0 +1,14 @@
+{
+  "id": "83f6923a-bd92-4066-9280-5723d8541e83",
+  "queryName": "Beta - Ansible apt Allows Unauthenticated Packages",
+  "severity": "HIGH",
+  "category": "Supply Chain",
+  "descriptionText": "Ansible apt tasks should not allow unauthenticated packages (allow_unauthenticated: true). Installing unsigned packages bypasses repository authentication and enables supply chain attacks through package tampering.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html#parameter-allow_unauthenticated",
+  "platform": "Ansible",
+  "descriptionID": "a9b0c1d2",
+  "cloudProvider": "common",
+  "cwe": "494",
+  "riskScore": "8.0",
+  "experimental": "true"
+}

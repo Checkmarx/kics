@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - CosmosDB Account Without Customer-Managed Key",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

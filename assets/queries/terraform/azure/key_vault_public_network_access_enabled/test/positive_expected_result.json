@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Key Vault Public Network Access Enabled",
+        "severity": "HIGH",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

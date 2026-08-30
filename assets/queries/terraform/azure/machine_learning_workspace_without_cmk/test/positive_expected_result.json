@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - Machine Learning Workspace Without CMK",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Ansible Package Manager GPG Check Disabled",
+        "severity": "HIGH",
+        "line": 6,
+        "filename": "positive1.yaml"
+    }
+]

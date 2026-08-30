@@ -1,0 +1,9 @@
+- name: Install packages with GPG check disabled
+  hosts: all
+  become: true
+  tasks:
+    - name: Install nginx without signature verification
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+        disable_gpg_check: true

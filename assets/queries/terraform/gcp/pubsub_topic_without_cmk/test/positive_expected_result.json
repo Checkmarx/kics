@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Cloud PubSub Topic Without Customer-Managed Key",
+        "severity": "MEDIUM",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

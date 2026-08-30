@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Artifact Registry Repository With Public Access",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Artifact Registry Repository With Public Access",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive2.tf"
+  }
+]
