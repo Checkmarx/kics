@@ -11,4 +11,7 @@ Resources:
       DeploymentId: !Ref TestDeployment
       DocumentationVersion: ""
       MethodSettings:
-        LoggingLevel: "OFF"
+        - LoggingLevel: "OFF"
+          DataTraceEnabled: False
+        - DataTraceEnabled: False
+          LoggingLevel: "INFO"
