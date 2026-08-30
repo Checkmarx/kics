@@ -22,5 +22,11 @@
     "severity": "HIGH",
     "line": 1,
     "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Global Security Field Is Undefined (v3)",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive5.json"
   }
 ]

@@ -38,25 +38,25 @@
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
-    "line": 10,
+    "line": 17,
     "fileName": "positive2.yaml"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
-    "line": 14,
+    "line": 21,
     "fileName": "positive2.yaml"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
-    "line": 33,
+    "line": 47,
     "fileName": "positive2.yaml"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
-    "line": 36,
+    "line": 50,
     "fileName": "positive2.yaml"
   }
 ]

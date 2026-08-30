@@ -1,0 +1,199 @@
+# Cases that should NOT be flagged by the improved rule
+
+# Simple test pod - should be allowed in default namespace
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+spec:
+  containers:
+  - name: test
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+---
+# System DaemonSet in kube-system - legitimate
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kube-proxy
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      name: kube-proxy
+  template:
+    metadata:
+      labels:
+        name: kube-proxy
+    spec:
+      containers:
+      - name: kube-proxy
+        image: k8s.gcr.io/kube-proxy:v1.20.0
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+
+---
+# System service in kube-system - legitimate
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-dns
+  namespace: kube-system
+spec:
+  selector:
+    k8s-app: kube-dns
+  ports:
+  - port: 53
+    protocol: UDP
+
+---
+# Resources with testing-related names
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-pod
+spec:
+  containers:
+  - name: example
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+---
+# Resources with development labels
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  labels:
+    environment: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: app
+        image: nginx
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
+---
+# Simple pod with development stage label
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod
+  labels:
+    stage: testing
+spec:
+  containers:
+  - name: demo
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+---
+# Network policy DaemonSet (system component)
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: calico-node
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      k8s-app: calico-node
+  template:
+    metadata:
+      labels:
+        k8s-app: calico-node
+    spec:
+      containers:
+      - name: calico-node
+        image: calico/node:v3.20.0
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+
+---
+# Monitoring DaemonSet (system component)
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-exporter
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: node-exporter
+  template:
+    metadata:
+      labels:
+        app: node-exporter
+    spec:
+      containers:
+      - name: node-exporter
+        image: prom/node-exporter
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+
+---
+# Simple pod with single container (testing scenario)
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-test
+spec:
+  containers:
+  - name: test-container
+    image: busybox
+    command: ['sh', '-c', 'echo Hello World']
+    resources:
+      requests:
+        memory: "32Mi"
+        cpu: "100m"
+      limits:
+        memory: "64Mi"
+        cpu: "200m"

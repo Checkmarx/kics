@@ -1,0 +1,28 @@
+# These SHOULD be flagged - non-public buckets allowing public policies
+
+Resources:
+  # Regular application bucket (not website/CDN)
+  ApplicationDataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: application-data-storage
+      # Should be flagged - missing PublicAccessBlockConfiguration
+      
+  # Database backup bucket with explicit false
+  DatabaseBackupBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: database-backup-storage
+      PublicAccessBlockConfiguration:
+        BlockPublicPolicy: false  # Should be flagged - not a public use case
+        
+  # Private document storage
+  PrivateDocumentsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: private-document-storage
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+        # Should be flagged - missing BlockPublicPolicy
