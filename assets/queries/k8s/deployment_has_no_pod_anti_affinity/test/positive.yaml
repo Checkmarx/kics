@@ -1,12 +1,13 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: label-mismatch
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: web-store
-  replicas: 3
   template:
     metadata:
       labels:
@@ -18,25 +19,25 @@ spec:
           - labelSelector:
               matchLabels:
                 app: web-store
-            topologyKey: "kubernetes.io/hostname"
+            topologyKey: kubernetes.io/hostname
       containers:
-      - name: web-app
-        image: nginx:1.16-alpine
+      - image: nginx:1.16-alpine
+        name: web-app
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: no-affinity
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: web-store
-  replicas: 3
   template:
     metadata:
       labels:
         app: web-store
     spec:
       containers:
-      - name: web-app
-        image: nginx:1.16-alpine
+      - image: nginx:1.16-alpine
+        name: web-app

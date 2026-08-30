@@ -1,0 +1,14 @@
+{
+  "id": "c81c6c42-6c17-48c4-bde6-ea242e76f275",
+  "queryName": "Beta - Ingress Without TLS",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Kubernetes Ingress resources should configure TLS to encrypt traffic between clients and the ingress controller. Without a 'tls' block, traffic is served over plain HTTP, exposing sensitive data in transit.",
+  "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/ingress/#tls",
+  "platform": "Kubernetes",
+  "descriptionID": "0dcbf4a2",
+  "cloudProvider": "common",
+  "cwe": "319",
+  "riskScore": "7.5",
+  "experimental": "true"
+}
