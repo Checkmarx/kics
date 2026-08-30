@@ -1,0 +1,14 @@
+{
+  "id": "97d14cd6-5d27-466f-ad96-cc2fac23e8be",
+  "queryName": "Beta - EMR Cluster Local Disk Encryption Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Amazon EMR security configurations should enable local disk encryption for cluster nodes to protect data stored on locally attached disks against unauthorized access.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/emr_security_configuration",
+  "platform": "Terraform",
+  "descriptionID": "a1b2c3d4",
+  "cloudProvider": "aws",
+  "cwe": "311",
+  "riskScore": "7.5",
+  "experimental": "true"
+}

@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Route53 Zone Query Logging Disabled",
+        "severity": "LOW",
+        "line": 1,
+        "filename": "positive1.tf"
+    }
+]

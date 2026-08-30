@@ -1,0 +1,14 @@
+[
+    {
+        "queryName": "Beta - Storage Account Queue Logging Disabled",
+        "severity": "MEDIUM",
+        "line": 10,
+        "filename": "positive1.tf"
+    },
+    {
+        "queryName": "Beta - Storage Account Queue Logging Disabled",
+        "severity": "MEDIUM",
+        "line": 11,
+        "filename": "positive1.tf"
+    }
+]

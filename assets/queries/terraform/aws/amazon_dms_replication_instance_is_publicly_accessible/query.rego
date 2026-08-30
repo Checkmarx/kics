@@ -16,5 +16,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_dms_replication_instance[%s].publicly_accessible should be set to false", [name]),
 		"keyActualValue": sprintf("aws_dms_replication_instance[%s].publicly_accessible is set to true", [name]),
+		"remediation": json.marshal({
+			"before": "true",
+			"after": "false",
+		}),
+		"remediationType": "replacement",
 	}
 }

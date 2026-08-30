@@ -1,0 +1,14 @@
+{
+  "id": "ff2128f0-7084-4fec-81a6-dbd95b19a7ab",
+  "queryName": "Beta - Cognito User Pool Advanced Security Disabled",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Amazon Cognito User Pools should enable advanced security features (AUDIT or ENFORCED mode) to detect and act on compromised credentials, anomalous sign-in attempts, and account takeover risks.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cognito_user_pool#advanced_security_mode",
+  "platform": "Terraform",
+  "descriptionID": "f6a7b8c9",
+  "cloudProvider": "aws",
+  "cwe": "307",
+  "riskScore": "5.5",
+  "experimental": "true"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "59f7a480-7ad5-49af-b5f2-d3d20e43217e",
+  "queryName": "Beta - Kinesis Firehose Delivery Stream SSE Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Amazon Kinesis Firehose delivery streams should have server-side encryption (SSE) enabled to protect streaming data at rest using KMS keys.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kinesis_firehose_delivery_stream#server_side_encryption",
+  "platform": "Terraform",
+  "descriptionID": "d0e1f2a3",
+  "cloudProvider": "aws",
+  "cwe": "311",
+  "riskScore": "7.0",
+  "experimental": "true"
+}
