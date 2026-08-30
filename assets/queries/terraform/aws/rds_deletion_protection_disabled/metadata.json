@@ -1,0 +1,13 @@
+{
+  "id": "26d982ac-b86d-4915-9372-e723b1c0b886",
+  "queryName": "RDS Deletion Protection Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Amazon RDS instances and Aurora clusters should have deletion protection enabled to prevent accidental or malicious deletion of the database",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#deletion_protection",
+  "platform": "Terraform",
+  "descriptionID": "41f3fc5b",
+  "cloudProvider": "aws",
+  "cwe": "693",
+  "riskScore": "3"
+}
