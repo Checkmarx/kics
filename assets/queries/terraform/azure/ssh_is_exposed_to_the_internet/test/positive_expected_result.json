@@ -2,101 +2,169 @@
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 22
+    "line": 22,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 36,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 50
+    "line": 50,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 64
+    "line": 64,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 78
+    "line": 78,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 92
+    "line": 92,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 106
+    "line": 106,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 120
+    "line": 120,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 134
+    "line": 134,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 153
+    "line": 153,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 165
+    "line": 165,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 177
+    "line": 177,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 189
+    "line": 189,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 201
+    "line": 201,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 213
+    "line": 213,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 225
+    "line": 225,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 237
+    "line": 237,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 249
+    "line": 249,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "SSH Is Exposed To The Internet",
     "severity": "MEDIUM",
-    "line": 261
+    "line": 261,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "SSH Is Exposed To The Internet",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SSH Is Exposed To The Internet",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SSH Is Exposed To The Internet",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SSH Is Exposed To The Internet",
+    "severity": "MEDIUM",
+    "line": 50,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SSH Is Exposed To The Internet",
+    "severity": "MEDIUM",
+    "line": 69,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SSH Is Exposed To The Internet",
+    "severity": "MEDIUM",
+    "line": 81,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SSH Is Exposed To The Internet",
+    "severity": "MEDIUM",
+    "line": 93,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SSH Is Exposed To The Internet",
+    "severity": "MEDIUM",
+    "line": 105,
+    "fileName": "positive2.tf"
   }
 ]
