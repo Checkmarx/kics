@@ -2,11 +2,43 @@
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 21
+    "line": 21,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive4.tf"
   }
 ]
