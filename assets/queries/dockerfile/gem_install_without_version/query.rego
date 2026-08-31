@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-    dockerLib.arrayContains(resource.Value, {"gem", "install"})
+    dockerLib.arrayContainsAll(resource.Value, {"gem", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "gem"

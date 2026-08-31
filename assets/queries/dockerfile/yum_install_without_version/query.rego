@@ -36,7 +36,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	docker_lib.arrayContains(resource.Value, {"yum", "install"})
+	docker_lib.arrayContainsAll(resource.Value, {"yum", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "yum"

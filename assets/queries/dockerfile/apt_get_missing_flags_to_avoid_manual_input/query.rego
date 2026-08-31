@@ -30,7 +30,7 @@ CxPolicy[result] {
 
     count(resource.Value) > 1
 
-    dockerLib.arrayContains(resource.Value, {"apt-get", "install"})
+    dockerLib.arrayContainsAll(resource.Value, {"apt-get", "install"})
 
     not avoidManualInputInList(resource.Value)
     
