@@ -36,7 +36,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	docker_lib.arrayContains(resource.Value, {"zypper", "install"})
+	docker_lib.arrayContainsAll(resource.Value, {"zypper", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "zypper"

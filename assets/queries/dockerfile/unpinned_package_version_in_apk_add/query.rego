@@ -95,7 +95,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	docker_lib.arrayContains(resource.Value, {"apk", "add"})
+	docker_lib.arrayContainsAll(resource.Value, {"apk", "add"})
 
 	resource.Value[j] != "apk"
 	resource.Value[j] != "add"

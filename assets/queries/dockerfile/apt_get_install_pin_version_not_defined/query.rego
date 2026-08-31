@@ -34,7 +34,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-	dockerLib.arrayContains(resource.Value, {"apt-get", "install"})
+	dockerLib.arrayContainsAll(resource.Value, {"apt-get", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "apt-get"

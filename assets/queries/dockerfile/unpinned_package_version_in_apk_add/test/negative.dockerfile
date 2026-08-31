@@ -18,3 +18,4 @@ COPY app.py /usr/src/app/
 COPY templates/index.html /usr/src/app/templates/
 EXPOSE 5000
 CMD ["python", "/usr/src/app/app.py"]
+RUN ["pwsh.exe", "-NoLogo", "-Command", "vcpkg integrate install"]

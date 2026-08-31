@@ -61,6 +61,12 @@ arrayContains(array, list) {
 	contains(array[_], list[_])
 }
 
+# every element of list must be found in some element of array
+arrayContainsAll(array, list) {
+	matched := {item | item := list[_]; contains(array[_], item)}
+	count(matched) == count(list)
+}
+
 check_multi_stage(imageName, images) {
     unsortedIndex := {x |
         images[name][i].Cmd == "from"
