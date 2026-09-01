@@ -34,7 +34,7 @@
           ],
           "ViewerCertificate": {
             "IamCertificateId": "String",
-            "MinimumProtocolVersion": "TLSv1.2_2018",
+            "MinimumProtocolVersion": "TLSv1.3_2025",
             "SslSupportMethod": "String",
             "AcmCertificateArn": "String",
             "CloudFrontDefaultCertificate": true
