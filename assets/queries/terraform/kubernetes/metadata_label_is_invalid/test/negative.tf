@@ -3,7 +3,9 @@ resource "kubernetes_pod" "test2" {
     name = "terraform-example"
 
     labels = {
-      app = "MyApp"
+      app                                   = "MyApp"
+      "gateway.istio.io/defaults-for-class" = "something"
+      environment                           = local.env_name
     }
   }
 
