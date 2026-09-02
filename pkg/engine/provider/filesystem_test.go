@@ -283,6 +283,8 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 	checkStatErr(t, errTerraCache)
 	infoTerraCacheFolder, errTerraCacheFolder := os.Stat(filepath.FromSlash("test/fixtures/test_terra_cache/.terraform"))
 	checkStatErr(t, errTerraCacheFolder)
+	infoCacheFile, errCacheFile := os.Stat(filepath.FromSlash("test/fixtures/test_cache_file/test.cache.tf"))
+	checkStatErr(t, errCacheFile)
 
 	type fields struct {
 		paths    []string
@@ -595,6 +597,24 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			want: want{
 				got: true,
 				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_cache_file for file matching *.cache.* pattern",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("test/fixtures/test_cache_file/test.cache.tf")},
+				excludes: nil,
+			},
+			args: args{
+				info: infoCacheFile,
+				extensions: model.Extensions{
+					".tf": dockerParser.Parser{},
+				},
+				path: filepath.FromSlash("test/fixtures/test_cache_file/test.cache.tf"),
+			},
+			want: want{
+				got: true,
+				err: nil,
 			},
 		},
 		{
