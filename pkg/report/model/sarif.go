@@ -149,6 +149,7 @@ type sarifResult struct {
 	ResultRuleID    string          `json:"ruleId"`
 	ResultRuleIndex int             `json:"ruleIndex"`
 	ResultKind      string          `json:"kind"`
+	ResultLevel     string          `json:"level,omitempty"`
 	ResultMessage   sarifMessage    `json:"message"`
 	ResultLocations []sarifLocation `json:"locations"`
 }
@@ -634,8 +635,9 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 		}
 		ruleIndex := sr.buildSarifRule(&metadata, cisDescriptions)
 
+		level := severityLevelEquivalence[issue.Severity]
 		kind := "fail"
-		if severityLevelEquivalence[issue.Severity] == "none" {
+		if level == "none" {
 			kind = "informational"
 		}
 		for idx := range issue.Files {
@@ -654,6 +656,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
 				ResultKind:      kind,
+				ResultLevel:     level,
 				ResultMessage: sarifMessage{
 					Text:              issue.Files[idx].KeyActualValue,
 					MessageProperties: messageProperties,
