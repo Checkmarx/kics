@@ -34,5 +34,17 @@
     "severity": "MEDIUM",
     "line": 51,
     "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "KMS Key Rotation Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "KMS Key Rotation Disabled",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive4.yaml"
   }
 ]
