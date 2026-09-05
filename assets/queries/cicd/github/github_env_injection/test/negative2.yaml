@@ -1,0 +1,20 @@
+# Safe: uses a hardcoded value when writing to GITHUB_ENV.
+# No user-controlled context variable is involved.
+
+name: Set Build Config
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set build mode
+        run: echo "BUILD_MODE=production" >> $GITHUB_ENV
+
+      - name: Build
+        run: make build

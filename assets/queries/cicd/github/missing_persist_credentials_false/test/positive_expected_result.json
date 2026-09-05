@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Missing persist-credentials False in Privileged Checkout",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Beta - Missing persist-credentials False in Privileged Checkout",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "id": "a9b8c7d6-e5f4-4a3b-8c1d-0e9f8a7b6c5d",
+  "queryName": "Beta - Workflow With Overly Permissive Permissions",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "A pull_request_target workflow grants write permissions (pull-requests: write or contents: write) at the workflow level. Every job — including those that check out and execute untrusted fork code — inherits those elevated permissions. Following the principle of least privilege, write permissions should be scoped to only the jobs that require them, while jobs that perform code checkout and analysis should use read-only permissions.",
+  "descriptionUrl": "https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/",
+  "platform": "CICD",
+  "descriptionID": "f5a6b7c8",
+  "cloudProvider": "common",
+  "cwe": "272",
+  "oldSeverity": "MEDIUM",
+  "riskScore": "6.0",
+  "experimental": "true"
+}
