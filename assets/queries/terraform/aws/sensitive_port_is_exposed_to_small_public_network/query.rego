@@ -120,11 +120,17 @@ small_network_affix := ["/25","/26","/27","/28","/29"]
 ipv6_small_network_affix := ["/121","/122","/123","/124","/125"]
 
 isSmallPublicNetwork(resource) {
-	endswith(resource.cidr_blocks[_], small_network_affix[_])
+	cidr := resource.cidr_blocks[_]
+	endswith(cidr, small_network_affix[_])
+	not common_lib.isPrivateIP(cidr)
 } else {
-	endswith(resource.ipv6_cidr_blocks[_], ipv6_small_network_affix[_])
+	cidr := resource.ipv6_cidr_blocks[_]
+	endswith(cidr, ipv6_small_network_affix[_])
+	not common_lib.isPrivateIP(cidr)
 } else {
 	endswith(resource.cidr_ipv4, small_network_affix[_])
+	not common_lib.isPrivateIP(resource.cidr_ipv4)
 } else {
 	endswith(resource.cidr_ipv6, ipv6_small_network_affix[_])
+	not common_lib.isPrivateIP(resource.cidr_ipv6)
 }
