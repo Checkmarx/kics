@@ -8,10 +8,6 @@ on:
         required: true
         type: number
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-
 env:
   ENGINE: "kics"
   CES_ENVIRONMENT: "prod"
