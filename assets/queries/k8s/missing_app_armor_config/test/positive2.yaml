@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor-no-profile
+spec:
+  securityContext:
+    runAsNonRoot: true
+  containers:
+  - name: hello
+    image: busybox
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor-empty-seccontext
+spec:
+  securityContext: {}
+  containers:
+  - name: hello
+    image: busybox
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor-unconfined
+spec:
+  securityContext:
+    appArmorProfile:
+      type: Unconfined
+  containers:
+  - name: hello
+    image: busybox
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-apparmor-no-profile
+  namespace: testns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu
+  template:
+    metadata:
+      labels:
+        app: ubuntu
+    spec:
+      securityContext:
+        runAsNonRoot: true
+      containers:
+      - name: ubuntu-container
+        image: busybox
+        command: [ "sh", "-c", "sleep 1h" ]
