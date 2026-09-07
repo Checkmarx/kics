@@ -35,7 +35,7 @@ jobs:
           make test-coverage-report | tee test-results
           TOTAL_TESTS=$(cat test-results | grep -v TestQueriesContent/ | grep -v TestQueriesMetadata/ | grep -v TestQueries/ | grep PASS | wc -l)
           echo "Total Tests :: ${TOTAL_TESTS}"
-          echo "::set-output name=total_tests::${TOTAL_TESTS}"
+          echo "total_tests=${TOTAL_TESTS}" >> "$GITHUB_OUTPUT"
       - name: Generate badge
         env:
           GO_COVERAGE: ${{ steps.testcov.outputs.coverage }}
