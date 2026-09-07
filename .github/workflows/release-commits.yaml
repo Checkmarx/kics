@@ -31,6 +31,9 @@ jobs:
           python-version: "3.x"
       - name: Run get release commits script
         id: commits
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -r .github/scripts/release-commits/requirements.txt
           python3 .github/scripts/release-commits/get_commits.py
