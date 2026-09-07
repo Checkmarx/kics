@@ -153,6 +153,12 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 <div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="TencentCloud" src="img/logo-tencentcloud.png" width="120">&nbsp;&nbsp;&nbsp;
 </div>
+<div class="card" style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="IBMCloud" src="img/logo-ibmcloud.png" width="90">&nbsp;&nbsp;&nbsp;
+</div>
+<div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="OracleCloud" src="img/logo-oraclecloud.png" width="120">&nbsp;&nbsp;&nbsp;
+</div>
 </div>
 
 ## Getting Started
