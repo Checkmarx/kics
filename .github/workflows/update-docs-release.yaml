@@ -2,8 +2,6 @@ name: update-docs-release
 
 on:
   workflow_dispatch:
-  release:
-    type: [published]
 
 permissions:
   contents: read
@@ -15,11 +13,11 @@ concurrency:
 jobs:
   update-docs-release:
     name: Create new docs version
+    environment: release
     permissions:
       actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
       contents: write  # for Git to git push
     runs-on: cx-public-ubuntu-x64
-    if: "!github.event.release.prerelease"
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@85880fa0301c86cca9da44039ee3bb12d3bedbfa # 0.12.1
