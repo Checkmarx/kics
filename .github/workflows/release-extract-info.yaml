@@ -29,7 +29,10 @@ jobs:
           python-version: "3.x"
       - name: Run test statistics script
         id: extract
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -r .github/scripts/extract-kics-info/requirements.txt
           python3 .github/scripts/extract-kics-info/extract-info.py
       - name: Upload binaries to release

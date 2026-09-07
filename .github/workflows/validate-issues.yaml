@@ -36,7 +36,11 @@ jobs:
       with:
         python-version: "3.x"
     - name: Install dependencies
-      run: python3 -m pip install --upgrade pip pyyaml
+      env:
+        ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
+      run: |
+        pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
+        python3 -m pip install --upgrade pip pyyaml
     - name: Check issue title
       env:
         FILE_PATH: .github/issue-title-types.yaml
@@ -166,7 +170,11 @@ jobs:
       with:
         python-version: "3.x"
     - name: Install dependencies
-      run: python3 -m pip install --upgrade pip pyyaml
+      env:
+        ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
+      run: |
+        pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
+        python3 -m pip install --upgrade pip pyyaml
     - name: Check title for keywords of platforms and cloud providers to add labels
       run: |
         keywords=$(python3 .github/scripts/pr-issue-info/get_keywords.py)

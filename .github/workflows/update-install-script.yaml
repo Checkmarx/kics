@@ -48,7 +48,10 @@ jobs:
         with:
           python-version: "3.x"
       - name: Install dependencies
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install ruamel.yaml
       - name: Remove 'brews' from .goreleaser.yaml
         id: filter

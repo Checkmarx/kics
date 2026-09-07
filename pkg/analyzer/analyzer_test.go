@@ -1,12 +1,23 @@
 package analyzer
 
 import (
+	"fmt"
+	"os"
 	"path/filepath"
+	"runtime"
 	"sort"
+	"sync/atomic"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 )
+
+type platformFileStats struct {
+	fileCount int
+	dirCount  int
+	totalLOC  int
+}
 
 func TestAnalyzer_Analyze(t *testing.T) {
 	tests := []struct {
@@ -729,8 +740,71 @@ func TestAnalyzer_FileStats(t *testing.T) {
 	}
 }
 
-type platformFileStats struct {
-	fileCount int
-	dirCount  int
-	totalLOC  int
+func TestAnalyzerWorkerCount(t *testing.T) {
+	oldMaxProcs := runtime.GOMAXPROCS(1)
+	defer runtime.GOMAXPROCS(oldMaxProcs)
+
+	require.Equal(t, 0, analyzerWorkerCount(0))
+	require.Equal(t, 2, analyzerWorkerCount(10))
+
+	runtime.GOMAXPROCS(maxAnalyzerWorkers)
+	require.Equal(t, 5, analyzerWorkerCount(5))
+	require.Equal(t, maxAnalyzerWorkers, analyzerWorkerCount(maxAnalyzerWorkers+1))
+}
+
+// TestAnalyzer_BoundedWorkerConcurrency guards against Analyze regressing back to spawning
+// one goroutine per file. With enough candidate files, an unbounded per-file goroutine spawn
+// pushes the live goroutine count towards the file count almost immediately (goroutine creation
+// doesn't wait on file I/O), while a bounded pool never exceeds analyzerWorkerCount workers.
+func TestAnalyzer_BoundedWorkerConcurrency(t *testing.T) {
+	oldMaxProcs := runtime.GOMAXPROCS(2)
+	defer runtime.GOMAXPROCS(oldMaxProcs)
+
+	dir := t.TempDir()
+	const fileCount = 3000
+	for i := 0; i < fileCount; i++ {
+		content := []byte(fmt.Sprintf("resource \"null_resource\" \"r%d\" {}\n", i))
+		require.NoError(t, os.WriteFile(filepath.Join(dir, fmt.Sprintf("file_%d.tf", i)), content, 0o600))
+	}
+
+	expectedWorkers := analyzerWorkerCount(fileCount)
+	const goroutineSlack = 20 // feeder/wait goroutines, the monitor goroutine below, test/runtime overhead
+
+	baseline := runtime.NumGoroutine()
+	var peak int64
+	stop := make(chan struct{})
+	monitorDone := make(chan struct{})
+	go func() {
+		defer close(monitorDone)
+		for {
+			select {
+			case <-stop:
+				return
+			default:
+				if n := int64(runtime.NumGoroutine()); n > atomic.LoadInt64(&peak) {
+					atomic.StoreInt64(&peak, n)
+				}
+				time.Sleep(time.Microsecond)
+			}
+		}
+	}()
+
+	analyzer := &Analyzer{
+		Paths:        []string{dir},
+		Types:        []string{""},
+		ExcludeTypes: []string{""},
+		Exc:          []string{""},
+		MaxFileSize:  -1,
+	}
+	_, err := Analyze(analyzer)
+	require.NoError(t, err)
+
+	close(stop)
+	<-monitorDone
+
+	extraGoroutines := int(atomic.LoadInt64(&peak)) - baseline
+	require.LessOrEqualf(t, extraGoroutines, expectedWorkers+goroutineSlack,
+		"Analyze spawned %d extra goroutines while processing %d files (expected at most ~%d bounded workers); "+
+			"this indicates Analyze is no longer using a bounded worker pool and can exhaust OS threads on large repositories",
+		extraGoroutines, fileCount, expectedWorkers)
 }

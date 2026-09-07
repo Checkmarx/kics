@@ -47,6 +47,8 @@ jobs:
           COVERAGE: ${{steps.testcoverage.outputs.coverage}}
           LOC: ${{steps.go_loc.outputs.goloc}}
           TOTAL_TESTS: ${{steps.testcoverage.outputs.total_tests}}
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -r .github/scripts/statistics/requirements.txt
           python3 .github/scripts/statistics/get_statistics.py -c "${COVERAGE}" -t "${TOTAL_TESTS}" -g "${LOC}"

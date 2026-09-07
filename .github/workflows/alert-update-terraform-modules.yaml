@@ -27,7 +27,9 @@ jobs:
           AWS_REGION: ${{ secrets.EMAIL_AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.EMAIL_AWS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.EMAIL_AWS_SECRET_KEY }}
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -r .github/scripts/watchers/requirements.txt
           python3 -u .github/scripts/watchers/terraform-modules-update.py \
             -c assets/libraries/common.json \
