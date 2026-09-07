@@ -538,7 +538,7 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 	return false
 }
 
-func analyzerWorkerCount(fileCount int, maxWorkers int) int {
+func analyzerWorkerCount(fileCount, maxWorkers int) int {
 	if fileCount < 1 {
 		return 0
 	}

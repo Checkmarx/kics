@@ -29,7 +29,7 @@ jobs:
       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
         if: always()
         with:
-          github-token: ${{ secrets.KICS_BOT_PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
           card-layout-start: cozy
           card-layout-exit: complete
@@ -44,7 +44,10 @@ jobs:
         with:
           python-version: 3.x
       - name: Install dependencies
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip install mkdocs-bootswatch mike mkdocs-material
       - run: |
           git config --global user.name "KICSBot"

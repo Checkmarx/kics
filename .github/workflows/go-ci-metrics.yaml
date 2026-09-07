@@ -29,7 +29,10 @@ jobs:
           python-version: "3.x"
       - name: Run test metrics script
         id: metrics
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -r .github/scripts/metrics/requirements.txt
           python3 .github/scripts/metrics/get_metrics.py
       - name: Generate badge

@@ -16,6 +16,9 @@ jobs:
   notification-update-flags:
     name: Send email with terraform modules updates
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: write # for create-pull-request to push a branch
+      pull-requests: write # for create-pull-request to open the PR
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -27,7 +30,9 @@ jobs:
           AWS_REGION: ${{ secrets.EMAIL_AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.EMAIL_AWS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.EMAIL_AWS_SECRET_KEY }}
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -r .github/scripts/watchers/requirements.txt
           python3 -u .github/scripts/watchers/terraform-modules-update.py \
             -c assets/libraries/common.json \
@@ -38,7 +43,7 @@ jobs:
           GIT_SHA: ${{ github.sha }}
         with:
           title: "feat(queries): update terraform registry data on commons.json"
-          token: ${{ secrets.KICS_BOT_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "feat(queries): update terraform registry data on commons.json"
           delete-branch: true
           branch: feature/kicsbot-update-queries-docs
