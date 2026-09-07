@@ -27,7 +27,6 @@ jobs:
       machines: ${{ steps.set-machines.outputs.machines }}
     env:
       MACHINES_COUNT: ${{ inputs.machines-count }}
-      MACHINES_MATRIX: ${{ matrix.machine }}
     steps:
       - name: Generate Machine Matrix
         id: set-machines
@@ -43,6 +42,7 @@ jobs:
     runs-on: cx-public-ubuntu-x64
     env:
       AWS_REGION: ${{ secrets.CES_BUCKET_AWS_REGION }}
+      MACHINES_MATRIX: ${{ matrix.machine }}
 
     strategy:
       fail-fast: false

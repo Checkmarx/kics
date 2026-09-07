@@ -20,10 +20,13 @@ jobs:
     name: Check Apache License
     runs-on: cx-public-ubuntu-x64
     timeout-minutes: 1
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      pull-requests: write # to read/write comments on the PR via GITHUB_TOKEN
     env:
       BODY: ${{ github.event.pull_request.body }}
       USERNAME: ${{ github.event.pull_request.user.login }}
-      KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       REPOSITORY: ${{ github.repository }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
     steps:
@@ -40,7 +43,7 @@ jobs:
     - name: Check for comment tag
       if: env.CHECK_FAILED != 'true'
       run: |
-        comments=$(curl -s -H "Authorization: token "${KICS_BOT_PAT}"" \
+        comments=$(curl -s -H "Authorization: token "${GITHUB_TOKEN}"" \
             -X GET "https://api.github.com/repos/"${REPOSITORY}"/issues/"${PR_NUMBER}"/comments")
         if echo "$comments" | grep -q "apache_license"; then
           echo "TAG_EXISTS=true" >> $GITHUB_ENV
@@ -55,7 +58,7 @@ jobs:
           Deleting comment...
         comment-tag: apache_license
         mode: delete
-        github-token: "${KICS_BOT_PAT}"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Add comment if no license
       if: env.CHECK_FAILED == 'true'
       uses: step-security/actions-comment-pull-request@60cd38988a354b2d22b47612fb02a20e822d6048 # v3.0.2
@@ -64,7 +67,7 @@ jobs:
         comment-tag: apache_license
         mode: recreate
         create-if-not-exists: true
-        github-token: "${KICS_BOT_PAT}"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Workflow failed
       if: env.CHECK_FAILED == 'true'
       run: exit 1
