@@ -15,11 +15,12 @@ jobs:
     name: Title Check
     runs-on: cx-public-ubuntu-x64
     permissions:
-      contents: read # for actions/checkout to fetch code; comment actions use KICS_BOT_PAT, not GITHUB_TOKEN
+      contents: read # for actions/checkout to fetch code
+      issues: write # to read/write comments on the issue via GITHUB_TOKEN
     env:
       BODY: ${{ github.event.issue.body }}
       TITLE: ${{ github.event.issue.title }}
-      KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_REPO: ${{ github.repository }}
       GITHUB_ISSUE: ${{ github.event.issue.number }}
     steps:
@@ -36,7 +37,11 @@ jobs:
       with:
         python-version: "3.x"
     - name: Install dependencies
-      run: python3 -m pip install --upgrade pip pyyaml
+      env:
+        ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
+      run: |
+        pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
+        python3 -m pip install --upgrade pip pyyaml
     - name: Check issue title
       env:
         FILE_PATH: .github/issue-title-types.yaml
@@ -47,7 +52,7 @@ jobs:
     - name: Check for comment tag
       if: env.TITLE_CHECK_FAILED != 'true'
       run: |
-        comments=$(curl -s -H "Authorization: token "${KICS_BOT_PAT}"" \
+        comments=$(curl -s -H "Authorization: token "${GITHUB_TOKEN}"" \
             -X GET "https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_ISSUE}"/comments")
         if echo "$comments" | grep -q "title_check"; then
           echo "TAG_EXISTS=true" >> $GITHUB_ENV
@@ -62,7 +67,7 @@ jobs:
           Deleting comment, please refresh the page...
         comment-tag: title_check
         mode: delete
-        github-token: ${{ secrets.KICS_BOT_PAT }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Add comment if title fails
       if: env.TITLE_CHECK_FAILED == 'true'
       uses: step-security/actions-comment-pull-request@60cd38988a354b2d22b47612fb02a20e822d6048 # v3.0.2
@@ -71,7 +76,7 @@ jobs:
         comment-tag: title_check
         mode: recreate
         create-if-not-exists: true
-        github-token: ${{ secrets.KICS_BOT_PAT }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Workflow failed
       if: env.TITLE_CHECK_FAILED == 'true'
       run: exit 1
@@ -86,7 +91,6 @@ jobs:
       BODY: ${{ github.event.issue.body }}
       LABELS: ${{ toJson(github.event.issue.labels) }}
       TITLE: ${{ github.event.issue.title }}
-      KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
       USERNAME: ${{ github.event.issue.user.login }}"
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_REPO: ${{ github.repository }}
@@ -103,11 +107,11 @@ jobs:
       run: sudo apt-get install jq
     - name: Get username
       run: echo "USERNAME="${USERNAME}"" >> $GITHUB_ENV
-    - name: Check user username
+    - name: Check user org membership
+      env:
+        AUTHOR_ASSOCIATION: ${{ github.event.issue.author_association }}
       run: |
-        response=$(curl -s -H "Authorization: token "${KICS_BOT_PAT}"" "https://api.github.com/orgs/Checkmarx/teams/kics/members")
-        team_members=$(echo "$response" | jq -r '.[].login')
-        if echo "${team_members[@]}" | grep -Pq "^$USERNAME$"; then
+        if [[ "$AUTHOR_ASSOCIATION" == "MEMBER" || "$AUTHOR_ASSOCIATION" == "OWNER" || "$AUTHOR_ASSOCIATION" == "COLLABORATOR" ]]; then
           echo "Contributor belongs to Checkmarx organization"
           is_member="true"
         else
@@ -166,7 +170,11 @@ jobs:
       with:
         python-version: "3.x"
     - name: Install dependencies
-      run: python3 -m pip install --upgrade pip pyyaml
+      env:
+        ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
+      run: |
+        pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
+        python3 -m pip install --upgrade pip pyyaml
     - name: Check title for keywords of platforms and cloud providers to add labels
       run: |
         keywords=$(python3 .github/scripts/pr-issue-info/get_keywords.py)

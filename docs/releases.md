@@ -12,8 +12,6 @@ Every release is packed with:
 
 -   Docker image uploaded to <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">DockerHub</a>
 
-If waiting for a new release it's not enough, we also provide nightly builds that include the latest changes.
-
 You can find our releases <a href="https://github.com/Checkmarx/kics/releases" target="_blank">here</a>.
 
 ## Docker Images
