@@ -21,10 +21,12 @@ jobs:
     timeout-minutes: 1
     runs-on: cx-public-ubuntu-x64
     permissions:
-      contents: read # for actions/checkout to fetch code; comment actions use KICS_BOT_PAT, not GITHUB_TOKEN
+      contents: read # for actions/checkout to fetch code
+      pull-requests: write # to read/write comments on the PR via GITHUB_TOKEN
     env:
       ERROR_MSG: "The PR title does not match the required format: <type>(<scope>): <title>"
       TITLE: ${{ github.event.pull_request.title }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_REPO: ${{ github.repository }}
       GITHUB_PR: ${{ github.event.pull_request.number }}
     steps:
@@ -58,7 +60,7 @@ jobs:
     - name: Check for comment tag
       if: env.TITLE_CHECK_FAILED != 'true'
       run: |
-        comments=$(curl -s -H "Authorization: token "${KICS_BOT_PAT}"" \
+        comments=$(curl -s -H "Authorization: token "${GITHUB_TOKEN}"" \
             -X GET "https://api.github.com/repos/"${GITHUB_REPO}"/issues/"${GITHUB_PR}"/comments")
         if echo "$comments" | grep -q "title_check"; then
           echo "TAG_EXISTS=true" >> $GITHUB_ENV
@@ -73,7 +75,7 @@ jobs:
           Deleting comment, please refresh the page...
         comment-tag: title_check
         mode: delete
-        github-token: "${KICS_BOT_PAT}"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Add comment if title fails
       if: env.TITLE_CHECK_FAILED == 'true'
       uses: step-security/actions-comment-pull-request@60cd38988a354b2d22b47612fb02a20e822d6048 # v3.0.2
@@ -82,7 +84,7 @@ jobs:
         comment-tag: title_check
         mode: recreate
         create-if-not-exists: true
-        github-token: "${KICS_BOT_PAT}"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Workflow failed
       if: env.TITLE_CHECK_FAILED == 'true'
       run: exit 1
@@ -99,7 +101,6 @@ jobs:
       LABELS: ${{ toJson(github.event.pull_request.labels) }}
       TITLE: ${{ github.event.pull_request.title }}
       USERNAME: ${{ github.event.pull_request.user.login }}
-      KICS_BOT_PAT: ${{ secrets.KICS_BOT_PAT }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - name: Checkout code
@@ -111,11 +112,11 @@ jobs:
           .github/keywords.yaml
     - name: Install JQ
       run: sudo apt-get install jq
-    - name: Check user username
+    - name: Check user org membership
+      env:
+        AUTHOR_ASSOCIATION: ${{ github.event.pull_request.author_association }}
       run: | # zizmor: ignore[github-env] is_member is always a literal "true"/"false" set by this script, never derived from untrusted input
-        response=$(curl -s -H "Authorization: token "${KICS_BOT_PAT}"" "https://api.github.com/orgs/Checkmarx/teams/kics/members")
-        team_members=$(echo "$response" | jq -r '.[].login')
-        if [[ "$USERNAME" == "dependabot[bot]" ]] || echo "${team_members[@]}" | grep -Pq "^$USERNAME$"; then
+        if [[ "$USERNAME" == "dependabot[bot]" ]] || [[ "$AUTHOR_ASSOCIATION" == "MEMBER" || "$AUTHOR_ASSOCIATION" == "OWNER" || "$AUTHOR_ASSOCIATION" == "COLLABORATOR" ]]; then
           echo "Contributor belongs to Checkmarx organization."
           is_member="true"
         else
