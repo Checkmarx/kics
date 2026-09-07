@@ -175,6 +175,7 @@ type Analyzer struct {
 	ExcludeGitIgnore        bool
 	MaxFileSize             int
 	FallbackMinifiedFileLOC int
+	MaxAnalyzerWorkers      int
 }
 
 // types is a map that contains the regex by type
@@ -380,7 +381,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// thousands of candidate files, so one goroutine per file can exhaust
 	// runtime threads while workers are blocked on file I/O.
 	filesToAnalyze := make(chan string)
-	workerCount := analyzerWorkerCount(len(files))
+	workerCount := analyzerWorkerCount(len(files), a.MaxAnalyzerWorkers)
 	wg.Add(workerCount)
 	for range workerCount {
 		go func() {
@@ -537,17 +538,21 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 	return false
 }
 
-func analyzerWorkerCount(fileCount int) int {
+func analyzerWorkerCount(fileCount int, maxWorkers int) int {
 	if fileCount < 1 {
 		return 0
 	}
 
+	// Use default constant if maxWorkers is not set
+	if maxWorkers <= 0 {
+		maxWorkers = maxAnalyzerWorkers
+	}
 	workers := runtime.GOMAXPROCS(0) * 2
 	if workers < 1 {
 		workers = 1
 	}
-	if workers > maxAnalyzerWorkers {
-		workers = maxAnalyzerWorkers
+	if workers > maxWorkers {
+		workers = maxWorkers
 	}
 	if fileCount < workers {
 		return fileCount

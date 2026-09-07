@@ -744,12 +744,16 @@ func TestAnalyzerWorkerCount(t *testing.T) {
 	oldMaxProcs := runtime.GOMAXPROCS(1)
 	defer runtime.GOMAXPROCS(oldMaxProcs)
 
-	require.Equal(t, 0, analyzerWorkerCount(0))
-	require.Equal(t, 2, analyzerWorkerCount(10))
+	require.Equal(t, 0, analyzerWorkerCount(0, maxAnalyzerWorkers))
+	require.Equal(t, 2, analyzerWorkerCount(10, maxAnalyzerWorkers))
 
 	runtime.GOMAXPROCS(maxAnalyzerWorkers)
-	require.Equal(t, 5, analyzerWorkerCount(5))
-	require.Equal(t, maxAnalyzerWorkers, analyzerWorkerCount(maxAnalyzerWorkers+1))
+	require.Equal(t, 5, analyzerWorkerCount(5, maxAnalyzerWorkers))
+	require.Equal(t, maxAnalyzerWorkers, analyzerWorkerCount(maxAnalyzerWorkers+1, 0))
+
+	// A caller-supplied maxWorkers overrides the built-in default, both below and above it.
+	require.Equal(t, 3, analyzerWorkerCount(maxAnalyzerWorkers+1, 3))
+	require.Equal(t, 200, analyzerWorkerCount(300, 200))
 }
 
 // TestAnalyzer_BoundedWorkerConcurrency guards against Analyze regressing back to
@@ -766,7 +770,7 @@ func TestAnalyzer_BoundedWorkerConcurrency(t *testing.T) {
 		require.NoError(t, os.WriteFile(filepath.Join(dir, fmt.Sprintf("file_%d.tf", i)), content, 0o600))
 	}
 
-	expectedWorkers := analyzerWorkerCount(fileCount)
+	expectedWorkers := analyzerWorkerCount(fileCount, 0)
 	const goroutineSlack = 20
 	baseline := runtime.NumGoroutine()
 	var peak int64
@@ -803,4 +807,61 @@ func TestAnalyzer_BoundedWorkerConcurrency(t *testing.T) {
 	require.LessOrEqualf(t, extraGoroutines, expectedWorkers+goroutineSlack,
 		"Analyze spawned %d extra goroutines while processing %d files; expected at most about %d bounded workers",
 		extraGoroutines, fileCount, expectedWorkers)
+}
+
+// TestAnalyzer_MaxAnalyzerWorkersOverride verifies that a caller-supplied
+// Analyzer.MaxAnalyzerWorkers value (used by library embedders) is honored by Analyze
+// capping concurrency below the built-in default rather than being ignored.
+func TestAnalyzer_MaxAnalyzerWorkersOverride(t *testing.T) {
+	oldMaxProcs := runtime.GOMAXPROCS(8)
+	defer runtime.GOMAXPROCS(oldMaxProcs)
+
+	dir := t.TempDir()
+	const fileCount = 500
+	for i := 0; i < fileCount; i++ {
+		content := []byte(fmt.Sprintf("resource \"null_resource\" \"r%d\" {}\n", i))
+		require.NoError(t, os.WriteFile(filepath.Join(dir, fmt.Sprintf("file_%d.tf", i)), content, 0o600))
+	}
+
+	const customCap = 2
+	expectedWorkers := analyzerWorkerCount(fileCount, customCap)
+	require.Equal(t, customCap, expectedWorkers, "test setup should exercise the custom cap, not the default")
+
+	const goroutineSlack = 20
+	baseline := runtime.NumGoroutine()
+	var peak int64
+	stop := make(chan struct{})
+	monitorDone := make(chan struct{})
+	go func() {
+		defer close(monitorDone)
+		for {
+			select {
+			case <-stop:
+				return
+			default:
+				if n := int64(runtime.NumGoroutine()); n > atomic.LoadInt64(&peak) {
+					atomic.StoreInt64(&peak, n)
+				}
+				time.Sleep(time.Microsecond)
+			}
+		}
+	}()
+
+	analyzer := &Analyzer{
+		Paths:              []string{dir},
+		Types:              []string{""},
+		ExcludeTypes:       []string{""},
+		Exc:                []string{""},
+		MaxFileSize:        -1,
+		MaxAnalyzerWorkers: customCap,
+	}
+	_, err := Analyze(analyzer)
+	require.NoError(t, err)
+	close(stop)
+	<-monitorDone
+
+	extraGoroutines := int(atomic.LoadInt64(&peak)) - baseline
+	require.LessOrEqualf(t, extraGoroutines, expectedWorkers+goroutineSlack,
+		"Analyze spawned %d extra goroutines while processing %d files with MaxAnalyzerWorkers=%d; expected at most about %d bounded workers",
+		extraGoroutines, fileCount, customCap, expectedWorkers)
 }
