@@ -1,17 +1,38 @@
 [
-  {
-    "queryName": "Gem Install Without Version",
-    "severity": "MEDIUM",
-    "line": 3
-  },
-  {
-    "queryName": "Gem Install Without Version",
-    "severity": "MEDIUM",
-    "line": 4
-  },
-  {
-    "queryName": "Gem Install Without Version",
-    "severity": "MEDIUM",
-    "line": 5
-  }
+	{
+		"queryName": "Gem Install Without Version",
+		"severity": "MEDIUM",
+		"line": 3,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Gem Install Without Version",
+		"severity": "MEDIUM",
+		"line": 4,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Gem Install Without Version",
+		"severity": "MEDIUM",
+		"line": 5,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Gem Install Without Version",
+		"severity": "MEDIUM",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Gem Install Without Version",
+		"severity": "MEDIUM",
+		"line": 4,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Gem Install Without Version",
+		"severity": "MEDIUM",
+		"line": 5,
+		"fileName": "positive2.dockerfile"
+	}
 ]

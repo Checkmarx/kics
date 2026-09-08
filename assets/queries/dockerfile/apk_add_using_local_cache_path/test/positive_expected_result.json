@@ -10,5 +10,11 @@
 		"severity": "INFO",
 		"line": 2,
 		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Apk Add Using Local Cache Path",
+		"severity": "INFO",
+		"line": 2,
+		"fileName": "positive3.dockerfile"
 	}
 ]

@@ -34,5 +34,11 @@
 		"severity": "MEDIUM",
 		"fileName": "positive4.dockerfile",
 		"line": 10
+	},
+	{
+		"queryName": "Image Version Not Explicit",
+		"severity": "MEDIUM",
+		"fileName": "positive5.dockerfile",
+		"line": 1
 	}
 ]

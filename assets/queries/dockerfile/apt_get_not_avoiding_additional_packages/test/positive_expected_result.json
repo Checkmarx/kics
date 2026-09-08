@@ -2,11 +2,25 @@
 	{
 		"queryName": "APT-GET Not Avoiding Additional Packages",
 		"severity": "INFO",
-		"line": 2
+		"line": 2,
+		"fileName": "positive.dockerfile"
 	},
 	{
 		"queryName": "APT-GET Not Avoiding Additional Packages",
 		"severity": "INFO",
-		"line": 3
+		"line": 3,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "APT-GET Not Avoiding Additional Packages",
+		"severity": "INFO",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "APT-GET Not Avoiding Additional Packages",
+		"severity": "INFO",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
 	}
 ]

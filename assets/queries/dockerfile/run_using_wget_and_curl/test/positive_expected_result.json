@@ -1,17 +1,38 @@
 [
-  {
-    "queryName": "Run Using 'wget' and 'curl'",
-    "severity": "LOW",
-    "line": 3
-  },
-  {
-    "queryName": "Run Using 'wget' and 'curl'",
-    "severity": "LOW",
-    "line": 7
-  },
-  {
-    "queryName": "Run Using 'wget' and 'curl'",
-    "severity": "LOW",
-    "line": 8
-  }
+	{
+		"queryName": "Run Using 'wget' and 'curl'",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Run Using 'wget' and 'curl'",
+		"severity": "LOW",
+		"line": 7,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Run Using 'wget' and 'curl'",
+		"severity": "LOW",
+		"line": 8,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Run Using 'wget' and 'curl'",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Run Using 'wget' and 'curl'",
+		"severity": "LOW",
+		"line": 7,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Run Using 'wget' and 'curl'",
+		"severity": "LOW",
+		"line": 8,
+		"fileName": "positive2.dockerfile"
+	}
 ]

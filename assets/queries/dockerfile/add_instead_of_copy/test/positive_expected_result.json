@@ -1,7 +1,14 @@
 [
-  {
-    "queryName": "Add Instead of Copy",
-    "severity": "MEDIUM",
-    "line": 8
-  }
+	{
+		"queryName": "Add Instead of Copy",
+		"severity": "MEDIUM",
+		"line": 8,
+		"fileName": "positive1.dockerfile"
+	},
+	{
+		"queryName": "Add Instead of Copy",
+		"severity": "MEDIUM",
+		"line": 8,
+		"fileName": "positive2.dockerfile"
+	}
 ]

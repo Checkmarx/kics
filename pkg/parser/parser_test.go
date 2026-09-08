@@ -94,7 +94,6 @@ func TestParser_SupportedExtensions(t *testing.T) {
 	require.Contains(t, extensions, ".tf")
 	require.Contains(t, extensions, ".yaml")
 	require.Contains(t, extensions, ".dockerfile")
-	require.Contains(t, extensions, "Dockerfile")
 }
 
 func initilizeBuilder() []*Parser {

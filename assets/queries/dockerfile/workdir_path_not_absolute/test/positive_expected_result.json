@@ -1,7 +1,14 @@
 [
-  {
-    "queryName": "WORKDIR Path Not Absolute",
-    "severity": "LOW",
-    "line": 5
-  }
+	{
+		"queryName": "WORKDIR Path Not Absolute",
+		"severity": "LOW",
+		"line": 5,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "WORKDIR Path Not Absolute",
+		"severity": "LOW",
+		"line": 5,
+		"fileName": "positive2.dockerfile"
+	}
 ]

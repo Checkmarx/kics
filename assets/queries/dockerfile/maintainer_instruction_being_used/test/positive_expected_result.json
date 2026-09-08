@@ -2,6 +2,13 @@
 	{
 		"queryName": "MAINTAINER Instruction Being Used",
 		"severity": "LOW",
-		"line": 4
+		"line": 4,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "MAINTAINER Instruction Being Used",
+		"severity": "LOW",
+		"line": 4,
+		"fileName": "positive2.dockerfile"
 	}
 ]

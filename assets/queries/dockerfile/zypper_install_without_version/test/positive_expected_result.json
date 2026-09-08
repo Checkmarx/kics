@@ -1,12 +1,26 @@
 [
-  {
-    "queryName": "Zypper Install Without Version",
-    "severity": "LOW",
-    "line": 2
-  },
-  {
-    "queryName": "Zypper Install Without Version",
-    "severity": "LOW",
-    "line": 3
-  }
+	{
+		"queryName": "Zypper Install Without Version",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Zypper Install Without Version",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Zypper Install Without Version",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Zypper Install Without Version",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	}
 ]
