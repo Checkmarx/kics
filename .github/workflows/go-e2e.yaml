@@ -76,9 +76,7 @@ jobs:
           npm config set //npm.echohq.com/:_authToken "${ECHO_LIBRARIES_ACCESS_KEY}"
           npm config set //packages.echohq.com/:_authToken "${ECHO_LIBRARIES_ACCESS_KEY}"
       - name: Lint lockfile
-        env:
-          NPM_CONFIG_REGISTRY: https://registry.npmjs.org
-        run: npx --yes lockfile-lint --path package-lock.json --type npm --allowed-hosts npm
+        run: NPM_CONFIG_REGISTRY=https://registry.npmjs.org npx --yes lockfile-lint --path package-lock.json --type npm --allowed-hosts npm
         working-directory: .github/scripts/server-mock
       - name: Install mock server
         run: npm ci
