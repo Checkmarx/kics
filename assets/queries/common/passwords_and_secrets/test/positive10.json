@@ -1,4 +1,7 @@
 {
+  "metadata1": "'Password in URL' - c4d3b58a-e6d4-450f-9340-04f1e702eaae  positive-test (line 10)",
+  "metadata2": "'Slack Webhook'   - ccde326f-ebc7-4772-8ad5-de66e90a8cc3  positive-test (line 20)",
+  "metadata3": "'MSTeams Webhook' - d6214dca-a31b-425f-bcf7-f4faa772a1c0  positive-test (line 30)",
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
     "myStackWithParams": {

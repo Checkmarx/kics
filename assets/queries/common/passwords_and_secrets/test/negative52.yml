@@ -1,3 +1,4 @@
+# "Generic Private Key" - 2f665079-c383-4b33-896e-88268c1fa258 - "Avoid Docker Compose secrets paths"  allow-rule-test
 version: '3.7'
 
 services:
@@ -8,8 +9,7 @@ services:
     environment:
       env: "dev"
 
-      # this value is a Docker Compose secrets path, its contents are not exposed
-      PrivateKey: /run/secrets/SOME_AUTHORIZATION_PRIVATE_KEY
+      PrivateKey: /run/secrets/SOME_AUTHORIZATION_PRIVATE_KEY # negative1
 
 secrets:
   SOME_AUTHORIZATION_PRIVATE_KEY:

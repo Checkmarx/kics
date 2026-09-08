@@ -1,3 +1,4 @@
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding TF variables" allow-rule-test
 resource "aws_db_instance" "default" {
   name                   = var.dbname
   engine                 = "mysql"
@@ -10,7 +11,7 @@ resource "aws_db_instance" "default" {
   instance_class          = "db.t3.micro"
   allocated_storage       = "20"
   username                = "admin"
-  password                = var.password
+  password                = var.password  # negative1
   apply_immediately       = true
   multi_az                = false
   backup_retention_period = 0

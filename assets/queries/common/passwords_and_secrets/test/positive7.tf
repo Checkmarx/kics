@@ -1,3 +1,4 @@
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 resource "google_container_cluster" "primary2" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
@@ -5,7 +6,7 @@ resource "google_container_cluster" "primary2" {
 
   master_auth {
     username = ""
-    password = "pwd_jsuwauJk212"
+    password = "pwd_jsuwauJk212"  # positive1
 
     client_certificate_config {
       issue_client_certificate = true
