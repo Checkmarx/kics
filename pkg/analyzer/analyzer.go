@@ -348,42 +348,10 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	done := make(chan bool)
 	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
 	// get all the files inside the given paths
-	for _, path := range a.Paths {
-		if _, err := os.Stat(path); err != nil {
-			return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
-		}
-		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
-
-			fileData, errFile := os.Stat(path)
-			if errFile != nil {
-				return nil
-			}
-
-			if fileData.IsDir() {
-				return nil
-			}
-
-			trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
-			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
-
-			ext, errExt := utils.GetExtension(path)
-			if errExt == nil {
-				if isConfigFile(path, defaultConfigFiles) {
-					projectConfigFiles = append(projectConfigFiles, path)
-					a.Exc = append(a.Exc, path)
-				}
-
-				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
-					files = append(files, fileExtInfo{path, ext})
-				}
-			}
-			return nil
-		}); err != nil {
-			log.Error().Msgf("failed to analyze path %s: %s", path, err)
-		}
+	var err error
+	files, ignoreFiles, projectConfigFiles, err = a.collectFiles(hasGitIgnoreFile, gitIgnore)
+	if err != nil {
+		return returnAnalyzedPaths, err
 	}
 
 	// unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
@@ -443,6 +411,46 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
 	return returnAnalyzedPaths, nil
+}
+
+func (a *Analyzer) collectFiles(hasGitIgnoreFile bool, gitIgnore *ignore.GitIgnore) ([]fileExtInfo, []string, []string, error) {
+	var files []fileExtInfo
+	ignoreFiles := make([]string, 0)
+	projectConfigFiles := make([]string, 0)
+
+	for _, path := range a.Paths {
+		if _, err := os.Stat(path); err != nil {
+			return nil, nil, nil, errors.Wrap(err, "failed to analyze path")
+		}
+		if err := filepath.Walk(path, func(p string, info os.FileInfo, err error) error {
+			if err != nil {
+				return err
+			}
+			fileData, errFile := os.Stat(p)
+			if errFile != nil {
+				return nil
+			}
+			if fileData.IsDir() {
+				return nil
+			}
+			trimmedPath := strings.ReplaceAll(p, a.Paths[0], filepath.Base(a.Paths[0]))
+			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, p, trimmedPath, ignoreFiles)
+			ext, errExt := utils.GetExtension(p)
+			if errExt == nil {
+				if isConfigFile(p, defaultConfigFiles) {
+					projectConfigFiles = append(projectConfigFiles, p)
+					a.Exc = append(a.Exc, p)
+				}
+				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(p, a.Exc) {
+					files = append(files, fileExtInfo{p, ext})
+				}
+			}
+			return nil
+		}); err != nil {
+			log.Error().Msgf("failed to analyze path %s: %s", path, err)
+		}
+	}
+	return files, ignoreFiles, projectConfigFiles, nil
 }
 
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
