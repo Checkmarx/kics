@@ -1,3 +1,4 @@
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding Ansible playbook update_password"  allow-rule-test
 - name: "Configure the MySQL user "
   community.mysql.mysql_user:
     login_user: "root"
@@ -5,4 +6,4 @@
     name: "{{ mysql_user }}"
     password: "{{ mysql_user_password }}"
     password_expire: "never"
-    update_password: "on_create"
+    update_password: "on_create"    # negative1

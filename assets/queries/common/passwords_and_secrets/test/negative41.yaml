@@ -1,3 +1,4 @@
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding CloudFormation ServiceToken"  allow-rule-test
 ---
 AWSTemplateFormatVersion: "2010-09-09"
 Description: >
@@ -76,7 +77,7 @@ Resources:
   GetSubnets:
     Type: AWS::CloudFormation::CustomResource
     Properties:
-      ServiceToken: anArn
+      ServiceToken: anArn                       # negative1
   LoadBalancer3:
     Type: AWS::ElasticLoadBalancing::LoadBalancer
     Properties:

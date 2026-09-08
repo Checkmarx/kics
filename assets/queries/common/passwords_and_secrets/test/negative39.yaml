@@ -1,3 +1,4 @@
+# "Encryption Key" - 9fb1cd65-7a07-4531-9bcf-47589d0f82d6 - "Avoiding CloudFormation KeyName"  allow-rule-test
 AWSTemplateFormatVersion: "2010-09-09"
 Resources:
   somecode:
@@ -8,7 +9,7 @@ Resources:
       TimeoutInMinutes: 10
       QueuedTimeoutInMinutes: 10
       ServiceRole: someservicerole
-      EncryptionKey: somekey
+      EncryptionKey: somekey      # negative1
       Artifacts:
         Type: someartifact
       Cache:

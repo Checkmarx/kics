@@ -1,3 +1,4 @@
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08 - "Avoiding TF resource access"  allow-rule-test
 provider "azurerm" {
   features {}
 }
@@ -19,7 +20,7 @@ resource "azurerm_linux_virtual_machine" "example_vm" {
   location            = "your-location"
   size                = "Standard_DS1_v2"
   admin_username      = "adminuser"
-  admin_password      = data.azurerm_key_vault_secret.LinuxVmPassword.value
+  admin_password      = data.azurerm_key_vault_secret.LinuxVmPassword.value # negative1
 
   network_interface_ids = [
     # Your network interface ID

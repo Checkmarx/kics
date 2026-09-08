@@ -1,0 +1,21 @@
+{
+  "metadata": "'Generic Token' - baee238e-1921-4801-9c3f-79ae1d7b2cbc - 'Avoiding LifecycleActionToken Var' allow-rule-test (line 13)",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachineScaleSets",
+      "apiVersion": "2021-03-01",
+      "name": "[parameters('vmssName')]",
+      "location": "eastus",
+      "properties": {
+        "orchestrationMode": "Flexible",
+        "lifecycleHook": {
+          "LifecycleActionToken": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+          "LifecycleHookName": "my-lifecycle-hook",
+          "AutoScalingGroupName": "my-asg-group",
+          "LifecycleTransition": "autoscaling:EC2_INSTANCE_LAUNCHING"
+        }
+      }
+    }
+  ]
+}
