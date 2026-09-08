@@ -1,27 +1,62 @@
 [
-  {
-    "queryName": "Pip install Keeping Cached Packages",
-    "severity": "LOW",
-    "line": 2
-  },
-  {
-    "queryName": "Pip install Keeping Cached Packages",
-    "severity": "LOW",
-    "line": 8
-  },
-  {
-    "queryName": "Pip install Keeping Cached Packages",
-    "severity": "LOW",
-    "line": 9
-  },
-  {
-    "queryName": "Pip install Keeping Cached Packages",
-    "severity": "LOW",
-    "line": 10
-  },
-  {
-    "queryName": "Pip install Keeping Cached Packages",
-    "severity": "LOW",
-    "line": 11
-  }
+	{
+		"queryName": "Pip install Keeping Cached Packages",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Pip install Keeping Cached Packages",
+		"severity": "LOW",
+		"line": 8,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Pip install Keeping Cached Packages",
+		"severity": "LOW",
+		"line": 9,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Pip install Keeping Cached Packages",
+		"severity": "LOW",
+		"line": 10,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Pip install Keeping Cached Packages",
+		"severity": "LOW",
+		"line": 11,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Pip install Keeping Cached Packages",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Pip install Keeping Cached Packages",
+		"severity": "LOW",
+		"line": 8,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Pip install Keeping Cached Packages",
+		"severity": "LOW",
+		"line": 9,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Pip install Keeping Cached Packages",
+		"severity": "LOW",
+		"line": 10,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Pip install Keeping Cached Packages",
+		"severity": "LOW",
+		"line": 11,
+		"fileName": "positive2.dockerfile"
+	}
 ]

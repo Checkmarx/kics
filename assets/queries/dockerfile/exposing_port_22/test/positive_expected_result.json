@@ -1,7 +1,14 @@
 [
-  {
-    "queryName": "Exposing Port 22 (SSH)",
-    "severity": "LOW",
-    "line": 3
-  }
+	{
+		"queryName": "Exposing Port 22 (SSH)",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Exposing Port 22 (SSH)",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	}
 ]

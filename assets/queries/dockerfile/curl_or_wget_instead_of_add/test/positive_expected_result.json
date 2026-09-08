@@ -1,7 +1,14 @@
 [
-  {
-    "queryName": "Curl or Wget Instead of Add",
-    "severity": "LOW",
-    "line": 3
-  }
+	{
+		"queryName": "Curl or Wget Instead of Add",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Curl or Wget Instead of Add",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	}
 ]

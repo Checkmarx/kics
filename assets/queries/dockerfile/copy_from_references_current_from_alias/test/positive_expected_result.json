@@ -1,7 +1,14 @@
 [
-  {
-    "queryName": "COPY '--from' References Current FROM Alias",
-    "severity": "LOW",
-    "line": 2
-  }
+	{
+		"queryName": "COPY '--from' References Current FROM Alias",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "COPY '--from' References Current FROM Alias",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	}
 ]

@@ -1,7 +1,14 @@
 [
-  {
-    "queryName": "Run Using apt",
-    "severity": "LOW",
-    "line": 2
-  }
+	{
+		"queryName": "Run Using apt",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Run Using apt",
+		"severity": "LOW",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	}
 ]

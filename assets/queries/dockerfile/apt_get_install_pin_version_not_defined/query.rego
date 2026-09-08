@@ -18,9 +18,12 @@ CxPolicy[result] {
 	packageName := packages[j]
 	analyzePackages(j, packageName, packages, length)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
+	run_command := substring(resource.Original, 0, 3)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, commands]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, commands]), from_command.LineHint),
 		"searchValue": packageName,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Package '%s' has version defined", [packageName]),
@@ -44,9 +47,11 @@ CxPolicy[result] {
 	regex.match("^[a-zA-Z]", packageName) == true
 	not dockerLib.withVersion(packageName)
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.{{%s}}", [from_command.Value, name, resource.Original]), from_command.LineHint),
 		"searchValue": packageName,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Package '%s' has version defined", [packageName]),

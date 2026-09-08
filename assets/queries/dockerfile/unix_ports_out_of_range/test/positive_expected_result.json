@@ -1,7 +1,14 @@
 [
-  {
-    "queryName": "UNIX Ports Out Of Range",
-    "severity": "INFO",
-    "line": 3
-  }
+	{
+		"queryName": "UNIX Ports Out Of Range",
+		"severity": "INFO",
+		"line": 3,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "UNIX Ports Out Of Range",
+		"severity": "INFO",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	}
 ]

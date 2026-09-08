@@ -1,12 +1,26 @@
 [
-  {
-    "queryName": "Yum install Without Version",
-    "severity": "MEDIUM",
-    "line": 2
-  },
-  {
-    "queryName": "Yum install Without Version",
-    "severity": "MEDIUM",
-    "line": 3
-  }
+	{
+		"queryName": "Yum install Without Version",
+		"severity": "MEDIUM",
+		"line": 2,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Yum install Without Version",
+		"severity": "MEDIUM",
+		"line": 3,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Yum install Without Version",
+		"severity": "MEDIUM",
+		"line": 2,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Yum install Without Version",
+		"severity": "MEDIUM",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	}
 ]

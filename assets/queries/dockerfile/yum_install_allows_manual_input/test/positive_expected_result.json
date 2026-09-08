@@ -1,12 +1,26 @@
 [
-  {
-    "queryName": "Yum Install Allows Manual Input",
-    "severity": "LOW",
-    "line": 3
-  },
-  {
-    "queryName": "Yum Install Allows Manual Input",
-    "severity": "LOW",
-    "line": 4
-  }
+	{
+		"queryName": "Yum Install Allows Manual Input",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Yum Install Allows Manual Input",
+		"severity": "LOW",
+		"line": 4,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Yum Install Allows Manual Input",
+		"severity": "LOW",
+		"line": 3,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Yum Install Allows Manual Input",
+		"severity": "LOW",
+		"line": 4,
+		"fileName": "positive2.dockerfile"
+	}
 ]

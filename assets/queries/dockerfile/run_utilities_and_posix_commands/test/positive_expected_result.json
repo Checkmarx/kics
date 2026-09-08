@@ -1,12 +1,26 @@
 [
-  {
-    "queryName": "Run Utilities And POSIX Commands",
-    "severity": "INFO",
-    "line": 4
-  },
-  {
-    "queryName": "Run Utilities And POSIX Commands",
-    "severity": "INFO",
-    "line": 5
-  }
+	{
+		"queryName": "Run Utilities And POSIX Commands",
+		"severity": "INFO",
+		"line": 4,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Run Utilities And POSIX Commands",
+		"severity": "INFO",
+		"line": 5,
+		"fileName": "positive.dockerfile"
+	},
+	{
+		"queryName": "Run Utilities And POSIX Commands",
+		"severity": "INFO",
+		"line": 4,
+		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Run Utilities And POSIX Commands",
+		"severity": "INFO",
+		"line": 5,
+		"fileName": "positive2.dockerfile"
+	}
 ]
