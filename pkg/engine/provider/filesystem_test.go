@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"runtime"
 	"testing"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
@@ -629,31 +630,23 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 
 // TestFileSystemSourceProvider_AddExcluded tests the functions [AddExcluded()] and all the methods called by them
 func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
+	if runtime.GOOS == "windows" {
+		t.Skip("skipping test on Windows")
+	}
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Errorf("failed to change dir: %s", err)
-	}
-	fsystem, err := initFs([]string{filepath.FromSlash("test")}, []string{})
-	if err != nil {
-		t.Errorf("failed to initialize a new File System Source Provider")
-	}
-	type fields struct {
-		fs *FileSystemSourceProvider
 	}
 	type args struct {
 		excludePaths []string
 	}
 	tests := []struct {
 		name    string
-		fields  fields
 		args    args
 		want    []string
 		wantErr bool
 	}{
 		{
 			name: "test_too_many_levels_of_symbolic_links",
-			fields: fields{
-				fs: fsystem,
-			},
 			args: args{
 				excludePaths: []string{
 					"test/fixtures/link_test/eloop_link",
@@ -664,9 +657,6 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 		},
 		{
 			name: "test_add_excluded",
-			fields: fields{
-				fs: fsystem,
-			},
 			args: args{
 				excludePaths: []string{
 					"test/fixtures/config_test",
@@ -681,11 +671,15 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := tt.fields.fs.AddExcluded(tt.args.excludePaths)
+			fsystem, err := initFs([]string{filepath.FromSlash("test")}, []string{})
+			if err != nil {
+				t.Errorf("failed to initialize a new File System Source Provider")
+			}
+			err = fsystem.AddExcluded(tt.args.excludePaths)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("AddExcluded() = %v, wantErr = %v", err, tt.wantErr)
 			}
-			got := getFSExcludes(tt.fields.fs)
+			got := getFSExcludes(fsystem)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("AddExcluded() = %v, want = %v", got, tt.want)
 			}

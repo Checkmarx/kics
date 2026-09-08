@@ -1,0 +1,4 @@
+from ...grandparent import other
+
+def main():
+    print("Dockerfile sample")
