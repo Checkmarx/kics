@@ -146,8 +146,9 @@ def main():
             color = 'orange'
         else:
             color = 'red'
-        print(f"::set-output name=coverage::{total}")
-        print(f"::set-output name=color::{color}")
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as fd:
+            fd.write(f"coverage={total}\n")
+            fd.write(f"color={color}\n")
     print(f"Total coverage: {total}")
 
 

@@ -53,7 +53,11 @@ jobs:
         with:
           python-version: 3.x
       - name: Install dependencies
-        run: pip install mkdocs-bootswatch mike mkdocs-material
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
+        run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
+          pip install mkdocs-bootswatch mike mkdocs-material
       - name: Config git user
         run: |
           git config --global user.name "${GITHUB_ACTOR}"

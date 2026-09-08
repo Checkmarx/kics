@@ -31,7 +31,7 @@ jobs:
           persist-credentials: false
       - name: Get current date
         id: cdate
-        run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
+        run: echo "date=$(date +'%Y.%m.%d')" >> "$GITHUB_OUTPUT"
       - name: Print variables
         env:
           CURRENT_DATE: ${{ steps.cdate.outputs.date }}
