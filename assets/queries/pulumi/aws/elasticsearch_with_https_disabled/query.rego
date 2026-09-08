@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
-		"searchKey": sprintf("resources[%s].properties.domainEndpointOptions.enforceHTTPS", [name]),
+		"searchKey": sprintf("resources.%s.properties.domainEndpointOptions.enforceHTTPS", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resources[%s].properties.domainEndpointOptions.enforceHTTPS should be set to 'true'", [name]),
 		"keyActualValue": sprintf("resources[%s].properties.domainEndpointOptions.enforceHTTPS is set to 'false'", [name]),

@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
-		"searchKey": sprintf("resources[%s].properties.spec.privileged", [name]),
+		"searchKey": sprintf("resources.%s.properties.spec.privileged", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "PSP should have 'privileged' set to false or not defined",
 		"keyActualValue": "PSP has 'privileged' set to true",

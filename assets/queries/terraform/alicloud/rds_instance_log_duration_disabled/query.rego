@@ -58,7 +58,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("alicloud_db_instance[%s]]", [name]),
+		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'log_duration' parameter should be defined and value should be 'ON' in parameters array",
 		"keyActualValue": "'log_duration' parameter is not defined in parameters array",

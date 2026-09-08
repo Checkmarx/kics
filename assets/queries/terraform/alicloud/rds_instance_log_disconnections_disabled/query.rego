@@ -58,7 +58,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("alicloud_db_instance[%s]]", [name]),
+		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'log_disconnections' parameter should be defined and value should be 'ON' in parametes array",
 		"keyActualValue": "'log_disconnections' parameter is not defined in parametes array",

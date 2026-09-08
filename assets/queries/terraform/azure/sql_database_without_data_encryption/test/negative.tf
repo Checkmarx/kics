@@ -1,6 +1,6 @@
-resource "azurerm_mssql_database" "example" {
-  name           = "example-db"
-  server_id      = azurerm_mssql_server.example.id
+resource "azurerm_mssql_database" "negative_1" {
+  name           = "negative_1-db"
+  server_id      = azurerm_mssql_server.negative_1.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
   max_size_gb    = 4
@@ -12,9 +12,9 @@ resource "azurerm_mssql_database" "example" {
   # missing "transparent_data_encryption_enabled" - defaults to true
 }
 
-resource "azurerm_mssql_database" "example" {
-  name           = "example-db"
-  server_id      = azurerm_mssql_server.example.id
+resource "azurerm_mssql_database" "negative_2" {
+  name           = "negative_2-db"
+  server_id      = azurerm_mssql_server.negative_2.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
   max_size_gb    = 4

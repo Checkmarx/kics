@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
-		"searchKey": sprintf("resources[%s].properties", [name]),
+		"searchKey": sprintf("resources.%s.properties", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'clientCertificateId' should be defined",
 		"keyActualValue": "Attribute 'clientCertificateId' is not defined",

@@ -22,6 +22,31 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
+		"searchKey": sprintf("jobs.%s.steps.run", [j]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
+		"keyActualValue": "Run block contains dangerous input controlled by user.",
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[]),
+		"searchValue": matched[m]
+	}
+}
+
+CxPolicy[result] {
+	input.document[i].on["push"]
+	run := input.document[i].jobs[j].steps[k].run
+
+	patterns := [
+	"github.event.head_commit.message",
+	"github.event.head_commit.author.email",
+	"github.event.head_commit.author.name",
+	"github.event.commits.*.author.email",
+	"github.event.commits.*.author.name"
+	]
+
+	matched = containsPatterns(run, patterns)
+
+	result := {
+		"documentId": input.document[i].id,
 		"searchKey": sprintf("run={{%s}}", [run]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
@@ -70,7 +95,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("run={{%s}}", [run]),
+		"searchKey": sprintf("jobs.%s.steps.run", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
@@ -95,7 +120,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("run={{%s}}", [run]),
+		"searchKey": sprintf("jobs.%s.steps.run", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
@@ -118,7 +143,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("run={{%s}}", [run]),
+		"searchKey": sprintf("jobs.%s.steps.run", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
@@ -142,7 +167,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("run={{%s}}", [run]),
+		"searchKey": sprintf("jobs.%s.steps.run", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
@@ -169,7 +194,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("run={{%s}}", [run]),
+		"searchKey": sprintf("jobs.%s.steps.run", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
@@ -192,7 +217,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("run={{%s}}", [run]),
+		"searchKey": sprintf("jobs.%s.steps.run", [j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
@@ -207,4 +232,3 @@ containsPatterns(str, patterns) = matched {
         regex.match(pattern, str)
     }
 }
-
