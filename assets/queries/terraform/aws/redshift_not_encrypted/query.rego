@@ -32,8 +32,8 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_redshift_cluster[%s].encrypted", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_redshift_cluster", name, "encrypted"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_redshift_cluster.encrypted should be set to false",
-		"keyActualValue": "aws_redshift_cluster.encrypted is true",
+		"keyExpectedValue": "aws_redshift_cluster.encrypted should be set to true",
+		"keyActualValue": "aws_redshift_cluster.encrypted is false",
 		"remediation": json.marshal({
 			"before": "false",
 			"after": "true"
