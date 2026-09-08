@@ -7,17 +7,29 @@ on:
     paths:
       - "docs/**"
       - "mkdocs.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # for actions/checkout to fetch code
+
 jobs:
   deploy:
+    name: Deploy documentation pages
     runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: write # for git push to gh-pages
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
         if: always()
         with:
-          github-token: ${{ secrets.KICS_BOT_PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
           card-layout-start: cozy
           card-layout-exit: complete
@@ -32,7 +44,10 @@ jobs:
         with:
           python-version: 3.x
       - name: Install dependencies
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip install mkdocs-bootswatch mike mkdocs-material
       - run: |
           git config --global user.name "KICSBot"

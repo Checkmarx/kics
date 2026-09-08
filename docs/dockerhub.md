@@ -110,7 +110,6 @@ Flags:
       --cloud-provider strings        list of cloud providers to scan (alicloud,aws,azure,gcp,nifcloud,tencentcloud)
       --config string                 path to configuration file
       --old-severities                use old severities in query results (excludes critical severity)
-      --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
       --enable-openapi-refs           resolve the file reference, on OpenAPI files (default [false]) 
       --exclude-categories strings    exclude categories by providing its name

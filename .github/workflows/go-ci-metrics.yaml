@@ -6,8 +6,13 @@ on:
     branches: [master]
     paths:
       - "assets/queries/**/metadata.json"
+
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   metrics:
@@ -16,23 +21,32 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
+        with:
+          persist-credentials: false
+      - name: Setup python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
         with:
           python-version: "3.x"
       - name: Run test metrics script
         id: metrics
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -r .github/scripts/metrics/requirements.txt
           python3 .github/scripts/metrics/get_metrics.py
       - name: Generate badge
+        env:
+          TOTAL_QUERIES: ${{ steps.metrics.outputs.total_queries }}
         run: |
           curl -L \
-            https://img.shields.io/badge/Queries-${{ steps.metrics.outputs.total_queries }}-blue.svg > queries.svg
+            "https://img.shields.io/badge/Queries-${TOTAL_QUERIES}-blue.svg" > queries.svg
           cat queries.svg
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ${{ runner.os }}-queries-badge-latest
           path: queries.svg
+
   publish:
     permissions:
       contents: write  # for Git to git push
@@ -44,6 +58,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: gh-pages
+          persist-credentials: true
       - name: Configure git commit author
         run: |
           git config --global user.name "KICSBot"

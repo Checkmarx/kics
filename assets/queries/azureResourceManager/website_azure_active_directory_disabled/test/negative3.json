@@ -9,7 +9,7 @@
       "functions": [],
       "resources": [
         {
-          "name": "webSiteNegative1",
+          "name": "webSiteNegative3",
           "type": "Microsoft.Web/sites",
           "apiVersion": "2019-08-01",
           "location": "location1",

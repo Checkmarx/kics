@@ -245,7 +245,6 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) {
 		message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
 
 		fmt.Println(customPrint.VersionMessage.Sprintf("%s", message))
-		log.Warn().Msgf("%s", message)
 	}
 }
 

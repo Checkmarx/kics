@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   statistics:
     name: test-statistics
@@ -14,28 +18,37 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Set up Go
+        with:
+          persist-credentials: false
+      - name: Setup Go
         uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 #v6.3.0
         with:
           go-version-file: go.mod
+          cache: false
       - name: Run test metrics script
         id: testcoverage
         run: |
           make test-coverage-report | tee test-results
           TOTAL_TESTS=$(cat test-results | grep -v TestQueriesContent/ | grep -v TestQueriesMetadata/ | grep -v TestQueries/ | grep PASS | wc -l)
           echo "Total Tests :: ${TOTAL_TESTS}"
-          echo "::set-output name=total_tests::${TOTAL_TESTS}"
+          echo "total_tests=${TOTAL_TESTS}" >> "$GITHUB_OUTPUT"
       - name: Get Go_LOC
         id: go_loc
         run: |
           sudo apt-get install cloc
           GO_LOC=$(cloc . | grep Go | grep -Eo '[0-9]+$')
-          echo "::set-output name=goloc::${GO_LOC}"
+          echo "goloc=${GO_LOC}" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
         with:
           python-version: "3.x"
       - name: Run test statistics script
         id: metrics
+        env:
+          COVERAGE: ${{steps.testcoverage.outputs.coverage}}
+          LOC: ${{steps.go_loc.outputs.goloc}}
+          TOTAL_TESTS: ${{steps.testcoverage.outputs.total_tests}}
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -r .github/scripts/statistics/requirements.txt
-          python3 .github/scripts/statistics/get_statistics.py -c ${{steps.testcoverage.outputs.coverage}} -t ${{steps.testcoverage.outputs.total_tests}} -g ${{steps.go_loc.outputs.goloc}}
+          python3 .github/scripts/statistics/get_statistics.py -c "${COVERAGE}" -t "${TOTAL_TESTS}" -g "${LOC}"

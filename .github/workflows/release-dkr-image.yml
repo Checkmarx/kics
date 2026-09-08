@@ -5,11 +5,21 @@ on:
     types: [created, published]
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # default deny-write baseline; the push_to_registry job elevates as needed
+
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: cx-public-ubuntu-x64
     if: "!github.event.release.prerelease"
+    permissions:
+      contents: read
+      id-token: write  # required to request the GitHub OIDC token exchanged with Docker Hub's OIDC login
     env:
       DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
@@ -17,14 +27,15 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Get Release version
         id: get-version
         run: |
-          echo "::set-output name=version::$(git describe --match='v*' --tags --abbrev=0)"
+          echo "version=$(git describe --match='v*' --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
         if: always()
         with:
-          github-token: ${{ secrets.KICS_BOT_PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
           card-layout-start: cozy
           card-layout-exit: complete
@@ -35,18 +46,19 @@ jobs:
               value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: step-security/setup-qemu-action@109c6ed9f089be1a250c75fd6a534e30df44e030 # v4.0.0
         with:
           image: tonistiigi/binfmt:latest
           platforms: linux/amd64,linux/arm64
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Login to DockerHub
-        uses: step-security/docker-login-action@870af644803bf9f204aed474adbad2958fec048b # v4.1.0
+        uses: step-security/docker-login-action@bd6978fd4ef9a5f78130095b298b8a721afcb0d8 # v4.5.1
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: checkmarx
+        env:
+          DOCKERHUB_OIDC_CONNECTIONID: ${{ secrets.DOCKERHUB_OIDC_CONNECTIONID }}
       - name: Get current date
         run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
       - name: Docker meta
@@ -75,7 +87,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }}
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
@@ -90,7 +102,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
@@ -105,7 +117,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
@@ -120,7 +132,7 @@ jobs:
           tags: checkmarx/kics:ubi8,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi8
           platforms: linux/amd64,linux/arm64
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}

@@ -8,12 +8,16 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   update-docs-release:
+    name: Create new docs version
     permissions:
       actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
       contents: write  # for Git to git push
-    name: Create new docs version
     runs-on: cx-public-ubuntu-x64
     if: "!github.event.release.prerelease"
     steps:
@@ -25,42 +29,63 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Get release version
         id: version
         run: |
-          echo "::set-output name=cversion::$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
-          echo "::set-output name=ctag::$(git describe --tags --match='v*' --abbrev=0)"
-          echo "::set-output name=pversion::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1) | cut -c2-)"
-          echo "::set-output name=ptag::$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1))"
+          {
+            echo "cversion=$(git describe --tags --match='v*' --abbrev=0 | cut -c2-)"
+            echo "ctag=$(git describe --tags --match='v*' --abbrev=0)"
+            echo "pversion=$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1) | cut -c2-)"
+            echo "ptag=$(git describe --abbrev=0 --match='v*' --tags $(git rev-list --tags --skip=1 --max-count=1))"
+          } >> "$GITHUB_OUTPUT"
       - name: Print tags
+        env:
+          PREVIOUS_TAG: ${{ steps.version.outputs.ptag }}
+          CURRENT_TAG: ${{ steps.version.outputs.ctag }}
+          PREVIOUS_VERSION: ${{ steps.version.outputs.pversion }}
+          CURRENT_VERSION: ${{ steps.version.outputs.cversion }}
         run: |
-          echo "prev tag ${{ steps.version.outputs.ptag }}"
-          echo "curr tag ${{ steps.version.outputs.ctag }}"
-          echo "prev ver ${{ steps.version.outputs.pversion }}"
-          echo "curr ver ${{ steps.version.outputs.cversion }}"
-      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
+          echo "prev tag ${PREVIOUS_TAG}"
+          echo "curr tag ${CURRENT_TAG}"
+          echo "prev ver ${PREVIOUS_VERSION}"
+          echo "curr ver ${CURRENT_VERSION}"
+      - name: Setup Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
         with:
           python-version: 3.x
       - name: Install dependencies
-        run: pip install mkdocs-bootswatch mike mkdocs-material
-      - name: Config KICSBot git user
+        env:
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
-          git config --global user.name "KICSBot"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
+          pip install mkdocs-bootswatch mike mkdocs-material
+      - name: Config git user
+        run: |
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - name: Checkout previous tag
+        env:
+          PREVIOUS_TAG: ${{ steps.version.outputs.ptag }}
         run: |
-          git checkout ${{ steps.version.outputs.ptag }}
+          git checkout "${PREVIOUS_TAG}"
       - name: Mike deploy previous version
+        env:
+          PREVIOUS_VERSION: ${{ steps.version.outputs.pversion }}
         run: |
-          mike delete ${{ steps.version.outputs.pversion }} || echo 'version does not exists yet'
-          mike deploy ${{ steps.version.outputs.pversion }}
+          mike delete "${PREVIOUS_VERSION}" || echo 'version does not exists yet'
+          mike deploy "${PREVIOUS_VERSION}"
       - name: Checkout current tag
+        env:
+          CURRENT_TAG: ${{ steps.version.outputs.ctag }}
         run: |
-          git checkout ${{ steps.version.outputs.ctag }}
+          git checkout "${CURRENT_TAG}"
       - name: Mike deploy current version
+        env:
+          CURRENT_VERSION: ${{ steps.version.outputs.cversion }}
         run: |
           mike delete latest
-          mike deploy latest ${{ steps.version.outputs.cversion }}
+          mike deploy latest "${CURRENT_VERSION}"
       - name: Fix version selector
         run: |
           git checkout gh-pages

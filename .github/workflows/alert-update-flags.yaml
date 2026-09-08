@@ -10,27 +10,33 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   notification-update-flags:
     name: Send email with flag changes
     runs-on: cx-public-ubuntu-x64
-
     steps:
       - name: Checkout project
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 2
+          persist-credentials: false
       - name: Execute diff and send email
         env:
           AWS_REGION: ${{ secrets.EMAIL_AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.EMAIL_AWS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.EMAIL_AWS_SECRET_KEY }}
+          ECHO_LIBRARIES_ACCESS_KEY: ${{ secrets.ECHO_LIBRARIES_ACCESS_KEY }}
         run: |
           for item in internal/console/assets/*-flags.json; do cat $item > $item-curr; done;
           git checkout HEAD~1
           for item in internal/console/assets/*-flags.json; do cat $item > $item-old; done;
           printf -v curr "'%s'," internal/console/assets/*-flags.json-curr
           printf -v old "'%s'," internal/console/assets/*-flags.json-old
+          pip config set global.index-url "https://:${ECHO_LIBRARIES_ACCESS_KEY}@pypi.echohq.com/simple"
           pip3 install -r .github/scripts/watchers/requirements.txt
           python3 -u .github/scripts/watchers/change-flags-email.py \
             -n $(echo "${curr%,}") -o $(echo "${old%,}")

@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   trivy-file-system:
     name: Trivy fs scan
@@ -14,6 +18,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 #v0.35.0
         with:
@@ -34,6 +40,7 @@ jobs:
         with:
           name: trivy-fs-scan-results
           path: ./results.txt
+
   trivy-docker-image:
     name: Trivy docker image scan
     runs-on: cx-public-ubuntu-x64
@@ -44,7 +51,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Set up Docker Buildx
+        with:
+          persist-credentials: false
+      - name: Setup Docker Buildx
         uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Build
         id: docker_build
@@ -57,12 +66,12 @@ jobs:
           push: false
           tags: kics:sec-trivy-tests-${{ github.sha }}
           build-args: |
-            VERSION=development
+            ENGINE_VERSION=development
             COMMIT=${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 #v0.35.0
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 #v0.36.0
         with:
           image-ref: kics:sec-trivy-tests-${{ github.sha }}
           ignore-unfixed: true
@@ -82,21 +91,25 @@ jobs:
         with:
           name: trivy-docker-image-scan-results
           path: ./results.txt
+
   grype-file-system:
     name: Grype fs scan
     runs-on: cx-public-ubuntu-x64
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Run Grype vulnerability scanner in repo mode
         id: grype-fs-scan
-        uses: anchore/scan-action@3c9a191a0fbab285ca6b8530b5de5a642cba332f # 7.2.2
+        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # 7.4.0
         with:
           path: "."
           only-fixed: true
           output-format: table
           severity-cutoff: low
           fail-build: true
+
   grype-docker-image:
     name: Grype docker image scan
     runs-on: cx-public-ubuntu-x64
@@ -109,7 +122,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Build
         id: docker_build
@@ -122,30 +135,34 @@ jobs:
           push: false
           tags: kics:sec-tests-${{ github.sha }}
           build-args: |
-            VERSION=development
+            ENGINE_VERSION=development
             COMMIT=${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Scan image
         id: grype-image-scan
-        uses: anchore/scan-action@3c9a191a0fbab285ca6b8530b5de5a642cba332f # 7.2.2
+        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # 7.4.0
         with:
           image: kics:sec-tests-${{ github.sha }}
           only-fixed: true
           severity-cutoff: low
           output-format: table
           fail-build: true
+
   govulncheck-file-system:
     runs-on: cx-public-ubuntu-x64
     name: govulncheck fs scan
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 #v6.3.0
+        with:
+          persist-credentials: false
+      - name: Setup Go
+        uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 #v6.3.0
         with:
           go-version: 'stable'
       - name: Install govulncheck
-        run: go install golang.org/x/vuln/cmd/govulncheck@latest
+        run: go install golang.org/x/vuln/cmd/govulncheck@617f44b718537dccdea1915395650e0529e3b72e # master 08/19/26
       - name: Run govulncheck scanner in fs mode
         run: |
           govulncheck -show verbose -C . ./... > ./results.txt || true
@@ -159,19 +176,23 @@ jobs:
         with:
           name: govulncheck-fs-scan-results
           path: ./results.txt
+
   govulncheck-binary:
     runs-on: cx-public-ubuntu-x64
     name: govulncheck binary scan
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          persist-credentials: false
+      - name: Setup Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version: 'stable'
       - name: Build kics
         run: go build -ldflags "-s -w" -a -installsuffix cgo -o ./bin/kics ./cmd/console/main.go
       - name: Install govulncheck
-        run: go install golang.org/x/vuln/cmd/govulncheck@latest
+        run: go install golang.org/x/vuln/cmd/govulncheck@617f44b718537dccdea1915395650e0529e3b72e # master 08/19/26
       - name: Run govulncheck scanner in binary mode
         run: |
           govulncheck -show verbose -mode=binary ./bin/kics > ./results.txt || true
