@@ -29,7 +29,6 @@ type FileSystemSourceProvider struct {
 
 var (
 	queryRegexExcludeTerraCache = regexp.MustCompile(fmt.Sprintf(`^(.*?%s)?\.terra.*`, regexp.QuoteMeta(string(os.PathSeparator))))
-	queryRegexExcludeCacheFile  = regexp.MustCompile(`^.*\.cache\..+$`)
 	// ErrNotSupportedFile - error representing when a file format is not supported by KICS
 	ErrNotSupportedFile = errors.New("invalid file format")
 )
@@ -258,11 +257,6 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	}
 
 	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-		log.Trace().Msgf("File ignored: %s", path)
-		return true, nil
-	}
-	// exclude cache files
-	if queryRegexExcludeCacheFile.MatchString(info.Name()) {
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}

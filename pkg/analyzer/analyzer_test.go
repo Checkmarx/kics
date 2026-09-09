@@ -98,6 +98,23 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			MaxFileSize:          -1,
 		},
 		{
+			name: "analyze_test_not_dockercompose_false_positive",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test_dockercompose_false_positive/azure_marketplace.json"),
+			},
+			wantTypes: []string{},
+			wantExclude: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test_dockercompose_false_positive/azure_marketplace.json"),
+			},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              0,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
+		{
 			name: "analyze_test_error_path",
 			paths: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/Dockserfile"),
