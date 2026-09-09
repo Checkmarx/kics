@@ -77,7 +77,7 @@ var (
 	blueprintRegexTargetScope                       = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
 	blueprintRegexProperties                        = regexp.MustCompile(`("properties"|properties)\s*:`)
 	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
-	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:[\w\W]+(image|build)\s*:`)
+	dockerComposeServicesRegex                      = regexp.MustCompile(`(?m)^\s*"?services"?\s*:[\w\W]+^\s*"?(image|build)"?\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
 	knativeRegex                                    = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
 	pulumiNameRegex                                 = regexp.MustCompile(`name\s*:`)
