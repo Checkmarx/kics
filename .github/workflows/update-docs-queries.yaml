@@ -2,12 +2,6 @@ name: update-queries-docs
 
 on:
   workflow_dispatch:
-  push:
-    branches: [master]
-    paths:
-      - "assets/queries/**/metadata.json"
-      - "assets/queries/**/test/**"
-      - ".github/scripts/docs-generator/**"
 
 permissions:
   contents: read
@@ -19,6 +13,7 @@ concurrency:
 jobs:
   update-docs:
     name: Update queries documentation
+    environment: release
     permissions:
       actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
       contents: write  # for actions/checkout to fetch code and create-pull-request to push a branch
