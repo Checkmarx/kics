@@ -15,6 +15,7 @@ concurrency:
 jobs:
   prepare-release:
     name: prepare for next release
+    environment: release
     runs-on: cx-public-ubuntu-x64
     permissions:
       contents: write  # for actions/checkout to fetch code and create-pull-request to push a branch
