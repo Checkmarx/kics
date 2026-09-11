@@ -1,0 +1,154 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/public/vex-82e0d97c42d89d13be398c4f0176b64277713a28f9ba5832b22d2389a65e6d9a",
+  "author": "Unknown Author",
+  "timestamp": "2024-10-04T13:29:59.756369+02:00",
+  "last_updated": "2024-10-04T13:30:00.041231+02:00",
+  "version": 12,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2019-25210"
+      },
+      "timestamp": "2024-10-04T13:29:59.75637+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/helm.sh/helm/v3@v3.14.2"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2020-8911"
+      },
+      "timestamp": "2024-10-04T13:29:59.783436+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/github.com/aws/aws-sdk-go@v1.44.295"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2020-8912"
+      },
+      "timestamp": "2024-10-04T13:29:59.809217+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/github.com/aws/aws-sdk-go@v1.44.295"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-45288"
+      },
+      "timestamp": "2024-10-04T13:29:59.83638+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/golang.org/x/net/http2@v0.17.0"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-45288"
+      },
+      "timestamp": "2024-10-04T13:29:59.861663+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/golang.org/x/net@v0.17.0"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-45288"
+      },
+      "timestamp": "2024-10-04T13:29:59.887893+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/net/http@v0.17.0"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-45288"
+      },
+      "timestamp": "2024-10-04T13:29:59.913218+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/stdlib@v0.17.0"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-3817"
+      },
+      "timestamp": "2024-10-04T13:29:59.938902+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/github.com/hashicorp/go-getter@v1.7.1"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-41110"
+      },
+      "timestamp": "2024-10-04T13:29:59.964348+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/github.com/docker/docker@v24.0.9+incompatible"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-41110"
+      },
+      "timestamp": "2024-10-04T13:29:59.989591+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/github.com/moby/moby@v24.0.9+incompatible"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-6257"
+      },
+      "timestamp": "2024-10-04T13:30:00.015183+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/github.com/hashicorp/go-getter@v1.7.1"
+        }
+      ],
+      "status": "under_investigation"
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2024-8260"
+      },
+      "timestamp": "2024-10-04T13:30:00.041234+02:00",
+      "products": [
+        {
+          "@id": "pkg:golang/github.com/open-policy-agent/opa@v0.58.0"
+        }
+      ],
+      "status": "under_investigation"
+    }
+  ]
+}
