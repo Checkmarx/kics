@@ -630,9 +630,6 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 
 // TestFileSystemSourceProvider_AddExcluded tests the functions [AddExcluded()] and all the methods called by them
 func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
-	if runtime.GOOS == "windows" {
-		t.Skip("skipping test on Windows")
-	}
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Errorf("failed to change dir: %s", err)
 	}
@@ -680,8 +677,12 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 				t.Errorf("AddExcluded() = %v, wantErr = %v", err, tt.wantErr)
 			}
 			got := getFSExcludes(fsystem)
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("AddExcluded() = %v, want = %v", got, tt.want)
+			want := tt.want
+			if runtime.GOOS == "windows" && tt.name == "test_too_many_levels_of_symbolic_links" {
+				want = []string{"eloop_link"}
+			}
+			if !reflect.DeepEqual(got, want) {
+				t.Errorf("AddExcluded() = %v, want = %v", got, want)
 			}
 		})
 	}
