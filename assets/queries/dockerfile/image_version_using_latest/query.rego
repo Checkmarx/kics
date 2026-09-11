@@ -4,7 +4,7 @@ CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "from"
 	not resource.Value[0] == "scratch"
-	contains(resource.Value[0], ":latest")
+	endswith(resource.Value[0], ":latest")
 
 	result := {
 		"documentId": input.document[i].id,

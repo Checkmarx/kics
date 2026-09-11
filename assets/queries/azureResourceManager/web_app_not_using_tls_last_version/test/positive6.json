@@ -12,17 +12,17 @@
     {
       "type": "Microsoft.Web/sites",
       "apiVersion": "2022-09-01",
-      "name": "meuAppService",
+      "name": "myAppService",
       "location": "West Europe",
       "properties": {}
     },
     {
       "type": "Microsoft.Web/sites/config",
       "apiVersion": "2022-09-01",
-      "name": "[format('{0}/{1}', 'meuAppService', 'web')]",
+      "name": "[format('{0}/{1}', 'myAppService', 'web')]",
       "properties": {},
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', 'meuAppService')]"
+        "[resourceId('Microsoft.Web/sites', 'myAppService')]"
       ]
     }
   ]

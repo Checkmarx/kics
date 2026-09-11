@@ -14,6 +14,7 @@ CxPolicy[result] { # resources
 	statement := st[st_index]
 	common_lib.is_allow_effect(statement)
     illegal_action := is_illegal(statement.Action)
+	common_lib.equalsOrInArray(statement.Resource, "*")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,6 +38,7 @@ CxPolicy[result] { # modules
 	statement := st[st_index]
 	common_lib.is_allow_effect(statement)
 	illegal_action := is_illegal(statement.Action)
+	common_lib.equalsOrInArray(statement.Resource, "*")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -74,6 +76,7 @@ prepare_issue_data_source(statement, name, index, is_unique_element) = res {
 	not is_unique_element
 	common_lib.is_allow_effect(statement)
     illegal_action := is_illegal(statement.actions)
+	common_lib.equalsOrInArray(statement.resources, "*")
 
 	res := {
 		"sk": sprintf("aws_iam_policy_document[%s].statement[%d].actions", [name, index]),
@@ -86,6 +89,7 @@ prepare_issue_data_source(statement, name, index, is_unique_element) = res {
 	is_unique_element
 	common_lib.is_allow_effect(statement)
 	illegal_action := is_illegal(statement.actions)
+	common_lib.equalsOrInArray(statement.resources, "*")
 
 	res := {
 		"sk": sprintf("aws_iam_policy_document[%s].statement.actions", [name]),

@@ -1,15 +1,18 @@
-FROM checkmarx/go:1.26.2@sha256:9bc691851ef2244d13b0b9ff48bd2d409f4d7300ce1e3589c886c3e393631366 AS build_env
+ARG GO_BASE_IMAGE=checkmarx/go:1.27.0@sha256:b371fb9a8da098748d7b978fe3b58385fcc9d5a1f9b9cdcaf85e49a23efc0bc2
+ARG GIT_BASE_IMAGE=checkmarx/git:2.55.0@sha256:54b307e635d451ea82ecabc0d91914c2a5799096dac302c744eb103cd0bf19f8
+FROM ${GO_BASE_IMAGE} AS build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
 
 ENV GOPRIVATE=github.com/Checkmarx/*
-ARG VERSION="development"
+ARG ENGINE_VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
 ARG TARGETOS
 ARG TARGETARCH
+ARG CGO_ENABLED=0
 
 # Copy go mod and sum files
 COPY go.mod go.sum  ./
@@ -21,17 +24,17 @@ RUN go mod download -x
 COPY . .
 
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
-    -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
+RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
+    -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${ENGINE_VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
 
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM checkmarx/git:2.53.0@sha256:efb3b1704c76c7ebc0aa133281491a619b49db51030d86eaaa334281e0c4b214
+FROM ${GIT_BASE_IMAGE}
 
-ENV TERM xterm-256color
+ENV TERM=xterm-256color
 
 # Copy built binary to the runtime container
 # Vulnerability fixed in latest version of KICS remove when gh actions version is updated
@@ -47,7 +50,7 @@ WORKDIR /app/bin
 USER root
 
 # Healthcheck the container
-ENV PATH $PATH:/app/bin
+ENV PATH=$PATH:/app/bin
 
 # Command to run the executable
 ENTRYPOINT ["/app/bin/kics"]

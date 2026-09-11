@@ -32,6 +32,31 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
+	input.document[i].on["push"]
+	run := input.document[i].jobs[j].steps[k].run
+
+	patterns := [
+	"github.event.head_commit.message",
+	"github.event.head_commit.author.email",
+	"github.event.head_commit.author.name",
+	"github.event.commits.*.author.email",
+	"github.event.commits.*.author.name"
+	]
+
+	matched = containsPatterns(run, patterns)
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("run={{%s}}", [run]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
+		"keyActualValue": "Run block contains dangerous input controlled by user.",
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[]),
+		"searchValue": matched[m]
+	}
+}
+
+CxPolicy[result] {
 
 	input.document[i].on["issues"]
 	run := input.document[i].jobs[j].steps[k].run
@@ -62,7 +87,8 @@ CxPolicy[result] {
 	patterns := [
     "github.event.comment.body",
 	"github.event.issue.body",
-	"github.event.issue.title"
+	"github.event.issue.title",
+	"github.event.comment.user.login"
 	]
 
 	matched = containsPatterns(run, patterns)
@@ -174,8 +200,6 @@ CxPolicy[result] {
 		"searchValue": matched[m]
 	}
 }
-
-
 
 containsPatterns(str, patterns) = matched {
     matched := {pattern |

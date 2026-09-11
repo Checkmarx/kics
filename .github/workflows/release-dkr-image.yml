@@ -1,30 +1,39 @@
 name: release-docker-image
 
 on:
-  release:
-    types: [created, published]
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # default deny-write baseline; the push_to_registry job elevates as needed
 
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
-    runs-on: ubuntu-latest
-    if: "!github.event.release.prerelease"
+    environment: release
+    runs-on: cx-public-ubuntu-x64
+    permissions:
+      contents: read
+      id-token: write  # required to request the GitHub OIDC token exchanged with Docker Hub's OIDC login
     env:
       DOCKER_CLI_EXPERIMENTAL: "enabled"
     steps:
       - name: Check out the repo
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Get Release version
         id: get-version
         run: |
-          echo "::set-output name=version::$(git describe --match='v*' --tags --abbrev=0)"
+          echo "version=$(git describe --match='v*' --tags --abbrev=0)" >> "$GITHUB_OUTPUT"
       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
         if: always()
         with:
-          github-token: ${{ secrets.KICS_BOT_PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK_URL }}
           card-layout-start: cozy
           card-layout-exit: complete
@@ -35,23 +44,24 @@ jobs:
               value: https://github.com/Checkmarx/kics/actions/runs/${{ github.run_id }}
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v2
+      - name: Setup QEMU
+        uses: step-security/setup-qemu-action@109c6ed9f089be1a250c75fd6a534e30df44e030 # v4.0.0
         with:
           image: tonistiigi/binfmt:latest
           platforms: linux/amd64,linux/arm64
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3.11.1
+      - name: Setup Docker Buildx
+        uses: step-security/setup-buildx-action@f931205d68723ad9589fd2a7e2ece238bf9de341 # v4.0.0
       - name: Login to DockerHub
-        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
+        uses: step-security/docker-login-action@bd6978fd4ef9a5f78130095b298b8a721afcb0d8 # v4.5.1
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+        env:
+          DOCKERHUB_OIDC_CONNECTIONID: ${{ secrets.DOCKERHUB_OIDC_CONNECTIONID }}
       - name: Get current date
         run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804 # v5.7.0
+        uses: docker/metadata-action@80c7e94dd9b9319bd5eb7a0e0fe9291e23a2a2e9 # v6.1.0
         with:
           images: "checkmarx/kics"
           labels: |
@@ -67,7 +77,7 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.created=${{ env.CREATED_AT }}
       - name: Push main to Docker Hub
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         id: build_main
         with:
           context: .
@@ -75,14 +85,14 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }}
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
       - name: Build and push alpine to Docker Hub
         id: build_alpine
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           context: .
           file: ./docker/Dockerfile.alpine
@@ -90,14 +100,14 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
       - name: Build and push debian to Docker Hub
         id: build_debian
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           context: .
           file: ./docker/Dockerfile.debian
@@ -105,14 +115,14 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: checkmarx/kics:debian,checkmarx/kics:${{ steps.get-version.outputs.version }}-debian
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
           labels: ${{ steps.meta.outputs.labels }}
       - name: Build and push ubi8 to Docker Hub
         id: build_ubi8
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        uses: step-security/docker-build-push-action@846549baaf047e867d038826129a64d81df0f704 # v7.1.0
         with:
           context: .
           file: ./docker/Dockerfile.ubi8
@@ -120,7 +130,7 @@ jobs:
           tags: checkmarx/kics:ubi8,checkmarx/kics:${{ steps.get-version.outputs.version }}-ubi8
           platforms: linux/amd64,linux/arm64
           build-args: |
-            VERSION=${{ steps.get-version.outputs.version }}
+            ENGINE_VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
