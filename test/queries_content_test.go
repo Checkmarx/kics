@@ -104,7 +104,7 @@ var (
 		"riskScore": func(tb testing.TB, value interface{}, metadataPath string) {
 			riskScoreValue := testMetadataFieldStringType(tb, value, "riskScore", metadataPath)
 			require.NotEmpty(tb, riskScoreValue, "empty riskScore in query metadata file %s", metadataPath)
-			require.Regexp(tb, `^-?\d+\.\d$`, riskScoreValue, "invalid riskScore format in query metadata file %s (expected format: 'X.X' or '-X.X')", metadataPath)
+			require.Regexp(tb, `^(10\.0|[0-9]\.[0-9])$`, riskScoreValue, "invalid riskScore format in query metadata file %s (expected a positive value between 0.0 and 10.0)", metadataPath)
 		},
 	}
 )
