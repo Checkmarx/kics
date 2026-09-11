@@ -7,7 +7,6 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
-	"runtime"
 	"testing"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
@@ -678,8 +677,18 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 			}
 			got := getFSExcludes(fsystem)
 			want := tt.want
-			if runtime.GOOS == "windows" && tt.name == "test_too_many_levels_of_symbolic_links" {
-				want = []string{"eloop_link"}
+			if tt.name == "test_too_many_levels_of_symbolic_links" && len(tt.args.excludePaths) > 0 {
+				if _, statErr := os.Stat(filepath.FromSlash(tt.args.excludePaths[0])); statErr != nil {
+					// On Windows the checkout may materialize it as a regular file (Stat succeeds -> want
+					// == ["eloop_link"]) OR as a symlink/reparse point with varying Stat
+					// errors (e.g. GH Windows error 1921 ERROR_CANT_RESOLVE_FILENAME -> want
+					// == []).
+					want = []string{}
+				} else {
+					// The fixture `eloop_link` is a symlink loop on Unix -> os.Stat fails with
+					// PathError (ELOOP) and AddExcluded skips it (want == []). ~
+					want = []string{"eloop_link"}
+				}
 			}
 			if !reflect.DeepEqual(got, want) {
 				t.Errorf("AddExcluded() = %v, want = %v", got, want)
