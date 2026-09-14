@@ -1,0 +1,24 @@
+# Global allow rule - a88baa34-e2ad-44ea-ad6f-8cac87bc7c71 - "Avoiding sha-hashed mysql native passwords" allow-rule-test
+---
+- name: Configure MySQL database users
+  hosts: db_servers
+  become: yes
+
+  tasks:
+    - name: Create application database user
+      community.mysql.mysql_user:
+        name: app_user
+        host: '%'
+        password: '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9' # negative1
+        encrypted: yes
+        priv: 'app_db.*:SELECT,INSERT,UPDATE,DELETE'
+        state: present
+
+    - name: Create readonly database user
+      community.mysql.mysql_user:
+        name: readonly_user
+        host: '10.0.0.%'
+        password: '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19' # negative2
+        encrypted: yes
+        priv: 'app_db.*:SELECT'
+        state: present

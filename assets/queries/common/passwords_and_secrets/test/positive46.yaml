@@ -1,3 +1,4 @@
+# "Generic Password" - 487f4be7-3fd9-4506-a07a-eae252180c08  positive-test
 version: '3.9'
 services:
   vulnerable_node:
@@ -17,5 +18,5 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_PASSWORD=string
+      - POSTGRES_PASSWORD=postgres  # positive1
+      - POSTGRES_PASSWORD=string    # positive2

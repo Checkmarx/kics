@@ -1,3 +1,4 @@
+// "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding references to module outputs in Bicep"  allow-rule-test (also avoided by TF resource access allow rule)
 param systemName string
 param resourceName string
 param tags object
@@ -19,7 +20,8 @@ module clientModule '../ClientModule/Resource.bicep' = {
     systemName: systemName
     resourceName: resourceName
     tags: tags
-    validationToken: myModule.outputs.apiToken 
+    // negative1:
+    validationToken: myModule.outputs.apiToken
   }
 }
 

@@ -1,0 +1,29 @@
+# "Generic Secret" - 3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99 - "Avoiding Secrets from Variable Interpolation"  allow-rule-test
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template using dynamic references
+
+Resources:
+  MyRDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceClass: db.t3.micro
+      Engine: mysql
+      MasterUsername: '{{resolve:secretsmanager:prod/db/credentials:SecretString:username}}'
+      MasterUserPassword: '{{resolve:secretsmanager:prod/db/credentials:SecretString:password}}'
+      AllocatedStorage: 20
+
+  MyLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: my-function
+      Runtime: python3.12
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          def handler(event, context):
+              return {'statusCode': 200}
+      Environment:
+        Variables:
+          API_TOKEN: '{{resolve:ssm-secure:/prod/api/token}}'
+          DB_PASSWORD: '{{resolve:ssm-secure:/prod/db/password}}'
+          APP_SECRET: '{{resolve:ssm:/prod/app/config}}' # negative1

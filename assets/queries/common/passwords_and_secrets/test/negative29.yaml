@@ -1,3 +1,4 @@
+# "Generic Token" - baee238e-1921-4801-9c3f-79ae1d7b2cbc - "Avoiding Github id-token Default Values"  allow-rule-test
 name: Example Workflow
 
 on: workflow_call
@@ -7,7 +8,7 @@ jobs:
     permissions:
       contents: read
       pages: write
-      id-token: write
+      id-token: write # negative1
 
     runs-on: ubuntu
 
@@ -25,7 +26,7 @@ jobs:
     permissions:
       contents: read
       pages: write
-      id-token: read
+      id-token: read # negative2
 
     runs-on: ubuntu
 
@@ -43,7 +44,7 @@ jobs:
     permissions:
       contents: read
       pages: write
-      id-token: none
+      id-token: none # negative3
 
     runs-on: ubuntu
 

@@ -1,3 +1,4 @@
+# Generic Negative Test - arbitrary git "token" references, ARTEMIS_PASSWORD missing (dockerfile)
 FROM baseImage
 
 ENV ARTEMIS_USER=artemis

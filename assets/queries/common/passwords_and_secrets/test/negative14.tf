@@ -1,3 +1,4 @@
+# Generic Negative Test - several keywords used in safe contexts ("password","api_key","secret_key")
 resource "aws_ecs_task_definition" "webapp" {
   family        = "tomato-webapp"
   task_role_arn = data.aws_iam_role.ecs_task_role.arn
