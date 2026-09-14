@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/rs/zerolog/log"
@@ -135,9 +136,10 @@ func CheckVersion(t *tracker.CITracker) {
 		return
 	}
 
+	latestVersionTag := strings.TrimPrefix(release.TagName, "v")
 	t.TrackVersion(model.Version{
-		Latest:           constants.Version == release.TagName,
-		LatestVersionTag: release.TagName,
+		Latest:           constants.Version == latestVersionTag,
+		LatestVersionTag: latestVersionTag,
 	})
 }
 
