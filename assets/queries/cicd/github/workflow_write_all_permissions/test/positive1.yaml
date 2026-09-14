@@ -1,0 +1,14 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+permissions: write-all
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/deploy.sh

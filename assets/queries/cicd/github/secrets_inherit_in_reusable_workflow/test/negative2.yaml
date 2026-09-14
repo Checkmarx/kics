@@ -1,0 +1,14 @@
+# Safe: secrets: inherit used with a LOCAL reusable workflow (./path).
+# The local workflow is in the same repository, subject to the same
+# code review process, and cannot be compromised by a third party.
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/internal-deploy.yml
+    secrets: inherit
