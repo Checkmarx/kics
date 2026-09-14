@@ -8,6 +8,8 @@ CxPolicy[result] {
 
 	labels := resource[name].metadata.labels
 
+	is_string(labels[key])
+	not contains(labels[key], "${")
 	regex.match("^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$", labels[key]) == false
 
 	result := {
@@ -16,8 +18,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].metadata.labels", [resourceType, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].metada.labels[%s] has valid label", [resourceType, name, key]),
-		"keyActualValue": sprintf("%s[%s].metada.labels[%s] has invalid label", [resourceType, name, key]),
+		"keyExpectedValue": sprintf("%s[%s].metadata.labels[%s] has valid label", [resourceType, name, key]),
+		"keyActualValue": sprintf("%s[%s].metadata.labels[%s] has invalid label", [resourceType, name, key]),
 		"searchLine": common_lib.build_search_line(["resource", resourceType, name, "metadata"], ["labels", key]),
 	}
 }
