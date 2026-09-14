@@ -29,6 +29,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
 		"keyActualValue": sprintf("aws_instance[%s].user_data is being used to configure AWS API keys", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "user_data"], []),
 	}
 }
 
@@ -47,6 +48,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
 		"keyActualValue": sprintf("aws_instance[%s].user_data is being used to configure AWS API keys", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "user_data_base64"], []),
 	}
 }
 
@@ -65,6 +67,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
 		"keyActualValue": sprintf("aws_instance[%s].provisioner.remote-exec is being used to configure AWS API keys", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "provisioner", "remote-exec"], []),
 	}
 }
 
@@ -83,6 +86,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
 		"keyActualValue": sprintf("aws_instance[%s].provisioner.file is being used to configure AWS API keys", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "provisioner", "file"], []),
 	}
 }
 
