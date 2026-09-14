@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - Ansible apt Allows Unauthenticated Packages",
+        "severity": "HIGH",
+        "line": 6,
+        "filename": "positive1.yaml"
+    }
+]
