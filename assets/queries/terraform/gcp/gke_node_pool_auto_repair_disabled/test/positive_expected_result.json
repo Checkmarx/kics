@@ -1,0 +1,8 @@
+[
+    {
+        "queryName": "Beta - GKE Node Pool Auto-Repair Disabled",
+        "severity": "MEDIUM",
+        "line": 7,
+        "filename": "positive1.tf"
+    }
+]

@@ -1,0 +1,14 @@
+{
+  "id": "8af4c38a-e1d2-405b-ac41-995db44b5536",
+  "queryName": "Beta - API Gateway V2 CORS Wildcard Origin Allowed",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "API Gateway V2 CORS configuration should not allow all origins ('*'). Wildcard origins allow any website to make cross-origin requests, enabling CSRF attacks against authenticated API endpoints.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_api#allow_origins",
+  "platform": "Terraform",
+  "descriptionID": "c3d4e5f6",
+  "cloudProvider": "aws",
+  "cwe": "942",
+  "riskScore": "7.0",
+  "experimental": "true"
+}
