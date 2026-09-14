@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - Container Seccomp Profile Not Set",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.yaml"
+  }
+]

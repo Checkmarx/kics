@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - Cloud Run Service Allows Unauthenticated Access",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Cloud Run Service Allows Unauthenticated Access",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive2.tf"
+  }
+]
