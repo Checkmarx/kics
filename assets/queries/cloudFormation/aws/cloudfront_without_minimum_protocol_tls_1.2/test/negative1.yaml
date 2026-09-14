@@ -21,7 +21,7 @@ Resources:
             AcmCertificateArn: String
             CloudFrontDefaultCertificate: true
             IamCertificateId: String
-            MinimumProtocolVersion: "TLSv1.2_2018"
+            MinimumProtocolVersion: "TLSv1.2_2025"
             SslSupportMethod: String
       Tags:
         - Key: string-value
