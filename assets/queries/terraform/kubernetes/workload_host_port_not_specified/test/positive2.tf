@@ -40,6 +40,7 @@ resource "kubernetes_deployment" "example" {
           }
           port {
             container_port = 8080
+            host_port = 2
           }
 
           liveness_probe {
