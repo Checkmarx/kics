@@ -63,8 +63,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[%s].provisioner", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_instance[%s].provisioner.remote-exec should be used to configure AWS API keys", [name]),
-		"keyActualValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+		"keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+		"keyActualValue": sprintf("aws_instance[%s].provisioner.remote-exec is being used to configure AWS API keys", [name]),
 	}
 }
 
@@ -81,8 +81,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[%s].provisioner", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_instance[%s].provisioner.file should be used to configure AWS API keys", [name]),
-		"keyActualValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+		"keyExpectedValue": sprintf("aws_instance[%s] should be using iam_instance_profile to assign a role with permissions", [name]),
+		"keyActualValue": sprintf("aws_instance[%s].provisioner.file is being used to configure AWS API keys", [name]),
 	}
 }
 

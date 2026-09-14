@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s.deployment_configuration should be defined", [modules[m]]),
-		"keyActualValue": sprintf("%&s.deployment_configuration is undefined", [modules[m]]),
+		"keyActualValue": sprintf("%s.deployment_configuration is undefined", [modules[m]]),
 	}
 }
 
@@ -36,8 +36,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.deployment_configuration", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.deployment_configuration should have at least 1 task running", [modules[m]]),
-		"keyActualValue": sprintf("%&s.deployment_configuration must have at least 1 task running", [modules[m]]),
+		"keyExpectedValue": sprintf("%s.deployment_configuration should have maximum_percent or minimum_healthy_percent defined", [modules[m]]),
+		"keyActualValue": sprintf("%s.deployment_configuration doesn't have maximum_percent or minimum_healthy_percent defined", [modules[m]]),
 	}
 }
 

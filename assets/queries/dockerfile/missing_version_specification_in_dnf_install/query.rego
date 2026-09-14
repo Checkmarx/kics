@@ -24,7 +24,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Package version should be specified when using 'dnf install'",
-		"keyActualValue": "Package version should be pinned when running ´dnf install´",
+		"keyActualValue": sprintf("Package '%s' has no version specified", [packages[j]]),
 	}
 }
 
@@ -47,7 +47,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Package version should be specified when using 'dnf install'",
-		"keyActualValue": "Package version should be pinned when running ´dnf install´",
+		"keyActualValue": sprintf("Package '%s' has no version specified", [resource.Value[j]]),
 	}
 }
 
