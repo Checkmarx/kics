@@ -1,0 +1,14 @@
+{
+  "id": "7fc653e2-af91-4379-9219-5095caba0ff6",
+  "queryName": "Beta - Azure Managed Lustre Not Encrypted with CMK",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensures that Azure Managed Lustre file systems are encrypted using a Customer-Managed Key (CMK) via the 'encryption_key' block. By default, data is encrypted with platform-managed keys; CMK provides full control over key lifecycle and access policies. The 'encryption_key' block is documented in the azurerm provider source and requires 'key_url' (Key Vault key URL) and 'source_vault_id' (Key Vault resource ID).",
+  "descriptionUrl": "https://learn.microsoft.com/en-us/azure/azure-managed-lustre/customer-managed-encryption-keys",
+  "platform": "Terraform",
+  "cloudProvider": "azure",
+  "cwe": "326",
+  "descriptionID": "7fc653e2",
+  "riskScore": "3.0",
+  "experimental": "true"
+}

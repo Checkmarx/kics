@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - OCI Storage Admin with Delete Privileges (Manual)",
+    "severity": "INFO",
+    "line": 10,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - OCI Storage Admin with Delete Privileges (Manual)",
+    "severity": "INFO",
+    "line": 10,
+    "fileName": "positive2.tf"
+  }
+]

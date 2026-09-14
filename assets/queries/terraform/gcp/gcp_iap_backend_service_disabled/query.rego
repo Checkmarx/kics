@@ -1,0 +1,63 @@
+package Cx
+
+import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+
+# RULE 1: The block 'iap' is missing en google_compute_backend_service.
+CxPolicy[result] {
+    doc := input.document[i]
+    bs := doc.resource.google_compute_backend_service[name]
+
+    not bs.iap
+
+    result := {
+        "documentId": doc.id,
+        "resourceType": "google_compute_backend_service",
+        "resourceName": tf_lib.get_resource_name(bs, name),
+        "searchKey": sprintf("google_compute_backend_service[%s]", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "google_compute_backend_service", name], []),
+        "issueType": "MissingAttribute",
+        "keyExpectedValue": sprintf("'google_compute_backend_service.%s' should have an 'iap' block defined", [name]),
+        "keyActualValue": sprintf("'google_compute_backend_service.%s' is missing the 'iap' block", [name]),
+    }
+}
+
+# RULE 2: The block 'iap' Exists but Missing 'oauth2_client_id'.
+CxPolicy[result] {
+    doc := input.document[i]
+    bs := doc.resource.google_compute_backend_service[name]
+
+    bs.iap
+    not bs.iap.oauth2_client_id
+
+    result := {
+        "documentId": doc.id,
+        "resourceType": "google_compute_backend_service",
+        "resourceName": tf_lib.get_resource_name(bs, name),
+        "searchKey": sprintf("google_compute_backend_service[%s].iap", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "google_compute_backend_service", name, "iap"], []),
+        "issueType": "MissingAttribute",
+        "keyExpectedValue": "'oauth2_client_id' should be defined within the 'iap' block",
+        "keyActualValue": "'oauth2_client_id' is missing",
+    }
+}
+
+# RULE 3: The block 'iap' Exists but Missing 'oauth2_client_secret'.
+CxPolicy[result] {
+    doc := input.document[i]
+    bs := doc.resource.google_compute_backend_service[name]
+
+    bs.iap
+    not bs.iap.oauth2_client_secret
+
+    result := {
+        "documentId": doc.id,
+        "resourceType": "google_compute_backend_service",
+        "resourceName": tf_lib.get_resource_name(bs, name),
+        "searchKey": sprintf("google_compute_backend_service[%s].iap", [name]),
+        "searchLine": common_lib.build_search_line(["resource", "google_compute_backend_service", name, "iap"], []),
+        "issueType": "MissingAttribute",
+        "keyExpectedValue": "'oauth2_client_secret' should be defined within the 'iap' block",
+        "keyActualValue": "'oauth2_client_secret' is missing",
+    }
+}
