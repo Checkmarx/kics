@@ -15,8 +15,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ecs_service[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'aws_ecs_service[%s]' has at least 1 task running", [name]),
-		"keyActualValue": sprintf("'aws_ecs_service[%s]' must have at least 1 task running", [name]),
+		"keyExpectedValue": sprintf("'aws_ecs_service[%s]' should have at least 1 task running", [name]),
+		"keyActualValue": sprintf("'aws_ecs_service[%s]' has desired_count set to 0", [name]),
 	}
 }
 

@@ -17,8 +17,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityPolicy", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy should not be defined", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.SecurityPolicy is defined", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy should be defined as TLS_1_2", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.SecurityPolicy is not defined", [name]),
 	}
 }
 
@@ -37,6 +37,6 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s.Properties.SecurityPolicy", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityPolicy should be %s", [name, tls]),
-		"keyActualValue": sprintf("Resources.%s.Properties.SecurityPolicy should be %s", [name, tls]),
+		"keyActualValue": sprintf("Resources.%s.Properties.SecurityPolicy is %s", [name, resource.Properties.SecurityPolicy]),
 	}
 }
