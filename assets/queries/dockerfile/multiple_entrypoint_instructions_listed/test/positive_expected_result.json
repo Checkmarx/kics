@@ -3,7 +3,7 @@
 		"queryName": "Multiple ENTRYPOINT Instructions Listed",
 		"severity": "LOW",
 		"line": 11,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Multiple ENTRYPOINT Instructions Listed",

@@ -3,7 +3,7 @@
 		"queryName": "Missing Dnf Clean All",
 		"severity": "LOW",
 		"line": 2,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Missing Dnf Clean All",

@@ -3,13 +3,13 @@
 		"queryName": "Missing Flag From Dnf Install",
 		"severity": "LOW",
 		"line": 2,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Missing Flag From Dnf Install",
 		"severity": "LOW",
 		"line": 10,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Missing Flag From Dnf Install",

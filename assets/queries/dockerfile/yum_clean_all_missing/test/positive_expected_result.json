@@ -3,7 +3,7 @@
 		"queryName": "Yum Clean All Missing",
 		"severity": "LOW",
 		"line": 12,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Yum Clean All Missing",

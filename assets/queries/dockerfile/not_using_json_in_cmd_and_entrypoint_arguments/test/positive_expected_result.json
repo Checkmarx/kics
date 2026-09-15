@@ -3,13 +3,13 @@
 		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
 		"severity": "MEDIUM",
 		"line": 10,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",
 		"severity": "MEDIUM",
 		"line": 11,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Not Using JSON In CMD And ENTRYPOINT Arguments",

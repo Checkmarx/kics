@@ -3,19 +3,19 @@
 		"queryName": "Gem Install Without Version",
 		"severity": "MEDIUM",
 		"line": 3,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Gem Install Without Version",
 		"severity": "MEDIUM",
 		"line": 4,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Gem Install Without Version",
 		"severity": "MEDIUM",
 		"line": 5,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Gem Install Without Version",

@@ -3,7 +3,7 @@
 		"queryName": "Curl or Wget Instead of Add",
 		"severity": "LOW",
 		"line": 3,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Curl or Wget Instead of Add",

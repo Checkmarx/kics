@@ -3,7 +3,7 @@
 		"queryName": "Run Using Sudo",
 		"severity": "MEDIUM",
 		"line": 3,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Run Using Sudo",

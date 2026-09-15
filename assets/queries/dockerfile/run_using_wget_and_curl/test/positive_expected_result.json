@@ -3,19 +3,19 @@
 		"queryName": "Run Using 'wget' and 'curl'",
 		"severity": "LOW",
 		"line": 3,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Run Using 'wget' and 'curl'",
 		"severity": "LOW",
 		"line": 7,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Run Using 'wget' and 'curl'",
 		"severity": "LOW",
 		"line": 8,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Run Using 'wget' and 'curl'",

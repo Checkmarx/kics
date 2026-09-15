@@ -3,13 +3,13 @@
 		"queryName": "Run Utilities And POSIX Commands",
 		"severity": "INFO",
 		"line": 4,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Run Utilities And POSIX Commands",
 		"severity": "INFO",
 		"line": 5,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Run Utilities And POSIX Commands",

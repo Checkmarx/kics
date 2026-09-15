@@ -3,13 +3,13 @@
 		"queryName": "Yum Install Allows Manual Input",
 		"severity": "LOW",
 		"line": 3,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Yum Install Allows Manual Input",
 		"severity": "LOW",
 		"line": 4,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Yum Install Allows Manual Input",

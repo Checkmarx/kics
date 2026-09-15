@@ -3,7 +3,7 @@
 		"queryName": "Image Version Using 'latest'",
 		"severity": "MEDIUM",
 		"line": 1,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Image Version Using 'latest'",

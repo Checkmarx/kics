@@ -137,7 +137,7 @@ Observe the following metadata.json example and check the Guidelines below for m
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail",
   "platform": "Terraform",
   "descriptionID": "feb82a62",
-  "cloudProvider": "aws", 
+  "cloudProvider": "aws",
   "cwe": "778",
   "riskScore": "2.8"
 }
@@ -305,7 +305,7 @@ If the **query.rego** file implements more than one query, the **metadata.json**
 Filling query.rego:
 
 - `documentId` id of the sample where the vulnerability occurs
-- `searchKey` uses Levenshtein distance to go through the original document. It should “include” as much information as possible so that the result is as accurate as possible. 
+- `searchKey` uses Levenshtein distance to go through the original document. It should “include” as much information as possible so that the result is as accurate as possible.
 
     Note the following special chars:
     - '='    -> value
@@ -469,12 +469,12 @@ Examples:
 
 #### 🚨 Platform Specific Guidelines 🚨
 
-##### Ⓐ Ansible Inventory "searchLine"
+##### Ansible Inventory "searchLine"
 To create a `searchLine` query in Rego for this case, you need to think of the path as if you were dealing with a YAML/JSON file. This way, the query will be capable of locating vulnerabilities in all three types of Ansible host files.
 
 ---
 
-#####  🐳 Dockerfile "searchKey"
+##### Dockerfile "searchKey"
 
 Dockerfile queries use a dedicated searchKey format and two helper functions from the `dockerfile.rego` library (`import data.generic.dockerfile as dockerLib`).
 
@@ -495,7 +495,7 @@ Helper functions:
   - `dockerLib.get_original_from_command(stage)` — returns an object with `Value` (the literal `"FROM"` string preserving the original casing) and `LineHint` (the line number hint derived from the FROM instruction, used to tell the detector where to start searching). Use this instead of hardcoding `"FROM"`.
   - `dockerLib.add_line_hint(searchKey, lineHint)` — appends a `^<line>` suffix to the searchKey that tells the detector where to start searching in the file. The line hint is stripped before reaching the final results.
 
-Typical usage in a query: 
+Typical usage in a query:
 
 ```rego
 stage := input.document[i].command[name]

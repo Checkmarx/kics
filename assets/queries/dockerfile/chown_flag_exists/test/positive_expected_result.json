@@ -3,7 +3,7 @@
 		"queryName": "Chown Flag Exists",
 		"severity": "LOW",
 		"line": 4,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Chown Flag Exists",

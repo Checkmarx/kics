@@ -3,13 +3,13 @@
 		"queryName": "Yum install Without Version",
 		"severity": "MEDIUM",
 		"line": 2,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Yum install Without Version",
 		"severity": "MEDIUM",
 		"line": 3,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Yum install Without Version",

@@ -3,7 +3,7 @@
 		"queryName": "Run Using apt",
 		"severity": "LOW",
 		"line": 2,
-		"fileName": "positive.dockerfile"
+		"fileName": "positive1.dockerfile"
 	},
 	{
 		"queryName": "Run Using apt",
