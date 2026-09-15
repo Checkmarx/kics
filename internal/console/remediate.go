@@ -7,15 +7,16 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
+	"github.com/spf13/cobra"
+
 	"github.com/Checkmarx/kics/v2/internal/console/flags"
 	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
 	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
 	"github.com/Checkmarx/kics/v2/pkg/engine/source"
 	internalPrinter "github.com/Checkmarx/kics/v2/pkg/printer"
 	"github.com/Checkmarx/kics/v2/pkg/remediation"
-	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
-	"github.com/spf13/cobra"
 )
 
 var (
@@ -83,7 +84,7 @@ func remediate() error {
 
 	filepath.Clean(resultsPath)
 
-	content, err := os.ReadFile(resultsPath)
+	content, err := os.ReadFile(resultsPath) //nolint:gosec
 	if err != nil {
 		log.Error().Msgf("failed to read file: %s", err)
 		return err

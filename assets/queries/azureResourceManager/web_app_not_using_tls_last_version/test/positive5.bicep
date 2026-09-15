@@ -1,11 +1,11 @@
-resource meuAppService 'Microsoft.Web/sites@2022-09-01' = {
-  name: 'meuAppService'
+resource myAppService 'Microsoft.Web/sites@2022-09-01' = {
+  name: 'myAppService'
   location: 'West Europe'
   properties: {}
 }
 
-resource meuAppService_web 'Microsoft.Web/sites/config@2022-09-01' = {
-  parent: meuAppService
+resource myAppService_web 'Microsoft.Web/sites/config@2022-09-01' = {
+  parent: myAppService
   name: 'web'
   properties: {
     minTlsVersion: '1.1'

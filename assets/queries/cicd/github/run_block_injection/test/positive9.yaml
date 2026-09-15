@@ -1,0 +1,14 @@
+name: Push Commit Message Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  process_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Commit Message
+        run: |
+          echo "Commit message: ${{ github.event.head_commit.message }}"
