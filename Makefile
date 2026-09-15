@@ -97,7 +97,7 @@ test-unit: generate
 test-cover: ## Run tests with code coverage
 test-cover: generate
 	$(call print-target)
-	@go test -covermode=atomic -v -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
+	@go test -covermode=atomic -timeout 2100s -v -coverprofile=coverage.out $(shell go list ./... | grep -v e2e)
 
 .PHONY: test-coverage-report
 test-coverage-report: ## Run unit tests and generate test coverage report

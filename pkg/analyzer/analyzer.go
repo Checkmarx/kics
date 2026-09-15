@@ -343,8 +343,8 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	results := make(chan string)
 	locCount := make(chan int)
 	fileInfo := make(chan fileTypeInfo)
-	ignoreFiles := make([]string, 0)
-	projectConfigFiles := make([]string, 0)
+	var ignoreFiles []string
+	var projectConfigFiles []string
 	done := make(chan bool)
 	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
 	// get all the files inside the given paths
@@ -413,10 +413,12 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	return returnAnalyzedPaths, nil
 }
 
-func (a *Analyzer) collectFiles(hasGitIgnoreFile bool, gitIgnore *ignore.GitIgnore) ([]fileExtInfo, []string, []string, error) {
-	var files []fileExtInfo
-	ignoreFiles := make([]string, 0)
-	projectConfigFiles := make([]string, 0)
+func (a *Analyzer) collectFiles(
+	hasGitIgnoreFile bool,
+	gitIgnore *ignore.GitIgnore,
+) (files []fileExtInfo, ignoreFiles, projectConfigFiles []string, err error) {
+	ignoreFiles = make([]string, 0)
+	projectConfigFiles = make([]string, 0)
 
 	for _, path := range a.Paths {
 		if _, err := os.Stat(path); err != nil {
