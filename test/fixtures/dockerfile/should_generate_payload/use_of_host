@@ -1,0 +1,3 @@
+FROM example.com:5000/team/my-app:2.0
+RUN echo "hello"
+ADD ${JAR_FILE} app.jar
