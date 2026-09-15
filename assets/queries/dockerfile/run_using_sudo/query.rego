@@ -9,9 +9,12 @@ CxPolicy[result] {
 
 	hasSudo(resource.Value[0])
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
+	run_command := substring(resource.Original, 0, 3)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, resource.Value[0]]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction shouldn't contain sudo",
 		"keyActualValue": "RUN instruction contains sudo",
@@ -25,9 +28,12 @@ CxPolicy[result] {
 
 	resource.Value[0] == "sudo"
 
+	stage := input.document[i].command[name]
+	from_command := dockerLib.get_original_from_command(stage)
+	run_command := substring(resource.Original, 0, 3)
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Original]),
+		"searchKey": dockerLib.add_line_hint(sprintf("%s={{%s}}.%s={{%s}}", [from_command.Value, name, run_command, resource.Value[0]]), from_command.LineHint),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction shouldn't contain sudo",
 		"keyActualValue": "RUN instruction contains sudo",

@@ -1,0 +1,14 @@
+from alpine:3.5
+run apk add --update py2-pip
+run yum install \
+    yum clean all
+copy requirements.txt /usr/src/app/
+run pip install --no-cache-dir -r /usr/src/app/requirements.txt
+copy app.py /usr/src/app/
+copy templates/index.html /usr/src/app/templates/
+expose 5000
+cmd ["python", "/usr/src/app/app.py"]
+
+from alpine:3.4
+run yum -y install \
+    yum clean all
