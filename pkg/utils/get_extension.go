@@ -2,21 +2,36 @@ package utils
 
 import (
 	"bufio"
-	"bytes"
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
+	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/rs/zerolog/log"
-	"golang.org/x/tools/godoc/util"
 )
+
+const (
+	extDockerfile               = ".dockerfile"
+	dockerFromPattern           = `(?i)^\s*from\s+`
+	pythonImportPattern         = `(?i)from\s+\S+\s+import\s+\S+`
+	emailPattern                = `(?i)from\s*(:)?\s*[\w\-.]+@([\w\-]+\.)+[\w\-]{2,4}`
+	capitalizedAliasPattern     = `^\s*(?i:FROM)\s+\S+\s+(?i:AS)\s+[A-Z]`
+	dockerfileIllegalCharacters = `["'` + "`" + `()\[\],;|&?*^%!~<>]`
+)
+
+var dockerFrom = regexp.MustCompile(dockerFromPattern)
+
+var falsePositiveFROMPatterns = []*regexp.Regexp{
+	regexp.MustCompile(pythonImportPattern),
+	regexp.MustCompile(emailPattern),
+	regexp.MustCompile(capitalizedAliasPattern),
+	regexp.MustCompile(dockerfileIllegalCharacters),
+}
 
 // GetExtension gets the extension of a file path
 func GetExtension(path string) (string, error) {
-	targets := []string{"Dockerfile", "tfvars"}
-
-	// Get file information
 	fileInfo, err := os.Stat(path)
 	if err != nil {
 		return "", fmt.Errorf("file %s not found", path)
@@ -26,35 +41,49 @@ func GetExtension(path string) (string, error) {
 		return "", fmt.Errorf("the path %s is a directory", path)
 	}
 
-	ext := filepath.Ext(path)
-	if ext == "" {
-		base := filepath.Base(path)
-
-		if Contains(base, targets) {
-			ext = base
-		} else {
-			isText, err := isTextFile(path)
-
-			if err != nil {
-				return "", err
-			}
-
-			if isText {
-				if readPossibleDockerFile(path) {
-					ext = "possibleDockerfile"
-				}
-			}
-		}
+	if ext, ok := isDockerfileExtension(path); ok {
+		return ext, nil
 	}
 
+	ext := filepath.Ext(path)
+	switch ext {
+	case ".ubi8", ".debian":
+		if readPossibleDockerFile(path) {
+			return extDockerfile, nil
+		}
+	case "":
+		if filepath.Base(path) == "tfvars" {
+			return ".tfvars", nil
+		}
+		if readPossibleDockerFile(path) {
+			return extDockerfile, nil
+		}
+	}
 	return ext, nil
+}
+
+func isDockerfileExtension(path string) (string, bool) {
+	base := filepath.Base(path)
+
+	lower := strings.ToLower(base)
+	if lower == constants.AvailablePlatforms["Dockerfile"] || strings.HasPrefix(lower, "dockerfile.") {
+		return extDockerfile, true
+	}
+
+	if strings.EqualFold(filepath.Ext(path), extDockerfile) {
+		return extDockerfile, true
+	}
+
+	dir := strings.ToLower(filepath.Base(filepath.Dir(path)))
+	if (dir == "docker" || dir == constants.AvailablePlatforms["Dockerfile"] || dir == "dockerfiles") && readPossibleDockerFile(path) {
+		return extDockerfile, true
+	}
+
+	return "", false
 }
 
 func readPossibleDockerFile(path string) bool {
 	path = filepath.Clean(path)
-	if strings.HasSuffix(path, "gitignore") {
-		return true
-	}
 	file, err := os.Open(path)
 	if err != nil {
 		return false
@@ -68,37 +97,20 @@ func readPossibleDockerFile(path string) bool {
 	scanner := bufio.NewScanner(file)
 	// Read lines from the file
 	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), "FROM") {
-			return true
-		} else if strings.HasPrefix(scanner.Text(), "#") {
+		if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(strings.ToLower(scanner.Text()), "arg") || scanner.Text() == "" {
 			continue
 		} else {
-			return false
+			return dockerFrom.MatchString(scanner.Text()) && !matchesAny(falsePositiveFROMPatterns, scanner.Text())
 		}
 	}
 	return false
 }
 
-func isTextFile(path string) (bool, error) {
-	info, err := os.Stat(path)
-	if err != nil {
-		log.Error().Msgf("failed to get file info: %s", err)
-		return false, err
+func matchesAny(patterns []*regexp.Regexp, s string) bool {
+	for _, p := range patterns {
+		if p.MatchString(s) {
+			return true
+		}
 	}
-
-	if info.IsDir() {
-		return false, nil
-	}
-
-	content, err := os.ReadFile(filepath.Clean(path))
-	if err != nil {
-		log.Error().Msgf("failed to analyze file: %s", err)
-		return false, err
-	}
-
-	content = bytes.ReplaceAll(content, []byte("\r"), []byte(""))
-
-	isText := util.IsText(content)
-
-	return isText, nil
+	return false
 }

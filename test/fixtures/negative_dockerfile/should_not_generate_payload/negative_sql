@@ -1,0 +1,6 @@
+# SQL with subquery alias
+FROM (SELECT * FROM t) AS sub
+# Note the double FROM
+# 1 - "(" and "*" are not not alowed
+# 2 - anything other than whitespaces before a FROM is not allowed + ")" is not alowed
+WHERE sub.status = 'active'

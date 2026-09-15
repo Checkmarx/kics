@@ -1,0 +1,4 @@
+FROM --platform=linux/amd64 alpine:latest
+COPY --from=builder /src/bin /usr/local/bin/
+CMD ["/usr/local/bin/app"]
+ADD ${JAR_FILE} app.jar

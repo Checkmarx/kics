@@ -1,0 +1,8 @@
+ARG BASE_IMAGE=ubuntu:22.04
+# Comments before FROM
+
+FROM alpine:3.19 AS builder
+
+COPY .. .
+
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "executable" ]
