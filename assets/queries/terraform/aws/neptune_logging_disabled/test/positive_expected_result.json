@@ -3,24 +3,60 @@
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_neptune_cluster",
+    "resourceName": "postive1",
+    "searchKey": "aws_neptune_cluster[{{postive1}}]",
+    "searchValue": "",
+    "expectedValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports should be defined",
+    "actualValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d733bbd3b8647fa3efb8b707fdc17a40417495234ef1909c0e2d339bd7b15a9e",
+    "search_line": -1
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_neptune_cluster",
+    "resourceName": "postive2",
+    "searchKey": "aws_neptune_cluster[{{postive2}}].enable_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports should have all following values: audit",
+    "actualValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports is empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "ec3112c8ec7278a1b6db16e66fe5cc6f4c733a2966253c57a69c70c909ae03fe",
+    "search_line": -1
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_neptune_cluster",
+    "resourceName": "postive3",
+    "searchKey": "aws_neptune_cluster[{{postive3}}].enable_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports should have all following values: audit",
+    "actualValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports has the following missing values: audit",
+    "issueType": "IncorrectValue",
+    "similarityID": "78f6f42de9784c6415e433085b21a274e7c4488438f71ac5e84fa7dfea496468",
+    "search_line": -1
   },
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
     "line": 9,
-    "filename": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_neptune_cluster",
+    "resourceName": "postive3",
+    "searchKey": "aws_neptune_cluster[{{postive3}}].enable_cloudwatch_logs_exports",
+    "searchValue": "",
+    "expectedValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports should have all following values: audit",
+    "actualValue": "aws_neptune_cluster.enable_cloudwatch_logs_exports has the following missing values: audit",
+    "issueType": "IncorrectValue",
+    "similarityID": "7e9b25c3aed0d9e44e6b663663f42a62071f8f7b2d1fbc9dca9fb95f3c1dafa4",
+    "search_line": -1
   }
 ]

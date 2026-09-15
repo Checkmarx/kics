@@ -3,12 +3,30 @@
     "queryName": "Root Account Has Active Access Keys",
     "severity": "HIGH",
     "line": 2,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_access_key",
+    "resourceName": "positive1",
+    "searchKey": "aws_iam_access_key[positive1]",
+    "searchValue": "",
+    "expectedValue": "'aws_iam_access_key[positive1].status' should be defined and set to 'Inactive'",
+    "actualValue": "'aws_iam_access_key[positive1].status' is undefined, that defaults to 'Active'",
+    "issueType": "MissingAttribute",
+    "similarityID": "a0944e450bb63638a06446f201e9b6774af828c66c5a65088b1af24b478bcef0",
+    "search_line": -1
   },
   {
     "queryName": "Root Account Has Active Access Keys",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_iam_access_key",
+    "resourceName": "positive2",
+    "searchKey": "aws_iam_access_key[positive2].status",
+    "searchValue": "",
+    "expectedValue": "'aws_iam_access_key[positive2].status' should be defined and set to 'Inactive'",
+    "actualValue": "'aws_iam_access_key[positive2].status' is set to 'Active'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9f16c88061d4db8ed049cc3d00c5db28d2dc67dcec50baa36294e3dd9aaf4006",
+    "search_line": -1
   }
 ]

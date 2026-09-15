@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Logging of Sensitive Data",
-		"severity": "LOW",
-		"line": 14,
-		"fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Logging of Sensitive Data",
-		"severity": "LOW",
-		"line": 5,
-		"fileName": "positive2.yaml"
-	}
+  {
+    "queryName": "Logging of Sensitive Data",
+    "severity": "LOW",
+    "line": 14,
+    "fileName": "positive1.yaml",
+    "resourceType": "ansible.builtin.user",
+    "resourceName": "bar",
+    "searchKey": "name={{bar}}.no_log",
+    "searchValue": "",
+    "expectedValue": "'no_log' should be set to 'true' in order to not expose sensitive data",
+    "actualValue": "'no_log' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "51abf6927b57dd467ce04fff36df4577f071bdb5572bf65966905cbe1d019ee9",
+    "search_line": -1
+  },
+  {
+    "queryName": "Logging of Sensitive Data",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive2.yaml",
+    "resourceType": "ansible.builtin.user",
+    "resourceName": "bar",
+    "searchKey": "name={{bar}}",
+    "searchValue": "",
+    "expectedValue": "'no_log' should be defined and set to 'true' in order to not expose sensitive data",
+    "actualValue": "'no_log' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "183e56f80bb1f3b365bae74af357068bfebdcc00742d0c3628afc93c0b1b2f3e",
+    "search_line": -1
+  }
 ]

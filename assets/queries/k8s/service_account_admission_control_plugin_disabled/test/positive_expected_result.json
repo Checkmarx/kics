@@ -1,14 +1,32 @@
 [
-	{
-		"queryName": "Service Account Admission Control Plugin Disabled",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	},
-	{
-		"queryName": "Service Account Admission Control Plugin Disabled",
-		"severity": "MEDIUM",
-		"line": 11,
-        "fileName": "positive2.yaml"
-	}	
+  {
+    "queryName": "Service Account Admission Control Plugin Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--disable-admission-plugins flag should not contain 'ServiceAccount' plugin",
+    "actualValue": "--disable-admission-plugins flag contains 'ServiceAccount' plugin",
+    "issueType": "IncorrectValue",
+    "similarityID": "f0bc31d6dad9302fb9472bc93292f86033227f23a18acfe8aaf557ee08e639e4",
+    "search_line": 11
+  },
+  {
+    "queryName": "Service Account Admission Control Plugin Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--disable-admission-plugins flag should not contain 'ServiceAccount' plugin",
+    "actualValue": "--disable-admission-plugins flag contains 'ServiceAccount' plugin",
+    "issueType": "IncorrectValue",
+    "similarityID": "d5f109310dea4bcba3186a1a3ba2e1f6aa77e29b29a1078b08e6f0324a775896",
+    "search_line": 11
+  }
 ]

@@ -3,12 +3,30 @@
     "queryName": "Operation Using Password Flow",
     "severity": "MEDIUM",
     "line": 22,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "Operation Object should not be using 'password' flow in OAuth2 authentication",
+    "actualValue": "Operation Object is using 'password' flow in OAuth2 authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "de8bee006854b15ee3fc0c24238035276539231e1074d9990f98d7f4c1df8d32",
+    "search_line": -1
   },
   {
     "queryName": "Operation Using Password Flow",
     "severity": "MEDIUM",
     "line": 16,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "Operation Object should not be using 'password' flow in OAuth2 authentication",
+    "actualValue": "Operation Object is using 'password' flow in OAuth2 authentication",
+    "issueType": "IncorrectValue",
+    "similarityID": "0fcb570c04284b21c776f30d3265b19019f8516534bc4234ab30faeb4785b5ac",
+    "search_line": -1
   }
 ]

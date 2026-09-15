@@ -3,42 +3,105 @@
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
+    "searchValue": "",
+    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
+    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true.",
+    "issueType": "MissingAttribute",
+    "similarityID": "7b24abad2c1d3540e7bb3afdb0404192028a8c591baf22c301a8267154980312",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
+    "searchValue": "",
+    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
+    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true.",
+    "issueType": "MissingAttribute",
+    "similarityID": "260c94b9b7e00a729745a3cba05e596ab5354313068f28d7cee18f49c0ae7cf6",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 16,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
+    "searchValue": "",
+    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
+    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false.",
+    "issueType": "IncorrectValue",
+    "similarityID": "6f30ff370cd0d0283fc14649d9c7e0efa97f66b626189124fc49c7ed2e8de4f4",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 23,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
+    "searchValue": "",
+    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
+    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false.",
+    "issueType": "IncorrectValue",
+    "similarityID": "74a3f9cf2b12bf0bb0f25cc0ca82ca02b32ddce3246dde606afdf7c7574929f9",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 4,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
+    "searchValue": "",
+    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
+    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true.",
+    "issueType": "MissingAttribute",
+    "similarityID": "790fda67d1621ad364144131e41b15a0d23e51019a0501316012f2d9c8f84d2d",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 5,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
+    "searchValue": "",
+    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
+    "actualValue": "Resources.MyEC2Instance.Properties doesn't have EbsOptimized set to true.",
+    "issueType": "MissingAttribute",
+    "similarityID": "2f79ff1d22a917b2833800454de4c80e4ab32454db145f432458914bb31bbcdf",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Not EBS Optimized",
     "severity": "INFO",
     "line": 16,
-    "fileName": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "MyEC2Instance",
+    "searchKey": "Resources.MyEC2Instance.Properties.EbsOptimized",
+    "searchValue": "",
+    "expectedValue": "Resources.MyEC2Instance.Properties should have EbsOptimized set to true.",
+    "actualValue": "Resources.MyEC2Instance.Properties.EbsOptimized is set to false.",
+    "issueType": "IncorrectValue",
+    "similarityID": "6148d7bee5d0388f955c474c8237b50a32949da98c7a823d8ce2148b6a23b977",
+    "search_line": -1
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "MSSQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_mssql_server_security_alert_policy",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_mssql_server_security_alert_policy[positive1].disabled_alerts",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mssql_server_security_alert_policy.positive1.disabled_alerts' should be empty",
+    "actualValue": "'azurerm_mssql_server_security_alert_policy.positive1.disabled_alerts' is not empty",
+    "issueType": "IncorrectValue",
+    "similarityID": "af25e7640cc0025c4c0ef307c8ef2e501974c276a4f7df135b837fe278293cea",
+    "search_line": 17
   },
   {
     "queryName": "MSSQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_mssql_server_security_alert_policy",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_mssql_server_security_alert_policy[positive2].state",
+    "searchValue": "",
+    "expectedValue": "'azurerm_mssql_server_security_alert_policy.positive2.state' should be enabled",
+    "actualValue": "'azurerm_mssql_server_security_alert_policy.positive2.state' is not enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "e29cbd1c6efa6d43c78da25da97a8b80c904f7ad31ba98cf7becd8925f1b715d",
+    "search_line": 14
   },
   {
     "queryName": "MSSQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_mssql_server",
+    "resourceName": "my-mssql-server",
+    "searchKey": "azurerm_mssql_server[example]",
+    "searchValue": "",
+    "expectedValue": "Security alert policy should be defined and enabled",
+    "actualValue": "Security alert policy is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "784f31cd53dc2556166f78747b179e1d4930543651de0402ef95a2d4574e548b",
+    "search_line": 1
   }
 ]

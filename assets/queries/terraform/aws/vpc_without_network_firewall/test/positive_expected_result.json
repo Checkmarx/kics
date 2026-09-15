@@ -2,6 +2,16 @@
   {
     "queryName": "VPC Without Network Firewall",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_vpc",
+    "resourceName": "positive",
+    "searchKey": "aws_vpc[positive]",
+    "searchValue": "",
+    "expectedValue": "aws_vpc[positive] has an 'aws_networkfirewall_firewall' associated",
+    "actualValue": "aws_vpc[positive] does not have an 'aws_networkfirewall_firewall' associated",
+    "issueType": "MissingAttribute",
+    "similarityID": "4fb17d05000c6f7c98966593c4cec7fb099e84a65df2e1aa6e5af777299d519b",
+    "search_line": 1
   }
 ]

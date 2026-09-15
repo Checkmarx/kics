@@ -1,26 +1,62 @@
 [
   {
+    "queryName": "Connection Between CloudFront Origin Not Encrypted",
+    "severity": "MEDIUM",
     "line": 13,
     "fileName": "positive1.yaml",
-    "queryName": "Connection Between CloudFront Origin Not Encrypted",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_1",
+    "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue",
+    "similarityID": "5225205cc07ab6bdf09e7b1f3c86247edaa79a03e9e5c48aa9aa94051a01d148",
+    "search_line": -1
   },
   {
     "queryName": "Connection Between CloudFront Origin Not Encrypted",
     "severity": "MEDIUM",
     "line": 30,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_2",
+    "searchKey": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue",
+    "similarityID": "04ef5e109fead81b14808c1201cd99825f55c7bfbcc8e19c1a63f6a227840fd0",
+    "search_line": -1
   },
   {
     "queryName": "Connection Between CloudFront Origin Not Encrypted",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_1",
+    "searchKey": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_1.Properties.DistributionConfig.DefaultCacheBehavior.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue",
+    "similarityID": "defef2d011239ac1ed3d0d68da0aaf023584b78ff3e497a3aa091c9636d6a29c",
+    "search_line": -1
   },
   {
+    "queryName": "Connection Between CloudFront Origin Not Encrypted",
     "severity": "MEDIUM",
     "line": 56,
     "fileName": "positive2.json",
-    "queryName": "Connection Between CloudFront Origin Not Encrypted"
+    "resourceType": "AWS::CloudFront::Distribution",
+    "resourceName": "cloudfrontdistribution_2",
+    "searchKey": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy",
+    "searchValue": "",
+    "expectedValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "Resources.cloudfrontdistribution_2.Properties.DistributionConfig.CacheBehaviors.ViewerProtocolPolicy 'isn't https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue",
+    "similarityID": "129fc57922337e9a517363ac97991cf495ce8c252053561922fb7ab3df9b4d69",
+    "search_line": -1
   }
 ]

@@ -3,30 +3,75 @@
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.{{monitoring_positive1}}",
+    "searchValue": "",
+    "expectedValue": "'monitoring' should be defined and not null",
+    "actualValue": "'monitoring' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c7857d5e5265dea8883a3442036b2f93201e6f2b79ee7c9f79c736656d77e649",
+    "search_line": 17
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 20,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.{{monitoring_positive2}}.monitoring",
+    "searchValue": "",
+    "expectedValue": "monitoring_positive2.'monitoring' should be set to true",
+    "actualValue": "monitoring_positive2.'monitoring' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "472a37dbab4b890684b38244bf5a220feacbaf3f3ce43a2d9c8427e6daf5137e",
+    "search_line": 20
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance]",
+    "searchValue": "",
+    "expectedValue": "'monitoring' should be defined and not null",
+    "actualValue": "'monitoring' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "cab62de2d9baca63e7eda82d6de956a403d59454907b27f5b6d60bafb92ec474",
+    "search_line": 1
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance].monitoring",
+    "searchValue": "",
+    "expectedValue": "ec2_instance.'monitoring' should be set to true",
+    "actualValue": "ec2_instance.'monitoring' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "b04aff48eafcb6b2b1043bcf56aea0827a48a6ed3510e1c84116d44f4fec72a2",
+    "search_line": 10
   },
   {
     "queryName": "EC2 Instance Monitoring Disabled",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "aws_instance",
+    "resourceName": "cdktf-test",
+    "searchKey": "aws_instance.{{cdktf-test}}.monitoring",
+    "searchValue": "",
+    "expectedValue": "cdktf-test.'monitoring' should be set to true",
+    "actualValue": "cdktf-test.'monitoring' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "5fb27bf671b9703a52e2851b07e8e56972b3af0463e35b1240e9b6affab3211e",
+    "search_line": 28
   }
 ]

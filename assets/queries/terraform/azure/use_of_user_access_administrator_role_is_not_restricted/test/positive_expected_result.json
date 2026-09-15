@@ -3,36 +3,90 @@
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive1",
+    "searchKey": "azurerm_role_assignment[positive1].role_definition_name",
+    "searchValue": "",
+    "expectedValue": "'role_definition_name' field should not be defined to 'User Access Administrator'",
+    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'",
+    "issueType": "IncorrectValue",
+    "similarityID": "60db4ebdd27b773d9bc25c4582d40add85df4b7d82a0ce1960aa34b0a7d546c9",
+    "search_line": 2
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_role_assignment[positive2].role_definition_id",
+    "searchValue": "",
+    "expectedValue": "'role_definition_id' field should not have an id associated with the 'User Access Administrator' role.",
+    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role.",
+    "issueType": "IncorrectValue",
+    "similarityID": "461c0d7e570564a73e67591c60b0d69810a66477b2e4b9aa3605bb7525399f58",
+    "search_line": 2
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_role_assignment[positive3].role_definition_name",
+    "searchValue": "",
+    "expectedValue": "'role_definition_name' field should not be defined to 'User Access Administrator'",
+    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7c1ebee666341f8440dc021a14f7232b6c50f6a6ce229bccbbf1b0dbce22a497",
+    "search_line": 2
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive4",
+    "searchKey": "azurerm_role_assignment[positive4].role_definition_id",
+    "searchValue": "",
+    "expectedValue": "'role_definition_id' field should not have an id associated with the 'User Access Administrator' role.",
+    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role.",
+    "issueType": "IncorrectValue",
+    "similarityID": "a65f56a238b075ac9eacf1ed7eaa3b24159241bb80d146b37719fcc68c713e43",
+    "search_line": 2
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive5",
+    "searchKey": "azurerm_role_assignment[positive5].role_definition_name",
+    "searchValue": "",
+    "expectedValue": "'role_definition_name' field should not be defined to 'User Access Administrator'",
+    "actualValue": "'role_definition_name' field is defined with 'User Access Administrator'",
+    "issueType": "IncorrectValue",
+    "similarityID": "85900f9804eeaa1cc8d01c7e2d1c2df74f222b432a9530a6eab77e56868b9e6a",
+    "search_line": 2
   },
   {
     "queryName": "Beta - Use Of User Access Administrator Role Is Not Restricted",
     "severity": "MEDIUM",
     "line": 2,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "azurerm_role_assignment",
+    "resourceName": "positive6",
+    "searchKey": "azurerm_role_assignment[positive6].role_definition_id",
+    "searchValue": "",
+    "expectedValue": "'role_definition_id' field should not have an id associated with the 'User Access Administrator' role.",
+    "actualValue": "'role_definition_id' field have an id associated with the 'User Access Administrator' role.",
+    "issueType": "IncorrectValue",
+    "similarityID": "86b4410ede95b61446b36d6ca32a61276219157c06e67c4142a65d21e94343e3",
+    "search_line": 2
   }
 ]

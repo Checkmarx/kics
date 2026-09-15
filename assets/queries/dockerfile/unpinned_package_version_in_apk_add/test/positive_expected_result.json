@@ -2,26 +2,76 @@
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.9}}.{{RUN apk add --update py-pip}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+    "actualValue": "RUN instruction apk add --update py-pip does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "9f0e17fae1c4425bb732fb1abc94941f81da7c573f6891609dbce76473f57254",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.7}}.{{RUN apk add py-pip && apk add tea}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+    "actualValue": "RUN instruction apk add py-pip && apk add tea does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "059ff5052f6c3c2545c7509ffc239d6f5d683b3b3f10e6dba76a4f697b39f8fa",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 14,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.7}}.{{RUN apk add py-pip     && rm -rf /tmp/*}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+    "actualValue": "RUN instruction apk add py-pip     && rm -rf /tmp/* does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "5a5c3610415da5dbcc93de211d5e328b0b6902e022436dc646028b9889674f1b",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
-    "line": 16
+    "line": 16,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.7}}.{{RUN apk add --dir /dir libimagequant     && minidlna}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+    "actualValue": "RUN instruction apk add --dir /dir libimagequant     && minidlna does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "3ff33f739623441bda969333a1d4dcc6118f375afc77d299578ac7d78ff8851d",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Apk Add",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.7}}.{{RUN [\"apk\", \"add\", \"py-pip\"]}}",
+    "searchValue": "py-pip",
+    "expectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
+    "actualValue": "RUN instruction py-pip does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "7c2ab04ad44a011c8d5beb0fd306a2ffd653d28bcb2e17d8b7287316630a5982",
+    "search_line": -1
   }
 ]

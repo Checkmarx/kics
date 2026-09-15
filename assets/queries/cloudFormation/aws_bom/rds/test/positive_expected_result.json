@@ -3,54 +3,135 @@
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample1",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "5a64a3152e10b179c0d3f4236df76f1e38e45119dd90ae349f23802d49698bbb",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "4da4d91cf1046065aac13db51cbc39881037d9ae5cc17db21adf67c6068bede1",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceRefSample2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "12a491d965ff77729bf9c0a8362c9b296f71bc3ed18ab160731ec3df24413403",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample3",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "b706c97b89caded4680ba44449bb7b8782968ee8fa027cc3f3dac2d505e14c7f",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceRefSample3",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "4a7eed5521687a5a61722ef4b57a4e8946eb0042da16b9a2557e203b85cd3f0f",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample4",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "06de62a877d55094a17e7fe792d4b598484768ec6bb488591e69e2388e80d2d7",
+    "search_line": 3
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample5",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "9d96278e8c3b54635d9e5a5263d3f8be1c86843358e01a4d7048b6abb795bbb0",
+    "search_line": 3
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample6",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "7e0b0e307a1e63e438af56353550e4db75f5e8c883e4c606e1909063f5c57f64",
+    "search_line": 3
   },
   {
     "queryName": "BOM - AWS RDS",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive7.yaml"
+    "fileName": "positive7.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.DBInstanceSample5",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "afc0b196398f0c986aa985ff1694492388b8222692f054c3c8c287bdc399cbf7",
+    "search_line": 3
   }
 ]

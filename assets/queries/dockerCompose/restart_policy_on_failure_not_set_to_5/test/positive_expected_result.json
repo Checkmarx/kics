@@ -3,30 +3,75 @@
     "queryName": "Restart Policy On Failure Not Set To 5",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.customer.restart",
+    "searchValue": "",
+    "expectedValue": "on-failure restart attempts should be 5",
+    "actualValue": "on-failure restart attempts are not 5",
+    "issueType": "IncorrectValue",
+    "similarityID": "3c6e231b4328da584e7d8838dc935d832bf737da6de395f197488fe0fc606ee0",
+    "search_line": 6
   },
   {
     "queryName": "Restart Policy On Failure Not Set To 5",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.customer.deploy.restart_policy.max_attempts",
+    "searchValue": "",
+    "expectedValue": "on-failure restart attempts should be 5",
+    "actualValue": "on-failure restart attempts are not 5",
+    "issueType": "IncorrectValue",
+    "similarityID": "642d759db34cd96dfe2c61916891c36610d13f6a0bb65a265f84f9790bb384a7",
+    "search_line": 17
   },
   {
     "queryName": "Restart Policy On Failure Not Set To 5",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.name_of_service.restart",
+    "searchValue": "",
+    "expectedValue": "on-failure restart attempts should be 5",
+    "actualValue": "on-failure restart attempts are not 5",
+    "issueType": "IncorrectValue",
+    "similarityID": "140b3e9b846d01c55bad0faece35b04c519e6048d68f42889be6ad0f610438d5",
+    "search_line": 15
   },
   {
     "queryName": "Restart Policy On Failure Not Set To 5",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.customer.restart",
+    "searchValue": "",
+    "expectedValue": "on-failure restart attempts should be 5",
+    "actualValue": "on-failure restart attempts are not 5",
+    "issueType": "IncorrectValue",
+    "similarityID": "5bcca09765a5102924874732b5d1be24bb6582e0b4c31a4cd1b5cdd7d18c226b",
+    "search_line": 6
   },
   {
     "queryName": "Restart Policy On Failure Not Set To 5",
     "severity": "MEDIUM",
     "line": 17,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.customer.deploy.restart_policy.max_attempts",
+    "searchValue": "",
+    "expectedValue": "on-failure restart attempts should be 5",
+    "actualValue": "on-failure restart attempts are not 5",
+    "issueType": "IncorrectValue",
+    "similarityID": "62a6a6ce7e35b342e289934bfdf311a7d5f0bb73ce40bf48d7a4fb348406ef8c",
+    "search_line": 17
   }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "Launch Configuration Is Not Encrypted",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.ec2_lc",
+    "resourceName": "note that encrypted volumes are only supported in >= Ansible 2.4",
+    "searchKey": "name={{note that encrypted volumes are only supported in >= Ansible 2.4}}.{{community.aws.ec2_lc}}.volumes",
+    "searchValue": "",
+    "expectedValue": "ec2_lc.volumes[0].encrypted should be set to true or yes",
+    "actualValue": "ec2_lc.volumes[0].encrypted is not set to true or yes",
+    "issueType": "IncorrectValue",
+    "similarityID": "09f8b88ec647acd5c71961202af418259cee0ca267ac3ebd431f5cc0b4ae9dc0",
+    "search_line": -1
   },
   {
     "queryName": "Launch Configuration Is Not Encrypted",
     "severity": "HIGH",
-    "line": 22
+    "line": 22,
+    "fileName": "positive.yaml",
+    "resourceType": "ec2_lc",
+    "resourceName": "note that encrypted volumes are only supported in >= Ansible 2.4 v2",
+    "searchKey": "name={{note that encrypted volumes are only supported in >= Ansible 2.4 v2}}.{{ec2_lc}}.volumes",
+    "searchValue": "",
+    "expectedValue": "ec2_lc.volumes[0].encrypted should be set",
+    "actualValue": "ec2_lc.volumes[0].encrypted is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "40ed8f681ccae69d059bfc4547395e79f9d58f78b6b71cfc16b138eabc027a3b",
+    "search_line": -1
   },
   {
     "queryName": "Launch Configuration Is Not Encrypted",
     "severity": "HIGH",
-    "line": 29
+    "line": 29,
+    "fileName": "positive.yaml",
+    "resourceType": "ec2_lc",
+    "resourceName": "note that encrypted volumes are only supported in >= Ansible 2.4 v3",
+    "searchKey": "name={{note that encrypted volumes are only supported in >= Ansible 2.4 v3}}.{{ec2_lc}}",
+    "searchValue": "",
+    "expectedValue": "ec2_lc.volumes should be set",
+    "actualValue": "ec2_lc.volumes is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "363f3f3ee1668f19219a5762c69950bb9cb05545c25b01a1ae0cb1f76e6cd94c",
+    "search_line": -1
   }
 ]

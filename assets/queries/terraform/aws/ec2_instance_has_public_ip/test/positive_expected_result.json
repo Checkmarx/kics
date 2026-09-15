@@ -3,24 +3,60 @@
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.web2",
+    "searchValue": "",
+    "expectedValue": "'associate_public_ip_address' should be defined and not null",
+    "actualValue": "'associate_public_ip_address' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "193c0c4fc1eaa42951e69fd6413c52ced96d31029ef414be5fdafe05972cb586",
+    "search_line": 17
   },
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
     "line": 28,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_instance",
+    "resourceName": "HelloWorld",
+    "searchKey": "aws_instance.web3.associate_public_ip_address",
+    "searchValue": "",
+    "expectedValue": "'associate_public_ip_address' should be set to false",
+    "actualValue": "'associate_public_ip_address' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "087080a66deb5ab597b6336ec62d32d5c3329f2e94661ab9c81b10a642b2f2b6",
+    "search_line": 28
   },
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance]",
+    "searchValue": "",
+    "expectedValue": "'associate_public_ip_address' should be defined and not null",
+    "actualValue": "'associate_public_ip_address' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "6936cfc66743a8ab7cedbdd632d4df03ad99c302343c84a4c9fc8e77753a42ca",
+    "search_line": 1
   },
   {
     "queryName": "EC2 Instance Has Public IP",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[ec2_instance].associate_public_ip_address",
+    "searchValue": "",
+    "expectedValue": "'associate_public_ip_address' should be set to false",
+    "actualValue": "'associate_public_ip_address' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "97e9cedbb06c6070fc8ca0e11ad44c6f6dd867ccb6d1e4c76058ee1693dece71",
+    "search_line": 13
   }
 ]

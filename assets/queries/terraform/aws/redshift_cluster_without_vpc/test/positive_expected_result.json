@@ -2,11 +2,31 @@
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_redshift_cluster[positive1]",
+    "searchValue": "cluster_subnet_group_name",
+    "expectedValue": "aws_redshift_cluster[positive1].cluster_subnet_group_name should be set",
+    "actualValue": "aws_redshift_cluster[positive1].cluster_subnet_group_name is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "ff9cd85f05020f79b48927d3273581da974d864b403b7df1f1740b7505534c2b",
+    "search_line": -1
   },
   {
     "queryName": "Redshift Cluster Without VPC",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_redshift_cluster[positive1]",
+    "searchValue": "vpc_security_group_ids",
+    "expectedValue": "aws_redshift_cluster[positive1].vpc_security_group_ids should be set",
+    "actualValue": "aws_redshift_cluster[positive1].vpc_security_group_ids is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4a2cac6a007d392a409812e1227009c5d1188b4912c586af5d3d45b391ecc4fc",
+    "search_line": -1
   }
 ]

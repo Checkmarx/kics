@@ -2,11 +2,31 @@
   {
     "queryName": "Missing Version Specification In dnf install",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:latest}}.{{RUN dnf -y update && dnf -y install httpd && dnf clean all}}",
+    "searchValue": "",
+    "expectedValue": "Package version should be specified when using 'dnf install'",
+    "actualValue": "Package version should be pinned when running \u00b4dnf install\u00b4",
+    "issueType": "IncorrectValue",
+    "similarityID": "0628c8e891f9f0afed558446ba41184486ff6fb4d54bacf04e19ca1aae5fe004",
+    "search_line": -1
   },
   {
     "queryName": "Missing Version Specification In dnf install",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:latest}}.{{RUN [\"dnf\", \"install\", \"httpd\"]}}",
+    "searchValue": "",
+    "expectedValue": "Package version should be specified when using 'dnf install'",
+    "actualValue": "Package version should be pinned when running \u00b4dnf install\u00b4",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8babbc4f9726e5b150d98be7673f0e6f42f3a3a56d6d5ac0c7c46b63276b2b1",
+    "search_line": -1
   }
 ]

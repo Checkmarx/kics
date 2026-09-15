@@ -3,30 +3,75 @@
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-1",
+    "searchKey": "metadata.name={{memory-demo-1}}.spec.containers.name={{memory-demo-ctr}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{memory-demo-1}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-1}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f89a8c717b5721701a9816df1e456a4d4e71b675965d0ef9af39fab6258eaac8",
+    "search_line": -1
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-2",
+    "searchKey": "metadata.name={{memory-demo-2}}.spec.containers.name={{memory-demo-ctr}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{memory-demo-2}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-2}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2915dfa66cad09fc2a4f7e4ed29ab6235ebf7eb556e1d48b4c070c4c9cfcc691",
+    "search_line": -1
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
     "line": 38,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-3",
+    "searchKey": "metadata.name={{memory-demo-3}}.spec.containers.name={{memory-demo-ctr}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{memory-demo-3}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-3}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a5f938cb8a0d6639f6e837a942080d6f39ab3a3b69ce9765613824e2dfb0ce1a",
+    "search_line": -1
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
     "line": 57,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "memory-demo-4",
+    "searchKey": "metadata.name={{memory-demo-4}}.spec.containers.name={{memory-demo-ctr}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{memory-demo-4}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory should be defined",
+    "actualValue": "metadata.name={{memory-demo-4}}.spec.containers.name={{memory-demo-ctr}}.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "919cdd75183f26ee65960f9a1d356bcf2549adbae3dc2ea89cf8b8a14e4a295b",
+    "search_line": -1
   },
   {
     "queryName": "Memory Limits Not Defined",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "test-deployment",
+    "searchKey": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.resources.limits.memory should be defined",
+    "actualValue": "metadata.name={{test-deployment}}.spec.template.spec.containers.name={{pause}}.resources.limits.memory is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "04d048afb6e699dc8a70834273c31d524c412bc8d6eccc29003c2443345f535e",
+    "search_line": 21
   }
 ]

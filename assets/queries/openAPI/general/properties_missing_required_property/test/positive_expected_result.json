@@ -3,36 +3,90 @@
     "queryName": "Properties Missing Required Property (v3)",
     "severity": "INFO",
     "line": 56,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name should be defined",
+    "actualValue": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "d8ab3ee03851198753d21c60bea649cdb033e685043522d4b9731183556eebfb",
+    "search_line": -1
   },
   {
     "queryName": "Properties Missing Required Property (v3)",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name should be defined",
+    "actualValue": "components.requestBodies.NewItem.content.{{application/x-www-form-urlencoded}}.schema.properties.code.required.name is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "45dbb3e6819afa2b361a008efa438bef2ab853131d9c1a800f95e008df07959b",
+    "search_line": -1
   },
   {
     "queryName": "Properties Missing Required Property (v3)",
     "severity": "INFO",
     "line": 54,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.schema.properties.code.required.name should be defined",
+    "actualValue": "paths.{{/}}.parameters.schema.properties.code.required.name is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "3156298b13727cbb4a9d57faf7ab47b3369d05e17dd0b4d469424365276d7a7e",
+    "search_line": -1
   },
   {
     "queryName": "Properties Missing Required Property (v3)",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.parameters.schema.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.parameters.schema.properties.code.required.name should be defined",
+    "actualValue": "paths.{{/}}.parameters.schema.properties.code.required.name is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "9dd1585cb770ea725ab4390ae09537c82dc5a632fc61cba6a97632aa6a492e96",
+    "search_line": -1
   },
   {
     "queryName": "Properties Missing Required Property (v2)",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.MyObject.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "definitions.MyObject.properties.code.required.name should be defined",
+    "actualValue": "definitions.MyObject.properties.code.required.name is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "edc31e6de5c437fff1ea967d2d82d22b80c6b8b9d6348f1219e7c0a9e39565ea",
+    "search_line": -1
   },
   {
     "queryName": "Properties Missing Required Property (v2)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.MyObject.properties.code.required.name",
+    "searchValue": "",
+    "expectedValue": "definitions.MyObject.properties.code.required.name should be defined",
+    "actualValue": "definitions.MyObject.properties.code.required.name is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "3f0069688c75e20085e285aa8d11abebf731c078df1698bf75fbb5ddbab8abc0",
+    "search_line": -1
   }
 ]

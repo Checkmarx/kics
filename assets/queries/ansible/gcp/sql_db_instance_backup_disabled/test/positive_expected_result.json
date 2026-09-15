@@ -2,21 +2,61 @@
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a instance",
+    "searchKey": "name={{create a instance}}.{{google.cloud.gcp_sql_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings should be defined",
+    "actualValue": "gcp_sql_instance.settings is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "66f80a32ff25d73d161c3a39f88cbb69e84561e160a980ed1ee3be49cea12dc3",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a second instance",
+    "searchKey": "name={{create a second instance}}.{{google.cloud.gcp_sql_instance}}.settings",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.backup_configuration should be defined",
+    "actualValue": "gcp_sql_instance.settings.backup_configuration is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "313ff23604269195f538736354bff96ab8c79fda8fe04b90c96ae63e61cc14e2",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a third instance",
+    "searchKey": "name={{create a third instance}}.{{google.cloud.gcp_sql_instance}}.settings.backup_configuration",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.backup_configuration.enabled should be defined",
+    "actualValue": "gcp_sql_instance.settings.backup_configuration.enabled is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d92b75c617591c3c86b4386bd2a1a1459c3b60ee65ad5bfee5947e24c7766276",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
     "severity": "MEDIUM",
-    "line": 38
+    "line": 38,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a forth instance",
+    "searchKey": "name={{create a forth instance}}.{{google.cloud.gcp_sql_instance}}.settings.backup_configuration.enabled",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.backup_configuration.require_ssl should be true",
+    "actualValue": "gcp_sql_instance.settings.backup_configuration.require_ssl is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "d966e439bc52ef01af16d271231fbca8d0d637fbd61d46d6c73b2921d31e9adb",
+    "search_line": -1
   }
 ]

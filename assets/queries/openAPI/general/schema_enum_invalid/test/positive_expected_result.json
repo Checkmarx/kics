@@ -3,48 +3,120 @@
     "queryName": "Schema Enum Invalid (v3)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{text/html}}.schema.enum",
+    "searchValue": "",
+    "expectedValue": "The field 'enum' should be consistent with the schema's type",
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue",
+    "similarityID": "cd71c95703b1be6786d43fe56dbce6634e41c7051eab3e62509bf0b72c4d16b9",
+    "search_line": 20
   },
   {
     "queryName": "Schema Enum Invalid (v3)",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{text/html}}.schema.enum",
+    "searchValue": "",
+    "expectedValue": "The field 'enum' should be consistent with the schema's type",
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue",
+    "similarityID": "8e1340e6c8c13e7b4ae61d4c554db0aa23d4c84c3b31920546a16b2341b9d0a0",
+    "search_line": 20
   },
   {
     "queryName": "Schema Enum Invalid (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{text/html}}.schema.enum",
+    "searchValue": "",
+    "expectedValue": "The field 'enum' should be consistent with the schema's type",
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue",
+    "similarityID": "e82d31b8f42ea9aae0e33a52ed2653729217a951ebd9b16efc683c892d624cc4",
+    "search_line": 18
   },
   {
     "queryName": "Schema Enum Invalid (v3)",
     "severity": "INFO",
     "line": 18,
-    "filename": "positive4.yaml"
-  },
-  {
-    "queryName": "Schema Enum Invalid (v2)",
-    "severity": "INFO",
-    "line": 50,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "Schema Enum Invalid (v2)",
-    "severity": "INFO",
-    "line": 35,
-    "filename": "positive6.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.201.content.{{text/html}}.schema.enum",
+    "searchValue": "",
+    "expectedValue": "The field 'enum' should be consistent with the schema's type",
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue",
+    "similarityID": "c75210ca0f423c0d4eb3d3e15639cb09e581cab2a31e0c5a227006682f9ede23",
+    "search_line": 18
   },
   {
     "queryName": "Schema Enum Invalid (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/definitions/User",
+    "searchValue": "",
+    "expectedValue": "The field 'enum' should be consistent with the schema's type",
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue",
+    "similarityID": "5346b84d1b3b5f46f79d5b074fa0b623c2d5d49249f42fc9e3ccfdfa4b6f9dad",
+    "search_line": 0
+  },
+  {
+    "queryName": "Schema Enum Invalid (v2)",
+    "severity": "INFO",
+    "line": 50,
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.User.properties.name.enum",
+    "searchValue": "",
+    "expectedValue": "The field 'enum' should be consistent with the schema's type",
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue",
+    "similarityID": "a9fd8f1fd68a9e62aa01d8b6406ddcfbc409a577e347df64cc1265e992a22de8",
+    "search_line": 0
   },
   {
     "queryName": "Schema Enum Invalid (v2)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.$ref=#/definitions/User",
+    "searchValue": "",
+    "expectedValue": "The field 'enum' should be consistent with the schema's type",
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue",
+    "similarityID": "da78df03bd162393b7c3ebbf87e4308532fefefb2cc13c4bcdacba5e9e67ced4",
+    "search_line": 0
+  },
+  {
+    "queryName": "Schema Enum Invalid (v2)",
+    "severity": "INFO",
+    "line": 35,
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.User.properties.name.enum",
+    "searchValue": "",
+    "expectedValue": "The field 'enum' should be consistent with the schema's type",
+    "actualValue": "The field 'enum' is not consistent with the schema's type",
+    "issueType": "IncorrectValue",
+    "similarityID": "6b60c858da4c536b15cade340ad7781308ef2337698286fa7c28af205c56b6a7",
+    "search_line": 0
   }
 ]

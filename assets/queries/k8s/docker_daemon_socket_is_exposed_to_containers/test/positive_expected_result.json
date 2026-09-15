@@ -2,16 +2,46 @@
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "test-pd",
+    "searchKey": "metadata.name={{test-pd}}.spec.volumes.name={{test-volume}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{test-pd}}.spec.volumes.name={{test-volume}}.hostPath.path should not be '/var/run/docker.sock'",
+    "actualValue": "metadata.name={{test-pd}}.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c15d22a597aa508f28108b61fc2f7b494fd05804ba91eedce476961adae7c94a",
+    "search_line": -1
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 43
+    "line": 43,
+    "fileName": "positive.yaml",
+    "resourceType": "ReplicationController",
+    "resourceName": "node-manager",
+    "searchKey": "metadata.name={{node-manager}}.spec.template.spec.volumes.name={{test-volume}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{node-manager}}.spec.template.spec.volumes.name={{test-volume}}.hostPath.path should not be '/var/run/docker.sock'",
+    "actualValue": "metadata.name={{node-manager}}.spec.template.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue",
+    "similarityID": "89b2288e3c6f66d1b8fcaed1e2cf3214fc0e94c39c4e88a89d91eb478f25a348",
+    "search_line": -1
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
     "severity": "MEDIUM",
-    "line": 67
+    "line": 67,
+    "fileName": "positive.yaml",
+    "resourceType": "CronJob",
+    "resourceName": "hello",
+    "searchKey": "metadata.name={{hello}}.spec.jobTemplate.spec.template.spec.volumes.name={{test-volume}}.hostPath.path",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.spec.volumes.name={{test-volume}}.hostPath.path should not be '/var/run/docker.sock'",
+    "actualValue": "metadata.name={{hello}}.spec.jobTemplate.spec.template.spec.volumes.name={{test-volume}}.hostPath.path is '/var/run/docker.sock'",
+    "issueType": "IncorrectValue",
+    "similarityID": "88358b45115ae90e65e471e21de8e286c472706fc6de65814f58fe197d2aa64f",
+    "search_line": -1
   }
 ]

@@ -2,21 +2,61 @@
   {
     "queryName": "SQL DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "master-instance",
+    "searchKey": "google_sql_database_instance[positive1].settings",
+    "searchValue": "",
+    "expectedValue": "'ip_configuration' should be defined and allow only trusted networks",
+    "actualValue": "'ip_configuration' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "35cfb2ddf9824ebc2891126425fc8a9437d04aa1fb6333c2af3747a9134db74a",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "postgres-instance-2",
+    "searchKey": "google_sql_database_instance[positive2].settings.ip_configuration.authorized_networks.value=0.0.0.0/0",
+    "searchValue": "",
+    "expectedValue": "'authorized_network' address should be trusted",
+    "actualValue": "'authorized_network' address is not restricted: '0.0.0.0/0'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b637971af6893f22a02c394662b1528c4b0c0b8a1c9410a40b7da0b1c7280148",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 41
+    "line": 41,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "master-instance",
+    "searchKey": "google_sql_database_instance[positive3].settings.ip_configuration.ipv4_enabled",
+    "searchValue": "",
+    "expectedValue": "'ipv4_enabled' should be disabled and 'private_network' should be defined when there are no authorized networks",
+    "actualValue": "'ipv4_enabled' is enabled when there are no authorized networks",
+    "issueType": "IncorrectValue",
+    "similarityID": "2fbfd21ce3cccc987d7cb7c4ee8c1e8e7f15d3595fc00de20760d3590c6f8adc",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 56
+    "line": 56,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "master-instance",
+    "searchKey": "google_sql_database_instance[positive4].settings.ip_configuration",
+    "searchValue": "",
+    "expectedValue": "'ipv4_enabled' should be disabled and 'private_network' should be defined when there are no authorized networks",
+    "actualValue": "'private_network' is not defined when there are no authorized networks",
+    "issueType": "MissingAttribute",
+    "similarityID": "19ed98b6675f4a4a27f5dd29eb0cb5fbfe55c11bd1e244242aef150ddb03af11",
+    "search_line": -1
   }
 ]

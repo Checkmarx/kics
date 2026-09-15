@@ -2,6 +2,16 @@
   {
     "queryName": "PostgreSQL Misconfigured Logging Duration Flag",
     "severity": "LOW",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "sql_instance",
+    "searchKey": "name={{sql_instance}}.{{google.cloud.gcp_sql_instance}}.settings.database_flags",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.database_flags should set the log_min_duration_statement to -1",
+    "actualValue": "gcp_sql_instance.settings.database_flags doesn't set the log_min_duration_statement to -1",
+    "issueType": "IncorrectValue",
+    "similarityID": "29e0202459140c0f0859ce4899924c4820561b61dadd43e1f462410267f64c3a",
+    "search_line": -1
   }
 ]

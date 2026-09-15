@@ -2,85 +2,211 @@
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
     "severity": "LOW",
+    "line": 36,
+    "fileName": "positive1.bicep",
+    "resourceType": "auditingSettings",
+    "resourceName": "default",
+    "searchKey": "resources.resources.resources.name={{default}}.properties.retentionDays",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50",
+    "issueType": "IncorrectValue",
+    "similarityID": "8ea400e6f03e1a11253a01f1615cd1b9ffaf1fb3451bf9712de4935d377d7907",
+    "search_line": 36
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
     "line": 48,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Sql/servers/databases/auditingSettings",
+    "resourceName": "sqlServer1/sqlDatabase1/default",
+    "searchKey": "resources.resources.resources.name={{sqlServer1/sqlDatabase1/default}}.properties.retentionDays",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50",
+    "issueType": "IncorrectValue",
+    "similarityID": "9c94ecd590740530174ba1dbafd25b445591a5b2a77d5c47bf82b840091b93e6",
+    "search_line": 48
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive2.bicep",
+    "resourceType": "auditingSettings",
+    "resourceName": "default",
+    "searchKey": "resources.resources.resources.name={{default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "4a434638dcf571ab6f2cad1e916808f4f6d14997f80d3d3c303f24588966d951",
+    "search_line": 31
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
     "severity": "LOW",
     "line": 43,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Sql/servers/databases/auditingSettings",
+    "resourceName": "sqlServer1/sqlDatabase1/default",
+    "searchKey": "resources.resources.resources.name={{sqlServer1/sqlDatabase1/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "19dc4df2747b091543e0fa759c67a8ce83fb68687997ba336ece5a64557aecd1",
+    "search_line": 43
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
+    "line": 36,
+    "fileName": "positive3.bicep",
+    "resourceType": "auditingSettings",
+    "resourceName": "default",
+    "searchKey": "resources.resources.resources.name={{default}}.properties.retentionDays",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50",
+    "issueType": "IncorrectValue",
+    "similarityID": "fd68e4d1b388ceea012f3374f259ad2af799c7d59dc407e8649e2c723ecc4fd6",
+    "search_line": 36
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
     "severity": "LOW",
     "line": 50,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Sql/servers/databases/auditingSettings",
+    "resourceName": "sqlServer1/sqlDatabase1/default",
+    "searchKey": "properties.template.resources.resources.resources.name={{sqlServer1/sqlDatabase1/default}}.properties.retentionDays",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 50",
+    "issueType": "IncorrectValue",
+    "similarityID": "ca5489608bb33cf8e6f27ecdc879d0df20eb379e47cea6e8093b028adcf694c1",
+    "search_line": 50
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive4.bicep",
+    "resourceType": "auditingSettings",
+    "resourceName": "default",
+    "searchKey": "resources.resources.resources.name={{default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "2a81a1901bdde262d32e752ad09110b4fde86db4a0c9ca8e0a0177ecf337f7e6",
+    "search_line": 31
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
     "severity": "LOW",
     "line": 45,
-    "filename": "positive4.json"
-  },
-  {
-    "queryName": "SQL Server Database With Unrecommended Retention Days",
-    "severity": "LOW",
-    "line": 32,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "SQL Server Database With Unrecommended Retention Days",
-    "severity": "LOW",
-    "line": 29,
-    "filename": "positive6.json"
-  },
-  {
-    "queryName": "SQL Server Database With Unrecommended Retention Days",
-    "severity": "LOW",
-    "line": 40,
-    "filename": "positive7.json"
-  },
-  {
-    "queryName": "SQL Server Database With Unrecommended Retention Days",
-    "severity": "LOW",
-    "line": 36,
-    "filename": "positive1.bicep"
-  },
-  {
-    "queryName": "SQL Server Database With Unrecommended Retention Days",
-    "severity": "LOW",
-    "line": 31,
-    "filename": "positive2.bicep"
-  },
-  {
-    "queryName": "SQL Server Database With Unrecommended Retention Days",
-    "severity": "LOW",
-    "line": 36,
-    "filename": "positive3.bicep"
-  },
-  {
-    "queryName": "SQL Server Database With Unrecommended Retention Days",
-    "severity": "LOW",
-    "line": 31,
-    "filename": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Sql/servers/databases/auditingSettings",
+    "resourceName": "sqlServer1/sqlDatabase1/default",
+    "searchKey": "properties.template.resources.resources.resources.name={{sqlServer1/sqlDatabase1/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "19f666614335da1819de836811e6113f4682d3800bb0236f02e3c4493a85308a",
+    "search_line": 45
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
     "severity": "LOW",
     "line": 19,
-    "filename": "positive5.bicep"
+    "fileName": "positive5.bicep",
+    "resourceType": "auditingSettings",
+    "resourceName": "default",
+    "searchKey": "resources.resources.name={{default}}.properties.retentionDays",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 89",
+    "issueType": "IncorrectValue",
+    "similarityID": "0d84576cd92377b382b14d1bebfe3901c90e0e7bf644836bdb0994478063046e",
+    "search_line": 19
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
+    "line": 32,
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.Sql/servers/auditingSettings",
+    "resourceName": "sqlServer1/default",
+    "searchKey": "resources.name={{sqlServer1/default}}.properties.retentionDays",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' property value should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' property value is 89",
+    "issueType": "IncorrectValue",
+    "similarityID": "ea1de91bc25c5991a49285f4c8fa1908c01b63c61b0f57b5bf267c25a1f2f893",
+    "search_line": 32
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
     "severity": "LOW",
     "line": 16,
-    "filename": "positive6.bicep"
+    "fileName": "positive6.bicep",
+    "resourceType": "auditingSettings",
+    "resourceName": "default",
+    "searchKey": "resources.resources.name={{default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "cf9516df58d1dd4798841ab7deff184e76d71d1511e57d108826bfc5253955b4",
+    "search_line": 16
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
+    "line": 29,
+    "fileName": "positive6.json",
+    "resourceType": "Microsoft.Sql/servers/auditingSettings",
+    "resourceName": "[format('{0}/{1}', 'sqlServer1', 'default')]",
+    "searchKey": "resources.name={{[format('{0}/{1}', 'sqlServer1', 'default')]}}.properties",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "291c7dc68854b4a22ea10bd3a8d16ed9122bdeeb1c7a39b97e7908c8bb22e820",
+    "search_line": 29
   },
   {
     "queryName": "SQL Server Database With Unrecommended Retention Days",
     "severity": "LOW",
     "line": 31,
-    "filename": "positive7.bicep"
+    "fileName": "positive7.bicep",
+    "resourceType": "auditingSettings",
+    "resourceName": "default",
+    "searchKey": "resources.resources.resources.name={{default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "afb40c23d8166ccc2e2241a310bccab24af38da8acd3c7604b1d439a8c5515e5",
+    "search_line": 31
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
+    "line": 40,
+    "fileName": "positive7.json",
+    "resourceType": "Microsoft.Sql/servers/databases/auditingSettings",
+    "resourceName": "sqlServer1/sqlDatabase1/default",
+    "searchKey": "resources.resources.resources.name={{sqlServer1/sqlDatabase1/default}}.properties",
+    "searchValue": "",
+    "expectedValue": "'auditingSettings.properties.retentionDays' should be defined and above 90 days",
+    "actualValue": "'auditingSettings.properties.retentionDays' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "94c7cb91dcbe86b0af013f7065823f45741ac1b5f1af7c6cdb7dd01e22ac2b30",
+    "search_line": 40
   }
 ]

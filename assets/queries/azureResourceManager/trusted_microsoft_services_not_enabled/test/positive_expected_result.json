@@ -2,85 +2,211 @@
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 21,
-    "fileName": "positive1.json"
+    "line": 11,
+    "fileName": "positive1.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storage",
+    "searchKey": "resources.name=storage.properties.networkAcls",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "3d6d6f5334f4beec45560a19d06dbb1f48268de24b0846b1da8300eb3c414548",
+    "search_line": 11
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.json"
+    "fileName": "positive1.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storage",
+    "searchKey": "resources.name=storage.properties.networkAcls",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "2482d1e7db3857e17246186877875992b7bf2ea93ae1fb6a86c844d798af3831",
+    "search_line": 21
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storage",
+    "searchKey": "resources.name=storage.properties.networkAcls",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "1478ca3ad6aaf4093eef8c645f3436829206770a88322ccb45ddefa833d62fb3",
+    "search_line": 11
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive2.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storage",
+    "searchKey": "resources.name=storage.properties.networkAcls",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "92ed51b87acd3e334445f2a76fffcf6338b4e3f25a2b037731c6d0df2fd61761",
+    "search_line": 21
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive3.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storage",
+    "searchKey": "resources.name=storage.properties.networkAcls",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "9050c8161f26286dc4c9d14df7942882b406e991b8f6b621fa9f328f26899977",
+    "search_line": 11
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storage",
+    "searchKey": "properties.template.resources.name=storage.properties.networkAcls",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "748ec280b3bae3636e33d4083f6cb4805922149c52bd74e67319a8a510a5cd4d",
+    "search_line": 23
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storage",
+    "searchKey": "resources.name=storage.properties.networkAcls",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "ebe8c8a70014576c55c3c298dae0367461c48275d59a9471c67947fbc5d0f5be",
+    "search_line": 11
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive4.json"
-  },
-  {
-    "queryName": "Trusted Microsoft Services Not Enabled",
-    "severity": "MEDIUM",
-    "line": 17,
-    "fileName": "positive5.json"
-  },
-  {
-    "queryName": "Trusted Microsoft Services Not Enabled",
-    "severity": "MEDIUM",
-    "line": 19,
-    "fileName": "positive6.json"
-  },
-  {
-    "queryName": "Trusted Microsoft Services Not Enabled",
-    "severity": "MEDIUM",
-    "line": 18,
-    "fileName": "positive7.json"
-  },
-  {
-    "queryName": "Trusted Microsoft Services Not Enabled",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Trusted Microsoft Services Not Enabled",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Trusted Microsoft Services Not Enabled",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Trusted Microsoft Services Not Enabled",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive4.bicep"
+    "fileName": "positive4.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "storage",
+    "searchKey": "properties.template.resources.name=storage.properties.networkAcls",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' property value enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "55d68b9b4cf06eb03e25b3404aec2644f4362ec31562309f40b2305cd5e339c2",
+    "search_line": 23
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive5.bicep"
+    "fileName": "positive5.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "value.name",
+    "searchKey": "resources.name=positive5.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "19878924a594dc0d436673e30d762f4cd874115c3ebebd0f1aa7ce53c917f9ca",
+    "search_line": 9
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive5.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "value.name",
+    "searchKey": "resources.name=positive5.properties",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "fb82a30afa4c007f62a21abe890419ff4fe107b8c805804efefee4a21fafaf90",
+    "search_line": 17
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive6.bicep"
+    "fileName": "positive6.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "value.name",
+    "searchKey": "resources.name=positive6",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "0baee8158cb51cdf81d7f3a9d016475c63c0432643e79188b09eadf153a8d825",
+    "search_line": 1
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 19,
+    "fileName": "positive6.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "value.name",
+    "searchKey": "resources.name=positive6",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "ad775fc22e6375d7d1f60617d92440546b0f75c9d54c3a02fac0176d11c00b00",
+    "search_line": 19
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive7.bicep"
+    "fileName": "positive7.bicep",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "value.name",
+    "searchKey": "resources.name=positive7.properties.networkAcls",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "2b7ac409e6e1365d913c9c9e974db4e22cdff57d13633ea6d53e0c2e54ca49e2",
+    "search_line": 10
+  },
+  {
+    "queryName": "Trusted Microsoft Services Not Enabled",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive7.json",
+    "resourceType": "Microsoft.Storage/storageAccounts",
+    "resourceName": "value.name",
+    "searchKey": "resources.name=positive7.properties.networkAcls",
+    "searchValue": "",
+    "expectedValue": "resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",
+    "actualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+    "issueType": "MissingAttribute",
+    "similarityID": "5be8f7d4c39de317e8acee0943239ccc21be189d2d2b6161e73219ae19743f94",
+    "search_line": 18
   }
 ]

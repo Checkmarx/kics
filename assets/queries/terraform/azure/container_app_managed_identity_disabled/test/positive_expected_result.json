@@ -3,6 +3,15 @@
     "queryName": "Beta - Container App Managed Identity Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_container_app",
+    "resourceName": "example-app",
+    "searchKey": "azurerm_container_app[positive]",
+    "searchValue": "",
+    "expectedValue": "'type' field should have the values 'SystemAssigned' or 'UserAssigned' defined inside the 'identity' block",
+    "actualValue": "'identity' block is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "519feea8e80e99961b1230c3da82eded98ceee997a837ce806e7c5a516b8aab8",
+    "search_line": 1
   }
 ]

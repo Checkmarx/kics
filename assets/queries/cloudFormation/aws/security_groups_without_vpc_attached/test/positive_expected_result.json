@@ -3,12 +3,30 @@
     "queryName": "Security Groups Without VPC Attached",
     "severity": "LOW",
     "line": 16,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "My Group Name",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref should be defined",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bf01f68f48b6e21be75e794e87b9c268fd98663163f0c0b61677fc2421ef99ce",
+    "search_line": -1
   },
   {
     "queryName": "Security Groups Without VPC Attached",
     "severity": "LOW",
     "line": 22,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "My Group Name",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref should be defined",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.VpcId.Ref is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "22703a9d636747bc8d49d180ae520c558bf0e036888e0d4f0b9af32c77a4d309",
+    "search_line": -1
   }
 ]

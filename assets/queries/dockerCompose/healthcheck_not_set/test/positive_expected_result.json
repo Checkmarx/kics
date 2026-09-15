@@ -1,20 +1,47 @@
 [
-    {
-      "queryName": "Healthcheck Not Set",
-      "severity": "MEDIUM",
-      "line": 4,
-      "filename": "positive1.yaml"
-    },
-    {
-      "queryName": "Healthcheck Not Set",
-      "severity": "MEDIUM",
-      "line": 14,
-      "filename": "positive2.yaml"
-    },
-    {
-      "queryName": "Healthcheck Not Set",
-      "severity": "MEDIUM",
-      "line": 14,
-      "filename": "positive3.yaml"
-    }
+  {
+    "queryName": "Healthcheck Not Set",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.lelele-service",
+    "searchValue": "",
+    "expectedValue": "Healthcheck should be defined.",
+    "actualValue": "Healthcheck is not defined.",
+    "issueType": "MissingAttribute",
+    "similarityID": "b85f5e4a0fa11efa5e5b6a5e20e6a5cc5441728e49e8696e8e2f7b53b8934afe",
+    "search_line": 4
+  },
+  {
+    "queryName": "Healthcheck Not Set",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.lelele-service.healthcheck.disable",
+    "searchValue": "",
+    "expectedValue": "Healthcheck should be enabled.",
+    "actualValue": "Healthcheck is disabled.",
+    "issueType": "IncorrectValue",
+    "similarityID": "98573383519421a37c0cfe61b11e31ca1460291a13953ec4faf362da6cb4206c",
+    "search_line": 14
+  },
+  {
+    "queryName": "Healthcheck Not Set",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.lelele-service.healthcheck.test",
+    "searchValue": "",
+    "expectedValue": "Healthcheck should be enabled.",
+    "actualValue": "Healthcheck is disabled.",
+    "issueType": "IncorrectValue",
+    "similarityID": "26dc41bda21f0b9a565f489bddf66f663a71f8ab420dfe778c7424dae684e337",
+    "search_line": 14
+  }
 ]

@@ -3,12 +3,30 @@
     "queryName": "IoT Policy Allows Wildcard Resource",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::IoT::Policy",
+    "resourceName": "PolicyName",
+    "searchKey": "Resources.IoTPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Resource should not be '*'",
+    "actualValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Recource is '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8ebce63d085e7e81bc2ae9b94c7bf32e8779c1dfb5be87a79aa04b8dfd1876ac",
+    "search_line": -1
   },
   {
     "queryName": "IoT Policy Allows Wildcard Resource",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::IoT::Policy",
+    "resourceName": "PolicyName",
+    "searchKey": "Resources.IoTPolicy.Properties.PolicyDocument",
+    "searchValue": "",
+    "expectedValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Resource should not be '*'",
+    "actualValue": "Resources.IoTPolicy.Properties.PolicyDocument.Statement.Recource is '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b57e08a746265ccb157dff14c636c8c45f5f9ae8867200dca4269d861116b644",
+    "search_line": -1
   }
 ]

@@ -3,60 +3,150 @@
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_function_app[positive1-1].site_config.min_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_function_app[positive1-1].site_config.min_tls_version' should be set to '1.2'",
+    "actualValue": "'azurerm_function_app[positive1-1].site_config.min_tls_version' is not set to '1.2'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2a275ce2d25c56dadf35eb9ffa1993e461034191142c566d1d08c627a2c7d8ce",
+    "search_line": 9
   },
   {
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_function_app[positive1-2].site_config.min_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_function_app[positive1-2].site_config.min_tls_version' should be set to '1.2'",
+    "actualValue": "'azurerm_function_app[positive1-2].site_config.min_tls_version' is not set to '1.2'",
+    "issueType": "IncorrectValue",
+    "similarityID": "001624e245ad5c2a256b5008c1e567e240b35f6f8642cf03fae2a9de22ec81c7",
+    "search_line": 21
   },
   {
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_linux_function_app[positive2-1].site_config.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2-1].site_config.minimum_tls_version' should be set to '1.3'",
+    "actualValue": "'azurerm_linux_function_app[positive2-1].site_config.minimum_tls_version' is not set to '1.3'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c70f945ea1ca1df20396e9f3bee0dead4fbc6eb0144d8cb1286a1a2f45395fe4",
+    "search_line": 9
   },
   {
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_linux_function_app[positive2-2].site_config.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2-2].site_config.minimum_tls_version' should be set to '1.3'",
+    "actualValue": "'azurerm_linux_function_app[positive2-2].site_config.minimum_tls_version' is not set to '1.3'",
+    "issueType": "IncorrectValue",
+    "similarityID": "606c13b04c45936332be9bb13109e7efb04d585c673125fab1e45606fb6eb455",
+    "search_line": 21
   },
   {
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_linux_function_app[positive2-3].site_config",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2-3].site_config.minimum_tls_version' should be defined and set to '1.3'",
+    "actualValue": "'azurerm_linux_function_app[positive2-3].site_config.minimum_tls_version' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "5c0caa147af1bd392bc79be3fa87d697cc9f4394021a5f10247b009f3823f93f",
+    "search_line": 31
   },
   {
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 37,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_linux_function_app[positive2-4]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2-4].site_config.minimum_tls_version' should be defined and set to '1.3'",
+    "actualValue": "'azurerm_linux_function_app[positive2-4].site_config' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4fe81678ca20ebe51d85338a5cb16476fe539f40d5560e3121354e558f40da19",
+    "search_line": 37
   },
   {
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_windows_function_app[positive3-1].site_config.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3-1].site_config.minimum_tls_version' should be set to '1.3'",
+    "actualValue": "'azurerm_windows_function_app[positive3-1].site_config.minimum_tls_version' is not set to '1.3'",
+    "issueType": "IncorrectValue",
+    "similarityID": "56f29d76479011a38427acf259d6b82ff37af976e5737a79bcb6f46c40977f98",
+    "search_line": 9
   },
   {
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 21,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_windows_function_app[positive3-2].site_config.minimum_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3-2].site_config.minimum_tls_version' should be set to '1.3'",
+    "actualValue": "'azurerm_windows_function_app[positive3-2].site_config.minimum_tls_version' is not set to '1.3'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8aa0685b5de454b2401f3fed826451c0561cc4dae7a90ab6925a48794f6af92b",
+    "search_line": 21
   },
   {
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 31,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_windows_function_app[positive3-3].site_config",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3-3].site_config.minimum_tls_version' should be defined and set to '1.3'",
+    "actualValue": "'azurerm_windows_function_app[positive3-3].site_config.minimum_tls_version' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "679192c25357335d8c8d303a49d8ab98a9304271f3062141bab197863bb9c0da",
+    "search_line": 31
   },
   {
     "queryName": "Function App Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 37,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_windows_function_app[positive3-4]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3-4].site_config.minimum_tls_version' should be defined and set to '1.3'",
+    "actualValue": "'azurerm_windows_function_app[positive3-4].site_config' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6a21e0d0bc3eb164e842072aef1839d0c7a945999e49402860e4ab2682d5d726",
+    "search_line": 37
   }
 ]

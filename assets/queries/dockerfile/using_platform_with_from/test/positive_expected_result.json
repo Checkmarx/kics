@@ -3,6 +3,15 @@
     "queryName": "Using Platform Flag with FROM Command",
     "severity": "INFO",
     "line": 6,
-    "fileName": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{--platform=arm64 baseimage as baseimage-build}}.{{FROM --platform=arm64 baseimage as baseimage-build}}",
+    "searchValue": "",
+    "expectedValue": "FROM={{--platform=arm64 baseimage as baseimage-build}}.{{FROM --platform=arm64 baseimage as baseimage-build}} should not use the '--platform' flag",
+    "actualValue": "FROM={{--platform=arm64 baseimage as baseimage-build}}.{{FROM --platform=arm64 baseimage as baseimage-build}} is using the '--platform' flag",
+    "issueType": "IncorrectValue",
+    "similarityID": "ecd874a164d0a0f68be50d2a46c086755a2b4216981dfb9c7e1c399ccbe47131",
+    "search_line": -1
   }
 ]

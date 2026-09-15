@@ -1,32 +1,92 @@
 [
-	{
-		"queryName": "ELB Using Weak Ciphers",
-		"severity": "HIGH",
-		"line": 3
-	},
-	{
-		"queryName": "ELB Using Weak Ciphers",
-		"severity": "HIGH",
-		"line": 21
-	},
-	{
-		"queryName": "ELB Using Weak Ciphers",
-		"severity": "HIGH",
-		"line": 40
-	},
-	{
-		"queryName": "ELB Using Weak Ciphers",
-		"severity": "HIGH",
-		"line": 52
-	},
-	{
-		"queryName": "ELB Using Weak Ciphers",
-		"severity": "HIGH",
-		"line": 70
-	},
-	{
-		"queryName": "ELB Using Weak Ciphers",
-		"severity": "HIGH",
-		"line": 89
-	}
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.elb_application_lb",
+    "resourceName": "elb1",
+    "searchKey": "name={{elb1}}.{{community.aws.elb_application_lb}}",
+    "searchValue": "",
+    "expectedValue": "community.aws.elb_application_lb.listeners should be defined",
+    "actualValue": "%!&(string=community.aws.elb_application_lb)s.listeners is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "552e6d3c914d939949dfe56260985debc6e9723991890cf71f7fa41a2ecc0fdd",
+    "search_line": -1
+  },
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.elb_application_lb",
+    "resourceName": "elb2",
+    "searchKey": "name={{elb2}}.{{community.aws.elb_application_lb}}.listeners.%!s(int=0)",
+    "searchValue": "",
+    "expectedValue": "community.aws.elb_application_lb.listeners.SslPolicy should be defined",
+    "actualValue": "community.aws.elb_application_lb.listeners.SslPolicy is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9cacf78be7f5ff6c6285160bb4cc42ea10900bfeca305086a7b5a8e0390cebae",
+    "search_line": -1
+  },
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 40,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.elb_application_lb",
+    "resourceName": "elb3",
+    "searchKey": "name={{elb3}}.{{community.aws.elb_application_lb}}.listeners.%!s(int=0)",
+    "searchValue": "",
+    "expectedValue": "community.aws.elb_application_lb.listeners.SslPolicy should not be a weak cipher",
+    "actualValue": "community.aws.elb_application_lb.listeners.SslPolicy is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "2fde74f5ff60584e73ee11075d7741147f07b44f500e005d2cecae16d84f1c01",
+    "search_line": -1
+  },
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 52,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.elb_network_lb",
+    "resourceName": "elb4",
+    "searchKey": "name={{elb4}}.{{community.aws.elb_network_lb}}",
+    "searchValue": "",
+    "expectedValue": "community.aws.elb_network_lb.listeners should be defined",
+    "actualValue": "%!&(string=community.aws.elb_network_lb)s.listeners is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "23c333cfcf61c63568243d972a0022008edabef6b10bc93f046fd5f710705e02",
+    "search_line": -1
+  },
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 70,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.elb_network_lb",
+    "resourceName": "elb5",
+    "searchKey": "name={{elb5}}.{{community.aws.elb_network_lb}}.listeners.%!s(int=0)",
+    "searchValue": "",
+    "expectedValue": "community.aws.elb_network_lb.listeners.SslPolicy should be defined",
+    "actualValue": "community.aws.elb_network_lb.listeners.SslPolicy is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b07a22b23b58987d3c1ade08cccbc5eaa4c93f07a8bdf5cca46ff4afcc3ebfef",
+    "search_line": -1
+  },
+  {
+    "queryName": "ELB Using Weak Ciphers",
+    "severity": "HIGH",
+    "line": 89,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.elb_network_lb",
+    "resourceName": "elb6",
+    "searchKey": "name={{elb6}}.{{community.aws.elb_network_lb}}.listeners.%!s(int=0)",
+    "searchValue": "",
+    "expectedValue": "community.aws.elb_network_lb.listeners.SslPolicy should not be a weak cipher",
+    "actualValue": "community.aws.elb_network_lb.listeners.SslPolicy is a weak cipher",
+    "issueType": "IncorrectValue",
+    "similarityID": "3837d7de62cefc08c054d3e12a9a8c3c378e30610abb53d373e6d6f614711922",
+    "search_line": -1
+  }
 ]

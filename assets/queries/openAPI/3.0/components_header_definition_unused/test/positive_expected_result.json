@@ -3,12 +3,30 @@
     "queryName": "Components Header Definition Is Unused",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.headers.{{xPages}}",
+    "searchValue": "",
+    "expectedValue": "Header should be used as reference somewhere",
+    "actualValue": "Header is not used as reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "7ac6b44d18721892d752104b64dd8d778cc188baf59e88bee65d9105ffee8bfc",
+    "search_line": 0
   },
   {
     "queryName": "Components Header Definition Is Unused",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.headers.{{xPages}}",
+    "searchValue": "",
+    "expectedValue": "Header should be used as reference somewhere",
+    "actualValue": "Header is not used as reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "76d7a3d76c9d3cbe036217d4a2ca4be7c59309f9160ce01250b74452e8c7ee4e",
+    "search_line": 0
   }
 ]

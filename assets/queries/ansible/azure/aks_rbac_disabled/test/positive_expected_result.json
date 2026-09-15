@@ -2,11 +2,31 @@
   {
     "queryName": "AKS RBAC Disabled",
     "severity": "MEDIUM",
-    "line": 21
+    "line": 21,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_aks",
+    "resourceName": "Create an AKS instance",
+    "searchKey": "name={{Create an AKS instance}}.{{azure_rm_aks}}.enable_rbac",
+    "searchValue": "",
+    "expectedValue": "azure_rm_aks.enable_rbac should be set to 'yes' or 'true'",
+    "actualValue": "azure_rm_aks.enable_rbac is not set to 'yes' or 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1bc4ea3d4a25c1986ba194b76f91affddc1ef85524522f022a6978ca51e712da",
+    "search_line": -1
   },
   {
     "queryName": "AKS RBAC Disabled",
     "severity": "MEDIUM",
-    "line": 23
+    "line": 23,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_aks",
+    "resourceName": "Create an AKS instance v2",
+    "searchKey": "name={{Create an AKS instance v2}}.{{azure_rm_aks}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_aks.enable_rbac should be defined",
+    "actualValue": "azure_rm_aks.enable_rbac is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "52f670c7e4b250774c41aedbdfb46e61400ff475eb1f346e1bc8f01f131554fc",
+    "search_line": -1
   }
 ]

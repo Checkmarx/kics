@@ -2,16 +2,46 @@
   {
     "queryName": "Function App Managed Identity Disabled",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_function_app[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_function_app[positive1].identity' should be defined and not null",
+    "actualValue": "'azurerm_function_app[positive1].identity' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "fbf1621b7b1f241ed7d8c3694d38015014cd2264f33e8c388de4507b3ef02f40",
+    "search_line": 1
   },
   {
     "queryName": "Function App Managed Identity Disabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_linux_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_linux_function_app[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_function_app[positive2].identity' should be defined and not null",
+    "actualValue": "'azurerm_linux_function_app[positive2].identity' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "725c2f00d33a2ff0a643ef10cf3fb1312283da350945635411b9035a8308484a",
+    "search_line": 8
   },
   {
     "queryName": "Function App Managed Identity Disabled",
     "severity": "MEDIUM",
-    "line": 15
+    "line": 15,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_windows_function_app",
+    "resourceName": "test-azure-functions",
+    "searchKey": "azurerm_windows_function_app[positive3]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_function_app[positive3].identity' should be defined and not null",
+    "actualValue": "'azurerm_windows_function_app[positive3].identity' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c8bbcb0c899072f71ac33f4b400ef9a131c8a92fbc01247a865311c49ad71f69",
+    "search_line": 15
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "BOM - AWS Cassandra",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.myNewTable1",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "801a9235121ea5973e415504bac2a9d5b39bfad88fb033b770ef0c94e4dbd414",
+    "search_line": 3
   },
   {
     "queryName": "BOM - AWS Cassandra",
     "severity": "TRACE",
     "line": 3,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.myNewTable2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "8459d041b7efedce897313593e643e1d6a5528356a001a5808959928bccc8067",
+    "search_line": 3
   }
 ]

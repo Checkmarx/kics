@@ -3,6 +3,15 @@
     "queryName": "Storage Account Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_storage_account",
+    "resourceName": "storageaccountname",
+    "searchKey": "azurerm_storage_account[positive2].min_tls_version",
+    "searchValue": "",
+    "expectedValue": "'azurerm_storage_account[positive2].min_tls_version' is 'TLS1_2'",
+    "actualValue": "'azurerm_storage_account[positive2].min_tls_version' is not 'TLS1_2'",
+    "issueType": "IncorrectValue",
+    "similarityID": "34a1080965a15fc11ce0a5fd143f1e3c8e546a20b66eddcaad4ac9463f8b457b",
+    "search_line": 7
   }
 ]

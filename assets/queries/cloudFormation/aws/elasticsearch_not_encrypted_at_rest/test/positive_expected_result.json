@@ -3,30 +3,75 @@
     "queryName": "ElasticSearch Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions should be enabled",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9b20a7ff4f3cfa1b855199f41f9a971fadb972e6f8c14178316df5ff38a070f",
+    "search_line": -1
   },
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 6,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain1.Properties.EncryptionAtRestOptions should be defined and not null",
+    "actualValue": "Resources.ElasticsearchDomain1.Properties.EncryptionAtRestOptions is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "883632222952de5c5896446b37cfae08362f2d4c2d9c53b359724b3339a8a503",
+    "search_line": -1
   },
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions should be enabled",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "9f0923a2ce65a2758bbf86c5d74a10df54d3d5571c0da36c5569ad007a0f0e2c",
+    "search_line": -1
   },
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 5,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain1.Properties.EncryptionAtRestOptions should be defined and not null",
+    "actualValue": "Resources.ElasticsearchDomain1.Properties.EncryptionAtRestOptions is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "cd45d76d364dc971eeb7d47a76ef6c6ea17586e58dd8c26845e7a244083e83d7",
+    "search_line": -1
   },
   {
     "queryName": "ElasticSearch Not Encrypted At Rest",
     "severity": "HIGH",
     "line": 16,
-    "fileName": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "AWS::Elasticsearch::Domain",
+    "resourceName": "test",
+    "searchKey": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions.Enabled",
+    "searchValue": "",
+    "expectedValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions should be enabled",
+    "actualValue": "Resources.ElasticsearchDomain.Properties.EncryptionAtRestOptions is disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "ac38388246a9aa6c1db863f37a74297c5920e91fc07ecef60211782424b4dd89",
+    "search_line": -1
   }
 ]

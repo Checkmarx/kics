@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "Redshift Not Encrypted",
-		"severity": "HIGH",
-		"line": 1
-	},
-	{
-		"queryName": "Redshift Not Encrypted",
-		"severity": "HIGH",
-		"line": 17
-	}
+  {
+    "queryName": "Redshift Not Encrypted",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive1",
+    "searchKey": "aws_redshift_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_redshift_cluster.encrypted should be defined and not null",
+    "actualValue": "aws_redshift_cluster.encrypted is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "8b251b091035a8bd6eda099bb70b7419a0cb659d7ac0fc0d2a31cd6bd15a4831",
+    "search_line": 1
+  },
+  {
+    "queryName": "Redshift Not Encrypted",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive.tf",
+    "resourceType": "aws_redshift_cluster",
+    "resourceName": "positive2",
+    "searchKey": "aws_redshift_cluster[positive2].encrypted",
+    "searchValue": "",
+    "expectedValue": "aws_redshift_cluster.encrypted should be set to false",
+    "actualValue": "aws_redshift_cluster.encrypted is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "adff59fba363f12b3be8a56b25c3d2c18ba2e4f3e974e4850605d7d88f1503c3",
+    "search_line": 17
+  }
 ]

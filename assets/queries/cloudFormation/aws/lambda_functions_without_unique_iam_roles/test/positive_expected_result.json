@@ -1,26 +1,62 @@
 [
   {
+    "queryName": "Lambda Functions Without Unique IAM Roles",
     "severity": "HIGH",
     "line": 8,
     "fileName": "positive1.yaml",
-    "queryName": "Lambda Functions Without Unique IAM Roles"
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Primer01",
+    "searchKey": "Resources.Primer01.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Each AWS Lambda Function has a unique role",
+    "actualValue": "Resource.Primer01.Properties.Role is assigned to another funtion",
+    "issueType": "IncorrectValue",
+    "similarityID": "691beb5c09232edeea6b84223a99f75c24a141eff0b72c34c6efd9cfc6928b8a",
+    "search_line": -1
   },
   {
+    "queryName": "Lambda Functions Without Unique IAM Roles",
     "severity": "HIGH",
     "line": 41,
     "fileName": "positive1.yaml",
-    "queryName": "Lambda Functions Without Unique IAM Roles"
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Primer02",
+    "searchKey": "Resources.Primer02.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Each AWS Lambda Function has a unique role",
+    "actualValue": "Resource.Primer02.Properties.Role is assigned to another funtion",
+    "issueType": "IncorrectValue",
+    "similarityID": "412c51ae9c53cfdc6e7aa90b5fc66381d9ebd1fd9c88c76837172fed29e6e3d4",
+    "search_line": -1
   },
   {
-    "line": 7,
-    "fileName": "positive2.json",
-    "queryName": "Lambda Functions Without Unique IAM Roles",
-    "severity": "HIGH"
-  },
-  {
-    "fileName": "positive2.json",
     "queryName": "Lambda Functions Without Unique IAM Roles",
     "severity": "HIGH",
-    "line": 24
+    "line": 7,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Primer01",
+    "searchKey": "Resources.Primer01.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Each AWS Lambda Function has a unique role",
+    "actualValue": "Resource.Primer01.Properties.Role is assigned to another funtion",
+    "issueType": "IncorrectValue",
+    "similarityID": "a0eb9ad0269c9741ed5c0020f14fecb0140f1140d4730ecf05192d5decc18907",
+    "search_line": -1
+  },
+  {
+    "queryName": "Lambda Functions Without Unique IAM Roles",
+    "severity": "HIGH",
+    "line": 24,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Lambda::Function",
+    "resourceName": "Primer02",
+    "searchKey": "Resources.Primer02.Properties.Role",
+    "searchValue": "",
+    "expectedValue": "Each AWS Lambda Function has a unique role",
+    "actualValue": "Resource.Primer02.Properties.Role is assigned to another funtion",
+    "issueType": "IncorrectValue",
+    "similarityID": "a76e930cade3bc68ac3c00e593e08d784e35848866730fd58e78221eb8718f12",
+    "search_line": -1
   }
 ]

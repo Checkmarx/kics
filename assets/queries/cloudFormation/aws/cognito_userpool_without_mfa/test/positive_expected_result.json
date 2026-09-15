@@ -2,25 +2,61 @@
   {
     "queryName": "Cognito UserPool Without MFA",
     "severity": "LOW",
-    "line": 14,
-    "fileName": "positive1.yaml"
+    "line": 8,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Cognito::UserPool",
+    "resourceName": "${AuthName}-user-pool",
+    "searchKey": "Resources.UserPool2.Properties.MfaConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.UserPool2.Properties.MfaConfiguration should be set to ON or OPTIONAL",
+    "actualValue": "Resources.UserPool2.Properties.MfaConfiguration is set to OFF",
+    "issueType": "IncorrectValue",
+    "similarityID": "44e97632695c346a18c35e8d3b438f7ed30c4eaf80d08d2d3bfa353c937ea057",
+    "search_line": -1
   },
   {
     "queryName": "Cognito UserPool Without MFA",
     "severity": "LOW",
-    "line": 8,
-    "fileName": "positive1.yaml"
+    "line": 14,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Cognito::UserPool",
+    "resourceName": "${AuthName}-user-pool",
+    "searchKey": "Resources.UserPool4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.UserPool4.Properties.MfaConfiguration should be set",
+    "actualValue": "Resources.UserPool4.Properties.MfaConfiguration is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8334313a4b0b2f22ee127e005ed36951dc84134cd5fef95dac77e53b28622862",
+    "search_line": -1
+  },
+  {
+    "queryName": "Cognito UserPool Without MFA",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Cognito::UserPool",
+    "resourceName": "${AuthName}-user-pool",
+    "searchKey": "Resources.UserPool2.Properties.MfaConfiguration",
+    "searchValue": "",
+    "expectedValue": "Resources.UserPool2.Properties.MfaConfiguration should be set to ON or OPTIONAL",
+    "actualValue": "Resources.UserPool2.Properties.MfaConfiguration is set to OFF",
+    "issueType": "IncorrectValue",
+    "similarityID": "194a8048aac84a3c7546b61246413c2ddbbf5ff7656a69242890b8cbd410c245",
+    "search_line": -1
   },
   {
     "queryName": "Cognito UserPool Without MFA",
     "severity": "LOW",
     "line": 19,
-    "fileName": "positive2.json"
-  },
-  {
-    "severity": "LOW",
-    "line": 10,
     "fileName": "positive2.json",
-    "queryName": "Cognito UserPool Without MFA"
+    "resourceType": "AWS::Cognito::UserPool",
+    "resourceName": "${AuthName}-user-pool",
+    "searchKey": "Resources.UserPool4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.UserPool4.Properties.MfaConfiguration should be set",
+    "actualValue": "Resources.UserPool4.Properties.MfaConfiguration is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "259f290f5a591da6aa61605b163fa7a742737ef9a555bec4858c6f9a02f456ce",
+    "search_line": -1
   }
 ]

@@ -3,42 +3,105 @@
     "queryName": "Update Instruction Alone",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest}}.RUN={{apk add nginx}}",
+    "searchValue": "",
+    "expectedValue": "Instruction 'RUN apk [\"add\"]' should be combined with 'RUN apk [\"update\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN apk [\"add\"]' isn't combined with 'RUN apk [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue",
+    "similarityID": "3e6249729e06b84f7a1e91fdb528333b7e716555dd08e359cd292da760fdaae7",
+    "search_line": -1
   },
   {
     "queryName": "Update Instruction Alone",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive2.dockerfile"
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{opensuse:latest}}.RUN={{zypper install nginx}}",
+    "searchValue": "",
+    "expectedValue": "Instruction 'RUN zypper [\"install\"]' should be combined with 'RUN zypper [\"refresh\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN zypper [\"install\"]' isn't combined with 'RUN zypper [\"refresh\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue",
+    "similarityID": "ccd306c80d5731f3826cd701b4844dc41a873552bf3803ba686e979ad5f2ad55",
+    "search_line": -1
   },
   {
     "queryName": "Update Instruction Alone",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive3.dockerfile"
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{debian:latest}}.RUN={{apt install nginx}}",
+    "searchValue": "",
+    "expectedValue": "Instruction 'RUN apt [\"install\"]' should be combined with 'RUN apt [\"update\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN apt [\"install\"]' isn't combined with 'RUN apt [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue",
+    "similarityID": "ad8d682824ffb548f7076a65130663eeab28f4e632e97f1d2494f064805c9bdf",
+    "search_line": -1
   },
   {
     "queryName": "Update Instruction Alone",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive4.dockerfile"
+    "fileName": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{centos:latest}}.RUN={{yum install nginx}}",
+    "searchValue": "",
+    "expectedValue": "Instruction 'RUN yum [\"install\"]' should be combined with 'RUN yum [\"update\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN yum [\"install\"]' isn't combined with 'RUN yum [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue",
+    "similarityID": "00ba12fd9dd81312c488ef7bb23ed3ba59b586202a8450940d78b7fc9176a57f",
+    "search_line": -1
   },
   {
     "queryName": "Update Instruction Alone",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive5.dockerfile"
+    "fileName": "positive5.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:latest}}.RUN={{dnf install nginx}}",
+    "searchValue": "",
+    "expectedValue": "Instruction 'RUN dnf [\"install\"]' should be combined with 'RUN dnf [\"update\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN dnf [\"install\"]' isn't combined with 'RUN dnf [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue",
+    "similarityID": "2f5aa02996ab0b880493911c4ae28cc75602d51e50fa425102ff61443b2be8ce",
+    "search_line": -1
   },
   {
     "queryName": "Update Instruction Alone",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive6.dockerfile"
+    "fileName": "positive6.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{archlinux:latest}}.RUN={{pacman -S nginx}}",
+    "searchValue": "",
+    "expectedValue": "Instruction 'RUN pacman [\"-S\"]' should be combined with 'RUN pacman [\"-Syu\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN pacman [\"-S\"]' isn't combined with 'RUN pacman [\"-Syu\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue",
+    "similarityID": "e1db7bebd150273589fcfa4174f96cb83e1593d3db017977c998c50cc1d6add1",
+    "search_line": -1
   },
   {
     "queryName": "Update Instruction Alone",
     "severity": "LOW",
     "line": 3,
-    "fileName": "positive7.dockerfile"
+    "fileName": "positive7.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{ubuntu:18.04}}.RUN={{apt-get install -y --no-install-recommends mysql-client     && rm -rf /var/lib/apt/lists/*}}",
+    "searchValue": "",
+    "expectedValue": "Instruction 'RUN apt-get [\"install\", \"source-install\", \"reinstall\"]' should be combined with 'RUN apt-get [\"update\"]' in the same 'RUN' statement",
+    "actualValue": "Instruction 'RUN apt-get [\"install\", \"source-install\", \"reinstall\"]' isn't combined with 'RUN apt-get [\"update\"] in the same 'RUN' statement",
+    "issueType": "IncorrectValue",
+    "similarityID": "74941a883f02518c5eafe5f85b69ea7b5550a63b8686143d3b7cb4a5323b81f2",
+    "search_line": -1
   }
 ]

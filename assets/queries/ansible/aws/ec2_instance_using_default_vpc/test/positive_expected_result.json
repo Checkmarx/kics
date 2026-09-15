@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "EC2 Instance Using Default VPC",
-		"severity": "LOW",
-		"line": 8,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "EC2 Instance Using Default VPC",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2",
+    "resourceName": "example",
+    "searchKey": "name={{example}}.{{amazon.aws.ec2}}.vpc_subnet_id",
+    "searchValue": "",
+    "expectedValue": "'vpc_subnet_id' should not be associated with a default VPC",
+    "actualValue": "'vpc_subnet_id' is associated with a default VPC",
+    "issueType": "IncorrectValue",
+    "similarityID": "dc793eb868e1a1312bb7d2fc39f9c70c1a8105a921b802097a5398946adb449b",
+    "search_line": 8
+  }
 ]

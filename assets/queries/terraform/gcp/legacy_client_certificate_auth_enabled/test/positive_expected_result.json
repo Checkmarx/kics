@@ -3,12 +3,30 @@
     "queryName": "Legacy Client Certificate Auth Enabled",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1].master_auth",
+    "searchValue": "",
+    "expectedValue": "If 'master_auth' is defined, subattribute 'client_certificate_config' should be defined",
+    "actualValue": "Attribute 'client_certificate_config' in 'master_auth' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "45c2f59762d9f17a08ecc30af8179ed9011c1b5e971bcb4788e01b286d18beab",
+    "search_line": -1
   },
   {
     "queryName": "Legacy Client Certificate Auth Enabled",
     "severity": "LOW",
     "line": 24,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive2].master_auth.client_certificate_config.issue_client_certificate",
+    "searchValue": "",
+    "expectedValue": "Attribute 'issue_client_certificate' in 'client_certificate_config' should be false",
+    "actualValue": "Attribute 'issue_client_certificate' in 'client_certificate_config' is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "311237ae7532e600d7b82bebdb7717157b5da72396bf26488a8be28cf5b15c44",
+    "search_line": -1
   }
 ]

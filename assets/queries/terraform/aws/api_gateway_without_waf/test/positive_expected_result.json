@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "API Gateway without WAF",
-		"severity": "MEDIUM",
-		"line": 75,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "API Gateway without WAF",
+    "severity": "MEDIUM",
+    "line": 75,
+    "fileName": "positive.tf",
+    "resourceType": "aws_api_gateway_stage",
+    "resourceName": "positive1",
+    "searchKey": "aws_api_gateway_stage[positive1]",
+    "searchValue": "",
+    "expectedValue": "API Gateway Stage should be associated with a Web Application Firewall",
+    "actualValue": "API Gateway Stage is not associated with a Web Application Firewall",
+    "issueType": "IncorrectValue",
+    "similarityID": "5d998ce0c31ff4d6acf3b689a9d9c4ed7ccce8996af9bb3a5c7198b0ac4063a6",
+    "search_line": 75
+  }
 ]

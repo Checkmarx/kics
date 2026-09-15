@@ -2,21 +2,61 @@
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a instance",
+    "searchKey": "name={{create a instance}}.{{google.cloud.gcp_sql_instance}}",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings should be defined",
+    "actualValue": "gcp_sql_instance.settings is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0440320c0c34a64935f85a283e6e2ad2850ed51c79248bc5496cf06e8a3dcaf3",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a second instance",
+    "searchKey": "name={{create a second instance}}.{{google.cloud.gcp_sql_instance}}.settings",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.ip_configuration should be defined",
+    "actualValue": "gcp_sql_instance.settings.ip_configuration is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6503420339b4bed2ccf6a81d9e18d96a7e186e26c3ad534ac3a19aa4467afaa4",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
-    "line": 24
+    "line": 24,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a third instance",
+    "searchKey": "name={{create a third instance}}.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.ip_configuration.require_ssl should be defined",
+    "actualValue": "gcp_sql_instance.settings.ip_configuration.require_ssl is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2cf30fb532fd1e06a7a47cd85957f3f088127593742fb5b3137297f40baa89eb",
+    "search_line": -1
   },
   {
     "queryName": "SQL DB Instance With SSL Disabled",
     "severity": "HIGH",
-    "line": 39
+    "line": 39,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_sql_instance",
+    "resourceName": "create a forth instance",
+    "searchKey": "name={{create a forth instance}}.{{google.cloud.gcp_sql_instance}}.settings.ip_configuration.require_ssl",
+    "searchValue": "",
+    "expectedValue": "gcp_sql_instance.settings.ip_configuration.require_ssl should be true",
+    "actualValue": "gcp_sql_instance.settings.ip_configuration.require_ssl is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "284fa53a0316efb3f27bbcb6c087597c0324a2a488c43a6b72d3f68e1f51a4c5",
+    "search_line": -1
   }
 ]

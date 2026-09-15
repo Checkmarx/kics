@@ -2,16 +2,46 @@
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.ip_allocation_policy should be defined",
+    "actualValue": "gcp_container_cluster.ip_allocation_policy is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9bcfbdc8ad683d19304f3a748608a7633d9a1478601dfc232a0dfb24462d7b7b",
+    "search_line": -1
   },
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster2",
+    "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases should be set to true",
+    "actualValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "72efaebd492118ef2950c875ae9571ce9e1ffd70e566a670cb10d9b11d9b80a2",
+    "search_line": -1
   },
   {
     "queryName": "IP Aliasing Disabled",
     "severity": "MEDIUM",
-    "line": 50
+    "line": 50,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster3",
+    "searchKey": "name={{create a cluster3}}.{{google.cloud.gcp_container_cluster}}.ip_allocation_policy.use_ip_aliases",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases should be true",
+    "actualValue": "gcp_container_cluster.ip_allocation_policy.use_ip_aliases is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "4fc82a54c62d7fd5f8303bb019222ed5e7d96e656b9b07a420cc8a67430dcd92",
+    "search_line": -1
   }
 ]

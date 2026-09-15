@@ -3,12 +3,30 @@
     "queryName": "Callback Object With Incorrect Ref",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.callbacks.{{myEvent}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Callback ref points to '#/components/callbacks'",
+    "actualValue": "Callback ref does not point to '#/components/callbacks'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a9518afeda31f11ea262651bd96a669372764ab90d3bb445516b057e89a8d09a",
+    "search_line": 0
   },
   {
     "queryName": "Callback Object With Incorrect Ref",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.callbacks.{{myEvent}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Callback ref points to '#/components/callbacks'",
+    "actualValue": "Callback ref does not point to '#/components/callbacks'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3df8acaddc5575ae4449bd101f81b4e76a509cb1291d99aa5380a9506f7c7c46",
+    "search_line": 0
   }
 ]

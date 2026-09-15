@@ -2,6 +2,16 @@
   {
     "queryName": "CosmosDB Account IP Range Filter Not Set",
     "severity": "CRITICAL",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_cosmosdbaccount",
+    "resourceName": "Create Cosmos DB Account - max",
+    "searchKey": "name={{Create Cosmos DB Account - max}}.{{azure_rm_cosmosdbaccount}}",
+    "searchValue": "",
+    "expectedValue": "'azurerm_cosmosdb_account.ip_range_filter' should be defined",
+    "actualValue": "'azurerm_cosmosdb_account.ip_range_filter' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "918bd86be1fb96055f168df9885f168a9aab63363e8b33df11c377dcd840a4dd",
+    "search_line": -1
   }
 ]

@@ -2,11 +2,31 @@
   {
     "queryName": "Yum Install Allows Manual Input",
     "severity": "LOW",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN sudo yum install bundler}}",
+    "searchValue": "",
+    "expectedValue": "{{RUN sudo yum install bundler}} should avoid manual input",
+    "actualValue": "{{RUN sudo yum install bundler}} doesn't avoid manual input",
+    "issueType": "IncorrectValue",
+    "similarityID": "7886fb5973ec21abcf13e2377be579005d1b96a768952b5027584c5a3f5563e0",
+    "search_line": -1
   },
   {
     "queryName": "Yum Install Allows Manual Input",
     "severity": "LOW",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.5}}.{{RUN [\"sudo yum\", \"install\", \"bundler\"]}}",
+    "searchValue": "",
+    "expectedValue": "{{RUN [\"sudo yum\", \"install\", \"bundler\"]}} should avoid manual input",
+    "actualValue": "{{RUN [\"sudo yum\", \"install\", \"bundler\"]}} doesn't avoid manual input",
+    "issueType": "IncorrectValue",
+    "similarityID": "e730a7bc5332ae393de550bfb3b4aaad60d740d025c000c2f86e9eddd9cb67ca",
+    "search_line": -1
   }
 ]

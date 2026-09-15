@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "Ingress Controller Exposes Workload",
-		"severity": "MEDIUM",
-		"line": 31
-	}
+  {
+    "queryName": "Ingress Controller Exposes Workload",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive.yaml",
+    "resourceType": "Ingress",
+    "resourceName": "app-ingress",
+    "searchKey": "metadata.name={{app-ingress}}.spec.rules.http.paths.backend",
+    "searchValue": "",
+    "expectedValue": "metadata.name=app-ingress should not be exposing the workload",
+    "actualValue": "metadata.name=app-ingress is exposing the workload",
+    "issueType": "IncorrectValue",
+    "similarityID": "d9dc3bf1dfd3a1dae5ff48da6e3795d9547d0214f1f47220b8eacc3fdf8322ca",
+    "search_line": -1
+  }
 ]

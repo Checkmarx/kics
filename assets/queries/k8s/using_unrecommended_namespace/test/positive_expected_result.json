@@ -3,30 +3,75 @@
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "frontend",
+    "searchKey": "metadata.name={{frontend}}.namespace",
+    "searchValue": "Pod",
+    "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
+    "actualValue": "'metadata.namespace' is set to default",
+    "issueType": "IncorrectValue",
+    "similarityID": "0be3f98f7ba1ca262fd31d9446f2e80c9401386a33894dd6af6235aa1bc86220",
+    "search_line": 5
   },
   {
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "Pod",
+    "resourceName": "frontend2",
+    "searchKey": "kind={{Pod}}.metadata.name={{frontend2}}",
+    "searchValue": "Pod",
+    "expectedValue": "metadata.namespace should be defined and not null",
+    "actualValue": "metadata.namespace is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "698bde8011bba82450e4433e794df2459efd674d2c484b5bd103a4051052ea2e",
+    "search_line": 4
   },
   {
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "Pod",
+    "resourceName": "mongo.db.collection.com",
+    "searchKey": "metadata.name={{mongo.db.collection.com}}.namespace",
+    "searchValue": "Pod",
+    "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
+    "actualValue": "'metadata.namespace' is set to kube-public",
+    "issueType": "IncorrectValue",
+    "similarityID": "1297d4f1a9d169ceba0fe3d3988febb511b5d3e5b3a8c66386728a66b6cf1cba",
+    "search_line": 5
   },
   {
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "Pod",
+    "resourceName": "mongo.db.collection.com",
+    "searchKey": "metadata.name={{mongo.db.collection.com}}.namespace",
+    "searchValue": "Pod",
+    "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
+    "actualValue": "'metadata.namespace' is set to kube-system",
+    "issueType": "IncorrectValue",
+    "similarityID": "42e0276d020c5f2d3559a33352765a92607ed4e6643240af0fac4c1d72f965b0",
+    "search_line": 5
   },
   {
     "queryName": "Using Unrecommended Namespace",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive5.yaml"
+    "fileName": "positive5.yaml",
+    "resourceType": "Configuration",
+    "resourceName": "dummy-config",
+    "searchKey": "metadata.name={{dummy-config}}.namespace",
+    "searchValue": "Configuration",
+    "expectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
+    "actualValue": "'metadata.namespace' is set to default",
+    "issueType": "IncorrectValue",
+    "similarityID": "734d3cfd161d9b169b31cd64ba0a632523c6c35e87bcf8ea699d743b2baebf73",
+    "search_line": 5
   }
 ]

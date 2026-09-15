@@ -3,36 +3,90 @@
     "queryName": "Parameters Name In Combination Not Unique (v3)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Parameters Name In Combination Not Unique (v3)",
-    "severity": "INFO",
-    "line": 18,
-    "filename": "positive2.yaml"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.limitJSONParam.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9b72bfaca9a4f4446ef169e84aa7d40163b66d6151c1fc879a0bb349e81e0b6",
+    "search_line": 0
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
     "severity": "INFO",
     "line": 37,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.otherJSONParam.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue",
+    "similarityID": "ab5bf1de39f65ba3907c343f5e9d9fc229997abcc94bd213eaa2ab115375377d",
+    "search_line": 0
+  },
+  {
+    "queryName": "Parameters Name In Combination Not Unique (v3)",
+    "severity": "INFO",
+    "line": 18,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.limitParam.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue",
+    "similarityID": "a4a5975b22e20836f83061ae94a7d0182ac3b907afe41a7519ce2673e0ba5ca6",
+    "search_line": 0
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v3)",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters.otherParam.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue",
+    "similarityID": "4cf7298b6b417b1a9e7c80c1d2041ae67a4fcda395ac78ae8de3efc35f67a15c",
+    "search_line": 0
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v2)",
     "severity": "INFO",
     "line": 21,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue",
+    "similarityID": "ca354d412853a071bad8f89aab70ab4cf888d66db0ab4e423ab0ed4bbfe9bb89",
+    "search_line": -1
   },
   {
     "queryName": "Parameters Name In Combination Not Unique (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.name",
+    "searchValue": "",
+    "expectedValue": "Parameter has unique 'name' and 'in' combinations",
+    "actualValue": "Parameter does not have unique 'name' and 'in' combinations",
+    "issueType": "IncorrectValue",
+    "similarityID": "acd9da963bb300a2a60d854ff6627a4db3064311263092f3a2515bba6d69229c",
+    "search_line": -1
   }
 ]

@@ -3,60 +3,150 @@
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive1_security_group",
+    "searchKey": "Resources.Positive1_security_group.Properties.SecurityGroupEgress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1_security_group.Properties.SecurityGroupEgress[0]' should not have IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0' simultaneously",
+    "actualValue": "'Resources.Positive1_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "b9de57964f29ba3863e6947dc45f974e6a0974ae41d5b66d9ca83e3b3b5abb7c",
+    "search_line": 8
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "Positive1_security_group",
+    "searchKey": "Resources.Positive1_egress_ipv4.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1_egress_ipv4.Properties' should not have IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0' simultaneously",
+    "actualValue": "'Resources.Positive1_egress_ipv4.Properties' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "bdf59ba236cb3529561f0df8fcab0d035193f8d7555b27a8a2dd7072793a2db4",
+    "search_line": 16
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
     "line": 26,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "Positive1_security_group",
+    "searchKey": "Resources.Positive1_egress_ipv6.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive1_egress_ipv6.Properties' should not have IpProtocol set to '-1' and CidrIpv6 set to '::/0' simultaneously",
+    "actualValue": "'Resources.Positive1_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "ec6f59b47a31a1ddafd6b5e3569d24f6163eac54aa9c2a2721a9e755c081858b",
+    "search_line": 26
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive2_security_group.Properties.SecurityGroupEgress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive2_security_group.Properties.SecurityGroupEgress[0]' should not have IpProtocol set to '-1' and CidrIpv6 set to '::/0' simultaneously",
+    "actualValue": "'Resources.Positive2_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "ff8fc4e43e3cb60a737d6eb5931b45b8cd236f723a1fcdc12584255813dbad40",
+    "search_line": 8
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
     "line": 16,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "Positive2_security_group",
+    "searchKey": "Resources.Positive2_egress_ipv6.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive2_egress_ipv6.Properties' should not have IpProtocol set to '-1' and CidrIpv6 set to '0:0:0:0:0:0:0:0/0' simultaneously",
+    "actualValue": "'Resources.Positive2_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '0:0:0:0:0:0:0:0/0'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "0ac7eddb9351e7d83406f72e7f40e519640a9c2fecbfc8a332d7e818f38b3401",
+    "search_line": 16
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive3_security_group",
+    "searchKey": "Resources.Positive3_security_group.Properties.SecurityGroupEgress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive3_security_group.Properties.SecurityGroupEgress[0]' should not have IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0' simultaneously",
+    "actualValue": "'Resources.Positive3_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "962846eaaf7cc4c4179343033d2a665546b5cd5918f3e07b09694c41f7f05d8a",
+    "search_line": 12
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
     "line": 22,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "Positive3_security_group",
+    "searchKey": "Resources.Positive3_egress_ipv4.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive3_egress_ipv4.Properties' should not have IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0' simultaneously",
+    "actualValue": "'Resources.Positive3_egress_ipv4.Properties' has IpProtocol set to '-1' and CidrIp set to '0.0.0.0/0'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "f72ba15775de02628906d103869aeeaac308fee06a66994539e4d62050ddd269",
+    "search_line": 22
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
     "line": 34,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "Positive3_security_group",
+    "searchKey": "Resources.Positive3_egress_ipv6.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive3_egress_ipv6.Properties' should not have IpProtocol set to '-1' and CidrIpv6 set to '::/0' simultaneously",
+    "actualValue": "'Resources.Positive3_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "e628dab44ff2e283ac3c7c294cda9dc0446482b5b571e90124367273f8842c45",
+    "search_line": 34
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "Positive4_security_group",
+    "searchKey": "Resources.Positive4_security_group.Properties.SecurityGroupEgress[0]",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive4_security_group.Properties.SecurityGroupEgress[0]' should not have IpProtocol set to '-1' and CidrIpv6 set to '::/0' simultaneously",
+    "actualValue": "'Resources.Positive4_security_group.Properties.SecurityGroupEgress[0]' has IpProtocol set to '-1' and CidrIpv6 set to '::/0'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "fb2adae4978a5708a46e48d83fd6893c62129191a41db139b68d279994994f26",
+    "search_line": 12
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
     "line": 22,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "Positive4_security_group",
+    "searchKey": "Resources.Positive4_egress_ipv6.Properties",
+    "searchValue": "",
+    "expectedValue": "'Resources.Positive4_egress_ipv6.Properties' should not have IpProtocol set to '-1' and CidrIpv6 set to '0:0:0:0:0:0:0:0/0' simultaneously",
+    "actualValue": "'Resources.Positive4_egress_ipv6.Properties' has IpProtocol set to '-1' and CidrIpv6 set to '0:0:0:0:0:0:0:0/0'.",
+    "issueType": "IncorrectValue",
+    "similarityID": "d3dc3083d4e379549df0f8d15a19e4051d5176640073192326af8d5aa982adee",
+    "search_line": 22
   }
 ]

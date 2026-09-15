@@ -2,25 +2,61 @@
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "positive2",
+    "searchKey": "aws_s3_bucket_public_access_block[positive2].block_public_acls",
+    "searchValue": "",
+    "expectedValue": "'block_public_acls' should equal 'true'",
+    "actualValue": "'block_public_acls' is equal 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "99449a950ebe3a156dc6a179627a9271719bbcc1c16f249f17bbe9042e0c8275",
+    "search_line": 8
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "positive3",
+    "searchKey": "aws_s3_bucket_public_access_block[positive3]",
+    "searchValue": "",
+    "expectedValue": "'block_public_acls' should equal 'true'",
+    "actualValue": "'block_public_acls' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "9c3e76e62c2da31d1d7c3cf68541ca99df94e3ab48187c1b6e42f06458aec1df",
+    "search_line": 18
   },
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
     "line": 8,
-    "filename": "positive1.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket].block_public_acls",
+    "searchValue": "",
+    "expectedValue": "'block_public_acls' should equal 'true'",
+    "actualValue": "'block_public_acls' is equal 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "66e66de1a4490061467de957cd42229c5efa51865fae479d3741a16f803ca4c7",
+    "search_line": 8
   },
   {
     "queryName": "S3 Bucket Allows Public ACL",
     "severity": "MEDIUM",
     "line": 1,
-    "filename": "positive3.tf"
-  },
-  {
-    "queryName": "S3 Bucket Allows Public ACL",
-    "severity": "MEDIUM",
-    "line": 8,
-    "filename": "positive2.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module[s3_bucket]",
+    "searchValue": "",
+    "expectedValue": "'block_public_acls' should equal 'true'",
+    "actualValue": "'block_public_acls' is missing",
+    "issueType": "MissingAttribute",
+    "similarityID": "979463ce91a9d15b97fd93bba8aa03329bb75c9f2202e12d1e4151042ed37b87",
+    "search_line": 1
   }
 ]

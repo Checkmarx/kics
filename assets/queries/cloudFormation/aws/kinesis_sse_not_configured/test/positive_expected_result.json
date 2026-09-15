@@ -2,37 +2,91 @@
   {
     "queryName": "Kinesis SSE Not Configured",
     "severity": "HIGH",
-    "line": 26,
-    "fileName": "positive1.yaml"
+    "line": 8,
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Kinesis::Stream",
+    "resourceName": "EventStream",
+    "searchKey": "Resources.EventStream1.Properties.StreamEncryption",
+    "searchValue": "KeyId",
+    "expectedValue": "Resources.EventStream1.Properties.StreamEncryption.KeyId should be set",
+    "actualValue": "Resources.EventStream1.Properties.StreamEncryption.KeyId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6538cc667696cf1ae0578371cd59dc0390c9f08d3925c8cad5b099d869655c61",
+    "search_line": 8
   },
   {
     "queryName": "Kinesis SSE Not Configured",
     "severity": "HIGH",
     "line": 19,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Kinesis SSE Not Configured",
-    "severity": "HIGH",
-    "line": 8,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "Kinesis SSE Not Configured",
-    "severity": "HIGH",
-    "line": 39,
-    "fileName": "positive2.json"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Kinesis::Stream",
+    "resourceName": "EventStream",
+    "searchKey": "Resources.EventStream2.Properties.StreamEncryption",
+    "searchValue": "EncryptionType",
+    "expectedValue": "Resources.EventStream2.Properties.StreamEncryption.EncryptionType should be set",
+    "actualValue": "Resources.EventStream2.Properties.StreamEncryption.EncryptionType is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "47a8ecfe59c12a725852e17225e54c2e3a5f4ca29283a9107841d238706017fd",
+    "search_line": 19
   },
   {
     "queryName": "Kinesis SSE Not Configured",
     "severity": "HIGH",
     "line": 26,
-    "fileName": "positive2.json"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::Kinesis::Stream",
+    "resourceName": "EventStream",
+    "searchKey": "Resources.EventStream3.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.EventStream3.Properties.StreamEncryption should be set",
+    "actualValue": "Resources.EventStream3.Properties.StreamEncryption is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4de465a52b1f869b82e695482d0eddade708d989df327a42f8ab2cd8db9b8a94",
+    "search_line": 26
   },
   {
     "queryName": "Kinesis SSE Not Configured",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Kinesis::Stream",
+    "resourceName": "EventStream",
+    "searchKey": "Resources.EventStream1.Properties.StreamEncryption",
+    "searchValue": "KeyId",
+    "expectedValue": "Resources.EventStream1.Properties.StreamEncryption.KeyId should be set",
+    "actualValue": "Resources.EventStream1.Properties.StreamEncryption.KeyId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7a74dbdf9412e68bc29aa18d23eee57be964c2d130c7928bd0956cef8374273a",
+    "search_line": 9
+  },
+  {
+    "queryName": "Kinesis SSE Not Configured",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Kinesis::Stream",
+    "resourceName": "EventStream",
+    "searchKey": "Resources.EventStream2.Properties.StreamEncryption",
+    "searchValue": "EncryptionType",
+    "expectedValue": "Resources.EventStream2.Properties.StreamEncryption.EncryptionType should be set",
+    "actualValue": "Resources.EventStream2.Properties.StreamEncryption.EncryptionType is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6040a8e607c4ca41a01e4c02442b31dccaa9c694f31dc29db5fdac77869236f1",
+    "search_line": 26
+  },
+  {
+    "queryName": "Kinesis SSE Not Configured",
+    "severity": "HIGH",
+    "line": 39,
+    "fileName": "positive2.json",
+    "resourceType": "AWS::Kinesis::Stream",
+    "resourceName": "EventStream",
+    "searchKey": "Resources.EventStream3.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.EventStream3.Properties.StreamEncryption should be set",
+    "actualValue": "Resources.EventStream3.Properties.StreamEncryption is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9a7125d9cc3f420b427a5db4180c71cc5df13168dc75ab9f3ae3dad477e9f204",
+    "search_line": 39
   }
 ]

@@ -3,18 +3,45 @@
     "queryName": "VPC Subnet Assigns Public IP",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_subnet",
+    "resourceName": "Positive",
+    "searchKey": "aws_subnet[positive].map_public_ip_on_launch",
+    "searchValue": "",
+    "expectedValue": "aws_subnet[positive].map_public_ip_on_launch should be set to false or undefined",
+    "actualValue": "aws_subnet[positive].map_public_ip_on_launch is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "43ce7c5b9399bab79a1db9a2f01e0c2e656070c44b49a0c026ddcb617e949aa3",
+    "search_line": 13
   },
   {
     "queryName": "VPC Subnet Assigns Public IP",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "vpc.map_public_ip_on_launch",
+    "searchValue": "",
+    "expectedValue": "vpc.map_public_ip_on_launch should be set to false",
+    "actualValue": "vpc.map_public_ip_on_launch is set to true",
+    "issueType": "IncorrectValue",
+    "similarityID": "21f94f00bb9121316ba110315b269f38ad85e5dc6778b7bca320723a925b0f03",
+    "search_line": 11
   },
   {
     "queryName": "VPC Subnet Assigns Public IP",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "vpc",
+    "searchValue": "",
+    "expectedValue": "vpc.map_public_ip_on_launch should be set to false",
+    "actualValue": "vpc.map_public_ip_on_launch is set undefined",
+    "issueType": "IncorrectValue",
+    "similarityID": "1ff26d60e3bdb62fe483682b5532638ddd54b3ffee63d50db099cdaa9304a925",
+    "search_line": 1
   }
 ]

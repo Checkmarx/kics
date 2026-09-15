@@ -3,24 +3,60 @@
     "queryName": "Global Security Field Is Undefined (v3)",
     "severity": "HIGH",
     "line": 2,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "A default security property should be defined",
+    "actualValue": "A default security property is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "655d306a94183e342f275affbadf53bb7bd1282d2bc90ade1082289859a68596",
+    "search_line": -1
   },
   {
     "queryName": "Global Security Field Is Undefined (v3)",
     "severity": "HIGH",
     "line": 1,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "openapi",
+    "searchValue": "",
+    "expectedValue": "A default security property should be defined",
+    "actualValue": "A default security property is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a7b20a8ae2b5fae9fdc107533f226c15af912fc9a2f44e612651f99d8885263c",
+    "search_line": -1
   },
   {
     "queryName": "Global Security Field Is Undefined (v2)",
     "severity": "HIGH",
     "line": 2,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "swagger",
+    "searchValue": "",
+    "expectedValue": "A default security property should be defined",
+    "actualValue": "A default security property is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "1eca2507e3c7ba5ef9f371cd0ca2185cced3abea0587d5fbc49d6ad6b7ee6530",
+    "search_line": -1
   },
   {
     "queryName": "Global Security Field Is Undefined (v2)",
     "severity": "HIGH",
     "line": 1,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "swagger",
+    "searchValue": "",
+    "expectedValue": "A default security property should be defined",
+    "actualValue": "A default security property is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "e6be9049cb01eeb7dd6679e5e7237bab8560cbd78911ec2bfeb523ae5c91bfa0",
+    "search_line": -1
   }
 ]

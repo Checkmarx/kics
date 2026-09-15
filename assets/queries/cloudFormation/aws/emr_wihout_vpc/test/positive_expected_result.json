@@ -3,12 +3,30 @@
     "queryName": "EMR Without VPC",
     "severity": "LOW",
     "line": 23,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EMR::Cluster",
+    "resourceName": "CFNtest",
+    "searchKey": "Resources.cluster.Properties.Instances",
+    "searchValue": "",
+    "expectedValue": "Resources.cluster.Properties.Instances.Ec2SubnetId should be defined and not null",
+    "actualValue": "Resources.cluster.Properties.Instances.Ec2SubnetId is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "ca37e4be24b563d58bb3b30d5b192de7ff67c6535b1462224ca3e70a5a49944c",
+    "search_line": 23
   },
   {
     "queryName": "EMR Without VPC",
     "severity": "LOW",
     "line": 32,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EMR::Cluster",
+    "resourceName": "CFNtest",
+    "searchKey": "Resources.cluster.Properties.Instances",
+    "searchValue": "",
+    "expectedValue": "Resources.cluster.Properties.Instances.Ec2SubnetId should be defined and not null",
+    "actualValue": "Resources.cluster.Properties.Instances.Ec2SubnetId is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "4c918f4b6a3e7c4f8ab4cd3a1a23345573de924b385b0bd6d851c60a5f07ffc7",
+    "search_line": 32
   }
 ]

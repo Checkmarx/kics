@@ -3,36 +3,90 @@
     "queryName": "API Gateway Method Does Not Contains An API Key",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ApiGateway::Method",
+    "resourceName": "MockMethod",
+    "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
+    "searchValue": "",
+    "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
+    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "6241fbad717dbba4c6cefb42f09f342cbaaab9e2ea0a215cf67afa56817c260b",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ApiGateway::Method",
+    "resourceName": "MockMethod1",
+    "searchKey": "Resources.MockMethod1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MockMethod1.Properties.ApiKeyRequired should be defined",
+    "actualValue": "Resources.MockMethod1.Properties.ApiKeyRequired is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "67e2090621e849457e9f4cf3c4ec0a862243566eda124ef2f148b6e950bc5b73",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "AWS::ApiGateway::Method",
+    "resourceName": "MockMethod",
+    "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
+    "searchValue": "",
+    "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
+    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "0804f6d2e2eda35b338ecefee8ea2bfcc5844c43a771b8dd4ba2f0cd7226ebb3",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
     "severity": "MEDIUM",
     "line": 6,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ApiGateway::Method",
+    "resourceName": "MockMethod1",
+    "searchKey": "Resources.MockMethod1.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.MockMethod1.Properties.ApiKeyRequired should be defined",
+    "actualValue": "Resources.MockMethod1.Properties.ApiKeyRequired is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "497d56f8acec06af844c4e7026caed49a823a7ea0d98af59a29c9cb10c059b47",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
     "severity": "MEDIUM",
     "line": 13,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::ApiGateway::Method",
+    "resourceName": "MockMethod",
+    "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
+    "searchValue": "",
+    "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
+    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "ff2917e65ad56d41b7b827a3b33b5d5b3fdede4584dd14fa185f51760bed75d5",
+    "search_line": -1
   },
   {
     "queryName": "API Gateway Method Does Not Contains An API Key",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "AWS::ApiGateway::Method",
+    "resourceName": "MockMethod",
+    "searchKey": "Resources.MockMethod.Properties.ApiKeyRequired",
+    "searchValue": "",
+    "expectedValue": "Resources.MockMethod.Properties.ApiKeyRequired should be true",
+    "actualValue": "Resources.MockMethod.Properties.ApiKeyRequired is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "8df157e4db2e01b267758c0e5ece466ff0d43561f46c4b96f8189920e85c809b",
+    "search_line": -1
   }
 ]

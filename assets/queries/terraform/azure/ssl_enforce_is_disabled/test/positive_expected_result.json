@@ -2,11 +2,31 @@
   {
     "queryName": "SSL Enforce Disabled",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_server",
+    "resourceName": "example-psqlserver",
+    "searchKey": "azurerm_postgresql_server[positive1].ssl_enforcement_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_server.positive1.ssl_enforcement_enabled' should equal 'true'",
+    "actualValue": "'azurerm_postgresql_server.positive1.ssl_enforcement_enabled' is equal 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "af5c718558c4c0fde8bdddb16a55c8140e0d88a7995c074aa7628bd478767313",
+    "search_line": 18
   },
   {
     "queryName": "SSL Enforce Disabled",
     "severity": "MEDIUM",
-    "line": 22
+    "line": 22,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_server",
+    "resourceName": "example-psqlserver",
+    "searchKey": "azurerm_postgresql_server[positive2].ssl_enforcement_enabled",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_server.positive2.ssl_enforcement_enabled' should equal 'true'",
+    "actualValue": "'azurerm_postgresql_server.positive2.ssl_enforcement_enabled' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "478b127988907b8d33df2bfc12bd419d0511f2f04b726749dcc00ca25cd188f1",
+    "search_line": -1
   }
 ]

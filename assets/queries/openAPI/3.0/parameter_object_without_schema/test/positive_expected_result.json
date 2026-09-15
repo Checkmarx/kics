@@ -3,36 +3,90 @@
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 11,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bbdb6c2320eb080fb83e2c9b79ff28215aedc68ba357af623d9261fd822b346a",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 64,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/user/}}.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "88dadb017358e9267356cd800f527e6889c430632fe204af36705b8f711cda80",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 44,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8a78babec0d47479189ac4bfef814528133f847a4c84fa633cdc9782955fe8d0",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0ee7ac533992138ab8294fa5cc1f58490a36a86f663e38862f389cafa677b910",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 39,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/user/}}.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "94826b271ee96d74d173f161414ad24651f4488ef4415fa7739e43ce444aa9ee",
+    "search_line": 0
   },
   {
     "queryName": "Parameter Object Without Schema",
     "severity": "MEDIUM",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.parameters",
+    "searchValue": "",
+    "expectedValue": "The attribute 'schema' should be set",
+    "actualValue": "The attribute 'schema' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f5f4cb418b25995448bf0cb60efd3f06086a17848bfe26a8e96cbc580d962def",
+    "search_line": 0
   }
 ]

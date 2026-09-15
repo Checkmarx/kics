@@ -3,12 +3,30 @@
     "queryName": "EC2 Instance Using Default Security Group",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "amazon.aws.ec2",
+    "resourceName": "example",
+    "searchKey": "name={{example}}.{{amazon.aws.ec2}}.group",
+    "searchValue": "",
+    "expectedValue": "'group' should not be using default security group",
+    "actualValue": "'group' is using default security group",
+    "issueType": "IncorrectValue",
+    "similarityID": "a8d89a01f009b7e046fd8029b57a068510bad702bd9db795ce84598b3a0ce4b2",
+    "search_line": 7
   },
   {
     "queryName": "EC2 Instance Using Default Security Group",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "amazon.aws.ec2",
+    "resourceName": "example2",
+    "searchKey": "name={{example2}}.{{amazon.aws.ec2}}.group",
+    "searchValue": "",
+    "expectedValue": "'group' should not be using default security group",
+    "actualValue": "'group' is using default security group",
+    "issueType": "IncorrectValue",
+    "similarityID": "8e108b1b048373c56762ecdaa7d581a79c5a3fd9de376c93b6ba7adbb861c21a",
+    "search_line": 8
   }
 ]

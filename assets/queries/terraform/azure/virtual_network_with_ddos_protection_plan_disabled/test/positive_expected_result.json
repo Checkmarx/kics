@@ -3,12 +3,30 @@
     "queryName": "Virtual Network with DDoS Protection Plan disabled",
     "severity": "LOW",
     "line": 18,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_virtual_network",
+    "resourceName": "virtualNetwork1",
+    "searchKey": "azurerm_virtual_network[positive1]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_network[positive1].ddos_protection_plan' should be defined and not null",
+    "actualValue": "'azurerm_virtual_network[positive1].ddos_protection_plan' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "9711e4832b8254fce33e46122af864d830d03f386dadcb8f46703f1181823afa",
+    "search_line": 18
   },
   {
     "queryName": "Virtual Network with DDoS Protection Plan disabled",
     "severity": "LOW",
     "line": 27,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_virtual_network",
+    "resourceName": "virtualNetwork1",
+    "searchKey": "azurerm_virtual_network[positive1].ddos_protection_plan.enable",
+    "searchValue": "",
+    "expectedValue": "'azurerm_virtual_network[positive1].ddos_protection_plan.enable' should be set to true",
+    "actualValue": "'azurerm_virtual_network[positive1].ddos_protection_plan.enable' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "99491bfaedd66a6dfa779817520997fef8c0f401e17b4e88ae52bbf4b664ab81",
+    "search_line": 27
   }
 ]

@@ -3,12 +3,30 @@
     "queryName": "Link JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.links.$ref",
+    "searchValue": "",
+    "expectedValue": "APIWrongRepository from #/components/links/APIWrongRepository should be declared on components.links",
+    "actualValue": "APIWrongRepository from #/components/links/APIWrongRepository is not declared on components.links",
+    "issueType": "MissingAttribute",
+    "similarityID": "57755da269496fd6931c4bfa62b73ed0c0c97469f8666fa67957b17e3da012cc",
+    "search_line": 0
   },
   {
     "queryName": "Link JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 20,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.links.$ref",
+    "searchValue": "",
+    "expectedValue": "APIWrongRepository from #/components/links/APIWrongRepository should be declared on components.links",
+    "actualValue": "APIWrongRepository from #/components/links/APIWrongRepository is not declared on components.links",
+    "issueType": "MissingAttribute",
+    "similarityID": "62a6d999ab8156ef2e5103dc5ff9db9798c2ffd1decc3fdeb5aa53a6a539e359",
+    "search_line": 0
   }
 ]

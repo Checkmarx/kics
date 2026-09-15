@@ -1,26 +1,62 @@
 [
   {
+    "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
+    "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive1.yaml",
-    "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
-    "severity": "MEDIUM"
+    "resourceType": "AWS::ElastiCache::CacheCluster",
+    "resourceName": "myCacheCluster3",
+    "searchKey": "Resources.myCacheCluster3.Properties.AZMode",
+    "searchValue": "",
+    "expectedValue": "Resources.myCacheCluster3.Properties.AZMode is 'cross-az'",
+    "actualValue": "Resources.myCacheCluster3.Properties.AZMode is 'single-az",
+    "issueType": "IncorrectValue",
+    "similarityID": "47cf39490c5f2445a59ff08379d607db9e18ae4c0d9465fdffc79434d728f53c",
+    "search_line": -1
   },
   {
+    "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::ElastiCache::CacheCluster",
+    "resourceName": "myCacheCluster4",
+    "searchKey": "Resources.myCacheCluster4.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.myCacheCluster4.Properties.AZMode should be defined and is 'cross-az'",
+    "actualValue": "Resources.myCacheCluster4.Properties.AZMode is not defined, default value is 'single-az'",
+    "issueType": "MissingAttribute",
+    "similarityID": "8f5c1e2e44b55b104749c518e82cb1460b3a463c622b9245b62b8fa42c5cb6f8",
+    "search_line": -1
+  },
+  {
+    "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
+    "severity": "MEDIUM",
+    "line": 6,
     "fileName": "positive3.json",
-    "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
-    "severity": "MEDIUM",
-    "line": 6
+    "resourceType": "AWS::ElastiCache::CacheCluster",
+    "resourceName": "myCacheCluster5",
+    "searchKey": "Resources.myCacheCluster5.Properties.AZMode",
+    "searchValue": "",
+    "expectedValue": "Resources.myCacheCluster5.Properties.AZMode is 'cross-az'",
+    "actualValue": "Resources.myCacheCluster5.Properties.AZMode is 'single-az",
+    "issueType": "IncorrectValue",
+    "similarityID": "8070523e8dd2d443ce2b689f824adf59e1e668303056301973677ac1ab83dbf0",
+    "search_line": -1
   },
   {
     "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
     "severity": "MEDIUM",
     "line": 5,
-    "fileName": "positive2.yaml"
-  },
-  {
-    "queryName": "ElastiCache Nodes Not Created Across Multi AZ",
-    "severity": "MEDIUM",
-    "line": 5,
-    "fileName": "positive4.json"
+    "fileName": "positive4.json",
+    "resourceType": "AWS::ElastiCache::CacheCluster",
+    "resourceName": "myCacheCluster6",
+    "searchKey": "Resources.myCacheCluster6.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.myCacheCluster6.Properties.AZMode should be defined and is 'cross-az'",
+    "actualValue": "Resources.myCacheCluster6.Properties.AZMode is not defined, default value is 'single-az'",
+    "issueType": "MissingAttribute",
+    "similarityID": "6a5b56eea6302d1bdad01826d54a4ff8f8b224cf7d2e414cd8c1940931f9b3ac",
+    "search_line": -1
   }
 ]

@@ -2,11 +2,31 @@
   {
     "queryName": "Beta - Key Vault Without HSM Protection",
     "severity": "LOW",
-    "line": 4
+    "line": 4,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_key_vault_key",
+    "resourceName": "positive1-certificate",
+    "searchKey": "azurerm_key_vault_key[positive1].key_type",
+    "searchValue": "",
+    "expectedValue": "'azurerm_key_vault_key[positive1].key_type' should be set to an HSM-backed type ('RSA-HSM' or 'EC-HSM')",
+    "actualValue": "'azurerm_key_vault_key[positive1].key_type' is set to 'RSA'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a974f6a5c284cc45236fafdf1b87fafbf4605a7f04e195e7ac3beca475c4813e",
+    "search_line": 4
   },
   {
     "queryName": "Beta - Key Vault Without HSM Protection",
     "severity": "LOW",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_key_vault_key",
+    "resourceName": "positive2-certificate",
+    "searchKey": "azurerm_key_vault_key[positive2].key_type",
+    "searchValue": "",
+    "expectedValue": "'azurerm_key_vault_key[positive2].key_type' should be set to an HSM-backed type ('RSA-HSM' or 'EC-HSM')",
+    "actualValue": "'azurerm_key_vault_key[positive2].key_type' is set to 'EC'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a09804231c604faab0922d110033fc77d4eea3ddc4a7e0d6fa894d3257f1fb42",
+    "search_line": 11
   }
 ]

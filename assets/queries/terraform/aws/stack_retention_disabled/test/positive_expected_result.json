@@ -2,11 +2,31 @@
   {
     "queryName": "Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudformation_stack_set_instance",
+    "resourceName": "positive1",
+    "searchKey": "aws_cloudformation_stack_set_instance[positive1].retain_stack",
+    "searchValue": "",
+    "expectedValue": "aws_cloudformation_stack_set_instance[positive1].retain_stack should be true ",
+    "actualValue": "aws_cloudformation_stack_set_instance[positive1].retain_stack is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "95237a7cac7e3e9b4df62d8f85acc0f2dab83d7eea8537fd63fcf7957cb4d1d1",
+    "search_line": 5
   },
   {
     "queryName": "Stack Retention Disabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudformation_stack_set_instance",
+    "resourceName": "positive2",
+    "searchKey": "aws_cloudformation_stack_set_instance[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_cloudformation_stack_set_instance[positive2].retain_stack should be defined and not null",
+    "actualValue": "aws_cloudformation_stack_set_instance[positive2].retain_stack is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "d036846a45b2af2cfab916932449e08a8bda48a1f0769a319624843d5ce75eb9",
+    "search_line": 8
   }
 ]

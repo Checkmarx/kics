@@ -3,12 +3,30 @@
     "queryName": "ECR Repository Is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 6,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository3.Properties.RepositoryPolicyText",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository3.Properties.RepositoryPolicyText.Statement.Principal shouldn't contain '*'",
+    "actualValue": "Resources.MyRepository3.Properties.RepositoryPolicyText.Statement.Principal contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "69ab6fbc517ca1eb6e30f2d2056c15c35e90ae5def0faf767c97aad5045e39ae",
+    "search_line": -1
   },
   {
     "queryName": "ECR Repository Is Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::ECR::Repository",
+    "resourceName": "test-repository",
+    "searchKey": "Resources.MyRepository4.Properties.RepositoryPolicyText",
+    "searchValue": "",
+    "expectedValue": "Resources.MyRepository4.Properties.RepositoryPolicyText.Statement.Principal shouldn't contain '*'",
+    "actualValue": "Resources.MyRepository4.Properties.RepositoryPolicyText.Statement.Principal contains '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9782e41ce5767e9fe87f927eae83e93eed1f42e33688db199bb8a88f5559be11",
+    "search_line": -1
   }
 ]

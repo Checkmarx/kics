@@ -3,36 +3,90 @@
     "queryName": "API Key Exposed In Global Security Scheme",
     "severity": "LOW",
     "line": 52,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "91d441f944df43a0df44e2f20ac3bd1b548ba3a09593a77174ba272f8f816d9b",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
     "severity": "LOW",
     "line": 57,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey2",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "818fbfb81a4755e18f33eb50c8b0ce56fc648b89276c333a85f47bc8670d5f34",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
     "severity": "LOW",
     "line": 62,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "f6304b0912536270a1cc603c884feb61328896dcef3359170c7b3791aa7c405c",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
     "severity": "LOW",
     "line": 31,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey1",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "a8d3432a58d75cac92c15f4b2145489f5cbe0c2f05a10e5eb5faec1857399783",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
     "severity": "LOW",
     "line": 35,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey2",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "80a472f25b6268b1719e2216d139b5472e00149d6d2368f60bca1e15ca638848",
+    "search_line": -1
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
     "severity": "LOW",
     "line": 39,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.securitySchemes.apiKey3",
+    "searchValue": "",
+    "expectedValue": "The API Key should not be transported over network",
+    "actualValue": "The API Key is transported over network",
+    "issueType": "IncorrectValue",
+    "similarityID": "8dc9b27302b1b9c82565f732cd4c8d279c0864a860d15bdddf655860cdfef765",
+    "search_line": -1
   }
 ]
