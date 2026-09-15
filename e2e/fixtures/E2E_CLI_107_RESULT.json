@@ -41,7 +41,7 @@
 			"description_id": "eb49caf6",
 			"files": [
 				{
-					"file_name": "../test/fixtures/dockerfile/Dockerfile-multistage",
+					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
 					"similarity_id": "e0cc899d6063499dce7aacd0e5066d90814d20d4dad1f2fa4a1d98a702580c27",
 					"line": 14,
 					"issue_type": "MissingAttribute",
@@ -67,7 +67,7 @@
 			"description_id": "0aedd324",
 			"files": [
 				{
-					"file_name": "../test/fixtures/dockerfile/Dockerfile-multistage",
+					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
 					"similarity_id": "f8cabeec45dc2edd470d45d6543ecc5bac5b09c8b35cba279cb8207f2b1cdf0e",
 					"line": 10,
 					"issue_type": "IncorrectValue",
@@ -93,7 +93,7 @@
 			"description_id": "22f535ec",
 			"files": [
 				{
-					"file_name": "../test/fixtures/dockerfile/Dockerfile-multistage",
+					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
 					"similarity_id": "06b953dceec60604cf2a711f47881c02eb885bdedf60c45407e8758ed15077b0",
 					"line": 5,
 					"issue_type": "IncorrectValue",
@@ -104,7 +104,7 @@
 					"actual_value": "FROM ubuntu:latest'"
 				},
 				{
-					"file_name": "../test/fixtures/dockerfile/Dockerfile-multistage",
+					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
 					"similarity_id": "a3fae7ccb13dae345e887d52644723e8c06356a256f3b07f0439a1442bced16b",
 					"line": 13,
 					"issue_type": "IncorrectValue",
@@ -115,7 +115,7 @@
 					"actual_value": "FROM ubuntu:latest'"
 				},
 				{
-					"file_name": "../test/fixtures/dockerfile/Dockerfile-multistage",
+					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
 					"similarity_id": "315fc0c1f9d2021eb6cb413a41fc7b3965c75d597bb237a81d3de20e21783d86",
 					"line": 14,
 					"issue_type": "IncorrectValue",
@@ -126,7 +126,7 @@
 					"actual_value": "FROM ubuntu:latest'"
 				},
 				{
-					"file_name": "../test/fixtures/dockerfile/Dockerfile-multistage",
+					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
 					"similarity_id": "e4cf37cfb28bfc52e922956603e02624ca42a3d7a313929a68f05f93851f43b3",
 					"line": 1,
 					"issue_type": "IncorrectValue",
@@ -152,7 +152,7 @@
 			"description_id": "29e8216b",
 			"files": [
 				{
-					"file_name": "../test/fixtures/dockerfile/Dockerfile-multistage",
+					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
 					"similarity_id": "8791eda76aa32c6d4197f5c4f4c047c04addda0d095cd754e0c9075a631f73db",
 					"line": 7,
 					"issue_type": "IncorrectValue",
@@ -178,7 +178,7 @@
 			"description_id": "426121ee",
 			"files": [
 				{
-					"file_name": "../test/fixtures/dockerfile/Dockerfile-multistage",
+					"file_name": "path/test/fixtures/dockerfile/Dockerfile-multistage",
 					"similarity_id": "ee9060e3e140fff3005d0fe32124d5955b85410f19adbed976965da7c7628a42",
 					"line": 14,
 					"issue_type": "MissingAttribute",
