@@ -2,6 +2,7 @@ package docker
 
 import (
 	"fmt"
+	"sync"
 	"testing"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
@@ -146,4 +147,38 @@ func TestDetectDockerLine(t *testing.T) { //nolint
 			require.Equal(t, testCase.expected, v)
 		})
 	}
+}
+
+// TestDetectDockerLineConcurrentAccess reproduces the data race triggered when multiple
+// queries run in parallel (as the Inspector's worker pool does) and call DetectLine for the
+// same file at the same time. DetectLine's prepareDockerFileLines/multiLineSpliter mutate the
+// slice behind file.LinesOriginalData in place and that pointer is shared across every query
+// that scans the same file, so concurrent calls race on it and can panic with
+// "runtime error: slice bounds out of range [:-1]".
+func TestDetectDockerLineConcurrentAccess(t *testing.T) {
+	file := &model.FileMetadata{
+		ScanID:            "TestConcurrent",
+		ID:                "TestConcurrent",
+		Kind:              model.KindDOCKER,
+		OriginalData:      OriginalData1,
+		LinesOriginalData: utils.SplitLines(OriginalData1),
+	}
+
+	searchKeys := []string{
+		"FROM={{alpine:3.9}}.RUN={{apk update && apk upgrade && apk add kubectl=1.20.0-r0 	&& rm -rf /var/cache/apk/*}}",
+		"FROM={{alpine:3.7}}.ENTRYPOINT[kubectl]",
+		"FROM={{alpine:3.9}}.ENTRYPOINT[kubectl]",
+	}
+
+	var wg sync.WaitGroup
+	for g := 0; g < 50; g++ {
+		searchKey := searchKeys[g%len(searchKeys)]
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			detector := DetectKindLine{}
+			detector.DetectLine(file, searchKey, 3, &zerolog.Logger{})
+		}()
+	}
+	wg.Wait()
 }
