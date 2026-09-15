@@ -56,7 +56,19 @@
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
-    "line": 12,
+    "line": 4,
+    "filename": "positive5.dockerfile"
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive5.dockerfile"
+  },
+  {
+    "queryName": "Unpinned Package Version in Pip Install",
+    "severity": "MEDIUM",
+    "line": 18,
     "filename": "positive5.dockerfile"
   }
 ]
