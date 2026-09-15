@@ -1,0 +1,6 @@
+from urllib import request
+
+def main():
+    print("Dockerfile sample")
+
+
