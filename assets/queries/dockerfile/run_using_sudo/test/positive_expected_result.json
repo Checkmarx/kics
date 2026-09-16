@@ -10,5 +10,23 @@
 		"severity": "MEDIUM",
 		"line": 3,
 		"fileName": "positive2.dockerfile"
+	},
+	{
+		"queryName": "Run Using Sudo",
+		"severity": "MEDIUM",
+		"line": 3,
+		"fileName": "positive3.dockerfile"
+	},
+	{
+		"queryName": "Run Using Sudo",
+		"severity": "MEDIUM",
+		"line": 3,
+		"fileName": "positive4.dockerfile"
+	},
+	{
+		"queryName": "Run Using Sudo",
+		"severity": "MEDIUM",
+		"line": 4,
+		"fileName": "positive4.dockerfile"
 	}
 ]
