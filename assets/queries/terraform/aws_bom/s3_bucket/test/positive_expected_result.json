@@ -3,60 +3,150 @@
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "ae59dd3361aab4ee65ffda5198d9b83facb55d0df7f4271eafdffd47b7d9037b",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "17fead1c9a7e6c42011b7770e7961e3ea05240ef6aa29e57a90f1486be6e973e",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "e4f33a80b0ce604167458d237fd03a2f290a5688ca0694ef0747f622bee0ec99",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "76caedbca4541ea93cdb53fd7d696f9e8518cf4cc8ad85c24964fefa6868a395",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive5]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "48153bdded8d71ed03243e7351dd63e8c421f5a0c187a8a1156c02692d08761d",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive6.tf"
+    "fileName": "positive6.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive6]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "49ad34f21d7f5465be124159b80ea0606998687749904acf0581dd54dccaca51",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive7.tf"
+    "fileName": "positive7.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive7]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "f83c1d69d87fd1fa38d2f74aef2d131cf2ca7ca450dd448553aa4486f838744e",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive8.tf"
+    "fileName": "positive8.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive8]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "bdd8172c4b6550e6285493f60ec4c96a9a9899457bdc423012a26a3309da538b",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive9.tf"
+    "fileName": "positive9.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive9]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "c81cfe203fef3cc272763c4729e0b3bb929269ec2f43ebf601c994a25e080812",
+    "search_line": 14
   },
   {
     "queryName": "BOM - AWS S3 Buckets",
     "severity": "TRACE",
     "line": 14,
-    "fileName": "positive10.tf"
+    "fileName": "positive10.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_s3_bucket[positive10]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "82a5a7413175526f5fd0456ba0f519d4ce4bad85eedd40351c98e55c2d361277",
+    "search_line": 14
   }
 ]

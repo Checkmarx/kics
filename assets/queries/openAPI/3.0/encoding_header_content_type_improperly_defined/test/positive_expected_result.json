@@ -3,24 +3,60 @@
     "queryName": "Encoding Header 'Content-Type' Improperly Defined",
     "severity": "INFO",
     "line": 70,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} should not define 'Content-Type' in the 'headers' field",
+    "actualValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field",
+    "issueType": "IncorrectValue",
+    "similarityID": "599394eb34e6b20f90881fa53bf899d6853615c2bf29cd1bac27d0b7f9c962cc",
+    "search_line": -1
   },
   {
     "queryName": "Encoding Header 'Content-Type' Improperly Defined",
     "severity": "INFO",
     "line": 36,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} should not define 'Content-Type' in the 'headers' field",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field",
+    "issueType": "IncorrectValue",
+    "similarityID": "8736f7085ed38a195a08a6a5e2270d472b932575240ac3248d8dd51f67a4f78f",
+    "search_line": -1
   },
   {
     "queryName": "Encoding Header 'Content-Type' Improperly Defined",
     "severity": "INFO",
     "line": 42,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}}",
+    "searchValue": "",
+    "expectedValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} should not define 'Content-Type' in the 'headers' field",
+    "actualValue": "components.responses.{{ResponseExample}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field",
+    "issueType": "IncorrectValue",
+    "similarityID": "d2c9e2baef555ead5b5d356ff14df1063490f91eb54efbdb186ac32b126bb86b",
+    "search_line": -1
   },
   {
     "queryName": "Encoding Header 'Content-Type' Improperly Defined",
     "severity": "INFO",
     "line": 26,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} should not define 'Content-Type' in the 'headers' field",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.content.{{application/json}}.encoding.{{profileImage}} defines 'Content-Type' in the 'headers' field",
+    "issueType": "IncorrectValue",
+    "similarityID": "c369be5d49348bb857ad87a28c0d639eb4bf49ba281b274cf003a2c6f5fb76ab",
+    "search_line": -1
   }
 ]

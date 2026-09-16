@@ -2,6 +2,16 @@
   {
     "queryName": "Lambda Function Without Tags",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.lambda",
+    "resourceName": "add tags",
+    "searchKey": "name={{add tags}}.{{community.aws.lambda}}",
+    "searchValue": "",
+    "expectedValue": "name={{add tags}}.{{community.aws.lambda}}.tags should be defined",
+    "actualValue": "name={{add tags}}.{{community.aws.lambda}}.tags is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "bbd60374ff8fb117e47531aeb0ac5b95ad42068b88934f3a3e9f83e849ef9e14",
+    "search_line": -1
   }
 ]

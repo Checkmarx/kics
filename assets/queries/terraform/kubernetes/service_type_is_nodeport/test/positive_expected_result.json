@@ -2,6 +2,16 @@
   {
     "queryName": "Service Type is NodePort",
     "severity": "LOW",
-    "line": 15
+    "line": 15,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_service",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_service[example].spec.type",
+    "searchValue": "",
+    "expectedValue": "kubernetes_service[example].spec.type should not be 'NodePort'",
+    "actualValue": "kubernetes_service[example].spec.type is 'NodePort'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1fd2d4b4558d6810f680c8389d5f8ec39ddd8dea950a7b73e44105dab9af4c4a",
+    "search_line": -1
   }
 ]

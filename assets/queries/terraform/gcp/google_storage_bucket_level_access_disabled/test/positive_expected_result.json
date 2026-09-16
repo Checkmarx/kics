@@ -2,11 +2,31 @@
   {
     "queryName": "Google Storage Bucket Level Access Disabled",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.tf",
+    "resourceType": "google_storage_bucket",
+    "resourceName": "image-store.com",
+    "searchKey": "google_storage_bucket[positive1].uniform_bucket_level_access",
+    "searchValue": "",
+    "expectedValue": "google_storage_bucket[positive1].uniform_bucket_level_access should be true",
+    "actualValue": "google_storage_bucket[positive1].uniform_bucket_level_access is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1d05855e8c12ba6b24568001ce8571aa837f993fd41a992beb113cce53338ee5",
+    "search_line": 6
   },
   {
     "queryName": "Google Storage Bucket Level Access Disabled",
     "severity": "HIGH",
-    "line": 20
+    "line": 20,
+    "fileName": "positive.tf",
+    "resourceType": "google_storage_bucket",
+    "resourceName": "image-store.com",
+    "searchKey": "google_storage_bucket[positive2]",
+    "searchValue": "",
+    "expectedValue": "google_storage_bucket[positive2].uniform_bucket_level_access should be defined and not null",
+    "actualValue": "google_storage_bucket[positive2].uniform_bucket_level_access is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "c887224f8e46044a8e7c0907d50607bbe28b471b045e888cd9f6d59244bab1cd",
+    "search_line": 20
   }
 ]

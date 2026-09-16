@@ -2,11 +2,31 @@
   {
     "queryName": "Monitoring Log Profile Without All Activities",
     "severity": "MEDIUM",
-    "line": 9
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_monitorlogprofile",
+    "resourceName": "Create a log profile",
+    "searchKey": "name={{Create a log profile}}.{{azure_rm_monitorlogprofile}}.categories",
+    "searchValue": "",
+    "expectedValue": "azure_rm_monitorlogprofile.categories should have all categories, Write, Action and Delete",
+    "actualValue": "azure_rm_monitorlogprofile.categories does not have all categories, Write, Action and Delete",
+    "issueType": "IncorrectValue",
+    "similarityID": "6c5e34aca79b5fa89b7744de0ba734d8bc229191250d16a5d7112f9e070c019c",
+    "search_line": -1
   },
   {
     "queryName": "Monitoring Log Profile Without All Activities",
     "severity": "MEDIUM",
-    "line": 21
+    "line": 21,
+    "fileName": "positive.yaml",
+    "resourceType": "azure_rm_monitorlogprofile",
+    "resourceName": "Create a log profile2",
+    "searchKey": "name={{Create a log profile2}}.{{azure_rm_monitorlogprofile}}",
+    "searchValue": "",
+    "expectedValue": "azure_rm_monitorlogprofile.categories should be defined",
+    "actualValue": "azure_rm_monitorlogprofile.categories is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "64b991d215c4488712fcddc0c04ac7bfd8b7e828ce0805bc5675d29a7b65a40f",
+    "search_line": -1
   }
 ]

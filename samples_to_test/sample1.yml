@@ -1,0 +1,76 @@
+name: 50 Format Request
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions: {}
+
+jobs:
+  format-request:
+    runs-on: ubuntu-latest
+    # Only run when /format comment is made on a PR
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/format')
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Get PR information
+        id: pr_info
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            const prNumber = context.payload.issue.number;
+            // Get PR details
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+            const prHeadSha = pr.head.sha;
+            const prHeadRef = pr.head.ref;
+            core.setOutput('pr_number', prNumber.toString());
+            core.setOutput('pr_head_sha', prHeadSha);
+            core.setOutput('pr_head_ref', prHeadRef);
+            return {
+              prNumber,
+              prHeadSha,
+              prHeadRef
+            };
+      - name: Save format request data
+        run: |
+          mkdir -p ./format-request
+          echo "${{ steps.pr_info.outputs.pr_number }}" > ./format-request/pr_number
+          echo "${{ steps.pr_info.outputs.pr_head_sha }}" > ./format-request/pr_head_sha
+          echo "${{ steps.pr_info.outputs.pr_head_ref }}" > ./format-request/pr_head_ref
+      - name: Set requester login for format request
+        run: |
+          requester_login="${{ github.event.comment.user.login }}"
+          # Validate and sanitize requester (GitHub username format)
+          # Only allow alphanumeric characters, hyphens, and underscores (valid GitHub username format)
+          if [[ "$requester_login" =~ ^[a-zA-Z0-9_-]+$ ]] && [ ${#requester_login} -le 39 ]; then
+            echo "$requester_login" > ./format-request/requester
+          else
+            echo "github-actions" > ./format-request/requester
+          fi
+      - name: Upload format request artifact
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.2
+        with:
+          name: format-request
+          path: format-request/
+          retention-days: 1
+
+      - name: Acknowledge format request
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: ${{ steps.pr_info.outputs.pr_number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🤖 **Format Request Received**
+              @${{ github.event.comment.user.login }} Your format request has been queued. The formatting will be applied shortly by an automated workflow.
+              Please wait for the next workflow to complete...`
+            });

@@ -2,16 +2,46 @@
   {
     "queryName": "Node Auto Upgrade Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_node_pool",
+    "resourceName": "create a node pool",
+    "searchKey": "name={{create a node pool}}.{{google.cloud.gcp_container_node_pool}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_node_pool.management should be defined",
+    "actualValue": "gcp_container_node_pool.management is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "30b164e770fd544547d8d21a28e3a0e995e142a59a5124a279c22e520756edd6",
+    "search_line": -1
   },
   {
     "queryName": "Node Auto Upgrade Disabled",
     "severity": "MEDIUM",
-    "line": 22
+    "line": 22,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_node_pool",
+    "resourceName": "create a second node pool",
+    "searchKey": "name={{create a second node pool}}.{{google.cloud.gcp_container_node_pool}}.management",
+    "searchValue": "",
+    "expectedValue": "gcp_container_node_pool.management.auto_upgrade should be defined",
+    "actualValue": "gcp_container_node_pool.management.auto_upgrade is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "a934dc6142332c81a1f9e1957d7c33fe2d73bffb936f2c05c803ba53962819b6",
+    "search_line": -1
   },
   {
     "queryName": "Node Auto Upgrade Disabled",
     "severity": "MEDIUM",
-    "line": 36
+    "line": 36,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_node_pool",
+    "resourceName": "create a third node pool",
+    "searchKey": "name={{create a third node pool}}.{{google.cloud.gcp_container_node_pool}}.management.auto_upgrade",
+    "searchValue": "",
+    "expectedValue": "gcp_container_node_pool.management.auto_upgrade should be true",
+    "actualValue": "gcp_container_node_pool.management.auto_upgrade is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "76139c31160692548ca5b1a29edf1813a23bb59623f28d32dc710b74e12f5236",
+    "search_line": -1
   }
 ]

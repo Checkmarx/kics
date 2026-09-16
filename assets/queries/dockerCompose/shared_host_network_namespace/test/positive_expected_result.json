@@ -1,9 +1,17 @@
 [
-    {
-      "queryName": "Shared Host Network Namespace",
-      "severity": "MEDIUM",
-      "line": 11,
-      "filename": "positive1.yaml"
-    }
-  ]
-  
+  {
+    "queryName": "Shared Host Network Namespace",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.mongo.network_mode",
+    "searchValue": "",
+    "expectedValue": "There shouldn't be network mode declared as host",
+    "actualValue": "There is a network mode declared as host",
+    "issueType": "IncorrectValue",
+    "similarityID": "3288abc6fc17e8a1e384ee7211d398c639e65b5797593d668ddc3ccbc758f893",
+    "search_line": 11
+  }
+]

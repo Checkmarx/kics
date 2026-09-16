@@ -3,6 +3,15 @@
     "queryName": "Beta - Container Group Managed Identity Disabled",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_container_group",
+    "resourceName": "example-continst",
+    "searchKey": "azurerm_container_group[positive]",
+    "searchValue": "",
+    "expectedValue": "'type' field should have the values 'SystemAssigned' and 'UserAssigned' defined inside the 'identity' block",
+    "actualValue": "'identity' block is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d1adb26b442b49551b4d0dba9667968cc04d95808dc757aaa9e36c8e85c1ad3e",
+    "search_line": 1
   }
 ]

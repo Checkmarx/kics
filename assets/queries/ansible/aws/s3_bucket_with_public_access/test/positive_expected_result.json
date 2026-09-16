@@ -2,11 +2,31 @@
   {
     "queryName": "S3 Bucket With Public Access",
     "severity": "CRITICAL",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.aws_s3",
+    "resourceName": "Create an empty bucket",
+    "searchKey": "name={{Create an empty bucket}}.{{amazon.aws.aws_s3}}.permission",
+    "searchValue": "",
+    "expectedValue": "aws_s3.permission shouldn't allow public access",
+    "actualValue": "aws_s3.permission allows public access",
+    "issueType": "IncorrectValue",
+    "similarityID": "3080144d83c22aad16294e40ec0a37f8463a6b4397f6a3f2f497a8a0bf61db9b",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket With Public Access",
     "severity": "CRITICAL",
-    "line": 11
+    "line": 11,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.aws_s3",
+    "resourceName": "Create an empty bucket 01",
+    "searchKey": "name={{Create an empty bucket 01}}.{{amazon.aws.aws_s3}}.permission",
+    "searchValue": "",
+    "expectedValue": "aws_s3.permission shouldn't allow public access",
+    "actualValue": "aws_s3.permission allows public access",
+    "issueType": "IncorrectValue",
+    "similarityID": "c5b7271a9109beca9129a140ce2ccd0992ffc373325bbd8ca5491d55752df3ee",
+    "search_line": -1
   }
 ]

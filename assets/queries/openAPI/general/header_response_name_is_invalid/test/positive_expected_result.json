@@ -3,36 +3,90 @@
     "queryName": "Header Response Name Is Invalid (v3)",
     "severity": "INFO",
     "line": 42,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers.{{Content-Type}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers should not contain 'Content-Type'",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers contains 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c9dbfd94f9c35835a0fd515c8726482d2e6e2b8448a46b20173d33d8c430d927",
+    "search_line": 0
   },
   {
     "queryName": "Header Response Name Is Invalid (v3)",
     "severity": "INFO",
     "line": 28,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Header Response Name Is Invalid (v2)",
-    "severity": "INFO",
-    "line": 32,
-    "filename": "positive3.json"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers.{{Content-Type}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers should not contain 'Content-Type'",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{6xx}}.headers contains 'Content-Type'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e1668ca54064b9decdd07dc7c738b8b038167265e0b4a25a324b475dd8d6424b",
+    "search_line": 0
   },
   {
     "queryName": "Header Response Name Is Invalid (v2)",
     "severity": "INFO",
     "line": 14,
-    "filename": "positive3.json"
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.$ref=#/responses/Success",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers should not contain 'Accept'",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers contains 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "f1a2101d74d09cb56bfdeac88c12161581c58d6349523eba949d4bc6f58573d6",
+    "search_line": 0
   },
   {
     "queryName": "Header Response Name Is Invalid (v2)",
     "severity": "INFO",
-    "line": 21,
-    "filename": "positive4.yaml"
+    "line": 32,
+    "fileName": "positive3.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{Success}}.headers.{{Accept}}",
+    "searchValue": "",
+    "expectedValue": "responses.{{Success}}.headers should not contain 'Accept'",
+    "actualValue": "responses.{{Success}}.headers contains 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "07ce252d6c2a164792456076cd421f6d7b8fb4a639fa417826d4b88591b1e6af",
+    "search_line": 0
   },
   {
     "queryName": "Header Response Name Is Invalid (v2)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.$ref=#/responses/Success",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers should not contain 'Accept'",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.headers contains 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "cf7c4d96bcf9f29128643d112497d6121f6133aa41d02041a2f8286f9c170a72",
+    "search_line": 0
+  },
+  {
+    "queryName": "Header Response Name Is Invalid (v2)",
+    "severity": "INFO",
+    "line": 21,
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "responses.{{Success}}.headers.{{Accept}}",
+    "searchValue": "",
+    "expectedValue": "responses.{{Success}}.headers should not contain 'Accept'",
+    "actualValue": "responses.{{Success}}.headers contains 'Accept'",
+    "issueType": "IncorrectValue",
+    "similarityID": "bfa3dfde064e9a1dfc8099a11be1f09f6e623c036be89a7530bbc8d9adf10b29",
+    "search_line": 0
   }
 ]

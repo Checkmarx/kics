@@ -3,18 +3,45 @@
     "queryName": "ECS Cluster with Container Insights Disabled",
     "severity": "LOW",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::ECS::Cluster",
+    "resourceName": "ECSCluster",
+    "searchKey": "Resources.ECSCluster.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.ECSCluster.Properties.ClusterSettings should be defined and have a ClusterSetting named containerInsights which value is 'enabled'",
+    "actualValue": "Resources.ECSCluster.Properties.ClusterSettings is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7393462de6827b647ad910ef131a55aadcbedf56544fbf64926cca626986c2ff",
+    "search_line": 4
   },
   {
+    "queryName": "ECS Cluster with Container Insights Disabled",
     "severity": "LOW",
     "line": 7,
     "fileName": "positive2.json",
-    "queryName": "ECS Cluster with Container Insights Disabled"
+    "resourceType": "AWS::ECS::Cluster",
+    "resourceName": "ECSCluster",
+    "searchKey": "Resources.ECSCluster.Properties.ClusterSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.ECSCluster.Properties.ClusterSettings should have a ClusterSetting named 'containerInsights' which value is 'enabled'",
+    "actualValue": "Resources.ECSCluster.Properties.ClusterSettings hasn't got a ClusterSetting named 'containerInsights' which value is 'enabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d20b4d06d6739a8a5d1db0a735606e3352ab27fd3aff29edd95b3bb71326ed8e",
+    "search_line": 7
   },
   {
+    "queryName": "ECS Cluster with Container Insights Disabled",
     "severity": "LOW",
     "line": 7,
     "fileName": "positive3.json",
-    "queryName": "ECS Cluster with Container Insights Disabled"
+    "resourceType": "AWS::ECS::Cluster",
+    "resourceName": "ECSCluster",
+    "searchKey": "Resources.ECSCluster.Properties.ClusterSettings",
+    "searchValue": "",
+    "expectedValue": "Resources.ECSCluster.Properties.ClusterSettings should have a ClusterSetting named 'containerInsights' which value is 'enabled'",
+    "actualValue": "Resources.ECSCluster.Properties.ClusterSettings hasn't got a ClusterSetting named 'containerInsights' which value is 'enabled'",
+    "issueType": "IncorrectValue",
+    "similarityID": "944129039c33d90c4cc22c9cd003cba3fcb365942ab76c04ffb4487edeec0844",
+    "search_line": 7
   }
 ]

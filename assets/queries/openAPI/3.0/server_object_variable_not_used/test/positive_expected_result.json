@@ -3,24 +3,60 @@
     "queryName": "Server Object Variable Not Used",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is not used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9216c5aa573713b302d50970e9c632fcaac274935bd5102ffc9f1117d9685123",
+    "search_line": 38
   },
   {
     "queryName": "Server Object Variable Not Used",
     "severity": "INFO",
     "line": 35,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.variables.{{base}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is used in 'paths.{{/}}.{{get}}.servers.{{0}}.url'",
+    "actualValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is not used in 'paths.{{/}}.{{get}}.servers.{{0}}.url '",
+    "issueType": "IncorrectValue",
+    "similarityID": "e3e651a5fcdecae68edf67b8b9ae3890c42000b164a22846c68a3ba8fb3d6fa9",
+    "search_line": 35
   },
   {
     "queryName": "Server Object Variable Not Used",
     "severity": "INFO",
     "line": 30,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'",
+    "actualValue": "paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.variables.{{another}} is not used in 'paths.{{/}}.{{get}}.responses.{{200}}.links.{{address}}.server.url'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b42dbd747ef17e6c673c5abe398338fc5b5d0430932ac1b33c93d0123ae0437e",
+    "search_line": 30
   },
   {
     "queryName": "Server Object Variable Not Used",
     "severity": "INFO",
     "line": 25,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.servers.variables.{{base}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is used in 'paths.{{/}}.{{get}}.servers.{{0}}.url'",
+    "actualValue": "paths.{{/}}.{{get}}.servers.variables.{{base}} is not used in 'paths.{{/}}.{{get}}.servers.{{0}}.url '",
+    "issueType": "IncorrectValue",
+    "similarityID": "2ad2ecc5d84cfca0e76dff631661e5b6d86f49ae920dd59725a5e23761d7505b",
+    "search_line": 25
   }
 ]

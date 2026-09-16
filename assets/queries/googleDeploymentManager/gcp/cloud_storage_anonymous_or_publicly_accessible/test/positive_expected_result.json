@@ -3,36 +3,90 @@
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties",
+    "searchValue": "acl",
+    "expectedValue": "'acl' should be defined",
+    "actualValue": "'acl' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "e68769162328da212b6f181d3e1edbc9693ab47fe484fa69947c0bd60a256f6e",
+    "search_line": 4
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
     "line": 4,
-    "filename": "positive1.yaml"
-  },
-  {
-    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
-    "severity": "CRITICAL",
-    "line": 7,
-    "filename": "positive2.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties",
+    "searchValue": "defaultObjectAcl",
+    "expectedValue": "'defaultObjectAcl' should be defined",
+    "actualValue": "'defaultObjectAcl' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "0a866bca32390f0d72a557f05647e79854a537dce30706512b43a5da893c1b65",
+    "search_line": 4
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
     "line": 4,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties",
+    "searchValue": "acl",
+    "expectedValue": "'acl' should be defined",
+    "actualValue": "'acl' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "99e261331c703a01537a4bf5e011ea241c58e8ddc76b39f71a8e8e2c81fba6fc",
+    "search_line": 4
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
     "line": 7,
-    "filename": "positive3.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties.defaultObjectAcl[0].entity",
+    "searchValue": "",
+    "expectedValue": "properties.defaultObjectAcl[0].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "actualValue": "properties.defaultObjectAcl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "77b3567439ad4317bb53e21561fe890a1a640e6806d75bfcada5cdcd21766343",
+    "search_line": 7
+  },
+  {
+    "queryName": "Cloud Storage Anonymous or Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 7,
+    "fileName": "positive3.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties.acl[0].entity",
+    "searchValue": "",
+    "expectedValue": "properties.acl[0].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "actualValue": "properties.acl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8e727922727136b9ae5ef0c26ede02151c2ca750b2029e1bfb812995e246f580",
+    "search_line": 7
   },
   {
     "queryName": "Cloud Storage Anonymous or Publicly Accessible",
     "severity": "CRITICAL",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "storage.v1.bucket",
+    "resourceName": "storage-bucket",
+    "searchKey": "resources.name={{storage-bucket}}.properties.defaultObjectAcl[0].entity",
+    "searchValue": "",
+    "expectedValue": "properties.defaultObjectAcl[0].entity should not equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "actualValue": "properties.defaultObjectAcl[0].entity is equal to 'allUsers' or 'AllAuthenticatedUsers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "43a2ec8f7383a09c241c4b5d49c1fe3995a00d2907d9d398fc6bd57f9db6c7ca",
+    "search_line": 10
   }
 ]

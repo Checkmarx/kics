@@ -3,12 +3,30 @@
     "queryName": "ActionTrail Trail OSS Bucket is Publicly Accessible",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive2.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "actiontrail3",
+    "searchKey": "alicloud_oss_bucket[actiontrail3].acl",
+    "searchValue": "",
+    "expectedValue": "'alicloud_oss_bucket[actiontrail3].oss_bucket_name' is private",
+    "actualValue": "'alicloud_oss_bucket[actiontrail3].oss_bucket_name' is public-read",
+    "issueType": "IncorrectValue",
+    "similarityID": "a8c7414f4fa1f4da6ea837cf9d2abe1cdd991077f1c14b3942b36e842e1fb634",
+    "search_line": -1
   },
   {
     "queryName": "ActionTrail Trail OSS Bucket is Publicly Accessible",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive1.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_oss_bucket",
+    "resourceName": "actiontrail4",
+    "searchKey": "alicloud_oss_bucket[actiontrail4].acl",
+    "searchValue": "",
+    "expectedValue": "'alicloud_oss_bucket[actiontrail4].oss_bucket_name' is private",
+    "actualValue": "'alicloud_oss_bucket[actiontrail4].oss_bucket_name' is public-read-write",
+    "issueType": "IncorrectValue",
+    "similarityID": "990cd0dfdd6900cac5b70d7e9f94ac52cd1a5b7376d3106470a36453c81f3f69",
+    "search_line": -1
   }
 ]

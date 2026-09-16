@@ -2,6 +2,16 @@
   {
     "queryName": "Missing Dnf Clean All",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{fedora:27}}.RUN={{set -uex &&     dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo &&     sed -i 's/\\$releasever/26/g' /etc/yum.repos.d/docker-ce.repo &&     dnf install -vy docker-ce}}",
+    "searchValue": "",
+    "expectedValue": "After installing a package with dnf, command 'dnf clean all' should run.",
+    "actualValue": "Command `dnf clean all` is not being run after installing packages.",
+    "issueType": "IncorrectValue",
+    "similarityID": "bcae7b5b1f7613639d298e24bf27c4820c15d30681b5e3cb4d8f6fb55deae141",
+    "search_line": -1
   }
 ]

@@ -1,7 +1,17 @@
 [
   {
-    "line": 9,
     "queryName": "Batch Job Definition With Privileged Container Properties",
-    "severity": "HIGH"
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.aws_batch_job_definition",
+    "resourceName": "My Batch Job Definition",
+    "searchKey": "name={{My Batch Job Definition}}.{{community.aws.aws_batch_job_definition}}.privileged",
+    "searchValue": "",
+    "expectedValue": "name={{My Batch Job Definition}}.{{community.aws.aws_batch_job_definition}}.privileged should be set to 'false' or not set",
+    "actualValue": "name={{My Batch Job Definition}}.{{community.aws.aws_batch_job_definition}}.privileged is 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e9463622a05be8328e98fd57c204615468d6018b077c01b391c036a3007c3682",
+    "search_line": -1
   }
 ]

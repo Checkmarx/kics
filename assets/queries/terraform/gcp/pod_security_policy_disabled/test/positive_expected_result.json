@@ -2,11 +2,31 @@
   {
     "queryName": "Pod Security Policy Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'pod_security_policy_config' should be defined",
+    "actualValue": "Attribute 'pod_security_policy_config' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "6b4a7853b29cd94f6731e0c561937f725b88a0059875f0de71d1171d99e2406f",
+    "search_line": 2
   },
   {
     "queryName": "Pod Security Policy Disabled",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "marcellus-wallace",
+    "searchKey": "google_container_cluster[positive2].pod_security_policy_config.enabled",
+    "searchValue": "",
+    "expectedValue": "Attribute 'enabled' of 'pod_security_policy_config' should be true",
+    "actualValue": "Attribute 'enabled' of 'pod_security_policy_config' is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c2197b5305ae5874196239530c29b3f205579eca0903636eff1e8583c01a6b76",
+    "search_line": 18
   }
 ]

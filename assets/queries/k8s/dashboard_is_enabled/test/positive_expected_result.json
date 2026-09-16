@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "Dashboard Is Enabled",
-		"severity": "LOW",
-		"line": 22
-	},
-	{
-		"queryName": "Dashboard Is Enabled",
-		"severity": "LOW",
-		"line": 67
-	}
+  {
+    "queryName": "Dashboard Is Enabled",
+    "severity": "LOW",
+    "line": 22,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "kubernetes-dashboard-1",
+    "searchKey": "metadata.name={{kubernetes-dashboard-1}}.spec.template.spec.containers.name={{kubernetes-dashboard}}.image",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{kubernetes-dashboard-1}}.spec.template.spec.containers.name={{kubernetes-dashboard}}.image has not kubernetes-dashboard deployed",
+    "actualValue": "metadata.name={{kubernetes-dashboard-1}}.spec.template.spec.containers.name={{kubernetes-dashboard}}.image has kubernetes-dashboard deployed",
+    "issueType": "IncorrectValue",
+    "similarityID": "ad51a15f98d6bed689d1fb010eeb3664acb3cb2253d866c805f60432a66b2021",
+    "search_line": -1
+  },
+  {
+    "queryName": "Dashboard Is Enabled",
+    "severity": "LOW",
+    "line": 67,
+    "fileName": "positive.yaml",
+    "resourceType": "Pod",
+    "resourceName": "myapp-pod",
+    "searchKey": "metadata.name={{myapp-pod}}.spec.initContainers.name={{init-myservice}}.image",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{myapp-pod}}.spec.initContainers.name={{init-myservice}}.image has not kubernetes-dashboard deployed",
+    "actualValue": "metadata.name={{myapp-pod}}.spec.initContainers.name={{init-myservice}}.image has kubernetes-dashboard deployed",
+    "issueType": "IncorrectValue",
+    "similarityID": "c4f33cc863c6687dffdac5a9f8f0808d5562e244ad748ce0c555d131c53112c5",
+    "search_line": -1
+  }
 ]

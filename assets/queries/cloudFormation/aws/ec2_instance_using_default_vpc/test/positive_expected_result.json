@@ -3,12 +3,30 @@
     "queryName": "EC2 Instance Using Default VPC",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "DefaultVPC",
+    "searchKey": "Resources.DefaultVPC.Properties.SubnetId",
+    "searchValue": "",
+    "expectedValue": "Resources.DefaultVPC.Properties.SubnetId should not be associated with a default VPC",
+    "actualValue": "Resources.DefaultVPC.Properties.SubnetId is associated with a default VPC",
+    "issueType": "IncorrectValue",
+    "similarityID": "b1b27e2909e09447a302d117ae94021c708ebcd6aaf0ab1778533e17a3a1baf1",
+    "search_line": -1
   },
   {
     "queryName": "EC2 Instance Using Default VPC",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::Instance",
+    "resourceName": "DefaultVPC",
+    "searchKey": "Resources.DefaultVPC.Properties.SubnetId",
+    "searchValue": "",
+    "expectedValue": "Resources.DefaultVPC.Properties.SubnetId should not be associated with a default VPC",
+    "actualValue": "Resources.DefaultVPC.Properties.SubnetId is associated with a default VPC",
+    "issueType": "IncorrectValue",
+    "similarityID": "8b6cfc24e88a3326b29030eb83d44a2846ec68b9d4545ffa084423810fa4acec",
+    "search_line": -1
   }
 ]

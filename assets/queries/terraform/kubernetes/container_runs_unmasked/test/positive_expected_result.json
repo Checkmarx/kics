@@ -2,6 +2,16 @@
   {
     "queryName": "Container Runs Unmasked",
     "severity": "HIGH",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "kubernetes_pod_security_policy",
+    "resourceName": "terraform-example",
+    "searchKey": "kubernetes_pod_security_policy[example].spec.allowed_proc_mount_types",
+    "searchValue": "",
+    "expectedValue": "allowed_proc_mount_types should contain the value Default",
+    "actualValue": "allowed_proc_mount_types contains the value Unmasked",
+    "issueType": "IncorrectValue",
+    "similarityID": "a2c43963b652e57da3610a0aa409ecd75a8d83b8fd063df1f440d80e62745083",
+    "search_line": -1
   }
 ]

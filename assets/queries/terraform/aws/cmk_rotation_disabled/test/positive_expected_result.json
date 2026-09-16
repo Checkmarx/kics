@@ -3,30 +3,75 @@
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive1",
+    "searchKey": "aws_kms_key[positive1]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive1].enable_key_rotation should be set to true",
+    "actualValue": "aws_kms_key[positive1].enable_key_rotation is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "855415f1b6dd39ab191b00787282c99c6a64c056d3e3a45ba32a95e66d56b242",
+    "search_line": -1
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive2",
+    "searchKey": "aws_kms_key[positive2]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive2].enable_key_rotation should be set to true",
+    "actualValue": "aws_kms_key[positive2].enable_key_rotation is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "c776df71513a6f5bcb04b63511c3efe16397b21bf4c1c0def2e505e2a0842247",
+    "search_line": -1
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive3",
+    "searchKey": "aws_kms_key[positive3]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive3].enable_key_rotation should be set to true",
+    "actualValue": "aws_kms_key[positive3].enable_key_rotation is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "9cd62e95346b4d4f791226f3bb25253c509246af2549da8ffc90b5fa53b6b963",
+    "search_line": -1
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive4",
+    "searchKey": "aws_kms_key[positive4]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive4].enable_key_rotation should be set to true",
+    "actualValue": "aws_kms_key[positive4].enable_key_rotation is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "1da61fc2b32bdc8085ffbd6884bc65959a0bc95e0c016641c492a30beea41c30",
+    "search_line": -1
   },
   {
     "queryName": "CMK Rotation Disabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "aws_kms_key",
+    "resourceName": "positive5",
+    "searchKey": "aws_kms_key[positive5]",
+    "searchValue": "",
+    "expectedValue": "aws_kms_key[positive5].enable_key_rotation should be set to false",
+    "actualValue": "aws_kms_key[positive5].enable_key_rotation is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "6bca89e21515c6d096ed9fd2c8ce486ce97a7607c9b09af9bf29dcf9d194d65a",
+    "search_line": -1
   }
 ]

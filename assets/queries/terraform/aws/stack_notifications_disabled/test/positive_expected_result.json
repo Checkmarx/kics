@@ -2,6 +2,16 @@
   {
     "queryName": "Stack Notifications Disabled",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudformation_stack",
+    "resourceName": "networking-stack",
+    "searchKey": "aws_cloudformation_stack[positive1]",
+    "searchValue": "",
+    "expectedValue": "Attribute 'notification_arns' should be set",
+    "actualValue": "Attribute 'notification_arns' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "fee3590430d03c015a86ef0b8c13a4aa2b1b73c857b210ee514f4882afc23089",
+    "search_line": -1
   }
 ]

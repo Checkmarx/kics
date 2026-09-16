@@ -2,16 +2,46 @@
   {
     "queryName": "AKS Network Policy Misconfigured",
     "severity": "LOW",
-    "line": 21
+    "line": 21,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive1].network_profile",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive1].network_profile.network_policy' should be set to either 'azure' or 'calico'",
+    "actualValue": "'azurerm_kubernetes_cluster[positive1].network_profile.network_policy' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "513193251b07ce03fbdf70fd809867f3ecc1227023389b3403cb593e95fa5cb0",
+    "search_line": 21
   },
   {
     "queryName": "AKS Network Policy Misconfigured",
     "severity": "LOW",
-    "line": 26
+    "line": 26,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks2",
+    "searchKey": "azurerm_kubernetes_cluster[positive2]",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive2].network_profile' should be set",
+    "actualValue": "'azurerm_kubernetes_cluster[positive2].network_profile' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "4034343d4c8a5d5345bc0df49f3155f810345ded0317a7a86dec26926cdf5343",
+    "search_line": 26
   },
   {
     "queryName": "AKS Network Policy Misconfigured",
     "severity": "LOW",
-    "line": 69
+    "line": 69,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_kubernetes_cluster",
+    "resourceName": "example-aks1",
+    "searchKey": "azurerm_kubernetes_cluster[positive3].network_profile.network_policy",
+    "searchValue": "",
+    "expectedValue": "'azurerm_kubernetes_cluster[positive3].network_profile.network_policy' should be either 'azure' or 'calico'",
+    "actualValue": "'azurerm_kubernetes_cluster[positive3].network_profile.network_policy' is roxanne",
+    "issueType": "IncorrectValue",
+    "similarityID": "4fbd3479cbcbb2a5527a67bb7dec13720fae9626a0806cf28ef8e9b6e5bf6451",
+    "search_line": 69
   }
 ]

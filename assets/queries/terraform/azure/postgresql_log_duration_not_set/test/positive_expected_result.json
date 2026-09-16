@@ -2,16 +2,46 @@
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_duration",
+    "searchKey": "azurerm_postgresql_configuration[positive1].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive1.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive1.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3511d4cd4d3c882be1f8a95666bf5648b0e197bb0b12088d4abc4acf6aa44735",
+    "search_line": 6
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_duration",
+    "searchKey": "azurerm_postgresql_configuration[positive2].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive2.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive2.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "bc3e7df87447ff9236581cdc6df33431cd90e1147f568dd20150528884c26437",
+    "search_line": 13
   },
   {
     "queryName": "PostgreSQL Log Duration Not Set",
     "severity": "MEDIUM",
-    "line": 20
+    "line": 20,
+    "fileName": "positive.tf",
+    "resourceType": "azurerm_postgresql_configuration",
+    "resourceName": "log_duration",
+    "searchKey": "azurerm_postgresql_configuration[positive3].value",
+    "searchValue": "",
+    "expectedValue": "'azurerm_postgresql_configuration.positive3.value' should be 'ON'",
+    "actualValue": "'azurerm_postgresql_configuration.positive3.value' is 'OFF'",
+    "issueType": "IncorrectValue",
+    "similarityID": "52b5cd6fd32e6ff8ed358516e5fcf04bd5c71d47fe359c42bb231cc52ecd9c11",
+    "search_line": 20
   }
 ]

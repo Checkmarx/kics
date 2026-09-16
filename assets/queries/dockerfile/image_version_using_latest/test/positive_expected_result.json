@@ -1,7 +1,17 @@
 [
-	{
-		"queryName": "Image Version Using 'latest'",
-		"severity": "MEDIUM",
-		"line": 1
-	}
+  {
+    "queryName": "Image Version Using 'latest'",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest}}",
+    "searchValue": "",
+    "expectedValue": "FROM alpine:latest:'version' where version should not be 'latest'",
+    "actualValue": "FROM alpine:latest'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7dc834796b59260e76f8d9ebdfb43a3102b8239b4ab1400dc37a59843d9235f6",
+    "search_line": -1
+  }
 ]

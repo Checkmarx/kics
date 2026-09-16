@@ -3,24 +3,60 @@
     "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.produces",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.produces has only known prefixes",
+    "actualValue": "aplication/json on 'paths.{{/}}.get.produces' is an unknown prefix",
+    "issueType": "IncorrectValue",
+    "similarityID": "5c2e504e98ef8501d6ebefb8dcb5e085c12d5d3ffe766b23588405b435a9159c",
+    "search_line": 0
   },
   {
     "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
     "line": 38,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "produces",
+    "searchValue": "",
+    "expectedValue": "produces has only known prefixes",
+    "actualValue": "aplication/json on 'produces' is an unknown prefix",
+    "issueType": "IncorrectValue",
+    "similarityID": "b0cf5c154becb87871ce12d5d33cdf9ba82e9f2d08e1bd702a2d566d74625019",
+    "search_line": 0
   },
   {
     "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.produces",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.get.produces has only known prefixes",
+    "actualValue": "aplication/json on 'paths.{{/}}.get.produces' is an unknown prefix",
+    "issueType": "IncorrectValue",
+    "similarityID": "48d636001fe589218555c7e6e333b1eb1c44f2fadec6b3ca1f134a491bbd7779",
+    "search_line": 0
   },
   {
     "queryName": "Unknown Prefix (v2)",
     "severity": "INFO",
     "line": 24,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "produces",
+    "searchValue": "",
+    "expectedValue": "produces has only known prefixes",
+    "actualValue": "aplication/json on 'produces' is an unknown prefix",
+    "issueType": "IncorrectValue",
+    "similarityID": "2e111fad2f45cec92763d6abcf55511484f4a5977b60a63e54ab01bce3b1009d",
+    "search_line": 0
   }
 ]

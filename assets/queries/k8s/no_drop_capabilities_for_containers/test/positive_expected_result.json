@@ -2,16 +2,46 @@
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
-    "line": 21
+    "line": 21,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "nginx-deployment",
+    "searchKey": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment}}.securityContext.capabilities",
+    "searchValue": "Deployment",
+    "expectedValue": "spec.containers[payment].securityContext.capabilities.drop should be defined",
+    "actualValue": "spec.containers[payment].securityContext.capabilities.drop is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b1bb0d3fd6d0f55b139b8bbb609a1196550e95f40fffde274bb8877b584d6482",
+    "search_line": 21
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
-    "line": 26
+    "line": 26,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "nginx-deployment",
+    "searchKey": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment2}}.securityContext",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment2}}.securityContext.capabilities should be set",
+    "actualValue": "metadata.name={{nginx-deployment}}.spec.containers.name={{payment2}}.securityContext.capabilities is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9ce7112c9684aae171cc4395ed97fc547a0fdd77ce60334dc1403fbde5ccb5e3",
+    "search_line": 26
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
-    "line": 28
+    "line": 28,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "nginx-deployment",
+    "searchKey": "metadata.name={{nginx-deployment}}.spec.containers.name=payment3",
+    "searchValue": "Deployment",
+    "expectedValue": "metadata.name={{nginx-deployment}}.spec.containers.name=payment3.securityContext should be set",
+    "actualValue": "metadata.name={{nginx-deployment}}.spec.containers.name=payment3.securityContext is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "7e030012e62a402855cb94e2fc455da4f6c368a43c6139c68948885ed957e895",
+    "search_line": 28
   }
 ]

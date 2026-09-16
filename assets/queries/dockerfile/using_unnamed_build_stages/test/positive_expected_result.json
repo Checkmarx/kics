@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Using Unnamed Build Stages",
-		"severity": "LOW",
-		"line": 10,
-		"filename": "positive1.dockerfile"
-	}
+  {
+    "queryName": "Using Unnamed Build Stages",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:latest}}.{{COPY --from=0 /go/src/github.com/foo/href-counter/app ./}}",
+    "searchValue": "",
+    "expectedValue": "COPY '--from' should reference a previously defined FROM alias",
+    "actualValue": "COPY '--from' does not reference a previously defined FROM alias",
+    "issueType": "IncorrectValue",
+    "similarityID": "46da06cba3ee9b3e2e902a574ef02dc009323d54acf1569719fb7a44cc6a0886",
+    "search_line": -1
+  }
 ]

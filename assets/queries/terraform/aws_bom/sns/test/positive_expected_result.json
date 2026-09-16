@@ -3,30 +3,75 @@
     "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sns_topic[positive1]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "3be9aa03070d890c043be3fc8ceff6cfa8947a7be4b1152f551d5a6fbe1fd413",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sns_topic[positive2]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "c61ea724011fcfad22043b0fb750ef8832e67e7d450e7b65c881fa5cc513b290",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sns_topic[positive3]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "a842f6a9e4033eddef511ad3ac38a08be0ede634033704a5a99a9bf15aa887aa",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sns_topic[positive4]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "3d5419c56db82dfd8918cb7b2c4f223df2bc8ebb23ae15332ad62beb055dcb84",
+    "search_line": 1
   },
   {
     "queryName": "BOM - AWS SNS",
     "severity": "TRACE",
     "line": 1,
-    "fileName": "positive5.tf"
+    "fileName": "positive5.tf",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "aws_sns_topic[positive5]",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "3fc98ab5dc12cc814e9785a44bb46101c8d2a7ee53ed7d0bd4e96f23ce9f38d5",
+    "search_line": 1
   }
 ]

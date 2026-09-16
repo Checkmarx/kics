@@ -1,12 +1,32 @@
 [
-	{
-		"queryName": "Unknown Port Exposed To Internet",
-		"severity": "HIGH",
-		"line": 9
-	},
-	{
-		"queryName": "Unknown Port Exposed To Internet",
-		"severity": "HIGH",
-		"line": 13
-	}
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[0] port_range should not contain unknown ports and should not be exposed to the entire Internet",
+    "actualValue": "ec2_group.rules[0] port_range contains unknown ports and are exposed to the entire Internet",
+    "issueType": "IncorrectValue",
+    "similarityID": "0106d3a243444cf874c44af0deaf4e833a3e65a519ff27b983c850c6291adce2",
+    "search_line": 9
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.ec2_group",
+    "resourceName": "example ec2 group",
+    "searchKey": "name={{example ec2 group}}.{{amazon.aws.ec2_group}}.rules",
+    "searchValue": "",
+    "expectedValue": "ec2_group.rules[1] port_range should not contain unknown ports and should not be exposed to the entire Internet",
+    "actualValue": "ec2_group.rules[1] port_range contains unknown ports and are exposed to the entire Internet",
+    "issueType": "IncorrectValue",
+    "similarityID": "eba65952bf734db09b2d006e448c1c6c3c9fa09b1bd033b2e915c97959f2387c",
+    "search_line": 13
+  }
 ]

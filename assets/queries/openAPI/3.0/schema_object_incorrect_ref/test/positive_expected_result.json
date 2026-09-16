@@ -3,24 +3,60 @@
     "queryName": "Schema Object Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 76,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema reference points to '#components/schemas'",
+    "actualValue": "Schema reference does not point to '#components/schemas'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e31866ac23e7bb43fb36a804d4280630e09412e75bec5c9165fe211b97bdb7be",
+    "search_line": 0
   },
   {
     "queryName": "Schema Object Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema reference points to '#components/schemas'",
+    "actualValue": "Schema reference does not point to '#components/schemas'",
+    "issueType": "IncorrectValue",
+    "similarityID": "7c1dfe40cba425f7ae119405e95ad6143acd74bb306dfa65e9009dcdfa6adfde",
+    "search_line": 0
   },
   {
     "queryName": "Schema Object Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 46,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.NewItem.content.{{multipart/form-data}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema reference points to '#components/schemas'",
+    "actualValue": "Schema reference does not point to '#components/schemas'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2eb0e3094fe6a79815371ff8393056e37b22a5fa7619a3a6620afc6ffc84c866",
+    "search_line": 0
   },
   {
     "queryName": "Schema Object Incorrect Ref (v3)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema.$ref",
+    "searchValue": "",
+    "expectedValue": "Schema reference points to '#components/schemas'",
+    "actualValue": "Schema reference does not point to '#components/schemas'",
+    "issueType": "IncorrectValue",
+    "similarityID": "36d2f3dc8e822af6148e6b56f7a3a1643a584d0658573b366dd6c75101651e09",
+    "search_line": 0
   }
 ]

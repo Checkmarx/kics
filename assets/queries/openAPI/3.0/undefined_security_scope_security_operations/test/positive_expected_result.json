@@ -3,24 +3,60 @@
     "queryName": "Undefined Scope 'securityScheme' On 'security' Field On Operations",
     "severity": "LOW",
     "line": 15,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "scope error:api should be defined on 'securityShemes'",
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9d76f1979759b1160184bad21608842ae866c49bc95ab24227c87796216ac881",
+    "search_line": 15
   },
   {
     "queryName": "Undefined Scope 'securityScheme' On 'security' Field On Operations",
     "severity": "LOW",
     "line": 15,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security",
+    "searchValue": "",
+    "expectedValue": "scope error:api should be defined on 'securityShemes'",
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue",
+    "similarityID": "572fac81b2f14c724c3833272c06cc4061525ddc43e14c510dd2e32d3f16a79e",
+    "search_line": 15
   },
   {
     "queryName": "Undefined Scope 'securityScheme' On 'security' Field On Operations",
     "severity": "LOW",
     "line": 13,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security.{{oAuth2AuthCodeNeg2}}",
+    "searchValue": "",
+    "expectedValue": "scope error:api should be defined on 'securityShemes'",
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue",
+    "similarityID": "07a77ae508a324565c7f310d621a88dd1dfe80af5abac4abff14565b63774172",
+    "search_line": 13
   },
   {
     "queryName": "Undefined Scope 'securityScheme' On 'security' Field On Operations",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.security",
+    "searchValue": "",
+    "expectedValue": "scope error:api should be defined on 'securityShemes'",
+    "actualValue": "scope error:api is not defined on 'securityShemes'",
+    "issueType": "IncorrectValue",
+    "similarityID": "8b57fa728fd3df04e01c522a5b390a6fbfb75fabddec9f4ec70fdbc573de7e7c",
+    "search_line": 12
   }
 ]

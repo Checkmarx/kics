@@ -3,48 +3,120 @@
     "queryName": "S3 Bucket ACL Allows Read to All Users",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts",
+    "searchKey": "Resources.JenkinsArtifacts01.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable ACL",
+    "actualValue": "S3 bucket 'JenkinsArtifacts01' has ACL set to 'PublicRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "99d1913b8b5d328c0ac1fc90adbd9bee4c40996fb69b8aa4f5dcdd8e06c03642",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to All Users",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "public-read-static-page01",
+    "searchKey": "Resources.StaticPage01.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable ACL",
+    "actualValue": "S3 bucket 'StaticPage01' has ACL set to 'PublicRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "6030417a2cda6c5ceebe63867ba2c9f56dfdf365dc1ab60a780a7b48791b4059",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to All Users",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts-block-public",
+    "searchKey": "Resources.JenkinsArtifacts02.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable ACL",
+    "actualValue": "S3 bucket 'JenkinsArtifacts02' has ACL set to 'PublicRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fdc7b6dc6b7f176a1ecb2bbf13a0c643664478c95d4ea5afba3497da109412c8",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to All Users",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3BucketForWebsiteContent",
+    "searchKey": "Resources.S3BucketForWebsiteContent.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable ACL",
+    "actualValue": "S3 bucket 'S3BucketForWebsiteContent' has ACL set to 'PublicRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "eaca3898ee891f2db5cf5d3c7c4c5429f1eadc19c961bf08f92271120d046682",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to All Users",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts",
+    "searchKey": "Resources.JenkinsArtifacts01.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable ACL",
+    "actualValue": "S3 bucket 'JenkinsArtifacts01' has ACL set to 'PublicRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "342a0a355a496693077f18f25c48543b77b87e4c302b013971bd3c4c5e1560cb",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to All Users",
     "severity": "HIGH",
     "line": 7,
-    "fileName": "positive6.json"
+    "fileName": "positive6.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "public-read-static-page01",
+    "searchKey": "Resources.StaticPage01.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable ACL",
+    "actualValue": "S3 bucket 'StaticPage01' has ACL set to 'PublicRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "519b039b91a52b70d319f926e4077925706daeca69891495a3d53bf2dd22dd51",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to All Users",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive7.json"
+    "fileName": "positive7.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "jenkins-artifacts-block-public",
+    "searchKey": "Resources.JenkinsArtifacts02.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable ACL",
+    "actualValue": "S3 bucket 'JenkinsArtifacts02' has ACL set to 'PublicRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "b7fdc20c28344171029bcb9f6d4d34ae272d5b37648f603e66617ee89d1f0d67",
+    "search_line": -1
   },
   {
     "queryName": "S3 Bucket ACL Allows Read to All Users",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive8.json"
+    "fileName": "positive8.json",
+    "resourceType": "AWS::S3::Bucket",
+    "resourceName": "S3BucketForWebsiteContent",
+    "searchKey": "Resources.S3BucketForWebsiteContent.Properties.AccessControl",
+    "searchValue": "",
+    "expectedValue": "S3 bucket should not have a public readable ACL",
+    "actualValue": "S3 bucket 'S3BucketForWebsiteContent' has ACL set to 'PublicRead'",
+    "issueType": "IncorrectValue",
+    "similarityID": "333741c4fdf7ca88e469dc295818b05e98970099c44a2134b7dfa6b561cac546",
+    "search_line": -1
   }
 ]

@@ -1,0 +1,59 @@
+{
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 60,
+	"files_parsed": 1,
+	"lines_parsed": 60,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 1,
+		"TRACE": 0
+	},
+	"total_counter": 1,
+	"total_bom_resources": 0,
+	"start": "2026-08-05T16:50:24.467634681+01:00",
+	"end": "2026-08-05T16:50:24.712210781+01:00",
+	"paths": [
+		"samples_to_test/sample4.bicep"
+	],
+	"queries": [
+		{
+			"query_name": "Web App Not Using TLS Last Version",
+			"query_id": "b5c851d5-00f1-43dc-a8de-3218fd6f71be",
+			"query_url": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteconfig-object",
+			"severity": "MEDIUM",
+			"platform": "AzureResourceManager",
+			"cwe": "327",
+			"risk_score": "5.9",
+			"cloud_provider": "AZURE",
+			"category": "Encryption",
+			"experimental": false,
+			"description": "Resources of type 'Microsoft.Web/sites' should define 'properties.siteConfig.minTlsVersion' with '1.2' or '1.3'",
+			"description_id": "b5c851d5",
+			"files": [
+				{
+					"file_name": "samples_to_test/sample4.bicep",
+					"similarity_id": "9df5f494a0f974774adb6148aab00051db9b09eb456193f06d66e18016cf7b36",
+					"line": 22,
+					"resource_type": "config",
+					"resource_name": "logs",
+					"issue_type": "MissingAttribute",
+					"search_key": "resources.resources.name=logs.properties",
+					"search_line": 22,
+					"search_value": "",
+					"expected_value": "'minTlsVersion' should be defined with the version '1.2' or higher",
+					"actual_value": "'minTlsVersion' is not defined"
+				}
+			]
+		}
+	]
+}

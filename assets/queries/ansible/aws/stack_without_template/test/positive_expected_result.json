@@ -2,21 +2,61 @@
   {
     "queryName": "Stack Without Template",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.cloudformation",
+    "resourceName": "create a stack, pass in the template via an URL",
+    "searchKey": "name={{create a stack, pass in the template via an URL}}.{{amazon.aws.cloudformation}}",
+    "searchValue": "",
+    "expectedValue": "amazon.aws.cloudformation has template, template_body or template_url set",
+    "actualValue": "amazon.aws.cloudformation does not have template, template_body or template_url set",
+    "issueType": "MissingAttribute",
+    "similarityID": "8d6fd643093ead4acbe42d82297b8d17045d1002d6fa0348f363afc055dbe8a3",
+    "search_line": -1
   },
   {
     "queryName": "Stack Without Template",
     "severity": "LOW",
-    "line": 15
+    "line": 15,
+    "fileName": "positive.yaml",
+    "resourceType": "amazon.aws.cloudformation",
+    "resourceName": "create a stack, pass in the template via an URL v2",
+    "searchKey": "name={{create a stack, pass in the template via an URL v2}}.{{amazon.aws.cloudformation}}",
+    "searchValue": "",
+    "expectedValue": "amazon.aws.cloudformation should not have more than one of the attributes template, template_body and template_url set",
+    "actualValue": "amazon.aws.cloudformation has more than one of the attributes template, template_body and template_url set",
+    "issueType": "IncorrectValue",
+    "similarityID": "281c2f523a3d9f1653351985e762c8c0608b73a07a9069b7b694b2ac45ed8529",
+    "search_line": -1
   },
   {
     "queryName": "Stack Without Template",
     "severity": "LOW",
-    "line": 30
+    "line": 30,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudformation_stack_set",
+    "resourceName": "Create a stack set with instances in two accounts",
+    "searchKey": "name={{Create a stack set with instances in two accounts}}.{{community.aws.cloudformation_stack_set}}",
+    "searchValue": "",
+    "expectedValue": "community.aws.cloudformation_stack_set should not have more than one of the attributes template, template_body and template_url set",
+    "actualValue": "community.aws.cloudformation_stack_set has more than one of the attributes template, template_body and template_url set",
+    "issueType": "IncorrectValue",
+    "similarityID": "8d41e3b091381cae9cbf2bd25adc713c68e560debdc59c4a682ceed85765e123",
+    "search_line": -1
   },
   {
     "queryName": "Stack Without Template",
     "severity": "LOW",
-    "line": 40
+    "line": 40,
+    "fileName": "positive.yaml",
+    "resourceType": "community.aws.cloudformation_stack_set",
+    "resourceName": "Create a stack set with instances in two accounts v2",
+    "searchKey": "name={{Create a stack set with instances in two accounts v2}}.{{community.aws.cloudformation_stack_set}}",
+    "searchValue": "",
+    "expectedValue": "community.aws.cloudformation_stack_set has template, template_body or template_url set",
+    "actualValue": "community.aws.cloudformation_stack_set does not have template, template_body or template_url set",
+    "issueType": "MissingAttribute",
+    "similarityID": "b6132b892c6073890e390b8741232be13593a72d2c3041871da51878f3f527fa",
+    "search_line": -1
   }
 ]

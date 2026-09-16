@@ -3,6 +3,15 @@
     "queryName": "SLB Policy With Insecure TLS Version In Use",
     "severity": "MEDIUM",
     "line": 3,
-    "fileName": "positive.tf"
+    "fileName": "positive.tf",
+    "resourceType": "alicloud_slb_tls_cipher_policy",
+    "resourceName": "positive",
+    "searchKey": "alicloud_slb_tls_cipher_policy[positive].tls_versions",
+    "searchValue": "",
+    "expectedValue": "alicloud_slb_tls_cipher_policy[positive].tls_versions to use secure TLS versions",
+    "actualValue": "alicloud_slb_tls_cipher_policy[positive].tls_versions uses insecure TLS versions",
+    "issueType": "IncorrectValue",
+    "similarityID": "d3331d4b1cbf1892f175dc1f7f04d515774bbde099a75c42875879968f1d8f94",
+    "search_line": 3
   }
 ]

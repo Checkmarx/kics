@@ -3,24 +3,60 @@
     "queryName": "Header Object With Incorrect Ref",
     "severity": "INFO",
     "line": 73,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.headers.{{X-Rate-Limit-Limit}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Response ref points to '#/components/headers'",
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "0a3363efd1a543044a12db98bfb08b52c912dfb3eea7072ee7bf9ded166f6cbc",
+    "search_line": 0
   },
   {
     "queryName": "Header Object With Incorrect Ref",
     "severity": "INFO",
     "line": 43,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.6xx.headers.{{X-Rate-Limit-Limit}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Response ref points to '#/components/headers'",
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "182eabab2ecfd1d0b9f1f4076b5a1013762a298675b100ad5a6303c92d57ffef",
+    "search_line": 0
   },
   {
     "queryName": "Header Object With Incorrect Ref",
     "severity": "INFO",
     "line": 45,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.responses.ResponseExample.content.{{application/json}}.encoding.code.headers.{{X-Rate-Limit-Limit}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Response ref points to '#/components/headers'",
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "701cc7d6adf3d27b37c77f8193323aa5967c176735caa6703b035c0ae2fed687",
+    "search_line": 0
   },
   {
     "queryName": "Header Object With Incorrect Ref",
     "severity": "INFO",
     "line": 29,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.6xx.headers.{{X-Rate-Limit-Limit}}.$ref",
+    "searchValue": "",
+    "expectedValue": "Response ref points to '#/components/headers'",
+    "actualValue": "Response ref does not point to '#/components/headers'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c08549d6807b5a31fc8970cb14e86f35e01edf4206d580855478f93bb443f6c5",
+    "search_line": 0
   }
 ]

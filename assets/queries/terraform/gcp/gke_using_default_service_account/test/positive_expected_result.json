@@ -3,12 +3,30 @@
     "queryName": "GKE Using Default Service Account",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "my-gke-cluster",
+    "searchKey": "google_container_cluster[positive1].node_config",
+    "searchValue": "",
+    "expectedValue": "'service_account' should not be default",
+    "actualValue": "'service_account' is default",
+    "issueType": "IncorrectValue",
+    "similarityID": "1267c5923ce0deac64bd5c5de91e2d1785ff8788dbc015a9a22cb6d6078ca64a",
+    "search_line": 7
   },
   {
     "queryName": "GKE Using Default Service Account",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "google_container_cluster",
+    "resourceName": "my-gke-cluster",
+    "searchKey": "google_container_cluster[positive2].node_config.service_account",
+    "searchValue": "",
+    "expectedValue": "'service_account' should not be default",
+    "actualValue": "'service_account' is default",
+    "issueType": "IncorrectValue",
+    "similarityID": "39142a73ef818331d0d6404dcbc276c125331ce9c423f3e1018be03c6226001e",
+    "search_line": 8
   }
 ]

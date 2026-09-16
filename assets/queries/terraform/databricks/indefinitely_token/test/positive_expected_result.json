@@ -1,8 +1,17 @@
 [
-	{
-		"queryName": "Indefinitely Databricks Token Lifetime",
-		"severity": "MEDIUM",
-		"line": 1,
-		"fileName": "positive.tf"
-	}
+  {
+    "queryName": "Indefinitely Databricks Token Lifetime",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "databricks_token",
+    "resourceName": "positive",
+    "searchKey": "databricks_token[positive]",
+    "searchValue": "",
+    "expectedValue": "'databricks_token[positive]' should not have indefinitely lifetime",
+    "actualValue": "'databricks_token[positive]' have an indefinitely lifetime",
+    "issueType": "MissingAttribute",
+    "similarityID": "6a729d320a2b88dd383197d70cc3dc3bdb5b711970ad481bc08ece6d62873ace",
+    "search_line": -1
+  }
 ]

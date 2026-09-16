@@ -3,24 +3,60 @@
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
     "line": 19,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp should not be open to the world",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp is open to the world",
+    "issueType": "IncorrectValue",
+    "similarityID": "fb827e2fe935941ec659ebf1f5f1face1253cb3ee85ab68d06025fcebdff0c61",
+    "search_line": 19
   },
   {
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
     "line": 27,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.CidrIpv6 should not be open to the world",
+    "actualValue": "Resources.OutboundRule.Properties.CidrIpv6 is open to the world",
+    "issueType": "IncorrectValue",
+    "similarityID": "b0ebc7048fe8a308d4b0b336197614abadc6081c5b8aefbccf57c3d74ee93d16",
+    "search_line": 27
   },
   {
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
     "line": 17,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp should not be open to the world",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupEgress[0].CidrIp is open to the world",
+    "issueType": "IncorrectValue",
+    "similarityID": "b2128129e8227a692f40dbc33ef392f2fc097fd1475ec28aa7d7c6e1aecfbea2",
+    "search_line": 17
   },
   {
     "queryName": "Security Group Egress CIDR Open To World",
     "severity": "MEDIUM",
     "line": 34,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupEgress",
+    "resourceName": "OutboundRule",
+    "searchKey": "Resources.OutboundRule.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "Resources.OutboundRule.Properties.CidrIpv6 should not be open to the world",
+    "actualValue": "Resources.OutboundRule.Properties.CidrIpv6 is open to the world",
+    "issueType": "IncorrectValue",
+    "similarityID": "f89e8819a2e8a4c8846379f9c03939ebb08bb0ba9427c4df652406cedd8d37ee",
+    "search_line": 34
   }
 ]

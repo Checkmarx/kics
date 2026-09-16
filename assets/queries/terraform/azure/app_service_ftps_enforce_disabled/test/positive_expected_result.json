@@ -3,18 +3,45 @@
     "queryName": "App Service FTPS Enforce Disabled",
     "severity": "MEDIUM",
     "line": 10,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_app_service",
+    "resourceName": "example-app-service",
+    "searchKey": "azurerm_app_service[positive1].site_config.ftps_state",
+    "searchValue": "",
+    "expectedValue": "'azurerm_app_service[positive1].site_config.ftps_state' should not be set to 'AllAllowed'",
+    "actualValue": "'azurerm_app_service[positive1].site_config.ftps_state' is set to 'AllAllowed'",
+    "issueType": "IncorrectValue",
+    "similarityID": "9507d8895311e7f1095b635b94679a666b53f5593aae3c002ae65a0902769139",
+    "search_line": 10
   },
   {
     "queryName": "App Service FTPS Enforce Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_linux_web_app",
+    "resourceName": "positive2",
+    "searchKey": "azurerm_linux_web_app[positive2].site_config.ftps_state",
+    "searchValue": "",
+    "expectedValue": "'azurerm_linux_web_app[positive2].site_config.ftps_state' should not be set to 'AllAllowed'",
+    "actualValue": "'azurerm_linux_web_app[positive2].site_config.ftps_state' is set to 'AllAllowed'",
+    "issueType": "IncorrectValue",
+    "similarityID": "57d562c4d1248f639afb968b47dcea4d6593d36c532e4c28eb27c4606f6b1ae3",
+    "search_line": 8
   },
   {
     "queryName": "App Service FTPS Enforce Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "azurerm_windows_web_app",
+    "resourceName": "positive3",
+    "searchKey": "azurerm_windows_web_app[positive3].site_config.ftps_state",
+    "searchValue": "",
+    "expectedValue": "'azurerm_windows_web_app[positive3].site_config.ftps_state' should not be set to 'AllAllowed'",
+    "actualValue": "'azurerm_windows_web_app[positive3].site_config.ftps_state' is set to 'AllAllowed'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3a1fc2446b7ea476b1f7bbf55661d6078c4cbb8dd63bd8bf6fd73c210e5cba7b",
+    "search_line": 8
   }
 ]

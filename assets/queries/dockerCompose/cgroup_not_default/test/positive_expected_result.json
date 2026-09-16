@@ -1,8 +1,17 @@
 [
-    {
-      "queryName": "Cgroup Not Default",
-      "severity": "MEDIUM",
-      "line": 9,
-      "filename": "positive1.yaml"
-    }
+  {
+    "queryName": "Cgroup Not Default",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "services.iperfclient.cgroup_parent",
+    "searchValue": "",
+    "expectedValue": "Cgroup_parent should be undefined",
+    "actualValue": "Cgroup_parent is defined. Only use this when strictly required.",
+    "issueType": "IncorrectValue",
+    "similarityID": "00eaca59a0539a8b0ef408c8649ea13c9975e8bfac127eeb07d60aa295b92707",
+    "search_line": 9
+  }
 ]

@@ -2,11 +2,31 @@
   {
     "queryName": "IAM Password Without Minimum Length",
     "severity": "LOW",
-    "line": 1
+    "line": 1,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_account_password_policy",
+    "resourceName": "positive1",
+    "searchKey": "aws_iam_account_password_policy[positive1]",
+    "searchValue": "",
+    "expectedValue": "'minimum_password_length' should be set and no less than 14",
+    "actualValue": "'minimum_password_length' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "dfa2870019b84502e3b1a120a7c3112a8b6800387e1177cac8b6df4cafa9d73b",
+    "search_line": 1
   },
   {
     "queryName": "IAM Password Without Minimum Length",
     "severity": "LOW",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.tf",
+    "resourceType": "aws_iam_account_password_policy",
+    "resourceName": "positive2",
+    "searchKey": "aws_iam_account_password_policy[positive2].minimum_password_length",
+    "searchValue": "",
+    "expectedValue": "'minimum_password_length' should be set and no less than 14",
+    "actualValue": "'minimum_password_length' is less than 14",
+    "issueType": "IncorrectValue",
+    "similarityID": "2fc1f7da3d462653d7d9b65941c2f56cda3c5206e84976c8454b0f91b906524a",
+    "search_line": 10
   }
 ]

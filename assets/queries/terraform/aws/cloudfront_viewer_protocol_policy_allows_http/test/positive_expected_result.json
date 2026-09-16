@@ -2,11 +2,31 @@
   {
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
     "severity": "MEDIUM",
-    "line": 27
+    "line": 27,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive1",
+    "searchKey": "resource.aws_cloudfront_distribution[positive1].default_cache_behavior.viewer_protocol_policy",
+    "searchValue": "",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive1].default_cache_behavior.viewer_protocol_policy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "resource.aws_cloudfront_distribution[positive1].default_cache_behavior.viewer_protocol_policy isn't 'https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue",
+    "similarityID": "ed9918a8c8a679bbffbde29a12acf6c66c370ccef0cab9a5178f67464fc1939d",
+    "search_line": -1
   },
   {
     "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
     "severity": "MEDIUM",
-    "line": 96
+    "line": 96,
+    "fileName": "positive.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive2",
+    "searchKey": "resource.aws_cloudfront_distribution[positive2].ordered_cache_behavior.{{/content/immutable/*}}.viewer_protocol_policy",
+    "searchValue": "",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive2].ordered_cache_behavior.viewer_protocol_policy should be 'https-only' or 'redirect-to-https'",
+    "actualValue": "resource.aws_cloudfront_distribution[positive2].ordered_cache_behavior.viewer_protocol_policy isn't 'https-only' or 'redirect-to-https'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e0d3067e3afaa5b4f311a6eb1506d37971ad3f4c164d7f998670724c128fdefb",
+    "search_line": -1
   }
 ]

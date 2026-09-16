@@ -2,11 +2,31 @@
   {
     "queryName": "Stackdriver Logging Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.logging_service should be defined",
+    "actualValue": "gcp_container_cluster.logging_service is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "2c0788f623c2137282510b63f7f0a843f1d482320d3d6ca9175852979d16d260",
+    "search_line": -1
   },
   {
     "queryName": "Stackdriver Logging Disabled",
     "severity": "MEDIUM",
-    "line": 32
+    "line": 32,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster2",
+    "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.logging_service",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.logging_service should not be 'none'",
+    "actualValue": "gcp_container_cluster.logging_service is 'none'",
+    "issueType": "IncorrectValue",
+    "similarityID": "088eae579cc0d77b482e34bb469814e2717131fef21022ac5493987ec3cd1000",
+    "search_line": -1
   }
 ]

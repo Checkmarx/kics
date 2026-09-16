@@ -2,16 +2,46 @@
   {
     "queryName": "GKE Master Authorized Networks Disabled",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster",
+    "searchKey": "name={{create a cluster}}.{{google.cloud.gcp_container_cluster}}.master_authorized_networks_config.enabled",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_authorized_networks_config.enabled should be true",
+    "actualValue": "gcp_container_cluster.master_authorized_networks_config.enabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "e16e271876bf6edef92ba7d4cf5662d7a1fbbcd948e06bfa9c5d40a346d0fa95",
+    "search_line": -1
   },
   {
     "queryName": "GKE Master Authorized Networks Disabled",
     "severity": "MEDIUM",
-    "line": 17
+    "line": 17,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a second cluster",
+    "searchKey": "name={{create a second cluster}}.{{google.cloud.gcp_container_cluster}}.master_authorized_networks_config",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_authorized_networks_config.enabled should be defined",
+    "actualValue": "gcp_container_cluster.master_authorized_networks_config.enabled is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "f91901f3684037817ffcc1c5ceca94ef0bc4dc5bd4c041299c90298d1a249d93",
+    "search_line": -1
   },
   {
     "queryName": "GKE Master Authorized Networks Disabled",
     "severity": "MEDIUM",
-    "line": 22
+    "line": 22,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a third cluster",
+    "searchKey": "name={{create a third cluster}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.master_authorized_networks_config should be defined",
+    "actualValue": "gcp_container_cluster.master_authorized_networks_config is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "9e45f8d66d89ed80f8bace5ff4f084b2ca2fa15f7ae1be4eb4b090993b4a3919",
+    "search_line": -1
   }
 ]

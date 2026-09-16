@@ -3,6 +3,15 @@
     "queryName": "Node Restriction Admission Control Plugin Not Set",
     "severity": "MEDIUM",
     "line": 11,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "Pod",
+    "resourceName": "command-demo",
+    "searchKey": "metadata.name={{command-demo}}.spec.containers.name={{command-demo-container}}.command",
+    "searchValue": "",
+    "expectedValue": "--enable-admission-plugins flag should contain 'NodeRestriction' plugin",
+    "actualValue": "--enable-admission-plugins flag does not contain 'NodeRestriction' plugin",
+    "issueType": "MissingAttribute",
+    "similarityID": "43adcb719949ba6996fa440f9d1efef819e08e848b4864717ac57c3afae230d1",
+    "search_line": 11
   }
 ]

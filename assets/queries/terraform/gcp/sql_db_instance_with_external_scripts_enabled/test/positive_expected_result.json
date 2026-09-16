@@ -2,11 +2,31 @@
   {
     "queryName": "Beta - SQL DB Instance With External Scripts Enabled",
     "severity": "HIGH",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'external scripts enabled' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'external scripts enabled' to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "c6eeb73e91a27d027623ba463b84cebea474d424aefe8282ed775176653e8cf6",
+    "search_line": 13
   },
   {
     "queryName": "Beta - SQL DB Instance With External Scripts Enabled",
     "severity": "HIGH",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'external scripts enabled' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'external scripts enabled' to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "3f444eafef0f623484951980bd16be912186e7d7513647551dd0f5e3fa46ddce",
+    "search_line": 31
   }
 ]

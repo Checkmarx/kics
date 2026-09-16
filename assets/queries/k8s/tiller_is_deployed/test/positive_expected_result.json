@@ -1,23 +1,62 @@
 [
-	{
-		"queryName": "Tiller (Helm v2) Is Deployed",
-		"severity": "HIGH",
-		"line": 4
-	},
-	{
-		"queryName": "Tiller (Helm v2) Is Deployed",
-		"severity": "HIGH",
-		"line": 10
-	},
-	{
-		"queryName": "Tiller (Helm v2) Is Deployed",
-		"severity": "HIGH",
-		"line": 15
-	},
-	{
-		"queryName": "Tiller (Helm v2) Is Deployed",
-		"severity": "HIGH",
-		"line": 20
-	}
-
+  {
+    "queryName": "Tiller (Helm v2) Is Deployed",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "tiller-deploy",
+    "searchKey": "metadata.name={{tiller-deploy}}",
+    "searchValue": "Deployment",
+    "expectedValue": "'metadata' of Deployment should not refer to any Tiller resource",
+    "actualValue": "'metadata' of Deployment refers to a Tiller resource",
+    "issueType": "IncorrectValue",
+    "similarityID": "22bfc5acf632b8ba8fd3c2f8163dd2b4975791a0dd9ed18ed57981e92db3b127",
+    "search_line": 4
+  },
+  {
+    "queryName": "Tiller (Helm v2) Is Deployed",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "tiller-deploy",
+    "searchKey": "metadata.name={{tiller-deploy}}.spec.containers",
+    "searchValue": "Deployment",
+    "expectedValue": "'spec.containers' of Deployment shouldn't have any Tiller containers",
+    "actualValue": "'spec.containers' of Deployment contains a Tiller container",
+    "issueType": "IncorrectValue",
+    "similarityID": "ee8a622426f68e02e6a3a1eaf3b8922c204251ff1e3768f8e17780d0ac81c07a",
+    "search_line": 10
+  },
+  {
+    "queryName": "Tiller (Helm v2) Is Deployed",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "tiller-deploy",
+    "searchKey": "metadata.name={{tiller-deploy}}.spec.template.metadata",
+    "searchValue": "Deployment",
+    "expectedValue": "'spec.template.metadata' should not refer to any Tiller resource%!(EXTRA string=Deployment)",
+    "actualValue": "'spec.template.metadata' refers to a Tiller resource%!(EXTRA string=Deployment)",
+    "issueType": "IncorrectValue",
+    "similarityID": "0d78162d23431af13fbe4dabd9bb41414be935bc576b9f4329852dbb86b18821",
+    "search_line": 15
+  },
+  {
+    "queryName": "Tiller (Helm v2) Is Deployed",
+    "severity": "HIGH",
+    "line": 20,
+    "fileName": "positive.yaml",
+    "resourceType": "Deployment",
+    "resourceName": "tiller-deploy",
+    "searchKey": "metadata.name={{tiller-deploy}}.spec.template.spec.containers",
+    "searchValue": "Deployment",
+    "expectedValue": "'spec.template.spec.containers' of Deployment shouldn't have any Tiller containers",
+    "actualValue": "'spec.template.spec.containers' of Deployment contains a Tiller container",
+    "issueType": "IncorrectValue",
+    "similarityID": "3cb8ca072bf9f53b5213fa7f4325be66bf505fbdefda458234a0523fe7b24b0d",
+    "search_line": 20
+  }
 ]

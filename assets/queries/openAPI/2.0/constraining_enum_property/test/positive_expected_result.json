@@ -2,49 +2,121 @@
   {
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
+    "line": 24,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
+    "searchValue": "",
+    "expectedValue": "Type numeric should not have enum and constraining keywords",
+    "actualValue": "Type numeric has enum and minimum",
+    "issueType": "IncorrectValue",
+    "similarityID": "7c180be5f8701759e91b1885f42e2e16baa4203c9bb746e3d0a0e3abea182014",
+    "search_line": 0
+  },
+  {
+    "queryName": "Constraining Enum Property",
+    "severity": "INFO",
+    "line": 24,
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
+    "searchValue": "",
+    "expectedValue": "Type string should not have enum and constraining keywords",
+    "actualValue": "Type string has enum and maxLength",
+    "issueType": "IncorrectValue",
+    "similarityID": "232f8f1cb857a23789e0badbd0b4e0de4eeb4bdb9c3e8ba3e1d0d5083a6af31b",
+    "search_line": 0
+  },
+  {
+    "queryName": "Constraining Enum Property",
+    "severity": "INFO",
     "line": 38,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Category.properties.id.minimum",
+    "searchValue": "",
+    "expectedValue": "Type numeric should not have enum and constraining keywords",
+    "actualValue": "Type numeric has enum and minimum",
+    "issueType": "IncorrectValue",
+    "similarityID": "468ebf9cef2f0a8f63b1ec68f882554485089612608401e6f41a6f52cb1ab57a",
+    "search_line": 0
   },
   {
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
     "line": 49,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Category.properties.name.maxLength",
+    "searchValue": "",
+    "expectedValue": "Type string should not have enum and constraining keywords",
+    "actualValue": "Type string has enum and maxLength",
+    "issueType": "IncorrectValue",
+    "similarityID": "aa52a28e51534068868e5a28b5f9585e4f37a80470e2983bb95f2c770bc68fde",
+    "search_line": 0
   },
   {
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
-    "line": 24,
-    "filename": "positive1.json"
+    "line": 19,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
+    "searchValue": "",
+    "expectedValue": "Type numeric should not have enum and constraining keywords",
+    "actualValue": "Type numeric has enum and minimum",
+    "issueType": "IncorrectValue",
+    "similarityID": "1c09c48755c36d8125992e3d578a2e8439bea73f427182aeb419f0501f6156a0",
+    "search_line": 0
   },
   {
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
-    "line": 24,
-    "filename": "positive1.json"
+    "line": 19,
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.parameters.schema.$ref=#/definitions/Category",
+    "searchValue": "",
+    "expectedValue": "Type string should not have enum and constraining keywords",
+    "actualValue": "Type string has enum and maxLength",
+    "issueType": "IncorrectValue",
+    "similarityID": "0978114c76a2b9ff52a3dea3783305e80450f846c7625c39939fb38e44d4e7ff",
+    "search_line": 0
   },
   {
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Category.properties.id.minimum",
+    "searchValue": "",
+    "expectedValue": "Type numeric should not have enum and constraining keywords",
+    "actualValue": "Type numeric has enum and minimum",
+    "issueType": "IncorrectValue",
+    "similarityID": "a740ea415c99812a4cdc02577c1af2bfe09f73e31b1a7a9210ac5fb5db061eb9",
+    "search_line": 0
   },
   {
     "queryName": "Constraining Enum Property",
     "severity": "INFO",
     "line": 36,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Constraining Enum Property",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive2.yaml"
-  },
-  {
-    "queryName": "Constraining Enum Property",
-    "severity": "INFO",
-    "line": 19,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "definitions.Category.properties.name.maxLength",
+    "searchValue": "",
+    "expectedValue": "Type string should not have enum and constraining keywords",
+    "actualValue": "Type string has enum and maxLength",
+    "issueType": "IncorrectValue",
+    "similarityID": "1bad7742fb6ddb69d866ee2903020305385fd5514a2072ea03f09c5d872ca6e7",
+    "search_line": 0
   }
 ]

@@ -2,16 +2,46 @@
   {
     "queryName": "Run Using 'wget' and 'curl'",
     "severity": "LOW",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{debian}}.{{RUN curl http://bing.com}}",
+    "searchValue": "",
+    "expectedValue": "Exclusively using 'wget' or 'curl'",
+    "actualValue": "Using both 'wget' and 'curl'",
+    "issueType": "RedundantAttribute",
+    "similarityID": "4c8abbe28f82d53dbd6a24bff4cfc8866a9549d2f1d6a998046a58024ddd007a",
+    "search_line": -1
   },
   {
     "queryName": "Run Using 'wget' and 'curl'",
     "severity": "LOW",
-    "line": 7
+    "line": 7,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{baseImage}}.{{RUN curl http://bing.com}}",
+    "searchValue": "",
+    "expectedValue": "Exclusively using 'wget' or 'curl'",
+    "actualValue": "Using both 'wget' and 'curl'",
+    "issueType": "RedundantAttribute",
+    "similarityID": "30615ca7cb65b4f426375503c2b9e2764475da708b8c5bac6d1548fb77fdf0f8",
+    "search_line": -1
   },
   {
     "queryName": "Run Using 'wget' and 'curl'",
     "severity": "LOW",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{baseImage}}.{{RUN [\"curl\", \"http://bing.com\"]}}",
+    "searchValue": "",
+    "expectedValue": "Exclusively using 'wget' or 'curl'",
+    "actualValue": "Using both 'wget' and 'curl'",
+    "issueType": "RedundantAttribute",
+    "similarityID": "81af9803fc9ae4b5117ed4c261fe78640fb54163ffe5545d117a3a516869136b",
+    "search_line": -1
   }
 ]

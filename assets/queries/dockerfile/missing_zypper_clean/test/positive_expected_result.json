@@ -2,6 +2,16 @@
   {
     "queryName": "Missing Zypper Clean",
     "severity": "LOW",
-    "line": 2
+    "line": 2,
+    "fileName": "positive.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{busybox:1.0}}.{{RUN zypper install}}",
+    "searchValue": "",
+    "expectedValue": "There should be a zypper clean after a zypper usage",
+    "actualValue": "The command 'zypper install' does not have a zypper clean after it",
+    "issueType": "MissingAttribute",
+    "similarityID": "2c8fdf66b036a23b5ed16d1efd5c8cceda4933d22ff2913a9ba7bafcc519b9c6",
+    "search_line": -1
   }
 ]

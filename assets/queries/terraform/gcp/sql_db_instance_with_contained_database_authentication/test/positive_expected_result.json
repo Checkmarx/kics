@@ -2,11 +2,31 @@
   {
     "queryName": "Beta - SQL DB Instance With Contained Database Authentication",
     "severity": "HIGH",
-    "line": 13
+    "line": 13,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_1].settings.database_flags[1].name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_1].settings.database_flags' should set 'contained database authentication' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_1].settings.database_flags' sets 'contained database authentication' to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "156d344a70b38cf8882e16297cef6f31c1405b148551504588070fe3cc9cbae6",
+    "search_line": 13
   },
   {
     "queryName": "Beta - SQL DB Instance With Contained Database Authentication",
     "severity": "HIGH",
-    "line": 31
+    "line": 31,
+    "fileName": "positive.tf",
+    "resourceType": "google_sql_database_instance",
+    "resourceName": "sqlserver-instance-with-flag",
+    "searchKey": "google_sql_database_instance[positive_2].settings.database_flags.name",
+    "searchValue": "",
+    "expectedValue": "'google_sql_database_instance[positive_2].settings.database_flags' should set 'contained database authentication' to 'off'",
+    "actualValue": "'google_sql_database_instance[positive_2].settings.database_flags' sets 'contained database authentication' to 'on'",
+    "issueType": "IncorrectValue",
+    "similarityID": "65e503d4e4f23e7be4e0d12bdd663c7f1a01c47c53a121433dcece8d82770234",
+    "search_line": 31
   }
 ]

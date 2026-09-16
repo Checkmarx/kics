@@ -3,36 +3,90 @@
     "queryName": "Items Undefined (v3)",
     "severity": "INFO",
     "line": 50,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError",
+    "searchValue": "",
+    "expectedValue": "Array items property should be defined",
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "8b6308f1cbeb1fa71f66048feeb65c19da841d1966c4549589fa98bb64a5d159",
+    "search_line": -1
   },
   {
     "queryName": "Items Undefined (v3)",
     "severity": "INFO",
     "line": 22,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "Array items property should be defined",
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "736b5f69475dea074c450e879bf85b34b207d333f8868aaab15c218f0c122723",
+    "search_line": -1
   },
   {
     "queryName": "Items Undefined (v3)",
     "severity": "INFO",
     "line": 27,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.schemas.GeneralError",
+    "searchValue": "",
+    "expectedValue": "Array items property should be defined",
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b3e1867ccd0ee818ade70935dc0e0e53c5bd44fe4fca004ee2a714b0906dbf96",
+    "search_line": -1
   },
   {
     "queryName": "Items Undefined (v3)",
     "severity": "INFO",
     "line": 15,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.get.responses.200.content.{{application/json}}.schema",
+    "searchValue": "",
+    "expectedValue": "Array items property should be defined",
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0e050b6b45b0dd1e0a73656b28057a414d6a06f3e4e646e9b29e109a3b682ecc",
+    "search_line": -1
   },
   {
     "queryName": "Items Undefined (v2)",
     "severity": "INFO",
     "line": 19,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "Array items property should be defined",
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "3b514befb14a32ebd900d415c7323f4d3682ab4b908271717a52fc4ebc36c008",
+    "search_line": -1
   },
   {
     "queryName": "Items Undefined (v2)",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/users}}.get.responses.200.schema",
+    "searchValue": "",
+    "expectedValue": "Array items property should be defined",
+    "actualValue": "Array items property is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "0a32b2a7d5f4cb3b1f2c16221d1916e7c0a74beec65f8ce23b1baf0857ea2d36",
+    "search_line": -1
   }
 ]

@@ -3,36 +3,90 @@
     "queryName": "Success Response Code Undefined for Post Operation (v3)",
     "severity": "LOW",
     "line": 12,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.post.responses",
+    "searchValue": "",
+    "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "c62e1c8e62b607d71f917a8b26080d812b23f5080e86c14e515e625b65d2cc76",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Post Operation (v3)",
     "severity": "LOW",
     "line": 24,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.post.responses",
+    "searchValue": "",
+    "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "b5554470627ebcb49f526661b4bdc94cc65dc109ba4da75d64d0e6569eda74a2",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Post Operation (v3)",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.post.responses",
+    "searchValue": "",
+    "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "f957d46094d59cd0e00fe9d4c452b904eb54fa5afd4c9ef701cf6ad6efc0e24d",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Post Operation (v3)",
     "severity": "LOW",
     "line": 18,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.post.responses",
+    "searchValue": "",
+    "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "f0efb8b5c3d5f22805f167cefc498c20571ca6458253357889f210de2be8ec8e",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Post Operation (v2)",
     "severity": "LOW",
     "line": 24,
-    "filename": "positive5.json"
+    "fileName": "positive5.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.post.responses",
+    "searchValue": "",
+    "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "f241b6dd60859707ee1ac07e253ce7d6e695d7f958cc0747d633debf4b3796f5",
+    "search_line": -1
   },
   {
     "queryName": "Success Response Code Undefined for Post Operation (v2)",
     "severity": "LOW",
     "line": 18,
-    "filename": "positive6.yaml"
+    "fileName": "positive6.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/item}}.post.responses",
+    "searchValue": "",
+    "expectedValue": "Post should have at least one successful code (200, 201, 202 or 204)",
+    "actualValue": "Post does not have any successful code",
+    "issueType": "MissingAttribute",
+    "similarityID": "ecf7e026eb1a82c4881fa870f7eb3009ddc1c2026a9d9996b729092e4410a9b8",
+    "search_line": -1
   }
 ]

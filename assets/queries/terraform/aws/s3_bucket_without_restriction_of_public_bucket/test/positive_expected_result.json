@@ -3,12 +3,30 @@
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 13,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "restrict_public",
+    "searchKey": "aws_s3_bucket_public_access_block[restrict_public].restrict_public_buckets",
+    "searchValue": "",
+    "expectedValue": "'restrict_public_buckets' should equal 'true'",
+    "actualValue": "'restrict_public_buckets' is equal to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "2f09d1eb68af9fd31c48e47aca9baef3ac5c8ea21792d097253e3bf4c1307bc4",
+    "search_line": 13
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
     "severity": "MEDIUM",
     "line": 14,
-    "filename": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_s3_bucket_public_access_block",
+    "resourceName": "restrict_public",
+    "searchKey": "aws_s3_bucket_public_access_block[restrict_public].restrict_public_buckets",
+    "searchValue": "",
+    "expectedValue": "'restrict_public_buckets' should equal 'true'",
+    "actualValue": "'restrict_public_buckets' is equal to 'false'",
+    "issueType": "IncorrectValue",
+    "similarityID": "41b5dd408718de9e00c1332be900917750c914adf07130ff5c24ab62b78d96e5",
+    "search_line": 14
   }
 ]

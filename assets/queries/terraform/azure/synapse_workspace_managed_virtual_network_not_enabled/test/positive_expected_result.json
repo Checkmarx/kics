@@ -3,12 +3,30 @@
     "queryName": "Synapse Workspace Managed Virtual Network Not Enabled",
     "severity": "LOW",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "azurerm_synapse_workspace",
+    "resourceName": "example",
+    "searchKey": "azurerm_synapse_workspace[positive1]",
+    "searchValue": "",
+    "expectedValue": "'managed_virtual_network_enabled' should be defined and set to true",
+    "actualValue": "'managed_virtual_network_enabled' is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "193210a7b174e1fb6a05d7f76a877b89b582098f37158b6df6b7d8dfaba1edf9",
+    "search_line": 1
   },
   {
     "queryName": "Synapse Workspace Managed Virtual Network Not Enabled",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "azurerm_synapse_workspace",
+    "resourceName": "example",
+    "searchKey": "azurerm_synapse_workspace[positive2].managed_virtual_network_enabled",
+    "searchValue": "",
+    "expectedValue": "'managed_virtual_network_enabled' should be defined and set to true",
+    "actualValue": "'managed_virtual_network_enabled' is set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "fd1f82aaaab367212c97019579ba11babec3efc80dedb53a6c4bb4ac8aee4830",
+    "search_line": 9
   }
 ]

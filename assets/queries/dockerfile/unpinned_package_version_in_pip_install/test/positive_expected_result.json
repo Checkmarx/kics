@@ -3,48 +3,120 @@
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 3,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.9}}.{{RUN pip install --user pip}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction pip install --user pip does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "0d2a57e71e3a717bda8c05a57e46fe217d469421b189ef41c95b303e0ebb3f63",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.9}}.{{RUN [\"pip\", \"install\", \"connexion\"]}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction connexion does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "a87fa26f53610ec3df66a51ecc145e406eef54fa36defd95d3243b8c29cd305f",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 15,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.7}}.{{RUN pip install connexion}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction pip install connexion does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "6b22b8a50fb8d7b20c7f437835e1f5eb988ea0578d7372d0fa1a817e99dcc958",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 18,
-    "filename": "positive1.dockerfile"
+    "fileName": "positive1.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:3.7}}.{{RUN pip3 install requests}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction pip3 install requests does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "5f754710730aa77e38f5f0fc439494302367bf2c504d7629ca0f7f3249138e6d",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 3,
-    "filename": "positive2.dockerfile"
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3.12-slim}}.{{RUN pip install     --no-cache-dir     --index-url https://example.com/simple     --trusted-host example.com     requests     flask}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction pip install     --no-cache-dir     --index-url https://example.com/simple     --trusted-host example.com     requests     flask does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "57eadae7f2a3a9ebea8777ffe49ce8577bd6bd09e5ff29f2a5b08ad6ac1b132f",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 12,
-    "filename": "positive2.dockerfile"
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3.11-slim}}.{{RUN pip3 install --no-cache-dir --index-url https://example.com/simple --trusted-host example.com numpy}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction pip3 install --no-cache-dir --index-url https://example.com/simple --trusted-host example.com numpy does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "498367c1f6c17eaf0c34bf614dd90f8f111b06bd385f6497c2743eff62dcbafb",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 3,
-    "filename": "positive3.dockerfile"
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3.12-slim}}.{{RUN pip install --no-cache-dir --index-url https://example.com/simple --trusted-host example.com flask}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction pip install --no-cache-dir --index-url https://example.com/simple --trusted-host example.com flask does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "f42fb4d8f53ea6c3599019e021708ce8e43cf63c0e51fb3a482855a53159117a",
+    "search_line": -1
   },
   {
     "queryName": "Unpinned Package Version in Pip Install",
     "severity": "MEDIUM",
     "line": 3,
-    "filename": "positive4.dockerfile"
+    "fileName": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{python:3.12-slim}}.{{RUN [\"pip\", \"install\", \"--no-cache-dir\", \"requests\"]}}",
+    "searchValue": "",
+    "expectedValue": "RUN instruction with 'pip/pip3 install <package>' should use package pinning form 'pip/pip3 install <package>=<version>'",
+    "actualValue": "RUN instruction requests does not use package pinning form",
+    "issueType": "IncorrectValue",
+    "similarityID": "057db4c4b9fa851d9fcfa82d864b6e37b1abfcd19965afdb74cc2d651abc124b",
+    "search_line": -1
   }
 ]

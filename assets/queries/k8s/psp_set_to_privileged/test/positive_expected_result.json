@@ -2,6 +2,16 @@
   {
     "queryName": "PSP Set To Privileged",
     "severity": "HIGH",
-    "line": 6
+    "line": 6,
+    "fileName": "positive.yaml",
+    "resourceType": "PodSecurityPolicy",
+    "resourceName": "example",
+    "searchKey": "metadata.name={{example}}.spec.privileged",
+    "searchValue": "",
+    "expectedValue": "metadata.name={{example}}.spec.privileged should be set to false",
+    "actualValue": "metadata.name={{example}}.spec.privileged is true",
+    "issueType": "IncorrectValue",
+    "similarityID": "af994f63f8f3bb611624960410d1843b339b637855b9c6d9ca6a57441d198f6a",
+    "search_line": -1
   }
 ]

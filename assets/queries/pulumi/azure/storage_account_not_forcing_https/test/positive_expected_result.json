@@ -3,6 +3,15 @@
     "queryName": "Storage Account Not Forcing HTTPS",
     "severity": "MEDIUM",
     "line": 9,
-    "fileName": "positive.yaml"
+    "fileName": "positive.yaml",
+    "resourceType": "azure-native:storage:StorageAccount",
+    "resourceName": "storageAccount",
+    "searchKey": "resources[storageAccount].properties.enableHttpsTrafficOnly",
+    "searchValue": "",
+    "expectedValue": "Storage Account should have attribute 'enableHttpsTrafficOnly' set to true",
+    "actualValue": "Storage Account has attribute 'enableHttpsTrafficOnly' set to false",
+    "issueType": "IncorrectValue",
+    "similarityID": "eb0472a1bf1e832d5957e5eec23565a3964a48f7a0cafe3137f96241a9893733",
+    "search_line": 9
   }
 ]

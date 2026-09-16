@@ -3,24 +3,60 @@
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
     "line": 13,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp should not be open to the world (0.0.0.0/0)",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp is open to the world (0.0.0.0/0)",
+    "issueType": "IncorrectValue",
+    "similarityID": "b9e8d03be203917c136f7aeff74964cef427d229aa33f9a6014bcdcabd8da137",
+    "search_line": 13
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
     "line": 43,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.CidrIpv6 should not be open to the world (::/0)",
+    "actualValue": "Resources.InboundRule.Properties.CidrIpv6 is open to the world (::/0)",
+    "issueType": "IncorrectValue",
+    "similarityID": "347f4388ad33447529b7a23d5b2a8e00baa367791c06089491bb1e2f46ce00d4",
+    "search_line": 43
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
     "line": 30,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroupIngress",
+    "resourceName": "InboundRule",
+    "searchKey": "Resources.InboundRule.Properties.CidrIpv6",
+    "searchValue": "",
+    "expectedValue": "Resources.InboundRule.Properties.CidrIpv6 should not be open to the world (::/0)",
+    "actualValue": "Resources.InboundRule.Properties.CidrIpv6 is open to the world (::/0)",
+    "issueType": "IncorrectValue",
+    "similarityID": "7ffd2272d19e58f036498fb8532fadcc2bfd157d2c0958ba021078954677efa3",
+    "search_line": 30
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
     "line": 56,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::EC2::SecurityGroup",
+    "resourceName": "InstanceSecurityGroup",
+    "searchKey": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress",
+    "searchValue": "",
+    "expectedValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp should not be open to the world (0.0.0.0/0)",
+    "actualValue": "Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress[0].CidrIp is open to the world (0.0.0.0/0)",
+    "issueType": "IncorrectValue",
+    "similarityID": "ff165d95cbdd16b95e486856710dd2d3aa4bcac6a74c8ec5bbd6c07ee6b5f0a7",
+    "search_line": 56
   }
 ]

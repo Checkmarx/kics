@@ -3,24 +3,60 @@
     "queryName": "Invalid Content Type For Multiple Files Upload",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive1.json"
+    "fileName": "positive1.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} should be set to 'multipart/form-data'",
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} is not set to 'multipart/form-data'",
+    "issueType": "IncorrectValue",
+    "similarityID": "80c2b5671576d52fbeb48438104fc3df729fb05343361a3a557d46b90b8dbd87",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Content Type For Multiple Files Upload",
     "severity": "INFO",
     "line": 16,
-    "filename": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}}",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} should be set to 'multipart/form-data'",
+    "actualValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} is not set to 'multipart/form-data'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d5b1a9938f53086fa5d272cb7b8c2128624238bb0da8568b2291dc298607b7d2",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Content Type For Multiple Files Upload",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}}",
+    "searchValue": "",
+    "expectedValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} should be set to 'multipart/form-data'",
+    "actualValue": "paths.{{/}}.{{get}}.requestBody.content.{{application/json}} is not set to 'multipart/form-data'",
+    "issueType": "IncorrectValue",
+    "similarityID": "1711b730b6f6e02696f836a09b8bd96b751d74070cc9105198b8a5d5644bf3d0",
+    "search_line": -1
   },
   {
     "queryName": "Invalid Content Type For Multiple Files Upload",
     "severity": "INFO",
     "line": 13,
-    "filename": "positive4.yaml"
+    "fileName": "positive4.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}}",
+    "searchValue": "",
+    "expectedValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} should be set to 'multipart/form-data'",
+    "actualValue": "components.requestBodies.{{CreateCustomer}}.content.{{application/json}} is not set to 'multipart/form-data'",
+    "issueType": "IncorrectValue",
+    "similarityID": "d4a3e2aed295c160c573b90260aa02a6b2507db1ed0d50336404d8fe2a3e562b",
+    "search_line": -1
   }
 ]

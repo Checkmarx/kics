@@ -2,11 +2,31 @@
   {
     "queryName": "CloudWatch Metrics Disabled",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "fileName": "positive.tf",
+    "resourceType": "aws_api_gateway_method_settings",
+    "resourceName": "positive1",
+    "searchKey": "aws_api_gateway_method_settings[positive1].settings.metrics_enabled",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_method_settings[positive1].settings.metrics_enabled should be true",
+    "actualValue": "aws_api_gateway_method_settings[positive1].settings.metrics_enabled is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "a34ceafc7e09b8e278970bee3654199f9b14b9c171c75fd493145b150546c8c8",
+    "search_line": 8
   },
   {
     "queryName": "CloudWatch Metrics Disabled",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "fileName": "positive.tf",
+    "resourceType": "aws_api_gateway_method_settings",
+    "resourceName": "positive2",
+    "searchKey": "aws_api_gateway_method_settings[positive2].settings",
+    "searchValue": "",
+    "expectedValue": "aws_api_gateway_method_settings[positive2].settings.metrics_enabled should be defined and not null",
+    "actualValue": "aws_api_gateway_method_settings[positive2].settings.metrics_enabled is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "9704ea8b477bc9e244aa2abb15fa06eaabd28a0426183d058c9a4e918f326025",
+    "search_line": 18
   }
 ]

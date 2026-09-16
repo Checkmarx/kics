@@ -1,14 +1,32 @@
 [
   {
+    "queryName": "Secrets Manager Should Specify KmsKeyId",
     "severity": "LOW",
     "line": 6,
     "fileName": "positive1.yaml",
-    "queryName": "Secrets Manager Should Specify KmsKeyId"
+    "resourceType": "AWS::SecretsManager::Secret",
+    "resourceName": "String",
+    "searchKey": "Resources.SecretsManagerSecret.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.SecretsManagerSecret.Properties.KmsKeyId should be defined",
+    "actualValue": "Resources.SecretsManagerSecret.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "b67876551a7535d835bf3d6a225026c1f5ac452b7c2b1cb9a0207b6a9a365b59",
+    "search_line": -1
   },
   {
+    "queryName": "Secrets Manager Should Specify KmsKeyId",
+    "severity": "LOW",
     "line": 7,
     "fileName": "positive2.json",
-    "queryName": "Secrets Manager Should Specify KmsKeyId",
-    "severity": "LOW"
+    "resourceType": "AWS::SecretsManager::Secret",
+    "resourceName": "String",
+    "searchKey": "Resources.SecretsManagerSecret.Properties",
+    "searchValue": "",
+    "expectedValue": "Resources.SecretsManagerSecret.Properties.KmsKeyId should be defined",
+    "actualValue": "Resources.SecretsManagerSecret.Properties.KmsKeyId is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "d86595daf88e56f10a778ab1e3a92d4aa715a63cbf13bc9f4074a1bf9f68bb07",
+    "search_line": -1
   }
 ]

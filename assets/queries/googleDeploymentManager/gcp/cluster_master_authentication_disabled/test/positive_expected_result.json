@@ -3,18 +3,45 @@
     "queryName": "Cluster Master Authentication Disabled",
     "severity": "MEDIUM",
     "line": 4,
-    "filename": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties",
+    "searchValue": "",
+    "expectedValue": "'masterAuth' should be defined and not null",
+    "actualValue": "'masterAuth' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "dd78983b9b2a6ab0e1a3d838fcba778f22658098e8e984f4f0e0355d142ef56f",
+    "search_line": 4
   },
   {
     "queryName": "Cluster Master Authentication Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive2.yaml"
+    "fileName": "positive2.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.masterAuth",
+    "searchValue": "",
+    "expectedValue": "Attribute 'masterAuth.username' should be defined and Attribute 'masterAuth.password' should be defined",
+    "actualValue": "Attribute 'masterAuth.username' is undefined or attribute 'masterAuth.password' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "db8f32bdc8b6ab072f84f9780b0e303dc682ccbab2c2fea238cb2cd8bf1ee3a8",
+    "search_line": 5
   },
   {
     "queryName": "Cluster Master Authentication Disabled",
     "severity": "MEDIUM",
     "line": 5,
-    "filename": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "container.v1.cluster",
+    "resourceName": "cluster",
+    "searchKey": "resources.name={{cluster}}.properties.masterAuth",
+    "searchValue": "",
+    "expectedValue": "Attribute 'masterAuth.username' should be defined and Attribute 'masterAuth.password' should be defined",
+    "actualValue": "Attribute 'masterAuth.username' is undefined or attribute 'masterAuth.password' is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "43103ba9d03558b5d28b0bb3aa75f666504608749215814334b23b2fe0ee38e2",
+    "search_line": 5
   }
 ]

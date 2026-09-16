@@ -3,12 +3,30 @@
     "queryName": "RDS Associated with Public Subnet",
     "severity": "CRITICAL",
     "line": 12,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "Positive1",
+    "searchKey": "Resources.Positive1.Properties.DBSubnetGroupName",
+    "searchValue": "",
+    "expectedValue": "RDS should not be running in a public subnet",
+    "actualValue": "RDS is running in a public subnet",
+    "issueType": "IncorrectValue",
+    "similarityID": "7bc66f990ad5d44c55428ef6fc43d19f2c1abbfa7260543215ef90ae9a777582",
+    "search_line": 12
   },
   {
     "queryName": "RDS Associated with Public Subnet",
     "severity": "CRITICAL",
     "line": 9,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::RDS::DBInstance",
+    "resourceName": "Positive1",
+    "searchKey": "Resources.Positive1.Properties.DBSubnetGroupName",
+    "searchValue": "",
+    "expectedValue": "RDS should not be running in a public subnet",
+    "actualValue": "RDS is running in a public subnet",
+    "issueType": "IncorrectValue",
+    "similarityID": "883035a880abe00bcf557968ba577e9178215a8242da441f0bed060bfe91c15c",
+    "search_line": 9
   }
 ]

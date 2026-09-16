@@ -2,11 +2,31 @@
   {
     "queryName": "Stackdriver Monitoring Disabled",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster1",
+    "searchKey": "name={{create a cluster1}}.{{google.cloud.gcp_container_cluster}}",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.monitoring_service should be defined",
+    "actualValue": "gcp_container_cluster.monitoring_service is undefined",
+    "issueType": "MissingAttribute",
+    "similarityID": "501a24ac1ec7c6bad4b6ae88d801594b5a88cdfc2a07d53e6413f304b64ce3bd",
+    "search_line": -1
   },
   {
     "queryName": "Stackdriver Monitoring Disabled",
     "severity": "MEDIUM",
-    "line": 32
+    "line": 32,
+    "fileName": "positive.yaml",
+    "resourceType": "google.cloud.gcp_container_cluster",
+    "resourceName": "create a cluster2",
+    "searchKey": "name={{create a cluster2}}.{{google.cloud.gcp_container_cluster}}.monitoring_service",
+    "searchValue": "",
+    "expectedValue": "gcp_container_cluster.monitoring_service should not be 'none'",
+    "actualValue": "gcp_container_cluster.monitoring_service is 'none'",
+    "issueType": "IncorrectValue",
+    "similarityID": "183c31a1643024abf58818920372a4140878e8df3f5ee1171a2de16ce287d2c0",
+    "search_line": -1
   }
 ]

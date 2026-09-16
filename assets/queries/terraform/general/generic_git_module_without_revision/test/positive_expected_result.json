@@ -3,6 +3,15 @@
     "queryName": "Generic Git Module Without Revision",
     "severity": "INFO",
     "line": 8,
-    "filename": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "n/a",
+    "resourceName": "n/a",
+    "searchKey": "module.{{acm}}.source",
+    "searchValue": "",
+    "expectedValue": "Module 'source' field should have a reference",
+    "actualValue": "Module 'source' field does not have reference",
+    "issueType": "IncorrectValue",
+    "similarityID": "5fd9491aa16ded5e6aa2d5f3c429739d8c4935e7c39d161ba1d9b6426c1d1c0a",
+    "search_line": -1
   }
 ]

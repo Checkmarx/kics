@@ -3,12 +3,30 @@
     "queryName": "Launch Template Is Not Encrypted",
     "severity": "HIGH",
     "line": 36,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "alicloud_launch_template",
+    "resourceName": "tf-test-template",
+    "searchKey": "alicloud_launch_template[templatepos1].encrypted",
+    "searchValue": "",
+    "expectedValue": "alicloud_launch_template[templatepos1].encrypted should be true",
+    "actualValue": "alicloud_launch_template[templatepos1].encrypted is false",
+    "issueType": "IncorrectValue",
+    "similarityID": "dfa01e40312d702089552e5a78599abd9a890881905963ae1025b4f8d6229d5d",
+    "search_line": 36
   },
   {
     "queryName": "Launch Template Is Not Encrypted",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "alicloud_launch_template",
+    "resourceName": "tf-test-template",
+    "searchKey": "alicloud_launch_template[templatepos2]",
+    "searchValue": "",
+    "expectedValue": "alicloud_launch_template[templatepos2] 'encrypted' should be defined and set to true",
+    "actualValue": "alicloud_launch_template[templatepos2] 'encrypted' argument is not defined",
+    "issueType": "MissingAttribute",
+    "similarityID": "86155c62ac8b91fd939d9b36ef8240bd536fe0e4f0f609af3eb7d7643a93aab3",
+    "search_line": 8
   }
 ]

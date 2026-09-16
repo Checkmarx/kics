@@ -3,30 +3,75 @@
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 20,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_iam_user_policy",
+    "resourceName": "excess_policy",
+    "searchKey": "aws_iam_user_policy[positive3].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should not equal '*'",
+    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "e58fac367dc10286b5668baefd86ff2452e8a9127ff7b1ca724b6cef87bfc72f",
+    "search_line": 20
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 3,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_iam_policy",
+    "resourceName": "s3-permission",
+    "searchKey": "aws_iam_policy[s3-permission].policy",
+    "searchValue": "",
+    "expectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should not equal '*'",
+    "actualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "a8464d5e4c49030bd4f4cda351e7641d07d8261fa5e4af1a52a585ac28880c70",
+    "search_line": 3
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 12,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_iam_policy_document",
+    "resourceName": "example-0",
+    "searchKey": "aws_iam_policy_document[example-0]",
+    "searchValue": "",
+    "expectedValue": "'statement.resources' and 'statement.actions' should not contain '*'",
+    "actualValue": "'statement.resources' and 'statement.actions' contain '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "fd6836a02eadfbc0e63703a6293a341bae9fc34c7f39d61f7aaaaf41a8474ba8",
+    "search_line": 12
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 38,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_iam_policy_document",
+    "resourceName": "example-1",
+    "searchKey": "aws_iam_policy_document[example-1]",
+    "searchValue": "",
+    "expectedValue": "'statement.resources' and 'statement.actions' should not contain '*'",
+    "actualValue": "'statement.resources' and 'statement.actions' contain '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "108af488b1a0887be2adf3dfd046ae98188b0e46f618d61f1769f220415aa552",
+    "search_line": 38
   },
   {
     "queryName": "IAM Policy Grants Full Permissions",
     "severity": "HIGH",
     "line": 64,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_iam_policy_document",
+    "resourceName": "example-2",
+    "searchKey": "aws_iam_policy_document[example-2]",
+    "searchValue": "",
+    "expectedValue": "'statement.resources' and 'statement.actions' should not contain '*'",
+    "actualValue": "'statement.resources' and 'statement.actions' contain '*'",
+    "issueType": "IncorrectValue",
+    "similarityID": "332a1ce1d5b504ab119dff1de8cbd980168129de4f7f80926221d8a8385ededa",
+    "search_line": 64
   }
 ]

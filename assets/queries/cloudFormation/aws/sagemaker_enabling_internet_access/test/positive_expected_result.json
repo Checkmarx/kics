@@ -3,12 +3,30 @@
     "queryName": "SageMaker Enabling Internet Access",
     "severity": "MEDIUM",
     "line": 7,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "Notebook",
+    "searchKey": "Resources.Notebook.Properties.DirectInternetAccess",
+    "searchValue": "",
+    "expectedValue": "Resources.Notebook.Properties.DirectInternetAccess is enabled",
+    "actualValue": "Resources.Notebook.Properties.DirectInternetAccess is disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "166efddf4e3c2e77e3b5db545490537e61f076c7b1c56073a3d5b27900e98b17",
+    "search_line": -1
   },
   {
     "queryName": "SageMaker Enabling Internet Access",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "AWS::SageMaker::NotebookInstance",
+    "resourceName": "Notebook",
+    "searchKey": "Resources.Notebook.Properties.DirectInternetAccess",
+    "searchValue": "",
+    "expectedValue": "Resources.Notebook.Properties.DirectInternetAccess is enabled",
+    "actualValue": "Resources.Notebook.Properties.DirectInternetAccess is disabled",
+    "issueType": "IncorrectValue",
+    "similarityID": "b8053e86ae4980aae5f743d0cfbd4e02cab37c62d2aad20da8331387d4601198",
+    "search_line": -1
   }
 ]

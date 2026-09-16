@@ -3,18 +3,45 @@
     "queryName": "BOM - AWS MQ",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive1.yaml"
+    "fileName": "positive1.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.BasicBroker",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "a4189a1baec7afe82c8e86f1992b86bb975f300673399c8f3bb367fecb2da1d4",
+    "search_line": 4
   },
   {
     "queryName": "BOM - AWS MQ",
     "severity": "TRACE",
     "line": 5,
-    "fileName": "positive2.json"
+    "fileName": "positive2.json",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.BasicBroker2",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "aef0de655f32392203a97fd5c9b89b948e15e806863197233f0494bf288a92df",
+    "search_line": 5
   },
   {
     "queryName": "BOM - AWS MQ",
     "severity": "TRACE",
     "line": 4,
-    "fileName": "positive3.yaml"
+    "fileName": "positive3.yaml",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "Resources.BasicBroker",
+    "searchValue": "",
+    "expectedValue": "",
+    "actualValue": "",
+    "issueType": "BillOfMaterials",
+    "similarityID": "58865a9e0135afcb6b7339cff8643a5c235fe440fc9fe2beda8124cb603738ba",
+    "search_line": 4
   }
 ]

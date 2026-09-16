@@ -3,24 +3,60 @@
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
     "severity": "MEDIUM",
     "line": 1,
-    "fileName": "positive1.tf"
+    "fileName": "positive1.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive1",
+    "searchKey": "resource.aws_cloudfront_distribution[positive1]",
+    "searchValue": "",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive1].viewer_certificate' should be defined and not null",
+    "actualValue": "resource.aws_cloudfront_distribution[positive1].viewer_certificate' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "1e3363e27db837ea181a1b1c1605518bdf1ff0593859a15f134b08858f4e786b",
+    "search_line": 1
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
     "severity": "MEDIUM",
     "line": 25,
-    "fileName": "positive2.tf"
+    "fileName": "positive2.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive2",
+    "searchKey": "resource.aws_cloudfront_distribution[positive2].viewer_certificate.minimum_protocol_version",
+    "searchValue": "",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive2].viewer_certificate.minimum_protocol_version' should be TLSv1.2_x",
+    "actualValue": "resource.aws_cloudfront_distribution[positive2].viewer_certificate.minimum_protocol_version' is TLSv1_2016",
+    "issueType": "IncorrectValue",
+    "similarityID": "d270e4d4285377b7dbeebf3ddadb8ac9ce2a53ca4277c78be09c8791cc0eaac3",
+    "search_line": 25
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive3.tf"
+    "fileName": "positive3.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive3",
+    "searchKey": "resource.aws_cloudfront_distribution[positive3].viewer_certificate.cloudfront_default_certificate",
+    "searchValue": "",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive3].viewer_certificate.cloudfront_default_certificate' should be 'false'",
+    "actualValue": "resource.aws_cloudfront_distribution[positive3].viewer_certificate.cloudfront_default_certificate' is 'true'",
+    "issueType": "IncorrectValue",
+    "similarityID": "feaba1e5d7949ce3bcb4465329555cd8b65da3e9f159f72de852b0cfd853a1d2",
+    "search_line": 24
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
     "severity": "MEDIUM",
     "line": 23,
-    "fileName": "positive4.tf"
+    "fileName": "positive4.tf",
+    "resourceType": "aws_cloudfront_distribution",
+    "resourceName": "positive4",
+    "searchKey": "resource.aws_cloudfront_distribution[positive4].viewer_certificate",
+    "searchValue": "",
+    "expectedValue": "resource.aws_cloudfront_distribution[positive4].viewer_certificate.minimum_protocol_version' should be defined and not null",
+    "actualValue": "resource.aws_cloudfront_distribution[positive4].viewer_certificate.minimum_protocol_version' is undefined or null",
+    "issueType": "MissingAttribute",
+    "similarityID": "098b854d43175daf1c800f8d3bdedb72e87c9a10d13f3d1d9003c3bb6d03f7b7",
+    "search_line": 23
   }
 ]
