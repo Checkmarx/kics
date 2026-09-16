@@ -6,12 +6,12 @@
     "fileName": "positive2.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{alpine:latest  }}",
+    "searchKey": "FROM={{alpine:latest}}",
     "searchValue": "",
     "expectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
     "actualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",
     "issueType": "MissingAttribute",
-    "similarityID": "5a01bccea4a1686e9eef7fe6f8e291a134f9a710d962baed4c0abfd04a52558f",
+    "similarityID": "9650bc5e3bc83c1446bde43fbd02297adf63983b4fca0a831ff484cec1f81115",
     "search_line": -1
   },
   {

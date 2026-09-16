@@ -6,12 +6,12 @@
     "fileName": "positive.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{alpine:latest  }}.{{CMD [\"./app\"] }}",
+    "searchKey": "FROM={{alpine:latest}}.{{CMD [\"./app\"] }}",
     "searchValue": "",
     "expectedValue": "There should be only one CMD instruction",
     "actualValue": "There are 2 CMD instructions",
     "issueType": "RedundantAttribute",
-    "similarityID": "cdd8410f69ddb77e364a2e727dbba6f3236a2ea1825413227c129515f047ecbe",
+    "similarityID": "d241b6230376998cd7d964ccae2e47526ad99984a636724c06bb6c5c0a6c007e",
     "search_line": -1
   }
 ]

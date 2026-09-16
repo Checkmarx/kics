@@ -23,8 +23,8 @@
     "resourceName": "positive2",
     "searchKey": "aws_redshift_cluster[positive2].encrypted",
     "searchValue": "",
-    "expectedValue": "aws_redshift_cluster.encrypted should be set to false",
-    "actualValue": "aws_redshift_cluster.encrypted is true",
+    "expectedValue": "aws_redshift_cluster.encrypted should be set to true",
+    "actualValue": "aws_redshift_cluster.encrypted is false",
     "issueType": "IncorrectValue",
     "similarityID": "adff59fba363f12b3be8a56b25c3d2c18ba2e4f3e974e4850605d7d88f1503c3",
     "search_line": 17

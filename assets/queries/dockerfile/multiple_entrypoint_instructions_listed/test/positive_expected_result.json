@@ -6,12 +6,12 @@
     "fileName": "positive.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{alpine:latest  }}.{{ENTRYPOINT [ \"/opt/app/run.sh\", \"--port\", \"8080\" ]}}",
+    "searchKey": "FROM={{alpine:latest}}.{{ENTRYPOINT [ \"/opt/app/run.sh\", \"--port\", \"8080\" ]}}",
     "searchValue": "",
     "expectedValue": "There should be only one ENTRYPOINT instruction",
     "actualValue": "There are 2 ENTRYPOINT instructions",
     "issueType": "RedundantAttribute",
-    "similarityID": "321f745a0f2d11b009133b2f2be9b9b6bc1dfb86fb41db190bca97a1c0f1aee7",
+    "similarityID": "3dd440a31d88530ab1e8861c1d0fceedcf6b7949fc80495e9a67ceac699a546e",
     "search_line": -1
   }
 ]

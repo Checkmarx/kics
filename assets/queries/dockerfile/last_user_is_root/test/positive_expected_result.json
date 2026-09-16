@@ -1,28 +1,9 @@
 [
   {
-    "fileName": "positive1.dockerfile",
-    "queryName": "Last User Is 'root'",
-    "severity": "HIGH",
-    "line": 2
-  },
-  {
-    "fileName": "positive2.dockerfile",
-    "queryName": "Last User Is 'root'",
-    "severity": "HIGH",
-    "line": 2
-  },
-  {
-    "fileName": "positive3.dockerfile",
-    "queryName": "Last User Is 'root'",
-    "severity": "HIGH",
-    "line": 2
-  },
-  {
-    "fileName": "positive4.dockerfile",
     "queryName": "Last User Is 'root'",
     "severity": "HIGH",
     "line": 2,
-    "fileName": "positive.dockerfile",
+    "fileName": "positive1.dockerfile",
     "resourceType": "",
     "resourceName": "",
     "searchKey": "FROM={{alpine:2.6}}.{{USER root}}",
@@ -30,7 +11,52 @@
     "expectedValue": "Last User shouldn't be root",
     "actualValue": "Last User is root",
     "issueType": "IncorrectValue",
-    "similarityID": "1ce74bd6ba4265fdbed4134277352c47feda66c304899e7700d2285b40c0f1b4",
+    "similarityID": "ec57522b3a0a593947faecf6a4d80e69762eddb66769b064f231167b7e6459df",
+    "search_line": -1
+  },
+  {
+    "queryName": "Last User Is 'root'",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive2.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:2.6}}.{{USER root:root}}",
+    "searchValue": "",
+    "expectedValue": "Last User shouldn't be root",
+    "actualValue": "Last User is root",
+    "issueType": "IncorrectValue",
+    "similarityID": "5cae8cb1ec5922020d0217265c117fd101470e03d300ba5df84ced66d30f57da",
+    "search_line": -1
+  },
+  {
+    "queryName": "Last User Is 'root'",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive3.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:2.6}}.{{USER 0}}",
+    "searchValue": "",
+    "expectedValue": "Last User shouldn't be root",
+    "actualValue": "Last User is root",
+    "issueType": "IncorrectValue",
+    "similarityID": "cbb2d06400ddece9c7d4de0ff60c8fd284104b27bc2ab365b93b05812b5b84ca",
+    "search_line": -1
+  },
+  {
+    "queryName": "Last User Is 'root'",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive4.dockerfile",
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{alpine:2.6}}.{{USER 0:0}}",
+    "searchValue": "",
+    "expectedValue": "Last User shouldn't be root",
+    "actualValue": "Last User is root",
+    "issueType": "IncorrectValue",
+    "similarityID": "ee6d6a999877ecdf4a2d885d169bbb6f51bd8f604d7147b33fb901ace69f2dc7",
     "search_line": -1
   }
 ]

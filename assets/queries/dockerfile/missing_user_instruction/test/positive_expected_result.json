@@ -6,12 +6,12 @@
     "fileName": "positive2.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{alpine:latest  }}",
+    "searchKey": "FROM={{alpine:latest}}",
     "searchValue": "",
     "expectedValue": "The 'Dockerfile' should contain the 'USER' instruction",
     "actualValue": "The 'Dockerfile' does not contain any 'USER' instruction",
     "issueType": "MissingAttribute",
-    "similarityID": "8f06b797ed4fe607b201dfc4bcc23614f61365ddace5defadd411f7464898960",
+    "similarityID": "1e215d37f259f0a15e7d8dd03471034ff7713cbeb87dfeb8aba1fbc596c21274",
     "search_line": -1
   },
   {

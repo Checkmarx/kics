@@ -2,19 +2,46 @@
   {
     "queryName": "Copy With More Than Two Arguments Not Ending With Slash",
     "severity": "LOW",
+    "line": 2,
     "fileName": "positive1.dockerfile",
-    "line": 2
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{node:carbon2}}.COPY={{package.json}}",
+    "searchValue": "",
+    "expectedValue": "When COPY command has more than two arguments, the last one should end with a slash",
+    "actualValue": "COPY command has more than two arguments and the last one does not end with a slash",
+    "issueType": "IncorrectValue",
+    "similarityID": "d0e6b8b779ab6e505b67f6bc1465d5ac10e26f80531e1d785bb23d82e61a30bf",
+    "search_line": -1
   },
   {
     "queryName": "Copy With More Than Two Arguments Not Ending With Slash",
     "severity": "LOW",
+    "line": 3,
     "fileName": "positive2.dockerfile",
-    "line": 3
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{${ANY_IMAGE}}}.COPY={{readme.md}}",
+    "searchValue": "",
+    "expectedValue": "When COPY command has more than two arguments, the last one should end with a slash",
+    "actualValue": "COPY command has more than two arguments and the last one does not end with a slash",
+    "issueType": "IncorrectValue",
+    "similarityID": "990379b765925656902d7ca3bd5f67fa25291e776678a67b27102b4374c77a37",
+    "search_line": -1
   },
   {
     "queryName": "Copy With More Than Two Arguments Not Ending With Slash",
     "severity": "LOW",
+    "line": 4,
     "fileName": "positive3.dockerfile",
-    "line": 4
+    "resourceType": "",
+    "resourceName": "",
+    "searchKey": "FROM={{${ANY_IMAGE}}}.COPY={{readme.md}}",
+    "searchValue": "",
+    "expectedValue": "When COPY command has more than two arguments, the last one should end with a slash",
+    "actualValue": "COPY command has more than two arguments and the last one does not end with a slash",
+    "issueType": "IncorrectValue",
+    "similarityID": "38670a7652306da10fe7a527e22c14120e05c01e5e3bd3fda97db3a90ab0dd32",
+    "search_line": -1
   }
 ]

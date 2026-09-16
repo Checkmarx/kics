@@ -36,12 +36,12 @@
     "fileName": "positive3.dockerfile",
     "resourceType": "",
     "resourceName": "",
-    "searchKey": "FROM={{positive4 }}",
+    "searchKey": "FROM={{positive4}}",
     "searchValue": "",
     "expectedValue": "FROM positive4:'version'",
     "actualValue": "FROM positive4'",
     "issueType": "MissingAttribute",
-    "similarityID": "6095db8c9109d37ddf89103f1010d8682d78e674aa96868a028a7e64c047bb05",
+    "similarityID": "cbc6b8727e8614822f56a74a6281f4e6eed0f39c5c9f66baca35e1509fbff2a1",
     "search_line": -1
   },
   {
