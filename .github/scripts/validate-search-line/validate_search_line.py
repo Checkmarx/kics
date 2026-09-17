@@ -30,6 +30,9 @@ def get_changed_queries():
     dirs = []
     for f in files:
         if f.endswith("/query.rego"):
+            if f.startswith("assets/queries/dockerfile/"):
+                print(f"  [SKIP] {f}: Dockerfile queries do not support searchLine")
+                continue
             dirs.append(REPO_ROOT / Path(f).parent)
     return dirs
 

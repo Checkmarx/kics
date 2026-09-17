@@ -34,12 +34,19 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		ResolvedFiles:   make(map[string]model.ResolvedFileSplit),
 	}
 
+	searchKey, startLine := extractLineHint(searchKey)
+	if startLine > 0 {
+		det.CurrentLine = startLine
+	}
+
 	var extractedString [][]string
 	extractedString = detector.GetBracketValues(searchKey, extractedString, "")
 	sKey := searchKey
 	for idx, str := range extractedString {
 		sKey = strings.ReplaceAll(sKey, str[0], `{{`+strconv.Itoa(idx)+`}}`)
 	}
+
+	extractedString[0][1], _, _ = strings.Cut(extractedString[0][1], "(")
 
 	unchangedText := make([]string, len(*file.LinesOriginalData))
 	copy(unchangedText, *file.LinesOriginalData)
@@ -69,6 +76,14 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		VulnLines:    &[]model.CodeLine{},
 		ResolvedFile: file.FilePath,
 	}
+}
+
+func extractLineHint(value string) (trimmedValue string, endLine int) {
+	idx := strings.LastIndex(value, "^")
+	if n, err := strconv.Atoi(value[idx+len("^"):]); err == nil {
+		return value[:idx], n
+	}
+	return value, 0
 }
 
 func prepareDockerFileLines(text []string) []string {
