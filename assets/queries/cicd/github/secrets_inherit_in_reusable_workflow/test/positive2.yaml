@@ -1,0 +1,22 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    uses: my-org/shared-workflows/.github/workflows/lint.yml@v2
+    with:
+      node-version: '20'
+
+  test:
+    uses: another-org/test-framework/.github/workflows/test.yml@abc1234
+    secrets: inherit
+
+  build:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: make build

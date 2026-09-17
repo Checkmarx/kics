@@ -1,0 +1,21 @@
+# Safe: issue_comment trigger, but uses github.actor as authorization guard.
+# Only the specific bot user can trigger this slash command.
+
+name: Rebase On Comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  rebase:
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/rebase') && github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rebase PR
+        run: |
+          git fetch origin
+          git rebase origin/main
+          git push --force-with-lease

@@ -1,0 +1,44 @@
+# Amber Automatic Code Review
+#
+# Vulnerable pattern: pull_request_target trigger with a checkout
+# that uses github.event.pull_request.head.ref (attacker-controlled).
+# The same job also executes the checked-out code via the review action.
+
+name: Amber Automatic Code Review
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  amber-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+
+    steps:
+      - name: Checkout base ref (for command file security)
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 1
+          path: base-ref
+
+      - name: Checkout PR head
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Run code review on checked-out PR head
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            Review the PR code and post findings as a comment.

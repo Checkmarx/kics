@@ -1,0 +1,14 @@
+name: Security Scan
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Run SAST
+        run: ./scripts/sast.sh
