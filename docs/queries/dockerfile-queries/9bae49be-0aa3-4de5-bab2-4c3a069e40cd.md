@@ -92,6 +92,16 @@ RUN apk update
 ENTRYPOINT ["mysql"]
 ```
 </details>
+<details><summary>Positive test num. 8 - dockerfile file</summary>
+
+```dockerfile hl_lines="3"
+from alpine:latest
+run apk update
+run apk add nginx
+
+cmd ["nginx", "-g", "daemon off;"]
+```
+</details>
 
 
 #### Code samples without security vulnerabilities
@@ -124,6 +134,20 @@ CMD ["nginx", "-g", "daemon off;"]
 <details><summary>Negative test num. 4 - dockerfile file</summary>
 
 ```dockerfile
+from ubuntu:18.04
+run apt-get update \
+    && apt-get install -y --no-install-recommends mysql-client \
+    && rm -rf /var/lib/apt/lists/*
+run apk update \
+    && apk add --no-cache git ca-certificates
+run apk --update add easy-rsa
+entrypoint ["mysql"]
+
+```
+</details>
+<details><summary>Negative test num. 5 - dockerfile file</summary>
+
+```dockerfile
 FROM ubuntu:18.04
 RUN apt-get update && apt-get install -y netcat \
     apt-get update && apt-get install -y supervisor
@@ -131,7 +155,7 @@ ENTRYPOINT ["mysql"]
 
 ```
 </details>
-<details><summary>Negative test num. 5 - dockerfile file</summary>
+<details><summary>Negative test num. 6 - dockerfile file</summary>
 
 ```dockerfile
 FROM ubuntu:16.04
@@ -144,7 +168,7 @@ RUN /usr/local/zend/bin/php -r "readfile('https://getcomposer.org/installer');" 
     && /usr/local/zend/bin/php composer.phar self-update && /usr/local/zend/bin/php composer.phar update
 ```
 </details>
-<details><summary>Negative test num. 6 - dockerfile file</summary>
+<details><summary>Negative test num. 7 - dockerfile file</summary>
 
 ```dockerfile
 FROM archlinux:latest
@@ -153,7 +177,7 @@ RUN pacman -Syu && pacman -S nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
 </details>
-<details><summary>Negative test num. 7 - dockerfile file</summary>
+<details><summary>Negative test num. 8 - dockerfile file</summary>
 
 ```dockerfile
 FROM ubuntu:18.04
@@ -164,7 +188,7 @@ ENTRYPOINT ["mysql"]
 
 ```
 </details>
-<details><summary>Negative test num. 8 - dockerfile file</summary>
+<details><summary>Negative test num. 9 - dockerfile file</summary>
 
 ```dockerfile
 FROM opensuse:latest
@@ -173,7 +197,7 @@ RUN zypper refresh && zypper install nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
 </details>
-<details><summary>Negative test num. 9 - dockerfile file</summary>
+<details><summary>Negative test num. 10 - dockerfile file</summary>
 
 ```dockerfile
 FROM debian:latest
@@ -182,7 +206,7 @@ RUN apt update && install nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
 </details>
-<details><summary>Negative test num. 10 - dockerfile file</summary>
+<details><summary>Negative test num. 11 - dockerfile file</summary>
 
 ```dockerfile
 FROM centos:latest
@@ -191,7 +215,7 @@ RUN yum update && yum install nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
 </details>
-<details><summary>Negative test num. 11 - dockerfile file</summary>
+<details><summary>Negative test num. 12 - dockerfile file</summary>
 
 ```dockerfile
 FROM fedora:latest
