@@ -51,10 +51,17 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	unchangedText := make([]string, len(*file.LinesOriginalData))
 	copy(unchangedText, *file.LinesOriginalData)
 
+	// workingText is a private copy for prepareDockerFileLines to mutate. It must not alias
+	// file.LinesOriginalDatas since that slice is shared by every query scanning this file, and
+	// concurrent queries call DetectLine for the same file in parallel, so mutating it in
+	// place races across goroutines.
+	workingText := make([]string, len(*file.LinesOriginalData))
+	copy(workingText, *file.LinesOriginalData)
+
 	for _, key := range strings.Split(sKey, ".") {
 		substr1, substr2 := detector.GenerateSubstrings(key, extractedString)
 
-		det, _ = det.DetectCurrentLine(substr1, substr2, 0, prepareDockerFileLines(*file.LinesOriginalData))
+		det, _ = det.DetectCurrentLine(substr1, substr2, 0, prepareDockerFileLines(workingText))
 
 		if det.IsBreak {
 			break
