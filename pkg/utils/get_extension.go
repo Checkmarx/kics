@@ -97,7 +97,8 @@ func readPossibleDockerFile(path string) bool {
 	scanner := bufio.NewScanner(file)
 	// Read lines from the file
 	for scanner.Scan() {
-		if strings.HasPrefix(scanner.Text(), "#") || strings.HasPrefix(strings.ToLower(scanner.Text()), "arg") || scanner.Text() == "" {
+		line := strings.TrimSpace(scanner.Text())
+		if strings.HasPrefix(line, "#") || strings.HasPrefix(strings.ToLower(line), "arg") || line == "" {
 			continue
 		} else {
 			return dockerFrom.MatchString(scanner.Text()) && !matchesAny(falsePositiveFROMPatterns, scanner.Text())
