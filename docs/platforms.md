@@ -62,7 +62,7 @@ cdk init app --language go
 go mod download
 ```
 
-3. Synthetize CloudFormation template
+3. Synthesize CloudFormation template
 
 ```bash
 cdk synth > cfn-stack.yaml
@@ -208,10 +208,10 @@ By adding, as the first line in a TF file, a rule that follows the logic below:
 ```
 // kics_terraform_vars: path/to/terraform/vars.tf
 ```
-This line is a comment that Kics will look for when trying to decypher the variables used in that file.
+This line is a comment that Kics will look for when trying to decipher the variables used in that file.
 
 #### Option 2 - Flag when calling the scan
-By adding the flag `--terraform-vars-path` to the scan command it is possible to input the path of the variables fiel that will be used for all the files in the project.
+By adding the flag `--terraform-vars-path` to the scan command it is possible to input the path of the variables file that will be used for all the files in the project.
 
 **_NOTE:_** when using both options the flag option will take precedence and therefore define the variables.
 
@@ -219,7 +219,7 @@ By adding the flag `--terraform-vars-path` to the scan command it is possible to
 
 #### Terraform
 
-Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:
+Although KICS support variables and interpolations, KICS does not support functions and environment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:
 
 ```hcl
 resource "aws_launch_configuration" "example" {
