@@ -13,7 +13,6 @@ type kindDetectLine interface {
 type DetectLine struct {
 	detectors       map[model.FileKind]kindDetectLine
 	outputLines     int
-	logWithFields   *zerolog.Logger
 	defaultDetector kindDetectLine
 }
 
@@ -21,15 +20,9 @@ type DetectLine struct {
 func NewDetectLine(outputLines int) *DetectLine {
 	return &DetectLine{
 		detectors:       make(map[model.FileKind]kindDetectLine),
-		logWithFields:   &zerolog.Logger{},
 		outputLines:     outputLines,
 		defaultDetector: defaultDetectLine{},
 	}
-}
-
-// SetupLogs will change the logger feild to be used in kindDetectLine DetectLine method
-func (d *DetectLine) SetupLogs(logger *zerolog.Logger) {
-	d.logWithFields = logger
 }
 
 // Add adds a new kindDetectLine to the caller and returns it

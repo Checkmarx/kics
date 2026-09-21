@@ -733,7 +733,8 @@ func TestInspector_DecodeQueryResults(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			//create a context with 0 second to timeout
 			timeoutDuration, _ := time.ParseDuration(tt.args.timeDuration)
-			myCtxTimeOut, _ := context.WithTimeout(contextToUSe, timeoutDuration)
+			myCtxTimeOut, cancel := context.WithTimeout(contextToUSe, timeoutDuration)
+			defer cancel()
 			result, err := c.DecodeQueryResults(&tt.args.queryContext, myCtxTimeOut, tt.args.regoResult)
 			assert.Nil(t, err, "Error not as expected")
 			assert.Equal(t, 0, len(result), "Array size is not as expected")
